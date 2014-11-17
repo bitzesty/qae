@@ -1,1 +1,13 @@
+.DS_Store
+.bundle
+log/*.log
+log/*.pid
+tmp/**/*
+vendor/bundle
 config/database.yml
+rspec.watchr
+public/uploads/*
+.pgpass
+certs/*
+.env
+
