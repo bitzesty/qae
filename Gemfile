@@ -8,6 +8,8 @@ gem 'slim-rails'
 gem 'jquery-rails'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'govuk_frontend_toolkit', :git => "https://github.com/alphagov/govuk_frontend_toolkit_gem.git", :submodules => true
+gem "plek", "~> 1.9.0"
+gem "slimmer", "~> 5.0.0", github: "alphagov/slimmer", branch: "master"
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'
