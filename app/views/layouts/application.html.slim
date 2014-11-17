@@ -2,8 +2,11 @@ doctype html
 
 html
   head
-    title QAE
+    title
+      = content_for?(:title) ? yield(:title) : "QAE"
     = stylesheet_link_tag    'application', media: 'all'
+    /[if gt IE 8]
+      = stylesheet_link_tag  "application.css"
     /[if IE 6]
       = stylesheet_link_tag  "application-ie6.css"
     /[if IE 7]
@@ -15,4 +18,5 @@ html
 
   body
     #wrapper
-      = yield
+      main#content.group role="main"
+        = yield
