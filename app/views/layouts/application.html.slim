@@ -4,6 +4,12 @@ html
   head
     title QAE
     = stylesheet_link_tag    'application', media: 'all'
+    /[if IE 6]
+      = stylesheet_link_tag  "application-ie6.css"
+    /[if IE 7]
+      = stylesheet_link_tag  "application-ie7.css"
+    /[if IE 8]
+      = stylesheet_link_tag  "application-ie8.css"
     = javascript_include_tag 'application'
     = csrf_meta_tags
 
