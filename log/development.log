@@ -1,0 +1,6 @@
+
+
+Started GET "/" for 127.0.0.1 at 2014-11-17 17:27:07 +0300
+Processing by Rails::WelcomeController#index as HTML
+  Rendered /Users/dreamfall/.rbenv/versions/2.1.5/lib/ruby/gems/2.1.0/gems/railties-4.1.7/lib/rails/templates/rails/welcome/index.html.erb (2.0ms)
+Completed 200 OK in 23ms (Views: 9.6ms | ActiveRecord: 0.0ms)
