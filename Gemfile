@@ -12,3 +12,7 @@ gem 'govuk_frontend_toolkit', :git => "https://github.com/alphagov/govuk_fronten
 group :assets do
   gem 'uglifier', '>= 1.3.0'
 end
+
+group :test do
+  gem 'rspec-rails'
+end
