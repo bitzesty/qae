@@ -1,0 +1,15 @@
+common: &common
+  adapter: postgresql
+  encoding: utf8
+
+development:
+  <<: *common
+  database: qae_development
+
+test:
+  <<: *common
+  database: qae_test
+
+production:
+  <<: *common
+  database: qae_production
