@@ -17,12 +17,9 @@
       display: inline;
     }
 
-    small {
-      @include core-14;
+    .hint {
       color: $grey-1;
-      display: block;
       margin-top: 0.5em;
-      max-width: 15.5em;
     }
   }
 
