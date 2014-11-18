@@ -3,3 +3,21 @@
   @include core-16;
   color: $grey-1;
 }
+
+// Fixes styling of smart-answer questions on the eligibility check pages
+article .current-question li {
+  @include core-16;
+  padding-left: 0;
+}
+
+.current-question {
+  // Spaces out multiple questions
+  .question + .question {
+    margin-top: 5em;
+  }
+
+  // Sensible font size for question info
+  .application-notice.info-notice p {
+    @include core-16;
+  }
+}

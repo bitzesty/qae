@@ -26,7 +26,26 @@
   }
 }
 
-// Positions the sidebar when the is no header text
-.related-positioning.related-positioning-no-header .related {
-  margin-top: 1em;
+.related-positioning {
+  // Positions the sidebar when the is no header text
+  &.related-positioning-no-header .related {
+    margin-top: 1em;
+  }
+
+  // Positions the pagination navigation if it's in the sidebar
+  .pagination {
+    margin-top: 0.5em;
+
+    li {
+      width: 100%;
+    }
+  }
+}
+
+// Styles the sub header for `page-header`
+header.page-header div h1 small {
+  @include core-27;
+  display: block;
+  margin-top: 0.15em;
+  color: $grey-1;
 }
