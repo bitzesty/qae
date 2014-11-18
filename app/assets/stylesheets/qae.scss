@@ -21,4 +21,5 @@ $gutter-one-sixth: $gutter/6;
 // Page specific styles
 #QAE {
   @import 'frontend/views/dashboard';
+  @import 'frontend/views/eligibility';
 }
