@@ -15,9 +15,10 @@ $gutter-one-sixth: $gutter/6;
 }
 
 // App specific styles
-#QAE {
-  @import 'frontend/layout';
+@import 'frontend/layout';
+@import 'frontend/smart_answers';
 
-  // Page specific styles
+// Page specific styles
+#QAE {
   @import 'frontend/views/dashboard';
 }
