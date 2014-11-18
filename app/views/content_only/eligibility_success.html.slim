@@ -1,0 +1,40 @@
+header.page-header.group
+  div
+    h1
+      ' Your organisation may be eligibible to apply to one or more award categories. 
+
+.article-container
+  article.group role="article"
+    .inner
+      p
+        ' Sign up to lorem ipsum dolor sit amet, consectetur.
+      br
+
+      form.qae-form
+        p.group
+          label
+            ' Your e-mail address
+            input type="email"
+
+        p.group
+          label
+            ' Create a password
+            input type="password"
+            small
+              ' Use at least 8 characters mixing letters, numbers and symbols
+
+        p.group
+          label
+            ' Retype your password
+            input type="password"
+            small
+              ' This is to avoid typos.
+
+        p.group
+          label
+            input type="checkbox"
+            ' I hereby agree with with the #{link_to "terms & conditions", "#"}.
+
+        p.form-submit
+          button.button.medium type="submit"
+            ' Sign up
