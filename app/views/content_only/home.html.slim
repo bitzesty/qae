@@ -32,30 +32,25 @@ header.page-header.group
             small
               ' Unclear eligibility
             .pull-right
-              a href="http://www.example.com"
-                ' Start your application
+              = link_to "Start your application", "#"
           li
             h3
               ' Innovation award
             small
               ' Unclear eligibility
             .pull-right
-              a href="http://www.example.com"
-                ' Start your application
+              = link_to "Start your application", "#"
           li
             h3
               ' Sustainable development award
             small
               ' Unclear eligibility
             .pull-right
-              a href="http://www.example.com"
-                ' Start your application
+              = link_to "Start your application", "#"
 
         .application-notice.info-notice
           p
-            ' If you feel that you have made a mistake, you can
-            a href="http://www.example.com"
-              ' review your eligibility.
+            ' If you feel that you have made a mistake, you can #{link_to "review your eligibility", "#"}.
 
   .related-positioning.related-positioning-no-header
     .related-container
@@ -68,24 +63,19 @@ header.page-header.group
             ul
               li
                 ' 2014 - Innovation
-                a.inline-link href="http://www.example.com"
-                  ' Download pdf
+                = link_to "Download pdf", "http://www.example.com", class: "inline-link"
               li
                 ' 2014 - International Trade
-                a.inline-link href="http://www.example.com"
-                  ' Download pdf
+                = link_to "Download pdf", "http://www.example.com", class: "inline-link"
               li
                 ' 2013 - Innovation
-                a.inline-link href="http://www.example.com"
-                  ' Download pdf
+                = link_to "Download pdf", "http://www.example.com", class: "inline-link"
               li
                 ' 2013 - International Trade
-                a.inline-link href="http://www.example.com"
-                  ' Download pdf
+                = link_to "Download pdf", "http://www.example.com", class: "inline-link"
               li
                 ' 2012 - Substainability Development
-                a.inline-link href="http://www.example.com"
-                  ' Download pdf
+                = link_to "Download pdf", "http://www.example.com", class: "inline-link"
 
         .inner.group
-          a.return-to-top href="#content" Return to top ↑
+          = link_to "Return to top ↑", "#content", class: "return-to-top"

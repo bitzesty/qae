@@ -41,8 +41,7 @@
               th.previous-answers-title
                 ' Previous answers
               th.link-right.restart colspan="2"
-                a href="/eligibility"
-                  ' Start again
+                = link_to "Start again", "/eligibility"
           tbody
             tr.section
               td.previous-question-title
@@ -50,7 +49,7 @@
               td.previous-question-body
                 ' Business - Automotive
               td.link-right
-                a href="/eligibility"
+                = link_to "/eligibility" do
                   ' Change
                   span.visuallyhidden
                     ' answer to "Are you a business or a charity?"
@@ -61,7 +60,7 @@
               td.previous-question-body
                 ' Yes
               td.link-right
-                a href="/eligibility"
+                = link_to "/eligibility" do
                   ' Change
                   span.visuallyhidden
                     ' answer to "Is your business or charity based in UK?"
