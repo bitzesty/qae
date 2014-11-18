@@ -29,11 +29,10 @@
 
     h2,
     h3 {
-      @include core-19;
-      font-weight: bold;
+      @include bold-19;
       margin-top: $gutter-one-sixth;
       margin-bottom: $gutter-one-sixth;
-      margin-right: 9em;
+      margin-right: 10em;
 
       @include media($max-width: 450px) {
         margin-right: 0;
@@ -64,6 +63,15 @@
         @include core-16;
         display: block;
         margin-top: 2px;
+      }
+    }
+
+    .application-notice.info-notice {
+      margin-top: $gutter-half;
+      margin-bottom: $gutter-one-third;
+
+      p {
+        @include core-16;
       }
     }
   }
