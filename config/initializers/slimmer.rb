@@ -6,6 +6,6 @@ Qae::Application.configure do
   end
 
   if Rails.env.development? || Rails.env.test?
-    config.slimmer.asset_host = ENV["STATIC_DEV"] || "http://127.0.0.1:3013"
+    config.slimmer.asset_host = ENV["STATIC_DEV"] || "https://assets.digital.cabinet-office.gov.uk/"
   end
 end
