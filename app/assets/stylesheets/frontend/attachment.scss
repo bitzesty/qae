@@ -1,0 +1,129 @@
+// This was adapted from from whitehall repo 18 Nov 2014
+// https://github.com/alphagov/whitehall/blob/25ec181b51d7aa29b44d2467bffeb0887a6b386a/app/assets/stylesheets/frontend/helpers/_attachment.scss
+
+$thumbnail-width: 99px;
+
+.attachment {
+  position: relative;
+  margin: $gutter 0;
+  padding: $gutter-half 0 0 ($thumbnail-width + $gutter);
+  @extend %contain-floats;
+
+  &.inline {
+    background: transparent;
+    position: static;
+    padding: 0;
+    margin: 0;
+    &:after {
+      display: none;
+    }
+  }
+
+  .attachment-thumb {
+    position: relative;
+    float: left;
+    margin-top: $gutter-one-sixth;
+    margin-left: -($thumbnail-width + $gutter - $gutter-one-sixth);
+    padding-bottom: $gutter-half;
+
+    img {
+      display: block;
+      width: $thumbnail-width;
+      height: 140px;
+      background: white;
+      outline: $gutter-one-sixth solid transparentize($black, 0.9);
+      @include ie-lte(8) {
+        border: $gutter-one-sixth solid $grey-3;
+      }
+      @include box-shadow(0 2px 2px rgba(0,0,0,0.4));
+    }
+  }
+
+  .title a {
+    text-decoration: underline;
+  }
+
+  .attachment-details {
+    h1, h2, h3 {
+      @include core-27;
+      margin: 0;
+      padding-top: 2px;
+      padding-bottom: 3px;
+    }
+
+    h2 {
+      padding-top: 0;
+      @include media(tablet) {
+        padding-top: 7px;
+      }
+    }
+
+    h3 {
+      font-weight: bold;
+    }
+
+    .extra-description {
+      @include core-19;
+      margin: 0;
+    }
+
+    .metadata {
+      @include core-14;
+      margin: 0;
+      padding-top: 6px;
+      padding-bottom: 4px;
+
+      .changed,
+      .references {
+        display: block;
+      }
+      .unnumbered-paper {
+        display: block;
+      }
+    }
+
+    .preview,
+    .download {
+      @include core-19;
+    }
+
+    .preview {
+      padding-right: $gutter-half;
+    }
+  }
+
+  .opendocument-help {
+    margin: 0;
+    @include core-14;
+    a {
+      @include external-link-14;
+    }
+  }
+
+  .accessibility-warning {
+    margin-top: $gutter-one-third;
+    h2 {
+      @include core-14;
+      margin: 0;
+      color: $text-colour;
+    }
+    .toggler {
+      display: inline-block;
+      color: $link-colour;
+      cursor: pointer;
+      &:hover,
+      &:focus {
+        outline: none;
+        text-decoration: underline;
+      }
+    }
+  }
+  &:first-child {
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  strong {
+    font-weight: bold;
+  }
+}
