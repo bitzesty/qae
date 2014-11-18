@@ -49,3 +49,23 @@ header.page-header div h1 small {
   margin-bottom: 0.15em;
   color: $grey-1;
 }
+
+// Taken from whitehall repo 18 Nov 2014
+// https://github.com/alphagov/whitehall/blob/3c21e60c16a069a24949c5fa40ca913166d29666/app/assets/stylesheets/frontend/helpers/_govspeak.scss#L235
+.call-to-action {
+  margin: $gutter 0;
+  background: $panel-colour none no-repeat 98% $gutter-two-thirds;
+  padding: $gutter-one-third ($gutter*2) $gutter-one-third $gutter-half;
+  position: relative;
+
+  p {
+    margin: 0;
+    padding: 0;
+  }
+
+  ol {
+    @include media(desktop) {
+      list-style-position: outside;
+    }
+  }
+}
