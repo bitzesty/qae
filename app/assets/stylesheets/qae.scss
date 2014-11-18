@@ -4,3 +4,20 @@
 @import '_css3';
 @import '_typography';
 @import 'design-patterns/_buttons';
+
+$gutter-one-sixth: $gutter/6;
+
+// Footer fix for slim screens
+#footer .footer-categories .footer-inside-government ul li {
+  @include media($max-width: 640px) {
+    width: auto;
+  }
+}
+
+// App specific styles
+#QAE {
+  @import 'frontend/layout';
+
+  // Page specific styles
+  @import 'frontend/views/dashboard';
+}

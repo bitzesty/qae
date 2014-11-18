@@ -1,0 +1,70 @@
+// Positions the `highlighted-event` when it's used full width
+.highlight-answer,
+.highlighted-event {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+// Allows for inline links on the sidebar
+// Useful for regular text and links in the sidebar
+.related li a.inline-link {
+  display: inline;
+}
+
+// Styles the `Your application` list
+// Has borders and positions the `Start your application` to the right
+.applications-list {
+  clear: both;
+  margin-bottom: $gutter;
+  padding-left: 0;
+
+  li {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    list-style: none;
+    border-bottom: 1px solid $border-colour;
+    margin-left: 0;
+    padding: $gutter-one-sixth 0 $gutter-one-third;
+
+    h2,
+    h3 {
+      @include core-19;
+      font-weight: bold;
+      margin-top: $gutter-one-sixth;
+      margin-bottom: $gutter-one-sixth;
+      margin-right: 9em;
+
+      @include media($max-width: 450px) {
+        margin-right: 0;
+      }
+    }
+
+    small {
+      @include core-14;
+      display: block;
+      padding: 0 $gutter-half 0 0;
+      color: $grey-1;
+    }
+
+    .pull-right {
+      position: absolute;
+      top: $gutter-one-third;
+      right: 0;
+
+      @include media($max-width: 450px) {
+        display: block;
+        position: static;
+        top: auto;
+        right: auto;
+        margin-top: $gutter-one-third;
+      }
+
+      a {
+        @include core-16;
+        display: block;
+        margin-top: 2px;
+      }
+    }
+  }
+}

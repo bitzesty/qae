@@ -1,0 +1,32 @@
+// Positions full width elements
+.inner-block {
+  padding: 0 $gutter-half;
+
+  @include media(tablet) {
+    padding: 0 $gutter;
+  }
+
+  &.floated-children {
+    @extend %contain-floats;
+
+    padding: 0;
+
+    @include media(tablet) {
+      padding: 0 $gutter-half;
+    }
+  }
+}
+
+// Positions the sidebar to allow elements above it
+.article-related-positioning-container {
+  position: relative;
+
+  .related-positioning {
+    top: 0;
+  }
+}
+
+// Positions the sidebar when the is no header text
+.related-positioning.related-positioning-no-header .related {
+  margin-top: 1em;
+}
