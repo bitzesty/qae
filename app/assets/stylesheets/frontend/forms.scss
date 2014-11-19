@@ -1,20 +1,72 @@
+// Expanded the standard input style to include other types
+input[type="text"],
+input[type="search"],
+input[type="email"],
+input[type="password"] {
+  @include core-16($line-height: (20 / 16));
+  border: 1px solid #bbb;
+  min-width: 8em;
+  margin: 0 0.5em;
+  padding: 0.25em;
+
+  @include ie-lte(7) {
+    width:8em;
+  }
+
+  // Alternate width sizes for inputs based on
+  // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
+  &.small {
+    max-width: 8em;
+
+    @include ie-lte(7) {
+      width: 8em;
+    }
+  }
+
+  &.medium {
+    min-width: 16em;
+
+    @include ie-lte(7) {
+      width: 16em;
+    }
+  }
+
+  &.large {
+    min-width: 24em;
+
+    @include ie-lte(7) {
+      width: 24em;
+    }
+  }
+}
+
 // Styling for forms that exist outside of smart-answers
-// Adapted from https://www.gov.uk/jobsearch 18 Nov 2014
+// Forms that flow downwards with multiple questions
 .qae-form {
+  p.group {
+    margin-bottom: 1.25em;
+  }
+
   label {
-    input {
+    input,
+    select {
       display: block;
-      background-color: #f9f9f9;
-      border: 1px inset #e2e2e2;
+      margin: 0.2em 0 0.5em 0;
+    }
+
+    // Bigger sized inputs based on https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
+    // but adapted from https://www.gov.uk/jobsearch 18 Nov 2014
+    input {
       font-size: 1em;
       line-height: 1.2;
       padding: 0.3em 0 0.1em 0.4em;
-      margin-left: 0;
     }
 
     input[type="checkbox"],
     input[type="radio"] {
       display: inline;
+      margin: 3px 0.5ex;
+      padding: initial;
     }
 
     .hint {
@@ -26,15 +78,16 @@
   p.form-submit {
     margin: 1.5em 0 0 0;
   }
+}
 
-  .button {
-    @include core-24($line-height: (16 / 24));
-    padding: 0.45em 0.5em 0.45em 0.5em;
-    display: inline-block;
+// Large buttons
+.button.large {
+  @include core-24($line-height: (16 / 24));
+  padding: 0.45em 0.5em 0.45em 0.5em;
+  display: inline-block;
 
-    /* IE6 adds its own side padding so requires no extra */
-    @include ie(6) {
-      padding: 0.45em 0.5em 0.62em 0.5em;
-    }
+  /* IE6 adds its own side padding so requires no extra */
+  @include ie(6) {
+    padding: 0.45em 0.5em 0.62em 0.5em;
   }
 }
