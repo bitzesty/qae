@@ -1,9 +1,3 @@
-// Style for the `Question 1 of 5`
-.question-count-progress {
-  @include core-16;
-  color: $grey-1;
-}
-
 // Fixes styling of smart-answer questions on the eligibility check pages
 article .current-question li {
   @include core-16;
