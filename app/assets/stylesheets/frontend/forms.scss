@@ -68,11 +68,11 @@ input[type="password"] {
       margin: 3px 0.5ex;
       padding: initial;
     }
+  }
 
-    .hint {
-      color: $grey-1;
-      margin-top: 0.5em;
-    }
+  .hint {
+    color: $grey-1;
+    margin-top: 0.5em;
   }
 
   p.form-submit {
