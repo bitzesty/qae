@@ -9,56 +9,23 @@
       .current-question#current-question
         .question
           h2
-            ' Is your organisation a self-contained enterprise which markets its own products or services?
+            ' What kind of organisation are you?
           .question-body
             p.hint
-              ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
             div
               ul.options
                 li
                   label.selectable
                     input type="radio"
-                    ' Yes
+                    ' Business
                 li
                   label.selectable
                     input type="radio"
-                    ' No
+                    ' Charity
             p.hint
-              = link_to "I don't know if my organisation is self-contained", "#"
+              = link_to "Why are you asking me this?", "#"
 
         .next-question
           button.medium.button type="submit"
             ' Next step
-
-  .previous-answers
-    .done-questions
-      article
-        table
-          thead
-            tr
-              th.previous-answers-title
-                ' Previous answers
-              th.link-right.restart colspan="2"
-                = link_to "Start again", "/eligibility"
-          tbody
-            tr.section
-              td.previous-question-title
-                ' Are you a business or a charity?
-              td.previous-question-body
-                ' Business - Automotive
-              td.link-right
-                = link_to "/eligibility" do
-                  ' Change
-                  span.visuallyhidden
-                    ' answer to "Are you a business or a charity?"
-
-            tr.section
-              td.previous-question-title
-                ' Is your business or charity based in UK?
-              td.previous-question-body
-                ' Yes
-              td.link-right
-                = link_to "/eligibility" do
-                  ' Change
-                  span.visuallyhidden
-                    ' answer to "Is your business or charity based in UK?"

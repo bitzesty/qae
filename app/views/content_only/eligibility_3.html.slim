@@ -9,10 +9,10 @@
       .current-question#current-question
         .question
           h2
-            ' Is your organisation a self-contained enterprise which markets its own products or services?
+            ' Is your business based in UK?
           .question-body
             p.hint
-              ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              ' Including the Channel Islands and the Isle of Man.
             div
               ul.options
                 li
@@ -24,7 +24,7 @@
                     input type="radio"
                     ' No
             p.hint
-              = link_to "I don't know if my organisation is self-contained", "#"
+              = link_to "Why are you asking me this?", "#"
 
         .next-question
           button.medium.button type="submit"
@@ -43,22 +43,22 @@
           tbody
             tr.section
               td.previous-question-title
-                ' Are you a business or a charity?
+                ' What kind of organisation are you?
               td.previous-question-body
-                ' Business - Automotive
+                ' Business
               td.link-right
                 = link_to "/eligibility" do
                   ' Change
                   span.visuallyhidden
-                    ' answer to "Are you a business or a charity?"
+                    ' answer to "What kind of organisation are you?"
 
             tr.section
               td.previous-question-title
-                ' Is your business or charity based in UK?
+                ' Which industry is your business in?
               td.previous-question-body
-                ' Yes
+                ' Automotive
               td.link-right
                 = link_to "/eligibility" do
                   ' Change
                   span.visuallyhidden
-                    ' answer to "Is your business or charity based in UK?"
+                    ' answer to "Which industry is your business in?"

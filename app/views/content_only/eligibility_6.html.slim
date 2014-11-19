@@ -9,7 +9,7 @@
       .current-question#current-question
         .question
           h2
-            ' Is your organisation a self-contained enterprise which markets its own products or services?
+            ' Is your organisation able to demonstrate commercial success?
           .question-body
             p.hint
               ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -24,7 +24,7 @@
                     input type="radio"
                     ' No
             p.hint
-              = link_to "I don't know if my organisation is self-contained", "#"
+              = link_to "What can be considered commercial success?", "#"
 
         .next-question
           button.medium.button type="submit"
@@ -43,22 +43,55 @@
           tbody
             tr.section
               td.previous-question-title
-                ' Are you a business or a charity?
+                ' What kind of organisation are you?
               td.previous-question-body
-                ' Business - Automotive
+                ' Business
               td.link-right
                 = link_to "/eligibility" do
                   ' Change
                   span.visuallyhidden
-                    ' answer to "Are you a business or a charity?"
+                    ' answer to "What kind of organisation are you?"
 
             tr.section
               td.previous-question-title
-                ' Is your business or charity based in UK?
+                ' Which industry is your business in?
+              td.previous-question-body
+                ' Automotive
+              td.link-right
+                = link_to "/eligibility" do
+                  ' Change
+                  span.visuallyhidden
+                    ' answer to "Which industry is your business in?"
+
+            tr.section
+              td.previous-question-title
+                ' Is your business based in UK?
               td.previous-question-body
                 ' Yes
               td.link-right
                 = link_to "/eligibility" do
                   ' Change
                   span.visuallyhidden
-                    ' answer to "Is your business or charity based in UK?"
+                    ' answer to "Is your business based in UK?"
+
+            tr.section
+              td.previous-question-title
+                ' Is your organisation a self-contained enterprise which markets its own products or services?
+              td.previous-question-body
+                ' Yes
+              td.link-right
+                = link_to "/eligibility" do
+                  ' Change
+                  span.visuallyhidden
+                    ' answer to "Is your organisation a self-contained enterprise which markets its own products or services?"
+
+            tr.section
+              td.previous-question-title
+                ' Is your organisation under its own management, with at least 2 full-time employees or part-time equivalents?
+              td.previous-question-body
+                ' Yes
+              td.link-right
+                = link_to "/eligibility" do
+                  ' Change
+                  span.visuallyhidden
+                    ' answer to "Is your organisation under its own management, with at least 2 full-time employees or part-time equivalents?"

@@ -43,22 +43,33 @@
           tbody
             tr.section
               td.previous-question-title
-                ' Are you a business or a charity?
+                ' What kind of organisation are you?
               td.previous-question-body
-                ' Business - Automotive
+                ' Business
               td.link-right
                 = link_to "/eligibility" do
                   ' Change
                   span.visuallyhidden
-                    ' answer to "Are you a business or a charity?"
+                    ' answer to "What kind of organisation are you?"
 
             tr.section
               td.previous-question-title
-                ' Is your business or charity based in UK?
+                ' Which industry is your business in?
+              td.previous-question-body
+                ' Automotive
+              td.link-right
+                = link_to "/eligibility" do
+                  ' Change
+                  span.visuallyhidden
+                    ' answer to "Which industry is your business in?"
+
+            tr.section
+              td.previous-question-title
+                ' Is your business based in UK?
               td.previous-question-body
                 ' Yes
               td.link-right
                 = link_to "/eligibility" do
                   ' Change
                   span.visuallyhidden
-                    ' answer to "Is your business or charity based in UK?"
+                    ' answer to "Is your business based in UK?"
