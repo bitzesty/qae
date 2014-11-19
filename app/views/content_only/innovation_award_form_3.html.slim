@@ -1,0 +1,591 @@
+header.page-header.group
+  div
+    h1
+      small
+        ' Step 3 of 5: Commercial performance
+      ' Apply for the innovation award
+
+.article-container.article-container-wider
+  article.group role="article"
+    .inner
+      form.qae-form
+        fieldset
+          h2
+            span.steps#step-17
+              span.visuallyhidden
+                ' Step 17
+              span.todo 17
+            ' Please select either ‘Outstanding’ (2 years) or ‘Continuous’ (5 years)
+            abbr *
+          p.group
+            span.visuallyhidden
+              ' Please select either ‘Outstanding’ (2 years) or ‘Continuous’ (5 years)
+            label.selectable
+              input type="checkbox"
+              ' Outstanding
+            label.selectable
+              input type="checkbox"
+              ' Continuous
+          p.hint
+            = link_to "What doe outstanding innovation mean?", "#"
+          p.hint
+            = link_to "What doe continuous innovation mean?", "#"
+
+          h2
+            span.steps#step-17-1
+              span.visuallyhidden
+                ' Step 17.1
+              span.todo 17.1
+            ' Please select your financial year end date between 1 October 2013 and 30 September 2014 for the final year of the entry using the online calendar
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' Please select your financial year end date between 1 October 2013 and 30 September 2014 for the final year of the entry using the online calendar
+                abbr *
+            span.row
+              span.span-3
+                label
+                  ' Year 1 ended
+                  br
+                  select
+                    option value="" Day
+                    - (1..31).each do |day|
+                      option= day
+                  select
+                    option value="" Month
+                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                    - months.each do |month|
+                      option= month
+                  select
+                    option value="" Year
+                    - (2012..2014).each do |year|
+                      option= year
+              span.span-3
+                label
+                  ' Year 2 ended
+                  br
+                  select
+                    option value="" Day
+                    - (1..31).each do |day|
+                      option= day
+                  select
+                    option value="" Month
+                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                    - months.each do |month|
+                      option= month
+                  select
+                    option value="" Year
+                    - (2012..2014).each do |year|
+                      option= year
+              span.span-3
+                label
+                  ' Year 3 ended
+                  br
+                  select
+                    option value="" Day
+                    - (1..31).each do |day|
+                      option= day
+                  select
+                    option value="" Month
+                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                    - months.each do |month|
+                      option= month
+                  select
+                    option value="" Year
+                    - (2012..2014).each do |year|
+                      option= year
+              span.span-3
+                label
+                  ' Year 4 ended
+                  br
+                  select
+                    option value="" Day
+                    - (1..31).each do |day|
+                      option= day
+                  select
+                    option value="" Month
+                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+                    - months.each do |month|
+                      option= month
+                  select
+                    option value="" Year
+                    - (2012..2014).each do |year|
+                      option= year
+
+        fieldset
+          h2
+            span.steps#step-18
+              span.visuallyhidden
+                ' Step 18
+              span.todo 18
+            ' State the number of full-time employees (or part-time equivalent) employed in the UK by the entrant at the end of each 12 month period or as an average for each year
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' State the number of full-time employees (or part-time equivalent) employed in the UK by the entrant at the end of each 12 month period or as an average for each year
+                abbr *
+            span.row
+              span.span-3
+                label
+                  ' Year 1 ended
+                  input.small type="text"
+                span.hint
+                  ' Nunber of employees
+              span.span-3
+                label
+                  ' Year 2 ended
+                  input.small type="text"
+                span.hint
+                  ' Nunber of employees
+              span.span-3
+                label
+                  ' Year 3 ended
+                  input.small type="text"
+                span.hint
+                  ' Nunber of employees
+              span.span-3
+                label
+                  ' Year 4 ended
+                  input.small type="text"
+                span.hint
+                  ' Nunber of employees
+
+        fieldset
+          h2
+            span.steps#step-19
+              span.visuallyhidden
+                ' Step 19
+              span.todo 19
+            ' Does this entry relate to:
+            abbr *
+          p.group
+            span.visuallyhidden
+              ' Does this entry relate to:
+              abbr *
+            label.selectable
+              input type="radio"
+              ' Your entire business
+              span.hint
+                ' Please complete Questions 20 to 20.5 and then proceed to Question 25 and onwards
+            label.selectable
+              input type="radio"
+              ' A single product or service
+              span.hint
+                ' Please complete Questions 20 to 24 and then proceed to Question 25 and onwards
+
+        fieldset
+          h2
+            span.steps#step-20
+              span.visuallyhidden
+                ' Step 20
+              span.todo 20
+            ' Total Turnover
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' Total Turnover
+                abbr *
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+          h2
+            span.steps#step-20-1
+              span.visuallyhidden
+                ' Step 20.1
+              span.todo 20.1
+            ' Net Profit
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' Net Profit
+                abbr *
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+            span.hint
+              ' i.e. after tax, before dividends
+
+          h2
+            span.steps#step-20-2
+              span.visuallyhidden
+                ' Step 20.2
+              span.todo 20.2
+            ' Annual balance sheet total
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' Annual balance sheet total
+                abbr *
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+          h2
+            span.steps#step-20-3
+              span.visuallyhidden
+                ' Step 20.3
+              span.todo 20.3
+            ' UK sales
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' UK sales
+                abbr *
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+          h2
+            span.steps#step-20-4
+              span.visuallyhidden
+                ' Step 20.4
+              span.todo 20.4
+            ' Export sales
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' Export sales
+                abbr *
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+          h2
+            span.steps#step-20-5
+              span.visuallyhidden
+                ' Step 20.5
+              span.todo 20.5
+            ' Explain any losses and drops in turnover, sales, annual balance sheet totals and/or net profits
+          p
+            ' You can explain here use of estimates and actual receipts or firm orders.
+          p.group
+            label
+              span.visuallyhidden
+                ' Explain any losses and drops in turnover, sales, annual balance sheet totals and/or net profits. 
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        br
+
+        .application-notice.info-notice
+          p
+            ' Questions 21, 22, 23 and 24 refer to the single product or service that is the subject of the entry.
+            br
+            ' If your entry relates to your whole operation, please proceed to Question 25.
+
+        fieldset
+          h2
+            span.steps#step-21
+              span.visuallyhidden
+                ' Step 21
+              span.todo 21
+            ' Number of units/contracts/quantity sold
+          p.group
+            label
+              span.visuallyhidden
+                ' Number of units/contracts/quantity sold
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+          h2
+            span.steps#step-20-1
+              span.visuallyhidden
+                ' Step 20.1
+              span.todo 20.1
+            ' Actual sales
+          p.group
+            label
+              span.visuallyhidden
+                ' Actual sales
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+          h2
+            span.steps#step-20-2
+              span.visuallyhidden
+                ' Step 20.2
+              span.todo 20.2
+            ' ...of which exports
+          p.group
+            label
+              span.visuallyhidden
+                ' ...of which exports
+                abbr *
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+          h2
+            span.steps#step-20-3
+              span.visuallyhidden
+                ' Step 20.3
+              span.todo 20.3
+            ' ...of which are royalties or licences
+          p.group
+            label
+              span.visuallyhidden
+                ' ...of which are royalties or licences
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+        fieldset
+          h2
+            span.steps#step-22
+              span.visuallyhidden
+                ' Step 22
+              span.todo 22
+            ' Explain any drop in sales
+          p.group
+            label
+              span.visuallyhidden
+                ' Explain any drop in sales
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        fieldset
+          h2
+            span.steps#step-23
+              span.visuallyhidden
+                ' Step 23
+              span.todo 23
+            ' Please comment on the unit selling price, highlighting any changes over the period
+          p.group
+            label
+              span.visuallyhidden
+                ' Please comment on the unit selling price, highlighting any changes over the period
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        fieldset
+          h2
+            span.steps#step-24
+              span.visuallyhidden
+                ' Step 24
+              span.todo 24
+            ' Unit costs (if applicable)
+          p.group
+            label
+              span.visuallyhidden
+                ' Unit costs (if applicable)
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+        fieldset
+          h2
+            span.steps#step-25
+              span.visuallyhidden
+                ' Step 25
+              span.todo 25
+            ' Provide the cost savings, if known, to your business or your customers’ business after introduction of the innovation.
+          p.group
+            label
+              span.visuallyhidden
+                ' Provide the cost savings, if known, to your business or your customers’ business after introduction of the innovation.
+            span.row
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  input.small type="text" placeholder="£"
+
+        fieldset
+          h2
+            span.steps#step-26
+              span.visuallyhidden
+                ' Step 26
+              span.todo 26
+            ' Show details of all investments in the innovation and the years when they were made – provide as much detail of early stage investment as possible, not just investment(s) relevant to the period of your entry
+          p.group
+            label
+              span.visuallyhidden
+                ' Show details of all investments in the innovation and the years when they were made – provide as much detail of early stage investment as possible, not just investment(s) relevant to the period of your entry
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        fieldset
+          h2
+            span.steps#step-27
+              span.visuallyhidden
+                ' Step 27
+              span.todo 27
+            ' Describe how, when, and to what extent the innovation improved the commercial performance of your business. How long did it take for the investment, indicated in Question 26, to be repaid? When and how was the repayment achieved?
+          p.group
+            label
+              span.visuallyhidden
+                ' Describe how, when, and to what extent the innovation improved the commercial performance of your business. How long did it take for the investment, indicated in Question 26, to be repaid? When and how was the repayment achieved?
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to "#", rel: "prev", title: "Navigate to previous part" do
+                  span class="pagination-label"
+                    ' Previous
+                  span class="pagination-part-title"
+                    ' Description of Goods or Services
+
+              li.next
+                = link_to "#", rel: "next", title: "Navigate to next part" do
+                  span class="pagination-label"
+                    ' Next
+                  span class="pagination-part-title"
+                    ' Declaration of social responsibility

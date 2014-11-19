@@ -1,0 +1,31 @@
+.smart-answer-questions.group
+  header.page-header.group
+    div
+      h1
+        ' Check your eligibility
+
+  .step.current
+    form
+      .current-question#current-question
+        .question
+          h2
+            ' What kind of organisation are you?
+          .question-body
+            p.hint
+              ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
+            div
+              ul.options
+                li
+                  label.selectable
+                    input type="radio"
+                    ' Business
+                li
+                  label.selectable
+                    input type="radio"
+                    ' Charity
+            p.hint
+              = link_to "Why are you asking me this?", "#"
+
+        .next-question
+          button.medium.button type="submit"
+            ' Next step

@@ -1,0 +1,242 @@
+header.page-header.group
+  div
+    h1
+      small
+        ' Step 2 of 5: Description of Goods or Services
+      ' Apply for the innovation award
+
+.article-container.article-container-wider
+  article.group role="article"
+    .inner
+      .application-notice.help-notice
+        p
+          ' You may enter as many innovative products as you wish but each product requires a seperate entry form.
+
+      form.qae-form
+        fieldset
+          h2
+            span.steps#step-10
+              span.visuallyhidden
+                ' Step 10
+              span.todo 10
+            ' Name of product, service or initiative
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' Name of product, service or initiative
+                abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        fieldset
+          h2
+            span.steps#step-11
+              span.visuallyhidden
+                ' Step 11
+              span.todo 11
+            ' Please provide the following information about the product or service:
+            abbr *
+          p.group
+            label
+              ' A full description
+              abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+          p.group
+            label
+              ' A brief history of the origin and development of the innovation
+              abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+          p.group
+            label
+              ' Disadvantages of your previous product or service, or competing products or services, prior to the innovation
+              abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+          p.group
+            label
+              ' The degree to which these disadvantages have been overcome and any special difficulties surmounted in doing so
+              abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+          p.group
+            label
+              ' Please identify and describe any products or services, available from other organisations that compete with your innovation and state how your innovation differs
+              abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        fieldset
+          h2
+            span.steps#step-12
+              span.visuallyhidden
+                ' Step 12
+              span.todo 12
+            ' Give details of added benefits to your customers and your business as a result of the innovation
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' Give details of added benefits to your customers and your business as a result of the innovation
+                abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        fieldset
+          h2
+            span.steps#step-13
+              span.visuallyhidden
+                ' Step 13
+              span.todo 13
+            ' Name any external organisation or individual which contributed to this product, service or initiative (excluding any joint entrant(s) named in Q5)
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' Name any external organisation or individual which contributed to this product, service or initiative (excluding any joint entrant(s) named in Q5)
+                abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+          h2
+            span.steps#step-13-1
+              span.visuallyhidden
+                ' Step 13.1
+              span.todo 13.1
+            ' Are they aware of this entry?
+            abbr *
+          p.group
+            span.visuallyhidden
+              ' Are they aware of this entry?
+            label.selectable
+              input type="radio"
+              ' Yes
+            label.selectable
+              input type="radio"
+              ' No
+            label.selectable
+              input type="radio"
+              ' I don't know
+
+        fieldset
+          h2
+            span.steps#step-14
+              span.visuallyhidden
+                ' Step 14
+              span.todo 14
+            ' To what extent is the product, service or initiative under licence from another organisation?
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' To what extent is the product, service or initiative under licence from another organisation?
+                abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        fieldset
+          h2
+            span.steps#step-15
+              span.visuallyhidden
+                ' Step 15
+              span.todo 15
+            ' Have you received any grant funding to support this innovation?
+            abbr *
+          p.group
+            span.visuallyhidden
+              ' Have you received any grant funding to support this innovation?
+            label.selectable
+              input type="radio"
+              ' Yes
+            label.selectable
+              input type="radio"
+              ' No
+
+          h2
+            span.steps#step-15-1
+              span.visuallyhidden
+                ' Step 15.1
+              span.todo 15.1
+            ' If ‘Yes’, please give details of date(s), source(s) and level(s) of funding
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' If ‘Yes’, please give details of date(s), source(s) and level(s) of funding
+                abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+        fieldset
+          h2
+            span.steps#step-16
+              span.visuallyhidden
+                ' Step 16
+              span.todo 16
+            ' How long has the product, service or initiative been in commercial operation, production or in progress?
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' How long has the product, service or initiative been in commercial operation, production or in progress?
+                abbr *
+              textarea rows="5"
+          p.hint
+            = link_to "See sample answer", "#"
+
+          h2
+            span.steps#step-16-1
+              span.visuallyhidden
+                ' Step 16.1
+              span.todo 16.1
+            ' By you?
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' By you?
+                abbr *
+              input.largest type="text"
+
+          h2
+            span.steps#step-16-2
+              span.visuallyhidden
+                ' Step 16.2
+              span.todo 16.2
+            ' By associates, customers or licensees?
+            abbr *
+          p.group
+            label
+              span.visuallyhidden
+                ' By associates, customers or licensees?
+                abbr *
+              input.largest type="text"
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to "#", rel: "prev", title: "Navigate to previous part" do
+                  span class="pagination-label"
+                    ' Previous
+                  span class="pagination-part-title"
+                    ' Company Information
+
+              li.next
+                = link_to "#", rel: "next", title: "Navigate to next part" do
+                  span class="pagination-label"
+                    ' Next
+                  span class="pagination-part-title"
+                    ' Commercial performance

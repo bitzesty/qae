@@ -2,7 +2,8 @@
 input[type="text"],
 input[type="search"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+textarea {
   @include core-16($line-height: (20 / 16));
   border: 1px solid #bbb;
   min-width: 8em;
@@ -10,7 +11,7 @@ input[type="password"] {
   padding: 0.25em;
 
   @include ie-lte(7) {
-    width:8em;
+    width: 8em;
   }
 
   // Alternate width sizes for inputs based on
@@ -39,8 +40,15 @@ input[type="password"] {
     }
   }
 
+  &.largest {
+    width: 100%;
+    min-width: 0;
+    max-width: none;
+  }
+
   .span-1 &,
   .span-2 &,
+  .span-2-4 &,
   .span-3 &,
   .span-4 &,
   .span-5 &,
@@ -53,11 +61,21 @@ input[type="password"] {
   .span-12 & {
     @include media($min-width: 801px) {
       width: 100%;
-      max-width: 100%;
+      min-width: 0;
+      max-width: none;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+              box-sizing: border-box;
     }
   }
 }
 
+// Textareas span container width
+textarea {
+  width: 100%;
+}
+
+// Fix file input vertical alignment
 input[type="file"] {
   line-height: 1;
 }
@@ -75,7 +93,8 @@ input[type="file"] {
     }
 
     input,
-    select {
+    select,
+    textarea {
       display: block;
       margin: 0.2em 0 0.5em 0;
 
@@ -106,6 +125,7 @@ input[type="file"] {
 
   .span-1 label,
   .span-2 label,
+  .span-2-4 label,
   .span-3 label,
   .span-4 label,
   .span-5 label,
@@ -123,6 +143,15 @@ input[type="file"] {
   .hint {
     color: $grey-1;
     margin-top: 0.5em;
+  }
+
+  .group + .hint {
+    margin-top: -0.5em;
+  }
+
+  .group + h2,
+  .hint + h2 {
+    margin-top: 3em;
   }
 
   p.form-submit {

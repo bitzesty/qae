@@ -1,0 +1,166 @@
+header.page-header.group
+  div
+    h1
+      small
+        ' Step 5 of 5: Authorisation/Monitoring
+      ' Apply for the innovation award
+
+.article-container.article-container-wider
+  article.group role="article"
+    .inner
+      form.qae-form
+        fieldset
+          h2
+            span.steps#step-a1
+              span.visuallyhidden
+                ' Step A1
+              span.todo A1
+            ' &nbsp;
+          p.group
+            label.selectable
+              input type="checkbox"
+              ' I submit this entry for The Queen’s Awards for Enterprise 2015. I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I am not aware of any matter which might cast doubt upon the worthiness of this business unit to receive a Queen’s Award. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
+              abbr *
+
+        fieldset
+          h2
+            span.steps#step-a2
+              span.visuallyhidden
+                ' Step A2
+              span.todo A2
+            ' &nbsp;
+          p.group
+            label.selectable
+              input type="checkbox"
+              ' I confirm that I have the consent of the Head of the applicant business (as identified in Step 1, Question 7) to submit this entry form
+              abbr *
+
+        fieldset
+          h2
+            span.steps#step-a3
+              span.visuallyhidden
+                ' Step A3
+              span.todo A3
+            ' How did you hear about The Queen’s Awards for Enterprise?
+            abbr *
+          p.group
+            span.visuallyhidden
+              ' How did you hear about The Queen’s Awards for Enterprise?
+            label.selectable
+              input type="checkbox"
+              ' National newspaper
+            label.selectable
+              input type="checkbox"
+              ' Local newspaper
+            label.selectable
+              input type="checkbox"
+              ' TV/radio
+            label.selectable
+              input type="checkbox"
+              ' Internet
+            label.selectable
+              input type="checkbox"
+              ' Word of mouth
+            label.selectable
+              input type="checkbox"
+              ' Other
+            span.clear
+            br
+            label
+              ' If 'Other' please specify
+              input.medium type="text"
+
+        fieldset
+          h2
+            span.steps#step-a4
+              span.visuallyhidden
+                ' Step A4
+              span.todo A4
+            ' &nbsp;
+          p.group
+            label.selectable
+              input type="checkbox"
+              ' We will contact you about the progress of your entry. We may also want to contact you about other issues associated with The Queen’s Awards for Enterprise (e.g. acting as a case study).
+              br
+              ' If you do not want us to contact you about issues not connected with your entry, please tick here.
+              abbr *
+
+        fieldset
+          h2
+            span.steps#step-a5
+              span.visuallyhidden
+                ' Step A5
+              span.todo A5
+            ' Your entry will primarily be assessed on the information contained within your form. You are not required to provide any additional information or documents. If, however, you feel there is additional material that would be helpful to us in assessing your entry, and particularly any additional explanations requested within the form, you can upload your document(s) here
+          p.group
+            label
+              span.visuallyhidden
+                ' Your entry will primarily be assessed on the information contained within your form. You are not required to provide any additional information or documents. If, however, you feel there is additional material that would be helpful to us in assessing your entry, and particularly any additional explanations requested within the form, you can upload your document(s) here
+              input type="file"
+            span.hint
+              ' You may upload a maximum of 3 documents - MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation up to a maximum size of 5MB each
+
+        fieldset
+          h2
+            span.steps#step-a6
+              span.visuallyhidden
+                ' Step A6
+              span.todo A6
+            ' Name and position of a contact within the applicant business for further enquiries
+            abbr *
+          p.group
+            label
+              ' Title
+              input.small type="text"
+          p.group
+            label
+              ' First name
+              input.medium type="text"
+          p.group
+            label
+              ' Last name
+              input.medium type="text"
+          p.group
+            label
+              ' Position
+              input.medium type="text"
+
+        fieldset
+          h2
+            span.steps#step-a7
+              span.visuallyhidden
+                ' Step A7
+              span.todo A7
+            ' Email address and telephone number
+            abbr *
+          p.group
+            label
+              ' Email address
+              input.medium type="email"
+          p.group
+            label
+              ' Confirm email address
+              input.medium type="email"
+          p.group
+            label
+              ' Telephone number
+              input.small type="text"
+
+        .application-notice.info-notice
+          p
+            ' Note that you can submit and come back to change or add any other info until the deadline.
+        br
+
+        p.form-submit
+          button.button.large type="submit"
+            ' Submit application
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to "#", rel: "prev", title: "Navigate to previous part" do
+                  span class="pagination-label"
+                    ' Previous
+                  span class="pagination-part-title"
+                    ' Declaration of social responsibility

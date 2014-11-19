@@ -1,3 +1,9 @@
+// Clears floats
+.clear {
+  clear: both;
+  display: block;
+}
+
 // Positions full width elements
 .inner-block {
   padding: 0 $gutter-half;
@@ -84,6 +90,7 @@ header.page-header div h1 small {
   }
   .span-1,
   .span-2,
+  .span-2-4,
   .span-3,
   .span-4,
   .span-5,
@@ -132,6 +139,9 @@ header.page-header div h1 small {
   }
   .span-3 {
     width: 25%;
+  }
+  .span-2-4 {
+    width: 20%;
   }
   .span-2 {
     width: 16.66666667%;
