@@ -38,25 +38,55 @@ input[type="password"] {
       width: 24em;
     }
   }
+
+  .span-1 &,
+  .span-2 &,
+  .span-3 &,
+  .span-4 &,
+  .span-5 &,
+  .span-6 &,
+  .span-7 &,
+  .span-8 &,
+  .span-9 &,
+  .span-10 &,
+  .span-11 &,
+  .span-12 & {
+    @include media($min-width: 801px) {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
+
+input[type="file"] {
+  line-height: 1;
 }
 
 // Styling for forms that exist outside of smart-answers
 // Forms that flow downwards with multiple questions
 .qae-form {
-  p.group {
+  .group {
     margin-bottom: 1.25em;
   }
 
   label {
+    &.selectable {
+      @include core-16;
+    }
+
     input,
     select {
       display: block;
       margin: 0.2em 0 0.5em 0;
+
+      &.inline {
+        display: inline;
+      }
     }
 
     // Bigger sized inputs based on https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
     // but adapted from https://www.gov.uk/jobsearch 18 Nov 2014
-    input {
+    input.big {
       font-size: 1em;
       line-height: 1.2;
       padding: 0.3em 0 0.1em 0.4em;
@@ -68,6 +98,26 @@ input[type="password"] {
       margin: 3px 0.5ex;
       padding: initial;
     }
+
+    input[type="file"] {
+      line-height: 1;
+    }
+  }
+
+  .span-1 label,
+  .span-2 label,
+  .span-3 label,
+  .span-4 label,
+  .span-5 label,
+  .span-6 label,
+  .span-7 label,
+  .span-8 label,
+  .span-9 label,
+  .span-10 label,
+  .span-11 label,
+  .span-12 label {
+    display: block;
+    margin-top: 0.5em;
   }
 
   .hint {
@@ -90,4 +140,38 @@ input[type="password"] {
   @include ie(6) {
     padding: 0.45em 0.5em 0.62em 0.5em;
   }
+}
+
+// Numbered steps for form sections
+// Taken from https://github.com/alphagov/calculators/blob/9181624cc9e00a079bea2141a650321f7183b6d0/app/assets/stylesheets/calculators/child_benefit.scss
+.steps {
+  margin: 0;
+  float: left;
+  width: 23px;
+  height: 23px;
+  margin-right: 0.75em;
+
+  // TODO
+  width: auto;
+  min-width: 13px;
+  padding: 0 5px;
+  color: white;
+  background: black;
+  background-repeat: no-repeat;
+  border-radius: 1000px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 26px;
+}
+#step-1 {
+  background-image: image-url("icon-step-1.png");
+}
+#step-2 {
+  background-image: image-url("icon-step-2.png");
+}
+#step-3 {
+  background-image: image-url("icon-step-3.png");
+}
+#step-4 {
+  background-image: image-url("icon-step-4.png");
 }

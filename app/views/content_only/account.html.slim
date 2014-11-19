@@ -13,12 +13,12 @@ header.page-header.group
           p.group
             label
               ' First name
-              input.medium type="text"
+              input.big.medium type="text"
 
           p.group
             label
               ' Last name
-              input.medium type="text"
+              input.big.medium type="text"
             span.hint
               ' As is shown on your current official documents such as passport or driving licence
 
@@ -28,38 +28,42 @@ header.page-header.group
           p.group
             label
               ' Building and street
-              input.large type="text"
-              input.large type="text"
+              input.big.large type="text"
+              input.big.large type="text"
           p.group
             label
               ' Town or city
-              input.medium type="text"
+              input.big.medium type="text"
           p.group
             label
               ' Country
-              input.medium type="text"
+              input.big.medium type="text"
           p.group
             label
               ' Postcode
-              input.small type="text"
+              input.big.small type="text"
           p.group
             label
               ' Website URL
-              input.medium type="text"
+              input.big.medium type="text"
 
         fieldset
           h2
             ' Your phone number
           p.group
             label
-              input.small type="text"
+              span.visuallyhidden
+                ' Phone number
+              input.big.small type="text"
 
         fieldset
           h2
             ' Your email address
           p.group
             label
-              input.medium type="email"
+              span.visuallyhidden
+                ' Email address
+              input.big.medium type="email"
 
         fieldset
           = link_to "Change your password"
@@ -67,17 +71,17 @@ header.page-header.group
             p.group
               label
                 ' Current password
-                input type="password"
+                input.big type="password"
 
             p.group
               label
                 ' New password
-                input type="password"
+                input.big type="password"
 
             p.group
               label
                 ' Retype your password
-                input type="password"
+                input.big type="password"
 
         p.form-submit
           button.button.medium type="submit"

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get '/eligibility_failure'    => "content_only#eligibility_failure",    as: 'eligibility_failure'
   get '/eligibility_check'      => "content_only#eligibility_check",      as: 'eligibility_check'
   get '/apply_innovation_award' => "content_only#apply_innovation_award", as: 'apply_innovation_award'
+  get '/innovation_award_form'  => "content_only#innovation_award_form",  as: 'innovation_award_form'
   get '/confirmation'           => "content_only#confirmation",           as: 'confirmation'
   get '/account'                => "content_only#account",                as: 'account'
 

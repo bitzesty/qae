@@ -26,6 +26,11 @@
   }
 }
 
+.article-container.article-container-wider {
+  width: 100%;
+  max-width: 75%;
+}
+
 .related-positioning {
   // Positions the sidebar when the is no header text
   &.related-positioning-no-header .related {
@@ -67,5 +72,71 @@ header.page-header div h1 small {
     @include media(desktop) {
       list-style-position: outside;
     }
+  }
+}
+
+// Grid classes to better layout the form
+@include media($min-width: 801px) {
+  .row {
+    display: block;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  .span-1,
+  .span-2,
+  .span-3,
+  .span-4,
+  .span-5,
+  .span-6,
+  .span-7,
+  .span-8,
+  .span-9,
+  .span-10,
+  .span-11,
+  .span-12 {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+  .span-12 {
+    width: 100%;
+  }
+  .span-11 {
+    width: 91.66666667%;
+  }
+  .span-10 {
+    width: 83.33333333%;
+  }
+  .span-9 {
+    width: 75%;
+  }
+  .span-8 {
+    width: 66.66666667%;
+  }
+  .span-7 {
+    width: 58.33333333%;
+  }
+  .span-6 {
+    width: 50%;
+  }
+  .span-5 {
+    width: 41.66666667%;
+  }
+  .span-4 {
+    width: 33.33333333%;
+  }
+  .span-3 {
+    width: 25%;
+  }
+  .span-2 {
+    width: 16.66666667%;
+  }
+  .span-1 {
+    width: 8.33333333%;
   }
 }
