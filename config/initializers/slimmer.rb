@@ -5,7 +5,5 @@ Qae::Application.configure do
     config.slimmer.use_cache = true
   end
 
-  if Rails.env.development? || Rails.env.test?
-    config.slimmer.asset_host = ENV["STATIC_DEV"] || "https://assets.digital.cabinet-office.gov.uk/"
-  end
+  config.slimmer.asset_host = ENV["STATIC_DEV"] || "https://assets.digital.cabinet-office.gov.uk/"
 end
