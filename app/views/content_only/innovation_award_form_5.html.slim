@@ -2,7 +2,7 @@ header.page-header.group
   div
     h1
       small
-        ' Step 1 of 5: Company Information
+        ' Step 5 of 5: Authorisation/Monitoring
       ' Apply for the innovation award
 
 .article-container.article-container-wider
@@ -11,200 +11,102 @@ header.page-header.group
       form.qae-form
         fieldset
           h2
-            span.steps#step-1
+            span.steps#step-a1
               span.visuallyhidden
-                ' Step 1
-            ' Full or legal name of applicant business
+                ' Step A1
+              span.todo A1
+            ' &nbsp;
+          p.group
+            label.selectable
+              input type="checkbox"
+              ' I submit this entry for The Queen’s Awards for Enterprise 2015. I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I am not aware of any matter which might cast doubt upon the worthiness of this business unit to receive a Queen’s Award. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
+              abbr *
+
+        fieldset
+          h2
+            span.steps#step-a2
+              span.visuallyhidden
+                ' Step A2
+              span.todo A2
+            ' &nbsp;
+          p.group
+            label.selectable
+              input type="checkbox"
+              ' I confirm that I have the consent of the Head of the applicant business (as identified in Step 1, Question 7) to submit this entry form
+              abbr *
+
+        fieldset
+          h2
+            span.steps#step-a3
+              span.visuallyhidden
+                ' Step A3
+              span.todo A3
+            ' How did you hear about The Queen’s Awards for Enterprise?
             abbr *
           p.group
+            span.visuallyhidden
+              ' How did you hear about The Queen’s Awards for Enterprise?
+            label.selectable
+              input type="checkbox"
+              ' National newspaper
+            label.selectable
+              input type="checkbox"
+              ' Local newspaper
+            label.selectable
+              input type="checkbox"
+              ' TV/radio
+            label.selectable
+              input type="checkbox"
+              ' Internet
+            label.selectable
+              input type="checkbox"
+              ' Word of mouth
+            label.selectable
+              input type="checkbox"
+              ' Other
+            span.clear
+            br
             label
-              span.visuallyhidden
-                ' Full or legal name of applicant business
-                abbr *
+              ' If 'Other' please specify
               input.medium type="text"
 
         fieldset
           h2
-            span.steps#step-2
+            span.steps#step-a4
               span.visuallyhidden
-                ' Step 2
-            ' Company number
-            abbr *
+                ' Step A4
+              span.todo A4
+            ' &nbsp;
           p.group
-            label
-              span.visuallyhidden
-                ' Company number
-                abbr *
-              input type="text"
+            label.selectable
+              input type="checkbox"
+              ' We will contact you about the progress of your entry. We may also want to contact you about other issues associated with The Queen’s Awards for Enterprise (e.g. acting as a case study).
+              br
+              ' If you do not want us to contact you about issues not connected with your entry, please tick here.
+              abbr *
 
         fieldset
           h2
-            span.steps#step-3
+            span.steps#step-a5
               span.visuallyhidden
-                ' Step 3
-            ' Please enter the full date you started trading using the online calendar
-            abbr *
+                ' Step A5
+              span.todo A5
+            ' Your entry will primarily be assessed on the information contained within your form. You are not required to provide any additional information or documents. If, however, you feel there is additional material that would be helpful to us in assessing your entry, and particularly any additional explanations requested within the form, you can upload your document(s) here
           p.group
             label
               span.visuallyhidden
-                ' Please enter the full date you started trading using the online calendar
-                abbr *
-              select.inline
-                option value="" Day
-                - (1..31).each do |day|
-                  option= day
-              select.inline
-                option value="" Month
-                - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                - months.each do |month|
-                  option= month
-              select.inline
-                option value="" Year
-                - (2012..2014).each do |year|
-                  option= year
+                ' Your entry will primarily be assessed on the information contained within your form. You are not required to provide any additional information or documents. If, however, you feel there is additional material that would be helpful to us in assessing your entry, and particularly any additional explanations requested within the form, you can upload your document(s) here
+              input type="file"
             span.hint
-              ' Note that 01/10/2012 is the latest start date to ensure the minimum 24 month eligible trading period.
+              ' You may upload a maximum of 3 documents - MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation up to a maximum size of 5MB each
 
         fieldset
           h2
-            span.steps#step-4
+            span.steps#step-a6
               span.visuallyhidden
-                ' Step 4
-            ' Are you a current Queen’s Award holder (2010-2014)?
-            abbr *
-          p.group
-            span.visuallyhidden
-              ' Are you a current Queen’s Award holder (2010-2014)?
-              abbr *
-            label.selectable
-              input type="radio"
-              ' Yes
-            label.selectable
-              input type="radio"
-              ' No
-            label.selectable
-              input type="radio"
-              ' I don't know
-          / Conditional on yes
-          .conditional
-            p.group
-              label Please state Award year and category if more than one Award:
-              span.row
-                span.span-4
-                  label
-                    ' International trade
-                    input.small type="text"
-                  span.hint
-                    ' Insert year
-                span.span-4
-                  label
-                    ' Innovation
-                    input.small type="text"
-                  span.hint
-                    ' Insert year
-
-                span.span-4
-                  label
-                    ' Sustainable
-                    input.small type="text"
-                  span.hint
-                    ' Insert year
-
-          h2
-            span.steps#step-4-1
-              span.visuallyhidden
-                ' Step 4.1
-              span.todo 4.1
-            ' If the name of your business has changed since your previous entry, please give the name and reference number (if known) under which you entered.
-          p.group
-            span.row
-              span.span-7
-                label
-                  span.visuallyhidden
-                    ' Name
-                  input.medium type="text"
-                span.hint
-                  ' Name
-              span.span-5
-                label
-                  span.visuallyhidden
-                    ' Reference number
-                  input type="text"
-                span.hint
-                  ' Reference number
-
-          h2
-            span.steps#step-4-2
-              span.visuallyhidden
-                ' Step 4.2
-              span.todo 4.2
-            ' Have you won any other business or enterprise awards in the past?
-          p.group
-            span.visuallyhidden
-              ' Have you won any other business or enterprise awards in the past?
-            label.selectable
-              input type="radio"
-              ' Yes
-            label.selectable
-              input type="radio"
-              ' No
-
-        fieldset
-          h2
-            span.steps#step-5
-              span.visuallyhidden
-                ' Step 5
-              span.todo 5
-            ' Is this entry made jointly with any other organisation(s)?
-            abbr *
-          p.group
-            span.visuallyhidden
-              ' Is this entry made jointly with any other organisation(s)?
-              abbr *
-            label.selectable
-              input type="radio"
-              ' Yes
-            label.selectable
-              input type="radio"
-              ' No
-
-        fieldset
-          h2
-            span.steps#step-6
-              span.visuallyhidden
-                ' Step 6
-              span.todo 6
-            ' Principle address of applicant business
-            abbr *
-          p.group
-            label
-              ' Building and street
-              input.large type="text"
-              input.large type="text"
-          p.group
-            label
-              ' Town or city
-              input.medium type="text"
-          p.group
-            label
-              ' Country
-              input.medium type="text"
-          p.group
-            label
-              ' Postcode
-              input.small type="text"
-          p.group
-            label
-              ' Website URL
-              input.medium type="text"
-
-        fieldset
-          h2
-            span.steps#step-7
-              span.visuallyhidden
-                ' Step 7
-              span.todo 7
-            ' Head of the applicant business.
+                ' Step A6
+              span.todo A6
+            ' Name and position of a contact within the applicant business for further enquiries
             abbr *
           p.group
             label
@@ -220,75 +122,45 @@ header.page-header.group
               input.medium type="text"
           p.group
             label
-              ' Please list any personal Honours
+              ' Position
               input.medium type="text"
+
+        fieldset
+          h2
+            span.steps#step-a7
+              span.visuallyhidden
+                ' Step A7
+              span.todo A7
+            ' Email address and telephone number
+            abbr *
           p.group
             label
               ' Email address
               input.medium type="email"
           p.group
             label
-              ' Job title or role in the organisation
-              input.medium type="text"
+              ' Confirm email address
+              input.medium type="email"
+          p.group
+            label
+              ' Telephone number
+              input.small type="text"
 
-        fieldset
-          h2
-            span.steps#step-8
-              span.visuallyhidden
-                ' Step 8
-              span.todo 8
-            ' Organisation details
-          p.group
-            label
-              ' If you are a division, branch or subsidiary please state:
-              input.medium type="text"
-          p.group
-            label
-              ' Name of your immediate parent company
-              input.medium type="text"
-          p.group
-            label
-              ' Country of your immediate parent company (if overseas)
-              input.medium type="text"
-          p.group
-            label
-              ' Name of organisation with ultimate control
-              input.medium type="text"
-          p.group
-            label
-              ' Country of organisation with ultimate control (if overseas)
-              input.medium type="text"
+        .application-notice.info-notice
+          p
+            ' Note that you can submit and come back to change or add any other info until the deadline.
+        br
 
-        fieldset
-          h2
-            span.steps#step-9
-              span.visuallyhidden
-                ' Step 9
-              span.todo 9
-            ' Option to upload an organisation chart
-          p.group
-            label
-              span.visuallyhidden
-                ' Option to upload an organisation chart
-              input.medium type="file"
-            span.hint
-              ' This is not a requirement
-              br
-              ' Only one file of a maximum size of 5MB is permitted - MS Word Document, PDF or JPG
+        p.form-submit
+          button.button.large type="submit"
+            ' Submit application
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
             ul.group
               li.previous
-                = link_to "#", rel: "prev", title: "Navigate to Dashboard" do
+                = link_to "#", rel: "prev", title: "Navigate to previous part" do
                   span class="pagination-label"
-                    ' Back
+                    ' Previous
                   span class="pagination-part-title"
-                    ' Dashboard
-
-              li.next
-                = link_to "#", rel: "next", title: "Navigate to next part" do
-                  span class="pagination-label"
-                    ' Next
-                  span class="pagination-part-title"
-                    ' Description of Goods or Services
+                    ' Declaration of social responsibility
