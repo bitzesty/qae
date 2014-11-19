@@ -3,7 +3,7 @@
     div
       h1
         small
-          ' Step 2 of 3: Innovation Award
+          ' Step 3 of 3: Sustainability Development
         ' Check your eligibility
   .article-container
     article.group role="article"
@@ -12,7 +12,7 @@
           .current-question#current-question
             .question
               h2
-                ' Do you have any innovation product or service?
+                ' Do you have any sustainable initiative?
               .question-body
                 p.hint
                   ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -27,14 +27,14 @@
                         input type="radio"
                         ' No
                 p.hint
-                  = link_to "I don't know if my product or service is innovative.", "#"
+                  = link_to "What is a sustainable initiative?", "#"
 
             .question
               h2
-                ' Has your business presented outstanding innovation, continued over at least for 2 years?
+                ' Has your business presented outstanding advance in sustainable development over at least 2 years?
               .question-body
                 p.hint
-                  ' You must be able to show that your business has substantially improved in areas of performance and commercial success.
+                  ' Sustainable development is any activity which ‘ensures a better quality of life for everyone, now and for generations to come’.
                 div
                   ul.options
                     li
@@ -46,22 +46,22 @@
                         input type="radio"
                         ' No
                 p.hint
-                  = link_to "What does outstanding innovation mean?", "#"
+                  = link_to "What does outstanding advance in sustainable development mean?", "#"
 
                 /.application-notice.info-notice
                   p
-                    ' Outstanding innovation lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    ' Outstanding advance in sustainable development lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.  
                   p
-                    ' Achievements are assessed for:
+                    ' Achievements must be in either:
                     br
-                    ' Invention, design or production, performance of services and products, marketing and distribution, after-sale support of goods or services
+                    ' Invention, design, production, performance, marketing, distribution, after sales support of goods or services management of resources or people, or of relationships with other organisations (or their representatives)
 
             .question
               h2
-                ' Has your business or charity presented continuous innovation and development over at least 5 years?
+                ' Has your business or charity presented continuous achievement in sustainable development over 5 years?
               .question-body
                 p.hint
-                  ' You must be able to show that your business has substantially improved in areas of performance and commercial success.
+                  ' Sustainable development is any activity which ‘ensures a better quality of life for everyone, now and for generations to come’.
                 div
                   ul.options
                     li
@@ -73,7 +73,15 @@
                         input type="radio"
                         ' No
                 p.hint
-                  = link_to "What does continuous innovation mean?", "#"
+                  = link_to "What does continuous achievement in sustainable development mean?", "#"
+
+                /.application-notice.info-notice
+                  p
+                    ' Continuous achievement in sustainable development lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  p
+                    ' Achievements must be in either:
+                    br
+                    ' Invention, design, production, performance, marketing, distribution, after sales support of goods or services management of resources or people, or of relationships with other organisations (or their representatives)
 
           footer
             nav.pagination role="navigation" aria-label="Pagination"
@@ -83,14 +91,14 @@
                     span class="pagination-label"
                       ' Previous
                     span class="pagination-part-title"
-                      ' International trade award eligibility
+                      ' Innovation award eligibility
 
                 li.next
-                  = link_to "#", rel: "next", title: "Navigate to next part" do
+                  = link_to "#", rel: "next", title: "Navigate to Dashboard" do
                     span class="pagination-label"
-                      ' Next
+                      ' Back
                     span class="pagination-part-title"
-                      ' Sustainability development award eligibility
+                      ' Dashboard
 
   .related-positioning
     .related-container
@@ -98,11 +106,11 @@
         nav.pagination role="navigation" aria-label="Pagination"
           ul.group
             li.next
-              = link_to "http://www.example.com", rel: "Skip", title: "Skip part" do
+              = link_to "http://www.example.com", rel: "next", title: "Navigate to Dashboard" do
                 span class="pagination-label"
-                  ' Skip
+                  ' Back
                 span class="pagination-part-title"
-                  ' Sustaintability development
+                  ' Dashboard
 
         .inner.group
           = link_to "Return to top ↑", "#content", class: "return-to-top"
