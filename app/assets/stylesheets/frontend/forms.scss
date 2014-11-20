@@ -150,7 +150,8 @@ input[type="file"] {
   }
 
   .group + h2,
-  .hint + h2 {
+  .hint + h2,
+  .hidden-hint + h2 {
     margin-top: 3em;
   }
 
@@ -168,6 +169,60 @@ input[type="file"] {
   /* IE6 adds its own side padding so requires no extra */
   @include ie(6) {
     padding: 0.45em 0.5em 0.62em 0.5em;
+  }
+}
+
+// Hidden hints as seen on
+// https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
+.hidden-hint {
+  margin-bottom: 1em;
+
+  &,
+  p {
+    @include core-16;
+    display: block;
+  }
+
+  a {
+    text-decoration: none;
+
+    &:active,
+    &:focus {
+      background-color: $yellow;
+    }
+  }
+
+  .hidden-link {
+    text-decoration: underline;
+  }
+
+  .hidden-arrow-down,
+  .hidden-content {
+    display: none;
+  }
+
+  .hidden-arrow-right,
+  .hidden-arrow-down {
+    font-size: 0.8em;
+    margin-right: 0.3em;
+  }
+
+  .hidden-content {
+    margin-bottom: 2em;
+  }
+
+  &.show-hint {
+    .hidden-arrow-right {
+      display: none;
+    }
+
+    .hidden-arrow-down {
+      display: inline;
+    }
+
+    .hidden-content {
+      display: block;
+    }
   }
 }
 
