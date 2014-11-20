@@ -70,9 +70,14 @@ textarea {
   }
 }
 
-// Textareas span container width
+// Textareas span container width and on resize vertically
 textarea {
   width: 100%;
+  resize: vertical;
+}
+// Textarea autoResizer line height to match textareas
+.hiddendiv {
+  @include core-16($line-height: (20 / 16));
 }
 
 // Fix file input vertical alignment
