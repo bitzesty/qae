@@ -87,14 +87,14 @@
             nav.pagination role="navigation" aria-label="Pagination"
               ul.group
                 li.previous
-                  = link_to "#", rel: "prev", title: "Navigate to previous part" do
+                  = link_to eligibility_check_2_path, rel: "prev", title: "Navigate to previous part" do
                     span class="pagination-label"
                       ' Previous
                     span class="pagination-part-title"
                       ' Innovation award eligibility
 
                 li.next
-                  = link_to "#", rel: "next", title: "Navigate to Dashboard" do
+                  = link_to root_path, rel: "next", title: "Navigate to Dashboard" do
                     span class="pagination-label"
                       ' Back
                     span class="pagination-part-title"
@@ -106,7 +106,7 @@
         nav.pagination role="navigation" aria-label="Pagination"
           ul.group
             li.next
-              = link_to "http://www.example.com", rel: "next", title: "Navigate to Dashboard" do
+              = link_to root_path, rel: "next", title: "Navigate to Dashboard" do
                 span class="pagination-label"
                   ' Back
                 span class="pagination-part-title"

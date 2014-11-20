@@ -14,10 +14,10 @@
             div
               select
                 option Choose an industry
+                option Automotive
 
         .next-question
-          button.medium.button type="submit"
-            ' Next step
+          = link_to "Next step", eligibility_3_path, class: "button medium"
 
   .previous-answers
     .done-questions
@@ -28,7 +28,7 @@
               th.previous-answers-title
                 ' Previous answers
               th.link-right.restart colspan="2"
-                = link_to "Start again", "/eligibility"
+                = link_to "Start again", eligibility_1_path
           tbody
             tr.section
               td.previous-question-title
@@ -36,7 +36,7 @@
               td.previous-question-body
                 ' Business
               td.link-right
-                = link_to "/eligibility" do
+                = link_to eligibility_1_path do
                   ' Change
                   span.visuallyhidden
                     ' answer to "What kind of organisation are you?"
