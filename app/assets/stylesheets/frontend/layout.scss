@@ -162,3 +162,8 @@ header.page-header div h1 small {
     margin-left: 8px;
   }
 }
+
+// Removes bullet point list-style from proposition-links
+#proposition-links {
+  list-style: none;
+}
