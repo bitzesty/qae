@@ -66,22 +66,29 @@ header.page-header.group
               input.big.medium type="email"
 
         fieldset
-          = link_to "Change your password"
-          /
-            p.group
-              label
-                ' Current password
-                input.big type="password"
+          .hidden-hint
+            h2
+              = link_to "#" do
+                span.hidden-arrow-right ▶
+                span.hidden-arrow-down ▼
+                span.hidden-link
+                  ' Change your password
+            span.hidden-content
+              br
+              p.group
+                label
+                  ' Current password
+                  input.big type="password"
 
-            p.group
-              label
-                ' New password
-                input.big type="password"
+              p.group
+                label
+                  ' New password
+                  input.big type="password"
 
-            p.group
-              label
-                ' Retype your password
-                input.big type="password"
+              p.group
+                label
+                  ' Retype your password
+                  input.big type="password"
 
         p.form-submit
           button.button.medium type="submit"
