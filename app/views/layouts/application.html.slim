@@ -17,6 +17,17 @@ html
     = csrf_meta_tags
 
   body
+    .header-proposition
+      .content
+        nav#proposition-menu
+          a#proposition-name href="/"
+            ' QAE
+          ul#proposition-links
+            li
+              = link_to "Your account", account_path
+            li
+              = link_to "Log out", "#"
+
     #wrapper.guide.smart_answer.answer
       #QAE
         main#content.group role="main"
