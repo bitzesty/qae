@@ -120,7 +120,9 @@ input[type="file"] {
     input[type="radio"] {
       display: inline;
       margin: 3px 0.5ex;
+      margin-right: 1ex;
       padding: initial;
+      vertical-align: middle;
     }
 
     input[type="file"] {
