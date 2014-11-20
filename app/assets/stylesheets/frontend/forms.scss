@@ -152,13 +152,13 @@ input[type="file"] {
     margin-top: 0.5em;
   }
 
-  .group + .hint {
+  .group + .hidden-hint {
     margin-top: -0.5em;
   }
 
   .group + h2,
-  .hint + h2,
-  .hidden-hint + h2 {
+  .hidden-hint + h2,
+  .hidden-hint + .group {
     margin-top: 3em;
   }
 
