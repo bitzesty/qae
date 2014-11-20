@@ -152,14 +152,13 @@ header.page-header.group
         br
 
         p.form-submit
-          button.button.large type="submit"
-            ' Submit application
+          = link_to "Submit application", confirmation_path, class: "button large"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
             ul.group
               li.previous
-                = link_to "#", rel: "prev", title: "Navigate to previous part" do
+                = link_to innovation_award_form_4_path, rel: "prev", title: "Navigate to previous part" do
                   span class="pagination-label"
                     ' Previous
                   span class="pagination-part-title"
