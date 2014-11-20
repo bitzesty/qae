@@ -199,10 +199,6 @@ input[type="file"] {
     }
   }
 
-  .hidden-link {
-    text-decoration: underline;
-  }
-
   .hidden-arrow-down,
   .hidden-content {
     display: none;
@@ -210,8 +206,37 @@ input[type="file"] {
 
   .hidden-arrow-right,
   .hidden-arrow-down {
+    position: absolute;
     font-size: 0.8em;
-    margin-right: 0.3em;
+    line-height: 1.75;
+
+    @include media($max-width: 640px) {
+      line-height: 1.5;
+    }
+  }
+
+  .hidden-arrow-right {
+    @include ie-lte(8) {
+      font-size: 26px;
+      line-height: 0.75;
+    }
+  }
+
+  .hidden-arrow-down {
+    @include ie-lte(8) {
+      font-size: 16px;
+      line-height: 1.2;
+    }
+  }
+
+  .hidden-link {
+    display: block;
+    padding-left: 1em;
+    text-decoration: underline;
+
+    @include ie-lte(8) {
+      padding-left: 20px;
+    }
   }
 
   .hidden-content {
