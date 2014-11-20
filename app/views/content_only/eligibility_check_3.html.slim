@@ -1,6 +1,23 @@
 .article-related-positioning-container
   header.page-header.group
     div
+      ol.steps-progress-bar
+        li.step-past
+          = link_to eligibility_check_1_path do
+            span.step-number
+              ' 1.
+            ' International Trade
+        li.step-past
+          = link_to eligibility_check_2_path do
+            span.step-number
+              ' 2.
+            ' Innovation
+        li.step-current
+          span
+            span.step-number
+              ' 3.
+            ' Sustainability Development
+
       h1
         small
           ' Step 3 of 3: Sustainability Development

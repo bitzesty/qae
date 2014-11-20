@@ -1,6 +1,23 @@
 .article-related-positioning-container
   header.page-header.group
     div
+      ol.steps-progress-bar
+        li.step-current
+          span
+            span.step-number
+              ' 1.
+            ' International Trade
+        li
+          = link_to eligibility_check_2_path do
+            span.step-number
+              ' 2.
+            ' Innovation
+        li
+          = link_to eligibility_check_3_path do
+            span.step-number
+              ' 3.
+            ' Sustainability Development
+
       h1
         small
           ' Step 1 of 3: International Trade Award

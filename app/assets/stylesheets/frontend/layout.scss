@@ -32,9 +32,23 @@
   }
 }
 
+// Wider header
+.page-header.page-header-wider div {
+  width: 100%;
+  max-width: 100%;
+  -webkit-box-sizing: border-box;
+     -moz-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+// Wider content
 .article-container.article-container-wider {
   width: 100%;
   max-width: 75%;
+
+  @include media($max-width: 640px) {
+    max-width: none;
+  }
 }
 
 .related-positioning {
@@ -166,4 +180,87 @@ header.page-header div h1 small {
 // Removes bullet point list-style from proposition-links
 #proposition-links {
   list-style: none;
+}
+
+// Progress steps based on `2. Progress bar`
+// https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators
+.steps-progress-bar {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.1px;
+  line-height: 0;
+  text-align: justify;
+  border: 1px solid $border-colour;
+  border-left: none;
+  border-right: none;
+
+  &:after {
+    content: "";
+    width: 100%;
+    display: inline-block;
+  }
+
+  a {
+    text-decoration: none;
+  }
+
+  li {
+    @include core-16;
+    display: inline-block;
+
+    @include media($max-width: 1035px) {
+      display: block;
+    }
+
+    &,
+    a {
+      color: $grey-1;
+    }
+
+    > a,
+    > span {
+      float: left;
+      display: block;
+      margin: 0;
+      padding: 7px 0;
+      border: 5px solid transparent;
+      border-left: none;
+      border-right: none;
+
+      @include media($max-width: 1035px) {
+        float: none;
+        margin: 0;
+      }
+    }
+
+    &.step-past {
+      &,
+      a {
+        color: $govuk-blue;
+      }
+    }
+
+    &.step-current {
+      &,
+      a {
+        color: $black;
+      }
+
+      > a,
+      > span {
+        border-bottom-color: $black;
+      }
+    }
+  }
+
+  .page-header & {
+    margin-top: 16px;
+    margin-left: 32px;
+    margin-bottom: $gutter;
+
+    @include media($max-width: 1131px) {
+      margin-left: 0;
+    }
+  }
 }
