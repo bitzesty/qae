@@ -246,6 +246,10 @@ input[type="file"] {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+
+    @include ie-lte(7) {
+      padding-right: 4px;
+    }
   }
 }
 .char-text {
@@ -256,8 +260,18 @@ input[type="file"] {
   color: $grey-1;
   text-align: right;
 
+  @include ie-lte(7) {
+    position: relative;
+    right: 0;
+    bottom: auto;
+  }
+
   textarea + & {
     right: 0;
+
+    @include ie(8) {
+      right: 12px;
+    }
   }
 
   .char-over & {
