@@ -14,6 +14,15 @@ $(function() {
 
   // On keydown, gets character count
   $(".js-char-count").on('keyup', function () {
+    // Webkit counts a new line as a two characters
+    // IE doesn't use maxlength
+    var newline = "  ";
+
+    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
+      // Firefox counts a new line as a singular character
+      newline = " ";
+    }
+
     content = $(this).val().replace(/(\r\n|\n|\r)/gm,"  ");
     $(this).closest(".char-count").find(".char-text .current-count").text(content.length);
 
