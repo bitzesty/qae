@@ -4,6 +4,7 @@
 @import '_css3';
 @import '_typography';
 @import 'design-patterns/_buttons';
+@import 'design-patterns/_alpha-beta';
 
 $gutter-one-sixth: $gutter/6;
 
@@ -24,4 +25,10 @@ $gutter-one-sixth: $gutter/6;
 #QAE {
   @import 'frontend/views/dashboard';
   @import 'frontend/views/eligibility';
+}
+
+// TEMP TODO hide the search with CSS
+.search-toggle,
+.site-search {
+  display: none !important;
 }
