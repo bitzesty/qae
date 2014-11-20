@@ -1,6 +1,6 @@
 #= require jquery
 #= require jquery_ujs
-#= require ./vendor/textarea-autoResize
+#= require ./frontend/textarea-autoResize
 #= require_tree .
 
 jQuery ->
