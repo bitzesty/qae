@@ -25,3 +25,9 @@ $gutter-one-sixth: $gutter/6;
   @import 'frontend/views/dashboard';
   @import 'frontend/views/eligibility';
 }
+
+// TEMP TODO hide the search with CSS
+.search-toggle,
+.site-search {
+  display: none !important;
+}
