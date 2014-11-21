@@ -14,6 +14,10 @@ textarea {
     width: 8em;
   }
 
+  @include media($max-width: 640px) {
+    width: 100%;
+  }
+
   // Alternate width sizes for inputs based on
   // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
   &.small {
@@ -21,6 +25,10 @@ textarea {
 
     @include ie-lte(7) {
       width: 8em;
+    }
+
+    @include media($max-width: 640px) {
+      min-width: 0;
     }
   }
 
@@ -30,6 +38,11 @@ textarea {
     @include ie-lte(7) {
       width: 16em;
     }
+
+    @include media($max-width: 640px) {
+      min-width: 0;
+      max-width: 16em;
+    }
   }
 
   &.large {
@@ -37,6 +50,10 @@ textarea {
 
     @include ie-lte(7) {
       width: 24em;
+    }
+
+    @include media($max-width: 640px) {
+      min-width: 0;
     }
   }
 
