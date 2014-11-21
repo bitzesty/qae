@@ -1,31 +1,6 @@
 header.page-header.group.page-header-wider
   div
-    ol.steps-progress-bar
-      li.step-past
-        = link_to innovation_award_form_1_path do
-          span.step-number
-            ' 1.
-          ' Company Information
-      li.step-past
-        = link_to innovation_award_form_2_path do
-          span.step-number
-            ' 2.
-          ' Goods or Services
-      li.step-current
-        span
-          span.step-number
-            ' 3.
-          ' Commercial performance
-      li
-        = link_to innovation_award_form_4_path do
-          span.step-number
-            ' 4.
-          ' Social Responsibility
-      li
-        = link_to innovation_award_form_5_path do
-          span.step-number
-            ' 5.
-          ' Authorisation/Monitoring
+    = render "innovation_award_form/steps_progress_bar"
 
     h1
       small
