@@ -59,7 +59,7 @@ textarea {
   .span-10 &,
   .span-11 &,
   .span-12 & {
-    @include media($min-width: 801px) {
+    @media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
       width: 100%;
       min-width: 0;
       max-width: none;
@@ -144,8 +144,10 @@ input[type="file"] {
   .span-10 label,
   .span-11 label,
   .span-12 label {
-    display: block;
-    margin-top: 0.5em;
+    @media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
+      display: block;
+      margin-top: 0.5em;
+    }
   }
 
   .hint {

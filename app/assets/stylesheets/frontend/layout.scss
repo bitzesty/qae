@@ -99,7 +99,7 @@ header.page-header div h1 small {
 }
 
 // Grid classes to better layout the form
-@include media($min-width: 801px) {
+@media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
   .row {
     display: block;
     margin-right: -15px;
