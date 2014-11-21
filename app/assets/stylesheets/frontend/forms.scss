@@ -82,6 +82,7 @@ textarea {
 
 // Fix file input vertical alignment
 input[type="file"] {
+  @include core-16($line-height: (20 / 16));
   line-height: 1;
 }
 
