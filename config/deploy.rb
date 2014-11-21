@@ -5,6 +5,11 @@ set :application, 'qae'
 set :user, 'qae'
 set :repo_url, 'git@github.com:bitzesty/qae.git'
 
+set :slack_team, "bitzesty"
+set :slack_token, "Z6O3ULcRqdL3zTQIIzDklfya"
+set :slack_icon_emoji,   ->{ ":rocket:" }
+set :slack_channel,      ->{ "#qae" }
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 

@@ -137,6 +137,9 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     sass (3.2.19)
+    slackistrano (0.1.0)
+      capistrano (>= 3.0.1)
+      json
     slim (2.1.0)
       temple (~> 0.6.9)
       tilt (>= 1.3.3, < 2.1)
@@ -183,6 +186,7 @@ DEPENDENCIES
   plek (~> 1.9.0)
   rails (= 4.1.8)
   rspec-rails
+  slackistrano
   slim-rails
   slimmer (~> 5.0.0)!
   uglifier (>= 1.3.0)
