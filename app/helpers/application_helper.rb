@@ -3,22 +3,20 @@ module ApplicationHelper
     opts[:class] ||= ""
     step_status = ""
 
-    if opts.has_key?(:index) && opts[:index].is_a?(Integer)
+    if opts.has_key?(:index)
       index_step_text = "<span class='step-number'>#{opts[:index]}.</span> #{name}".html_safe
     else
       index_step_text = name
     end
 
-    if opts.has_key?(:index) && opts[:index].is_a?(Integer)
-      if opts.has_key?(:active) && opts[:active].is_a?(Integer)
-        if opts[:index] == opts[:active]
-          step_status  = "current"
-          opts[:class] += " step-current"
-        else
-          if opts[:index] < opts[:active]
-            step_status  = "past"
-            opts[:class] += " step-past"
-          end
+    if opts.has_key?(:index) && opts.has_key?(:active)
+      if opts[:index] == opts[:active]
+        step_status  = "current"
+        opts[:class] += " step-current"
+      else
+        if opts[:index] < opts[:active]
+          step_status  = "past"
+          opts[:class] += " step-past"
         end
       end
     end
