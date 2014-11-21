@@ -2,6 +2,17 @@
 input[type="text"],
 input[type="search"],
 input[type="email"],
+input[type="password"] {
+  @include media($max-width: 640px) {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+}
+
+input[type="text"],
+input[type="search"],
+input[type="email"],
 input[type="password"],
 textarea {
   @include core-16($line-height: (20 / 16));
