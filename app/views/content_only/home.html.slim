@@ -16,9 +16,7 @@ header.page-header.group
         p
           ' In order to lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
 
-        .application-notice.help-notice
-          p
-            ' Check your eligibility for the categories of the enterprise award
+        = link_to "Check your eligibility for the categories of the enterprise award", eligibility_check_1_path, class: "button medium button-block"
 
         h2
           ' Your applications
@@ -32,21 +30,21 @@ header.page-header.group
             small
               ' Unclear eligibility
             .pull-right
-              = link_to "Start your application", eligibility_check_1_path
+              = link_to "Start your application"
           li
             h3
               ' Innovation award
             small
               ' Unclear eligibility
             .pull-right
-              = link_to "Start your application", eligibility_check_2_path
+              = link_to "Start your application", apply_innovation_award_path
           li
             h3
               ' Sustainable development award
             small
               ' Unclear eligibility
             .pull-right
-              = link_to "Start your application", eligibility_check_3_path
+              = link_to "Start your application"
 
             /.application-notice.info-notice
               p

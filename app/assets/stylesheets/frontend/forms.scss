@@ -168,14 +168,21 @@ input[type="file"] {
 }
 
 // Large buttons
-.button.large {
-  @include core-24($line-height: (16 / 24));
-  padding: 0.45em 0.5em 0.45em 0.5em;
-  display: inline-block;
+.button {
+  &.large {
+    @include core-24($line-height: (16 / 24));
+    padding: 0.45em 0.5em 0.45em 0.5em;
+    display: inline-block;
 
-  /* IE6 adds its own side padding so requires no extra */
-  @include ie(6) {
-    padding: 0.45em 0.5em 0.62em 0.5em;
+    /* IE6 adds its own side padding so requires no extra */
+    @include ie(6) {
+      padding: 0.45em 0.5em 0.62em 0.5em;
+    }
+  }
+
+  &.button-block {
+    display: block;
+    text-align: center;
   }
 }
 
