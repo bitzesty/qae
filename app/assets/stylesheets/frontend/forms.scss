@@ -206,13 +206,6 @@ input[type="file"] {
     }
   }
 
-  .hidden-arrow-down,
-  .hidden-content {
-    .js-enabled & {
-      display: none;
-    }
-  }
-
   .hidden-arrow-right,
   .hidden-arrow-down {
     position: absolute;
@@ -253,7 +246,15 @@ input[type="file"] {
   }
 
   .hidden-content {
+    display: block;
     margin-bottom: 2em;
+  }
+
+  .hidden-arrow-down,
+  .hidden-content {
+    .js-enabled & {
+      display: none;
+    }
   }
 
   &.show-hint {
