@@ -197,7 +197,12 @@ input[type="file"] {
     display: block;
   }
 
+  & {
+    line-height: 1.4;
+  }
+
   a {
+    display: block;
     text-decoration: none;
 
     &:active,
@@ -210,14 +215,15 @@ input[type="file"] {
   .hidden-arrow-down {
     position: absolute;
     font-size: 0.8em;
-    line-height: 1.75;
-
-    @include media($max-width: 640px) {
-      line-height: 1.5;
-    }
   }
 
   .hidden-arrow-right {
+    line-height: 1.8;
+
+    @include media($max-width: 640px) {
+      line-height: 1.9;
+    }
+
     @include ie-lte(8) {
       font-size: 26px;
       line-height: 0.75;
@@ -225,6 +231,12 @@ input[type="file"] {
   }
 
   .hidden-arrow-down {
+    line-height: 1.7;
+
+    @include media($max-width: 640px) {
+      line-height: 1.9;
+    }
+
     @include ie-lte(8) {
       font-size: 16px;
       line-height: 1.2;
@@ -235,6 +247,7 @@ input[type="file"] {
     display: block;
     font-weight: bold;
   }
+
   a .hidden-link {
     padding-left: 1em;
     text-decoration: underline;
