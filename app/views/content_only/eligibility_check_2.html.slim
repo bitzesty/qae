@@ -30,18 +30,18 @@
                         ' No
                 .js-conditional-question data-answer="Do you have any innovation product or service?" data-value="yes"
                   p.hint
-                    ' Amount of products or services
+                    span.no-js-conditional-text
+                      ' If 'Yes', amount of products or services
+                    span.js-conditional-text
+                      ' Amount of products or services
                   div
                     input.small type="text"
                     br
                     br
 
                 .hidden-hint
-                  = link_to "#" do
-                    span.hidden-arrow-right ▶
-                    span.hidden-arrow-down ▼
-                    span.hidden-link
-                      ' I don't know if my product or service is innovative.
+                  span.hidden-link
+                    ' I don't know if my product or service is innovative.
                   span.hidden-content
                     p
                       ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -63,11 +63,8 @@
                         input type="radio"
                         ' No
                 .hidden-hint
-                  = link_to "#" do
-                    span.hidden-arrow-right ▶
-                    span.hidden-arrow-down ▼
-                    span.hidden-link
-                      ' What does outstanding innovation mean?
+                  span.hidden-link
+                    ' What does outstanding innovation mean?
                   span.hidden-content
                     p
                       ' Outstanding innovation lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -93,11 +90,8 @@
                         input type="radio"
                         ' No
                 .hidden-hint
-                  = link_to "#" do
-                    span.hidden-arrow-right ▶
-                    span.hidden-arrow-down ▼
-                    span.hidden-link
-                      ' What does continuous innovation mean?
+                  span.hidden-link
+                    ' What does continuous innovation mean?
                   span.hidden-content
                     p
                       ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

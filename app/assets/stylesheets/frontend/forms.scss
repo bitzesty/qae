@@ -201,7 +201,9 @@ input[type="file"] {
 
   .hidden-arrow-down,
   .hidden-content {
-    display: none;
+    .js-enabled & {
+      display: none;
+    }
   }
 
   .hidden-arrow-right,
@@ -231,8 +233,12 @@ input[type="file"] {
 
   .hidden-link {
     display: block;
+    font-weight: bold;
+  }
+  a .hidden-link {
     padding-left: 1em;
     text-decoration: underline;
+    font-weight: normal;
 
     @include ie-lte(8) {
       padding-left: 20px;
@@ -305,15 +311,25 @@ input[type="file"] {
 }
 
 // Show/hide conditional questions
-.js-conditional-question {
+.js-conditional-text {
+  display: none;
+}
+.js-enabled .conditional-question {
   display: none;
 
   &.show-question {
     display: block;
   }
-}
 
-span.js-conditional-question.show-question {
+  .no-js-conditional-text {
+    display: none;
+  }
+
+  .js-conditional-text {
+    display: block;
+  }
+}
+.js-enabled span.conditional-question.show-question {
   display: inline;
 }
 
