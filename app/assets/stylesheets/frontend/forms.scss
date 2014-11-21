@@ -101,6 +101,10 @@ textarea {
 input[type="file"] {
   @include core-16($line-height: (20 / 16));
   line-height: 1;
+
+  @include media($max-width: 640px) {
+    max-width: 280px;
+  }
 }
 
 // Styling for forms that exist outside of smart-answers
