@@ -12,8 +12,7 @@ $(function() {
     }
   });
 
-  // On keydown, gets character count
-  $(".js-char-count").on('keyup', function () {
+  countChar = function (textInput) {
     // Webkit counts a new line as a two characters
     // IE doesn't use maxlength
     var newline = "  ";
@@ -23,14 +22,24 @@ $(function() {
       newline = " ";
     }
 
-    content = $(this).val().replace(/(\r\n|\n|\r)/gm,"  ");
-    $(this).closest(".char-count").find(".char-text .current-count").text(content.length);
+    content = textInput.val().replace(/(\r\n|\n|\r)/gm, newline);
+    textInput.closest(".char-count").find(".char-text .current-count").text(content.length);
 
     // If character count is over the limit then show error
-    if (content.length > $(this).attr('maxlength')) {
-      $(this).closest(".char-count").addClass("char-over");
+    if (content.length > textInput.attr('maxlength')) {
+      textInput.closest(".char-count").addClass("char-over");
     } else {
-      $(this).closest(".char-count").removeClass("char-over");
+      textInput.closest(".char-count").removeClass("char-over");
     }
+  }
+
+  // On load, gets character count
+  $(".js-char-count").each(function() {
+    countChar($(this));
+  });
+
+  // On keydown, gets character count
+  $(".js-char-count").on('keyup', function () {
+    countChar($(this));
   });
 });
