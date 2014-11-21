@@ -60,14 +60,15 @@ header.page-header.group.page-header-wider
             label.selectable
               input type="checkbox"
               ' Word of mouth
-            label.selectable
+            label.selectable.js-conditional-answer data-answer="How did you hear about The Queen’s Awards for Enterprise? Other"
               input type="checkbox"
               ' Other
             span.clear
-            br
-            label
-              ' If 'Other' please specify
-              input.medium type="text"
+            span.js-conditional-question data-answer="How did you hear about The Queen’s Awards for Enterprise? Other" data-value="true"
+              br
+              label
+                ' Please specify
+                input.medium type="text"
 
         fieldset
           h2

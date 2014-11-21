@@ -10,3 +10,16 @@ jQuery ->
   $(document).on "click", ".hidden-hint a", (e) ->
     e.preventDefault()
     $(this).closest(".hidden-hint").toggleClass("show-hint")
+
+  # Conditional questions that appear depending on answers
+  $(".js-conditional-answer input").change () ->
+    answer = $(this).closest(".js-conditional-answer").attr("data-answer")
+    question = $(".js-conditional-question[data-answer='#{answer}']")
+    answerVal = $(this).val()
+    if $(this).attr('type') == 'checkbox'
+      answerVal = $(this).is(':checked').toString()
+
+    if question.attr('data-value') == answerVal
+      question.addClass("show-question")
+    else
+      question.removeClass("show-question")
