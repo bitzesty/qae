@@ -14,11 +14,10 @@ $(function() {
 
   countChar = function (textInput) {
     // Webkit counts a new line as a two characters
-    // IE doesn't use maxlength
     var newline = "  ";
 
-    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1) {
-      // Firefox counts a new line as a singular character
+    if (navigator.userAgent.toLowerCase().indexOf('firefox') > -1 || navigator.userAgent.toLowerCase().indexOf('msie ') > -1 || navigator.userAgent.toLowerCase().indexOf('windows ') > -1) {
+      // Firefox & IE counts a new line as a singular character
       newline = " ";
     }
 
