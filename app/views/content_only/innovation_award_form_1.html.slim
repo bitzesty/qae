@@ -74,21 +74,21 @@ header.page-header.group.page-header-wider
                 ' Step 4
             ' Are you a current Queen’s Award holder (2010-2014)?
             abbr *
-          p.group
+          p.group.js-conditional-answer data-answer="Are you a current Queen’s Award holder (2010-2014)?"
             span.visuallyhidden
               ' Are you a current Queen’s Award holder (2010-2014)?
               abbr *
             label.selectable
-              input type="radio"
+              input type="radio" name="optionsCurrentHolder" value="yes"
               ' Yes
             label.selectable
-              input type="radio"
+              input type="radio" name="optionsCurrentHolder" value="no"
               ' No
             label.selectable
-              input type="radio"
+              input type="radio" name="optionsCurrentHolder" value="unknown"
               ' I don't know
-          / Conditional on yes
-          .conditional
+
+          .js-conditional-question data-answer="Are you a current Queen’s Award holder (2010-2014)?" data-value="yes"
             p.group
               label
                 ' Please state Award year and category if more than one Award:

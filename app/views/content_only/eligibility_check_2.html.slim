@@ -18,16 +18,24 @@
               .question-body
                 p.hint
                   ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                div
+                div.js-conditional-answer data-answer="Do you have any innovation product or service?"
                   ul.options
                     li
                       label.selectable
-                        input type="radio"
+                        input type="radio" name="optionsInnovationProduct" value="yes"
                         ' Yes
                     li
                       label.selectable
-                        input type="radio"
+                        input type="radio" name="optionsInnovationProduct" value="no"
                         ' No
+                .js-conditional-question data-answer="Do you have any innovation product or service?" data-value="yes"
+                  p.hint
+                    ' Amount of products or services
+                  div
+                    input.small type="text"
+                    br
+                    br
+
                 .hidden-hint
                   = link_to "#" do
                     span.hidden-arrow-right ▶
