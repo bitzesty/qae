@@ -60,6 +60,10 @@
   .pagination {
     margin-top: 0.5em;
 
+    @include media($max-width: 800px) {
+      display: none;
+    }
+
     li {
       width: 100%;
     }
