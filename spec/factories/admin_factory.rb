@@ -6,5 +6,6 @@ FactoryGirl.define do
   factory :admin do
     password { 'strongpass' }
     email
+    confirmed_at { Time.zone.now }
   end
 end
