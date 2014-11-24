@@ -17,7 +17,11 @@ group :assets do
 end
 
 group :test do
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'factory_girl_rails'
   gem 'rspec-rails'
+  gem 'turnip'
 end
 
 group :development do
