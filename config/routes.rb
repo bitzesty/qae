@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   devise_for :admins
 
   get '/eligibility_1'           => "content_only#eligibility_1",           as: 'eligibility_1'
