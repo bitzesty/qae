@@ -10,4 +10,3 @@ public/uploads/*
 .pgpass
 certs/*
 .env
-

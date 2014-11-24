@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.8'
 
+gem 'dotenv-rails', '~> 1.0'
+
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', '~> 3.4'
 gem 'govuk_frontend_toolkit', git: 'git@github.com:alphagov/govuk_frontend_toolkit_gem.git', submodules: true

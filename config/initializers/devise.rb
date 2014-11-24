@@ -1,7 +1,7 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
-  config.secret_key = 'bbdc75caf0b0706c95da0d1d0449964edcb2646486223bff454814988dc5eba10da6d2d673bb1ab5c1e331114b870a0b10ce7c756ceafa83a143afebdc4696dd'
+  config.secret_key = ENV['DEVISE_SECRET_KEY']
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
@@ -62,7 +62,7 @@ Devise.setup do |config|
   config.stretches = 10
 
   # Setup a pepper to generate the encrypted password.
-  # config.pepper = "80569ae63e09dc20a64a047753a06c972a95f7abf6ddb6c7d4c5b6b34935e44190ee8c536faec67e04cacbe6f55da8615c2e4c4558e0d8658c88d99e5878b186"
+  config.pepper = ENV['DEVISE_PEPPER']
 
   # ==> Configuration for :confirmable
   # The time you want to give your user to confirm his account. During this time
