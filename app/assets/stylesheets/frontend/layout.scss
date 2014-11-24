@@ -45,7 +45,7 @@
   width: 100%;
   max-width: 75%;
 
-  @include media($max-width: 640px) {
+  @media (max-width: 640px) {
     max-width: none;
   }
 }
@@ -60,7 +60,7 @@
   .pagination {
     margin-top: 0.5em;
 
-    @include media($max-width: 800px) {
+    @media (max-width: 800px) {
       display: none;
     }
 
@@ -173,7 +173,7 @@ header.page-header div h1 small {
   @include phase-tag(alpha);
   margin-left: 4px;
 
-  @include media($min-width: 641px) {
+  @media (min-width: 641px) {
     position: relative;
     top: -3px;
     margin-left: 8px;
@@ -217,7 +217,7 @@ header.page-header div h1 small {
     @include core-16;
     display: inline-block;
 
-    @include media($max-width: 1035px) {
+    @media (max-width: 1035px) {
       display: block;
     }
 
@@ -236,7 +236,7 @@ header.page-header div h1 small {
       border-left: none;
       border-right: none;
 
-      @include media($max-width: 1035px) {
+      @media (max-width: 1035px) {
         float: none;
         margin: 0;
       }
@@ -267,7 +267,7 @@ header.page-header div h1 small {
     margin-left: 32px;
     margin-bottom: $gutter;
 
-    @include media($max-width: 1131px) {
+    @media (max-width: 1131px) {
       margin-left: 0;
     }
   }

@@ -3,7 +3,7 @@ input[type="text"],
 input[type="search"],
 input[type="email"],
 input[type="password"] {
-  @include media($max-width: 640px) {
+  @media (max-width: 640px) {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
@@ -25,7 +25,7 @@ textarea {
     width: 8em;
   }
 
-  @include media($max-width: 640px) {
+  @media (max-width: 640px) {
     width: 100%;
   }
 
@@ -38,7 +38,7 @@ textarea {
       width: 8em;
     }
 
-    @include media($max-width: 640px) {
+    @media (max-width: 640px) {
       min-width: 0;
     }
   }
@@ -50,7 +50,7 @@ textarea {
       width: 16em;
     }
 
-    @include media($max-width: 640px) {
+    @media (max-width: 640px) {
       min-width: 0;
       max-width: 16em;
     }
@@ -63,7 +63,7 @@ textarea {
       width: 24em;
     }
 
-    @include media($max-width: 640px) {
+    @media (max-width: 640px) {
       min-width: 0;
       max-width: 24em;
     }
@@ -114,7 +114,7 @@ input[type="file"] {
   @include core-16($line-height: (20 / 16));
   line-height: 1;
 
-  @include media($max-width: 640px) {
+  @media (max-width: 640px) {
     max-width: 280px;
   }
 }
@@ -256,7 +256,7 @@ input[type="file"] {
   .hidden-arrow-right {
     line-height: 1.8;
 
-    @include media($max-width: 640px) {
+    @media (max-width: 640px) {
       line-height: 1.9;
     }
 
@@ -269,7 +269,7 @@ input[type="file"] {
   .hidden-arrow-down {
     line-height: 1.7;
 
-    @include media($max-width: 640px) {
+    @media (max-width: 640px) {
       line-height: 1.9;
     }
 

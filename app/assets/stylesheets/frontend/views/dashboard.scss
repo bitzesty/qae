@@ -34,7 +34,7 @@
       margin-bottom: $gutter-one-sixth;
       margin-right: 10em;
 
-      @include media($max-width: 450px) {
+      @media (max-width: 450px) {
         margin-right: 0;
       }
     }
@@ -51,7 +51,7 @@
       top: $gutter-one-third;
       right: 0;
 
-      @include media($max-width: 450px) {
+      @media (max-width: 450px) {
         display: block;
         position: static;
         top: auto;
