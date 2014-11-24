@@ -3,16 +3,16 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.8'
 
 gem 'coffee-rails', '~> 4.0.0'
-gem 'devise'
+gem 'devise', '~> 3.4'
 gem 'govuk_frontend_toolkit', git: 'git@github.com:alphagov/govuk_frontend_toolkit_gem.git', submodules: true
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
-gem 'kaminari'
-gem 'pg'
+gem 'kaminari', '~> 0.16'
+gem 'pg', '~> 0.17'
 gem 'plek', '~> 1.9.0'
-gem 'responders'
-gem 'simple_form'
-gem 'slim-rails'
+gem 'responders', '~> 1.1'
+gem 'simple_form', '~> 3.0'
+gem 'slim-rails', '~> 2.1'
 gem 'slimmer', '~> 5.0.0', github: 'alphagov/slimmer', branch: "master"
 
 group :assets do
