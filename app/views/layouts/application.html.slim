@@ -33,11 +33,12 @@ html
           a#proposition-name href="/"
             ' Queens Award for Enterprise
             span.alpha-tag ALPHA
-          ul#proposition-links
-            li
-              = link_to "Your account", account_path
-            li
-              = link_to "Log out", "#"
+          - if current_admin # || current_user
+            ul#proposition-links
+              li
+                = link_to "Your account", account_path
+              li
+                = link_to "Log out", destroy_admin_session_path, method: :delete
 
     #wrapper.guide.smart_answer.answer
       #QAE
