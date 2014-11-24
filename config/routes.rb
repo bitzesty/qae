@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :users
+  devise_for :admins, controllers: {
+    confirmations: 'devise/confirmations'
+  }
+
   get '/eligibility_1'           => "content_only#eligibility_1",           as: 'eligibility_1'
   get '/eligibility_2'           => "content_only#eligibility_2",           as: 'eligibility_2'
   get '/eligibility_3'           => "content_only#eligibility_3",           as: 'eligibility_3'
@@ -16,8 +21,12 @@ Rails.application.routes.draw do
   get '/innovation_award_form_3' => "content_only#innovation_award_form_3", as: 'innovation_award_form_3'
   get '/innovation_award_form_4' => "content_only#innovation_award_form_4", as: 'innovation_award_form_4'
   get '/innovation_award_form_5' => "content_only#innovation_award_form_5", as: 'innovation_award_form_5'
-  get '/confirmation'            => "content_only#confirmation",            as: 'confirmation'
+  get '/confirm'            => "content_only#confirmation"
   get '/account'                 => "content_only#account",                 as: 'account'
 
   root to: 'content_only#home'
+
+  namespace :admin do
+    resources :users
+  end
 end

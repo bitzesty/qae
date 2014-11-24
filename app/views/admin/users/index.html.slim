@@ -1,0 +1,25 @@
+header.page-header.group
+  div
+    h1
+      ' Users
+
+.article-related-positioning-container
+  .article-container
+    article.group role="article"
+      .inner
+        = link_to 'Create user', new_admin_user_path
+        table.table
+          thead
+            tr
+              th Email
+              th
+          tbody
+            - @users.each do |user|
+              tr
+                td = link_to user.email, admin_user_path(user)
+                td
+                  =' link_to 'Edit', edit_admin_user_path(user)
+                  = link_to 'Delete', admin_user_path(user), data: { method: :delete, confirm: 'Are you sure?' }
+
+
+        = paginate @users

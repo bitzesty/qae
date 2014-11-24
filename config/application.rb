@@ -28,5 +28,9 @@ module Qae
       application-ie6.css
       application.js
     }
+
+    config.generators do |g|
+      g.test_framework :rspec
+    end
   end
 end
