@@ -12,3 +12,8 @@ end
 step "I should see sign out link" do
   expect(page).to have_link('Log out')
 end
+
+step "I am admin user" do
+  step "Admin user exists"
+  step "I sign in as admin"
+end

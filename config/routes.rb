@@ -23,4 +23,8 @@ Rails.application.routes.draw do
   get '/account'                 => "content_only#account",                 as: 'account'
 
   root to: 'content_only#home'
+
+  namespace :admin do
+    resources :users
+  end
 end

@@ -7,8 +7,11 @@ gem 'devise'
 gem 'govuk_frontend_toolkit', git: 'git@github.com:alphagov/govuk_frontend_toolkit_gem.git', submodules: true
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'kaminari'
 gem 'pg'
 gem 'plek', '~> 1.9.0'
+gem 'responders'
+gem 'simple_form'
 gem 'slim-rails'
 gem 'slimmer', '~> 5.0.0', github: 'alphagov/slimmer', branch: "master"
 
@@ -20,6 +23,7 @@ group :test do
   gem 'capybara'
   gem 'database_cleaner'
   gem 'factory_girl_rails'
+  gem 'launchy'
   gem 'rspec-rails'
   gem 'turnip'
 end
