@@ -1,3 +1,5 @@
+require 'capistrano/rails/migrations'
+
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
@@ -9,7 +11,7 @@ set :slack_team, "bitzesty"
 set :slack_token, "Z6O3ULcRqdL3zTQIIzDklfya"
 set :slack_icon_emoji,   ->{ ":rocket:" }
 set :slack_channel,      ->{ "#qae" }
-
+set :migration_role, 'app'
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
