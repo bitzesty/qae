@@ -45,5 +45,7 @@ window.zxcvbn_load_hook = ->
 
 jQuery ->
   if passwordSelector().length > 0
-    # load zxcvbn-async
-    $("body").append $("<script />", src: "/javascripts/zxcvbn-async.js")
+    script = document.createElement("script")
+    script.type = "text/javascript"
+    script.src = "javascripts/password_strength/password-strength.js"
+    $("body").append(script)
