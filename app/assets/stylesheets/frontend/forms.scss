@@ -222,6 +222,18 @@ input[type="file"] {
   }
 }
 
+// Prominent link
+.prominent {
+  @include bold-19;
+  display: block;
+  margin-bottom: $gutter;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 // Hidden hints as seen on
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
 .hidden-hint {

@@ -46,11 +46,10 @@
           = link_to "Queen’s Award for Enterprise Promotion", "/queens-awards-for-enterprise/enterprise-promotion-award"
           '  is a separate award for individuals. It’s open to people who have played an outstanding role in promoting enterprise skills and attitudes.
 
-        h2
-          - if user_signed_in?
-            = link_to "Check your organisations eligibility", dashboard_path
-          - else
-            = link_to "Check your organisations eligibility", new_user_registration_path
+        - if user_signed_in?
+          = link_to "Check your organisations eligibility", dashboard_path, class: "prominent"
+        - else
+          = link_to "Check your organisations eligibility", new_user_registration_path, class: "prominent"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
