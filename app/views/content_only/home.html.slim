@@ -47,7 +47,10 @@
           '  is a separate award for individuals. It’s open to people who have played an outstanding role in promoting enterprise skills and attitudes.
 
         h2
-          = link_to "Check your organisations eligibility", new_user_registration_path
+          - if user_signed_in?
+            = link_to "Check your organisations eligibility", dashboard_path
+          - else
+            = link_to "Check your organisations eligibility", new_user_registration_path
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
