@@ -1,9 +1,17 @@
-h2
-  | Forgot your password?
-= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-  .form-actions
-    = f.button :submit, "Send me reset password instructions"
-= render "users/shared/links"
+.article-related-positioning-container
+  header.page-header.group
+    div
+      h1
+        | Forgot your password?
+
+  .article-container.group
+    article.group role="article"
+      .inner
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+          = f.error_notification
+          .form-inputs
+            = f.input :email, required: true, autofocus: true
+          .form-actions
+            = f.button :submit, "Send me reset password instructions"
+
+        = render "users/shared/links"

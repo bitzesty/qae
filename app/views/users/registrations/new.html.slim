@@ -1,11 +1,20 @@
-h2
-  | Sign up
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter' }
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, "Sign up"
-= render "users/shared/links"
+.article-related-positioning-container
+  header.page-header.group
+    div
+      h1
+        | Sign up
+
+  .article-container.group
+    article.group role="article"
+      .inner
+        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+          = f.error_notification
+          .form-inputs
+            = f.input :email, required: true, autofocus: true
+            = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter' }
+            = f.input :password_confirmation, required: true
+
+          .form-actions
+            = f.button :submit, "Sign up"
+
+        = render "users/shared/links"
