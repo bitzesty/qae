@@ -23,32 +23,7 @@ header.page-header.group
         p
           ' If you're already sure about the category you want to apply:
 
-        ul.applications-list
-          li
-            h3
-              ' International trade award
-            small
-              ' Unclear eligibility
-            .pull-right
-              = link_to "Start your application"
-          li
-            h3
-              ' Innovation award
-            small
-              ' Unclear eligibility
-            .pull-right
-              = link_to "Start your application", apply_innovation_award_path
-          li
-            h3
-              ' Sustainable development award
-            small
-              ' Unclear eligibility
-            .pull-right
-              = link_to "Start your application"
-
-            /.application-notice.info-notice
-              p
-                ' In order to apply to Sustainability Development, your organisations needs to lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+        = render "shared/application_awards_status"
 
         br
 
