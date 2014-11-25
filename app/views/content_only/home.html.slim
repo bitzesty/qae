@@ -13,13 +13,13 @@ header.page-header.group
   .article-container
     article.group role="article"
       .inner
-        p
-          ' In order to lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt.
-
-        = link_to "Check your eligibility for the categories of the enterprise award", eligibility_check_1_path, class: "button medium button-block"
+        h2
+          ' Awards for organisations
 
         h2
-          ' Your applications
+          = link_to "Check your organisations eligibility", eligibility_check_1_path
+        br
+
         p
           ' If you're already sure about the category you want to apply:
 
@@ -49,6 +49,22 @@ header.page-header.group
             /.application-notice.info-notice
               p
                 ' In order to apply to Sustainability Development, your organisations needs to lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+
+        br
+
+        h2
+          ' Award for individual
+        p
+          ' If you're already sure about the category you want to apply:
+
+        ul.applications-list
+          li
+            h3
+              ' Enterprise promotion award
+            small
+              ' Unclear eligibility
+            .pull-right
+              = link_to "Start your application", apply_innovation_award_path
 
   .related-positioning.related-positioning-no-header
     .related-container

@@ -16,10 +16,10 @@ $gutter-one-sixth: $gutter/6;
 }
 
 // App specific styles
+@import 'frontend/smart_answers';
 @import 'frontend/layout';
 @import 'frontend/forms';
 @import 'frontend/attachment';
-@import 'frontend/smart_answers';
 
 // Page specific styles
 #QAE {

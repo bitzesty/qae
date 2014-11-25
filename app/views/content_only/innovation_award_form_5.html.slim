@@ -1,11 +1,12 @@
 header.page-header.group.page-header-wider
   div
+    h1
+      ' Apply for the innovation award
+
     = render "innovation_award_form/steps_progress_bar"
 
-    h1
-      small
-        ' Step 5 of 5: Authorisation/Monitoring
-      ' Apply for the innovation award
+    h2
+      ' Step 5 of 5: Authorisation/Monitoring
 
 .article-container.article-container-wider
   article.group role="article"
@@ -151,7 +152,7 @@ header.page-header.group.page-header-wider
         br
 
         p.form-submit
-          = link_to "Submit application", confirmation_path, class: "button large"
+          = link_to "Submit application", innovation_award_confirm_path, class: "button large"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

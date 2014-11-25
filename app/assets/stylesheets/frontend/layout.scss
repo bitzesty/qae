@@ -32,12 +32,32 @@
   }
 }
 
-// Wider header
-.page-header.page-header-wider div {
-  width: 100%;
-  -webkit-box-sizing: border-box;
-     -moz-box-sizing: border-box;
-          box-sizing: border-box;
+.page-header {
+  // Wider header
+  &.page-header-wider div {
+    width: 100%;
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+  }
+
+  // Styles the sub header for `page-header`
+  h2 {
+    @include core-27;
+    display: block;
+    margin-bottom: 0.15em;
+    color: $grey-1;
+  }
+
+  // Indent other page-header elements
+  h2,
+  .steps-progress-bar {
+    margin-left: 32px;
+
+    @media (max-width: 1131px) {
+      margin-left: 0;
+    }
+  }
 }
 
 // Wider content
@@ -70,12 +90,10 @@
   }
 }
 
-// Styles the sub header for `page-header`
-header.page-header div h1 small {
-  @include core-27;
-  display: block;
-  margin-bottom: 0.15em;
-  color: $grey-1;
+// Override smart_answers style for consistent
+// spacing between forms and page titles
+.smart_answer .current-question {
+  padding-top: 0;
 }
 
 // Taken from whitehall repo 18 Nov 2014
@@ -229,15 +247,20 @@ header.page-header div h1 small {
     > a,
     > span {
       float: left;
-      display: block;
+      display: inline-block;
+      max-width: 150px;
       margin: 0;
       padding: 7px 0;
       border: 5px solid transparent;
       border-left: none;
       border-right: none;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
 
       @media (max-width: 1035px) {
         float: none;
+        max-width: 100%;
         margin: 0;
       }
     }
@@ -264,11 +287,6 @@ header.page-header div h1 small {
 
   .page-header & {
     margin-top: 16px;
-    margin-left: 32px;
     margin-bottom: $gutter;
-
-    @media (max-width: 1131px) {
-      margin-left: 0;
-    }
   }
 }
