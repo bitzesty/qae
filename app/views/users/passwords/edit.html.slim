@@ -5,7 +5,7 @@ h2
   = f.input :reset_password_token, as: :hidden
   = f.full_error :reset_password_token
   .form-inputs
-    = f.input :password, label: "New password", required: true, autofocus: true
+    = f.input :password, label: "New password", required: true, autofocus: true, input_html: { class: 'password-strength-meter' }
     = f.input :password_confirmation, label: "Confirm your new password", required: true
   .form-actions
     = f.button :submit, "Change my password"

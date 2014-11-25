@@ -4,7 +4,7 @@ h2
   = f.error_notification
   .form-inputs
     = f.input :email, required: true, autofocus: true
-    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable)
+    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter' }
     = f.input :password_confirmation, required: true
   .form-actions
     = f.button :submit, "Sign up"

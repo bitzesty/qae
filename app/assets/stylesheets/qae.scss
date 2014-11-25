@@ -27,6 +27,10 @@ $gutter-one-sixth: $gutter/6;
   @import 'frontend/views/eligibility';
 }
 
+// Password strength bar
+@import 'frontend/password_strength';
+
+
 // TEMP TODO hide the search with CSS
 .search-toggle,
 .site-search {
