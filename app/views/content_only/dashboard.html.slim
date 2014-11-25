@@ -1,0 +1,95 @@
+header.page-header.group
+  div
+    h1
+      ' Dashboard
+
+.inner-block
+  .highlighted-event
+    p
+      ' Deadline for the awards
+      em 25 March 2015
+
+.article-related-positioning-container
+  .article-container
+    article.group role="article"
+      .inner
+        h2
+          ' Awards for organisations
+
+        h2
+          = link_to "Check your organisations eligibility", eligibility_check_1_path
+        br
+
+        p
+          ' If you're already sure about the category you want to apply:
+
+        ul.applications-list
+          li
+            h3
+              ' International trade award
+            small
+              ' Unclear eligibility
+            .pull-right
+              = link_to "Start your application"
+          li
+            h3
+              ' Innovation award
+            small
+              ' Unclear eligibility
+            .pull-right
+              = link_to "Start your application", apply_innovation_award_path
+          li
+            h3
+              ' Sustainable development award
+            small
+              ' Unclear eligibility
+            .pull-right
+              = link_to "Start your application"
+
+            /.application-notice.info-notice
+              p
+                ' In order to apply to Sustainability Development, your organisations needs to lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+
+        br
+
+        h2
+          ' Award for individual
+        p
+          ' If you're already sure about the category you want to apply:
+
+        ul.applications-list
+          li
+            h3
+              ' Enterprise promotion award
+            small
+              ' Unclear eligibility
+            .pull-right
+              = link_to "Start your application", apply_innovation_award_path
+
+  .related-positioning.related-positioning-no-header
+    .related-container
+      .related#related
+        .inner.group.related-section
+          h2#parent-section
+            ' Submitted award applications
+
+          nav role="navigation" aria-labelledby="parent-section"
+            ul
+              li
+                ' 2014 - Innovation
+                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
+              li
+                ' 2014 - International Trade
+                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
+              li
+                ' 2013 - Innovation
+                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
+              li
+                ' 2013 - International Trade
+                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
+              li
+                ' 2012 - Substainability Development
+                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
+
+        .inner.group
+          = link_to "Return to top ↑", "#content", class: "return-to-top"
