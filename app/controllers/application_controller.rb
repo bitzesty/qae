@@ -11,4 +11,10 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path_for(resource)
     eligibility_1_path
   end
+
+  def after_sign_up_path_for(resource)
+    if resource.is_a?(User)
+      eligibility_1_path
+    end
+  end
 end
