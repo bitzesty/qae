@@ -18,10 +18,13 @@ jQuery ->
 
   # Conditional questions that appear depending on answers
   $(".js-conditional-question").addClass("conditional-question")
-  $(".js-conditional-answer input").change () ->
+  $(".js-conditional-answer input, .js-conditional-answer select").change () ->
     answer = $(this).closest(".js-conditional-answer").attr("data-answer")
-    question = $(".conditional-question[data-answer='#{answer}']")
+    question = $(".conditional-question[data-question='#{answer}']")
     answerVal = $(this).val()
+
+    console.log "#{question} : #{answer} : #{answerVal}"
+
     if $(this).attr('type') == 'checkbox'
       answerVal = $(this).is(':checked').toString()
 
