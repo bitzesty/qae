@@ -10,3 +10,5 @@ public/uploads/*
 .pgpass
 certs/*
 .env
+
+.ruby-gemset
