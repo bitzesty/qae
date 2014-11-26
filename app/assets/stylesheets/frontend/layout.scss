@@ -135,6 +135,16 @@
     display: block;
     margin-right: -15px;
     margin-left: -15px;
+
+    &:after,
+    &:before {
+      display: table;
+      content: " ";
+    }
+
+    &:after {
+      clear: both;
+    }
   }
   .span-1,
   .span-2,
