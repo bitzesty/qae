@@ -12,577 +12,194 @@ header.page-header.group.page-header-wider
   article.group role="article"
     .inner
       form.qae-form
-        fieldset
-          h2
-            span.steps#step-17
-              span.visuallyhidden
-                ' Step 17
-            ' Please select either ‘Outstanding’ (2 years) or ‘Continuous’ (5 years)
-            abbr *
-          p.group
-            span.visuallyhidden
-              ' Please select either ‘Outstanding’ (2 years) or ‘Continuous’ (5 years)
+        = question_for "For how long has the innovation had substantial impact on your organisation's performance?",
+                       { step: 24,
+                         required: true,
+                         context_text: "<p>Your answer here will determine whether you are assessed for outstanding innovation (an award valid for two years) or continuous innovation (valid for five years).</p>" } do
+          label.selectable
+            input type="radio" name="optionsInnovationImpactDuration" value="2 to 4"
+            ' 2-4 years
+          label.selectable
+            input type="radio" name="optionsInnovationImpactDuration" value="5 plus"
+            ' 5 years or more
+
+        = question_for "Please select your financial year end dates:",
+                       { step: 25,
+                         required: true,
+                         context_text: "<p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>" } do
+          span.row
+            span.span-2-4
+              label
+                ' 1/10/2013 - 30/09/2014
+                br
+                input.small type="text" placeholder="dd/mm/yyyy"
+                // Validate 1st October 2013 - 30th September 2014
+            span.span-2-4
+              label
+                ' 1/10/2012 - 30/09/2013
+                br
+                input.small type="text" placeholder="dd/mm/yyyy"
+                // Validate 1st October 2012 - 30th September 2013
+            span.span-2-4
+              label
+                ' 1/10/2011 - 30/09/2012
+                br
+                input.small type="text" placeholder="dd/mm/yyyy"
+                // Validate 1st October 2011 - 30th September 2012
+            span.span-2-4
+              label
+                ' 1/10/2010 - 30/09/2011
+                br
+                input.small type="text" placeholder="dd/mm/yyyy"
+                // Validate 1st October 2010 - 30th September 2011
+            span.span-2-4
+              label
+                ' 1/10/2009 - 30/09/2010
+                br
+                input.small type="text" placeholder="dd/mm/yyyy"
+                // Validate 1st October 2009 - 30th September 2010
+
+          br
+          label
+            ' Additional comments (optional)
+            textarea.js-char-count rows="1" maxlength="100"
+          // Based on choice of 2 or 5 year option, show 2 or five inputs in questions 25...... etc. LOGIC INCOMPLETE
+
+        = question_for "State the number of people employed by the company for each year of your entry.",
+                       { step: 25.1,
+                         required: true,
+                         context_text: "<p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>" } do
+          input.small type="number" min=2
+          // Min 2 - if less than 2 block - present 'you are not eligible' message
+
+        = question_for "My innovation is an integral part of",
+                       { step: 26,
+                         required: true } do
+          label.selectable
+            input type="radio" name="optionsInnovationIntegral" value="entire business"
+            ' The entire business
+          label.selectable
+            input type="radio" name="optionsInnovationIntegral" value="single product or service"
+            ' A single product or service
+
+        = question_for "Company Financials",
+                       { context_text: "<p>These figures should be for your entire organisation.</p>" } do
+          input.medium type="text"
+          // Call on the year-end dates entered earlier for the titles of these columns, call on number of years for number of columns'
+
+        = question_for "Total turnover",
+                       { step: 27,
+                         required: true } do
+          input.small type="text" placeholder="£"
+          // If there are any drops, show explanatory question below.
+
+        = question_for "of which exports",
+                       { step: 27.1,
+                         required: true,
+                         context_text: "<p>Please enter '0' if you had none.</p>" } do
+          input.small type="text" placeholder="£"
+          // If there are any drops, show explanatory question below.
+
+        = question_for "Net profit after tax but before dividends",
+                       { step: 27.2,
+                         required: true } do
+          input.small type="text" placeholder="£"
+          // If there are any drops, show explanatory question below.
+
+        = question_for "Total net assets",
+                       { step: 27.3,
+                         required: true,
+                         context_text: "<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>" } do
+          input.small type="text" placeholder="£"
+          // If there are any drops, show explanatory question below.
+
+        = question_for "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made.",
+                       { step: 27.4 } do
+          textarea.js-char-count rows="2" maxlength="200"
+          // Only show this if there are any drops or losses above.
+
+        .js-conditional-question data-question="my-innovation-is-an-integral-part-of" data-value="entire business"
+          = question_for "Number of units/contracts sold",
+                         { step: 28,
+                           required: true } do
+            input.small type="number"
+            // If there's any drop here, then show explanatory question below
+
+          = question_for "Sales",
+                         { step: 28.1,
+                           required: true } do
+            input.small type="text" placeholder="£"
+            // If there is a drop in sales at any point, then show question below 'Explain any drop in sales'
+
+          = question_for "of which exports",
+                         { step: 28.2,
+                           required: true,
+                           context_text: "<p>Please enter '0' if you had none.</p>" } do
+            input.small type="text" placeholder="£"
+            // If there's any drop here, then show explanatory question below
+
+          = question_for "of which royalties or licenses",
+                         { step: 28.3,
+                           required: true,
+                           context_text: "<p>Please enter '0' if you had none.</p>" } do
+            input.small type="text" placeholder="£"
+
+          = question_for "Explain any drop in sales",
+                         { step: 28.4,
+                           required: true } do
+            textarea.js-char-count rows="5" maxlength="300"
+            // Show if there are any drops in the figures above.
+
+          = question_for "Are any of these figures estimated?",
+                         { step: 28.5 } do
             label.selectable
-              input type="checkbox"
-              ' Outstanding
+              input type="radio" name="optionsFiguresEstimated" value="yes"
+              ' Yes
             label.selectable
-              input type="checkbox"
-              ' Continuous
-          .hidden-hint
-            span.hidden-link
-              ' What doe outstanding innovation mean?
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          .hidden-hint
-            span.hidden-link
-              ' What doe continuous innovation mean?
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              input type="radio" name="optionsFiguresEstimated" value="no"
+              ' No
 
-          h2
-            span.steps#step-17-1
-              span.visuallyhidden
-                ' Step 17.1
-            ' Please select your financial year end date between 1 October 2013 and 30 September 2014 for the final year of the entry using the online calendar
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Please select your financial year end date between 1 October 2013 and 30 September 2014 for the final year of the entry using the online calendar
-                abbr *
-            span.row
-              span.span-3
-                label
-                  ' Year 1 ended
-                  br
-                  select
-                    option value="" Day
-                    - (1..31).each do |day|
-                      option= day
-                  select
-                    option value="" Month
-                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                    - months.each do |month|
-                      option= month
-                  select
-                    option value="" Year
-                    - (2012..2014).each do |year|
-                      option= year
-              span.span-3
-                label
-                  ' Year 2 ended
-                  br
-                  select
-                    option value="" Day
-                    - (1..31).each do |day|
-                      option= day
-                  select
-                    option value="" Month
-                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                    - months.each do |month|
-                      option= month
-                  select
-                    option value="" Year
-                    - (2012..2014).each do |year|
-                      option= year
-              span.span-3
-                label
-                  ' Year 3 ended
-                  br
-                  select
-                    option value="" Day
-                    - (1..31).each do |day|
-                      option= day
-                  select
-                    option value="" Month
-                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                    - months.each do |month|
-                      option= month
-                  select
-                    option value="" Year
-                    - (2012..2014).each do |year|
-                      option= year
-              span.span-3
-                label
-                  ' Year 4 ended
-                  br
-                  select
-                    option value="" Day
-                    - (1..31).each do |day|
-                      option= day
-                  select
-                    option value="" Month
-                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                    - months.each do |month|
-                      option= month
-                  select
-                    option value="" Year
-                    - (2012..2014).each do |year|
-                      option= year
+          = question_for "Explain the use of estimates, and how much of these are actual receipts or firm orders.",
+                         { conditional: {question: "Are any of these figures estimated?",
+                                         value: "yes"} } do
+            textarea.js-char-count rows="3" maxlength="200"
 
-        fieldset
-          h2
-            span.steps#step-18
-              span.visuallyhidden
-                ' Step 18
-            ' State the number of full-time employees (or part-time equivalent) employed in the UK by the entrant at the end of each 12 month period or as an average for each year
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' State the number of full-time employees (or part-time equivalent) employed in the UK by the entrant at the end of each 12 month period or as an average for each year
-                abbr *
-            span.row
-              span.span-3
-                label
-                  ' Year 1 ended
-                  input.small type="text"
-                span.hint
-                  ' Nunber of employees
-              span.span-3
-                label
-                  ' Year 2 ended
-                  input.small type="text"
-                span.hint
-                  ' Nunber of employees
-              span.span-3
-                label
-                  ' Year 3 ended
-                  input.small type="text"
-                span.hint
-                  ' Nunber of employees
-              span.span-3
-                label
-                  ' Year 4 ended
-                  input.small type="text"
-                span.hint
-                  ' Nunber of employees
+          = question_for "Additional comments (optional)",
+                         { step: 28.7 } do
+            textarea.js-char-count rows="1" maxlength="100"
 
-        fieldset
-          h2
-            span.steps#step-19
-              span.visuallyhidden
-                ' Step 19
-            ' Does this entry relate to:
-            abbr *
-          p.group
-            span.visuallyhidden
-              ' Does this entry relate to:
-              abbr *
-            label.selectable
-              input type="radio"
-              ' Your entire business
-              span.hint
-                ' Please complete Questions 20 to 20.5 and then proceed to Question 25 and onwards
-            label.selectable
-              input type="radio"
-              ' A single product or service
-              span.hint
-                ' Please complete Questions 20 to 24 and then proceed to Question 25 and onwards
+          = question_for "Average unit selling price/contract value",
+                         { step: 28.8,
+                           required: true } do
+            input.small type="text" placeholder="£"
 
-        fieldset
-          h2
-            span.steps#step-20
-              span.visuallyhidden
-                ' Step 20
-            ' Total Turnover
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Total Turnover
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+          = question_for "Explain your unit selling prices/contract values, highlighting any changes over the above periods.",
+                         { required: true } do
+            textarea.js-char-count rows="3" maxlength="200"
 
-          h2
-            span.steps#step-20-1
-              span.visuallyhidden
-                ' Step 20.1
-            ' Net Profit
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Net Profit
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-            span.hint
-              ' i.e. after tax, before dividends
+          = question_for "Cost, to you, of a single unit/contract",
+                         { step: 29,
+                           required: true } do
+            input.small type="text" placeholder="£"
 
-          h2
-            span.steps#step-20-2
-              span.visuallyhidden
-                ' Step 20.2
-            ' Annual balance sheet total
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Annual balance sheet total
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+          = question_for "Explain your unit/ contract costs, highlighting any changes over the above periods.",
+                         { required: true } do
+            textarea.js-char-count rows="3" maxlength="200"
 
-          h2
-            span.steps#step-20-3
-              span.visuallyhidden
-                ' Step 20.3
-            ' UK sales
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' UK sales
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+          = question_for "Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.",
+                         { step: 30,
+                           required: true } do
+            textarea.js-char-count rows="5" maxlength="300"
 
-          h2
-            span.steps#step-20-4
-              span.visuallyhidden
-                ' Step 20.4
-            ' Export sales
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Export sales
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+        = question_for "Please enter details of all the investments made in your innovation, and the years when they were made. Include investments made both during and prior to your entry period.",
+                       { step: 31,
+                         required: true } do
+          textarea.js-char-count rows="5" maxlength="300"
 
-          h2
-            span.steps#step-20-5
-              span.visuallyhidden
-                ' Step 20.5
-            ' Explain any losses and drops in turnover, sales, annual balance sheet totals and/or net profits
-          p
-            ' You can explain here use of estimates and actual receipts or firm orders.
-          p.group
-            label
-              span.visuallyhidden
-                ' Explain any losses and drops in turnover, sales, annual balance sheet totals and/or net profits. 
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-        br
-
-        .application-notice.info-notice
-          p
-            ' Questions 21, 22, 23 and 24 refer to the single product or service that is the subject of the entry.
-            br
-            ' If your entry relates to your whole operation, please proceed to Question 25.
-
-        fieldset
-          h2
-            span.steps#step-21
-              span.visuallyhidden
-                ' Step 21
-            ' Number of units/contracts/quantity sold
-          p.group
-            label
-              span.visuallyhidden
-                ' Number of units/contracts/quantity sold
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-
-          h2
-            span.steps#step-21-1
-              span.visuallyhidden
-                ' Step 21.1
-            ' Actual sales
-          p.group
-            label
-              span.visuallyhidden
-                ' Actual sales
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-
-          h2
-            span.steps#step-21-2
-              span.visuallyhidden
-                ' Step 21.2
-            ' ...of which exports
-          p.group
-            label
-              span.visuallyhidden
-                ' ...of which exports
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-
-          h2
-            span.steps#step-21-3
-              span.visuallyhidden
-                ' Step 21.3
-            ' ...of which are royalties or licences
-          p.group
-            label
-              span.visuallyhidden
-                ' ...of which are royalties or licences
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-
-        fieldset
-          h2
-            span.steps#step-22
-              span.visuallyhidden
-                ' Step 22
-            ' Explain any drop in sales
-          p.group
-            label
-              span.visuallyhidden
-                ' Explain any drop in sales
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-        fieldset
-          h2
-            span.steps#step-23
-              span.visuallyhidden
-                ' Step 23
-            ' Please comment on the unit selling price, highlighting any changes over the period
-          p.group
-            label
-              span.visuallyhidden
-                ' Please comment on the unit selling price, highlighting any changes over the period
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-        fieldset
-          h2
-            span.steps#step-24
-              span.visuallyhidden
-                ' Step 24
-            ' Unit costs (if applicable)
-          p.group
-            label
-              span.visuallyhidden
-                ' Unit costs (if applicable)
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-
-        fieldset
-          h2
-            span.steps#step-25
-              span.visuallyhidden
-                ' Step 25
-            ' Provide the cost savings, if known, to your business or your customers’ business after introduction of the innovation.
-          p.group
-            label
-              span.visuallyhidden
-                ' Provide the cost savings, if known, to your business or your customers’ business after introduction of the innovation.
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-
-        fieldset
-          h2
-            span.steps#step-26
-              span.visuallyhidden
-                ' Step 26
-            ' Show details of all investments in the innovation and the years when they were made – provide as much detail of early stage investment as possible, not just investment(s) relevant to the period of your entry
-          p.group
-            label
-              span.visuallyhidden
-                ' Show details of all investments in the innovation and the years when they were made – provide as much detail of early stage investment as possible, not just investment(s) relevant to the period of your entry
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-        fieldset
-          h2
-            span.steps#step-27
-              span.visuallyhidden
-                ' Step 27
-            ' Describe how, when, and to what extent the innovation improved the commercial performance of your business. How long did it take for the investment, indicated in Question 26, to be repaid? When and how was the repayment achieved?
-          p.group
-            label
-              span.visuallyhidden
-                ' Describe how, when, and to what extent the innovation improved the commercial performance of your business. How long did it take for the investment, indicated in Question 26, to be repaid? When and how was the repayment achieved?
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "How long did it take the investment indicated above to be repaid? When and how was this repayment achieved?",
+                       { step: 31.1,
+                         required: true } do
+          textarea.js-char-count rows="5" maxlength="300"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

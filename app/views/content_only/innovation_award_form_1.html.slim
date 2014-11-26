@@ -34,7 +34,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Does your business operate as a principal?",
                                        value: "no"} } do
-          input.largest.js-char-count type="text" maxlength="100"
+          textarea.js-char-count rows="1" maxlength="100"
 
         = question_for "Company/Charity Registration Number",
                        { step: 3,
@@ -54,14 +54,14 @@ header.page-header.group.page-header-wider
           '
           select.inline
             option value="" Month
-            - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-            - months.each do |month|
+            - @months.each do |month|
               option= month
           '
           select.inline
             option value="" Year
-            - (2012..2014).each do |year|
+            - (1900..2012).each do |year|
               option= year
+          // must be before 01/10/2012
 
         = question_for "Are you a current Queen's Award holder (2010-2014)?",
                        { step: 5,
