@@ -39,6 +39,14 @@
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+
+    // Fixes nav overflow on the award page
+    .steps-progress-bar li {
+      > a,
+      > span {
+        max-width: 150px;
+      }
+    }
   }
 
   // Styles the sub header for `page-header`
@@ -248,7 +256,6 @@
     > span {
       float: left;
       display: inline-block;
-      max-width: 150px;
       margin: 0;
       padding: 7px 0;
       border: 5px solid transparent;

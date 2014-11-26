@@ -222,6 +222,18 @@ input[type="file"] {
   }
 }
 
+// Prominent link
+.prominent {
+  @include bold-19;
+  display: block;
+  margin-bottom: $gutter;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
 // Hidden hints as seen on
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
 .hidden-hint {
@@ -388,6 +400,10 @@ input[type="file"] {
 }
 .js-enabled span.conditional-question.show-question {
   display: inline;
+}
+
+.smart_answer .inner.step.current {
+  margin-right: 0;
 }
 
 // Numbered steps for form sections

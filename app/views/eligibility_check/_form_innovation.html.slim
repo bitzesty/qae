@@ -1,0 +1,83 @@
+.question
+  h2
+    ' Do you have any innovation product or service?
+  .question-body
+    p.hint
+      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    div.js-conditional-answer data-answer="Do you have any innovation product or service?"
+      ul.options
+        li
+          label.selectable
+            input type="radio" name="optionsInnovationProduct" value="yes"
+            ' Yes
+        li
+          label.selectable
+            input type="radio" name="optionsInnovationProduct" value="no"
+            ' No
+    .js-conditional-question data-answer="Do you have any innovation product or service?" data-value="yes"
+      p.hint
+        span.no-js-conditional-text
+          ' If 'Yes', amount of products or services
+        span.js-conditional-text
+          ' Amount of products or services
+      div
+        input.small type="text"
+        br
+        br
+
+    .hidden-hint
+      span.hidden-link
+        ' I don't know if my product or service is innovative.
+      span.hidden-content
+        p
+          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+.question
+  h2
+    ' Has your business presented outstanding innovation, continued over at least for 2 years?
+  .question-body
+    p.hint
+      ' You must be able to show that your business has substantially improved in areas of performance and commercial success.
+    div
+      ul.options
+        li
+          label.selectable
+            input type="radio"
+            ' Yes
+        li
+          label.selectable
+            input type="radio"
+            ' No
+    .hidden-hint
+      span.hidden-link
+        ' What does outstanding innovation mean?
+      span.hidden-content
+        p
+          ' Outstanding innovation lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        p
+          ' Achievements are assessed for:
+          br
+          ' Invention, design or production, performance of services and products, marketing and distribution, after-sale support of goods or services
+
+.question
+  h2
+    ' Has your business or charity presented continuous innovation and development over at least 5 years?
+  .question-body
+    p.hint
+      ' You must be able to show that your business has substantially improved in areas of performance and commercial success.
+    div
+      ul.options
+        li
+          label.selectable
+            input type="radio"
+            ' Yes
+        li
+          label.selectable
+            input type="radio"
+            ' No
+    .hidden-hint
+      span.hidden-link
+        ' What does continuous innovation mean?
+      span.hidden-content
+        p
+          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

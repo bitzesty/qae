@@ -1,0 +1,44 @@
+/* ######## */
+/* Statuses */
+
+/* condition: When the haven't done the eligibility/eligibility check form
+/* status:    Unable to apply
+/* link:      Check your eligibility
+/* action:    Go to award form, the eligibility section is not filled out
+
+/* condition: When the have done the eligibility/eligibility check form but not finished the award form
+/* status:    Unclear eligibility
+/* link:      Start your application
+/* action:    Go to award form, the eligibility section is filled out
+
+/* condition: When the have finished the award form successfully
+/* status:    Submitted on 20 February 2015 at 12:02
+/* link:      Download PDF
+/* action:    Download PDF of your application
+
+ul.applications-list
+  li
+    h3
+      ' International trade award
+    small
+      ' Unclear eligibility
+    .pull-right
+      = link_to "Start your application"
+  li
+    h3
+      ' Innovation award
+    small
+      ' Unclear eligibility
+    .pull-right
+      = link_to "Start your application", apply_innovation_award_path
+  li
+    h3
+      ' Sustainable development award
+    small
+      ' Unclear eligibility
+    .pull-right
+      = link_to "Start your application"
+
+    /.application-notice.info-notice
+      p
+        ' In order to apply to Sustainability Development, your organisations needs to lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.

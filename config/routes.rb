@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, controllers: {
+    :registrations => "registrations"
+  }
   devise_for :admins, controllers: {
     confirmations: 'devise/confirmations'
   }
 
+  get '/dashboard'                 => "content_only#dashboard",                 as: 'dashboard'
   get '/eligibility_1'             => "content_only#eligibility_1",             as: 'eligibility_1'
   get '/eligibility_2'             => "content_only#eligibility_2",             as: 'eligibility_2'
   get '/eligibility_3'             => "content_only#eligibility_3",             as: 'eligibility_3'

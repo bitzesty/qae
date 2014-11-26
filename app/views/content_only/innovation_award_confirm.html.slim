@@ -32,36 +32,15 @@ header.page-header.group
             = link_to "Download your Innovation Award application", "#"
 
         h2
-          ' Your applications
+          ' Awards for organisations
 
-        ul.applications-list
-          li
-            h3
-              ' International trade award
-            small
-              ' Unclear eligibility
-            .pull-right
-              = link_to "Start your application", eligibility_check_1_path
-          li
-            h3
-              ' Innovation award
-            small
-              ' Submitted on 20 February 2015 at 12:02
-            .pull-right
-              = link_to "Download PDF", "#"
-          li
-            h3
-              ' Sustainable development award
-            small
-              ' Unclear eligibility
-            .pull-right
-              = link_to "Start your application", eligibility_check_3_path
+        = render "shared/application_awards_status"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
             ul.group
               li.previous
-                = link_to root_path, rel: "prev", title: "Navigate to Dashboard" do
+                = link_to dashboard_path, rel: "prev", title: "Navigate to Dashboard" do
                   span class="pagination-label"
                     ' Back
                   span class="pagination-part-title"
