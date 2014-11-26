@@ -17,6 +17,8 @@ gem 'simple_form', '~> 3.0'
 gem 'slim-rails', '~> 2.1'
 gem 'slimmer', '~> 5.0.0', github: 'alphagov/slimmer', branch: "master"
 
+gem "sentry-raven", git: "https://github.com/getsentry/raven-ruby.git"
+
 group :assets do
   gem 'uglifier', '>= 1.3.0'
 end
