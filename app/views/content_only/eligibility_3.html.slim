@@ -1,67 +1,84 @@
-.smart-answer-questions.group
+.article-related-positioning-container.smart-answer-questions.group
   header.page-header.group
     div
       h1
         ' Check your eligibility
 
-  .step.current
-    form
-      .current-question#current-question
-        .question
-          h2
-            ' Is your business based in UK?
-          .question-body
-            p.hint
-              ' Including the Channel Islands and the Isle of Man.
-            div
-              ul.options
-                li
-                  label.selectable
-                    input type="radio"
-                    ' Yes
-                li
-                  label.selectable
-                    input type="radio"
-                    ' No
-            .hidden-hint
-              span.hidden-link
-                ' Why are you asking me this?
-              span.hidden-content
-                p
-                  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  .article-container
+    article.group role="article"
+      .inner.step.current
+        form
+          .current-question#current-question
+            .question
+              h2
+                ' Is your business based in UK?
+              .question-body
+                p.hint
+                  ' Including the Channel Islands and the Isle of Man.
+                div
+                  ul.options
+                    li
+                      label.selectable
+                        input type="radio"
+                        ' Yes
+                    li
+                      label.selectable
+                        input type="radio"
+                        ' No
+                .hidden-hint
+                  span.hidden-link
+                    ' Why are you asking me this?
+                  span.hidden-content
+                    p
+                      ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-        .next-question
-          = link_to "Next step", eligibility_4_path, class: "button medium"
+            .next-question
+              = link_to "Next step", eligibility_4_path, class: "button medium"
 
-  .previous-answers
-    .done-questions
-      article
-        table
-          thead
-            tr
-              th.previous-answers-title
-                ' Previous answers
-              th.link-right.restart colspan="2"
-                = link_to "Start again", eligibility_1_path
-          tbody
-            tr.section
-              td.previous-question-title
-                ' What kind of organisation are you?
-              td.previous-question-body
-                ' Business
-              td.link-right
-                = link_to eligibility_1_path do
-                  ' Change
-                  span.visuallyhidden
-                    ' answer to "What kind of organisation are you?"
+      .previous-answers
+        .done-questions
+          article
+            table
+              thead
+                tr
+                  th.previous-answers-title
+                    ' Previous answers
+                  th.link-right.restart colspan="2"
+                    = link_to "Start again", eligibility_1_path
+              tbody
+                tr.section
+                  td.previous-question-title
+                    ' What kind of organisation are you?
+                  td.previous-question-body
+                    ' Business
+                  td.link-right
+                    = link_to eligibility_1_path do
+                      ' Change
+                      span.visuallyhidden
+                        ' answer to "What kind of organisation are you?"
 
-            tr.section
-              td.previous-question-title
-                ' Which industry is your business in?
-              td.previous-question-body
-                ' Automotive
-              td.link-right
-                = link_to eligibility_2_path do
-                  ' Change
-                  span.visuallyhidden
-                    ' answer to "Which industry is your business in?"
+                tr.section
+                  td.previous-question-title
+                    ' Which industry is your business in?
+                  td.previous-question-body
+                    ' Automotive
+                  td.link-right
+                    = link_to eligibility_2_path do
+                      ' Change
+                      span.visuallyhidden
+                        ' answer to "Which industry is your business in?"
+
+  .related-positioning
+    .related-container
+      .related#related
+        nav.pagination role="navigation" aria-label="Pagination"
+          ul.group
+            li.next
+              = link_to dashboard_path, rel: "Skip", title: "Skip to Dashboard" do
+                span class="pagination-label"
+                  ' Skip
+                span class="pagination-part-title"
+                  ' Dashboard
+
+        .inner.group
+          = link_to "Return to top ↑", "#content", class: "return-to-top"
