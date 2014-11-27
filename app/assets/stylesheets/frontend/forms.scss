@@ -132,6 +132,12 @@ input[type="file"] {
 
   table {
     width: 100%;
+
+    input,
+    select,
+    textarea {
+      margin: 0;
+    }
   }
 
   label {

@@ -11,254 +11,168 @@ header.page-header.group.page-header-wider
 .article-container.article-container-wider
   article.group role="article"
     .inner
-      .application-notice.help-notice
-        p
-          ' You may enter as many innovative products as you wish but each product requires a seperate entry form.
+      p
+        ' When answering these questions please avoid using technical jargon where possible. If you have more than one innovative product/service you will need to submit more than one application.
 
       form.qae-form
-        fieldset
-          h2
-            span.steps#step-10
-              span.visuallyhidden
-                ' Step 10
-            ' Name of product, service or initiative
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Name of product, service or initiative
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Briefly describe your product/service/intiative",
+                       { step: "C1",
+                         required: true,
+                         context_text: "<p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>" } do
+          textarea.js-char-count rows="1" maxlength="90"
 
-        fieldset
-          h2
-            span.steps#step-11
-              span.visuallyhidden
-                ' Step 11
-            ' Please provide the following information about the product or service:
-            abbr *
-          p.group
-            label
-              ' A full description
-              abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          p.group
-            label
-              ' A brief history of the origin and development of the innovation
-              abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          p.group
-            label
-              ' Disadvantages of your previous product or service, or competing products or services, prior to the innovation
-              abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          p.group
-            label
-              ' The degree to which these disadvantages have been overcome and any special difficulties surmounted in doing so
-              abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          p.group
-            label
-              ' Please identify and describe any products or services, available from other organisations that compete with your innovation and state how your innovation differs
-              abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Describe your innovative product/service/initiative in detail",
+                       { step: "C1.1",
+                         required: true,
+                         context_text: "<p>Describe the product/service/intitative itself, explain any aspect(s) you believe innovative, and why you believe it is innovative: consider its uniqeueness and the challenges you had to overcome. Also explain how it fits within the overall business e.g. is it your sole product.</p>" } do
+          textarea.js-char-count rows="5" maxlength="4800"
 
-        fieldset
-          h2
-            span.steps#step-12
-              span.visuallyhidden
-                ' Step 12
-            ' Give details of added benefits to your customers and your business as a result of the innovation
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Give details of added benefits to your customers and your business as a result of the innovation
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Describe the context of your innovation, why and how it came about.",
+                       { step: "C2",
+                         required: true,
+                         context_text: "<p>Outline the disadvantages, if any, of your own/competing products/services/intiatives prior to the innovation. Or otherwise, how you identified a gap in the market.</p>" } do
+          textarea.js-char-count rows="5" maxlength="3000"
 
-        fieldset
-          h2
-            span.steps#step-13
-              span.visuallyhidden
-                ' Step 13
-            ' Name any external organisation or individual which contributed to this product, service or initiative (excluding any joint entrant(s) named in Q5)
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Name any external organisation or individual which contributed to this product, service or initiative (excluding any joint entrant(s) named in Q5)
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Discuss the degree to which your innovation overcomes any issues, and any special difficulties surmounted in doing so.",
+                       { step: "C3",
+                         required: true } do
+          textarea.js-char-count rows="5" maxlength="4800"
 
-          h2
-            span.steps#step-13-1
-              span.visuallyhidden
-                ' Step 13.1
-            ' Are they aware of this entry?
-            abbr *
-          p.group
-            span.visuallyhidden
-              ' Are they aware of this entry?
-            label.selectable
-              input type="radio"
-              ' Yes
-            label.selectable
-              input type="radio"
-              ' No
-            label.selectable
-              input type="radio"
-              ' I don't know
+        = question_for "Give details of benefits received by your customers and your business as a result of the innovation.",
+                       { step: "C4",
+                         required: true,
+                         context_text: "<p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim.</p>" } do
+          textarea.js-char-count rows="5" maxlength="4800"
 
-        fieldset
-          h2
-            span.steps#step-14
-              span.visuallyhidden
-                ' Step 14
-            ' To what extent is the product, service or initiative under licence from another organisation?
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' To what extent is the product, service or initiative under licence from another organisation?
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Identify and describe any products/services/initiatives made by other organisations that compete with your innovation, and explain how your innovation differs.",
+                       { step: "C5",
+                         required: true } do
+          textarea.js-char-count rows="5" maxlength="3000"
 
-        fieldset
-          h2
-            span.steps#step-15
-              span.visuallyhidden
-                ' Step 15
-            ' Have you received any grant funding to support this innovation?
-            abbr *
-          p.group
-            span.visuallyhidden
-              ' Have you received any grant funding to support this innovation?
-            label.selectable
-              input type="radio"
-              ' Yes
-            label.selectable
-              input type="radio"
-              ' No
+        = question_for "Did any external organisation or individiual contribute to this product/service/initiative?",
+                       { step: "C6",
+                         required: true,
+                         context_text: "<p>Excluding any joint entrant(s) named in C5.</p>" } do
+          label.selectable
+            input type="radio" name="optionsExternalContribution" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsExternalContribution" value="no"
+            ' No
 
-          h2
-            span.steps#step-15-1
-              span.visuallyhidden
-                ' Step 15.1
-            ' If ‘Yes’, please give details of date(s), source(s) and level(s) of funding
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' If ‘Yes’, please give details of date(s), source(s) and level(s) of funding
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Please enter their name(s) and explain their contribution(s).",
+                       { required: true,
+                         conditional: {question: "Did any external organisation or individiual contribute to this product/service/initiative?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="3000"
 
-        fieldset
-          h2
-            span.steps#step-16
-              span.visuallyhidden
-                ' Step 16
-            ' How long has the product, service or initiative been in commercial operation, production or in progress?
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' How long has the product, service or initiative been in commercial operation, production or in progress?
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Are they aware that you are applying for this award?",
+                       { step: "C6.1",
+                         required: true,
+                         conditional: {question: "Did any external organisation or individiual contribute to this product/service/initiative?",
+                                       value: "yes"} } do
+          label.selectable
+            input type="radio" name="optionsApplicantsAware" value="yes"
+            ' Yes, they are aware
+          label.selectable
+            input type="radio" name="optionsApplicantsAware" value="no"
+            ' No, they are not aware
+          label.selectable
+            input type="radio" name="optionsApplicantsAware" value="some"
+            ' Some are aware
 
-          h2
-            span.steps#step-16-1
-              span.visuallyhidden
-                ' Step 16.1
-            ' By you?
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' By you?
-                abbr *
-              input.largest.js-char-count type="text" maxlength="50"
+        = question_for "Is the product/service/initiative under license from another organisation?",
+                       { step: "C7",
+                         context_text: "<p>Include associates of the business.</p>" } do
+          label.selectable
+            input type="radio" name="optionsUnderOtherOrganisationLicense" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsUnderOtherOrganisationLicense" value="no"
+            ' No
 
-          h2
-            span.steps#step-16-2
-              span.visuallyhidden
-                ' Step 16.2
-            ' By associates, customers or licensees?
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' By associates, customers or licensees?
-                abbr *
-              input.largest.js-char-count type="text" maxlength="50"
+        = question_for "Briefly describe the licensing arrangement.",
+                       { required: true,
+                         conditional: {question: "Is the product/service/initiative under license from another organisation?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="300"
+
+        = question_for "Have you received any grant funding to support this innovation?",
+                       { step: "C8",
+                         required: true } do
+          label.selectable
+            input type="radio" name="optionsReceivedFundingSupport" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsReceivedFundingSupport" value="no"
+            ' No
+
+        = question_for "Please give details of date(s), source(s) and level(s) of funding.",
+                       { required: true,
+                         conditional: {question: "Have you received any grant funding to support this innovation?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="300"
+
+        = question_for "How long has it been since the product/service/initiative was released into the marketplace?",
+                       { step: "C9",
+                         required: true } do
+          input.small.inline type="number" max=100
+          '  years
+          // Max 100 years
+
+        = question_for "Was the product/service/intiative released by you?",
+                       { step: "C9.1",
+                         required: true } do
+          label.selectable
+            input type="radio" name="optionsYouReleasedThis" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsYouReleasedThis" value="no"
+            ' No
+
+        = question_for "How many years have you had it in the marketplace?",
+                       { required: true,
+                         conditional: {question: "Was the product/service/intiative released by you?",
+                                       value: "no"} } do
+          input.small.inline type="number" max=100
+          '  years
+          // Max 100 years
+
+        = question_for "Additional comments (optional)",
+                       { step: "C9.2" } do
+          textarea.js-char-count rows="5" maxlength="600"
+
+        = question_for "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here (we cannot guarantee these will be reviewed, so inlcude any vital information within the form).",
+                       { step: "C10",
+                         context_text: "<p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb.</p>",
+                         help: {title: "Information we will not review",
+                                body: "<p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>"} } do
+
+          = link_to "Upload document"
+          br
+          = link_to "Link to document"
+          // Only show if there is a least 1 document
+          table
+            colgroup
+              col width="100"
+              col width="300"
+              col width="100"
+            thead
+              tr
+                th Document
+                th Description (optional)
+                th.text-right &nbsp;
+            tbody
+              tr
+                td
+                  // If 'upload document' is clicked
+                  input type="file"
+                  // If 'link to document' is clicked
+                    input.medium type="text"
+                td
+                  textarea.js-char-count rows="2" maxlength="600"
+                td.text-right = link_to "Remove"
+          // File size limit in text
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
