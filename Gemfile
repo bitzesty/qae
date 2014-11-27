@@ -37,4 +37,7 @@ group :development do
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv'
   gem 'slackistrano', require: false
+
+  gem "rails-erd"
+  gem 'annotate', github: 'ctran/annotate_models'
 end
