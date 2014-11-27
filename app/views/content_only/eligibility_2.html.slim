@@ -11,12 +11,28 @@
           .current-question#current-question
             .question
               h2
-                ' Which industry is your business in?
+                ' What kind of organisation are you?
               .question-body
+                p.hint
+                  ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
                 div
-                  select
-                    option Choose an industry
-                    option Automotive
+                  ul.options
+                    li
+                      label.selectable
+                        input type="radio"
+                        ' Business
+                        // Go to next question
+                    li
+                      label.selectable
+                        input type="radio"
+                        ' Charity
+                        // Skip next question go to eligibility_4
+                .hidden-hint
+                  span.hidden-link
+                    ' Why are you asking me this?
+                  span.hidden-content
+                    p
+                      ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
             .next-question
               = link_to "Next step", eligibility_3_path, class: "button medium"
@@ -34,11 +50,12 @@
               tbody
                 tr.section
                   td.previous-question-title
-                    ' What kind of organisation are you?
+                    ' Do you want to apply or nominate?
                   td.previous-question-body
-                    ' Business
+                    ' Apply
                   td.link-right
                     = link_to eligibility_1_path do
                       ' Change
                       span.visuallyhidden
-                        ' answer to "What kind of organisation are you?"
+                        ' answer to "Do you want to apply or nominate?"
+

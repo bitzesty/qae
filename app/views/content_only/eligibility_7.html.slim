@@ -11,7 +11,7 @@
           .current-question#current-question
             .question
               h2
-                ' Is your organisation a self-contained enterprise which markets its own products or services?
+                ' Is your organisation able to demonstrate commercial success?
               .question-body
                 p.hint
                   ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -28,13 +28,13 @@
                         // Goes to eligibility_failure
                 .hidden-hint
                   span.hidden-link
-                    ' I don't know if my organisation is self-contained
+                    ' What can be considered commercial success?
                   span.hidden-content
                     p
                       ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
             .next-question
-              = link_to "Next step", eligibility_6_path, class: "button medium"
+              = link_to "Next step", eligibility_success_path, class: "button medium"
 
       .previous-answers
         .done-questions
@@ -90,3 +90,25 @@
                       ' Change
                       span.visuallyhidden
                         ' answer to "Is your business based in UK?"
+
+                tr.section
+                  td.previous-question-title
+                    ' Is your organisation a self-contained enterprise which markets its own products or services?
+                  td.previous-question-body
+                    ' Yes
+                  td.link-right
+                    = link_to eligibility_5_path do
+                      ' Change
+                      span.visuallyhidden
+                        ' answer to "Is your organisation a self-contained enterprise which markets its own products or services?"
+
+                tr.section
+                  td.previous-question-title
+                    ' Is your organisation under its own management, with at least 2 full-time employees or part-time equivalents?
+                  td.previous-question-body
+                    ' Yes
+                  td.link-right
+                    = link_to eligibility_6_path do
+                      ' Change
+                      span.visuallyhidden
+                        ' answer to "Is your organisation under its own management, with at least 2 full-time employees or part-time equivalents?"

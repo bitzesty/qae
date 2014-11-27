@@ -11,10 +11,10 @@
           .current-question#current-question
             .question
               h2
-                ' Is your organisation a self-contained enterprise which markets its own products or services?
+                ' Is your business based in UK?
               .question-body
                 p.hint
-                  ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  ' Including the Channel Islands and the Isle of Man.
                 div
                   ul.options
                     li
@@ -25,9 +25,10 @@
                       label.selectable
                         input type="radio"
                         ' No
+                        // Goes to eligibility_failure
                 .hidden-hint
                   span.hidden-link
-                    ' I don't know if my organisation is self-contained
+                    ' Why are you asking me this?
                   span.hidden-content
                     p
                       ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -46,6 +47,17 @@
                   th.link-right.restart colspan="2"
                     = link_to "Start again", eligibility_1_path
               tbody
+                tr.section
+                  td.previous-question-title
+                    ' Do you want to apply or nominate?
+                  td.previous-question-body
+                    ' Apply
+                  td.link-right
+                    = link_to eligibility_1_path do
+                      ' Change
+                      span.visuallyhidden
+                        ' answer to "Do you want to apply or nominate?"
+
                 tr.section
                   td.previous-question-title
                     ' What kind of organisation are you?
@@ -67,14 +79,3 @@
                       ' Change
                       span.visuallyhidden
                         ' answer to "Which industry is your business in?"
-
-                tr.section
-                  td.previous-question-title
-                    ' Is your business based in UK?
-                  td.previous-question-body
-                    ' Yes
-                  td.link-right
-                    = link_to eligibility_4_path do
-                      ' Change
-                      span.visuallyhidden
-                        ' answer to "Is your business based in UK?"

@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/eligibility_4'             => "content_only#eligibility_4",             as: 'eligibility_4'
   get '/eligibility_5'             => "content_only#eligibility_5",             as: 'eligibility_5'
   get '/eligibility_6'             => "content_only#eligibility_6",             as: 'eligibility_6'
+  get '/eligibility_7'             => "content_only#eligibility_7",             as: 'eligibility_7'
   get '/eligibility_success'       => "content_only#eligibility_success",       as: 'eligibility_success'
   get '/eligibility_failure'       => "content_only#eligibility_failure",       as: 'eligibility_failure'
   get '/eligibility_check_1'       => "content_only#eligibility_check_1",       as: 'eligibility_check_1'

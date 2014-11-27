@@ -11,7 +11,7 @@
           .current-question#current-question
             .question
               h2
-                ' What kind of organisation are you?
+                ' Do you want to apply or nominate?
               .question-body
                 p.hint
                   ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
@@ -20,11 +20,13 @@
                     li
                       label.selectable
                         input type="radio"
-                        ' Business
+                        ' Apply
+                        // Go to next question
                     li
                       label.selectable
                         input type="radio"
-                        ' Charity
+                        ' Nominate
+                        // Skip to dashboard
                 .hidden-hint
                   span.hidden-link
                     ' Why are you asking me this?
