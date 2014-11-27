@@ -34,7 +34,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Does your business operate as a principal?",
                                        value: "no"} } do
-          textarea.js-char-count rows="1" maxlength="100"
+          textarea.js-char-count rows="5" maxlength="600"
 
         = question_for "Company/Charity Registration Number",
                        { step: "A3",
@@ -133,7 +133,7 @@ header.page-header.group.page-header-wider
                        { context_text: "<p>Only enter the awards you consider most notable.</p>",
                          conditional: {question: "Have you won any other business or enterprise awards in the past?",
                                       value: "yes"} } do
-          textarea.js-char-count rows="5" maxlength="300"
+          textarea.js-char-count rows="5" maxlength="1800"
 
         = question_for "Is this entry made jointly with any other organisation(s)?",
                        { step: "A7",

@@ -80,7 +80,7 @@ header.page-header.group.page-header-wider
           br
           label
             ' Additional comments (optional)
-            textarea.js-char-count rows="1" maxlength="100"
+            textarea.js-char-count rows="5" maxlength="600"
             span.hint
               ' If your year-end date changed during the application period, please explain.
 
@@ -302,7 +302,7 @@ header.page-header.group.page-header-wider
                          { step: "B5.4",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
-            textarea.js-char-count rows="2" maxlength="200"
+            textarea.js-char-count rows="5" maxlength="1200"
 
         .js-conditional-question data-question="my-innovation-is-an-integral-part-of" data-value="single product or service"
           h2
@@ -502,7 +502,7 @@ header.page-header.group.page-header-wider
             = question_for "Explain any drop in sales",
                            { step: "B6.4",
                              required: true } do
-              textarea.js-char-count rows="5" maxlength="300"
+              textarea.js-char-count rows="5" maxlength="1800"
               // Show if there are any drops in the figures above.
 
           = question_for "Are any of these figures estimated?",
@@ -517,11 +517,11 @@ header.page-header.group.page-header-wider
           = question_for "Explain the use of estimates, and how much of these are actual receipts or firm orders.",
                          { conditional: {question: "Are any of these figures estimated?",
                                          value: "yes"} } do
-            textarea.js-char-count rows="3" maxlength="200"
+            textarea.js-char-count rows="5" maxlength="1200"
 
           = question_for "Additional comments (optional)",
                          { step: "B6.6" } do
-            textarea.js-char-count rows="1" maxlength="100"
+            textarea.js-char-count rows="5" maxlength="300"
 
           = question_for "Average unit selling price/contract value",
                          { step: "B7",
@@ -571,7 +571,7 @@ header.page-header.group.page-header-wider
 
           = question_for "Explain your unit selling prices/contract values, highlighting any changes over the above periods.",
                          { required: true } do
-            textarea.js-char-count rows="3" maxlength="200"
+            textarea.js-char-count rows="5" maxlength="1200"
 
           = question_for "Cost, to you, of a single unit/contract",
                          { step: "B8",
@@ -621,22 +621,22 @@ header.page-header.group.page-header-wider
 
           = question_for "Explain your unit/ contract costs, highlighting any changes over the above periods.",
                          { required: true } do
-            textarea.js-char-count rows="3" maxlength="200"
+            textarea.js-char-count rows="5" maxlength="1200"
 
           = question_for "Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.",
                          { step: "B9",
                            required: true } do
-            textarea.js-char-count rows="5" maxlength="300"
+            textarea.js-char-count rows="5" maxlength="1800"
 
         = question_for "Please enter details of all the investments made in your innovation, and the years when they were made. Include investments made both during and prior to your entry period.",
                        { step: "B10",
                          required: true } do
-          textarea.js-char-count rows="5" maxlength="300"
+          textarea.js-char-count rows="5" maxlength="1800"
 
         = question_for "How long did it take the investment indicated above to be repaid? When and how was this repayment achieved?",
                        { step: "B10.1",
                          required: true } do
-          textarea.js-char-count rows="5" maxlength="300"
+          textarea.js-char-count rows="5" maxlength="1800"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
