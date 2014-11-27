@@ -14,6 +14,12 @@
             = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter' }
             = f.input :password_confirmation, required: true
 
+            .input.boolean.required
+              label.boolean.required.control-label.checkbox
+                input.boolean.required type="checkbox"
+                ' I have read and accept the
+                = link_to "terms and conditions of the privacy statement"
+
           .form-actions
             = f.button :submit, "Sign up"
 
