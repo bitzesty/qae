@@ -297,3 +297,16 @@
     margin-bottom: $gutter;
   }
 }
+
+.flash {
+  margin: 0 auto;
+  max-width: 1000px;
+
+  #alert {
+    background-color: #FF6666;
+  }
+
+  #notice {
+    background-color: #00FF00;
+  }
+}
