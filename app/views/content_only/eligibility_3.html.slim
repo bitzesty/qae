@@ -11,26 +11,12 @@
           .current-question#current-question
             .question
               h2
-                ' Is your business based in UK?
+                ' Which industry is your business in?
               .question-body
-                p.hint
-                  ' Including the Channel Islands and the Isle of Man.
                 div
-                  ul.options
-                    li
-                      label.selectable
-                        input type="radio"
-                        ' Yes
-                    li
-                      label.selectable
-                        input type="radio"
-                        ' No
-                .hidden-hint
-                  span.hidden-link
-                    ' Why are you asking me this?
-                  span.hidden-content
-                    p
-                      ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  select
+                    option Choose an industry
+                    option Automotive
 
             .next-question
               = link_to "Next step", eligibility_4_path, class: "button medium"
@@ -48,37 +34,22 @@
               tbody
                 tr.section
                   td.previous-question-title
-                    ' What kind of organisation are you?
+                    ' Do you want to apply or nominate?
                   td.previous-question-body
-                    ' Business
+                    ' Apply
                   td.link-right
                     = link_to eligibility_1_path do
                       ' Change
                       span.visuallyhidden
-                        ' answer to "What kind of organisation are you?"
+                        ' answer to "Do you want to apply or nominate?"
 
                 tr.section
                   td.previous-question-title
-                    ' Which industry is your business in?
+                    ' What kind of organisation are you?
                   td.previous-question-body
-                    ' Automotive
+                    ' Business
                   td.link-right
                     = link_to eligibility_2_path do
                       ' Change
                       span.visuallyhidden
-                        ' answer to "Which industry is your business in?"
-
-  .related-positioning
-    .related-container
-      .related#related
-        nav.pagination role="navigation" aria-label="Pagination"
-          ul.group
-            li.next
-              = link_to dashboard_path, rel: "Skip", title: "Skip to Dashboard" do
-                span class="pagination-label"
-                  ' Skip
-                span class="pagination-part-title"
-                  ' Dashboard
-
-        .inner.group
-          = link_to "Return to top ↑", "#content", class: "return-to-top"
+                        ' answer to "What kind of organisation are you?"

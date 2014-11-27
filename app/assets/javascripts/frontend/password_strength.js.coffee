@@ -42,10 +42,3 @@ passwordSelector = ->
 window.zxcvbn_load_hook = ->
   for input in passwordSelector()
     new PasswordStrengthMeter(input)
-
-jQuery ->
-  if passwordSelector().length > 0
-    script = document.createElement("script")
-    script.type = "text/javascript"
-    script.src = "javascripts/password_strength/password-strength.js"
-    $("body").append(script)
