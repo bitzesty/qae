@@ -67,18 +67,3 @@
                       ' Change
                       span.visuallyhidden
                         ' answer to "Which industry is your business in?"
-
-  .related-positioning
-    .related-container
-      .related#related
-        nav.pagination role="navigation" aria-label="Pagination"
-          ul.group
-            li.next
-              = link_to dashboard_path, rel: "Skip", title: "Skip to Dashboard" do
-                span class="pagination-label"
-                  ' Skip
-                span class="pagination-part-title"
-                  ' Dashboard
-
-        .inner.group
-          = link_to "Return to top ↑", "#content", class: "return-to-top"

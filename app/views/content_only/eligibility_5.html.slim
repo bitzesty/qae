@@ -89,18 +89,3 @@
                       ' Change
                       span.visuallyhidden
                         ' answer to "Is your organisation a self-contained enterprise which markets its own products or services?"
-
-  .related-positioning
-    .related-container
-      .related#related
-        nav.pagination role="navigation" aria-label="Pagination"
-          ul.group
-            li.next
-              = link_to dashboard_path, rel: "Skip", title: "Skip to Dashboard" do
-                span class="pagination-label"
-                  ' Skip
-                span class="pagination-part-title"
-                  ' Dashboard
-
-        .inner.group
-          = link_to "Return to top ↑", "#content", class: "return-to-top"
