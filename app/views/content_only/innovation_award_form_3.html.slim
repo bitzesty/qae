@@ -19,35 +19,35 @@ header.page-header.group.page-header-wider
                        { step: "C1",
                          required: true,
                          context_text: "<p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>" } do
-          textarea.js-char-count rows="1" maxlength="90"
+          textarea.js-char-count rows="1" maxlength="90" data-word-max="15"
 
         = question_for "Describe your innovative product/service/initiative in detail",
                        { step: "C1.1",
                          required: true,
                          context_text: "<p>Describe the product/service/intitative itself, explain any aspect(s) you believe innovative, and why you believe it is innovative: consider its uniqeueness and the challenges you had to overcome. Also explain how it fits within the overall business e.g. is it your sole product.</p>" } do
-          textarea.js-char-count rows="5" maxlength="4800"
+          textarea.js-char-count rows="5" maxlength="4800" data-word-min="500" data-word-max="800"
 
         = question_for "Describe the context of your innovation, why and how it came about.",
                        { step: "C2",
                          required: true,
                          context_text: "<p>Outline the disadvantages, if any, of your own/competing products/services/intiatives prior to the innovation. Or otherwise, how you identified a gap in the market.</p>" } do
-          textarea.js-char-count rows="5" maxlength="3000"
+          textarea.js-char-count rows="5" maxlength="3000" data-word-min="300" data-word-max="500"
 
         = question_for "Discuss the degree to which your innovation overcomes any issues, and any special difficulties surmounted in doing so.",
                        { step: "C3",
                          required: true } do
-          textarea.js-char-count rows="5" maxlength="4800"
+          textarea.js-char-count rows="5" maxlength="4800" data-word-min="500" data-word-max="800"
 
         = question_for "Give details of benefits received by your customers and your business as a result of the innovation.",
                        { step: "C4",
                          required: true,
                          context_text: "<p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim.</p>" } do
-          textarea.js-char-count rows="5" maxlength="4800"
+          textarea.js-char-count rows="5" maxlength="4800" data-word-min="500" data-word-max="800"
 
         = question_for "Identify and describe any products/services/initiatives made by other organisations that compete with your innovation, and explain how your innovation differs.",
                        { step: "C5",
                          required: true } do
-          textarea.js-char-count rows="5" maxlength="3000"
+          textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
         = question_for "Did any external organisation or individiual contribute to this product/service/initiative?",
                        { step: "C6",
@@ -64,7 +64,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Did any external organisation or individiual contribute to this product/service/initiative?",
                                        value: "yes"} } do
-          textarea.js-char-count rows="5" maxlength="3000"
+          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
 
         = question_for "Are they aware that you are applying for this award?",
                        { step: "C6.1",
@@ -95,7 +95,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Is the product/service/initiative under license from another organisation?",
                                        value: "yes"} } do
-          textarea.js-char-count rows="5" maxlength="300"
+          textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
 
         = question_for "Have you received any grant funding to support this innovation?",
                        { step: "C8",
@@ -111,7 +111,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Have you received any grant funding to support this innovation?",
                                        value: "yes"} } do
-          textarea.js-char-count rows="5" maxlength="300"
+          textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
         = question_for "How long has it been since the product/service/initiative was released into the marketplace?",
                        { step: "C9",
@@ -140,7 +140,7 @@ header.page-header.group.page-header-wider
 
         = question_for "Additional comments (optional)",
                        { step: "C9.2" } do
-          textarea.js-char-count rows="5" maxlength="600"
+          textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
 
         = question_for "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here (we cannot guarantee these will be reviewed, so inlcude any vital information within the form).",
                        { step: "C10",
@@ -170,7 +170,7 @@ header.page-header.group.page-header-wider
                   // If 'link to document' is clicked
                     input.medium type="text"
                 td
-                  textarea.js-char-count rows="2" maxlength="600"
+                  textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
                 td.text-right = link_to "Remove"
           // File size limit in text
 
