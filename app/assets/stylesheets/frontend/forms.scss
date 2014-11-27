@@ -632,3 +632,9 @@ input[type="file"] {
   width: 27px;
   background-image: image-url("icon-step-a7.png");
 }
+
+#privacy-policy-container {
+  height: 400px;
+  overflow: scroll;
+  margin-bottom: 10px;
+}
