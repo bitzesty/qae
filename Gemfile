@@ -30,6 +30,7 @@ group :test do
   gem 'launchy'
   gem 'rspec-rails'
   gem 'turnip'
+  gem "shoulda-matchers", require: false
 end
 
 group :development do
