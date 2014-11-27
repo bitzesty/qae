@@ -1,31 +1,116 @@
-.article-related-positioning-container
-  header.page-header.group
-    div
-      h1
-        | Edit
-        = resource_name.to_s.humanize
+header.page-header.group
+  div
+    h1
+      ' Your account
 
-  .article-container.group
-    article.group role="article"
-      .inner
-        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-          = f.error_notification
-          .form-inputs
-            = f.input :email, required: true, autofocus: true
-            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-              p
-                | Currently waiting confirmation for:
-                = resource.unconfirmed_email
-            = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, input_html: { class: 'password-strength-meter' }
-            = f.input :password_confirmation, required: false
-            = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
+.article-container
+  article.group role="article"
+    .inner
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "edit_user qae-form" }) do |f|
+        /= f.error_notification
+        fieldset
+          h2
+            ' Your full name
+          p.group
+            label
+              ' First name
+              input.big.medium type="text"
 
-          .form-actions
-            = f.button :submit, "Update"
+          p.group
+            label
+              ' Last name
+              input.big.medium type="text"
+            span.hint
+              ' As is shown on your current official documents such as passport or driving licence
 
-        h3
-          | Cancel my account
-        p
-          | Unhappy?
-          = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-        = link_to "Back", :back
+        fieldset
+          h2
+            ' Your address
+          p.group
+            label
+              ' Building and street
+              input.big.large type="text"
+              input.big.large type="text"
+          p.group
+            label
+              ' Town or city
+              input.big.medium type="text"
+          p.group
+            label
+              ' Country
+              input.big.medium type="text"
+          p.group
+            label
+              ' Postcode
+              input.big.small type="text"
+          p.group
+            label
+              ' Website URL
+              input.big.medium type="text"
+
+        fieldset
+          h2
+            ' Your telephone number
+          p.group
+            label
+              span.visuallyhidden
+                ' Telephone number
+              input.big.small type="text"
+
+        fieldset
+          h2
+            ' Your email address
+
+          .question-group
+            label
+              span.visuallyhidden
+                ' Email address
+              = f.input :email, required: true, label: false, input_html: {class: "big medium"}
+
+        fieldset
+          .hidden-hint
+            h2
+              span.hidden-link
+                ' Change your password
+            span.hidden-content
+              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+                p
+                  ' Currently waiting confirmation for:
+                  = resource.unconfirmed_email
+              br
+              .question-group
+                label
+                  ' Current password
+                  = f.input :current_password,
+                            hint: "we need your current password to confirm your changes",
+                            required: true,
+                            label: false,
+                            input_html: {class: "big medium"}
+
+              .question-group
+                label
+                  ' New password
+                  = f.input :password,
+                            autocomplete: "off",
+                            hint: "Leave it blank if you don't want to change it",
+                            required: false,
+                            label: false,
+                            input_html: {class: 'big medium password-strength-meter' }
+
+              .question-group
+                label
+                  ' Retype your password
+                  = f.input :password_confirmation,
+                            required: false,
+                            label: false,
+                            input_html: {class: "big medium"}
+
+        p.form-submit
+          = f.button :submit, "Save your account settings", class: "button medium"
+
+        /
+          h3
+            | Cancel my account
+          p
+            | Unhappy?
+            = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete

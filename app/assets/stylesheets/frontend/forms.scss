@@ -119,10 +119,18 @@ input[type="file"] {
   }
 }
 
+// Don't need to put questions inside a <p> tag
+.question-group {
+  @include core-19;
+  margin: 0.75em 0;
+  margin-top: 0.2em;
+}
+
 // Styling for forms that exist outside of smart-answers
 // Forms that flow downwards with multiple questions
 .qae-form {
-  .group {
+  .group,
+  .question-group {
     margin-bottom: 1.25em;
   }
 

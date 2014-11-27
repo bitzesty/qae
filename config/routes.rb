@@ -25,7 +25,6 @@ Rails.application.routes.draw do
   get '/innovation_award_form_4'   => "content_only#innovation_award_form_4",   as: 'innovation_award_form_4'
   get '/innovation_award_form_5'   => "content_only#innovation_award_form_5",   as: 'innovation_award_form_5'
   get '/innovation_award_confirm'  => "content_only#innovation_award_confirm",  as: 'innovation_award_confirm'
-  get '/account'                   => "content_only#account",                   as: 'account'
 
   root to: 'content_only#home'
 
