@@ -12,8 +12,8 @@ header.page-header.group.page-header-wider
   article.group role="article"
     .inner
       form.qae-form
-        = question_for "For how long has the innovation had substantial impact on your organisation's performance?",
-                       { step: 24,
+        = question_for "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                       { step: "B1",
                          required: true,
                          context_text: "<p>Your answer here will determine whether you are assessed for outstanding innovation (an award valid for two years) or continuous innovation (valid for five years).</p>" } do
           label.selectable
@@ -24,56 +24,75 @@ header.page-header.group.page-header-wider
             ' 5 years or more
 
         = question_for "Please select your financial year end dates:",
-                       { step: 25,
+                       { step: "B2",
                          required: true,
-                         context_text: "<p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>" } do
-          span.row
-            span.span-2-4
-              label
-                ' 1/10/2013 - 30/09/2014
-                br
-                input.small type="text" placeholder="dd/mm/yyyy"
-                // Validate 1st October 2013 - 30th September 2014
-            span.span-2-4
-              label
-                ' 1/10/2012 - 30/09/2013
-                br
-                input.small type="text" placeholder="dd/mm/yyyy"
-                // Validate 1st October 2012 - 30th September 2013
-            span.span-2-4
-              label
-                ' 1/10/2011 - 30/09/2012
-                br
-                input.small type="text" placeholder="dd/mm/yyyy"
-                // Validate 1st October 2011 - 30th September 2012
-            span.span-2-4
-              label
-                ' 1/10/2010 - 30/09/2011
-                br
-                input.small type="text" placeholder="dd/mm/yyyy"
-                // Validate 1st October 2010 - 30th September 2011
-            span.span-2-4
-              label
-                ' 1/10/2009 - 30/09/2010
-                br
-                input.small type="text" placeholder="dd/mm/yyyy"
-                // Validate 1st October 2009 - 30th September 2010
+                         context_text: "<p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>",
+                         conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                       value: true} } do
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+            span.row
+              span.span-4
+                label
+                  ' 1/10/2013 - 30/09/2014
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy"
+                  // Validate 1/10/2013 - 30/09/2014
+              span.span-4
+                label
+                  ' 1/10/2012 - 30/09/2013
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy"
+                  // Validate 1/10/2012 - 30/09/2013
+
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+            span.row
+              span.span-2-4
+                label
+                  ' 1/10/2013 - 30/09/2014
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy"
+                  // Validate 1/10/2013 - 30/09/2014
+              span.span-2-4
+                label
+                  ' 1/10/2012 - 30/09/2013
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy"
+                  // Validate 1/10/2012 - 30/09/2013
+              span.span-2-4
+                label
+                  ' 1/10/2011 - 30/09/2012
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy"
+                  // Validate 1/10/2011 - 30/09/2012
+              span.span-2-4
+                label
+                  ' 1/10/2010 - 30/09/2011
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy"
+                  // Validate 1/10/2010 - 30/09/2011
+              span.span-2-4
+                label
+                  ' 1/10/2009 - 30/09/2010
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy"
+                  // Validate 1/10/2009 - 30/09/2010
 
           br
           label
             ' Additional comments (optional)
             textarea.js-char-count rows="1" maxlength="100"
-          // Based on choice of 2 or 5 year option, show 2 or five inputs in questions 25...... etc. LOGIC INCOMPLETE
+            span.hint
+              ' If your year-end date changed during the application period, please explain.
 
         = question_for "State the number of people employed by the company for each year of your entry.",
-                       { step: 25.1,
+                       { step: "B3",
                          required: true,
-                         context_text: "<p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>" } do
+                         context_text: "<p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.</p>" } do
           input.small type="number" min=2
           // Min 2 - if less than 2 block - present 'you are not eligible' message
 
         = question_for "My innovation is an integral part of",
-                       { step: 26,
+                       { step: "B4",
                          required: true } do
           label.selectable
             input type="radio" name="optionsInnovationIntegral" value="entire business"
@@ -82,76 +101,412 @@ header.page-header.group.page-header-wider
             input type="radio" name="optionsInnovationIntegral" value="single product or service"
             ' A single product or service
 
-        = question_for "Company Financials",
-                       { context_text: "<p>These figures should be for your entire organisation.</p>" } do
-          input.medium type="text"
-          // Call on the year-end dates entered earlier for the titles of these columns, call on number of years for number of columns'
+        .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value=true
+          h2
+            ' Company Financials
+          p
+            ' These figures should be for your entire organisation.
 
         = question_for "Total turnover",
-                       { step: 27,
-                         required: true } do
-          input.small type="text" placeholder="£"
-          // If there are any drops, show explanatory question below.
+                       { step: "B5",
+                         required: true,
+                         conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                       value: true} } do
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+            span.row
+              span.span-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+            span.row
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+          // If there are any drops, show explanatory question "B5.4".
 
         = question_for "of which exports",
-                       { step: 27.1,
+                       { step: "B5.1",
                          required: true,
-                         context_text: "<p>Please enter '0' if you had none.</p>" } do
-          input.small type="text" placeholder="£"
-          // If there are any drops, show explanatory question below.
+                         context_text: "<p>Please enter '0' if you had none.</p>",
+                         conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                       value: true} } do
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+            span.row
+              span.span-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+            span.row
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+          // If there are any drops, show explanatory question "B5.4".
 
         = question_for "Net profit after tax but before dividends",
-                       { step: 27.2,
-                         required: true } do
-          input.small type="text" placeholder="£"
-          // If there are any drops, show explanatory question below.
+                       { step: "B5.2",
+                         required: true,
+                         conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                       value: true} } do
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+            span.row
+              span.span-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+            span.row
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+          // If there are any drops, show explanatory question "B5.4".
 
         = question_for "Total net assets",
-                       { step: 27.3,
+                       { step: "B5.3",
                          required: true,
-                         context_text: "<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>" } do
-          input.small type="text" placeholder="£"
-          // If there are any drops, show explanatory question below.
+                         context_text: "<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>",
+                         conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                       value: true} } do
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+            span.row
+              span.span-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
 
-        = question_for "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made.",
-                       { step: 27.4 } do
-          textarea.js-char-count rows="2" maxlength="200"
-          // Only show this if there are any drops or losses above.
+          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+            span.row
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+          // If there are any drops, show explanatory question "B5.4".
 
-        .js-conditional-question data-question="my-innovation-is-an-integral-part-of" data-value="entire business"
+        // TODO If there are any drops, show this
+          = question_for "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made.",
+                         { step: "B5.4",
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
+            textarea.js-char-count rows="2" maxlength="200"
+
+        .js-conditional-question data-question="my-innovation-is-an-integral-part-of" data-value="single product or service"
+          h2
+            ' Product/Service Financials
+
           = question_for "Number of units/contracts sold",
-                         { step: 28,
-                           required: true } do
-            input.small type="number"
-            // If there's any drop here, then show explanatory question below
+                         { step: "B6",
+                           required: true,
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="number"
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="number"
+
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+              span.row
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="number"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="number"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="number"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="number"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="number"
+            // If there's any drop here, then show explanatory question "B6.4".
 
           = question_for "Sales",
-                         { step: 28.1,
-                           required: true } do
-            input.small type="text" placeholder="£"
-            // If there is a drop in sales at any point, then show question below 'Explain any drop in sales'
+                         { step: "B6.1",
+                           required: true,
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+              span.row
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+            // If there's any drop here, then show explanatory question "B6.4".
 
           = question_for "of which exports",
-                         { step: 28.2,
+                         { step: "B6.2",
                            required: true,
-                           context_text: "<p>Please enter '0' if you had none.</p>" } do
-            input.small type="text" placeholder="£"
-            // If there's any drop here, then show explanatory question below
+                           context_text: "<p>Please enter '0' if you had none.</p>",
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+              span.row
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+            // If there's any drop here, then show explanatory question "B6.4".
 
           = question_for "of which royalties or licenses",
-                         { step: 28.3,
+                         { step: "B6.3",
                            required: true,
-                           context_text: "<p>Please enter '0' if you had none.</p>" } do
-            input.small type="text" placeholder="£"
+                           context_text: "<p>Please enter '0' if you had none.</p>",
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
 
-          = question_for "Explain any drop in sales",
-                         { step: 28.4,
-                           required: true } do
-            textarea.js-char-count rows="5" maxlength="300"
-            // Show if there are any drops in the figures above.
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+              span.row
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+            // If there's any drop here, then show explanatory question "B6.4".
+
+          // TODO If there are any drops, show this
+            = question_for "Explain any drop in sales",
+                           { step: "B6.4",
+                             required: true } do
+              textarea.js-char-count rows="5" maxlength="300"
+              // Show if there are any drops in the figures above.
 
           = question_for "Are any of these figures estimated?",
-                         { step: 28.5 } do
+                         { step: "B6.5" } do
             label.selectable
               input type="radio" name="optionsFiguresEstimated" value="yes"
               ' Yes
@@ -165,39 +520,121 @@ header.page-header.group.page-header-wider
             textarea.js-char-count rows="3" maxlength="200"
 
           = question_for "Additional comments (optional)",
-                         { step: 28.7 } do
+                         { step: "B6.6" } do
             textarea.js-char-count rows="1" maxlength="100"
 
           = question_for "Average unit selling price/contract value",
-                         { step: 28.8,
-                           required: true } do
-            input.small type="text" placeholder="£"
+                         { step: "B7",
+                           required: true,
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+              span.row
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
 
           = question_for "Explain your unit selling prices/contract values, highlighting any changes over the above periods.",
                          { required: true } do
             textarea.js-char-count rows="3" maxlength="200"
 
           = question_for "Cost, to you, of a single unit/contract",
-                         { step: 29,
-                           required: true } do
-            input.small type="text" placeholder="£"
+                         { step: "B8",
+                           required: true,
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+
+            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+              span.row
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-2-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
 
           = question_for "Explain your unit/ contract costs, highlighting any changes over the above periods.",
                          { required: true } do
             textarea.js-char-count rows="3" maxlength="200"
 
           = question_for "Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.",
-                         { step: 30,
+                         { step: "B9",
                            required: true } do
             textarea.js-char-count rows="5" maxlength="300"
 
         = question_for "Please enter details of all the investments made in your innovation, and the years when they were made. Include investments made both during and prior to your entry period.",
-                       { step: 31,
+                       { step: "B10",
                          required: true } do
           textarea.js-char-count rows="5" maxlength="300"
 
         = question_for "How long did it take the investment indicated above to be repaid? When and how was this repayment achieved?",
-                       { step: 31.1,
+                       { step: "B10.1",
                          required: true } do
           textarea.js-char-count rows="5" maxlength="300"
 

@@ -28,7 +28,8 @@ jQuery ->
     if $(this).attr('type') == 'checkbox'
       answerVal = $(this).is(':checked').toString()
 
-    if question.attr('data-value') == answerVal
-      question.addClass("show-question")
-    else
-      question.removeClass("show-question")
+    question.each () ->
+      if $(this).attr('data-value') == answerVal || ($(this).attr('data-value') == "true" && answerVal != false)
+        $(this).addClass("show-question")
+      else
+        $(this).removeClass("show-question")
