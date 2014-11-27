@@ -196,17 +196,20 @@ input[type="file"] {
     margin-top: 0.5em;
   }
 
+  .question-group + .hidden-hint,
   .group + .hidden-hint {
     margin-top: -0.5em;
   }
 
   .group + h2,
+  .question-group + h2,
   .hidden-hint + h2,
+  .hidden-hint + .question-group,
   .hidden-hint + .group {
     margin-top: 3em;
   }
 
-  p.form-submit {
+  .form-submit {
     margin: 1.5em 0 0 0;
   }
 }

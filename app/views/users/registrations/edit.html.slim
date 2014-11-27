@@ -8,54 +8,14 @@ header.page-header.group
     .inner
       = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "edit_user qae-form" }) do |f|
         /= f.error_notification
-        fieldset
-          h2
-            ' Your full name
-          p.group
-            label
-              ' First name
-              input.big.medium type="text"
 
-          p.group
-            label
-              ' Last name
-              input.big.medium type="text"
-            span.hint
-              ' As is shown on your current official documents such as passport or driving licence
+        h2
+          span.steps#step-1
+            span.visuallyhidden
+              ' Step 1
+          ' Correspondent details
 
-        fieldset
-          h2
-            ' Your address
-          p.group
-            label
-              ' Building and street
-              input.big.large type="text"
-              input.big.large type="text"
-          p.group
-            label
-              ' Town or city
-              input.big.medium type="text"
-          p.group
-            label
-              ' Country
-              input.big.medium type="text"
-          p.group
-            label
-              ' Postcode
-              input.big.small type="text"
-          p.group
-            label
-              ' Website URL
-              input.big.medium type="text"
-
-        fieldset
-          h2
-            ' Your telephone number
-          p.group
-            label
-              span.visuallyhidden
-                ' Telephone number
-              input.big.small type="text"
+        = render "account/form_correspondent_details"
 
         fieldset
           h2
@@ -67,43 +27,114 @@ header.page-header.group
                 ' Email address
               = f.input :email, required: true, label: false, input_html: {class: "big medium"}
 
+        br
+
+        h2
+          span.steps#step-2
+            span.visuallyhidden
+              ' Step 2
+          ' Company details
+
+        = render "account/form_company_details"
+
+        br
+
+        h2
+          span.steps#step-3
+            span.visuallyhidden
+              ' Step 3
+          ' Correspondent preferences
+
         fieldset
-          .hidden-hint
-            h2
-              span.hidden-link
-                ' Change your password
-            span.hidden-content
-              - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-                p
-                  ' Currently waiting confirmation for:
-                  = resource.unconfirmed_email
-              br
-              .question-group
-                label
-                  ' Current password
-                  = f.input :current_password,
-                            hint: "we need your current password to confirm your changes",
-                            required: true,
-                            label: false,
-                            input_html: {class: "big medium"}
+          h2
+            ' How would you prefer we contact you?
+          .question-group
+            span.visuallyhidden
+              ' How would you prefer we contact you?
+            label.selectable
+              input type="radio" name="optionsContactPreference"
+              ' Phone
+            label.selectable
+              input type="radio" name="optionsContactPreference"
+              ' Email
 
-              .question-group
-                label
-                  ' New password
-                  = f.input :password,
-                            autocomplete: "off",
-                            hint: "Leave it blank if you don't want to change it",
-                            required: false,
-                            label: false,
-                            input_html: {class: 'big medium password-strength-meter' }
+        = render "account/form_contact_settings"
 
-              .question-group
-                label
-                  ' Retype your password
-                  = f.input :password_confirmation,
-                            required: false,
-                            label: false,
-                            input_html: {class: "big medium"}
+        br
+
+
+        h2
+          span.steps#step-4
+            span.visuallyhidden
+              ' Step 4
+          ' Change Your Password
+
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          p
+            ' Currently waiting confirmation for:
+            = resource.unconfirmed_email
+        br
+        .question-group
+          label
+            ' Current password
+            = f.input :current_password,
+                      hint: "we need your current password to confirm your changes",
+                      required: true,
+                      label: false,
+                      input_html: {class: "big medium"}
+
+        .question-group
+          label
+            ' New password
+            = f.input :password,
+                      autocomplete: "off",
+                      hint: "Leave it blank if you don't want to change it",
+                      required: false,
+                      label: false,
+                      input_html: {class: 'big medium password-strength-meter' }
+
+        .question-group
+          label
+            ' Retype your password
+            = f.input :password_confirmation,
+                      required: false,
+                      label: false,
+                      input_html: {class: "big medium"}
+
+        br
+
+        h2
+          span.steps#step-5
+            span.visuallyhidden
+              ' Step 5
+          ' Add Collaborators
+
+        table
+          colgroup
+            col width="150"
+            col width="200"
+            col width="150"
+          thead
+            tr
+              th Collaborator
+              th Email
+              th.text-right
+                = link_to "+ Add Collaborator"
+          tbody
+            tr
+              td John Smith
+              td
+                = link_to "john@example.com", "mailto:john@example.com"
+              td.text-right
+                = link_to "Remove"
+            tr
+              td Jane Doe (Pending)
+              td
+                = link_to "jane@example.com", "mailto:jane@example.com"
+              td.text-right
+                = link_to "Remove"
+
+        br
 
         p.form-submit
           = f.button :submit, "Save your account settings", class: "button medium"

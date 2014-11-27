@@ -1,0 +1,77 @@
+header.page-header.group
+  div
+    h1
+      ' Your account details
+
+    = render "account/steps_progress_bar"
+
+    h2
+      ' Step 3 of 3: Contact Settings
+
+.article-container
+  article.group role="article"
+    .inner
+      form.qae-form
+        = render "account/form_contact_settings"
+
+        fieldset
+          h2
+            ' How did you hear about The Queen's Awards?
+          .question-group
+            span.visuallyhidden
+              ' How did you hear about The Queen's Awards?
+            label.selectable
+              input type="checkbox"
+              ' Gov.UK
+            label.selectable
+              input type="checkbox"
+              ' From a Competitor
+            label.selectable
+              input type="checkbox"
+              ' At a business event
+            label.selectable
+              input type="checkbox"
+              ' In the National Press
+            label.selectable
+              input type="checkbox"
+              ' In the Business Press
+            label.selectable
+              input type="checkbox"
+              ' Online
+            label.selectable
+              input type="checkbox"
+              ' From a Local Trade body 
+            label.selectable
+              input type="checkbox"
+              ' From a National Trade body 
+            label.selectable
+              input type="checkbox"
+              ' By Direct mail from The Queen's Awards Office
+            label.selectable
+              input type="checkbox"
+              ' General word of mouth
+            label.selectable.js-conditional-answer data-answer="How did you hear about The Queen’s Awards for Enterprise? Other"
+              input type="checkbox"
+              ' Other
+            span.clear
+            span.js-conditional-question data-answer="How did you hear about The Queen’s Awards for Enterprise? Other" data-value="true"
+              br
+              label
+                span.no-js-conditional-text
+                  ' If 'Other', please specify
+                span.js-conditional-text
+                  ' Please specify
+                input.medium type="text"
+
+        p.form-submit
+          = link_to "Save your account settings", dashboard_path, class: "button medium"
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to account_2_path, rel: "prev", title: "Navigate to previous part" do
+                  span class="pagination-label"
+                    ' Previous
+                  span class="pagination-part-title"
+                    ' Company Details
