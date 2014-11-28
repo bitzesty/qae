@@ -6,6 +6,7 @@ gem 'dotenv-rails', '~> 1.0'
 
 gem 'coffee-rails', '~> 4.0.0'
 gem 'devise', '~> 3.4'
+gem 'enumerize', '~> 0.8'
 gem 'govuk_frontend_toolkit', git: 'git@github.com:alphagov/govuk_frontend_toolkit_gem.git', submodules: true
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'

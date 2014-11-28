@@ -100,6 +100,8 @@ GEM
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
       dotenv (= 1.0.2)
+    enumerize (0.8.0)
+      activesupport (>= 3.2)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -243,6 +245,7 @@ DEPENDENCIES
   database_cleaner
   devise (~> 3.4)
   dotenv-rails (~> 1.0)
+  enumerize (~> 0.8)
   factory_girl_rails
   govuk_frontend_toolkit!
   jbuilder (~> 2.0)

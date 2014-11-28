@@ -1,38 +1,19 @@
 fieldset
   h2
     ' Full/legal name of your business
-  .question-group
-    label
-      span.visuallyhidden
-        ' Full/legal name of your business
-      input.big.medium type="text"
+  = f.input :company_name, input_html: { class: 'big medium'}, label_html: { class: 'visuallyhidden' }
 
 fieldset
   h2
     ' Company address
-  .question-group
-    label
-      ' Building and street
-      input.big.large type="text"
-      input.big.large type="text"
-  .question-group
-    label
-      ' Town or city
-      input.big.medium type="text"
-  .question-group
-    label
-      ' Country
-      input.big.medium type="text"
-  .question-group
-    label
-      ' Postcode
-      input.big.small type="text"
+    = f.input :company_address_first, input_html: { class: 'big large'}, label: 'Building and street'
+    = f.input :company_address_second, input_html: { class: 'big large'}, label: false
+
+  = f.input :company_city, input_html: { class: "big medium"}, label: 'City'
+  = f.input :company_country, input_html: { class: "big medium"}, as: :string, label: 'Country'
+  = f.input :company_postcode, input_html: { class: "big medium"}, label: 'Postcode'
 
 fieldset
   h2
     ' Main telephone number
-  .question-group
-    label
-      span.visuallyhidden
-        ' Telephone number
-      input.big.small type="text"
+  = f.input :company_phone_number, input_html: { class: 'big small'}, label_html: { class: 'visuallyhidden' }

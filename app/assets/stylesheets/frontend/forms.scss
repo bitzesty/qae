@@ -138,38 +138,38 @@ input[type="file"] {
     &.selectable {
       @include core-16;
     }
+  }
 
-    input,
-    select,
-    textarea {
-      display: block;
-      margin: 0.2em 0 0.5em 0;
+  input,
+  select,
+  textarea {
+    display: block;
+    margin: 0.2em 0 0.5em 0;
 
-      &.inline {
-        display: inline;
-      }
-    }
-
-    // Bigger sized inputs based on https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
-    // but adapted from https://www.gov.uk/jobsearch 18 Nov 2014
-    input.big {
-      font-size: 1em;
-      line-height: 1.2;
-      padding: 0.3em 0 0.1em 0.4em;
-    }
-
-    input[type="checkbox"],
-    input[type="radio"] {
+    &.inline {
       display: inline;
-      margin: 3px 0.5ex;
-      margin-right: 1ex;
-      padding: initial;
-      vertical-align: middle;
     }
+  }
 
-    input[type="file"] {
-      line-height: 1;
-    }
+  // Bigger sized inputs based on https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
+  // but adapted from https://www.gov.uk/jobsearch 18 Nov 2014
+  input.big {
+    font-size: 1em;
+    line-height: 1.2;
+    padding: 0.3em 0 0.1em 0.4em;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: inline;
+    margin: 3px 0.5ex;
+    margin-right: 1ex;
+    padding: initial;
+    vertical-align: middle;
+  }
+
+  input[type="file"] {
+    line-height: 1;
   }
 
   .span-1 label,
