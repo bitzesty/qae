@@ -1,0 +1,9 @@
+div
+  h1
+  | #{form.title}
+  ol.steps-progress-bar
+    - for step in form.steps do
+      li
+        span.step-number
+          | #{step.index}.
+        | #{step.title}

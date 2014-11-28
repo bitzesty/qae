@@ -1,0 +1,29 @@
+fieldset
+  h2
+    - if question.ref
+      span.steps id="step-#{question.ref.to_s.parameterize}"
+
+    = question.title
+
+    - if question.required
+      abbr
+        | *
+
+  - if question.context
+    == question.context
+
+  p.group
+    label
+      span.visuallyhidden
+        = question.title
+        - if question.required
+          abbr
+            | *
+      = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question'
+
+  - if question.help
+    div.hidden-hint
+      span.hidden-link
+        = question.help.title
+      span.hidden-content
+        == question.help.text

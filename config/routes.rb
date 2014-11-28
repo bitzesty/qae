@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     confirmations: 'devise/confirmations'
   }
 
+  get '/innovation'                => "content_only#innovation",                as: 'innovation'
   get '/dashboard'                 => "content_only#dashboard",                 as: 'dashboard'
   get '/eligibility_1'             => "content_only#eligibility_1",             as: 'eligibility_1'
   get '/eligibility_2'             => "content_only#eligibility_2",             as: 'eligibility_2'

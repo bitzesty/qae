@@ -3,17 +3,18 @@ require 'qae_form_builder'
 describe QAEFormBuilder do
 
   it 'should build QAEFormBuilder::Form instances' do
-    empty = QAEFormBuilder.build
+    empty = QAEFormBuilder.build 'test'
+    expect(empty.title).to eq('test')
     expect(empty).to be_instance_of(QAEFormBuilder::Form)
   end
 
   it 'should build 0 steps for empty block' do
-    empty = QAEFormBuilder.build
+    empty = QAEFormBuilder.build 'test'
     expect(empty.steps).to eq([])
   end
 
   it 'should build form steps' do
-    sample = QAEFormBuilder.build do
+    sample = QAEFormBuilder.build 'test' do
       step 'Eligibility'
       step 'Company Info'
       step 'Goods or Services', :custom_option => :foo
@@ -22,15 +23,16 @@ describe QAEFormBuilder do
     expect(sample.steps[0].title).to eq('Eligibility')
     expect(sample.steps[1].title).to eq('Company Info')
     expect(sample.steps[2].title).to eq('Goods or Services')
-    expect(sample.steps[2].options).to eq({:custom_option => :foo})
+    expect(sample.steps[2].opts).to eq({:custom_option => :foo})
   end
 
   it 'should build questions inside steps' do
-    sample = QAEFormBuilder.build do
+    sample = QAEFormBuilder.build 'test' do
       step 'Eligibility' do
-        question :org_kind, 'What kind of organisation are you?'
-        question :org_uk, 'Is your business based in UK?',
-          :description => 'Including the Channel Islands and the Isle of Man.'
+        text :org_kind, 'What kind of organisation are you?'
+        text :org_uk, 'Is your business based in UK?' do
+          context 'Including the Channel Islands and the Isle of Man.'
+        end
       end
     end
 
@@ -42,7 +44,7 @@ describe QAEFormBuilder do
     expect(q.first.title).to eq('What kind of organisation are you?')
     expect(q.last.key).to eq(:org_uk)
     expect(q.last.title).to eq('Is your business based in UK?')
-    expect(q.last.options[:description]).to eq('Including the Channel Islands and the Isle of Man.')
+    expect(q.last.context).to eq('Including the Channel Islands and the Isle of Man.')
   end 
 
 end

@@ -1,15 +1,24 @@
 class QAEFormBuilder
   class Form
-    attr_reader :steps
+    attr_reader :title, :opts, :steps
 
-    def initialize
+    def initialize title, opts={}
+      @title = title
+      @opts = opts
       @steps = []
+      @index = 1
     end
 
     def step title, options = {}, &block
       step = Step.new title, options
-      step.instance_eval &block if block_given?
+
+      step.index = @index
+      @index += 1
+
+      builder = StepBuilder.new step
+      builder.instance_eval &block if block_given?
       @steps << step
+      step
     end
 
   end

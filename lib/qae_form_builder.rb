@@ -5,8 +5,8 @@ require 'qae_form_builder/question'
 class QAEFormBuilder
   class << self
 
-    def build &block
-      form = Form.new
+    def build title, &block
+      form = Form.new title
       form.instance_eval &block if block_given?
       form      
     end
