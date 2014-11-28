@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
-  }
+  devise_for :users
   devise_for :admins, controllers: {
     confirmations: 'devise/confirmations'
   }
@@ -35,10 +33,5 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
-  end
-
-  devise_scope :user do
-    get '/users/registrations/privacy_policy_agreement' => 'users/registrations#privacy_policy_agreement'
-    post '/users/registrations/update_privacy_policy_agreement' => 'users/registrations#update_privacy_policy_agreement'
   end
 end
