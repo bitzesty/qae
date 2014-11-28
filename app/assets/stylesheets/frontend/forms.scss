@@ -364,43 +364,11 @@ input[type="file"] {
 // Character count
 .char-count {
   position: relative;
-
-  textarea {
-    padding-bottom: 1.75em;
-  }
-
-  input {
-    padding-right: 10em;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-
-    @include ie-lte(7) {
-      padding-right: 4px;
-    }
-  }
 }
 .char-text {
   @include core-14($line-height: (20 / 16));
-  position: absolute;
-  right: 0.5em;
-  bottom: 0.35em;
   color: $grey-1;
   text-align: right;
-
-  @include ie-lte(7) {
-    position: relative;
-    right: 0;
-    bottom: auto;
-  }
-
-  textarea + & {
-    right: 0;
-
-    @include ie(8) {
-      right: 12px;
-    }
-  }
 
   .char-over & {
     color: $red;
