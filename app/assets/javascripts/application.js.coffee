@@ -53,3 +53,17 @@ jQuery ->
       question.addClass("show-question")
     else
       question.removeClass("show-question")
+
+  # Get the year value from previous answer
+  updateYearEnd = () ->
+    $(".js-year-end").each () ->
+      year = $(this).attr("data-year")
+      value = $("input[data-year='#{year}']").val()
+
+      if value
+        $(this).text(value)
+      else
+        $(this).text("...")
+  updateYearEnd()
+  $("input[data-year]").change () ->
+    updateYearEnd()
