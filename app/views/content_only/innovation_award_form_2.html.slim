@@ -101,7 +101,7 @@ header.page-header.group.page-header-wider
             input type="radio" name="optionsInnovationIntegral" value="single product or service"
             ' A single product or service
 
-        .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value=true
+        .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="true"
           h2
             ' Company Financials
           p
@@ -112,7 +112,7 @@ header.page-header.group.page-header-wider
                          required: true,
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                        value: true} } do
-          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4" data-drop-question="explain-any-drops-in-turnover-export-sales-total-net-assets-and-net-profits-as-well-as-any-losses-made"
             span.row
               span.span-4
                 label
@@ -125,7 +125,7 @@ header.page-header.group.page-header-wider
                   br
                   input.small type="text" placeholder="£"
 
-          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus" data-drop-question="explain-any-drops-in-turnover-export-sales-total-net-assets-and-net-profits-as-well-as-any-losses-made"
             span.row
               span.span-2-4
                 label
@@ -152,7 +152,6 @@ header.page-header.group.page-header-wider
                   ' Year ending in ...
                   br
                   input.small type="text" placeholder="£"
-          // If there are any drops, show explanatory question "B5.4".
 
         = question_for "of which exports",
                        { step: "B5.1",
@@ -160,7 +159,7 @@ header.page-header.group.page-header-wider
                          context_text: "<p>Please enter '0' if you had none.</p>",
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                        value: true} } do
-          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4" data-drop-question="explain-any-drops-in-turnover-export-sales-total-net-assets-and-net-profits-as-well-as-any-losses-made"
             span.row
               span.span-4
                 label
@@ -173,7 +172,7 @@ header.page-header.group.page-header-wider
                   br
                   input.small type="text" placeholder="£"
 
-          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus" data-drop-question="explain-any-drops-in-turnover-export-sales-total-net-assets-and-net-profits-as-well-as-any-losses-made"
             span.row
               span.span-2-4
                 label
@@ -200,14 +199,13 @@ header.page-header.group.page-header-wider
                   ' Year ending in ...
                   br
                   input.small type="text" placeholder="£"
-          // If there are any drops, show explanatory question "B5.4".
 
         = question_for "Net profit after tax but before dividends",
                        { step: "B5.2",
                          required: true,
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                        value: true} } do
-          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4" data-drop-question="explain-any-drops-in-turnover-export-sales-total-net-assets-and-net-profits-as-well-as-any-losses-made"
             span.row
               span.span-4
                 label
@@ -220,7 +218,7 @@ header.page-header.group.page-header-wider
                   br
                   input.small type="text" placeholder="£"
 
-          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus" data-drop-question="explain-any-drops-in-turnover-export-sales-total-net-assets-and-net-profits-as-well-as-any-losses-made"
             span.row
               span.span-2-4
                 label
@@ -247,7 +245,6 @@ header.page-header.group.page-header-wider
                   ' Year ending in ...
                   br
                   input.small type="text" placeholder="£"
-          // If there are any drops, show explanatory question "B5.4".
 
         = question_for "Total net assets",
                        { step: "B5.3",
@@ -255,49 +252,48 @@ header.page-header.group.page-header-wider
                          context_text: "<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>",
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                        value: true} } do
-          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4" data-drop-question="explain-any-drops-in-turnover-export-sales-total-net-assets-and-net-profits-as-well-as-any-losses-made"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in ...
+                    br
+                    input.small type="text" placeholder="£"
+
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus" data-drop-question="explain-any-drops-in-turnover-export-sales-total-net-assets-and-net-profits-as-well-as-any-losses-made"
             span.row
-              span.span-4
+              span.span-2-4
                 label
                   ' Year ending in ...
                   br
                   input.small type="text" placeholder="£"
-              span.span-4
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
+                label
+                  ' Year ending in ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2-4
                 label
                   ' Year ending in ...
                   br
                   input.small type="text" placeholder="£"
 
-          .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
-            span.row
-              span.span-2-4
-                label
-                  ' Year ending in ...
-                  br
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  ' Year ending in ...
-                  br
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  ' Year ending in ...
-                  br
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  ' Year ending in ...
-                  br
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  ' Year ending in ...
-                  br
-                  input.small type="text" placeholder="£"
-          // If there are any drops, show explanatory question "B5.4".
-
-        // TODO If there are any drops, show this
+        .js-conditional-drop-question
           = question_for "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made.",
                          { step: "B5.4",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -313,7 +309,7 @@ header.page-header.group.page-header-wider
                            required: true,
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
-            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+            .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4" data-drop-question="explain-any-drop-in-sales"
               span.row
                 span.span-4
                   label
@@ -326,7 +322,7 @@ header.page-header.group.page-header-wider
                     br
                     input.small type="number"
 
-            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+            .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus" data-drop-question="explain-any-drop-in-sales"
               span.row
                 span.span-2-4
                   label
@@ -353,14 +349,13 @@ header.page-header.group.page-header-wider
                     ' Year ending in ...
                     br
                     input.small type="number"
-            // If there's any drop here, then show explanatory question "B6.4".
 
           = question_for "Sales",
                          { step: "B6.1",
                            required: true,
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
-            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+            .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4" data-drop-question="explain-any-drop-in-sales"
               span.row
                 span.span-4
                   label
@@ -373,7 +368,7 @@ header.page-header.group.page-header-wider
                     br
                     input.small type="text" placeholder="£"
 
-            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+            .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus" data-drop-question="explain-any-drop-in-sales"
               span.row
                 span.span-2-4
                   label
@@ -400,7 +395,6 @@ header.page-header.group.page-header-wider
                     ' Year ending in ...
                     br
                     input.small type="text" placeholder="£"
-            // If there's any drop here, then show explanatory question "B6.4".
 
           = question_for "of which exports",
                          { step: "B6.2",
@@ -408,7 +402,7 @@ header.page-header.group.page-header-wider
                            context_text: "<p>Please enter '0' if you had none.</p>",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
-            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+            .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4" data-drop-question="explain-any-drop-in-sales"
               span.row
                 span.span-4
                   label
@@ -421,7 +415,7 @@ header.page-header.group.page-header-wider
                     br
                     input.small type="text" placeholder="£"
 
-            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+            .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus" data-drop-question="explain-any-drop-in-sales"
               span.row
                 span.span-2-4
                   label
@@ -448,7 +442,6 @@ header.page-header.group.page-header-wider
                     ' Year ending in ...
                     br
                     input.small type="text" placeholder="£"
-            // If there's any drop here, then show explanatory question "B6.4".
 
           = question_for "of which royalties or licenses",
                          { step: "B6.3",
@@ -456,7 +449,7 @@ header.page-header.group.page-header-wider
                            context_text: "<p>Please enter '0' if you had none.</p>",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
-            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+            .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4" data-drop-question="explain-any-drop-in-sales"
               span.row
                 span.span-4
                   label
@@ -469,7 +462,7 @@ header.page-header.group.page-header-wider
                     br
                     input.small type="text" placeholder="£"
 
-            .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+            .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus" data-drop-question="explain-any-drop-in-sales"
               span.row
                 span.span-2-4
                   label
@@ -496,9 +489,8 @@ header.page-header.group.page-header-wider
                     ' Year ending in ...
                     br
                     input.small type="text" placeholder="£"
-            // If there's any drop here, then show explanatory question "B6.4".
 
-          // TODO If there are any drops, show this
+          .js-conditional-drop-question
             = question_for "Explain any drop in sales",
                            { step: "B6.4",
                              required: true } do
