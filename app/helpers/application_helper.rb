@@ -61,6 +61,12 @@ module ApplicationHelper
       question_title = content_tag :h2 do
         (step + question + required).html_safe
       end
+    else
+      if opts[:step]
+        question_title = content_tag :h2 do
+          step
+        end
+      end
     end
 
     question_context_text = ""
