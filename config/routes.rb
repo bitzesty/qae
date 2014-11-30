@@ -31,6 +31,18 @@ Rails.application.routes.draw do
 
   root to: 'content_only#home'
 
+  resource :account, only: :show do
+    collection do
+      get :correspondent_details
+      get :company_details
+      get :contact_settings
+
+      patch :update_correspondent_details
+      patch :update_company_details
+      patch :update_contact_settings
+    end
+  end
+
   namespace :admin do
     resources :users
   end

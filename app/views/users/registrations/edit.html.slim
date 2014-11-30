@@ -15,7 +15,7 @@ header.page-header.group
               ' Step 1
           ' Correspondent details
 
-        = render "account/form_correspondent_details", f: f
+        = render "accounts/form_correspondent_details", f: f
 
         fieldset
           h2
@@ -29,7 +29,7 @@ header.page-header.group
               ' Step 2
           ' Company details
 
-        = render "account/form_company_details", f: f
+        = render "accounts/form_company_details", f: f
 
         br
 
@@ -44,7 +44,7 @@ header.page-header.group
             ' How would you prefer we contact you?
           = f.input :prefered_method_of_contact, as: :radio_buttons, item_wrapper_class: 'selectable', label: false
 
-        = render "account/form_contact_settings", f: f
+        = render "accounts/form_contact_settings", f: f
 
         br
 
