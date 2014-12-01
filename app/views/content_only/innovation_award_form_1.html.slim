@@ -73,33 +73,45 @@ header.page-header.group.page-header-wider
             input type="radio" name="optionsCurrentAwardHolder" value="no"
             ' No
 
-        = question_for "",
-                       {conditional: {question: "Are you a current Queen's Award holder (2010-2014)?",
+        = question_for "List the Queen's Award(s) you currently hold",
+                       { step: "A 5.1",
+                         conditional: {question: "Are you a current Queen's Award holder (2010-2014)?",
                                       value: "yes"}} do
-          table
-            thead
-              tr
-                th Category *
-                th Year *
-                th.text-right = link_to "Add"
-            tbody
-              tr
-                td
-                  select
-                    option Innovation
-                    option International Trade
-                    option Sustainable Development
-                td
-                  select
-                    option 2010
-                    option 2011
-                    option 2012
-                    option 2013
-                    option 2014
-                td.text-right = link_to "Remove"
+          ul.list-add
+            li
+              = link_to "Remove", "#", class: "remove-link"
+              select
+                option value="" Select awaard category
+                option value="innovation" Innovation
+                option value="international trade" International Trade
+                option value="sustainable development" Sustainable Development
+              select
+                option value="" Year
+                option value="2010" 2010
+                option value="2011" 2011
+                option value="2012" 2012
+                option value="2013" 2013
+                option value="2014" 2014
+            li
+              = link_to "Remove", "#", class: "remove-link"
+              select
+                option value="" Select awaard category
+                option value="innovation" Innovation
+                option value="international trade" International Trade
+                option value="sustainable development" Sustainable Development
+              select
+                option value="" Year
+                option value="2010" 2010
+                option value="2011" 2011
+                option value="2012" 2012
+                option value="2013" 2013
+                option value="2014" 2014
+          = link_to "+ Add another award", "#", class: "button button-add"
 
         = question_for "Has the name of your business changed since your previous entry?",
-                       { step: "A 5.1" } do
+                       { step: "A 5.2",
+                         conditional: {question: "Are you a current Queen's Award holder (2010-2014)?",
+                                      value: "yes"} } do
           label.selectable
             input type="radio" name="optionsBusinessNameChangeSince" value="yes"
             ' Yes

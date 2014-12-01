@@ -140,6 +140,10 @@ input[type="file"] {
     }
   }
 
+  select {
+    @include core-16;
+  }
+
   label {
     &.selectable {
       @include core-16;
@@ -400,6 +404,64 @@ input[type="file"] {
 
 .smart_answer .inner.step.current {
   margin-right: 0;
+}
+
+// Styling the add form field list and button
+.list-add {
+  margin: 0;
+  margin-bottom: $gutter;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+    margin-bottom: $gutter-half;
+    padding: $gutter-half;
+    padding-top: 18px;
+    background: $grey-4;
+  }
+
+  select {
+    margin-right: $gutter-one-third;
+  }
+
+  .remove-link {
+    @include core-16;
+    float: right;
+  }
+}
+.button-add {
+  @include core-16;
+  padding: (18px $gutter $gutter-half $gutter);
+  border: 1px solid $panel-colour;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+
+  &:link,
+  &:hover,
+  &:focus,
+  &:visited {
+    color: $black;
+  }
+
+  &,
+  &:visited {
+    background: $panel-colour;
+  }
+
+  &:hover {
+    border-color: $black;
+  }
+
+  &:active {
+    top: auto;
+    background: $white;
+  }
+
+  &:before {
+    display: none;
+  }
 }
 
 // Numbered steps for form sections

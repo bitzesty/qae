@@ -11,10 +11,8 @@ class QAE2014Forms
         text :company_name, 'Full/legal name of your business' do
           required
           ref 'A 1'
-          help "What name should I write?",  %Q{
-              <p>Your answer should reflect the title registered with Companies House.
-              If applicable, include 'trading as', or any other name by which the
-              business is known.</p>
+          help "What name should I write?", %Q{
+              <p>Your answer should reflect the title registered with Companies House. If applicable, include 'trading as', or any other name by which the business is known.</p>
           }
         end
 
@@ -22,8 +20,7 @@ class QAE2014Forms
           required
           ref 'A 2'
           context %Q{
-            <p>We recommend that you apply as a principal. A principal invoices its
-            customers (or their buying agents) and is the body to receive those payments.</p>
+            <p>We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>
           }
           yes_no
         end
@@ -41,8 +38,7 @@ class QAE2014Forms
           required
           ref 'A 3'
           help 'What if I do not have a Company/Charity Registration number?', %Q{
-            <p>Please enter 'N/A' if this is not applicable. If an unregistered subsidiary,
-            please enter your parent company's number.</p>
+            <p>Please enter 'N/A' if this is not applicable. If an unregistered subsidiary, please enter your parent company's number.</p>
           }
         end
 
@@ -58,7 +54,9 @@ class QAE2014Forms
           yes_no
         end
 
-        award_holder :queen_award_holder_details, '' do
+        award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
+          ref 'A 5.1'
+
           conditional :queen_award_holder, :yes
 
           category :innovation, 'Innovation'
@@ -73,7 +71,10 @@ class QAE2014Forms
         end
 
         options :business_name_changed, 'Has the name of your business changed since your previous entry?' do
-          ref 'A 5.1'
+          ref 'A 5.2'
+
+          conditional :queen_award_holder, :yes
+
           yes_no
         end
 
@@ -98,10 +99,7 @@ class QAE2014Forms
           ref 'A 7'
           required
           help "Should my entry be a joint entry?", %Q{
-            <p>If the business producing or marketing a product, providing a service or using a technology
-            is separate from the unit which developed it, either or both may be eligible according to the
-            contribution made, and whether it helped them achieve commercial success. For a joint entry,
-            each organisation should submit separate, cross-referenced, entry forms.</p>
+            <p>If the business producing or marketing a product, providing a service or using a technology is separate from the unit which developed it, either or both may be eligible according to the contribution made, and whether it helped them achieve commercial success. For a joint entry, each organisation should submit separate, cross-referenced, entry forms.</p>
           }
           yes_no
         end
