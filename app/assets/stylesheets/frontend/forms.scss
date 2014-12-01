@@ -1,8 +1,10 @@
 // Expanded the standard input style to include other types
 input[type="text"],
 input[type="search"],
+input[type="number"],
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="url"] {
   @media (max-width: 640px) {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
@@ -12,8 +14,10 @@ input[type="password"] {
 
 input[type="text"],
 input[type="search"],
+input[type="number"],
 input[type="email"],
 input[type="password"],
+input[type="url"],
 textarea {
   @include core-16($line-height: (20 / 16));
   border: 1px solid #bbb;
@@ -126,9 +130,33 @@ input[type="file"] {
     margin-bottom: 1.25em;
   }
 
+  table {
+    width: 100%;
+
+    input,
+    select,
+    textarea {
+      margin: 0;
+    }
+  }
+
   label {
     &.selectable {
       @include core-16;
+
+      &.selectable-confirm {
+        @include core-19;
+        margin: 0.5em 0 0 0;
+        padding: 19px;
+        padding-left: 45px;
+        background-color: #D5E8F3;
+        border-width: solid 1px #CBCBCB;
+        border-radius: 4px;
+
+        input[type="checkbox"] {
+          @include core-19;
+        }
+      }
     }
 
     input,
@@ -336,43 +364,11 @@ input[type="file"] {
 // Character count
 .char-count {
   position: relative;
-
-  textarea {
-    padding-bottom: 1.75em;
-  }
-
-  input {
-    padding-right: 10em;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-
-    @include ie-lte(7) {
-      padding-right: 4px;
-    }
-  }
 }
 .char-text {
   @include core-14($line-height: (20 / 16));
-  position: absolute;
-  right: 0.5em;
-  bottom: 0.35em;
   color: $grey-1;
   text-align: right;
-
-  @include ie-lte(7) {
-    position: relative;
-    right: 0;
-    bottom: auto;
-  }
-
-  textarea + & {
-    right: 0;
-
-    @include ie(8) {
-      right: 12px;
-    }
-  }
 
   .char-over & {
     color: $red;
@@ -416,6 +412,21 @@ input[type="file"] {
   margin-right: 0.75em;
   background-repeat: no-repeat;
 }
+
+// TODO temp
+.steps {
+  width: auto;
+  min-width: 13px;
+  padding: 0 5px;
+  color: white;
+  background: black;
+  background-repeat: no-repeat;
+  border-radius: 1000px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 26px;
+}
+/*
 #step-1 {
   background-image: image-url("icon-step-1.png");
 }
@@ -621,3 +632,4 @@ input[type="file"] {
   width: 27px;
   background-image: image-url("icon-step-a7.png");
 }
+*/

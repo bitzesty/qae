@@ -4,6 +4,11 @@
   display: block;
 }
 
+// Align text
+.text-right {
+  text-align: right;
+}
+
 // Positions full width elements
 .inner-block {
   padding: 0 $gutter-half;
@@ -130,6 +135,16 @@
     display: block;
     margin-right: -15px;
     margin-left: -15px;
+
+    &:after,
+    &:before {
+      display: table;
+      content: " ";
+    }
+
+    &:after {
+      clear: both;
+    }
   }
   .span-1,
   .span-2,
