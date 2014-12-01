@@ -1,9 +1,20 @@
-div
-  h1
-    = form.title
-  ol.steps-progress-bar
-    - for step in form.steps do
-      li
-        span.step-number
-          | #{step.index}.
-        | #{step.title}
+header.page-header.group.page-header-wider
+  div
+    h1
+      = form.title
+
+    ol.steps-progress-bar
+      - for step in form.steps do
+        li
+          span
+            span.step-number
+              ' #{step.index}.
+            | #{step.title}
+
+    h2
+      ' Step
+      = form.steps[0].index
+      '  of
+      = form.steps.length
+      ' :
+      = step.title
