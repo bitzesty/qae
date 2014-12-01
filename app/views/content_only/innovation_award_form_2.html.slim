@@ -13,7 +13,7 @@ header.page-header.group.page-header-wider
     .inner
       form.qae-form
         = question_for "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
-                       { step: "B1",
+                       { step: "B 1",
                          required: true,
                          context_text: "<p>Your answer here will determine whether you are assessed for outstanding innovation (an award valid for two years) or continuous innovation (valid for five years).</p>" } do
           label.selectable
@@ -24,7 +24,7 @@ header.page-header.group.page-header-wider
             ' 5 years or more
 
         = question_for "Please select your financial year end dates:",
-                       { step: "B2",
+                       { step: "B 2",
                          required: true,
                          context_text: "<p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>",
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -85,14 +85,14 @@ header.page-header.group.page-header-wider
               ' If your year-end date changed during the application period, please explain.
 
         = question_for "State the number of people employed by the company for each year of your entry.",
-                       { step: "B3",
+                       { step: "B 3",
                          required: true,
                          context_text: "<p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.</p>" } do
           input.small type="number" min=2
           // Min 2 - if less than 2 block - present 'you are not eligible' message
 
         = question_for "My innovation is an integral part of",
-                       { step: "B4",
+                       { step: "B 4",
                          required: true } do
           label.selectable
             input type="radio" name="optionsInnovationIntegral" value="entire business"
@@ -108,7 +108,7 @@ header.page-header.group.page-header-wider
             ' These figures should be for your entire organisation.
 
         = question_for "Total turnover",
-                       { step: "B5",
+                       { step: "B 5",
                          required: true,
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                        value: true} } do
@@ -161,7 +161,7 @@ header.page-header.group.page-header-wider
                   input.small type="text" placeholder="£"
 
         = question_for "of which exports",
-                       { step: "B5.1",
+                       { step: "B 5.1",
                          required: true,
                          context_text: "<p>Please enter '0' if you had none.</p>",
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -215,7 +215,7 @@ header.page-header.group.page-header-wider
                   input.small type="text" placeholder="£"
 
         = question_for "Net profit after tax but before dividends",
-                       { step: "B5.2",
+                       { step: "B 5.2",
                          required: true,
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                        value: true} } do
@@ -268,7 +268,7 @@ header.page-header.group.page-header-wider
                   input.small type="text" placeholder="£"
 
         = question_for "Total net assets",
-                       { step: "B5.3",
+                       { step: "B 5.3",
                          required: true,
                          context_text: "<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>",
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -323,7 +323,7 @@ header.page-header.group.page-header-wider
 
         .js-conditional-drop-question
           = question_for "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made.",
-                         { step: "B5.4",
+                         { step: "B 5.4",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
             textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
@@ -333,7 +333,7 @@ header.page-header.group.page-header-wider
             ' Product/Service Financials
 
           = question_for "Number of units/contracts sold",
-                         { step: "B6",
+                         { step: "B 6",
                            required: true,
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
@@ -386,7 +386,7 @@ header.page-header.group.page-header-wider
                     input.small type="number"
 
           = question_for "Sales",
-                         { step: "B6.1",
+                         { step: "B 6.1",
                            required: true,
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
@@ -439,7 +439,7 @@ header.page-header.group.page-header-wider
                     input.small type="text" placeholder="£"
 
           = question_for "of which exports",
-                         { step: "B6.2",
+                         { step: "B 6.2",
                            required: true,
                            context_text: "<p>Please enter '0' if you had none.</p>",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -493,7 +493,7 @@ header.page-header.group.page-header-wider
                     input.small type="text" placeholder="£"
 
           = question_for "of which royalties or licenses",
-                         { step: "B6.3",
+                         { step: "B 6.3",
                            required: true,
                            context_text: "<p>Please enter '0' if you had none.</p>",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -548,12 +548,12 @@ header.page-header.group.page-header-wider
 
           .js-conditional-drop-question
             = question_for "Explain any drop in sales",
-                           { step: "B6.4",
+                           { step: "B 6.4",
                              required: true } do
               textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
           = question_for "Are any of these figures estimated?",
-                         { step: "B6.5" } do
+                         { step: "B 6.5" } do
             label.selectable
               input type="radio" name="optionsFiguresEstimated" value="yes"
               ' Yes
@@ -567,11 +567,11 @@ header.page-header.group.page-header-wider
             textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
 
           = question_for "Additional comments (optional)",
-                         { step: "B6.6" } do
+                         { step: "B 6.6" } do
             textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
 
           = question_for "Average unit selling price/contract value",
-                         { step: "B7",
+                         { step: "B 7",
                            required: true,
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
@@ -626,7 +626,7 @@ header.page-header.group.page-header-wider
             textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
 
           = question_for "Cost, to you, of a single unit/contract",
-                         { step: "B8",
+                         { step: "B 8",
                            required: true,
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
@@ -681,17 +681,17 @@ header.page-header.group.page-header-wider
             textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
 
           = question_for "Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.",
-                         { step: "B9",
+                         { step: "B 9",
                            required: true } do
             textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
         = question_for "Please enter details of all the investments made in your innovation, and the years when they were made. Include investments made both during and prior to your entry period.",
-                       { step: "B10",
+                       { step: "B 10",
                          required: true } do
           textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
         = question_for "How long did it take the investment indicated above to be repaid? When and how was this repayment achieved?",
-                       { step: "B10.1",
+                       { step: "B 10.1",
                          required: true } do
           textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 

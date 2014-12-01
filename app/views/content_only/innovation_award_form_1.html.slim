@@ -13,14 +13,14 @@ header.page-header.group.page-header-wider
     .inner
       form.qae-form
         = question_for "Full/legal name of your business",
-                       { step: "A1",
+                       { step: "A 1",
                          required: true,
                          help: {title: "What name should I write?",
                                 body: "<p>Your answer should reflect the title registered with Companies House. If applicable, include 'trading as', or any other name by which the business is known.</p>"} } do
           input.medium type="text"
 
         = question_for "Does your business operate as a principal?",
-                       { step: "A2",
+                       { step: "A 2",
                          required: true,
                          context_text: "<p>We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>"} do
           label.selectable
@@ -37,14 +37,14 @@ header.page-header.group.page-header-wider
           textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
 
         = question_for "Company/Charity Registration Number",
-                       { step: "A3",
+                       { step: "A 3",
                          required: true,
                          help: {title: "What if I do not have a Company/Charity Registration number?",
                                 body: "<p>Please enter 'N/A' if this is not applicable. If an unregistered subsidiary, please enter your parent company's number.</p>"} } do
           input.small type="number"
 
         = question_for "Date started trading",
-                       { step: "A4",
+                       { step: "A 4",
                          required: true,
                          context_text: "<p>Businesses which began trading after 01/10/2012 are not eligible for this award.</p>" } do
           select.inline
@@ -64,7 +64,7 @@ header.page-header.group.page-header-wider
           // must be before 01/10/2012
 
         = question_for "Are you a current Queen's Award holder (2010-2014)?",
-                       { step: "A5",
+                       { step: "A 5",
                          required: true } do
           label.selectable
             input type="radio" name="optionsCurrentAwardHolder" value="yes"
@@ -99,7 +99,7 @@ header.page-header.group.page-header-wider
                 td.text-right = link_to "Remove"
 
         = question_for "Has the name of your business changed since your previous entry?",
-                       { step: "A5.1" } do
+                       { step: "A 5.1" } do
           label.selectable
             input type="radio" name="optionsBusinessNameChangeSince" value="yes"
             ' Yes
@@ -121,7 +121,7 @@ header.page-header.group.page-header-wider
                 input.small type="text"
 
         = question_for "Have you won any other business or enterprise awards in the past?",
-                       { step: "A6" } do
+                       { step: "A 6" } do
           label.selectable
             input type="radio" name="optionsWonOtherAward" value="yes"
             ' Yes
@@ -136,7 +136,7 @@ header.page-header.group.page-header-wider
           textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
         = question_for "Is this entry made jointly with any other organisation(s)?",
-                       { step: "A7",
+                       { step: "A 7",
                          required: true,
                          help: {title: "Should my entry be a joint entry?",
                                 body: "<p>If the business producing or marketing a product, providing a service or using a technology is separate from the unit which developed it, either or both may be eligible according to the contribution made, and whether it helped them achieve commercial success. For a joint entry, each organisation should submit separate, cross-referenced, entry forms.</p>"} } do
@@ -154,7 +154,7 @@ header.page-header.group.page-header-wider
           input.largest type="text"
 
         = question_for "Principal address of your business",
-                       { step: "A8",
+                       { step: "A 8",
                          required: true } do
           p.group
             label
@@ -179,12 +179,12 @@ header.page-header.group.page-header-wider
               input.medium type="text"
 
         = question_for "Website URL",
-                       { step: "A9",
+                       { step: "A 9",
                          required: true } do
           input.medium type="url"
 
         = question_for "Business Sector",
-                       { step: "A10",
+                       { step: "A 10",
                          required: true } do
           select
             option
@@ -197,7 +197,7 @@ header.page-header.group.page-header-wider
           input.medium type="text"
 
         = question_for "Head of your business",
-                       { step: "A11",
+                       { step: "A 11",
                          required: true } do
           p.group
             label
@@ -219,17 +219,17 @@ header.page-header.group.page-header-wider
               ' e.g. OBE. Not including educational qualifications or Institutional Memberships.
 
         = question_for "Job title / Role in the organisation",
-                       { step: "A11.1",
+                       { step: "A 11.1",
                          required: true } do
           input.medium type="text"
 
         = question_for "Email address",
-                       { step: "A11.2",
+                       { step: "A 11.2",
                          required: true } do
           input.medium type="email"
 
         = question_for "Are you a division, branch or subsidiary?",
-                       { step: "A12" } do
+                       { step: "A 12" } do
           label.selectable
             input type="radio" name="optionsDivisionBranchSubsudiary" value="yes"
             ' Yes
@@ -257,7 +257,7 @@ header.page-header.group.page-header-wider
 
 
         = question_for "Does the immediate parent company have ultimate control?",
-                       { step: "A12.1",
+                       { step: "A 12.1",
                          conditional: {question: "Are you a division, branch or subsidiary?",
                                       value: "yes"} } do
           label.selectable
@@ -287,7 +287,7 @@ header.page-header.group.page-header-wider
                   = country
 
         = question_for "Upload an organisational chart (optional).",
-                       { step: "A12.2",
+                       { step: "A 12.2",
                          context_text: "<p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>",
                          conditional: {question: "Are you a division, branch or subsidiary?",
                                       value: "yes"} } do

@@ -16,41 +16,41 @@ header.page-header.group.page-header-wider
 
       form.qae-form
         = question_for "Briefly describe your product/service/intiative",
-                       { step: "C1",
+                       { step: "C 1",
                          required: true,
                          context_text: "<p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>" } do
           textarea.js-char-count rows="1" maxlength="90" data-word-max="15"
 
         = question_for "Describe your innovative product/service/initiative in detail",
-                       { step: "C1.1",
+                       { step: "C 1.1",
                          required: true,
                          context_text: "<p>Describe the product/service/intitative itself, explain any aspect(s) you believe innovative, and why you believe it is innovative: consider its uniqeueness and the challenges you had to overcome. Also explain how it fits within the overall business e.g. is it your sole product.</p>" } do
           textarea.js-char-count rows="5" maxlength="4800" data-word-min="500" data-word-max="800"
 
         = question_for "Describe the context of your innovation, why and how it came about.",
-                       { step: "C2",
+                       { step: "C 2",
                          required: true,
                          context_text: "<p>Outline the disadvantages, if any, of your own/competing products/services/intiatives prior to the innovation. Or otherwise, how you identified a gap in the market.</p>" } do
           textarea.js-char-count rows="5" maxlength="3000" data-word-min="300" data-word-max="500"
 
         = question_for "Discuss the degree to which your innovation overcomes any issues, and any special difficulties surmounted in doing so.",
-                       { step: "C3",
+                       { step: "C 3",
                          required: true } do
           textarea.js-char-count rows="5" maxlength="4800" data-word-min="500" data-word-max="800"
 
         = question_for "Give details of benefits received by your customers and your business as a result of the innovation.",
-                       { step: "C4",
+                       { step: "C 4",
                          required: true,
                          context_text: "<p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim.</p>" } do
           textarea.js-char-count rows="5" maxlength="4800" data-word-min="500" data-word-max="800"
 
         = question_for "Identify and describe any products/services/initiatives made by other organisations that compete with your innovation, and explain how your innovation differs.",
-                       { step: "C5",
+                       { step: "C 5",
                          required: true } do
           textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
         = question_for "Did any external organisation or individiual contribute to this product/service/initiative?",
-                       { step: "C6",
+                       { step: "C 6",
                          required: true,
                          context_text: "<p>Excluding any joint entrant(s) named in C5.</p>" } do
           label.selectable
@@ -67,7 +67,7 @@ header.page-header.group.page-header-wider
           textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
 
         = question_for "Are they aware that you are applying for this award?",
-                       { step: "C6.1",
+                       { step: "C 6.1",
                          required: true,
                          conditional: {question: "Did any external organisation or individiual contribute to this product/service/initiative?",
                                        value: "yes"} } do
@@ -82,7 +82,7 @@ header.page-header.group.page-header-wider
             ' Some are aware
 
         = question_for "Is the product/service/initiative under license from another organisation?",
-                       { step: "C7",
+                       { step: "C 7",
                          context_text: "<p>Include associates of the business.</p>" } do
           label.selectable
             input type="radio" name="optionsUnderOtherOrganisationLicense" value="yes"
@@ -98,7 +98,7 @@ header.page-header.group.page-header-wider
           textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
 
         = question_for "Have you received any grant funding to support this innovation?",
-                       { step: "C8",
+                       { step: "C 8",
                          required: true } do
           label.selectable
             input type="radio" name="optionsReceivedFundingSupport" value="yes"
@@ -114,14 +114,14 @@ header.page-header.group.page-header-wider
           textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
         = question_for "How long has it been since the product/service/initiative was released into the marketplace?",
-                       { step: "C9",
+                       { step: "C 9",
                          required: true } do
           input.small.inline type="number" max=100
           '  years
           // Max 100 years
 
         = question_for "Was the product/service/intiative released by you?",
-                       { step: "C9.1",
+                       { step: "C 9.1",
                          required: true } do
           label.selectable
             input type="radio" name="optionsYouReleasedThis" value="yes"
@@ -139,11 +139,11 @@ header.page-header.group.page-header-wider
           // Max 100 years
 
         = question_for "Additional comments (optional)",
-                       { step: "C9.2" } do
+                       { step: "C 9.2" } do
           textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
 
         = question_for "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here (we cannot guarantee these will be reviewed, so inlcude any vital information within the form).",
-                       { step: "C10",
+                       { step: "C 10",
                          context_text: "<p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb.</p>",
                          help: {title: "Information we will not review",
                                 body: "<p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>"} } do

@@ -10,7 +10,7 @@ class QAE2014Forms
 
         text :company_name, 'Full/legal name of your business' do
           required
-          ref 'A1'
+          ref 'A 1'
           help "What name should I write?",  %Q{
               <p>Your answer should reflect the title registered with Companies House.
               If applicable, include 'trading as', or any other name by which the
@@ -20,7 +20,7 @@ class QAE2014Forms
 
         options :principal_business, 'Does your business operate as a principal?' do
           required
-          ref 'A2'
+          ref 'A 2'
           context %Q{
             <p>We recommend that you apply as a principal. A principal invoices its
             customers (or their buying agents) and is the body to receive those payments.</p>
@@ -39,7 +39,7 @@ class QAE2014Forms
 
         text :registration_number, 'Company/Charity Registration Number' do
           required
-          ref 'A3'
+          ref 'A 3'
           help 'What if I do not have a Company/Charity Registration number?', %Q{
             <p>Please enter 'N/A' if this is not applicable. If an unregistered subsidiary,
             please enter your parent company's number.</p>
@@ -49,13 +49,13 @@ class QAE2014Forms
 
         date :started_trading, 'Date started trading' do
           required
-          ref 'A4'
+          ref 'A 4'
           context '<p>Businesses which began trading after 01/10/2012 are not eligible for this award.</p>'
         end
 
         options :queen_award_holder, %Q{Are you a current Queen's Award holder (2010-2014)?} do
           required
-          ref 'A5'
+          ref 'A 5'
           yes_no
         end
 
@@ -74,7 +74,7 @@ class QAE2014Forms
         end
 
         options :business_name_changed, 'Has the name of your business changed since your previous entry?' do
-          ref 'A5.1'
+          ref 'A 5.1'
           yes_no
         end
 
@@ -83,7 +83,7 @@ class QAE2014Forms
         end
 
         options :other_awards_won, 'Have you won any other business or enterprise awards in the past?' do
-          ref 'A6'
+          ref 'A 6'
           yes_no
         end
 
@@ -96,7 +96,7 @@ class QAE2014Forms
         end
 
         options :joint_entry, 'Is this entry made jointly with any other organisation(s)?' do
-          ref 'A7'
+          ref 'A 7'
           required
           help "Should my entry be a joint entry?", %Q{
             <p>If the business producing or marketing a product, providing a service or using a technology
@@ -115,18 +115,18 @@ class QAE2014Forms
 
         address :principal_address, 'Principal address of your business' do
           required
-          ref 'A8'
+          ref 'A 8'
         end
 
         text :website_url, 'Website URL' do
           required
-          ref 'A9'
+          ref 'A 9'
           type :url
         end
 
         dropdown :business_sector, 'Business Sector' do
           required
-          ref 'A10'
+          ref 'A 10'
           option '', ''
           option :other, 'Other'
         end
@@ -138,22 +138,22 @@ class QAE2014Forms
 
         head_of_business :head_of_business, 'Head of your business' do
           required
-          ref 'A11'
+          ref 'A 11'
         end
 
         text :head_job_title, 'Job title / Role in the organisation' do
           required
-          ref 'A11.1'
+          ref 'A 11.1'
         end
 
         text :head_email, 'Email address' do
           required
-          ref 'A11.2'
+          ref 'A 11.2'
           type :email
         end
 
         options :is_division, 'Are you a division, branch or subsidiary?' do
-          ref 'A12'
+          ref 'A 12'
           yes_no
         end
 
@@ -169,7 +169,7 @@ class QAE2014Forms
         end
 
         options :parent_ultimate_control, 'Does the immediate parent company have ultimate control?' do
-          ref 'A12.1'
+          ref 'A 12.1'
           conditional :is_division, :yes
           yes_no
         end
@@ -186,7 +186,7 @@ class QAE2014Forms
         end
 
         upload :org_chart, 'Upload an organisational chart (optional).' do
-          ref 'A12.2'
+          ref 'A 12.2'
           context %Q{
             <p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>
           }
