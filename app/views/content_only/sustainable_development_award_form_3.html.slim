@@ -1,0 +1,34 @@
+header.page-header.group.page-header-wider
+  div
+    h1
+      ' Apply for the Sustainable Development Award
+
+    = render "sustainable_development_award_form/steps_progress_bar"
+
+    h2
+      ' Step 3 of 5: Description of Goods or Services
+
+.article-container.article-container-wider
+  article.group role="article"
+    .inner
+      p
+        ' When answering these questions please avoid using technical jargon where possible. If you have more than one innovative product/service you will need to submit more than one application.
+
+      form.qae-form
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to sustainable_development_award_form_2_path, rel: "prev", title: "Navigate to previous part" do
+                  span class="pagination-label"
+                    ' Previous
+                  span class="pagination-part-title"
+                    ' Commercial Performance
+
+              li.next
+                = link_to sustainable_development_award_form_4_path, rel: "next", title: "Navigate to next part" do
+                  span class="pagination-label"
+                    ' Next
+                  span class="pagination-part-title"
+                    ' Declaration of Corporate Responsibility

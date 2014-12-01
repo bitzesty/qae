@@ -1,0 +1,33 @@
+header.page-header.group.page-header-wider
+  div
+    h1
+      ' Apply for the International Trade Award
+
+    = render "international_trade_award_form/steps_progress_bar"
+
+    h2
+      ' Step 5 of 5: Authorisation/Monitoring
+
+.article-container.article-container-wider
+  article.group role="article"
+    .inner
+      form.qae-form
+
+        br
+        .application-notice.info-notice
+          p
+            ' Note that you can submit and come back to change or add any other info until the deadline.
+        br
+
+        p.form-submit
+          = link_to "Submit application", international_trade_award_confirm_path, class: "button large"
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to international_trade_award_form_4_path, rel: "prev", title: "Navigate to previous part" do
+                  span class="pagination-label"
+                    ' Previous
+                  span class="pagination-part-title"
+                    ' Declaration of Corporate Responsibility
