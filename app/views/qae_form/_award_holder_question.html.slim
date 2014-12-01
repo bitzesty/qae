@@ -1,0 +1,19 @@
+table
+  thead
+    tr
+      th Category *
+      th Year *
+      th.text-right = link_to "Add"
+  tbody
+    tr
+      td
+        select
+          - for category in question.categories
+            option value=category.value
+              =category.text
+      td
+        select
+          - for year in question.years
+            option value=year
+              =year
+      td.text-right = link_to "Remove"

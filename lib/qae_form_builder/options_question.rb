@@ -1,0 +1,27 @@
+class QAEFormBuilder
+
+  QuestionAnswerOption = Struct.new(:value, :text) 
+
+  class OptionsQuestionBuilder < QuestionBuilder
+
+    def option value, text
+      @q.options << QuestionAnswerOption.new(value, text)
+    end
+
+    def yes_no
+      @q.options << QuestionAnswerOption.new(:yes, 'Yes')
+      @q.options << QuestionAnswerOption.new(:no, 'No')
+    end
+
+  end
+  
+  class OptionsQuestion < Question
+    attr_reader :options
+
+    def initialize key, title, opts={}
+      super key, title, opts
+      @options = []
+    end
+  end
+
+end

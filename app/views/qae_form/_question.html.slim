@@ -1,13 +1,14 @@
 fieldset
-  h2
-    - if question.ref
-      span.steps id="step-#{question.ref.to_s.parameterize}"
+  - if question.title
+    h2
+      - if question.ref
+        span.steps id="step-#{question.ref.to_s.parameterize}"
 
-    = question.title
+      = question.title
 
-    - if question.required
-      abbr
-        | *
+      - if question.required
+        abbr
+          | *
 
   - if question.context
     == question.context

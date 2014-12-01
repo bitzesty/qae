@@ -20,13 +20,19 @@ class QAEFormBuilder
     def help title, text
       @q.help = QuestionHelp.new(title, text)
     end
+
+    def conditional key, value
+      @q.condition = QuestionCondition.new key, value
+    end
   end
+
+  QuestionCondition = Struct.new(:question_key, :question_value)
 
   QuestionHelp = Struct.new(:title, :text)
 
   class Question
     attr_accessor :key,  :title, :context, :opts,
-      :required, :help, :ref
+      :required, :help, :ref, :condition
 
     def initialize key, title, opts={}
       @key = key
@@ -36,34 +42,5 @@ class QAEFormBuilder
     end
   end
 
-  # options
-
-  QuestionAnswerOption = Struct.new(:value, :text) 
-
-  class OptionsQuestionBuilder < QuestionBuilder
-
-    def option value, text
-      @q.options << QuestionAnswerOption.new(value, text)
-    end
-
-  end
-  
-  class OptionsQuestion < Question
-    attr_reader :options
-
-    def initialize key, title, opts={}
-      super key, title, opts
-      @options = []
-    end
-  end
-
-  # text
-
-  class TextQuestionBuilder < QuestionBuilder
-  end
-
-  class TextQuestion < Question
-  end
-
 end
-    
+
