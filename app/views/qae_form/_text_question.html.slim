@@ -1,1 +1,1 @@
-input class="#{question.style || 'medium'}" type="#{question.type.to_s || 'text'}"
+input class="#{question.style.present? ? question.style : 'medium'}" type="#{question.type.present? ? question.type.to_s : 'text'}"

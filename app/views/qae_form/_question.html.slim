@@ -3,6 +3,10 @@ fieldset
     h2
       - if question.ref
         span.steps id="step-#{question.ref.to_s.parameterize}"
+          span.visuallyhidden
+            = "Step #{question.ref.to_s}"
+          span.todo
+            = question.ref.to_s
 
       = question.title
 
