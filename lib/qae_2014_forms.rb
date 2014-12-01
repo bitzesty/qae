@@ -37,14 +37,13 @@ class QAE2014Forms
           rows 5
         end
 
-        text :registration_number, 'Company/Charity Registration Number' do
+        number :registration_number, 'Company/Charity Registration Number' do
           required
           ref 'A 3'
           help 'What if I do not have a Company/Charity Registration number?', %Q{
             <p>Please enter 'N/A' if this is not applicable. If an unregistered subsidiary,
             please enter your parent company's number.</p>
           }
-          type :number
         end
 
         date :started_trading, 'Date started trading' do
@@ -194,6 +193,35 @@ class QAE2014Forms
         end
 
       end
+
+      step 'Commercial Performance' do
+
+        options :innovation_performance_years, %Q{For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?} do
+          ref 'B 1'
+          required
+          context %Q{
+            <p>Your answer here will determine whether you are assessed for outstanding innovation (an award valid for
+             two years) or continuous innovation (valid for five years).</p>
+          }
+          option '2 to 4', '2-4 years'
+          option '5 plus', '5 years or more'
+        end
+
+        # TODO: financial year dates
+
+        number :employees, 'State the number of people employed by the company for each year of your entry.' do
+          ref 'B 3'
+          required
+          context %Q{
+            <p>State the number of full-time employees at the year-end, or the average for the 12 month period.
+            Part-time employees should be expressed in full-time equivalents.</p>
+          }
+          style :small
+          min 2
+        end
+
+      end
+
     end
   end
 
