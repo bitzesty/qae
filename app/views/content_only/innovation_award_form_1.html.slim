@@ -15,8 +15,8 @@ header.page-header.group.page-header-wider
         = question_for "Full/legal name of your business",
                        { step: "A 1",
                          required: true,
-                         help: {title: "What name should I write?",
-                                body: "<p>Your answer should reflect the title registered with Companies House. If applicable, include 'trading as', or any other name by which the business is known.</p>"} } do
+                         help: [{title: "What name should I write?",
+                                 body: "<p>Your answer should reflect the title registered with Companies House. If applicable, include 'trading as', or any other name by which the business is known.</p>"}] } do
           input.medium type="text"
 
         = question_for "Does your business operate as a principal?",
@@ -39,8 +39,8 @@ header.page-header.group.page-header-wider
         = question_for "Company/Charity Registration Number",
                        { step: "A 3",
                          required: true,
-                         help: {title: "What if I do not have a Company/Charity Registration number?",
-                                body: "<p>Please enter 'N/A' if this is not applicable. If an unregistered subsidiary, please enter your parent company's number.</p>"} } do
+                         help: [{title: "What if I do not have a Company/Charity Registration number?",
+                                 body: "<p>Please enter 'N/A' if this is not applicable. If an unregistered subsidiary, please enter your parent company's number.</p>"}] } do
           input.small type="number"
 
         = question_for "Date started trading",
@@ -150,8 +150,8 @@ header.page-header.group.page-header-wider
         = question_for "Is this entry made jointly with any other organisation(s)?",
                        { step: "A 7",
                          required: true,
-                         help: {title: "Should my entry be a joint entry?",
-                                body: "<p>If the business producing or marketing a product, providing a service or using a technology is separate from the unit which developed it, either or both may be eligible according to the contribution made, and whether it helped them achieve commercial success. For a joint entry, each organisation should submit separate, cross-referenced, entry forms.</p>"} } do
+                         help: [{title: "Should my entry be a joint entry?",
+                                 body: "<p>If the business producing or marketing a product, providing a service or using a technology is separate from the unit which developed it, either or both may be eligible according to the contribution made, and whether it helped them achieve commercial success. For a joint entry, each organisation should submit separate, cross-referenced, entry forms.</p>"}] } do
           label.selectable
             input type="radio" name="optionsJoinEntry" value="yes"
             ' Yes
@@ -262,7 +262,6 @@ header.page-header.group.page-header-wider
             - @countries.each do |country|
               option value="#{country}"
                 = country
-
 
         = question_for "Does the immediate parent company have ultimate control?",
                        { step: "A 12.1",

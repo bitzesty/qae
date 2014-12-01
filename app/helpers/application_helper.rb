@@ -50,10 +50,15 @@ module ApplicationHelper
 
     help = ""
     if opts[:help]
-      help = content_tag :div, class: "hidden-hint" do
-        content_tag(:span, opts[:help][:title], class: "hidden-link") +
-        content_tag(:span, opts[:help][:body].html_safe, class: "hidden-content")
+      help = []
+      opts[:help].each do |h|
+        help_content = content_tag :div, class: "hidden-hint" do
+          content_tag(:span, h[:title], class: "hidden-link") +
+          content_tag(:span, h[:body].html_safe, class: "hidden-content")
+        end
+        help.push(help_content)
       end
+      help = help.join("").html_safe
     end
 
     question_title = ""
