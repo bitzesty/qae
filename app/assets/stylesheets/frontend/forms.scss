@@ -145,6 +145,10 @@ input[type="file"] {
   }
 
   label {
+    &.small {
+      @include core-16;
+    }
+
     &.selectable {
       @include core-16;
 
@@ -421,6 +425,10 @@ input[type="file"] {
     background: $grey-4;
   }
 
+  label input {
+    margin-bottom: 1em;
+  }
+
   select {
     margin-right: $gutter-one-third;
   }
@@ -431,22 +439,20 @@ input[type="file"] {
   }
 }
 .button-add {
-  @include core-16;
+  @include core-19;
+  margin-right: $gutter-half;
   padding: (18px $gutter $gutter-half $gutter);
   border: 1px solid $panel-colour;
   -webkit-box-shadow: none;
      -moz-box-shadow: none;
           box-shadow: none;
 
+  &,
   &:link,
   &:hover,
   &:focus,
   &:visited {
     color: $black;
-  }
-
-  &,
-  &:visited {
     background: $panel-colour;
   }
 

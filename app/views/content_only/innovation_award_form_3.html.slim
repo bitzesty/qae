@@ -142,37 +142,35 @@ header.page-header.group.page-header-wider
                        { step: "C 9.2" } do
           textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
 
-        = question_for "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here (we cannot guarantee these will be reviewed, so inlcude any vital information within the form).",
+        = question_for "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.",
                        { step: "C 10",
-                         context_text: "<p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb.</p>",
+                         context_text: "<p>We cannot guarantee these will be reviewed, so inlcude any vital information within the form</p><p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb.</p>",
                          help: {title: "Information we will not review",
                                 body: "<p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>"} } do
+          // Only show list if there is a least 1 document
+          ul.list-add
+            li
+              = link_to "Remove", "#", class: "remove-link"
+              // If 'upload document' is clicked
+              label
+                input type="file"
+              // File size limit in text
+              label.small
+                ' Description (optional)
+                textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
+            li
+              = link_to "Remove", "#", class: "remove-link"
+              // If 'add link' is clicked
+              label
+                ' File
+                input.medium type="text"
+              // File size limit in text
+              label.small
+                ' Description (optional)
+                textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
 
-          = link_to "Upload document"
-          br
-          = link_to "Add Link"
-          // Only show if there is a least 1 document
-          table
-            colgroup
-              col width="100"
-              col width="300"
-              col width="100"
-            thead
-              tr
-                th Document
-                th Description (optional)
-                th.text-right &nbsp;
-            tbody
-              tr
-                td
-                  // If 'upload document' is clicked
-                  input type="file"
-                  // If 'link to document' is clicked
-                    input.medium type="text"
-                td
-                  textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
-                td.text-right = link_to "Remove"
-          // File size limit in text
+          = link_to "+ Upload document", "#", class: "button button-add"
+          = link_to "+ Add Link", "#", class: "button button-add"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
