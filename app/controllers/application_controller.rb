@@ -13,15 +13,7 @@ class ApplicationController < ActionController::Base
     dashboard_path
   end
 
-  def after_sign_up_path_for(resource)
-    if resource.is_a?(User)
-      eligibility_path
-    else
-      super
-    end
-  end
-
-  protected
+  private
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:email, :password, :password_confirmation, :agreed_with_privacy_policy) }
