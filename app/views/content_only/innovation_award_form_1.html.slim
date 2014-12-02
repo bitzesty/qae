@@ -18,6 +18,7 @@ header.page-header.group.page-header-wider
                          help: [{title: "What name should I write?",
                                  body: "<p>Your answer should reflect the title registered with Companies House. If applicable, include 'trading as', or any other name by which the business is known.</p>"}] } do
           input.medium type="text"
+          // Autopopulate from registration page
 
         = question_for "Does your business operate as a principal?",
                        { step: "A 2",
