@@ -34,7 +34,7 @@ class AccountsController < ApplicationController
   def update_contact_settings
     if current_user.update(contact_settings_params)
       flash.notice = 'Account was successfully created'
-      redirect_to root_path
+      redirect_to dashboard_path
     else
       @active_step = 3
       render :contact_settings
