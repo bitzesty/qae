@@ -4,9 +4,9 @@ en:
       qae_info_source:
         govuk: Gov.UK
         compeditor: From a Competitor
-        buiseness_event: At a business event
+        business_event: At a business event
         national_press: In the National Press
-        buiseness_press: In the Business Press
+        business_press: In the Business Press
         online: Online
         local_trade_body: From a Local Trade body
         national_trade_body: From a National Trade body

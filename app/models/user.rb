@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
 
   enumerize :prefered_method_of_contact, in: %w(phone email)
   serialize :qae_info_source, Array
-  enumerize :qae_info_source, in: %w(govuk compeditor buiseness_event national_press buiseness_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other), multiple: true
+  enumerize :qae_info_source, in: %w(govuk compeditor business_event national_press business_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other), multiple: true
 
   private
 
