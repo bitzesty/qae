@@ -323,6 +323,23 @@ header.page-header.group.page-header-wider
                   br
                   input.small type="text" placeholder="£"
 
+        = question_for "Are any of these figures estimated?",
+                       { step: "B 5.5",
+                         conditional: {question: "My innovation is an integral part of",
+                                       value: "entire business"} } do
+          label.selectable
+            input type="radio" name="optionsFiguresEstimated" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsFiguresEstimated" value="no"
+            ' No
+
+        .js-conditional-question data-question="my-innovation-is-an-integral-part-of" data-value="entire business"
+          = question_for "Explain the use of estimates, and how much of these are actual receipts or firm orders.",
+                         { conditional: {question: "Are any of these figures estimated?",
+                                         value: "yes"} } do
+            textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+
         .js-conditional-drop-question
           = question_for "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made.",
                          { step: "B 5.4",
