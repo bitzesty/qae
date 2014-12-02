@@ -14,7 +14,7 @@ class AccountsController < ApplicationController
   end
 
   def update_correspondent_details
-    if current_user.update_attributes(correspondent_details_params)
+    if current_user.update(correspondent_details_params)
       redirect_to company_details_account_path
     else
       @active_step = 1
@@ -23,7 +23,7 @@ class AccountsController < ApplicationController
   end
 
   def update_company_details
-    if current_user.update_attributes(company_details_params)
+    if current_user.update(company_details_params)
       redirect_to contact_settings_account_path
     else
       @active_step = 2
@@ -32,7 +32,7 @@ class AccountsController < ApplicationController
   end
 
   def update_contact_settings
-    if current_user.update_attributes(contact_settings_params)
+    if current_user.update(contact_settings_params)
       flash.notice = 'Account was successfully created'
       redirect_to root_path
     else

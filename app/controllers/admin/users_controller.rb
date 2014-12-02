@@ -18,7 +18,7 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-    @user.update_attributes(user_params)
+    @user.update(user_params)
     respond_with :admin, @user
   end
 

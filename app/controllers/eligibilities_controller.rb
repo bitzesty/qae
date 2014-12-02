@@ -20,7 +20,7 @@ class EligibilitiesController < ApplicationController
 
   def update
     @eligibility.current_step = step
-    if @eligibility.update_attributes(eligibility_params)
+    if @eligibility.update(eligibility_params)
       if @eligibility.eligible?
         case step
         when :kind
