@@ -1,2 +1,2 @@
 = render partial: 'qae_form/form_header', object: @form, as: 'form'
-= render partial: 'qae_form/step', collection: @form.steps
+= render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form}

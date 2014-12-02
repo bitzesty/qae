@@ -203,24 +203,8 @@ class QAE2014Forms
           option '5 plus', '5 years or more'
         end
 
-        by_years :financial_year_dates, 'Please select your financial year end dates:' do
+        financial_year_dates :financial_year_dates, 'Please select your financial year end dates:' do
           ref 'B 2'
-
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-
-          type :date
         end
 
         number :employees, 'State the number of people employed by the company for each year of your entry.' do
@@ -246,79 +230,23 @@ class QAE2014Forms
           header_context '<p>These figures should be for your entire organisation.</p>'
           ref 'B 5'
           required
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         by_years :exports, 'of which exports' do 
           ref 'B 5.1'
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         by_years :net_profit, 'Net profit after tax but before dividends' do 
           ref 'B 5.2'
           required
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         by_years :total_net_assets, 'Total net assets' do 
           ref 'B 5.3'
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
@@ -334,79 +262,23 @@ class QAE2014Forms
           ref 'B 6'
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         by_years :sales, 'Sales' do 
           ref 'B 6.1'
           required
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         by_years :sales_exports, 'of which exports' do 
           ref 'B 6.2'
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         by_years :sales_royalties, 'of which royalties or licenses' do 
           ref 'B 6.3'
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         textarea :drops_in_sales, "Explain any drops in sales" do
@@ -439,20 +311,6 @@ class QAE2014Forms
         by_years :avg_unit_price, 'Average unit selling price/contract value' do 
           ref 'B 7'
           required
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         textarea :avg_unit_price, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
@@ -464,20 +322,6 @@ class QAE2014Forms
         by_years :avg_unit_cost, 'Cost, to you, of a single unit/contract' do 
           ref 'B 8'
           required
-          for_condition :innovation_performance_years, '2 to 4' do
-            year '1of2', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of2', Date.new(2012,10,1), Date.new(2013,9,30)
-          end
-
-          for_condition :innovation_performance_years, '5 plus' do
-            style 'span2-4'
-            year '1of5', Date.new(2013,10,1), Date.new(2014,9,30)
-            year '2of5', Date.new(2012,10,1), Date.new(2013,9,30)
-            year '3of5', Date.new(2011,10,1), Date.new(2012,9,30)
-            year '4of5', Date.new(2010,10,1), Date.new(2011,9,30)
-            year '5of5', Date.new(2009,10,1), Date.new(2010,9,30)
-          end
-          type :money
         end
 
         textarea :costs_change_desc, 'Explain your unit/ contract costs, highlighting any changes over the above periods.' do

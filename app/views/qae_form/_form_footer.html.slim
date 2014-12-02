@@ -1,18 +1,18 @@
 footer
   nav.pagination role="navigation" aria-label="Pagination"
     ul.group
-      - if current_step.index > 1
-        li.previous.js-step-link data-step="step-#{current_step.title.parameterize}"
+      - if step.previous
+        li.previous.js-step-link data-step="step-#{step.previous.title.parameterize}"
           = link_to "#", rel: "prev", title: "Navigate to previous part" do
             span class="pagination-label"
               ' Previous
             span class="pagination-part-title"
-              = current_step.title
+              = step.previous.title
 
-      - if current_step.index < @form.steps.length
-        li.next.js-step-link data-step="step-#{current_step.title.parameterize}"
+      - if step.next
+        li.next.js-step-link data-step="step-#{step.next.title.parameterize}"
           = link_to "#", rel: "next", title: "Navigate to next part" do
             span class="pagination-label"
               ' Next
             span class="pagination-part-title"
-              = current_step.title
+              = step.next.title

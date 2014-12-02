@@ -30,12 +30,25 @@ class QAEFormBuilder
 
   class Step
 
-    attr_accessor :title, :opts, :questions, :index
+    attr_accessor :title, :opts, :questions, :index, :form
 
-    def initialize title, opts={}
+    def initialize form, title, opts={}
+      @form = form
       @title = title
       @opts = opts
       @questions = []
+    end
+
+    def next
+      # index 1-based
+      @next ||= @form.steps[index]
+    end
+
+    def previous
+      # index 1-based
+      @previous ||= begin
+        @form.steps[index-2] if index-2 >=0
+      end
     end
 
   end

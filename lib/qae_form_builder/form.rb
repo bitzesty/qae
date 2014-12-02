@@ -10,7 +10,7 @@ class QAEFormBuilder
     end
 
     def step title, options = {}, &block
-      step = Step.new title, options
+      step = Step.new self, title, options
 
       step.index = @index
       @index += 1
