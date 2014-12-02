@@ -26,9 +26,9 @@ fieldset
             | *
       = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question'
 
-  - if question.help
+  - for help in question.help
     div.hidden-hint
       span.hidden-link
-        = question.help.title
+        = help.title
       span.hidden-content
-        == question.help.text
+        == help.text

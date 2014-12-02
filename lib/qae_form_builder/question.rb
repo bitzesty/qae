@@ -18,7 +18,7 @@ class QAEFormBuilder
     end
 
     def help title, text
-      @q.help = QuestionHelp.new(title, text)
+      @q.help << QuestionHelp.new(title, text)
     end
 
     def conditional key, value
@@ -39,6 +39,7 @@ class QAEFormBuilder
       @title = title
       @opts = opts
       @required = false
+      @help = []
     end
   end
 
