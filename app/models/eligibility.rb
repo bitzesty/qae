@@ -64,7 +64,7 @@ class Eligibility < ActiveRecord::Base
         when :true
           public_send("#{question}?")
         when :not_nil_or_charity
-          !answer.nil? && organization_kind == 'charity'
+          !answer.nil? || organization_kind == 'charity'
         else
           true
         end
