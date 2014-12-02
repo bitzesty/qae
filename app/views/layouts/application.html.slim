@@ -45,11 +45,13 @@ html
 
     #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
       #QAE
-        .flash
-          - [:alert, :notice].each do |kind|
-            - if flash[kind]
-              div id="#{kind}"
-                = flash[kind]
+        - [:alert, :notice].any?
+          .flash
+            .flash-inner
+              - [:alert, :notice].each do |kind|
+                - if flash[kind]
+                  div class="#{kind}"
+                    = flash[kind]
 
         main#content.group class="#{yield :page_content_class}" role="main"
           = yield

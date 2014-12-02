@@ -27,3 +27,6 @@ jQuery ->
       question.addClass("show-question")
     else
       question.removeClass("show-question")
+
+  # Fade out alerts after 5sec
+  $(".flash").delay(5000).fadeOut()
