@@ -358,7 +358,9 @@ header.page-header.group.page-header-wider
 
         = question_for "Upload an organisational chart (optional).",
                        { step: "A 16",
-                         context_text: "<p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>" } do
+                         context_text: "<p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>",
+                         conditional: {question: "Are you a division, branch or subsidiary?",
+                                      value: "yes"} } do
           input type="file"
 
         footer
