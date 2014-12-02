@@ -67,3 +67,22 @@ jQuery ->
   updateYearEnd()
   $("input[data-year]").change () ->
     updateYearEnd()
+
+  # Show/hide the correct step/page for the award form
+  $(document).on "click", ".js-step-link", (e) ->
+    e.preventDefault()
+    if !$(this).hasClass("step-current")
+      $(".js-step-condition.step-current").removeClass("step-current")
+      current = $(this).attr("data-step")
+      $(".js-step-condition[data-step='#{current}']").addClass("step-current")
+      # Show past link status
+      $(".steps-progress-bar .js-step-link.step-past").removeClass("step-past")
+      current_index = $(".steps-progress-bar .js-step-link").index($(this))
+      $(".steps-progress-bar .js-step-link").each () ->
+        this_index = $(".steps-progress-bar .js-step-link").index($(this))
+        if this_index < current_index
+          $(this).addClass("step-past")
+      # Scroll to top
+      $("html, body").animate(
+        scrollTop: 0
+      , 0)

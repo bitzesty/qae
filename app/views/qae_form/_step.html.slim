@@ -1,5 +1,6 @@
-.article-container.article-container-wider
+.article-container.article-container-wider.step-article.js-step-condition class="#{'step-current' if step == @form.steps.first}" data-step="step-#{step.title.parameterize}"
   article.group role="article"
     .inner
       form.qae-form
         = render partial: "qae_form/question", collection: step.questions
+        = render partial: "qae_form/form_footer", locals: {current_step: step}

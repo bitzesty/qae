@@ -1,0 +1,17 @@
+// Show/hide the correct step/page for the award form
+.step-header,
+.step-article {
+  display: none;
+
+  &.step-current {
+    display: block;
+  }
+}
+
+.js-step-link {
+  cursor: pointer;
+
+  &.step-current {
+    cursor: default;
+  }
+}
