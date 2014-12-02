@@ -12,6 +12,71 @@ header.page-header.group.page-header-wider
   article.group role="article"
     .inner
       form.qae-form
+        = question_for "Confirmation of consent",
+                       { step: "E 1",
+                         required: true } do
+          label.selectable.selectable-confirm
+            input type="checkbox"
+            ' I confirm that I have the consent of the Head of the applicant business (as identified in A11) to submit this entry form.
+
+        = question_for "We will contact you regarding your entry. We may also wish to contact you about other issues relating to The Queen's Award for Enterprise (eg. acting as a case study). Are you happy for us to do this?",
+                       { step: "E 2" } do
+          label.selectable
+            input type="radio" name="optionsHappyContact" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsHappyContact" value="no"
+            ' No
+
+        = question_for "Details of a contact within your business for application-related enquiries",
+                       { step: "E 3",
+                         required: true } do
+          p.group
+            label
+              ' Title
+              input.small type="text"
+          p.group
+            label
+              ' First name
+              input.medium type="text"
+          p.group
+            label
+              ' Last name
+              input.medium type="text"
+          // This section will be pre-filled with the account details provided during registration
+
+        = question_for "Position",
+                       { step: "E 3.1",
+                         required: true } do
+          input.medium type="text"
+
+        = question_for "Email address",
+                       { step: "E 3.2",
+                         required: true } do
+          p.group
+            label
+              ' Email address
+              input.medium type="email"
+          p.group
+            label
+              ' Confirm email address
+              input.medium type="email"
+          // Validate both are the same
+
+        = question_for "Telephone number",
+                       { step: "E 3.3",
+                         required: true } do
+          input.medium type="text"
+
+        = question_for "Confirmation of entry",
+                       { step: "E 4",
+                         required: true } do
+          label.selectable.selectable-confirm
+            input type="checkbox"
+            ' By ticking this box, I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
+            br
+            br
+            ' I am not aware of any matter which might cast doubt upon the worthiness of this business unit to receive a Queen’s Award. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety.
 
         br
         .application-notice.info-notice
