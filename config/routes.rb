@@ -43,6 +43,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :eligibility, only: [:show, :update] do
+    collection do
+      get :failure
+      get :success
+    end
+  end
+
   namespace :admin do
     resources :users
   end

@@ -10,6 +10,7 @@ class User < ActiveRecord::Base
 
   begin :associations
     has_many :form_answers, dependent: :destroy
+    has_one :eligibility, dependent: :destroy
   end
 
   enumerize :prefered_method_of_contact, in: %w(phone email)

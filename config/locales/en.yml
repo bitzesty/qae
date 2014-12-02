@@ -13,3 +13,7 @@ en:
         mail_from_qae: By Direct mail from The Queen's Awards Office
         word_of_mouth: General word of mouth
         other: Other
+    eligibility:
+      kind:
+        application: Apply
+        nomination: Nominate

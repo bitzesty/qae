@@ -1,0 +1,14 @@
+.question
+  h2
+    = Eligibility.label(step)
+  .question-body
+    p.hint
+      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    = f.input :has_management_and_two_employees, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+    span.clear
+    .hidden-hint
+      span.hidden-link
+        ' Why are you asking me this?
+      span.hidden-content
+        p
+          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

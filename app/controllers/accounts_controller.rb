@@ -1,4 +1,6 @@
 class AccountsController < ApplicationController
+  before_action :check_eligibility
+
   def correspondent_details
     @active_step = 1
   end
@@ -51,5 +53,13 @@ class AccountsController < ApplicationController
 
   def contact_settings_params
     params.require(:user).permit(:prefered_method_of_contact, :subscribed_to_emails, :qae_info_source_other, { qae_info_source: [] })
+  end
+
+  private
+
+  def check_eligibility
+    if !current_user.eligibility || !current_user.eligibility.passed?
+      redirect_to eligibility_path
+    end
   end
 end
