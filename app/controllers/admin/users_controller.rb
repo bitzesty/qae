@@ -10,12 +10,15 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def create
-    @user = User.create(user_params)
+    @user = User.new(user_params)
+    @user.agreed_with_privacy_policy = '1'
+
+    @user.save
     respond_with :admin, @user
   end
 
   def update
-    @user.update_attributes(user_params)
+    @user.update(user_params)
     respond_with :admin, @user
   end
 

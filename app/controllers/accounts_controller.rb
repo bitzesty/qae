@@ -1,0 +1,65 @@
+class AccountsController < ApplicationController
+  before_action :check_eligibility
+
+  def correspondent_details
+    @active_step = 1
+  end
+
+  def company_details
+    @active_step = 2
+  end
+
+  def contact_settings
+    @active_step = 3
+  end
+
+  def update_correspondent_details
+    if current_user.update(correspondent_details_params)
+      redirect_to company_details_account_path
+    else
+      @active_step = 1
+      render :correspondent_details
+    end
+  end
+
+  def update_company_details
+    if current_user.update(company_details_params)
+      redirect_to contact_settings_account_path
+    else
+      @active_step = 2
+      render :company_details
+    end
+  end
+
+  def update_contact_settings
+    if current_user.update(contact_settings_params)
+      flash.notice = 'Account was successfully created'
+      redirect_to root_path
+    else
+      @active_step = 3
+      render :contact_settings
+    end
+  end
+
+  private
+
+  def correspondent_details_params
+    params.require(:user).permit(:title, :first_name, :last_name, :job_title, :phone_number)
+  end
+
+  def company_details_params
+    params.require(:user).permit(:company_name, :company_address_first, :company_address_second, :company_city, :company_country, :company_postcode, :company_phone_number)
+  end
+
+  def contact_settings_params
+    params.require(:user).permit(:prefered_method_of_contact, :subscribed_to_emails, :qae_info_source_other, { qae_info_source: [] })
+  end
+
+  private
+
+  def check_eligibility
+    if !current_user.eligibility || !current_user.eligibility.passed?
+      redirect_to eligibility_path
+    end
+  end
+end

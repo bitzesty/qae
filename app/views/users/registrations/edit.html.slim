@@ -6,7 +6,7 @@ header.page-header.group
 .article-container
   article.group role="article"
     .inner
-      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: "edit_user qae-form" }) do |f|
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "edit_user qae-form" }, builder: SimpleForm::AccountFormBuilder) do |f|
         /= f.error_notification
 
         h2
@@ -15,18 +15,12 @@ header.page-header.group
               ' Step 1
           ' Correspondent details
 
-        = render "account/form_correspondent_details"
+        = render "accounts/form_correspondent_details", f: f
 
         fieldset
           h2
             ' Your email address
-
-          .question-group
-            label
-              span.visuallyhidden
-                ' Email address
-              = f.input :email, required: true, label: false, input_html: {class: "big medium"}
-
+          = f.input :email, input_html: { class: 'big medium'}, label_html: { class: 'visuallyhidden' }
         br
 
         h2
@@ -35,7 +29,7 @@ header.page-header.group
               ' Step 2
           ' Company details
 
-        = render "account/form_company_details"
+        = render "accounts/form_company_details", f: f
 
         br
 
@@ -48,17 +42,9 @@ header.page-header.group
         fieldset
           h2
             ' How would you prefer we contact you?
-          .question-group
-            span.visuallyhidden
-              ' How would you prefer we contact you?
-            label.selectable
-              input type="radio" name="optionsContactPreference"
-              ' Phone
-            label.selectable
-              input type="radio" name="optionsContactPreference"
-              ' Email
+          = f.input :prefered_method_of_contact, as: :radio_buttons, item_wrapper_class: 'selectable', label: false
 
-        = render "account/form_contact_settings"
+        = render "accounts/form_contact_settings", f: f
 
         br
 
