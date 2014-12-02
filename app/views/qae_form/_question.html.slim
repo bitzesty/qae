@@ -1,3 +1,9 @@
+- if question.header
+  h2
+    = question.header
+  - if question.header_context
+    == question.header_context
+
 fieldset
   - if question.title
     h2

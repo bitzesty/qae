@@ -24,6 +24,14 @@ class QAEFormBuilder
     def conditional key, value
       @q.condition = QuestionCondition.new key, value
     end
+
+    def header header
+      @q.header = header
+    end
+
+    def header_context header_context
+      @q.header_context = header_context
+    end
   end
 
   QuestionCondition = Struct.new(:question_key, :question_value)
@@ -32,7 +40,7 @@ class QAEFormBuilder
 
   class Question
     attr_accessor :key,  :title, :context, :opts,
-      :required, :help, :ref, :condition
+      :required, :help, :ref, :condition, :header, :header_context
 
     def initialize key, title, opts={}
       @key = key
