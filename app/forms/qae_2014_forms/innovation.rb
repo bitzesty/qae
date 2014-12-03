@@ -256,12 +256,11 @@ class QAE2014Forms
           words_max 200
         end
  
-        by_years :total_net_assets, 'Total net assets' do 
+        by_years :units_sold, 'Number of units/contracts sold' do 
           header 'Product/Service Financials'
           
           ref 'B 6'
           required
-          context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
         end
 
         by_years :sales, 'Sales' do 
@@ -313,13 +312,13 @@ class QAE2014Forms
           required
         end
 
-        textarea :avg_unit_price, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
+        textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
           rows 5
           chars_max 1200
           words_max 200
         end
 
-        by_years :avg_unit_cost, 'Cost, to you, of a single unit/contract' do 
+        by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
           ref 'B 8'
           required
         end

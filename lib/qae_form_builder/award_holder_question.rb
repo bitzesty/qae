@@ -18,8 +18,7 @@ class QAEFormBuilder
   class AwardHolderQuestion < Question
     attr_reader :categories, :years
 
-    def initialize key, title, opts={}
-      super key, title, opts
+    def after_create
       @categories = []
       @years = []
     end

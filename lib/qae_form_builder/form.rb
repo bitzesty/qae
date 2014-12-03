@@ -1,12 +1,18 @@
 class QAEFormBuilder
   class Form
-    attr_reader :title, :opts, :steps
+    attr_reader :title, :opts, :steps, :questions_by_key
 
     def initialize title, opts={}
       @title = title
       @opts = opts
       @steps = []
       @index = 1
+
+      @questions_by_key = {}
+    end
+
+    def [] key
+      @questions_by_key[key]
     end
 
     def step title, options = {}, &block

@@ -18,8 +18,7 @@ class QAEFormBuilder
   class OptionsQuestion < Question
     attr_reader :options
 
-    def initialize key, title, opts={}
-      super key, title, opts
+    def after_create
       @options = []
     end
   end

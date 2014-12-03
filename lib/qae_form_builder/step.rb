@@ -20,10 +20,12 @@ class QAEFormBuilder
     private
 
     def create_question builder_klass, klass, id, title, opts={}, &block
-      q = klass.new id, title, opts
+      q = klass.new @step, id, title, opts
       b = builder_klass.new q
       b.instance_eval &block if block_given?
       @step.questions << q
+      raise ArgumentError, "Duplicate question key #{q.key}" if @step.form[q.key]
+      @step.form.questions_by_key[q.key] = q
       q
     end
   end

@@ -39,16 +39,35 @@ class QAEFormBuilder
   QuestionHelp = Struct.new(:title, :text)
 
   class Question
-    attr_accessor :key,  :title, :context, :opts,
+    attr_accessor :step, :key,  :title, :context, :opts,
       :required, :help, :ref, :condition, :header, :header_context
 
-    def initialize key, title, opts={}
+    def initialize step, key, title, opts={}
+      @step = step
       @key = key
       @title = title
       @opts = opts
       @required = false
       @help = []
+      self.after_create if self.respond_to?(:after_create)
     end
+
+    def form
+      step.form
+    end
+
+    def parameterized_title
+      title.parameterize
+    end
+
+    def condition_value
+      condition.question_value if condition
+    end
+
+    def condition_question
+      form[condition.question_key] if condition
+    end
+
   end
 
 end

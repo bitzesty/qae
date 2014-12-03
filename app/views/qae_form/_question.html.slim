@@ -4,7 +4,7 @@
   - if question.header_context
     == question.header_context
 
-fieldset
+fieldset class="question-block js-conditional-answer #{'js-conditional-question' if question.condition}" data-answer=question.parameterized_title data-question="#{question.condition_question.parameterized_title if question.condition_question}" data-value=question.condition_value
   - if question.title
     h2
       - if question.ref
