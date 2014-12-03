@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
   validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
 
+  validates :role, presence: true
+
   begin :associations
     has_many :form_answers, dependent: :destroy
     has_one :eligibility, dependent: :destroy
