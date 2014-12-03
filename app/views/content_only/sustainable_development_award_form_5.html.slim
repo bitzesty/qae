@@ -82,10 +82,6 @@ header.page-header.group.page-header-wider
         .application-notice.info-notice
           p
             ' Note that you can come back to make changes even after submitting until the deadline.
-        br
-
-        p.form-submit
-          = link_to "Submit application", sustainable_development_award_confirm_path, class: "button large"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
@@ -96,3 +92,5 @@ header.page-header.group.page-header-wider
                     ' Previous
                   span class="pagination-part-title"
                     ' Declaration of Corporate Responsibility
+              li.submit
+                = link_to "Submit application", innovation_award_confirm_path, class: "button"

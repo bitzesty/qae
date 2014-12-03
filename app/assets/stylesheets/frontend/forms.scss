@@ -294,18 +294,6 @@ input[type="file"] {
   }
 }
 
-// Prominent link
-.prominent {
-  @include bold-19;
-  display: block;
-  margin-bottom: $gutter;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
 // Hidden hints as seen on
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
 .hidden-hint {
@@ -503,6 +491,26 @@ input[type="file"] {
 
   &:before {
     display: none;
+  }
+}
+
+// Styles and positions submit button in pagination
+.pagination {
+  li.submit {
+    width: 51%;
+    margin-top: 1em;
+  }
+
+  .button {
+    @include button;
+    @include core-24($line-height: (16 / 24));
+    padding: 0.45em 0.5em 0.45em 0.5em;
+    display: inline-block;
+
+    /* IE6 adds its own side padding so requires no extra */
+    @include ie(6) {
+      padding: 0.45em 0.5em 0.62em 0.5em;
+    }
   }
 }
 
