@@ -13,6 +13,8 @@ header.page-header.group
           span.steps#step-1
             span.visuallyhidden
               ' Step 1
+            span.todo
+              ' 1
           ' Correspondent details
 
         = render "accounts/form_correspondent_details", f: f
@@ -27,6 +29,8 @@ header.page-header.group
           span.steps#step-2
             span.visuallyhidden
               ' Step 2
+            span.todo
+              ' 2
           ' Company details
 
         = render "accounts/form_company_details", f: f
@@ -37,6 +41,8 @@ header.page-header.group
           span.steps#step-3
             span.visuallyhidden
               ' Step 3
+            span.todo
+              ' 3
           ' Correspondent preferences
 
         fieldset
@@ -53,6 +59,8 @@ header.page-header.group
           span.steps#step-4
             span.visuallyhidden
               ' Step 4
+            span.todo
+              ' 4
           ' Change Your Password
 
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
@@ -93,6 +101,8 @@ header.page-header.group
           span.steps#step-5
             span.visuallyhidden
               ' Step 5
+            span.todo
+              ' 5
           ' Add Collaborators
 
         table
