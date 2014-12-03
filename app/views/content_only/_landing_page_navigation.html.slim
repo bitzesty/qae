@@ -2,21 +2,21 @@ aside
   .inner
     nav.page-navigation.page-navigation-closed role="navigation" aria-label="parts to this guide"
       ol
-        li class="#{'active' if current_step==1}"
+        li class=('active' if current_step==1)
           span.part-number 1.
           - if current_step == 1
             span Overview
           - else
             = link_to "Overview", root_path, title: "Part 1: Overview"
 
-        li class="#{'active' if current_step==2}"
+        li class=('active' if current_step==2)
           span.part-number 2.
           - if current_step == 2
             span Eligibility for organisations
           - else
             = link_to "Eligibility for organisations", awards_for_organisations_path, title: "Part 2: Eligibility for organisations"
 
-        li class="#{'active' if current_step==3}"
+        li class=('active' if current_step==3)
           span.part-number 3.
           - if current_step == 3
             span Eligibility for individuals
@@ -24,21 +24,21 @@ aside
             = link_to "Eligibility for individuals", enterprise_promotion_awards_path, title: "Part 3: Eligibility for individuals"
 
       ol start="4"
-        li class="#{'active' if current_step==4}"
+        li class=('active' if current_step==4)
           span.part-number 4.
           - if current_step == 4
             span How to apply
           - else
             = link_to "How to apply", how_to_apply_path, title: "Part 4: How to apply"
 
-        li class="#{'active' if current_step==5}"
+        li class=('active' if current_step==5)
           span.part-number 5.
           - if current_step == 5
             span What happens next
           - else
             = link_to "What happens next", what_happens_next_path, title: "Part 5: What happens next"
 
-        li class="#{'active' if current_step==6}"
+        li class=('active' if current_step==6)
           span.part-number 6.
           - if current_step == 6
             span Additional information &amp; Contact

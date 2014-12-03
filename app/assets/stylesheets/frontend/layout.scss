@@ -252,6 +252,12 @@
   }
 }
 
+// Fixes conflict with using aside as page navigations on other pages inside the header
+header.page-header aside .inner {
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
 // Progress steps based on `2. Progress bar`
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators
 .steps-progress-bar {
