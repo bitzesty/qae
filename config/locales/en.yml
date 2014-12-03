@@ -15,8 +15,8 @@ en:
         other: Other
     eligibility:
       kind:
-        application: Apply
-        nomination: Nominate
+        application: Apply for an award
+        nomination: Nominate an individual
       industry:
           product_business: Product business
           service_business: Service business
