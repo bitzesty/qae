@@ -8,7 +8,7 @@ fieldset class="question-block js-conditional-answer #{'js-conditional-question'
   - if question.title
     h2
       - if question.ref
-        span.steps id="step-#{question.ref.to_s.parameterize}"
+        span class="steps step-#{question.ref.to_s.parameterize}"
           span.visuallyhidden
             = "Step #{question.ref.to_s}"
           span.todo

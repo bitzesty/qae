@@ -6,6 +6,10 @@ class QAEFormBuilder
       @step = step
     end
 
+    def context context
+      @step.context = context
+    end
+
     def method_missing(meth, *args, &block)
       klass_builder = QAEFormBuilder.const_get( "#{meth.to_s.camelize}QuestionBuilder" ) rescue nil
       klass = QAEFormBuilder.const_get( "#{meth.to_s.camelize}Question" ) rescue nil
@@ -32,7 +36,7 @@ class QAEFormBuilder
 
   class Step
 
-    attr_accessor :title, :opts, :questions, :index, :form
+    attr_accessor :title, :opts, :questions, :index, :form, :context
 
     def initialize form, title, opts={}
       @form = form
