@@ -6,16 +6,31 @@ header.page-header.group
 .article-container
   article.group role="article"
     .inner
+      .application-notice.help-notice
+        p
+          ' Currently your organisation does not meets the basic eligibility criteria.
+      br
       p
         ' The reason why you are not eligible lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
       br
 
       form.qae-form
-        p.group
+        .question-group
           label
-            ' If you want to be reminded about the award in the next years, type your email address:
-            input.big.medium type="email"
+            ' Are you happy for us to contact you in the future with information about the Queen’s Awards?
+          .input.radio_buttons.optional
+            label.radio.selectable
+              input.radio_buttons.optional type="radio" value="yes"
+              ' Yes, I am happy to be contacted
+            label.radio.selectable
+              input.radio_buttons.optional type="radio" value="no"
+              ' No, please do not contact me
+          .clear
 
         p.form-submit
           button.button.large type="submit"
-            ' Submit
+            ' Confirm
+
+      .eligibility-finish-previous-answers
+        = render "previous_answers"
