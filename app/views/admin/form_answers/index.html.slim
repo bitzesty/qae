@@ -1,0 +1,28 @@
+header.page-header.group
+  div
+    h1
+      ' Applications
+
+.article-related-positioning-container
+  .article-container
+    article.group role="article"
+      .inner
+        table.table
+          thead
+            tr
+              th User
+              th Created at
+              th
+              th
+          tbody
+            - @form_answers.each do |form_answer|
+              tr
+                td
+                  = link_to form_answer.user.email, admin_user_path(form_answer.user)
+                td = form_answer.created_at
+                td = "Withdrawn" if form_answer.withdrawn?
+                td
+                  - action = form_answer.withdrawn? ? "Restore" : "Withdraw"
+                  =' link_to action, withdraw_admin_form_answer_path(form_answer), method: :post
+
+        = paginate @form_answers
