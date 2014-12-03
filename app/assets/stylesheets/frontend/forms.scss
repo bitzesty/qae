@@ -1,3 +1,26 @@
+// Error styling
+.field_with_errors .error,
+.smart_answer article .error {
+  @include core-19;
+  clear: both;
+  display: block;
+  margin: 1em 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+
+  .page-devise & {
+    @include core-16;
+    margin-top: 1.5em;
+    margin-bottom: 0.2em;
+    margin-left: 207px;
+  }
+}
+
+.page-devise .boolean .error {
+  margin-left: 0;
+}
+
 // Expanded the standard input style to include other types
 input[type="text"],
 input[type="search"],
