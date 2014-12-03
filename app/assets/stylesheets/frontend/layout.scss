@@ -340,6 +340,15 @@ header.page-header aside .inner {
   }
 }
 
+// Fix the spacing for lists in the .help-notice
+article .help-notice ul {
+  padding-left: 3.3em;
+  @media (max-width: 640px) {
+    padding-left: 2em;
+  }
+}
+
+// Application alert messages
 .flash {
   position: absolute;
   top: 100px;

@@ -9,6 +9,13 @@ header.page-header.group
   .article-container
     article.group role="article"
       .inner
+        - if params[:eligible] == "innovation"
+          .application-notice.help-notice
+            p
+              ' Your organisation meets the eligibility criteria for
+            ul
+              li The Innovation Award
+
         h2
           ' Awards for organisations
 
@@ -36,7 +43,7 @@ header.page-header.group
             small
               /' Unclear eligibility
             .pull-right
-              = link_to "Start application", apply_innovation_award_path
+              = link_to "Start application", "#"
 
   .related-positioning.related-positioning-no-header
     .related-container
