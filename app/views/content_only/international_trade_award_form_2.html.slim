@@ -92,7 +92,7 @@ header.page-header.group.page-header-wider
           br
           label
             ' Additional comments (optional)
-            textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
+            textarea.js-char-count rows="5" data-word-max="100"
             span.hint
               ' If your year-end date changed during the application period, please explain.
 
@@ -305,7 +305,7 @@ header.page-header.group.page-header-wider
           = question_for "Explain any drops in overseas sales, turnover or net profit, and any losses made.",
                          { step: "B 4.3",
                            required: true } do
-            textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+            textarea.js-char-count rows="5" data-word-max="500"
 
 
         = question_for "Are any of these figures estimated?",
@@ -322,7 +322,7 @@ header.page-header.group.page-header-wider
         = question_for "Explain the use of estimates, and how much of these are actual receipts or firm orders.",
                        { conditional: {question: "Are any of these figures estimated?",
                                        value: "yes"} } do
-          textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+          textarea.js-char-count rows="5" data-word-max="200"
 
         = question_for "Do you purchase your products/services (or any components) from overseas for resale overseas?",
                        { step: "B 4.5",
@@ -476,7 +476,7 @@ header.page-header.group.page-header-wider
         = question_for "Describe the benefits of this business model to the UK.",
                        { conditional: {question: "Do you manufacture overseas?",
                                        value: "yes"} } do
-          textarea.js-char-count rows="5" maxlength="2400" data-word-max="400"
+          textarea.js-char-count rows="5" data-word-max="400"
 
         = question_for "Does you franchise your operations overseas?",
                        { step: "B 6",
@@ -492,7 +492,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Does you franchise your operations overseas?",
                                        value: "yes"} } do
-          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+          textarea.js-char-count rows="5" data-word-max="500"
 
         = question_for "Have you received any grant funding to support this product/service?",
                        { step: "B 7",
@@ -508,7 +508,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Have you received any grant funding to support this product/service?",
                                        value: "yes"} } do
-          textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
+          textarea.js-char-count rows="5" data-word-max="300"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
