@@ -21,9 +21,5 @@ header.page-header.group
         footer
           nav.pagination role="navigation" aria-label="Pagination"
             ul.group
-              li.next
-                = link_to company_details_account_path, rel: "next", title: "Navigate to next part", id: 'account-next-step' do
-                  span class="pagination-label"
-                    ' Next step
-                  span class="pagination-part-title"
-                    ' Company Details
+              li.submit
+                = f.submit "Next step", class: "button"

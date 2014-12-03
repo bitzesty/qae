@@ -496,7 +496,32 @@ input[type="file"] {
 
 // Styles and positions submit button in pagination
 .pagination {
+  li.previous-alternate {
+    a {
+      margin-top: $gutter;
+      padding: 0;
+
+      &:before {
+        display: none;
+      }
+
+      &:hover {
+        background: none;
+
+        .pagination-label {
+          text-decoration: none;
+        }
+      }
+
+      .pagination-label {
+        @include core-16;
+        text-decoration: underline;
+      }
+    }
+  }
+
   li.submit {
+    float: right;
     width: 51%;
     margin-top: 1em;
   }
