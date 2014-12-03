@@ -30,12 +30,18 @@ class EligibilitiesController < ApplicationController
             redirect_to next_wizard_path
           end
         when :organization_kind
-          if @eligibility.kind == 'charity'
-            redirect_to wizard_path(:based_in_uk)
+          if @eligibility.organization_kind == 'charity'
+            redirect_to wizard_path(:registered)
           else
             redirect_to next_wizard_path
           end
-        when :demonstrated_comercial_success
+        when :registered
+          if @eligibility.registered?
+            redirect_to wizard_path(:demonstrated_comercial_success)
+          else
+            redirect_to next_wizard_path
+          end
+        when :current_holder
           redirect_to success_eligibility_path
         else
           redirect_to next_wizard_path

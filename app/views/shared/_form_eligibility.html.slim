@@ -1,11 +1,50 @@
-// Some, not all, of the basic elibility questions featured in eligibility_[n] pages
 .question
   h2
-    ' What kind of organisation are you?
+    ' Is the part of your organisation you wish to enter for a Queen's Award based in the UK?
   .question-body
     p.hint
-      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.
+      ' UK' includes the Channel Islands and the Isle of Man.
     div
+      ul.options
+        li
+          label.selectable
+            input type="radio"
+            ' Yes
+        li
+          label.selectable
+            input type="radio"
+            ' No
+
+.question
+  h2
+    ' Does the part of your organisation you wish to enter for a Queen's Award have two or more full-time UK employees?
+  .question-body
+    p.hint
+      ' Part-time staff should be counted in full-time equivalents.
+    div
+      span.error.visuallyhidden
+        ' Sorry, you are not eligible. You must be a UK-based organisation/branch/subsidiary to apply for a Queen's Award for Enterprise.
+      ul.options
+        li
+          label.selectable
+            input type="radio"
+            ' Yes
+        li
+          label.selectable
+            input type="radio"
+            ' No
+
+.question
+  h2
+    ' What kind of organisation is it?
+  .question-body
+    p.hint
+      ' e.g. For business: companies, partnerships, social enterprise.
+      br
+      ' e.g. For not-for-profit: charities, foundation, associations.
+    div
+      span.error.visuallyhidden
+        ' Sorry, you are not eligible. You must currently have 2 or more full-time UK employees to apply for a Queen's Award for Enterprise.
       ul.options
         li
           label.selectable
@@ -14,20 +53,29 @@
         li
           label.selectable
             input type="radio"
-            ' Charity
-    .hidden-hint
-      span.hidden-link
-        ' Why are you asking me this?
-      span.hidden-content
-        p
-          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            ' Not-for-profit
 
 .question
   h2
-    ' Is your business based in UK?
+    ' Is the business mainly:
+  .question-body
+    div
+      ul.options
+        li
+          label.selectable
+            input type="radio"
+            ' Product business/ Service business
+        li
+          label.selectable
+            input type="radio"
+            ' Service business
+
+.question
+  h2
+    ' Is the part of your organisation you wish to enter for a Queen's Award registered with the UK Government?
   .question-body
     p.hint
-      ' Including the Channel Islands and the Isle of Man.
+      ' e.g. as a limited company, a CIC, limited partnership, charity.
     div
       ul.options
         li
@@ -38,19 +86,51 @@
           label.selectable
             input type="radio"
             ' No
-    .hidden-hint
-      span.hidden-link
-        ' Why are you asking me this?
-      span.hidden-content
-        p
-          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
 .question
   h2
-    ' Is your organisation a self-contained enterprise which markets its own products or services?
+    ' Has it been acting as a self-contained operational unit?
   .question-body
     p.hint
-      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+      ' A self-contained unit is under its own management and markets its own products or services. It also issues invoices and receives payments.
+    div
+      span.error.visuallyhidden
+        ' Sorry, you are not eligible. Organisations not registered with the UK Government must be self-contained operational units  in order to be eligible for a Queen's Award for Enterprise.
+      ul.options
+        li
+          label.selectable
+            input type="radio"
+            ' Yes
+        li
+          label.selectable
+            input type="radio"
+            ' No
+
+.question
+  h2
+    ' Can you demonstrate commercial success in the part of your organisation you wish to enter?
+  .question-body
+    p.hint
+      ' An entrant's (business or non-proft) pattern of growth demonstrates 'commercial success' if factors such as profitability, turnover, market share and performance have met/exceeded business plan targets.
+    div
+      span.error.visuallyhidden
+        ' Sorry, you are not eligible. You must be able to demonstrate your organisation's commercial success to apply for a Queen's Award for Enterprise.
+      ul.options
+        li
+          label.selectable
+            input type="radio"
+            ' Yes
+        li
+          label.selectable
+            input type="radio"
+            ' No
+
+.question
+  h2
+    ' Are you a current Queen's Award holder?
+  .question-body
+    p.hint
+      ' In any category.
     div
       ul.options
         li
@@ -61,55 +141,10 @@
           label.selectable
             input type="radio"
             ' No
-    .hidden-hint
-      span.hidden-link
-        ' I don't know if my organisation is self-contained
-      span.hidden-content
-        p
-          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-.question
-  h2
-    ' Is your organisation under its own management, with at least 2 full-time employees or part-time equivalents?
-  .question-body
-    p.hint
-      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    div
-      ul.options
-        li
-          label.selectable
-            input type="radio"
-            ' Yes
-        li
-          label.selectable
-            input type="radio"
-            ' No
-    .hidden-hint
-      span.hidden-link
-        ' Why are you asking me this?
-      span.hidden-content
+    #current-holder-info.visuallyhidden
+      br
+      .application-notice.info-notice
         p
-          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          ' If you won your award in the last two years you can still apply, but new applicants will be given priority.
 
-.question
-  h2
-    ' Is your organisation able to demonstrate commercial success?
-  .question-body
-    p.hint
-      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    div
-      ul.options
-        li
-          label.selectable
-            input type="radio"
-            ' Yes
-        li
-          label.selectable
-            input type="radio"
-            ' No
-    .hidden-hint
-      span.hidden-link
-        ' What can be considered commercial success?
-      span.hidden-content
-        p
-          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
