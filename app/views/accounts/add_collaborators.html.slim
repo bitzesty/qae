@@ -1,0 +1,44 @@
+- provide(:page_content_class, "multi-page page-account")
+
+header.page-header.group
+  div
+    h1
+      ' Your account details
+
+    = render "steps_progress_bar"
+
+    h2
+      - unless current_user.completed_registration
+        ' Step 4 of 4:
+      ' Add Collaborators
+
+.article-container
+  article.group role="article"
+    .inner
+      = simple_form_for current_user, url: update_add_collaborators_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
+        // TODO remove form_contact_settins
+        .visuallyhidden
+          = render "form_contact_settings", f: f
+
+        = render "form_add_collaborators", f: f
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
+                  span class="pagination-label"
+                    ' Previous step
+                  span class="pagination-part-title"
+                    ' Contact Settings
+
+              - unless current_user.completed_registration
+                li.submit
+                  = f.submit "Continue to Dashboard", class: "button"
+              - else
+                li.next
+                  = link_to password_settings_account_path, rel: "next", title: "Navigate to next part", id: 'account-next-step' do
+                    span class="pagination-label"
+                      ' Next step
+                    span class="pagination-part-title"
+                      ' Password Settings

@@ -6,6 +6,10 @@ class ContentOnlyController < ApplicationController
   def home
   end
 
+  def dashboard
+    current_user.update_attribute(:completed_registration, true)
+  end
+
   def innovation
     @form = QAE2014Forms.innovation
     render template: 'qae_form/show'
