@@ -21,6 +21,8 @@ module Qae
     # config.i18n.default_locale = :de
     config.autoload_paths += Dir["#{config.root}/lib/**/"]
 
+    config.autoload_paths += %W( #{config.root}/app/forms/ )
+ 
     config.assets.precompile += %w{
       application.css
       application-ie9.css

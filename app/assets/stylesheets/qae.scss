@@ -25,6 +25,7 @@ $gutter-one-sixth: $gutter/6;
 #QAE {
   @import 'frontend/views/dashboard';
   @import 'frontend/views/eligibility';
+  @import 'frontend/views/award_form';
 }
 
 // Password strength bar

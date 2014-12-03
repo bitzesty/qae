@@ -1,588 +1,176 @@
 header.page-header.group.page-header-wider
   div
     h1
-      ' Apply for the innovation award
+      ' Apply for the Innovation Award
 
     = render "innovation_award_form/steps_progress_bar"
 
     h2
-      ' Step 3 of 5: Commercial Performance
+      ' Step 3 of 5: Description of Goods or Services
 
 .article-container.article-container-wider
   article.group role="article"
     .inner
+      p
+        ' When answering these questions please avoid using technical jargon where possible. If you have more than one innovative product/service you will need to submit more than one application.
+
       form.qae-form
-        fieldset
-          h2
-            span.steps#step-17
-              span.visuallyhidden
-                ' Step 17
-            ' Please select either ‘Outstanding’ (2 years) or ‘Continuous’ (5 years)
-            abbr *
-          p.group
-            span.visuallyhidden
-              ' Please select either ‘Outstanding’ (2 years) or ‘Continuous’ (5 years)
-            label.selectable
-              input type="checkbox"
-              ' Outstanding
-            label.selectable
-              input type="checkbox"
-              ' Continuous
-          .hidden-hint
-            span.hidden-link
-              ' What doe outstanding innovation mean?
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          .hidden-hint
-            span.hidden-link
-              ' What doe continuous innovation mean?
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Briefly describe your product/service/intiative",
+                       { step: "C 1",
+                         required: true,
+                         context_text: "<p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>" } do
+          textarea.js-char-count rows="1" maxlength="90" data-word-max="15"
 
-          h2
-            span.steps#step-17-1
-              span.visuallyhidden
-                ' Step 17.1
-            ' Please select your financial year end date between 1 October 2013 and 30 September 2014 for the final year of the entry using the online calendar
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Please select your financial year end date between 1 October 2013 and 30 September 2014 for the final year of the entry using the online calendar
-                abbr *
-            span.row
-              span.span-3
-                label
-                  ' Year 1 ended
-                  br
-                  select
-                    option value="" Day
-                    - (1..31).each do |day|
-                      option= day
-                  select
-                    option value="" Month
-                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                    - months.each do |month|
-                      option= month
-                  select
-                    option value="" Year
-                    - (2012..2014).each do |year|
-                      option= year
-              span.span-3
-                label
-                  ' Year 2 ended
-                  br
-                  select
-                    option value="" Day
-                    - (1..31).each do |day|
-                      option= day
-                  select
-                    option value="" Month
-                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                    - months.each do |month|
-                      option= month
-                  select
-                    option value="" Year
-                    - (2012..2014).each do |year|
-                      option= year
-              span.span-3
-                label
-                  ' Year 3 ended
-                  br
-                  select
-                    option value="" Day
-                    - (1..31).each do |day|
-                      option= day
-                  select
-                    option value="" Month
-                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                    - months.each do |month|
-                      option= month
-                  select
-                    option value="" Year
-                    - (2012..2014).each do |year|
-                      option= year
-              span.span-3
-                label
-                  ' Year 4 ended
-                  br
-                  select
-                    option value="" Day
-                    - (1..31).each do |day|
-                      option= day
-                  select
-                    option value="" Month
-                    - months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-                    - months.each do |month|
-                      option= month
-                  select
-                    option value="" Year
-                    - (2012..2014).each do |year|
-                      option= year
+        = question_for "Describe your innovative product/service/initiative in detail",
+                       { step: "C 1.1",
+                         required: true,
+                         context_text: "<p>Describe the product/service/intitative itself, explain any aspect(s) you believe innovative, and why you believe it is innovative: consider its uniqeueness and the challenges you had to overcome. Also explain how it fits within the overall business e.g. is it your sole product.</p>" } do
+          textarea.js-char-count rows="5" maxlength="4800" data-word-min="500" data-word-max="800"
 
-        fieldset
-          h2
-            span.steps#step-18
-              span.visuallyhidden
-                ' Step 18
-            ' State the number of full-time employees (or part-time equivalent) employed in the UK by the entrant at the end of each 12 month period or as an average for each year
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' State the number of full-time employees (or part-time equivalent) employed in the UK by the entrant at the end of each 12 month period or as an average for each year
-                abbr *
-            span.row
-              span.span-3
-                label
-                  ' Year 1 ended
-                  input.small type="text"
-                span.hint
-                  ' Nunber of employees
-              span.span-3
-                label
-                  ' Year 2 ended
-                  input.small type="text"
-                span.hint
-                  ' Nunber of employees
-              span.span-3
-                label
-                  ' Year 3 ended
-                  input.small type="text"
-                span.hint
-                  ' Nunber of employees
-              span.span-3
-                label
-                  ' Year 4 ended
-                  input.small type="text"
-                span.hint
-                  ' Nunber of employees
+        = question_for "Describe the context of your innovation, why and how it came about.",
+                       { step: "C 2",
+                         required: true,
+                         context_text: "<p>Outline the disadvantages, if any, of your own/competing products/services/intiatives prior to the innovation. Or otherwise, how you identified a gap in the market.</p>" } do
+          textarea.js-char-count rows="5" maxlength="3000" data-word-min="300" data-word-max="500"
 
-        fieldset
-          h2
-            span.steps#step-19
-              span.visuallyhidden
-                ' Step 19
-            ' Does this entry relate to:
-            abbr *
-          p.group
-            span.visuallyhidden
-              ' Does this entry relate to:
-              abbr *
-            label.selectable
-              input type="radio"
-              ' Your entire business
-              span.hint
-                ' Please complete Questions 20 to 20.5 and then proceed to Question 25 and onwards
-            label.selectable
-              input type="radio"
-              ' A single product or service
-              span.hint
-                ' Please complete Questions 20 to 24 and then proceed to Question 25 and onwards
+        = question_for "Discuss the degree to which your innovation overcomes any issues, and any special difficulties surmounted in doing so.",
+                       { step: "C 3",
+                         required: true } do
+          textarea.js-char-count rows="5" maxlength="4800" data-word-min="500" data-word-max="800"
 
-        fieldset
-          h2
-            span.steps#step-20
-              span.visuallyhidden
-                ' Step 20
-            ' Total Turnover
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Total Turnover
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+        = question_for "Give details of benefits received by your customers and your business as a result of the innovation.",
+                       { step: "C 4",
+                         required: true,
+                         context_text: "<p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim.</p>" } do
+          textarea.js-char-count rows="5" maxlength="4800" data-word-min="500" data-word-max="800"
 
-          h2
-            span.steps#step-20-1
-              span.visuallyhidden
-                ' Step 20.1
-            ' Net Profit
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Net Profit
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-            span.hint
-              ' i.e. after tax, before dividends
+        = question_for "Identify and describe any products/services/initiatives made by other organisations that compete with your innovation, and explain how your innovation differs.",
+                       { step: "C 5",
+                         required: true } do
+          textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
-          h2
-            span.steps#step-20-2
-              span.visuallyhidden
-                ' Step 20.2
-            ' Annual balance sheet total
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Annual balance sheet total
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+        = question_for "Did any external organisation or individiual contribute to this product/service/initiative?",
+                       { step: "C 6",
+                         required: true,
+                         context_text: "<p>Excluding any joint entrant(s) named in C5.</p>" } do
+          label.selectable
+            input type="radio" name="optionsExternalContribution" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsExternalContribution" value="no"
+            ' No
 
-          h2
-            span.steps#step-20-3
-              span.visuallyhidden
-                ' Step 20.3
-            ' UK sales
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' UK sales
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+        = question_for "Please enter their name(s) and explain their contribution(s).",
+                       { required: true,
+                         conditional: {question: "Did any external organisation or individiual contribute to this product/service/initiative?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
 
-          h2
-            span.steps#step-20-4
-              span.visuallyhidden
-                ' Step 20.4
-            ' Export sales
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Export sales
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+        = question_for "Are they aware that you are applying for this award?",
+                       { step: "C 6.1",
+                         required: true,
+                         conditional: {question: "Did any external organisation or individiual contribute to this product/service/initiative?",
+                                       value: "yes"} } do
+          label.selectable
+            input type="radio" name="optionsApplicantsAware" value="yes"
+            ' Yes, they are aware
+          label.selectable
+            input type="radio" name="optionsApplicantsAware" value="no"
+            ' No, they are not aware
+          label.selectable
+            input type="radio" name="optionsApplicantsAware" value="some"
+            ' Some are aware
 
-          h2
-            span.steps#step-20-5
-              span.visuallyhidden
-                ' Step 20.5
-            ' Explain any losses and drops in turnover, sales, annual balance sheet totals and/or net profits
-          p
-            ' You can explain here use of estimates and actual receipts or firm orders.
-          p.group
-            label
-              span.visuallyhidden
-                ' Explain any losses and drops in turnover, sales, annual balance sheet totals and/or net profits. 
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Is the product/service/initiative under license from another organisation?",
+                       { step: "C 7",
+                         context_text: "<p>Include associates of the business.</p>" } do
+          label.selectable
+            input type="radio" name="optionsUnderOtherOrganisationLicense" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsUnderOtherOrganisationLicense" value="no"
+            ' No
 
-        br
+        = question_for "Briefly describe the licensing arrangement.",
+                       { required: true,
+                         conditional: {question: "Is the product/service/initiative under license from another organisation?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
 
-        .application-notice.info-notice
-          p
-            ' Questions 21, 22, 23 and 24 refer to the single product or service that is the subject of the entry.
-            br
-            ' If your entry relates to your whole operation, please proceed to Question 25.
+        = question_for "Have you received any grant funding to support this innovation?",
+                       { step: "C 8",
+                         required: true } do
+          label.selectable
+            input type="radio" name="optionsReceivedFundingSupport" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsReceivedFundingSupport" value="no"
+            ' No
 
-        fieldset
-          h2
-            span.steps#step-21
-              span.visuallyhidden
-                ' Step 21
-            ' Number of units/contracts/quantity sold
-          p.group
-            label
-              span.visuallyhidden
-                ' Number of units/contracts/quantity sold
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+        = question_for "Please give details of date(s), source(s) and level(s) of funding.",
+                       { required: true,
+                         conditional: {question: "Have you received any grant funding to support this innovation?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
 
-          h2
-            span.steps#step-21-1
-              span.visuallyhidden
-                ' Step 21.1
-            ' Actual sales
-          p.group
-            label
-              span.visuallyhidden
-                ' Actual sales
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+        = question_for "How long has it been since the product/service/initiative was released into the marketplace?",
+                       { step: "C 9",
+                         required: true } do
+          input.small.inline type="number" max=100
+          '  years
+          // Max 100 years
 
-          h2
-            span.steps#step-21-2
-              span.visuallyhidden
-                ' Step 21.2
-            ' ...of which exports
-          p.group
-            label
-              span.visuallyhidden
-                ' ...of which exports
-                abbr *
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+        = question_for "Was the product/service/intiative released by you?",
+                       { step: "C 9.1",
+                         required: true } do
+          label.selectable
+            input type="radio" name="optionsYouReleasedThis" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsYouReleasedThis" value="no"
+            ' No
 
-          h2
-            span.steps#step-21-3
-              span.visuallyhidden
-                ' Step 21.3
-            ' ...of which are royalties or licences
-          p.group
-            label
-              span.visuallyhidden
-                ' ...of which are royalties or licences
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
+        = question_for "How many years have you had it in the marketplace?",
+                       { required: true,
+                         conditional: {question: "Was the product/service/intiative released by you?",
+                                       value: "no"} } do
+          input.small.inline type="number" max=100
+          '  years
+          // Max 100 years
 
-        fieldset
-          h2
-            span.steps#step-22
-              span.visuallyhidden
-                ' Step 22
-            ' Explain any drop in sales
-          p.group
-            label
-              span.visuallyhidden
-                ' Explain any drop in sales
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Additional comments (optional)",
+                       { step: "C 9.2" } do
+          textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
 
-        fieldset
-          h2
-            span.steps#step-23
-              span.visuallyhidden
-                ' Step 23
-            ' Please comment on the unit selling price, highlighting any changes over the period
-          p.group
-            label
-              span.visuallyhidden
-                ' Please comment on the unit selling price, highlighting any changes over the period
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.",
+                       { step: "C 10",
+                         context_text: "<p>We cannot guarantee these will be reviewed, so inlcude any vital information within the form</p><p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb.</p>",
+                         help: [{title: "Information we will not review",
+                                 body: "<p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>"}] } do
+          // Only show list if there is a least 1 document
+          ul.list-add
+            li
+              = link_to "Remove", "#", class: "remove-link"
+              // If 'upload document' is clicked
+              label
+                input type="file"
+              // File size limit in text
+              label.small
+                ' Description (optional)
+                textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
+            li
+              = link_to "Remove", "#", class: "remove-link"
+              // If 'add link' is clicked
+              label
+                ' File
+                input.medium type="text"
+              // File size limit in text
+              label.small
+                ' Description (optional)
+                textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
 
-        fieldset
-          h2
-            span.steps#step-24
-              span.visuallyhidden
-                ' Step 24
-            ' Unit costs (if applicable)
-          p.group
-            label
-              span.visuallyhidden
-                ' Unit costs (if applicable)
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-
-        fieldset
-          h2
-            span.steps#step-25
-              span.visuallyhidden
-                ' Step 25
-            ' Provide the cost savings, if known, to your business or your customers’ business after introduction of the innovation.
-          p.group
-            label
-              span.visuallyhidden
-                ' Provide the cost savings, if known, to your business or your customers’ business after introduction of the innovation.
-            span.row
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-              span.span-2-4
-                label
-                  input.small type="text" placeholder="£"
-
-        fieldset
-          h2
-            span.steps#step-26
-              span.visuallyhidden
-                ' Step 26
-            ' Show details of all investments in the innovation and the years when they were made – provide as much detail of early stage investment as possible, not just investment(s) relevant to the period of your entry
-          p.group
-            label
-              span.visuallyhidden
-                ' Show details of all investments in the innovation and the years when they were made – provide as much detail of early stage investment as possible, not just investment(s) relevant to the period of your entry
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-        fieldset
-          h2
-            span.steps#step-27
-              span.visuallyhidden
-                ' Step 27
-            ' Describe how, when, and to what extent the innovation improved the commercial performance of your business. How long did it take for the investment, indicated in Question 26, to be repaid? When and how was the repayment achieved?
-          p.group
-            label
-              span.visuallyhidden
-                ' Describe how, when, and to what extent the innovation improved the commercial performance of your business. How long did it take for the investment, indicated in Question 26, to be repaid? When and how was the repayment achieved?
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          = link_to "+ Upload document", "#", class: "button button-add"
+          = link_to "+ Add Link", "#", class: "button button-add"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
@@ -592,11 +180,11 @@ header.page-header.group.page-header-wider
                   span class="pagination-label"
                     ' Previous
                   span class="pagination-part-title"
-                    ' Description of Goods or Services
+                    ' Commercial Performance
 
               li.next
                 = link_to innovation_award_form_4_path, rel: "next", title: "Navigate to next part" do
                   span class="pagination-label"
                     ' Next
                   span class="pagination-part-title"
-                    ' Declaration of social responsibility
+                    ' Declaration of Corporate Responsibility

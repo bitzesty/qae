@@ -1,12 +1,12 @@
 header.page-header.group.page-header-wider
   div
     h1
-      ' Apply for the innovation award
+      ' Apply for the Innovation Award
 
     = render "innovation_award_form/steps_progress_bar"
 
     h2
-      ' Step 4 of 5: Declaration of Social Responsibility
+      ' Step 4 of 5: Declaration of Corporate Responsibility
 
 .article-container.article-container-wider
   article.group role="article"
@@ -19,105 +19,65 @@ header.page-header.group.page-header-wider
         ' The associated Innovation guidance notes suggest some questions you might consider in preparing your responses.
 
       form.qae-form
-        fieldset
-          h2
-            span.steps#step-28
-              span.visuallyhidden
-                ' Step 28
-            ' Impact of business operations on society
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Impact of business operations on society
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.",
+                       { step: "D 1",
+                         context_text: "<p>This does not affect your chance of success.</p>" } do
+          label.selectable
+            input type="radio" name="optionsCompleteOrDeclare" value="complete now"
+            ' Complete full corporate responsibility form now
+          label.selectable
+            input type="radio" name="optionsCompleteOrDeclare" value="declare now"
+            ' Complete declaration now, and full form once shortlisted
 
-        fieldset
-          h2
-            span.steps#step-29
-              span.visuallyhidden
-                ' Step 29
-            ' Environmental impact of business operations
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Environmental impact of business operations
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "The impact of your business operations on society",
+                       { step: "D 2",
+                         required: true,
+                         help: [{title: "What should I include in this box?",
+                                 body: "<p>What activies do you undertake to foster good relations with local communities? Outline how you evaluate and report on their impact.</p><p>If you have operations in the third world or developing countries, are these conducted with proper regard for the current and future welfare of the people employed there?</p>"}],
+                         conditional: {question: "You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.",
+                                       value: "complete now" } } do
+          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
 
-        fieldset
-          h2
-            span.steps#step-30
-              span.visuallyhidden
-                ' Step 30
-            ' Relations with suppliers, partners and contractors
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Relations with suppliers, partners and contractors
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "The environmental impact of your business operations",
+                       { step: "D 3",
+                         required: true,
+                         help: [{title: "What should I include in this box?",
+                                 body: "<p>Description of any environmental considerations within your business eg. energy efficiency strategies, recycling policies, emissions reduction policies.</p><p>If, and how, you undertake environmental impact assessments of major projects.</p>"}],
+                         conditional: {question: "You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.",
+                                       value: "complete now" } } do
+          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
 
-        fieldset
-          h2
-            span.steps#step-31
-              span.visuallyhidden
-                ' Step 31
-            ' Relations with employees
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Relations with employees
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Relations with suppliers, partners and contractors",
+                       { step: "D 4",
+                         required: true,
+                         help: [{title: "What should I include in this box?",
+                                 body: "<p>An outline of your selection criteria, if any, with regard to potential suppliers'/partners'/contractors' economic, social and environmental performance.</p><p>Do you encourage best practice or require them to meet your own standards? To what extent are you succeeding?</p>"}],
+                         conditional: {question: "You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.",
+                                       value: "complete now" } } do
+          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
 
-        fieldset
-          h2
-            span.steps#step-32
-              span.visuallyhidden
-                ' Step 32
-            ' Relations with customers
-            abbr *
-          p.group
-            label
-              span.visuallyhidden
-                ' Relations with customers
-                abbr *
-              textarea.js-char-count rows="5" maxlength="300"
-          .hidden-hint
-            span.hidden-link
-              ' See sample answer
-            span.hidden-content
-              p
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        = question_for "Relations with employees",
+                       { step: "D 5",
+                         required: true,
+                         help: [{title: "What should I include in this box?",
+                                 body: "<p>Do you have a code of conduct and/or employee policies eg. health and safety, training, staff welfare, whistleblowing and equal opportunities?</p><p>Outline any special employment conditions that you offer eg. flexible working, extended maternity pay.</p><p>How you keep your employees engaged eg. communication, assessments, incentives, opportunities for career development.</p>"}],
+                         conditional: {question: "You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.",
+                                       value: "complete now" } } do
+          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+
+        = question_for "Relations with customers",
+                       { step: "D 6",
+                         required: true,
+                         help: [{title: "What should I include in this box?",
+                                 body: "<p>What proportion of your sales consist of repeat purchases?</p><p>How do you measure customer satisfaction, and what have been the results?</p><p>The criteria by which you select clients and how you ensure they are appropriate for your services.</p>"}],
+                         conditional: {question: "You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.",
+                                       value: "complete now" } } do
+          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+
+        = question_for "Here is where the DECLARATION OF CORPORATE RESPONSIBILITY WILL GO WHEN WE HAVE IT",
+                       { step: "D 2",
+                         conditional: {question: "You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.",
+                                       value: "declare now" } } do
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
@@ -127,7 +87,7 @@ header.page-header.group.page-header-wider
                   span class="pagination-label"
                     ' Previous
                   span class="pagination-part-title"
-                    ' Commercial performance
+                    ' Description of Goods or Services
 
               li.next
                 = link_to innovation_award_form_5_path, rel: "next", title: "Navigate to next part" do

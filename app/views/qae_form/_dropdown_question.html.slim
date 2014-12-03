@@ -1,0 +1,4 @@
+select
+  - question.options.each do |option|
+    option value="#{option.value}"
+      = option.text

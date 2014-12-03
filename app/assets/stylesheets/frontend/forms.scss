@@ -1,8 +1,10 @@
 // Expanded the standard input style to include other types
 input[type="text"],
 input[type="search"],
+input[type="number"],
 input[type="email"],
 input[type="password"],
+input[type="url"],
 input[type="tel"] {
   @media (max-width: 640px) {
     -webkit-box-sizing: border-box;
@@ -13,8 +15,10 @@ input[type="tel"] {
 
 input[type="text"],
 input[type="search"],
+input[type="number"],
 input[type="email"],
 input[type="password"],
+input[type="url"],
 input[type="tel"],
 textarea {
   @include core-16($line-height: (20 / 16));
@@ -136,9 +140,41 @@ input[type="file"] {
     margin-bottom: 1.25em;
   }
 
+  table {
+    width: 100%;
+
+    input,
+    select,
+    textarea {
+      margin: 0;
+    }
+  }
+
+  select {
+    @include core-16;
+  }
+
   label {
+    &.small {
+      @include core-16;
+    }
+
     &.selectable {
       @include core-16;
+
+      &.selectable-confirm {
+        @include core-19;
+        margin: 0.5em 0 0 0;
+        padding: 19px;
+        padding-left: 45px;
+        background-color: #D5E8F3;
+        border-width: solid 1px #CBCBCB;
+        border-radius: 4px;
+
+        input[type="checkbox"] {
+          @include core-19;
+        }
+      }
     }
   }
 
@@ -349,43 +385,11 @@ input[type="file"] {
 // Character count
 .char-count {
   position: relative;
-
-  textarea {
-    padding-bottom: 1.75em;
-  }
-
-  input {
-    padding-right: 10em;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-
-    @include ie-lte(7) {
-      padding-right: 4px;
-    }
-  }
 }
 .char-text {
   @include core-14($line-height: (20 / 16));
-  position: absolute;
-  right: 0.5em;
-  bottom: 0.35em;
   color: $grey-1;
   text-align: right;
-
-  @include ie-lte(7) {
-    position: relative;
-    right: 0;
-    bottom: auto;
-  }
-
-  textarea + & {
-    right: 0;
-
-    @include ie(8) {
-      right: 12px;
-    }
-  }
 
   .char-over & {
     color: $red;
@@ -419,6 +423,66 @@ input[type="file"] {
   margin-right: 0;
 }
 
+// Styling the add form field list and button
+.list-add {
+  margin: 0;
+  margin-bottom: $gutter;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+    margin-bottom: $gutter-half;
+    padding: $gutter-half;
+    padding-top: 18px;
+    background: $grey-4;
+  }
+
+  label input {
+    margin-bottom: 1em;
+  }
+
+  select {
+    margin-right: $gutter-one-third;
+  }
+
+  .remove-link {
+    @include core-16;
+    float: right;
+  }
+}
+.button-add {
+  @include core-19;
+  margin-right: $gutter-half;
+  padding: (18px $gutter $gutter-half $gutter);
+  border: 1px solid $panel-colour;
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+
+  &,
+  &:link,
+  &:hover,
+  &:focus,
+  &:visited {
+    color: $black;
+    background: $panel-colour;
+  }
+
+  &:hover {
+    border-color: $black;
+  }
+
+  &:active {
+    top: auto;
+    background: $white;
+  }
+
+  &:before {
+    display: none;
+  }
+}
+
 // Numbered steps for form sections
 // Taken from https://github.com/alphagov/calculators/blob/9181624cc9e00a079bea2141a650321f7183b6d0/app/assets/stylesheets/calculators/child_benefit.scss
 .steps {
@@ -429,6 +493,21 @@ input[type="file"] {
   margin-right: 0.75em;
   background-repeat: no-repeat;
 }
+
+// TODO temp
+.steps {
+  width: auto;
+  min-width: 13px;
+  padding: 3px 10px;
+  color: white;
+  background: black;
+  background-repeat: no-repeat;
+  border-radius: 1000px;
+  text-align: center;
+  font-size: 15px;
+  line-height: 26px;
+}
+/*
 #step-1 {
   background-image: image-url("icon-step-1.png");
 }
@@ -634,3 +713,4 @@ input[type="file"] {
   width: 27px;
   background-image: image-url("icon-step-a7.png");
 }
+*/

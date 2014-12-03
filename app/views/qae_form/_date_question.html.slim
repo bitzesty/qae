@@ -1,0 +1,14 @@
+select.inline
+  option value="" Day
+  - (1..31).each do |day|
+    option= day
+'
+select.inline
+  option value="" Month
+  - ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"].each do |month|
+    option= month
+'
+select.inline
+  option value="" Year
+  - (1900..2012).each do |year|
+    option= year

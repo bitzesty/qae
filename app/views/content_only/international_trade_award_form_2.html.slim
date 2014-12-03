@@ -1,0 +1,528 @@
+header.page-header.group.page-header-wider
+  div
+    h1
+      ' Apply for the International Trade Award
+
+    = render "international_trade_award_form/steps_progress_bar"
+
+    h2
+      ' Step 2 of 5: Commercial Performance
+
+.article-container.article-container-wider
+  article.group role="article"
+    .inner
+      form.qae-form
+        = question_for "For how long has your organisation seen growth and commercial success in its international trade?",
+                       { step: "B 1",
+                         required: true,
+                         context_text: "<p>Your answer here will determine whether you are assessed for outstanding (an award valid for three years) or continuous (valid for six years) achievement in international trade.</p>"} do
+          label.selectable
+            input type="radio" name="optionsGrowthSuccessDuration" value="3 to 6"
+            ' 3-6 years
+          label.selectable
+            input type="radio" name="optionsGrowthSuccessDuration" value="6 plus"
+            ' 6 years or more
+
+        = question_for "Please select your financial year end dates:",
+                       { step: "B 2",
+                         required: true,
+                         context_text: "<p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>",
+                         conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
+                                       value: true} } do
+          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6"
+            span.row
+              span.span-4
+                label
+                  ' 1/10/2013 - 30/09/2014
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy" data-year="1of3"
+                  // Validate 1/10/2013 - 30/09/2014
+              span.span-4
+                label
+                  ' 1/10/2012 - 30/09/2013
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy" data-year="2of3"
+                  // Validate 1/10/2012 - 30/09/2013
+              span.span-4
+                label
+                  ' 1/10/2011 - 30/09/2012
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy" data-year="3of3"
+                  // Validate 1/10/2011 - 30/09/2012
+
+          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="6 plus"
+            span.row
+              span.span-2
+                label
+                  ' 1/10/2013 - 30/09/2014
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy" data-year="1of6"
+                  // Validate 1/10/2013 - 30/09/2014
+              span.span-2
+                label
+                  ' 1/10/2012 - 30/09/2013
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy" data-year="2of6"
+                  // Validate 1/10/2012 - 30/09/2013
+              span.span-2
+                label
+                  ' 1/10/2011 - 30/09/2012
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy" data-year="3of6"
+                  // Validate 1/10/2011 - 30/09/2012
+              span.span-2
+                label
+                  ' 1/10/2010 - 30/09/2011
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy" data-year="4of6"
+                  // Validate 1/10/2010 - 30/09/2011
+              span.span-2
+                label
+                  ' 1/10/2009 - 30/09/2010
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy" data-year="5of6"
+                  // Validate 1/10/2009 - 30/09/2010
+              span.span-2
+                label
+                  ' 1/10/2008 - 30/09/2009
+                  br
+                  input.small type="text" placeholder="dd/mm/yyyy" data-year="6of6"
+                  // Validate 1/10/2008 - 30/09/2009
+
+          br
+          label
+            ' Additional comments (optional)
+            textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
+            span.hint
+              ' If your year-end date changed during the application period, please explain.
+
+        = question_for "State the number of people employed by the company for each year of your entry.",
+                       { step: "B 3",
+                         required: true,
+                         context_text: "<p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.</p>",
+                         conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
+                                       value: true} } do
+          input.small type="number" min=2
+          // Min 2 - if less than 2 block - present 'you are not eligible' message
+
+        = question_for "Direct overseas sales",
+                       { step: "B 4",
+                         required: true,
+                         context_text: "<p>Todo Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>",
+                         conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
+                                       value: true} } do
+          // Must be greater than £100,000
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="1of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="2of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="3of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="6 plus" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
+            span.row
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="1of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="2of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="3of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="4of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="5of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="6of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+
+        = question_for "Total turnover (home plus overseas)",
+                       { step: "B 4.1",
+                         conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
+                                       value: true} } do
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="1of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="2of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="3of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="6 plus" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
+            span.row
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="1of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="2of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="3of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="4of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="5of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="6of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+
+        = question_for "Net profit after tax but before dividends",
+                       { step: "B 4.2",
+                         required: true,
+                         conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
+                                       value: true} } do
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="1of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="2of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="3of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="6 plus" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
+            span.row
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="1of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="2of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="3of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="4of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="5of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="6of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+
+        .js-conditional-drop-question
+          = question_for "Explain any drops in overseas sales, turnover or net profit, and any losses made.",
+                         { step: "B 4.3",
+                           required: true } do
+            textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+
+
+        = question_for "Are any of these figures estimated?",
+                       { step: "B 4.5",
+                         conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
+                                       value: true} } do
+          label.selectable
+            input type="radio" name="optionsFiguresEstimated" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsFiguresEstimated" value="no"
+            ' No
+
+        = question_for "Explain the use of estimates, and how much of these are actual receipts or firm orders.",
+                       { conditional: {question: "Are any of these figures estimated?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+
+        = question_for "Do you purchase your products/services (or any components) from overseas for resale overseas?",
+                       { step: "B 4.5",
+                         required: true,
+                         context_text: "<p>Excluding raw materials and value added.</p>" } do
+          label.selectable
+            input type="radio" name="optionsPurchaseOverseas" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsPurchaseOverseas" value="no"
+            ' No
+
+        = question_for "Total cost of the imported products/services/components",
+                       { required: true,
+                         conditional: {question: "Do you purchase your products/services (or any components) from overseas for resale overseas?",
+                                       value: "yes"} } do
+          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="1of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="2of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="3of3" ...
+                    br
+                    input.small type="text" placeholder="£"
+
+          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="6 plus"
+            span.row
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="1of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="2of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="3of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="4of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="5of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="6of6" ...
+                  br
+                  input.small type="text" placeholder="£"
+
+        = question_for "Do you manufacture overseas?",
+                       { step: "B 5",
+                         required: true } do
+          label.selectable
+            input type="radio" name="optionsManufactureOverseas" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsManufactureOverseas" value="no"
+            ' No
+
+        = question_for "Indicate the yearly percentage of your goods produced overseas.",
+                       { required: true,
+                         conditional: {question: "Do you manufacture overseas?",
+                                       value: "yes"} } do
+          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6"
+              span.row
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="1of3" ...
+                    br
+                    input.small.inline type="number" placeholder="%"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="2of3" ...
+                    br
+                    input.small.inline type="number" placeholder="%"
+                span.span-4
+                  label
+                    ' Year ending in
+                    span.js-year-end data-year="3of3" ...
+                    br
+                    input.small.inline type="number" placeholder="%"
+
+          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="6 plus"
+            span.row
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="1of6" ...
+                  br
+                  input.small.inline type="number" placeholder="%"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="2of6" ...
+                  br
+                  input.small.inline type="number" placeholder="%"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="3of6" ...
+                  br
+                  input.small.inline type="number" placeholder="%"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="4of6" ...
+                  br
+                  input.small.inline type="number" placeholder="%"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="5of6" ...
+                  br
+                  input.small.inline type="number" placeholder="%"
+              span.span-2
+                label
+                  ' Year ending in
+                  span.js-year-end data-year="6of6" ...
+                  br
+                  input.small.inline type="number" placeholder="%"
+
+        = question_for "Describe the benefits of this business model to the UK.",
+                       { conditional: {question: "Do you manufacture overseas?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="2400" data-word-max="400"
+
+        = question_for "Does you franchise your operations overseas?",
+                       { step: "B 6",
+                         required: true } do
+          label.selectable
+            input type="radio" name="optionsOperateOverseas" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsOperateOverseas" value="no"
+            ' No
+
+        = question_for "Describe the benefits of this business model to the UK.",
+                       { required: true,
+                         conditional: {question: "Does you franchise your operations overseas?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+
+        = question_for "Have you received any grant funding to support this product/service?",
+                       { step: "B 7",
+                         required: true } do
+          label.selectable
+            input type="radio" name="optionsOperateOverseas" value="yes"
+            ' Yes
+          label.selectable
+            input type="radio" name="optionsOperateOverseas" value="no"
+            ' No
+
+        = question_for "Please give details of date(s), source(s) and level(s) of funding.",
+                       { required: true,
+                         conditional: {question: "Have you received any grant funding to support this product/service?",
+                                       value: "yes"} } do
+          textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to international_trade_award_form_1_path, rel: "prev", title: "Navigate to previous part" do
+                  span class="pagination-label"
+                    ' Previous
+                  span class="pagination-part-title"
+                    ' Company Information
+
+              li.next
+                = link_to international_trade_award_form_3_path, rel: "next", title: "Navigate to next part" do
+                  span class="pagination-label"
+                    ' Next
+                  span class="pagination-part-title"
+                    ' Description of Goods or Services
