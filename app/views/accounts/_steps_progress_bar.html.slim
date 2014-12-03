@@ -9,21 +9,21 @@
     .inner
       nav.page-navigation.page-navigation-closed role="navigation" aria-label="parts to this guide"
         ol
-          li class="#{'active' if @active_step == 1}"
+          li class=('active' if @active_step == 1)
             span.part-number 1.
             - if @active_step == 1
               span Correspondent Details
             - else
               = link_to "Correspondent Details", correspondent_details_account_path
 
-          li class="#{'active' if @active_step == 2}"
+          li class=('active' if @active_step == 2)
             span.part-number 2.
             - if @active_step == 2
               span Company Details
             - else
               = link_to "Company Details", company_details_account_path
 
-          li class="#{'active' if @active_step == 3}"
+          li class=('active' if @active_step == 3)
             span.part-number 3.
             - if @active_step == 3
               span Contact Settings
@@ -31,14 +31,14 @@
               = link_to "Contact Settings", contact_settings_account_path
 
         ol start="4"
-          li class="#{'active' if @active_step == 4}"
+          li class=('active' if @active_step == 4)
             span.part-number 4.
             - if @active_step == 4
               span Add Collaborators
             - else
               = link_to "Add Collaborators", add_collaborators_account_path
 
-          li class="#{'active' if @active_step == 5}"
+          li class=('active' if @active_step == 5)
             span.part-number 5.
             - if @active_step == 5
               span Password Settings
