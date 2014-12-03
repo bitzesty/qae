@@ -6,31 +6,69 @@ header.page-header.group
 .article-container
   article.group role="article"
     .inner
-      .application-notice.help-notice
+      #basic-eligibility-failure-answered
+        .application-notice.help-notice
+          p
+            ' Currently your organisation does not meets the basic eligibility criteria.
+        br
         p
-          ' Currently your organisation does not meets the basic eligibility criteria.
-      br
-      p
-        ' The reason why you are not eligible lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          ' The reason why you are not eligible lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
-      br
+        br
 
-      form.qae-form
-        .question-group
-          label
-            ' Are you happy for us to contact you in the future with information about the Queen’s Awards?
-          .input.radio_buttons.optional
-            label.radio.selectable
-              input.radio_buttons.optional type="radio" value="yes"
-              ' Yes, I am happy to be contacted
-            label.radio.selectable
-              input.radio_buttons.optional type="radio" value="no"
-              ' No, please do not contact me
-          .clear
+        form.qae-form
+          .question-group
+            label
+              ' Are you happy for us to contact you in the future with information about the Queen’s Awards?
+            .input.radio_buttons.optional
+              label.radio.selectable
+                input.radio_buttons.optional type="radio" value="yes"
+                ' Yes, I am happy to be contacted
+              label.radio.selectable
+                input.radio_buttons.optional type="radio" value="no"
+                ' No, please do not contact me
+            .clear
 
-        p.form-submit
-          button.button.large type="submit"
-            ' Confirm
+          p.form-submit
+            button.button.large#basic-eligibility-failure-submit type="submit"
+              ' Confirm
+
+      #basic-eligibility-failure-show.visuallyhidden
+        h2 Thank you
+        br
+        p
+          ' Please
+          = link_to "log out", destroy_user_session_path, method: :delete
+          '  and come back in the future.
+        br
+        p
+          ' If you're still interested in the Queen's Award for Enterprise, check out these links:
+        ul
+          li
+            p
+              ' Read the
+              = link_to "background notes for the Queen’s Awards for Enterprise.", "https://www.google.com/url?q=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Fpublications%2Fthe-queens-awards-for-enterprise-background-notes&sa=D&sntz=1&usg=AFQjCNG1d9aJBg4z1NpKDEoNZMC_54exFw", target: "_blank"
+          li
+            p
+              ' Check
+              = link_to "previous Queens Awards for Enterprise winners", "http://www.google.com/url?q=http%3A%2F%2Fwww.queensawardsmagazine.com%2Fawardwinners%2Fsearch&sa=D&sntz=1&usg=AFQjCNGcXkewztBUCS_YSTohgja83ETZbQ", target: "_blank"
+          li
+            p
+              ' Get latest news from Queens Awards Office via
+              = link_to "Linda’s Blog", "http://www.google.com/url?q=http%3A%2F%2Fblogs.bis.gov.uk%2Fqueensawards%2F&sa=D&sntz=1&usg=AFQjCNGgmCHszV3AZDVKHItKVYrfg1VEaA", target: "_blank"
+          li
+            p
+              ' Watch informative videos on
+              = link_to "Queens Awards for Enterprise YouTube Channel", "https://www.youtube.com/channel/UCCBFS6jzWVIdA5NBdEjPVSg", target: "_blank"
+          li
+            p
+              ' Join the conversation on our
+              = link_to "LinkedIn Group.", "https://www.google.com/url?q=https%3A%2F%2Fwww.linkedin.com%2Fgroups%3Fgid%3D3318767&sa=D&sntz=1&usg=AFQjCNG7bpDqiRq16B1Uxj3-FiO3xZMsPA", target: "_blank"
+          li
+            p
+              ' Keep updated by following the
+              = link_to "Queen’s Awards Twitter account.", "https://www.google.com/url?q=https%3A%2F%2Ftwitter.com%2Fthequeensawards&sa=D&sntz=1&usg=AFQjCNG4yWakoTfY2zY9Vzc0JU9SqV9-fQ", target: "_blank"
+
 
       .eligibility-finish-previous-answers
         = render "previous_answers"

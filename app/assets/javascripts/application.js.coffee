@@ -103,3 +103,11 @@ jQuery ->
         $("#innovative-amount-info").removeClass("visuallyhidden")
       else
         $("#innovative-amount-info").addClass("visuallyhidden")
+
+  # Show the eligibility failure contact message
+  if $("#basic-eligibility-failure-submit").size() > 0
+    $(document).on "click", "#basic-eligibility-failure-submit", (e) ->
+      e.preventDefault()
+      if $(this).closest("form").find("input:checked").val()
+        $("#basic-eligibility-failure-answered").addClass("visuallyhidden")
+        $("#basic-eligibility-failure-show").removeClass("visuallyhidden")
