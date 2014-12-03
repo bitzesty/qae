@@ -4,7 +4,8 @@ input[type="search"],
 input[type="number"],
 input[type="email"],
 input[type="password"],
-input[type="url"] {
+input[type="url"],
+input[type="tel"] {
   @media (max-width: 640px) {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
@@ -18,6 +19,7 @@ input[type="number"],
 input[type="email"],
 input[type="password"],
 input[type="url"],
+input[type="tel"],
 textarea {
   @include core-16($line-height: (20 / 16));
   border: 1px solid #bbb;
@@ -123,10 +125,18 @@ input[type="file"] {
   }
 }
 
+// Don't need to put questions inside a <p> tag
+.question-group {
+  @include core-19;
+  margin: 0.75em 0;
+  margin-top: 0.2em;
+}
+
 // Styling for forms that exist outside of smart-answers
 // Forms that flow downwards with multiple questions
 .qae-form {
-  .group {
+  .group,
+  .question-group {
     margin-bottom: 1.25em;
   }
 
@@ -166,38 +176,38 @@ input[type="file"] {
         }
       }
     }
+  }
 
-    input,
-    select,
-    textarea {
-      display: block;
-      margin: 0.2em 0 0.5em 0;
+  input,
+  select,
+  textarea {
+    display: block;
+    margin: 0.2em 0 0.5em 0;
 
-      &.inline {
-        display: inline;
-      }
-    }
-
-    // Bigger sized inputs based on https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
-    // but adapted from https://www.gov.uk/jobsearch 18 Nov 2014
-    input.big {
-      font-size: 1em;
-      line-height: 1.2;
-      padding: 0.3em 0 0.1em 0.4em;
-    }
-
-    input[type="checkbox"],
-    input[type="radio"] {
+    &.inline {
       display: inline;
-      margin: 3px 0.5ex;
-      margin-right: 1ex;
-      padding: initial;
-      vertical-align: middle;
     }
+  }
 
-    input[type="file"] {
-      line-height: 1;
-    }
+  // Bigger sized inputs based on https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
+  // but adapted from https://www.gov.uk/jobsearch 18 Nov 2014
+  input.big {
+    font-size: 1em;
+    line-height: 1.2;
+    padding: 0.3em 0 0.1em 0.4em;
+  }
+
+  input[type="checkbox"],
+  input[type="radio"] {
+    display: inline;
+    margin: 3px 0.5ex;
+    margin-right: 1ex;
+    padding: initial;
+    vertical-align: middle;
+  }
+
+  input[type="file"] {
+    line-height: 1;
   }
 
   .span-1 label,
@@ -224,17 +234,20 @@ input[type="file"] {
     margin-top: 0.5em;
   }
 
+  .question-group + .hidden-hint,
   .group + .hidden-hint {
     margin-top: -0.5em;
   }
 
   .group + h2,
+  .question-group + h2,
   .hidden-hint + h2,
+  .hidden-hint + .question-group,
   .hidden-hint + .group {
     margin-top: 3em;
   }
 
-  p.form-submit {
+  .form-submit {
     margin: 1.5em 0 0 0;
   }
 }

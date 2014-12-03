@@ -1,4 +1,4 @@
-.simple_form {
+.page-devise {
   div.input {
     margin-bottom: 10px;
     clear: both;
@@ -13,12 +13,12 @@
 }
 
 .shared-links,
-div.boolean,
-.simple_form input[type='submit'] {
+.page-devise div.boolean,
+.page-devise input[type='submit'] {
   margin-left: 207px;
 }
 
-.simple_form input[type='submit'] {
+.page-devise input[type='submit'] {
   margin-top: 20px;
 }
 
@@ -43,7 +43,7 @@ label.collection_radio_buttons {
   background-color: #ff3333;
 }
 
-.simple_form {
+.page-devise {
   .error {
     clear: left;
     color: black;

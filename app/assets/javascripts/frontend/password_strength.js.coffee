@@ -47,5 +47,5 @@ jQuery ->
   if passwordSelector().length > 0
     script = document.createElement("script")
     script.type = "text/javascript"
-    script.src = "javascripts/password_strength/password-strength.js"
+    script.src = "/password_strength/password-strength.js"
     $("body").append(script)

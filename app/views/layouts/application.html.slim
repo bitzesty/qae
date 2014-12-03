@@ -36,7 +36,7 @@ html
           - if current_admin || current_user
             ul#proposition-links
               li
-                = link_to "Your account", account_path
+                = link_to "Your account", edit_user_registration_path
               li
                 - if current_admin
                   = link_to "Log out", destroy_admin_session_path, method: :delete
@@ -45,5 +45,13 @@ html
 
     #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
       #QAE
+        - [:alert, :notice].any?
+          .flash
+            .flash-inner
+              - [:alert, :notice].each do |kind|
+                - if flash[kind]
+                  div class="#{kind}"
+                    = flash[kind]
+
         main#content.group class="#{yield :page_content_class}" role="main"
           = yield

@@ -1,4 +1,4 @@
-= simple_form_for [:admin, user] do |f|
+= simple_form_for [:admin, user], html: { class: 'qae-form' } do |f|
   = f.input :email
   = f.input :password, input_html: { class: 'password-strength-meter' }
   = f.input :password_confirmation

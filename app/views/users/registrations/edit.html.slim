@@ -1,31 +1,133 @@
-.article-related-positioning-container
-  header.page-header.group
-    div
-      h1
-        | Edit
-        = resource_name.to_s.humanize
+header.page-header.group
+  div
+    h1
+      ' Your account
 
-  .article-container.group
-    article.group role="article"
-      .inner
-        = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-          = f.error_notification
-          .form-inputs
-            = f.input :email, required: true, autofocus: true
-            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
-              p
-                | Currently waiting confirmation for:
-                = resource.unconfirmed_email
-            = f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false, input_html: { class: 'password-strength-meter' }
-            = f.input :password_confirmation, required: false
-            = f.input :current_password, hint: "we need your current password to confirm your changes", required: true
+.article-container
+  article.group role="article"
+    .inner
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "edit_user qae-form" }, builder: SimpleForm::AccountFormBuilder) do |f|
+        /= f.error_notification
 
-          .form-actions
-            = f.button :submit, "Update"
+        h2
+          span.steps#step-1
+            span.visuallyhidden
+              ' Step 1
+          ' Correspondent details
 
-        h3
-          | Cancel my account
-        p
-          | Unhappy?
-          = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete
-        = link_to "Back", :back
+        = render "accounts/form_correspondent_details", f: f
+
+        fieldset
+          h2
+            ' Your email address
+          = f.input :email, input_html: { class: 'big medium'}, label_html: { class: 'visuallyhidden' }
+        br
+
+        h2
+          span.steps#step-2
+            span.visuallyhidden
+              ' Step 2
+          ' Company details
+
+        = render "accounts/form_company_details", f: f
+
+        br
+
+        h2
+          span.steps#step-3
+            span.visuallyhidden
+              ' Step 3
+          ' Correspondent preferences
+
+        fieldset
+          h2
+            ' How would you prefer we contact you?
+          = f.input :prefered_method_of_contact, as: :radio_buttons, item_wrapper_class: 'selectable', label: false
+
+        = render "accounts/form_contact_settings", f: f
+
+        br
+
+
+        h2
+          span.steps#step-4
+            span.visuallyhidden
+              ' Step 4
+          ' Change Your Password
+
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          p
+            ' Currently waiting confirmation for:
+            = resource.unconfirmed_email
+        br
+        .question-group
+          label
+            ' Current password
+            = f.input :current_password,
+                      hint: "we need your current password to confirm your changes",
+                      required: true,
+                      label: false,
+                      input_html: {class: "big medium"}
+
+        .question-group
+          label
+            ' New password
+            = f.input :password,
+                      autocomplete: "off",
+                      hint: "Leave it blank if you don't want to change it",
+                      required: false,
+                      label: false,
+                      input_html: {class: 'big medium password-strength-meter' }
+
+        .question-group
+          label
+            ' Retype your password
+            = f.input :password_confirmation,
+                      required: false,
+                      label: false,
+                      input_html: {class: "big medium"}
+
+        br
+
+        h2
+          span.steps#step-5
+            span.visuallyhidden
+              ' Step 5
+          ' Add Collaborators
+
+        table
+          colgroup
+            col width="150"
+            col width="200"
+            col width="150"
+          thead
+            tr
+              th Collaborator
+              th Email
+              th.text-right
+                = link_to "+ Add Collaborator"
+          tbody
+            tr
+              td John Smith
+              td
+                = link_to "john@example.com", "mailto:john@example.com"
+              td.text-right
+                = link_to "Remove"
+            tr
+              td Jane Doe (Pending)
+              td
+                = link_to "jane@example.com", "mailto:jane@example.com"
+              td.text-right
+                = link_to "Remove"
+
+        br
+
+        .form-submit
+          = f.button :submit, "Update your account settings", class: "button medium"
+
+        /
+          h3
+            | Cancel my account
+          p
+            | Unhappy?
+            = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete

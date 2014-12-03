@@ -11,6 +11,18 @@ class ContentOnlyController < ApplicationController
     render template: 'qae_form/show'
   end
 
+  def account_1
+    @active_step = 1
+  end
+
+  def account_2
+    @active_step = 2
+  end
+
+  def account_3
+    @active_step = 3
+  end
+
   def eligibility_check_1
     @active_step = 1
   end

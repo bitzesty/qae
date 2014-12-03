@@ -1,0 +1,25 @@
+header.page-header.group
+  div
+    h1
+      ' Your account details
+
+    = render "steps_progress_bar"
+
+    h2
+      ' Step 1 of 3: Correspondent Details
+
+.article-container
+  article.group role="article"
+    .inner
+      = simple_form_for current_user, url: update_correspondent_details_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
+        = render "form_correspondent_details", f: f
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.next
+                = link_to '#', rel: "next", title: "Navigate to next part", id: 'account-next-step' do
+                  span class="pagination-label"
+                    ' Next
+                  span class="pagination-part-title"
+                    ' Company Details

@@ -312,3 +312,34 @@
     margin-bottom: $gutter;
   }
 }
+
+.flash {
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+
+  .flash-inner {
+    margin: 0 auto;
+    max-width: 1000px;
+  }
+
+  p {
+    @include core-16;
+    margin: 0;
+  }
+  .alert,
+  .notice {
+    margin: 0 $gutter-two-thirds;
+    padding: $gutter-one-third $gutter-half;
+  }
+
+  .alert {
+    background-color: $yellow-25;
+  }
+
+  .notice {
+    background-color: $light-blue-25;
+  }
+}

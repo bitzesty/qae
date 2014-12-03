@@ -1,7 +1,5 @@
 #= require jquery
 #= require jquery_ujs
-#= require ./frontend/textarea-autoResize
-#= require ./frontend/text-character-count
 #= require_tree .
 
 jQuery ->
@@ -86,3 +84,5 @@ jQuery ->
       $("html, body").animate(
         scrollTop: 0
       , 0)
+  # Fade out alerts after 5sec
+  $(".flash").delay(5000).fadeOut()
