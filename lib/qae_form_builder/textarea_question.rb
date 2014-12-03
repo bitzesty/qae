@@ -14,10 +14,13 @@ class QAEFormBuilder
       @q.words_max = num
     end
 
+    def words_min num
+      @q.words_min = num
+    end
   end
 
   class TextareaQuestion < Question
-    attr_accessor :rows, :chars_max, :words_max
+    attr_accessor :rows, :chars_max, :words_min, :words_max
   end
 
 end

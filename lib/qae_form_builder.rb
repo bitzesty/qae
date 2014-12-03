@@ -15,6 +15,7 @@ require 'qae_form_builder/address_question'
 require 'qae_form_builder/head_of_business_question'
 
 require 'qae_form_builder/by_years_question'
+require 'qae_form_builder/materials_question'
 
 class QAEFormBuilder
   class << self

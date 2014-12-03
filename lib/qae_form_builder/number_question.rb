@@ -13,10 +13,14 @@ class QAEFormBuilder
     def max num
       @q.max = num
     end
+
+    def unit unit
+      @q.unit = unit
+    end
   end
 
   class NumberQuestion < TextQuestion
-    attr_accessor :min, :max
+    attr_accessor :min, :max, :unit
   end
 
 end

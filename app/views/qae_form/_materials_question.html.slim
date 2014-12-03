@@ -1,0 +1,23 @@
+          ul.list-add
+            li
+              = link_to "Remove", "#", class: "remove-link"
+              // If 'upload document' is clicked
+              label
+                input type="file"
+              // File size limit in text
+              label.small
+                ' Description (optional)
+                textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
+            li
+              = link_to "Remove", "#", class: "remove-link"
+              // If 'add link' is clicked
+              label
+                ' File
+                input.medium type="text"
+              // File size limit in text
+              label.small
+                ' Description (optional)
+                textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
+
+          = link_to "+ Upload document", "#", class: "button button-add"
+          = link_to "+ Add Link", "#", class: "button button-add"
