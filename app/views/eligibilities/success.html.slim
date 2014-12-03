@@ -6,13 +6,15 @@ header.page-header.group
 .article-container
   article.group role="article"
     .inner
-      p
-        ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-      p
-        ' Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
+      .application-notice.info-notice
+        p
+          ' Your organisation meets the basic eligibility criteria.
       br
+      p
+        ' You will need to fill in your account details before continuing with your application.
 
       .get-started
-        = link_to "Continue to apply", correspondent_details_account_path, class: "button"
+        = link_to "Continue to account details", correspondent_details_account_path, class: "button"
+
+      .eligibility-finish-previous-answers
+        = render "previous_answers"
