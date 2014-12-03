@@ -7,7 +7,7 @@ class ContentOnlyController < ApplicationController
   end
 
   def dashboard
-    current_user.update_attribute(:completed_registration, true)
+    current_user.update_attribute(:completed_registration, true) unless current_user.completed_registration?
   end
 
   def innovation
