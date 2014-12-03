@@ -11,13 +11,6 @@ header.page-header.group.page-header-wider
 .article-container.article-container-wider
   article.group role="article"
     .inner
-      p
-        ' Please outline the effects of the activities and practices of your whole business unit under the headings set out below. 
-      p
-        ' If you have already provided relevant information in your entry, please refer to that information and give any additional information under the relevant heading(s) below. 
-      p
-        ' The associated Innovation guidance notes suggest some questions you might consider in preparing your responses.
-
       form.qae-form
         = question_for "You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.",
                        { step: "D 1",
@@ -28,6 +21,14 @@ header.page-header.group.page-header-wider
           label.selectable
             input type="radio" name="optionsCompleteOrDeclare" value="declare now"
             ' Complete declaration now, and full form once shortlisted
+
+        .question-block.js-conditional-question data-question="you-may-complete-the-full-corporate-responsibility-form-now-or-make-a-declaration-now-and-complete-the-form-in-the-event-of-you-being-shortlisted" data-value="complete now"
+          p
+            ' Please outline the effects of the activities and practices of your whole business unit under the headings set out below. 
+          p
+            ' If you have already provided relevant information in your entry, please refer to that information and give any additional information under the relevant heading(s) below. 
+          p
+            ' The associated Innovation guidance notes suggest some questions you might consider in preparing your responses.
 
         = question_for "The impact of your business operations on society",
                        { step: "D 2",
