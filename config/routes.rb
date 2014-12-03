@@ -6,6 +6,11 @@ Rails.application.routes.draw do
     confirmations: 'devise/confirmations'
   }
 
+  get '/awards_for_organisations'               => "content_only#awards_for_organisations",               as: 'awards_for_organisations'
+  get '/enterprise_promotion_awards'            => "content_only#enterprise_promotion_awards",            as: 'enterprise_promotion_awards'
+  get '/how_to_apply'                           => "content_only#how_to_apply",                           as: 'how_to_apply'
+  get '/what_happens_next'                      => "content_only#what_happens_next",                      as: 'what_happens_next'
+  get '/additional_information_and_contact'     => "content_only#additional_information_and_contact",     as: 'additional_information_and_contact'
   get '/innovation'                => "content_only#innovation",                as: 'innovation'
   get '/dashboard'                 => "content_only#dashboard",                 as: 'dashboard'
   get '/eligibility_check_1'       => "content_only#eligibility_check_1",       as: 'eligibility_check_1'

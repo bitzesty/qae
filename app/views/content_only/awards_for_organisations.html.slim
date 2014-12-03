@@ -1,0 +1,96 @@
+- provide(:page_content_class, "multi-page page-landing")
+
+.article-related-positioning-container
+  header.page-header.group
+    div
+      h1
+        ' The Queen's Awards for Enterprise
+
+  .article-container.group
+    = render "landing_page_navigation", current_step: 2
+
+    article.group role="article"
+      .inner
+        header
+          h1 2. Eligibility for organisations
+
+          p To enter any of the Queen’s Awards for Enterprise categories, an organisation must:
+
+          ul
+            li be based in the UK (including the Channel Islands and the Isle of Man)
+            li be a self-contained enterprise which markets its own products or services and is under its own management
+            li have at least 2 full-time employees or part-time equivalents
+            li be able to demonstrate commercial success
+
+          p
+            = link_to "Sign in to access the eligibility questionnaire", new_user_session_path
+            ' .
+
+          br
+
+          p
+            ' Each of the three award categories has additional entry criteria:
+
+          .hidden-hint
+            p.hidden-link
+              ' International Trade
+            span.hidden-content
+              p You must be able to demonstrate that your organisation has achieved substantial growth in overseas earnings and commercial success relative to your business size and sector. You will need to show either:
+              ul
+                li steep year on year growth (without dips) in overseas sales over 3 years
+                li continuous year on year growth (without dips) in overseas sales over 6 years
+              p Your organisation must also have made a minimum of £100,000 in overseas sales for each year of your entry.
+
+          .hidden-hint
+            p.hidden-link
+              ' Innovation
+            span.hidden-content
+              p Your innovation must not have been done before.
+              p Innovations can be assessed within any of the following fields:
+              ul
+                li invention, design or production
+                li performance of services and products
+                li marketing and distribution
+                li after-sale support of goods or services
+              p You must be able to demonstrate than an innovative product/service/initiative has had a substantial positive effect on your organisation’s commercial success. You will need to show either:
+              ul
+                li outstanding commercial success as a result of innovation over 2 years
+                li continuous commercial success as a result of innovation over 5 years
+              p Your innovation must have been on the market for all of your entry period.
+
+          .hidden-hint
+            p.hidden-link
+              ' Sustainable Development
+            span.hidden-content
+              p You must be able to demonstrate how your business has achieved sustainable development (ie. ensuring better quality of life for everyone, both now and for future generations in the dimensions of: environment, society, economy and leadership) and how you are a good corporate citizen.
+              p Your achievements should be in either:
+              ul
+                li invention, design, production, performance, marketing, distribution or after sales support of goods/services
+                li management of resources or people, or of relationships with other organisations (or their representatives)
+              p You will need to show either:
+              ul
+                li outstanding commercial success through sustainable development over 2 years
+                li continuous commercial success through sustainable development over 5 years
+
+          .get-started
+            - if user_signed_in?
+              = link_to "Apply", dashboard_path, class: "button"
+            - else
+              = link_to "Apply", new_user_registration_path, class: "button"
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to root_path, rel: "prev", title: "Navigate to previous part" do
+                  span.pagination-label
+                    ' Previous
+                  span.pagination-part-title
+                    ' Overview
+
+              li.next
+                = link_to enterprise_promotion_awards_path, rel: "next", title: "Navigate to next part" do
+                  span.pagination-label
+                    ' Next
+                  span.pagination-part-title
+                    ' Eligibility for individuals
