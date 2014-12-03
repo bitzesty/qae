@@ -46,7 +46,7 @@ class Eligibility < ActiveRecord::Base
 
   property :kind, values: %w[application nomination], label: 'Do you want to apply or nominate?', accept: :not_nil
   property :organization_kind, values: %w[business charity], label: 'What kind of organisation are you?', accept: :not_nil
-  property :industry, values: %w[automotive], label: 'Which industry is your business in?', accept: :not_nil_or_charity
+  property :industry, values: %w[product_business service_business], label: 'Is the business mainly:', accept: :not_nil_or_charity
   property :based_in_uk, boolean: true, label: 'Is your business based in UK?', accept: :true
   property :self_contained_enterprise, boolean: true, label: 'Is your organisation a self-contained enterprise which markets its own products or services?', accept: :true
   property :has_management_and_two_employees, boolean: true, label: 'Is your organisation under its own management, with at least 2 full-time employees or part-time equivalents?', accept: :true

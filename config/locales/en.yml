@@ -17,3 +17,6 @@ en:
       kind:
         application: Apply
         nomination: Nominate
+      industry:
+          product_business: Product business
+          service_business: Service business
