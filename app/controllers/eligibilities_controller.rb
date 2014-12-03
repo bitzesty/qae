@@ -36,7 +36,7 @@ class EligibilitiesController < ApplicationController
             redirect_to next_wizard_path
           end
         when :registered
-          if @eligibility.registered == 'yes'
+          if @eligibility.registered?
             redirect_to wizard_path(:demonstrated_comercial_success)
           else
             redirect_to next_wizard_path
