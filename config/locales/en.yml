@@ -1,6 +1,6 @@
 en:
   enumerize:
-    users:
+    user:
       qae_info_source:
         govuk: Gov.UK
         competitor: From a Competitor
