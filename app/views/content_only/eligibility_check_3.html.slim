@@ -26,14 +26,10 @@
                     span class="pagination-part-title"
                       ' Innovation award eligibility
 
-                li.next
-                  = link_to dashboard_path, rel: "next", title: "Navigate to Dashboard" do
-                    span class="pagination-label"
-                      ' Back
-                    span class="pagination-part-title"
-                      ' Dashboard
+                li.submit
+                  = link_to "Check eligibility", dashboard_path, class: "button"
 
-  .related-positioning
+  /.related-positioning
     .related-container
       .related#related
         nav.pagination role="navigation" aria-label="Pagination"
