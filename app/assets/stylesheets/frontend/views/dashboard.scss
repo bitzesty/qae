@@ -76,3 +76,10 @@
     }
   }
 }
+
+.page-dashboard & {
+  // Spacing text on dashboard page
+  .inner > p {
+    margin-bottom: 1.5em;
+  }
+}

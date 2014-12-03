@@ -1,3 +1,5 @@
+- provide(:page_wrapper_class, "page-dashboard")
+
 header.page-header.group
   div
     h1
@@ -6,8 +8,8 @@ header.page-header.group
 .inner-block
   .highlighted-event
     p
-      ' Deadline for the awards
-      em 25 March 2015
+      ' Deadline for submitting applications
+      em 30 September
 
 .article-related-positioning-container
   .article-container
@@ -16,7 +18,10 @@ header.page-header.group
         h2
           ' Awards for organisations
 
-        = link_to "Check your organisations eligibility", eligibility_check_1_path, class: "prominent"
+        p
+          ' If you're unsure about the category you want to apply
+
+          = link_to "check which awards your organisation is eligible for.", eligibility_check_1_path
 
         p
           ' If you're already sure about the category you want to apply:
@@ -26,16 +31,16 @@ header.page-header.group
         br
 
         h2
-          ' Award for individual
+          ' Award for individuals
         p
-          ' If you're already sure about the category you want to apply:
+          ' If you're nominating someone for the Enterprise Promotion Aaward, you can check their eligibility by starting the appication.
 
         ul.applications-list
           li
             h3
               ' Enterprise Promotion Award
             small
-              ' Unclear eligibility
+              /' Unclear eligibility
             .pull-right
               = link_to "Start application", apply_innovation_award_path
 
