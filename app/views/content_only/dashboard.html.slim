@@ -5,12 +5,6 @@ header.page-header.group
     h1
       ' Dashboard
 
-.inner-block
-  .highlighted-event
-    p
-      ' Deadline for submitting applications
-      em 30 September
-
 .article-related-positioning-container
   .article-container
     article.group role="article"
@@ -44,10 +38,15 @@ header.page-header.group
             .pull-right
               = link_to "Start application", apply_innovation_award_path
 
-  /.related-positioning.related-positioning-no-header
+  .related-positioning.related-positioning-no-header
     .related-container
       .related#related
-        .inner.group.related-section
+        .highlighted-event
+          p
+            ' Deadline for submitting applications
+            em 30 September
+
+        /.inner.group.related-section
           h2#parent-section
             ' Submitted award applications
 
@@ -69,5 +68,5 @@ header.page-header.group
                 ' 2012 - Substainability Development
                 = link_to "Download PDF", "http://www.example.com", class: "inline-link"
 
-        .inner.group
+        /.inner.group
           = link_to "Return to top ↑", "#content", class: "return-to-top"

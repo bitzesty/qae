@@ -78,8 +78,31 @@
 }
 
 .page-dashboard & {
+  // Tweak spacing of header in relation to sidebar
+  .inner > h2:first-child {
+    margin-top: 0.5em;
+  }
+
   // Spacing text on dashboard page
   .inner > p {
     margin-bottom: 1.5em;
+  }
+
+  // Style the deadline while in sidebar
+  .related {
+    border: none;
+
+    .highlighted-event {
+      padding: 0.1em 1em;
+
+      p {
+        @include core-16;
+
+        em {
+          margin-bottom: 0;
+          font-size: 2.4em;
+        }
+      }
+    }
   }
 }
