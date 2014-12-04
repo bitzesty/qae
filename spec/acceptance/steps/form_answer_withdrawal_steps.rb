@@ -1,5 +1,9 @@
 step "a form answer exists" do
-  @form_answer = FactoryGirl.create(:form_answer)
+  FactoryGirl.create(:form_answer)
+end
+
+step "a withdrawn form answer exists" do
+  FactoryGirl.create(:form_answer, withdrawn: true)
 end
 
 step "I withdraw form answer" do
@@ -8,7 +12,7 @@ step "I withdraw form answer" do
 end
 
 step "form answer should be withdrawn" do
-  expect(@form_answer.reload).to be_withdrawn
+  expect(page).to have_link("Restore")
 end
 
 step "I restore form answer" do
@@ -16,10 +20,6 @@ step "I restore form answer" do
   click_link "Restore"
 end
 
-step "a form answer is withdrawn" do
-  @form_answer.update!(withdrawn: true)
-end
-
 step "form answer should not be withdrawn" do
-  expect(@form_answer.reload).to_not be_withdrawn
+  expect(page).to have_link("Withdraw")
 end
