@@ -1,0 +1,73 @@
+- provide(:page_content_class, "multi-page page-landing")
+
+.article-related-positioning-container
+  header.page-header.group
+    div
+      h1
+        ' The Queen's Awards for Enterprise
+
+  .article-container.group
+    = render "landing_page_navigation", current_step: 6
+
+    article.group role="article"
+      .inner
+        header
+          h1 6. Additional information &amp; Contact
+
+          h2 Additional information
+
+          p There are some other interesting sources of information on Queens Awards for Enterprise that you may find helpful.
+
+          ul
+            li
+              p
+                ' Read the
+                = link_to "background notes for the Queen’s Awards for Enterprise.", "https://www.google.com/url?q=https%3A%2F%2Fwww.gov.uk%2Fgovernment%2Fpublications%2Fthe-queens-awards-for-enterprise-background-notes&sa=D&sntz=1&usg=AFQjCNG1d9aJBg4z1NpKDEoNZMC_54exFw", target: "_blank"
+            li
+              p
+                ' Check
+                = link_to "previous Queens Awards for Enterprise winners", "http://www.google.com/url?q=http%3A%2F%2Fwww.queensawardsmagazine.com%2Fawardwinners%2Fsearch&sa=D&sntz=1&usg=AFQjCNGcXkewztBUCS_YSTohgja83ETZbQ", target: "_blank"
+            li
+              p
+                ' Get latest news from Queens Awards Office via
+                = link_to "Linda’s Blog", "http://www.google.com/url?q=http%3A%2F%2Fblogs.bis.gov.uk%2Fqueensawards%2F&sa=D&sntz=1&usg=AFQjCNGgmCHszV3AZDVKHItKVYrfg1VEaA", target: "_blank"
+            li
+              p
+                ' Watch informative videos on
+                = link_to "Queens Awards for Enterprise YouTube Channel", "https://www.youtube.com/channel/UCCBFS6jzWVIdA5NBdEjPVSg", target: "_blank"
+            li
+              p
+                ' Join the conversation on our
+                = link_to "LinkedIn Group.", "https://www.google.com/url?q=https%3A%2F%2Fwww.linkedin.com%2Fgroups%3Fgid%3D3318767&sa=D&sntz=1&usg=AFQjCNG7bpDqiRq16B1Uxj3-FiO3xZMsPA", target: "_blank"
+            li
+              p
+                ' Keep updated by following the
+                = link_to "Queen’s Awards Twitter account.", "https://www.google.com/url?q=https%3A%2F%2Ftwitter.com%2Fthequeensawards&sa=D&sntz=1&usg=AFQjCNG4yWakoTfY2zY9Vzc0JU9SqV9-fQ", target: "_blank"
+
+          br
+
+          h2 Contact
+          p
+            strong Queen’s Awards Helpline
+            br
+            ' Telephone: 020 7215 6880
+            br
+            = link_to "Find out about call charges", "https://www.google.com/url?q=https%3A%2F%2Fwww.gov.uk%2Fcall-charges&sa=D&sntz=1&usg=AFQjCNEGZ7rmTq_tSvkrD8qHcmzoQ7LehA", target: "_blank"
+
+          br
+
+          .get-started
+            - if user_signed_in?
+              = link_to "Apply", dashboard_path, class: "button"
+            - else
+              = link_to "Apply", new_user_registration_path, class: "button"
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to what_happens_next_path, rel: "prev", title: "Navigate to previous part" do
+                  span.pagination-label
+                    ' Previous
+                  span.pagination-part-title
+                    ' What happens next

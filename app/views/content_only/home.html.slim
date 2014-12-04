@@ -1,4 +1,4 @@
-- provide(:page_content_class, "multi-page")
+- provide(:page_content_class, "multi-page page-landing")
 
 .article-related-positioning-container
   header.page-header.group
@@ -7,107 +7,42 @@
         ' The Queen's Awards for Enterprise
 
   .article-container.group
-    aside
-      .inner
-        nav.page-navigation.page-navigation-closed role="navigation" aria-label="parts to this guide"
-          ol
-            li.active
-              span.part-number 1.
-              span Overview
-            li
-              span.part-number 2.
-              = link_to "Business awards", "/queens-awards-for-enterprise/business-awards", title: "Part 2: Business awards"
-            li
-              span.part-number 3.
-              = link_to "Enterprise promotion awards", "/queens-awards-for-enterprise/enterprise-promotion-award", title: "Part 3: Enterprise promotion awards"
+    = render "landing_page_navigation", current_step: 1
 
     article.group role="article"
       .inner
         header
-          h1
-            ' 1. Overview
+          h1 1. Overview
 
         p
           ' The
-          = link_to "Queen’s Awards for Enterprise", "/queens-awards-for-enterprise/business-awards"
-          '  are awards for outstanding achievement by UK businesses in the categories of:
+          = link_to "Queen’s Awards for Enterprise", awards_for_organisations_path
+          '  are annual awards for outstanding achievement by UK organisations in the categories of:
 
         ul
-          li innovation
-          li international trade
-          li sustainable development
-
-        p
-          ' You can search for
-          = link_to "previous award winners.", "http://www.queensawardsmagazine.com/awardwinners/search", rel: "external"
-
-        p
-          ' The
-          = link_to "Queen’s Award for Enterprise Promotion", "/queens-awards-for-enterprise/enterprise-promotion-award"
-          '  is a separate award for individuals. It’s open to people who have played an outstanding role in promoting enterprise skills and attitudes.
-
-        br
+          li Innovation
+          li International Trade
+          li Sustainable Development
 
         .get-started
           - if user_signed_in?
-            = link_to "Check your organisations eligibility", dashboard_path, class: "button"
+            = link_to "Apply", dashboard_path, class: "button"
           - else
-            = link_to "Check your organisations eligibility", new_user_registration_path, class: "button"
+            = link_to "Apply", new_user_registration_path, class: "button"
+
+        br
+
+        p
+          ' If you have already begun your application then
+          = link_to "log in to continue", new_user_session_path
+          ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
             ul.group
               li.next
-                = link_to "/queens-awards-for-enterprise/business-awards", rel: "next", title: "Navigate to next part" do
+                = link_to awards_for_organisations_path, rel: "next", title: "Navigate to next part" do
                   span.pagination-label
                     ' Next
                   span.pagination-part-title
-                    ' Business awards
-
-        .print-link
-          = link_to "Print entire guide", "/queens-awards-for-enterprise/print", rel: "nofollow", target: "_blank"
-
-  .related-positioning
-    .related-container
-      .related#related
-        .inner.group.related-subsection
-          h2#parent-subsection
-            ' Running a limited company
-
-          nav role="navigation" aria-labelledby="parent-subsection"
-            ul
-              li
-                = link_to "Finance and support for your business", "https://www.gov.uk/business-finance-support-finder"
-
-              li.related-topic
-                = link_to "https://www.gov.uk/browse/business/limited-company", title: "More in Running a limited company" do
-                  ' More
-                  span.visuallyhidden
-                    ' in Running a limited company
-
-        .inner.group.related-section
-          h2#parent-section
-            ' Business and self-employed
-
-          nav role="navigation" aria-labelledby="parent-section"
-            ul
-              li
-                = link_to "Search for business training and networking events", "https://www.gov.uk/events-finder"
-
-              li.related-topic
-                = link_to "https://www.gov.uk/browse/business", title: "More in Business and self-employed" do
-                  ' More
-                  span.visuallyhidden
-                    ' in Business and self-employed
-
-        .inner.group
-          = link_to "Return to top ↑", "#content", class: "return-to-top"
-
-        #legacy-sources
-          p
-            ' This page replaces
-          ul
-            li.directgov
-              ' Directgov
-            li.businesslink
-              ' Business Link
+                    ' Eligibility for organisations

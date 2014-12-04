@@ -1,10 +1,12 @@
 .question
   h2
-    ' Do you have any innovation product or service?
+    ' Do you have an innovative product/service/initiative?
   .question-body
     p.hint
-      ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    div.js-conditional-answer data-answer="Do you have any innovation product or service?"
+      ' A product/service/intiative is innovative if it has not been done before, and provides benefit/ solves prior issues for its users. Fields include invention, design and production (for goods), performance (for services), marketing, distribution, after-sale support.
+    div.js-conditional-answer data-answer="Do you have an innovative product/service/initiative?"
+      span.error.visuallyhidden
+        ' Sorry, you are not eligible. You must have an innovative product/service/intiative to apply for a Queen's Award for Enterprise: Innovation.
       ul.options
         li
           label.selectable
@@ -14,31 +16,30 @@
           label.selectable
             input type="radio" name="optionsInnovationProduct" value="no"
             ' No
-    .js-conditional-question data-answer="Do you have any innovation product or service?" data-value="yes"
+    .js-conditional-question data-question="Do you have an innovative product/service/initiative?" data-value="yes"
       p.hint
         span.no-js-conditional-text
-          ' If 'Yes', amount of products or services
+          ' If 'Yes', how many?
         span.js-conditional-text
-          ' Amount of products or services
+          ' How many?
       div
-        input.small type="text"
+        input.small.innovative_amount_input type="number"
         br
         br
 
-    .hidden-hint
-      span.hidden-link
-        ' I don't know if my product or service is innovative.
-      span.hidden-content
-        p
-          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+      #innovative-amount-info.visuallyhidden
+        .application-notice.info-notice
+          p
+            ' You can apply for a Queen's Award for Innovation for more than one product/service/intiative. Each one requires a separate application to be submitted.
+
 
 .question
   h2
-    ' Has your business presented outstanding innovation, continued over at least for 2 years?
+    ' Has it been released to the market for at least two years?
   .question-body
-    p.hint
-      ' You must be able to show that your business has substantially improved in areas of performance and commercial success.
     div
+      span.error.visuallyhidden
+        ' Sorry, your innovation is not eligible. It must have been in the marketplace for at least two years to be eligible for a Queen's Award for Enterprise: Innovation.
       ul.options
         li
           label.selectable
@@ -48,24 +49,16 @@
           label.selectable
             input type="radio"
             ' No
-    .hidden-hint
-      span.hidden-link
-        ' What does outstanding innovation mean?
-      span.hidden-content
-        p
-          ' Outstanding innovation lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        p
-          ' Achievements are assessed for:
-          br
-          ' Invention, design or production, performance of services and products, marketing and distribution, after-sale support of goods or services
 
 .question
   h2
     ' Has your business or charity presented continuous innovation and development over at least 5 years?
   .question-body
     p.hint
-      ' You must be able to show that your business has substantially improved in areas of performance and commercial success.
+      ' The innovation has had a positive impact on commercial performance if factors such as profitability, turnover, market share and performance have met/exceeded business plan targets.
     div
+      span.error.visuallyhidden
+        ' Sorry, your innovation is not eligible. It must have had a measurable positive impact on your commercial performance over the last two years to be eligible for a Queen's Award for Enterprise: Innovation.
       ul.options
         li
           label.selectable
@@ -75,9 +68,3 @@
           label.selectable
             input type="radio"
             ' No
-    .hidden-hint
-      span.hidden-link
-        ' What does continuous innovation mean?
-      span.hidden-content
-        p
-          ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

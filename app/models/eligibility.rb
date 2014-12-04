@@ -44,13 +44,15 @@ class Eligibility < ActiveRecord::Base
     @questions.merge!(name => options)
   end
 
-  property :kind, values: %w[application nomination], label: 'Do you want to apply or nominate?', accept: :not_nil
-  property :organization_kind, values: %w[buiseness charity], label: 'What kind of organisation are you?', accept: :not_nil
-  property :industry, values: %w[automotive], label: 'Which industry is your business in?', accept: :not_nil_or_charity
-  property :based_in_uk, boolean: true, label: 'Is your business based in UK?', accept: :true
-  property :self_contained_enterprise, boolean: true, label: 'Is your organisation a self-contained enterprise which markets its own products or services?', accept: :true
-  property :has_management_and_two_employees, boolean: true, label: 'Is your organisation under its own management, with at least 2 full-time employees or part-time equivalents?', accept: :true
-  property :demonstrated_comercial_success, boolean: true, label: 'Is your organisation able to demonstrate commercial success?', accept: :true
+  property :kind, values: %w[application nomination], label: "Do you want to apply or nominate?", accept: :not_nil
+  property :based_in_uk, boolean: true, label: "Is the part of your organisation you wish to enter for a Queen's Award based in the UK?", accept: :true
+  property :has_management_and_two_employees, boolean: true, label: "Does the part of your organisation you wish to enter for a Queen's Award have two or more full-time UK employees?", accept: :true
+  property :organization_kind, values: %w[business charity], label: "What kind of organisation is it?", accept: :not_nil
+  property :industry, values: %w[product_business service_business], label: "Is the business mainly:", accept: :not_nil_or_charity
+  property :registered, boolean: true, label: "Is the part of your organisation you wish to enter for a Queen's Award registered with the UK Government?", accept: :not_nil
+  property :self_contained_enterprise, boolean: true, label: "Has it been acting as a self-contained operational unit?", accept: :true
+  property :demonstrated_comercial_success, boolean: true, label: "Can you demonstrate commercial success in the part of your organisation you wish to enter?", accept: :true
+  property :current_holder, boolean: true, label: "Are you a current Queen's Award holder?", accept: :not_nil
 
   def eligible?
     current_step_index = self.class.questions.index(current_step) || self.class.questions.size - 1
@@ -83,7 +85,7 @@ class Eligibility < ActiveRecord::Base
   end
 
   def set_passed
-    if current_step == :demonstrated_comercial_success && eligible?
+    if current_step == :current_holder && eligible?
       update_column(:passed, true)
     end
   end

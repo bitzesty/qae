@@ -1,3 +1,5 @@
+- provide(:page_content_class, "multi-page page-account")
+
 header.page-header.group
   div
     h1
@@ -6,7 +8,9 @@ header.page-header.group
     = render "steps_progress_bar"
 
     h2
-      ' Step 2 of 3: Company Details
+      - unless current_user.completed_registration
+        ' Step 2 of 4:
+      ' Company Details
 
 .article-container
   article.group role="article"
@@ -17,16 +21,10 @@ header.page-header.group
         footer
           nav.pagination role="navigation" aria-label="Pagination"
             ul.group
-              li.previous
+              li.previous.previous-alternate
                 = link_to correspondent_details_account_path, rel: "prev", title: "Navigate to previous part" do
                   span class="pagination-label"
-                    ' Previous
-                  span class="pagination-part-title"
-                    ' Correspondent Details
+                    ' Previous step
 
-              li.next
-                = link_to '#', rel: "next", title: "Navigate to next part", id: 'account-next-step' do
-                  span class="pagination-label"
-                    ' Next
-                  span class="pagination-part-title"
-                    ' Contact Settings
+              li.submit
+                = f.submit "Next step", class: "button"

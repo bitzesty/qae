@@ -81,11 +81,7 @@ header.page-header.group.page-header-wider
         br
         .application-notice.info-notice
           p
-            ' Note that you can submit and come back to change or add any other info until the deadline.
-        br
-
-        p.form-submit
-          = link_to "Submit application", innovation_award_confirm_path, class: "button large"
+            ' Note that you can come back to make changes even after submitting until the deadline.
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
@@ -93,6 +89,8 @@ header.page-header.group.page-header-wider
               li.previous
                 = link_to innovation_award_form_4_path, rel: "prev", title: "Navigate to previous part" do
                   span class="pagination-label"
-                    ' Previous
+                    ' Previous step
                   span class="pagination-part-title"
                     ' Declaration of Corporate Responsibility
+              li.submit
+                = link_to "Submit application", innovation_award_confirm_path, class: "button"

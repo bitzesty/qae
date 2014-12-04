@@ -33,7 +33,6 @@ class QAE2014Forms
             welfare of the people employed there?</p>
           }
           rows 5
-          chars_max 3000
           words_max 500
         end
 
@@ -49,7 +48,6 @@ class QAE2014Forms
             environmental impact assessments of major projects.</p>
           }
           rows 5
-          chars_max 3000
           words_max 500 
         end
 
@@ -65,7 +63,6 @@ class QAE2014Forms
             own standards? To what extent are you succeeding?</p>
           }
           rows 5
-          chars_max 3000
           words_max 500 
         end
 
@@ -83,7 +80,6 @@ class QAE2014Forms
             incentives, opportunities for career development.</p>
           }
           rows 5
-          chars_max 3000
           words_max 500 
         end
 
@@ -99,7 +95,6 @@ class QAE2014Forms
             they are appropriate for your services.</p>
           }
           rows 5
-          chars_max 3000
           words_max 500 
         end
 

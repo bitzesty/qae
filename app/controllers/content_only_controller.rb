@@ -1,7 +1,11 @@
 class ContentOnlyController < ApplicationController
-  before_filter :authenticate_user!, except: [:home]
+  before_filter :authenticate_user!, except: [:home, :awards_for_organisations, :enterprise_promotion_awards, :how_to_apply, :what_happens_next, :additional_information_and_contact]
 
   def home
+  end
+
+  def dashboard
+    current_user.update_attribute(:completed_registration, true) unless current_user.completed_registration?
   end
 
   def account_1

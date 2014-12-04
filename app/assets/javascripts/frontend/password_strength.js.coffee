@@ -25,9 +25,9 @@ class PasswordStrengthMeter
       when 2
         text = "Medium"
       when 3
-        text = "Strong"
+        text = "Medium"
       when 4
-        text = "Very strong"
+        text = "Strong"
     @$meter.find(".password-meter-text").text text
     @$meter.removeClass "level-0"
     @$meter.removeClass "level-1"

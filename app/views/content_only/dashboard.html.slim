@@ -1,22 +1,28 @@
+- provide(:page_wrapper_class, "page-dashboard")
+
 header.page-header.group
   div
     h1
       ' Dashboard
 
-.inner-block
-  .highlighted-event
-    p
-      ' Deadline for the awards
-      em 25 March 2015
-
 .article-related-positioning-container
   .article-container
     article.group role="article"
       .inner
+        - if params[:eligible] == "innovation"
+          .application-notice.help-notice
+            p
+              ' Your organisation meets the eligibility criteria for
+            ul
+              li The Innovation Award
+
         h2
           ' Awards for organisations
 
-        = link_to "Check your organisations eligibility", eligibility_check_1_path, class: "prominent"
+        p
+          ' If you're unsure about the category you want to apply
+
+          = link_to "check which awards your organisation is eligible for.", eligibility_check_1_path
 
         p
           ' If you're already sure about the category you want to apply:
@@ -26,23 +32,28 @@ header.page-header.group
         br
 
         h2
-          ' Award for individual
+          ' Award for individuals
         p
-          ' If you're already sure about the category you want to apply:
+          ' If you're nominating someone for the Enterprise Promotion Aaward, you can check their eligibility by starting the appication.
 
         ul.applications-list
           li
             h3
-              ' Enterprise promotion award
+              ' Enterprise Promotion Award
             small
-              ' Unclear eligibility
+              /' Unclear eligibility
             .pull-right
-              = link_to "Start your application", apply_innovation_award_path
+              = link_to "Start application", "#"
 
   .related-positioning.related-positioning-no-header
     .related-container
       .related#related
-        .inner.group.related-section
+        .highlighted-event
+          p
+            ' Deadline for submitting applications
+            em 30 September
+
+        /.inner.group.related-section
           h2#parent-section
             ' Submitted award applications
 
@@ -64,5 +75,5 @@ header.page-header.group
                 ' 2012 - Substainability Development
                 = link_to "Download PDF", "http://www.example.com", class: "inline-link"
 
-        .inner.group
+        /.inner.group
           = link_to "Return to top ↑", "#content", class: "return-to-top"

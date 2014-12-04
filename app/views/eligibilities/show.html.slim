@@ -2,7 +2,7 @@
   header.page-header.group
     div
       h1
-        ' Check your eligibility
+        ' Basic eligibility questionnaire
 
   .article-container
     article.group role="article"
@@ -13,30 +13,5 @@
 
             .next-question
               = f.submit "Next step", class: "button medium"
-      - if @eligibility.answers && @eligibility.answers.any?
-        .previous-answers
-          .done-questions
-            article
-              table
-                thead
-                  tr
-                    th.previous-answers-title
-                      ' Previous answers
-                    th.link-right.restart colspan="2"
-                      = link_to "Start again", eligibility_path
-                tbody
-                  - @eligibility.answers.each do |question, answer|
-                    - if question.to_sym != step
-                      tr.section
-                        td.previous-question-title
-                          = Eligibility.label(question)
-                        td.previous-question-body
-                          - if Eligibility.boolean_question?(question)
-                            = @eligibility.public_send("#{question}?") ? 'Yes' : 'No'
-                          - else
-                            = Eligibility.enumerized_attributes[question].find_value(answer).text
-                        td.link-right
-                          = link_to wizard_path(question) do
-                            ' Change
-                            span.visuallyhidden
-                              = ' answer to' + Eligibility.label(question)
+
+      = render "previous_answers"

@@ -2,7 +2,7 @@
   header.page-header.group
     div
       h1
-        ' Check your eligibility
+        ' Award eligibility questionnaire
 
       = render "eligibility_check/steps_progress_bar"
 
@@ -14,7 +14,7 @@
       .inner
         form
           .current-question#current-question
-            = render "eligibility_check/form_sustainability_development"
+            = render "eligibility_check/form_sustainable_development"
 
           footer
             nav.pagination role="navigation" aria-label="Pagination"
@@ -22,18 +22,14 @@
                 li.previous
                   = link_to eligibility_check_2_path, rel: "prev", title: "Navigate to previous part" do
                     span class="pagination-label"
-                      ' Previous
+                      ' Previous step
                     span class="pagination-part-title"
                       ' Innovation award eligibility
 
-                li.next
-                  = link_to dashboard_path, rel: "next", title: "Navigate to Dashboard" do
-                    span class="pagination-label"
-                      ' Back
-                    span class="pagination-part-title"
-                      ' Dashboard
+                li.submit
+                  = link_to "Check eligibility", eligibility_check_success_path, class: "button"
 
-  .related-positioning
+  /.related-positioning
     .related-container
       .related#related
         nav.pagination role="navigation" aria-label="Pagination"

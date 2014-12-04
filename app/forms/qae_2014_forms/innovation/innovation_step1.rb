@@ -24,7 +24,6 @@ class QAE2014Forms
           required
           conditional :principal_business, :no
           words_max 100
-          chars_max 600
           rows 5
         end
 
@@ -85,7 +84,6 @@ class QAE2014Forms
           context '<p>Only enter the awards you consider most notable.</p>'
           conditional :other_awards_won, :yes
           rows 5
-          chars_max 1800
           words_max 300
         end
 

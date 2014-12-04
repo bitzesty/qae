@@ -1,3 +1,5 @@
+- provide(:page_content_class, "multi-page page-account")
+
 header.page-header.group
   div
     h1
@@ -6,13 +8,21 @@ header.page-header.group
     = render "steps_progress_bar"
 
     h2
-      ' Step 3 of 3: Contact Settings
+      - unless current_user.completed_registration
+        ' Step 3 of 4:
+      ' Contact Settings
 
 .article-container
   article.group role="article"
     .inner
       = simple_form_for current_user, url: update_contact_settings_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
         = render "form_contact_settings", f: f
+
+        - if current_user.completed_registration
+          fieldset
+            h2
+              ' How would you prefer we contact you?
+            = f.input :prefered_method_of_contact, as: :radio_buttons, item_wrapper_class: 'selectable', label: false
 
         fieldset
           h2
@@ -23,13 +33,13 @@ header.page-header.group
           #qae_info_source_other.visuallyhidden
             = f.input :qae_info_source_other, label: 'Please specify'
 
-        = f.submit "Save your account settings", class: "button medium"
         footer
           nav.pagination role="navigation" aria-label="Pagination"
             ul.group
-              li.previous
-                = link_to account_2_path, rel: "prev", title: "Navigate to previous part" do
+              li.previous.previous-alternate
+                = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part" do
                   span class="pagination-label"
-                    ' Previous
-                  span class="pagination-part-title"
-                    ' Company Details
+                    ' Previous step
+
+              li.submit
+                = f.submit "Next step", class: "button"

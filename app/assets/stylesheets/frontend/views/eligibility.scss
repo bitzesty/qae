@@ -15,3 +15,11 @@ article .current-question li {
     @include core-16;
   }
 }
+
+.eligibility-finish-previous-answers {
+  margin-top: $gutter*2;
+
+  .done-questions {
+    padding-left: 0;
+  }
+}

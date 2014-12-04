@@ -231,6 +231,33 @@
   list-style: none;
 }
 
+// Position account links to be top right
+#proposition-menu {
+  @media (min-width: 990px) {
+    position: relative;
+  }
+}
+.user-account-links {
+  @media (min-width: 990px) {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+
+  li {
+    @media (min-width: 990px) {
+      padding-left: $gutter-half;
+      padding-right: 0;
+    }
+  }
+}
+
+// Fixes conflict with using aside as page navigations on other pages inside the header
+header.page-header aside .inner {
+  margin: 0 auto;
+  margin-top: 2em;
+}
+
 // Progress steps based on `2. Progress bar`
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators
 .steps-progress-bar {
@@ -313,6 +340,15 @@
   }
 }
 
+// Fix the spacing for lists in the .help-notice
+article .help-notice ul {
+  padding-left: 3.3em;
+  @media (max-width: 640px) {
+    padding-left: 2em;
+  }
+}
+
+// Application alert messages
 .flash {
   position: absolute;
   top: 100px;

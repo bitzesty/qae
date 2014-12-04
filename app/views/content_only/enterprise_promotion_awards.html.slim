@@ -1,0 +1,54 @@
+- provide(:page_content_class, "multi-page page-landing")
+
+.article-related-positioning-container
+  header.page-header.group
+    div
+      h1
+        ' The Queen's Awards for Enterprise
+
+  .article-container.group
+    = render "landing_page_navigation", current_step: 3
+
+    article.group role="article"
+      .inner
+        header
+          h1 3. Eligibility for individuals
+
+          p To be eligible for nomination for the Queen’s Award for Enterprise Promotion, an individual must:
+
+          ul
+            li contribute more than just the requirements of their paid job/ primary activity to the promotion of business enterprise and/or entrepreneurial skills.
+            li be active in the role/area for which they are being nominated, and have been for at least two years
+            li have been active in a role/area based in the UK (including the Channel Islands and the Isle of Man.
+
+          .application-notice.help-notice
+            p You cannot nominate yourself for this award.
+
+          br
+
+          p
+            = link_to "Sign in to access the eligibility questionnaire", new_user_session_path
+            ' .
+
+          .get-started
+            - if user_signed_in?
+              = link_to "Nominate", dashboard_path, class: "button"
+            - else
+              = link_to "Nominate", new_user_registration_path, class: "button"
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to awards_for_organisations_path, rel: "prev", title: "Navigate to previous part" do
+                  span.pagination-label
+                    ' Previous
+                  span.pagination-part-title
+                    ' Eligibility for organisations
+
+              li.next
+                = link_to how_to_apply_path, rel: "next", title: "Navigate to next part" do
+                  span.pagination-label
+                    ' Next
+                  span.pagination-part-title
+                    ' How to apply

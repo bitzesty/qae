@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141201084521) do
+ActiveRecord::Schema.define(version: 20141203182047) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20141201084521) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "document"
+    t.boolean  "withdrawn",  default: false
   end
 
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
@@ -86,6 +87,7 @@ ActiveRecord::Schema.define(version: 20141201084521) do
     t.boolean  "subscribed_to_emails",       default: false
     t.string   "qae_info_source"
     t.string   "qae_info_source_other"
+    t.boolean  "completed_registration",     default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -62,7 +62,6 @@ class QAE2014Forms
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           ref 'B 5.4'
           rows 5
-          chars_max 1200
           words_max 200
         end
  
@@ -93,7 +92,6 @@ class QAE2014Forms
         textarea :drops_in_sales, "Explain any drops in sales" do
           ref 'B 6.4'
           rows 5
-          chars_max 1800
           words_max 300
         end
 
@@ -105,7 +103,6 @@ class QAE2014Forms
         textarea :estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
           conditional :estimated_figures, :yes
           rows 5
-          chars_max 1200
           words_max 200
         end
 
@@ -113,7 +110,6 @@ class QAE2014Forms
           ref 'B 6.6'
 
           rows 5
-          chars_max 600
           words_max 100
         end
 
@@ -124,7 +120,6 @@ class QAE2014Forms
 
         textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
           rows 5
-          chars_max 1200
           words_max 200
         end
 
@@ -136,7 +131,6 @@ class QAE2014Forms
         textarea :costs_change_desc, 'Explain your unit/ contract costs, highlighting any changes over the above periods.' do
           required
           rows 5
-          chars_max 1200
           words_max 200
         end
 
@@ -144,7 +138,6 @@ class QAE2014Forms
           ref 'B 9'
           required
           rows 5
-          chars_max 1800
           words_max 300
         end 
 
@@ -152,7 +145,6 @@ class QAE2014Forms
           ref 'B 10'
           required
           rows 5
-          chars_max 1800
           words_max 300
         end
 
@@ -160,7 +152,6 @@ class QAE2014Forms
           ref 'B 10.1'
           required
           rows 5
-          chars_max 1800
           words_max 300
         end
       }

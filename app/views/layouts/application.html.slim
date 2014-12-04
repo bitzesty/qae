@@ -34,9 +34,9 @@ html
             ' Queens Award for Enterprise
             span.alpha-tag ALPHA
           - if current_admin || current_user
-            ul#proposition-links
+            ul#proposition-links.user-account-links
               li
-                = link_to "Your account", edit_user_registration_path
+                = link_to "Your account", correspondent_details_account_path
               li
                 - if current_admin
                   = link_to "Log out", destroy_admin_session_path, method: :delete

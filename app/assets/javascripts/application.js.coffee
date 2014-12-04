@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require Countable
 #= require_tree .
 
 jQuery ->
@@ -117,3 +118,27 @@ jQuery ->
 
   # Fade out alerts after 5sec
   $(".flash").delay(5000).fadeOut()
+
+  # Show current holder info when they are a current holder on basic eligibility current holder question
+  if $(".eligibility_current_holder").size() > 0
+    $(".eligibility_current_holder input").change () ->
+      if $(this).val() == "true"
+        $("#current-holder-info").removeClass("visuallyhidden")
+      else
+        $("#current-holder-info").addClass("visuallyhidden")
+
+  # Show innovation amount info when the amount is greater than 1 on innovation eligibility
+  if $(".innovative_amount_input").size() > 0
+    $(".innovative_amount_input").bind "propertychange change click keyup input paste", () ->
+      if $(this).val() > 1
+        $("#innovative-amount-info").removeClass("visuallyhidden")
+      else
+        $("#innovative-amount-info").addClass("visuallyhidden")
+
+  # Show the eligibility failure contact message
+  if $("#basic-eligibility-failure-submit").size() > 0
+    $(document).on "click", "#basic-eligibility-failure-submit", (e) ->
+      e.preventDefault()
+      if $(this).closest("form").find("input:checked").val()
+        $("#basic-eligibility-failure-answered").addClass("visuallyhidden")
+        $("#basic-eligibility-failure-show").removeClass("visuallyhidden")

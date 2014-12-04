@@ -10,11 +10,16 @@
     article.group role="article"
       .inner
         = simple_form_for(resource, as: resource_name, url: unlock_path(resource_name), html: { method: :post }) do |f|
-          = f.error_notification
+          /= f.error_notification
           = f.full_error :unlock_token
+
           .form-inputs
-            = f.input :email, required: true, autofocus: true
+            .question
+              h2 Email*
+              .question-body
+                = f.input :email, required: true, autofocus: true, label: false
+
           .form-actions
-            = f.button :submit, "Resend unlock instructions"
+            = f.button :submit, "Resend unlock instructions", class: "button large"
 
         = render "users/shared/links"

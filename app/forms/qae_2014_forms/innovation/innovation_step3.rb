@@ -9,7 +9,6 @@ class QAE2014Forms
             <p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>
           }
           rows 1
-          chars_max 90
           words_max 15
         end
 
@@ -23,7 +22,6 @@ class QAE2014Forms
             it fits within the overall business e.g. is it your sole product.</p>
           }
           rows 5
-          chars_max 4800
           words_min 500
           words_max 800
         end
@@ -37,7 +35,6 @@ class QAE2014Forms
             identified a gap in the market.</p>
           }
           rows 5
-          chars_max 3000
           words_min 300
           words_max 500
         end
@@ -46,7 +43,6 @@ class QAE2014Forms
           ref 'C 3'
           required
           rows 5
-          chars_max 4800
           words_min 500
           words_max 800
         end
@@ -61,7 +57,6 @@ class QAE2014Forms
             You can also include testimonials to support your claim.</p>
           }
           rows 5
-          chars_max 4800
           words_min 500
           words_max 800 
         end
@@ -70,7 +65,6 @@ class QAE2014Forms
           ref 'C 5'
           required
           rows 5
-          chars_max 1800
           words_max 300
         end
 
@@ -84,7 +78,6 @@ class QAE2014Forms
           required
           conditional :innovation_any_contributors, :yes
           rows 5
-          chars_max 3000
           words_max 500
         end
 
@@ -108,7 +101,6 @@ class QAE2014Forms
           required
           conditional :innovation_under_license, :yes
           rows 5
-          chars_max 600
           words_max 100
         end
 
@@ -122,7 +114,6 @@ class QAE2014Forms
           required
           conditional :innovations_grant_funding, :yes
           rows 5
-          chars_max 1800
           words_max 300
         end
 
@@ -149,7 +140,6 @@ class QAE2014Forms
         textarea :innovation_additional_comments, 'Additional comments (optional)' do
           ref 'C 9.2'
           rows 5
-          chars_max 1200
           words_max 200
         end
 
