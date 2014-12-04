@@ -22,7 +22,7 @@ header.page-header.group.page-header-wider
           textarea.js-char-count rows="1" data-word-max="15"
 
         = question_for "Describe your innovative product/service/initiative in detail",
-                       { step: "C 1.1",
+                       { classes: "sub-question",
                          required: true,
                          context_text: "<p>Describe the product/service/intitative itself, explain any aspect(s) you believe innovative, and why you believe it is innovative: consider its uniqeueness and the challenges you had to overcome. Also explain how it fits within the overall business e.g. is it your sole product.</p>" } do
           textarea.js-char-count rows="5" data-word-max="800"
@@ -61,13 +61,14 @@ header.page-header.group.page-header-wider
             ' No
 
         = question_for "Please enter their name(s) and explain their contribution(s).",
-                       { required: true,
+                       { classes: "sub-question",
+                         required: true,
                          conditional: {question: "Did any external organisation or individiual contribute to this product/service/initiative?",
                                        value: "yes"} } do
           textarea.js-char-count rows="5" data-word-max="500"
 
         = question_for "Are they aware that you are applying for this award?",
-                       { step: "C 6.1",
+                       { classes: "sub-question",
                          required: true,
                          conditional: {question: "Did any external organisation or individiual contribute to this product/service/initiative?",
                                        value: "yes"} } do
@@ -92,7 +93,8 @@ header.page-header.group.page-header-wider
             ' No
 
         = question_for "Briefly describe the licensing arrangement.",
-                       { required: true,
+                       { classes: "sub-question",
+                         required: true,
                          conditional: {question: "Is the product/service/initiative under license from another organisation?",
                                        value: "yes"} } do
           textarea.js-char-count rows="5" data-word-max="100"
@@ -108,7 +110,8 @@ header.page-header.group.page-header-wider
             ' No
 
         = question_for "Please give details of date(s), source(s) and level(s) of funding.",
-                       { required: true,
+                       { classes: "sub-question",
+                         required: true,
                          conditional: {question: "Have you received any grant funding to support this innovation?",
                                        value: "yes"} } do
           textarea.js-char-count rows="5" data-word-max="300"
@@ -121,7 +124,7 @@ header.page-header.group.page-header-wider
           // Max 100 years
 
         = question_for "Was the product/service/intiative released by you?",
-                       { step: "C 9.1",
+                       { classes: "sub-question",
                          required: true } do
           label.selectable
             input type="radio" name="optionsYouReleasedThis" value="yes"
@@ -130,16 +133,19 @@ header.page-header.group.page-header-wider
             input type="radio" name="optionsYouReleasedThis" value="no"
             ' No
 
-        = question_for "How many years have you had it in the marketplace?",
-                       { required: true,
-                         conditional: {question: "Was the product/service/intiative released by you?",
+        = question_for "",
+                       { conditional: {question: "Was the product/service/intiative released by you?",
                                        value: "no"} } do
-          input.small.inline type="number" max=100
-          '  years
-          // Max 100 years
+          .question-group
+            label
+              ' How many years have you had it in the marketplace?*
+              span.clear
+              input.small.inline type="number" max=100
+              '  years
+              // Max 100 years
 
         = question_for "Additional comments (optional)",
-                       { step: "C 9.2" } do
+                       { classes: "sub-question" } do
           textarea.js-char-count rows="5" data-word-max="200"
 
         = question_for "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.",
