@@ -22,10 +22,10 @@ header.page-header.group
               ' Are you happy for us to contact you in the future with information about the Queen’s Awards?
             .input.radio_buttons.optional
               label.radio.selectable
-                input.radio_buttons.optional type="radio" value="yes"
+                input.radio_buttons.optional type="radio" value="yes" name="optionsContactFuture"
                 ' Yes, I am happy to be contacted
               label.radio.selectable
-                input.radio_buttons.optional type="radio" value="no"
+                input.radio_buttons.optional type="radio" value="no" name="optionsContactFuture"
                 ' No, please do not contact me
             .clear
 
@@ -68,7 +68,6 @@ header.page-header.group
             p
               ' Keep updated by following the
               = link_to "Queen’s Awards Twitter account.", "https://www.google.com/url?q=https%3A%2F%2Ftwitter.com%2Fthequeensawards&sa=D&sntz=1&usg=AFQjCNG4yWakoTfY2zY9Vzc0JU9SqV9-fQ", target: "_blank"
-
 
       .eligibility-finish-previous-answers
         = render "previous_answers"
