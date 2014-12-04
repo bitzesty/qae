@@ -11,7 +11,10 @@ Rails.application.routes.draw do
   get '/how_to_apply'                           => "content_only#how_to_apply",                           as: 'how_to_apply'
   get '/what_happens_next'                      => "content_only#what_happens_next",                      as: 'what_happens_next'
   get '/additional_information_and_contact'     => "content_only#additional_information_and_contact",     as: 'additional_information_and_contact'
-  get '/innovation'                             => "content_only#innovation",                             as: 'innovation'
+
+  get  '/innovation'                            => "form#innovation",                                     as: 'innovation'
+  post '/form_autosave'                         => "form#autosave",                                       as: 'autosave'
+
   get '/dashboard'                              => "content_only#dashboard",                              as: 'dashboard'
   get '/eligibility_check_1'                    => "content_only#eligibility_check_1",                    as: 'eligibility_check_1'
   get '/eligibility_check_2'                    => "content_only#eligibility_check_2",                    as: 'eligibility_check_2'

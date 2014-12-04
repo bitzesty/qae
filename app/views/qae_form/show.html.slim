@@ -1,2 +1,3 @@
-= render partial: 'qae_form/form_header', object: @form, as: 'form'
-= render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form}
+form.qae-form data-autosave-url=autosave_url
+  = render partial: 'qae_form/form_header', object: @form, as: 'form'
+  = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form}

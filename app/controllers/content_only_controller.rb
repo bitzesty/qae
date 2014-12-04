@@ -1,5 +1,3 @@
-require 'qae_2014_forms'
-
 class ContentOnlyController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :awards_for_organisations, :enterprise_promotion_awards, :how_to_apply, :what_happens_next, :additional_information_and_contact]
 
@@ -8,11 +6,6 @@ class ContentOnlyController < ApplicationController
 
   def dashboard
     current_user.update_attribute(:completed_registration, true) unless current_user.completed_registration?
-  end
-
-  def innovation
-    @form = QAE2014Forms.innovation
-    render template: 'qae_form/show'
   end
 
   def account_1
