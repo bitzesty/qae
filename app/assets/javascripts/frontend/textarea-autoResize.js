@@ -15,7 +15,6 @@ $(function() {
       textarea.css('height', "auto");
       textarea.css('min-height', "");
       textarea.removeAttr('min-height');
-      console.log(textarea.outerHeight())
       textarea.css('min-height', textarea.outerHeight());
       textarea.attr("data-height", textarea.outerHeight());
     });

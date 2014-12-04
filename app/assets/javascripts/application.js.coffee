@@ -78,19 +78,25 @@ jQuery ->
     updateYearEnd()
 
   # Show/hide the correct step/page for the award form
+  showAwardStep = (step) ->
+    $(".js-step-condition.step-current").removeClass("step-current")
+    window.location.hash = "##{step.substr(5)}"
+    $(".js-step-condition[data-step='#{step}']").addClass("step-current")
+    # Show past link status
+    $(".steps-progress-bar .js-step-link.step-past").removeClass("step-past")
+
+    current_index = $(".steps-progress-bar .js-step-link").index($(".steps-progress-bar .step-current"))
+    $(".steps-progress-bar .js-step-link").each () ->
+      this_index = $(".steps-progress-bar .js-step-link").index($(this))
+      if this_index < current_index
+        $(this).addClass("step-past")
+
+  showAwardStep("step-#{window.location.hash.substr(1)}")
   $(document).on "click", ".js-step-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("step-current")
-      $(".js-step-condition.step-current").removeClass("step-current")
       current = $(this).attr("data-step")
-      $(".js-step-condition[data-step='#{current}']").addClass("step-current")
-      # Show past link status
-      $(".steps-progress-bar .js-step-link.step-past").removeClass("step-past")
-      current_index = $(".steps-progress-bar .js-step-link").index($(this))
-      $(".steps-progress-bar .js-step-link").each () ->
-        this_index = $(".steps-progress-bar .js-step-link").index($(this))
-        if this_index < current_index
-          $(this).addClass("step-past")
+      showAwardStep(current)
       # Scroll to top
       $("html, body").animate(
         scrollTop: 0
