@@ -1,0 +1,8 @@
+.page-account {
+  .steps-progress-bar li {
+    > a,
+    > span {
+      max-width: 120px;
+    }
+  }
+}

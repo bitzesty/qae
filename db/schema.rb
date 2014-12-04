@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20141204113729) do
     t.hstore   "document"
     t.boolean  "withdrawn",  default: false
     t.integer  "account_id"
+    t.string   "award_type"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

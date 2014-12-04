@@ -1,0 +1,10 @@
+.page-landing {
+  .hidden-hint {
+    margin-bottom: $gutter;
+
+    &,
+    p {
+      @include core-19;
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.article-related-positioning-container
+  header.page-header.group
+    div
+      h1
+        ' Award eligibility questionnaire
+
+.article-container
+  article.group role="article"
+    .inner
+      .application-notice.help-notice
+        p
+          ' Your organisation
+          strong
+            ' does not
+          ' meets the eligibility criteria for
+        ul
+          li The International Trade Award
+          li The Sustainable Development Award
+        br
+        p
+          ' Your organisation meets the eligibility criteria for
+        ul
+          li The Innovation Award
+      br
+
+      p
+        ' Continue to the dashboard to apply for the award.
+
+      .get-started
+        = link_to "Continue to dashboard", dashboard_path(eligible: "innovation"), class: "button"

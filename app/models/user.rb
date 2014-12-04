@@ -1,10 +1,10 @@
 class User < ActiveRecord::Base
   extend Enumerize
-
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessor :agreed_with_privacy_policy
+  attr_accessor :current_password
 
   validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
 

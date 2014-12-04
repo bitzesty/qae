@@ -1,5 +1,5 @@
 class QAEFormBuilder
-  class Form
+  class QAEForm
     attr_reader :title, :opts, :steps, :questions_by_key
 
     def initialize title, opts={}

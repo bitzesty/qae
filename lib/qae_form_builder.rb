@@ -1,4 +1,4 @@
-require 'qae_form_builder/form'
+require 'qae_form_builder/qae_form'
 require 'qae_form_builder/step'
 require 'qae_form_builder/question'
 require 'qae_form_builder/text_question'
@@ -15,12 +15,16 @@ require 'qae_form_builder/address_question'
 require 'qae_form_builder/head_of_business_question'
 
 require 'qae_form_builder/by_years_question'
+require 'qae_form_builder/materials_question'
+require 'qae_form_builder/confirm_question'
+require 'qae_form_builder/contact_email_question'
+require 'qae_form_builder/contact_question'
 
 class QAEFormBuilder
   class << self
 
     def build title, &block
-      form = Form.new title
+      form = QAEForm.new title
       form.instance_eval &block if block_given?
       form      
     end

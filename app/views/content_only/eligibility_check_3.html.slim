@@ -2,7 +2,7 @@
   header.page-header.group
     div
       h1
-        ' Check your eligibility
+        ' Award eligibility questionnaire
 
       = render "eligibility_check/steps_progress_bar"
 
@@ -27,7 +27,7 @@
                       ' Innovation award eligibility
 
                 li.submit
-                  = link_to "Check eligibility", dashboard_path, class: "button"
+                  = link_to "Check eligibility", eligibility_check_success_path, class: "button"
 
   /.related-positioning
     .related-container

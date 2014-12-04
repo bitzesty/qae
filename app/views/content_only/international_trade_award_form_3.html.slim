@@ -28,7 +28,7 @@ header.page-header.group.page-header-wider
                          context_text: "<p>e.g. 'design and manufacture of bespoke steel windows and doors'. If relevant, give details of material used or end use.</p>",
                          conditional: {question: "Is your international trade in more than one class of goods?",
                                        value: "yes"} } do
-          textarea.js-char-count rows="1" maxlength="90" data-word-max="15"
+          textarea.js-char-count rows="1" data-word-max="15"
 
         = question_for "Briefly describe the main classes of the goods you trade",
                        { step: "C 2",
@@ -36,19 +36,19 @@ header.page-header.group.page-header-wider
                          context_text: "<p>Include a percentage breakdown of the described goods. If relevant, give details of material used or end use.</p>",
                          conditional: {question: "Is your international trade in more than one class of goods?",
                                        value: "no"} } do
-          textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
+          textarea.js-char-count rows="5" data-word-max="100"
 
         = question_for "Describe your business in detail",
                        { step: "C 3",
                          required: true,
                          context_text: "<p>Include a brief history, your overall growth strategy, corporate targets/direction/vision, and a full description of the products/services you export.</p>" } do
-          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+          textarea.js-char-count rows="5" data-word-max="500"
 
         = question_for "Describe your international and domestic trading strategies, their method of implementation, and actual impact on your commercial performance.",
                        { step: "C 4",
                          required: true,
                          context_text: "<p>Include, for example, comparisons between the two strategies, treatment of different markets (linking to top performing markets), market research, market development, routes to market, after sales and technical advice, staff language training, export practices, overseas distributors, inward/outward trade missions, trade fairs and visits to existing/potential markets.</p>" } do
-          textarea.js-char-count rows="5" maxlength="4800" data-word-max="800"
+          textarea.js-char-count rows="5" data-word-max="800"
 
         h2
           ' Overseas Markets
@@ -57,22 +57,22 @@ header.page-header.group.page-header-wider
                        { step: "C 5",
                          required: true,
                          context_text: "<p>Include evidence of how you segment and manage geographical regions. Please supply market share information. </p>" } do
-          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+          textarea.js-char-count rows="5" data-word-max="500"
 
         = question_for "State the percentage of total overseas sales made to each of your top 5 overseas markets (countries) during the final year of your entry.",
                        { step: "C 5.1",
                          required: true } do
-          textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+          textarea.js-char-count rows="5" data-word-max="200"
 
         = question_for "Identify new overseas markets established during your period of entry, and their contribution to total overseas sales.",
                        { step: "C 5.2",
                          required: true } do
-          textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
+          textarea.js-char-count rows="5" data-word-max="300"
 
         = question_for "Give details of any special factors affecting your trade in goods or services, and how you overcame them.",
                        { step: "C 6",
                          required: true } do
-          textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+          textarea.js-char-count rows="5" data-word-max="200"
 
         = question_for "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.",
                        { step: "C 10",
@@ -89,7 +89,7 @@ header.page-header.group.page-header-wider
               // File size limit in text
               label.small
                 ' Description (optional)
-                textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
+                textarea.js-char-count rows="2" data-word-max="100"
             li
               = link_to "Remove", "#", class: "remove-link"
               // If 'add link' is clicked
@@ -99,7 +99,7 @@ header.page-header.group.page-header-wider
               // File size limit in text
               label.small
                 ' Description (optional)
-                textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
+                textarea.js-char-count rows="2" data-word-max="100"
 
           = link_to "+ Upload document", "#", class: "button button-add"
           = link_to "+ Add Link", "#", class: "button button-add"

@@ -15,3 +15,12 @@ article .current-question li {
     @include core-16;
   }
 }
+
+// Fix spacing on the previous answers
+.eligibility-finish-previous-answers {
+  margin-top: $gutter*2;
+
+  .done-questions {
+    padding-left: 0;
+  }
+}

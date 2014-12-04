@@ -23,7 +23,10 @@ ul.applications-list
     small
       /' Unclear eligibility
     .pull-right
-      = link_to "Start application", apply_international_trade_award_path
+      - if params[:eligible] == "innovation"
+        = link_to "Restart application", apply_international_trade_award_path
+      - else
+        = link_to "Start application", apply_international_trade_award_path
   li
     h3
       ' Innovation Award
@@ -37,7 +40,10 @@ ul.applications-list
     small
       /' Unclear eligibility
     .pull-right
-      = link_to "Start application", apply_sustainable_development_award_path
+      - if params[:eligible] == "innovation"
+        = link_to "Restart application", apply_sustainable_development_award_path
+      - else
+        = link_to "Start application", apply_sustainable_development_award_path
 
     /.application-notice.info-notice
       p

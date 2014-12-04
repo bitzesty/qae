@@ -23,6 +23,8 @@ $gutter-one-sixth: $gutter/6;
 
 // Page specific styles
 #QAE {
+  @import 'frontend/views/landing';
+  @import 'frontend/views/account';
   @import 'frontend/views/dashboard';
   @import 'frontend/views/eligibility';
   @import 'frontend/views/award_form';

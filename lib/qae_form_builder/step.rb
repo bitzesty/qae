@@ -1,3 +1,5 @@
+require 'active_support/inflector'
+
 class QAEFormBuilder
 
   class StepBuilder
@@ -6,9 +8,21 @@ class QAEFormBuilder
       @step = step
     end
 
+    def context context
+      @step.context = context
+    end
+
+    def submit text, &block
+      s = StepSubmit.new text
+      b = StepSubmitBuilder.new s
+      b.instance_eval &block if block
+      @step.submit = s
+    end
+
     def method_missing(meth, *args, &block)
       klass_builder = QAEFormBuilder.const_get( "#{meth.to_s.camelize}QuestionBuilder" ) rescue nil
       klass = QAEFormBuilder.const_get( "#{meth.to_s.camelize}Question" ) rescue nil
+
       if klass_builder && klass && args.length >= 2 && args.length <=3 
         id, title, opts = args
         create_question klass_builder, klass, id, title, opts, &block 
@@ -30,9 +44,31 @@ class QAEFormBuilder
     end
   end
 
+  class StepSubmitBuilder
+    def initialize submit
+      @submit = submit
+    end
+
+    def notice notice
+      @submit.notice = notice
+    end
+
+    def style style
+      @submit.style = style
+    end
+  end
+
+  class StepSubmit
+    attr_accessor :notice, :style, :text
+
+    def initialize text
+      @text = text
+    end
+  end
+
   class Step
 
-    attr_accessor :title, :opts, :questions, :index, :form
+    attr_accessor :title, :opts, :questions, :index, :form, :context, :submit
 
     def initialize form, title, opts={}
       @form = form

@@ -35,7 +35,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Does your business operate as a principal?",
                                        value: "no"} } do
-          textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
+          textarea.js-char-count rows="5" data-word-max="100"
 
         = question_for "Company/Charity Registration Number",
                        { step: "A 3",
@@ -146,7 +146,7 @@ header.page-header.group.page-header-wider
                        { context_text: "<p>Only enter the awards you consider most notable.</p>",
                          conditional: {question: "Have you won any other business or enterprise awards in the past?",
                                       value: "yes"} } do
-          textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
+          textarea.js-char-count rows="5" data-word-max="300"
 
         = question_for "Is this entry made jointly with any other organisation(s)?",
                        { step: "A 7",
@@ -329,7 +329,7 @@ header.page-header.group.page-header-wider
         = question_for "Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.",
                        { step: "A 13.1",
                          required: true } do
-          textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+          textarea.js-char-count rows="5" data-word-max="200"
 
         = question_for "Are you an export agent/merchant?",
                        { step: "A 14",

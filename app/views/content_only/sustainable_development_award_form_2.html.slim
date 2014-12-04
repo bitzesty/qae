@@ -80,7 +80,7 @@ header.page-header.group.page-header-wider
           br
           label
             ' Additional comments (optional)
-            textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
+            textarea.js-char-count rows="5" data-word-max="100"
             span.hint
               ' If your year-end date changed during the application period, please explain.
 
@@ -328,7 +328,7 @@ header.page-header.group.page-header-wider
                          { step: "B 5.4",
                            conditional: {question: "For how long have your achievements in sustainable development had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
-            textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+            textarea.js-char-count rows="5" data-word-max="200"
 
         .js-conditional-question data-question="for-how-long-have-your-achievements-in-sustainable-development-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="true"
           = question_for "Are any of these figures estimated?",
@@ -345,7 +345,7 @@ header.page-header.group.page-header-wider
           = question_for "Explain the use of estimates, and how much of these are actual receipts or firm orders.",
                          { conditional: {question: "Are any of these figures estimated?",
                                          value: "yes"} } do
-            textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+            textarea.js-char-count rows="5" data-word-max="200"
 
         .js-conditional-question data-question="my-entry-relates-to" data-value="single product or service"
           h2
@@ -569,7 +569,7 @@ header.page-header.group.page-header-wider
             = question_for "Explain any drop in sales",
                            { step: "B 6.4",
                              required: true } do
-              textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
+              textarea.js-char-count rows="5" data-word-max="300"
 
           = question_for "Are any of these figures estimated?",
                          { step: "B 6.5" } do
@@ -583,11 +583,11 @@ header.page-header.group.page-header-wider
           = question_for "Explain the use of estimates, and how much of these are actual receipts or firm orders.",
                          { conditional: {question: "Are any of these figures estimated?",
                                          value: "yes"} } do
-            textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+            textarea.js-char-count rows="5" data-word-max="200"
 
           = question_for "Additional comments (optional)",
                          { step: "B 6.6" } do
-            textarea.js-char-count rows="5" maxlength="600" data-word-max="100"
+            textarea.js-char-count rows="5" data-word-max="100"
 
           = question_for "Average unit selling price/contract value",
                          { step: "B 7",
@@ -642,7 +642,7 @@ header.page-header.group.page-header-wider
 
           = question_for "Explain your unit selling prices/contract values, highlighting any changes over the above periods.",
                          { required: true } do
-            textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+            textarea.js-char-count rows="5" data-word-max="200"
 
           = question_for "Cost, to you, of a single unit/contract",
                          { step: "B 8",
@@ -697,23 +697,23 @@ header.page-header.group.page-header-wider
 
           = question_for "Explain your unit/ contract costs, highlighting any changes over the above periods.",
                          { required: true } do
-            textarea.js-char-count rows="5" maxlength="1200" data-word-max="200"
+            textarea.js-char-count rows="5" data-word-max="200"
 
         = question_for "Explain the cost savings you or your customers' businesses made as a result of the introduction of the product/service/management approach.",
                        { step: "B 9",
                          required: true,
                          context_text: "<p>Use figures if known.</p>" } do
-          textarea.js-char-count rows="5" maxlength="1800" data-word-max="300"
+          textarea.js-char-count rows="5" data-word-max="300"
 
         = question_for "Please enter details of all investments made in your product/service/management approach on a yearly basis both during and prior to your entry period.",
                        { step: "B 10",
                          context_text: "<p>Use figures if known.</p>" } do
-          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+          textarea.js-char-count rows="5" data-word-max="500"
 
         = question_for "How long did it take the investment indicated above to be repaid out of profits? When and how was this repayment achieved?",
                        { step: "B 11",
                          context_text: "<p>When calculating expenditure paid for out of profits, please include capital costs where appropriate.</p>" } do
-          textarea.js-char-count rows="5" maxlength="3000" data-word-max="500"
+          textarea.js-char-count rows="5" data-word-max="500"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

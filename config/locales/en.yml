@@ -1,6 +1,6 @@
 en:
   enumerize:
-    users:
+    user:
       qae_info_source:
         govuk: Gov.UK
         competitor: From a Competitor
@@ -14,6 +14,9 @@ en:
         word_of_mouth: General word of mouth
         other: Other
     eligibility:
+      organization_kind:
+        business: Business
+        charity: Not-for-profit
       kind:
         application: Apply for an award
         nomination: Nominate an individual

@@ -1,0 +1,58 @@
+- provide(:page_content_class, "multi-page page-landing")
+
+.article-related-positioning-container
+  header.page-header.group
+    div
+      h1
+        ' The Queen's Awards for Enterprise
+
+  .article-container.group
+    = render "landing_page_navigation", current_step: 4
+
+    article.group role="article"
+      .inner
+        header
+          h1 4. How to apply
+
+          p You must submit your application online.
+
+          p
+            ' Organisations can enter more than one award category as long as they
+            = link_to "meet the criteria", awards_for_organisations_path
+            ' .
+
+          .application-notice.info-notice
+            p Submission period opens 21st April.
+
+            p
+              ' Submission period closes on the
+              strong last working day of September.
+
+          br
+
+          p Generally applicants take between 2 to 6 weeks to collate the necessary data and complete the form.
+
+          p There is no entry fee.
+
+          .get-started
+            - if user_signed_in?
+              = link_to "Apply", dashboard_path, class: "button"
+            - else
+              = link_to "Apply", new_user_registration_path, class: "button"
+
+        footer
+          nav.pagination role="navigation" aria-label="Pagination"
+            ul.group
+              li.previous
+                = link_to enterprise_promotion_awards_path, rel: "prev", title: "Navigate to previous part" do
+                  span.pagination-label
+                    ' Previous
+                  span.pagination-part-title
+                    ' Eligibility for individuals
+
+              li.next
+                = link_to what_happens_next_path, rel: "next", title: "Navigate to next part" do
+                  span.pagination-label
+                    ' Next
+                  span.pagination-part-title
+                    ' What happens next

@@ -1,6 +1,9 @@
 .article-container.article-container-wider.step-article.js-step-condition class="#{'step-current' if step == form.steps.first}" data-step="step-#{step.title.parameterize}"
   article.group role="article"
     .inner
-      form.qae-form
-        = render partial: "qae_form/question", collection: step.questions
-        = render partial: "qae_form/form_footer", object: step, as: 'step'
+      - if step.context
+        == step.context
+      = render partial: "qae_form/question", collection: step.questions
+      - if step.submit
+        = render partial: "qae_form/step_submit", object: step.submit, as: 'submit'
+      = render partial: "qae_form/form_footer", object: step, as: 'step'
