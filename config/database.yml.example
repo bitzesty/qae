@@ -8,6 +8,7 @@ development:
 
 test:
   <<: *common
+  username: postgres
   database: qae_test
 
 production:
