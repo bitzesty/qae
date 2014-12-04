@@ -84,5 +84,36 @@ jQuery ->
       $("html, body").animate(
         scrollTop: 0
       , 0)
+
+  autosave = () ->
+    window.autosave_timer = null
+    url = $('form.qae-form').data('autosave-url')
+    if url
+      form_data = {}
+      a = $('form.qae-form').serializeArray()
+      $.each a,
+        (() ->
+          if form_data[@name] != undefined
+            if !farm_data[@name].push
+              form_data[@name] = [form_data[@name]]
+            form_data[@name].push(@value || '')
+          else
+            form_data[@name] = @value || '')
+      $.ajax({
+        url: url
+        data: JSON.stringify(form_data)
+        contentType: 'application/json'
+        type: 'POST'
+        dataType: 'json'
+      })
+    #TODO: indicators, error handlers?
+
+  triggerAutosave = (e) ->
+    window.autosave_timer ||= setTimeout( autosave, 15000 )
+
+  $(document).on "change", ".js-trigger-autosave", triggerAutosave
+  $(document).on "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave
+  $(document).on "keyup", "textarea.js-trigger-autosave", triggerAutosave
+
   # Fade out alerts after 5sec
   $(".flash").delay(5000).fadeOut()

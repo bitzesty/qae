@@ -6,7 +6,8 @@ Rails.application.routes.draw do
     confirmations: 'devise/confirmations'
   }
 
-  get '/innovation'                => "content_only#innovation",                as: 'innovation'
+  get  '/innovation'                => "form#innovation",                        as: 'innovation'
+  post '/form_autosave'             => "form#autosave",                        as: 'autosave'
   get '/dashboard'                 => "content_only#dashboard",                 as: 'dashboard'
   get '/eligibility_check_1'       => "content_only#eligibility_check_1",       as: 'eligibility_check_1'
   get '/eligibility_check_2'       => "content_only#eligibility_check_2",       as: 'eligibility_check_2'

@@ -1,14 +1,7 @@
-require 'qae_2014_forms'
-
 class ContentOnlyController < ApplicationController
   before_filter :authenticate_user!, except: [:home]
 
   def home
-  end
-
-  def innovation
-    @form = QAE2014Forms.innovation
-    render template: 'qae_form/show'
   end
 
   def account_1
