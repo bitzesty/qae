@@ -1,7 +1,12 @@
+- if defined? access_future
+  - access = access_future
+- else
+  - access = true
+
 ol.steps-progress-bar
-  = step_link_to "Eligibility",              international_trade_award_eligible_path, index: 1, active: @active_step
-  = step_link_to "Company Info",             international_trade_award_form_1_path,   index: 2, active: @active_step
-  = step_link_to "Commercial Performance",   international_trade_award_form_2_path,   index: 3, active: @active_step
-  = step_link_to "Goods or Services",        international_trade_award_form_3_path,   index: 4, active: @active_step
-  = step_link_to "Corporate Responsibility", international_trade_award_form_4_path,   index: 5, active: @active_step
-  = step_link_to "Authorisation/Monitoring", international_trade_award_form_5_path,   index: 6, active: @active_step
+  = step_link_to "Eligibility",              international_trade_award_eligible_path, index: 1, active: @active_step, access_future: access
+  = step_link_to "Company Info",             international_trade_award_form_1_path,   index: 2, active: @active_step, access_future: access
+  = step_link_to "Commercial Performance",   international_trade_award_form_2_path,   index: 3, active: @active_step, access_future: access
+  = step_link_to "Goods or Services",        international_trade_award_form_3_path,   index: 4, active: @active_step, access_future: access
+  = step_link_to "Corporate Responsibility", international_trade_award_form_4_path,   index: 5, active: @active_step, access_future: access
+  = step_link_to "Authorisation/Monitoring", international_trade_award_form_5_path,   index: 6, active: @active_step, access_future: access

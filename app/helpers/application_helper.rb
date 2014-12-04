@@ -22,7 +22,7 @@ module ApplicationHelper
     end
 
     content_tag :li, opts do
-      if step_status == "current"
+      if step_status == "current" or (step_status != "past" && opts.has_key?(:access_future) && opts[:access_future] == false)
         content_tag :span do
           index_step_text
         end
