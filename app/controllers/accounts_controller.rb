@@ -98,7 +98,7 @@ class AccountsController < ApplicationController
   private
 
   def check_eligibility
-    if !current_user.eligibility || !current_user.eligibility.passed?
+    if !current_user.basic_eligibility || !current_user.basic_eligibility.passed?
       redirect_to eligibility_path
     end
   end

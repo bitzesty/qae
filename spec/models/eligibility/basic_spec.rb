@@ -1,19 +1,19 @@
 require 'spec_helper'
 
-RSpec.describe Eligibility, :type => :model do
+RSpec.describe Eligibility::Basic, :type => :model do
   let(:user) { FactoryGirl.create(:user) }
 
   context 'answers storage' do
     it 'saves and reads answers' do
-      eligibility = Eligibility.new(user: user)
+      eligibility = Eligibility::Basic.new(user: user)
       eligibility.kind = 'application'
       eligibility.based_in_uk = '1'
 
       expect { eligibility.save }.to change {
-        Eligibility.count
+        Eligibility::Basic.count
       }.by(1)
 
-      eligibility = Eligibility.last
+      eligibility = Eligibility::Basic.last
 
       expect(eligibility.user).to eq(user)
       expect(eligibility.kind).to eq('application')
@@ -22,7 +22,7 @@ RSpec.describe Eligibility, :type => :model do
   end
 
   describe '#eligible?' do
-    let(:eligibility) { Eligibility.new(user: user) }
+    let(:eligibility) { Eligibility::Basic.new(user: user) }
 
     it 'is not eligible by default' do
       expect(eligibility).not_to be_eligible

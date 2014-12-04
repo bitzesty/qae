@@ -14,14 +14,14 @@
               - if question.to_sym != step
                 tr.section
                   td.previous-question-title
-                    = Eligibility.label(question)
+                    = Eligibility::Basic.label(question)
                   td.previous-question-body
-                    - if Eligibility.boolean_question?(question)
+                    - if Eligibility::Basic.boolean_question?(question)
                       = @eligibility.public_send("#{question}?") ? 'Yes' : 'No'
                     - else
-                      = Eligibility.enumerized_attributes[question].find_value(answer).text
+                      = Eligibility::Basic.enumerized_attributes[question].find_value(answer).text
                   td.link-right
                     = link_to wizard_path(question) do
                       ' Change
                       span.visuallyhidden
-                        = ' answer to' + Eligibility.label(question)
+                        = ' answer to' + Eligibility::Basic.label(question)

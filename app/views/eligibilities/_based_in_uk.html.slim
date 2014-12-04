@@ -1,8 +1,5 @@
-.question
-  h2
-    = Eligibility.label(step)
-  .question-body
-    p.hint
-      ' 'UK' includes the Channel Islands and the Isle of Man.
-    = f.input :based_in_uk, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
-    span.clear
+.question-body
+  p.hint
+    ' 'UK' includes the Channel Islands and the Isle of Man.
+  = f.input :based_in_uk, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  span.clear
