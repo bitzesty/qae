@@ -5,7 +5,7 @@ describe QAEFormBuilder do
   it 'should build QAEFormBuilder::Form instances' do
     empty = QAEFormBuilder.build 'test'
     expect(empty.title).to eq('test')
-    expect(empty).to be_instance_of(QAEFormBuilder::Form)
+    expect(empty).to be_instance_of(QAEFormBuilder::QAEForm)
   end
 
   it 'should build 0 steps for empty block' do
@@ -45,6 +45,6 @@ describe QAEFormBuilder do
     expect(q.last.key).to eq(:org_uk)
     expect(q.last.title).to eq('Is your business based in UK?')
     expect(q.last.context).to eq('Including the Channel Islands and the Isle of Man.')
-  end 
+  end
 
 end
