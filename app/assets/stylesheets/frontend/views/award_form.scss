@@ -15,3 +15,14 @@
     cursor: default;
   }
 }
+
+// Fix spacing on the previous answers
+.award-finish-previous-answers {
+  .previous-answers {
+    max-width: none;
+  }
+
+  .done-questions {
+    padding-left: 0;
+  }
+}

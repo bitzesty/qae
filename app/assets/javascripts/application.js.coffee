@@ -112,3 +112,10 @@ jQuery ->
       if $(this).closest("form").find("input:checked").val()
         $("#basic-eligibility-failure-answered").addClass("visuallyhidden")
         $("#basic-eligibility-failure-show").removeClass("visuallyhidden")
+
+  # Change your eligibility answers for award eligibility
+  if $(".award-finish-previous-answers").size() > 0
+    $(document).on "click", ".award-finish-previous-answers a", (e) ->
+      e.preventDefault()
+      $("#form_eligibility_show").addClass("visuallyhidden")
+      $("#form_eligibility_questions").removeClass("visuallyhidden")

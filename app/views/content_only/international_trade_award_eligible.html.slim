@@ -13,7 +13,13 @@ header.page-header.group.page-header-wider
     .inner
       form
         .current-question#current-question
-            = render "shared/form_eligibility"
+            #form_eligibility_show
+              = render "shared/form_eligibility_show"
+            #form_eligibility_questions.visuallyhidden
+              = render "shared/form_eligibility"
+            // This will behave the same showing the
+            // award eligibility answers if they have
+            // already done the award eligibility form
             = render "eligibility_check/form_international_trade"
 
         footer
