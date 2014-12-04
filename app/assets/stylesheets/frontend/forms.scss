@@ -3,6 +3,12 @@
   @include bold-19;
 }
 
+// Regular question style
+.regular-question h2 {
+  @include core-19;
+  margin: 0;
+}
+
 // Error styling
 .field_with_errors .error,
 .smart_answer article .error {
