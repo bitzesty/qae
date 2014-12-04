@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   begin :associations
     has_many :form_answers, dependent: :destroy
     has_one :eligibility, dependent: :destroy
+    has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
 
     belongs_to :account
   end
@@ -20,8 +21,7 @@ class User < ActiveRecord::Base
   before_create :create_account
 
   enumerize :prefered_method_of_contact, in: %w(phone email)
-  serialize :qae_info_source, Array
-  enumerize :qae_info_source, in: %w(govuk competitor business_event national_press business_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other), multiple: false
+  enumerize :qae_info_source, in: %w(govuk competitor business_event national_press business_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other)
   enumerize :role, in: %w(account_admin regular)
 
   private
@@ -31,6 +31,6 @@ class User < ActiveRecord::Base
   end
 
   def create_account
-    self.account = Account.create unless account
+    self.account = Account.create(owner: self) unless account
   end
 end

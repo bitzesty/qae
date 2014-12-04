@@ -10,4 +10,9 @@ RSpec.describe FormAnswer, :type => :model do
       it { should validate_presence_of field_name }
     end
   end
+
+  it 'sets account on creating' do
+    form_answer = FactoryGirl.create(:form_answer)
+    expect(form_answer.account).to eq(form_answer.user.account)
+  end
 end

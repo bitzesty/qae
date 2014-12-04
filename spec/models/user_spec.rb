@@ -8,6 +8,9 @@ RSpec.describe User, :type => :model do
       Account.count
     }.by(1)
 
-    expect(user.account_id).to eq(Account.last.id)
+    account = Account.last
+    expect(user.account).to eq(account)
+    expect(user.owned_account).to eq(account)
+    expect(account.owner).to eq(user)
   end
 end
