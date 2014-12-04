@@ -75,7 +75,7 @@ header.page-header.group.page-header-wider
             ' No
 
         = question_for "List the Queen's Award(s) you currently hold",
-                       { step: "A 5.1",
+                       { classes: "sub-question",
                          conditional: {question: "Are you a current Queen's Award holder (2010-2014)?",
                                       value: "yes"}} do
           ul.list-add
@@ -118,7 +118,7 @@ header.page-header.group.page-header-wider
           = link_to "+ Add another award", "#", class: "button button-add"
 
         = question_for "Has the name of your business changed since your previous entry?",
-                       { step: "A 5.2",
+                       { classes: "sub-question",
                          conditional: {question: "Are you a current Queen's Award holder (2010-2014)?",
                                       value: "yes"} } do
           label.selectable
@@ -151,7 +151,8 @@ header.page-header.group.page-header-wider
             ' No
 
         = question_for "Please describe them",
-                       { context_text: "<p>Only enter the awards you consider most notable.</p>",
+                       { classes: "sub-question",
+                         context_text: "<p>Only enter the awards you consider most notable.</p>",
                          conditional: {question: "Have you won any other business or enterprise awards in the past?",
                                       value: "yes"} } do
           textarea.js-char-count rows="5" data-word-max="300"
@@ -169,7 +170,8 @@ header.page-header.group.page-header-wider
             ' No
 
         = question_for "Please enter their name(s)",
-                       { required: true,
+                       { classes: "sub-question",
+                         required: true,
                          conditional: {question: "Is this entry made jointly with any other organisation(s)?",
                                       value: "yes"} } do
           input.largest type="text"
@@ -177,20 +179,20 @@ header.page-header.group.page-header-wider
         = question_for "Principal address of your business",
                        { step: "A 8",
                          required: true } do
-          p.group
+          .question-group
             label
               ' Building and street
               input.large type="text"
               input.large type="text"
-          p.group
+          .question-group
             label
               ' Town or city
               input.medium type="text"
-          p.group
+          .question-group
             label
               ' Country
               input.medium type="text"
-          p.group
+          .question-group
             label
               ' Postcode
               input.small type="text"
@@ -207,28 +209,31 @@ header.page-header.group.page-header-wider
             option
             option value="other" Other
 
-        = question_for "Please specify",
+        = question_for "",
                        { required: true,
                          conditional: {question: "Business Sector",
                                       value: "other"} } do
-          input.medium type="text"
+          .question-group
+            label
+              ' Please specify
+              input.medium type="text"
 
         = question_for "Head of your business",
                        { step: "A 11",
                          required: true } do
-          p.group
+          .question-group
             label
               ' Title
               input.small type="text"
-          p.group
+          .question-group
             label
               ' First name
               input.medium type="text"
-          p.group
+          .question-group
             label
               ' Last name
               input.medium type="text"
-          p.group
+          .question-group
             label
               ' Personal Honours
               input.large type="text"
@@ -236,12 +241,12 @@ header.page-header.group.page-header-wider
               ' e.g. OBE. Not including educational qualifications or Institutional Memberships.
 
         = question_for "Job title / Role in the organisation",
-                       { step: "A 11.1",
+                       { classes: "sub-question",
                          required: true } do
           input.medium type="text"
 
         = question_for "Email address",
-                       { step: "A 11.2",
+                       { classes: "sub-question",
                          required: true } do
           input.medium type="email"
 
@@ -254,26 +259,28 @@ header.page-header.group.page-header-wider
             input type="radio" name="optionsDivisionBranchSubsudiary" value="no"
             ' No
 
-        = question_for "Name of immediate parent company",
+        = question_for "",
                        { conditional: {question: "Are you a division, branch or subsidiary?",
                                       value: "yes"} } do
-          input.medium type="text"
-
-        = question_for "Country of immediate parent company",
-                       { conditional: {question: "Are you a division, branch or subsidiary?",
-                                      value: "yes"} } do
-          select
-            option value=""
-            option value="United Kingdom" United Kingdom
-            option value="United States of America" United States of America
-            option value="" disabled="disabled"
-              ' ────────────────
-            - @countries.each do |country|
-              option value="#{country}"
-                = country
+          .question-group
+            label
+              ' Name of immediate parent company
+              input.medium type="text"
+          .question-group
+            label
+              ' Country of immediate parent company
+              select
+                option value=""
+                option value="United Kingdom" United Kingdom
+                option value="United States of America" United States of America
+                option value="" disabled="disabled"
+                  ' ────────────────
+                - @countries.each do |country|
+                  option value="#{country}"
+                    = country
 
         = question_for "Does the immediate parent company have ultimate control?",
-                       { step: "A 12.1",
+                       { classes: "sub-question",
                          conditional: {question: "Are you a division, branch or subsidiary?",
                                       value: "yes"} } do
           label.selectable
@@ -284,26 +291,28 @@ header.page-header.group.page-header-wider
             ' No
 
         .js-conditional-question data-question="are-you-a-division-branch-or-subsidiary" data-value="yes"
-          = question_for "Name of organisation with ultimate control",
+          = question_for "",
                          { conditional: {question: "Does the immediate parent company have ultimate control?",
                                         value: "no"} } do
-            input.medium type="text"
-
-          = question_for "Country of organisation with ultimate control",
-                         { conditional: {question: "Does the immediate parent company have ultimate control?",
-                                        value: "no"} } do
-            select
-              option value=""
-              option value="United Kingdom" United Kingdom
-              option value="United States of America" United States of America
-              option value="" disabled="disabled"
-                ' ────────────────
-              - @countries.each do |country|
-                option value="#{country}"
-                  = country
+            .question-group
+              label
+                ' Name of organisation with ultimate control
+                input.medium type="text"
+            .question-group
+              label
+                ' Country of organisation with ultimate control
+                select
+                  option value=""
+                  option value="United Kingdom" United Kingdom
+                  option value="United States of America" United States of America
+                  option value="" disabled="disabled"
+                    ' ────────────────
+                  - @countries.each do |country|
+                    option value="#{country}"
+                      = country
 
         = question_for "Upload an organisational chart (optional).",
-                       { step: "A 12.2",
+                       { classes: "sub-question",
                          context_text: "<p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>",
                          conditional: {question: "Are you a division, branch or subsidiary?",
                                       value: "yes"} } do
