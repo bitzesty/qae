@@ -1,12 +1,12 @@
-          p.group
-            label
-              ' Title
-              input.small type="text"
-          p.group
-            label
-              ' First name
-              input.medium type="text"
-          p.group
-            label
-              ' Last name
-              input.medium type="text"
+p.group
+  label
+    ' Title
+    input.small.js-trigger-autosave type="text" name="#{question.key}_title"
+p.group
+  label
+    ' First name
+    input.medium.js-trigger-autosave type="text" name="#{question.key}_first_name"
+p.group
+  label
+    ' Last name
+    input.medium.js-trigger-autosave type="text" name="#{question.key}_last_name"
