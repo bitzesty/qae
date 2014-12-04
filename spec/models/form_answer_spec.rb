@@ -20,4 +20,17 @@ RSpec.describe FormAnswer, type: :model do
     form_answer = FactoryGirl.create(:form_answer)
     expect(form_answer.account).to eq(form_answer.user.account)
   end
+
+  context 'URN' do
+    let!(:form_answer) { FactoryGirl.create(:form_answer) }
+
+    it 'creates form with URN' do
+      expect(form_answer.urn).to eq('QA0001/14T')
+    end
+
+    it 'increments URN number' do
+      other_form_answer = FactoryGirl.create(:form_answer, :innovation)
+      expect(other_form_answer.urn).to eq('QA0002/14I')
+    end
+  end
 end
