@@ -3,8 +3,7 @@
     .inner
       - if step.context
         == step.context
-      form.qae-form
-        = render partial: "qae_form/question", collection: step.questions
-        - if step.submit
-          = render partial: "qae_form/step_submit", object: step.submit, as: 'submit'
-        = render partial: "qae_form/form_footer", object: step, as: 'step'
+      = render partial: "qae_form/question", collection: step.questions
+      - if step.submit
+        = render partial: "qae_form/step_submit", object: step.submit, as: 'submit'
+      = render partial: "qae_form/form_footer", object: step, as: 'step'
