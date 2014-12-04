@@ -72,5 +72,10 @@ Rails.application.routes.draw do
 
   namespace :admin do
     resources :users
+    resources :form_answers do
+      member do
+        post :withdraw
+      end
+    end
   end
 end
