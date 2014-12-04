@@ -12,7 +12,7 @@ header.page-header.group.page-header-wider
   article.group role="article"
     .inner
       form.qae-form
-        = question_for "Full/legal name of your business",
+        = question_for "Full/legal name of your organisational unit",
                        { step: "A 1",
                          required: true,
                          help: [{title: "What name should I write?",
@@ -20,7 +20,7 @@ header.page-header.group.page-header-wider
           input.medium type="text"
           // Autopopulate from registration page
 
-        = question_for "Does your business operate as a principal?",
+        = question_for "Does your unit operate as a principal?",
                        { step: "A 2",
                          required: true,
                          context_text: "<p>We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>"} do
@@ -81,12 +81,16 @@ header.page-header.group.page-header-wider
           ul.list-add
             li
               = link_to "Remove", "#", class: "remove-link"
-              select
+              select.inline
                 option value="" Select award category
-                option value="innovation" Innovation
-                option value="international trade" International Trade
-                option value="sustainable development" Sustainable Development
-              select
+                option value="innovation 2 years" Innovation (2 years)
+                option value="innovation 5 years" Innovation (5 years)
+                option value="international trade 3" International Trade (3 years)
+                option value="international trade 6" International Trade (6 years)
+                option value="sustainable development 2" Sustainable Development (2 years)
+                option value="sustainable development 5" Sustainable Development (5 years)
+              ' 
+              select.inline
                 option value="" Year
                 option value="2010" 2010
                 option value="2011" 2011
@@ -95,12 +99,16 @@ header.page-header.group.page-header-wider
                 option value="2014" 2014
             li
               = link_to "Remove", "#", class: "remove-link"
-              select
+              select.inline
                 option value="" Select award category
-                option value="innovation" Innovation
-                option value="international trade" International Trade
-                option value="sustainable development" Sustainable Development
-              select
+                option value="innovation 2 years" Innovation (2 years)
+                option value="innovation 5 years" Innovation (5 years)
+                option value="international trade 3" International Trade (3 years)
+                option value="international trade 6" International Trade (6 years)
+                option value="sustainable development 2" Sustainable Development (2 years)
+                option value="sustainable development 5" Sustainable Development (5 years)
+              ' 
+              select.inline
                 option value="" Year
                 option value="2010" 2010
                 option value="2011" 2011
@@ -109,7 +117,7 @@ header.page-header.group.page-header-wider
                 option value="2014" 2014
           = link_to "+ Add another award", "#", class: "button button-add"
 
-        = question_for "Has the name of your business changed since your previous entry?",
+        = question_for "Has the name of your organisation changed since your previous entry?",
                        { step: "A 5.2",
                          conditional: {question: "Are you a current Queen's Award holder (2010-2014)?",
                                       value: "yes"} } do

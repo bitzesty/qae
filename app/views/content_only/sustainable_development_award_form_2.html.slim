@@ -12,10 +12,10 @@ header.page-header.group.page-header-wider
   article.group role="article"
     .inner
       form.qae-form
-        = question_for "For how long have your achievements in sustainable development had substantial impact on (ie. measurably improved) your organisation's performance?",
+        = question_for "For how long have your achievements in sustainable development  had substantial impact on (ie. measurably improved) your organisation's performance?",
                        { step: "B 1",
                          required: true,
-                         context_text: "<p>Your answer here will determine whether you are assessed for outstanding innovation (an award valid for two years) or continuous innovation (valid for five years).</p>"} do
+                         context_text: "<p>Your answer here will determine whether you are assessed for outstanding (over two years) or continuous (over five years) achievement in sustainable development.</p>"} do
           label.selectable
             input type="radio" name="optionsMeasurablyImprovementDuration" value="2 to 4"
             ' 2-4 years
@@ -87,7 +87,7 @@ header.page-header.group.page-header-wider
         = question_for "State the number of people employed by the company for each year of your entry.",
                        { step: "B 3",
                          required: true,
-                         context_text: "<p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.</p>",
+                         context_text: "<p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.  Only include those on the payroll.</p>",
                          conditional: {question: "For how long have your achievements in sustainable development had substantial impact on (ie. measurably improved) your organisation's performance?",
                                        value: true} } do
           input.small type="number" min=2

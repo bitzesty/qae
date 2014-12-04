@@ -18,22 +18,30 @@ jQuery ->
   # Conditional questions that appear depending on answers
   $(".js-conditional-question, .js-conditional-drop-question").addClass("conditional-question")
   # Simple conditional using a == b
-  $(".js-conditional-answer input, .js-conditional-answer select").change () ->
-    answer = $(this).closest(".js-conditional-answer").attr("data-answer")
+  simpleConditionalQuestion = (input, clicked) ->
+    answer = input.closest(".js-conditional-answer").attr("data-answer")
     question = $(".conditional-question[data-question='#{answer}']")
-    answerVal = $(this).val()
+    answerVal = input.val()
 
-    if $(this).attr('type') == 'checkbox'
-      answerVal = $(this).is(':checked').toString()
+    if input.attr('type') == 'checkbox'
+      answerVal = input.is(':checked').toString()
 
     question.each () ->
+      #console.log "#{answerVal} #{($(this).attr('data-value') == answerVal || ($(this).attr('data-value') == "true" && answerVal != false))}"
       if $(this).attr('data-value') == answerVal || ($(this).attr('data-value') == "true" && answerVal != false)
-        $(this).addClass("show-question")
+        if clicked || (!clicked && input.attr('type') == 'radio' && input.is(':checked'))
+          $(this).addClass("show-question")
       else
-        $(this).removeClass("show-question")
+        if clicked || (!clicked && input.attr('type') != 'radio')
+          $(this).removeClass("show-question")
+  $(".js-conditional-answer input, .js-conditional-answer select").each () ->
+    simpleConditionalQuestion($(this), false)
+  $(".js-conditional-answer input, .js-conditional-answer select").change () ->
+    simpleConditionalQuestion($(this), true)
   # Numerical conditional that checks that trend doesn't ever drop
-  $(".js-conditional-drop-answer input").change () ->
-    drop_question = $(this).closest(".js-conditional-drop-answer").attr('data-drop-question')
+  dropConditionalQuestion = (input) ->
+    drop_question = input.closest(".js-conditional-drop-answer").attr('data-drop-question')
+    question = $(".js-conditional-answer[data-answer='#{drop_question}']").closest(".js-conditional-drop-question")
     drop = false
 
     $(".js-conditional-drop-answer[data-drop-question='#{drop_question}']").each () ->
@@ -47,11 +55,14 @@ jQuery ->
             drop = true
           last_val = value
 
-    question = $(".js-conditional-answer[data-answer='#{drop_question}']").closest(".js-conditional-drop-question")
     if drop
       question.addClass("show-question")
     else
       question.removeClass("show-question")
+  $(".js-conditional-drop-answer input").each () ->
+    dropConditionalQuestion($(this))
+  $(".js-conditional-drop-answer input").change () ->
+    dropConditionalQuestion($(this))
 
   # Get the year value from previous answer
   updateYearEnd = () ->

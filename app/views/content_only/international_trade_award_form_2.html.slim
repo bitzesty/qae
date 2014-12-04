@@ -15,13 +15,24 @@ header.page-header.group.page-header-wider
         = question_for "For how long has your organisation seen growth and commercial success in its international trade?",
                        { step: "B 1",
                          required: true,
-                         context_text: "<p>Your answer here will determine whether you are assessed for outstanding (an award valid for three years) or continuous (valid for six years) achievement in international trade.</p>"} do
+                         context_text: "<p>Your answer here will determine whether you are assessed for outstanding (over  three years) or continuous (over six years) achievement in international trade.</p>"} do
           label.selectable
+            // If on A5.1 they added an Award they currently hold as "International Trade (6 years)" then add disabled and checked status
             input type="radio" name="optionsGrowthSuccessDuration" value="3 to 6"
             ' 3-6 years
           label.selectable
             input type="radio" name="optionsGrowthSuccessDuration" value="6 plus"
             ' 6 years or more
+
+        // If on A5.1 they added an Award they currently hold as "International Trade (6 years)" then show this
+          = question_for "Because you are the current holder of a Queen's Award for Continuous Achievement in International Trade (6 years), you may only apply for the Outstanding Achievement Award (3 years) this year.",
+                         { step: "B 1" } do
+            label.selectable
+              input type="radio" name="optionsGrowthSuccessDurationForced" value="3 to 6" disabled="disabled" checked="checked"
+              ' 3-6 years
+            label.selectable
+              input type="radio" name="optionsGrowthSuccessDurationForced" value="6 plus" disabled="disabled"
+              ' 6 years or more
 
         = question_for "Please select your financial year end dates:",
                        { step: "B 2",
@@ -99,7 +110,7 @@ header.page-header.group.page-header-wider
         = question_for "State the number of people employed by the company for each year of your entry.",
                        { step: "B 3",
                          required: true,
-                         context_text: "<p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.</p>",
+                         context_text: "<p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>",
                          conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
                                        value: true} } do
           input.small type="number" min=2
