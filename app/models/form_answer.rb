@@ -8,6 +8,8 @@ class FormAnswer < ActiveRecord::Base
     "promotion" # Enterprise promotion Award
   ]
 
+  CURRENT_AWARD_YEAR = '14'
+
   begin :associations
     belongs_to :user
     belongs_to :account
@@ -19,13 +21,18 @@ class FormAnswer < ActiveRecord::Base
                            inclusion: {
                              in: POSSIBLE_AWARDS
                            }
+    validates :urn, presence: true, uniqueness: true
   end
 
   begin :scopes
     scope :for_award_type, -> (award_type) { where award_type: award_type }
+    scope :order_by_current_year_urn, -> do
+      where("urn ~ '^QA\\d{4}\\/#{CURRENT_AWARD_YEAR}\\w{1}$'").order(:urn)
+    end
   end
 
   before_create :set_account
+  before_validation :set_urn, on: :create
 
   store_accessor :document
 
@@ -43,6 +50,19 @@ class FormAnswer < ActiveRecord::Base
   end
 
   private
+
+  def set_urn
+    return unless award_type
+
+    previous_urn_num = 0
+
+    if previous_form = self.class.order_by_current_year_urn.last
+      previous_urn = previous_form.urn
+      previous_urn_num = previous_urn.split('/')[0].delete('QA')
+    end
+
+    self.urn = "QA#{sprintf("%.4d", (previous_urn_num.to_i + 1))}/#{CURRENT_AWARD_YEAR}#{award_type[0].capitalize}"
+  end
 
   def set_account
     self.account = user.account
