@@ -23,7 +23,7 @@ fieldset class="question-block js-conditional-answer #{'js-conditional-question'
   - if question.context
     == question.context
 
-  p.group
+  .question-group
     label
       span.visuallyhidden
         = question.title
@@ -31,6 +31,7 @@ fieldset class="question-block js-conditional-answer #{'js-conditional-question'
           abbr
             | *
       = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question'
+    .clear
 
   - for help in question.help
     div.hidden-hint

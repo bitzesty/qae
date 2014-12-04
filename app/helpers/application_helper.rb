@@ -79,14 +79,15 @@ module ApplicationHelper
       question_context_text = opts[:context_text].html_safe
     end
 
-    question_body = content_tag :p, class: "group" do
-      content_tag :label do
+    question_body = content_tag :div, class: "question-group" do
+      question_label = content_tag :label do
         question_hidden_title = content_tag :span, class: "visuallyhidden" do
           question + required
         end
 
         question_hidden_title + capture(&block)
       end
+      question_label + "<div class='clear'></div>".html_safe
     end
 
     conditional_question = opts[:conditional] ? opts[:conditional][:question].parameterize : nil
