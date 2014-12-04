@@ -15,4 +15,9 @@ RSpec.describe FormAnswer, type: :model do
              in_array(FormAnswer::POSSIBLE_AWARDS)
     end
   end
+
+  it 'sets account on creating' do
+    form_answer = FactoryGirl.create(:form_answer)
+    expect(form_answer.account).to eq(form_answer.user.account)
+  end
 end

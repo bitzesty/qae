@@ -10,6 +10,7 @@ class FormAnswer < ActiveRecord::Base
 
   begin :associations
     belongs_to :user
+    belongs_to :account
   end
 
   begin :validations
@@ -24,6 +25,8 @@ class FormAnswer < ActiveRecord::Base
     scope :for_award_type, -> (award_type) { where award_type: award_type }
   end
 
+  before_create :set_account
+
   store_accessor :document
 
   def award_form
@@ -34,8 +37,14 @@ class FormAnswer < ActiveRecord::Base
       QAE2014Forms.innovation
     when "development"
       QAE2014Forms.development
-    when "promotion" 
+    when "promotion"
       QAE2014Forms.promotion
     end
+  end
+
+  private
+
+  def set_account
+    self.account = user.account
   end
 end

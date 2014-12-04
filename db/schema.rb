@@ -11,11 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203182047) do
+ActiveRecord::Schema.define(version: 20141204113729) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
+
+  create_table "accounts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "owner_id"
+  end
+
+  add_index "accounts", ["owner_id"], name: "index_accounts_on_owner_id", using: :btree
 
   create_table "admins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -54,8 +62,11 @@ ActiveRecord::Schema.define(version: 20141203182047) do
     t.datetime "updated_at"
     t.hstore   "document"
     t.boolean  "withdrawn",  default: false
+    t.integer  "account_id"
+    t.string   "award_type"
   end
 
+  add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
@@ -87,9 +98,12 @@ ActiveRecord::Schema.define(version: 20141203182047) do
     t.boolean  "subscribed_to_emails",       default: false
     t.string   "qae_info_source"
     t.string   "qae_info_source_other"
+    t.integer  "account_id"
+    t.string   "role"
     t.boolean  "completed_registration",     default: false
   end
 
+  add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
