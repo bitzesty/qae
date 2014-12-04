@@ -95,6 +95,8 @@ jQuery ->
       $("html, body").animate(
         scrollTop: 0
       , 0)
+      # Resize textareas that were previously hidden
+      resetResizeTextarea()
 
   autosave = () ->
     window.autosave_timer = null
