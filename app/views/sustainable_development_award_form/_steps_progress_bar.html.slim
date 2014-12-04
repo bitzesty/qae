@@ -1,12 +1,12 @@
-- if defined? access_future
-  - access = access_future
+- if defined? cant_access_future
+  - cant_access = cant_access_future
 - else
-  - access = true
+  - cant_access = false
 
 ol.steps-progress-bar
-  = step_link_to "Eligibility",              sustainable_development_award_eligible_path, index: 1, active: @active_step, access_future: access
-  = step_link_to "Company Info",             sustainable_development_award_form_1_path,   index: 2, active: @active_step, access_future: access
-  = step_link_to "Commercial Performance",   sustainable_development_award_form_2_path,   index: 3, active: @active_step, access_future: access
-  = step_link_to "Goods or Services",        sustainable_development_award_form_3_path,   index: 4, active: @active_step, access_future: access
-  = step_link_to "Corporate Responsibility", sustainable_development_award_form_4_path,   index: 5, active: @active_step, access_future: access
-  = step_link_to "Authorisation/Monitoring", sustainable_development_award_form_5_path,   index: 6, active: @active_step, access_future: access
+  = step_link_to "Eligibility",              sustainable_development_award_eligible_path, index: 1, active: @active_step, cant_access_future: cant_access
+  = step_link_to "Company Info",             sustainable_development_award_form_1_path,   index: 2, active: @active_step, cant_access_future: cant_access
+  = step_link_to "Commercial Performance",   sustainable_development_award_form_2_path,   index: 3, active: @active_step, cant_access_future: cant_access
+  = step_link_to "Goods or Services",        sustainable_development_award_form_3_path,   index: 4, active: @active_step, cant_access_future: cant_access
+  = step_link_to "Corporate Responsibility", sustainable_development_award_form_4_path,   index: 5, active: @active_step, cant_access_future: cant_access
+  = step_link_to "Authorisation/Monitoring", sustainable_development_award_form_5_path,   index: 6, active: @active_step, cant_access_future: cant_access
