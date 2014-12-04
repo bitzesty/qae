@@ -9,6 +9,10 @@ class QAEFormBuilder
       @q.context = text
     end
 
+    def classes text
+      @q.classes = text
+    end
+
     def ref id
       @q.ref = id
     end
@@ -40,7 +44,7 @@ class QAEFormBuilder
 
   class Question
     attr_accessor :step, :key,  :title, :context, :opts,
-      :required, :help, :ref, :condition, :header, :header_context
+      :required, :help, :ref, :condition, :header, :header_context, :classes
 
     def initialize step, key, title, opts={}
       @step = step

@@ -92,7 +92,7 @@ module ApplicationHelper
     conditional_question = opts[:conditional] ? opts[:conditional][:question].parameterize : nil
     conditional_value = opts[:conditional] ? opts[:conditional][:value] : nil
 
-    return content_tag :fieldset, class: "question-block js-conditional-answer #{'js-conditional-question' if opts[:conditional]}", data: {answer: question.parameterize, question: conditional_question, value: conditional_value } do
+    return content_tag :fieldset, class: "question-block js-conditional-answer #{'js-conditional-question' if opts[:conditional]} #{opts[:classes]}", data: {answer: question.parameterize, question: conditional_question, value: conditional_value } do
       (question_title + question_context_text + question_body + help).html_safe
     end
   end

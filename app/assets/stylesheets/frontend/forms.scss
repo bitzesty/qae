@@ -1,3 +1,8 @@
+// Sub question style
+.sub-question h2 {
+  @include bold-19;
+}
+
 // Error styling
 .field_with_errors .error,
 .smart_answer article .error {
