@@ -1,4 +1,4 @@
 - for answer in question.options do
   label.selectable
-    input type="radio" name="options_#{question.key.to_s}" value=answer.value
+    input.js-trigger-autosave type="radio" name="options_#{question.key.to_s}" value=answer.value
     = answer.text
