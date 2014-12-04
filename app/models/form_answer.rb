@@ -21,6 +21,7 @@ class FormAnswer < ActiveRecord::Base
                            inclusion: {
                              in: POSSIBLE_AWARDS
                            }
+    validates :urn, presence: true, uniqueness: true
   end
 
   begin :scopes
@@ -31,7 +32,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   before_create :set_account
-  before_create :set_urn
+  before_validation :set_urn, on: :create
 
   store_accessor :document
 
@@ -51,6 +52,8 @@ class FormAnswer < ActiveRecord::Base
   private
 
   def set_urn
+    return unless award_type
+
     previous_urn_num = 0
 
     if previous_form = self.class.order_by_current_year_urn.last
