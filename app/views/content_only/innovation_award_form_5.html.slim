@@ -31,40 +31,38 @@ header.page-header.group.page-header-wider
         = question_for "Details of a contact within your business for application-related enquiries",
                        { step: "E 3",
                          required: true } do
-          p.group
+          .question-group
             label
               ' Title
               input.small type="text"
-          p.group
+          .question-group
             label
               ' First name
               input.medium type="text"
-          p.group
+          .question-group
             label
               ' Last name
               input.medium type="text"
           // This section will be pre-filled with the account details provided during registration
 
         = question_for "Position",
-                       { step: "E 3.1",
+                       { classes: "sub-question",
                          required: true } do
           input.medium type="text"
 
         = question_for "Email address",
-                       { step: "E 3.2",
+                       { classes: "sub-question",
                          required: true } do
-          p.group
+          .question-group
+            input.medium type="email"
+          .question-group
             label
-              ' Email address
-              input.medium type="email"
-          p.group
-            label
-              ' Confirm email address
+              ' Confirm email address*
               input.medium type="email"
           // Validate both are the same
 
         = question_for "Telephone number",
-                       { step: "E 3.3",
+                       { classes: "sub-question",
                          required: true } do
           input.medium type="text"
 
