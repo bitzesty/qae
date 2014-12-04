@@ -163,7 +163,6 @@ input[type="file"] {
 // Styling for forms that exist outside of smart-answers
 // Forms that flow downwards with multiple questions
 .qae-form {
-  .group,
   .question-group {
     margin-bottom: 1.25em;
   }
@@ -261,16 +260,13 @@ input[type="file"] {
     margin-top: 0.5em;
   }
 
-  .question-group + .hidden-hint,
-  .group + .hidden-hint {
+  .question-group + .hidden-hint {
     margin-top: -0.5em;
   }
 
-  .group + h2,
   .question-group + h2,
   .hidden-hint + h2,
-  .hidden-hint + .question-group,
-  .hidden-hint + .group {
+  .hidden-hint + .question-group {
     margin-top: 3em;
   }
 
