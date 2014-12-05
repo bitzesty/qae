@@ -16,3 +16,6 @@ footer
               ' Next step
             span class="pagination-part-title"
               = step.next.title
+      - else
+        li.submit
+          = link_to "Submit application", innovation_award_confirm_path, class: "button"
