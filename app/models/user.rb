@@ -32,24 +32,24 @@ class User < ActiveRecord::Base
   validates :company_postcode, length: {
     minimum: 6,
     maximum: 8,
-    :message => "not a valid postcode."
+    :message => "This is not a valid postcode."
   }, if: :second_step?
 
   validates :company_postcode, format: {
     with: /\A[a-zA-Z]{1,2}[0-9][0-9a-zA-Z]?\s?[0-9][a-zA-Z]{2}\z/,
-    :message => "not a valid postcode"
+    :message => "This is not a valid postcode"
   }, if: :second_step?
 
   validates :phone_number, length: {
     minimum: 7,
     maximum: 20,
-    :message => "not a valid telephone number"
+    :message => "This is not a valid telephone number"
   }, if: :first_step?
 
   validates :company_phone_number, length: {
     minimum: 7,
     maximum: 20,
-    message: "not a valid telephone number"
+    message: "This is not a valid telephone number"
   }, if: :second_step?
 
   begin :associations
