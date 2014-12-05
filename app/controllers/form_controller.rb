@@ -9,13 +9,13 @@ class FormController < ApplicationController
   end
 
   def edit_form
-    @form_answer = FormAnswer.find(params[:id])
+    @form_answer = FormAnswer.for_user(current_user).find(params[:id])
     @form = @form_answer.award_form
     render template: 'qae_form/show' 
   end
 
   def autosave
-    @form_answer = FormAnswer.find(params[:id])
+    @form_answer = FormAnswer.for_user(current_user).find(params[:id])
     doc = ActiveSupport::JSON.decode(request.body.read)
     @form_answer.document = doc
     @form_answer.save!

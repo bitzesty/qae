@@ -29,6 +29,7 @@ class FormAnswer < ActiveRecord::Base
     scope :order_by_current_year_urn, -> do
       where("urn ~ '^QA\\d{4}\\/#{CURRENT_AWARD_YEAR}\\w{1}$'").order(:urn)
     end
+    scope :for_user, -> (user) { where user: user }
   end
 
   before_create :set_account
