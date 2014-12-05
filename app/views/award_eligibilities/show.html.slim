@@ -1,0 +1,13 @@
+
+.article-related-positioning-container.smart-answer-questions.group
+  header.page-header.group
+    div
+      h1
+        ' Eligibility questionnaire
+
+  .article-container
+    article.group role="article"
+      .inner.step.current
+        = simple_form_for @eligibility, as: :eligibility, url: wizard_path, method: :put do |f|
+            .next-question
+              = f.submit "Next step", class: "button medium"

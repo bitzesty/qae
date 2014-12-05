@@ -80,6 +80,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :award_eligibility, only: [:show, :update] do
+    collection do
+      get :result
+    end
+  end
+
   namespace :admin do
     resources :users
     resources :form_answers do
