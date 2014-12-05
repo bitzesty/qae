@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  def initialize
+  def after_initialize
     @current_step = 0
   end
 
