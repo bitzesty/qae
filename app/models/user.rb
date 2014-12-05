@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
   }, if: :second_step?
 
   validates :company_postcode, format: {
-    with: /[a-zA-Z]{1,2}[0-9][0-9a-zA-Z]?\s?[0-9][a-zA-Z]{2}/,
+    with: /\A[a-zA-Z]{1,2}[0-9][0-9a-zA-Z]?\s?[0-9][a-zA-Z]{2}\z/,
     :message => "not a valid postcode"
   }, if: :second_step?
 
