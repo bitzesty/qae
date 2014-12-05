@@ -111,6 +111,7 @@ class QAE2014Forms
         address :principal_address, 'Principal address of your organisational unit' do
           required
           ref 'A 8'
+          countries QAE2014Forms.countries
         end
 
         text :website_url, 'Website URL' do

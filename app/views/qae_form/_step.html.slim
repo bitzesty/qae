@@ -3,7 +3,7 @@
     .inner
       - if step.context
         == step.context
-      = render partial: "qae_form/question", collection: step.questions
+      = render partial: "qae_form/question", collection: step.questions, locals: { answers: answers }
       - if step.submit
         = render partial: "qae_form/step_submit", object: step.submit, as: 'submit'
       = render partial: "qae_form/form_footer", object: step, as: 'step'

@@ -1,17 +1,21 @@
 p.group
   label
     ' Building and street
-    input.large type="text"
-    input.large type="text"
+    input.large.js-trigger-autosave type="text" name="#{question.key}_building" value=answers["#{question.key}_building"]
+    input.large.js-trigger-autosave type="text" name="#{question.key}_street" value=answers["#{question.key}_street"]
 p.group
   label
     ' Town or city
-    input.medium type="text"
+    input.medium.js-trigger-autosave type="text" name="#{question.key}_city" value=answers["#{question.key}_city"]
 p.group
   label
     ' Country
-    input.medium type="text"
+    select.js-trigger-autosave name="#{question.key}_country"
+      - question.countries.each do |country|
+        option value="#{country}" selected=((answers["#{question.key}_country"] || '').to_s == country.to_s)
+          = country
+    
 p.group
   label
     ' Postcode
-    input.small type="text"
+    input.small.js-trigger-autosave type="text" name="#{question.key}_postcode" value=answers["#{question.key}_postcode"]

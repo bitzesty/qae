@@ -11,4 +11,7 @@ public/uploads/*
 certs/*
 .env
 
+*.swp
+*.swo
+
 .ruby-gemset
