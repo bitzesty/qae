@@ -6,7 +6,7 @@ class Eligibility::Innovation < Eligibility
   property :continuous_innovation_for_five_years, boolean: true, lable: "Has your business or charity presented continuous innovation and development over at least 5 years?", accept: :true
 
   def eligible?
-    answers.any? && answers.all? do |question, answer|
+    answers && answers.any? && answers.all? do |question, answer|
       answer_valid?(question, answer)
     end
   end
