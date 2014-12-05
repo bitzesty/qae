@@ -61,7 +61,7 @@ class QAEFormBuilder
     end
 
     def parameterized_title
-      title.parameterize
+      key.to_s + "-" + title.parameterize
     end
 
     def condition_value
