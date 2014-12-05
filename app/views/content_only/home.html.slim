@@ -26,6 +26,13 @@
 
         br
 
+        p
+          ' The
+          = link_to "Queen’s Award for Enterprise Promotion", enterprise_promotion_awards_path
+          '  is a separate award for individuals. It’s open to people who have played an outstanding role in promoting enterprise skills and attitudes.
+
+        br
+
         .get-started
           - if user_signed_in?
             = link_to "Apply", dashboard_path, class: "button"
