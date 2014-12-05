@@ -91,7 +91,8 @@ jQuery ->
       if this_index < current_index
         $(this).addClass("step-past")
 
-  showAwardStep("step-#{window.location.hash.substr(1)}")
+  if window.location.hash
+    showAwardStep("step-#{window.location.hash.substr(1)}")
   $(document).on "click", ".js-step-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("step-current")
