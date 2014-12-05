@@ -1,18 +1,18 @@
   p.group
     label
       ' Title
-      input.small type="text"
+      input.js-trigger-autosave.small type="text" name="#{question.key}_title" value=answers["#{question.key}_title"]
   p.group
     label
       ' First name
-      input.medium type="text"
+      input.js-trigger-autosave.medium type="text" name="#{question.key}_first_name" value=answers["#{question.key}_first_name"]
   p.group
     label
       ' Last name
-      input.medium type="text"
+      input.js-trigger-autosave.medium type="text" name="#{question.key}_last_name" value=answers["#{question.key}_last_name"]
   p.group
     label
       ' Personal Honours
-      input.large type="text"
+      input.js-trigger-autosave.large type="text" name="#{question.key}_honours" value=answers["#{question.key}_honours"]
     span.hint
       ' e.g. OBE. Not including educational qualifications or Institutional Memberships.
