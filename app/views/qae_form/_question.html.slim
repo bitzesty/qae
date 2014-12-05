@@ -4,7 +4,6 @@
   - if question.header_context
     == question.header_context
 
-code
 fieldset class="question-block js-conditional-answer #{question.classes} #{'js-conditional-drop-answer' if question.drop_condition}" data-answer=question.parameterized_title
   = condition_divs question do
     - if question.title != ""
