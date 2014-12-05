@@ -49,4 +49,10 @@ class Eligibility < ActiveRecord::Base
   def set_passed
     raise NotImplementedError
   end
+
+  def answer_valid?(question, answer)
+    acceptance_criteria = self.class.questions_storage[question.to_sym][:accept].to_s
+    validator = "Eligibility::Validation::#{acceptance_criteria.camelize}Validation".constantize.new(self, question, answer)
+    validator.valid?
+  end
 end

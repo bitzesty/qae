@@ -1,6 +1,4 @@
 class Eligibility::Basic < Eligibility
-  extend Enumerize
-
   attr_accessor :current_step
 
   validate :current_step_validation
@@ -21,16 +19,7 @@ class Eligibility::Basic < Eligibility
 
     answers.any? && answers.all? do |question, answer|
       if previous_questions.include?(question.to_sym)
-        case self.class.questions_storage[question.to_sym][:accept]
-        when :not_nil
-          !answer.nil?
-        when :true
-          public_send("#{question}?")
-        when :not_nil_or_charity
-          !answer.nil? || organization_kind == 'charity'
-        else
-          true
-        end
+        answer_valid?(question, answer)
       else
         true
       end
