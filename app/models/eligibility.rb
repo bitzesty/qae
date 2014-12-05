@@ -35,6 +35,8 @@ class Eligibility < ActiveRecord::Base
       define_method "#{name}?" do
         ['1', 'true', true].include?(public_send(name))
       end
+    elsif options[:positive_integer]
+      validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true }
     end
 
     @questions.merge!(name => options)

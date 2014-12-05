@@ -28,16 +28,18 @@ RSpec.describe Eligibility::Innovation, :type => :model do
 
     it 'is eligible when all questions are answered correctly' do
       eligibility.innovative_product = true
+      eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = true
-      eligibility.continuous_innovation_for_five_years = true
+      eligibility.had_impact_on_commercial_performace_over_two_years = true
 
       expect(eligibility).to be_eligible
     end
 
     it 'is not eligible when not all answers are correct' do
       eligibility.innovative_product = true
+      eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = false
-      eligibility.continuous_innovation_for_five_years = true
+      eligibility.had_impact_on_commercial_performace_over_two_years = true
 
       expect(eligibility).not_to be_eligible
     end
