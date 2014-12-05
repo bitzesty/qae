@@ -1,6 +1,11 @@
 class ContentOnlyController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :awards_for_organisations, :enterprise_promotion_awards, :how_to_apply, :what_happens_next, :additional_information_and_contact]
 
+  expose(:form_answer) {
+    # TODO: replace with real fetched by id when form saving will be done
+    current_user.form_answers.last
+  }
+
   def home
   end
 

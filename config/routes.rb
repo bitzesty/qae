@@ -81,6 +81,10 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: [], module: 'users' do
+    resources :form_answers, only: [:show]
+  end
+
   namespace :admin do
     resources :users
     resources :form_answers do
