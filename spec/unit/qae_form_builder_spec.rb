@@ -46,5 +46,4 @@ describe QAEFormBuilder do
     expect(q.last.title).to eq('Is your business based in UK?')
     expect(q.last.context).to eq('Including the Channel Islands and the Isle of Man.')
   end
-
 end

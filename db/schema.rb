@@ -99,9 +99,9 @@ ActiveRecord::Schema.define(version: 20141204134014) do
     t.boolean  "subscribed_to_emails",       default: false
     t.string   "qae_info_source"
     t.string   "qae_info_source_other"
+    t.boolean  "completed_registration",     default: false
     t.integer  "account_id"
     t.string   "role"
-    t.boolean  "completed_registration",     default: false
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree

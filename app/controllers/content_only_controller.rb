@@ -1,6 +1,10 @@
 class ContentOnlyController < ApplicationController
   before_filter :authenticate_user!, except: [:home, :awards_for_organisations, :enterprise_promotion_awards, :how_to_apply, :what_happens_next, :additional_information_and_contact]
 
+  expose(:form_answer) {
+    FormAnswer.for_user(current_user).find(params[:id])
+  }
+
   def home
   end
 
