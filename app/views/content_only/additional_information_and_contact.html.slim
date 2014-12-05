@@ -62,6 +62,13 @@
             - else
               = link_to "Apply", new_user_registration_path, class: "button"
 
+          br
+
+          p
+            ' If you have already signed up then
+            = link_to "log in to continue", new_user_session_path
+            ' .
+
         footer
           nav.pagination role="navigation" aria-label="Pagination"
             ul.group

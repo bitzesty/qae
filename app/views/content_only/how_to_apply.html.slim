@@ -34,11 +34,20 @@
 
           p There is no entry fee.
 
+          br
+
           .get-started
             - if user_signed_in?
               = link_to "Apply", dashboard_path, class: "button"
             - else
               = link_to "Apply", new_user_registration_path, class: "button"
+
+          br
+
+          p
+            ' If you have already signed up then
+            = link_to "log in to continue", new_user_session_path
+            ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

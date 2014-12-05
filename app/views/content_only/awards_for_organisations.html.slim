@@ -23,7 +23,7 @@
             li be able to demonstrate commercial success
 
           p
-            = link_to "Sign in to access the eligibility questionnaire", new_user_session_path
+            = link_to "Sign up to access the eligibility questionnaire", new_user_registration_path
             ' .
 
           br
@@ -77,6 +77,13 @@
               = link_to "Apply", dashboard_path, class: "button"
             - else
               = link_to "Apply", new_user_registration_path, class: "button"
+
+          br
+
+          p
+            ' If you have already signed up then
+            = link_to "log in to continue", new_user_session_path
+            ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
