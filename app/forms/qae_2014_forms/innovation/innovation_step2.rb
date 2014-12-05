@@ -18,6 +18,7 @@ class QAE2014Forms
           context %Q{
             <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
           }
+          conditional :innovation_performance_years, :true
         end
 
         number :employees, 'State the number of people employed by the company for each year of your entry.' do
@@ -28,6 +29,7 @@ class QAE2014Forms
           }
           style "small"
           min 2
+          conditional :innovation_performance_years, :true
         end
 
         options :innovation_part_of, 'My innovation is an integral part of' do
@@ -42,39 +44,46 @@ class QAE2014Forms
             <p>These figures should be for your entire organisation.</p>
           }
           ref 'B 5'
+          conditional :innovation_performance_years, :true
         end
 
         by_years :total_turnover, 'Total turnover' do
           classes "sub-question"
           required
+          conditional :innovation_performance_years, :true
         end
 
         by_years :exports, 'of which exports' do 
           classes "sub-question"
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
+          conditional :innovation_performance_years, :true
         end
 
         by_years :net_profit, 'Net profit after tax but before dividends' do 
           classes "sub-question"
           required
+          conditional :innovation_performance_years, :true
         end
 
         by_years :total_net_assets, 'Total net assets' do 
           classes "sub-question"
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
+          conditional :innovation_performance_years, :true
         end
 
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question"
           rows 5
           words_max 200
+          conditional :innovation_performance_years, :true
         end
 
         options :company_estimated_figures, 'Are any of these figures estimated?' do
           classes "sub-question"
           yes_no
+          conditional :innovation_performance_years, :true
           conditional :innovation_part_of, :entire_business
         end
 
@@ -82,24 +91,28 @@ class QAE2014Forms
           classes "sub-question"
           rows 5
           words_max 200
+          conditional :innovation_performance_years, :true
           conditional :company_estimated_figures, :yes
         end
 
         header :product_financials, 'Product/Service Financials' do
           ref 'B 6'
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
  
         by_years :units_sold, 'Number of units/contracts sold' do
           classes "sub-question"
           required
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         by_years :sales, 'Sales' do 
           classes "sub-question"
           required
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         by_years :sales_exports, 'of which exports' do
@@ -107,6 +120,7 @@ class QAE2014Forms
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         by_years :sales_royalties, 'of which royalties or licenses' do
@@ -114,6 +128,7 @@ class QAE2014Forms
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         textarea :drops_in_sales, "Explain any drop in sales" do
@@ -122,12 +137,14 @@ class QAE2014Forms
           rows 5
           words_max 300
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         options :product_estimated_figures, 'Are any of these figures estimated?' do
           classes "sub-question"
           yes_no
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         textarea :product_estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
@@ -135,6 +152,7 @@ class QAE2014Forms
           rows 5
           words_max 200
           conditional :product_estimated_figures, :yes
+          conditional :innovation_performance_years, :true
         end
 
         textarea :financial_comments, 'Additional comments (optional)' do
@@ -142,12 +160,14 @@ class QAE2014Forms
           rows 5
           words_max 100
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         by_years :avg_unit_price, 'Average unit selling price/contract value' do 
           ref 'B 7'
           required
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
@@ -156,13 +176,14 @@ class QAE2014Forms
           rows 5
           words_max 200
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
           ref 'B 8'
           required
-          conditional :company_estimated_figures, :yes
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         textarea :costs_change_desc, 'Explain your unit/ contract costs, highlighting any changes over the above periods.' do
@@ -171,6 +192,7 @@ class QAE2014Forms
           rows 5
           words_max 200
           conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
         end
 
         textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.' do
