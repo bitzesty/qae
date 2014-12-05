@@ -23,3 +23,9 @@ en:
       industry:
           product_business: Product business
           service_business: Service business
+
+  activerecord:
+    errors:
+      messages:
+        blank: This field cannot be blank
+        accepted: Must be accepted
