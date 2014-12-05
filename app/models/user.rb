@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
   # Second step validations
   validates :company_name, presence: true, if: :second_step?
   validates :company_address_first, presence: true, if: :second_step?
-  validates :company_address_second, presence: true, if: :second_step?
   validates :company_city, presence: true, if: :second_step?
   validates :company_country, presence: true, if: :second_step?
   validates :company_postcode, presence: true, if: :second_step?
