@@ -1,6 +1,8 @@
 require 'qae_form_builder/qae_form'
 require 'qae_form_builder/step'
 require 'qae_form_builder/question'
+
+require 'qae_form_builder/header_question'
 require 'qae_form_builder/text_question'
 require 'qae_form_builder/number_question'
 require 'qae_form_builder/textarea_question'
