@@ -29,7 +29,6 @@ RSpec.describe Eligibility::Development, :type => :model do
     it 'is eligible when all questions are answered correctly' do
       eligibility.sustainable_development = true
       eligibility.development_contributed_to_commercial_success = true
-      eligibility.can_demonstrate_corporate_responsibility = true
 
       expect(eligibility).to be_eligible
     end
@@ -37,8 +36,6 @@ RSpec.describe Eligibility::Development, :type => :model do
     it 'is not eligible when not all answers are correct' do
       eligibility.sustainable_development = false
       eligibility.development_contributed_to_commercial_success = true
-      eligibility.can_demonstrate_corporate_responsibility = true
-
 
       expect(eligibility).not_to be_eligible
     end

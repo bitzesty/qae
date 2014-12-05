@@ -43,13 +43,17 @@ class Eligibility < ActiveRecord::Base
   end
 
   def eligible?
-    raise NotImplementedError
+    answers && answers.any? && answers.all? do |question, answer|
+      answer_valid?(question, answer)
+    end
   end
 
   private
 
   def set_passed
-    raise NotImplementedError
+    if eligible?
+      update_column(:passed, true)
+    end
   end
 
   def answer_valid?(question, answer)
