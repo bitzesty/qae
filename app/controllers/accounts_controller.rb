@@ -22,7 +22,7 @@ class AccountsController < ApplicationController
   end
 
   def update_correspondent_details
-    current_user.setStep(1)
+    current_user.set_step(1)
     if current_user.update(correspondent_details_params)
       redirect_to company_details_account_path
     else
@@ -32,7 +32,7 @@ class AccountsController < ApplicationController
   end
 
   def update_company_details
-    current_user.setStep(2)
+    current_user.set_step(2)
     if current_user.update(company_details_params)
       redirect_to contact_settings_account_path
     else
@@ -42,7 +42,7 @@ class AccountsController < ApplicationController
   end
 
   def update_contact_settings
-    current_user.setStep(3)
+    current_user.set_step(3)
     if current_user.update(contact_settings_params)
       redirect_to add_collaborators_account_path
     else
