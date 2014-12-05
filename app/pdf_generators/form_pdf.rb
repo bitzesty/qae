@@ -7,7 +7,7 @@ class FormPdf < Prawn::Document
     super()
     @form_answer = form_answer
     @answers = ActiveSupport::HashWithIndifferentAccess.new(
-      form_answer.document.reject { |k, v| v.blank? || v.nil? }
+      form_answer.document.reject { |k, v| v.nil? }
     )
     @answered_question_keys = @answers.keys
     @user = form_answer.user

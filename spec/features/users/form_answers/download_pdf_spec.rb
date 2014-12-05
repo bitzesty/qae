@@ -53,7 +53,7 @@ So that I can review my progress or share the pdf with others
     end
 
     before do 
-      visit innovation_award_confirm_path
+      visit innovation_award_confirm_path(id: innovation_award_form_answer.id)
     end
 
     it "should generate pdf" do
