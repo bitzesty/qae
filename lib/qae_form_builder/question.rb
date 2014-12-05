@@ -26,7 +26,7 @@ class QAEFormBuilder
     end
 
     def conditional key, value
-      @q.condition = QuestionCondition.new key, value
+      @q.conditions << QuestionCondition.new(key, value)
     end
 
     def header header
@@ -44,7 +44,7 @@ class QAEFormBuilder
 
   class Question
     attr_accessor :step, :key,  :title, :context, :opts,
-      :required, :help, :ref, :condition, :header, :header_context, :classes
+      :required, :help, :ref, :conditions, :header, :header_context, :classes
 
     def initialize step, key, title, opts={}
       @step = step
@@ -53,6 +53,7 @@ class QAEFormBuilder
       @opts = opts
       @required = false
       @help = []
+      @conditions = []
       self.after_create if self.respond_to?(:after_create)
     end
 
@@ -62,14 +63,6 @@ class QAEFormBuilder
 
     def parameterized_title
       key.to_s + "-" + title.parameterize
-    end
-
-    def condition_value
-      condition.question_value if condition
-    end
-
-    def condition_question
-      form[condition.question_key] if condition
     end
 
   end

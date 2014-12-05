@@ -34,6 +34,18 @@ module ApplicationHelper
     end
   end
 
+  def condition_divs(question, &block)
+    inner = capture(&block)
+    return inner if question.conditions.empty?
+
+    current = inner
+    for condition in question.conditions
+      current = content_tag(:div, current, class: "js-conditional-question", data: {question: question.form[condition.question_key].parameterized_title, value: condition.question_value})
+    end
+
+    current
+  end
+
   def question_for(question, opts = {}, &block)
     step = ""
     if opts[:step]
