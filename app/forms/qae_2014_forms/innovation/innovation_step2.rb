@@ -6,8 +6,7 @@ class QAE2014Forms
           ref 'B 1'
           required
           context %Q{
-            <p>Your answer here will determine whether you are assessed for outstanding innovation (an award valid for
-             two years) or continuous innovation (valid for five years).</p>
+            <p>Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).</p>
           }
           option '2 to 4', '2-4 years'
           option '5 plus', '5 years or more'
@@ -15,14 +14,17 @@ class QAE2014Forms
 
         financial_year_dates :financial_year_dates, 'Please select your financial year end dates:' do
           ref 'B 2'
+          required
+          context %Q{
+            <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
+          }
         end
 
         number :employees, 'State the number of people employed by the company for each year of your entry.' do
           ref 'B 3'
           required
           context %Q{
-            <p>State the number of full-time employees at the year-end, or the average for the 12 month period.
-            Part-time employees should be expressed in full-time equivalents.</p>
+            <p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
           }
           style :small
           min 2
@@ -31,107 +33,144 @@ class QAE2014Forms
         options :innovation_part_of, 'My innovation is an integral part of' do
           ref 'B 4'
           required
-          option 'entire business', 'The entire business'
-          option 'single product or service', 'A single product or service'
+          option :entire_business, 'The entire business'
+          option :single_product_or_service, 'A single product or service'
         end
 
-        by_years :total_turnover, 'Total turnover' do 
-          header 'Company Financials'
-          header_context '<p>These figures should be for your entire organisation.</p>'
+        header :company_financials, 'Company Financials' do
+          context %Q{
+            <p>These figures should be for your entire organisation.</p>
+          }
           ref 'B 5'
+        end
+
+        by_years :total_turnover, 'Total turnover' do
+          classes "sub-question"
           required
         end
 
         by_years :exports, 'of which exports' do 
-          ref 'B 5.1'
+          classes "sub-question"
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
         end
 
         by_years :net_profit, 'Net profit after tax but before dividends' do 
-          ref 'B 5.2'
+          classes "sub-question"
           required
         end
 
         by_years :total_net_assets, 'Total net assets' do 
-          ref 'B 5.3'
+          classes "sub-question"
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
         end
 
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
-          ref 'B 5.4'
+          classes "sub-question"
           rows 5
           words_max 200
         end
- 
-        by_years :units_sold, 'Number of units/contracts sold' do 
-          header 'Product/Service Financials'
-          
+
+        options :company_estimated_figures, 'Are any of these figures estimated?' do
+          classes "sub-question"
+          yes_no
+          conditional :innovation_part_of, :entire_business
+        end
+
+        textarea :company_estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
+          classes "sub-question"
+          rows 5
+          words_max 200
+          conditional :company_estimated_figures, :yes
+        end
+
+        header :product_financials, 'Product/Service Financials' do
           ref 'B 6'
+          conditional :innovation_part_of, :single_product_or_service
+        end
+ 
+        by_years :units_sold, 'Number of units/contracts sold' do
+          classes "sub-question"
           required
+          conditional :innovation_part_of, :single_product_or_service
         end
 
         by_years :sales, 'Sales' do 
-          ref 'B 6.1'
+          classes "sub-question"
           required
+          conditional :innovation_part_of, :single_product_or_service
         end
 
-        by_years :sales_exports, 'of which exports' do 
-          ref 'B 6.2'
+        by_years :sales_exports, 'of which exports' do
+          classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
+          conditional :innovation_part_of, :single_product_or_service
         end
 
-        by_years :sales_royalties, 'of which royalties or licenses' do 
-          ref 'B 6.3'
+        by_years :sales_royalties, 'of which royalties or licenses' do
+          classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
+          conditional :innovation_part_of, :single_product_or_service
         end
 
-        textarea :drops_in_sales, "Explain any drops in sales" do
-          ref 'B 6.4'
+        textarea :drops_in_sales, "Explain any drop in sales" do
+          classes "sub-question"
+          required
           rows 5
           words_max 300
+          conditional :innovation_part_of, :single_product_or_service
         end
 
-        options :estimated_figures, 'Are any of these figures estimated?' do
-          ref 'B 6.5'
+        options :product_estimated_figures, 'Are any of these figures estimated?' do
+          classes "sub-question"
           yes_no
+          conditional :innovation_part_of, :single_product_or_service
         end
 
-        textarea :estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
-          conditional :estimated_figures, :yes
+        textarea :product_estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
+          classes "sub-question"
           rows 5
           words_max 200
+          conditional :product_estimated_figures, :yes
         end
 
         textarea :financial_comments, 'Additional comments (optional)' do
-          ref 'B 6.6'
-
+          classes "sub-question"
           rows 5
           words_max 100
+          conditional :innovation_part_of, :single_product_or_service
         end
 
         by_years :avg_unit_price, 'Average unit selling price/contract value' do 
           ref 'B 7'
           required
+          conditional :innovation_part_of, :single_product_or_service
         end
 
         textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
+          classes "sub-question"
+          required
           rows 5
           words_max 200
+          conditional :innovation_part_of, :single_product_or_service
         end
 
         by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
           ref 'B 8'
           required
+          conditional :company_estimated_figures, :yes
+          conditional :innovation_part_of, :single_product_or_service
         end
 
         textarea :costs_change_desc, 'Explain your unit/ contract costs, highlighting any changes over the above periods.' do
+          classes "sub-question"
           required
           rows 5
           words_max 200
+          conditional :innovation_part_of, :single_product_or_service
         end
 
         textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.' do
@@ -149,7 +188,7 @@ class QAE2014Forms
         end
 
         textarea :roi_details, 'How long did it take the investment indicated above to be repaid? When and how was this repayment achieved?' do
-          ref 'B 10.1'
+          classes "sub-question"
           required
           rows 5
           words_max 300
