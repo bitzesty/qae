@@ -2,6 +2,10 @@ class QAE2014Forms
   class << self
     def innovation_step3
       @innovation_step3 ||= Proc.new {
+        context %Q{
+          <p>When answering these questions please avoid using technical jargon where possible. If you have more than one innovative product/service you will need to submit more than one application.</p>
+        }
+
         textarea :innovation_desc_short, 'Briefly describe your product/service/intiative' do
           ref 'C 1'
           required
@@ -13,13 +17,10 @@ class QAE2014Forms
         end
 
         textarea :innovation_desc_long, 'Describe your innovative product/service/initiative in detail' do
-          ref 'C 1.1'
+          classes "sub-question"
           required
           context %Q{
-            <p>Describe the product/service/intitative itself, explain any aspect(s)
-            you believe innovative, and why you believe it is innovative: consider
-            its uniqeueness and the challenges you had to overcome. Also explain how
-            it fits within the overall business e.g. is it your sole product.</p>
+            <p>Describe the product/service/intitative itself, explain any aspect(s) you believe innovative, and why you believe it is innovative: consider its uniqeueness and the challenges you had to overcome. Also explain how it fits within the overall business e.g. is it your sole product.</p>
           }
           rows 5
           words_min 500
@@ -30,9 +31,7 @@ class QAE2014Forms
           ref 'C 2'
           required
           context %Q{
-            <p>Outline the disadvantages, if any, of your own/competing
-            products/services/intiatives prior to the innovation. Or otherwise, how you
-            identified a gap in the market.</p>
+            <p>Outline the disadvantages, if any, of your own/competing products/services/intiatives prior to the innovation. Or otherwise, how you identified a gap in the market.</p>
           }
           rows 5
           words_min 300
@@ -47,14 +46,11 @@ class QAE2014Forms
           words_max 800
         end
 
-        textarea :innovation_befits_details, "Give details of benefits received by your customers and your business as a result of the innova|ny special difficulties surmounted in doing so." do
+        textarea :innovation_befits_details, "Give details of benefits received by your customers and your business as a result of the innovation." do
           ref 'C 4'
           required
           context %Q{
-            <p>e.g. increased efficiency, reduction in costs,
-            design/production/marketing/distribution improvements,
-            better after-sales support, reduced downtime or increased reliability.
-            You can also include testimonials to support your claim.</p>
+            <p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim.</p>
           }
           rows 5
           words_min 500
@@ -71,10 +67,14 @@ class QAE2014Forms
         options :innovation_any_contributors, 'Did any external organisation or individiual contribute to this product/service/initiative?' do
           ref 'C 6'
           required
+          context %Q{
+            <p>Excluding any joint entrant(s) named in C5.</p>
+          }
           yes_no
         end
 
         textarea :innovation_contributors, 'Please enter their name(s) and explain their contribution(s).' do
+          classes "sub-question"
           required
           conditional :innovation_any_contributors, :yes
           rows 5
@@ -82,7 +82,7 @@ class QAE2014Forms
         end
 
         options :innovation_contributors_aware, 'Are they aware that you are applying for this award?' do
-          ref 'C 6.1'
+          classes "sub-question"
           required
           conditional :innovation_any_contributors, :yes
           yes_no
@@ -91,13 +91,11 @@ class QAE2014Forms
 
         options :innovation_under_license, 'Is the product/service/initiative under license from another organisation?' do
           ref 'C 7'
-          context %Q{
-            <p>Include associates of the business.</p>
-          }
           yes_no
         end
 
         textarea :innovation_license_terms, 'Briefly describe the licensing arrangement.' do
+          classes "sub-question"
           required
           conditional :innovation_under_license, :yes
           rows 5
@@ -111,6 +109,7 @@ class QAE2014Forms
         end
 
         textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding." do
+          classes "sub-question"
           required
           conditional :innovations_grant_funding, :yes
           rows 5
@@ -121,24 +120,27 @@ class QAE2014Forms
           required
           ref 'C 9'
           max 100
-          unit 'years'
+          unit ' years'
+          style "small inline"
         end
 
         options :innovation_released_by_applicant, "Was the product/service/intiative released by you?" do
-          ref 'C 9.1'
+          classes "sub-question"
           required
           yes_no
         end
 
         number :innovation_years_by_applicant, 'How many years have you had it in the marketplace?' do
+          classes "regular-question inline-input-question"
           required
           conditional :innovation_released_by_applicant, :no
           max 100
-          unit 'years'
+          unit ' years'
+          style "small inline"
         end
 
         textarea :innovation_additional_comments, 'Additional comments (optional)' do
-          ref 'C 9.2'
+          classes "sub-question"
           rows 5
           words_max 200
         end
@@ -146,16 +148,11 @@ class QAE2014Forms
         materials :innovation_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
           ref 'C 10'
           context %Q{
-            <p>We cannot guarantee these will be reviewed, so inlcude any
-            vital information within the form</p>
-            <p>You may upload files of less than 5mb each in either MS Word Document,
-            PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats.
-            Or MP4 (video) files of up to TODOmb.</p>
+            <p>We cannot guarantee these will be reviewed, so inlcude any vital information within the form.</p>
+            <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb</p>
           } # TODO!
           help 'Information we will not review', %Q{
-            <p>We will not consider business plans, annual accounts or
-            company policy documents. Additional materials should not be used
-            as a substitue for completing sections of the form.</p>
+            <p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>
           }
         end
       }

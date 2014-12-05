@@ -105,7 +105,7 @@ class QAE2014Forms
           classes "sub-question"
           required
           conditional :joint_entry, :yes
-          style :largest
+          style "largest"
         end
 
         address :principal_address, 'Principal address of your organisational unit' do
