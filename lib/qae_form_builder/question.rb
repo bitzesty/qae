@@ -29,6 +29,10 @@ class QAEFormBuilder
       @q.conditions << QuestionCondition.new(key, value)
     end
 
+    def drop_conditional key
+      @q.drop_condition = key.to_s.to_sym
+    end
+
     def header header
       @q.header = header
     end
@@ -44,7 +48,7 @@ class QAEFormBuilder
 
   class Question
     attr_accessor :step, :key,  :title, :context, :opts,
-      :required, :help, :ref, :conditions, :header, :header_context, :classes
+      :required, :help, :ref, :conditions, :header, :header_context, :classes, :drop_condition
 
     def initialize step, key, title, opts={}
       @step = step

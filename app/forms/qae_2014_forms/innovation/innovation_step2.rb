@@ -51,6 +51,7 @@ class QAE2014Forms
           classes "sub-question"
           required
           conditional :innovation_performance_years, :true
+          drop_conditional :drops_in_turnover
         end
 
         by_years :exports, 'of which exports' do 
@@ -58,12 +59,14 @@ class QAE2014Forms
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
           conditional :innovation_performance_years, :true
+          drop_conditional :drops_in_turnover
         end
 
         by_years :net_profit, 'Net profit after tax but before dividends' do 
           classes "sub-question"
           required
           conditional :innovation_performance_years, :true
+          drop_conditional :drops_in_turnover
         end
 
         by_years :total_net_assets, 'Total net assets' do 
@@ -71,10 +74,11 @@ class QAE2014Forms
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
           conditional :innovation_performance_years, :true
+          drop_conditional :drops_in_turnover
         end
 
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
-          classes "sub-question"
+          classes "sub-question js-conditional-drop-question"
           rows 5
           words_max 200
           conditional :innovation_performance_years, :true
@@ -106,6 +110,7 @@ class QAE2014Forms
           required
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          drop_conditional :drops_in_sales
         end
 
         by_years :sales, 'Sales' do 
@@ -113,6 +118,7 @@ class QAE2014Forms
           required
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          drop_conditional :drops_in_sales
         end
 
         by_years :sales_exports, 'of which exports' do
@@ -121,6 +127,7 @@ class QAE2014Forms
           required
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          drop_conditional :drops_in_sales
         end
 
         by_years :sales_royalties, 'of which royalties or licenses' do
@@ -129,10 +136,11 @@ class QAE2014Forms
           required
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          drop_conditional :drops_in_sales
         end
 
         textarea :drops_in_sales, "Explain any drop in sales" do
-          classes "sub-question"
+          classes "sub-question js-conditional-drop-question"
           required
           rows 5
           words_max 300
