@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  def initialize
+    @current_step = 0
+  end
+
   extend Enumerize
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -9,6 +13,22 @@ class User < ActiveRecord::Base
   validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
 
   validates :role, presence: true
+
+  # First step validations
+  validates :title, presence: true, :if => :is_first_step?
+  validates :first_name, presence: true, :if => :is_first_step?
+  validates :last_name, presence: true, :if => :is_first_step?
+  validates :job_title, presence: true, :if => :is_first_step?
+  validates :phone_number, presence: true, :if => :is_first_step?
+  
+  # Second step validations
+  validates :company_name, presence: true, :if => :is_second_step?
+  validates :company_address_first, presence: true, :if => :is_second_step?
+  validates :company_address_second, presence: true, :if => :is_second_step?
+  validates :company_city, presence: true, :if => :is_second_step?
+  validates :company_country, presence: true, :if => :is_second_step?
+  validates :company_postcode, presence: true, :if => :is_second_step?
+  validates :company_phone_number, presence: true, :if => :is_second_step?
 
   begin :associations
     has_many :form_answers, dependent: :destroy
@@ -24,7 +44,19 @@ class User < ActiveRecord::Base
   enumerize :qae_info_source, in: %w(govuk competitor business_event national_press business_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other)
   enumerize :role, in: %w(account_admin regular)
 
+  def setStep (step)
+    @current_step = step
+  end
+
   private
+
+  def is_first_step?
+    @current_step == 1
+  end
+
+  def is_second_step?
+    @current_step == 2
+  end
 
   def password_required?
     new_record? ? super : false
