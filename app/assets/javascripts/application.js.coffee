@@ -135,6 +135,9 @@ jQuery ->
 
   $(document).on "change", ".js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave
+  $(document).on "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave
+  $(document).on "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave
+  $(document).on "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "textarea.js-trigger-autosave", triggerAutosave
 
   # Fade out alerts after 5sec
