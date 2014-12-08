@@ -4,7 +4,7 @@
   - if question.header_context
     == question.header_context
 
-fieldset class="question-block js-conditional-answer #{question.classes} #{'js-conditional-drop-answer' if question.drop_condition}" data-answer=question.parameterized_title
+fieldset class="question-block js-conditional-answer #{question.classes} #{'js-conditional-drop-answer' if question.drop_condition}" data-answer=question.parameterized_title data-drop-question="#{question.form[question.drop_condition].parameterized_title if question.drop_condition}"
   = condition_divs question do
     - if question.title != ""
       h2
