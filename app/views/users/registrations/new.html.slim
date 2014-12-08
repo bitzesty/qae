@@ -33,7 +33,7 @@
           .form-inputs
             .question
               .question-body
-                = f.input :agreed_with_privacy_policy, as: :boolean, label: "I have read and accept the #{link_to 'terms and conditions of the privacy statement'}".html_safe
+                = f.input :agreed_with_privacy_policy, as: :boolean, label: "I have read and accept the #{link_to 'terms and conditions of the privacy statement', terms_path, target: '_blank'}".html_safe
 
           .form-actions
             = f.button :submit, "Sign up", class: "button large"
