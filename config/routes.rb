@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/additional_information_and_contact'             => "content_only#additional_information_and_contact",             as: 'additional_information_and_contact'
 
   get  '/new_innovation_form'                           => "form#new_innovation_form",                                    as: 'new_innovation_form'
+  get  '/new_international_trade_form'                  => "form#new_international_trade_form",                           as: 'new_international_trade_form'
   get  '/form/:id'                                      => "form#edit_form",                                              as: 'edit_form'
   post '/form_autosave/:id'                             => "form#autosave",                                               as: 'autosave'
   post '/form/:id'                                      => "form#submit_form",                                            as: 'submit_form'
