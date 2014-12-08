@@ -6,7 +6,7 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   describe "validations" do
-    %w(user urn).each do |field_name|
+    %w(user).each do |field_name|
       it { should validate_presence_of field_name }
     end
 
@@ -22,15 +22,20 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   context 'URN' do
-    let!(:form_answer) { FactoryGirl.create(:form_answer) }
+    before do 
+      ["urn_seq_trade","urn_seq_innovation","urn_seq_development","urn_seq_promotion"].each { |seq|
+        FormAnswer.connection.execute("ALTER SEQUENCE #{seq} RESTART")
+      }
+    end
+    let!(:form_answer) { FactoryGirl.create(:form_answer, :submitted=>true) }
 
     it 'creates form with URN' do
       expect(form_answer.urn).to eq('QA0001/14T')
     end
 
-    it 'increments URN number' do
-      other_form_answer = FactoryGirl.create(:form_answer, :innovation)
-      expect(other_form_answer.urn).to eq('QA0002/14I')
+    it 'increments URN' do
+      other_form_answer = FactoryGirl.create(:form_answer, :submitted=>true)
+      expect(other_form_answer.urn).to eq('QA0002/14T')
     end
   end
 end
