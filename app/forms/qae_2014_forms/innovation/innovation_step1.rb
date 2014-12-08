@@ -34,6 +34,7 @@ class QAE2014Forms
           help 'What if I do not have a Company/Charity Registration number?', %Q{
             <p>Please enter 'N/A' if this is not applicable. If an unregistered subsidiary, please enter your parent company's number.</p>
           }
+          style "small"
         end
 
         date :started_trading, 'Date started trading' do
