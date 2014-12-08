@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/alphagov/govuk_frontend_toolkit_gem.git
+  revision: 1468967b5ce5dfab3371969e65d8aa28327e4802
+  submodules: true
+  specs:
+    govuk_frontend_toolkit (3.1.0)
+      rails (>= 3.1.0)
+      sass (>= 3.2.0)
+
+GIT
   remote: git://github.com/alphagov/slimmer.git
   revision: 055040cba30e93c58a0a0227b8dccf0864348471
   branch: master
@@ -13,17 +22,8 @@ GIT
       rest-client
 
 GIT
-  remote: git@github.com:alphagov/govuk_frontend_toolkit_gem.git
-  revision: 8d143cf25c191429047e7013ca344953a97c2ddf
-  submodules: true
-  specs:
-    govuk_frontend_toolkit (3.0.1)
-      rails (>= 3.1.0)
-      sass (>= 3.2.0)
-
-GIT
-  remote: https://github.com/getsentry/raven-ruby.git
-  revision: c26bbb8ce625a346109f5568086df0c5480715ca
+  remote: git://github.com/getsentry/raven-ruby.git
+  revision: 7b8bc07b588ef3baf3fe59fdb166b5678ef778bf
   specs:
     sentry-raven (0.12.1)
       faraday (>= 0.7.6)
@@ -211,7 +211,7 @@ GEM
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
     ruby-rc4 (0.1.5)
-    sass (3.4.8)
+    sass (3.4.9)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     simple_form (3.0.2)
