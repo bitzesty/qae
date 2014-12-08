@@ -18,4 +18,4 @@ footer
               = step.next.title
       - else
         li.submit
-          = link_to "Submit application", innovation_award_confirm_path, class: "button"
+          = button_to "Submit application", submit_confirm_path, class: "button", method: :post

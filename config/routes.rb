@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   get  '/new_innovation_form'                           => "form#new_innovation_form",                                    as: 'new_innovation_form'
   get  '/form/:id'                                      => "form#edit_form",                                              as: 'edit_form'
   post '/form_autosave/:id'                             => "form#autosave",                                               as: 'autosave'
+  post '/form/:id'                                      => "form#submit_form",                                            as: 'submit_form'
+  get  '/form/:id/confirmation'                         => "form#submit_confirm",                                         as: 'submit_confirm'
 
   get '/dashboard'                                      => "content_only#dashboard",                                      as: 'dashboard'
   get '/eligibility_check_1'                            => "content_only#eligibility_check_1",                            as: 'eligibility_check_1'
