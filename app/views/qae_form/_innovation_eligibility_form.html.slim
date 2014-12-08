@@ -1,0 +1,18 @@
+- award_eligibility = @form_answer.load_eligibility(current_user)
+- basic_eligibility = @form_answer.load_basic_eligibility(current_user)
+.current-question#current-question
+  #form_eligibility_show
+    = render "qae_form/eligibility_answers", award_eligibility: award_eligibility, basic_eligibility: basic_eligibility
+  #form_eligibility_questions.visuallyhidden
+    = render "qae_form/hidden_eligibility_form", award_eligibility: award_eligibility, basic_eligibility: basic_eligibility
+
+
+= simple_fields_for :eligibility, award_eligibility do |f|
+  - unless award_eligibility.innovative_product.present?
+    = render "qae_form/eligibility_questions/innovative_product", f: f
+
+  - unless award_eligibility.was_on_market_for_two_years.present?
+    = render "qae_form/eligibility_questions/was_on_market_for_two_years", f: f
+
+  - unless award_eligibility.had_impact_on_commercial_performace_over_two_years.present?
+    = render "qae_form/eligibility_questions/had_impact_on_commercial_performace_over_two_years", f: f

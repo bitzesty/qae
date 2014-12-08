@@ -14,8 +14,20 @@ class Eligibility < ActiveRecord::Base
     @questions[name.to_sym][:label]
   end
 
+  def self.additional_label(name)
+    @questions[name.to_sym][:additional_label] || label(name)
+  end
+
   def self.boolean_question?(name)
     !!@questions[name.to_sym][:boolean]
+  end
+
+  def self.integer_question?(name)
+    !!@questions[name.to_sym][:positive_integer]
+  end
+
+  def self.hidden_question?(name)
+    !!@questions[name.to_sym][:hidden]
   end
 
   def self.questions_storage
