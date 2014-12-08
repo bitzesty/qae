@@ -4,6 +4,66 @@
 #= require_tree .
 
 jQuery ->
+
+  triggerAutosave = (e) ->
+    window.autosave_timer ||= setTimeout( autosave, 15000 )
+
+  isTextishQuestion = (question) ->
+    question.find("input[type='text'], input[type='number'], input[type='password'], textarea").length
+
+  isSelectQuestion = (question) ->
+    question.find("select").length
+
+  isOptionsQuestion = (question) ->
+    question.find("input[type='radio']").length
+
+  isCheckboxQuestion = (question) ->
+    question.find("input[type='checkbox']").length
+
+  validateSingleQuestion = (question) ->
+    if isTextishQuestion(question)
+      return question.find("input[type='text'], input[type='number'], input[type='password'], textarea").val().toString().length
+
+    if isSelectQuestion(question)
+      return question.find("select").val()
+
+    if isOptionsQuestion(question)
+      return question.find("input[type='radio']").filter(":checked").length
+
+    if isCheckboxQuestion(question)
+      return question.find("input[type='checkbox']").filter(":checked").length
+
+  validate = ->
+    required = $("div.step-current .question-required")
+
+    validates = true
+
+    for question in required
+      q = $(question)
+      
+      # if it's a conditional question, but condition was not satisfied
+      if q.find(".js-conditional-question").length and not q.find(".js-conditional-question").hasClass("show-question")
+        continue
+
+      if not validateSingleQuestion(q)
+        q.find(".errors-container").append("<li>This field is required</li>")
+        q.addClass("question-has-errors")
+
+        validates = false
+      else
+        q.removeClass("question-has-errors")
+        q.find(".errors-container").empty()
+
+    return validates
+
+  $(document).on "submit", ".qae-form", (e) ->
+    if not validate()
+      
+      $("html, body").animate(
+        scrollTop: 0
+      , 0)
+      return false
+
   # Hidden hints as seen on
   # https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
   # Creates the links and adds the arrows
@@ -106,7 +166,11 @@ jQuery ->
     e.preventDefault()
     if !$(this).hasClass("step-current")
       current = $(this).attr("data-step")
-      showAwardStep(current)
+      if $(this).hasClass "next"
+        if validate()
+          showAwardStep(current)
+      else
+        showAwardStep(current)
       # Scroll to top
       $("html, body").animate(
         scrollTop: 0

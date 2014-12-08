@@ -160,6 +160,19 @@ input[type="file"] {
   margin-top: 0.2em;
 }
 
+.question-block.question-has-errors {
+
+  .errors-container {
+    padding: 0;
+    list-style: none;
+
+    li {
+      list-style: none;
+      color: red;
+    }
+  }
+}
+
 .question-block h2 em {
   font-style: normal;
   text-decoration: underline;
