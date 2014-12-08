@@ -2,7 +2,7 @@ class QAE2014Forms
   class << self
     def innovation_step1
       @innovation_step1 ||= Proc.new {
-        text :company_name, 'Full/legal name of your business' do
+        text :company_name, 'Full/legal name of your organisational unit' do
           required
           ref 'A 1'
           help "What name should I write?", %Q{
@@ -10,7 +10,7 @@ class QAE2014Forms
           }
         end
 
-        options :principal_business, 'Does your business operate as a principal?' do
+        options :principal_business, 'Does your unit operate as a principal?' do
           required
           ref 'A 2'
           context %Q{
@@ -21,6 +21,7 @@ class QAE2014Forms
 
         textarea :invoicing_unit_relations,
           'Please explain the arrangements made, and your relationship with the invoicing unit.' do
+          classes "sub-question"
           required
           conditional :principal_business, :no
           words_max 100
@@ -48,13 +49,16 @@ class QAE2014Forms
         end
 
         award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
-          ref 'A 5.1'
+          classes "sub-question"
 
           conditional :queen_award_holder, :yes
 
-          category :innovation, 'Innovation'
-          category :international_trade, 'International Trade'
-          category :sustainable_development, 'Sustainable Development'
+          category :innovation_2, 'Innovation (2 years)'
+          category :innovation_5, 'Innovation (5 years)'
+          category :international_trade_3, 'International Trade (3 years)'
+          category :international_trade_6, 'International Trade (6 years)'
+          category :sustainable_development_2, 'Sustainable Development (2 years)'
+          category :sustainable_development_5, 'Sustainable Development (5 years)'
 
           year 2010
           year 2011
@@ -63,8 +67,8 @@ class QAE2014Forms
           year 2014
         end
 
-        options :business_name_changed, 'Has the name of your business changed since your previous entry?' do
-          ref 'A 5.2'
+        options :business_name_changed, 'Has the name of your organisation changed since your previous entry?' do
+          classes "sub-question"
 
           conditional :queen_award_holder, :yes
 
@@ -81,6 +85,7 @@ class QAE2014Forms
         end
 
         textarea :other_awards_desc, 'Please describe them' do
+          classes "sub-question"
           context '<p>Only enter the awards you consider most notable.</p>'
           conditional :other_awards_won, :yes
           rows 5
@@ -97,14 +102,16 @@ class QAE2014Forms
         end
 
         text :joint_entry_names, 'Please enter their name(s)' do
+          classes "sub-question"
           required
           conditional :joint_entry, :yes
-          style :largest
+          style "largest"
         end
 
-        address :principal_address, 'Principal address of your business' do
+        address :principal_address, 'Principal address of your organisational unit' do
           required
           ref 'A 8'
+          countries QAE2014Forms.countries
         end
 
         text :website_url, 'Website URL' do
@@ -116,28 +123,29 @@ class QAE2014Forms
         dropdown :business_sector, 'Business Sector' do
           required
           ref 'A 10'
-          option '', ''
+          option '', 'Business Sector'
           option :other, 'Other'
         end
 
         text :business_sector_other, 'Please specify' do
+          classes "regular-question"
           required
           conditional :business_sector, :other
         end
 
-        head_of_business :head_of_business, 'Head of your business' do
+        head_of_business :head_of_business, 'Head of your organisational unit' do
           required
           ref 'A 11'
         end
 
         text :head_job_title, 'Job title / Role in the organisation' do
+          classes "sub-question"
           required
-          ref 'A 11.1'
         end
 
         text :head_email, 'Email address' do
+          classes "sub-question"
           required
-          ref 'A 11.2'
           type :email
         end
 
@@ -147,35 +155,43 @@ class QAE2014Forms
         end
 
         text :parent_company, 'Name of immediate parent company' do
+          classes "regular-question"
           conditional :is_division, :yes
         end
 
         dropdown :parent_company_country, 'Country of immediate parent company' do
+          classes "regular-question"
           conditional :is_division, :yes
+
+          option '', 'Country'
           QAE2014Forms.countries.each do |country|
             option country, country
           end
         end
 
         options :parent_ultimate_control, 'Does the immediate parent company have ultimate control?' do
-          ref 'A 12.1'
+          classes "sub-question"
           conditional :is_division, :yes
           yes_no
         end
 
         text :ultimate_control_company, 'Name of organisation with ultimate control' do
+          classes "regular-question"
           conditional :parent_ultimate_control, :no
         end
 
         dropdown :ultimate_control__company_country, 'Country of organisation with ultimate control' do
+          classes "regular-question"
           conditional :parent_ultimate_control, :no
+
+          option '', 'Country'
           QAE2014Forms.countries.each do |country|
             option country, country
           end
         end
 
         upload :org_chart, 'Upload an organisational chart (optional).' do
-          ref 'A 12.2'
+          classes "sub-question"
           context %Q{
             <p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>
           }

@@ -15,7 +15,7 @@ header.page-header.group.page-header-wider
         = question_for "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                        { step: "B 1",
                          required: true,
-                         context_text: "<p>Your answer here will determine whether you are assessed for outstanding innovation (an award valid for two years) or continuous innovation (valid for five years).</p>" } do
+                         context_text: "<p>Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years)." } do
           label.selectable
             input type="radio" name="optionsInnovationImpactDuration" value="2 to 4"
             ' 2-4 years
@@ -103,14 +103,14 @@ header.page-header.group.page-header-wider
             input type="radio" name="optionsInnovationIntegral" value="single product or service"
             ' A single product or service
 
-        .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="true"
-          h2
-            ' Company Financials
-          p
-            ' These figures should be for your entire organisation.
+        = question_for "Company Financials",
+                       { step: "B 5",
+                         context_text: "<p>These figures should be for your entire organisation.</p>",
+                         conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                       value: true} } do
 
         = question_for "Total turnover",
-                       { step: "B 5",
+                       { classes: "sub-question",
                          required: true,
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                        value: true} } do
@@ -163,7 +163,7 @@ header.page-header.group.page-header-wider
                   input.small type="text" placeholder="£"
 
         = question_for "of which exports",
-                       { step: "B 5.1",
+                       { classes: "sub-question",
                          required: true,
                          context_text: "<p>Please enter '0' if you had none.</p>",
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -217,7 +217,7 @@ header.page-header.group.page-header-wider
                   input.small type="text" placeholder="£"
 
         = question_for "Net profit after tax but before dividends",
-                       { step: "B 5.2",
+                       { classes: "sub-question",
                          required: true,
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                        value: true} } do
@@ -270,7 +270,7 @@ header.page-header.group.page-header-wider
                   input.small type="text" placeholder="£"
 
         = question_for "Total net assets",
-                       { step: "B 5.3",
+                       { classes: "sub-question",
                          required: true,
                          context_text: "<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>",
                          conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -325,14 +325,14 @@ header.page-header.group.page-header-wider
 
         .js-conditional-drop-question
           = question_for "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made.",
-                         { step: "B 5.4",
+                         { classes: "sub-question",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
             textarea.js-char-count rows="5" data-word-max="200"
 
         .js-conditional-question data-question="for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="true"
           = question_for "Are any of these figures estimated?",
-                         { step: "B 5.5",
+                         { classes: "sub-question",
                            conditional: {question: "My innovation is an integral part of",
                                          value: "entire business"} } do
             label.selectable
@@ -342,17 +342,23 @@ header.page-header.group.page-header-wider
               input type="radio" name="optionsFiguresEstimated" value="no"
               ' No
 
-          = question_for "Explain the use of estimates, and how much of these are actual receipts or firm orders.",
+          = question_for "",
                          { conditional: {question: "Are any of these figures estimated?",
                                          value: "yes"} } do
-            textarea.js-char-count rows="5" data-word-max="200"
+            .question-group
+              label
+                ' Explain the use of estimates, and how much of these are actual receipts or firm orders.
+                textarea.js-char-count rows="5" data-word-max="200"
 
         .js-conditional-question data-question="my-innovation-is-an-integral-part-of" data-value="single product or service"
-          h2
-            ' Product/Service Financials
+
+          = question_for "Product/Service Financials",
+                         { step: "B 6",
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
 
           = question_for "Number of units/contracts sold",
-                         { step: "B 6",
+                         { classes: "sub-question",
                            required: true,
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
@@ -405,7 +411,7 @@ header.page-header.group.page-header-wider
                     input.small type="number"
 
           = question_for "Sales",
-                         { step: "B 6.1",
+                         { classes: "sub-question",
                            required: true,
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
                                          value: true} } do
@@ -458,7 +464,7 @@ header.page-header.group.page-header-wider
                     input.small type="text" placeholder="£"
 
           = question_for "of which exports",
-                         { step: "B 6.2",
+                         { classes: "sub-question",
                            required: true,
                            context_text: "<p>Please enter '0' if you had none.</p>",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -512,7 +518,7 @@ header.page-header.group.page-header-wider
                     input.small type="text" placeholder="£"
 
           = question_for "of which royalties or licenses",
-                         { step: "B 6.3",
+                         { classes: "sub-question",
                            required: true,
                            context_text: "<p>Please enter '0' if you had none.</p>",
                            conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
@@ -567,12 +573,14 @@ header.page-header.group.page-header-wider
 
           .js-conditional-drop-question
             = question_for "Explain any drop in sales",
-                           { step: "B 6.4",
+                           { classes: "sub-question",
                              required: true } do
               textarea.js-char-count rows="5" data-word-max="300"
 
           = question_for "Are any of these figures estimated?",
-                         { step: "B 6.5" } do
+                         { classes: "sub-question",
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
             label.selectable
               input type="radio" name="optionsFiguresEstimated" value="yes"
               ' Yes
@@ -580,13 +588,18 @@ header.page-header.group.page-header-wider
               input type="radio" name="optionsFiguresEstimated" value="no"
               ' No
 
-          = question_for "Explain the use of estimates, and how much of these are actual receipts or firm orders.",
+          = question_for "",
                          { conditional: {question: "Are any of these figures estimated?",
                                          value: "yes"} } do
-            textarea.js-char-count rows="5" data-word-max="200"
+            .question-group
+              label
+                ' Explain the use of estimates, and how much of these are actual receipts or firm orders.
+                textarea.js-char-count rows="5" data-word-max="200"
 
           = question_for "Additional comments (optional)",
-                         { step: "B 6.6" } do
+                         { classes: "sub-question",
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
             textarea.js-char-count rows="5" data-word-max="100"
 
           = question_for "Average unit selling price/contract value",
@@ -641,7 +654,10 @@ header.page-header.group.page-header-wider
                     input.small type="text" placeholder="£"
 
           = question_for "Explain your unit selling prices/contract values, highlighting any changes over the above periods.",
-                         { required: true } do
+                         { classes: "sub-question",
+                           required: true,
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
             textarea.js-char-count rows="5" data-word-max="200"
 
           = question_for "Cost, to you, of a single unit/contract",
@@ -696,13 +712,16 @@ header.page-header.group.page-header-wider
                     input.small type="text" placeholder="£"
 
           = question_for "Explain your unit/ contract costs, highlighting any changes over the above periods.",
-                         { required: true } do
+                         { classes: "sub-question",
+                           required: true,
+                           conditional: {question: "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?",
+                                         value: true} } do
             textarea.js-char-count rows="5" data-word-max="200"
 
-          = question_for "Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.",
-                         { step: "B 9",
-                           required: true } do
-            textarea.js-char-count rows="5" data-word-max="300"
+        = question_for "Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.",
+                       { step: "B 9",
+                         required: true } do
+          textarea.js-char-count rows="5" data-word-max="300"
 
         = question_for "Please enter details of all the investments made in your innovation, and the years when they were made. Include investments made both during and prior to your entry period.",
                        { step: "B 10",
@@ -710,7 +729,7 @@ header.page-header.group.page-header-wider
           textarea.js-char-count rows="5" data-word-max="300"
 
         = question_for "How long did it take the investment indicated above to be repaid? When and how was this repayment achieved?",
-                       { step: "B 10.1",
+                       { classes: "sub-question",
                          required: true } do
           textarea.js-char-count rows="5" data-word-max="300"
 

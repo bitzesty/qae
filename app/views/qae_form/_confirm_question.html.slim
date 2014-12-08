@@ -1,4 +1,4 @@
 label.selectable.selectable-confirm
-  input type="checkbox"
+  input.js-trigger-autosave type="checkbox" name=question.key checked=!!answers[question.key]
   - if question.text
-    = question.text 
+    == question.text 

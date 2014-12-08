@@ -24,6 +24,15 @@
           li International Trade
           li Sustainable Development
 
+        br
+
+        p
+          ' The
+          = link_to "Queen’s Award for Enterprise Promotion", enterprise_promotion_awards_path
+          '  is awarded by nomination only, and recognises individuals who have played an outstanding role (going above and beyond their duties) in promoting the growth of business enterprise and/or entrepreneurial skills in others.
+
+        br
+
         .get-started
           - if user_signed_in?
             = link_to "Apply", dashboard_path, class: "button"
@@ -33,7 +42,7 @@
         br
 
         p
-          ' If you have already begun your application then
+          ' If you have already signed up then
           = link_to "log in to continue", new_user_session_path
           ' .
 

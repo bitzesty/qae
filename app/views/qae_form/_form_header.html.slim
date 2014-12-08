@@ -4,11 +4,17 @@ header.page-header.group.page-header-wider
       = form.title
 
     ol.steps-progress-bar
+      li.step-past
+        = link_to innovation_award_eligible_path do
+          span
+            span.step-number
+              ' 1.
+            ' Eligibility
       - for step in form.steps do
         li.js-step-link.js-step-condition class="#{'step-current' if step == form.steps.first}" data-step="step-#{step.title.parameterize}"
           span
             span.step-number
-              ' #{step.index}.
+              ' #{step.index+1}.
             | #{step.title}
 
     - for step in form.steps do

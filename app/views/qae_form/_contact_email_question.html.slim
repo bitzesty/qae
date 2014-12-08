@@ -1,9 +1,7 @@
-          p.group
-            label
-              ' Email address
-              input.medium type="email"
-          p.group
-            label
-              ' Confirm email address
-              input.medium type="email"
-          // Validate both are the same
+.question-group
+  input.js-trigger-autosave.medium type="email" name="#{question.key}_primary" value=answers["#{question.key}_primary"]
+.question-group
+  label
+    ' Confirm email address
+    input.js-trigger-autosave.medium type="email" name="#{question.key}_confirmation" value=answers["#{question.key}_confirmation"]
+// Validate both are the same

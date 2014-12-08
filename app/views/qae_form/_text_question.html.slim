@@ -1,1 +1,1 @@
-input class="js-trigger-autosave #{question.style.present? ? question.style : 'medium'}" type="#{question.type.present? ? question.type.to_s : 'text'}" name=question.key.to_s
+input class="js-trigger-autosave #{question.style.present? ? question.style : 'medium'}" type="#{question.type.present? ? question.type.to_s : 'text'}" name=question.key.to_s value=answers[question.key]

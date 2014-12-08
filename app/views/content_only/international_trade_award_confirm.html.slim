@@ -29,7 +29,7 @@ header.page-header.group
 
         .form-download
           p
-            = link_to "Download your International Trade Award application", "#"
+            = link_to "Download your International Trade Award application", user_form_answer_path(current_user, form_answer, format: :pdf)
 
         h2
           ' Awards for organisations

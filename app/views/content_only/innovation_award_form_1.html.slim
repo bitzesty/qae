@@ -32,8 +32,9 @@ header.page-header.group.page-header-wider
             ' No
 
         = question_for "Please explain the arrangements made, and your relationship with the invoicing unit.",
-                       { required: true,
-                         conditional: {question: "Does your business operate as a principal?",
+                       { classes: "sub-question",
+                         required: true,
+                         conditional: {question: "Does your unit operate as a principal?",
                                        value: "no"} } do
           textarea.js-char-count rows="5" data-word-max="100"
 
@@ -48,20 +49,7 @@ header.page-header.group.page-header-wider
                        { step: "A 4",
                          required: true,
                          context_text: "<p>Businesses which began trading after 01/10/2012 are not eligible for this award.</p>" } do
-          select.inline
-            option value="" Day
-            - (1..31).each do |day|
-              option= day
-          '
-          select.inline
-            option value="" Month
-            - @months.each do |month|
-              option= month
-          '
-          select.inline
-            option value="" Year
-            - (1900..2012).each do |year|
-              option= year
+          input.small type="text" placeholder="dd/mm/yyyy"
           // must be before 01/10/2012
 
         = question_for "Are you a current Queen's Award holder (2010-2014)?",
@@ -89,7 +77,6 @@ header.page-header.group.page-header-wider
                 option value="international trade 6" International Trade (6 years)
                 option value="sustainable development 2" Sustainable Development (2 years)
                 option value="sustainable development 5" Sustainable Development (5 years)
-              ' 
               select.inline
                 option value="" Year
                 option value="2010" 2010
@@ -107,7 +94,6 @@ header.page-header.group.page-header-wider
                 option value="international trade 6" International Trade (6 years)
                 option value="sustainable development 2" Sustainable Development (2 years)
                 option value="sustainable development 5" Sustainable Development (5 years)
-              ' 
               select.inline
                 option value="" Year
                 option value="2010" 2010
@@ -117,7 +103,7 @@ header.page-header.group.page-header-wider
                 option value="2014" 2014
           = link_to "+ Add another award", "#", class: "button button-add"
 
-        = question_for "Has the name of your business changed since your previous entry?",
+        = question_for "Has the name of your organisation changed since your previous entry?",
                        { classes: "sub-question",
                          conditional: {question: "Are you a current Queen's Award holder (2010-2014)?",
                                       value: "yes"} } do
@@ -176,7 +162,7 @@ header.page-header.group.page-header-wider
                                       value: "yes"} } do
           input.largest type="text"
 
-        = question_for "Principal address of your business",
+        = question_for "Principal address of your organisational unit",
                        { step: "A 8",
                          required: true } do
           .question-group
@@ -206,7 +192,7 @@ header.page-header.group.page-header-wider
                        { step: "A 10",
                          required: true } do
           select
-            option
+            option value="" Business Sector
             option value="other" Other
 
         = question_for "",
@@ -218,7 +204,7 @@ header.page-header.group.page-header-wider
               ' Please specify
               input.medium type="text"
 
-        = question_for "Head of your business",
+        = question_for "Head of your organisational unit",
                        { step: "A 11",
                          required: true } do
           .question-group
@@ -270,7 +256,7 @@ header.page-header.group.page-header-wider
             label
               ' Country of immediate parent company
               select
-                option value=""
+                option value="" Country
                 option value="United Kingdom" United Kingdom
                 option value="United States of America" United States of America
                 option value="" disabled="disabled"
@@ -302,7 +288,7 @@ header.page-header.group.page-header-wider
               label
                 ' Country of organisation with ultimate control
                 select
-                  option value=""
+                  option value="" Country
                   option value="United Kingdom" United Kingdom
                   option value="United States of America" United States of America
                   option value="" disabled="disabled"

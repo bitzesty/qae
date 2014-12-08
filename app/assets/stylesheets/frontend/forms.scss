@@ -3,23 +3,23 @@
   @include bold-19;
 }
 
+// Regular question style
+.regular-question h2 {
+  @include core-19;
+  margin: 0;
+}
+
 // Error styling
 .field_with_errors .error,
 .smart_answer article .error {
   @include core-19;
   clear: both;
   display: block;
-  margin: 1em 0;
+  margin: 0;
+  margin-bottom: 0.2em;
   padding: 0;
   background: transparent;
   border: none;
-
-  .page-devise & {
-    @include core-16;
-    margin-top: 1.5em;
-    margin-bottom: 0.2em;
-    margin-left: 207px;
-  }
 }
 
 .page-devise .boolean .error {
@@ -163,7 +163,6 @@ input[type="file"] {
 // Styling for forms that exist outside of smart-answers
 // Forms that flow downwards with multiple questions
 .qae-form {
-  .group,
   .question-group {
     margin-bottom: 1.25em;
   }
@@ -253,7 +252,6 @@ input[type="file"] {
   .span-12 label {
     @media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
       display: block;
-      margin-top: 0.5em;
     }
   }
 
@@ -262,16 +260,13 @@ input[type="file"] {
     margin-top: 0.5em;
   }
 
-  .question-group + .hidden-hint,
-  .group + .hidden-hint {
+  .question-group + .hidden-hint {
     margin-top: -0.5em;
   }
 
-  .group + h2,
   .question-group + h2,
   .hidden-hint + h2,
-  .hidden-hint + .question-group,
-  .hidden-hint + .group {
+  .hidden-hint + .question-group {
     margin-top: 3em;
   }
 

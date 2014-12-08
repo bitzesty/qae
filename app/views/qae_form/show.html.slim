@@ -1,3 +1,3 @@
-form.qae-form data-autosave-url=autosave_url
+form.qae-form data-autosave-url=autosave_url(@form_answer) action=submit_form_url(@form_answer) method="POST"
   = render partial: 'qae_form/form_header', object: @form, as: 'form'
-  = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form}
+  = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form, answers: (HashWithIndifferentAccess.new(@form_answer.document || {}))}

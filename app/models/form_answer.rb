@@ -21,20 +21,20 @@ class FormAnswer < ActiveRecord::Base
                            inclusion: {
                              in: POSSIBLE_AWARDS
                            }
-    validates :urn, presence: true, uniqueness: true
+    validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
   end
 
   begin :scopes
     scope :for_award_type, -> (award_type) { where award_type: award_type }
-    scope :order_by_current_year_urn, -> do
-      where("urn ~ '^QA\\d{4}\\/#{CURRENT_AWARD_YEAR}\\w{1}$'").order(:urn)
-    end
+    scope :for_user, -> (user) { where user: user }
+    scope :for_account, -> (account) { where account: account }
   end
 
   before_create :set_account
-  before_validation :set_urn, on: :create
+  before_save :set_urn
 
   store_accessor :document
+  attr_accessor :submitted
 
   def award_form
     case award_type
@@ -52,16 +52,13 @@ class FormAnswer < ActiveRecord::Base
   private
 
   def set_urn
+    return if urn
+    return unless submitted
     return unless award_type
 
-    previous_urn_num = 0
-
-    if previous_form = self.class.order_by_current_year_urn.last
-      previous_urn = previous_form.urn
-      previous_urn_num = previous_urn.split('/')[0].delete('QA')
-    end
-
-    self.urn = "QA#{sprintf("%.4d", (previous_urn_num.to_i + 1))}/#{CURRENT_AWARD_YEAR}#{award_type[0].capitalize}"
+    next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize("urn_seq_#{award_type}")})")
+ 
+    self.urn = "QA#{sprintf("%.4d", next_seq)}/#{CURRENT_AWARD_YEAR}#{award_type[0].capitalize}"
   end
 
   def set_account

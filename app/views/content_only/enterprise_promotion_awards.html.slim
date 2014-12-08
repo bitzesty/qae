@@ -21,20 +21,30 @@
             li be active in the role/area for which they are being nominated, and have been for at least two years
             li have been active in a role/area based in the UK (including the Channel Islands and the Isle of Man.
 
+          br
+
+          p
+            ' If you’d like to nominate someone for the Queen’s Award for Enterprise Promotion,
+            = link_to "sign up to check their eligibility", new_user_registration_path
+            ' .
+
           .application-notice.help-notice
             p You cannot nominate yourself for this award.
 
           br
-
-          p
-            = link_to "Sign in to access the eligibility questionnaire", new_user_session_path
-            ' .
 
           .get-started
             - if user_signed_in?
               = link_to "Nominate", dashboard_path, class: "button"
             - else
               = link_to "Nominate", new_user_registration_path, class: "button"
+
+          br
+
+          p
+            ' If you have already signed up then
+            = link_to "log in to continue", new_user_session_path
+            ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

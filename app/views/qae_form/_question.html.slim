@@ -4,38 +4,39 @@
   - if question.header_context
     == question.header_context
 
-fieldset class="question-block js-conditional-answer #{'js-conditional-question' if question.condition} #{question.classes}" data-answer=question.parameterized_title data-question="#{question.condition_question.parameterized_title if question.condition_question}" data-value=question.condition_value
-  - if question.title
-    h2
-      - if question.ref
-        span class="steps step-#{question.ref.to_s.parameterize}"
-          span.visuallyhidden
-            = "Step #{question.ref.to_s}"
-          span.todo
-            = question.ref.to_s
+fieldset class="question-block js-conditional-answer #{question.classes} #{'js-conditional-drop-answer' if question.drop_condition}" data-answer=question.parameterized_title data-drop-question="#{question.form[question.drop_condition].parameterized_title if question.drop_condition}"
+  = condition_divs question do
+    - if question.title != ""
+      h2
+        - if question.ref
+          span class="steps step-#{question.ref.to_s.parameterize}"
+            span.visuallyhidden
+              = "Step #{question.ref.to_s}"
+            span.todo
+              = question.ref.to_s
 
-      = question.title
-
-      - if question.required
-        abbr
-          | *
-
-  - if question.context
-    == question.context
-
-  .question-group
-    label
-      span.visuallyhidden
         = question.title
+
         - if question.required
           abbr
             | *
-      = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question'
-    .clear
 
-  - for help in question.help
-    div.hidden-hint
-      span.hidden-link
-        = help.title
-      span.hidden-content
-        == help.text
+    - if question.context
+      == question.context
+
+    .question-group
+      label
+        span.visuallyhidden
+          = question.title
+          - if question.required
+            abbr
+              | *
+        = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers}
+      .clear
+
+    - for help in question.help
+      div.hidden-hint
+        span.hidden-link
+          = help.title
+        span.hidden-content
+          == help.text

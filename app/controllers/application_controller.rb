@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
   self.responder = AppResponder
   respond_to :html
 
+  decent_configuration do
+    strategy DecentExposure::StrongParametersStrategy
+  end
+
   def after_sign_in_path_for(resource)
     dashboard_path
   end

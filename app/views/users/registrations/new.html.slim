@@ -38,4 +38,7 @@
           .form-actions
             = f.button :submit, "Sign up", class: "button large"
 
-        = render "users/shared/links"
+        /= render "users/shared/links"
+        p
+          ' or
+          = link_to "Log in", new_user_session_path
