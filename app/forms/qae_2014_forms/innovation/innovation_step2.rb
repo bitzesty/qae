@@ -2,7 +2,7 @@ class QAE2014Forms
   class << self
     def innovation_step2
       @innovation_step2 ||= Proc.new {
-        options :innovation_performance_years, %Q{For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?} do
+        options :innovation_performance_years, "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?" do
           ref 'B 1'
           required
           context %Q{
@@ -12,7 +12,7 @@ class QAE2014Forms
           option '5 plus', '5 years or more'
         end
 
-        financial_year_dates :financial_year_dates, 'Please select your financial year end dates:' do
+        innovation_financial_year_dates :financial_year_dates, 'Please select your financial year end dates:' do
           ref 'B 2'
           required
           context %Q{
@@ -47,14 +47,14 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        by_years :total_turnover, 'Total turnover' do
+        innovation_by_years :total_turnover, 'Total turnover' do
           classes "sub-question"
           required
           conditional :innovation_performance_years, :true
           drop_conditional :drops_in_turnover
         end
 
-        by_years :exports, 'of which exports' do 
+        innovation_by_years :exports, 'of which exports' do 
           classes "sub-question"
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
@@ -62,14 +62,14 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        by_years :net_profit, 'Net profit after tax but before dividends' do 
+        innovation_by_years :net_profit, 'Net profit after tax but before dividends' do 
           classes "sub-question"
           required
           conditional :innovation_performance_years, :true
           drop_conditional :drops_in_turnover
         end
 
-        by_years :total_net_assets, 'Total net assets' do 
+        innovation_by_years :total_net_assets, 'Total net assets' do 
           classes "sub-question"
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
@@ -105,7 +105,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
  
-        by_years :units_sold, 'Number of units/contracts sold' do
+        innovation_by_years :units_sold, 'Number of units/contracts sold' do
           classes "sub-question"
           required
           conditional :innovation_part_of, :single_product_or_service
@@ -113,7 +113,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales, 'Sales' do 
+        innovation_by_years :sales, 'Sales' do 
           classes "sub-question"
           required
           conditional :innovation_part_of, :single_product_or_service
@@ -121,7 +121,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_exports, 'of which exports' do
+        innovation_by_years :sales_exports, 'of which exports' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
@@ -130,7 +130,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_royalties, 'of which royalties or licenses' do
+        innovation_by_years :sales_royalties, 'of which royalties or licenses' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
@@ -171,7 +171,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        by_years :avg_unit_price, 'Average unit selling price/contract value' do 
+        innovation_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
           ref 'B 7'
           required
           conditional :innovation_part_of, :single_product_or_service
@@ -187,7 +187,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
+        innovation_by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
           ref 'B 8'
           required
           conditional :innovation_part_of, :single_product_or_service
