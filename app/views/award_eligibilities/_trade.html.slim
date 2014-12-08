@@ -1,0 +1,29 @@
+= simple_form_for @trade_eligibility, as: :eligibility, url: wizard_path, method: :put, html: { class: 'qae-form' } do |f|
+  .question
+    .question-body
+      h2 = Eligibility::Trade.label(:sales_above_100_000_pounds)
+      p.hint
+        ' hint
+      = f.input :sales_above_100_000_pounds, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+    span.clear
+
+  .question
+    .question-body
+      h2 = Eligibility::Trade.label(:any_dips_over_the_last_three_years)
+      p.hint
+        ' hint
+      = f.input :any_dips_over_the_last_three_years, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+    span.clear
+
+  .question
+    .question-body
+      h2 = Eligibility::Trade.label(:current_holder_of_qae_for_trade)
+      p.hint
+        ' hint
+      = f.input :current_holder_of_qae_for_trade, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+    span.clear
+
+    = f.input :qae_for_trade_expiery_date, as: :select, include_blank: true, wrapper_html: { class: 'visuallyhidden' }, label: Eligibility::Trade.label(:qae_for_trade_expiery_date)
+
+  .next-question
+    = f.submit "Next step", class: "button medium"

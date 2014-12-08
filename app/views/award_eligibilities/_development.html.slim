@@ -1,0 +1,22 @@
+= simple_form_for @development_eligibility, as: :eligibility, url: wizard_path, method: :put do |f|
+  .question
+    .question-body
+      h2 = Eligibility::Development.label(:sustainable_development)
+      p.hint
+        ' Sustainable development is any activity which 'ensures a better quality of life for everyone, now and for generations to come'. This can be in any of the four dimensions: - environmental - social - economic - leadership. Businesses should be able to show they have accentuated their positive impacts, whilst minimising negatives as far as possible, and that strategies exist to further this achievement. Your achievements should be in either:
+        br
+        ' invention, design, production, performance, marketing, distribution or after sales support of goods/services
+        br
+        ' management of resources or people, or of relationships with other organisations (or their representatives)
+      = f.input :sustainable_development, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+    span.clear
+
+  .question
+    .question-body
+      h2 = Eligibility::Development.label(:development_contributed_to_commercial_success)
+      p.hint
+        '  If figures such as profitability, turnover and market share have met/exceeded business plan targets, then you can demonstrate 'commercial success'.
+      = f.input :development_contributed_to_commercial_success, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+    span.clear
+  .next-question
+    = f.submit "Next step", class: "button medium"

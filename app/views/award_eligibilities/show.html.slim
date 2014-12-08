@@ -8,6 +8,4 @@
   .article-container
     article.group role="article"
       .inner.step.current
-        = simple_form_for @eligibility, as: :eligibility, url: wizard_path, method: :put do |f|
-            .next-question
-              = f.submit "Next step", class: "button medium"
+        = render step.to_s

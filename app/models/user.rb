@@ -14,6 +14,9 @@ class User < ActiveRecord::Base
     has_many :form_answers, dependent: :destroy
     has_many :eligibilities, dependent: :destroy
     has_one :basic_eligibility, class_name: 'Eligibility::Basic'
+    has_one :trade_eligibility, class_name: 'Eligibility::Trade'
+    has_one :innovation_eligibility, class_name: 'Eligibility::Innovation'
+    has_one :development_eligibility, class_name: 'Eligibility::Development'
     has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
 
     belongs_to :account

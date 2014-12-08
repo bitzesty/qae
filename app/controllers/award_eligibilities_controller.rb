@@ -2,6 +2,7 @@ class AwardEligibilitiesController < ApplicationController
   include Wicked::Wizard
 
   before_action :authenticate_user!
+  before_action :load_eligibilities
 
   steps :trade, :innovation, :development
 
@@ -36,5 +37,28 @@ class AwardEligibilitiesController < ApplicationController
     else
       render :show
     end
+  end
+
+  def result
+  end
+
+  private
+
+  def load_eligibilities
+    @trade_eligibility = current_user.trade_eligibility || current_user.build_trade_eligibility
+    @innovation_eligibility = current_user.innovation_eligibility || current_user.build_innovation_eligibility
+    @development_eligibility = current_user.development_eligibility || current_user.build_development_eligibility
+  end
+
+  def trade_eligibility_params
+    params.require(:eligibility).permit(*Eligibility::Trade.questions)
+  end
+
+  def innovation_eligibility_params
+    params.require(:eligibility).permit(*Eligibility::Innovation.questions)
+  end
+
+  def development_eligibility_params
+    params.require(:eligibility).permit(*Eligibility::Development.questions)
   end
 end
