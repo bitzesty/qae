@@ -23,7 +23,6 @@ class QAE2014Forms
             <p>Describe the product/service/intitative itself, explain any aspect(s) you believe innovative, and why you believe it is innovative: consider its uniqeueness and the challenges you had to overcome. Also explain how it fits within the overall business e.g. is it your sole product.</p>
           }
           rows 5
-          words_min 500
           words_max 800
         end
 
@@ -34,7 +33,6 @@ class QAE2014Forms
             <p>Outline the disadvantages, if any, of your own/competing products/services/intiatives prior to the innovation. Or otherwise, how you identified a gap in the market.</p>
           }
           rows 5
-          words_min 300
           words_max 500
         end
 
@@ -42,7 +40,6 @@ class QAE2014Forms
           ref 'C 3'
           required
           rows 5
-          words_min 500
           words_max 800
         end
 
@@ -53,8 +50,7 @@ class QAE2014Forms
             <p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim.</p>
           }
           rows 5
-          words_min 500
-          words_max 800 
+          words_max 800
         end
 
         textarea :innovation_competitors, "Identify and describe any products/services/initiatives made by other organisations that compete with your innovation, and explain how your innovation differs." do
