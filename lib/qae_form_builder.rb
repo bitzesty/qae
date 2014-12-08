@@ -11,6 +11,7 @@ require 'qae_form_builder/dropdown_question'
 require 'qae_form_builder/date_question'
 require 'qae_form_builder/upload_question'
 
+require 'qae_form_builder/subsidiaries_associates_plants_question'
 require 'qae_form_builder/award_holder_question'
 require 'qae_form_builder/previous_name_question'
 require 'qae_form_builder/address_question'
@@ -28,7 +29,7 @@ class QAEFormBuilder
     def build title, &block
       form = QAEForm.new title
       form.instance_eval &block if block_given?
-      form      
+      form
     end
 
   end
