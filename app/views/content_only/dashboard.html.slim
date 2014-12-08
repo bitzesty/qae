@@ -9,20 +9,20 @@ header.page-header.group
   .article-container
     article.group role="article"
       .inner
-        - if params[:eligible] == "innovation"
+        - if any_eligibilities_passed?
           .application-notice.help-notice
             p
               ' Your organisation meets the eligibility criteria for
             ul
-              li The Innovation Award
-
+              - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
+                li = eligibility.class.const_get(:AWARD_NAME)
         h2
           ' Awards for organisations
 
         p
           ' If you're unsure about the category you want to apply
 
-          = link_to "check which awards your organisation is eligible for.", eligibility_check_1_path
+          = link_to "check which awards your organisation is eligible for.", award_eligibility_path
 
         p
           ' If you're already sure about the category you want to apply:

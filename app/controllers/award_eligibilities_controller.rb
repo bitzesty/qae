@@ -7,7 +7,7 @@ class AwardEligibilitiesController < ApplicationController
   steps :trade, :innovation, :development
 
   def show
-    if [@trade_eligibility, @innovation_eligibility, @development_eligibility].all?(&:passed?)
+    if all_eligibilities_passed?
       render :result
       return
     end
@@ -44,12 +44,6 @@ class AwardEligibilitiesController < ApplicationController
 
   private
 
-  def load_eligibilities
-    @trade_eligibility = current_user.trade_eligibility || current_user.build_trade_eligibility
-    @innovation_eligibility = current_user.innovation_eligibility || current_user.build_innovation_eligibility
-    @development_eligibility = current_user.development_eligibility || current_user.build_development_eligibility
-  end
-
   def trade_eligibility_params
     params.require(:eligibility).permit(*Eligibility::Trade.questions)
   end
@@ -61,4 +55,9 @@ class AwardEligibilitiesController < ApplicationController
   def development_eligibility_params
     params.require(:eligibility).permit(*Eligibility::Development.questions)
   end
+
+  def all_eligibilities_passed?
+    [@trade_eligibility, @innovation_eligibility, @development_eligibility].all?(&:passed?)
+  end
+  helper_method :all_eligibilities_passed?
 end

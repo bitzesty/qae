@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 class Eligibility::Trade < Eligibility
+  AWARD_NAME = 'The International Trade Award'
+
   validates :qae_for_trade_expiery_date, presence: true, if: :current_holder_of_qae_for_trade?
 
  property :sales_above_100_000_pounds, boolean: true, label: "Are your annual sales from export above £100,000?", accept: :true

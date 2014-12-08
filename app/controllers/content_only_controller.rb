@@ -5,6 +5,7 @@ class ContentOnlyController < ApplicationController
   end
 
   def dashboard
+    load_eligibilities
     current_user.update_attribute(:completed_registration, true) unless current_user.completed_registration?
   end
 

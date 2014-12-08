@@ -1,4 +1,6 @@
 class Eligibility::Innovation < Eligibility
+  AWARD_NAME = 'The Innovation Award'
+
   validates :number_of_innovative_products, presence: true, if: :innovative_product?
   property :innovative_product, boolean: true, label: "Do you have an innovative product/service/initiative?", accept: :true
   property :number_of_innovative_products, positive_integer: true, label: "How many?", accept: :not_nil
