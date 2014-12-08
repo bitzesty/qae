@@ -7,8 +7,5 @@ jQuery ->
         ($ '.eligibility_qae_for_trade_expiery_date').addClass('visuallyhidden')
 
     toggleOther()
-    ($ '#eligibility_current_holder_of_qae_for_trade_true').on 'change', ->
-      toggleOther()
-
-    ($ '#eligibility_current_holder_of_qae_for_trade_false').on 'change', ->
+    ($ '#eligibility_current_holder_of_qae_for_trade_true, #eligibility_current_holder_of_qae_for_trade_false').on 'change', ->
       toggleOther()
