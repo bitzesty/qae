@@ -5,7 +5,7 @@ class FormController < ApplicationController
   before_filter :set_form_answer, :except => [:new_innovation_form]
 
   def new_innovation_form
-    form_answer = FormAnswer.create!(:user => current_user, :account => current_user.account, :award_type=>'innovation')
+    form_answer = FormAnswer.create!(user: current_user, account: current_user.account, award_type: 'innovation')
     redirect_to edit_form_url(form_answer)
   end
 

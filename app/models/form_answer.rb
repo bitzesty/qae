@@ -21,7 +21,7 @@ class FormAnswer < ActiveRecord::Base
                            inclusion: {
                              in: POSSIBLE_AWARDS
                            }
-    validates_uniqueness_of :urn, :allow_nil => true, :allow_blank => true
+    validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
   end
 
   begin :scopes
