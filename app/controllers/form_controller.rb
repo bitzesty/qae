@@ -2,10 +2,15 @@ require 'qae_2014_forms'
 
 class FormController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :set_form_answer, :except => [:new_innovation_form]
+  before_filter :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form]
 
   def new_innovation_form
     form_answer = FormAnswer.create!(user: current_user, account: current_user.account, award_type: 'innovation')
+    redirect_to edit_form_url(form_answer)
+  end
+
+  def new_international_trade_form
+    form_answer = FormAnswer.create!(user: current_user, account: current_user.account, award_type: 'trade')
     redirect_to edit_form_url(form_answer)
   end
 
