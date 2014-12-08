@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 20141208085751) do
     t.boolean  "passed"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "type"
   end
 
   add_index "eligibilities", ["user_id"], name: "index_eligibilities_on_user_id", using: :btree
@@ -61,9 +62,9 @@ ActiveRecord::Schema.define(version: 20141208085751) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "document"
-    t.string   "award_type"
     t.boolean  "withdrawn",  default: false
     t.integer  "account_id"
+    t.string   "award_type"
     t.string   "urn"
     t.boolean  "submitted"
   end
@@ -100,9 +101,9 @@ ActiveRecord::Schema.define(version: 20141208085751) do
     t.boolean  "subscribed_to_emails",       default: false
     t.string   "qae_info_source"
     t.string   "qae_info_source_other"
-    t.boolean  "completed_registration",     default: false
     t.integer  "account_id"
     t.string   "role"
+    t.boolean  "completed_registration",     default: false
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree

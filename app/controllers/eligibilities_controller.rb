@@ -4,7 +4,7 @@ class EligibilitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :load_eligibility
 
-  steps *Eligibility.questions
+  steps *Eligibility::Basic.questions
 
   def show
     if @eligibility.passed?
@@ -57,7 +57,7 @@ class EligibilitiesController < ApplicationController
   private
 
   def load_eligibility
-    @eligibility = current_user.eligibility || current_user.build_eligibility
+    @eligibility = current_user.basic_eligibility || current_user.build_basic_eligibility
   end
 
   def eligibility_params

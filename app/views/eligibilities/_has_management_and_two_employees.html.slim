@@ -1,8 +1,5 @@
-.question
-  h2
-    = Eligibility.label(step)
-  .question-body
-    p.hint
-      ' Part-time staff should be counted in full-time equivalents.
-    = f.input :has_management_and_two_employees, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
-    span.clear
+.question-body
+  p.hint
+    ' Part-time staff should be counted in full-time equivalents.
+  = f.input :has_management_and_two_employees, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  span.clear

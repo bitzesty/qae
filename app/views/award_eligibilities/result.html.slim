@@ -1,0 +1,33 @@
+.article-related-positioning-container
+  header.page-header.group
+    div
+      h1
+        ' Award eligibility questionnaire
+
+.article-container
+  article.group role="article"
+    .inner
+      .application-notice.help-notice
+        - if !all_eligibilities_passed?
+          p
+            ' Your organisation
+            strong
+              ' does not
+            ' meets the eligibility criteria for
+          ul
+            - [@trade_eligibility, @innovation_eligibility, @development_eligibility].reject(&:passed?).each do |eligibility|
+              li = eligibility.class.const_get(:AWARD_NAME)
+          br
+        - if any_eligibilities_passed?
+          p
+            ' Your organisation meets the eligibility criteria for
+          ul
+            - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
+              li = eligibility.class.const_get(:AWARD_NAME)
+          br
+
+          p
+            ' Continue to the dashboard to apply for the award.
+
+          .get-started
+            = link_to "Continue to dashboard", dashboard_path(eligible: [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).map { |e| e.class.name.split('::').last.downcase }), class: "button"

@@ -23,7 +23,7 @@ ul.applications-list
     small
       /' Unclear eligibility
     .pull-right
-      - if params[:eligible] == "innovation"
+      - if @trade_eligibility.passed?
         = link_to "Restart application", apply_international_trade_award_path
       - else
         = link_to "Start application", apply_international_trade_award_path
@@ -33,14 +33,17 @@ ul.applications-list
     small
       /' Unclear eligibility
     .pull-right
-      = link_to "Start application", apply_innovation_award_path
+      - if @innovation_eligibility.passed?
+        = link_to "Restart application", apply_innovation_award_path
+      - else
+        = link_to "Start application", apply_innovation_award_path
   li
     h3
       ' Sustainable Development Award
     small
       /' Unclear eligibility
     .pull-right
-      - if params[:eligible] == "innovation"
+      - if @development_eligibility.passed?
         = link_to "Restart application", apply_sustainable_development_award_path
       - else
         = link_to "Start application", apply_sustainable_development_award_path

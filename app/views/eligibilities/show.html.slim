@@ -7,9 +7,13 @@
   .article-container
     article.group role="article"
       .inner.step.current
-        = simple_form_for @eligibility, url: wizard_path, method: :put do |f|
+        = simple_form_for @eligibility, as: :eligibility, url: wizard_path, method: :put do |f|
           .current-question#current-question
-            = render step.to_s, f: f
+            .question
+              h2
+                = Eligibility::Basic.label(step)
+
+              = render step.to_s, f: f
 
             .next-question
               = f.submit "Next step", class: "button medium"

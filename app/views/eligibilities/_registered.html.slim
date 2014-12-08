@@ -1,8 +1,5 @@
-.question
-  h2
-    = Eligibility.label(step)
-  .question-body
-    p.hint
-      ' e.g. as a limited company, a CIC, limited partnership, charity.
-    = f.input :registered, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
-    span.clear
+.question-body
+  p.hint
+    ' e.g. as a limited company, a CIC, limited partnership, charity.
+  = f.input :registered, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  span.clear

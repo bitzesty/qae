@@ -83,6 +83,12 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :award_eligibility, only: [:show, :update] do
+    collection do
+      get :result
+    end
+  end
+
   resources :users, only: [], module: 'users' do
     resources :form_answers, only: [:show]
   end

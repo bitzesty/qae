@@ -17,6 +17,14 @@ class ApplicationController < ActionController::Base
     dashboard_path
   end
 
+  protected
+
+  def load_eligibilities
+    @trade_eligibility = current_user.trade_eligibility || current_user.build_trade_eligibility
+    @innovation_eligibility = current_user.innovation_eligibility || current_user.build_innovation_eligibility
+    @development_eligibility = current_user.development_eligibility || current_user.build_development_eligibility
+  end
+
   private
 
   def configure_permitted_parameters
@@ -32,4 +40,9 @@ class ApplicationController < ActionController::Base
                :prefered_method_of_contact, :subscribed_to_emails)
     end
   end
+
+  def any_eligibilities_passed?
+    [@trade_eligibility, @innovation_eligibility, @development_eligibility].any?(&:passed?)
+  end
+  helper_method :any_eligibilities_passed?
 end

@@ -1,6 +1,3 @@
-.question
-  h2
-    = Eligibility.label(step)
-  .question-body
-    = f.input :kind, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
-    span.clear
+.question-body
+  = f.input :kind, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  span.clear
