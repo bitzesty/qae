@@ -1,7 +1,7 @@
 class QAE2014Forms
   class << self
-    def innovation_step5
-      @innovation_step5 ||= Proc.new {
+    def development_step5
+      @development_step5 ||= Proc.new {
         confirm :confirmation_of_consent, 'Confirmation of consent' do
           ref 'E 1'
           required

@@ -1,24 +1,24 @@
 class QAE2014Forms
   class << self
-    def innovation_step2
-      @innovation_step2 ||= Proc.new {
-        options :innovation_performance_years, "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?" do
+    def development_step2
+      @development_step2 ||= Proc.new {
+        options :development_performance_years, "For how long have your achievements in sustainable development  had substantial impact on (ie. measurably improved) your organisation's performance?" do
           ref 'B 1'
           required
           context %Q{
-            <p>Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).</p>
+            <p>Your answer here will determine whether you are assessed for outstanding (over two years) or continuous (over five years) achievement in sustainable development.</p>
           }
           option '2 to 4', '2-4 years'
           option '5 plus', '5 years or more'
         end
 
-        innovation_financial_year_dates :financial_year_dates, 'Please select your financial year end dates:' do
+        development_financial_year_dates :financial_year_dates, 'Please select your financial year end dates:' do
           ref 'B 2'
           required
           context %Q{
             <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
           }
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
         end
 
         number :employees, 'State the number of people employed by the company for each year of your entry.' do
@@ -29,10 +29,10 @@ class QAE2014Forms
           }
           style "small"
           min 2
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
         end
 
-        options :innovation_part_of, 'My innovation is an integral part of' do
+        options :entry_relates_to, 'My entry relates to' do
           ref 'B 4'
           required
           option :entire_business, 'The entire business'
@@ -44,36 +44,36 @@ class QAE2014Forms
             <p>These figures should be for your entire organisation.</p>
           }
           ref 'B 5'
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
         end
 
-        innovation_by_years :total_turnover, 'Total turnover' do
+        development_by_years :total_turnover, 'Total turnover' do
           classes "sub-question"
           required
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
           drop_conditional :drops_in_turnover
         end
 
-        innovation_by_years :exports, 'of which exports' do 
+        development_by_years :exports, 'of which exports' do 
           classes "sub-question"
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
           drop_conditional :drops_in_turnover
         end
 
-        innovation_by_years :net_profit, 'Net profit after tax but before dividends' do 
+        development_by_years :net_profit, 'Net profit after tax but before dividends' do 
           classes "sub-question"
           required
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
           drop_conditional :drops_in_turnover
         end
 
-        innovation_by_years :total_net_assets, 'Total net assets' do 
+        development_by_years :total_net_assets, 'Total net assets' do 
           classes "sub-question"
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
           drop_conditional :drops_in_turnover
         end
 
@@ -81,61 +81,61 @@ class QAE2014Forms
           classes "sub-question js-conditional-drop-question"
           rows 5
           words_max 200
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
         end
 
         options :company_estimated_figures, 'Are any of these figures estimated?' do
           classes "sub-question"
           yes_no
-          conditional :innovation_performance_years, :true
-          conditional :innovation_part_of, :entire_business
+          conditional :development_performance_years, :true
+          conditional :entry_relates_to, :entire_business
         end
 
         textarea :company_estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
           classes "sub-question"
           rows 5
           words_max 200
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
           conditional :company_estimated_figures, :yes
         end
 
         header :product_financials, 'Product/Service Financials' do
           ref 'B 6'
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
         end
  
-        innovation_by_years :units_sold, 'Number of units/contracts sold' do
+        development_by_years :units_sold, 'Number of units/contracts sold' do
           classes "sub-question"
           required
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
-        innovation_by_years :sales, 'Sales' do 
+        development_by_years :sales, 'Sales' do 
           classes "sub-question"
           required
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
-        innovation_by_years :sales_exports, 'of which exports' do
+        development_by_years :sales_exports, 'of which exports' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
-        innovation_by_years :sales_royalties, 'of which royalties or licenses' do
+        development_by_years :sales_royalties, 'of which royalties or licenses' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
@@ -144,15 +144,15 @@ class QAE2014Forms
           required
           rows 5
           words_max 300
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
         end
 
         options :product_estimated_figures, 'Are any of these figures estimated?' do
           classes "sub-question"
           yes_no
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
         end
 
         textarea :product_estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
@@ -160,22 +160,22 @@ class QAE2014Forms
           rows 5
           words_max 200
           conditional :product_estimated_figures, :yes
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
         end
 
         textarea :financial_comments, 'Additional comments (optional)' do
           classes "sub-question"
           rows 5
           words_max 100
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
         end
 
-        innovation_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
+        development_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
           ref 'B 7'
           required
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
         end
 
         textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
@@ -183,15 +183,15 @@ class QAE2014Forms
           required
           rows 5
           words_max 200
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
         end
 
-        innovation_by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
+        development_by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
           ref 'B 8'
           required
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
         end
 
         textarea :costs_change_desc, 'Explain your unit/ contract costs, highlighting any changes over the above periods.' do
@@ -199,29 +199,36 @@ class QAE2014Forms
           required
           rows 5
           words_max 200
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
+          conditional :entry_relates_to, :single_product_or_service
+          conditional :development_performance_years, :true
         end
 
-        textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.' do
+        textarea :development_performance, "Explain the cost savings you or your customers' businesses made as a result of the introduction of the product/service/management approach." do
           ref 'B 9'
           required
+          context %Q{
+            <p>Use figures if known.</p>
+          }
           rows 5
           words_max 300
         end 
 
-        textarea :investments_details, 'Please enter details of all the investments made in your innovation, and the years when they were made. Include investments made both during and prior to your entry period.' do
+        textarea :investments_details, "Please enter details of all investments made in your product/service/management approach on a yearly basis both during and prior to your entry period." do
           ref 'B 10'
           required
           rows 5
-          words_max 300
+          words_max 500
         end
 
-        textarea :roi_details, 'How long did it take the investment indicated above to be repaid? When and how was this repayment achieved?' do
+        textarea :roi_details, 'How long did it take the investment indicated above to be repaid out of profits? When and how was this repayment achieved?' do
+          ref 'B 11'
           classes "sub-question"
           required
+          context %Q{
+            <p>When calculating expenditure paid for out of profits, please include capital costs where appropriate.</p>
+          }
           rows 5
-          words_max 300
+          words_max 500
         end
       }
     end

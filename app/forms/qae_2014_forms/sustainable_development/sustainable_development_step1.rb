@@ -1,7 +1,7 @@
 class QAE2014Forms
   class << self
-    def innovation_step1
-      @innovation_step1 ||= Proc.new {
+    def development_step1
+      @development_step1 ||= Proc.new {
         text :company_name, 'Full/legal name of your organisational unit' do
           required
           ref 'A 1'

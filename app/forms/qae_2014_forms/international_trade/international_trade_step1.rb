@@ -1,7 +1,7 @@
 class QAE2014Forms
   class << self
-    def innovation_step1
-      @innovation_step1 ||= Proc.new {
+    def trade_step1
+      @trade_step1 ||= Proc.new {
         text :company_name, 'Full/legal name of your organisational unit' do
           required
           ref 'A 1'
@@ -97,7 +97,7 @@ class QAE2014Forms
           ref 'A 7'
           required
           help "Should my entry be a joint entry?", %Q{
-            <p>If the business producing or marketing a product, providing a service or using a technology is separate from the unit which developed it, either or both may be eligible according to the contribution made, and whether it helped them achieve commercial success. For a joint entry, each organisation should submit separate, cross-referenced, entry forms.</p>
+            <p>Joint entires can be submitted if two (or more) companies developed the innovation and realised commercial success. Each organisation should submit separate, cross-referenced, entry forms. For more information, see the FAQ.</p>
           }
           yes_no
         end
@@ -191,8 +191,46 @@ class QAE2014Forms
           end
         end
 
-        upload :org_chart, 'Upload an organisational chart (optional).' do
+        options :trading_figures, 'Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?' do
+          ref 'A 13'
+          required
+          yes_no
+        end
+
+        subsidiaries_associates_plants :trading_figures_add, '' do
+          required
+          conditional :trading_figures, :yes
+        end
+
+        textarea :excluded_explanation, 'Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.' do
           classes "sub-question"
+          rows 5
+          words_max 200
+        end
+
+        options :export_agent, 'Are you an export agent/merchant?' do
+          ref 'A 14'
+          required
+          yes_no
+          help 'What is an export agent?', %Q{
+            <p>An export agent is an individual or company that undertakes export activity on behalf of another company in return for payment by means of a commission.</p>
+          }
+          help 'What is an export merchant?', %Q{
+            <p>An export merchant buys and takes ownership of merchandise to generate income by selling at a higher price. An export merchant may rebrand or repack goods before selling them on.</p>
+          }
+        end
+
+        options :export_unit, 'Are you an export unit?' do
+          ref 'A 15'
+          required
+          yes_no
+          help 'What is an export unit?', %Q{
+            <p>An export unit is a subsidiary or operating unit of a larger company that manages the company's export activities. </p>
+          }
+        end
+
+        upload :org_chart, 'Upload an organisational chart (optional).' do
+          ref 'A 16'
           context %Q{
             <p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>
           }
