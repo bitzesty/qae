@@ -16,6 +16,3 @@ footer
               ' Next step
             span class="pagination-part-title"
               = step.next.title
-      - else
-        li.submit
-          = button_to "Submit application", submit_confirm_path, class: "button", method: :post

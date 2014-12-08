@@ -45,12 +45,12 @@ class QAE2014Forms
         end
 
 
-        #submit "Submit application" do
-        #  notice %Q{
-        #    <p>Note that you can submit and come back to change or add any other info until the deadline.</p>
-        #  }
-        #  style "large"
-        #end
+        submit "Submit application" do
+          notice %Q{
+            <p>Note that you can submit and come back to change or add any other info until the deadline.</p>
+          }
+          style "large"
+        end
       }
     end
   end
