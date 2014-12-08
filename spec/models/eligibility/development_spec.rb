@@ -7,6 +7,7 @@ RSpec.describe Eligibility::Development, :type => :model do
     it 'saves and reads answers' do
       eligibility = Eligibility::Development.new(user: user)
       eligibility.sustainable_development = '1'
+      eligibility.development_contributed_to_commercial_success = '1'
 
       expect { eligibility.save! }.to change {
         Eligibility::Development.count

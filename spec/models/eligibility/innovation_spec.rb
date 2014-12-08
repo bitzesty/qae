@@ -7,6 +7,9 @@ RSpec.describe Eligibility::Innovation, :type => :model do
     it 'saves and reads answers' do
       eligibility = Eligibility::Innovation.new(user: user)
       eligibility.innovative_product = '1'
+      eligibility.number_of_innovative_products = 2
+      eligibility.was_on_market_for_two_years = true
+      eligibility.had_impact_on_commercial_performace_over_two_years = true
 
       expect { eligibility.save! }.to change {
         Eligibility::Innovation.count

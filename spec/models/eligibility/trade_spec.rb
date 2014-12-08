@@ -6,7 +6,9 @@ RSpec.describe Eligibility::Trade, :type => :model do
   context 'answers storage' do
     it 'saves and reads answers' do
       eligibility = Eligibility::Trade.new(user: user)
-      eligibility.sales_above_100_000_pounds = '1'
+      eligibility.sales_above_100_000_pounds = 'yes'
+      eligibility.any_dips_over_the_last_three_years = 'no'
+      eligibility.current_holder_of_qae_for_trade = 'no'
 
       expect { eligibility.save! }.to change {
         Eligibility::Trade.count

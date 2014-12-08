@@ -33,12 +33,12 @@ class Eligibility < ActiveRecord::Base
       enumerize name, in: values
     elsif options[:boolean]
       define_method "#{name}?" do
-        ['1', 'true', true].include?(public_send(name))
+        ['1', 'true', 'yes', true].include?(public_send(name))
       end
 
-      validates name, presence: true
+      validates name, presence: true unless self == Eligibility::Basic
     elsif options[:positive_integer]
-      validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true }
+      validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true } unless self == Eligibility::Basic
     end
 
     @questions.merge!(name => options)
