@@ -18,7 +18,7 @@ header.page-header.group.page-header-wider
                          context_text: "<p>Your answer here will determine whether you are assessed for outstanding (over  three years) or continuous (over six years) achievement in international trade.</p>"} do
           label.selectable
             // If on A5.1 they added an Award they currently hold as "International Trade (6 years)" then add disabled and checked status
-            input type="radio" name="optionsGrowthSuccessDuration" value="3 to 6"
+            input type="radio" name="optionsGrowthSuccessDuration" value="3 to 5"
             ' 3-6 years
           label.selectable
             input type="radio" name="optionsGrowthSuccessDuration" value="6 plus"
@@ -28,7 +28,7 @@ header.page-header.group.page-header-wider
           = question_for "Because you are the current holder of a Queen's Award for Continuous Achievement in International Trade (6 years), you may only apply for the Outstanding Achievement Award (3 years) this year.",
                          { step: "B 1" } do
             label.selectable
-              input type="radio" name="optionsGrowthSuccessDurationForced" value="3 to 6" disabled="disabled" checked="checked"
+              input type="radio" name="optionsGrowthSuccessDurationForced" value="3 to 5" disabled="disabled" checked="checked"
               ' 3-6 years
             label.selectable
               input type="radio" name="optionsGrowthSuccessDurationForced" value="6 plus" disabled="disabled"
@@ -40,7 +40,7 @@ header.page-header.group.page-header-wider
                          context_text: "<p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>",
                          conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
                                        value: true} } do
-          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6"
+          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 5"
             span.row
               span.span-4
                 label
@@ -123,7 +123,7 @@ header.page-header.group.page-header-wider
                          conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
                                        value: true} } do
           // Must be greater than £100,000
-          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 5" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
               span.row
                 span.span-4
                   label
@@ -187,7 +187,7 @@ header.page-header.group.page-header-wider
                        { step: "B 4.1",
                          conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
                                        value: true} } do
-          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 5" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
               span.row
                 span.span-4
                   label
@@ -252,7 +252,7 @@ header.page-header.group.page-header-wider
                          required: true,
                          conditional: {question: "For how long has your organisation seen growth and commercial success in its international trade?",
                                        value: true} } do
-          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
+          .js-conditional-question.js-conditional-drop-answer data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 5" data-drop-question="explain-any-drops-in-overseas-sales-turnover-or-net-profit-and-any-losses-made"
               span.row
                 span.span-4
                   label
@@ -350,7 +350,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Do you purchase your products/services (or any components) from overseas for resale overseas?",
                                        value: "yes"} } do
-          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6"
+          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 5"
               span.row
                 span.span-4
                   label
@@ -424,7 +424,7 @@ header.page-header.group.page-header-wider
                        { required: true,
                          conditional: {question: "Do you manufacture overseas?",
                                        value: "yes"} } do
-          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 6"
+          .js-conditional-question data-question="for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="3 to 5"
               span.row
                 span.span-4
                   label
