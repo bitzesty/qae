@@ -8,7 +8,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def award
-    case object.award_type    
+    case object.award_type
     when "trade"
       'International Trade Award'
     when "innovation"
