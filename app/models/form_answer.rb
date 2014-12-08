@@ -55,7 +55,8 @@ class FormAnswer < ActiveRecord::Base
     return if urn
     return unless submitted
     return unless award_type
-    next_seq = self.class.connection.select_value("SELECT nextval('urn_seq_#{award_type}')")
+
+    next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize("urn_seq_#{award_type}")})")
  
     self.urn = "QA#{sprintf("%.4d", next_seq)}/#{CURRENT_AWARD_YEAR}#{award_type[0].capitalize}"
   end
