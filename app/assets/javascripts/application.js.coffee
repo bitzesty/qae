@@ -40,6 +40,9 @@ jQuery ->
 
     for question in required
       q = $(question)
+
+      q.removeClass("question-has-errors")
+      q.find(".errors-container").empty()
       
       # if it's a conditional question, but condition was not satisfied
       if q.find(".js-conditional-question").length and not q.find(".js-conditional-question").hasClass("show-question")
@@ -50,9 +53,6 @@ jQuery ->
         q.addClass("question-has-errors")
 
         validates = false
-      else
-        q.removeClass("question-has-errors")
-        q.find(".errors-container").empty()
 
     return validates
 

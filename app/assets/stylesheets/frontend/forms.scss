@@ -10,8 +10,16 @@
 }
 
 // Error styling
+.question-block.question-has-errors {
+  .errors-container {
+    padding: 0;
+    list-style: none;
+  }
+}
+
 .field_with_errors .error,
-.smart_answer article .error {
+.smart_answer article .error,
+.question-has-errors .error-container li {
   @include core-19;
   clear: both;
   display: block;
@@ -158,19 +166,6 @@ input[type="file"] {
   @include core-19;
   margin: 0.75em 0;
   margin-top: 0.2em;
-}
-
-.question-block.question-has-errors {
-
-  .errors-container {
-    padding: 0;
-    list-style: none;
-
-    li {
-      list-style: none;
-      color: red;
-    }
-  }
 }
 
 .question-block h2 em {
