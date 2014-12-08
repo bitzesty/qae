@@ -31,6 +31,7 @@ class QAE2014Forms
         text :contact_phone, 'Telephone number' do
           classes "sub-question"
           required
+          style "small"
         end
 
         confirm :entry_confirmation, 'Confirmation of entry' do
