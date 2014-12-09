@@ -3,7 +3,7 @@
     = step_link_to "Correspondent Details", correspondent_details_account_path, index: 1, active: @active_step
     = step_link_to "Company Details",       company_details_account_path,       index: 2, active: @active_step
     = step_link_to "Contact Settings",      contact_settings_account_path,      index: 3, active: @active_step
-    = step_link_to "Add Collaborators",     add_collaborators_account_path,     index: 4, active: @active_step
+    /= step_link_to "Add Collaborators",     add_collaborators_account_path,     index: 4, active: @active_step
 - else
   aside
     .inner
@@ -30,7 +30,14 @@
             - else
               = link_to "Contact Settings", contact_settings_account_path
 
-        ol start="4"
+          li class=('active' if @active_step == 4)
+            span.part-number 4.
+            - if @active_step == 4
+              span Password Settings
+            - else
+              = link_to "Password Settings", password_settings_account_path
+
+        /ol start="4"
           li class=('active' if @active_step == 4)
             span.part-number 4.
             - if @active_step == 4
