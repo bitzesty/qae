@@ -12,7 +12,7 @@ class QAE2014Forms
           context %Q{
             <p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>
           }
-          rows 1
+          rows 2
           words_max 15
         end
 

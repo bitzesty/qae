@@ -14,7 +14,7 @@ class QAE2014Forms
           context %Q{
             <p>e.g. 'design and manufacture of bespoke steel windows and doors'. If relevant, give details of material used or end use. </p>
           }
-          rows 1
+          rows 2
           words_max 15
           conditional :goods_class_amount, :no
         end

@@ -18,7 +18,7 @@ class QAE2014Forms
           context %Q{
             <p>eg. Arts Company:  “Sustainable print marketing for arts and tourism”; Energy Company:  “Management and delivery of commercial and domestic projects to tackle fuel poverty, energy efficiency and carbon reduction”.</p>
           }
-          rows 1
+          rows 2
           words_max 15
         end
 
