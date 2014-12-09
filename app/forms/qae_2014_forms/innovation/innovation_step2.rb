@@ -27,7 +27,8 @@ class QAE2014Forms
           context %Q{
             <p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
           }
-          style "small"
+          unit ' years'
+          style "small inline"
           min 2
           conditional :innovation_performance_years, :true
         end
