@@ -13,14 +13,14 @@ header.page-header.group.page-header-wider
     .inner
       form
         .current-question#current-question
-            #form_eligibility_show
-              = render "shared/form_eligibility_show"
-            #form_eligibility_questions.visuallyhidden
-              = render "shared/form_eligibility"
             // This will behave the same showing the
             // award eligibility answers if they have
             // already done the award eligibility form
             = render "eligibility_check/form_sustainable_development"
+            #form_eligibility_show
+              = render "shared/form_eligibility_show"
+            #form_eligibility_questions.visuallyhidden
+              = render "shared/form_eligibility"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
