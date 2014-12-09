@@ -37,11 +37,7 @@
 .question
   h2
     ' What kind of organisation is it?
-  .question-body
-    p.hint
-      ' e.g. For business: companies, partnerships, social enterprise.
-      br
-      ' e.g. For not-for-profit: charities, foundation, associations.
+  .question-body 
     div
       span.error.visuallyhidden
         ' Sorry, you are not eligible. You must currently have 2 or more full-time UK employees to apply for a Queen's Award for Enterprise.
@@ -49,11 +45,11 @@
         li
           label.selectable
             input type="radio" name="optionsOrganisationKind"
-            ' Business
+            ' Business, e.g. companies, partnerships, social enterprise.
         li
           label.selectable
             input type="radio" name="optionsOrganisationKind"
-            ' Not-for-profit
+            ' Not-for-profit, e.g. not-for-profit: charities, foundation, associations.
 
 .question
   h2

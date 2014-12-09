@@ -16,8 +16,8 @@ en:
 
     eligibility:
       organization_kind:
-        business: Business
-        charity: Not-for-profit
+        business: "Business, e.g. companies, partnerships, social enterprise."
+        charity: "Not-for-profit, e.g. not-for-profit: charities, foundation, associations."
       kind:
         application: Apply for an award
         nomination: Nominate an individual
