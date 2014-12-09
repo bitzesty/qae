@@ -10,7 +10,7 @@
               th.link-right.restart colspan="2"
                 = link_to "Start again", eligibility_path
           tbody
-            - @eligibility.answers.each do |question, answer|
+            - @eligibility.sorted_answers.each do |question, answer|
               - if question.to_sym != step
                 tr.section
                   td.previous-question-title

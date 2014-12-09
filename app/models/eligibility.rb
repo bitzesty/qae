@@ -50,6 +50,22 @@ class Eligibility < ActiveRecord::Base
     end
   end
 
+  def sorted_answers
+    return {} unless answers
+
+    @sorted_answers ||= begin
+      sorted = {}
+
+      self.class.questions.each do |question|
+        if answers[question.to_s]
+          sorted[question.to_s] = answers[question.to_s]
+        end
+      end
+
+      sorted
+    end
+  end
+
   private
 
   def set_passed
