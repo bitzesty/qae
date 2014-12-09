@@ -34,8 +34,8 @@ class FormAnswer < ActiveRecord::Base
   before_save :set_urn
 
   store_accessor :document
-  store_accessor :document, :eligibility
-  store_accessor :document, :basic_eligibility
+  store_accessor :eligibility
+  store_accessor :basic_eligibility
 
   attr_accessor :submitted
 
@@ -53,21 +53,11 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def load_eligibility(user)
-    eligibility || user.public_send("#{award_type}_eligibility") || user.public_send("build_#{award_type}_eligibility")
+    "Eligibility::#{award_type.capitalize}".constantize.new(eligibility) || user.public_send("#{award_type}_eligibility") || user.public_send("build_#{award_type}_eligibility")
   end
 
   def load_basic_eligibility(user)
-    if basic_eligibility
-      if user.basic_eligibility.try(:answers)
-        user.basic_eligibility.answers.each do |question, answer|
-          basic_eligibility.public_send("#{question}=", answer)
-        end
-      end
-
-      basic_eligibility
-    else
-      user.basic_eligibility || user.build_basic_eligibility
-    end
+    Eligibility::Basic.new(basic_eligibility) || user.basic_eligibility || user.build_basic_eligibility
   end
 
   private

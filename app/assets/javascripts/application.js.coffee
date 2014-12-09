@@ -116,7 +116,7 @@ jQuery ->
       $.each a,
         (() ->
           if form_data[@name] != undefined
-            if !farm_data[@name].push
+            if !form_data[@name].push
               form_data[@name] = [form_data[@name]]
             form_data[@name].push(@value || '')
           else
