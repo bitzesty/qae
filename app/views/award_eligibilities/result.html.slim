@@ -24,10 +24,11 @@
           ul
             - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
               li = eligibility.class.const_get(:AWARD_NAME)
-          br
 
-          p
-            ' Continue to the dashboard to apply for the award.
+      - if any_eligibilities_passed?
+        br
+        p
+          ' Continue to the dashboard to apply for the award.
 
-          .get-started
-            = link_to "Continue to dashboard", dashboard_path, class: "button"
+        .get-started
+          = link_to "Continue to dashboard", dashboard_path, class: "button"
