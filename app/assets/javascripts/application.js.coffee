@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require Countable
+#= require moment.min
 #= require_tree .
 
 jQuery ->
@@ -52,6 +53,87 @@ jQuery ->
         q.find(".errors-container").append("<li>This field is required</li>")
         q.addClass("question-has-errors")
 
+        validates = false
+
+    for question in $("div.step-current .question-date-max")
+      q = $(question)
+
+      q.removeClass("question-has-errors")
+      q.find(".errors-container").empty()
+
+      input = q.find("input[type='text']")
+
+      if not input.val()
+        continue
+
+      expDate = q.data("date-max")
+      expected = moment(expDate, "DD/MM/YYYY")
+      date = moment(input.val(), "DD/MM/YYYY")
+
+      if not date.isValid() or date.diff(expected, "days") > 0
+        q.find(".errors-container").append("<li>Date cannot be after #{expDate}</li>")
+        q.addClass("question-has-errors")
+        validates = false
+
+    for question in $("div.step-current .question-date-min")
+      q = $(question)
+
+      q.removeClass("question-has-errors")
+      q.find(".errors-container").empty()
+
+      input = q.find("input[type='text']")
+
+      if not input.val()
+        continue
+
+      expDate = q.data("date-min")
+      expected = moment(expDate, "DD/MM/YYYY")
+      date = moment(input.val(), "DD/MM/YYYY")
+
+      if not date.isValid() or date.diff(expected, "days") < 0
+        q.find(".errors-container").append("<li>Date cannot be before #{expDate}</li>")
+        q.addClass("question-has-errors")
+        validates = false
+
+    for question in $("div.step-current .question-date-between")
+      q = $(question)
+
+      q.removeClass("question-has-errors")
+      q.find(".errors-container").empty()
+
+      input = q.find("input[type='text']")
+
+      if not input.val()
+        continue
+
+      dates = q.data("date-between").split(",")
+      expDateStart = dates[0]
+      expDateEnd = dates[1]
+      expectedStart = moment(expDateStart, "DD/MM/YYYY")
+      expectedEnd = moment(expDateEnd, "DD/MM/YYYY")
+      date = moment(input.val(), "DD/MM/YYYY")
+
+      if not date.isValid() or date.diff(expectedStart, "days") < 0 or date.diff(expectedEnd, "days") > 0
+        q.find(".errors-container").append("<li>Date must be between #{expDateStart} and #{expDateEnd}</li>")
+        q.addClass("question-has-errors")
+        validates = false
+
+    for question in $("div.step-current .question-number")
+      q = $(question)
+
+      q.removeClass("question-has-errors")
+      q.find(".errors-container").empty()
+
+      input = q.find("input")
+
+      console.log(input.val());
+
+      if not input.val()
+        continue
+
+      if not input.val().toString().match(/^-?\d*\.?\d*$/)
+        q.find(".errors-container").append("<li>Not a valid number</li>")
+        q.addClass("question-has-errors")
         validates = false
 
     return validates
