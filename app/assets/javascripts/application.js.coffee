@@ -50,7 +50,7 @@ jQuery ->
         continue
 
       if not validateSingleQuestion(q)
-        q.find(".errors-container").append("<li>This field is required</li>")
+        q.find(".errors-container").first().append("<li>This field is required</li>")
         q.addClass("question-has-errors")
 
         validates = false
@@ -152,6 +152,39 @@ jQuery ->
 
         if not subq.val().toString().match(/^-?\d*\.?\d*$/)
           subq.parent().find(".errors-container").append("<li>Not a valid number</li>")
+          q.addClass("question-has-errors")
+          validates = false
+
+    for question in $("div.step-current .question-date-by-years")
+      q = $(question)
+
+      q.removeClass("question-has-errors")
+      q.find(".errors-container").empty()
+
+      subquestions = q.find(".js-conditional-question.show-question input")
+
+      for subquestion in subquestions
+        subq = $(subquestion).parent()
+
+        subq.find(".errors-container").empty()
+
+        if not subq.find("input").val()
+          continue
+
+        dates = subq.find(".date-range").text().split(" - ")
+        expDateStart = dates[0]
+        expDateEnd = dates[1]
+        expectedStart = moment(expDateStart, "DD/MM/YYYY")
+        expectedEnd = moment(expDateEnd, "DD/MM/YYYY")
+        date = moment(subq.find("input").val(), "DD/MM/YYYY")
+
+        if not date.isValid()
+          subq.parent().find(".errors-container").append("<li>Not a valid date</li>")
+          q.addClass("question-has-errors")
+          validates = false
+
+        if date.diff(expectedStart, "days") < 0 or date.diff(expectedEnd, "days") > 0
+          subq.parent().find(".errors-container").append("<li>Date is out of range.</li>")
           q.addClass("question-has-errors")
           validates = false
 
