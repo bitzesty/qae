@@ -36,7 +36,7 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation overcomes any issues, and any special difficulties surmounted in doing so." do
+        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior issues, and any special difficulties you overcame in doing so." do
           ref 'C 3'
           required
           rows 5
@@ -64,7 +64,7 @@ class QAE2014Forms
           ref 'C 6'
           required
           context %Q{
-            <p>Excluding any joint entrant(s) named in C5.</p>
+            <p>Excluding suppliers and any joint entrant(s) named in A7.</p>
           }
           yes_no
         end
@@ -144,8 +144,8 @@ class QAE2014Forms
         materials :innovation_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
           ref 'C 10'
           context %Q{
-            <p>We cannot guarantee these will be reviewed, so inlcude any vital information within the form.</p>
-            <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb</p>
+            <p>We can't guarantee these will be reviewed, so inlcude any vital information within the form.</p>
+            <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. You may link to videos, websites or other media you feel relevant.</p>
           } # TODO!
           help 'Information we will not review', %Q{
             <p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>

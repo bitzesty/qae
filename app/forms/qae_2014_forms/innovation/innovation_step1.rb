@@ -181,11 +181,10 @@ class QAE2014Forms
         end
 
         upload :org_chart, 'Upload an organisational chart (optional).' do
-          classes "sub-question"
+          ref 'A 13'
           context %Q{
             <p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>
           }
-          conditional :is_division, :yes
         end
       }
     end

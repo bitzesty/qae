@@ -15,7 +15,7 @@ fieldset class="question-block js-conditional-answer #{question.classes} #{'js-c
             span.todo
               = question.ref.to_s
 
-        = question.title
+        == question.title
 
         - if question.required
           abbr
