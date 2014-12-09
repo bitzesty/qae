@@ -54,6 +54,21 @@ header.page-header.group
             em Wednesday
             em 30 September
 
+        - if @user_award_forms.any?
+          br
+          h2#parent-section
+            ' Current submissions
+
+          .inner.group.related-section
+            nav role="navigation" aria-labelledby="parent-section"
+              ul
+                - @user_award_forms.each do |award|
+                  li
+                    ' 2014 -
+                    = award.decorate.award
+                    '
+                    = link_to "Continue", edit_form_path(award.id), class: "inline-link"
+
         /.inner.group.related-section
           h2#parent-section
             ' Submitted award applications
