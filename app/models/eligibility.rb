@@ -57,7 +57,8 @@ class Eligibility < ActiveRecord::Base
   end
 
   def eligible?
-    answers && answers.any? && answers.all? do |question, answer|
+    self.class.questions.all? do |question|
+      answer = answers && answers[question.to_s]
       answer_valid?(question, answer)
     end
   end

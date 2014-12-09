@@ -14,5 +14,8 @@
   - unless award_eligibility.was_on_market_for_two_years.present?
     = render "qae_form/eligibility_questions/was_on_market_for_two_years", f: f
 
+  - unless award_eligibility.innovation_recouped_investments.present?
+    = render "qae_form/eligibility_questions/innovation_recouped_investments", f: f
+
   - unless award_eligibility.had_impact_on_commercial_performace_over_two_years.present?
     = render "qae_form/eligibility_questions/had_impact_on_commercial_performace_over_two_years", f: f
