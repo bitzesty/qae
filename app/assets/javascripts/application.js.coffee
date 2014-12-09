@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require jquery.fileupload
 #= require Countable
 #= require moment.min
 #= require_tree .
@@ -207,6 +208,26 @@ jQuery ->
 
   # Fade out alerts after 10sec
   $(".flash").delay(10000).fadeOut()
+  $('.js-file-upload').each (idx, el) ->
+    console.log 'el', el
+    form = $(el).closest('form')
+    attachments_url = form.data 'attachments-url'
+    $(el).fileupload(url: attachments_url)
+#{
+#        url: url,
+#        dataType: 'json',
+#        done: function (e, data) {
+#            $.each(data.result.files, function (index, file) {
+#                $('<p/>').text(file.name).appendTo('#files');
+#            });
+#        },
+#        progressall: function (e, data) {
+#            var progress = parseInt(data.loaded / data.total * 100, 10);
+#            $('#progress .progress-bar').css(
+#                'width',
+#                progress + '%'
+#            );
+#        })
 
   # Show current holder info when they are a current holder on basic eligibility current holder question
   if $(".eligibility_current_holder").size() > 0

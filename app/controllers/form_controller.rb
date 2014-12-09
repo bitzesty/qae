@@ -58,6 +58,15 @@ class FormController < ApplicationController
     render :nothing => true
   end
 
+  def add_attachment
+    params
+    @attachment = FormAnswerAttachment.new(params.merge(form_answer: @form_answer))
+    @attachment.save!
+    puts @attachment.inspect
+    head :created
+    render json: @attachment
+  end
+
   private
 
   def set_form_answer
