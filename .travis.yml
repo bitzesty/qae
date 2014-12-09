@@ -6,4 +6,7 @@ addons:
 before_script:
   - /bin/cp $TRAVIS_BUILD_DIR/config/database.yml.example $TRAVIS_BUILD_DIR/config/database.yml
   - /bin/cp $TRAVIS_BUILD_DIR/.env.example $TRAVIS_BUILD_DIR/.env
-  - psql -c 'create database qae_test;' -U postgres
+script:
+ - RAILS_ENV=test bundle exec rake db:create
+ - RAILS_ENV=test bundle exec rake db:migrate
+ - RAILS_ENV=test bundle exec rake spec
