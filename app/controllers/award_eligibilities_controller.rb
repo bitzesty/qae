@@ -15,16 +15,28 @@ class AwardEligibilitiesController < ApplicationController
     unless step
       redirect_to wizard_path(:trade)
       return
+    else
+      case step
+      when :trade
+        @active_step = 1
+      when :innovation
+        @active_step = 2
+      when :development
+        @active_step = 3
+      end
     end
   end
 
   def update
     eligibility = case step
     when :trade
+      @active_step = 1
       @trade_eligibility
     when :innovation
+      @active_step = 2
       @innovation_eligibility
     when :development
+      @active_step = 3
       @development_eligibility
     end
 

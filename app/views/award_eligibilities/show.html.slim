@@ -1,11 +1,23 @@
-
-.article-related-positioning-container.smart-answer-questions.group
+.article-related-positioning-container
   header.page-header.group
     div
       h1
-        ' Eligibility questionnaire
+        ' Award eligibility questionnaire
+
+      = render "steps_progress_bar"
+
+      h2
+        ' Step
+        = @active_step
+        '  of 3:
+        - if @active_step == 1
+          ' International Trade Award
+        - if @active_step == 2
+          ' Innovation Award
+        - if @active_step == 3
+          ' Sustainable Development Award
 
   .article-container
     article.group role="article"
-      .inner.step.current.current-question
+      .inner.step.current
         = render step.to_s
