@@ -2,7 +2,9 @@
   .steps-progress-bar li {
     > a,
     > span {
-      max-width: 120px;
+      @media (min-width: 1036px) {
+        max-width: 120px;
+      }
     }
   }
 }
