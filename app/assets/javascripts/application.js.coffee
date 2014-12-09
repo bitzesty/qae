@@ -147,7 +147,11 @@ jQuery ->
 
         subq.parent().find(".errors-container").empty()
 
-        if not subq.val()
+        if not subq.find("input").val() and q.hasClass("question-required")
+          subq.parent().find(".errors-container").append("<li>This field is required.</li>")
+          q.addClass("question-has-errors")
+          validates = false
+        else if not subq.val()
           continue
 
         if not subq.val().toString().match(/^-?\d*\.?\d*$/)
@@ -168,7 +172,11 @@ jQuery ->
 
         subq.find(".errors-container").empty()
 
-        if not subq.find("input").val()
+        if not subq.find("input").val() and q.hasClass("question-required")
+          subq.parent().find(".errors-container").append("<li>This field is required.</li>")
+          q.addClass("question-has-errors")
+          validates = false
+        else if not subq.find("input").val()
           continue
 
         dates = subq.find(".date-range").text().split(" - ")
