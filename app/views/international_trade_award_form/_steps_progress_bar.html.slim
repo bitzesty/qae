@@ -5,9 +5,9 @@
 
 .steps-progress-bar
   ol
-    = step_link_to "Eligibility",              international_trade_award_eligible_path, index: 1, active: @active_step, cant_access_future: cant_access
-    = step_link_to "Company Info",             international_trade_award_form_1_path,   index: 2, active: @active_step, cant_access_future: cant_access
-    = step_link_to "Commercial Performance",   international_trade_award_form_2_path,   index: 3, active: @active_step, cant_access_future: cant_access
-    = step_link_to "Goods or Services",        international_trade_award_form_3_path,   index: 4, active: @active_step, cant_access_future: cant_access
-    = step_link_to "Corporate Responsibility", international_trade_award_form_4_path,   index: 5, active: @active_step, cant_access_future: cant_access
-    = step_link_to "Authorisation/Monitoring", international_trade_award_form_5_path,   index: 6, active: @active_step, cant_access_future: cant_access
+    = step_link_to "Eligibility",              international_trade_award_eligible_path, index: 1, active: @active_step, index_name: "",  cant_access_future: cant_access
+    = step_link_to "Company Info",             international_trade_award_form_1_path,   index: 2, active: @active_step, index_name: "A.", cant_access_future: cant_access
+    = step_link_to "Commercial Performance",   international_trade_award_form_2_path,   index: 3, active: @active_step, index_name: "B.", cant_access_future: cant_access
+    = step_link_to "Goods or Services",        international_trade_award_form_3_path,   index: 4, active: @active_step, index_name: "C.", cant_access_future: cant_access
+    = step_link_to "Corporate Responsibility", international_trade_award_form_4_path,   index: 5, active: @active_step, index_name: "D.", cant_access_future: cant_access
+    = step_link_to "Authorisation",            international_trade_award_form_5_path,   index: 6, active: @active_step, index_name: "E.", cant_access_future: cant_access
