@@ -10,7 +10,11 @@ fieldset
     = f.input :company_address_second, input_html: { class: 'big large'}, label: false
 
   = f.input :company_city, input_html: { class: "big medium"}, label: 'City'
-  = f.input :company_country, input_html: { class: "big medium"}, as: :string, label: 'Country'
+  /= f.input :company_country, input_html: { class: "big medium"}, as: :string, label: 'Country'
+  .input.question-group
+    label.control-label
+      ' Country
+    = country_select(current_user, :company_country, priority_countries: ["GB"])
   = f.input :company_postcode, input_html: { class: "big small"}, label: 'Postcode'
 
 fieldset
