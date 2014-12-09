@@ -1,0 +1,8 @@
+.article-container.article-container-wider.step-article.js-step-condition.step-current data-step="step-eligibility"
+  - if form_answer.errors[:base].any?
+    span.error
+      = form_answer.errors[:base].join(' ')
+  article.group role="article"
+    .inner
+      = render "qae_form/#{form_answer.award_type}_eligibility_form"
+      = render 'qae_form/form_eligibility_footer'

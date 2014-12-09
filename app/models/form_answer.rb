@@ -32,8 +32,12 @@ class FormAnswer < ActiveRecord::Base
 
   before_create :set_account
   before_save :set_urn
+  before_validation :check_eligibility, if: :submitted
 
   store_accessor :document
+  store_accessor :eligibility
+  store_accessor :basic_eligibility
+
   attr_accessor :submitted
 
   def award_form
@@ -49,7 +53,27 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
+  def eligibility_class
+    "Eligibility::#{award_type.capitalize}".constantize
+  end
+
+  def load_eligibility(user)
+    eligibility_class.new(eligibility) || user.public_send("#{award_type}_eligibility") || user.public_send("build_#{award_type}_eligibility")
+  end
+
+  def load_basic_eligibility(user)
+    Eligibility::Basic.new(basic_eligibility) || user.basic_eligibility || user.build_basic_eligibility
+  end
+
+  def eligible?
+    eligibility_class.new(eligibility).eligible? && Eligibility::Basic.new(basic_eligibility).eligible?
+  end
+
   private
+
+  def check_eligibility
+    errors.add(:base, "Sorry, you are not eligible") unless eligible?
+  end
 
   def set_urn
     return if urn
@@ -57,7 +81,7 @@ class FormAnswer < ActiveRecord::Base
     return unless award_type
 
     next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize("urn_seq_#{award_type}")})")
- 
+
     self.urn = "QA#{sprintf("%.4d", next_seq)}/#{CURRENT_AWARD_YEAR}#{award_type[0].capitalize}"
   end
 

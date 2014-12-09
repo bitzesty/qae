@@ -7,20 +7,21 @@ header.page-header.group.page-header-wider
 
     .steps-progress-bar
       ol
-        li.step-past
-          = link_to innovation_award_eligible_path do
-            span
-              span.step-number
-              ' Eligibility
+        li.js-step-link.js-step-condition.step-current data-step="step-eligibility"
+          span
+            span.step-number
+            ' Eligibility
         - for step in form.steps do
-          li.js-step-link.js-step-condition class="#{'step-current' if step == form.steps.first}" data-step="step-#{step.title.parameterize}"
+          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}"
             span
               span.step-number
                 ' #{step_letters[step.index-1]}.
               = step.short_title.html_safe
 
+    h2.step-header.js-step-condition.step-current data-step="step-eligibility"
+        ' Eligibility
     - for step in form.steps do
-      h2.step-header.js-step-condition class="#{'step-current' if step == form.steps.first}" data-step="step-#{step.title.parameterize}"
+      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}"
         ' Step
         = step.index
         '  of

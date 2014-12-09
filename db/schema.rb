@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141208085751) do
+ActiveRecord::Schema.define(version: 20141209150903) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,11 +62,13 @@ ActiveRecord::Schema.define(version: 20141208085751) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "document"
-    t.string   "award_type"
-    t.boolean  "withdrawn",  default: false
+    t.boolean  "withdrawn",         default: false
     t.integer  "account_id"
+    t.string   "award_type"
     t.string   "urn"
     t.boolean  "submitted"
+    t.hstore   "eligibility"
+    t.hstore   "basic_eligibility"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
