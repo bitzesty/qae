@@ -12,7 +12,7 @@ class ContentOnlyController < ApplicationController
     load_eligibilities
     current_user.update_attribute(:completed_registration, true) unless current_user.completed_registration?
 
-    @user_award_forms = FormAnswer.for_user(current_user)
+    @user_award_forms = FormAnswer.for_user(current_user).order("award_type")
   end
 
   def account_1

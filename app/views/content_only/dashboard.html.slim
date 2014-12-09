@@ -16,6 +16,23 @@ header.page-header.group
             ul
               - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
                 li = eligibility.class.const_get(:AWARD_NAME)
+
+        - if @user_award_forms.any?
+          h2
+            ' Current applications
+
+          ul.applications-list
+            - @user_award_forms.each do |award|
+              li
+                h3
+                  = award.created_at.strftime("%Y")
+                  ' 
+                  = award.decorate.award
+                small
+                  /' Unclear eligibility
+                .pull-right
+                  = link_to "Continue application", edit_form_path(award.id), class: "inline-link text-right"
+
         h2
           ' Awards for organisations
 
@@ -53,21 +70,6 @@ header.page-header.group
             ' Deadline for submitting applications
             em Wednesday
             em 30 September
-
-        - if @user_award_forms.any?
-          br
-          h2#parent-section
-            ' Current applications
-
-          .inner.group.related-section
-            nav role="navigation" aria-labelledby="parent-section"
-              ul
-                - @user_award_forms.each do |award|
-                  li
-                    ' 2014 -
-                    = award.decorate.award
-                    '
-                    = link_to "Continue", edit_form_path(award.id), class: "inline-link"
 
         /.inner.group.related-section
           h2#parent-section
