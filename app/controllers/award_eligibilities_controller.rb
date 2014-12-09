@@ -56,16 +56,15 @@ class AwardEligibilitiesController < ApplicationController
 
   private
 
-  def trade_eligibility_params
-    params.require(:eligibility).permit(*Eligibility::Trade.questions)
-  end
 
-  def innovation_eligibility_params
-    params.require(:eligibility).permit(*Eligibility::Innovation.questions)
-  end
-
-  def development_eligibility_params
-    params.require(:eligibility).permit(*Eligibility::Development.questions)
+  %w[trade innovation development].each do |award_type|
+    define_method "#{award_type}_eligibility_params" do
+      if params[:eligibility]
+        params.require(:eligibility).permit(*"Eligibility::#{award_type.capitalize}".constantize.questions)
+      else
+        {}
+      end
+    end
   end
 
   def all_eligibilities_passed?
