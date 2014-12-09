@@ -126,8 +126,6 @@ jQuery ->
 
       input = q.find("input")
 
-      console.log(input.val());
-
       if not input.val()
         continue
 
@@ -135,6 +133,27 @@ jQuery ->
         q.find(".errors-container").append("<li>Not a valid number</li>")
         q.addClass("question-has-errors")
         validates = false
+
+    for question in $("div.step-current .question-money-by-years")
+      q = $(question)
+
+      q.removeClass("question-has-errors")
+      q.find(".errors-container").empty()
+
+      subquestions = q.find(".js-conditional-question.show-question input")
+
+      for subquestion in subquestions
+        subq = $(subquestion)
+
+        subq.parent().find(".errors-container").empty()
+
+        if not subq.val()
+          continue
+
+        if not subq.val().toString().match(/^-?\d*\.?\d*$/)
+          subq.parent().find(".errors-container").append("<li>Not a valid number</li>")
+          q.addClass("question-has-errors")
+          validates = false
 
     return validates
 
