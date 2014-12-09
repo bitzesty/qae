@@ -58,11 +58,18 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def load_eligibility(user)
-    eligibility_class.new(eligibility) || user.public_send("#{award_type}_eligibility") || user.public_send("build_#{award_type}_eligibility")
+    if eligibility && eligibility.any?
+      eligibility_class.new(eligibility)
+    else user.public_send("#{award_type}_eligibility") || user.public_send("build_#{award_type}_eligibility")
+    end
   end
 
   def load_basic_eligibility(user)
-    Eligibility::Basic.new(basic_eligibility) || user.basic_eligibility || user.build_basic_eligibility
+    if basic_eligibility && basic_eligibility.any?
+      Eligibility::Basic.new(basic_eligibility)
+    else
+      user.basic_eligibility || user.build_basic_eligibility
+    end
   end
 
   def eligible?
