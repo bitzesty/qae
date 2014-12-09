@@ -16,7 +16,7 @@
                   = Eligibility::Basic.label(question)
                 td.previous-question-body
                   - if Eligibility::Basic.boolean_question?(question)
-                    = current_user.basic_eligibility.public_send("#{question}?") ? 'Yes' : 'No'
+                    = basic_eligibility.public_send("#{question}?") ? 'Yes' : 'No'
                   - else
                     = Eligibility::Basic.enumerized_attributes[question].find_value(answer).text
                 td.link-right

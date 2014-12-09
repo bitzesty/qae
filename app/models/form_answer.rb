@@ -52,12 +52,20 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
+  def eligibility_class
+    "Eligibility::#{award_type.capitalize}".constantize
+  end
+
   def load_eligibility(user)
-    "Eligibility::#{award_type.capitalize}".constantize.new(eligibility) || user.public_send("#{award_type}_eligibility") || user.public_send("build_#{award_type}_eligibility")
+    eligibility_class.new(eligibility) || user.public_send("#{award_type}_eligibility") || user.public_send("build_#{award_type}_eligibility")
   end
 
   def load_basic_eligibility(user)
     Eligibility::Basic.new(basic_eligibility) || user.basic_eligibility || user.build_basic_eligibility
+  end
+
+  def eligible?
+    eligibility_class.new(eligibility).eligible? && Eligibility::Basic.new(basic_eligibility).eligible?
   end
 
   private

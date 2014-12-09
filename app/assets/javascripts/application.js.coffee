@@ -80,8 +80,15 @@ jQuery ->
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
     $(".js-step-condition.step-current").removeClass("step-current")
-    window.location.hash = "##{step.substr(5)}"
-    $(".js-step-condition[data-step='#{step}']").addClass("step-current")
+
+    if ($ 'form.award-form').length && (($ 'form.award-form').data('eligible') == 'false' || !($ 'form.award-form').data('eligible'))
+      window.location.hash = "#eligibility"
+      $(".js-step-condition[data-step='step-eligibility']").addClass("step-current")
+      alert('Sorry, you are not eligible for the award') unless step == 'step-eligibility'
+    else
+      window.location.hash = "##{step.substr(5)}"
+      $(".js-step-condition[data-step='#{step}']").addClass("step-current")
+
     # Show past link status
     $(".steps-progress-bar .js-step-link.step-past").removeClass("step-past")
 
@@ -133,12 +140,35 @@ jQuery ->
   triggerAutosave = (e) ->
     window.autosave_timer ||= setTimeout( autosave, 15000 )
 
+  checkEligibility = (event) ->
+    if $('form.qae-form').data('eligibility-check-url')
+      form_data = {}
+      a = $('form.qae-form').serializeArray()
+      $.each a,
+        (() ->
+          if form_data[@name] != undefined
+            if !form_data[@name].push
+              form_data[@name] = [form_data[@name]]
+            form_data[@name].push(@value || '')
+          else
+            form_data[@name] = @value || '')
+      $.ajax({
+        url: $('form.qae-form').data('eligibility-check-url')
+        data: JSON.stringify(form_data)
+        contentType: 'application/json'
+        type: 'POST'
+        dataType: 'json'
+      }).success (isEligible) ->
+        ($ 'form.award-form').data('eligible', isEligible)
+
   $(document).on "change", ".js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "textarea.js-trigger-autosave", triggerAutosave
+  $(document).on "change", "div[class*=' eligibility_'] input, div[class^='eligibility_'] input", checkEligibility
+  $(document).on "change", "div[class*=' basic_eligibility_'] input, div[class^='basic_eligibility_'] input", checkEligibility
 
   # Fade out alerts after 5sec
   $(".flash").delay(5000).fadeOut()

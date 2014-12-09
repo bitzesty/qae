@@ -50,6 +50,13 @@ class FormController < ApplicationController
     render :nothing => true
   end
 
+  def check_eligibility
+    extracted_params = extract_params(request.body.read)
+    eligible = Eligibility::Basic.new(extracted_params[:basic_eligibility]).eligible?
+    eligible &= @form_answer.eligibility_class.new(extracted_params[:eligibility]).eligible?
+    render json: eligible
+  end
+
   private
 
   def set_form_answer
@@ -63,11 +70,11 @@ class FormController < ApplicationController
 
     doc.reject! do |q, a|
       if q.match(/\Aeligibility\[/)
-        eligibility[q.gsub(/eligibility\[(\w*)\]/, '\1')] = a
+        eligibility[q.gsub(/\Aeligibility\[(\w*)\]/, '\1')] = a
 
         true
       elsif q.match(/\Abasic_eligibility\[/)
-        basic_eligibility[q.gsub(/basic_eligibility\[(\w*)\]/, '\1')] = a
+        basic_eligibility[q.gsub(/\Abasic_eligibility\[(\w*)\]/, '\1')] = a
 
         true
       end
