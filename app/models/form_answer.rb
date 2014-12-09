@@ -32,6 +32,7 @@ class FormAnswer < ActiveRecord::Base
 
   before_create :set_account
   before_save :set_urn
+  before_validation :check_eligibility, if: :submitted
 
   store_accessor :document
   store_accessor :eligibility
@@ -69,6 +70,10 @@ class FormAnswer < ActiveRecord::Base
   end
 
   private
+
+  def check_eligibility
+    errors.add(:base, "Sorry, you are not eligible") unless eligible?
+  end
 
   def set_urn
     return if urn
