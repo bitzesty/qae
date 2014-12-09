@@ -112,7 +112,6 @@ class QAE2014Forms
         address :principal_address, 'Principal address of your organisational unit' do
           required
           ref 'A 8'
-          countries QAE2014Forms.countries
         end
 
         text :website_url, 'Website URL' do
@@ -160,14 +159,9 @@ class QAE2014Forms
           conditional :is_division, :yes
         end
 
-        dropdown :parent_company_country, 'Country of immediate parent company' do
+        country :parent_company_country, 'Country of immediate parent company' do
           classes "regular-question"
           conditional :is_division, :yes
-
-          option '', 'Country'
-          QAE2014Forms.countries.each do |country|
-            option country, country
-          end
         end
 
         options :parent_ultimate_control, 'Does the immediate parent company have ultimate control?' do
@@ -181,14 +175,9 @@ class QAE2014Forms
           conditional :parent_ultimate_control, :no
         end
 
-        dropdown :ultimate_control__company_country, 'Country of organisation with ultimate control' do
+        country :ultimate_control__company_country, 'Country of organisation with ultimate control' do
           classes "regular-question"
           conditional :parent_ultimate_control, :no
-
-          option '', 'Country'
-          QAE2014Forms.countries.each do |country|
-            option country, country
-          end
         end
 
         options :trading_figures, 'Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?' do

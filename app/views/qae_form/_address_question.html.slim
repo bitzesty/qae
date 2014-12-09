@@ -10,11 +10,8 @@
 .question-group
   label
     ' Country
-    select.js-trigger-autosave name="#{question.key}_country"
-      - question.countries.each do |country|
-        option value="#{country}" selected=((answers["#{question.key}_country"] || '').to_s == country.to_s)
-          = country
-    
+    = country_select(question, "#{question.key}_country", priority_countries: ["GB"])
+
 .question-group
   label
     ' Postcode

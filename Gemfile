@@ -23,6 +23,7 @@ gem 'prawn'
 gem "draper"
 gem "decent_exposure"
 gem "decent_decoration"
+gem 'country_select'
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'
