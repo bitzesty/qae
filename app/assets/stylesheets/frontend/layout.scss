@@ -38,24 +38,6 @@
 }
 
 .page-header {
-  // Wider header
-  &.page-header-wider div {
-    width: 100%;
-    -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-            box-sizing: border-box;
-
-    // Fixes nav overflow on the award page
-    .steps-progress-bar li {
-      > a,
-      > span {
-        @media (min-width: 1036px) {
-          max-width: 150px;
-        }
-      }
-    }
-  }
-
   // Styles the sub header for `page-header`
   h2 {
     @include core-27;
@@ -263,20 +245,27 @@ header.page-header aside .inner {
 // Progress steps based on `2. Progress bar`
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators
 .steps-progress-bar {
-  list-style: none;
+  width: 100%;
   margin: 0;
-  padding: 0;
-  font-size: 0.1px;
-  line-height: 0;
-  text-align: justify;
+  padding: 0 !important;
   border: 1px solid $border-colour;
   border-left: none;
   border-right: none;
 
-  &:after {
-    content: "";
-    width: 100%;
-    display: inline-block;
+  ol,
+  ul {
+    list-style: none;
+    margin: 0 -15px;
+    padding: 0;
+    font-size: 0.1px;
+    line-height: 0;
+    text-align: justify;
+
+    &:after {
+      content: "";
+      width: 100%;
+      display: inline-block;
+    }
   }
 
   a {
@@ -286,6 +275,7 @@ header.page-header aside .inner {
   li {
     @include core-16;
     display: inline-block;
+    margin: 0 15px;
 
     @media (max-width: 1035px) {
       display: block;
