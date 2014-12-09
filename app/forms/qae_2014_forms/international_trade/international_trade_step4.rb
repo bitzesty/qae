@@ -80,8 +80,9 @@ class QAE2014Forms
           words_max 500 
         end
 
-        header :declaration_of_corporate_responsibility, 'Here is where the DECLARATION OF CORPORATE RESPONSIBILITY WILL GO WHEN WE HAVE IT' do
-          conditional :corp_responsibility_form, :declare_now
+        confirm :declaration_of_corporate_responsibility, '' do
+          required
+          text 'I declare corporate responsibility lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'
         end
       }
     end
