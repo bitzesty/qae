@@ -25,8 +25,12 @@
           br
 
           h3 December
-          p Organisations will be notified if they have been shortlisted at the end of November or the beginning of December. Shortlisted organisations are expected to provide an auditor’s certificate by mid January (please note audited accounts are not required).
-          p Nominators for the Enterprise Promotion award are not contacted at this stage.
+          p Organisations will be notified if they have been shortlisted at the end of November or the beginning of December. Shortlisted organisations are expected to provide an external accountant’s certificate by mid January (please note audited accounts are not required).
+          p
+            ' Nominators for the
+            strong
+              ' Enterprise Promotion
+            ' award are not contacted at this stage.
 
           br
 
@@ -41,7 +45,11 @@
           br
 
           h3 March
-          p All unsuccesful applicant will receive feedback on their application. Nominators for the Queen’s Award for Enterprise Promotion are informed whether their nomination was successful.
+          p
+            ' All unsuccessful applicants receive feedback on their applications (including where the entry failed to meet the standards required, and how it could be improved). Nominators for the
+            strong
+              ' Queen’s Award for Enterprise Promotion
+            ' are informed whether their nomination was successful.
 
           br
 
@@ -60,10 +68,6 @@
 
           br
 
-          p Awards last for 5 years.
-
-          br
-
           .get-started
             - if user_signed_in?
               = link_to "Apply", dashboard_path, class: "button"
@@ -73,7 +77,7 @@
           br
 
           p
-            ' If you have already signed up then
+            ' If you have already begun your application then
             = link_to "log in to continue", new_user_session_path
             ' .
 
