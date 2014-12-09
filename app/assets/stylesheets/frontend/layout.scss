@@ -9,6 +9,15 @@
   text-align: right;
 }
 
+.list-alpha {
+  padding-left: 1.5em;
+  list-style: lower-alpha;
+
+  li {
+    padding-left: 0;
+  }
+}
+
 // Positions full width elements
 .inner-block {
   padding: 0 $gutter-half;

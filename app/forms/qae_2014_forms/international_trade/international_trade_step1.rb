@@ -223,7 +223,6 @@ class QAE2014Forms
           context %Q{
             <p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>
           }
-          conditional :is_division, :yes
         end
       }
     end

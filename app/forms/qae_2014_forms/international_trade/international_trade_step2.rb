@@ -41,23 +41,97 @@ class QAE2014Forms
         end
 
         header :company_financials, 'Company Financials' do
-          ref 'B 4'
           conditional :trade_commercial_success, :true
         end
 
-        trade_by_years :overseas_sales, 'Direct overseas sales' do
+        textarea :trade_excluded_explanation, 'Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.' do
+          ref 'B 4'
+          rows 5
+          words_max 150
+          conditional :trade_commercial_success, :true
+        end
+
+        trade_by_years :overseas_sales, 'Total overseas sales' do
+          ref 'B 5'
+          required
+          conditional :trade_commercial_success, :true
+        end
+
+        trade_by_years :overseas_sales_direct, 'of which direct' do
           classes "sub-question"
           required
           context %Q{
-            <p>guidance text for this question is carnage</p>
+            <p>"Include figures for sales of goods/services to non-UK residents or their buying agents. Include royalties, license fees and other related services. Include sales to, and by, your overseas subsidiaries (though for what they buy fmor you to sell on, only include their markup).</p>
+            <p>The goods/services must have been provided and the customer invoiced to be included - omit unfulfilled orders.</p>
+            <p>Income from services in connection to imports into the UK (other than freight) should not be included. Sales to UK branches/subsidiaries of foreign companies, or sales for use in the UK, should not be included. However, services performed in the UK but invoiced to a non-UK resident can be included eg. tourism.</p><p>Include comission earned as export agents for UK goods or services.</p>
+            <p>You should also include:</p>
+            <ul class="list-alpha">
+              <li>
+                dividends remitted to the UK from direct investments in overseas branches, subsidiaries and associates in the same general line of business as the entrant, provided no earnings from such overseas branches, subsidiaries and associates have already been included elsewhere
+              </li>
+              <li>
+                dividends remitted to the UK from direct investment in associates which are not in the same
+                 general line of business
+              </li>
+              <li>
+                interest on lending abroad remitted to the UK
+              </li>
+              <li>
+                income from portfolio investment abroad remitted to the UK
+              </li>
+              <li>
+                dividends on investments abroad not remitted to the UK provided no part of such dividends has been included directly or indirectly under notes a), b) and d) above
+              </li>
+              <li>
+                other earnings from overseas residents remitted to the UK
+              </li>
+            </ul>
+            <br>
           }
           conditional :trade_commercial_success, :true
-          drop_conditional :drops_in_turnover
+        end
+
+        trade_by_years :overseas_sales_indirect, 'of which indirect' do
+          classes "sub-question"
+          required
+          context %Q{
+            <p>Direct overseas sales are the result of an organisation making a commitment to market overseas on its own behalf. Indirect overseas sales are where, for example:</p>
+            <ul>
+              <li>
+                A home country agency is employed (ie an exporting company from the organisation’s own country - which handles exporting on its behalf) to get its product into an overseas market
+              </li>
+              <li>
+                “Piggybacking” whereby the organisation’s product uses the existing distribution and logistics of another business
+              </li>
+              <li>
+                Use of Export Management Houses (EMHs) that act as a bolt on export department for the organisation
+              </li>
+            </ul>
+            <p>
+              Indirect overseas sales are not eligible, except where:
+            </p>
+            <ul class="list-alpha">
+              <li>
+                several companies co-operate in a formally constituted consortium to fulfil major contracts overseas; or
+              </li>
+              <li>
+                the provider of goods or services of UK origin enters into a joint venture partnership with a UK exporter; or
+              </li>
+              <li>
+                an indirect exporter making a major contribution to an exported product (eg marine engine in a ship) can show that they have undertaken the selling effort, direct to the overseas customer, so that their component or equipment is included in the finished exported product.
+              </li>
+            </ul>
+            <br>
+          }
+          conditional :trade_commercial_success, :true
         end
 
         trade_by_years :total_turnover, 'Total turnover (home plus overseas)' do
           classes "sub-question"
           required
+          context %Q{
+            <p>Exclude VAT, overseas taxes and, where applicable, excise duties. </p>
+          }
           conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
         end
@@ -99,7 +173,7 @@ class QAE2014Forms
           conditional :trade_commercial_success, :true
         end
 
-        trade_by_years :total_imported_cost, 'Total cost of the imported products/services/components' do 
+        trade_by_years :total_imported_cost, 'Total cost of the products/services/components imported for resale overseas' do 
           classes "sub-question"
           required
           conditional :trade_commercial_success, :true
@@ -108,7 +182,7 @@ class QAE2014Forms
         end
 
         options :manufacture_overseas, 'Do you manufacture overseas?' do
-          ref 'B 5'
+          ref 'B 6'
           required
           yes_no
         end
@@ -127,8 +201,8 @@ class QAE2014Forms
           conditional :manufacture_overseas, :true
         end
 
-        options :operate_overseas, 'Does you franchise your operations overseas?' do
-          ref 'B 6'
+        options :operate_overseas, 'Do you run your overseas operations as a franchise?' do
+          ref 'B 7'
           required
           yes_no
         end
@@ -142,7 +216,7 @@ class QAE2014Forms
         end
 
         options :received_grant, 'Have you received any grant funding to support this product/service?' do
-          ref 'B 7'
+          ref 'B 8'
           required
           yes_no
         end
