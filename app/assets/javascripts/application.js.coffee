@@ -55,6 +55,20 @@ jQuery ->
 
         validates = false
 
+    for question in $("div.step-current .match")
+      q = $(question)
+
+      q.parent().removeClass("question-has-errors")
+      q.parent().find(".errors-container").empty()
+      
+      match_name = q.data("match")
+
+      if q.val() isnt $("input[name='#{match_name}']").val()
+        q.parent().find(".errors-container").first().append("<li>Emails don't match.</li>")
+        q.parent().addClass("question-has-errors")
+
+        validates = false
+
     for question in $("div.step-current .question-date-max")
       q = $(question)
 
