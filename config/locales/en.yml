@@ -29,3 +29,7 @@ en:
       messages:
         blank: This field cannot be blank
         accepted: Must be accepted
+        taken: "This %{attribute} has already been taken"
+        too_long: "%{attribute} is too long (maximum is %{count} characters)"
+        too_short: "%{attribute} is too short (minimum is %{count} characters)"
+        confirmation: "%{attribute} doesn't match."
