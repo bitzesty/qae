@@ -11,11 +11,11 @@ class QAE2014Forms
 
         step 'Company Information', 'Company Info', &QAE2014Forms.development_step1
 
-        step 'Commercial Performance', 'Commercial Performance', &QAE2014Forms.development_step2
+        step 'Commercial Performance', 'Commercial<br> Performance', &QAE2014Forms.development_step2
 
         step 'Description of Goods or Services', 'Goods or Services', &QAE2014Forms.development_step3
 
-        step 'Declaration of Corporate Responsibility', 'Corporate Responsibility', &QAE2014Forms.development_step4
+        step 'Declaration of Corporate Responsibility', 'Corporate<br> Responsibility', &QAE2014Forms.development_step4
 
         step 'Authorisation/Monitoring', 'Authorisation', &QAE2014Forms.development_step5
 
