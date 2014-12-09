@@ -160,6 +160,11 @@ input[type="file"] {
   margin-top: 0.2em;
 }
 
+.question-block h2 em {
+  font-style: normal;
+  text-decoration: underline;
+}
+
 // Styling for forms that exist outside of smart-answers
 // Forms that flow downwards with multiple questions
 .qae-form {

@@ -15,8 +15,8 @@ class QAEFormBuilder
       @questions_by_key[key]
     end
 
-    def step title, options = {}, &block
-      step = Step.new self, title, options
+    def step title, short_title, options = {}, &block
+      step = Step.new self, title, short_title, options
 
       step.index = @index
       @index += 1

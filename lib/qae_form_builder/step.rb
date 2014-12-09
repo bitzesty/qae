@@ -68,11 +68,12 @@ class QAEFormBuilder
 
   class Step
 
-    attr_accessor :title, :opts, :questions, :index, :form, :context, :submit
+    attr_accessor :title, :short_title, :opts, :questions, :index, :form, :context, :submit
 
-    def initialize form, title, opts={}
+    def initialize form, title, short_title, opts={}
       @form = form
       @title = title
+      @short_title = short_title
       @opts = opts
       @questions = []
     end

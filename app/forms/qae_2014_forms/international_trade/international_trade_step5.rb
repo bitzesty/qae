@@ -48,7 +48,7 @@ class QAE2014Forms
 
         submit "Submit application" do
           notice %Q{
-            <p>Note that you can submit and come back to change or add any other info until the deadline.</p>
+            <p>You can still edit your submitted application at any time before 23:59 on the last working day of September.</p>
           }
           style "large"
         end

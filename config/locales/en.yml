@@ -2,21 +2,22 @@ en:
   enumerize:
     user:
       qae_info_source:
-        govuk: Gov.UK
-        competitor: From a Competitor
+        govuk: GOV.UK
+        competitor: From a competitor
         business_event: At a business event
-        national_press: In the National Press
-        business_press: In the Business Press
+        national_press: In the national press
+        business_press: In the business press
         online: Online
-        local_trade_body: From a Local Trade body
-        national_trade_body: From a National Trade body
-        mail_from_qae: By direct mail from The Queen's Awards Office
-        word_of_mouth: General word of mouth
+        local_trade_body: From a local trade body
+        national_trade_body: From a national trade body
+        mail_from_qae: Mail from the Queen’s Awards Office
+        word_of_mouth: Word of mouth
         other: Other
+
     eligibility:
       organization_kind:
-        business: Business
-        charity: Not-for-profit
+        business: "Business, e.g. companies, partnerships, social enterprise."
+        charity: "Not-for-profit, e.g. not-for-profit: charities, foundation, associations."
       kind:
         application: Apply for an award
         nomination: Nominate an individual

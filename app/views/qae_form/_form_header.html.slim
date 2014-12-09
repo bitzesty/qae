@@ -1,31 +1,30 @@
+- step_letters = ["A", "B", "C", "D", "E"]
+
 header.page-header.group.page-header-wider
   div
     h1
       = form.title
 
-    ol.steps-progress-bar
-      li.js-step-link.js-step-condition.step-current data-step="step-eligibility"
-        = link_to innovation_award_eligible_path do
+    .steps-progress-bar
+      ol
+        li.js-step-link.js-step-condition.step-current data-step="step-eligibility"
           span
             span.step-number
-              ' 1.
             ' Eligibility
-      - for step in form.steps do
-        li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}"
-          span
-            span.step-number
-              ' #{step.index+1}.
-            | #{step.title}
+        - for step in form.steps do
+          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}"
+            span
+              span.step-number
+                ' #{step_letters[step.index-1]}.
+              = step.short_title.html_safe
 
     h2.step-header.js-step-condition.step-current data-step="step-eligibility"
-        ' Step 1 of
-        = form.steps.length + 1
-        ' : Eligibility
+        ' Eligibility
     - for step in form.steps do
       h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}"
         ' Step
-        = step.index + 1
+        = step.index
         '  of
-        = form.steps.length + 1
+        = form.steps.length
         ' :
         = step.title

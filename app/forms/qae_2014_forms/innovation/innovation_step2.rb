@@ -27,7 +27,8 @@ class QAE2014Forms
           context %Q{
             <p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
           }
-          style "small"
+          unit ' years'
+          style "small inline"
           min 2
           conditional :innovation_performance_years, :true
         end
@@ -41,14 +42,20 @@ class QAE2014Forms
 
         header :company_financials, 'Company Financials' do
           context %Q{
-            <p>These figures should be for your entire organisation.</p>
+            <p>These figures should be for your entire organisation. If you have not reached your latest year-end, please use estimates to complete this question.</p>
           }
+          conditional :innovation_performance_years, :true
+        end
+
+        textarea :innovation_excluded_explanation, 'Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.' do
           ref 'B 5'
+          rows 5
+          words_max 150
           conditional :innovation_performance_years, :true
         end
 
         innovation_by_years :total_turnover, 'Total turnover' do
-          classes "sub-question"
+          ref 'B 6'
           required
           conditional :innovation_performance_years, :true
           drop_conditional :drops_in_turnover
@@ -100,7 +107,10 @@ class QAE2014Forms
         end
 
         header :product_financials, 'Product/Service Financials' do
-          ref 'B 6'
+          ref 'B 7'
+          context %Q{
+            <p>If you have not reached your latest year-end, please use estimates to complete this question.</p>
+          }
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
         end
@@ -172,8 +182,11 @@ class QAE2014Forms
         end
 
         innovation_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
-          ref 'B 7'
+          ref 'B 8'
           required
+          context %Q{
+            <p>If you have not reached your latest year-end, please use estimates to complete this question.</p>
+          }
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
         end
@@ -188,8 +201,11 @@ class QAE2014Forms
         end
 
         innovation_by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
-          ref 'B 8'
+          ref 'B 9'
           required
+          context %Q{
+            <p>If you have not reached your latest year-end, please use estimates to complete this question.</p>
+          }
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
         end
@@ -204,14 +220,14 @@ class QAE2014Forms
         end
 
         textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.' do
-          ref 'B 9'
+          ref 'B 10'
           required
           rows 5
           words_max 300
         end 
 
-        textarea :investments_details, 'Please enter details of all the investments made in your innovation, and the years when they were made. Include investments made both during and prior to your entry period.' do
-          ref 'B 10'
+        textarea :investments_details, 'Please enter details of any investments made in your innovation. <em>Include all investments made both during and prior to your entry period.</em> Also detail the year(s) in which they were made.' do
+          ref 'B 11'
           required
           rows 5
           words_max 300
