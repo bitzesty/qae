@@ -15,20 +15,20 @@ describe QAEFormBuilder do
 
   it 'should build form steps' do
     sample = QAEFormBuilder.build 'test' do
-      step 'Eligibility'
-      step 'Company Info'
-      step 'Goods or Services', :custom_option => :foo
+      step 'Eligibility', 'El'
+      step 'Company Info', 'CI'
+      step 'Goods or Services', 'Goods', custom_option: :foo
     end
     expect(sample.steps.size).to eq(3)
     expect(sample.steps[0].title).to eq('Eligibility')
     expect(sample.steps[1].title).to eq('Company Info')
     expect(sample.steps[2].title).to eq('Goods or Services')
-    expect(sample.steps[2].opts).to eq({:custom_option => :foo})
+    expect(sample.steps[2].opts).to eq(custom_option: :foo)
   end
 
   it 'should build questions inside steps' do
     sample = QAEFormBuilder.build 'test' do
-      step 'Eligibility' do
+      step 'Eligibility', 'El' do
         text :org_kind, 'What kind of organisation are you?'
         text :org_uk, 'Is your business based in UK?' do
           context 'Including the Channel Islands and the Isle of Man.'
