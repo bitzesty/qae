@@ -14,7 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(resource)
-    dashboard_path
+    if resource.is_a?(User)
+      dashboard_path
+    else
+      super
+    end
   end
 
   protected
