@@ -13,7 +13,7 @@
             ' Your organisation
             strong
               ' does not
-            ' meets the eligibility criteria for
+            ' meet the eligibility criteria for
           ul
             - [@trade_eligibility, @innovation_eligibility, @development_eligibility].reject(&:passed?).each do |eligibility|
               li = eligibility.class.const_get(:AWARD_NAME)
