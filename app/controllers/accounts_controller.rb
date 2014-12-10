@@ -72,7 +72,7 @@ class AccountsController < ApplicationController
   end
 
   def update_password_settings
-    current_user.setStep(4)
+    #current_user.setStep(4)
     if current_user.update(password_settings_params)
       flash.notice = 'Account was successfully updated'
       redirect_to dashboard_path
