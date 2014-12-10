@@ -36,7 +36,7 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior issues, and any special difficulties you overcame in doing so." do
+        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior issues, and any special difficulties you overcame in achieving these solutions." do
           ref 'C 3'
           required
           rows 5
