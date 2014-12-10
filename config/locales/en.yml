@@ -14,7 +14,7 @@ en:
         word_of_mouth: Word of mouth
         other: Other
 
-    eligibility:
+    eligibility/basic:
       organization_kind:
         business: "Business, e.g. companies, partnerships, social enterprise."
         charity: "Not-for-profit, e.g. not-for-profit: charities, foundation, associations."
