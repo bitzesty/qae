@@ -15,7 +15,7 @@ set :migration_role, 'app'
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
-set :stages, %w(staging)
+set :stages, %w(staging demo)
 set :default_stage, 'staging'
 
 # Default deploy_to directory is /var/www/my_app
