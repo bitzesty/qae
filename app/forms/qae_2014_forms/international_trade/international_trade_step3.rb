@@ -32,7 +32,7 @@ class QAE2014Forms
           words_max 15
         end
 
-        number :employees, '% of your total overseas trade' do
+        number :total_overseas_trade, '% of your total overseas trade' do
           classes "sub-question"
         end
 
