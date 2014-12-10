@@ -120,7 +120,6 @@ class QAE2014Forms
         text :website_url, 'Website URL' do
           required
           ref 'A 9'
-          type :url
         end
 
         dropdown :business_sector, 'Business Sector' do
@@ -149,7 +148,6 @@ class QAE2014Forms
         text :head_email, 'Email address' do
           classes "sub-question"
           required
-          type :email
         end
 
         options :is_division, 'Are you a division, branch or subsidiary?' do
