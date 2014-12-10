@@ -1,9 +1,30 @@
 #= require jquery
 #= require jquery_ujs
 #= require Countable
+#= require moment.min
 #= require_tree .
 
 jQuery ->
+
+  triggerAutosave = (e) ->
+    window.autosave_timer ||= setTimeout( autosave, 15000 )
+  
+
+  # This is a very primitive way of testing.
+  # Should be refactored once forms stabilize.
+  # 
+  # TODO: Refactor this later on
+  validate = ->
+    window.FormValidation.validate()
+
+  $(document).on "submit", ".qae-form", (e) ->
+    if not validate()
+      
+      $("html, body").animate(
+        scrollTop: 0
+      , 0)
+      return false
+
   # Hidden hints as seen on
   # https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
   # Creates the links and adds the arrows
@@ -106,7 +127,11 @@ jQuery ->
     e.preventDefault()
     if !$(this).hasClass("step-current")
       current = $(this).attr("data-step")
-      showAwardStep(current)
+      if $(this).hasClass "next"
+        if validate()
+          showAwardStep(current)
+      else
+        showAwardStep(current)
       # Scroll to top
       $("html, body").animate(
         scrollTop: 0
@@ -159,7 +184,7 @@ jQuery ->
         type: 'POST'
         dataType: 'json'
       }).success (isEligible) ->
-        ($ 'form.award-form').data('eligible', isEligible)
+        $('form.award-form').data('eligible', isEligible)
 
   $(document).on "change", ".js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave

@@ -4,7 +4,7 @@
   - if question.header_context
     == question.header_context
 
-fieldset class="question-block js-conditional-answer #{question.classes} #{'js-conditional-drop-answer' if question.drop_condition}" data-answer=question.parameterized_title data-drop-question="#{question.form[question.drop_condition].parameterized_title if question.drop_condition}"
+fieldset class="question-block js-conditional-answer #{question.classes} #{'question-required' if question.required}  #{'js-conditional-drop-answer' if question.drop_condition} #{'question-date-max' if question.is_a?(QAEFormBuilder::DateQuestion) && question.date_max} #{'question-date-min' if question.is_a?(QAEFormBuilder::DateQuestion) && question.date_min} #{'question-date-between' if question.is_a?(QAEFormBuilder::DateQuestion) && question.date_between} #{'question-number' if question.is_a?(QAEFormBuilder::NumberQuestion)} #{'question-number-by-years' if question.is_a?(QAEFormBuilder::TradeByYearsQuestion) or question.is_a?(QAEFormBuilder::TradeByYearsPercentageQuestion)} #{'question-date-by-years' if question.is_a?(QAEFormBuilder::TradeFinancialYearDatesQuestion) or question.is_a?(QAEFormBuilder::DevelopmentFinancialYearDatesQuestion) or question.is_a?(QAEFormBuilder::InnovationFinancialYearDatesQuestion)} #{'question-money-by-years' if question.is_a?(QAEFormBuilder::DevelopmentByYearsQuestion) or question.is_a?(QAEFormBuilder::TradeByYearsQuestion) or question.is_a?(QAEFormBuilder::InnovationByYearsQuestion)}" data-answer=question.parameterized_title data-drop-question="#{question.form[question.drop_condition].parameterized_title if question.drop_condition}" data-date-max=(question.date_max if (question.is_a?(QAEFormBuilder::DateQuestion) && question.date_max)) data-date-min=(question.date_min if (question.is_a?(QAEFormBuilder::DateQuestion) && question.date_min)) data-date-between=(question.date_between[0] + ',' + question.date_between[1] if (question.is_a?(QAEFormBuilder::DateQuestion) && question.date_between))
   = condition_divs question do
     - if question.title != ""
       h2
@@ -23,6 +23,8 @@ fieldset class="question-block js-conditional-answer #{question.classes} #{'js-c
 
     - if question.context
       == question.context
+
+    ul.errors-container
 
     .question-group
       label
