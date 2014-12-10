@@ -20,7 +20,7 @@ window.FormValidation =
     @validates = false
 
   isTextishQuestion: (question) ->
-    question.find("input[type='text'], input[type='number'], input[type='password'], textarea").length
+    question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], textarea").length
 
   isSelectQuestion: (question) ->
     question.find("select").length
@@ -42,7 +42,7 @@ window.FormValidation =
 
   validateSingleQuestion: (question) ->
     if @isTextishQuestion(question)
-      return question.find("input[type='text'], input[type='number'], input[type='password'], textarea").val().toString().length
+      return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], textarea").val().toString().length
 
     if @isSelectQuestion(question)
       return question.find("select").val()
