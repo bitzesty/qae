@@ -493,6 +493,17 @@ input[type="file"] {
     display: none;
   }
 }
+.js-add-example {
+  display: none !important;
+
+  &.js-add-default {
+    display: block !important;
+
+    .js-remove-link {
+      display: none !important;
+    }
+  }
+}
 
 // Styles and positions submit button in pagination
 .pagination {

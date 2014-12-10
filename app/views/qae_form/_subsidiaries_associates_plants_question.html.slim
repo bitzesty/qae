@@ -1,6 +1,6 @@
 ul.list-add
-  li
-    = link_to "Remove", "#", class: "remove-link"
+  li.js-add-example.js-add-default data-add-example="add-subsid-assoc-plant"
+    = link_to "Remove", "#", class: "remove-link js-remove-link"
     .clear
     span.row
       span.span-4
@@ -15,4 +15,8 @@ ul.list-add
         label.small
           ' Number of UK Employees
           input.small type="number"
-= link_to "+ Add subsidiary, associate or plant", "#", class: "button button-add"
+
+= link_to "+ Add subsidiary, associate or plant", "#", class: "button button-add js-button-add"
+
+a.button.button-add.js-button-add href="#" data-add-example="add-subsid-assoc-plant"
+  | + Add subsidiary, associate or plant

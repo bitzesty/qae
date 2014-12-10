@@ -1,6 +1,6 @@
 ul.list-add
-  li
-    = link_to "Remove", "#", class: "remove-link"
+  li.js-add-example data-add-example="add-file"
+    = link_to "Remove", "#", class: "remove-link js-remove-link"
     // If 'upload document' is clicked
     label
       input type="file"
@@ -8,16 +8,19 @@ ul.list-add
     label.small
       ' Description (optional)
       textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
-  li
-    = link_to "Remove", "#", class: "remove-link"
+  li.js-add-example data-add-example="add-url"
+    = link_to "Remove", "#", class: "remove-link js-remove-link"
     // If 'add link' is clicked
     label
       ' Website Link
-      input.medium type="text"
+      input.medium type="url"
     // File size limit in text
     label.small
       ' Description (optional)
       textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
 
-= link_to "+ Upload document", "#", class: "button button-add"
-= link_to "+ Add Link", "#", class: "button button-add"
+a.button.button-add.js-button-add href="#" data-add-example="add-file"
+  | + Upload document
+
+a.button.button-add.js-button-add href="#" data-add-example="add-url"
+  | + Add Link

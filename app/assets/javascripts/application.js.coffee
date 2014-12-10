@@ -203,3 +203,22 @@ jQuery ->
       e.preventDefault()
       $("#form_eligibility_show").addClass("visuallyhidden")
       $("#form_eligibility_questions").removeClass("visuallyhidden")
+
+  # Clicking `+ Add` on certain questions add fields
+  $(document).on "click", ".question-block .js-button-add", (e) ->
+    e.preventDefault()
+
+    question = $(this).closest(".question-block")
+    add_example = question.find(".js-add-example").html()
+
+    # If there is a specific add_example use that
+    attr = $(this).attr("data-add-example")
+    if ((typeof(attr) != typeof(undefined)) && attr != false)
+      add_example = question.find(".js-add-example[data-add-example=#{attr}]").html()
+
+    if question.find(".list-add").size() > 0
+      question.find(".list-add").append("<li>#{add_example}</li>")
+  # Removing these added fields
+  $(document).on "click", ".question-block .list-add .js-remove-link", (e) ->
+    e.preventDefault()
+    $(this).closest("li").remove()
