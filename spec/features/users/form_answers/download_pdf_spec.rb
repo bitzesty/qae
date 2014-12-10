@@ -45,6 +45,7 @@ So that I can review my progress or share the pdf with others
     let!(:innovation_award_form_answer) do
       FactoryGirl.create :form_answer, :innovation, 
         user: user, 
+        urn: "QA0001/19T",
         document: { company_name: "Bitzesty" }
     end
 
@@ -53,12 +54,10 @@ So that I can review my progress or share the pdf with others
     end
 
     before do 
-      visit innovation_award_confirm_path(id: innovation_award_form_answer.id)
+      visit user_form_answer_path(user_id: user.id, id: innovation_award_form_answer.id, format: :pdf)
     end
 
     it "should generate pdf" do
-      click_on "Download your Innovation Award application"
-
       expect(page.status_code).to eq(200)
       expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
       expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"

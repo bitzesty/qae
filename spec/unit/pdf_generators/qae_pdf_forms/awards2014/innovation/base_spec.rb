@@ -19,6 +19,7 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
   let!(:innovation_award_form_answer) do
     FactoryGirl.create :form_answer, :innovation, 
       user: user,
+      urn: "QA0001/18T",
       document: step1_question_answers.merge(step2_question_answers)
   end
 
