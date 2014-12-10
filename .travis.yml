@@ -12,4 +12,4 @@ script:
  - RAILS_ENV=test bundle exec rake spec
 notifications:
   email: false
-  slack: bitzesty:7uY0wzrA6uBDBgN8YtSDpASb
+  slack: bitzesty:h8zc1e4BesNXl5LynftJ7Z7M
