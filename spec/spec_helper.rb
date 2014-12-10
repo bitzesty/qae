@@ -9,6 +9,7 @@ require 'shoulda/matchers'
 Capybara.javascript_driver = :webkit
 Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| load f, true}
 
+ActiveRecord::Migration.check_pending!
 ActiveRecord::Migration.maintain_test_schema!
 Qae::Application.load_tasks
 
