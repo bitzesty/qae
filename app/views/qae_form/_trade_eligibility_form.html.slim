@@ -1,1 +1,8 @@
+- unless award_eligibility.sales_above_100_000_pounds.present?
+  = render "qae_form/eligibility_questions/sales_above_100_000_pounds", f: f
 
+- unless award_eligibility.any_dips_over_the_last_three_years.present?
+  = render "qae_form/eligibility_questions/any_dips_over_the_last_three_years", f: f
+
+- unless award_eligibility.current_holder_of_qae_for_trade.present?
+  = render "qae_form/eligibility_questions/current_holder_of_qae_for_trade", f: f
