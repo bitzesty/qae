@@ -1,12 +1,15 @@
 .question-group
   label
     ' Title
+    ul.errors-container
     input.small.js-trigger-autosave type="text" name="#{question.key}_title" value=answers["#{question.key}_title"]
 .question-group
   label
     ' First name
+    ul.errors-container
     input.medium.js-trigger-autosave type="text" name="#{question.key}_first_name" value=answers["#{question.key}_first_name"]
 .question-group
   label
     ' Last name
+    ul.errors-container
     input.medium.js-trigger-autosave type="text" name="#{question.key}_last_name" value=answers["#{question.key}_last_name"]
