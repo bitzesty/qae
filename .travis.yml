@@ -10,3 +10,6 @@ script:
  - RAILS_ENV=test bundle exec rake db:create
  - RAILS_ENV=test bundle exec rake db:migrate
  - RAILS_ENV=test bundle exec rake spec
+notifications:
+  email: false
+  slack: bitzesty:Z6O3ULcRqdL3zTQIIzDklfya
