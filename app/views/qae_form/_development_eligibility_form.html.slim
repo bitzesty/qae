@@ -1,1 +1,15 @@
+- award_eligibility = @form_answer.load_eligibility(current_user)
+- basic_eligibility = @form_answer.load_basic_eligibility(current_user)
 
+= simple_fields_for :eligibility, award_eligibility do |f|
+  - unless award_eligibility.sustainable_development.present?
+    = render "qae_form/eligibility_questions/sustainable_development", f: f
+
+  - unless award_eligibility.development_contributed_to_commercial_success.present?
+    = render "qae_form/eligibility_questions/development_contributed_to_commercial_success", f: f
+
+.current-question#current-question
+  #form_eligibility_show
+    = render "qae_form/eligibility_answers", award_eligibility: award_eligibility, basic_eligibility: basic_eligibility
+  #form_eligibility_questions.visuallyhidden
+    = render "qae_form/hidden_eligibility_form", award_eligibility: award_eligibility, basic_eligibility: basic_eligibility
