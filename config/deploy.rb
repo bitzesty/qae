@@ -8,7 +8,7 @@ set :user, 'qae'
 set :repo_url, 'git@github.com:bitzesty/qae.git'
 
 set :slack_team, "bitzesty"
-set :slack_token, "Z6O3ULcRqdL3zTQIIzDklfya"
+set :slack_token, "7uY0wzrA6uBDBgN8YtSDpASb"
 set :slack_icon_emoji,   ->{ ":rocket:" }
 set :slack_channel,      ->{ "#qae" }
 set :migration_role, 'app'
