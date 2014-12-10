@@ -193,32 +193,32 @@ window.FormValidation =
     for _q in $("div.step-current .question-block")
       question = $(_q)
 
-      if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
-        @validateRequiredQuestion(question)
+      #if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
+      #  @validateRequiredQuestion(question)
 
       #if question.hasClass("question-number")
       #  @validateNumber(question)
 
-      if question.hasClass("question-money-by-years")
-        @validateMoneyByYears(question)
+      #if question.hasClass("question-money-by-years")
+      #  @validateMoneyByYears(question)
 
-      if question.hasClass("question-date-by-years")
-        @validateDateByYears(question)
+      #if question.hasClass("question-date-by-years")
+      #  @validateDateByYears(question)
 
-      if question.find(".match").length
-        @validateMatchQuestion(question)
+      #if question.find(".match").length
+      #  @validateMatchQuestion(question)
 
-      if question.hasClass("question-date-max")
-        @validateMaxDate(question)
+      #if question.hasClass("question-date-max")
+      #  @validateMaxDate(question)
 
-      if question.hasClass("question-date-min")
-        @validateMinDate(question)
+      #if question.hasClass("question-date-min")
+      #  @validateMinDate(question)
 
-      if question.hasClass("question-date-between")
-        @validateBetweenDate(question)
+      #if question.hasClass("question-date-between")
+      #  @validateBetweenDate(question)
 
-      if $(".question-block[data-answer='overseas_sales-total-overseas-sales'] > .conditional-question").hasClass("show-question")
-        @validateTotalOverseas()
+      #if $(".question-block[data-answer='overseas_sales-total-overseas-sales'] > .conditional-question").hasClass("show-question")
+      #  @validateTotalOverseas()
 
 
     return @validates
