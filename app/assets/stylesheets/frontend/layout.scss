@@ -4,6 +4,11 @@
   display: block;
 }
 
+// Fix the .visuallyhidden class from overflowing body
+.visuallyhidden {
+  top: -9999px;
+}
+
 // Align text
 .text-right {
   text-align: right;
