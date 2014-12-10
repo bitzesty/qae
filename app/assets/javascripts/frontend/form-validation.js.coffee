@@ -20,7 +20,7 @@ window.FormValidation =
     @validates = false
 
   isTextishQuestion: (question) ->
-    question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], textarea").length
+    question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").length
 
   isSelectQuestion: (question) ->
     question.find("select").length
@@ -42,7 +42,7 @@ window.FormValidation =
 
   validateSingleQuestion: (question) ->
     if @isTextishQuestion(question)
-      return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], textarea").val().toString().length
+      return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").val().toString().length
 
     if @isSelectQuestion(question)
       return question.find("select").val()
@@ -196,8 +196,8 @@ window.FormValidation =
       if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
         @validateRequiredQuestion(question)
 
-      if question.hasClass("question-number")
-        @validateNumber(question)
+      #if question.hasClass("question-number")
+      #  @validateNumber(question)
 
       if question.hasClass("question-money-by-years")
         @validateMoneyByYears(question)
