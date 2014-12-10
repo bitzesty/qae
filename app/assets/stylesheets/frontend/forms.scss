@@ -10,11 +10,11 @@
 }
 
 // Error styling
-.question-block.question-has-errors {
-  .errors-container {
-    padding: 0;
-    list-style: none;
-  }
+.question-has-errors .errors-container {
+  margin: 0;
+  margin-bottom: 0.2em;
+  padding: 0;
+  list-style: none;
 }
 
 .field_with_errors .error,
@@ -28,7 +28,7 @@
   padding: 0;
   background: transparent;
   border: none;
-  color: #DF3034;
+  color: $error-colour;
 }
 
 .page-devise .boolean .error {
