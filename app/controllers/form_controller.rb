@@ -19,6 +19,26 @@ class FormController < ApplicationController
     redirect_to edit_form_url(form_answer)
   end
 
+  def eligibility
+    @form = @form_answer.award_form
+    @eligibility_form = EligibilityForm.new(@form_answer)
+    render template: 'qae_form/eligibility'
+  end
+
+  def update_eligibility
+    @eligibility_form = EligibilityForm.new(@form_answer)
+    if @eligibility_form.update(params[:eligibility_form])
+      if @form_answer.eligible?
+        redirect_to edit_form_url(@form_answer)
+      else
+        redirect_to public_send("#{@form_answer.award_type}_award_eligible_failure_url")
+      end
+    else
+      @form = @form_answer.award_form
+      render :eligibility
+    end
+  end
+
   def edit_form
     @form = @form_answer.award_form
     render template: 'qae_form/show'

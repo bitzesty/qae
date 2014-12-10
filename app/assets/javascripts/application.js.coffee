@@ -80,14 +80,8 @@ jQuery ->
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
     $(".js-step-condition.step-current").removeClass("step-current")
-
-    if ($ 'form.award-form').length && (($ 'form.award-form').data('eligible') == 'false' || !($ 'form.award-form').data('eligible'))
-      window.location.hash = "#eligibility"
-      $(".js-step-condition[data-step='step-eligibility']").addClass("step-current")
-      alert('Sorry, you are not eligible for the award') unless step == 'step-eligibility'
-    else
-      window.location.hash = "##{step.substr(5)}"
-      $(".js-step-condition[data-step='#{step}']").addClass("step-current")
+    window.location.hash = "##{step.substr(5)}"
+    $(".js-step-condition[data-step='#{step}']").addClass("step-current")
 
     # Show past link status
     $(".steps-progress-bar .js-step-link.step-past").removeClass("step-past")

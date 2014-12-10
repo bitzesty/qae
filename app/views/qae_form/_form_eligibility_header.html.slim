@@ -1,0 +1,20 @@
+- step_letters = ["A", "B", "C", "D", "E"]
+
+header.page-header.group.page-header-wider
+  div
+    h1
+      = form.title
+
+    .steps-progress-bar
+      ol
+        li.js-step-condition.step-current
+          span
+            = link_to eligibility_url(@form_answer) do
+              span.step-number
+                ' Eligibility
+        - for step in form.steps do
+          li
+            span
+              span.step-number
+                ' #{step_letters[step.index-1]}.
+              = step.short_title.html_safe
