@@ -42,17 +42,15 @@ $(function() {
   }
 
   $(".js-char-count").each(function() {
-    textInput = $(this);
-
     // Goes through each letter of inputs so that maxlength is triggered by Countable
     var loaded_text = $(this).val();
-    textInput.val("");
+    $(this).val("");
     for (c = 0; c<loaded_text.length; c++) {
-      textInput.val(textInput.val() + loaded_text[c])
-      Countable.once(textInput[0], counting)
+      $(this).val($(this).val() + loaded_text[c])
+      Countable.once(this, counting)
     }
 
     // Makes word count dynamic
-    Countable.live(textInput[0], counting)
+    Countable.live(this, counting)
   });
 });
