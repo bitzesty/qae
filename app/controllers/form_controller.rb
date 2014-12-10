@@ -37,6 +37,7 @@ class FormController < ApplicationController
   end
 
   def submit_confirm
+    load_eligibilities
     render template: 'qae_form/confirm'
   end
 
