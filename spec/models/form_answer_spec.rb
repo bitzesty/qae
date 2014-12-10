@@ -22,19 +22,21 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   context 'URN' do
-    before do 
+    before do
       ["urn_seq_trade","urn_seq_innovation","urn_seq_development","urn_seq_promotion"].each { |seq|
         FormAnswer.connection.execute("ALTER SEQUENCE #{seq} RESTART")
       }
+
+      FormAnswer.any_instance.stub(:eligible?) { true }
     end
-    let!(:form_answer) { FactoryGirl.create(:form_answer, :submitted=>true) }
+    let!(:form_answer) { FactoryGirl.create(:form_answer, submitted: true) }
 
     it 'creates form with URN' do
       expect(form_answer.urn).to eq('QA0001/14T')
     end
 
     it 'increments URN' do
-      other_form_answer = FactoryGirl.create(:form_answer, :submitted=>true)
+      other_form_answer = FactoryGirl.create(:form_answer, submitted: true)
       expect(other_form_answer.urn).to eq('QA0002/14T')
     end
   end
