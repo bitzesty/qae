@@ -4,5 +4,16 @@
       = form_answer.errors[:base].join(' ')
   article.group role="article"
     .inner
-      = render "qae_form/#{form_answer.award_type}_eligibility_form"
+      - award_eligibility = @form_answer.load_eligibility(current_user)
+      - basic_eligibility = @form_answer.load_basic_eligibility(current_user)
+
+      = simple_fields_for :eligibility, award_eligibility do |f|
+        = render "qae_form/#{form_answer.award_type}_eligibility_form", basic_eligibility: basic_eligibility, award_eligibility: award_eligibility, f: f
+
+      .current-question#current-question
+        #form_eligibility_show
+          = render "qae_form/eligibility_answers", award_eligibility: award_eligibility, basic_eligibility: basic_eligibility
+        #form_eligibility_questions.visuallyhidden
+          = render "qae_form/hidden_eligibility_form", award_eligibility: award_eligibility, basic_eligibility: basic_eligibility
+
       = render 'qae_form/form_eligibility_footer'
