@@ -34,6 +34,10 @@ jQuery ->
     if isCheckboxQuestion(question)
       return question.find("input[type='checkbox']").filter(":checked").length
 
+  # This is a very primitive way of testing.
+  # Should be refactored once forms stabilize.
+  # 
+  # TODO: Refactor this later on
   validate = ->
     required = $("div.step-current .question-required")
 
@@ -208,6 +212,25 @@ jQuery ->
         if date.diff(expectedStart, "days") < 0 or date.diff(expectedEnd, "days") > 0
           subq.parent().find(".errors-container").append("<li>Date is out of range.</li>")
           q.addClass("question-has-errors")
+          validates = false
+
+    if $(".question-block[data-answer='overseas_sales-total-overseas-sales'] > .conditional-question").hasClass("show-question")
+      questions = $(".question-block[data-answer='overseas_sales-total-overseas-sales'] .question-group .conditional-question.show-question .row span")
+      direct = $(".question-block[data-answer='overseas_sales_direct-of-which-direct'] .question-group .conditional-question.show-question .row span")
+      indirect = $(".question-block[data-answer='overseas_sales_indirect-of-which-indirect'] .question-group .conditional-question.show-question .row span")
+
+      $(".question-block[data-answer='overseas_sales-total-overseas-sales']").removeClass("question-has-errors")
+      
+      for question,i in questions
+        $(question).find(".errors-container").empty()
+
+        val = parseFloat($(question).find("input").val() or 0)
+        dir = parseFloat($(direct[i]).find("input").val() or 0)
+        ind = parseFloat($(indirect[i]).find("input").val() or 0)
+
+        if (dir + ind) != val
+          $(question).find(".errors-container").append("<li>Total doesn't match values from questions below.</li>")
+          $(".question-block[data-answer='overseas_sales-total-overseas-sales']").addClass("question-has-errors")
           validates = false
 
     return validates
