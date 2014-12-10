@@ -3,7 +3,7 @@ doctype html
 html
   head
     title
-      = content_for?(:title) ? yield(:title) : "Queens Award for Enterprise"
+      = content_for?(:title) ? yield(:title) : "Queen's Awards for Enterprise"
 
     = stylesheet_link_tag "application.css"
     /[if IE 6]
@@ -31,7 +31,7 @@ html
       .content
         nav#proposition-menu
           a#proposition-name href="/"
-            ' Queens Award for Enterprise
+            ' Queen's Awards for Enterprise
             span.alpha-tag ALPHA
           - if current_admin || current_user
             ul#proposition-links.user-account-links

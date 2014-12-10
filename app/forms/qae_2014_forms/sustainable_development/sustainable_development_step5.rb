@@ -8,7 +8,7 @@ class QAE2014Forms
           text 'I confirm that I have the consent of the Head of the applicant business (as identified in A11) to submit this entry form.'
         end
 
-        options :agree_to_be_contacted, %Q{We will contact you regarding your entry. We may also wish to contact you about other issues relating to The Queen's Award for Enterprise (eg. acting as a case study). Are you happy for us to do this?} do
+        options :agree_to_be_contacted, %Q{We will contact you regarding your entry. We may also wish to contact you about other issues relating to The Queen's Awards for Enterprise (eg. acting as a case study). Are you happy for us to do this?} do
           ref 'E 2'
           yes_no
         end

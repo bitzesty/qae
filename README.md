@@ -1,4 +1,4 @@
-Queens Award for Enterprise
+Queen's Awards for Enterprise
 ---------------------------
 
 ## Setup Notes:
