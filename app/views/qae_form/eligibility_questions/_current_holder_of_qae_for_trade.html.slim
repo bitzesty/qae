@@ -1,0 +1,7 @@
+.question
+  h2 = Eligibility::Trade.label(:current_holder_of_qae_for_trade)
+  .question-body
+    = f.input :current_holder_of_qae_for_trade, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  span.clear
+
+  = f.input :qae_for_trade_expiery_date, as: :select, include_blank: true, wrapper_html: { class: 'visuallyhidden' }, label: Eligibility::Trade.label(:qae_for_trade_expiery_date)
