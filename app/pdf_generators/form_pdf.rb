@@ -109,12 +109,13 @@ class FormPdf < Prawn::Document
                                          valign: :center
 
     # Add fomr URN below user general information
-    text_box form_answer.urn, at: [32.mm, 129.mm + offset], 
-                                      width: 100.mm, 
-                                      height: 20.mm, 
-                                      size: 14, style: :bold, 
-                                      align: :left, 
-                                      valign: :center
+    text_box form_answer.urn.present? ? form_answer.urn : "URN IS UNDEFINED", 
+      at: [32.mm, 129.mm + offset], 
+      width: 100.mm, 
+      height: 20.mm, 
+      size: 14, style: :bold, 
+      align: :left, 
+      valign: :center
 
     move_down 40.mm
   end
