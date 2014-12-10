@@ -44,12 +44,18 @@ class QAE2014Forms
           context %Q{
             <p>These figures should be for your entire organisation.</p>
           }
-          ref 'B 5'
           conditional :development_performance_years, :true
         end
 
+        textarea :innovation_excluded_explanation, 'Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.' do
+          ref 'B 5'
+          rows 5
+          words_max 150
+          conditional :innovation_performance_years, :true
+        end
+
         development_by_years :total_turnover, 'Total turnover' do
-          classes "sub-question"
+          ref 'B 6'
           required
           conditional :development_performance_years, :true
           drop_conditional :drops_in_turnover
@@ -101,7 +107,7 @@ class QAE2014Forms
         end
 
         header :product_financials, 'Product/Service Financials' do
-          ref 'B 6'
+          ref 'B 7'
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
         end
@@ -173,7 +179,7 @@ class QAE2014Forms
         end
 
         development_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
-          ref 'B 7'
+          ref 'B 8'
           required
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
@@ -189,7 +195,7 @@ class QAE2014Forms
         end
 
         development_by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
-          ref 'B 8'
+          ref 'B 9'
           required
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
@@ -205,7 +211,7 @@ class QAE2014Forms
         end
 
         textarea :development_performance, "Explain the cost savings you or your customers' businesses made as a result of the introduction of the product/service/management approach." do
-          ref 'B 9'
+          ref 'B 10'
           required
           context %Q{
             <p>Use figures if known.</p>
@@ -215,14 +221,14 @@ class QAE2014Forms
         end 
 
         textarea :investments_details, "Please enter details of all investments made in your product/service/management approach on a yearly basis both during and prior to your entry period." do
-          ref 'B 10'
+          ref 'B 11'
           required
           rows 5
           words_max 500
         end
 
         textarea :roi_details, 'How long did it take the investment indicated above to be repaid out of profits? When and how was this repayment achieved?' do
-          ref 'B 11'
+          ref 'B 12'
           classes "sub-question"
           required
           context %Q{

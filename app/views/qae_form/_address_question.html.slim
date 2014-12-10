@@ -1,11 +1,13 @@
 .question-group
   label
     ' Building and street
+    ul.errors-container
     input.large.js-trigger-autosave type="text" name="#{question.key}_building" value=answers["#{question.key}_building"]
   input.large.js-trigger-autosave type="text" name="#{question.key}_street" value=answers["#{question.key}_street"]
 .question-group
   label
     ' Town or city
+    ul.errors-container
     input.medium.js-trigger-autosave type="text" name="#{question.key}_city" value=answers["#{question.key}_city"]
 .question-group
   label
@@ -15,4 +17,5 @@
 .question-group
   label
     ' Postcode
+    ul.errors-container
     input.small.js-trigger-autosave type="text" name="#{question.key}_postcode" value=answers["#{question.key}_postcode"]

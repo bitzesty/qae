@@ -1,7 +1,8 @@
 .question-group
-  input.js-trigger-autosave.medium type="email" name="#{question.key}_primary" value=answers["#{question.key}_primary"]
+  input.js-trigger-autosave.medium type="text" name="#{question.key}_primary" value=answers["#{question.key}_primary"]
 .question-group
   label
     ' Confirm email address
-    input.js-trigger-autosave.medium type="email" name="#{question.key}_confirmation" value=answers["#{question.key}_confirmation"]
+    ul.errors-container
+    input.js-trigger-autosave.medium.match type="text" name="#{question.key}_confirmation" value=answers["#{question.key}_confirmation"] data-match="#{question.key}_primary"
 // Validate both are the same

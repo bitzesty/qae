@@ -2,6 +2,7 @@ class QAE2014Forms
   class << self
     def innovation_step1
       @innovation_step1 ||= Proc.new {
+        # TODO Pre-filled from registration details
         text :company_name, 'Full/legal name of your organisational unit' do
           required
           ref 'A 1'
@@ -41,6 +42,7 @@ class QAE2014Forms
           required
           ref 'A 4'
           context '<p>Businesses which began trading after 01/10/2012 are not eligible for this award.</p>'
+          date_between '01/10/2012', '01/10/2013'
         end
 
         options :queen_award_holder, %Q{Are you a current Queen's Award holder (2010-2014)?} do
@@ -109,6 +111,7 @@ class QAE2014Forms
           style "largest"
         end
 
+        # Prefilled from registration details
         address :principal_address, 'Principal address of your organisational unit' do
           required
           ref 'A 8'
@@ -117,7 +120,6 @@ class QAE2014Forms
         text :website_url, 'Website URL' do
           required
           ref 'A 9'
-          type :url
         end
 
         dropdown :business_sector, 'Business Sector' do
@@ -146,7 +148,6 @@ class QAE2014Forms
         text :head_email, 'Email address' do
           classes "sub-question"
           required
-          type :email
         end
 
         options :is_division, 'Are you a division, branch or subsidiary?' do
