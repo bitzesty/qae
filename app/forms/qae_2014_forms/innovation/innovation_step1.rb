@@ -2,6 +2,7 @@ class QAE2014Forms
   class << self
     def innovation_step1
       @innovation_step1 ||= Proc.new {
+        # TODO Pre-filled from registration details
         text :company_name, 'Full/legal name of your organisational unit' do
           required
           ref 'A 1'
@@ -110,6 +111,7 @@ class QAE2014Forms
           style "largest"
         end
 
+        # Prefilled from registration details
         address :principal_address, 'Principal address of your organisational unit' do
           required
           ref 'A 8'

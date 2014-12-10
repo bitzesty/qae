@@ -13,6 +13,7 @@ class QAE2014Forms
           yes_no
         end
 
+        # This section will be pre-filled with the account details provided during registration
         contact :contact, 'Details of a contact within your business for application-related enquiries' do
           ref 'E 3'
           required
