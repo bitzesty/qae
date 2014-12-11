@@ -1,5 +1,7 @@
 .question
-  h2 = Eligibility::Trade.label(:any_dips_over_the_last_three_years)
+  h2
+    = Eligibility::Trade.label(:any_dips_over_the_last_three_years)
+    abbr  *
   .question-body
     = f.input :any_dips_over_the_last_three_years, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
   span.clear

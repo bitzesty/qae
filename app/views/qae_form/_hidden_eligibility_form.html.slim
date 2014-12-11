@@ -2,7 +2,9 @@
   = simple_fields_for :basic_eligibility, current_user.basic_eligibility do |f|
     - current_user.basic_eligibility.answers.each do |question, answer|
       .question
-        h2 = Eligibility::Basic.label(question)
+        h2
+          = Eligibility::Basic.label(question)
+          abbr  *
         = render "eligibilities/#{question}", f: f
 
 - if award_eligibility.answers

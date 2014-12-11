@@ -1,5 +1,7 @@
 .question
+  h2
+    = Eligibility::Innovation.label(:was_on_market_for_two_years)
+    abbr  *
   .question-body
-    h2 = Eligibility::Innovation.label(:was_on_market_for_two_years)
     = f.input :was_on_market_for_two_years, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
   span.clear
