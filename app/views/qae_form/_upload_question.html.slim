@@ -1,5 +1,11 @@
-.js-upload-wrapper data-max-attachments=question.max_attachments
+.js-upload-wrapper data-max-attachments=question.max_attachments data-name=question.key
   ul.js-uploaded-list.list-add.visuallyhidden
+    - for i in (answers[question.key].nil? ? [] : (answers[question.key].is_a?(Array) ? answers[question.key] : [answers[question.key]])).map{|i| attachments[i.to_i]}.compact
+      li
+        = i.original_filename
+        input type='hidden' name=question.key value=i.id
+        a.remove-link href="#"
+          | Remove
   span.button
     span
       | Add file

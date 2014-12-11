@@ -217,13 +217,18 @@ jQuery ->
     wrapper = $el.closest('div.js-upload-wrapper')
     button = wrapper.find('span.button')
     list = wrapper.find('.js-uploaded-list')
+
     max = wrapper.data('max-attachments')
+    name = wrapper.data('name')
 
     progress_all = (e, data) ->
 
     update_visibility = () ->
       list_elements = list.find('li')
       count = list_elements.length
+      if count > 0
+        list.removeClass('visuallyhidden')
+
       if !max || count < max
         button.removeClass('visuallyhidden')
       else
@@ -235,6 +240,9 @@ jQuery ->
     upload_done = (e, data) ->
       console.log 'done'
       new_el = $("<li>").text(data.result['original_filename'])
+
+      hidden_input = $("<input>").prop('type', 'hidden').prop('name', name).prop('value', data.result['id'])
+      new_el.append(hidden_input)
 
       remove_link_clicked = (e) ->
         e.preventDefault()
@@ -250,6 +258,17 @@ jQuery ->
       list.append(new_el)
       list.removeClass('visuallyhidden')
       update_visibility()
+
+    wrapper.find('a.remove-link').each (idx, el) ->
+      console.log 'adding click for', el
+      $(el).click (e) ->
+        e.preventDefault()
+        li = $(el).closest 'li'
+        li.remove()
+        update_visibility()
+        false
+
+    update_visibility()
 
     $el.fileupload(
       url: attachments_url

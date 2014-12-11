@@ -18,6 +18,7 @@ class FormAnswer < ActiveRecord::Base
     has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
     has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
     has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
+    has_many :form_answer_attachment
   end
 
   begin :validations

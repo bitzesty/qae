@@ -33,7 +33,7 @@ fieldset class="question-block js-conditional-answer #{question.classes} #{'ques
           = question.title
           /- unless question.required
             '  (optional)
-      = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers}
+      = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
       .clear
 
     /- for help in question.help

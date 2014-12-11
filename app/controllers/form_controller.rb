@@ -75,5 +75,9 @@ class FormController < ApplicationController
 
   def set_form_answer
     @form_answer = FormAnswer.for_account(current_user.account).find(params[:id])
+    @attachments = @form_answer.form_answer_attachment.inject({}) do |r, attachment|
+        r[attachment.id] = attachment
+        r
+      end
   end
 end
