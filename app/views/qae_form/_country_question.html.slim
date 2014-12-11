@@ -1,3 +1,2 @@
 .question-group
-  // TODO fix generated ID and name
-  = country_select(question, "#{question.key}_country", priority_countries: ["GB"])
+  = country_select(question, "#{question.key}_country", {priority_countries: ["GB"], selected: answers["#{question.key}_country"]}, {name: "#{question.key}_country"})

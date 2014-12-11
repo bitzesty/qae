@@ -20,6 +20,7 @@ gem 'slim-rails', '~> 2.1'
 gem 'slimmer', '~> 5.0.0', github: 'alphagov/slimmer', branch: 'master'
 gem 'wicked', '~> 1.1'
 gem 'prawn'
+gem 'prawn-table'
 gem "draper"
 gem "decent_exposure"
 gem "decent_decoration"
