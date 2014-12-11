@@ -44,7 +44,7 @@ class FormController < ApplicationController
       @form = @form_answer.award_form
       render template: 'qae_form/show'
     else
-      redirect_to eligibility_url(@form_answer)
+      redirect_to form_award_eligibility_url(@form_answer)
     end
   end
 

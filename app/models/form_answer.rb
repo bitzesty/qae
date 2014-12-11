@@ -67,7 +67,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def eligible?
-    eligibility.eligible? && basic_eligibility.eligible?
+    eligibility && eligibility.eligible? && basic_eligibility && basic_eligibility.eligible?
   end
 
   private
