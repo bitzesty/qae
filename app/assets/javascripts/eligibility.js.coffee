@@ -9,8 +9,3 @@ jQuery ->
     toggleOther()
     ($ '#eligibility_current_holder_of_qae_for_trade_true, #eligibility_current_holder_of_qae_for_trade_false').on 'change', ->
       toggleOther()
-
-  ($ '#eligibility-submit').on 'click', (e) ->
-    do e.preventDefault
-
-    ($ '.new_eligibility_form').submit()

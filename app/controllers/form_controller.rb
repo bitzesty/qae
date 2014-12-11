@@ -76,10 +76,18 @@ class FormController < ApplicationController
   end
 
   def eligibility_params
-    params.require(:eligibility).permit(*@form_answer.eligibility_class.questions)
+    if params[:eligibility]
+      params.require(:eligibility).permit(*@form_answer.eligibility_class.questions)
+    else
+      {}
+    end
   end
 
   def basic_eligibility_params
-    params.require(:basic_eligibility).permit(*Eligibility::Basic.questions)
+    if params[:basic_eligibility]
+      params.require(:basic_eligibility).permit(*Eligibility::Basic.questions)
+    else
+      {}
+    end
   end
 end
