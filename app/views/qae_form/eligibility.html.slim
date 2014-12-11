@@ -1,4 +1,4 @@
-= simple_form_for @eligibility_form, url: update_eligibility_url(@form_answer), as: :eligibility_form do |f|
+= simple_form_for @eligibility_form, url: update_form_award_eligibility_url(@form_answer), as: :eligibility_form do |f|
   = render partial: 'qae_form/form_eligibility_header', object: @form, as: 'form'
 
   .article-container.article-container-wider.step-article.js-step-condition.step-current data-step="step-eligibility"

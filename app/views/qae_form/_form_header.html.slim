@@ -9,7 +9,7 @@ header.page-header.group.page-header-wider
       ol
         li.js-step-condition.step-past
           span
-            = link_to eligibility_url(@form_answer) do
+            = link_to form_award_eligibility_url(@form_answer) do
               span.step-number
                 ' Eligibility
         - for step in form.steps do
