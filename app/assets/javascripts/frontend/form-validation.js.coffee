@@ -158,18 +158,19 @@ window.FormValidation =
 
   validateMoneyByYears: (question) ->
     for subquestion in question.find(".js-conditional-question.show-question input")
-      subq = $(subquestion)
+      if $(subquestion).closest(".js-conditional-question").hasClass("show-question")
+        subq = $(subquestion)
 
-      if not subq.val() and question.hasClass("question-required")
-        @appendMessage(subq.parent(), "This field is required.")
-        @addErrorClass(question)
-        continue
-      else if not subq.val()
-        continue
+        if not subq.val() and question.hasClass("question-required")
+          @appendMessage(subq.parent(), "This field is required.")
+          @addErrorClass(question)
+          continue
+        else if not subq.val()
+          continue
 
-      if not subq.val().toString().match(@numberRegex)
-        @appendMessage(subq.parent(), "Not a valid currency value.")
-        @addErrorClass(question)
+        if not subq.val().toString().match(@numberRegex)
+          @appendMessage(subq.parent(), "Not a valid currency value.")
+          @addErrorClass(question)
 
   validateDateByYears: (question) ->
     for subquestion in question.find(".js-conditional-question.show-question input")
