@@ -2,6 +2,7 @@ class Eligibility < ActiveRecord::Base
   extend Enumerize
 
   belongs_to :user
+  belongs_to :form_answer
 
   after_save :set_passed
 
