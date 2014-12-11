@@ -42,6 +42,7 @@ class QAE2014Forms
           required
           ref 'A 4'
           context '<p>Businesses which began trading after 01/10/2012 are not eligible for this award.</p>'
+          date_max '01/10/2012'
         end
 
         options :queen_award_holder, %Q{Are you a current Queen's Award holder (2010-2014)?} do
