@@ -7,23 +7,14 @@ header.page-header.group.page-header-wider
 
     .steps-progress-bar
       ol
-        li.js-step-condition.step-past
+        li.js-step-condition.step-current
           span
             = link_to form_award_eligibility_url(@form_answer) do
               span.step-number
                 ' Eligibility
         - for step in form.steps do
-          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step == form.steps.first && params[:action] != 'eligibility')
+          li
             span
               span.step-number
                 ' #{step_letters[step.index-1]}.
               = step.short_title.html_safe
-
-    - for step in form.steps do
-      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}"
-        ' Step
-        = step.index
-        '  of
-        = form.steps.length
-        ' :
-        = step.title

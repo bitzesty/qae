@@ -1,0 +1,17 @@
+= simple_form_for @eligibility_form, url: update_form_award_eligibility_url(@form_answer), as: :eligibility_form do |f|
+  = render partial: 'qae_form/form_eligibility_header', object: @form, as: 'form'
+
+  .article-container.article-container-wider.step-article.js-step-condition.step-current data-step="step-eligibility"
+    article.group role="article"
+      .inner
+        = simple_fields_for :eligibility, @eligibility_form.eligibility do |f|
+          = render "qae_form/#{@form_answer.award_type}_eligibility_form", basic_eligibility: @eligibility_form.basic_eligibility, award_eligibility: @eligibility_form.eligibility, f: f
+        .visuallyhidden
+          = f.submit
+        .current-question#current-question
+          #form_eligibility_show
+            = render "qae_form/eligibility_answers", basic_eligibility: @eligibility_form.basic_eligibility, award_eligibility: @eligibility_form.eligibility
+          #form_eligibility_questions.visuallyhidden
+            = render "qae_form/hidden_eligibility_form", basic_eligibility: @eligibility_form.basic_eligibility, award_eligibility: @eligibility_form.eligibility
+
+        = render 'qae_form/form_eligibility_footer'

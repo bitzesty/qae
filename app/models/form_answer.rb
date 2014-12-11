@@ -13,6 +13,11 @@ class FormAnswer < ActiveRecord::Base
   begin :associations
     belongs_to :user
     belongs_to :account
+
+    has_one :basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
+    has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
+    has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
+    has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
   end
 
   begin :validations
@@ -53,27 +58,16 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
+  def eligibility
+    public_send("#{award_type}_eligibility")
+  end
+
   def eligibility_class
     "Eligibility::#{award_type.capitalize}".constantize
   end
 
-  def load_eligibility(user)
-    if eligibility && eligibility.any?
-      eligibility_class.new(eligibility)
-    else user.public_send("#{award_type}_eligibility") || user.public_send("build_#{award_type}_eligibility")
-    end
-  end
-
-  def load_basic_eligibility(user)
-    if basic_eligibility && basic_eligibility.any?
-      Eligibility::Basic.new(basic_eligibility)
-    else
-      user.basic_eligibility || user.build_basic_eligibility
-    end
-  end
-
   def eligible?
-    eligibility_class.new(eligibility).eligible? && Eligibility::Basic.new(basic_eligibility).eligible?
+    eligibility && eligibility.eligible? && basic_eligibility && basic_eligibility.eligible?
   end
 
   private

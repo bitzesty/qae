@@ -1,4 +1,4 @@
-.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}"
+.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step == form.steps.first)
   article.group role="article"
     .inner
       - if step.context

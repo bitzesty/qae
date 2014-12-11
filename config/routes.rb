@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   post '/form/:id'                                      => "form#submit_form",                                            as: 'submit_form'
   post '/check_eligibility/:id'                         => "form#check_eligibility",                                      as: 'check_eligibility'
   get  '/form/:id/confirmation'                         => "form#submit_confirm",                                         as: 'submit_confirm'
-
+  get  '/form/:id/eligibility'                          => "form#eligibility",                                            as: 'form_award_eligibility'
+  post '/form/:id/update_eligibility'                   => "form#update_eligibility",                                     as: 'update_form_award_eligibility'
   get '/dashboard'                                      => "content_only#dashboard",                                      as: 'dashboard'
   get '/eligibility_check_1'                            => "content_only#eligibility_check_1",                            as: 'eligibility_check_1'
   get '/eligibility_check_2'                            => "content_only#eligibility_check_2",                            as: 'eligibility_check_2'
@@ -41,7 +42,7 @@ Rails.application.routes.draw do
 
   get '/apply_international_trade_award'                => "content_only#apply_international_trade_award",                as: 'apply_international_trade_award'
   get '/international_trade_award_eligible'             => "content_only#international_trade_award_eligible",             as: 'international_trade_award_eligible'
-  get '/international_trade_award_eligible_failure'     => "content_only#international_trade_award_eligible_failure",     as: 'international_trade_award_eligible_failure'
+  get '/international_trade_award_eligible_failure'     => "content_only#international_trade_award_eligible_failure",     as: 'trade_award_eligible_failure'
   get '/international_trade_award_form_1'               => "content_only#international_trade_award_form_1",               as: 'international_trade_award_form_1'
   get '/international_trade_award_form_2'               => "content_only#international_trade_award_form_2",               as: 'international_trade_award_form_2'
   get '/international_trade_award_form_3'               => "content_only#international_trade_award_form_3",               as: 'international_trade_award_form_3'
@@ -51,7 +52,7 @@ Rails.application.routes.draw do
 
   get '/apply_sustainable_development_award'            => "content_only#apply_sustainable_development_award",            as: 'apply_sustainable_development_award'
   get '/sustainable_development_award_eligible'         => "content_only#sustainable_development_award_eligible",         as: 'sustainable_development_award_eligible'
-  get '/sustainable_development_award_eligible_failure' => "content_only#sustainable_development_award_eligible_failure", as: 'sustainable_development_award_eligible_failure'
+  get '/sustainable_development_award_eligible_failure' => "content_only#sustainable_development_award_eligible_failure", as: 'development_award_eligible_failure'
   get '/sustainable_development_award_form_1'           => "content_only#sustainable_development_award_form_1",           as: 'sustainable_development_award_form_1'
   get '/sustainable_development_award_form_2'           => "content_only#sustainable_development_award_form_2",           as: 'sustainable_development_award_form_2'
   get '/sustainable_development_award_form_3'           => "content_only#sustainable_development_award_form_3",           as: 'sustainable_development_award_form_3'

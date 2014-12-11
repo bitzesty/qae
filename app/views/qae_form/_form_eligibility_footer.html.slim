@@ -1,9 +1,9 @@
 footer
   nav.pagination role="navigation" aria-label="Pagination"
     ul.group
-      li.next.js-step-link data-step="step-#{@form.steps.first.title.parameterize}"
-          = link_to "#", rel: "next", title: "Navigate to next part" do
-            span class="pagination-label"
-              ' Next step
-            span class="pagination-part-title"
-              = @form.steps.first.title
+      li.next
+        = button_tag :submit, rel: "next", title: "Navigate to next part" do
+          span class="pagination-label"
+            ' Next step
+          span class="pagination-part-title"
+            = @form.steps.first.title

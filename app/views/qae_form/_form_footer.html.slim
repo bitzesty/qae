@@ -9,8 +9,8 @@ footer
             span class="pagination-part-title"
               = step.previous.title
       - else
-        li.previous.js-step-link data-step="step-eligibility"
-          = link_to "#", rel: "prev", title: "Navigate to previous part" do
+        li.previous
+          = link_to form_award_eligibility_url(@form_answer), rel: "prev", title: "Navigate to previous part" do
             span class="pagination-label"
               ' Previous step
             span class="pagination-part-title"
