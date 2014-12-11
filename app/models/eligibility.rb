@@ -2,7 +2,6 @@ class Eligibility < ActiveRecord::Base
   extend Enumerize
 
   belongs_to :user
-  validates :user, presence: true
 
   after_save :set_passed
 
