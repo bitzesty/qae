@@ -4,11 +4,11 @@
   .article-container.article-container-wider.step-article.js-step-condition.step-current data-step="step-eligibility"
     article.group role="article"
       .inner
-        = simple_fields_for :eligibility, @eligibility_form.eligibility do |f|
-          = render "qae_form/#{@form_answer.award_type}_eligibility_form", basic_eligibility: @eligibility_form.basic_eligibility, award_eligibility: @eligibility_form.eligibility, f: f
-        .visuallyhidden
-          = f.submit
         .current-question#current-question
+          = simple_fields_for :eligibility, @eligibility_form.eligibility do |f|
+            = render "qae_form/#{@form_answer.award_type}_eligibility_form", basic_eligibility: @eligibility_form.basic_eligibility, award_eligibility: @eligibility_form.eligibility, f: f
+          .visuallyhidden
+            = f.submit
           #form_eligibility_show
             = render "qae_form/eligibility_answers", basic_eligibility: @eligibility_form.basic_eligibility, award_eligibility: @eligibility_form.eligibility
           #form_eligibility_questions.visuallyhidden
