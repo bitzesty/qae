@@ -178,7 +178,7 @@ class QAE2014Forms
           ref 'C 10'
           context %Q{
             <p>We can't guarantee these will be reviewed, so inlcude any vital information within the form.</p>
-            <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb</p>
+            <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb.</p>
           } # TODO!
           help 'Information we will not review', %Q{
             <p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>

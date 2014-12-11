@@ -10,8 +10,16 @@
 }
 
 // Error styling
+.question-has-errors .errors-container {
+  margin: 0;
+  margin-bottom: 0.2em;
+  padding: 0;
+  list-style: none;
+}
+
 .field_with_errors .error,
-.smart_answer article .error {
+.smart_answer article .error,
+.question-has-errors .errors-container li {
   @include core-19;
   clear: both;
   display: block;
@@ -20,6 +28,7 @@
   padding: 0;
   background: transparent;
   border: none;
+  color: $error-colour;
 }
 
 .page-devise .boolean .error {

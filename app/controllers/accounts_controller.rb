@@ -18,7 +18,7 @@ class AccountsController < ApplicationController
   end
 
   def password_settings
-    @active_step = 4
+    @active_step = 5
   end
 
   def update_correspondent_details
@@ -44,13 +44,7 @@ class AccountsController < ApplicationController
   def update_contact_settings
     current_user.set_step(3)
     if current_user.update(contact_settings_params)
-      #redirect_to add_collaborators_account_path
-      unless current_user.completed_registration
-        flash.notice = 'Account was successfully created'
-        redirect_to dashboard_path
-      else
-        redirect_to password_settings_account_path
-      end
+      redirect_to add_collaborators_account_path
     else
       @active_step = 3
       render :contact_settings
@@ -72,12 +66,12 @@ class AccountsController < ApplicationController
   end
 
   def update_password_settings
-    current_user.setStep(4)
+    current_user.setStep(5)
     if current_user.update(password_settings_params)
       flash.notice = 'Account was successfully updated'
       redirect_to dashboard_path
     else
-      @active_step = 4
+      @active_step = 5
       render :password_settings
     end
   end

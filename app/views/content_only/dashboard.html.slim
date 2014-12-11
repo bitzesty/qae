@@ -20,7 +20,6 @@ header.page-header.group
         - if @user_award_forms.any?
           h2
             ' Current applications
-
           ul.applications-list
             - @user_award_forms.each do |award|
               li
@@ -32,26 +31,27 @@ header.page-header.group
                   /' Unclear eligibility
                 .pull-right
                   = link_to "Continue application", edit_form_path(award.id), class: "inline-link text-right"
+          br
 
         h2
-          ' Awards for organisations
+          ' Applying for a Queen’s Award for your organisation?
 
         p
-          ' If you're unsure about the category you want to apply
-
-          = link_to "check which awards your organisation is eligible for.", award_eligibility_path
+          ' If you’re unsure about which category to enter,
+          = link_to "check which awards your organisation is eligible for", award_eligibility_path
+          ' .
 
         p
-          ' If you're already sure about the category you want to apply:
+          ' Otherwise, select a category below.
 
         = render "shared/application_awards_status"
 
         br
 
         h2
-          ' Award for individuals
+          ' Know someone who does great work promoting entrepreneurial skills and values?
         p
-          ' If you're nominating someone for the Enterprise Promotion Aaward, you can check their eligibility by starting the appication.
+          = link_to "Check to see if they are eligible for a Queen’s Award for Enterprise Promotion."
 
         ul.applications-list
           li

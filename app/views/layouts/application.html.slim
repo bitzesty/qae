@@ -3,7 +3,7 @@ doctype html
 html
   head
     title
-      = content_for?(:title) ? yield(:title) : "Queens Award for Enterprise"
+      = content_for?(:title) ? yield(:title) : "Queen's Awards for Enterprise"
 
     = stylesheet_link_tag "application.css"
     /[if IE 6]
@@ -31,7 +31,7 @@ html
       .content
         nav#proposition-menu
           a#proposition-name href="/"
-            ' Queens Award for Enterprise
+            ' Queen's Awards for Enterprise
             span.alpha-tag ALPHA
           - if current_admin || current_user
             ul#proposition-links.user-account-links
@@ -42,6 +42,15 @@ html
                   = link_to "Log out", destroy_admin_session_path, method: :delete
                 - else
                   = link_to "Log out", destroy_user_session_path, method: :delete
+
+    #global-breadcrumb.header-context
+      ol.group role="breadcrumbs"
+        - if user_signed_in?
+          li
+            = link_to "Dashboard", dashboard_path
+        - else
+          li
+            = link_to "Home", root_path
 
     #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
       #QAE
