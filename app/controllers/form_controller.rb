@@ -59,12 +59,16 @@ class FormController < ApplicationController
   end
 
   def add_attachment
-    params
-    @attachment = FormAnswerAttachment.new(params.merge(form_answer: @form_answer))
-    @attachment.save!
-    puts @attachment.inspect
-    head :created
-    render json: @attachment
+    attachment_params = params[:form]
+    attachment_params.merge!(form_answer_id: @form_answer.id)
+
+    attachment_params.merge!(original_filename: attachment_params[:file].original_filename) if attachment_params[:file].respond_to?(:original_filename)
+
+    attachment_params = attachment_params.permit(:original_filename, :file, :description, :link, :form_answer_id)
+
+    @attachment = FormAnswerAttachment.create!(attachment_params)
+
+    render json: @attachment, status: :created
   end
 
   private

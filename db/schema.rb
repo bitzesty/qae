@@ -60,10 +60,11 @@ ActiveRecord::Schema.define(version: 20141211103425) do
   add_index "eligibilities", ["user_id"], name: "index_eligibilities_on_user_id", using: :btree
 
   create_table "form_answer_attachments", force: true do |t|
-    t.integer  "form_id"
-    t.string   "file"
-    t.string   "link"
-    t.string   "description"
+    t.integer  "form_answer_id"
+    t.text     "file"
+    t.text     "original_filename"
+    t.text     "link"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

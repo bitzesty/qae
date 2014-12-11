@@ -1,1 +1,6 @@
-input.button.button-add.js-file-upload type="file" name="js-file-upload-input" *possible_read_only_ops
+.js-upload-wrapper data-max-attachments=question.max_attachments
+  ul.js-uploaded-list.list-add.visuallyhidden
+  span.button
+    span
+      | Add file
+    input.fileinput-button.js-file-upload type="file" name="form[file]" *possible_read_only_ops

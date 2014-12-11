@@ -208,19 +208,58 @@ jQuery ->
 
   # Fade out alerts after 10sec
   $(".flash").delay(10000).fadeOut()
+
   $('.js-file-upload').each (idx, el) ->
-    console.log 'el', el
     form = $(el).closest('form')
     attachments_url = form.data 'attachments-url'
-    $(el).fileupload(url: attachments_url)
-#{
-#        url: url,
-#        dataType: 'json',
-#        done: function (e, data) {
-#            $.each(data.result.files, function (index, file) {
-#                $('<p/>').text(file.name).appendTo('#files');
-#            });
-#        },
+    $el = $(el)
+
+    wrapper = $el.closest('div.js-upload-wrapper')
+    button = wrapper.find('span.button')
+    list = wrapper.find('.js-uploaded-list')
+    max = wrapper.data('max-attachments')
+
+    progress_all = (e, data) ->
+
+    update_visibility = () ->
+      list_elements = list.find('li')
+      count = list_elements.length
+      if !max || count < max
+        button.removeClass('visuallyhidden')
+      else
+        button.addClass('visuallyhidden')
+
+    upload_started = (e, data) ->
+      button.addClass('visuallyhidden') #TODO: show progressbar
+
+    upload_done = (e, data) ->
+      console.log 'done'
+      new_el = $("<li>").text(data.result['original_filename'])
+
+      remove_link_clicked = (e) ->
+        e.preventDefault()
+        new_el.remove()
+        update_visibility()
+        false
+
+      remove_link = $("<a>").addClass('remove-link').prop('href', '#').text('Remove')
+      remove_link.click remove_link_clicked
+
+      new_el.append(remove_link)
+      
+      list.append(new_el)
+      list.removeClass('visuallyhidden')
+      update_visibility()
+
+    $el.fileupload(
+      url: attachments_url
+      formData: () -> {}
+      done: upload_done
+      progressall: progress_all
+      send: upload_started
+    )
+
+
 #        progressall: function (e, data) {
 #            var progress = parseInt(data.loaded / data.total * 100, 10);
 #            $('#progress .progress-bar').css(
