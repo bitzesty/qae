@@ -173,29 +173,31 @@ window.FormValidation =
 
   validateDateByYears: (question) ->
     for subquestion in question.find(".js-conditional-question.show-question input")
-      subq = $(subquestion)
+      if $(subquestion).closest(".js-conditional-question").hasClass("show-question")
+        subq = $(subquestion)
 
-      val = subq.val()
+        val = subq.val()
 
-      if not val and question.hasClass("question-required")
-        @appendMessage(subq.parent(), "This field is required.")
-        @addErrorClass(question)
-        continue
-      else if not val
-        continue
+        if not val and question.hasClass("question-required")
+          @appendMessage(subq.parent(), "This field is required.")
+          @addErrorClass(question)
+          continue
+        else if not val
+          continue
 
-      dates = subq.find(".date-range").text().split(" - ")
-      expDateStart = dates[0]
-      expDateEnd = dates[1]
-      date = @toDate(val)
+        dates = subq.parent().find(".date-range").text().trim().split(" - ")
+        expDateStart = dates[0]
+        expDateEnd = dates[1]
+        date = @toDate(val)
 
-      if not date.isValid()
-        @appendMessage(subq.parent(), "Not a valid date")
-        @addErrorClass(question)
+        if not date.isValid()
+          @appendMessage(subq.parent(), "Not a valid date")
+          @addErrorClass(question)
 
-      if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
-        @appendMessage(subq.parent(), "Date is out of range.")
-        @addErrorClass(question)
+        if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
+          @appendMessage(subq.parent(), "Date should be between #{expDateStart} and #{expDateEnd}.")
+          @addErrorClass(question)
+
   validate: ->
     @clearAllErrors()
 
@@ -230,4 +232,3 @@ window.FormValidation =
       #  @validateTotalOverseas()
 
     return @validates
-
