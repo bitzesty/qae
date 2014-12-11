@@ -36,6 +36,26 @@ class FormPdf < Prawn::Document
     'total_net_assets'
   ]
 
+  ANSWER_DICTIONARY = {
+    '5 plus' => '2-4 years',
+    '2 plus' => '5 years or more',
+    'entire_business' => 'The entire business',
+    'single_product_or_service' => 'A single product or service',
+    'complete_now' => 'Complete full corporate responsibility form now',
+    'on' => 'I confirm that I have the consent of the Head of the applicant business (as identified in A11) to submit this entry form.'
+  }
+
+  HIDDEN_QUESTIONS = [
+    "confirmation_of_consent",
+    "agree_to_be_contacted",
+    "contact_email_confirmation",
+    "entry_confirmation"
+  ]
+
+  LOCKED_TO_HAVE_NO_SUB_QUESTIONS = [
+    'contact_email'
+  ]
+
   BASE_SUB_ATTRIBUTES_DICTIONARY = {
     principal_address: [
       ["building", "Building"],
@@ -54,7 +74,15 @@ class FormPdf < Prawn::Document
     total_turnover: FIVE_YEAR_STANDART_BLOCK,
     exports: FIVE_YEAR_STANDART_BLOCK,
     net_profit: FIVE_YEAR_STANDART_BLOCK,
-    total_net_assets: FIVE_YEAR_STANDART_BLOCK
+    total_net_assets: FIVE_YEAR_STANDART_BLOCK,
+    contact: [
+      ["title", "Title"],
+      ["first_name", "First name"],
+      ["last_name", "Last name"],
+      ["position", "Position"],
+      ["email_primary", "Email address"],
+      ["phone", "Telephone number"]
+    ]
   }  
 
   def initialize(form_answer)
@@ -63,9 +91,11 @@ class FormPdf < Prawn::Document
     @award_form = form_answer.award_form
     @user = form_answer.user
 
-    @answers = ActiveSupport::HashWithIndifferentAccess.new(form_answer.document)
+    @answers = ActiveSupport::HashWithIndifferentAccess.new(form_answer.document).reject do |key, value|
+      HIDDEN_QUESTIONS.include?(key.to_s)
+    end
     @filled_answers = answers.select { |k, v| v.present? }
-    @steps = [award_form.steps.second]
+    @steps = award_form.steps
     
     generate!
   end
@@ -95,7 +125,9 @@ class FormPdf < Prawn::Document
     end
 
     step_header(step)
-    cached_questions = step.questions
+    cached_questions = step.questions.reject do |question|
+      HIDDEN_QUESTIONS.include?(question.key.to_s)
+    end
 
     step.questions.select do |question| 
       render_question(cached_questions, question) 
@@ -107,7 +139,7 @@ class FormPdf < Prawn::Document
 
     if answer.present?
       question_block(question, answer) if answer.present?
-    else
+    elsif is_allowed_to_have_sub_questions?(question)
       sub_answers = fetch_sub_answers(cached_questions, question)
 
       if sub_answers.any?
@@ -197,9 +229,6 @@ class FormPdf < Prawn::Document
   def fetch_sub_answers(cached_questions, question)
     question_main_key = question.key.to_s
 
-    log_this "question_main_key: #{question_main_key}"
-    log_this "filled_answers_by_key(question_main_key): #{filled_answers_by_key(question_main_key)}"
-
     filled_answers_by_key(question_main_key).map do |key, value|
       sub_section = BASE_SUB_ATTRIBUTES_DICTIONARY[question_main_key.to_sym]
 
@@ -232,10 +261,6 @@ class FormPdf < Prawn::Document
   end
 
   def detect_title(question_main_key, sub_section, key)
-    log_this "question_main_key: #{question_main_key}"
-    log_this "sub_section: #{sub_section}"
-    log_this "key: #{key}"
-
     if sub_section.present?
       sub_question_block = fetch_sub_question_block_from_dictionary(question_main_key, sub_section, key)
 
@@ -262,14 +287,23 @@ class FormPdf < Prawn::Document
     value
   end
 
+  def decode_answer(value)
+    res = ANSWER_DICTIONARY[value.to_s]
+    res.present? ? res : value
+  end
+
   def answer_based_on_type(key, value)
     if key.to_s.include?('country')
       ISO3166::Country.countries.select do |country| 
         country[1] == value.strip
       end[0][0]
     else
-      value
+      decode_answer value
     end
+  end
+
+  def is_allowed_to_have_sub_questions?(question)
+    !LOCKED_TO_HAVE_NO_SUB_QUESTIONS.include? question.key.to_s
   end
 
   def main_header
