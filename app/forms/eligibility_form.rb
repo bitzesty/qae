@@ -10,20 +10,18 @@ class EligibilityForm
   end
 
   def eligibility
-    @eligibility ||= form_answer.eligibility || form_answer.build_eligibility
+    @eligibility ||= form_answer.public_send("#{form_answer.award_type}_eligibility") || form_answer.public_send("build_#{form_answer.award_type}_eligibility", filter(form_answer.user.public_send("build_#{form_answer.award_type}_eligibility").attributes))
   end
 
   def basic_eligibility
-    @basic_eligibility ||= form_answer.basic_eligibility || form_answer.build_basic_eligibility
+    @basic_eligibility ||= form_answer.basic_eligibility || form_answer.build_basic_eligibility(filter(form_answer.user.basic_eligibility.attributes))
   end
 
-  def update(attrs = {})
-    if valid?
-      eligibility.update(attrs[:eligibility])
-      basic_eligibility.update(attrs[:basic_eligibility])
-    else
-      false
-    end
+  def update(eligibility_attrs, basic_eligibility_attrs)
+    eligibility.update(eligibility_attrs)
+    basic_eligibility.update(basic_eligibility_attrs)
+
+    valid?
   end
 
   def valid?
@@ -32,5 +30,11 @@ class EligibilityForm
 
   def persisted?
     false
+  end
+
+  private
+
+  def filter(params)
+    params.except("id", "created_at", "updated_at")
   end
 end

@@ -27,7 +27,7 @@ class FormController < ApplicationController
 
   def update_eligibility
     @eligibility_form = EligibilityForm.new(@form_answer)
-    if @eligibility_form.update(params[:eligibility_form])
+    if @eligibility_form.update(eligibility_params, basic_eligibility_params)
       if @form_answer.eligible?
         redirect_to edit_form_url(@form_answer)
       else
@@ -35,21 +35,23 @@ class FormController < ApplicationController
       end
     else
       @form = @form_answer.award_form
-      render :eligibility
+      render template: 'qae_form/eligibility'
     end
   end
 
   def edit_form
-    @form = @form_answer.award_form
-    render template: 'qae_form/show'
+    if @form_answer.eligible?
+      @form = @form_answer.award_form
+      render template: 'qae_form/show'
+    else
+      redirect_to eligibility_url(@form_answer)
+    end
   end
 
   def submit_form
     path_params = request.path_parameters
-    doc = params.except(*path_params.keys).except(:eligibility, :basic_eligibility)
+    doc = params.except(*path_params.keys)
     @form_answer.document = doc
-    @form_answer.eligibility = params[:eligibility]
-    @form_answer.basic_eligibility = params[:basic_eligibility]
 
     @form_answer.submitted = true
     @form_answer.save!
@@ -62,20 +64,9 @@ class FormController < ApplicationController
   end
 
   def autosave
-    extracted_params = extract_params(request.body.read)
-
-    @form_answer.document = extracted_params[:doc]
-    @form_answer.eligibility = extracted_params[:eligibility]
-    @form_answer.basic_eligibility = extracted_params[:basic_eligibility]
+    @form_answer.document = ActiveSupport::JSON.decode(request.body.read)
     @form_answer.save!
     render :nothing => true
-  end
-
-  def check_eligibility
-    extracted_params = extract_params(request.body.read)
-    eligible = Eligibility::Basic.new(extracted_params[:basic_eligibility]).eligible?
-    eligible &= @form_answer.eligibility_class.new(extracted_params[:eligibility]).eligible?
-    render json: eligible
   end
 
   private
@@ -84,23 +75,11 @@ class FormController < ApplicationController
     @form_answer = FormAnswer.for_account(current_user.account).find(params[:id])
   end
 
-  def extract_params(body)
-    doc = ActiveSupport::JSON.decode(body)
-    eligibility = {}
-    basic_eligibility = {}
+  def eligibility_params
+    params.require(:eligibility).permit(*@form_answer.eligibility_class.questions)
+  end
 
-    doc.reject! do |q, a|
-      if q.match(/\Aeligibility\[/)
-        eligibility[q.gsub(/\Aeligibility\[(\w*)\]/, '\1')] = a
-
-        true
-      elsif q.match(/\Abasic_eligibility\[/)
-        basic_eligibility[q.gsub(/\Abasic_eligibility\[(\w*)\]/, '\1')] = a
-
-        true
-      end
-    end
-
-    { doc: doc, eligibility: eligibility, basic_eligibility: basic_eligibility }
+  def basic_eligibility_params
+    params.require(:basic_eligibility).permit(*Eligibility::Basic.questions)
   end
 end
