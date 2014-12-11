@@ -14,6 +14,8 @@ class Eligibility::Basic < Eligibility
   property :current_holder, boolean: true, label: "Are you a current Queen's Award holder?", accept: :not_nil
 
   def eligible?
+    return true if kind == 'nomination'
+
     current_step_index = self.class.questions.index(current_step) || self.class.questions.size - 1
     previous_questions = self.class.questions[0..current_step_index]
 
@@ -35,7 +37,7 @@ class Eligibility::Basic < Eligibility
   end
 
   def set_passed
-    if current_step == :current_holder && eligible?
+    if (current_step == :current_holder || current_step == :kind) && eligible?
       update_column(:passed, true)
     end
   end
