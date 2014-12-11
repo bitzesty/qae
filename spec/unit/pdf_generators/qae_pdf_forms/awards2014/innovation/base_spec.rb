@@ -89,16 +89,6 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
     end
   end
 
-  describe "#answered_step_questions" do
-    it "should return answered questions for selected step" do
-      step1_questions = pdf_generator.answered_step_questions(step1)
-      expect(step1_questions.map(&:key)).to be_eql step1_question_answers.keys
-
-      step2_questions = pdf_generator.answered_step_questions(step2)
-      expect(step2_questions.map(&:key)).to be_eql step2_question_answers.keys
-    end
-  end
-
   private
 
   def fetch_question_by_question_key(questions, question_key)
