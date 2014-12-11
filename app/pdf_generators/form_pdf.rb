@@ -9,6 +9,33 @@ class FormPdf < Prawn::Document
   # They are hardcoded in views.
   # So we use this dictionary  in terms to fetch proper title and position in list
 
+  UNDEFINED_TITLE = 'TITLE AND POSITION IS NOT DEFINED (FIXME PLEASE!)'
+
+  FIVE_FINANCIAL_YEARS = [
+    ["1of5", "1/10/2013 - 30/09/2014"],
+    ["2of5", "1/10/2012 - 30/09/2013"],
+    ["3of5", "1/10/2011 - 30/09/2012"],
+    ["4of5", "1/10/2010 - 30/09/2011"],
+    ["5of5", "1/10/2009 - 30/09/2010"],
+    ["comments", "Explanation"]
+  ]
+
+  FIVE_YEAR_STANDART_BLOCK = [
+    ["1of5", "Ending in 1/11/2013"],
+    ["2of5", "Ending in 1/11/2012"],
+    ["3of5", "Ending in 1/11/2011"],
+    ["4of5", "Ending in 1/11/2010"],
+    ["5of5", "Ending in 1/11/2009"]
+  ]
+
+  TABLE_BASED_DATA = [
+    'financial_year_dates',
+    'total_turnover',
+    'exports',
+    'net_profit',
+    'total_net_assets'
+  ]
+
   BASE_SUB_ATTRIBUTES_DICTIONARY = {
     principal_address: [
       ["building", "Building"],
@@ -22,7 +49,12 @@ class FormPdf < Prawn::Document
       ["first_name", "First name"],
       ["last_name", "Last name"],
       ["honours", "Personal Honours"]
-    ]
+    ],
+    financial_year_dates: FIVE_FINANCIAL_YEARS,
+    total_turnover: FIVE_YEAR_STANDART_BLOCK,
+    exports: FIVE_YEAR_STANDART_BLOCK,
+    net_profit: FIVE_YEAR_STANDART_BLOCK,
+    total_net_assets: FIVE_YEAR_STANDART_BLOCK
   }  
 
   def initialize(form_answer)
@@ -33,7 +65,7 @@ class FormPdf < Prawn::Document
 
     @answers = ActiveSupport::HashWithIndifferentAccess.new(form_answer.document)
     @filled_answers = answers.select { |k, v| v.present? }
-    @steps = [award_form.steps.first]
+    @steps = [award_form.steps.second]
     
     generate!
   end
@@ -85,7 +117,9 @@ class FormPdf < Prawn::Document
   end
 
   def question_title(question)
-    "#{question.ref} #{question.title}"
+    ActionView::Base.full_sanitizer.sanitize(
+      "#{question.ref} #{question.title.capitalize}"
+    )
   end
 
   def question_block(question, answer)
@@ -101,13 +135,50 @@ class FormPdf < Prawn::Document
     text question_title(question), style: :bold
 
     if sub_answers.length > 1
-      sub_answers.each do |sub_question, sub_answer|
-        sub_question_block(sub_question, sub_answer) if sub_answer.present?
-      end
+      sub_answers_by_type(question, sub_answers)
     else
       first_sub_question = sub_answers[0][1]
       sub_question_block_without_title(first_sub_question)
     end
+  end
+
+  def sub_answers_by_type(question, sub_answers)
+    case question.key.to_s
+    when *TABLE_BASED_DATA
+      render_table_with_optional_extra(sub_answers)
+    else
+      sub_answers_standart_render(sub_answers)
+    end
+  end
+
+  def sub_answers_standart_render(sub_answers)
+    sub_answers.each do |sub_question, sub_answer|
+      sub_question_block(sub_question, sub_answer) if sub_answer.present?
+    end
+  end
+
+  def render_table_with_optional_extra(sub_answers)
+    # Fetching answers, which have data formatting in question title (like 1/12/14 etc)
+    cells = sub_answers.select do |a|
+      a[0].match(/\/{1}[0-9]{2}\/{1}/).present?
+    end
+
+    if cells.present?
+      headers = cells.map { |a| a[0] }
+      row = cells.map { |a| a[1] }
+      table_lines = [headers, row]
+
+      render_table(table_lines) 
+    end
+
+    comments = sub_answers - cells
+    sub_answers_standart_render(comments) if comments.present?
+  end
+
+  def render_table(table_lines)
+    default_bottom_margin
+    table table_lines, row_colors: ["F0F0F0", "FFFFFF"],
+                       cell_style: { size: 10, font_style: :bold }
   end
 
   def sub_question_block(sub_question, sub_answer)
@@ -161,16 +232,20 @@ class FormPdf < Prawn::Document
   end
 
   def detect_title(question_main_key, sub_section, key)
+    log_this "question_main_key: #{question_main_key}"
+    log_this "sub_section: #{sub_section}"
+    log_this "key: #{key}"
+
     if sub_section.present?
       sub_question_block = fetch_sub_question_block_from_dictionary(question_main_key, sub_section, key)
 
-      sub_question_block.present? ? sub_question_block[1] : 'TITLE AND POSITION IS NOT DEFINED (FIXME PLEASE!)'
+      sub_question_block.present? ? sub_question_block[1].capitalize : UNDEFINED_TITLE
     end
   end
 
   def fetch_sub_question_block_from_dictionary(question_main_key, sub_section, key)
     sub_section.select do |a| 
-      a[0] == key.to_s.gsub("#{question_main_key}_", '')
+      a[0].to_s == key.to_s.gsub("#{question_main_key}_", '')
     end[0]
   end
 
