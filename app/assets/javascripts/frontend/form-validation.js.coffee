@@ -2,6 +2,7 @@ window.FormValidation =
   validates: true
 
   clearAllErrors: ->
+    @validates = true
     $("div.step-current .question-has-errors").removeClass("question-has-errors")
     $("div.step-current .errors-container").empty()
 
