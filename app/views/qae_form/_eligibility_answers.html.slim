@@ -11,19 +11,20 @@
                 = link_to "Change your answers", "#"
           tbody
             - basic_eligibility.sorted_answers.each do |question, answer|
-              tr.section
-                td.previous-question-title
-                  = Eligibility::Basic.label(question)
-                td.previous-question-body
-                  - if Eligibility::Basic.boolean_question?(question)
-                    = basic_eligibility.public_send("#{question}?") ? 'Yes' : 'No'
-                  - else
-                    = Eligibility::Basic.enumerized_attributes[question].find_value(answer).text
-                td.link-right
-                  = link_to '#' do
-                    ' Change
-                    span.visuallyhidden
-                      = ' answer to' + Eligibility::Basic.label(question)
+              - unless question == "kind"
+                tr.section
+                  td.previous-question-title
+                    = Eligibility::Basic.label(question)
+                  td.previous-question-body
+                    - if Eligibility::Basic.boolean_question?(question)
+                      = basic_eligibility.public_send("#{question}?") ? 'Yes' : 'No'
+                    - else
+                      = Eligibility::Basic.enumerized_attributes[question].find_value(answer).text
+                  td.link-right
+                    = link_to '#' do
+                      ' Change
+                      span.visuallyhidden
+                        = ' answer to' + Eligibility::Basic.label(question)
 
             - award_eligibility.sorted_answers.each do |question, answer|
               tr.section
