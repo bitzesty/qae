@@ -87,7 +87,11 @@ window.FormValidation =
     expDate = question.data("date-max")
     diff = @compareDateInDays(val, expDate)
 
-    if not @toDate(val).isValid() or diff > 0
+    if not @toDate(val).isValid()
+      @addErrorMessage(question, "Not a valid date")
+      return
+
+    if diff > 0
       @addErrorMessage(question, "Date cannot be after #{expDate}")
 
   validateMinDate: (question) ->
@@ -99,7 +103,11 @@ window.FormValidation =
     expDate = question.data("date-max")
     diff = @compareDateInDays(val, expDate)
 
-    if not @toDate(val).isValid() or diff > 0
+    if not @toDate(val).isValid()
+      @addErrorMessage(question, "Not a valid date")
+      return
+
+    if diff > 0
       @addErrorMessage(question, "Date cannot be before #{expDate}")
 
   validateBetweenDate: (question) ->
@@ -114,7 +122,11 @@ window.FormValidation =
     diffStart = @compareDateInDays(val, expDateStart)
     diffEnd = @compareDateInDays(val, expDateEnd)
 
-    if not @toDate(val).isValid() or diffStart < 0 or diffEnd > 0
+    if not @toDate(val).isValid()
+      @addErrorMessage(question, "Not a valid date")
+      return
+
+    if diffStart < 0 or diffEnd > 0
       @addErrorMessage(question, "Date should be between #{expDateStart} and #{expDateEnd}.")
 
   validateNumber: (question) ->
@@ -216,7 +228,6 @@ window.FormValidation =
 
       #if $(".question-block[data-answer='overseas_sales-total-overseas-sales'] > .conditional-question").hasClass("show-question")
       #  @validateTotalOverseas()
-
 
     return @validates
 
