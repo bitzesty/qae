@@ -1,7 +1,7 @@
 - if basic_eligibility.answers
   = simple_fields_for :basic_eligibility, basic_eligibility do |f|
     - basic_eligibility.class.questions.each do |question|
-      - if question != :kind && !Eligibility::Basic.hidden_question?(question) && (question != :industry || basic_eligibility.organization_kind != 'charity')
+      - if question != :kind && !Eligibility::Basic.hidden_question?(question) && (question != :industry || basic_eligibility.organization_kind != 'charity') && (question != :self_contained_enterprise || !basic_eligibility.registered?)
         .question
           h2
             = Eligibility::Basic.label(question)
