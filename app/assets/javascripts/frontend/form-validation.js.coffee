@@ -1,5 +1,7 @@
 window.FormValidation =
   validates: true
+  # validates numbers, including floats and negatives
+  numberRegex: /^-?\d*\.?\,?\d*$/
 
   clearAllErrors: ->
     @validates = true
@@ -121,10 +123,7 @@ window.FormValidation =
     if not val
       return
 
-    # validates numbers, including floats and negatives
-    numberRegex = /^-?\d*\.?\d*$/
-
-    if not val.toString().match(numberRegex)
+    if not val.val().toString().match(@numberRegex)
       @addErrorMessage(question, "Not a valid number")
 
   validateTotalOverseas: () ->
@@ -156,10 +155,7 @@ window.FormValidation =
       else if not subq.val()
         continue
 
-      # validates numbers, including floats and negatives
-      numberRegex = /^-?\d*\.?\d*$/
-
-      if not subq.val().toString().match(numberRegex)
+      if not subq.val().toString().match(@numberRegex)
         @appendMessage(subq.parent(), "Not a valid currency value.")
         @addErrorClass(question)
 
