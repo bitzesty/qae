@@ -1,7 +1,6 @@
 .question
   h2
     = Eligibility::Trade.label(:current_holder_of_qae_for_trade)
-    abbr  *
   .question-body
     = f.input :current_holder_of_qae_for_trade, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
   span.clear

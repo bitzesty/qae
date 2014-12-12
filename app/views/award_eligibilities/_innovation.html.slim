@@ -3,7 +3,6 @@
     .question
       h2
         = Eligibility::Innovation.label(:innovative_product)
-        abbr  *
       .question-body
         p.hint
           ' A product/service/intiative is innovative if it has not been done before, and provides benefit/ solves prior issues for its users. Fields include invention, design and production (for goods), performance (for services), marketing, distribution, after-sale support.
@@ -16,7 +15,6 @@
           p.hint
             span.no-js-conditional-text
               ' If 'true', how many?
-              abbr  *
             span.js-conditional-text
               = Eligibility::Innovation.label(:number_of_innovative_products)
           div
@@ -33,7 +31,6 @@
     .question
       h2
         = Eligibility::Innovation.label(:was_on_market_for_two_years)
-        abbr  *
       .question-body
         p.hint
           ' There is no upper limit on the age of your innovation.
@@ -43,7 +40,6 @@
     .question
       h2
         = Eligibility::Innovation.label(:innovation_recouped_investments)
-        abbr  *
       .question-body
         = f.input :innovation_recouped_investments, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
       span.clear
@@ -51,7 +47,6 @@
     .question
       h2
         = Eligibility::Innovation.label(:had_impact_on_commercial_performace_over_two_years)
-        abbr  *
       .question-body
         p.hint
           ' Positive impact on commercial performance' is evident if factors such as profitability, turnover and market share have met/exceeded business plan targets.

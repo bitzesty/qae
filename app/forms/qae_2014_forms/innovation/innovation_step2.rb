@@ -173,7 +173,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        textarea :financial_comments, 'Additional comments (optional)' do
+        textarea :financial_comments, 'Additional comments' do
           classes "sub-question"
           rows 5
           words_max 100

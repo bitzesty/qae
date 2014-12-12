@@ -135,7 +135,7 @@ class QAE2014Forms
           style "small inline"
         end
 
-        textarea :innovation_additional_comments, 'Additional comments (optional)' do
+        textarea :innovation_additional_comments, 'Additional comments' do
           classes "sub-question"
           rows 5
           words_max 200

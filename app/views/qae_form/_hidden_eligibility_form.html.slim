@@ -5,7 +5,6 @@
         .question
           h2
             = Eligibility::Basic.label(question)
-            abbr  *
           = render "eligibilities/#{question}", f: f
 
 - if award_eligibility.answers

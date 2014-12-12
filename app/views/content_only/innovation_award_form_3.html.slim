@@ -144,7 +144,7 @@ header.page-header.group.page-header-wider
               '  years
               // Max 100 years
 
-        = question_for "Additional comments (optional)",
+        = question_for "Additional comments",
                        { classes: "sub-question" } do
           textarea.js-char-count rows="5" data-word-max="200"
 
@@ -162,7 +162,7 @@ header.page-header.group.page-header-wider
                 input type="file"
               // File size limit in text
               label.small
-                ' Description (optional)
+                ' Description
                 textarea.js-char-count rows="2" data-word-max="100"
             li
               = link_to "Remove", "#", class: "remove-link"
@@ -172,7 +172,7 @@ header.page-header.group.page-header-wider
                 input.medium type="text"
               // File size limit in text
               label.small
-                ' Description (optional)
+                ' Description
                 textarea.js-char-count rows="2" data-word-max="100"
 
           = link_to "+ Upload document", "#", class: "button button-add"

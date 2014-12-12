@@ -168,7 +168,7 @@ class QAE2014Forms
           conditional :you_released_product, :no
         end
 
-        textarea :development_additional_comments, 'Additional comments (optional)' do
+        textarea :development_additional_comments, 'Additional comments' do
           classes "sub-question"
           rows 5
           words_max 200
