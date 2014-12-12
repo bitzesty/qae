@@ -12,7 +12,7 @@ class QAE2014Forms
           option '5 plus', '5 years or more'
         end
 
-        development_financial_year_dates :financial_year_dates, 'Please select your financial year end dates:' do
+        development_financial_year_dates :financial_year_dates, 'State your financial year end date' do
           ref 'B 2'
           required
           context %Q{
