@@ -17,6 +17,8 @@ class FormPdf < Prawn::Document
     ["3of5", "1/10/2011 - 30/09/2012"],
     ["4of5", "1/10/2010 - 30/09/2011"],
     ["5of5", "1/10/2009 - 30/09/2010"],
+    ["1of2", "1/10/2013 - 30/09/2014"],
+    ["2of2", "1/10/2012 - 30/09/2013"],
     ["comments", "Explanation"]
   ]
 
@@ -25,7 +27,9 @@ class FormPdf < Prawn::Document
     ["2of5", "Ending in 1/11/2012"],
     ["3of5", "Ending in 1/11/2011"],
     ["4of5", "Ending in 1/11/2010"],
-    ["5of5", "Ending in 1/11/2009"]
+    ["5of5", "Ending in 1/11/2009"],
+    ["1of2", "Year ending in..."],
+    ["2of2", "Year ending in..."]
   ]
 
   TABLE_BASED_DATA = [
@@ -192,7 +196,8 @@ class FormPdf < Prawn::Document
   def render_table_with_optional_extra(sub_answers)
     # Fetching answers, which have data formatting in question title (like 1/12/14 etc)
     cells = sub_answers.select do |a|
-      a[0].match(/\/{1}[0-9]{2}\/{1}/).present?
+      a[0].match(/\/{1}[0-9]{2}\/{1}/).present? ||
+      a[0].match(/Year/).present?
     end
 
     if cells.present?
