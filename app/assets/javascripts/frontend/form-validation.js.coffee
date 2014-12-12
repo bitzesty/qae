@@ -1,7 +1,10 @@
 window.FormValidation =
   validates: true
+  # validates numbers, including floats and negatives
+  numberRegex: /^-?\d*\.?\,?\d*$/
 
   clearAllErrors: ->
+    @validates = true
     $("div.step-current .question-has-errors").removeClass("question-has-errors")
     $("div.step-current .errors-container").empty()
 
@@ -55,7 +58,12 @@ window.FormValidation =
 
   validateRequiredQuestion: (question) ->
     # if it's a conditional question, but condition was not satisfied
-    if question.find(".js-conditional-question").length and not question.find(".js-conditional-question").hasClass("show-question")
+    conditional = true
+    question.find(".js-conditional-question").each () ->
+      if !$(this).hasClass("show-question")
+        conditional = false
+
+    if !conditional
       return
 
     # This handles questions with multiple fields,
@@ -84,7 +92,11 @@ window.FormValidation =
     expDate = question.data("date-max")
     diff = @compareDateInDays(val, expDate)
 
-    if not @toDate(val).isValid() or diff > 0
+    if not @toDate(val).isValid()
+      @addErrorMessage(question, "Not a valid date")
+      return
+
+    if diff > 0
       @addErrorMessage(question, "Date cannot be after #{expDate}")
 
   validateMinDate: (question) ->
@@ -96,7 +108,11 @@ window.FormValidation =
     expDate = question.data("date-max")
     diff = @compareDateInDays(val, expDate)
 
-    if not @toDate(val).isValid() or diff > 0
+    if not @toDate(val).isValid()
+      @addErrorMessage(question, "Not a valid date")
+      return
+
+    if diff > 0
       @addErrorMessage(question, "Date cannot be before #{expDate}")
 
   validateBetweenDate: (question) ->
@@ -111,7 +127,11 @@ window.FormValidation =
     diffStart = @compareDateInDays(val, expDateStart)
     diffEnd = @compareDateInDays(val, expDateEnd)
 
-    if not @toDate(val).isValid() or diffStart < 0 or diffEnd > 0
+    if not @toDate(val).isValid()
+      @addErrorMessage(question, "Not a valid date")
+      return
+
+    if diffStart < 0 or diffEnd > 0
       @addErrorMessage(question, "Date should be between #{expDateStart} and #{expDateEnd}.")
 
   validateNumber: (question) ->
@@ -120,10 +140,7 @@ window.FormValidation =
     if not val
       return
 
-    # validates numbers, including floats and negatives
-    numberRegex = /^-?\d*\.?\d*$/
-
-    if not val.toString().match(numberRegex)
+    if not val.val().toString().match(@numberRegex)
       @addErrorMessage(question, "Not a valid number")
 
   validateTotalOverseas: () ->
@@ -145,81 +162,84 @@ window.FormValidation =
         @addErrorClass($(".question-block[data-answer='overseas_sales-total-overseas-sales']"))
 
   validateMoneyByYears: (question) ->
-    for subquestion in question.find(".js-conditional-question.show-question input")
-      subq = $(subquestion)
+    for subquestion in question.find("input")
+      shown_question = true
+      for conditional in $(subquestion).parents('.js-conditional-question')
+        if !$(conditional).hasClass('show-question')
+          shown_question = false
 
-      if not subq.val() and question.hasClass("question-required")
-        @appendMessage(subq.parent(), "This field is required.")
-        @addErrorClass(question)
-        continue
-      else if not subq.val()
-        continue
+      if shown_question
+        subq = $(subquestion)
 
-      # validates numbers, including floats and negatives
-      numberRegex = /^-?\d*\.?\d*$/
+        if not subq.val() and question.hasClass("question-required")
+          @appendMessage(subq.parent(), "This field is required.")
+          @addErrorClass(question)
+          continue
+        else if not subq.val()
+          continue
 
-      if not subq.val().toString().match(numberRegex)
-        @appendMessage(subq.parent(), "Not a valid currency value.")
-        @addErrorClass(question)
+        if not subq.val().toString().match(@numberRegex)
+          @appendMessage(subq.parent(), "Not a valid currency value.")
+          @addErrorClass(question)
 
   validateDateByYears: (question) ->
     for subquestion in question.find(".js-conditional-question.show-question input")
-      subq = $(subquestion)
+      if $(subquestion).closest(".js-conditional-question").hasClass("show-question")
+        subq = $(subquestion)
 
-      val = subq.val()
+        val = subq.val()
 
-      if not val and question.hasClass("question-required")
-        @appendMessage(subq.parent(), "This field is required.")
-        @addErrorClass(question)
-        continue
-      else if not val
-        continue
+        if not val and question.hasClass("question-required")
+          @appendMessage(subq.parent(), "This field is required.")
+          @addErrorClass(question)
+          continue
+        else if not val
+          continue
 
-      dates = subq.find(".date-range").text().split(" - ")
-      expDateStart = dates[0]
-      expDateEnd = dates[1]
-      date = @toDate(val)
+        dates = subq.parent().find(".date-range").text().trim().split(" - ")
+        expDateStart = dates[0]
+        expDateEnd = dates[1]
+        date = @toDate(val)
 
-      if not date.isValid()
-        @appendMessage(subq.parent(), "Not a valid date")
-        @addErrorClass(question)
+        if not date.isValid()
+          @appendMessage(subq.parent(), "Not a valid date")
+          @addErrorClass(question)
 
-      if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
-        @appendMessage(subq.parent(), "Date is out of range.")
-        @addErrorClass(question)
+        if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
+          @appendMessage(subq.parent(), "Date should be between #{expDateStart} and #{expDateEnd}.")
+          @addErrorClass(question)
+
   validate: ->
     @clearAllErrors()
 
     for _q in $("div.step-current .question-block")
       question = $(_q)
 
-      #if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
-      #  @validateRequiredQuestion(question)
+      if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
+        @validateRequiredQuestion(question)
 
-      #if question.hasClass("question-number")
-      #  @validateNumber(question)
+      if question.hasClass("question-number")
+        @validateNumber(question)
 
-      #if question.hasClass("question-money-by-years")
-      #  @validateMoneyByYears(question)
+      if question.hasClass("question-money-by-years")
+        @validateMoneyByYears(question)
 
-      #if question.hasClass("question-date-by-years")
-      #  @validateDateByYears(question)
+      if question.hasClass("question-date-by-years")
+        @validateDateByYears(question)
 
-      #if question.find(".match").length
-      #  @validateMatchQuestion(question)
+      if question.find(".match").length
+        @validateMatchQuestion(question)
 
-      #if question.hasClass("question-date-max")
-      #  @validateMaxDate(question)
+      if question.hasClass("question-date-max")
+        @validateMaxDate(question)
 
-      #if question.hasClass("question-date-min")
-      #  @validateMinDate(question)
+      if question.hasClass("question-date-min")
+        @validateMinDate(question)
 
-      #if question.hasClass("question-date-between")
-      #  @validateBetweenDate(question)
+      if question.hasClass("question-date-between")
+        @validateBetweenDate(question)
 
-      #if $(".question-block[data-answer='overseas_sales-total-overseas-sales'] > .conditional-question").hasClass("show-question")
-      #  @validateTotalOverseas()
-
+      if $(".question-block[data-answer='overseas_sales-total-overseas-sales'] > .conditional-question").hasClass("show-question")
+        @validateTotalOverseas()
 
     return @validates
-
