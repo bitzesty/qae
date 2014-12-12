@@ -157,8 +157,13 @@ window.FormValidation =
         @addErrorClass($(".question-block[data-answer='overseas_sales-total-overseas-sales']"))
 
   validateMoneyByYears: (question) ->
-    for subquestion in question.find(".js-conditional-question.show-question input")
-      if $(subquestion).closest(".js-conditional-question").hasClass("show-question")
+    for subquestion in question.find("input")
+      shown_question = true
+      for conditional in $(subquestion).parents('.js-conditional-question')
+        if !$(conditional).hasClass('show-question')
+          shown_question = false
+
+      if shown_question
         subq = $(subquestion)
 
         if not subq.val() and question.hasClass("question-required")
