@@ -234,3 +234,11 @@ jQuery ->
     e.preventDefault()
     $(this).closest(".question-group").find(".js-button-add").removeClass("visuallyhidden")
     $(this).closest("li").remove()
+
+  # Disable copy/pasting in confirmation fields
+  $('.js-disable-copy').bind "cut copy", (e) ->
+    e.preventDefault()
+  $('.js-disable-paste').bind "paste", (e) ->
+    e.preventDefault()
+  $('.js-disable-copy, .js-disable-paste').bind "contextmenu", (e) ->
+      e.preventDefault();
