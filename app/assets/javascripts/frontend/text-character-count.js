@@ -2,7 +2,7 @@
 $(function() {
   // Creates the character count elements
   $(".js-char-count").wrap("<div class='char-count'></div>");
-  $(".js-char-count").after("<div class='char-text'>Word count: <span class='current-count'>0</span></div>");
+  $(".js-char-count").before("<div class='char-text'>Word count: <span class='current-count'>0</span></div>");
 
   // Includes charact limit if there is one
   $(".js-char-count").each(function(){
