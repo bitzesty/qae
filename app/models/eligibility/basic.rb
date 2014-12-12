@@ -1,8 +1,4 @@
 class Eligibility::Basic < Eligibility
-  attr_accessor :current_step
-
-  validate :current_step_validation
-
   property :kind, values: %w[application nomination], label: "Do you want to apply for an award for your organisation, or nominate an individual?", accept: :not_nil
   property :based_in_uk, boolean: true, label: "Is the part of your organisation you wish to enter for a Queen's Award based in the UK?", accept: :true
   property :has_management_and_two_employees, boolean: true, label: "Does the part of your organisation you wish to enter for a Queen's Award have two or more full-time UK employees?", accept: :true
@@ -27,12 +23,6 @@ class Eligibility::Basic < Eligibility
   end
 
   private
-
-  def current_step_validation
-    if current_step && public_send(current_step).nil?
-      errors.add(current_step, :blank)
-    end
-  end
 
   def set_passed
     if current_step == :current_holder && eligible?

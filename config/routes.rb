@@ -20,10 +20,7 @@ Rails.application.routes.draw do
   get  '/form/:id'                                      => "form#edit_form",                                              as: 'edit_form'
   post '/form_autosave/:id'                             => "form#autosave",                                               as: 'autosave'
   post '/form/:id'                                      => "form#submit_form",                                            as: 'submit_form'
-  post '/check_eligibility/:id'                         => "form#check_eligibility",                                      as: 'check_eligibility'
   get  '/form/:id/confirmation'                         => "form#submit_confirm",                                         as: 'submit_confirm'
-  get  '/form/:id/eligibility'                          => "form#eligibility",                                            as: 'form_award_eligibility'
-  post '/form/:id/update_eligibility'                   => "form#update_eligibility",                                     as: 'update_form_award_eligibility'
   get '/dashboard'                                      => "content_only#dashboard",                                      as: 'dashboard'
   get '/eligibility_check_1'                            => "content_only#eligibility_check_1",                            as: 'eligibility_check_1'
   get '/eligibility_check_2'                            => "content_only#eligibility_check_2",                            as: 'eligibility_check_2'
@@ -94,6 +91,8 @@ Rails.application.routes.draw do
       get :result
     end
   end
+
+  resource :form_award_eligibility, only: [:show, :update]
 
   resources :users, only: [], module: 'users' do
     resources :form_answers, only: [:show]

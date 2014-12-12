@@ -89,4 +89,34 @@ class FormAnswer < ActiveRecord::Base
   def set_account
     self.account = user.account
   end
+
+  class AwardEligibilityBuilder
+    attr_reader :form_answer, :user
+
+    def initialize(form_answer)
+      @form_answer = form_answer
+      @user = form_answer.user
+    end
+
+    def eligibility
+      method = "#{form_answer.award_type}_eligibility"
+      form_answer.public_send(method) || form_answer.public_send("build_#{method}", filter(user.public_send(method).try(:attributes) || {}))
+    end
+
+    def basic_eligibility
+      @basic_eligibility ||= begin
+        if form_answer.basic_eligibility.try(:persisted?)
+          form_answer.basic_eligibility
+        else
+          form_answer.build_basic_eligibility(filter(user.basic_eligibility.try(:attributes) || {}))
+        end
+      end
+    end
+
+    private
+
+    def filter(params)
+      params.except("id", "created_at", "updated_at")
+    end
+  end
 end

@@ -8,7 +8,7 @@ class EligibilitiesController < ApplicationController
 
   def show
     if @eligibility.passed?
-      redirect_to correspondent_details_account_path
+      redirect_to award_eligibility_path
       return
     end
 

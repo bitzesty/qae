@@ -6,8 +6,16 @@ class Eligibility < ActiveRecord::Base
 
   after_save :set_passed
 
+  attr_accessor :current_step
+
+  validate :current_step_validation
+
   def self.questions
     @questions.keys
+  end
+
+  def self.hint(name)
+    @questions[name.to_sym][:hint]
   end
 
   def self.label(name)
@@ -48,9 +56,8 @@ class Eligibility < ActiveRecord::Base
         ['1', 'true', 'yes', true].include?(public_send(name))
       end
 
-      validates name, presence: true unless self == Eligibility::Basic
     elsif options[:positive_integer]
-      validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true } unless self == Eligibility::Basic
+      validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true }, if: proc { current_step == name }
     end
 
     @questions.merge!(name => options)
@@ -91,5 +98,11 @@ class Eligibility < ActiveRecord::Base
     acceptance_criteria = self.class.questions_storage[question.to_sym][:accept].to_s
     validator = "Eligibility::Validation::#{acceptance_criteria.camelize}Validation".constantize.new(self, question, answer)
     validator.valid?
+  end
+
+  def current_step_validation
+    if current_step && public_send(current_step).nil?
+      errors.add(current_step, :blank)
+    end
   end
 end
