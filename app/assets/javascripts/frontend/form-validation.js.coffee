@@ -58,7 +58,12 @@ window.FormValidation =
 
   validateRequiredQuestion: (question) ->
     # if it's a conditional question, but condition was not satisfied
-    if question.find(".js-conditional-question").length and not question.find(".js-conditional-question").hasClass("show-question")
+    conditional = true
+    question.find(".js-conditional-question").each () ->
+      if !$(this).hasClass("show-question")
+        conditional = false
+
+    if !conditional
       return
 
     # This handles questions with multiple fields,
