@@ -84,18 +84,54 @@ jQuery ->
   $(".js-conditional-drop-answer input").change () ->
     dropConditionalQuestion($(this))
 
-  # Get the year value from previous answer
-  updateYearEnd = () ->
-    $(".js-year-end").each () ->
-      year = $(this).attr("data-year")
-      value = $("input[data-year='#{year}']").val()
+  # Get the latest financial year date from input
+  updateYearEndInput = () ->
+    fy_latest_changed_input = $(".js-financial-year .fy-latest .date-input")
+    fy_latest_changed_input.find("input").removeAttr("disabled")
 
-      if value
-        $(this).text(value)
-      else
-        $(this).text("...")
-  updateYearEnd()
-  $("input[data-year]").change () ->
+    fy_day = $('.js-financial-year-latest .js-fy-day input').val()
+    fy_month = $('.js-financial-year-latest .js-fy-month select').val()
+    fy_year = new Date().getFullYear()
+    # Conditional latest year depending on 1/10/2013 - 30/09/2014
+    if fy_month >= 10
+      fy_year = parseInt(fy_year) - 1
+
+    # Updates the latest changed financial year input
+    fy_latest_changed_input.find("input.js-fy-day").val(fy_day)
+    fy_latest_changed_input.find("input.js-fy-month").val(fy_month)
+    fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
+    fy_latest_changed_input.find("input").attr("disabled", "disabled")
+
+    updateYearEnd()
+
+  # Update the financial year labels
+  updateYearEnd = () ->
+    if $(".js-financial-year-latest").closest(".question-block").next().find("input:checked").val() == "no"
+      # Year end hasn't changed, auto select the year
+      fy_latest_changed_input = $(".js-financial-year .fy-latest .date-input")
+      fy_latest_day = fy_latest_changed_input.find(".js-fy-day").val()
+      fy_latest_month = fy_latest_changed_input.find(".js-fy-month").val()
+      fy_latest_year = fy_latest_changed_input.find(".js-fy-year").val()
+
+      $(".js-year-end").each () ->
+        year = parseInt(fy_latest_year) - parseInt($(this).attr("data-year").substr(0, 1)) + 1
+        $(this).text("#{fy_latest_day}/#{fy_latest_month}/#{year}")
+    else
+      # Year has changed, use what they've inputted
+      $(".js-year-end").each () ->
+        fy_input = $(".js-financial-year .date-input[data-year='#{$(this).attr("data-year")}']")
+        fy_day = fy_input.find(".js-fy-day").val()
+        fy_month = fy_input.find(".js-fy-month").val()
+        fy_year = fy_input.find(".js-fy-year").val()
+        if !fy_day || !fy_month || !fy_year
+          $(this).text("...")
+        else
+          $(this).text("#{fy_day}/#{fy_month}/#{fy_year}")
+
+  updateYearEndInput()
+  $(".js-financial-year input, .js-financial-year select").change () ->
+    updateYearEndInput()
+  $(".js-financial-year-latest").closest(".question-block").next().find("input").change () ->
     updateYearEnd()
 
   # Show/hide the correct step/page for the award form

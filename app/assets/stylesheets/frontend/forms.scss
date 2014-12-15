@@ -10,7 +10,7 @@
 }
 
 // Error styling
-.question-has-errors .errors-container {
+.errors-container {
   margin: 0;
   margin-bottom: 0.2em;
   padding: 0;
@@ -74,6 +74,19 @@ textarea {
 
   // Alternate width sizes for inputs based on
   // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
+  &.tiny {
+    min-width: 2em;
+    max-width: 2em;
+
+    @include ie-lte(7) {
+      width: 2em;
+    }
+
+    @media (max-width: 640px) {
+      min-width: 0;
+    }
+  }
+
   &.small {
     max-width: 8em;
 
@@ -138,6 +151,61 @@ textarea {
       -webkit-box-sizing: border-box;
          -moz-box-sizing: border-box;
               box-sizing: border-box;
+    }
+  }
+}
+
+.qae-form {
+  .span-1,
+  .span-2,
+  .span-2-4,
+  .span-3,
+  .span-4,
+  .span-5,
+  .span-6,
+  .span-7,
+  .span-8,
+  .span-9,
+  .span-10,
+  .span-11,
+  .span-12 {
+    .date-input {
+      margin-bottom: 1em;
+
+      label {
+        display: inline-block;
+        margin-right: 0.75em;
+        vertical-align: top;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+
+      input[type="text"].tiny {
+        min-width: 3.5em !important;
+        max-width: 3.5em !important;
+
+        @include ie-lte(7) {
+          width: 3.5em !important;
+        }
+
+        @media (max-width: 640px) {
+          min-width: 0 !important;
+        }
+      }
+
+      input[type="text"].small {
+        max-width: 4em !important;
+
+        @include ie-lte(7) {
+          width: 4em !important;
+        }
+
+        @media (max-width: 640px) {
+          min-width: 0 !important;
+        }
+      }
     }
   }
 }
@@ -215,6 +283,16 @@ input[type="file"] {
         input[type="checkbox"] {
           @include core-19;
         }
+      }
+    }
+
+    &.inline {
+      display: inline-block;
+      margin-right: 1em;
+      vertical-align: top;
+
+      &:last-child {
+        margin-right: 0;
       }
     }
   }
