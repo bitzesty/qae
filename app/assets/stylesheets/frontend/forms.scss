@@ -499,13 +499,20 @@ input[type="file"] {
 .char-count {
   position: relative;
 }
-.char-text {
+.char-text-limit {
   @include core-19($line-height: (20 / 16));
-  margin-top: 1em;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+  text-align: right;
+}
+.char-text {
+  @include core-16($line-height: (20 / 16));
+  margin-top: 0.2em;
+  color: $grey-1;
   text-align: right;
 
   .char-over & {
-    color: $red;
+    color: $error-colour;
   }
 }
 
