@@ -11,9 +11,9 @@ class QAE2014Forms
 
         step 'Company Information', "Company Info", &QAE2014Forms.innovation_step1
 
-        step 'Commercial Performance', "Commercial Performance", &QAE2014Forms.innovation_step2
+        step 'Description of Goods or Services', "Description", &QAE2014Forms.innovation_step2
 
-        step 'Description of Goods or Services', "Description", &QAE2014Forms.innovation_step3
+        step 'Commercial Performance', "Commercial Performance", &QAE2014Forms.innovation_step3
 
         step 'Declaration of Corporate Responsibility', "Corporate Responsibility", &QAE2014Forms.innovation_step4
 
