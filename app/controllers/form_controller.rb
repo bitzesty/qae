@@ -1,7 +1,7 @@
 require 'qae_2014_forms'
 
 class FormController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :check_basic_eligibility, :check_award_eligibility, :check_account_completion
   before_filter :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form]
 
   def new_innovation_form
