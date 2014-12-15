@@ -10,4 +10,10 @@ class QAEFormBuilder
 
   class InnovationByYearsQuestion < Question
   end
+
+  class InnovationByYearsUnitsQuestionBuilder < QuestionBuilder
+  end
+
+  class InnovationByYearsUnitsQuestion < Question
+  end
 end

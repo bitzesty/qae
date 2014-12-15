@@ -112,7 +112,7 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
  
-        development_by_years :units_sold, 'Number of units/contracts sold' do
+        development_by_years_units :units_sold, 'Number of units/contracts sold' do
           classes "sub-question"
           required
           conditional :entry_relates_to, :single_product_or_service

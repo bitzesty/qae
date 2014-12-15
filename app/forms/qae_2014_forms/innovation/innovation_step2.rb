@@ -115,7 +115,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
  
-        innovation_by_years :units_sold, 'Number of units/contracts sold' do
+        innovation_by_years_units :units_sold, 'Number of units/contracts sold' do
           classes "sub-question"
           required
           conditional :innovation_part_of, :single_product_or_service
