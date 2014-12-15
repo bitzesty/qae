@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true, if: :first_step?
   validates :job_title, presence: true, if: :first_step?
   validates :phone_number, presence: true, if: :first_step?
-  
+
   # Second step validations
   validates :company_name, presence: true, if: :second_step?
   validates :company_address_first, presence: true, if: :second_step?
@@ -28,17 +28,6 @@ class User < ActiveRecord::Base
   validates :company_country, presence: true, if: :second_step?
   validates :company_postcode, presence: true, if: :second_step?
   validates :company_phone_number, presence: true, if: :second_step?
-
-  #validates :company_postcode, length: {
-  #  minimum: 6,
-  #  maximum: 8,
-  #  :message => "This is not a valid postcode."
-  #}, if: :second_step?
-
-  #validates :company_postcode, format: {
-  #  with: /\A[a-zA-Z]{1,2}[0-9][0-9a-zA-Z]?\s?[0-9][a-zA-Z]{2}\z/,
-  #  :message => "This is not a valid postcode"
-  #}, if: :second_step?
 
   validates :phone_number, length: {
     minimum: 7,
@@ -74,14 +63,19 @@ class User < ActiveRecord::Base
     @current_step = step
   end
 
+  def completed_profile?
+    set_step(5)
+    valid?
+  end
+
   private
 
   def first_step?
-    @current_step == 1
+    @current_step >= 1
   end
 
   def second_step?
-    @current_step == 2
+    @current_step >= 2
   end
 
   def password_required?
