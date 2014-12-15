@@ -63,11 +63,6 @@ class User < ActiveRecord::Base
     @current_step = step
   end
 
-  def completed_profile?
-    set_step(5)
-    valid?
-  end
-
   private
 
   def first_step?

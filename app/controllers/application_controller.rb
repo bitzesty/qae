@@ -65,7 +65,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_account_completion
-    if !(current_user.completed_profile?)
+    if !current_user.completed_registration?
       redirect_to correspondent_details_account_path
       return
     end
