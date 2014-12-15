@@ -3,6 +3,7 @@ class QAE2014Forms
     def innovation_step2
       @innovation_step2 ||= Proc.new {
         options :innovation_performance_years, "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?" do
+          classes "js-entry-period"
           ref 'B 1'
           required
           context %Q{
@@ -21,8 +22,8 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        options :financial_year_date_changed, 'Has your financial year end date changed during the application period?' do
-          classes "sub-question"
+        options :financial_year_date_changed, 'Did your year end date change during the 2/5 year entry period?' do
+          classes "sub-question js-entry-period-substitute-text"
           required
           yes_no
         end
