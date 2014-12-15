@@ -329,3 +329,7 @@ jQuery ->
     if !((e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105) || e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 13)
       e.preventDefault()
       return false
+
+  # Remove alerts from registration page as soon as user starts typing
+  $(".page-devise input").on 'keypress keydown keyup change', () ->
+    $(this).closest(".question-body").find(".error").remove()
