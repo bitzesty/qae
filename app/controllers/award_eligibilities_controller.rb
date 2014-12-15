@@ -3,6 +3,7 @@ class AwardEligibilitiesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :load_eligibilities
+  before_action :check_basic_eligibility
 
   steps *[Eligibility::Trade, Eligibility::Innovation, Eligibility::Development].flat_map(&:questions)
 

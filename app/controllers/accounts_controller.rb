@@ -1,5 +1,5 @@
 class AccountsController < ApplicationController
-  before_action :check_eligibility
+  before_action :check_basic_eligibility, :check_award_eligibility
 
   def correspondent_details
     @active_step = 1
@@ -97,13 +97,5 @@ class AccountsController < ApplicationController
 
   def password_settings_params
     params.require(:user).permit(:current_password, :password, :password_confirmation)
-  end
-
-  private
-
-  def check_eligibility
-    if !(current_user.basic_eligibility && current_user.basic_eligibility.passed?)
-      redirect_to eligibility_path
-    end
   end
 end
