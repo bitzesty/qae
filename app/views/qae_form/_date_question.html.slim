@@ -1,10 +1,10 @@
 .date-input
   label
     ' Day
-    input.js-trigger-autosave.tiny type="text" name="#{question.key}_day" value=answers["#{question.key}_day"]
+    input.js-trigger-autosave.tiny type="text" name="#{question.key}_day" value=answers["#{question.key}_day"] maxlength=2
   label
     ' Month
-    input.js-trigger-autosave.tiny type="text" name="#{question.key}_month" value=answers["#{question.key}_month"]
+    input.js-trigger-autosave.tiny type="text" name="#{question.key}_month" value=answers["#{question.key}_month"] maxlength=2
   label
     ' Year
-    input.js-trigger-autosave.small type="text" name="#{question.key}_year" value=answers["#{question.key}_year"]
+    input.js-trigger-autosave.small type="text" name="#{question.key}_year" value=answers["#{question.key}_year"] maxlength=4
