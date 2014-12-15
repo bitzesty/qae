@@ -42,13 +42,28 @@ $(function() {
     }
   }
 
+  // Maxlength for pasting text
+  $('.js-char-count').bind("paste", function(e){
+    e.preventDefault();
+    var paste_this = ((e.originalEvent || e).clipboardData.getData('text/plain'))
+
+    for (c = 0; c<paste_this.length; c++) {
+      if (((typeof($(this).attr("maxlength")) !== typeof(undefined)) && $(this).attr("maxlength") !== false) == false || $(this).val().length <= $(this).attr("maxlength")) {
+        $(this).val($(this).val() + paste_this[c]);
+        Countable.once(this, counting);
+      }
+    }
+  });
+
   $(".js-char-count").each(function() {
     // Goes through each letter of inputs so that maxlength is triggered by Countable
     var loaded_text = $(this).val();
     $(this).val("");
     for (c = 0; c<loaded_text.length; c++) {
-      $(this).val($(this).val() + loaded_text[c])
-      Countable.once(this, counting)
+      if (((typeof($(this).attr("maxlength")) !== typeof(undefined)) && $(this).attr("maxlength") !== false) == false || $(this).val().length <= $(this).attr("maxlength")) {
+        $(this).val($(this).val() + loaded_text[c]);
+        Countable.once(this, counting);
+      }
     }
 
     // Makes word count dynamic
