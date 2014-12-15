@@ -140,7 +140,7 @@ window.FormValidation =
     if not val
       return
 
-    if not val.val().toString().match(@numberRegex)
+    if not val.val().toString().match(@numberRegex) && val.val().toString().toLowerCase().trim() != "n/a"
       @addErrorMessage(question, "Not a valid number")
 
   validateTotalOverseas: () ->
