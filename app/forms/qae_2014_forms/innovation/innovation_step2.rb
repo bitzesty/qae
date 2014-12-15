@@ -12,7 +12,7 @@ class QAE2014Forms
           option '5 plus', '5 years or more'
         end
 
-        innovation_financial_year_dates :financial_year_dates, 'Please select your financial year end dates:' do
+        innovation_financial_year_dates :financial_year_dates, 'State your financial year end date' do
           ref 'B 2'
           required
           context %Q{
@@ -173,7 +173,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        textarea :financial_comments, 'Additional comments (optional)' do
+        textarea :financial_comments, 'Additional comments' do
           classes "sub-question"
           rows 5
           words_max 100

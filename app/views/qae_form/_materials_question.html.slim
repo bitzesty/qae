@@ -1,4 +1,4 @@
-ul.list-add
+ul.list-add data-add-limit=4
   li.js-add-example data-add-example="add-file"
     = link_to "Remove", "#", class: "remove-link js-remove-link"
     // If 'upload document' is clicked
@@ -6,7 +6,8 @@ ul.list-add
       input type="file"
     // File size limit in text
     label.small
-      ' Description (optional)
+      ' Description
+      / (optional)
       textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
   li.js-add-example data-add-example="add-url"
     = link_to "Remove", "#", class: "remove-link js-remove-link"
@@ -16,7 +17,8 @@ ul.list-add
       input.medium type="text"
     // File size limit in text
     label.small
-      ' Description (optional)
+      ' Description
+      / (optional)
       textarea.js-char-count rows="2" maxlength="600" data-word-max="100"
 
 a.button.button-add.js-button-add href="#" data-add-example="add-file"

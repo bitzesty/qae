@@ -13,7 +13,7 @@ class QAE2014Forms
 
         step 'Commercial Performance', 'Commercial Performance', &QAE2014Forms.trade_step2
 
-        step 'Description of Goods or Services', 'Goods or Services', &QAE2014Forms.trade_step3
+        step 'Description of Goods or Services', 'Description', &QAE2014Forms.trade_step3
 
         step 'Declaration of Corporate Responsibility', 'Corporate Responsibility', &QAE2014Forms.trade_step4
 

@@ -181,7 +181,7 @@ class QAE2014Forms
           conditional :parent_ultimate_control, :no
         end
 
-        upload :org_chart, 'Upload an organisational chart (optional).' do
+        upload :org_chart, 'Upload an organisational chart.' do
           ref 'A 13'
           context %Q{
             <p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>

@@ -209,13 +209,36 @@ jQuery ->
     add_example = question.find(".js-add-example").html()
 
     # If there is a specific add_example use that
-    attr = $(this).attr("data-add-example")
-    if ((typeof(attr) != typeof(undefined)) && attr != false)
-      add_example = question.find(".js-add-example[data-add-example=#{attr}]").html()
+    add_example_attr = $(this).attr("data-add-example")
+    if ((typeof(attr) != typeof(undefined)) && add_example_attr != false)
+      add_example = question.find(".js-add-example[data-add-example=#{add_example_attr}]").html()
 
     if question.find(".list-add").size() > 0
-      question.find(".list-add").append("<li>#{add_example}</li>")
+      can_add = true
+
+      # Are there add limits
+      add_limit_attr = question.find(".list-add").attr("data-add-limit")
+      if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
+        list_size = question.find(".list-add > li").not(".js-add-example").size() + question.find(".list-add > li.js-add-example.js-add-default").size()
+
+        if list_size >= add_limit_attr
+          can_add = false
+
+        if list_size + 1 >= add_limit_attr
+          question.find(".js-button-add").addClass("visuallyhidden")
+
+      if can_add
+        question.find(".list-add").append("<li>#{add_example}</li>")
   # Removing these added fields
-  $(document).on "click", ".question-block .list-add .js-remove-link", (e) ->
+  $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
+    $(this).closest(".question-group").find(".js-button-add").removeClass("visuallyhidden")
     $(this).closest("li").remove()
+
+  # Disable copy/pasting in confirmation fields
+  $('.js-disable-copy').bind "cut copy", (e) ->
+    e.preventDefault()
+  $('.js-disable-paste').bind "paste", (e) ->
+    e.preventDefault()
+  $('.js-disable-copy, .js-disable-paste').bind "contextmenu", (e) ->
+      e.preventDefault();

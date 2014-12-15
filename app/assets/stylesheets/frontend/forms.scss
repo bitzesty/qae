@@ -407,8 +407,8 @@ input[type="file"] {
   position: relative;
 }
 .char-text {
-  @include core-14($line-height: (20 / 16));
-  color: $grey-1;
+  @include core-19($line-height: (20 / 16));
+  margin-top: 1em;
   text-align: right;
 
   .char-over & {

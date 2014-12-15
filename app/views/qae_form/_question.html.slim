@@ -17,9 +17,8 @@ fieldset class="question-block js-conditional-answer #{question.classes} #{'ques
 
         == question.title
 
-        - if question.required
-          abbr
-            | *
+        /- unless question.required
+          '  (optional)
 
     - if question.context
       == question.context
@@ -30,9 +29,8 @@ fieldset class="question-block js-conditional-answer #{question.classes} #{'ques
       label
         span.visuallyhidden
           = question.title
-          - if question.required
-            abbr
-              | *
+          /- unless question.required
+            '  (optional)
       = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers}
       .clear
 

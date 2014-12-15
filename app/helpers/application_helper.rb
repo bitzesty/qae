@@ -60,9 +60,9 @@ module ApplicationHelper
     end
 
     required = ""
-    if opts[:required]
-      required = content_tag(:abbr, "*")
-    end
+    #if !opts[:required]
+    #  required = " (optional)"
+    #end
 
     help = ""
     if opts[:help]
