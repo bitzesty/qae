@@ -22,6 +22,8 @@ fieldset class="question-block js-conditional-answer #{question.classes} #{'ques
 
     - if question.context
       == question.context
+    - for help in question.help
+      == help.text
 
     ul.errors-container
 
@@ -34,7 +36,7 @@ fieldset class="question-block js-conditional-answer #{question.classes} #{'ques
       = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers}
       .clear
 
-    - for help in question.help
+    /- for help in question.help
       div.hidden-hint
         span.hidden-link
           = help.title
