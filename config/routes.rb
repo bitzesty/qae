@@ -82,7 +82,6 @@ Rails.application.routes.draw do
   resource :eligibility, only: [:show, :update] do
     collection do
       get :failure
-      get :success
     end
   end
 

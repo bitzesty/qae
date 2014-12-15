@@ -42,7 +42,7 @@ class EligibilitiesController < ApplicationController
             redirect_to next_wizard_path
           end
         when :current_holder
-          redirect_to success_eligibility_path
+          redirect_to award_eligibility_path
         else
           redirect_to next_wizard_path
         end
