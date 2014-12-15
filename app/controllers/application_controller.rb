@@ -51,7 +51,7 @@ class ApplicationController < ActionController::Base
   helper_method :any_eligibilities_passed?
 
   def check_basic_eligibility
-    if current_user.basic_eligibility && current_user.basic_eligibility.passed?
+    if !(current_user.basic_eligibility && current_user.basic_eligibility.passed?)
       redirect_to eligibility_path
       return
     end
