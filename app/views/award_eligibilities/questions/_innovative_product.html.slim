@@ -1,24 +1,24 @@
 .question-body
   p.hint
     = @eligibility.class.hint(step)
-  div.js-conditional-answer data-answer="Do you have an innovative product/service/initiative?"
+  .js-conditional-answer data-answer="Do you have an innovative product/service/initiative?"
     span.error.visuallyhidden
       ' Sorry, you are not eligible. You must have an innovative product/service/intiative to apply for a Queen's Award for Enterprise: Innovation.
     = f.input :innovative_product, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
   span.clear
   .js-conditional-question data-question="Do you have an innovative product/service/initiative?" data-value="true"
-    p.hint
+    br
+    h2
       span.no-js-conditional-text
         ' If 'true', how many?
         abbr  *
       span.js-conditional-text
         = Eligibility::Innovation.label(:number_of_innovative_products)
-    div
+    .qae-form
       = f.input :number_of_innovative_products, input_html: { class: 'small innovative_amount_input' }
-      br
-      br
 
     #innovative-amount-info.visuallyhidden
+      br
       .application-notice.info-notice
         p
           ' You can apply for a Queen's Award for Innovation for more than one product/service/intiative. Each one requires a separate application to be submitted.
