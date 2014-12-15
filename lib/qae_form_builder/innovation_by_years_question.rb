@@ -1,4 +1,10 @@
 class QAEFormBuilder
+  class InnovationFinancialYearDateQuestionBuilder < QuestionBuilder
+  end
+
+  class InnovationFinancialYearDateQuestion < Question
+  end
+
   class InnovationFinancialYearDatesQuestionBuilder < QuestionBuilder
   end
 

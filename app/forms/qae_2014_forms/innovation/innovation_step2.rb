@@ -12,13 +12,32 @@ class QAE2014Forms
           option '5 plus', '5 years or more'
         end
 
-        innovation_financial_year_dates :financial_year_dates, 'State your financial year end date' do
+        innovation_financial_year_date :financial_year_date, 'State your financial year end date' do
           ref 'B 2'
           required
           context %Q{
             <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
           }
           conditional :innovation_performance_years, :true
+        end
+
+        options :financial_year_date_changed, 'Has your financial year end date changed during the application period?' do
+          classes "sub-question"
+          required
+          yes_no
+        end
+
+        innovation_financial_year_dates :financial_year_changed_dates, 'State your financial year end dates for each financial year' do
+          classes "sub-question"
+          required
+          conditional :financial_year_date_changed, :yes
+        end
+
+        textarea :financial_year_date_changed_explaination, 'Please explain why your year-end date changed during the application period.' do
+          classes "sub-question"
+          rows 5
+          words_max 100
+          conditional :financial_year_date_changed, :yes
         end
 
         innovation_by_years_number :employees, 'State the number of people employed by the company for each year of your entry.' do
