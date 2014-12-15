@@ -1,1 +1,10 @@
-input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" name=question.key value=answers[question.key]
+.date-input
+  label
+    ' Day
+    input.js-trigger-autosave.tiny type="text" name="#{question.key}_day" value=answers["#{question.key}_day"]
+  label
+    ' Month
+    input.js-trigger-autosave.tiny type="text" name="#{question.key}_month" value=answers["#{question.key}_month"]
+  label
+    ' Year
+    input.js-trigger-autosave.small type="text" name="#{question.key}_year" value=answers["#{question.key}_year"]
