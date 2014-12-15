@@ -27,7 +27,7 @@ class FormController < ApplicationController
 
   def edit_form
     if @form_answer.eligible?
-      @form = @form_answer.award_form.decorate(answers: @form_answer.document)
+      @form = @form_answer.award_form.decorate(answers: (@form_answer.document || {}))
       render template: 'qae_form/show'
     else
       redirect_to form_award_eligibility_url(form_id: @form_answer.id)
@@ -53,7 +53,7 @@ class FormController < ApplicationController
   end
 
   def autosave
-    @form_answer.document = ActiveSupport::JSON.decode(request.body.read)
+    @form_answer.document = params[:form]
     @form_answer.save!
     render :nothing => true
   end
