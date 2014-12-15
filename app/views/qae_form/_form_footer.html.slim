@@ -10,7 +10,7 @@ footer
               = step.previous.title
       - else
         li.previous
-          = link_to form_award_eligibility_url(@form_answer), rel: "prev", title: "Navigate to previous part" do
+          = link_to form_award_eligibility_url(form_id: @form_answer.id), rel: "prev", title: "Navigate to previous part" do
             span class="pagination-label"
               ' Previous step
             span class="pagination-part-title"

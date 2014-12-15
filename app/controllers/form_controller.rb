@@ -19,32 +19,12 @@ class FormController < ApplicationController
     redirect_to edit_form_url(form_answer)
   end
 
-  def eligibility
-    @form = @form_answer.award_form
-    @eligibility_form = EligibilityForm.new(@form_answer)
-    render template: 'qae_form/eligibility'
-  end
-
-  def update_eligibility
-    @eligibility_form = EligibilityForm.new(@form_answer)
-    if @eligibility_form.update(eligibility_params, basic_eligibility_params)
-      if @form_answer.eligible?
-        redirect_to edit_form_url(@form_answer)
-      else
-        redirect_to public_send("#{@form_answer.award_type}_award_eligible_failure_url")
-      end
-    else
-      @form = @form_answer.award_form
-      render template: 'qae_form/eligibility'
-    end
-  end
-
   def edit_form
     if @form_answer.eligible?
       @form = @form_answer.award_form
       render template: 'qae_form/show'
     else
-      redirect_to form_award_eligibility_url(@form_answer)
+      redirect_to form_award_eligibility_url(form_id: @form_answer.id)
     end
   end
 
@@ -73,21 +53,5 @@ class FormController < ApplicationController
 
   def set_form_answer
     @form_answer = FormAnswer.for_account(current_user.account).find(params[:id])
-  end
-
-  def eligibility_params
-    if params[:eligibility]
-      params.require(:eligibility).permit(*@form_answer.eligibility_class.questions)
-    else
-      {}
-    end
-  end
-
-  def basic_eligibility_params
-    if params[:basic_eligibility]
-      params.require(:basic_eligibility).permit(*Eligibility::Basic.questions)
-    else
-      {}
-    end
   end
 end

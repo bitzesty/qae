@@ -9,11 +9,11 @@ header.page-header.group.page-header-wider
       ol
         li.js-step-condition.step-past
           span
-            = link_to form_award_eligibility_url(@form_answer) do
+            = link_to form_award_eligibility_url(form_id: @form_answer.id) do
               span.step-number
                 ' Eligibility
         - for step in form.steps do
-          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step == form.steps.first && params[:action] != 'eligibility')
+          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step == form.steps.first)
             span
               span.step-number
                 ' #{step_letters[step.index-1]}.
