@@ -360,6 +360,21 @@ input[type="file"] {
   .form-submit {
     margin: 1.5em 0 0 0;
   }
+
+  // Currency prepended inputs
+  .currency-input {
+    position: relative;
+
+    .currency-unit {
+      position: absolute;
+      line-height: 2;
+    }
+
+    input {
+      width: auto;
+      margin-left: 1.15em;
+    }
+  }
 }
 
 // Large buttons
