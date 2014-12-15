@@ -1,4 +1,13 @@
 class QAEFormBuilder
+
+  class QAEFormDecorator < QAEDecorator
+
+    def form_name
+      @decorator_options[:form_name] || 'form'
+    end
+
+  end
+
   class QAEForm
     attr_reader :title, :opts, :steps, :questions_by_key
 
@@ -13,6 +22,10 @@ class QAEFormBuilder
 
     def [] key
       @questions_by_key[key]
+    end
+
+    def decorate options = {}
+      QAEFormDecorator.new self, options
     end
 
     def step title, short_title, options = {}, &block

@@ -1,64 +1,24 @@
 .js-conditional-question data-question="development_performance_years-for-how-long-have-your-achievements-in-sustainable-development-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
   span.row
-    span.span-4
-      label
-        span.date-range
-          ' 1/10/2013 - 30/09/2014
-        br
-        ul.errors-container
-        input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" data-year="1of2" name="#{question.key}_1of2" value=answers["#{question.key}_1of2"] *possible_read_only_ops
-        // Validate 1/10/2013 - 30/09/2014
-    span.span-4
-      label
-        span.date-range
-          ' 1/10/2012 - 30/09/2013
-        br
-        ul.errors-container
-        input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" data-year="2of2" name="#{question.key}_2of2" value=answers["#{question.key}_2of2"] *possible_read_only_ops
-        // Validate 1/10/2012 - 30/09/2013
+    - for i in 1..2
+      span.span-4
+        label
+          span.date-range
+            = "1/10/#{2013 + 1 - i} - 30/09/#{2014 + 1 - i}
+          br
+          ul.errors-container
+          input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" data-year="1of2" name=question.input_name(suffix: "#{i}of2" value=question.input_value(suffix: "#{i}of2") *possible_read_only_ops
 
 .js-conditional-question data-question="development_performance_years-for-how-long-have-your-achievements-in-sustainable-development-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
   span.row
-    span.span-2-4
-      label
-        span.date-range
-          ' 1/10/2013 - 30/09/2014
-        br
-        ul.errors-container
-        input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" data-year="1of5" name="#{question.key}_1of5" value=answers["#{question.key}_1of5"] *possible_read_only_ops
-        // Validate 1/10/2013 - 30/09/2014
-    span.span-2-4
-      label
-        span.date-range
-          ' 1/10/2012 - 30/09/2013
-        br
-        ul.errors-container
-        input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" data-year="2of5" name="#{question.key}_2of5" value=answers["#{question.key}_2of5"] *possible_read_only_ops
-        // Validate 1/10/2012 - 30/09/2013
-    span.span-2-4
-      label
-        span.date-range
-          ' 1/10/2011 - 30/09/2012
-        br
-        ul.errors-container
-        input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" data-year="3of5" name="#{question.key}_3of5" value=answers["#{question.key}_3of5"] *possible_read_only_ops
-        // Validate 1/10/2011 - 30/09/2012
-    span.span-2-4
-      label
-        span.date-range
-          ' 1/10/2010 - 30/09/2011
-        br
-        ul.errors-container
-        input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" data-year="4of5" name="#{question.key}_4of5" value=answers["#{question.key}_4of5"] *possible_read_only_ops
-        // Validate 1/10/2010 - 30/09/2011
-    span.span-2-4
-      label
-        span.date-range
-          ' 1/10/2009 - 30/09/2010
-        br
-        ul.errors-container
-        input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" data-year="5of5" name="#{question.key}_5of5" value=answers["#{question.key}_5of5"] *possible_read_only_ops
-        // Validate 1/10/2009 - 30/09/2010
+    - for i in 1..5
+      span.span-2-4
+        label
+          span.date-range
+            = "1/10/#{2013 + 1 - i} - 30/09/#{2014 + 1 - i}
+          br
+          ul.errors-container
+          input.js-trigger-autosave.small type="text" placeholder="dd/mm/yyyy" data-year="1of2" name=question.input_name(suffix: "#{i}of5" value=question.input_value(suffix: "#{i}of5") *possible_read_only_ops
 
 br
 label

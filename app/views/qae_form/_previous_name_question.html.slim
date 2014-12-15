@@ -2,8 +2,8 @@ span.row
   span.span-6
     label
       ' Name used previously
-      input.medium type="text" *possible_read_only_ops
+      input.medium type="text" name=question.input_name(suffix: 'name') value=question.input_value(suffix: 'name') *possible_read_only_ops
   span.span-6
     label
       ' Reference number used previously
-      input.small type="text" *possible_read_only_ops
+      input.small type="text" name=question.input_name(suffix: 'refnum') value=question.input_value(suffix: 'refnum') *possible_read_only_ops

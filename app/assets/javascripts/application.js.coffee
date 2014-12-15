@@ -177,20 +177,10 @@ jQuery ->
     window.autosave_timer = null
     url = $('form.qae-form').data('autosave-url')
     if url
-      form_data = {}
-      a = $('form.qae-form').serializeArray()
-      $.each a,
-        (() ->
-          if form_data[@name] != undefined
-            if !form_data[@name].push
-              form_data[@name] = [form_data[@name]]
-            form_data[@name].push(@value || '')
-          else
-            form_data[@name] = @value || '')
+      form_data = $('form.qae-form').serialize()
       $.ajax({
         url: url
-        data: JSON.stringify(form_data)
-        contentType: 'application/json'
+        data: form_data
         type: 'POST'
         dataType: 'json'
       })

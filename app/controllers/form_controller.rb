@@ -27,7 +27,7 @@ class FormController < ApplicationController
 
   def edit_form
     if @form_answer.eligible?
-      @form = @form_answer.award_form
+      @form = @form_answer.award_form.decorate(answers: @form_answer.document)
       render template: 'qae_form/show'
     else
       redirect_to form_award_eligibility_url(form_id: @form_answer.id)
@@ -80,4 +80,5 @@ class FormController < ApplicationController
         r
       end
   end
+
 end

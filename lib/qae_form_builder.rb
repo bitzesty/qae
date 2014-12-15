@@ -1,3 +1,4 @@
+require 'qae_form_builder/qae_decorator'
 require 'qae_form_builder/qae_form'
 require 'qae_form_builder/step'
 require 'qae_form_builder/question'

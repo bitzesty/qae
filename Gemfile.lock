@@ -95,6 +95,7 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
+    coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
@@ -168,6 +169,7 @@ GEM
       addressable (~> 2.3)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    method_source (0.8.2)
     mime-types (2.4.3)
     minitest (5.4.3)
     multi_json (1.10.1)
@@ -194,6 +196,10 @@ GEM
       pdf-core (~> 0.4.0)
       ttfunk (~> 1.4.0)
     prawn-table (0.2.1)
+    pry (0.10.1)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -277,6 +283,7 @@ GEM
       activesupport (>= 3.0, < 4.2)
       railties (>= 3.0, < 4.2)
       slim (~> 2.0)
+    slop (3.6.0)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -345,6 +352,7 @@ DEPENDENCIES
   plek (~> 1.9.0)
   prawn
   prawn-table
+  pry
   rails (= 4.1.8)
   responders (~> 1.1)
   rspec-rails

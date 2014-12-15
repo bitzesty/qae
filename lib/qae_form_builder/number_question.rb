@@ -1,5 +1,13 @@
 class QAEFormBuilder
 
+  class NumberQuestionDecorator < QuestionDecorator
+    def fieldset_classes
+      result = super
+      result << 'question-number'
+      result
+    end
+  end
+
   class NumberQuestionBuilder < TextQuestionBuilder
     def initialize q
       super q
@@ -21,6 +29,9 @@ class QAEFormBuilder
 
   class NumberQuestion < TextQuestion
     attr_accessor :min, :max, :unit
+    def decorate options = {}
+      NumberQuestionDecorator.new self, options
+    end
   end
 
 end

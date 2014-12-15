@@ -113,4 +113,5 @@ module ApplicationHelper
       (question_title + question_context_text + question_body + help).html_safe
     end
   end
+
 end

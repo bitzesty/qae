@@ -56,6 +56,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-sidekiq'
   gem 'slackistrano', require: false
+  gem 'pry'
 end
 
 group :test, :development do
