@@ -2,20 +2,14 @@ class QAE2014Forms
   class << self
     def trade_step5
       @trade_step5 ||= Proc.new {
-        confirm :confirmation_of_consent, 'Confirmation of consent' do
-          ref 'E 1'
-          required
-          text 'I confirm that I have the consent of the Head of the applicant business (as identified in A11) to submit this entry form.'
-        end
-
         options :agree_to_be_contacted, %Q{We will contact you regarding your entry. We may also wish to contact you about other issues relating to The Queen's Awards for Enterprise (eg. acting as a case study). Are you happy for us to do this?} do
-          ref 'E 2'
+          ref 'E 1'
           yes_no
         end
 
         # This section will be pre-filled with the account details provided during registration
         contact :contact, 'Details of a contact within your business for application-related enquiries' do
-          ref 'E 3'
+          ref 'E 2'
           required
         end
 
@@ -33,6 +27,12 @@ class QAE2014Forms
           classes "sub-question"
           required
           style "small"
+        end
+
+        confirm :confirmation_of_consent, 'Confirmation of consent' do
+          ref 'E 3'
+          required
+          text 'I confirm that I have the consent of the Head of the applicant business (as identified in A11) to submit this entry form.'
         end
 
         confirm :entry_confirmation, 'Confirmation of entry' do
