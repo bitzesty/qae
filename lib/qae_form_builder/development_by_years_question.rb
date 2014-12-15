@@ -11,9 +11,9 @@ class QAEFormBuilder
   class DevelopmentByYearsQuestion < Question
   end
 
-  class DevelopmentByYearsUnitsQuestionBuilder < QuestionBuilder
+  class DevelopmentByYearsNumberQuestionBuilder < QuestionBuilder
   end
 
-  class DevelopmentByYearsUnitsQuestion < Question
+  class DevelopmentByYearsNumberQuestion < Question
   end
 end

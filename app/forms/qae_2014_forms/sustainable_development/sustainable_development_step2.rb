@@ -21,15 +21,12 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
 
-        number :employees, 'State the number of people employed by the company for each year of your entry.' do
+        development_by_years_number :employees, 'State the number of people employed by the company for each year of your entry.' do
           ref 'B 3'
           required
           context %Q{
             <p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
           }
-          unit ' years'
-          style "small inline"
-          min 2
           conditional :development_performance_years, :true
         end
 
@@ -112,7 +109,7 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
  
-        development_by_years_units :units_sold, 'Number of units/contracts sold' do
+        development_by_years_number :units_sold, 'Number of units/contracts sold' do
           classes "sub-question"
           required
           conditional :entry_relates_to, :single_product_or_service

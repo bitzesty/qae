@@ -11,9 +11,9 @@ class QAEFormBuilder
   class InnovationByYearsQuestion < Question
   end
 
-  class InnovationByYearsUnitsQuestionBuilder < QuestionBuilder
+  class InnovationByYearsNumberQuestionBuilder < QuestionBuilder
   end
 
-  class InnovationByYearsUnitsQuestion < Question
+  class InnovationByYearsNumberQuestion < Question
   end
 end
