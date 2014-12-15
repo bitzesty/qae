@@ -24,6 +24,7 @@ en:
       industry:
           product_business: Product business
           service_business: Service business
+          either_business: Product business/service business
 
   activerecord:
     errors:
