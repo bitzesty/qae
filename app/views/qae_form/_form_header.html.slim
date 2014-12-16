@@ -20,7 +20,7 @@ header.page-header.group.page-header-wider
               = step.short_title.html_safe
 
     - for step in form.steps do
-      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}"
+      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step == form.steps.first)
         ' Step
         = step.index
         '  of
