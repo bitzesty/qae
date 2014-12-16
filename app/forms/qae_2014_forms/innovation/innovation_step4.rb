@@ -12,13 +12,6 @@ class QAE2014Forms
           option :declare_now, 'Complete declaration now, and full form once shortlisted'
         end
 
-        header :declaration_introduction_text, "" do
-          context %Q{
-            <p>Please outline the effects of the activities and practices of your whole business unit under the headings set out below.</p><p>If you have already provided relevant information in your entry, please refer to that information and give any additional information under the relevant heading(s) below.'</p><p>The associated Innovation guidance notes suggest some questions you might consider in preparing your responses.</p>
-          }
-          conditional :corp_responsibility_form, :complete_now
-        end
-
         textarea :impact_on_society, "The impact of your business operations on society" do
           ref 'D 2'
           conditional :corp_responsibility_form, :complete_now
