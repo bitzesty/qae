@@ -8,13 +8,13 @@
   article.group role="article"
     .inner
       - if any_eligibilities_passed?
-        p You are eligible to apply for awards in:
+        h2 You are eligible to apply for awards in:
         ul
           - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
             li = eligibility.class.const_get(:AWARD_NAME)
         br
       - if !all_eligibilities_passed?
-        p You are unable to apply for:
+        h2 You are unable to apply for:
         ul
           - [@trade_eligibility, @innovation_eligibility, @development_eligibility].reject(&:passed?).each do |eligibility|
             li = eligibility.class.const_get(:AWARD_NAME)
