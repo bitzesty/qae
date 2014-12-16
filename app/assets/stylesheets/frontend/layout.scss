@@ -23,6 +23,11 @@
   }
 }
 
+// Fix the smart answers previous answers link text
+.previous-answers .restart a {
+  white-space: nowrap;
+}
+
 // Positions full width elements
 .inner-block {
   padding: 0 $gutter-half;

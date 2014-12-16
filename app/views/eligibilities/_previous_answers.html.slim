@@ -5,9 +5,9 @@
         table
           thead
             tr
-              th.previous-answers-title
-                ' Previous answers
-              th.link-right.restart colspan="2"
+              th.previous-answers-title colspan="2"
+                ' Your eligibility answers so far
+              th.link-right.restart
                 = link_to "Start again", eligibility_path
           tbody
             - @eligibility.sorted_answers.each do |question, answer|
