@@ -1,0 +1,16 @@
+p
+  ' Hi
+  = @recipient.decorate.full_name
+  ',
+
+p
+  | Application for #{@form_answer.decorate.award_application_title} 
+  | for person 
+  br
+  = @form_owner.decorate.general_info
+  br
+  | has been successfully submitted.
+
+p
+  | Here’s application Unique Reference Number (URN):
+  = @urn

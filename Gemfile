@@ -26,6 +26,12 @@ gem "decent_exposure"
 gem "decent_decoration"
 gem 'country_select'
 
+# Background jobs
+gem "sidekiq"
+gem "sidekiq-status"
+gem "sinatra", require: false
+gem "foreman"
+
 group :assets do
   gem 'uglifier', '>= 1.3.0'
 end
@@ -39,6 +45,7 @@ group :test do
   gem 'turnip'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: "pdf/inspector"
+  gem "rspec-sidekiq"
 end
 
 group :development do
