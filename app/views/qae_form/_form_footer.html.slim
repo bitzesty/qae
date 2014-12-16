@@ -5,14 +5,14 @@ footer
         li.previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"
           = link_to "#", rel: "prev", title: "Navigate to previous part" do
             span class="pagination-label"
-              ' Previous step
+              ' Previous section
             /span class="pagination-part-title"
               = step.previous.title
       - else
         li.previous.previous-alternate
           = link_to form_award_eligibility_url(form_id: @form_answer.id), rel: "prev", title: "Navigate to previous part" do
             span class="pagination-label"
-              ' Previous step
+              ' Previous section
             /span class="pagination-part-title"
               = Eligibility
 
