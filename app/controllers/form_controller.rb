@@ -40,7 +40,10 @@ class FormController < ApplicationController
     @form_answer.document = doc
 
     @form_answer.submitted = true
-    @form_answer.save!
+    if @form_answer.save! && @form_answer.submitted_changed?
+      Users::SubmissionMailer.delay.success(@form_answer.id)
+    end
+
     redirect_to submit_confirm_url(@form_answer)
   end
 
