@@ -100,7 +100,12 @@ class FormAnswer < ActiveRecord::Base
 
     def eligibility
       method = "#{form_answer.award_type}_eligibility"
-      form_answer.public_send(method) || form_answer.public_send("build_#{method}", filter(user.public_send(method).try(:attributes) || {}))
+
+      unless form_answer.public_send(method)
+        form_answer.public_send("build_#{method}", filter(user.public_send(method).try(:attributes) || {})).save!
+      end
+
+      form_answer.public_send(method)
     end
 
     def basic_eligibility
@@ -108,7 +113,8 @@ class FormAnswer < ActiveRecord::Base
         if form_answer.basic_eligibility.try(:persisted?)
           form_answer.basic_eligibility
         else
-          form_answer.build_basic_eligibility(filter(user.basic_eligibility.try(:attributes) || {}))
+          form_answer.build_basic_eligibility(filter(user.basic_eligibility.try(:attributes) || {})).save!
+          form_answer.basic_eligibility
         end
       end
     end

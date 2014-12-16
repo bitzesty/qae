@@ -17,10 +17,6 @@ class FormAwardEligibilitiesController < ApplicationController
     @eligibility.current_step = step
 
     if @eligibility.update!(eligibility_params)
-      unless @form_answer.basic_eligibility.persisted?
-        @form_answer.build_basic_eligibility((current_user.basic_eligibility.try(:attributes) || {}).except("id", "created_at", "updated_at")).save!
-      end
-
       redirect_to action: :show, form_id: @form_answer.id
       return
     else
@@ -47,7 +43,7 @@ class FormAwardEligibilitiesController < ApplicationController
   def set_steps_and_eligibilities
     builder = FormAnswer::AwardEligibilityBuilder.new(@form_answer)
     @award_eligibility = builder.eligibility
-    @basic_eligibility = builder.basic_eligibility
+    @basic_eligibility =  builder.basic_eligibility
 
     if @basic_eligibility.class.questions.map(&:to_s).include?(params[:id])
       @eligibility = @basic_eligibility

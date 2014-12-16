@@ -26,6 +26,6 @@ header.page-header.group.page-header-wider
 
             .next-question
               = f.submit "Continue", class: "button medium"
-      - elsif @form_answer.eligible?
+      - else
         = link_to "Continue", result_form_award_eligibility_url(form_id: @form_answer.id), class: "button medium"
     = render "previous_answers"
