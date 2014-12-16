@@ -5,10 +5,8 @@
 #= require_tree .
 
 jQuery ->
-
   triggerAutosave = (e) ->
     window.autosave_timer ||= setTimeout( autosave, 15000 )
-
 
   # This is a very primitive way of testing.
   # Should be refactored once forms stabilize.
@@ -330,3 +328,12 @@ jQuery ->
   # Remove alerts from registration page as soon as user starts typing
   $(".page-devise input").on 'keypress keydown keyup change', () ->
     $(this).closest(".question-body").find(".error").remove()
+
+  # Disable using enter key to submit on the form
+  $("form").on 'keypress', (e) ->
+    if e.keyCode == 13
+      target = $(e.target)
+      if !target.is("textarea") && !target.is(":button,:submit")
+        $(this).find(":input:visible:not([disabled],[readonly]), a").each () ->
+          return false;
+        return false;
