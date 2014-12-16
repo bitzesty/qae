@@ -1,4 +1,4 @@
-class Users::FormAnswersController < Users::BaseController  
+class Users::FormAnswersController < Users::BaseController
   expose(:form_answer) {
     current_user.form_answers.find(params[:id])
   }
