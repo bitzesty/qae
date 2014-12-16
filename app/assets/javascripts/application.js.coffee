@@ -19,7 +19,6 @@ jQuery ->
 
   $(document).on "submit", ".qae-form", (e) ->
     if not validate()
-
       $("html, body").animate(
         scrollTop: 0
       , 0)
@@ -159,10 +158,8 @@ jQuery ->
     if !$(this).hasClass("step-current")
       current = $(this).attr("data-step")
       if $(this).hasClass "next"
-        if validate()
-          showAwardStep(current)
-      else
-        showAwardStep(current)
+        validate()
+      showAwardStep(current)
       # Scroll to top
       $("html, body").animate(
         scrollTop: 0

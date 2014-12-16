@@ -11,8 +11,13 @@
 .js-step-link {
   cursor: pointer;
 
+  &.step-errors {
+    color: $error-colour;
+  }
+
   &.step-current {
     cursor: default;
+    color: $black;
   }
 }
 

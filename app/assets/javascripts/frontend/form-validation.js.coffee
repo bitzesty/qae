@@ -5,8 +5,9 @@ window.FormValidation =
 
   clearAllErrors: ->
     @validates = true
-    $("div.step-current .question-has-errors").removeClass("question-has-errors")
-    $("div.step-current .errors-container").empty()
+    $(".question-has-errors").removeClass("question-has-errors")
+    $(".errors-container").empty()
+    $(".steps-progress-bar .js-step-link").removeClass("step-errors")
 
   addErrorMessage: (question, message) ->
     @appendMessage(question, message)
@@ -20,6 +21,9 @@ window.FormValidation =
 
   addErrorClass: (container) ->
     container.addClass("question-has-errors")
+    page = container.closest(".step-article")
+    if !page.hasClass("step-errors")
+      $(".steps-progress-bar .js-step-link[data-step=#{page.attr('data-step')}]").addClass("step-errors")
     @validates = false
 
   isTextishQuestion: (question) ->
@@ -212,7 +216,7 @@ window.FormValidation =
   validate: ->
     @clearAllErrors()
 
-    for _q in $("div.step-current .question-block")
+    for _q in $(".question-block")
       question = $(_q)
 
       if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
