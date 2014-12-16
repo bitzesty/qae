@@ -23,23 +23,23 @@ So that I can have 'read only' version of form
   end
 
   let!(:basic_eligibility) do
-    FactoryGirl.create :eligibility, :basic, :passed, form_answer: form_answer,
-                                                                    user: user
+    FactoryGirl.create :basic_eligibility, form_answer: form_answer,
+                                           user: user
   end
 
   let!(:innovation_eligibility) do
-    FactoryGirl.create :eligibility, :innovation, :passed, form_answer: form_answer,
-                                                           user: user
+    FactoryGirl.create :innovation_eligibility, form_answer: form_answer,
+                                                user: user
   end
 
   let!(:trade_eligibility) do
-    FactoryGirl.create :eligibility, :trade, :passed, form_answer: form_answer,
-                                                      user: user
+    FactoryGirl.create :trade_eligibility, form_answer: form_answer,
+                                           user: user
   end 
 
   let!(:development_eligibility) do
-    FactoryGirl.create :eligibility, :development, :passed, form_answer: form_answer,
-                                                            user: user
+    FactoryGirl.create :development_eligibility, form_answer: form_answer,
+                                                 user: user
   end
 
   before do

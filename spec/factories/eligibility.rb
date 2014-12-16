@@ -51,10 +51,9 @@ FactoryGirl.define do
       }}.call
     end
 
-    after(:build) { |e| e.class.skip_callback(:save, :after, :set_passed) }
-
-    factory :with_enabled_callbacks do
-      after(:save) { |e| e.send(:set_passed) }
-    end
+    factory :basic_eligibility, class: "Eligibility::Basic", traits: [:basic, :passed]
+    factory :innovation_eligibility, class: "Eligibility::Innovation", traits: [:innovation, :passed]
+    factory :development_eligibility, class: "Eligibility::Development", traits: [:development, :passed]
+    factory :trade_eligibility, class: "Eligibility::Trade", traits: [:trade, :passed]
   end
 end
