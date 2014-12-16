@@ -32,7 +32,7 @@ header.page-header.group class="#{'page-header-wider' unless current_user.comple
 
               - unless current_user.completed_registration
                 li.submit
-                  = f.submit "Continue to Dashboard", class: "button"
+                  = f.submit "Continue to applications", class: "button"
               - else
                 li.submit
                   = f.submit "Next step", class: "button"
