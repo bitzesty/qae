@@ -10,11 +10,6 @@ class EligibilitiesController < ApplicationController
   steps *Eligibility::Basic.questions
 
   def show
-    if @eligibility.passed?
-      redirect_to award_eligibility_path
-      return
-    end
-
     unless step
       redirect_to wizard_path(:kind)
       return
