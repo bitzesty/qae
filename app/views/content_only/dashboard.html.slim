@@ -3,7 +3,7 @@
 header.page-header.group
   div
     h1
-      ' Dashboard
+      ' My applications
 
 .article-related-positioning-container
   .article-container
@@ -19,18 +19,30 @@ header.page-header.group
 
         - if @user_award_forms.any?
           h2
-            ' Current applications
-          ul.applications-list
-            - @user_award_forms.each do |award|
-              li
-                h3
-                  = award.created_at.strftime("%Y")
-                  ' 
-                  = award.decorate.award
-                small
-                  /' Unclear eligibility
-                .pull-right
-                  = link_to "Continue application", edit_form_path(award.id), class: "inline-link text-right"
+            ' Current Applications
+          table.applications-table
+            colgroup
+              col width="300"
+              col width="200"
+              col width="200"
+            tbody
+              - @user_award_forms.each do |award|
+                tr
+                  td
+                    h3
+                      = award.decorate.award_type
+                  td
+                    p
+                      - if award.submitted?
+                        ' submitted
+                      - else
+                        // TODO percentage completed
+                        ' 80% completed
+                  td.pull-right
+                    - if award.submitted?
+                      = link_to "Edit application", edit_form_path(award.id)
+                    - else
+                      = link_to "Continue application", edit_form_path(award.id)
           br
 
         h2

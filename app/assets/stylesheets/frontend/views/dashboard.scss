@@ -77,6 +77,24 @@
   }
 }
 
+// Styles the `Current application` table
+.applications-table {
+  width: 100%;
+
+  h3,
+  p {
+    margin: 0;
+  }
+
+  p {
+    @include core-16;
+  }
+
+  .pull-right {
+    text-align: right;
+  }
+}
+
 .page-dashboard & {
   // Tweak spacing of header in relation to sidebar
   .inner > h2:first-child {
