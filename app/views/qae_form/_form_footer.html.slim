@@ -17,7 +17,7 @@ footer
               = Eligibility
 
       - if step.next
-        li.submit.js-step-link data-step="step-#{step.next.title.parameterize}"
+        li.submit.js-next-link.js-step-link data-step="step-#{step.next.title.parameterize}"
           = link_to "#", rel: "next", title: "Navigate to next part", class: "button" do
             ' Save and continue
             /span class="pagination-part-title"
