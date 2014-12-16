@@ -59,4 +59,27 @@ RSpec.describe Eligibility::Basic, :type => :model do
       expect(eligibility).not_to be_eligible
     end
   end
+
+  describe '#questions' do
+    let(:eligibility) { Eligibility::Basic.new(user: user) }
+
+    it 'returns all questions for new eligibility' do
+      expect(eligibility.questions).to eq([:kind, :based_in_uk, :has_management_and_two_employees, :organization_kind, :industry, :registered, :self_contained_enterprise, :demonstrated_comercial_success, :current_holder])
+    end
+
+    it 'returns only kind for nominations' do
+      eligibility.kind = 'nomination'
+      expect(eligibility.questions).to eq([:kind])
+    end
+
+    it 'does not return industry for charity' do
+      eligibility.organization_kind = 'charity'
+      expect(eligibility.questions).not_to include(:industry)
+    end
+
+    it 'does not return self_contained_enterprise for registered with UK Gov companies' do
+      eligibility.registered = true
+      expect(eligibility.questions).not_to include(:self_contained_enterprise)
+    end
+  end
 end
