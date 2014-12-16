@@ -53,7 +53,7 @@ FactoryGirl.define do
 
     after(:build) { |e| e.class.skip_callback(:save, :after, :set_passed) }
 
-    factory :user_with_run_something do
+    factory :with_enabled_callbacks do
       after(:save) { |e| e.send(:set_passed) }
     end
   end
