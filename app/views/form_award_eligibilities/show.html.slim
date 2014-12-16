@@ -18,7 +18,6 @@ header.page-header.group.page-header-wider
             .question
               h2
                 = @eligibility.class.label(step)
-                abbr *
               - if @eligibility.is_a?(Eligibility::Basic)
                 = render "eligibilities/#{step.to_s}", f: f
               - else

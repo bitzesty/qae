@@ -12,7 +12,6 @@
             .question
               h2
                 = @eligibility.class.label(step)
-                abbr  *
 
               = render "award_eligibilities/questions/#{step.to_s}", f: f rescue render "award_eligibilities/questions/question", f: f, question: step.to_s
 
