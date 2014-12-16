@@ -122,6 +122,11 @@
   }
 }
 
+// move pagination higher
+.pagination.pagination-alternative {
+  margin-top: none;
+}
+
 // Override smart_answers style for consistent
 // spacing between forms and page titles
 .smart_answer .current-question {
