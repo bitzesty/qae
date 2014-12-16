@@ -52,4 +52,17 @@ RSpec.describe Eligibility::Innovation, :type => :model do
       expect(eligibility).not_to be_eligible
     end
   end
+
+  describe '#questions' do
+    let(:eligibility) { Eligibility::Innovation.new(user: user) }
+
+    it 'returns all questions for new eligibility' do
+      expect(eligibility.questions).to eq([:innovative_product, :number_of_innovative_products, :was_on_market_for_two_years, :innovation_recouped_investments, :had_impact_on_commercial_performace_over_two_years])
+    end
+
+    it 'does not return number of innovative products if user does not have them' do
+      eligibility.innovative_product = false
+      expect(eligibility.questions).not_to include(:number_of_innovative_products)
+    end
+  end
 end

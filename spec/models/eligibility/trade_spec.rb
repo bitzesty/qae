@@ -44,4 +44,17 @@ RSpec.describe Eligibility::Trade, :type => :model do
       expect(eligibility).not_to be_eligible
     end
   end
+
+  describe '#questions' do
+    let(:eligibility) { Eligibility::Trade.new(user: user) }
+
+    it 'returns all questions for new eligibility' do
+      expect(eligibility.questions).to eq([:sales_above_100_000_pounds, :any_dips_over_the_last_three_years, :current_holder_of_qae_for_trade, :qae_for_trade_expiery_date])
+    end
+
+    it 'does not return QAE expiery date if user is not a QAE holder' do
+      eligibility.current_holder_of_qae_for_trade = false
+      expect(eligibility.questions).not_to include(:qae_for_trade_expiery_date)
+    end
+  end
 end

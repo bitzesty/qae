@@ -3,18 +3,10 @@ class FormAwardEligibilitiesController < ApplicationController
 
   before_action :authenticate_user!, :check_basic_eligibility, :check_award_eligibility, :check_account_completion
   before_action :set_form_answer
-  before_action :set_steps_and_eligibilities
-  before_action :setup_wizard
+  before_action :set_steps_and_eligibilities, :setup_wizard
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy
   ]
-
-  def show
-    if step && @eligibility.class.hidden_question?(step)
-      redirect_to action: :show, form_id: @form_answer.id
-      return
-    end
-  end
 
   def update
     @eligibility.current_step = step
@@ -48,9 +40,9 @@ class FormAwardEligibilitiesController < ApplicationController
     @award_eligibility = builder.eligibility
     @basic_eligibility =  builder.basic_eligibility
 
-    if @basic_eligibility.class.questions.map(&:to_s).include?(params[:id])
+    if @basic_eligibility.questions.map(&:to_s).include?(params[:id])
       @eligibility = @basic_eligibility
-      self.steps = [params[:id].to_sym] + @award_eligibility.class.questions
+      self.steps = [params[:id].to_sym] + @award_eligibility.questions
     else
       @eligibility = @award_eligibility
       self.steps = @award_eligibility.class.questions
@@ -59,7 +51,7 @@ class FormAwardEligibilitiesController < ApplicationController
 
   def eligibility_params
     if params[:eligibility]
-      params.require(:eligibility).permit(*@eligibility.class.questions)
+      params.require(:eligibility).permit(*@eligibility.questions)
     else
       {}
     end

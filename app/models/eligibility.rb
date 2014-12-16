@@ -34,10 +34,6 @@ class Eligibility < ActiveRecord::Base
     !!@questions[name.to_sym][:positive_integer]
   end
 
-  def self.hidden_question?(name)
-    !!@questions[name.to_sym][:hidden]
-  end
-
   def self.questions_storage
     @questions
   end
@@ -64,7 +60,7 @@ class Eligibility < ActiveRecord::Base
   end
 
   def eligible?
-    self.class.questions.all? do |question|
+    questions.all? do |question|
       answer = answers && answers[question.to_s]
       answer_valid?(question, answer)
     end
@@ -86,7 +82,27 @@ class Eligibility < ActiveRecord::Base
     end
   end
 
+  def questions
+    questions_storage.keys
+  end
+
   private
+
+  def questions_storage
+    collection = {}
+
+    self.class.questions_storage.each do |question, options|
+      if options[:if]
+        if instance_eval(&options[:if])
+          collection.merge!(question => options)
+        end
+      else
+        collection.merge!(question => options)
+      end
+    end
+
+    collection
+  end
 
   def set_passed
     if eligible?

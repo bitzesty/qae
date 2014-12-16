@@ -2,12 +2,10 @@ class EligibilitiesController < ApplicationController
   include Wicked::Wizard
 
   before_action :authenticate_user!
-  before_action :load_eligibility
+  before_action :load_eligibility, :set_steps, :setup_wizard
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy
   ]
-
-  steps *Eligibility::Basic.questions
 
   def show
     unless step
@@ -19,27 +17,11 @@ class EligibilitiesController < ApplicationController
   def update
     @eligibility.current_step = step
     if @eligibility.update(eligibility_params)
+      set_steps
+      setup_wizard
+
       if @eligibility.eligible?
-        case step
-        when :kind
-          if @eligibility.kind == 'nomination'
-            redirect_to root_path
-          else
-            redirect_to next_wizard_path
-          end
-        when :organization_kind
-          if @eligibility.organization_kind == 'charity'
-            redirect_to wizard_path(:registered)
-          else
-            redirect_to next_wizard_path
-          end
-        when :registered
-          if @eligibility.registered?
-            redirect_to wizard_path(:demonstrated_comercial_success)
-          else
-            redirect_to next_wizard_path
-          end
-        when :current_holder
+        if step == @eligibility.questions.last
           redirect_to award_eligibility_path
         else
           redirect_to next_wizard_path
@@ -64,5 +46,9 @@ class EligibilitiesController < ApplicationController
     else
       {}
     end
+  end
+
+  def set_steps
+    self.steps = @eligibility.questions
   end
 end
