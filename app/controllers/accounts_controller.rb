@@ -54,7 +54,8 @@ class AccountsController < ApplicationController
   def update_add_collaborators
     if current_user.update(add_collaborators_settings_params)
       unless current_user.completed_registration
-        current_user.update_attribute(:completed_registration, true) unless current_user.completed_registration?
+        current_user.update_attribute(:completed_registration, true)
+
         flash.notice = 'Account was successfully created'
         redirect_to dashboard_path
       else

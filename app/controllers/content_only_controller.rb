@@ -10,7 +10,6 @@ class ContentOnlyController < ApplicationController
 
   def dashboard
     load_eligibilities
-
     @user_award_forms = FormAnswer.for_user(current_user).order("award_type")
   end
 
