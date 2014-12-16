@@ -40,7 +40,7 @@ class QAE2014Forms
             <p>If, and how, you undertake environmental impact assessments of major projects. </p>
           }
           rows 5
-          words_max 500 
+          words_max 500
         end
 
         textarea :partners_relations, 'Relations with suppliers, partners and contractors' do

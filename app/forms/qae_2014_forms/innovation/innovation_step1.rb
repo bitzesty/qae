@@ -78,8 +78,18 @@ class QAE2014Forms
           yes_no
         end
 
-        previous_name :previous_business_name, '' do
+        text :previous_business_name, 'Name used previously' do
+          classes "regular-question"
+          required
           conditional :business_name_changed, :yes
+        end
+
+        textarea :previous_business_ref_num, 'Reference number used previously' do
+          classes "regular-question"
+          required
+          conditional :business_name_changed, :yes
+          rows 5
+          words_max 100
         end
 
         options :other_awards_won, 'Have you won any other business or enterprise awards in the past?' do
@@ -104,11 +114,12 @@ class QAE2014Forms
           yes_no
         end
 
-        text :joint_entry_names, 'Please enter their name(s)' do
+        textarea :joint_entry_names, 'Please enter their name(s)' do
           classes "sub-question"
           required
           conditional :joint_entry, :yes
-          style "largest"
+          rows 5
+          words_max 100
         end
 
         # Prefilled from registration details
