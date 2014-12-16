@@ -16,6 +16,7 @@ jQuery ->
     window.FormValidation.validate()
 
   $(document).on "submit", ".qae-form", (e) ->
+    $("body").addClass("tried-submitting")
     if not validate()
       $("html, body").animate(
         scrollTop: 0
@@ -156,7 +157,8 @@ jQuery ->
     if !$(this).hasClass("step-current")
       current = $(this).attr("data-step")
       if $(this).hasClass "js-next-link"
-        validate()
+        if $("body").hasClass("tried-submitting")
+          validate()
         autosave()
       showAwardStep(current)
       # Scroll to top
