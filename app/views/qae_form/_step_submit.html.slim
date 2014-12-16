@@ -4,7 +4,10 @@
     == submit.notice
 
 br
-p.form-submit
+.form-submit
   - unless admin_in_read_only_mode?
-    button type="submit" class="button #{submit.style.presence}"
-      = submit.text
+    .pull-right
+      button type="submit" class="button #{submit.style.presence}"
+        = submit.text
+
+    = link_to "Save and come back later", dashboard_path, class: "save-quit-link"
