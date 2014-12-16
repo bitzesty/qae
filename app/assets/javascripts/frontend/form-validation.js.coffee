@@ -228,8 +228,8 @@ window.FormValidation =
       if question.hasClass("question-money-by-years")
         @validateMoneyByYears(question)
 
-      if question.hasClass("question-date-by-years")
-        @validateDateByYears(question)
+      #if question.hasClass("question-date-by-years")
+      #  @validateDateByYears(question)
 
       if question.find(".match").length
         @validateMatchQuestion(question)
