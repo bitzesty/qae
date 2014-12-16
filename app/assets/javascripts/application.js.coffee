@@ -248,7 +248,7 @@ jQuery ->
 
     # If there is a specific add_example use that
     add_example_attr = $(this).attr("data-add-example")
-    if ((typeof(attr) != typeof(undefined)) && add_example_attr != false)
+    if ((typeof(add_example_attr) != typeof(undefined)) && add_example_attr != false)
       add_example = question.find(".js-add-example[data-add-example=#{add_example_attr}]").html()
 
     if question.find(".list-add").size() > 0
