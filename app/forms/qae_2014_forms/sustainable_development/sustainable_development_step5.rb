@@ -7,36 +7,14 @@ class QAE2014Forms
           yes_no
         end
 
-        # This section will be pre-filled with the account details provided during registration
-        contact :contact, 'Details of a contact within your business for application-related enquiries' do
-          ref 'E 2'
-          required
-        end
-
-        text :contact_position, 'Position' do
-          classes "sub-question"
-          required
-        end
-
-        contact_email :contact_email, 'Email address' do
-          classes "sub-question"
-          required
-        end
-
-        text :contact_phone, 'Telephone number' do
-          classes "sub-question"
-          required
-          style "small"
-        end
-
         confirm :confirmation_of_consent, 'Confirmation of consent' do
-          ref 'E 3'
+          ref 'E 2'
           required
           text 'I confirm that I have the consent of the Head of the applicant business (as identified in A11) to submit this entry form.'
         end
 
         confirm :entry_confirmation, 'Confirmation of entry' do
-          ref 'E 4'
+          ref 'E 3'
           required
           text %Q{
             By ticking this box, I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
