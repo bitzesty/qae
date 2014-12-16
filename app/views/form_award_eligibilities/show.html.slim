@@ -1,24 +1,31 @@
-.article-related-positioning-container.smart-answer-questions.group
+header.page-header.group.page-header-wider
   header.page-header.group
     div
       h1
-        ' Award eligibility questionnaire
+        = "Apply for the #{@form_answer.award_type.capitalize} Award"
 
-  .article-container
-    article.group role="article"
-      .inner.step.current
+      = render "steps_progress_bar", cant_access_future: true
+      h2
+        ' Eligibility
+
+
+.article-container.article-container-wider
+  article.group role="article"
+    .inner.step.current
+      - if step
         = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id), method: :put do |f|
           .current-question#current-question
             .question
               h2
                 = @eligibility.class.label(step)
-                abbr  *
+                abbr *
               - if @eligibility.is_a?(Eligibility::Basic)
                 = render "eligibilities/#{step.to_s}", f: f
               - else
                 = render "award_eligibilities/questions/#{step.to_s}", f: f rescue render "award_eligibilities/questions/question", f: f, question: step.to_s
 
             .next-question
-              = f.submit "Next step", class: "button medium"
-
-      = render "previous_answers"
+              = f.submit "Continue", class: "button medium"
+      - elsif @form_answer.eligible?
+        = link_to "Continue", result_form_award_eligibility_url(form_id: @form_answer.id), class: "button medium"
+    = render "previous_answers"
