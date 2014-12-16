@@ -3,6 +3,7 @@ class AwardEligibilitiesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :load_eligibilities
+  before_action :load_basic_eligibility
   before_action :check_basic_eligibility
 
   steps *[Eligibility::Trade, Eligibility::Innovation, Eligibility::Development].flat_map(&:questions)
@@ -67,5 +68,9 @@ class AwardEligibilitiesController < ApplicationController
     when *Eligibility::Development.questions
       @eligibility = @development_eligibility
     end
+  end
+
+  def load_basic_eligibility
+    @basic_eligibility = current_user.basic_eligibility
   end
 end

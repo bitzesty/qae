@@ -11,7 +11,8 @@
         - else
           = eligibility.class.enumerized_attributes[question].find_value(answer).text
       td.link-right
-        = link_to wizard_path(question) do
+        - url = eligibility.is_a?(Eligibility::Basic) ? eligibility_path(id: question): wizard_path(question)
+        = link_to url do
           ' Change
           span.visuallyhidden
             = ' answer to' + eligibility.class.label(question)
