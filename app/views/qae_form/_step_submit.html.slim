@@ -5,5 +5,6 @@
 
 br
 p.form-submit
-  button type="submit" class="button #{submit.style.presence}"
-    = submit.text
+  - unless admin_in_read_only_mode?
+    button type="submit" class="button #{submit.style.presence}"
+      = submit.text

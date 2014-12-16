@@ -106,6 +106,7 @@ Rails.application.routes.draw do
     resources :form_answers do
       member do
         post :withdraw
+        get :review
       end
     end
   end

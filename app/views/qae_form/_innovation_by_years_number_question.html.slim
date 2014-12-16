@@ -7,7 +7,7 @@
           span.js-year-end data-year="#{fy}of2" ...
           br
           ul.errors-container
-          input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of2" value=answers["#{question.key}_#{fy}of2"]
+          input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of2" value=answers["#{question.key}_#{fy}of2"] *possible_read_only_ops
 
 .js-conditional-question data-question="innovation_performance_years-for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
   span.row
@@ -18,4 +18,4 @@
           span.js-year-end data-year="#{fy}of5" ...
           br
           ul.errors-container
-          input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of5" value=answers["#{question.key}_#{fy}of5"]
+          input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of5" value=answers["#{question.key}_#{fy}of5"] *possible_read_only_ops

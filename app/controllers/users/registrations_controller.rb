@@ -1,4 +1,8 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
+    :update, :destroy
+  ]
+
   protected
 
   def after_sign_up_path_for(resource)

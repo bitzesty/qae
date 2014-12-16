@@ -1,5 +1,13 @@
 class AccountsController < ApplicationController
   before_action :check_basic_eligibility, :check_award_eligibility
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
+    :new, :create, :update, :destroy,
+    :update_correspondent_details,
+    :update_company_details,
+    :update_contact_settings,
+    :update_add_collaborators,
+    :update_password_settings
+  ]
 
   def correspondent_details
     @active_step = 1

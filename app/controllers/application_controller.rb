@@ -21,6 +21,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def admin_in_read_only_mode?
+    @admin_in_read_only_mode ||= admin_signed_in? &&
+                                 session["warden.user.user.key"] &&
+                                 session[:admin_in_read_only_mode]
+  end
+  helper_method :admin_in_read_only_mode?
+
+  def restrict_access_if_admin_in_read_only_mode!
+    if admin_in_read_only_mode?
+      redirect_to root_url, alert: "You have no permissions!"
+      return
+    end
+  end
+
   protected
 
   def load_eligibilities

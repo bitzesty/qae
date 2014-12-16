@@ -5,21 +5,21 @@
         span.date-range
           ' 1/10/2013 - 30/09/2014
         br
-        input.small type="text" placeholder="dd/mm/yyyy" data-year="1of3"
+        input.small type="text" placeholder="dd/mm/yyyy" data-year="1of3" *possible_read_only_ops
         // Validate 1/10/2013 - 30/09/2014
     span.span-4
       label
         span.date-range
           ' 1/10/2012 - 30/09/2013
         br
-        input.small type="text" placeholder="dd/mm/yyyy" data-year="2of3"
+        input.small type="text" placeholder="dd/mm/yyyy" data-year="2of3" *possible_read_only_ops
         // Validate 1/10/2012 - 30/09/2013
     span.span-4
       label
         span.date-range
           ' 1/10/2011 - 30/09/2012
         br
-        input.small type="text" placeholder="dd/mm/yyyy" data-year="3of3"
+        input.small type="text" placeholder="dd/mm/yyyy" data-year="3of3" *possible_read_only_ops
         // Validate 1/10/2011 - 30/09/2012
 
 .js-conditional-question data-question="trade_commercial_success-for-how-long-has-your-organisation-seen-growth-and-commercial-success-in-its-international-trade" data-value="6 plus"
@@ -29,46 +29,46 @@
         span.date-range
           ' 1/10/2013 - 30/09/2014
         br
-        input.small type="text" placeholder="dd/mm/yyyy" data-year="1of6"
+        input.small type="text" placeholder="dd/mm/yyyy" data-year="1of6" *possible_read_only_ops
         // Validate 1/10/2013 - 30/09/2014
     span.span-2
       label
         span.date-range
           ' 1/10/2012 - 30/09/2013
         br
-        input.small type="text" placeholder="dd/mm/yyyy" data-year="2of6"
+        input.small type="text" placeholder="dd/mm/yyyy" data-year="2of6" *possible_read_only_ops
         // Validate 1/10/2012 - 30/09/2013
     span.span-2
       label
         span.date-range
           ' 1/10/2011 - 30/09/2012
         br
-        input.small type="text" placeholder="dd/mm/yyyy" data-year="3of6"
+        input.small type="text" placeholder="dd/mm/yyyy" data-year="3of6" *possible_read_only_ops
         // Validate 1/10/2011 - 30/09/2012
     span.span-2
       label
         span.date-range
           ' 1/10/2010 - 30/09/2011
         br
-        input.small type="text" placeholder="dd/mm/yyyy" data-year="4of6"
+        input.small type="text" placeholder="dd/mm/yyyy" data-year="4of6" *possible_read_only_ops
         // Validate 1/10/2010 - 30/09/2011
     span.span-2
       label
         span.date-range
           ' 1/10/2009 - 30/09/2010
         br
-        input.small type="text" placeholder="dd/mm/yyyy" data-year="5of6"
+        input.small type="text" placeholder="dd/mm/yyyy" data-year="5of6" *possible_read_only_ops
         // Validate 1/10/2009 - 30/09/2010
     span.span-2
       label
         span.date-range
           ' 1/10/2008 - 30/09/2009
         br
-        input.small type="text" placeholder="dd/mm/yyyy" data-year="6of6"
+        input.small type="text" placeholder="dd/mm/yyyy" data-year="6of6" *possible_read_only_ops
         // Validate 1/10/2008 - 30/09/2009
 
 br
 label
   ' If your year-end date changed during the application period, please explain.
-  textarea.js-trigger-autosave.js-char-count rows="5" data-word-max="100" name="#{question.key}_comments"
+  textarea.js-trigger-autosave.js-char-count rows="5" data-word-max="100" name="#{question.key}_comments" *possible_read_only_ops
     = answers["#{question.key}_comments"]

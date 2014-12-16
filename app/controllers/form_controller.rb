@@ -3,6 +3,12 @@ require 'qae_2014_forms'
 class FormController < ApplicationController
   before_filter :authenticate_user!, :check_basic_eligibility, :check_award_eligibility, :check_account_completion
   before_filter :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form]
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
+    :new, :create, :update, :destroy,
+    :submit_form,
+    :submit_confirm,
+    :autosave
+  ]
 
   def new_innovation_form
     form_answer = FormAnswer.create!(user: current_user, account: current_user.account, award_type: 'innovation')
