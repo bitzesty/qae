@@ -19,14 +19,12 @@ class QAE2014Forms
           context %Q{
             <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
           }
-          conditional :innovation_performance_years, :true
         end
 
         options :financial_year_date_changed, 'Did your year end date change during the 2/5 year entry period?' do
           classes "sub-question js-entry-period-substitute-text"
           required
           yes_no
-          conditional :innovation_performance_years, :true
         end
 
         innovation_financial_year_dates :financial_year_changed_dates, 'State your financial year end dates for each financial year' do
