@@ -21,7 +21,7 @@ class QAE2014Forms
           }
         end
 
-        options :financial_year_date_changed, 'Did your year end date change during the 2/5 year entry period?' do
+        options :financial_year_date_changed, 'Did your year end date change during the 2 or 5 year entry period?' do
           classes "sub-question js-entry-period-substitute-text"
           required
           yes_no
