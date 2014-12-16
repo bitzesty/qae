@@ -54,15 +54,16 @@ html
 
     #global-breadcrumb.header-context
       ol.group role="breadcrumbs"
-        - unless user_signed_in?
+        - unless user_signed_in? || defined? @is_landing_page
           li
             = link_to "Home", "https://www.gov.uk/"
         li
           = link_to "Queen's Awards for Enterprise", root_path
         - if user_signed_in?
           - if current_user.completed_registration
-            li
-              = link_to "My applications", dashboard_path
+            - unless defined? @is_landing_page
+              li
+                = link_to "My applications", dashboard_path
 
     #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
       #QAE
