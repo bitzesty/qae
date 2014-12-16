@@ -31,3 +31,17 @@
     padding-left: 0;
   }
 }
+
+// Fix the financial questions year ending style
+.js-year-default {
+  display: none;
+}
+
+.show-default {
+  .js-year-default {
+    display: inline;
+  }
+  .js-year-text {
+    display: none;
+  }
+}

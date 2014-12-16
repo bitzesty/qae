@@ -28,8 +28,8 @@ class FormPdf < Prawn::Document
     ["3of5", "Ending in 1/11/2011"],
     ["4of5", "Ending in 1/11/2010"],
     ["5of5", "Ending in 1/11/2009"],
-    ["1of2", "Year ending in..."],
-    ["2of2", "Year ending in..."]
+    ["1of2", "Year ending in financial year 1"],
+    ["2of2", "Year ending in financial year 2"]
   ]
 
   TABLE_BASED_DATA = [

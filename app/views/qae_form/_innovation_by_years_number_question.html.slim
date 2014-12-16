@@ -3,8 +3,10 @@
     - (1..2).each do |fy|
       .span-4
         label
-          ' Year ending in
-          span.js-year-end data-year="#{fy}of2" ...
+          span.js-year-end.show-default data-year="#{fy}of2"
+            span.js-year-default
+              = "Financial year #{fy}"
+            span.js-year-text
           br
           ul.errors-container
           input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of2" value=answers["#{question.key}_#{fy}of2"] *possible_read_only_ops
@@ -14,8 +16,10 @@
     - (1..5).each do |fy|
       .span-2-4
         label
-          ' Year ending in
-          span.js-year-end data-year="#{fy}of5" ...
+          span.js-year-end.show-default data-year="#{fy}of5"
+            span.js-year-default
+              = "Financial year #{fy}"
+            span.js-year-text
           br
           ul.errors-container
           input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of5" value=answers["#{question.key}_#{fy}of5"] *possible_read_only_ops
