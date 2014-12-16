@@ -201,8 +201,8 @@ jQuery ->
   $(document).on "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "textarea.js-trigger-autosave", triggerAutosave
 
-  # Fade out alerts after 5sec
-  $(".flash").delay(5000).fadeOut()
+  # Fade out alerts after 10sec
+  $(".flash").delay(10000).fadeOut()
 
   # Show current holder info when they are a current holder on basic eligibility current holder question
   if $(".eligibility_current_holder").size() > 0
