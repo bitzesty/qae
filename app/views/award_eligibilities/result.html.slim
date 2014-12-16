@@ -2,33 +2,27 @@
   header.page-header.group
     div
       h1
-        ' Award eligibility questionnaire
+        ' Your eligibility results
 
 .article-container
   article.group role="article"
     .inner
-      .application-notice.help-notice
-        - if !all_eligibilities_passed?
-          p
-            ' Your organisation
-            strong
-              ' does not
-            ' meet the eligibility criteria for
-          ul
-            - [@trade_eligibility, @innovation_eligibility, @development_eligibility].reject(&:passed?).each do |eligibility|
-              li = eligibility.class.const_get(:AWARD_NAME)
-          br
-        - if any_eligibilities_passed?
-          p
-            ' Your organisation meets the eligibility criteria for
-          ul
-            - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
-              li = eligibility.class.const_get(:AWARD_NAME)
+      - if any_eligibilities_passed?
+        p You are eligible to apply for awards in:
+        ul
+          - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
+            li = eligibility.class.const_get(:AWARD_NAME)
+        br
+      - if !all_eligibilities_passed?
+        p You are unable to apply for:
+        ul
+          - [@trade_eligibility, @innovation_eligibility, @development_eligibility].reject(&:passed?).each do |eligibility|
+            li = eligibility.class.const_get(:AWARD_NAME)
+        br
 
       - if any_eligibilities_passed?
-        br
-        p
-          ' Continue to your applications to apply for the award.
-
         .get-started
-          = link_to "Continue to account details", correspondent_details_account_path, class: "button"
+          = link_to "Continue to your account", correspondent_details_account_path, class: "button"
+
+      .eligibility-finish-previous-answers
+        = render "previous_answers"
