@@ -9,6 +9,7 @@ FactoryGirl.define do
 
     trait :basic do
       type 'Eligibility::Basic'
+      current_step :current_holder
       answers Proc.new {{
         kind: "application",
         based_in_uk: true,
@@ -51,9 +52,9 @@ FactoryGirl.define do
       }}.call
     end
 
-    factory :basic_eligibility, class: "Eligibility::Basic", traits: [:basic, :passed]
-    factory :innovation_eligibility, class: "Eligibility::Innovation", traits: [:innovation, :passed]
-    factory :development_eligibility, class: "Eligibility::Development", traits: [:development, :passed]
-    factory :trade_eligibility, class: "Eligibility::Trade", traits: [:trade, :passed]
+    factory :basic_eligibility, class: "Eligibility::Basic", traits: [:basic]
+    factory :innovation_eligibility, class: "Eligibility::Innovation", traits: [:innovation]
+    factory :development_eligibility, class: "Eligibility::Development", traits: [:development]
+    factory :trade_eligibility, class: "Eligibility::Trade", traits: [:trade]
   end
 end
