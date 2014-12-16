@@ -22,8 +22,8 @@ header.page-header.group.page-header-wider
     - for step in form.steps do
       h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step == form.steps.first)
         ' Step
-        = step.index
+        = step.index + 1
         '  of
-        = form.steps.length
+        = form.steps.length + 1
         ' :
         = step.title
