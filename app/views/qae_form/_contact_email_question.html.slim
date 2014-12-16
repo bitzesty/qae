@@ -1,7 +1,7 @@
 .question-group
-  input.js-trigger-autosave.medium.js-disable-copy.js-disable-paste type="text" name="#{question.key}_primary" value=answers["#{question.key}_primary"]
+  input.js-trigger-autosave.medium.js-disable-copy.js-disable-paste type="text" name="#{question.key}_primary" value=answers["#{question.key}_primary"] *possible_read_only_ops
 .question-group
   label
     ' Confirm email address
     ul.errors-container
-    input.js-trigger-autosave.medium.match.js-disable-copy.js-disable-paste type="text" name="#{question.key}_confirmation" value=answers["#{question.key}_confirmation"] data-match="#{question.key}_primary"
+    input.js-trigger-autosave.medium.match.js-disable-copy.js-disable-paste type="text" name="#{question.key}_confirmation" value=answers["#{question.key}_confirmation"] data-match="#{question.key}_primary" *possible_read_only_ops

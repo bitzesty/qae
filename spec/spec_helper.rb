@@ -7,7 +7,7 @@ require 'database_cleaner'
 require 'shoulda/matchers'
 
 Capybara.javascript_driver = :webkit
-Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| load f, true}
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 ActiveRecord::Migration.check_pending!
 ActiveRecord::Migration.maintain_test_schema!
@@ -15,6 +15,7 @@ Qae::Application.load_tasks
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
+  config.include UserStepDefinitions, type: :feature
 
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true

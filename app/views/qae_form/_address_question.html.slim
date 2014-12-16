@@ -2,20 +2,20 @@
   label
     ' Building and street
     ul.errors-container
-    input.large.js-trigger-autosave type="text" name="#{question.key}_building" value=answers["#{question.key}_building"]
-  input.large.js-trigger-autosave type="text" name="#{question.key}_street" value=answers["#{question.key}_street"]
+    input.large.js-trigger-autosave type="text" name="#{question.key}_building" value=answers["#{question.key}_building"] *possible_read_only_ops
+  input.large.js-trigger-autosave type="text" name="#{question.key}_street" value=answers["#{question.key}_street"] *possible_read_only_ops
 .question-group
   label
     ' Town or city
     ul.errors-container
-    input.medium.js-trigger-autosave type="text" name="#{question.key}_city" value=answers["#{question.key}_city"]
+    input.medium.js-trigger-autosave type="text" name="#{question.key}_city" value=answers["#{question.key}_city"] *possible_read_only_ops
 .question-group
   label
     ' Country
-    = country_select(question, "#{question.key}_country", {priority_countries: ["GB"], selected: answers["#{question.key}_country"]}, {name: "#{question.key}_country"})
+    = country_select(question, "#{question.key}_country", {priority_countries: ["GB"], selected: answers["#{question.key}_country"]}, possible_read_only_ops.merge({name: "#{question.key}_country"}))
 
 .question-group
   label
     ' Postcode
     ul.errors-container
-    input.small.js-trigger-autosave type="text" name="#{question.key}_postcode" value=answers["#{question.key}_postcode"]
+    input.small.js-trigger-autosave type="text" name="#{question.key}_postcode" value=answers["#{question.key}_postcode"] *possible_read_only_ops

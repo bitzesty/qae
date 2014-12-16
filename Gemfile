@@ -32,6 +32,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem "capybara-webkit"
   gem 'database_cleaner'
   gem 'launchy'
   gem 'rspec-rails'

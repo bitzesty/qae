@@ -21,7 +21,8 @@
                     - else
                       = Eligibility::Basic.enumerized_attributes[question].find_value(answer).text
                   td.link-right
-                    = link_to wizard_path(question) do
-                      ' Change
-                      span.visuallyhidden
-                        = ' answer to' + Eligibility::Basic.label(question)
+                    - unless admin_in_read_only_mode?
+                      = link_to wizard_path(question) do
+                        ' Change
+                        span.visuallyhidden
+                          = ' answer to' + Eligibility::Basic.label(question)
