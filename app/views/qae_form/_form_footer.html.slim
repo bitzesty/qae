@@ -22,3 +22,8 @@ footer
             ' Save and continue
             /span class="pagination-part-title"
               = step.next.title
+      - else
+        - if step.submit
+          li.submit.qae-form
+            button type="submit" class="button #{step.submit.style.presence}"
+              = step.submit.text

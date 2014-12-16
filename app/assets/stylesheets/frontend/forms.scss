@@ -660,7 +660,9 @@ input[type="file"] {
     width: 51%;
     margin-top: 1em;
 
-    a {
+    a,
+    button {
+      width: auto;
       margin: 0.2em 0 0.5em 0;
     }
   }
