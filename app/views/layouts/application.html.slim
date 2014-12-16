@@ -60,9 +60,9 @@ html
         li
           = link_to "Queen's Awards for Enterprise", root_path
         - if user_signed_in?
-          // Don't show if on registration eligibility
-          li
-            = link_to "My applications", dashboard_path
+          - if current_user.completed_registration
+            li
+              = link_to "My applications", dashboard_path
 
     #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
       #QAE
