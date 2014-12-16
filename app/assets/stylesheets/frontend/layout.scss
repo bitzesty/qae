@@ -245,23 +245,73 @@
   list-style: none;
 }
 
-// Position account links to be top right
+// Position account links to be top right and make them a dropdown
 #proposition-menu {
   @media (min-width: 990px) {
     position: relative;
   }
 }
-.user-account-links {
+#global-header {
+  position: relative;
+  z-index: 999;
+}
+#global-header .header-proposition #proposition-menu .user-account-links {
   @media (min-width: 990px) {
     position: absolute;
     top: 0;
     right: 0;
   }
 
-  li {
+  > li {
     @media (min-width: 990px) {
       padding-left: $gutter-half;
       padding-right: 0;
+    }
+
+    &.dropdown {
+      position: relative;
+
+      > a .caret {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 2px;
+        vertical-align: middle;
+        border-color: $white;
+        border-top: 4px solid;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        display: none;
+        top: 1.75em;
+        right: 0;
+        padding: 0.2em 0.75em;
+        background: $white;
+        border: 1px solid $grey-2;
+
+        li {
+          float: none;
+          margin: 0.5em 0;
+          padding: 0;
+
+          a {
+            display: block;
+            color: $black;
+            font-weight: normal;
+            text-align: right;
+            white-space: nowrap;
+          }
+        }
+      }
+
+      &.dropdown-open {
+        .dropdown-menu {
+          display: block;
+        }
+      }
     }
   }
 }

@@ -340,3 +340,11 @@ jQuery ->
         $(this).find(":input:visible:not([disabled],[readonly]), a").each () ->
           return false;
         return false;
+
+  # Dropdowns for nav
+  $(document).on "click", ".dropdown > a", (e) ->
+    e.preventDefault()
+    $(this).closest(".dropdown").toggleClass("dropdown-open")
+  $(document).on 'click', (e) ->
+    if !$(e.target).closest('.dropdown').length
+      $(".dropdown.dropdown-open").removeClass("dropdown-open")
