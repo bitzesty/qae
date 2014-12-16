@@ -210,8 +210,24 @@ jQuery ->
 
     max = wrapper.data('max-attachments')
     name = wrapper.data('name')
+    form_name = wrapper.data('form-name')
+    needs_description = !!wrapper.data('description')
 
     progress_all = (e, data) ->
+      # TODO
+
+    reindex_inputs = () ->
+      idx = 0
+      list.find('li').each (i, li) ->
+        process_input = (j, input_el) ->
+          name = $(input_el).attr('name')
+          match = /([^\[]+)\[([^\]]+)\]\[([0-9]*)\](.*)/.exec name
+          if match
+            $(input_el).attr('name', "#{match[1]}[#{match[2]}][#{idx}]#{match[4]}")
+
+        $(li).find('input').each process_input
+        $(li).find('textarea').each process_input
+        idx++
 
     update_visibility = () ->
       list_elements = list.find('li')
@@ -228,29 +244,43 @@ jQuery ->
       button.addClass('visuallyhidden') #TODO: show progressbar
 
     upload_done = (e, data) ->
-      console.log 'done'
-      new_el = $("<li>").text(data.result['original_filename'])
+      new_el = $("<li>")
+      div = $("<div>").text(data.result['original_filename'])
 
-      hidden_input = $("<input>").prop('type', 'hidden').prop('name', name).prop('value', data.result['id'])
-      new_el.append(hidden_input)
+      hidden_input = $("<input>").
+        prop('type', 'hidden').
+        prop('name', "#{form_name}[#{name}][][file]").
+        prop('value', data.result['id'])
+
+      div.append(hidden_input)
+
+      remove_link = $("<a>").addClass('remove-link').prop('href', '#').text('Remove')
+      remove_link.click remove_link_clicked
+
+      div.append(remove_link)
+      new_el.append(div)
+
+      if needs_description
+        desc_div = $("<div>")
+        label = ($("<label class=\"small\">").text('Description (optional)'))
+        label.append($("<textarea class=\"js-char-count\" rows=\"2\" maxlength=\"600\" data-word-max=\"100\">").attr("name", "#{form_name}[#{name}][][description]"))
+        desc_div.append(label)
+        new_el.append(desc_div)
 
       remove_link_clicked = (e) ->
         e.preventDefault()
         new_el.remove()
         update_visibility()
+        reindex_inputs
         false
 
-      remove_link = $("<a>").addClass('remove-link').prop('href', '#').text('Remove')
-      remove_link.click remove_link_clicked
-
-      new_el.append(remove_link)
       
       list.append(new_el)
       list.removeClass('visuallyhidden')
       update_visibility()
+      reindex_inputs()
 
     wrapper.find('a.remove-link').each (idx, el) ->
-      console.log 'adding click for', el
       $(el).click (e) ->
         e.preventDefault()
         li = $(el).closest 'li'
@@ -421,3 +451,4 @@ jQuery ->
   $(document).on 'click', (e) ->
     if !$(e.target).closest('.dropdown').length
       $(".dropdown.dropdown-open").removeClass("dropdown-open")
+

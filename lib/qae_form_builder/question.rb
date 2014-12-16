@@ -2,11 +2,29 @@ class QAEFormBuilder
 
   class QuestionDecorator < QAEDecorator
     def input_name options = {}
-      "#{form_name}[#{hash_key(options)}]"
+      if options[:index]
+        suffix = options.fetch(:suffix)
+        "#{form_name}[#{delegate_obj.key}][#{options[:index]}][#{suffix}]"
+      else
+        "#{form_name}[#{hash_key(options)}]"
+      end
     end
 
     def input_value options = {}
-      answers[hash_key(options)]
+      result = if options[:index]
+        suffix = options.fetch(:suffix)  
+      ## TODO: maybe we switch to JSON from hstore?
+        json = JSON.parse(answers[delegate_obj.key] || {})
+        json[options[:index]][suffix]
+      else
+        answers[hash_key(options)]
+      end
+
+      if options[:json]
+        JSON.parse(result || '{}')
+      else
+        result
+      end
     end
 
     def answers

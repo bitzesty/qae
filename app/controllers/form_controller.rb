@@ -27,7 +27,8 @@ class FormController < ApplicationController
 
   def edit_form
     if @form_answer.eligible?
-      @form = @form_answer.award_form.decorate(answers: (@form_answer.document || {}))
+      puts "formans: #{@form_answer.document.inspect}"
+      @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document || {}))
       render template: 'qae_form/show'
     else
       redirect_to form_award_eligibility_url(form_id: @form_answer.id)
@@ -36,8 +37,8 @@ class FormController < ApplicationController
 
   def submit_form
     path_params = request.path_parameters
-    doc = params.except(*path_params.keys)
-    @form_answer.document = doc
+    doc = params[:form]
+    @form_answer.document = serialize_doc(doc)
 
     @form_answer.submitted = true
     if @form_answer.save! && @form_answer.submitted_changed?
@@ -53,7 +54,7 @@ class FormController < ApplicationController
   end
 
   def autosave
-    @form_answer.document = params[:form]
+    @form_answer.document = serialize_doc(params[:form])
     @form_answer.save!
     render :nothing => true
   end
@@ -72,6 +73,19 @@ class FormController < ApplicationController
   end
 
   private
+
+  ## TODO: maybe we switch to JSON instead of hstore
+  def serialize_doc doc
+    result = {}
+    doc.each do |(k, v)|
+      if v.is_a?(Hash)
+        result[k] = v.to_json
+      else
+        result[k] = v
+      end
+    end
+    result
+  end
 
   def set_form_answer
     @form_answer = FormAnswer.for_account(current_user.account).find(params[:id])

@@ -1,28 +1,30 @@
-ul.list-add data-add-limit=4
-  li.js-add-example data-add-example="add-file"
-    = link_to "Remove", "#", class: "remove-link js-remove-link"
-    // If 'upload document' is clicked
-    label
-      input type="file" *possible_read_only_ops
-    // File size limit in text
-    label.small
-      ' Description
-      / (optional)
-      textarea.js-char-count rows="2" maxlength="600" data-word-max="100" *possible_read_only_ops
-  li.js-add-example data-add-example="add-url"
-    = link_to "Remove", "#", class: "remove-link js-remove-link"
-    // If 'add link' is clicked
-    label
-      ' Website Link
-      input.medium type="text" *possible_read_only_ops
-    // File size limit in text
-    label.small
-      ' Description
-      / (optional)
-      textarea.js-char-count rows="2" maxlength="600" data-word-max="100" *possible_read_only_ops
+.js-upload-wrapper data-max-attachments=question.max_attachments data-name=question.input_name
+  ul.list-add data-add-limit=4
+    - (question.input_value || []).each_with_index do |a, idx|
+      - if a['file']
+        li
+          span
+            = attachments[a['file']].original_filename
+            input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=a['file']
+          a href="#" class="remove-link"
+            Remove
+          label.small
+            ' Description
+            / (optional)
+            textarea.js-char-count rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx)
+      - else
+        li              
+          label
+            ' Website Link
+            input.medium type="text" name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)
+          // File size limit in text
+          label.small
+            ' Description
+            / (optional)
+            textarea.js-char-count rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx)
 
 - unless admin_in_read_only_mode?
-  a.button.button-add.js-button-add href="#" data-add-example="add-file"
+  a.button.button-add.js-file-upload href="#" data-add-example="add-file"
     | + Upload document
 
   a.button.button-add.js-button-add href="#" data-add-example="add-url"

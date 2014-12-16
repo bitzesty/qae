@@ -1,11 +1,19 @@
-.js-upload-wrapper data-max-attachments=question.max_attachments data-name=question.key
+.js-upload-wrapper data-max-attachments=question.max_attachments data-form-name=question.form_name data-name=question.key data-description=(question.description ? '1' : nil)
   ul.js-uploaded-list.list-add.visuallyhidden
-    - for i in (answers[question.key].nil? ? [] : (answers[question.key].is_a?(Array) ? answers[question.key] : [answers[question.key]])).map{|i| attachments[i.to_i]}.compact
+    - (question.input_value(json: true) || {}).to_a.sort_by{|o| o.first.to_i}.each do |(idx, el)|
       li
-        = i.original_filename
-        input type='hidden' name=question.key value=i.id
-        a.remove-link href="#"
-          | Remove
+        div
+          = attachments[el['file'].to_i].original_filename
+          input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
+          a.remove-link href="#"
+            | Remove
+        - if question.description
+          div
+            label.small
+              ' Description
+              / (optional)
+              textarea.js-char-count rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx)
+                = question.input_value(suffix: 'description', index: idx)
   span.button
     span
       | Add file
