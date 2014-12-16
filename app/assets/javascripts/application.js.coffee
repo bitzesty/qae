@@ -86,7 +86,7 @@ jQuery ->
     fy_latest_changed_input = $(".js-financial-year .fy-latest .date-input")
     fy_latest_changed_input.find("input").removeAttr("disabled")
 
-    fy_day = $('.js-financial-year-latest .js-fy-day input').val()
+    fy_day = $('.js-financial-year-latest .js-fy-day select').val()
     fy_month = $('.js-financial-year-latest .js-fy-month select').val()
     fy_year = new Date().getFullYear()
     # Conditional latest year depending on 1/10/2013 - 30/09/2014
@@ -126,7 +126,7 @@ jQuery ->
           $(this).text("#{fy_day}/#{fy_month}/#{fy_year}")
 
   updateYearEndInput()
-  $(".js-financial-year input, .js-financial-year select").change () ->
+  $(".js-financial-year select").change () ->
     updateYearEndInput()
   $(".js-financial-year-latest").closest(".question-block").next().find("input").change () ->
     updateYearEnd()
