@@ -1,11 +1,11 @@
 fieldset
   h3
-    ' Full/legal name of your business
+    ' Full/legal name of your organisation
   = f.input :company_name, input_html: { class: 'big medium'}, label_html: { class: 'visuallyhidden' }
 
 fieldset
   h3
-    ' Company address
+    ' Organisation address
     = f.input :company_address_first, input_html: { class: 'big large'}, label: 'Building and street'
     = f.input :company_address_second, input_html: { class: 'big large'}, label: false
 
