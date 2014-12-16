@@ -40,14 +40,14 @@
             - if user_signed_in?
               = link_to "Apply", dashboard_path, class: "button"
             - else
-              = link_to "Apply", new_user_registration_path, class: "button"
+              = link_to "Apply", apply_for_queens_award_for_enterprise_path, class: "button"
 
-          br
-
-          p
-            ' If you have already begun your application then
-            = link_to "log in to continue", new_user_session_path
-            ' .
+          - unless user_signed_in?
+            br
+            p
+              ' If you have already begun your application then
+              = link_to "log in to continue", new_user_session_path
+              ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
