@@ -26,6 +26,7 @@ class QAE2014Forms
           classes "sub-question js-entry-period-substitute-text"
           required
           yes_no
+          conditional :innovation_performance_years, :true
         end
 
         innovation_financial_year_dates :financial_year_changed_dates, 'State your financial year end dates for each financial year' do
