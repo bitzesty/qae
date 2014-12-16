@@ -19,6 +19,11 @@ header.page-header.group.page-header-wider
                 ' #{step_letters[step.index-1]}.
               = step.short_title.html_safe
 
+    article.download-article
+      .form-download
+        p
+          = link_to "Download your application", user_form_answer_path(current_user, @form_answer, format: :pdf)
+
     - for step in form.steps do
       h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step == form.steps.first)
         ' Step

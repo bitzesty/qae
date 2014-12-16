@@ -67,10 +67,20 @@
 
   &.page-header-wider div {
     width: 100%;
+
+    &.steps-progress-bar {
+      width: 97%;
+      @media (max-width: 640px) {
+        width: 100%;
+      }
+    }
   }
   // Slightly wider
   &.page-header-wider-minor div {
     width: 75%;
+    @media (max-width: 640px) {
+      width: 100%;
+    }
   }
 
   // Styles the sub header for `page-header`
