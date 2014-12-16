@@ -14,12 +14,22 @@
         header
           h1 4. How to apply
 
-          p You must submit your application online. All entry information is held in strict confidence.
+          p You must submit your application(s) online.
 
-          p
-            ' Organisations can enter more than one award category as long as they
-            = link_to "meet the criteria", awards_for_organisations_path
-            ' .
+          ol
+            li
+              = link_to "Create an account", apply_for_queens_award_for_enterprise_path
+              '  and fill in your details
+              ul
+                li We will check your eligibility, and ask for some basic information about you and your organisation.
+            li
+              ' Start the online applications in your chosen categories
+              ul
+                li You can enter more than one award category if you meet the criteria.
+                li You don’t have to complete your application(s) in one sitting. 
+            li Submit your applications before the last working day of September
+
+          br
 
           .application-notice.info-notice
             p Submission period opens 21st April.
@@ -30,9 +40,9 @@
 
           br
 
-          p Generally applicants take between 2 to 6 weeks to collate the necessary data and complete the form.
+          p All information submitted in your application will be treated in strict confidence.
 
-          p There is no entry fee.
+          p The Queen’s Awards for Enterprise are free to enter.
 
           br
 
@@ -60,7 +70,7 @@
                     ' Eligibility for individuals
 
               li.next
-                = link_to what_happens_next_path, rel: "next", title: "Navigate to next part" do
+                = link_to timeline_path, rel: "next", title: "Navigate to next part" do
                   span.pagination-label
                     ' Next
                   span.pagination-part-title

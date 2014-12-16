@@ -7,4 +7,11 @@
       @include core-19;
     }
   }
+
+  li {
+    ul,
+    ol {
+      list-style-position: inherit;
+    }
+  }
 }
