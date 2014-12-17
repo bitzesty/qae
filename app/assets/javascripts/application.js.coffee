@@ -331,6 +331,14 @@ jQuery ->
       else
         $("#innovative-amount-info").addClass("visuallyhidden")
 
+  # Show trade epxiry info if it isn't 2015
+  if $(".trade-expiry-input").size() > 0
+    $(".trade-expiry-input").bind "change", () ->
+      if $(this).val().toString() != "2015"
+        $("#trade-expiry-info").removeClass("visuallyhidden")
+      else
+        $("#trade-expiry-info").addClass("visuallyhidden")
+
   # Show the eligibility failure contact message
   if $("#basic-eligibility-failure-submit").size() > 0
     $(document).on "click", "#basic-eligibility-failure-submit", (e) ->
