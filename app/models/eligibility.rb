@@ -76,6 +76,8 @@ class Eligibility < ActiveRecord::Base
     answers.any? && answers.all? do |question, answer|
       if previous_questions.include?(question.to_sym)
         answer_valid?(question, answer)
+      else
+        true
       end
     end
   end

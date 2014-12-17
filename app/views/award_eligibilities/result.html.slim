@@ -10,7 +10,7 @@
       - if any_eligibilities_passed?
         h2 You are eligible to apply for awards in:
         ul
-          - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
+          - [@trade_eligibility, @innovation_eligibility, @development_eligibility, @promotion_eligibility].select(&:passed?).each do |eligibility|
             li = eligibility.class.const_get(:AWARD_NAME)
         br
 

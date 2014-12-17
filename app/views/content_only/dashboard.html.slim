@@ -14,7 +14,7 @@ header.page-header.group
             p
               ' Your organisation meets the eligibility criteria for
             ul
-              - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
+              - [@trade_eligibility, @innovation_eligibility, @development_eligibility, @promotion_eligibility].select(&:passed?).each do |eligibility|
                 li = eligibility.class.const_get(:AWARD_NAME)
 
         - if @user_award_forms.any?
