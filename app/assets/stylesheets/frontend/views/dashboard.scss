@@ -119,6 +119,10 @@
         em {
           margin-bottom: 0;
           font-size: 2.4em;
+
+          &:first-child {
+            font-size: 1.9em;
+          }
         }
       }
     }
