@@ -43,7 +43,6 @@ RSpec.describe Eligibility::Basic, :type => :model do
       eligibility.based_in_uk = true
       eligibility.self_contained_enterprise = true
       eligibility.has_management_and_two_employees = true
-      eligibility.demonstrated_comercial_success = true
 
       expect(eligibility).to be_eligible
     end
@@ -54,7 +53,6 @@ RSpec.describe Eligibility::Basic, :type => :model do
       eligibility.based_in_uk = true
       eligibility.self_contained_enterprise = true
       eligibility.has_management_and_two_employees = false
-      eligibility.demonstrated_comercial_success = true
 
       expect(eligibility).not_to be_eligible
     end
@@ -64,7 +62,7 @@ RSpec.describe Eligibility::Basic, :type => :model do
     let(:eligibility) { Eligibility::Basic.new(user: user) }
 
     it 'returns all questions for new eligibility' do
-      expect(eligibility.questions).to eq([:kind, :based_in_uk, :has_management_and_two_employees, :organization_kind, :industry, :registered, :self_contained_enterprise, :demonstrated_comercial_success, :current_holder])
+      expect(eligibility.questions).to eq([:kind, :based_in_uk, :has_management_and_two_employees, :organization_kind, :industry, :registered, :self_contained_enterprise, :current_holder])
     end
 
     it 'returns only kind for nominations' do

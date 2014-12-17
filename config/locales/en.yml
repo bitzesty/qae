@@ -16,15 +16,15 @@ en:
 
     eligibility/basic:
       organization_kind:
-        business: "Business, e.g. companies, partnerships, social enterprise."
-        charity: "Not-for-profit, e.g. not-for-profit: charities, foundation, associations."
+        business: "Business (e.g. companies, partnerships, social enterprises)"
+        charity: "Not-for-profit (e.g. charities, foundations, associations)"
       kind:
-        application: Apply for an award
+        application: Apply for an organisation award
         nomination: Nominate an individual
       industry:
           product_business: Product business
           service_business: Service business
-          either_business: Product business/service business
+          either_business: Mixed business
 
   activerecord:
     errors:

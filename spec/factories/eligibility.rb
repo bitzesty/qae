@@ -18,7 +18,6 @@ FactoryGirl.define do
         industry: "product_business",
         registered: true,
         self_contained_enterprise: true,
-        demonstrated_comercial_success: true,
         current_holder: false
       }}.call      
     end
