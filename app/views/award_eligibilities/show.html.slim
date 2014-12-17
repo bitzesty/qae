@@ -3,6 +3,9 @@
     div
       h1
         ' Eligibility questionnaire
+      h2
+        = @eligibility.class.const_get(:AWARD_NAME)
+        '  Eligibility
 
   .article-container
     article.group role="article"
