@@ -14,7 +14,7 @@ fieldset
   .input.question-group
     label.control-label
       ' Country
-    = country_select(:user, :company_country, priority_countries: ["GB"], selected: current_user.company_country)
+    = country_select(:user, :company_country, priority_countries: ["GB", "US"], selected: current_user.company_country)
   = f.input :company_postcode, input_html: { class: "big small"}, label: 'Postcode'
 
 fieldset

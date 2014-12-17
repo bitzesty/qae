@@ -12,7 +12,7 @@
 .question-group
   label
     ' Country
-    = country_select(question, "#{question.key}_country", {priority_countries: ["GB"], selected: answers["#{question.key}_country"]}, possible_read_only_ops.merge({name: "#{question.key}_country"}))
+    = country_select(question, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: answers["#{question.key}_country"]}, possible_read_only_ops.merge({name: "#{question.key}_country"}))
 
 .question-group
   label
