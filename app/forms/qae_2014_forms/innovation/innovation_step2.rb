@@ -3,10 +3,10 @@ class QAE2014Forms
     def innovation_step2
       @innovation_step2 ||= Proc.new {
         context %Q{
-          <p>When answering these questions please avoid using technical jargon where possible. If you have more than one innovative product/service you will need to submit more than one application.</p>
+          <p>Please try to avoid using technical jargon in this section. </p>
         }
 
-        textarea :innovation_desc_short, 'Briefly describe your product/service/intiative' do
+        textarea :innovation_desc_short, 'Briefly describe your product/service/initiative' do
           ref 'B 1'
           required
           context %Q{
@@ -20,51 +20,51 @@ class QAE2014Forms
           classes "sub-question"
           required
           context %Q{
-            <p>Describe the product/service/intitative itself, explain any aspect(s) you believe innovative, and why you believe it is innovative: consider its uniqeueness and the challenges you had to overcome. Also explain how it fits within the overall business e.g. is it your sole product.</p>
+            <p>Describe the product/service/initiative itself. Explain any aspect(s) you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Also explain how it fits within the overall business i.e. is it your sole product?</p>
           }
           rows 5
           words_max 800
         end
 
-        textarea :innovation_context, 'Describe the context of your innovation, why and how it came about.' do
+        textarea :innovation_context, 'Describe the market conditions that led to the creation of your innovation.' do
           ref 'B 2'
           required
           context %Q{
-            <p>Outline the disadvantages, if any, of your own/competing products/services/intiatives prior to the innovation. Or otherwise, how you identified a gap in the market.</p>
+            <p>Or otherwise, how you identified a gap in the market.</p>
           }
           rows 5
           words_max 500
         end
 
-        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior issues, and any special difficulties you overcame in achieving these solutions." do
+        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior problems, and any difficulties you overcame in achieving these solutions." do
           ref 'B 3'
           required
           rows 5
           words_max 800
         end
 
-        textarea :innovation_befits_details, "Give details of benefits received by your customers and your business as a result of the innovation." do
+        textarea :innovation_befits_details, "How does the innovation benefit your customers and your business?" do
           ref 'B 4'
           required
           context %Q{
-            <p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim.</p>
+            <p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim by uploading them in B10.</p>
           }
           rows 5
           words_max 800
         end
 
-        textarea :innovation_competitors, "Identify and describe any products/services/initiatives made by other organisations that compete with your innovation, and explain how your innovation differs." do
+        textarea :innovation_competitors, "Describe any products/services/initiatives made by others that compete with your innovation, and explain how your innovation differs." do
           ref 'B 5'
           required
           rows 5
           words_max 300
         end
 
-        options :innovation_any_contributors, 'Did any external organisation or individiual contribute to this product/service/initiative?' do
+        options :innovation_any_contributors, 'Did any external organisation or individual contribute to your innovation?' do
           ref 'B 6'
           required
           context %Q{
-            <p>Excluding suppliers and any joint entrant(s) named in A7.</p>
+            <p>Excluding suppliers, consultants and any joint entrant(s) named in A8 above.</p>
           }
           yes_no
         end
@@ -85,7 +85,7 @@ class QAE2014Forms
           option :some, 'Some are aware'
         end
 
-        options :innovation_under_license, 'Is the product/service/initiative under license from another organisation?' do
+        options :innovation_under_license, 'Is your innovation under license from another organisation?' do
           ref 'B 7'
           yes_no
         end
@@ -98,7 +98,7 @@ class QAE2014Forms
           words_max 100
         end
 
-        options :innovations_grant_funding, 'Have you received any grant funding to support this innovation?' do
+        options :innovations_grant_funding, 'Have you received any grant funding to support your innovation?' do
           ref 'B 8'
           required
           yes_no
@@ -112,24 +112,9 @@ class QAE2014Forms
           words_max 300
         end
 
-        number :innovation_years, 'How long has it been since the product/service/initiative was released into the marketplace?' do
+        number :innovation_years, 'How long have you had your innovation on the market?' do
           required
           ref 'B 9'
-          max 100
-          unit ' years'
-          style "small inline"
-        end
-
-        options :innovation_released_by_applicant, "Was the product/service/intiative released by you?" do
-          classes "sub-question"
-          required
-          yes_no
-        end
-
-        number :innovation_years_by_applicant, 'How many years have you had it in the marketplace?' do
-          classes "regular-question inline-input-question"
-          required
-          conditional :innovation_released_by_applicant, :no
           max 100
           unit ' years'
           style "small inline"
@@ -144,15 +129,13 @@ class QAE2014Forms
         upload :innovation_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
           ref 'B 10'
           context %Q{
-            <p>We can't guarantee these will be reviewed, so inlcude any vital information within the form.</p>
+            <p>We can't guarantee these will be reviewed, so include any vital information within the form.</p>
             <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. You may link to videos, websites or other media you feel relevant.</p>
+            <p>We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.</p>
           } # TODO!
           max_attachments 4
           links
           description
-          help 'Information we will not review', %Q{
-            <p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>
-          }
         end
       }
     end
