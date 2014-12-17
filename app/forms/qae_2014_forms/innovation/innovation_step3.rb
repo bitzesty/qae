@@ -188,7 +188,6 @@ class QAE2014Forms
 
         textarea :drops_in_sales, "Explain any drop in the sales of your innovative product/service" do
           classes "sub-question js-conditional-drop-question"
-          required
           rows 5
           words_max 300
           conditional :innovation_part_of, :single_product_or_service
