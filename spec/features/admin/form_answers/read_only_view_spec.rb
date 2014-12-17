@@ -53,10 +53,10 @@ So that I can have 'read only' version of form
     it "I should be logged as form answer owner and form should be in 'read only' mode", js: true do
       expect(page.current_path).to eq edit_form_path(form_answer)
       
-      company_name = page.evaluate_script("$('input[name=\"company_name\"]').val();")
+      company_name = page.evaluate_script("$('input[name=\"form[company_name]\"]').val();")
       expect(company_name).to eq("Bitzesty")
 
-      disabled = page.evaluate_script("$('input[name=\"company_name\"]').is(':disabled');")
+      disabled = page.evaluate_script("$('input[name=\"form[company_name]\"]').is(':disabled');")
       expect(disabled).to eq(true)
     end
   end
