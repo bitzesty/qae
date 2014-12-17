@@ -1,4 +1,10 @@
 class QAEFormBuilder
+  class InnovationFinancialYearDateQuestionBuilder < QuestionBuilder
+  end
+
+  class InnovationFinancialYearDateQuestion < Question
+  end
+
   class InnovationFinancialYearDatesQuestionDecorator < QuestionDecorator
     def fieldset_classes
       result = super
