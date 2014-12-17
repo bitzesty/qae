@@ -30,13 +30,14 @@ RSpec.describe Eligibility::Development, :type => :model do
     it 'is eligible when all questions are answered correctly' do
       eligibility.sustainable_development = true
       eligibility.development_contributed_to_commercial_success = true
-
+      eligibility.demonstrate_development_activities = true
       expect(eligibility).to be_eligible
     end
 
     it 'is not eligible when not all answers are correct' do
       eligibility.sustainable_development = false
       eligibility.development_contributed_to_commercial_success = true
+      demonstrate_development_activities = true
 
       expect(eligibility).not_to be_eligible
     end

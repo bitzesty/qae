@@ -30,7 +30,8 @@ RSpec.describe Eligibility::Trade, :type => :model do
 
     it 'is eligible when all questions are answered correctly' do
       eligibility.sales_above_100_000_pounds = true
-      eligibility.any_dips_over_the_last_three_years = true
+      eligibility.any_dips_over_the_last_three_years = 'no'
+      eligibility.growth_over_the_last_three_years = true
       eligibility.current_holder_of_qae_for_trade = false
 
       expect(eligibility).to be_eligible
@@ -38,8 +39,9 @@ RSpec.describe Eligibility::Trade, :type => :model do
 
     it 'is not eligible when not all answers are correct' do
       eligibility.sales_above_100_000_pounds = true
-      eligibility.any_dips_over_the_last_three_years = false
+      eligibility.any_dips_over_the_last_three_years = true
       eligibility.current_holder_of_qae_for_trade = false
+      eligibility.growth_over_the_last_three_years = true
 
       expect(eligibility).not_to be_eligible
     end
@@ -49,7 +51,7 @@ RSpec.describe Eligibility::Trade, :type => :model do
     let(:eligibility) { Eligibility::Trade.new(user: user) }
 
     it 'returns all questions for new eligibility' do
-      expect(eligibility.questions).to eq([:sales_above_100_000_pounds, :any_dips_over_the_last_three_years, :current_holder_of_qae_for_trade, :qae_for_trade_expiery_date])
+      expect(eligibility.questions).to eq([:sales_above_100_000_pounds, :any_dips_over_the_last_three_years, :growth_over_the_last_three_years, :current_holder_of_qae_for_trade, :qae_for_trade_expiery_date])
     end
 
     it 'does not return QAE expiery date if user is not a QAE holder' do
