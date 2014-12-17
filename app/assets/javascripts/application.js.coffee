@@ -276,6 +276,7 @@ jQuery ->
 
       
       list.append(new_el)
+      new_el.find('.js-char-count').charcount()
       list.removeClass('visuallyhidden')
       update_visibility()
       reindex_inputs()
