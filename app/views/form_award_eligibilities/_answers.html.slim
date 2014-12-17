@@ -1,11 +1,13 @@
-- eligibility.sorted_answers.each do |question, answer|
-  - if question.to_sym != step
+- eligibility.questions.each do |question|
+  - answer = eligibility.public_send(question)
+  - if question != step
     tr.section
       td.previous-question-title
         = eligibility.class.label(question)
       td.previous-question-body
         - if eligibility.class.boolean_question?(question)
-          = eligibility.public_send("#{question}?") ? 'Yes' : 'No'
+          - unless answer.nil?
+            = eligibility.public_send("#{question}?") ? 'Yes' : 'No'
         - elsif eligibility.class.integer_question?(question)
           = answer
         - else

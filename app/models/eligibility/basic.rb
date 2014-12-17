@@ -21,6 +21,10 @@ class Eligibility::Basic < Eligibility
     end
   end
 
+  def skipped?
+    false
+  end
+
   private
 
   def set_passed

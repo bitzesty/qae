@@ -6,7 +6,7 @@ RSpec.describe Eligibility::Innovation, :type => :model do
   context 'answers storage' do
     it 'saves and reads answers' do
       eligibility = Eligibility::Innovation.new(user: user)
-      eligibility.innovative_product = '1'
+      eligibility.innovative_product = 'yes'
       eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = true
       eligibility.had_impact_on_commercial_performace_over_two_years = true
@@ -31,7 +31,7 @@ RSpec.describe Eligibility::Innovation, :type => :model do
     end
 
     it 'is eligible when all questions are answered correctly' do
-      eligibility.innovative_product = true
+      eligibility.innovative_product = 'yes'
       eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = true
       eligibility.had_impact_on_commercial_performace_over_two_years = true
@@ -42,7 +42,7 @@ RSpec.describe Eligibility::Innovation, :type => :model do
     end
 
     it 'is not eligible when not all answers are correct' do
-      eligibility.innovative_product = true
+      eligibility.innovative_product = 'yes'
       eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = false
       eligibility.had_impact_on_commercial_performace_over_two_years = true
@@ -61,7 +61,7 @@ RSpec.describe Eligibility::Innovation, :type => :model do
     end
 
     it 'does not return number of innovative products if user does not have them' do
-      eligibility.innovative_product = false
+      eligibility.innovative_product = 'no'
       expect(eligibility.questions).not_to include(:number_of_innovative_products)
     end
   end

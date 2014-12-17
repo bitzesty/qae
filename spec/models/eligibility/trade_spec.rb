@@ -29,7 +29,7 @@ RSpec.describe Eligibility::Trade, :type => :model do
     end
 
     it 'is eligible when all questions are answered correctly' do
-      eligibility.sales_above_100_000_pounds = true
+      eligibility.sales_above_100_000_pounds = 'yes'
       eligibility.any_dips_over_the_last_three_years = 'no'
       eligibility.growth_over_the_last_three_years = true
       eligibility.current_holder_of_qae_for_trade = false
@@ -38,7 +38,7 @@ RSpec.describe Eligibility::Trade, :type => :model do
     end
 
     it 'is not eligible when not all answers are correct' do
-      eligibility.sales_above_100_000_pounds = true
+      eligibility.sales_above_100_000_pounds = 'yes'
       eligibility.any_dips_over_the_last_three_years = true
       eligibility.current_holder_of_qae_for_trade = false
       eligibility.growth_over_the_last_three_years = true
