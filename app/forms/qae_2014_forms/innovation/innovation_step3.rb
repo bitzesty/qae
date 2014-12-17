@@ -47,6 +47,7 @@ class QAE2014Forms
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
           }
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         options :innovation_part_of, 'The innovation is an integral part of' do
@@ -61,6 +62,7 @@ class QAE2014Forms
             <p>These figures should be for your entire organisation. If you haven't reached your latest year-end, please use estimates to complete this section.</p>
           }
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         textarea :innovation_excluded_explanation, 'In question A14.3 you said you are applying on behalf of a group but are excluding some members. Please explain why the financial figures of any member(s) of your group are excluded.' do
@@ -68,6 +70,7 @@ class QAE2014Forms
           rows 5
           words_max 150
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           conditional :applying_for, 'organisation'
           conditional :parent_group_entry, 'yes'
           conditional :pareent_group_excluding, 'yes'
@@ -80,6 +83,7 @@ class QAE2014Forms
             <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
           }
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
@@ -88,6 +92,7 @@ class QAE2014Forms
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
@@ -95,6 +100,7 @@ class QAE2014Forms
           classes "sub-question"
           required
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
@@ -103,6 +109,7 @@ class QAE2014Forms
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
@@ -111,12 +118,14 @@ class QAE2014Forms
           rows 5
           words_max 200
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         options :company_estimated_figures, 'Are any of these figures estimated?' do
           classes "sub-question"
           yes_no
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           conditional :innovation_part_of, :entire_business
         end
 
@@ -125,6 +134,7 @@ class QAE2014Forms
           rows 5
           words_max 200
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           conditional :company_estimated_figures, :yes
         end
 
@@ -135,6 +145,7 @@ class QAE2014Forms
           }
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
  
         innovation_by_years_number :units_sold, 'Number of innovative units/contracts sold' do
@@ -142,6 +153,7 @@ class QAE2014Forms
           required
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
@@ -150,6 +162,7 @@ class QAE2014Forms
           required
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
@@ -159,6 +172,7 @@ class QAE2014Forms
           required
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
@@ -168,6 +182,7 @@ class QAE2014Forms
           required
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
@@ -178,16 +193,15 @@ class QAE2014Forms
           words_max 300
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         innovation_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
           classes "sub-question"
           required
-          context %Q{
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-          }
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
@@ -197,16 +211,15 @@ class QAE2014Forms
           words_max 300
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         innovation_by_years :avg_unit_cost_self, 'Direct cost, to you, of a single unit/contract' do 
           classes "sub-question"
           required
-          context %Q{
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-          }
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         textarea :costs_change_desc, 'Explain your direct unit/ contract costs, highlighting any changes over the above periods.' do
@@ -216,6 +229,7 @@ class QAE2014Forms
           words_max 300
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         options :product_estimated_figures, 'Are any of these figures estimated?' do
@@ -223,6 +237,7 @@ class QAE2014Forms
           yes_no
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         textarea :product_estimates_use, 'Explain your use of estimates, and how much of these are actual receipts or firm orders.' do
@@ -231,6 +246,7 @@ class QAE2014Forms
           words_max 200
           conditional :product_estimated_figures, :yes
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         textarea :financial_comments, 'Additional comments (optional)' do
@@ -242,6 +258,7 @@ class QAE2014Forms
           words_max 100
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial performance of your business.' do
@@ -254,7 +271,7 @@ class QAE2014Forms
           words_max 300
         end 
 
-        textarea :investments_details, 'Please enter details of all your investments in the innovation. *Include all investments made both during and prior to your entry period.* Also include the year(s) in which they were made.' do
+        textarea :investments_details, 'Please enter details of all your investments in the innovation. <em>Include all investments made both during and prior to your entry period.</em> Also include the year(s) in which they were made.' do
           ref 'C 9'
           required
           rows 5

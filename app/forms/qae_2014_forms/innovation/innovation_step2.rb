@@ -85,6 +85,9 @@ class QAE2014Forms
         number :innovation_years, 'How long have you had your innovation on the market?' do
           required
           ref 'B 8'
+          context %Q{
+            <p>Please use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
+          }
           max 100
           unit ' years'
           style "small inline"

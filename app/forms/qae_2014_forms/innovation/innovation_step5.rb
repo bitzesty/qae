@@ -9,18 +9,8 @@ class QAE2014Forms
           text 'I confirm that I have the consent of the head of my organisation (as in A13) to submit this entry form.'
         end
 
-        confirm :agree_to_be_contacted_by_qae, "Contact from Queen's Award for Enterprise" do
-          ref 'E 2'
-          text "I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info)."
-        end
-
-        confirm :agree_to_be_contacted_by_dept, "Contact from Department of Business, Innovation and Skills." do
-          ref 'E 3'
-          text "I am happy to be contacted by the Department of Business, Innovation and Skills."
-        end
-
         confirm :entry_confirmation, 'Confirmation of entry' do
-          ref 'E 4'
+          ref 'E 2'
           required
           text %Q{
             By ticking this box, I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.

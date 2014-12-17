@@ -30,7 +30,7 @@ class QAE2014Forms
           required
           ref 'A 3'
           context %Q{
-            <p>We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>
+            <p>A principal invoices its customers (or their buying agents) and is the body to receive those payments. We recommend that you apply as a principal.</p>
           }
           yes_no
         end
@@ -139,6 +139,7 @@ class QAE2014Forms
           context %Q{
             <p>If you two or more organisations made a significant contribution to the innovation, and achieved commercial success, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.</p>
           }
+          conditional :innovation_any_contributors, :yes
           yes_no
         end
 
