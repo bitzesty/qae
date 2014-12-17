@@ -42,12 +42,24 @@ input[type="number"],
 input[type="email"],
 input[type="password"],
 input[type="url"],
-input[type="tel"] {
+input[type="tel"],
+input[type="file"] {
   @media (max-width: 640px) {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
   }
+}
+
+.fileinput-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
 }
 
 input[type="text"],
@@ -57,6 +69,7 @@ input[type="email"],
 input[type="password"],
 input[type="url"],
 input[type="tel"],
+input[type="file"],
 textarea {
   @include core-16($line-height: (20 / 16));
   border: 1px solid #bbb;

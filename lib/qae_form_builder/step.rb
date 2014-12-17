@@ -2,6 +2,9 @@ require 'active_support/inflector'
 
 class QAEFormBuilder
 
+  class StepDecorator < QAEDecorator
+  end
+
   class StepBuilder
 
     def initialize step
@@ -76,6 +79,10 @@ class QAEFormBuilder
       @short_title = short_title
       @opts = opts
       @questions = []
+    end
+
+    def decorate options = {}
+      StepDecorator.new self, options
     end
 
     def next

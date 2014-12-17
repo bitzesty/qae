@@ -1,4 +1,4 @@
-select.js-trigger-autosave name=question.key
+select.js-trigger-autosave name=question.input_name
   - question.options.each do |option|
-    option value="#{option.value}" selected=((answers[question.key] || '').to_s == option.value.to_s) *possible_read_only_ops
+    option value="#{option.value}" selected=((question.input_value || '').to_s == option.value.to_s) *possible_read_only_ops
       = option.text

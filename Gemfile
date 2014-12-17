@@ -31,6 +31,8 @@ gem "sidekiq"
 gem "sidekiq-status"
 gem "sinatra", require: false
 gem "foreman"
+gem 'jquery.fileupload-rails'
+gem 'carrierwave'
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'
@@ -54,6 +56,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-sidekiq'
   gem 'slackistrano', require: false
+  gem 'pry'
 end
 
 group :test, :development do

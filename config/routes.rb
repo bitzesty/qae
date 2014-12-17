@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get  '/form/:id'                                      => "form#edit_form",                                              as: 'edit_form'
   post '/form_autosave/:id'                             => "form#autosave",                                               as: 'autosave'
   post '/form/:id'                                      => "form#submit_form",                                            as: 'submit_form'
+  post '/form/:id/attachments'                          => "form#add_attachment",                                         as: 'attachments'
   get  '/form/:id/confirmation'                         => "form#submit_confirm",                                         as: 'submit_confirm'
   get '/dashboard'                                      => "content_only#dashboard",                                      as: 'dashboard'
   get '/eligibility_check_1'                            => "content_only#eligibility_check_1",                            as: 'eligibility_check_1'

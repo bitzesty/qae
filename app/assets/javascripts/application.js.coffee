@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require jquery.fileupload
 #= require Countable
 #= require moment.min
 #= require_tree .
@@ -176,20 +177,10 @@ jQuery ->
     window.autosave_timer = null
     url = $('form.qae-form').data('autosave-url')
     if url
-      form_data = {}
-      a = $('form.qae-form').serializeArray()
-      $.each a,
-        (() ->
-          if form_data[@name] != undefined
-            if !form_data[@name].push
-              form_data[@name] = [form_data[@name]]
-            form_data[@name].push(@value || '')
-          else
-            form_data[@name] = @value || '')
+      form_data = $('form.qae-form').serialize()
       $.ajax({
         url: url
-        data: JSON.stringify(form_data)
-        contentType: 'application/json'
+        data: form_data
         type: 'POST'
         dataType: 'json'
       })
@@ -207,6 +198,122 @@ jQuery ->
 
   # Fade out alerts after 10sec
   $(".flash").delay(10000).fadeOut()
+
+  $('.js-file-upload').each (idx, el) ->
+    form = $(el).closest('form')
+    attachments_url = form.data 'attachments-url'
+    $el = $(el)
+
+    wrapper = $el.closest('div.js-upload-wrapper')
+    button = wrapper.find('span.button')
+    list = wrapper.find('.js-uploaded-list')
+
+    max = wrapper.data('max-attachments')
+    name = wrapper.data('name')
+    form_name = wrapper.data('form-name')
+    needs_description = !!wrapper.data('description')
+    is_link = !!$el.data('add-link')
+
+    progress_all = (e, data) ->
+      # TODO
+
+    reindex_inputs = () ->
+      idx = 0
+      list.find('li').each (i, li) ->
+        process_input = (j, input_el) ->
+          name = $(input_el).attr('name')
+          match = /([^\[]+)\[([^\]]+)\]\[([0-9]*)\](.*)/.exec name
+          if match
+            $(input_el).attr('name', "#{match[1]}[#{match[2]}][#{idx}]#{match[4]}")
+
+        $(li).find('input').each process_input
+        $(li).find('textarea').each process_input
+        idx++
+
+    update_visibility = () ->
+      list_elements = list.find('li')
+      count = list_elements.length
+      if count > 0
+        list.removeClass('visuallyhidden')
+
+      if !max || count < max
+        button.removeClass('visuallyhidden')
+      else
+        button.addClass('visuallyhidden')
+
+    upload_started = (e, data) ->
+      button.addClass('visuallyhidden') #TODO: show progressbar
+
+    upload_done = (e, data, link) ->
+      new_el = $("<li>")
+
+      if link
+        div = $("<div>")
+        label = $("<label>").text('Website link')
+        input = $("<input class=\"medium\" type=\"text\">").
+          prop('name', "#{form_name}[#{name}][][link]")
+        label.append(input)
+        div.append(label)
+        new_el.append(div)
+      else
+        div = $("<div>").text(data.result['original_filename'])
+
+        hidden_input = $("<input>").
+          prop('type', 'hidden').
+          prop('name', "#{form_name}[#{name}][][file]").
+          prop('value', data.result['id'])
+
+        div.append(hidden_input)
+
+        remove_link = $("<a>").addClass('remove-link').prop('href', '#').text('Remove')
+        remove_link.click remove_link_clicked
+
+        div.append(remove_link)
+        new_el.append(div)
+
+      if needs_description
+        desc_div = $("<div>")
+        label = ($("<label class=\"small\">").text('Description (optional)'))
+        label.append($("<textarea class=\"js-char-count\" rows=\"2\" maxlength=\"600\" data-word-max=\"100\">").attr("name", "#{form_name}[#{name}][][description]"))
+        desc_div.append(label)
+        new_el.append(desc_div)
+
+      remove_link_clicked = (e) ->
+        e.preventDefault()
+        new_el.remove()
+        update_visibility()
+        reindex_inputs
+        false
+      
+      list.append(new_el)
+      new_el.find('.js-char-count').charcount()
+      list.removeClass('visuallyhidden')
+      update_visibility()
+      reindex_inputs()
+
+    wrapper.find('a.remove-link').each (idx, el) ->
+      $(el).click (e) ->
+        e.preventDefault()
+        li = $(el).closest 'li'
+        li.remove()
+        update_visibility()
+        false
+
+    update_visibility()
+
+    if is_link
+      $el.click (e) ->
+        e.preventDefault()
+        upload_done(null, null, true)
+        false
+    else
+      $el.fileupload(
+        url: attachments_url
+        formData: () -> {}
+        done: upload_done
+        progressall: progress_all
+        send: upload_started
+      )
 
   # Show current holder info when they are a current holder on basic eligibility current holder question
   if $(".eligibility_current_holder").size() > 0
@@ -352,3 +459,4 @@ jQuery ->
   $(document).on 'click', (e) ->
     if !$(e.target).closest('.dropdown').length
       $(".dropdown.dropdown-open").removeClass("dropdown-open")
+
