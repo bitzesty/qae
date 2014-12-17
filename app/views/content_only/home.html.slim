@@ -15,23 +15,24 @@
           h1 1. Overview
 
         p
-          ' The
+          ' Established in 1966 by royal warrant, the
           = link_to "Queen’s Awards for Enterprise", awards_for_organisations_path
-          '  are annual awards for outstanding achievement by UK organisations in the categories of:
+          '  are the most prestigious enterprise awards in the country. They are presented by Her Majesty The Queen on the advice of the Prime Minister and an Advisory Committee, and recognise outstanding achievement by UK organisations in three categories:
 
         ul
-          li Innovation
-          li International Trade
-          li Sustainable Development
+          li = link_to "Innovation", awards_for_organisations_path(anchor: "innovation")
+          li = link_to "International Trade", awards_for_organisations_path(anchor: "international_trade")
+          li = link_to "Sustainable Development", awards_for_organisations_path(anchor: "sustainable_development")
 
         br
 
         p
           ' The
           = link_to "Queen’s Award for Enterprise Promotion", enterprise_promotion_awards_path
-          '  is awarded by nomination only, and recognises individuals who have played an outstanding role (going above and beyond their duties) in promoting the growth of business enterprise and/or entrepreneurial skills in others.
+          '  is for individuals who have played an outstanding role (going above and beyond their duties) in promoting the growth of business enterprise and/or entrepreneurial skills in others. It is awarded by nomination only.
+
         p
-          ' All winners and, in the case of Enterprise Promotion, their nominators are invited to a Royal reception at Buckingham Palace. The awards are free to enter.
+          ' All winners and, in the case of Enterprise Promotion, their nominators are invited to a Royal reception at Buckingham Palace.
 
         p
           ' The organisation awards are valid for five years, whilst the Queen’s Award for Enterprise Promotion is valid for life.
@@ -42,14 +43,14 @@
           - if user_signed_in?
             = link_to "Apply", dashboard_path, class: "button"
           - else
-            = link_to "Apply", new_user_registration_path, class: "button"
+            = link_to "Apply", apply_for_queens_award_for_enterprise_path, class: "button"
 
-        br
-
-        p
-          ' If you have already begun your application then
-          = link_to "log in to continue", new_user_session_path
-          ' .
+        - unless user_signed_in?
+          br
+          p
+            ' If you have already begun your application then
+            = link_to "log in to continue", new_user_session_path
+            ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

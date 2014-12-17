@@ -34,7 +34,7 @@ header.page-header.group.page-header-wider
               input type="radio" name="optionsGrowthSuccessDurationForced" value="6 plus" disabled="disabled"
               ' 6 years or more
 
-        = question_for "Please select your financial year end dates:",
+        = question_for "State your financial year end date",
                        { step: "B 2",
                          required: true,
                          context_text: "<p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>",
@@ -102,7 +102,7 @@ header.page-header.group.page-header-wider
 
           br
           label
-            ' Additional comments (optional)
+            ' Additional comments
             textarea.js-char-count rows="5" data-word-max="100"
             span.hint
               ' If your year-end date changed during the application period, please explain.

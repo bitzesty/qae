@@ -4,26 +4,29 @@ class QAE2014Forms
       @innovation_step4 ||= Proc.new {
         options :corp_responsibility_form, 'You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.' do
           ref 'D 1'
+          required
           context %Q{
-            <p>This does not affect your chance of success.</p>
+            <p>This decision doesn't affect your chance of success.</p>
           }
           option :complete_now, 'Complete full corporate responsibility form now'
           option :declare_now, 'Complete declaration now, and full form once shortlisted'
         end
 
-        header :declaration_introduction_text, "" do
-          context %Q{
-            <p>Please outline the effects of the activities and practices of your whole business unit under the headings set out below.</p><p>If you have already provided relevant information in your entry, please refer to that information and give any additional information under the relevant heading(s) below.'</p><p>The associated Innovation guidance notes suggest some questions you might consider in preparing your responses.</p>
-          }
+        header :complete_now_header, "" do
           conditional :corp_responsibility_form, :complete_now
+          context %Q{
+            <p>The Declaration of Corporate Responsibility is a chance for you to outline your responsible business conduct, and its social, economic and environmental impact.</p>
+            <p>You don't have to demonstrate strength in all of the areas below. </p>
+            <p>If you have too many iniatives, just outline the ones you think are most relevant/important.</p>
+          }
         end
 
         textarea :impact_on_society, "The impact of your business operations on society" do
           ref 'D 2'
           conditional :corp_responsibility_form, :complete_now
           required
-          help "What should I include in this box?", %Q{
-            <p>What activies do you undertake to foster good relations with local communities? Outline how you evaluate and report on their impact.</p>
+          context %Q{
+            <p>What activities do you undertake to foster good relations with local communities? Outline how you evaluate and report on their impact.</p>
             <p>If you have operations in the third world or developing countries, are these conducted with proper regard for the current and future welfare of the people employed there?</p>
           }
           rows 5
@@ -34,19 +37,19 @@ class QAE2014Forms
           ref 'D 3'
           required
           conditional :corp_responsibility_form, :complete_now
-          help "What should I include in this box?", %Q{
-            <p>Description of any environmental considerations within your business eg. energy efficiency strategies, recycling policies, emissions reduction policies.</p>
-            <p>If, and how, you undertake environmental impact assessments of major projects. </p>
+          context %Q{
+            <p>Description of any environmental considerations within your business e.g. energy efficiency strategies, recycling policies, emissions reduction policies.</p>
+            <p>If, and how, you undertake environmental impact assessments of major projects.</p>
           }
           rows 5
-          words_max 500 
+          words_max 500
         end
 
         textarea :partners_relations, 'Relations with suppliers, partners and contractors' do
           ref 'D 4'
           required
           conditional :corp_responsibility_form, :complete_now
-          help "What should I include in this box?", %Q{
+          context %Q{
             <p>An outline of your selection criteria, if any, with regard to potential suppliers'/partners'/contractors' economic, social and environmental performance.</p>
             <p>Do you encourage best practice or require them to meet your own standards? To what extent are you succeeding?</p>
           }
@@ -58,10 +61,10 @@ class QAE2014Forms
           ref 'D 5'
           required
           conditional :corp_responsibility_form, :complete_now
-          help "What should I include in this box?", %Q{
-            <p>Do you have a code of conduct and/or employee policies eg. health and safety, training, staff welfare, whistleblowing and equal opportunities?</p>
-            <p>Outline any special employment conditions that you offer eg. flexible working, extended maternity pay.</p>
-            <p>How you keep your employees engaged eg. communication, assessments, incentives, opportunities for career development.</p>
+          context %Q{
+            <p>Do you have a code of conduct and/or employee policies e.g. health and safety, training, staff welfare, whistleblowing and equal opportunities?</p>
+            <p>Outline any special employment conditions that you offer e.g. flexible working, extended maternity pay.</p>
+            <p>How you keep your employees engaged e.g. communication, assessments, incentives, opportunities for career development.</p>
           }
           rows 5
           words_max 500 
@@ -71,7 +74,7 @@ class QAE2014Forms
           ref 'D 6'
           required
           conditional :corp_responsibility_form, :complete_now
-          help "What should I include in this box?", %Q{
+          context %Q{
             <p>What proportion of your sales consist of repeat purchases?</p>
             <p>How do you measure customer satisfaction, and what have been the results?</p>
             <p>The criteria by which you select clients and how you ensure they are appropriate for your services.</p>

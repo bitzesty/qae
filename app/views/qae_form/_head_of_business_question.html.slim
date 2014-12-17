@@ -2,21 +2,21 @@
   label
     ul.errors-container
     ' Title
-    input.js-trigger-autosave.small type="text" name="#{question.key}_title" value=answers["#{question.key}_title"]
+    input.js-trigger-autosave.small type="text" name=question.input_name(suffix: 'title') value=question.input_value(suffix: 'title') *possible_read_only_ops
 .question-group
   label
     ul.errors-container
     ' First name
-    input.js-trigger-autosave.medium type="text" name="#{question.key}_first_name" value=answers["#{question.key}_first_name"]
+    input.js-trigger-autosave.medium type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') *possible_read_only_ops
 .question-group
   label
     ul.errors-container
     ' Last name
-    input.js-trigger-autosave.medium type="text" name="#{question.key}_last_name" value=answers["#{question.key}_last_name"]
+    input.js-trigger-autosave.medium type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') *possible_read_only_ops
 .question-group
   label
     ul.errors-container
     ' Personal Honours
-    input.js-trigger-autosave.large type="text" name="#{question.key}_honours" value=answers["#{question.key}_honours"]
+    input.js-trigger-autosave.large type="text" name=question.input_name(suffix: 'honours') value=question.input_value(suffix: 'honours') *possible_read_only_ops
   span.hint
     ' e.g. OBE. Not including educational qualifications or Institutional Memberships.

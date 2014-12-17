@@ -1,11 +1,9 @@
 .question-body
-  p.hint
-    ' In any category.
   = f.input :current_holder, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
   span.clear
 
   #current-holder-info.visuallyhidden
     br
-    .application-notice.info-notice
+    .application-notice.help-notice
       p
         ' If you won your award in the last two years you can still apply, but new applicants will be given priority.

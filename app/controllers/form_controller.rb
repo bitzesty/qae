@@ -1,8 +1,14 @@
 require 'qae_2014_forms'
 
 class FormController < ApplicationController
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :check_basic_eligibility, :check_award_eligibility, :check_account_completion
   before_filter :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form]
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
+    :new, :create, :update, :destroy,
+    :submit_form,
+    :submit_confirm,
+    :autosave
+  ]
 
   def new_innovation_form
     form_answer = FormAnswer.create!(user: current_user, account: current_user.account, award_type: 'innovation')
@@ -20,19 +26,24 @@ class FormController < ApplicationController
   end
 
   def edit_form
-    @form = @form_answer.award_form
-    render template: 'qae_form/show'
+    if @form_answer.eligible?
+      @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document || {}))
+      render template: 'qae_form/show'
+    else
+      redirect_to form_award_eligibility_url(form_id: @form_answer.id)
+    end
   end
 
   def submit_form
     path_params = request.path_parameters
-    doc = params.except(*path_params.keys).except(:eligibility, :basic_eligibility)
-    @form_answer.document = doc
-    @form_answer.eligibility = params[:eligibility]
-    @form_answer.basic_eligibility = params[:basic_eligibility]
+    doc = params[:form]
+    @form_answer.document = serialize_doc(doc)
 
     @form_answer.submitted = true
-    @form_answer.save!
+    if @form_answer.save! && @form_answer.submitted_changed?
+      Submission::SuccessNotifier.new(@form_answer).run
+    end
+
     redirect_to submit_confirm_url(@form_answer)
   end
 
@@ -42,45 +53,45 @@ class FormController < ApplicationController
   end
 
   def autosave
-    extracted_params = extract_params(request.body.read)
-
-    @form_answer.document = extracted_params[:doc]
-    @form_answer.eligibility = extracted_params[:eligibility]
-    @form_answer.basic_eligibility = extracted_params[:basic_eligibility]
+    @form_answer.document = serialize_doc(params[:form])
     @form_answer.save!
     render :nothing => true
   end
 
-  def check_eligibility
-    extracted_params = extract_params(request.body.read)
-    eligible = Eligibility::Basic.new(extracted_params[:basic_eligibility]).eligible?
-    eligible &= @form_answer.eligibility_class.new(extracted_params[:eligibility]).eligible?
-    render json: eligible
+  def add_attachment
+    attachment_params = params[:form]
+    attachment_params.merge!(form_answer_id: @form_answer.id)
+
+    attachment_params.merge!(original_filename: attachment_params[:file].original_filename) if attachment_params[:file].respond_to?(:original_filename)
+
+    attachment_params = attachment_params.permit(:original_filename, :file, :description, :link, :form_answer_id)
+
+    @attachment = FormAnswerAttachment.create!(attachment_params)
+
+    render json: @attachment, status: :created
   end
 
   private
 
-  def set_form_answer
-    @form_answer = FormAnswer.for_account(current_user.account).find(params[:id])
-  end
-
-  def extract_params(body)
-    doc = ActiveSupport::JSON.decode(body)
-    eligibility = {}
-    basic_eligibility = {}
-
-    doc.reject! do |q, a|
-      if q.match(/\Aeligibility\[/)
-        eligibility[q.gsub(/\Aeligibility\[(\w*)\]/, '\1')] = a
-
-        true
-      elsif q.match(/\Abasic_eligibility\[/)
-        basic_eligibility[q.gsub(/\Abasic_eligibility\[(\w*)\]/, '\1')] = a
-
-        true
+  ## TODO: maybe we switch to JSON instead of hstore
+  def serialize_doc doc
+    result = {}
+    doc.each do |(k, v)|
+      if v.is_a?(Hash)
+        result[k] = v.to_json
+      else
+        result[k] = v
       end
     end
-
-    { doc: doc, eligibility: eligibility, basic_eligibility: basic_eligibility }
+    result
   end
+
+  def set_form_answer
+    @form_answer = FormAnswer.for_account(current_user.account).find(params[:id])
+    @attachments = @form_answer.form_answer_attachment.inject({}) do |r, attachment|
+        r[attachment.id] = attachment
+        r
+      end
+  end
+
 end

@@ -1,3 +1,2 @@
 .question-group
-  // TODO fix generated ID and name
-  = country_select(question, "#{question.key}_country", priority_countries: ["GB"])
+  = country_select(question, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value(suffix: 'country')}, possible_read_only_ops.merge({name: "#{question.key}_country"}))

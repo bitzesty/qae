@@ -4,7 +4,7 @@
   - if question.header_context
     == question.header_context
 
-fieldset class="question-block js-conditional-answer #{question.classes} #{'question-required' if question.required}  #{'js-conditional-drop-answer' if question.drop_condition} #{'question-date-max' if question.is_a?(QAEFormBuilder::DateQuestion) && question.date_max} #{'question-date-min' if question.is_a?(QAEFormBuilder::DateQuestion) && question.date_min} #{'question-date-between' if question.is_a?(QAEFormBuilder::DateQuestion) && question.date_between} #{'question-number' if question.is_a?(QAEFormBuilder::NumberQuestion)} #{'question-number-by-years' if question.is_a?(QAEFormBuilder::TradeByYearsQuestion) or question.is_a?(QAEFormBuilder::TradeByYearsPercentageQuestion)} #{'question-date-by-years' if question.is_a?(QAEFormBuilder::TradeFinancialYearDatesQuestion) or question.is_a?(QAEFormBuilder::DevelopmentFinancialYearDatesQuestion) or question.is_a?(QAEFormBuilder::InnovationFinancialYearDatesQuestion)} #{'question-money-by-years' if question.is_a?(QAEFormBuilder::DevelopmentByYearsQuestion) or question.is_a?(QAEFormBuilder::TradeByYearsQuestion) or question.is_a?(QAEFormBuilder::InnovationByYearsQuestion)}" data-answer=question.parameterized_title data-drop-question="#{question.form[question.drop_condition].parameterized_title if question.drop_condition}" data-date-max=(question.date_max if (question.is_a?(QAEFormBuilder::DateQuestion) && question.date_max)) data-date-min=(question.date_min if (question.is_a?(QAEFormBuilder::DateQuestion) && question.date_min)) data-date-between=(question.date_between[0] + ',' + question.date_between[1] if (question.is_a?(QAEFormBuilder::DateQuestion) && question.date_between))
+fieldset class=question.fieldset_classes data=question.fieldset_data_hash
   = condition_divs question do
     - if question.title != ""
       h2
@@ -17,12 +17,13 @@ fieldset class="question-block js-conditional-answer #{question.classes} #{'ques
 
         == question.title
 
-        - if question.required
-          abbr
-            | *
+        /- unless question.required
+          '  (optional)
 
     - if question.context
       == question.context
+    - for help in question.help
+      == help.text
 
     ul.errors-container
 
@@ -30,13 +31,12 @@ fieldset class="question-block js-conditional-answer #{question.classes} #{'ques
       label
         span.visuallyhidden
           = question.title
-          - if question.required
-            abbr
-              | *
-      = render partial: "qae_form/#{question.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers}
+          /- unless question.required
+            '  (optional)
+      = render partial: "qae_form/#{question.delegate_obj.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
       .clear
 
-    - for help in question.help
+    /- for help in question.help
       div.hidden-hint
         span.hidden-link
           = help.title

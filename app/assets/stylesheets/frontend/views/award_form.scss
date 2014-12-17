@@ -11,8 +11,13 @@
 .js-step-link {
   cursor: pointer;
 
+  &.step-errors {
+    color: $error-colour;
+  }
+
   &.step-current {
     cursor: default;
+    color: $black;
   }
 }
 
@@ -25,4 +30,38 @@
   .done-questions {
     padding-left: 0;
   }
+}
+
+// Fix the financial questions year ending style
+.js-year-default {
+  display: none;
+}
+.show-default {
+  .js-year-default {
+    display: inline;
+  }
+  .js-year-text {
+    display: none;
+  }
+}
+
+// PDF dowload link style/position
+.page-header .download-article {
+  position: relative;
+  float: right;
+  width: auto;
+  top: -0.5em;
+  margin-right: 0;
+
+  .form-download {
+    &,
+    p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+}
+
+.form-submit .form-download p {
+  @include core-24;
 }

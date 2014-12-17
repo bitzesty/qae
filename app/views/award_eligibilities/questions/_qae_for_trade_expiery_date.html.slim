@@ -1,0 +1,9 @@
+.question-body
+  = f.input :qae_for_trade_expiery_date, as: :select, include_blank: true, label: false, input_html: { class: 'trade-expiry-input' }
+
+  #trade-expiry-info.visuallyhidden
+    br
+    .application-notice.help-notice
+      p
+        ' You can apply for multiple awards if you have more than one innovation. Each one requires a separate application to be submitted.
+span.clear

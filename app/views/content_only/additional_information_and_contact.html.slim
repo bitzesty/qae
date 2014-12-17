@@ -12,11 +12,11 @@
     article.group role="article"
       .inner
         header
-          h1 6. Additional information &amp; Contact
+          h1 6. Additional information &amp; contact
 
           h2 Additional information
 
-          p There are some other interesting sources of information on Queen's Awards for Enterprise that you may find helpful.
+          p There are some other interesting sources of information on Queens Awards for Enterprise that you may find helpful.
 
           ul
             li
@@ -60,20 +60,20 @@
             - if user_signed_in?
               = link_to "Apply", dashboard_path, class: "button"
             - else
-              = link_to "Apply", new_user_registration_path, class: "button"
+              = link_to "Apply", apply_for_queens_award_for_enterprise_path, class: "button"
 
-          br
-
-          p
-            ' If you have already begun your application then
-            = link_to "log in to continue", new_user_session_path
-            ' .
+          - unless user_signed_in?
+            br
+            p
+              ' If you have already begun your application then
+              = link_to "log in to continue", new_user_session_path
+              ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
             ul.group
               li.previous
-                = link_to what_happens_next_path, rel: "prev", title: "Navigate to previous part" do
+                = link_to timeline_path, rel: "prev", title: "Navigate to previous part" do
                   span.pagination-label
                     ' Previous
                   span.pagination-part-title

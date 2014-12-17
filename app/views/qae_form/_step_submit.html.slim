@@ -1,13 +1,14 @@
-- if submit.notice
-  br
-  .application-notice.info-notice
-    == submit.notice
+.form-submit
+  .form-download
+    p
+      = link_to "Download your application", user_form_answer_path(current_user, @form_answer, format: :pdf)
 
-br
-p.form-submit
-  button type="submit" class="button #{submit.style.presence}"
-    = submit.text
+  - if submit.notice
+    br
+    .application-notice.info-notice
+      == submit.notice
+    br
 
-/ TODO: REMOVE ME ONCE REDIRECT WILL BE READY
-br
-= link_to "Download PDF (Im here just for TEST)", user_form_answer_path(current_user, @form_answer, format: :pdf)
+
+  - unless admin_in_read_only_mode?
+    = link_to "Save and come back later", dashboard_path, class: "save-quit-link"

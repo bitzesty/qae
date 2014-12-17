@@ -1,54 +1,21 @@
 .js-conditional-question data-question="development_performance_years-for-how-long-have-your-achievements-in-sustainable-development-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
   span.row
-    span.span-4
-      label
-        ' Year ending in
-        span.js-year-end data-year="1of2" ...
-        br
-        ul.errors-container
-        input.small.js-trigger-autosave type="text" placeholder="£" name="#{question.key}_1of2" value=answers["#{question.key}_1of2"]
-    span.span-4
-      label
-        ' Year ending in
-        span.js-year-end data-year="2of2" ...
-        br
-        ul.errors-container
-        input.small.js-trigger-autosave type="text" placeholder="£" name="#{question.key}_2of2" value=answers["#{question.key}_2of2"]
+    - for i in 1..2
+      span.span-4
+        label
+          ' Year ending in
+          span.js-year-end data-year="1of2" ...
+          br
+          ul.errors-container
+          input.small.js-trigger-autosave type="text" placeholder="£" name=question.input_name(suffix: "#{i}of2") value=question.input_value(suffix: "#{i}of2") *possible_read_only_ops
 
 .js-conditional-question data-question="development_performance_years-for-how-long-have-your-achievements-in-sustainable-development-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
   span.row
-    span.span-2-4
-      label
-        ' Year ending in
-        span.js-year-end data-year="1of5" ...
-        br
-        ul.errors-container
-        input.small.js-trigger-autosave type="text" placeholder="£" name="#{question.key}_1of5" value=answers["#{question.key}_1of5"]
-    span.span-2-4
-      label
-        ' Year ending in
-        span.js-year-end data-year="2of5" ...
-        br
-        ul.errors-container
-        input.small.js-trigger-autosave type="text" placeholder="£" name="#{question.key}_2of5" value=answers["#{question.key}_2of5"]
-    span.span-2-4
-      label
-        ' Year ending in
-        span.js-year-end data-year="3of5" ...
-        br
-        ul.errors-container
-        input.small.js-trigger-autosave type="text" placeholder="£" name="#{question.key}_3of5" value=answers["#{question.key}_3of5"]
-    span.span-2-4
-      label
-        ' Year ending in
-        span.js-year-end data-year="4of5" ...
-        br
-        ul.errors-container
-        input.small.js-trigger-autosave type="text" placeholder="£" name="#{question.key}_4of5" value=answers["#{question.key}_4of5"]
-    span.span-2-4
-      label
-        ' Year ending in
-        span.js-year-end data-year="5of5" ...
-        br
-        ul.errors-container
-        input.small.js-trigger-autosave type="text" placeholder="£" name="#{question.key}_5of5" value=answers["#{question.key}_5of5"]
+    - for i in 1..5
+      span.span-2-4
+       label
+          ' Year ending in
+          span.js-year-end data-year="1of5" ...
+          br
+          ul.errors-container
+          input.small.js-trigger-autosave type="text" placeholder="£" name=question.input_name(suffix: "#{i}of5") value=question.input_value(suffix: "#{i}of5") *possible_read_only_ops

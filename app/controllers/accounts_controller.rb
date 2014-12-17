@@ -1,5 +1,13 @@
 class AccountsController < ApplicationController
-  before_action :check_eligibility
+  before_action :check_basic_eligibility, :check_award_eligibility
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
+    :new, :create, :update, :destroy,
+    :update_correspondent_details,
+    :update_company_details,
+    :update_contact_settings,
+    :update_add_collaborators,
+    :update_password_settings
+  ]
 
   def correspondent_details
     @active_step = 1
@@ -54,7 +62,9 @@ class AccountsController < ApplicationController
   def update_add_collaborators
     if current_user.update(add_collaborators_settings_params)
       unless current_user.completed_registration
-        flash.notice = 'Account was successfully created'
+        current_user.update_attribute(:completed_registration, true)
+
+        flash.notice = 'You account details were successfully saved'
         redirect_to dashboard_path
       else
         redirect_to password_settings_account_path
@@ -66,9 +76,9 @@ class AccountsController < ApplicationController
   end
 
   def update_password_settings
-    current_user.setStep(5)
+    current_user.set_step(5)
     if current_user.update(password_settings_params)
-      flash.notice = 'Account was successfully updated'
+      flash.notice = 'You account details were successfully saved'
       redirect_to dashboard_path
     else
       @active_step = 5
@@ -97,13 +107,5 @@ class AccountsController < ApplicationController
 
   def password_settings_params
     params.require(:user).permit(:current_password, :password, :password_confirmation)
-  end
-
-  private
-
-  def check_eligibility
-    if !(current_user.basic_eligibility && current_user.basic_eligibility.passed?)
-      redirect_to eligibility_path
-    end
   end
 end

@@ -3,14 +3,14 @@
 header.page-header.group class="#{'page-header-wider' unless current_user.completed_registration}"
   div
     h1
-      ' Your account details
+      ' Account settings
 
     = render "steps_progress_bar"
 
     h2
       - unless current_user.completed_registration
         ' Step 3 of 3:
-      ' Contact Settings
+      ' Contact Preferences
 
 .article-container
   article.group role="article"
@@ -39,7 +39,7 @@ header.page-header.group class="#{'page-header-wider' unless current_user.comple
               li.previous.previous-alternate
                 = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part" do
                   span class="pagination-label"
-                    ' Previous step
+                    ' Previous section
 
               li.submit
-                = f.submit "Next step", class: "button"
+                = f.submit "Save and continue", class: "button"

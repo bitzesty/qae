@@ -41,8 +41,10 @@ $(function() {
     resizeTextarea($(this));
   });
 
-  txt.on('keyup', function () {
-    resizeTextarea($(this));
+  txt.on('keyup', function (e) {
+    if (e.keyCode != 9) {
+      resizeTextarea($(this));
+    }
   });
 
   txt.on('mouseup', function () {

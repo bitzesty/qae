@@ -10,7 +10,7 @@
 }
 
 // Error styling
-.question-has-errors .errors-container {
+.errors-container {
   margin: 0;
   margin-bottom: 0.2em;
   padding: 0;
@@ -42,12 +42,24 @@ input[type="number"],
 input[type="email"],
 input[type="password"],
 input[type="url"],
-input[type="tel"] {
+input[type="tel"],
+input[type="file"] {
   @media (max-width: 640px) {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
   }
+}
+
+.fileinput-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0;
+  opacity: 0;
+  font-size: 200px;
+  direction: ltr;
+  cursor: pointer;
 }
 
 input[type="text"],
@@ -57,6 +69,7 @@ input[type="email"],
 input[type="password"],
 input[type="url"],
 input[type="tel"],
+input[type="file"],
 textarea {
   @include core-16($line-height: (20 / 16));
   border: 1px solid #bbb;
@@ -74,6 +87,19 @@ textarea {
 
   // Alternate width sizes for inputs based on
   // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
+  &.tiny {
+    min-width: 2em;
+    max-width: 2em;
+
+    @include ie-lte(7) {
+      width: 2em;
+    }
+
+    @media (max-width: 640px) {
+      min-width: 0;
+    }
+  }
+
   &.small {
     max-width: 8em;
 
@@ -138,6 +164,76 @@ textarea {
       -webkit-box-sizing: border-box;
          -moz-box-sizing: border-box;
               box-sizing: border-box;
+    }
+  }
+}
+
+.qae-form {
+  &,
+  .span-1,
+  .span-2,
+  .span-2-4,
+  .span-3,
+  .span-4,
+  .span-5,
+  .span-6,
+  .span-7,
+  .span-8,
+  .span-9,
+  .span-10,
+  .span-11,
+  .span-12 {
+    .date-input {
+      margin-bottom: 1em;
+
+      label {
+        display: inline-block;
+        margin-right: 0.75em;
+        vertical-align: top;
+
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
+  .date-input {
+    input[type="text"] {
+      min-width: 0 !important;
+      max-width: none !important;
+    }
+
+    input[type="text"].tiny {
+      width: 2.7em !important;
+    }
+
+    input[type="text"].small {
+      width: 4em !important;
+    }
+  }
+
+  .span-1,
+  .span-2,
+  .span-2-4,
+  .span-3,
+  .span-4,
+  .span-5,
+  .span-6,
+  .span-7,
+  .span-8,
+  .span-9,
+  .span-10,
+  .span-11,
+  .span-12 {
+    .date-input {
+      input[type="text"].tiny {
+        width: 3.5em !important;
+      }
+
+      input[type="text"].small {
+        width: 4em !important;
+      }
     }
   }
 }
@@ -217,6 +313,16 @@ input[type="file"] {
         }
       }
     }
+
+    &.inline {
+      display: inline-block;
+      margin-right: 1em;
+      vertical-align: top;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
   }
 
   input,
@@ -281,6 +387,21 @@ input[type="file"] {
 
   .form-submit {
     margin: 1.5em 0 0 0;
+  }
+
+  // Currency prepended inputs
+  .currency-input {
+    position: relative;
+
+    .currency-unit {
+      position: absolute;
+      line-height: 2;
+    }
+
+    input {
+      width: 85%;
+      margin-left: 1.15em;
+    }
   }
 }
 
@@ -406,13 +527,20 @@ input[type="file"] {
 .char-count {
   position: relative;
 }
+.char-text-limit {
+  @include core-19($line-height: (20 / 16));
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+  text-align: right;
+}
 .char-text {
-  @include core-14($line-height: (20 / 16));
+  @include core-16($line-height: (20 / 16));
+  margin-top: 0.2em;
   color: $grey-1;
   text-align: right;
 
   .char-over & {
-    color: $red;
+    color: $error-colour;
   }
 }
 
@@ -518,7 +646,7 @@ input[type="file"] {
 .pagination {
   li.previous-alternate {
     a {
-      margin-top: $gutter;
+      margin: $gutter 0 0.5em 0;
       padding: 0;
 
       &:before {
@@ -534,7 +662,7 @@ input[type="file"] {
       }
 
       .pagination-label {
-        @include core-16;
+        @include core-19;
         text-decoration: underline;
       }
     }
@@ -544,6 +672,12 @@ input[type="file"] {
     float: right;
     width: 51%;
     margin-top: 1em;
+
+    a,
+    button {
+      width: auto;
+      margin: 0.2em 0 0.5em 0;
+    }
   }
 
   .button {
@@ -556,6 +690,24 @@ input[type="file"] {
     @include ie(6) {
       padding: 0.45em 0.5em 0.62em 0.5em;
     }
+  }
+}
+
+// Save and quit link next to form submit
+.save-quit-link {
+  @include core-24;
+  display: inline-block;
+  margin: 0.2em 0;
+
+  @media (max-width: 640px) {
+    margin: 1em 0;
+  }
+}
+.form-submit .pull-right {
+  float: right;
+
+  @media (max-width: 640px) {
+    float: none;
   }
 }
 

@@ -3,18 +3,24 @@
 header.page-header.group class="#{'page-header-wider' unless current_user.completed_registration}"
   div
     h1
-      ' Your account details
+      ' Account settings
 
     = render "steps_progress_bar"
 
     h2
       - unless current_user.completed_registration
         ' Step 4 of 4:
-      ' Add Collaborators
+      ' Collaborators
 
 .article-container
   article.group role="article"
     .inner
+      p Adding collaborators lets your colleagues sign in and contribute to your application(s).
+
+      p They will also be copied in on any correspondence from us regarding your application(s).
+
+      br
+
       = simple_form_for current_user, url: update_add_collaborators_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
         // TODO remove form_contact_settins
         .visuallyhidden
@@ -28,11 +34,11 @@ header.page-header.group class="#{'page-header-wider' unless current_user.comple
               li.previous.previous-alternate
                 = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
                   span class="pagination-label"
-                    ' Previous step
+                    ' Previous section
 
               - unless current_user.completed_registration
                 li.submit
-                  = f.submit "Continue to Dashboard", class: "button"
+                  = f.submit "Continue to applications", class: "button"
               - else
                 li.submit
-                  = f.submit "Next step", class: "button"
+                  = f.submit "Save and continue", class: "button"

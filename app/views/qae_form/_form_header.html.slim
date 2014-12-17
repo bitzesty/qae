@@ -7,24 +7,28 @@ header.page-header.group.page-header-wider
 
     .steps-progress-bar
       ol
-        li.js-step-link.js-step-condition.step-current data-step="step-eligibility"
+        li.js-step-condition.step-past
           span
-            span.step-number
-            ' Eligibility
+            = link_to form_award_eligibility_url(form_id: @form_answer.id) do
+              span.step-number
+                ' Eligibility
         - for step in form.steps do
-          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}"
+          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 1)
             span
               span.step-number
                 ' #{step_letters[step.index-1]}.
               = step.short_title.html_safe
 
-    h2.step-header.js-step-condition.step-current data-step="step-eligibility"
-        ' Eligibility
+    article.download-article
+      .form-download
+        p
+          = link_to "Download your application", user_form_answer_path(current_user, @form_answer, format: :pdf)
+
     - for step in form.steps do
-      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}"
+      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 1)
         ' Step
-        = step.index
+        = step.index + 1
         '  of
-        = form.steps.length
+        = form.steps.length + 1
         ' :
         = step.title

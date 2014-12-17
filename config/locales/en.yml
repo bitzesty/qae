@@ -16,14 +16,24 @@ en:
 
     eligibility/basic:
       organization_kind:
-        business: "Business, e.g. companies, partnerships, social enterprise."
-        charity: "Not-for-profit, e.g. not-for-profit: charities, foundation, associations."
+        business: "Business (e.g. companies, partnerships, social enterprises)"
+        charity: "Not-for-profit (e.g. charities, foundations, associations)"
       kind:
-        application: Apply for an award
+        application: Apply for an organisation award
         nomination: Nominate an individual
       industry:
-          product_business: Product business
-          service_business: Service business
+        product_business: Product business
+        service_business: Service business
+        either_business: Mixed business
+    eligibility/innovation:
+      innovative_product:
+        skip: "Skip Innovation eligibility"
+    eligibility/development:
+      sustainable_development:
+        skip: "Skip Sustainable Development eligibility"
+    eligibility/trade:
+      sales_above_100_000_pounds:
+        skip: "Skip International Trade eligibility"
 
   activerecord:
     errors:
@@ -34,3 +44,4 @@ en:
         too_long: "%{attribute} is too long (maximum is %{count} characters)"
         too_short: "%{attribute} is too short (minimum is %{count} characters)"
         confirmation: "%{attribute} doesn't match."
+        not_a_number: "Please enter a number."

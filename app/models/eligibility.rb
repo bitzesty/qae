@@ -2,12 +2,20 @@ class Eligibility < ActiveRecord::Base
   extend Enumerize
 
   belongs_to :user
-  validates :user, presence: true
+  belongs_to :form_answer
 
   after_save :set_passed
 
+  attr_accessor :current_step
+
+  validate :current_step_validation
+
   def self.questions
     @questions.keys
+  end
+
+  def self.hint(name)
+    @questions[name.to_sym][:hint]
   end
 
   def self.label(name)
@@ -26,10 +34,6 @@ class Eligibility < ActiveRecord::Base
     !!@questions[name.to_sym][:positive_integer]
   end
 
-  def self.hidden_question?(name)
-    !!@questions[name.to_sym][:hidden]
-  end
-
   def self.questions_storage
     @questions
   end
@@ -43,21 +47,23 @@ class Eligibility < ActiveRecord::Base
 
     if values && values.any?
       enumerize name, in: values
-    elsif options[:boolean]
+    end
+
+    if options[:boolean] || options[:acts_like_boolean]
       define_method "#{name}?" do
         ['1', 'true', 'yes', true].include?(public_send(name))
       end
+    end
 
-      validates name, presence: true unless self == Eligibility::Basic
-    elsif options[:positive_integer]
-      validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true } unless self == Eligibility::Basic
+    if options[:positive_integer]
+      validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true }, if: proc { current_step == name }
     end
 
     @questions.merge!(name => options)
   end
 
   def eligible?
-    self.class.questions.all? do |question|
+    !skipped? && questions.all? do |question|
       answer = answers && answers[question.to_s]
       answer_valid?(question, answer)
     end
@@ -79,17 +85,45 @@ class Eligibility < ActiveRecord::Base
     end
   end
 
+  def questions
+    questions_storage.keys
+  end
+
+  def skipped?
+    public_send(self.class.questions.first) == 'skip'
+  end
+
   private
 
-  def set_passed
-    if eligible?
-      update_column(:passed, true)
+  def questions_storage
+    collection = {}
+
+    self.class.questions_storage.each do |question, options|
+      if options[:if]
+        if instance_eval(&options[:if])
+          collection.merge!(question => options)
+        end
+      else
+        collection.merge!(question => options)
+      end
     end
+
+    collection
+  end
+
+  def set_passed
+    update_column(:passed, !skipped? && eligible?)
   end
 
   def answer_valid?(question, answer)
     acceptance_criteria = self.class.questions_storage[question.to_sym][:accept].to_s
     validator = "Eligibility::Validation::#{acceptance_criteria.camelize}Validation".constantize.new(self, question, answer)
     validator.valid?
+  end
+
+  def current_step_validation
+    if current_step && public_send(current_step).nil?
+      errors.add(current_step, :blank)
+    end
   end
 end

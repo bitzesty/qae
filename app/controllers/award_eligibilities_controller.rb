@@ -3,8 +3,11 @@ class AwardEligibilitiesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :load_eligibilities
-
-  steps :trade, :innovation, :development
+  before_action :load_basic_eligibility
+  before_action :check_basic_eligibility, :set_steps, :setup_wizard
+  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
+    :new, :create, :update, :destroy
+  ]
 
   def show
     if all_eligibilities_passed?
@@ -12,36 +15,21 @@ class AwardEligibilitiesController < ApplicationController
       return
     end
 
+    load_eligibility
+
     unless step
-      redirect_to wizard_path(:trade)
+      redirect_to wizard_path(Eligibility::Trade.questions.first)
       return
-    else
-      case step
-      when :trade
-        @active_step = 1
-      when :innovation
-        @active_step = 2
-      when :development
-        @active_step = 3
-      end
     end
   end
 
   def update
-    eligibility = case step
-    when :trade
-      @active_step = 1
-      @trade_eligibility
-    when :innovation
-      @active_step = 2
-      @innovation_eligibility
-    when :development
-      @active_step = 3
-      @development_eligibility
-    end
-
-    if eligibility.update(send("#{step}_eligibility_params"))
-      if step == :development
+    load_eligibility
+    @eligibility.current_step = step
+    if @eligibility.update(eligibility_params)
+      set_steps
+      setup_wizard
+      if step == @development_eligibility.questions.last
         redirect_to action: :result
       else
         redirect_to next_wizard_path
@@ -56,14 +44,11 @@ class AwardEligibilitiesController < ApplicationController
 
   private
 
-
-  %w[trade innovation development].each do |award_type|
-    define_method "#{award_type}_eligibility_params" do
-      if params[:eligibility]
-        params.require(:eligibility).permit(*"Eligibility::#{award_type.capitalize}".constantize.questions)
-      else
-        {}
-      end
+  def eligibility_params
+    if params[:eligibility]
+      params.require(:eligibility).permit(*@eligibility.class.questions)
+    else
+      {}
     end
   end
 
@@ -71,4 +56,24 @@ class AwardEligibilitiesController < ApplicationController
     [@trade_eligibility, @innovation_eligibility, @development_eligibility].all?(&:passed?)
   end
   helper_method :all_eligibilities_passed?
+
+  def load_eligibility
+    @eligibility = case step
+    when *Eligibility::Trade.questions
+      @eligibility = @trade_eligibility
+    when *Eligibility::Innovation.questions
+      @eligibility = @innovation_eligibility
+    when *Eligibility::Development.questions
+      @eligibility = @development_eligibility
+    end
+  end
+
+  def load_basic_eligibility
+    @basic_eligibility = current_user.basic_eligibility
+  end
+
+
+  def set_steps
+    self.steps = [@trade_eligibility, @innovation_eligibility, @development_eligibility].flat_map(&:questions)
+  end
 end

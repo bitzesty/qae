@@ -1,0 +1,14 @@
+- if [@basic_eligibility, @award_eligibility].any? { |e| e.answers && e.answers.any? }
+  .previous-answers
+    .done-questions
+      article
+        table
+          thead
+            tr
+              th.previous-answers-title colspan="2"
+                ' Your eligibility answers
+              th.link-right.restart
+                = link_to "Start again", form_award_eligibility_path(form_id: @form_answer.id)
+          tbody
+            = render "answers", eligibility: @basic_eligibility
+            = render "answers", eligibility: @award_eligibility

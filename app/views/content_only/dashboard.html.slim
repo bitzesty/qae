@@ -3,7 +3,7 @@
 header.page-header.group
   div
     h1
-      ' Dashboard
+      ' My applications
 
 .article-related-positioning-container
   .article-container
@@ -19,39 +19,45 @@ header.page-header.group
 
         - if @user_award_forms.any?
           h2
-            ' Current applications
-          ul.applications-list
-            - @user_award_forms.each do |award|
-              li
-                h3
-                  = award.created_at.strftime("%Y")
-                  ' 
-                  = award.decorate.award
-                small
-                  /' Unclear eligibility
-                .pull-right
-                  = link_to "Continue application", edit_form_path(award.id), class: "inline-link text-right"
+            ' Current Applications
+          table.applications-table
+            colgroup
+              col width="300"
+              col width="200"
+              col width="200"
+            tbody
+              - @user_award_forms.each do |award|
+                tr
+                  td
+                    h3
+                      = award.decorate.award_type
+                  td
+                    p
+                      // TODO use better method to test for submitted awards
+                      - if award.urn?
+                        ' Submitted
+                      - else
+                        // TODO percentage completed
+                        ' 50% completed
+                  td.pull-right
+                    // TODO use better method to test for submitted awards
+                    - if award.urn?
+                      = link_to "Edit application", edit_form_path(award.id)
+                    - else
+                      = link_to "Continue application", edit_form_path(award.id)
           br
 
         h2
           ' Applying for a Queen’s Award for your organisation?
 
-        p
-          ' If you’re unsure about which category to enter,
-          = link_to "check which awards your organisation is eligible for", award_eligibility_path
-          ' .
-
-        p
-          ' Otherwise, select a category below.
+        p To begin your application, select the award(s) you want to apply for. You can apply for more than one category, as long as you meet the criteria.
 
         = render "shared/application_awards_status"
 
         br
 
         h2
-          ' Know someone who does great work promoting entrepreneurial skills and values?
-        p
-          = link_to "Check to see if they are eligible for a Queen’s Award for Enterprise Promotion."
+          ' Nominating an individual for the Queen's Award for Enterprise Promotion?
 
         ul.applications-list
           li
@@ -67,8 +73,8 @@ header.page-header.group
       .related#related
         .highlighted-event
           p
-            ' Deadline for submitting applications
-            em Wednesday
+            ' Submission deadline
+            em 23:59 Wednesday
             em 30 September
 
         /.inner.group.related-section

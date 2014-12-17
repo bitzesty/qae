@@ -1,5 +1,61 @@
 class QAEFormBuilder
 
+  class QuestionDecorator < QAEDecorator
+    def input_name options = {}
+      if options[:index]
+        suffix = options.fetch(:suffix)
+        "#{form_name}[#{delegate_obj.key}][#{options[:index]}][#{suffix}]"
+      else
+        "#{form_name}[#{hash_key(options)}]"
+      end
+    end
+
+    def input_value options = {}
+      result = if options[:index]
+        suffix = options.fetch(:suffix)  
+      ## TODO: maybe we switch to JSON from hstore?
+        json = JSON.parse(answers[delegate_obj.key] || {})
+        json[options[:index]][suffix]
+      else
+        answers[hash_key(options)]
+      end
+
+      if options[:json]
+        JSON.parse(result || '{}')
+      else
+        result
+      end
+    end
+
+    def answers
+      @decorator_options.fetch(:answers)
+    end
+
+    def form_name
+      @decorator_options[:form_name] || 'form'
+    end
+
+    def hash_key options = {}
+      options[:suffix] ? "#{delegate_obj.key}_#{options[:suffix]}" : delegate_obj.key
+    end
+
+    def fieldset_classes
+      result = ["question-block",
+       "js-conditional-answer"]
+      result << delegate_obj.classes if delegate_obj.classes
+      result << 'question-required' if delegate_obj.required
+      result << 'js-conditional-drop-answer' if delegate_obj.drop_condition
+      result
+    end
+
+    def fieldset_data_hash
+      result = {answer: delegate_obj.parameterized_title}
+      result['drop-question'] = delegate_obj.form[delegate_obj.drop_condition].parameterized_title if delegate_obj.drop_condition
+      result
+    end
+
+  end
+
   class QuestionBuilder
     def initialize q
       @q = q
@@ -60,6 +116,11 @@ class QAEFormBuilder
       @conditions = []
       self.after_create if self.respond_to?(:after_create)
     end
+
+    def decorate options = {}
+      QuestionDecorator.new self, options
+    end
+
 
     def form
       step.form

@@ -1,9 +1,9 @@
-.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}"
+.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 1)
   article.group role="article"
     .inner
       - if step.context
         == step.context
-      = render partial: "qae_form/question", collection: step.questions, locals: { answers: answers }
+      = render partial: "qae_form/question", collection: step.questions, locals: { answers: answers, attachments: attachments }
       - if step.submit
         = render partial: "qae_form/step_submit", object: step.submit, as: 'submit'
       = render partial: "qae_form/form_footer", object: step, as: 'step'

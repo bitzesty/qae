@@ -1,50 +1,63 @@
-header.page-header.group
+header.page-header.group.page-header-wider
   div
     h1
-      ' Confirmation
+      ' Confirmation of submission
 
 .inner-block
   .call-to-action
     p
-      ' Thank you.
-      br
-      / TODO: categories
-      ' Your application to the Queen's Awards for Enterprise in the category 'Innovation' was submitted
+      ' Thank you,
+    br
+    p
+      ' Your application for the Queen’s Award for Enterprise: #{@form_answer.decorate.award} was submitted. We have sent you an email confirming your submission.
     br
     p
       strong
-        ' Your URN (Unique Reference Number) is #{@form_answer.urn}
+        ' Your Unique Reference Number (URN) is #{@form_answer.urn}
+    br
+    p
+      ' You can still edit your submitted application up until 23:59 on the last working day of September.
 
 .article-related-positioning-container
   .article-container
     article.group role="article"
       .inner
-        h2
-          ' Next steps
-
-        p
-          ' You will soon receive a confirmation email. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.
-
-        p
-          ' Labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit.
-
         .form-download
           p
-            / TODO: categories
-            = link_to "Download your Innovation Award application", "#"
-            / user_form_answer_path(current_user, form_answer, format: :pdf)
+            = link_to "Download a PDF of your application", user_form_answer_path(current_user, @form_answer, format: :pdf)
+
+        .application-notice.help-notice
+          p
+            ' We will contact you and all your collaborators regarding your entry. We recommend that you
+            = link_to "add at least one collaborator", add_collaborators_account_path
+            ' &nbsp; in case you are unavailable.
 
         h2
-          ' Awards for organisations
+          ' What happens next
 
-        = render "shared/application_awards_status"
+        p We will contact you to let you know if you’ve been shortlisted.
 
-        footer
-          nav.pagination role="navigation" aria-label="Pagination"
-            ul.group
-              li.previous
-                = link_to dashboard_path, rel: "prev", title: "Navigate to Dashboard" do
-                  span class="pagination-label"
-                    ' Back
-                  span class="pagination-part-title"
-                    ' Dashboard
+        p Shortlisted organisations are expected to:
+        ul
+          li complete the full Declaration of Corporate Responsibility (if not done so yet).
+          li provide an external accountant’s certificate by mid-January (please note audited accounts are not required)
+
+        h3 March
+        p All unsuccessful applicants will receive feedback on their applications (including where the entry failed to meet the standards required, and how it could be improved). 
+
+        h3 April
+        p The winners are announced publicly.
+
+        h3 July
+        p Winning organisations are invited to a Buckingham Palace reception.
+
+        br
+
+        p
+          ' Return to
+          = link_to "My Applications", dashboard_path
+          '  or
+          - if current_admin
+            = link_to "Log out", destroy_admin_session_path, method: :delete
+          - else
+            = link_to "Log out", destroy_user_session_path, method: :delete

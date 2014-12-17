@@ -1,25 +1,29 @@
 footer
-  nav.pagination role="navigation" aria-label="Pagination"
+  nav.pagination class="#{'pagination-alternative' unless step.next}" role="navigation" aria-label="Pagination"
     ul.group
       - if step.previous
-        li.previous.js-step-link data-step="step-#{step.previous.title.parameterize}"
+        li.previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"
           = link_to "#", rel: "prev", title: "Navigate to previous part" do
             span class="pagination-label"
-              ' Previous step
-            span class="pagination-part-title"
+              ' Previous section
+            /span class="pagination-part-title"
               = step.previous.title
       - else
-        li.previous.js-step-link data-step="step-eligibility"
-          = link_to "#", rel: "prev", title: "Navigate to previous part" do
+        li.previous.previous-alternate
+          = link_to form_award_eligibility_url(form_id: @form_answer.id), rel: "prev", title: "Navigate to previous part" do
             span class="pagination-label"
-              ' Previous step
-            span class="pagination-part-title"
+              ' Previous section
+            /span class="pagination-part-title"
               = Eligibility
 
       - if step.next
-        li.next.js-step-link data-step="step-#{step.next.title.parameterize}"
-          = link_to "#", rel: "next", title: "Navigate to next part" do
-            span class="pagination-label"
-              ' Next step
-            span class="pagination-part-title"
+        li.submit.js-next-link.js-step-link data-step="step-#{step.next.title.parameterize}"
+          = link_to "#", rel: "next", title: "Navigate to next part", class: "button" do
+            ' Save and continue
+            /span class="pagination-part-title"
               = step.next.title
+      - else
+        - if step.submit
+          li.submit.qae-form
+            button type="submit" class="button #{step.submit.style.presence}"
+              = step.submit.text

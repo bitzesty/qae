@@ -1,34 +1,35 @@
 = simple_form_for @innovation_eligibility, as: :eligibility, url: wizard_path, method: :put, html: { class: 'qae-form' } do |f|
   .current-question
     .question
-      h2 = Eligibility::Innovation.label(:innovative_product)
+      h2
+        = Eligibility::Innovation.label(:innovative_product)
       .question-body
         p.hint
           ' A product/service/intiative is innovative if it has not been done before, and provides benefit/ solves prior issues for its users. Fields include invention, design and production (for goods), performance (for services), marketing, distribution, after-sale support.
-        div.js-conditional-answer data-answer="Do you have an innovative product/service/initiative?"
+        .js-conditional-answer data-answer="Do you have an innovative product/service/initiative?"
           span.error.visuallyhidden
             ' Sorry, you are not eligible. You must have an innovative product/service/intiative to apply for a Queen's Award for Enterprise: Innovation.
           = f.input :innovative_product, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
         span.clear
         .js-conditional-question data-question="Do you have an innovative product/service/initiative?" data-value="true"
-          p.hint
+          h2
             span.no-js-conditional-text
               ' If 'true', how many?
             span.js-conditional-text
               = Eligibility::Innovation.label(:number_of_innovative_products)
-          div
+          .qae-form
             = f.input :number_of_innovative_products, input_html: { class: 'small innovative_amount_input' }
-            br
-            br
 
           #innovative-amount-info.visuallyhidden
-            .application-notice.info-notice
+            br
+            .application-notice.help-notice
               p
-                ' You can apply for a Queen's Award for Innovation for more than one product/service/intiative. Each one requires a separate application to be submitted.
+                ' You can apply for multiple awards if you have more than one innovation. Each one requires a separate application to be submitted.
       span.clear
 
     .question
-      h2 = Eligibility::Innovation.label(:was_on_market_for_two_years)
+      h2
+        = Eligibility::Innovation.label(:was_on_market_for_two_years)
       .question-body
         p.hint
           ' There is no upper limit on the age of your innovation.
@@ -36,13 +37,15 @@
       span.clear
 
     .question
-      h2 = Eligibility::Innovation.label(:innovation_recouped_investments)
+      h2
+        = Eligibility::Innovation.label(:innovation_recouped_investments)
       .question-body
         = f.input :innovation_recouped_investments, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
       span.clear
 
     .question
-      h2 = Eligibility::Innovation.label(:had_impact_on_commercial_performace_over_two_years)
+      h2
+        = Eligibility::Innovation.label(:had_impact_on_commercial_performace_over_two_years)
       .question-body
         p.hint
           ' Positive impact on commercial performance' is evident if factors such as profitability, turnover and market share have met/exceeded business plan targets.

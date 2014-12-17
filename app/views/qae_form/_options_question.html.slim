@@ -1,4 +1,4 @@
 - for answer in question.options do
   label.selectable
-    input.js-trigger-autosave type="radio" name="#{question.key.to_s}" value=answer.value checked=(answer.value.to_s == (answers[question.key] || '').to_s)
+    input.js-trigger-autosave type="radio" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s) *possible_read_only_ops
     = answer.text

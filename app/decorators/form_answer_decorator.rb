@@ -20,6 +20,19 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
+  def award_type
+    case object.award_type
+    when "trade"
+      'International Trade'
+    when "innovation"
+      'Innovation'
+    when "development"
+      'Sustainable Development'
+    when "promotion" 
+      'Enterprise promotion'
+    end
+  end
+
   def award_application_title
     "#{award} #{Date.today.year}"
   end

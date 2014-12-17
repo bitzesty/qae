@@ -1,3 +1,3 @@
-input.js-trigger-autosave class="#{question.style.present? ? question.style : 'medium'}" type="text" min=question.min max=question.max name=question.key value=answers[question.key]
+input.js-trigger-autosave class="#{question.style.present? ? question.style : 'medium'}" type="text" min=question.min max=question.max name=question.input_name value=question.input_value *possible_read_only_ops
 -if question.unit
   = question.unit

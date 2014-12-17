@@ -6,15 +6,15 @@ ul.list-add
       span.span-4
         label.small
           ' Name
-          input.medium type="text"
+          input.medium type="text" *possible_read_only_ops
       span.span-4
         label.small
           ' Location
-          input.medium type="text"
+          input.medium type="text" *possible_read_only_ops
       span.span-4
         label.small
           ' Number of UK Employees
-          input.small type="text"
+          input.small type="text" *possible_read_only_ops
 
 = link_to "+ Add subsidiary, associate or plant", "#", class: "button button-add js-button-add"
 

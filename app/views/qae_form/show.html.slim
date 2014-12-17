@@ -1,5 +1,4 @@
-form.qae-form.award-form data-autosave-url=autosave_url(@form_answer) action=submit_form_url(@form_answer) data-eligibility-check-url=check_eligibility_url(@form_answer) method="POST" data-eligible=@form_answer.eligible?.to_s
+form.qae-form.award-form data-autosave-url=autosave_url(@form_answer) action=submit_form_url(@form_answer) method="POST" data-attachments-url=attachments_url(@form_answer)
   input name="authenticity_token" type="hidden" value=form_authenticity_token
   = render partial: 'qae_form/form_header', object: @form, as: 'form'
-  = render 'qae_form/eligibility_step', form: @form, form_answer: @form_answer
-  = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form, answers: (HashWithIndifferentAccess.new(@form_answer.document || {}))}
+  = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form, answers: (HashWithIndifferentAccess.new(@form_answer.document || {})), attachments: HashWithIndifferentAccess.new(@attachments)}

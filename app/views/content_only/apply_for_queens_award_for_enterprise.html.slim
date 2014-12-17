@@ -1,0 +1,73 @@
+- provide(:page_content_class, "multi-page page-landing")
+
+.article-related-positioning-container
+  header.page-header.group.page-header-wider-minor
+    div
+      h1
+        ' Apply/nominate for the Queen’s Awards for Enterprise
+
+  .article-container.group
+    article.group role="article"
+      .inner
+        p
+          ' You can apply for the Queen’s Awards for Enterprise (Innovation, International Trade, Sustainable Development) and nominate individuals for the Queen’s Award for Enterprise Promotion.
+
+        .get-started
+          - if user_signed_in?
+            = link_to "Start now", dashboard_path, class: "button"
+          - else
+            = link_to "Start now", new_user_registration_path, class: "button"
+
+        - unless user_signed_in?
+          br
+          p
+            ' If you have already begun your application then
+            = link_to "log in to continue", new_user_session_path
+            ' .
+
+        br
+
+        h2
+          ' Before you start
+        ul
+          li
+            ' The Queen’s Awards for Enterprise are free to enter.
+          li
+            ' All information submitted in your application will be treated in strict confidence.
+          li
+            ' Submission period opens 21st April.
+          li
+            ' Submission period closes at
+            strong
+              ' 23:59 on the last working day of September.
+          li
+            ' You don’t have to complete your application(s) in one sitting.
+
+        br
+
+        h3
+          ' The application process
+        ol
+          li
+            ' Register for an account
+          li
+            ' Complete the eligibility questionnaire
+          li
+            ' Enter your basic account information
+          li
+            ' Begin your application(s)
+
+        br
+
+        .application-notice.help-notice
+          p
+            ' If you are a marketing company applying on behalf of a client, your client should sign up for an account first and add you as a contributor.
+
+        br
+
+        p
+          ' If you want to read more about the Queen’s Award for Enterprise, then
+          = link_to "return to the information pages", root_path
+          ' .
+
+        br

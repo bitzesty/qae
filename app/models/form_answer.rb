@@ -13,6 +13,12 @@ class FormAnswer < ActiveRecord::Base
   begin :associations
     belongs_to :user
     belongs_to :account
+
+    has_one :basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
+    has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
+    has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
+    has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
+    has_many :form_answer_attachment
   end
 
   begin :validations
@@ -53,27 +59,16 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
+  def eligibility
+    public_send("#{award_type}_eligibility")
+  end
+
   def eligibility_class
     "Eligibility::#{award_type.capitalize}".constantize
   end
 
-  def load_eligibility(user)
-    if eligibility && eligibility.any?
-      eligibility_class.new(eligibility)
-    else user.public_send("#{award_type}_eligibility") || user.public_send("build_#{award_type}_eligibility")
-    end
-  end
-
-  def load_basic_eligibility(user)
-    if basic_eligibility && basic_eligibility.any?
-      Eligibility::Basic.new(basic_eligibility)
-    else
-      user.basic_eligibility || user.build_basic_eligibility
-    end
-  end
-
   def eligible?
-    eligibility_class.new(eligibility).eligible? && Eligibility::Basic.new(basic_eligibility).eligible?
+    eligibility && eligibility.eligible? && basic_eligibility && basic_eligibility.eligible?
   end
 
   private
@@ -94,5 +89,41 @@ class FormAnswer < ActiveRecord::Base
 
   def set_account
     self.account = user.account
+  end
+
+  class AwardEligibilityBuilder
+    attr_reader :form_answer, :user
+
+    def initialize(form_answer)
+      @form_answer = form_answer
+      @user = form_answer.user
+    end
+
+    def eligibility
+      method = "#{form_answer.award_type}_eligibility"
+
+      unless form_answer.public_send(method)
+        form_answer.public_send("build_#{method}", filter(user.public_send(method).try(:attributes) || {})).save!
+      end
+
+      form_answer.public_send(method)
+    end
+
+    def basic_eligibility
+      @basic_eligibility ||= begin
+        if form_answer.basic_eligibility.try(:persisted?)
+          form_answer.basic_eligibility
+        else
+          form_answer.build_basic_eligibility(filter(user.basic_eligibility.try(:attributes) || {})).save!
+          form_answer.basic_eligibility
+        end
+      end
+    end
+
+    private
+
+    def filter(params)
+      params.except("id", "created_at", "updated_at")
+    end
   end
 end

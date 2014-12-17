@@ -4,6 +4,7 @@ class QAE2014Forms
       @trade_step4 ||= Proc.new {
         options :corp_responsibility_form, 'You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted.' do
           ref 'D 1'
+          required
           context %Q{
             <p>This does not affect your chance of success.</p>
           }

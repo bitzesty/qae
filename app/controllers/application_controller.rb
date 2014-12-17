@@ -21,6 +21,20 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def admin_in_read_only_mode?
+    @admin_in_read_only_mode ||= admin_signed_in? &&
+                                 session["warden.user.user.key"] &&
+                                 session[:admin_in_read_only_mode]
+  end
+  helper_method :admin_in_read_only_mode?
+
+  def restrict_access_if_admin_in_read_only_mode!
+    if admin_in_read_only_mode?
+      redirect_to root_url, alert: "You have no permissions!"
+      return
+    end
+  end
+
   protected
 
   def load_eligibilities
@@ -49,4 +63,25 @@ class ApplicationController < ActionController::Base
     [@trade_eligibility, @innovation_eligibility, @development_eligibility].any?(&:passed?)
   end
   helper_method :any_eligibilities_passed?
+
+  def check_basic_eligibility
+    if !(current_user.basic_eligibility && current_user.basic_eligibility.passed?)
+      redirect_to eligibility_path
+      return
+    end
+  end
+
+  def check_award_eligibility
+    if %w[trade_eligibility innovation_eligibility development_eligibility].any? { |eligibility| !current_user.public_send(eligibility) }
+      redirect_to award_eligibility_path
+      return
+    end
+  end
+
+  def check_account_completion
+    if !current_user.completed_registration?
+      redirect_to correspondent_details_account_path
+      return
+    end
+  end
 end

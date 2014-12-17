@@ -2,155 +2,288 @@ class QAE2014Forms
   class << self
     def innovation_step3
       @innovation_step3 ||= Proc.new {
-        context %Q{
-          <p>When answering these questions please avoid using technical jargon where possible. If you have more than one innovative product/service you will need to submit more than one application.</p>
-        }
-
-        textarea :innovation_desc_short, 'Briefly describe your product/service/intiative' do
+        options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance (i.e. turnover and profit)?" do
+          classes "js-entry-period"
           ref 'C 1'
           required
           context %Q{
-            <p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>
+            <p>Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).</p>
           }
-          rows 2
-          words_max 15
+          option '2 to 4', 'Outstanding performance improvements over the last 2 years'
+          option '5 plus', 'Steady performance improvements over the last 5 years'
         end
 
-        textarea :innovation_desc_long, 'Describe your innovative product/service/initiative in detail' do
-          classes "sub-question"
-          required
-          context %Q{
-            <p>Describe the product/service/intitative itself, explain any aspect(s) you believe innovative, and why you believe it is innovative: consider its uniqeueness and the challenges you had to overcome. Also explain how it fits within the overall business e.g. is it your sole product.</p>
-          }
-          rows 5
-          words_max 800
-        end
-
-        textarea :innovation_context, 'Describe the context of your innovation, why and how it came about.' do
+        innovation_financial_year_date :financial_year_date, 'Please enter your financial year end date.' do
           ref 'C 2'
           required
           context %Q{
-            <p>Outline the disadvantages, if any, of your own/competing products/services/intiatives prior to the innovation. Or otherwise, how you identified a gap in the market.</p>
+            <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
           }
-          rows 5
-          words_max 500
         end
 
-        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior issues, and any special difficulties you overcame in achieving these solutions." do
+        options :financial_year_date_changed, 'Did your year-end date change during your 2 or 5 year entry period?' do
+          classes "sub-question js-entry-period-substitute-text"
+          required
+          yes_no
+        end
+
+        innovation_financial_year_dates :financial_year_changed_dates, 'Enter your year-end dates for each financial year.' do
+          classes "sub-question"
+          required
+          conditional :financial_year_date_changed, :yes
+        end
+
+        textarea :financial_year_date_changed_explaination, 'Please explain why your year-end date changed.' do
+          classes "sub-question"
+          rows 5
+          words_max 100
+          conditional :financial_year_date_changed, :yes
+        end
+
+        innovation_by_years_number :employees, 'Enter the number of people employed by your organisation in each year of your entry.' do
           ref 'C 3'
           required
-          rows 5
-          words_max 800
+          context %Q{
+            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
+          }
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_befits_details, "Give details of benefits received by your customers and your business as a result of the innovation." do
+        options :innovation_part_of, 'The innovation is an integral part of' do
           ref 'C 4'
           required
+          option :entire_business, 'The entire business'
+          option :single_product_or_service, 'A single product or service'
+        end
+
+        header :company_financials, 'Company Financials' do
           context %Q{
-            <p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim.</p>
+            <p>These figures should be for your entire organisation. If you haven't reached your latest year-end, please use estimates to complete this section.</p>
           }
-          rows 5
-          words_max 800
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_competitors, "Identify and describe any products/services/initiatives made by other organisations that compete with your innovation, and explain how your innovation differs." do
+        textarea :innovation_excluded_explanation, 'In question A14.3 you said you are applying on behalf of a group but are excluding some members. Please explain why the financial figures of any member(s) of your group are excluded.' do
           ref 'C 5'
-          required
           rows 5
-          words_max 300
+          words_max 150
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          conditional :applying_for, 'organisation'
+          conditional :parent_group_entry, 'yes'
+          conditional :pareent_group_excluding, 'yes'
         end
 
-        options :innovation_any_contributors, 'Did any external organisation or individiual contribute to this product/service/initiative?' do
+        innovation_by_years :total_turnover, 'Total turnover' do
           ref 'C 6'
           required
           context %Q{
-            <p>Excluding suppliers and any joint entrant(s) named in A7.</p>
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
           }
-          yes_no
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          drop_conditional :drops_in_turnover
         end
 
-        textarea :innovation_contributors, 'Please enter their name(s) and explain their contribution(s).' do
+        innovation_by_years :exports, 'of which exports' do 
           classes "sub-question"
           required
-          conditional :innovation_any_contributors, :yes
+          context %Q{<p>Please enter '0' if you had none.</p>}
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          drop_conditional :drops_in_turnover
+        end
+
+        innovation_by_years :net_profit, 'Net profit after tax but before dividends' do 
+          classes "sub-question"
+          required
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          drop_conditional :drops_in_turnover
+        end
+
+        innovation_by_years :total_net_assets, 'Total net assets' do 
+          classes "sub-question"
+          required
+          context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          drop_conditional :drops_in_turnover
+        end
+
+        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
+          classes "sub-question js-conditional-drop-question"
           rows 5
-          words_max 500
+          words_max 200
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
-        options :innovation_contributors_aware, 'Are they aware that you are applying for this award?' do
+        options :company_estimated_figures, 'Are any of these figures estimated?' do
           classes "sub-question"
-          required
-          conditional :innovation_any_contributors, :yes
           yes_no
-          option :some, 'Some are aware'
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          conditional :innovation_part_of, :entire_business
         end
 
-        options :innovation_under_license, 'Is the product/service/initiative under license from another organisation?' do
+        textarea :company_estimates_use, 'Explain your use of estimates, and how much of these are actual receipts or firm orders.' do
+          classes "sub-question"
+          rows 5
+          words_max 200
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          conditional :company_estimated_figures, :yes
+        end
+
+        header :product_financials, 'Product/Service Financials' do
           ref 'C 7'
-          yes_no
+          context %Q{
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+          }
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
-
-        textarea :innovation_license_terms, 'Briefly describe the licensing arrangement.' do
+ 
+        innovation_by_years_number :units_sold, 'Number of innovative units/contracts sold' do
           classes "sub-question"
           required
-          conditional :innovation_under_license, :yes
-          rows 5
-          words_max 100
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          drop_conditional :drops_in_sales
         end
 
-        options :innovations_grant_funding, 'Have you received any grant funding to support this innovation?' do
+        innovation_by_years :sales, 'Sales of your innovative product/service' do 
+          classes "sub-question"
+          required
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          drop_conditional :drops_in_sales
+        end
+
+        innovation_by_years :sales_exports, 'of which exports' do
+          classes "sub-question"
+          context %Q{<p>Please enter '0' if you had none.</p>}
+          required
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          drop_conditional :drops_in_sales
+        end
+
+        innovation_by_years :sales_royalties, 'of which royalties or licenses' do
+          classes "sub-question"
+          context %Q{<p>Please enter '0' if you had none.</p>}
+          required
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          drop_conditional :drops_in_sales
+        end
+
+        textarea :drops_in_sales, "Explain any drop in the sales of your innovative product/service" do
+          classes "sub-question js-conditional-drop-question"
+          rows 5
+          words_max 300
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
+        innovation_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
+          classes "sub-question"
+          required
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
+        textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
+          classes "sub-question"
+          required
+          rows 5
+          words_max 300
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
+        innovation_by_years :avg_unit_cost_self, 'Direct cost, to you, of a single unit/contract' do 
+          classes "sub-question"
+          required
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
+        textarea :costs_change_desc, 'Explain your direct unit/ contract costs, highlighting any changes over the above periods.' do
+          classes "sub-question"
+          required
+          rows 5
+          words_max 300
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
+        options :product_estimated_figures, 'Are any of these figures estimated?' do
+          classes "sub-question"
+          yes_no
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
+        textarea :product_estimates_use, 'Explain your use of estimates, and how much of these are actual receipts or firm orders.' do
+          classes "sub-question"
+          rows 5
+          words_max 200
+          conditional :product_estimated_figures, :yes
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
+        textarea :financial_comments, 'Additional comments (optional)' do
+          classes "sub-question"
+          rows 5
+          context %Q{
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+          }
+          words_max 100
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
+        textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial performance of your business.' do
           ref 'C 8'
           required
-          yes_no
-        end
+          context %Q{
+            <p>e.g. new sales, cost savings, and their overall effect on turnover and profitability.</p>
+          }
+          rows 5
+          words_max 300
+        end 
 
-        textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding." do
-          classes "sub-question"
+        textarea :investments_details, 'Please enter details of all your investments in the innovation. <em>Include all investments made both during and prior to your entry period.</em> Also include the year(s) in which they were made.' do
+          ref 'C 9'
           required
-          conditional :innovations_grant_funding, :yes
           rows 5
           words_max 300
         end
 
-        number :innovation_years, 'How long has it been since the product/service/initiative was released into the marketplace?' do
-          required
-          ref 'C 9'
-          max 100
-          unit ' years'
-          style "small inline"
-        end
-
-        options :innovation_released_by_applicant, "Was the product/service/intiative released by you?" do
+        textarea :roi_details, 'How long did it take you to recover the investment indicated above? When and how did you achieve this?' do
           classes "sub-question"
           required
-          yes_no
-        end
-
-        number :innovation_years_by_applicant, 'How many years have you had it in the marketplace?' do
-          classes "regular-question inline-input-question"
-          required
-          conditional :innovation_released_by_applicant, :no
-          max 100
-          unit ' years'
-          style "small inline"
-        end
-
-        textarea :innovation_additional_comments, 'Additional comments (optional)' do
-          classes "sub-question"
           rows 5
-          words_max 200
+          words_max 300
         end
 
-        materials :innovation_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
-          ref 'C 10'
-          context %Q{
-            <p>We can't guarantee these will be reviewed, so inlcude any vital information within the form.</p>
-            <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. You may link to videos, websites or other media you feel relevant.</p>
-          } # TODO!
-          help 'Information we will not review', %Q{
-            <p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>
-          }
-        end
       }
     end
   end

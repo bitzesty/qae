@@ -23,6 +23,11 @@
   }
 }
 
+// Fix the smart answers previous answers link text
+.previous-answers .restart a {
+  white-space: nowrap;
+}
+
 // Positions full width elements
 .inner-block {
   padding: 0 $gutter-half;
@@ -53,11 +58,29 @@
 
 .page-header {
   // Wider header
-  &.page-header-wider div {
-    width: 100%;
+  &.page-header-wider div,
+  &.page-header-wider-minor div {
     -webkit-box-sizing: border-box;
        -moz-box-sizing: border-box;
             box-sizing: border-box;
+  }
+
+  &.page-header-wider div {
+    width: 100%;
+
+    &.steps-progress-bar {
+      width: 97%;
+      @media (max-width: 640px) {
+        width: 100%;
+      }
+    }
+  }
+  // Slightly wider
+  &.page-header-wider-minor div {
+    width: 75%;
+    @media (max-width: 640px) {
+      width: 100%;
+    }
   }
 
   // Styles the sub header for `page-header`
@@ -107,6 +130,11 @@
       width: 100%;
     }
   }
+}
+
+// move pagination higher
+.pagination.pagination-alternative {
+  margin-top: 2em;
 }
 
 // Override smart_answers style for consistent
@@ -237,23 +265,73 @@
   list-style: none;
 }
 
-// Position account links to be top right
+// Position account links to be top right and make them a dropdown
 #proposition-menu {
   @media (min-width: 990px) {
     position: relative;
   }
 }
-.user-account-links {
+#global-header {
+  position: relative;
+  z-index: 999;
+}
+#global-header .header-proposition #proposition-menu .user-account-links {
   @media (min-width: 990px) {
     position: absolute;
     top: 0;
     right: 0;
   }
 
-  li {
+  > li {
     @media (min-width: 990px) {
       padding-left: $gutter-half;
       padding-right: 0;
+    }
+
+    &.dropdown {
+      position: relative;
+
+      > a .caret {
+        display: inline-block;
+        width: 0;
+        height: 0;
+        margin-left: 2px;
+        vertical-align: middle;
+        border-color: $white;
+        border-top: 4px solid;
+        border-right: 4px solid transparent;
+        border-left: 4px solid transparent;
+      }
+
+      .dropdown-menu {
+        position: absolute;
+        display: none;
+        top: 1.75em;
+        right: 0;
+        padding: 0.2em 0.75em;
+        background: $white;
+        border: 1px solid $grey-2;
+
+        li {
+          float: none;
+          margin: 0.5em 0;
+          padding: 0;
+
+          a {
+            display: block;
+            color: $black;
+            font-weight: normal;
+            text-align: right;
+            white-space: nowrap;
+          }
+        }
+      }
+
+      &.dropdown-open {
+        .dropdown-menu {
+          display: block;
+        }
+      }
     }
   }
 }
@@ -394,5 +472,82 @@ article .help-notice ul {
 
   .notice {
     background-color: $light-blue-25;
+  }
+}
+
+// Pagination style applied to buttons
+// And adapted for button
+// https://github.com/alphagov/static/blob/726ffb04b01bad019affd0ef2f2aef78873ef0ae/app/assets/stylesheets/helpers/_publisher.scss 
+.pagination li {
+  button {
+    background-color: transparent;
+    display: block;
+    color: $link-colour;
+    text-decoration: none;
+    width: 100%;
+    text-align: left;
+    border: none;
+    cursor: pointer;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+
+    @include ie-lte(7) {
+      height: 4.5em;
+    }
+
+    &:hover,
+    &:active {
+      background-color: $canvas-colour;
+    }
+
+    .pagination-label {
+      @include core-27($line-height: (33.75 / 27));
+      margin-bottom: 0.1em;
+      display: block;
+    }
+
+    &,
+    .pagination-part-title {
+      @include core-16($line-height: (20 / 16));
+    }
+
+    .pagination-part-title {
+      text-decoration: underline;
+    }
+  }
+
+  &.previous button {
+    padding: 0.75em 0 0.75em 3em;
+
+    &:before {
+      background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
+      margin: -4px 0 0 -32px;
+      display: block;
+      float: left;
+      width: 30px;
+      height: 38px;
+      content: " ";
+    }
+  }
+  
+  &.next button {
+    padding: 0.75em 3em 0.75em 0;
+    text-align: right;
+
+    &:before {
+      background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
+      margin: -4px -32px 0 0;
+      display: block;
+      float: right;
+      width: 30px;
+      height: 38px;
+      content: " ";
+    }
+  }
+
+  @include media-down(mobile) {
+    &.next button {
+      text-align: right;
+    }
   }
 }
