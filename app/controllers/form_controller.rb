@@ -41,7 +41,7 @@ class FormController < ApplicationController
 
     @form_answer.submitted = true
     if @form_answer.save! && @form_answer.submitted_changed?
-      Users::SubmissionMailer.delay.success(@form_answer.id)
+      Submission::SuccessNotifier.new(@form_answer).run
     end
 
     redirect_to submit_confirm_url(@form_answer)

@@ -57,6 +57,7 @@ group :development do
   gem 'capistrano-sidekiq'
   gem 'slackistrano', require: false
   gem 'pry'
+  gem "letter_opener"
 end
 
 group :test, :development do
