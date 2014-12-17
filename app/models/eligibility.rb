@@ -47,12 +47,15 @@ class Eligibility < ActiveRecord::Base
 
     if values && values.any?
       enumerize name, in: values
-    elsif options[:boolean]
+    end
+
+    if options[:boolean] || options[:acts_like_boolean]
       define_method "#{name}?" do
         ['1', 'true', 'yes', true].include?(public_send(name))
       end
+    end
 
-    elsif options[:positive_integer]
+    if options[:positive_integer]
       validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true }, if: proc { current_step == name }
     end
 
@@ -60,7 +63,7 @@ class Eligibility < ActiveRecord::Base
   end
 
   def eligible?
-    questions.all? do |question|
+    !skipped? && questions.all? do |question|
       answer = answers && answers[question.to_s]
       answer_valid?(question, answer)
     end
@@ -86,6 +89,10 @@ class Eligibility < ActiveRecord::Base
     questions_storage.keys
   end
 
+  def skipped?
+    public_send(self.class.questions.first) == 'skip'
+  end
+
   private
 
   def questions_storage
@@ -105,7 +112,7 @@ class Eligibility < ActiveRecord::Base
   end
 
   def set_passed
-    update_column(:passed, eligible?)
+    update_column(:passed, !skipped? && eligible?)
   end
 
   def answer_valid?(question, answer)

@@ -13,10 +13,18 @@
           - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
             li = eligibility.class.const_get(:AWARD_NAME)
         br
-      - if !all_eligibilities_passed?
+
+      - if !all_eligibilities_passed? && (failed_eligibilities = [@trade_eligibility, @innovation_eligibility, @development_eligibility].reject { |e| e.passed? || e.skipped? }).any?
         h2 You are unable to apply for:
         ul
-          - [@trade_eligibility, @innovation_eligibility, @development_eligibility].reject(&:passed?).each do |eligibility|
+          - failed_eligibilities.each do |eligibility|
+            li = eligibility.class.const_get(:AWARD_NAME)
+        br
+
+      - if (skipped_eligibilities = [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:skipped?)).any?
+        h2 You chose not to check your eligibility for:
+        ul
+          - skipped_eligibilities.each do |eligibility|
             li = eligibility.class.const_get(:AWARD_NAME)
         br
 

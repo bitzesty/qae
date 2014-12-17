@@ -22,9 +22,18 @@ en:
         application: Apply for an organisation award
         nomination: Nominate an individual
       industry:
-          product_business: Product business
-          service_business: Service business
-          either_business: Mixed business
+        product_business: Product business
+        service_business: Service business
+        either_business: Mixed business
+    eligibility/innovation:
+      innovative_product:
+        skip: "I'd rather not check my eligibility for this award"
+    eligibility/development:
+      sustainable_development:
+        skip: "I'd rather not check my eligibility for this award"
+    eligibility/trade:
+      sales_above_100_000_pounds:
+        skip: "I'd rather not check my eligibility for this award"
 
   activerecord:
     errors:
