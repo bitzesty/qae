@@ -27,10 +27,10 @@ header.page-header.group.page-header-wider
               = f.submit "Continue", class: "button medium"
       - else
         .previous-answers
-          / yes
-          p Before you start your application, please check your eligibility answers are correct.
-          / not
-          /p At the moment you aren’t eligible for this award. If you think you made a mistake in the eligibility questionnaire, please check your answers below.
+          - if @form_answer.eligible?
+            p Before you start your application, please check your eligibility answers are correct.
+          - else
+            p At the moment you aren’t eligible for this award. If you think you made a mistake in the eligibility questionnaire, please check your answers below.
     = render "previous_answers"
     - unless step
       .inner.step.current
