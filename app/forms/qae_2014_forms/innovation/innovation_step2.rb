@@ -47,7 +47,7 @@ class QAE2014Forms
           ref 'B 4'
           required
           context %Q{
-            <p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim by uploading them in B10.</p>
+            <p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim by uploading them in B10. This should exclude financial benefits.</p>
           }
           rows 5
           words_max 800
@@ -81,8 +81,23 @@ class QAE2014Forms
           classes "sub-question"
           required
           conditional :innovation_any_contributors, :yes
-          yes_no
+          option :yes, 'Yes, they are aware'
+          option :no, "No, they aren't aware"
           option :some, 'Some are aware'
+        end
+
+        header :innovation_contributors_aware_header_no, "" do
+          context %Q{
+            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
+          }
+          conditional :innovation_contributors_aware, :no
+        end
+
+        header :innovation_contributors_aware_header_some, "" do
+          context %Q{
+            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
+          }
+          conditional :innovation_contributors_aware, :some
         end
 
         options :innovation_under_license, 'Is your innovation under license from another organisation?' do
