@@ -3,6 +3,10 @@ FactoryGirl.define do
     award_type "trade"
     association :user, factory: :user
 
+    trait :submitted do
+      submitted true
+    end
+
     trait :trade do
       award_type "trade"
     end
