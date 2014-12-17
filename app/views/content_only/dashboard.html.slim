@@ -33,13 +33,15 @@ header.page-header.group
                       = award.decorate.award_type
                   td
                     p
-                      - if award.submitted?
-                        ' submitted
+                      // TODO use better method to test for submitted awards
+                      - if award.urn?
+                        ' Submitted
                       - else
                         // TODO percentage completed
                         ' 50% completed
                   td.pull-right
-                    - if award.submitted?
+                    // TODO use better method to test for submitted awards
+                    - if award.urn?
                       = link_to "Edit application", edit_form_path(award.id)
                     - else
                       = link_to "Continue application", edit_form_path(award.id)
