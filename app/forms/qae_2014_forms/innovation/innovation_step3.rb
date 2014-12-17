@@ -2,18 +2,18 @@ class QAE2014Forms
   class << self
     def innovation_step3
       @innovation_step3 ||= Proc.new {
-        options :innovation_performance_years, "For how long has the innovation had substantial impact on (ie. measurably improved) your organisation's performance?" do
+        options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance (i.e. turnover and profit)?" do
           classes "js-entry-period"
           ref 'C 1'
           required
           context %Q{
             <p>Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).</p>
           }
-          option '2 to 4', '2-4 years'
-          option '5 plus', '5 years or more'
+          option '2 to 4', 'Outstanding performance improvements over the last 2 years'
+          option '5 plus', 'Steady performance improvements over the last 5 years'
         end
 
-        innovation_financial_year_date :financial_year_date, 'State your financial year end date' do
+        innovation_financial_year_date :financial_year_date, 'Please enter your financial year end date.' do
           ref 'C 2'
           required
           context %Q{
@@ -21,35 +21,35 @@ class QAE2014Forms
           }
         end
 
-        options :financial_year_date_changed, 'Did your year end date change during the 2 or 5 year entry period?' do
+        options :financial_year_date_changed, 'Did your year-end date change during your 2 or 5 year entry period?' do
           classes "sub-question js-entry-period-substitute-text"
           required
           yes_no
         end
 
-        innovation_financial_year_dates :financial_year_changed_dates, 'State your financial year end dates for each financial year' do
+        innovation_financial_year_dates :financial_year_changed_dates, 'Enter your year-end dates for each financial year.' do
           classes "sub-question"
           required
           conditional :financial_year_date_changed, :yes
         end
 
-        textarea :financial_year_date_changed_explaination, 'Please explain why your year-end date changed during the application period.' do
+        textarea :financial_year_date_changed_explaination, 'Please explain why your year-end date changed.' do
           classes "sub-question"
           rows 5
           words_max 100
           conditional :financial_year_date_changed, :yes
         end
 
-        innovation_by_years_number :employees, 'State the number of people employed by the company for each year of your entry.' do
+        innovation_by_years_number :employees, 'Enter the number of people employed by your organisation in each year of your entry.' do
           ref 'C 3'
           required
           context %Q{
-            <p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
+            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
           }
           conditional :innovation_performance_years, :true
         end
 
-        options :innovation_part_of, 'My innovation is an integral part of' do
+        options :innovation_part_of, 'The innovation is an integral part of' do
           ref 'C 4'
           required
           option :entire_business, 'The entire business'
@@ -58,12 +58,12 @@ class QAE2014Forms
 
         header :company_financials, 'Company Financials' do
           context %Q{
-            <p>These figures should be for your entire organisation. If you have not reached your latest year-end, please use estimates to complete this question.</p>
+            <p>These figures should be for your entire organisation. If you haven't reached your latest year-end, please use estimates to complete this section.</p>
           }
           conditional :innovation_performance_years, :true
         end
 
-        textarea :innovation_excluded_explanation, 'Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.' do
+        textarea :innovation_excluded_explanation, 'Parent companies making group entries should include figures for all UK members of the group. If any member is excluded, please explain why.' do
           ref 'C 5'
           rows 5
           words_max 150
@@ -73,6 +73,9 @@ class QAE2014Forms
         innovation_by_years :total_turnover, 'Total turnover' do
           ref 'C 6'
           required
+          context %Q{
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+          }
           conditional :innovation_performance_years, :true
           drop_conditional :drops_in_turnover
         end
@@ -114,7 +117,7 @@ class QAE2014Forms
           conditional :innovation_part_of, :entire_business
         end
 
-        textarea :company_estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
+        textarea :company_estimates_use, 'Explain your use of estimates, and how much of these are actual receipts or firm orders.' do
           classes "sub-question"
           rows 5
           words_max 200
@@ -125,7 +128,7 @@ class QAE2014Forms
         header :product_financials, 'Product/Service Financials' do
           ref 'C 7'
           context %Q{
-            <p>If you have not reached your latest year-end, please use estimates to complete this question.</p>
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
           }
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -181,7 +184,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        textarea :product_estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
+        textarea :product_estimates_use, 'Explain your use of estimates, and how much of these are actual receipts or firm orders.' do
           classes "sub-question"
           rows 5
           words_max 200
@@ -189,9 +192,12 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        textarea :financial_comments, 'Additional comments' do
+        textarea :financial_comments, 'Additional comments (optional)' do
           classes "sub-question"
           rows 5
+          context %Q{
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+          }
           words_max 100
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -201,17 +207,17 @@ class QAE2014Forms
           ref 'C 8'
           required
           context %Q{
-            <p>If you have not reached your latest year-end, please use estimates to complete this question.</p>
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
           }
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
         end
 
-        textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
+        textarea :avg_unit_price_desc, 'Explain any changes in your unit selling prices/contract values over this period.' do
           classes "sub-question"
           required
           rows 5
-          words_max 200
+          words_max 300
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
         end
@@ -220,7 +226,7 @@ class QAE2014Forms
           ref 'C 9'
           required
           context %Q{
-            <p>If you have not reached your latest year-end, please use estimates to complete this question.</p>
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
           }
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -230,26 +236,26 @@ class QAE2014Forms
           classes "sub-question"
           required
           rows 5
-          words_max 200
+          words_max 300
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
         end
 
-        textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial perfmormance of your business. Also explain any cost savings you made as a result of the innovation.' do
+        textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial performance of your business. Also explain any cost savings you made as a result of the innovation.' do
           ref 'C 10'
           required
           rows 5
           words_max 300
         end 
 
-        textarea :investments_details, 'Please enter details of any investments made in your innovation. <em>Include all investments made both during and prior to your entry period.</em> Also detail the year(s) in which they were made.' do
+        textarea :investments_details, 'Please enter details of all your investments in the innovation. *Include all investments made both during and prior to your entry period.* Also include the year(s) in which they were made.' do
           ref 'C 11'
           required
           rows 5
           words_max 300
         end
 
-        textarea :roi_details, 'How long did it take the investment indicated above to be repaid? When and how was this repayment achieved?' do
+        textarea :roi_details, 'How long did it take you to recover the investment indicated above? When and how did you achieve this?' do
           classes "sub-question"
           required
           rows 5
