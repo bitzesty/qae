@@ -1,21 +1,25 @@
-.js-conditional-question data-question="innovation_performance_years-for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
-  span.row
-    - for i in 1..2
-      span.span-4
+.js-conditional-question data-question="innovation_performance_years-how-would-you-describe-the-impact-of-your-innovation-on-your-organisation-s-financial-performance-i-e-turnover-and-profit" data-value="2 to 4"
+  .row
+    - (1..2).each do |fy|
+      .span-4
         label
-          ' Year ending in
-          span.js-year-end data-year="1of2" ...
+          span.js-year-end.show-default data-year="#{fy}of2"
+            span.js-year-default
+              = "Financial year #{fy}"
+            span.js-year-text
           br
           ul.errors-container
-          input.small.js-trigger-autosave type="text" placeholder="£" name=question.input_name(suffix: "#{i}of2") value=question.input_value(suffix: "#{i}of2") *possible_read_only_ops
+          input.small.js-trigger-autosave type="text" name=question.input_name(suffix: "#{fy}of2") value=question.input_value(suffix: "#{fy}of2") *possible_read_only_ops
 
-.js-conditional-question data-question="innovation_performance_years-for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
-  span.row
-    - for i in 1..5
-      span.span-2-4
+.js-conditional-question data-question="innovation_performance_years-how-would-you-describe-the-impact-of-your-innovation-on-your-organisation-s-financial-performance-i-e-turnover-and-profit" data-value="5 plus"
+  .row
+    - (1..5).each do |fy|
+      .span-2-4
         label
-          ' Year ending in
-          span.js-year-end data-year="#{i}of5" ...
+          span.js-year-end.show-default data-year="#{fy}of5"
+            span.js-year-default
+              = "Financial year #{fy}"
+            span.js-year-text
           br
           ul.errors-container
-          input.small.js-trigger-autosave type="text" placeholder="£" name=question.input_name(suffix: "#{i}of5") value=question.input_value(suffix: "#{i}of5") *possible_read_only_ops
+          input.small.js-trigger-autosave type="text" name=question.input_name(suffix: "#{fy}of5") value=question.input_value(suffix: "#{fy}of5") *possible_read_only_ops

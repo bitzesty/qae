@@ -137,7 +137,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
  
-        innovation_by_years_number :units_sold, 'Number of units/contracts sold' do
+        innovation_by_years_number :units_sold, 'Number of innovative units/contracts sold' do
           classes "sub-question"
           required
           conditional :innovation_part_of, :single_product_or_service
@@ -145,7 +145,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        innovation_by_years :sales, 'Sales' do 
+        innovation_by_years :sales, 'Sales of your innovative product/service' do 
           classes "sub-question"
           required
           conditional :innovation_part_of, :single_product_or_service
@@ -171,8 +171,46 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        textarea :drops_in_sales, "Explain any drop in sales" do
+        textarea :drops_in_sales, "Explain any drop in the sales of your innovative product/service" do
           classes "sub-question js-conditional-drop-question"
+          required
+          rows 5
+          words_max 300
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+        end
+
+        innovation_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
+          classes "sub-question"
+          required
+          context %Q{
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+          }
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+        end
+
+        textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
+          classes "sub-question"
+          required
+          rows 5
+          words_max 300
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+        end
+
+        innovation_by_years :avg_unit_cost_self, 'Direct cost, to you, of a single unit/contract' do 
+          classes "sub-question"
+          required
+          context %Q{
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+          }
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+        end
+
+        textarea :costs_change_desc, 'Explain your direct unit/ contract costs, highlighting any changes over the above periods.' do
+          classes "sub-question"
           required
           rows 5
           words_max 300
@@ -206,46 +244,8 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        innovation_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
-          ref 'C 8'
-          required
-          context %Q{
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-          }
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-        end
-
-        textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
-          classes "sub-question"
-          required
-          rows 5
-          words_max 300
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-        end
-
-        innovation_by_years :avg_unit_cost_self, 'Direct cost, to you, of a single unit/contract' do 
-          ref 'C 9'
-          required
-          context %Q{
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-          }
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-        end
-
-        textarea :costs_change_desc, 'Explain your direct unit/ contract costs, highlighting any changes over the above periods.' do
-          classes "sub-question"
-          required
-          rows 5
-          words_max 300
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-        end
-
         textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial performance of your business.' do
-          ref 'C 10'
+          ref 'C 8'
           required
           context %Q{
             <p>e.g. new sales, cost savings, and their overall effect on turnover and profitability.</p>
@@ -255,7 +255,7 @@ class QAE2014Forms
         end 
 
         textarea :investments_details, 'Please enter details of all your investments in the innovation. *Include all investments made both during and prior to your entry period.* Also include the year(s) in which they were made.' do
-          ref 'C 11'
+          ref 'C 9'
           required
           rows 5
           words_max 300

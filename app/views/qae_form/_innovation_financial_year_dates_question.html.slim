@@ -1,5 +1,5 @@
 .js-financial-year
-  .js-conditional-question data-question="innovation_performance_years-for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="2 to 4"
+  .js-conditional-question data-question="innovation_performance_years-how-would-you-describe-the-impact-of-your-innovation-on-your-organisation-s-financial-performance-i-e-turnover-and-profit" data-value="2 to 4"
     .row
       - (1..2).each do |fy|
         .span-4 class="#{'fy-latest' if fy == 1}"
@@ -19,7 +19,7 @@
               input.js-trigger-autosave.small.js-fy-year type="text" name=question.input_name(suffix: "#{fy}of2_year") value=question.input_value(suffix: "#{fy}of2_year") maxlength=4 *possible_read_only_ops
           // Validate 1/10/2013 - 30/09/2014
 
-  .js-conditional-question data-question="innovation_performance_years-for-how-long-has-the-innovation-had-substantial-impact-on-ie-measurably-improved-your-organisation-s-performance" data-value="5 plus"
+  .js-conditional-question data-question="innovation_performance_years-how-would-you-describe-the-impact-of-your-innovation-on-your-organisation-s-financial-performance-i-e-turnover-and-profit" data-value="5 plus"
     span.row
       - (1..5).each do |fy|
         .span-4 class="#{'fy-latest' if fy == 1}"
