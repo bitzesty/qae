@@ -1,0 +1,7 @@
+.question-body
+  p.hint
+    = @eligibility.class.hint(step)
+  - collection = @eligibility.class.sales_above_100_000_pounds.options
+  - collection.reject! { |opts| opts.last == 'skip' } if controller_name == 'form_award_eligibilities'
+  = f.input :sales_above_100_000_pounds, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }, collection: collection
+span.clear

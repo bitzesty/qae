@@ -13,7 +13,7 @@ header.page-header.group.page-header-wider
   article.group role="article"
     .inner.step.current
       - if step
-        = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id), method: :put do |f|
+        = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
           .current-question#current-question
             .question
               h2
@@ -21,7 +21,7 @@ header.page-header.group.page-header-wider
               - if @eligibility.is_a?(Eligibility::Basic)
                 = render "eligibilities/#{step.to_s}", f: f
               - else
-                = render "award_eligibilities/questions/#{step.to_s}", f: f rescue render "award_eligibilities/questions/question", f: f, question: step.to_s
+                = render("award_eligibilities/questions/#{step.to_s}", f: f) rescue render("award_eligibilities/questions/question", f: f, question: step.to_s)
 
             .next-question
               = f.submit "Continue", class: "button medium"

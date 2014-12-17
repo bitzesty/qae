@@ -8,11 +8,25 @@ class FormAwardEligibilitiesController < ApplicationController
     :new, :create, :update, :destroy
   ]
 
+  def show
+    if @award_eligibility.skipped? && !params[:id]
+      redirect_to action: :show, form_id: @form_answer.id, id: @award_eligibility.class.questions.first, skipped: true
+      return
+    end
+  end
+
   def update
     @eligibility.current_step = step
 
     if @eligibility.update!(eligibility_params)
-      redirect_to action: :show, form_id: @form_answer.id
+      if params[:skipped] == 'true' && step != @eligibility.questions.last
+        set_steps_and_eligibilities
+        setup_wizard
+        redirect_to next_wizard_path(form_id: @form_answer.id, skipped: true)
+      else
+        redirect_to action: :show, form_id: @form_answer.id
+      end
+
       return
     else
       render :show
@@ -45,7 +59,7 @@ class FormAwardEligibilitiesController < ApplicationController
       self.steps = [params[:id].to_sym] + @award_eligibility.questions
     else
       @eligibility = @award_eligibility
-      self.steps = @award_eligibility.class.questions
+      self.steps = @award_eligibility.questions
     end
   end
 
