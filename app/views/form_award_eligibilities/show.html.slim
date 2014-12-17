@@ -27,10 +27,10 @@ header.page-header.group.page-header-wider
               = f.submit "Continue", class: "button medium"
       - else
         .previous-answers
-          - if @award_eligibility.skipped?
-            p You chose not to check your eligibility for the Innovation Award. Please review your eligibility below
-          - else
-            p Before you start your application, please check your eligibility answers are correct.
+          / yes
+          p Before you start your application, please check your eligibility answers are correct.
+          / not
+          /p At the moment you aren’t eligible for this award. If you think you made a mistake in the eligibility questionnaire, please check your answers below.
     = render "previous_answers"
     - unless step
       .inner.step.current

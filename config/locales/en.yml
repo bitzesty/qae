@@ -27,13 +27,13 @@ en:
         either_business: Mixed business
     eligibility/innovation:
       innovative_product:
-        skip: "I'd rather not check my eligibility for this award"
+        skip: "Skip Innovation eligibility"
     eligibility/development:
       sustainable_development:
-        skip: "I'd rather not check my eligibility for this award"
+        skip: "Skip Sustainable Development eligibility"
     eligibility/trade:
       sales_above_100_000_pounds:
-        skip: "I'd rather not check my eligibility for this award"
+        skip: "Skip International Trade eligibility"
 
   activerecord:
     errors:

@@ -22,7 +22,7 @@
         br
 
       - if (skipped_eligibilities = [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:skipped?)).any?
-        h2 You chose not to check your eligibility for:
+        h2 You have skipped the eligibility for:
         ul
           - skipped_eligibilities.each do |eligibility|
             li = eligibility.class.const_get(:AWARD_NAME)
