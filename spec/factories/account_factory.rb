@@ -1,5 +1,5 @@
 FactoryGirl.define do
   factory :account do
-    association :user, factory: :user
+    association :owner, factory: :user
   end
 end

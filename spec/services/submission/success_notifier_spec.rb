@@ -10,11 +10,15 @@ describe Submission::SuccessNotifier do
     acc.reload
   end
 
-  let!(:form_answer) do 
-    FactoryGirl.create :form_answer, :innovation, 
-                                     user: user, 
-                                     urn: "QA0001/19T",
-                                     document: { company_name: "Bitzesty" }
+  let(:form_answer) do 
+    FactoryGirl.create :form_answer, :submitted, :innovation,
+                                                 user: user,
+                                                 document: { company_name: "Bitzesty" }
+  end
+
+  before do
+    FormAnswer.any_instance.stub(:eligible?) { true }
+    form_answer
   end
 
   describe "#run" do

@@ -2,14 +2,19 @@ require "spec_helper"
 
 describe Users::SubmissionMailer do
   let!(:user) { create :user }
-  let!(:form_answer) do 
-    FactoryGirl.create :form_answer, :innovation, 
-                                     user: user, 
-                                     urn: "QA0001/19T",
-                                     document: { company_name: "Bitzesty" }
+  let(:form_answer) do 
+    FactoryGirl.create :form_answer, :submitted, :innovation, 
+                                                 user: user,
+                                                 document: { company_name: "Bitzesty" }
+                                     
   end
   let(:urn) { form_answer.urn }
   let(:subject) { "submission successfully created!" }
+
+  before do
+    FormAnswer.any_instance.stub(:eligible?) { true }
+    form_answer
+  end
 
   describe "Email Me" do
     let(:mail) { Users::SubmissionMailer.success(user.id, form_answer.id) }
