@@ -10,7 +10,7 @@
             = eligibility.public_send("#{question}?") ? 'Yes' : 'No'
         - elsif eligibility.class.integer_question?(question)
           = answer
-        - else
+        - elsif !answer.nil?
           = eligibility.class.enumerized_attributes[question].find_value(answer).text
       td.link-right
         = link_to wizard_path(question, form_id: @form_answer.id) do
