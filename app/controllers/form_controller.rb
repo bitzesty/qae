@@ -27,7 +27,6 @@ class FormController < ApplicationController
 
   def edit_form
     if @form_answer.eligible?
-      puts "formans: #{@form_answer.document.inspect}"
       @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document || {}))
       render template: 'qae_form/show'
     else

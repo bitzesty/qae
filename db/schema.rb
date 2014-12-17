@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141211103425) do
+ActiveRecord::Schema.define(version: 20141217112332) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,11 +63,11 @@ ActiveRecord::Schema.define(version: 20141211103425) do
     t.integer  "form_answer_id"
     t.text     "file"
     t.text     "original_filename"
-    t.text     "link"
-    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "form_answer_attachments", ["form_answer_id"], name: "index_form_answer_attachments_on_form_answer_id", using: :btree
 
   create_table "form_answers", force: true do |t|
     t.integer  "user_id"
