@@ -63,11 +63,14 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        textarea :innovation_excluded_explanation, 'Parent companies making group entries should include figures for all UK members of the group. If any member is excluded, please explain why.' do
+        textarea :innovation_excluded_explanation, 'In question A14.3 you said you are applying on behalf of a group but are excluding some members. Please explain why the financial figures of any member(s) of your group are excluded.' do
           ref 'C 5'
           rows 5
           words_max 150
           conditional :innovation_performance_years, :true
+          conditional :applying_for, 'organisation'
+          conditional :parent_group_entry, 'yes'
+          conditional :pareent_group_excluding, 'yes'
         end
 
         innovation_by_years :total_turnover, 'Total turnover' do
@@ -213,7 +216,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        textarea :avg_unit_price_desc, 'Explain any changes in your unit selling prices/contract values over this period.' do
+        textarea :avg_unit_price_desc, 'Explain your unit selling prices/contract values, highlighting any changes over the above periods.' do
           classes "sub-question"
           required
           rows 5
@@ -222,7 +225,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        innovation_by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
+        innovation_by_years :avg_unit_cost_self, 'Direct cost, to you, of a single unit/contract' do 
           ref 'C 9'
           required
           context %Q{
@@ -232,7 +235,7 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        textarea :costs_change_desc, 'Explain your unit/ contract costs, highlighting any changes over the above periods.' do
+        textarea :costs_change_desc, 'Explain your direct unit/ contract costs, highlighting any changes over the above periods.' do
           classes "sub-question"
           required
           rows 5
@@ -241,9 +244,12 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
         end
 
-        textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial performance of your business. Also explain any cost savings you made as a result of the innovation.' do
+        textarea :innovation_performance, 'Describe how, when, and to what extent the innovation improved the commercial performance of your business.' do
           ref 'C 10'
           required
+          context %Q{
+            <p>e.g. new sales, cost savings, and their overall effect on turnover and profitability.</p>
+          }
           rows 5
           words_max 300
         end 

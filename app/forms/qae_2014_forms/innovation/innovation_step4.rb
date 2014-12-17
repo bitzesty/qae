@@ -16,9 +16,7 @@ class QAE2014Forms
           conditional :corp_responsibility_form, :complete_now
           context %Q{
             <p>The Declaration of Corporate Responsibility is a chance for you to outline your responsible business conduct, and its social, economic and environmental impact.</p>
-            <p>Please explain the effects of the activities and practices of your organisation under the headings set out below.</p>
-            <p>You don't have to demonstrate strength in all the areas below - just the will to improve.</p>
-            <p>If you have already provided relevant information in your entry, please refer to that information and give any additional information under the relevant heading(s) below.</p>
+            <p>You don't have to demonstrate strength in all of the areas below. </p>
             <p>If you have too many iniatives, just outline the ones you think are most relevant/important.</p>
           }
         end

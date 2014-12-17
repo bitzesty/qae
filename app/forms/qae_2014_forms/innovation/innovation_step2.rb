@@ -43,8 +43,16 @@ class QAE2014Forms
           words_max 800
         end
 
-        textarea :innovation_befits_details, "How does the innovation benefit your customers and your business?" do
+        textarea :innovation_external_contributors, 'Please name the external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s).' do
           ref 'B 4'
+          required
+          conditional :innovation_any_contributors, :yes
+          rows 5
+          words_max 500
+        end
+
+        textarea :innovation_befits_details, "How does the innovation benefit your customers and your business?" do
+          ref 'B 5'
           required
           context %Q{
             <p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim by uploading them in B10. This should exclude financial benefits.</p>
@@ -54,67 +62,14 @@ class QAE2014Forms
         end
 
         textarea :innovation_competitors, "Describe any products/services/initiatives made by others that compete with your innovation, and explain how your innovation differs." do
-          ref 'B 5'
+          ref 'B 6'
           required
           rows 5
           words_max 300
         end
 
-        options :innovation_any_contributors, 'Did any external organisation or individual contribute to your innovation?' do
-          ref 'B 6'
-          required
-          context %Q{
-            <p>Excluding suppliers, consultants and any joint entrant(s) named in A8 above.</p>
-          }
-          yes_no
-        end
-
-        textarea :innovation_contributors, 'Please enter their name(s) and explain their contribution(s).' do
-          classes "sub-question"
-          required
-          conditional :innovation_any_contributors, :yes
-          rows 5
-          words_max 500
-        end
-
-        options :innovation_contributors_aware, 'Are they aware that you are applying for this award?' do
-          classes "sub-question"
-          required
-          conditional :innovation_any_contributors, :yes
-          option :yes, 'Yes, they are aware'
-          option :no, "No, they aren't aware"
-          option :some, 'Some are aware'
-        end
-
-        header :innovation_contributors_aware_header_no, "" do
-          context %Q{
-            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
-          }
-          conditional :innovation_contributors_aware, :no
-        end
-
-        header :innovation_contributors_aware_header_some, "" do
-          context %Q{
-            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
-          }
-          conditional :innovation_contributors_aware, :some
-        end
-
-        options :innovation_under_license, 'Is your innovation under license from another organisation?' do
-          ref 'B 7'
-          yes_no
-        end
-
-        textarea :innovation_license_terms, 'Briefly describe the licensing arrangement.' do
-          classes "sub-question"
-          required
-          conditional :innovation_under_license, :yes
-          rows 5
-          words_max 100
-        end
-
         options :innovations_grant_funding, 'Have you received any grant funding to support your innovation?' do
-          ref 'B 8'
+          ref 'B 7'
           required
           yes_no
         end
@@ -129,23 +84,24 @@ class QAE2014Forms
 
         number :innovation_years, 'How long have you had your innovation on the market?' do
           required
-          ref 'B 9'
+          ref 'B 8'
           max 100
           unit ' years'
           style "small inline"
         end
 
-        textarea :innovation_additional_comments, 'Additional comments' do
+        textarea :innovation_additional_comments, 'Additional comments (optional)' do
           classes "sub-question"
           rows 5
           words_max 200
         end
 
         upload :innovation_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
-          ref 'B 10'
+          ref 'B 9'
           context %Q{
             <p>We can't guarantee these will be reviewed, so include any vital information within the form.</p>
-            <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. You may link to videos, websites or other media you feel relevant.</p>
+            <p>You can upload files in all common formats, as long as they're less than 5mb.</p>
+            <p>You may link to videos, websites or other media you feel relevant.</p>
             <p>We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.</p>
           } # TODO!
           max_attachments 4

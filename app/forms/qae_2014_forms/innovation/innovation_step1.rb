@@ -8,6 +8,15 @@ class QAE2014Forms
           option 'division branch subsidiary', 'A division, branch or subsidiary'
         end
 
+        header :business_division_header, '' do
+          context %Q{
+            <div class="application-notice help-notice">
+              <p>Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.</p>
+            </div>
+          }
+          conditional :applying_for, 'division branch subsidiary'
+        end
+
         # TODO Pre-filled from registration details
         text :company_name, 'Full/legal name of your organisation' do
           required
@@ -110,19 +119,75 @@ class QAE2014Forms
           words_max 300
         end
 
-        options :joint_entry, 'Is this entry made jointly with any other organisation(s)?' do
+
+
+
+
+
+        options :innovation_any_contributors, 'Did any external organisation or individual contribute to your innovation?' do
           ref 'A 8'
           required
           context %Q{
-            <p>If the business producing or marketing a product, providing a service or using a technology is separate from the unit which developed it, either or both may be eligible for an award.</p><p>If you both made a significant contribution to the innovation, and both achieved commercial success, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.</p>
+            <p>Excluding suppliers and consultants.</p>
           }
           yes_no
         end
 
-        textarea :joint_entry_names, 'Please enter their name(s)' do
+        options :innovation_joint_contributors, 'Is this application part of a joint entry with the contributing organisation(s)?' do
           classes "sub-question"
           required
-          conditional :joint_entry, :yes
+          context %Q{
+            <p>If you two or more organisations made a significant contribution to the innovation, and achieved commercial success, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.</p>
+          }
+          yes_no
+        end
+
+        textarea :innovation_contributors, 'Please enter their name(s)' do
+          classes "sub-question"
+          required
+          conditional :innovation_any_contributors, :yes
+          conditional :innovation_joint_contributors, :yes
+          rows 5
+          words_max 500
+        end
+
+        options :innovation_contributors_aware, 'Are they at least aware that you are applying for this award?' do
+          classes "sub-question"
+          required
+          conditional :innovation_any_contributors, :yes
+          conditional :innovation_joint_contributors, :no
+          option :yes, 'Yes, they are aware'
+          option :no, "No, they aren't aware"
+          option :some, 'Some are aware'
+        end
+
+        header :innovation_contributors_aware_header_no, "" do
+          context %Q{
+            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
+          }
+          conditional :innovation_any_contributors, :yes
+          conditional :innovation_contributors_aware, :no
+          conditional :innovation_joint_contributors, :no
+        end
+
+        header :innovation_contributors_aware_header_some, "" do
+          context %Q{
+            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
+          }
+          conditional :innovation_any_contributors, :yes
+          conditional :innovation_contributors_aware, :some
+          conditional :innovation_joint_contributors, :no
+        end
+
+        options :innovation_under_license, 'Is your innovation under license from another organisation?' do
+          ref 'A 9'
+          yes_no
+        end
+
+        textarea :innovation_license_terms, 'Briefly describe the licensing arrangement.' do
+          classes "sub-question"
+          required
+          conditional :innovation_under_license, :yes
           rows 5
           words_max 100
         end
@@ -130,17 +195,17 @@ class QAE2014Forms
         # Prefilled from registration details
         address :principal_address, 'Principal address of your organisation' do
           required
-          ref 'A 9'
+          ref 'A 10'
         end
 
         text :website_url, 'Website URL' do
           required
-          ref 'A 10'
+          ref 'A 11'
         end
 
         dropdown :business_sector, 'Business Sector' do
           required
-          ref 'A 11'
+          ref 'A 12'
           option '', 'Business Sector'
           option :other, 'Other'
         end
@@ -153,7 +218,7 @@ class QAE2014Forms
 
         head_of_business :head_of_business, 'Head of your organisation' do
           required
-          ref 'A 12'
+          ref 'A 13'
         end
 
         text :head_job_title, 'Job title / Role in the organisation' do
@@ -170,8 +235,8 @@ class QAE2014Forms
         end
 
         header :parent_company_header, 'Parent Companies' do
-          ref 'A 13'
-          conditional :applying_for, 'division branch subsidiary'
+          ref 'A 14'
+          conditional :applying_for, 'true'
         end
 
         text :parent_company, 'Name of immediate parent company' do
@@ -202,10 +267,26 @@ class QAE2014Forms
           conditional :applying_for, 'division branch subsidiary'
         end
 
-        upload :org_chart, 'Upload an organisational chart (optional).' do
-          ref 'A 14'
+        options :parent_group_entry, 'Are you a parent company making a group entry?' do
+          classes "sub-question"
+          conditional :applying_for, 'organisation'
           context %Q{
-            <p>It should be less than 5MB, and in either MS Word Document, PDF or JPG formats.</p>
+            <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control. </p>
+          }
+          yes_no
+        end
+
+        options :pareent_group_excluding, 'Are you excluding any members of your group from this application?' do
+          classes "sub-question"
+          conditional :applying_for, 'organisation'
+          conditional :parent_group_entry, 'yes'
+          yes_no
+        end
+
+        upload :org_chart, 'Upload an organisational chart (optional).' do
+          ref 'A 15'
+          context %Q{
+            <p>You can submit files in all common formats, as long as they're less than 5mb.</p>
           }
           max_attachments 1
         end
