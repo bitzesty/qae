@@ -105,9 +105,7 @@ class Eligibility < ActiveRecord::Base
   end
 
   def set_passed
-    if eligible?
-      update_column(:passed, true)
-    end
+    update_column(:passed, eligible?)
   end
 
   def answer_valid?(question, answer)
