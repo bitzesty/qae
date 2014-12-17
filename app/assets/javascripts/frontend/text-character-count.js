@@ -1,7 +1,7 @@
 $.fn.charcount = function() {
   // Creates the character count elements
   this.wrap("<div class='char-count'></div>");
-  this.before("<div class='char-text'>Word count: <span class='current-count'>0</span></div>");
+  this.after("<div class='char-text'>Word count: <span class='current-count'>0</span></div>");
 
   // Includes charact limit if there is one
   this.each(function(){
