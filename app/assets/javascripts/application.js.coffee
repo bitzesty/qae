@@ -212,6 +212,7 @@ jQuery ->
     name = wrapper.data('name')
     form_name = wrapper.data('form-name')
     needs_description = !!wrapper.data('description')
+    is_link = !!$el.data('add-link')
 
     progress_all = (e, data) ->
       # TODO
@@ -243,22 +244,32 @@ jQuery ->
     upload_started = (e, data) ->
       button.addClass('visuallyhidden') #TODO: show progressbar
 
-    upload_done = (e, data) ->
+    upload_done = (e, data, link) ->
       new_el = $("<li>")
-      div = $("<div>").text(data.result['original_filename'])
 
-      hidden_input = $("<input>").
-        prop('type', 'hidden').
-        prop('name', "#{form_name}[#{name}][][file]").
-        prop('value', data.result['id'])
+      if link
+        div = $("<div>")
+        label = $("<label>").text('Website link')
+        input = $("<input class=\"medium\" type=\"text\">").
+          prop('name', "#{form_name}[#{name}][][link]")
+        label.append(input)
+        div.append(label)
+        new_el.append(div)
+      else
+        div = $("<div>").text(data.result['original_filename'])
 
-      div.append(hidden_input)
+        hidden_input = $("<input>").
+          prop('type', 'hidden').
+          prop('name', "#{form_name}[#{name}][][file]").
+          prop('value', data.result['id'])
 
-      remove_link = $("<a>").addClass('remove-link').prop('href', '#').text('Remove')
-      remove_link.click remove_link_clicked
+        div.append(hidden_input)
 
-      div.append(remove_link)
-      new_el.append(div)
+        remove_link = $("<a>").addClass('remove-link').prop('href', '#').text('Remove')
+        remove_link.click remove_link_clicked
+
+        div.append(remove_link)
+        new_el.append(div)
 
       if needs_description
         desc_div = $("<div>")
@@ -273,7 +284,6 @@ jQuery ->
         update_visibility()
         reindex_inputs
         false
-
       
       list.append(new_el)
       new_el.find('.js-char-count').charcount()
@@ -291,22 +301,19 @@ jQuery ->
 
     update_visibility()
 
-    $el.fileupload(
-      url: attachments_url
-      formData: () -> {}
-      done: upload_done
-      progressall: progress_all
-      send: upload_started
-    )
-
-
-#        progressall: function (e, data) {
-#            var progress = parseInt(data.loaded / data.total * 100, 10);
-#            $('#progress .progress-bar').css(
-#                'width',
-#                progress + '%'
-#            );
-#        })
+    if is_link
+      $el.click (e) ->
+        e.preventDefault()
+        upload_done(null, null, true)
+        false
+    else
+      $el.fileupload(
+        url: attachments_url
+        formData: () -> {}
+        done: upload_done
+        progressall: progress_all
+        send: upload_started
+      )
 
   # Show current holder info when they are a current holder on basic eligibility current holder question
   if $(".eligibility_current_holder").size() > 0

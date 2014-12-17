@@ -3,10 +3,15 @@
     - (question.input_value(json: true) || {}).to_a.sort_by{|o| o.first.to_i}.each do |(idx, el)|
       li
         div
-          = attachments[el['file'].to_i].original_filename
-          input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
-          a.remove-link href="#"
-            | Remove
+          - if el['file']
+            = attachments[el['file'].to_i].original_filename
+            input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
+            a.remove-link href="#"
+              | Remove
+          - else
+            label
+              ' Website Link
+              input.medium type="text" name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx) 
         - if question.description
           div
             label.small
@@ -16,5 +21,9 @@
                 = question.input_value(suffix: 'description', index: idx)
   span.button
     span
-      | Add file
+      | + Upload
     input.fileinput-button.js-file-upload type="file" name="form[file]" *possible_read_only_ops
+  - if question.links
+    | &nbsp;
+    a.button.js-file-upload data-add-link="1" href="#"
+      | + Add link
