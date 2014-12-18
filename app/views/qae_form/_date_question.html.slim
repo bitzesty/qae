@@ -1,10 +1,10 @@
 .date-input
   label
     ' Day
-    input.js-trigger-autosave.tiny type="text" name=question.input_name(suffix: 'day') value=question.input_value(suffix: 'day') maxlength=2 *possible_read_only_ops
+    input.js-trigger-autosave.tiny type="text" name=question.input_name(suffix: 'day') value=question.input_value(suffix: 'day') maxlength=2 autocomplete="off" *possible_read_only_ops
   label
     ' Month
-    input.js-trigger-autosave.tiny type="text" name=question.input_name(suffix: 'month') value=question.input_value(suffix: 'month') maxlength=2 *possible_read_only_ops
+    input.js-trigger-autosave.tiny type="text" name=question.input_name(suffix: 'month') value=question.input_value(suffix: 'month') maxlength=2 autocomplete="off" *possible_read_only_ops
   label
     ' Year
-    input.js-trigger-autosave.small type="text" name=question.input_name(suffix: 'year') value=question.input_value(suffix: 'year') maxlength=4 *possible_read_only_ops
+    input.js-trigger-autosave.small type="text" name=question.input_name(suffix: 'year') value=question.input_value(suffix: 'year') maxlength=4 autocomplete="off" *possible_read_only_ops

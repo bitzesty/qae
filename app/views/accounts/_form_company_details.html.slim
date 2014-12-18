@@ -1,23 +1,23 @@
 fieldset
   h3
     ' Full/legal name of your organisation
-  = f.input :company_name, input_html: { class: 'big medium'}, label_html: { class: 'visuallyhidden' }
+  = f.input :company_name, input_html: { class: 'big medium', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
 
 fieldset
   h3
     ' Organisation address
-    = f.input :company_address_first, input_html: { class: 'big large'}, label: 'Building and street'
-    = f.input :company_address_second, input_html: { class: 'big large'}, label: false
+    = f.input :company_address_first, input_html: { class: 'big large', autocomplete: "off"}, label: 'Building and street'
+    = f.input :company_address_second, input_html: { class: 'big large', autocomplete: "off"}, label: false
 
-  = f.input :company_city, input_html: { class: "big medium"}, label: 'City'
+  = f.input :company_city, input_html: { class: "big medium", autocomplete: "off"}, label: 'City'
   /= f.input :company_country, input_html: { class: "big medium"}, as: :string, label: 'Country'
   .input.question-group
     label.control-label
       ' Country
     = country_select(:user, :company_country, priority_countries: ["GB", "US"], selected: current_user.company_country)
-  = f.input :company_postcode, input_html: { class: "big small"}, label: 'Postcode'
+  = f.input :company_postcode, input_html: { class: "big small", autocomplete: "off"}, label: 'Postcode'
 
 fieldset
   h3
     ' Main telephone number
-  = f.input :company_phone_number, input_html: { class: 'big small'}, label_html: { class: 'visuallyhidden' }
+  = f.input :company_phone_number, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
