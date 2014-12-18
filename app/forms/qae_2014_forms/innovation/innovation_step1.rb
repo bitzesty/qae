@@ -17,7 +17,6 @@ class QAE2014Forms
           conditional :applying_for, 'division branch subsidiary'
         end
 
-        # TODO Pre-filled from registration details
         text :company_name, 'Full/legal name of your organisation' do
           required
           ref 'A 2'
@@ -59,7 +58,6 @@ class QAE2014Forms
           date_max '01/10/2012'
         end
 
-        # TODO Pre-populate from eligibility
         options :queen_award_holder, "Are you a current Queen's Award holder (2010-2014)?" do
           required
           ref 'A 6'
@@ -194,7 +192,6 @@ class QAE2014Forms
           words_max 100
         end
 
-        # Prefilled from registration details
         address :principal_address, 'Principal address of your organisation' do
           required
           ref 'A 10'
