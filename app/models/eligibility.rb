@@ -104,6 +104,12 @@ class Eligibility < ActiveRecord::Base
     public_send(self.class.questions.first) == 'skip'
   end
 
+  def answer_valid?(question, answer)
+    acceptance_criteria = self.class.questions_storage[question.to_sym][:accept].to_s
+    validator = "Eligibility::Validation::#{acceptance_criteria.camelize}Validation".constantize.new(self, question, answer)
+    validator.valid?
+  end
+
   private
 
   def questions_storage
@@ -124,12 +130,6 @@ class Eligibility < ActiveRecord::Base
 
   def set_passed
     update_column(:passed, !skipped? && eligible?)
-  end
-
-  def answer_valid?(question, answer)
-    acceptance_criteria = self.class.questions_storage[question.to_sym][:accept].to_s
-    validator = "Eligibility::Validation::#{acceptance_criteria.camelize}Validation".constantize.new(self, question, answer)
-    validator.valid?
   end
 
   def current_step_validation

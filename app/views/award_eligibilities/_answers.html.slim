@@ -10,6 +10,14 @@
           = answer
         - else
           = eligibility.class.enumerized_attributes[question].find_value(answer).text
+        - unless eligibility.answer_valid?(question, answer)
+          span.previous-answer-invalid
+            ' This excludes you from entering the
+            - if eligibility.class.const_get(:AWARD_NAME) == "General"
+              ' Queen's Awards for Enterprise
+            - else
+              = eligibility.class.const_get(:AWARD_NAME)
+              '  Award
       td.link-right
         - url = eligibility.is_a?(Eligibility::Basic) ? eligibility_path(id: question): wizard_path(question)
         = link_to url do

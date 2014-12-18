@@ -32,3 +32,9 @@ article .current-question li {
 .page-award-eligibility .article-container {
   max-width: 40em;
 }
+
+.previous-answer-invalid {
+  display: block;
+  margin-top: 1em;
+  color: $error-colour;
+}

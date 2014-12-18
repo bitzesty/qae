@@ -1,4 +1,6 @@
 class Eligibility::Basic < Eligibility
+  AWARD_NAME = 'General'
+
   property :kind, values: %w[application nomination], label: "Do you want to apply for an award for your organisation, or nominate an individual for the Enterprise Promotion award?", accept: :not_nil
   property :based_in_uk, boolean: true, label: "Is your organisation based in the UK?", accept: :true, if: proc { kind_value.nil? || kind.application? }
   property :has_management_and_two_employees, boolean: true, label: "Does it have two or more full-time UK employees?", accept: :true, if: proc { kind_value.nil? || kind.application? }
