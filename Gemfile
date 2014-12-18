@@ -46,7 +46,7 @@ group :test do
   gem 'rspec-rails'
   gem 'turnip'
   gem 'shoulda-matchers', require: false
-  gem 'pdf-inspector', require: "pdf/inspector"
+  gem 'pdf-inspector', require: 'pdf/inspector'
   gem 'rspec-sidekiq'
 end
 
