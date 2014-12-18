@@ -59,6 +59,7 @@ class QAE2014Forms
           date_max '01/10/2012'
         end
 
+        # TODO Pre-populate from eligibility
         options :queen_award_holder, "Are you a current Queen's Award holder (2010-2014)?" do
           required
           ref 'A 6'
