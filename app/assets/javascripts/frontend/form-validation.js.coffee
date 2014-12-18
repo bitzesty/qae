@@ -1,7 +1,7 @@
 window.FormValidation =
   validates: true
   # validates numbers, including floats and negatives
-  numberRegex: /^-?\d*\.?\,?\d*$/
+  numberRegex: /^-?\d*\,?\d*\,?\d*\,?\d*\,?\d*\.?\,?\d*$/
 
   clearAllErrors: ->
     @validates = true
