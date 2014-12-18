@@ -69,6 +69,17 @@ class Eligibility < ActiveRecord::Base
     end
   end
 
+  def eligible_on_step?(step)
+    current_step_index = questions.index(step) || questions.size - 1
+    previous_questions = questions[0..current_step_index]
+
+    answers.any? && answers.all? do |question, answer|
+      if previous_questions.include?(question.to_sym)
+        answer_valid?(question, answer)
+      end
+    end
+  end
+
   def sorted_answers
     return {} unless answers
 

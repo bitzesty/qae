@@ -31,6 +31,8 @@ class AwardEligibilitiesController < ApplicationController
       setup_wizard
       if step == @development_eligibility.questions.last
         redirect_to action: :result
+      elsif !@eligibility.eligible_on_step?(step)
+        redirect_to_next_eligibility
       else
         redirect_to next_wizard_path
       end
@@ -72,8 +74,18 @@ class AwardEligibilitiesController < ApplicationController
     @basic_eligibility = current_user.basic_eligibility
   end
 
-
   def set_steps
     self.steps = [@trade_eligibility, @innovation_eligibility, @development_eligibility].flat_map(&:questions)
+  end
+
+  def redirect_to_next_eligibility
+    case @eligibility
+    when Eligibility::Trade
+      redirect_to wizard_path(Eligibility::Innovation.questions.first)
+    when Eligibility::Innovation
+      redirect_to wizard_path(Eligibility::Development.questions.first)
+    when Eligibility::Development
+      redirect_to action: :result
+    end
   end
 end
