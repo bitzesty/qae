@@ -45,6 +45,19 @@
   }
 }
 
+// Show substituted text
+.js-sub-text {
+  display: none;
+}
+.hide-default {
+  .js-default-text {
+    display: none;
+  }
+  .js-sub-text {
+    display: inline;
+  }
+}
+
 // PDF dowload link style/position
 .page-header .download-article {
   position: relative;

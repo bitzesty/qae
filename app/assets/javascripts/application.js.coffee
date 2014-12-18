@@ -488,8 +488,8 @@ jQuery ->
       target = $(e.target)
       if !target.is("textarea") && !target.is(":button,:submit")
         $(this).find(":input:visible:not([disabled],[readonly]), a").each () ->
-          return false;
-        return false;
+          return false
+        return false
 
   # Dropdowns for nav
   $(document).on "click", ".dropdown > a", (e) ->
@@ -499,3 +499,23 @@ jQuery ->
     if !$(e.target).closest('.dropdown').length
       $(".dropdown.dropdown-open").removeClass("dropdown-open")
 
+  # Prefil Confirmation of consent with head of organisation
+  substituteA13Text = () ->
+    substitute = true
+    name = ""
+    $(".js-a13-details input").each () ->
+      if !$(this).hasClass("js-ignore-substitution")
+        if !$(this).val()
+          substitute = false
+        else
+          name += "#{$(this).val()} "
+    if substitute
+      $(".js-a13-substitution").addClass("hide-default")
+      $(".js-a13-substitution .js-sub-text").text(name.trim())
+    else
+      $(".js-a13-substitution").removeClass("hide-default")
+  $(".js-a13-substitution").wrapInner("<span class='js-default-text'></span>")
+  $(".js-a13-substitution").append("<span class='js-sub-text'>")
+  substituteA13Text()
+  $(".js-a13-details input").change () ->
+    substituteA13Text()

@@ -6,7 +6,7 @@ class QAE2014Forms
         confirm :confirmation_of_consent, 'Confirmation of consent' do
           ref 'E 1'
           required
-          text 'I confirm that I have the consent of the head of my organisation (as in A13) to submit this entry form.'
+          text 'I confirm that I have the consent of the head of my organisation (<span class="js-a13-substitution">as in A13</span>) to submit this entry form.'
         end
 
         confirm :entry_confirmation, 'Confirmation of entry' do

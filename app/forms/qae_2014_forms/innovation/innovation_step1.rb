@@ -216,6 +216,7 @@ class QAE2014Forms
         end
 
         head_of_business :head_of_business, 'Head of your organisation' do
+          classes 'js-a13-details'
           required
           ref 'A 13'
         end
