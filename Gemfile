@@ -48,6 +48,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
   gem 'rspec-sidekiq'
+  gem 'codeclimate-test-reporter', group: :test, require: nil
 end
 
 group :development do
