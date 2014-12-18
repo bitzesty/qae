@@ -38,8 +38,12 @@ jQuery ->
   # Remove validation error after changing the value
   $(".question-block input, .question-block select, .question-block textarea").change () ->
     if $("body").hasClass("tried-submitting")
-      if $(this).closest(".question-block").find(".errors-container li").size() > 0
-        $(this).closest(".question-block").find(".errors-container").empty()
+      if $(this).closest(".question-financial").size() > 0
+        if $(this).closest("label").find(".errors-container li").size() > 0
+          $(this).closest("label").find(".errors-container").empty()
+      else
+        if $(this).closest(".question-block").find(".errors-container li").size() > 0
+          $(this).closest(".question-block").find(".errors-container").empty()
 
   # Conditional questions that appear depending on answers
   $(".js-conditional-question, .js-conditional-drop-question").addClass("conditional-question")
