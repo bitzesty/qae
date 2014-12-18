@@ -27,6 +27,14 @@ class QAEFormBuilder
       end
     end
 
+    def required_suffixes
+      []
+    end
+
+    def array_answer
+      false
+    end
+
     def answers
       @decorator_options.fetch(:answers)
     end
@@ -52,6 +60,21 @@ class QAEFormBuilder
       result = {answer: delegate_obj.parameterized_title}
       result['drop-question'] = delegate_obj.form[delegate_obj.drop_condition].parameterized_title if delegate_obj.drop_condition
       result
+    end
+
+    def required_visible?
+      delegate_obj.required &&
+        delegate_obj.conditions.
+        all?{|condition|
+          step.form[condition.question_key].input_value == condition.question_value
+        } ? true : false
+    end
+
+    def required_visible_filled?
+      return false unless required_visible?
+
+      required_suffixes.empty? ? !input_value.empty? :
+        required_suffixes.all{|s| !input_value(suffix: s).empty?}
     end
 
   end
@@ -118,7 +141,9 @@ class QAEFormBuilder
     end
 
     def decorate options = {}
-      QuestionDecorator.new self, options
+      kls_name = self.class.name.split('::').last
+      kls = QAEFormBuilder.const_get "#{kls_name}Decorator" rescue nil
+      (kls || QuestionDecorator).new self, options
     end
 
 

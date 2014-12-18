@@ -1,0 +1,15 @@
+- for c in question.by_year_conditions
+  // TODO
+  .js-conditional-question data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
+    .row
+      - (1..c.years).each do |y|
+        div class=(c.span_class || (c.years > 2 ? 'span-2-4' : 'span-4'))
+          label
+            span.js-year-end.show-default data-year="#{y}of#{c.years}"
+              span.js-year-default
+                = question.format_label(y)
+              span.js-year-text
+            br
+            ul.errors-container
+            input.small.js-trigger-autosave type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}") *possible_read_only_ops
+

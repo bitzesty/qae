@@ -29,9 +29,6 @@ class QAEFormBuilder
 
   class NumberQuestion < TextQuestion
     attr_accessor :min, :max, :unit
-    def decorate options = {}
-      NumberQuestionDecorator.new self, options
-    end
   end
 
 end

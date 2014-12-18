@@ -64,7 +64,8 @@ class FormController < ApplicationController
   def autosave
     @form_answer.document = serialize_doc(params[:form])
     @form_answer.save!
-    render :nothing => true
+    form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document || {}))
+    render json: {progress: form.progress}
   end
 
   def add_attachment

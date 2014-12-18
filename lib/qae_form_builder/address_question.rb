@@ -1,5 +1,11 @@
 class QAEFormBuilder
 
+  class QuestionQuestionDecorator < QuestionDecorator
+    def required_suffixes
+      [:building, :street, :city, :country, :postcode]
+    end
+  end
+
   class AddressQuestionBuilder < QuestionBuilder
     def countries countries
       @q.countries = countries
