@@ -105,7 +105,7 @@ class QAE2014Forms
         end
 
         innovation_by_years :total_net_assets, 'Total net assets' do 
-          classes "sub-question"
+          classes "sub-question total-net-assets"
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
           conditional :innovation_performance_years, :true

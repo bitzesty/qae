@@ -1,4 +1,4 @@
-.js-conditional-question data-question="innovation_performance_years-how-would-you-describe-the-impact-of-your-innovation-on-your-organisation-s-financial-performance-i-e-turnover-and-profit" data-value="2 to 4"
+.js-conditional-question.js-financial-conditional data-question="innovation_performance_years-how-would-you-describe-the-impact-of-your-innovation-on-your-organisation-s-financial-performance-i-e-turnover-and-profit" data-value="2 to 4"
   .row
     - (1..2).each do |fy|
       .span-4
@@ -9,9 +9,11 @@
             span.js-year-text
           br
           ul.errors-container
-          input.small.js-trigger-autosave type="text" name=question.input_name(suffix: "#{fy}of2") value=question.input_value(suffix: "#{fy}of2") *possible_read_only_ops
+          span.currency-input
+            span.currency-unit £
+            input.small.js-trigger-autosave type="text" name=question.input_name(suffix: "#{fy}of2") value=question.input_value(suffix: "#{fy}of2") *possible_read_only_ops
 
-.js-conditional-question data-question="innovation_performance_years-how-would-you-describe-the-impact-of-your-innovation-on-your-organisation-s-financial-performance-i-e-turnover-and-profit" data-value="5 plus"
+.js-conditional-question.js-financial-conditional data-question="innovation_performance_years-how-would-you-describe-the-impact-of-your-innovation-on-your-organisation-s-financial-performance-i-e-turnover-and-profit" data-value="5 plus"
   .row
     - (1..5).each do |fy|
       .span-2-4
@@ -22,4 +24,6 @@
             span.js-year-text
           br
           ul.errors-container
-          input.small.js-trigger-autosave type="text" name=question.input_name(suffix: "#{fy}of5") value=question.input_value(suffix: "#{fy}of5") *possible_read_only_ops
+          span.currency-input
+            span.currency-unit £
+            input.small.js-trigger-autosave type="text" name=question.input_name(suffix: "#{fy}of5") value=question.input_value(suffix: "#{fy}of5") *possible_read_only_ops
