@@ -65,3 +65,8 @@
 .form-submit .form-download p {
   @include core-24;
 }
+
+// Make the financial years 5 column slightly bigger to accomodate text
+.question-block .span-2-4 {
+  padding-right: 0;
+}
