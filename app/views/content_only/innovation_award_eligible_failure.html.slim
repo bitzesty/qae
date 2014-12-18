@@ -8,7 +8,12 @@ header.page-header.group
     .inner
       .application-notice.help-notice
         p
-          ' At the moment you aren’t eligible for this award. If you think you made a mistake in the eligibility questionnaire, go back and check your answers
+          ' At the moment you aren’t eligible for this award.
+      br
+      p
+        ' If you think you made a mistake in the eligibility questionnaire,
+        = link_to "go back and check your answers"
+        ' .
       br
       /p
         ' The reason why you are not eligible lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
@@ -16,16 +21,6 @@ header.page-header.group
       br
 
       p
-        ' You may be eligible for another award. Visit
-        = link_to "your dashboard", dashboard_path
+        ' You may be eligible for another award. Go to
+        = link_to "applications page", dashboard_path
         '  to apply.
-
-      footer
-        nav.pagination role="navigation" aria-label="Pagination"
-          ul.group
-            li.previous
-              = link_to dashboard_path, rel: "prev", title: "Navigate to Dashboard" do
-                span class="pagination-label"
-                  ' Back
-                span class="pagination-part-title"
-                  ' Dashboard
