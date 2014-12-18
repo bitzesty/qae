@@ -18,17 +18,18 @@
               .question-body
                 = f.input :email, required: true, autofocus: true, label: false
 
-          .form-inputs
-            .question
-              h2 Password*
-              .question-body
-                = f.input :password, required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
+          .form-inputs-group
+            .form-inputs
+              .question
+                h2 Password*
+                .question-body
+                  = f.input :password, required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
 
-          .form-inputs
-            .question
-              h2 Password confirmation*
-              .question-body
-                = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
+            .form-inputs
+              .question
+                h2 Password confirmation*
+                .question-body
+                  = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
 
           .form-inputs
             .question

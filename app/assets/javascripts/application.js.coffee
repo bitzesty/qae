@@ -477,7 +477,10 @@ jQuery ->
 
   # Remove alerts from registration page as soon as user starts typing
   $(".page-devise input").on 'keypress keydown keyup change', () ->
-    $(this).closest(".question-body").find(".error").remove()
+    if $(this).closest(".form-inputs-group").size() > 0
+      $(this).closest(".form-inputs-group").find(".error").remove()
+    else
+      $(this).closest(".question-body").find(".error").remove()
 
   # Disable using enter key to submit on the form
   $("form").on 'keypress', (e) ->
