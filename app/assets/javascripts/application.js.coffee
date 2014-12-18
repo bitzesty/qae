@@ -425,28 +425,25 @@ jQuery ->
       e.preventDefault();
 
   # Change the entry period text dependion on entry period chosen
-  # 2/5 years for Innovation and Sustainable development
-  # 3/6 years for International Trade
+  # 2 or 5 years for Innovation and Sustainable development
+  # 3 or 6 years for International Trade
   replaceEntryPeriodText = () ->
     new_text = ""
-    if $(".js-entry-period input:checked").val() == "2 to 4"
-      new_text = 2
-    else if $(".js-entry-period input:checked").val() == "5 plus"
-      new_text = 5
-    else if $(".js-entry-period input:checked").val() == "3 to 5"
-      new_text = 3
-    else if $(".js-entry-period input:checked").val() == "6 plus"
-      new_text = 6
+    switch $(".js-entry-period input:checked").val()
+      when "2 to 4"
+        new_text = 2
+      when "5 plus"
+        new_text = 5
+      when "3 to 5"
+        new_text = 3
+      when "6 plus"
+        new_text = 6
     $(".js-entry-period-subtext").each () ->
       $(this).text(new_text)
   if $(".js-entry-period input:checked").size() > 0
-    # find all instances of 2/5 or 3/6 and encapsulate them in a span so that we can target this to update the text
-    $(".js-entry-period-substitute-text h2, .js-entry-period-substitute-text p").each () ->
-      capture = $(this).html().replace(/2\/5/g, "<span class='js-entry-period-subtext'>2/5</span>").replace(/3\/6/g, "<span class='js-entry-period-subtext'>3/6</span>")
-      $(this).html(capture)
+    replaceEntryPeriodText()
     $(".js-entry-period input").change () ->
       replaceEntryPeriodText()
-    replaceEntryPeriodText()
 
   # Auto tab on date input entry
   $(".date-input input").on 'keyup', (e) ->
