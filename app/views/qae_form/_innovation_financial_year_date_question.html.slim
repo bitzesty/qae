@@ -1,17 +1,16 @@
 .question-group.js-financial-year.js-financial-year-latest
+  ul.errors-container
   label.inline.js-fy-day
     ' Day
-    ul.errors-container
-    select.js-trigger-autosave name="#{question.key}_day" *possible_read_only_ops
+    select.js-trigger-autosave name=question.input_name(suffix: 'day') *possible_read_only_ops
       option value="" Day
       - (1..31).each do |day|
-        option value="#{day}" selected=((answers["#{question.key}_day"] || '').to_s == day.to_s)
+        option value="#{day}" selected=((question.input_value(suffix: 'day') || '').to_s == day.to_s)
           = day
   label.inline.js-fy-month
     ' Month
-    ul.errors-container
-    select.js-trigger-autosave name="#{question.key}_month" *possible_read_only_ops
+    select.js-trigger-autosave name=question.input_name(suffix: 'month') *possible_read_only_ops
       option value="" Month
       - (1..12).each do |month|
-        option value="#{month}" selected=((answers["#{question.key}_month"] || '').to_s == month.to_s)
+        option value="#{month}" selected=((question.input_value(suffix: 'month') || '').to_s == month.to_s)
           = Date::MONTHNAMES[month]

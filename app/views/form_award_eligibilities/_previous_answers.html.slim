@@ -7,7 +7,7 @@
             tr
               th.previous-answers-title colspan="2"
                 ' Your eligibility answers
-              th.link-right.restart
+              /th.link-right.restart
                 = link_to "Start again", form_award_eligibility_path(form_id: @form_answer.id)
           tbody
             = render "answers", eligibility: @basic_eligibility

@@ -35,6 +35,12 @@ jQuery ->
     e.preventDefault()
     $(this).closest(".hidden-hint").toggleClass("show-hint")
 
+  # Remove validation error after changing the value
+  $(".question-block input, .question-block select, .question-block textarea").change () ->
+    if $("body").hasClass("tried-submitting")
+      if $(this).closest(".question-block").find(".errors-container li").size() > 0
+        $(this).closest(".question-block").find(".errors-container").empty()
+
   # Conditional questions that appear depending on answers
   $(".js-conditional-question, .js-conditional-drop-question").addClass("conditional-question")
   # Simple conditional using a == b
@@ -471,7 +477,10 @@ jQuery ->
 
   # Remove alerts from registration page as soon as user starts typing
   $(".page-devise input").on 'keypress keydown keyup change', () ->
-    $(this).closest(".question-body").find(".error").remove()
+    if $(this).closest(".form-inputs-group").size() > 0
+      $(this).closest(".form-inputs-group").find(".error").remove()
+    else
+      $(this).closest(".question-body").find(".error").remove()
 
   # Disable using enter key to submit on the form
   $("form").on 'keypress', (e) ->

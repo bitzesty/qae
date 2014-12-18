@@ -7,7 +7,7 @@
             tr
               th.previous-answers-title colspan="2"
                 ' Your eligibility answers so far
-              th.link-right.restart
+              /th.link-right.restart
                 = link_to "Start again", eligibility_path
           tbody
             - @eligibility.sorted_answers.each do |question, answer|

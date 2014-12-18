@@ -1,7 +1,7 @@
 window.FormValidation =
   validates: true
   # validates numbers, including floats and negatives
-  numberRegex: /^-?\d*\.?\,?\d*$/
+  numberRegex: /^-?\d*\,?\d*\,?\d*\,?\d*\,?\d*\.?\,?\d*$/
 
   clearAllErrors: ->
     @validates = true
@@ -174,16 +174,15 @@ window.FormValidation =
 
       if shown_question
         subq = $(subquestion)
-
         if not subq.val() and question.hasClass("question-required")
-          @appendMessage(subq.parent(), "This field is required.")
+          @appendMessage(subq.closest("label"), "This field is required.")
           @addErrorClass(question)
           continue
         else if not subq.val()
           continue
 
         if not subq.val().toString().match(@numberRegex)
-          @appendMessage(subq.parent(), "Not a valid currency value.")
+          @appendMessage(subq.closest("label"), "Not a valid currency value.")
           @addErrorClass(question)
 
   validateDateByYears: (question) ->

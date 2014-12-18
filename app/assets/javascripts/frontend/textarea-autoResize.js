@@ -2,40 +2,44 @@
 /*global document:false, $:false */
 $(function() {
   var txt = $('textarea');
-  var hiddenDiv = $(document.createElement('div'));
   var content = null;
 
-  txt.addClass('txtstuff');
-  hiddenDiv.addClass('hiddendiv common');
   resetResizeTextarea = function () {
-    txt.each(function() {
-      // default/initial heights for all textareas so
-      // that resizing doesn't get shorter than this
-      var textarea = $(this);
-      textarea.css('height', "auto");
-      textarea.css('min-height', "");
-      textarea.removeAttr('min-height');
-      textarea.css('min-height', textarea.outerHeight());
-      textarea.attr("data-height", textarea.outerHeight());
-    });
+    if (!$("body").hasClass("text-resized")) {
+      $('textarea').each(function() {
+        // default/initial heights for all textareas so
+        // that resizing doesn't get shorter than this
+        var textarea = $(this);
+        textarea.css('height', "auto");
+        textarea.css('min-height', "");
+        textarea.removeAttr('min-height');
+        textarea.css('min-height', textarea.attr("rows")+"em");
+        textarea.attr("data-height", parseInt(textarea.css('min-height')));
+      });
+      $("body").addClass("text-resized");
+    }
   }
-  resetResizeTextarea()
-  $('body').append(hiddenDiv);
 
   resizeTextarea = function (textInput) {
+    var hiddenDiv = $('body > .hiddendiv');
     content = textInput.val();
 
     content = content.replace(/\n/g, '<br>');
+    hiddenDiv.width($(".step-article.step-current").width());
     hiddenDiv.html(content + '<br class="lbr">');
+    var hiddenHeight = hiddenDiv.height()*1.06;
 
-    if (hiddenDiv.height() >= textInput.attr("data-height")) {
+    if (hiddenHeight >= textInput.attr("data-height")) {
       // resize when there's more text than the text container
-      textInput.css("height", hiddenDiv.height()+1);
+      textInput.height(hiddenHeight+1);
     } else if (content == "") {
       // resize when no text
-      textInput.css("height", textInput.attr("data-height"));
+      textInput.height(textInput.attr("data-height"));
     }
   }
+
+  resetResizeTextarea()
+  $('body').append("<div class='hiddendiv common'></div>");
 
   txt.each(function() {
     resizeTextarea($(this));

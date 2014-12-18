@@ -9,7 +9,7 @@
             span.js-year-text
           br
           ul.errors-container
-          input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of2" value=answers["#{question.key}_#{fy}of2"] *possible_read_only_ops
+          input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of2" value=answers["#{question.key}_#{fy}of2"] autocomplete="off" *possible_read_only_ops
 
 .js-conditional-question.js-financial-conditional data-question="innovation_performance_years-how-would-you-describe-the-impact-of-your-innovation-on-your-organisation-s-financial-performance-i-e-turnover-and-profit" data-value="5 plus"
   .row
@@ -22,4 +22,4 @@
             span.js-year-text
           br
           ul.errors-container
-          input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of5" value=answers["#{question.key}_#{fy}of5"] *possible_read_only_ops
+          input.small.js-trigger-autosave type="text" name="#{question.key}_#{fy}of5" value=answers["#{question.key}_#{fy}of5"] autocomplete="off" *possible_read_only_ops

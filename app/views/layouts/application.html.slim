@@ -41,7 +41,7 @@ html
                   span.caret
                 ul.dropdown-menu
                   li
-                    = link_to "My applications", dashboard_path
+                    = link_to "Applications", dashboard_path
                   li
                     = link_to "Account Settings", correspondent_details_account_path
                   li
@@ -63,7 +63,7 @@ html
           - if current_user.completed_registration
             - unless defined? @is_landing_page
               li
-                = link_to "My applications", dashboard_path
+                = link_to "Applications", dashboard_path
 
     #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
       #QAE

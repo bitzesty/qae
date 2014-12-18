@@ -13,3 +13,6 @@ script:
 notifications:
   email: false
   slack: bitzesty:h8zc1e4BesNXl5LynftJ7Z7M
+addons:
+  code_climate:
+    repo_token: 53c81623b42b63f7570f50659684eba55db9da0895ec5c35691765219a621143
