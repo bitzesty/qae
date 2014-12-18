@@ -21,16 +21,16 @@ gem 'slimmer', '~> 5.0.0', github: 'alphagov/slimmer', branch: 'master'
 gem 'wicked', '~> 1.1'
 gem 'prawn'
 gem 'prawn-table'
-gem "draper"
-gem "decent_exposure"
-gem "decent_decoration"
+gem 'draper'
+gem 'decent_exposure'
+gem 'decent_decoration'
 gem 'country_select'
 
 # Background jobs
-gem "sidekiq"
-gem "sidekiq-status"
-gem "sinatra", require: false
-gem "foreman"
+gem 'sidekiq'
+gem 'sidekiq-status'
+gem 'sinatra', require: false
+gem 'foreman'
 gem 'jquery.fileupload-rails'
 gem 'carrierwave'
 
@@ -40,14 +40,14 @@ end
 
 group :test do
   gem 'capybara'
-  gem "capybara-webkit"
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'rspec-rails'
   gem 'turnip'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: "pdf/inspector"
-  gem "rspec-sidekiq"
+  gem 'rspec-sidekiq'
 end
 
 group :development do
@@ -57,7 +57,7 @@ group :development do
   gem 'capistrano-sidekiq'
   gem 'slackistrano', require: false
   gem 'pry'
-  gem "letter_opener"
+  gem 'letter_opener'
 end
 
 group :test, :development do
