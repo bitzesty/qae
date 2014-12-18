@@ -511,7 +511,7 @@ jQuery ->
           name += "#{$(this).val()} "
     if substitute
       $(".js-a13-substitution").addClass("hide-default")
-      $(".js-a13-substitution .js-sub-text").text(name.trim())
+      $(".js-a13-substitution .js-sub-text").text("as identified as #{name.trim()} in A13")
     else
       $(".js-a13-substitution").removeClass("hide-default")
   $(".js-a13-substitution").wrapInner("<span class='js-default-text'></span>")
