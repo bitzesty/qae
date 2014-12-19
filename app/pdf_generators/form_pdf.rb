@@ -1,7 +1,7 @@
 require "prawn/measurement_extensions"
 
 class FormPdf < Prawn::Document
-  attr_reader :user, :form_answer, :answers, :filled_answers, :award_form, :steps
+  attr_reader :user, :form_answer, :answers, :award_form, :steps
 
   # HERE are dictionary for sub attributes. 
   # We have sub attributes in more complex questions
@@ -61,32 +61,32 @@ class FormPdf < Prawn::Document
   ]
 
   BASE_SUB_ATTRIBUTES_DICTIONARY = {
-    principal_address: [
-      ["building", "Building"],
-      ["street", "Street"],
-      ["city", "Town or city"],
-      ["country", "Country"],
-      ["postcode", "Postcode"]
-    ],
-    head_of_business: [
-      ["title", "Title"],
-      ["first_name", "First name"],
-      ["last_name", "Last name"],
-      ["honours", "Personal Honours"]
-    ],
+    principal_address: {
+      building: "Building",
+      street: "Street",
+      city: "Town or city",
+      country: "Country",
+      postcode: "Postcode"
+    },
+    head_of_business: {
+      title: "Title",
+      first_name: "First name",
+      last_name: "Last name",
+      honours: "Personal Honours"
+    },
     financial_year_dates: FIVE_FINANCIAL_YEARS,
     total_turnover: FIVE_YEAR_STANDART_BLOCK,
     exports: FIVE_YEAR_STANDART_BLOCK,
     net_profit: FIVE_YEAR_STANDART_BLOCK,
     total_net_assets: FIVE_YEAR_STANDART_BLOCK,
-    contact: [
-      ["title", "Title"],
-      ["first_name", "First name"],
-      ["last_name", "Last name"],
-      ["position", "Position"],
-      ["email_primary", "Email address"],
-      ["phone", "Telephone number"]
-    ]
+    contact: {
+      title: "Title",
+      first_name: "First name",
+      last_name: "Last name",
+      position: "Position",
+      email_primary: "Email address",
+      phone: "Telephone number"
+    }
   }  
 
   def initialize(form_answer)
@@ -95,13 +95,50 @@ class FormPdf < Prawn::Document
     @award_form = form_answer.award_form
     @user = form_answer.user
 
-    @answers = ActiveSupport::HashWithIndifferentAccess.new(form_answer.document).reject do |key, value|
-      HIDDEN_QUESTIONS.include?(key.to_s)
+    @answers = ActiveSupport::HashWithIndifferentAccess.new(form_answer.document).select do |key, value|
+      !HIDDEN_QUESTIONS.include?(key.to_s)
     end
-    @filled_answers = answers.select { |k, v| v.present? }
-    @steps = award_form.steps
+    @steps = [award_form.steps.first]
     
     generate!
+  end
+
+  def filtered_questions(cached_questions)
+    log_this "cached_questions: #{cached_questions.count}"
+
+    q = cached_questions.select do |question|
+      !HIDDEN_QUESTIONS.include?(question.key.to_s) #&&
+      allowed_by_or_have_no_conditions?(cached_questions, question)
+    end
+
+    log_this "q: #{q.count}"
+
+    q
+  end
+
+  def allowed_by_or_have_no_conditions?(cached_questions, question)
+    conditions = question.conditions
+
+    conditions.blank? ||
+    conditions.all? do |condition|
+      conditional_success?(cached_questions, condition)
+    end
+  end
+
+  def conditional_success?(cached_questions, condition)
+    question_key = condition.question_key
+    question_value = condition.question_value
+
+    parent_question = fetch_parent_question(cached_questions, question_key)
+    parent_question_answer = fetch_answer(parent_question)
+
+    parent_question_answer == question_value
+  end
+
+  def fetch_parent_question(cached_questions, question_key)
+    cached_questions.select do |question|
+      question.key.to_s == question_key.to_s
+    end.first
   end
 
   def generate!
@@ -133,23 +170,50 @@ class FormPdf < Prawn::Document
       HIDDEN_QUESTIONS.include?(question.key.to_s)
     end
 
-    step.questions.select do |question| 
+    log_this "[filtered_questions(cached_questions)] #{filtered_questions(cached_questions).count}"
+
+    filtered_questions(cached_questions).each do |question|
       render_question(cached_questions, question) 
     end
+
+    # step.questions.select do |question| 
+    #   render_question(cached_questions, question) 
+    # end
   end
 
   def render_question(cached_questions, question)
-    answer = fetch_answer(question)
+    answer = humanized_answer(question)
+
+    log_this "                                "
+
+    log_this "[question] #{question.key.to_s}"
+    log_this "[answer] #{answer}"
+
+    sub_answers = fetch_sub_answers(cached_questions, question)
 
     if answer.present?
-      question_block(question, answer) if answer.present?
-    elsif is_allowed_to_have_sub_questions?(question)
-      sub_answers = fetch_sub_answers(cached_questions, question)
-
+      question_block(question, answer)
+    else
       if sub_answers.any?
+        log_this "[sub_answers] #{sub_answers.count}"
+
+        log_this "                                "
+
         complex_question(question, sub_answers)
+      else
+        question_block(question)
       end
     end
+
+    # if answer.present?
+    #   question_block(question, answer) if answer.present?
+    # elsif is_allowed_to_have_sub_questions?(question)
+    #   sub_answers = fetch_sub_answers(cached_questions, question)
+
+    #   if sub_answers.any?
+    #     complex_question(question, sub_answers)
+    #   end
+    # end
   end
 
   def question_title(question)
@@ -158,12 +222,12 @@ class FormPdf < Prawn::Document
     )
   end
 
-  def question_block(question, answer)
+  def question_block(question, answer=nil)
     default_bottom_margin
     text question_title(question), style: :bold
     
     default_bottom_margin
-    text answer, style: :italic
+    text (answer.present? ? answer : "in the progress of filling.."), style: :italic
   end
 
   def complex_question(question, sub_answers)
@@ -233,61 +297,54 @@ class FormPdf < Prawn::Document
 
   def fetch_sub_answers(cached_questions, question)
     question_main_key = question.key.to_s
+    res = []
 
-    filled_answers_by_key(question_main_key).map do |key, value|
-      sub_section = BASE_SUB_ATTRIBUTES_DICTIONARY[question_main_key.to_sym]
+    question.sub_question_names.each_with_index do |sub_question_name, position|
+      log_this "[sub_question_name] #{sub_question_name}, position: #{position}"
 
-      if sub_section.present?
-        position = detect_sub_question_position(question_main_key, sub_section, key)
-      end
+      answer = fetch_answer_by_key(sub_question_name)
 
-      [
-        detect_title(question_main_key, sub_section, key), 
-        answer_based_on_type(key, value),
-        position || 0
+      log_this "[filled_answers_by_key #{question_main_key}] key: #{sub_question_name}, value: #{answer}"
+
+      res << [
+        detect_title(question_main_key, sub_question_name), 
+        answer ? answer_based_on_type(sub_question_name, answer) : UNDEFINED_TITLE,
+        position
       ]
-    end.sort do |a, b|
+    end
+
+    res = res.sort do |a, b|
       a[2] <=> b[2]
     end
+
+    log_this "[question #{question.key}] res: #{res.inspect}"
+
+    res
   end
 
-  def detect_sub_question_position(question_main_key, sub_section, key)
-    sub_question_block = fetch_sub_question_block_from_dictionary(question_main_key, sub_section, key)
-
-    sub_section.index do |element|
-      element == sub_question_block
-    end
-  end
-
-  def filled_answers_by_key(question_main_key)
-    filled_answers.select do |key, value|
-      key.to_s.include?(question_main_key)
-    end
-  end
-
-  def detect_title(question_main_key, sub_section, key)
-    if sub_section.present?
-      sub_question_block = fetch_sub_question_block_from_dictionary(question_main_key, sub_section, key)
-
-      sub_question_block.present? ? sub_question_block[1].capitalize : UNDEFINED_TITLE
-    end
-  end
-
-  def fetch_sub_question_block_from_dictionary(question_main_key, sub_section, key)
-    sub_section.select do |a| 
-      a[0].to_s == key.to_s.gsub("#{question_main_key}_", '')
-    end[0]
+  def detect_title(question_main_key, sub_question_name)
+    log_this "[detect_title] question_main_key #{question_main_key.to_sym}, sub_question_name: #{sub_question_name.to_sym}"
+    log_this "[BASE_SUB_ATTRIBUTES_DICTIONARY[question_main_key.to_sym]] #{BASE_SUB_ATTRIBUTES_DICTIONARY[question_main_key.to_sym]}"
+    sub_question_block = BASE_SUB_ATTRIBUTES_DICTIONARY[question_main_key.to_sym][sub_question_name.to_sym]
+    sub_question_block.present? ? sub_question_block[1].capitalize : UNDEFINED_TITLE
   end
 
   def fetch_answer(question)
-    value = begin
+    fetch_answer_by_key(question.key)
+  end
+
+  def fetch_answer_by_key(key)
+    begin
       # if JSON structure like array in value:
-      JSON.parse(answers[question.key])
+      JSON.parse(answers[key])
     rescue
       # if string like company_name == 'Bitzesty'
-      answers[question.key]
+      answers[key]
     end
+  end
 
+  def humanized_answer(question)
+    value = fetch_answer(question)
     value = answer_based_on_type(question.key, value) if value.present?
     value
   end
@@ -336,13 +393,17 @@ class FormPdf < Prawn::Document
                at: [32.mm, 135.mm + offset]
              })
 
-    # Add fomr URN below user general information
-    text_box form_answer.urn.present? ? form_answer.urn : "URN is undefined", 
-             default_text_box_properties.merge({
-               at: [32.mm, 129.mm + offset]
-             })
+    urn_block(offset) if form_answer.urn.present?
 
     move_down 40.mm
+  end
+
+  def urn_block(offset)
+    # Add fomr URN below user general information
+    text_box form_answer.urn, 
+      default_text_box_properties.merge({
+        at: [32.mm, 129.mm + offset]
+      })
   end
 
   private

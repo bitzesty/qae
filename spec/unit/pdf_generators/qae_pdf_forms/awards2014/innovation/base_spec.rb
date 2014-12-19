@@ -16,10 +16,9 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
     { employees: "15" }
   }
 
-  let!(:innovation_award_form_answer) do
-    FactoryGirl.create :form_answer, :innovation, 
+  let(:innovation_award_form_answer) do
+    FactoryGirl.create :form_answer, :submitted, :innovation, 
       user: user,
-      urn: "QA0001/18T",
       document: step1_question_answers.merge(step2_question_answers)
   end
 
@@ -32,6 +31,11 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
 
   let(:step1) { award_form.steps.first }
   let(:step2) { award_form.steps.second }
+
+  before do
+    FormAnswer.any_instance.stub(:eligible?) { true }
+    innovation_award_form_answer
+  end
 
   describe "PDF generation" do 
     let(:pdf_content) do 
