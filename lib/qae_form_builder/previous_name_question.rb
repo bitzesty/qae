@@ -1,7 +1,10 @@
 class QAEFormBuilder
   class PreviousNameQuestionDecorator < QuestionDecorator
-    def required_suffixes
-      [:name, :refnum]
+    def required_sub_fields
+      [
+        {name: "Name"}, 
+        {refnum: "Refnum"}
+      ]
     end
   end
 

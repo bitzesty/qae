@@ -1,8 +1,14 @@
 class QAEFormBuilder
 
   class AddressQuestionDecorator < QuestionDecorator
-    def required_suffixes
-      [:building, :street, :city, :country, :postcode]
+    def required_sub_fields
+      [
+        {building: "Building"},
+        {street: "Street"},
+        {city: "Town or city"},
+        {country: "Country"},
+        {postcode: "Postcode"}
+      ]
     end
   end
 

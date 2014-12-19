@@ -1,8 +1,11 @@
 class QAEFormBuilder
 
   class ContactEmailQuestionDecorator < QuestionDecorator
-    def required_suffixes
-      [:primary, :confirmation]
+    def required_sub_fields
+      [
+        {primary: "Primary"}, 
+        {confirmation: "Confirmation"}
+      ]
     end
   end
 

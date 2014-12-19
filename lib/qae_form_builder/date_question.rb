@@ -1,8 +1,12 @@
 class QAEFormBuilder
 
   class DateQuestionDecorator < QuestionDecorator
-    def required_suffixes
-      [:date, :month, :year]
+    def required_sub_fields
+      [
+        {date: "Date"}, 
+        {month: "Month"},
+        {year: "Year"}
+      ]
     end
   end
 
