@@ -3,7 +3,7 @@ class QAEFormBuilder
   class DateQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [
-        {date: "Date"}, 
+        {day: "Day"}, 
         {month: "Month"},
         {year: "Year"}
       ]

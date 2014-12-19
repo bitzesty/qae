@@ -72,10 +72,8 @@ class QAEFormBuilder
 
     def required_visible_filled?
       return false unless required_visible?
-      v = required_sub_fields.blank? ? !input_value.blank? :
-        required_sub_fields.all?{|s| !input_value(suffix: a.keys[0]).blank?}
-      puts key unless v
-      v
+      required_sub_fields.blank? ? !input_value.blank? :
+        required_sub_fields.all?{|s| !input_value(suffix: s.keys.first).blank?}
     end
 
   end
