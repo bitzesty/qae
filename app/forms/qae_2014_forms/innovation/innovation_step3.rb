@@ -27,9 +27,13 @@ class QAE2014Forms
           yes_no
         end
 
-        innovation_financial_year_dates :financial_year_changed_dates, 'Enter your year-end dates for each financial year.' do
+        by_years :financial_year_changed_dates, 'Enter your year-end dates for each financial year.' do
           classes "sub-question"
           required
+          type :date
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
           conditional :financial_year_date_changed, :yes
         end
 
