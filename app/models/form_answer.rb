@@ -38,6 +38,7 @@ class FormAnswer < ActiveRecord::Base
 
   before_create :set_account
   before_save :set_urn
+  before_save :set_progress
   before_validation :check_eligibility, if: :submitted
 
   store_accessor :document
@@ -89,6 +90,11 @@ class FormAnswer < ActiveRecord::Base
 
   def set_account
     self.account = user.account
+  end
+
+  def set_progress
+    form = award_form.decorate(answers: HashWithIndifferentAccess.new(document || {}))
+    self.fill_progress = form.progress
   end
 
   class AwardEligibilityBuilder

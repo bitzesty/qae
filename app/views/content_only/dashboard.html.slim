@@ -37,8 +37,7 @@ header.page-header.group
                       - if award.urn?
                         ' Submitted
                       - else
-                        // TODO percentage completed
-                        ' 50% completed
+                        = "#{((award.fill_progress || 0) * 100).round.to_i}%"
                   td.pull-right
                     // TODO use better method to test for submitted awards
                     - if award.urn?
