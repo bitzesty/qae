@@ -20,9 +20,12 @@ class QAE2014Forms
         #  ref 'C 1'
         #end
 
-        trade_financial_year_dates :financial_year_dates, 'State your financial year end date' do
+        by_years :financial_year_dates, 'State your financial year end date' do
           ref 'C 2'
           required
+          type :date
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           context %Q{
             <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
           }
@@ -52,15 +55,21 @@ class QAE2014Forms
           conditional :trade_commercial_success, :true
         end
 
-        trade_by_years :overseas_sales, 'Total overseas sales' do
+        by_years :overseas_sales, 'Total overseas sales' do
           ref 'C 5'
           required
+          type :money
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           conditional :trade_commercial_success, :true
         end
 
-        trade_by_years :overseas_sales_direct, 'of which direct' do
+        by_years :overseas_sales_direct, 'of which direct' do
           classes "sub-question"
           required
+          type :money
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           context %Q{
             <p>"Include figures for sales of goods/services to non-UK residents or their buying agents. Include royalties, license fees and other related services. Include sales to, and by, your overseas subsidiaries (though for what they buy fmor you to sell on, only include their markup).</p>
             <p>The goods/services must have been provided and the customer invoiced to be included - omit unfulfilled orders.</p>
@@ -92,9 +101,12 @@ class QAE2014Forms
           conditional :trade_commercial_success, :true
         end
 
-        trade_by_years :overseas_sales_indirect, 'of which indirect' do
+        by_years :overseas_sales_indirect, 'of which indirect' do
           classes "sub-question"
           required
+          type :money
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           context %Q{
             <p>Direct overseas sales are the result of an organisation making a commitment to market overseas on its own behalf. Indirect overseas sales are where, for example:</p>
             <ul>
@@ -127,9 +139,12 @@ class QAE2014Forms
           conditional :trade_commercial_success, :true
         end
 
-        trade_by_years :total_turnover, 'Total turnover (home plus overseas)' do
+        by_years :total_turnover, 'Total turnover (home plus overseas)' do
           classes "sub-question"
           required
+          type :money
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           context %Q{
             <p>Exclude VAT, overseas taxes and, where applicable, excise duties. </p>
           }
@@ -137,9 +152,12 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        trade_by_years :net_profit, 'Net profit after tax but before dividends' do 
+        by_years :net_profit, 'Net profit after tax but before dividends' do 
           classes "sub-question"
           required
+          type :money
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
         end
@@ -174,9 +192,12 @@ class QAE2014Forms
           conditional :trade_commercial_success, :true
         end
 
-        trade_by_years :total_imported_cost, 'Total cost of the products/services/components imported for resale overseas' do 
+        by_years :total_imported_cost, 'Total cost of the products/services/components imported for resale overseas' do 
           classes "sub-question"
           required
+          type :money
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           conditional :trade_commercial_success, :true
           conditional :resale_overseas, :true
           drop_conditional :drops_in_turnover
@@ -188,9 +209,12 @@ class QAE2014Forms
           yes_no
         end
 
-        trade_by_years_percentage :overseas_yearly_percentage, 'Indicate the yearly percentage of your goods produced overseas.' do 
+        by_years :overseas_yearly_percentage, 'Indicate the yearly percentage of your goods produced overseas.' do 
           classes "sub-question"
           required
+          type :percent
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           conditional :trade_commercial_success, :true
           conditional :manufacture_overseas, :true
         end

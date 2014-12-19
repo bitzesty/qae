@@ -73,8 +73,8 @@ class QAEFormBuilder
     def required_visible_filled?
       return false unless required_visible?
 
-      required_suffixes.empty? ? !input_value.empty? :
-        required_suffixes.all{|s| !input_value(suffix: s).empty?}
+      required_suffixes.blank? ? !input_value.blank? :
+        required_suffixes.all?{|s| !input_value(suffix: s).blank?}
     end
 
   end

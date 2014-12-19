@@ -7,7 +7,7 @@ class QAEFormBuilder
     end
 
     def progress
-      required_visible_questions_filled / required_visible_questions_total
+      required_visible_questions_filled.to_f / required_visible_questions_total
     end
 
     def required_visible_questions_filled

@@ -81,12 +81,15 @@ class QAE2014Forms
           words_max 200
         end
 
-        materials :trade_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
+        upload :trade_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
           ref 'B 7'
           context %Q{
             <p>We can't guarantee these will be reviewed, so inlcude any vital information within the form.</p>
             <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb.</p>
           } # TODO!
+          links
+          description
+          max_attachments 4
           help 'Information we will not review', %Q{
             <p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>
           }
