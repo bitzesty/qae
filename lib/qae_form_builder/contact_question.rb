@@ -1,8 +1,12 @@
 class QAEFormBuilder
 
   class ContactQuestionDecorator < QuestionDecorator
-    def required_suffixes
-      [:title, :first_name, :last_name]
+    def required_sub_fields
+      [
+        {title: "Title"},
+        {first_name: "First name"},
+        {last_name: "Last name"}
+      ]
     end
   end
 

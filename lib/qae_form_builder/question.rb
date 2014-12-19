@@ -27,7 +27,7 @@ class QAEFormBuilder
       end
     end
 
-    def required_suffixes
+    def required_sub_fields
       []
     end
 
@@ -73,8 +73,8 @@ class QAEFormBuilder
     def required_visible_filled?
       return false unless required_visible?
 
-      required_suffixes.blank? ? !input_value.blank? :
-        required_suffixes.all?{|s| !input_value(suffix: s).blank?}
+      required_sub_fields.blank? ? !input_value.blank? :
+        required_sub_fields.all?{|s| !input_value(suffix: a.keys[0]).blank?}
     end
 
   end

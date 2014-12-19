@@ -1,8 +1,8 @@
 class QAEFormBuilder
 
   class CountryQuestionDecorator < QuestionDecorator
-    def required_suffixes
-      [:country]
+    def required_sub_fields
+      [{country: "Country"}]
     end
   end
 
