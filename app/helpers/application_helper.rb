@@ -44,7 +44,9 @@ module ApplicationHelper
 
     current = inner
     for condition in question.conditions
-      current = content_tag(:div, current, class: "js-conditional-question", data: {question: question.form[condition.question_key].parameterized_title, value: condition.question_value})
+      dep = question.form[condition.question_key]
+      raise "Can't find parent question for conditional #{question.key} -> #{condition.question_key}" unless dep
+      current = content_tag(:div, current, class: "js-conditional-question", data: {question: dep.parameterized_title, value: condition.question_value})
     end
 
     current

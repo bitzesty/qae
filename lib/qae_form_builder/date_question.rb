@@ -1,6 +1,12 @@
 class QAEFormBuilder
 
   class DateQuestionDecorator < QuestionDecorator
+    def required_suffixes
+      [:date, :month, :year]
+    end
+  end
+
+  class DateQuestionDecorator < QuestionDecorator
     def fieldset_classes
       result = super
       result << 'question-date-max' if delegate_obj.date_max
@@ -49,9 +55,6 @@ class QAEFormBuilder
       @date_between = false
     end
 
-    def decorate options = {}
-      DateQuestionDecorator.new self, options
-    end
   end
 
 end

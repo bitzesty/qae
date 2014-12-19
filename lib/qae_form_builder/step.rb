@@ -3,6 +3,21 @@ require 'active_support/inflector'
 class QAEFormBuilder
 
   class StepDecorator < QAEDecorator
+
+    def required_visible_questions_filled
+      count_questions :required_visible_filled?
+    end
+
+    def required_visible_questions_total
+      count_questions :required_visible?
+    end
+
+    private
+
+    def count_questions meth
+      questions.map{|q| q.send(meth) ? 1 : 0}.reduce(:+)
+    end
+
   end
 
   class StepBuilder

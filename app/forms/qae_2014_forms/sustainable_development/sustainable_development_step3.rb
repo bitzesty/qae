@@ -12,18 +12,26 @@ class QAE2014Forms
           option '5 plus', '5 years or more'
         end
 
-        development_financial_year_dates :financial_year_dates, 'State your financial year end date' do
+        by_years :financial_year_dates, 'State your financial year end date' do
           ref 'C 2'
           required
+          type :date
+          label -> (y) { "1/10/#{2013 + 1 - y} - 30/09/#{2014 + 1 - y}" }
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           context %Q{
             <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
           }
           conditional :development_performance_years, :true
         end
 
-        development_by_years_number :employees, 'State the number of people employed by the company for each year of your entry.' do
+        by_years :employees, 'State the number of people employed by the company for each year of your entry.' do
           ref 'C 3'
           required
+          type :number
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           context %Q{
             <p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
           }
@@ -44,36 +52,48 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
 
-        textarea :innovation_excluded_explanation, 'Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.' do
+        textarea :development_excluded_explanation, 'Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.' do
           ref 'C 5'
           rows 5
           words_max 150
-          conditional :innovation_performance_years, :true
+          conditional :development_performance_years, :true
         end
 
-        development_by_years :total_turnover, 'Total turnover' do
+        by_years :total_turnover, 'Total turnover' do
           ref 'C 6'
           required
+          type :money
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :development_performance_years, :true
           drop_conditional :drops_in_turnover
         end
 
-        development_by_years :exports, 'of which exports' do 
+        by_years :exports, 'of which exports' do 
           classes "sub-question"
           required
+          type :money
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           context %Q{<p>Please enter '0' if you had none.</p>}
           conditional :development_performance_years, :true
           drop_conditional :drops_in_turnover
         end
 
-        development_by_years :net_profit, 'Net profit after tax but before dividends' do 
+        by_years :net_profit, 'Net profit after tax but before dividends' do 
           classes "sub-question"
           required
+          type :money
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :development_performance_years, :true
           drop_conditional :drops_in_turnover
         end
 
-        development_by_years :total_net_assets, 'Total net assets' do 
+        by_years :total_net_assets, 'Total net assets' do 
           classes "sub-question"
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
@@ -109,35 +129,51 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
  
-        development_by_years_number :units_sold, 'Number of units/contracts sold' do
+        by_years :units_sold, 'Number of units/contracts sold' do
           classes "sub-question"
           required
+          type :number
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
-        development_by_years :sales, 'Sales' do 
+        by_years :sales, 'Sales' do 
           classes "sub-question"
           required
+          type :money
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
-        development_by_years :sales_exports, 'of which exports' do
+        by_years :sales_exports, 'of which exports' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
+          type :money
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
-        development_by_years :sales_royalties, 'of which royalties or licenses' do
+        by_years :sales_royalties, 'of which royalties or licenses' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
+          type :money
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
@@ -175,9 +211,13 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
 
-        development_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
+        by_years :avg_unit_price, 'Average unit selling price/contract value' do 
           ref 'C 8'
           required
+          type :money
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
         end
@@ -191,9 +231,13 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
 
-        development_by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
+        by_years :avg_unit_cost_self, 'Cost, to you, of a single unit/contract' do 
           ref 'C 9'
           required
+          type :money
+          label "..."
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
         end

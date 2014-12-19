@@ -27,9 +27,13 @@ class QAE2014Forms
           yes_no
         end
 
-        innovation_financial_year_dates :financial_year_changed_dates, 'Enter your year-end dates for each financial year.' do
+        by_years :financial_year_changed_dates, 'Enter your year-end dates for each financial year.' do
           classes "sub-question"
           required
+          type :date
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
           conditional :financial_year_date_changed, :yes
         end
 
@@ -40,12 +44,16 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :yes
         end
 
-        innovation_by_years_number :employees, 'Enter the number of people employed by your organisation in each year of your entry.' do
+        by_years :employees, 'Enter the number of people employed by your organisation in each year of your entry.' do
           ref 'C 3'
           required
           context %Q{
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
           }
+          type :number
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
@@ -76,38 +84,62 @@ class QAE2014Forms
           conditional :pareent_group_excluding, 'yes'
         end
 
-        innovation_by_years :total_turnover, 'Total turnover' do
+        by_years :total_turnover, 'Total turnover' do
           ref 'C 6'
           required
           context %Q{
             <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
           }
+
+          type :money
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
-        innovation_by_years :exports, 'of which exports' do 
+        by_years :exports, 'of which exports' do 
           classes "sub-question"
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
+
+          type :money
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
-        innovation_by_years :net_profit, 'Net profit after tax but before dividends' do 
+        by_years :net_profit, 'Net profit after tax but before dividends' do 
           classes "sub-question"
           required
+
+          type :money
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
-        innovation_by_years :total_net_assets, 'Total net assets' do 
+        by_years :total_net_assets, 'Total net assets' do 
           classes "sub-question total-net-assets"
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
+
+          type :money
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -148,38 +180,62 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
  
-        innovation_by_years_number :units_sold, 'Number of innovative units/contracts sold' do
+        by_years :units_sold, 'Number of innovative units/contracts sold' do
           classes "sub-question"
           required
+
+          type :number
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
-        innovation_by_years :sales, 'Sales of your innovative product/service' do 
+        by_years :sales, 'Sales of your innovative product/service' do 
           classes "sub-question"
           required
+
+          type :money
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
-        innovation_by_years :sales_exports, 'of which exports' do
+        by_years :sales_exports, 'of which exports' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
+
+          type :money
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
-        innovation_by_years :sales_royalties, 'of which royalties or licenses' do
+        by_years :sales_royalties, 'of which royalties or licenses' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
+
+          type :money
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -195,9 +251,15 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        innovation_by_years :avg_unit_price, 'Average unit selling price/contract value' do 
+        by_years :avg_unit_price, 'Average unit selling price/contract value' do 
           classes "sub-question"
           required
+
+          type :money
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -213,9 +275,15 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        innovation_by_years :avg_unit_cost_self, 'Direct cost, to you, of a single unit/contract' do 
+        by_years :avg_unit_cost_self, 'Direct cost, to you, of a single unit/contract' do 
           classes "sub-question"
           required
+
+          type :money
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :innovation_performance_years, '2 to 4', 2 
+          by_year_condition :innovation_performance_years, '5 plus', 5 
+
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
