@@ -19,7 +19,7 @@ class FormAwardEligibilitiesController < ApplicationController
     @eligibility.current_step = step
 
     if @eligibility.update!(eligibility_params)
-      if params[:skipped] == 'true' && step != @eligibility.questions.last
+      if params[:skipped] == 'true' && (step != @eligibility.questions.last || @eligibility.is_a?(Eligibility::Basic))
         set_steps_and_eligibilities
         setup_wizard
         redirect_to next_wizard_path(form_id: @form_answer.id, skipped: true)
