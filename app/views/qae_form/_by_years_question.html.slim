@@ -1,5 +1,4 @@
 - for c in question.by_year_conditions
-  // TODO
   .js-conditional-question data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
     .row
       - (1..c.years).each do |y|
