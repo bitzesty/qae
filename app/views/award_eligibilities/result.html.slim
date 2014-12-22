@@ -10,22 +10,22 @@
       - if any_eligibilities_passed?
         h2 You are eligible to apply for awards in:
         ul
-          - [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:passed?).each do |eligibility|
-            li = eligibility.class.const_get(:AWARD_NAME)
+          - [@trade_eligibility, @innovation_eligibility, @development_eligibility, @promotion_eligibility].select(&:passed?).each do |eligibility|
+            li = eligibility.class.award_name
         br
 
       - if !all_eligibilities_passed? && (failed_eligibilities = [@trade_eligibility, @innovation_eligibility, @development_eligibility].reject { |e| e.passed? || e.skipped? }).any?
         h2 You are unable to apply for:
         ul
           - failed_eligibilities.each do |eligibility|
-            li = eligibility.class.const_get(:AWARD_NAME)
+            li = eligibility.class.award_name
         br
 
       - if (skipped_eligibilities = [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:skipped?)).any?
         h2 You have skipped the eligibility for:
         ul
           - skipped_eligibilities.each do |eligibility|
-            li = eligibility.class.const_get(:AWARD_NAME)
+            li = eligibility.class.award_name
         br
 
       - if any_eligibilities_passed?

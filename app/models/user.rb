@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
     has_one :trade_eligibility, class_name: 'Eligibility::Trade'
     has_one :innovation_eligibility, class_name: 'Eligibility::Innovation'
     has_one :development_eligibility, class_name: 'Eligibility::Development'
+    has_one :promotion_eligibility, class_name: 'Eligibility::Promotion'
     has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
 
     belongs_to :account

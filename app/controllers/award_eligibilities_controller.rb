@@ -2,15 +2,14 @@ class AwardEligibilitiesController < ApplicationController
   include Wicked::Wizard
 
   before_action :authenticate_user!
-  before_action :load_eligibilities
-  before_action :load_basic_eligibility
+  before_action :load_basic_eligibility, :load_eligibilities
   before_action :check_basic_eligibility, :set_steps, :setup_wizard
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy
   ]
 
   def show
-    if all_eligibilities_passed?
+    if @basic_eligibility.kind != 'nomination' && all_eligibilities_passed?
       render :result
       return
     end
@@ -18,7 +17,11 @@ class AwardEligibilitiesController < ApplicationController
     load_eligibility
 
     unless step
-      redirect_to wizard_path(Eligibility::Trade.questions.first)
+      if @basic_eligibility.kind == 'nomination'
+        redirect_to wizard_path(Eligibility::Promotion.questions.first)
+      else
+        redirect_to wizard_path(Eligibility::Trade.questions.first)
+      end
       return
     end
   end
@@ -29,7 +32,7 @@ class AwardEligibilitiesController < ApplicationController
     if @eligibility.update(eligibility_params)
       set_steps
       setup_wizard
-      if step == @development_eligibility.questions.last
+      if step == @development_eligibility.questions.last || step == @promotion_eligibility.questions.last
         redirect_to action: :result
       elsif !@eligibility.eligible_on_step?(step)
         redirect_to_next_eligibility
@@ -39,9 +42,6 @@ class AwardEligibilitiesController < ApplicationController
     else
       render :show
     end
-  end
-
-  def result
   end
 
   private
@@ -67,6 +67,8 @@ class AwardEligibilitiesController < ApplicationController
       @eligibility = @innovation_eligibility
     when *Eligibility::Development.questions
       @eligibility = @development_eligibility
+    when *Eligibility::Promotion.questions
+      @eligibility = @promotion_eligibility
     end
   end
 
@@ -75,7 +77,11 @@ class AwardEligibilitiesController < ApplicationController
   end
 
   def set_steps
-    self.steps = [@trade_eligibility, @innovation_eligibility, @development_eligibility].flat_map(&:questions)
+    if @basic_eligibility.kind != 'nomination'
+      self.steps = [@trade_eligibility, @innovation_eligibility, @development_eligibility].flat_map(&:questions)
+    else
+      self.steps = @promotion_eligibility.questions
+    end
   end
 
   def redirect_to_next_eligibility
@@ -84,7 +90,7 @@ class AwardEligibilitiesController < ApplicationController
       redirect_to wizard_path(Eligibility::Innovation.questions.first)
     when Eligibility::Innovation
       redirect_to wizard_path(Eligibility::Development.questions.first)
-    when Eligibility::Development
+    when Eligibility::Development, Eligibility::Promotion
       redirect_to action: :result
     end
   end

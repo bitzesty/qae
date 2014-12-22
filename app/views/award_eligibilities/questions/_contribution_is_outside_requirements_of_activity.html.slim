@@ -1,0 +1,12 @@
+.question-body
+  p.hint
+    ' We are particularly looking for those whose activities involve voluntary and social enterprise work that have:
+  ul
+    li
+      | overcome challenging circumstances
+    li
+      | taken place in disadvantaged or deprived communities
+    li
+      | benefitted young people or under-represented groups
+  = f.input :contribution_is_outside_requirements_of_activity, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+span.clear
