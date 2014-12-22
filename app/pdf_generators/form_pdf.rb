@@ -1,11 +1,10 @@
 require "prawn/measurement_extensions"
 
 class FormPdf < Prawn::Document
-  attr_reader :user, :form_answer, :answers, :award_form, :steps, :all_steps_questions, :form_answer_attachments, :filled_answers
+  include QaePdfForms::General::Base
 
   UNDEFINED_TITLE = "in the progress of filling.."
   UNDEFINED_TYPE = "undefined type UNDEFINED"
-
   TABLE_WITH_COMMENT_QUESTION = [
     'financial_year_dates',
     'total_turnover',
@@ -13,21 +12,20 @@ class FormPdf < Prawn::Document
     'net_profit',
     'total_net_assets'
   ]
-
   INLINE_DATE_QUESTION = [
     'started_trading',
     'financial_year_date'
   ]
-
   HIDDEN_QUESTIONS = [
     "agree_to_be_contacted",
     "contact_email_confirmation",
     "entry_confirmation"
   ]
-
   JUST_NOTES = [
     "QAEFormBuilder::HeaderQuestion"
   ]
+
+  attr_reader :user, :form_answer, :answers, :award_form, :steps, :all_steps_questions, :form_answer_attachments, :filled_answers
 
   def initialize(form_answer)
     super()
@@ -103,25 +101,12 @@ class FormPdf < Prawn::Document
     main_header
 
     steps.each_with_index do |step, index|
-      render_step(step)
+      render_step(step, index)
     end
   end
 
-  def step_header_title(step)
-    "Step #{step.index} of #{steps.length}: #{step.title}"
-  end
-
-  def step_header(step)
-    text step_header_title(step), style: :bold, 
-                                  size: 18, 
-                                  align: :left
-    default_bottom_margin
-  end
-
-  def render_step(step)
-    if step.index.to_i != 1
-      start_new_page
-    end
+  def render_step(step, index)
+    start_new_page if index.to_i != 0
 
     step_header(step)
     cached_questions = step.questions.reject do |question|
@@ -148,20 +133,9 @@ class FormPdf < Prawn::Document
     end
   end
 
-  def question_title(question)
-    title = if question.title.present? 
-      question.title.capitalize 
-    else 
-      question.context
-    end
-
-    title = Nokogiri::HTML.parse(title).text.strip
-    "#{question.ref} #{title}"
-  end
-
   def question_block(question, answer=nil)
     default_bottom_margin
-    text question_title(question), style: :bold
+    text question.decorate.escaped_title, style: :bold
 
     if !JUST_NOTES.include?(question.class.to_s)
       case question.class.to_s
@@ -214,87 +188,9 @@ class FormPdf < Prawn::Document
     end
   end
 
-  def draw_link_with_file_attachment(attachment, description) 
-    title = description ? description : attachment.file.file.filename
-
-    default_bottom_margin
-
-    image attachment_icon(attachment),
-          fit: [35, 35], align: :left
-
-    move_up 20
-    text_box title, at: [50, cursor], style: :italic
-
-    move_up 7
-    bounding_box([460, cursor], width: 20) do
-      image "#{Rails.root}/app/assets/images/icon-download.png",
-            fit: [20, 20], 
-            align: :center
-
-      move_up 20
-
-      transparent(0) do
-        formatted_text([{
-          text: "|||",
-          size: 25,
-          link: "#{current_host}#{attachment.file.url}",
-        }], align: :center)
-      end
-    end
-
-    move_up 24
-    formatted_text([{
-      text: "Download",
-      link: "#{current_host}#{attachment.file.url}",
-      styles: [:italic]
-    }], align: :right)
-  end
-
-  def draw_link(v)
-    url = v["link"]
-    description = v["description"] ? v["description"] : url
-
-    default_bottom_margin
-
-    text_box description, at: [0, cursor], style: :italic
-
-    move_up 7
-    bounding_box([460, cursor], width: 20) do
-      image "#{Rails.root}/app/assets/images/icon-link.png",
-            fit: [20, 20], 
-            align: :center
-
-      move_up 20
-
-      transparent(0) do
-        formatted_text([{
-          text: "|||",
-          size: 25,
-          link: url,
-        }], align: :center)
-      end
-    end
-
-    move_up 24
-    formatted_text([{
-      text: "Visit",
-      link: url,
-      styles: [:italic]
-    }], align: :right)
-  end
-
-  def attachment_icon(attachment)
-    case attachment.file.file.extension.to_s
-    when *FormAnswerAttachmentUploader::POSSIBLE_IMG_EXTENSIONS
-      "#{Rails.root}/public#{attachment.file.url}"
-    else
-      "#{Rails.root}/app/assets/images/icon-attachment.png"
-    end
-  end
-
   def complex_question(question, sub_answers)
     default_bottom_margin
-    text question_title(question), style: :bold
+    text question.decorate.escaped_title, style: :bold
 
     if sub_answers.length > 1
       sub_answers_by_type(question, sub_answers)
@@ -415,62 +311,7 @@ class FormPdf < Prawn::Document
     end
   end
 
-  def main_header
-    offset = 110.mm
-
-    stroke_rectangle [0, 138.5.mm + offset], 200.mm, 24.mm
-
-    logo = "#{Rails.root}/app/assets/images/logo.png"
-    image logo, at: [2.mm, 137.5.mm + offset], width: 25.mm
-
-    stroke_line 29.mm, 138.5.mm + offset, 29.mm, 114.5.mm + offset
-
-    text_box form_answer.decorate.award_application_title, 
-             default_text_box_properties.merge({
-               at: [32.mm, 142.mm + offset]
-             })
-
-    text_box user.decorate.general_info, 
-             default_text_box_properties.merge({
-               at: [32.mm, 135.mm + offset]
-             })
-
-    urn_block(offset) if form_answer.urn.present?
-
-    move_down 40.mm
-  end
-
-  def urn_block(offset)
-    text_box form_answer.urn, 
-      default_text_box_properties.merge({
-        at: [32.mm, 129.mm + offset]
-      })
-  end
-
   private
-
-  def current_host
-    default_url_options = ActionMailer::Base.default_url_options
-
-    host = default_url_options[:host]
-    port = default_url_options[:port]
-
-    "http://#{host}#{port ? ':' + port.to_s : ''}"
-  end
-
-  def default_bottom_margin
-    move_down 5.mm
-  end
-
-  def default_text_box_properties
-    {
-      width: 200.mm, 
-      height: 20.mm, 
-      size: 18, style: :bold, 
-      align: :left, 
-      valign: :center      
-    }
-  end
 
   def log_this(m)
     unless Rails.env.production?

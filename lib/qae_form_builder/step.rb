@@ -28,6 +28,10 @@ class QAEFormBuilder
       count_questions :required_visible?
     end
 
+    def complex_title
+      "Step #{'PUT HERE INDEX'} of #{delegate_obj.form.steps.length}: #{delegate_obj.title}"
+    end
+
     private
 
     def count_questions meth

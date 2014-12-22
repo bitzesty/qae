@@ -89,6 +89,16 @@ class QAEFormBuilder
         required_sub_fields.all?{|s| !input_value(suffix: s.keys.first).blank?}
     end
 
+    def escaped_title
+      title = if delegate_obj.title.present? 
+        delegate_obj.title.capitalize 
+      else 
+        delegate_obj.context
+      end
+
+      title = Nokogiri::HTML.parse(title).text.strip
+      "#{delegate_obj.ref} #{title}"
+    end
   end
 
   class QuestionBuilder
