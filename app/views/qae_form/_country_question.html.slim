@@ -1,2 +1,2 @@
 .question-group
-  = country_select(question, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value(suffix: 'country')}, possible_read_only_ops.merge({name: "#{question.key}_country"}))
+  = country_select(question.step.form.form_name, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value}, possible_read_only_ops.merge({name: question.input_name, class: 'js-trigger-autosave'}))
