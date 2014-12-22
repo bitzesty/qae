@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe FormAnswer, type: :model do
   describe "associations" do
