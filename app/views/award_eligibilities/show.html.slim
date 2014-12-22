@@ -5,7 +5,7 @@
         ' Eligibility questionnaire
       h2
         ' Award-specific eligibility:
-        = @eligibility.class.const_get(:AWARD_NAME)
+        = @eligibility.class.award_name
 
   .article-container
     article.group role="article"

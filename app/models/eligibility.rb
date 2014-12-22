@@ -38,6 +38,10 @@ class Eligibility < ActiveRecord::Base
     @questions
   end
 
+  def self.award_name
+    const_get(:AWARD_NAME)
+  end
+
   def self.property(name, options = {})
     @questions ||= {}
 
