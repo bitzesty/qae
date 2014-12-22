@@ -32,8 +32,6 @@ class FormAnswer < ActiveRecord::Base
 
   begin :scopes
     scope :for_award_type, -> (award_type) { where award_type: award_type }
-    scope :for_user, -> (user) { where user: user }
-    scope :for_account, -> (account) { where account: account }
   end
 
   before_create :set_account
