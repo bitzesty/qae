@@ -1,4 +1,4 @@
-- if [@trade_eligibility, @innovation_eligibility, @development_eligibility, @basic_eligibility].any? { |e| e.answers && e.answers.any? }
+- if [@promotion_eligibility, @trade_eligibility, @innovation_eligibility, @development_eligibility, @basic_eligibility].any? { |e| e.answers && e.answers.any? }
   .previous-answers
     .done-questions
       article
@@ -11,6 +11,9 @@
                 = link_to "Start again", award_eligibility_path
           tbody
             = render "answers", eligibility: @basic_eligibility
-            = render "answers", eligibility: @trade_eligibility
-            = render "answers", eligibility: @innovation_eligibility
-            = render "answers", eligibility: @development_eligibility
+            - if @basic_eligibility && @basic_eligibility.kind == 'nomination'
+              = render "answers", eligibility: @promotion_eligibility
+            - else
+              = render "answers", eligibility: @trade_eligibility
+              = render "answers", eligibility: @innovation_eligibility
+              = render "answers", eligibility: @development_eligibility
