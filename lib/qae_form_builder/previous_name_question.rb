@@ -2,8 +2,8 @@ class QAEFormBuilder
   class PreviousNameQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [
-        {name: "Name"}, 
-        {refnum: "Refnum"}
+        {name: "Name used previously"}, 
+        {refnum: "Reference number used previously"}
       ]
     end
   end
