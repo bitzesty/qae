@@ -46,4 +46,24 @@ describe QAEFormBuilder do
     expect(q.last.title).to eq('Is your business based in UK?')
     expect(q.last.context).to eq('Including the Channel Islands and the Isle of Man.')
   end
+
+  it 'should navigate between steps with decorator' do
+    sample = QAEFormBuilder.build 'test' do
+      step 'A', 'A'
+      step 'B', 'B'
+    end
+
+    decorated = sample.decorate
+    a = decorated.steps[0]
+    b = decorated.steps[1]
+
+    expect(a.index).to eq(0)
+    expect(b.index).to eq(1)
+
+    expect(a.previous).to be_nil
+    expect(b.next).to be_nil
+    expect(b.previous.delegate_obj).to eq(a.delegate_obj)
+    expect(a.next.delegate_obj).to eq(b.delegate_obj)
+  end
+
 end

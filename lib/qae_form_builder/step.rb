@@ -4,6 +4,22 @@ class QAEFormBuilder
 
   class StepDecorator < QAEDecorator
 
+    def next
+      @next ||= begin
+        form.steps[index + 1]
+      end
+    end
+
+    def previous
+      @previous ||= begin
+        form.steps[index-1] if index-1 >=0
+      end
+    end
+
+    def index
+      @index ||= @decorator_options.fetch(:collection_idx)
+    end
+
     def required_visible_questions_filled
       count_questions :required_visible_filled?
     end
@@ -86,7 +102,7 @@ class QAEFormBuilder
 
   class Step
 
-    attr_accessor :title, :short_title, :opts, :questions, :index, :form, :context, :submit
+    attr_accessor :title, :short_title, :opts, :questions, :form, :context, :submit
 
     def initialize form, title, short_title, opts={}
       @form = form
@@ -98,18 +114,6 @@ class QAEFormBuilder
 
     def decorate options = {}
       StepDecorator.new self, options
-    end
-
-    def next
-      # index 1-based
-      @next ||= @form.steps[index]
-    end
-
-    def previous
-      # index 1-based
-      @previous ||= begin
-        @form.steps[index-2] if index-2 >=0
-      end
     end
 
   end

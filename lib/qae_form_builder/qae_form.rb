@@ -33,7 +33,6 @@ class QAEFormBuilder
       @title = title
       @opts = opts
       @steps = []
-      @index = 1
 
       @questions_by_key = {}
     end
@@ -48,9 +47,6 @@ class QAEFormBuilder
 
     def step title, short_title, options = {}, &block
       step = Step.new self, title, short_title, options
-
-      step.index = @index
-      @index += 1
 
       builder = StepBuilder.new step
       builder.instance_eval &block if block_given?

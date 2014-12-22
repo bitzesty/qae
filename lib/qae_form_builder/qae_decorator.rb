@@ -17,7 +17,7 @@ class QAEFormBuilder
 
     def wrap o, options
       if o.respond_to? :decorate
-        o.decorate @decorator_options
+        o.decorate options
       elsif o.is_a?(Array)
         r = []
         o.each_with_index {|e, idx|
