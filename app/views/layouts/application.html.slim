@@ -64,7 +64,7 @@ html
 
     #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
       #QAE
-        - [:alert, :notice].any?
+        - if [:alert, :notice].any? { |kind| flash[kind].presence }
           .flash
             .flash-inner
               - [:alert, :notice].each do |kind|
