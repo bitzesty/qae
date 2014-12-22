@@ -9,7 +9,7 @@ class AwardEligibilitiesController < ApplicationController
   ]
 
   def show
-    if @basic_eligibility.kind != 'nomination' && all_eligibilities_passed?
+    if @basic_eligibility.application? && all_eligibilities_passed?
       render :result
       return
     end
@@ -17,7 +17,7 @@ class AwardEligibilitiesController < ApplicationController
     load_eligibility
 
     unless step
-      if @basic_eligibility.kind == 'nomination'
+      if @basic_eligibility.nomination?
         redirect_to wizard_path(Eligibility::Promotion.questions.first)
       else
         redirect_to wizard_path(Eligibility::Trade.questions.first)
@@ -77,7 +77,7 @@ class AwardEligibilitiesController < ApplicationController
   end
 
   def set_steps
-    if @basic_eligibility.kind != 'nomination'
+    if @basic_eligibility.application?
       self.steps = [@trade_eligibility, @innovation_eligibility, @development_eligibility].flat_map(&:questions)
     else
       self.steps = @promotion_eligibility.questions

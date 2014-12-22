@@ -14,6 +14,10 @@ class Eligibility::Basic < Eligibility
     kind_value.nil? || kind.application?
   end
 
+  def nomination?
+    kind && kind.nomination?
+  end
+
   def eligible?
     current_step_index = questions.index(current_step) || questions.size - 1
     previous_questions = questions[0..current_step_index]
