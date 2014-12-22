@@ -46,7 +46,7 @@ class FormAwardEligibilitiesController < ApplicationController
   private
 
   def set_form_answer
-    @form_answer = FormAnswer.for_account(current_user.account).find(params[:form_id])
+    @form_answer = current_user.account.form_answers.find(params[:form_id])
   end
 
   def set_steps_and_eligibilities
