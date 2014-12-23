@@ -46,16 +46,7 @@ class FormAnswer < ActiveRecord::Base
   attr_accessor :submitted
 
   def award_form
-    case award_type
-    when "trade"
-      QAE2014Forms.trade
-    when "innovation"
-      QAE2014Forms.innovation
-    when "development"
-      QAE2014Forms.development
-    when "promotion"
-      QAE2014Forms.promotion
-    end
+    QAE2014Forms.public_send(award_type) if award_type.present?
   end
 
   def eligibility
