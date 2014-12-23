@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 include Warden::Test::Helpers
 
 describe "Download a pdf of the award form filled", %q{

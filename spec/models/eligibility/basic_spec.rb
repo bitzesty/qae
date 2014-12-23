@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Eligibility::Basic, :type => :model do
   let(:user) { FactoryGirl.create(:user) }

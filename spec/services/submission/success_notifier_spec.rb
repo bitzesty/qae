@@ -1,4 +1,4 @@
-require "rails_helper"
+require "spec_helper"
 
 describe Submission::SuccessNotifier do
   let!(:user) { create :user }

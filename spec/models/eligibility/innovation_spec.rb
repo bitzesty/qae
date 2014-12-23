@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe Eligibility::Innovation, :type => :model do
   let(:user) { FactoryGirl.create(:user) }

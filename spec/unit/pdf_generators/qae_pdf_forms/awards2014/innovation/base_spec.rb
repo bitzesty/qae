@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'spec_helper'
 
 describe "QaePdfForms::Awards2014::Innovation::Base" do
   let!(:user) do
