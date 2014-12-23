@@ -23,5 +23,14 @@ FactoryGirl.define do
       role "regular"
       completed_registration true
     end
+
+    trait :eligible do
+      completed_profile
+      association :basic_eligibility, factory: :basic_eligibility
+      association :innovation_eligibility, factory: :innovation_eligibility
+      association :development_eligibility, factory: :development_eligibility
+      association :trade_eligibility, factory: :trade_eligibility
+    end
+
   end
 end
