@@ -29,7 +29,7 @@ class QAEFormBuilder
     end
 
     def complex_title
-      "Step #{'PUT HERE INDEX'} of #{delegate_obj.form.steps.length}: #{delegate_obj.title}"
+      "Step #{index + 1} of #{delegate_obj.form.steps.length}: #{delegate_obj.title}"
     end
 
     private

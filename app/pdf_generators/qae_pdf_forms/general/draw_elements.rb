@@ -1,18 +1,10 @@
-module QaePdfForms::General::Base
-
+module QaePdfForms::General::DrawElements
   DEFAULT_OFFSET = 110.mm
   LOGO_ICON = "logo.png"
   LINK_ICON = "icon-link.png"
   DOWNLOAD_ICON = "icon-download.png"
   ATTACHMENT_ICON = "icon-attachment.png"
   IMAGES_PATH = "#{Rails.root}/app/assets/images/"
-
-  def step_header(step)
-    text step.decorate.complex_title, style: :bold, 
-                                      size: 18, 
-                                      align: :left
-    default_bottom_margin
-  end
 
   def attachment_icon(attachment)
     case attachment.file.file.extension.to_s
@@ -109,7 +101,16 @@ module QaePdfForms::General::Base
       })
   end
 
-  private
+  def render_text(title, ops={})
+    default_bottom_margin
+    text title, ops
+  end
+
+  def render_table(table_lines)
+    default_bottom_margin
+    table table_lines, row_colors: ["F0F0F0", "FFFFFF"],
+                       cell_style: { size: 10, font_style: :bold }
+  end
 
   def current_host
     default_url_options = ActionMailer::Base.default_url_options
