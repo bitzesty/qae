@@ -14,32 +14,28 @@ So that I can review my progress or share the pdf with others
   before do
     login_as user
   end
+  
+  describe "International Trade Award" do
+    let!(:trade_award_form_answer) do
+      FactoryGirl.create :form_answer, :trade, 
+        user: user, 
+        document: { company_name: "Bitzesty" }
+    end
 
-  # TODO: uncomment me once QAE2014Forms.trade implemeted
-  #
-  # describe "International Trade Award" do
-  #   let!(:trade_award_form_answer) do
-  #     FactoryGirl.create :form_answer, :trade, 
-  #       user: user, 
-  #       document: { company_name: "Bitzesty" }
-  #   end
+    let(:pdf_filename) do
+      trade_award_form_answer.decorate.pdf_filename
+    end
 
-  #   let(:pdf_filename) do
-  #     trade_award_form_answer.decorate.pdf_filename
-  #   end
+    before do 
+      visit user_form_answer_path(user_id: user.id, id: trade_award_form_answer.id, format: :pdf)
+    end
 
-  #   before do 
-  #     visit international_trade_award_confirm_path
-  #   end
-
-  #   it "should generate pdf" do
-  #     click_on "Download your International Trade Award application"
-
-  #     expect(page.status_code).to eq(200)
-  #     expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
-  #     expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
-  #   end
-  # end
+    it "should generate pdf" do
+      expect(page.status_code).to eq(200)
+      expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
+      expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
+    end
+  end
 
   describe "Innovation Award" do
     let!(:innovation_award_form_answer) do
@@ -63,30 +59,26 @@ So that I can review my progress or share the pdf with others
       expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
     end    
   end
+  
+  describe "Sustainable Development Award" do
+    let!(:development_award_form_answer) do
+      FactoryGirl.create :form_answer, :development, 
+        user: user, 
+        document: { company_name: "Bitzesty" }
+    end
 
-  # TODO: uncomment me once QAE2014Forms.development will be implemented
-  #
-  # describe "Sustainable Development Award" do
-  #   let!(:development_award_form_answer) do
-  #     FactoryGirl.create :form_answer, :development, 
-  #       user: user, 
-  #       document: { company_name: "Bitzesty" }
-  #   end
+    let(:pdf_filename) do
+      development_award_form_answer.decorate.pdf_filename
+    end
 
-  #   let(:pdf_filename) do
-  #     development_award_form_answer.decorate.pdf_filename
-  #   end
+    before do 
+      visit user_form_answer_path(user_id: user.id, id: development_award_form_answer.id, format: :pdf)
+    end
 
-  #   before do 
-  #     visit sustainable_development_award_confirm_path
-  #   end
-
-  #   it "should generate pdf" do
-  #     click_on "Download your Sustainable Development Award application"
-
-  #     expect(page.status_code).to eq(200)
-  #     expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
-  #     expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
-  #   end
-  # end
+    it "should generate pdf" do
+      expect(page.status_code).to eq(200)
+      expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
+      expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
+    end
+  end
 end
