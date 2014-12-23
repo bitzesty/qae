@@ -54,13 +54,13 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.render_text(question.escaped_title, {style: :bold})
 
     if !FormPdf::JUST_NOTES.include?(question.delegate_obj.class.to_s)
-      case question.delegate_obj.class.to_s
-      when "QAEFormBuilder::UploadQuestion"
+      case question.delegate_obj
+      when QAEFormBuilder::UploadQuestion
         render_attachments
-      when "QAEFormBuilder::OptionsQuestion" 
+      when QAEFormBuilder::OptionsQuestion
         title = humanized_answer.present? ? question_option_title : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, {style: :italic})
-      when "QAEFormBuilder::ConfirmQuestion"
+      when QAEFormBuilder::ConfirmQuestion
         title = humanized_answer.present? ? question_checked_value_title : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, {style: :italic})
       else
