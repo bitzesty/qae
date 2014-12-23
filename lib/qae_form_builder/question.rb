@@ -74,7 +74,14 @@ class QAEFormBuilder
       dc = delegate_obj.drop_condition
       delegate_obj.conditions.
         all?{|condition|
-          step.form[condition.question_key].input_value == condition.question_value
+          question_value = condition.question_value
+          parent_question_answer = step.form[condition.question_key].input_value
+
+          if question_value == :true
+            parent_question_answer.present?
+          else
+            parent_question_answer == question_value.to_s
+          end
         } &&
       (!dc || step.form[dc].has_drops?)
     end
@@ -89,6 +96,16 @@ class QAEFormBuilder
         required_sub_fields.all?{|s| !input_value(suffix: s.keys.first).blank?}
     end
 
+    def escaped_title
+      title = if delegate_obj.title.present? 
+        delegate_obj.title.capitalize 
+      else 
+        delegate_obj.context
+      end
+
+      title = Nokogiri::HTML.parse(title).text.strip
+      "#{delegate_obj.ref} #{title}"
+    end
   end
 
   class QuestionBuilder

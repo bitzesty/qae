@@ -178,7 +178,7 @@ class QAE2014Forms
           conditional :parent_ultimate_control, :no
         end
 
-        country :ultimate_control__company_country, 'Country of organisation with ultimate control' do
+        country :ultimate_control_company_country, 'Country of organisation with ultimate control' do
           classes "regular-question"
           conditional :parent_ultimate_control, :no
         end

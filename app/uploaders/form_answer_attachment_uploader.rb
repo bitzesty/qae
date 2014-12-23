@@ -6,6 +6,8 @@ class FormAnswerAttachmentUploader < CarrierWave::Uploader::Base
   # include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
+  POSSIBLE_IMG_EXTENSIONS = %w(jpg jpeg gif png)
+
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog
@@ -38,9 +40,9 @@ class FormAnswerAttachmentUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
-  # end
+  def extension_white_list
+    POSSIBLE_IMG_EXTENSIONS + %w(doc docx pdf odt)
+  end
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
