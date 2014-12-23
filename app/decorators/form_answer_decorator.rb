@@ -7,19 +7,6 @@ class FormAnswerDecorator < ApplicationDecorator
     "#{object.award_type}_award_#{object.decorate.created_at}.pdf"
   end
 
-  def award
-    case object.award_type
-    when "trade"
-      'International Trade Award'
-    when "innovation"
-      'Innovation Award'
-    when "development"
-      'Sustainable Development Award'
-    when "promotion" 
-      'Enterprise promotion Award'
-    end
-  end
-
   def award_type
     case object.award_type
     when "trade"
