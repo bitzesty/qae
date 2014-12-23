@@ -4,8 +4,8 @@ p
   ',
 
 p
-  | Application for #{@form_answer.award_application_title} 
-  | for 
+  | Application for #{@form_answer.award_application_title}
+  | for
   br
   = @form_owner.general_info
   br
@@ -13,7 +13,7 @@ p
 
 p
   | Unique Reference Number (URN):
-  = @urn
+  = @form_answer.urn
 
-p 
+p
   | Best Regards, Administration Team
