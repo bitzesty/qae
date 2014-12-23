@@ -1,5 +1,5 @@
 class QaePdfForms::General::QuestionPointer
-  attr_reader :form,
+  attr_reader :form_pdf,
               :step,
               :question,
               :key,
@@ -14,7 +14,7 @@ class QaePdfForms::General::QuestionPointer
 
     @key = question.key
     @answer = answer_by_key
-    @humanized_answer = form.answer_based_on_type(key, answer) if answer.present?
+    @humanized_answer = form_pdf.answer_based_on_type(key, answer) if answer.present?
     @sub_answers = fetch_sub_answers
   end
 
@@ -28,22 +28,22 @@ class QaePdfForms::General::QuestionPointer
 
   def answer_by_key
     begin
-      JSON.parse(form.answers[key])
+      JSON.parse(form_pdf.answers[key])
     rescue
-      form.answers[key]
+      form_pdf.answers[key]
     end
   end
 
   def fetch_sub_answers
     res = []
 
-    question.decorate.required_sub_fields.each do |sub_field|
+    question.required_sub_fields.each do |sub_field|
       sub_field_key = sub_field.keys.first
-      sub_answer = form.fetch_answer_by_key("#{key}_#{sub_field_key}")
+      sub_answer = form_pdf.fetch_answer_by_key("#{key}_#{sub_field_key}")
 
       res << [
         sub_field[sub_field_key], 
-        sub_answer ? form.answer_based_on_type(sub_field_key, sub_answer) : FormPdf::UNDEFINED_TITLE
+        sub_answer ? form_pdf.answer_based_on_type(sub_field_key, sub_answer) : FormPdf::UNDEFINED_TITLE
       ]
     end
 
@@ -51,7 +51,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def question_block
-    form.render_text(question.escaped_title, {style: :bold})
+    form_pdf.render_text(question.escaped_title, {style: :bold})
 
     if !FormPdf::JUST_NOTES.include?(question.delegate_obj.class.to_s)
       case question.delegate_obj.class.to_s
@@ -59,13 +59,13 @@ class QaePdfForms::General::QuestionPointer
         render_attachments
       when "QAEFormBuilder::OptionsQuestion" 
         title = humanized_answer.present? ? question_option_title : FormPdf::UNDEFINED_TITLE
-        form.render_text(title, {style: :italic})
+        form_pdf.render_text(title, {style: :italic})
       when "QAEFormBuilder::ConfirmQuestion"
         title = humanized_answer.present? ? question_checked_value_title : FormPdf::UNDEFINED_TITLE
-        form.render_text(title, {style: :italic})
+        form_pdf.render_text(title, {style: :italic})
       else
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
-        form.render_text(title, {style: :italic})
+        form_pdf.render_text(title, {style: :italic})
       end
     end
   end
@@ -76,23 +76,23 @@ class QaePdfForms::General::QuestionPointer
         attachment_by_type(k, v)
       end
     else
-      form.render_text(UNDEFINED_TITLE, {style: :italic})
+      form_pdf.render_text(UNDEFINED_TITLE, {style: :italic})
     end
   end
 
   def attachment_by_type(k, v)
     if v.keys.include?('file')
-      attachment = form.form_answer_attachments.find(v['file'])
-      form.draw_link_with_file_attachment(attachment, v['description'])
+      attachment = form_pdf.form_answer_attachments.find(v['file'])
+      form_pdf.draw_link_with_file_attachment(attachment, v['description'])
     elsif v.keys.include?('link')
-      form.draw_link(v)
+      form_pdf.draw_link(v)
     else
       raise UNDEFINED_TYPE
     end
   end
 
   def complex_question
-    form.render_text(question.decorate.escaped_title, {style: :bold})
+    form_pdf.render_text(question.escaped_title, {style: :bold})
 
     if sub_answers.length > 1
       sub_answers_by_type
@@ -131,7 +131,7 @@ class QaePdfForms::General::QuestionPointer
 
   def render_simple_table(headers, row)
     table_lines = [headers, row]
-    form.render_table(table_lines)
+    form_pdf.render_table(table_lines)
   end
 
   def render_inline_date
@@ -148,12 +148,12 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def sub_question_block(sub_question, sub_answer)
-    form.render_text(sub_question, {style: :bold})
-    form.render_text(sub_answer, {style: :italic})
+    form_pdf.render_text(sub_question, {style: :bold})
+    form_pdf.render_text(sub_answer, {style: :italic})
   end
 
   def sub_question_block_without_title(sub_answer)
-    form.render_text(sub_answer, {style: :italic})
+    form_pdf.render_text(sub_answer, {style: :italic})
   end
 
   def question_option_title

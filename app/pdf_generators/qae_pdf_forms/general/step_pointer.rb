@@ -1,5 +1,6 @@
 class QaePdfForms::General::StepPointer
-  attr_reader :form,
+  attr_reader :award_form,
+              :form_pdf,
               :step,
               :cached_questions,
               :filtered_questions
@@ -14,19 +15,17 @@ class QaePdfForms::General::StepPointer
     end
 
     @filtered_questions = cached_questions.select do |question|
-      conditions_are_allow?(question)
+      award_form[question.key].visible?
     end
   end
 
   def render!
-    form.start_new_page if step.index.to_i != 0
+    form_pdf.start_new_page if step.index.to_i != 0
     render_header
-
-    Rails.logger.info "filtered_questions: #{filtered_questions.count}"
 
     filtered_questions.each do |question|
       QaePdfForms::General::QuestionPointer.new({
-        form: form,
+        form_pdf: form_pdf,
         step: self,
         question: question.decorate
       }).render!
@@ -34,46 +33,9 @@ class QaePdfForms::General::StepPointer
   end
 
   def render_header
-    form.text step.complex_title, style: :bold, 
+    form_pdf.text step.complex_title, style: :bold, 
                                   size: 18, 
                                   align: :left
-    form.default_bottom_margin
-  end
-
-  def conditions_are_allow?(question)
-    conditions = question.conditions
-    drop_condition_keys = cached_questions.select do |q| 
-      q.drop_condition.present? && 
-      q.drop_condition == question.key
-    end.map(&:key)
-
-    allowed_by_or_have_no_conditions?(question, conditions, drop_condition_keys)
-  end
-
-  def allowed_by_or_have_no_conditions?(question, conditions, drop_condition_keys)
-    (
-      conditions.blank? ||
-      conditions.all? do |condition|
-        conditional_success?(question, condition)
-      end
-    ) &&
-    (
-      drop_condition_keys.blank? ||
-      drop_condition_keys.any? do |key|
-        form.at_least_of_one_answer_by_key?(key)
-      end
-    )
-  end
-
-  def conditional_success?(question, condition)
-    question_key = condition.question_key
-    question_value = condition.question_value
-    parent_question_answer = form.fetch_answer_by_key(question_key)
-
-    if question_value == :true
-      parent_question_answer.present?
-    else
-      parent_question_answer == question_value.to_s
-    end
+    form_pdf.default_bottom_margin
   end
 end

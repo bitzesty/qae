@@ -74,7 +74,14 @@ class QAEFormBuilder
       dc = delegate_obj.drop_condition
       delegate_obj.conditions.
         all?{|condition|
-          step.form[condition.question_key].input_value == condition.question_value
+          question_value = condition.question_value
+          parent_question_answer = step.form[condition.question_key].input_value
+
+          if question_value == :true
+            parent_question_answer.present?
+          else
+            parent_question_answer == question_value.to_s
+          end
         } &&
       (!dc || step.form[dc].has_drops?)
     end

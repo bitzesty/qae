@@ -37,11 +37,12 @@ class FormPdf < Prawn::Document
     super()
 
     @form_answer = form_answer
-    @award_form = form_answer.award_form
     @user = form_answer.user
-    @steps = award_form.decorate.steps
-    @form_answer_attachments = form_answer.form_answer_attachments
     @answers = fetch_answers
+
+    @award_form = form_answer.award_form.decorate(answers: answers)
+    @steps = award_form.steps
+    @form_answer_attachments = form_answer.form_answer_attachments
     @filled_answers = fetch_filled_answers
     
     generate!
@@ -52,7 +53,8 @@ class FormPdf < Prawn::Document
 
     steps.each do |step|
       QaePdfForms::General::StepPointer.new({
-        form: self,
+        award_form: award_form,
+        form_pdf: self,
         step: step
       }).render!
     end
