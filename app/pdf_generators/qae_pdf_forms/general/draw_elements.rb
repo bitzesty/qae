@@ -95,7 +95,7 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_urn
-    text_box form_answer.render_urn, 
+    text_box form_answer.urn, 
       default_text_box_properties.merge({
         at: [32.mm, 129.mm + DEFAULT_OFFSET]
       })

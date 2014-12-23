@@ -76,7 +76,7 @@ class QaePdfForms::General::QuestionPointer
         attachment_by_type(k, v)
       end
     else
-      form_pdf.render_text(UNDEFINED_TITLE, {style: :italic})
+      form_pdf.render_text(FormPdf::UNDEFINED_TITLE, {style: :italic})
     end
   end
 

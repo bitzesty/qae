@@ -8,12 +8,12 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
   let(:step1_question_answers) {
     {
       company_name: "Bitzesty",
-      principal_business: 15
+      registration_number: '123'
     }
   } 
 
   let(:step2_question_answers) {
-    { employees: "15" }
+    { invoicing_unit_relations: 'Invoicing unit relations' }
   }
 
   let(:innovation_award_form_answer) do
@@ -23,7 +23,7 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
   end
 
   let(:award_form) { innovation_award_form_answer.award_form }
-  let(:steps) { award_form.steps }
+  let(:steps) { award_form.decorate.steps }
 
   let(:pdf_generator) do 
     innovation_award_form_answer.decorate.pdf_generator
@@ -63,7 +63,7 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
 
     it "should include steps headers" do
       steps.each do |step|
-        expect(pdf_content).to include("Step #{step.index} of #{award_form.steps.length}: #{step.title}")
+        expect(pdf_content).to include(step.complex_title)
       end
     end
 
@@ -71,25 +71,9 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
       step1_question_answers.each do |question_key, question_answer|
         question = fetch_question_by_question_key(step1.questions, question_key)
 
-        expect(pdf_content).to include("#{question.ref} #{question.title}")
-        expect(pdf_content).to include(question_answer.to_s)
+        expect(pdf_content).to include(question.decorate.escaped_title)
+        expect(pdf_content).to include(question_answer)
       end
-    end
-  end
-
-  describe "#question_title" do
-    let(:question) do 
-      fetch_question_by_question_key(step1.questions, :company_name)
-    end
-
-    it "shoudl return proper question title" do
-      expect(pdf_generator.question_title(question)).to be_eql("#{question.ref} #{question.title}")
-    end
-  end
-
-  describe "#step_header_title" do
-    it "shoudl return proper header title" do
-      expect(pdf_generator.step_header_title(step1)).to be_eql( "Step #{step1.index} of #{steps.length}: #{step1.title}")
     end
   end
 
@@ -97,5 +81,11 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
 
   def fetch_question_by_question_key(questions, question_key)
     questions.select { |q| q.key.to_s == question_key.to_s }.first
+  end
+
+  def question_option_title(question, answer)
+    question.options.select do |option| 
+      option.value.to_s == answer.to_s
+    end.first.text
   end
 end
