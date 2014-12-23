@@ -62,12 +62,25 @@ class QAEFormBuilder
       result
     end
 
-    def required_visible?
-      delegate_obj.required &&
-        delegate_obj.conditions.
+    def has_drops?
+      false
+    end
+
+    def required?
+      delegate_obj.required
+    end
+
+    def visible?
+      dc = delegate_obj.drop_condition
+      delegate_obj.conditions.
         all?{|condition|
           step.form[condition.question_key].input_value == condition.question_value
-        } ? true : false
+        } &&
+      (!dc || step.form[dc].has_drops?)
+    end
+
+    def required_visible?
+      required? && visible?
     end
 
     def required_visible_filled?

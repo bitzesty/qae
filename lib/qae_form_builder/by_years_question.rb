@@ -14,6 +14,29 @@ class QAEFormBuilder
         delegate_obj.label
       end
     end
+
+    def has_drops?
+      last = nil
+      active_fields.each do |f|
+        v = input_value(suffix: f).to_f
+        return true if last && v < last
+        last = v
+      end
+      false
+    end
+
+    def active_fields
+      c = active_by_year_condition
+      return [] unless c
+
+      (1..c.years).map{|y| "#{y}of#{c.years}"}
+    end
+
+    def active_by_year_condition
+      delegate_obj.by_year_conditions.find {|c|
+        form[c.question_key].input_value == c.question_value
+      }
+    end
   end
 
   class ByYearsQuestionBuilder < QuestionBuilder
