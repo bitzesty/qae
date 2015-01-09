@@ -7,6 +7,7 @@ FactoryGirl.define do
     role { 'regular' }
     agreed_with_privacy_policy { '1' }
     sequence(:phone_number) { |n| "1111111#{n}"}
+    confirmed_at Time.zone.now
 
     trait :completed_profile do
       title "Director"
