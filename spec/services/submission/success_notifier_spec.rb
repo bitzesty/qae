@@ -34,6 +34,7 @@ describe Submission::SuccessNotifier do
 
     describe "Deliver" do
       before do
+        ActionMailer::Base.deliveries.clear
         Users::SubmissionMailer.success(user.id, form_answer.id).deliver!
       end
 
