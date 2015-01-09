@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
 
   extend Enumerize
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   attr_accessor :agreed_with_privacy_policy
   attr_accessor :current_password
