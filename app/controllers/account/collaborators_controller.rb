@@ -62,7 +62,7 @@ class Account::CollaboratorsController < Account::BaseController
   end
 
   def require_to_be_not_current_user!
-    if current_user.id == user.id
+    if current_user.id == collaborator.id
       redirect_to root_path,
                   notice: "You can't update / remove your self in collaborators!"
     end
