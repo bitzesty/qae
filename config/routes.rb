@@ -42,13 +42,12 @@ Rails.application.routes.draw do
       get :correspondent_details
       get :company_details
       get :contact_settings
-      get :add_collaborators
       get :password_settings
 
       patch :update_correspondent_details
       patch :update_company_details
       patch :update_contact_settings
-      patch :update_add_collaborators
+      patch :complete_registration
       patch :update_password_settings
     end
   end

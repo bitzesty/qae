@@ -6,15 +6,9 @@ class AccountsController < ApplicationController
     :update_correspondent_details,
     :update_company_details,
     :update_contact_settings,
-    :update_add_collaborators,
-    :update_password_settings
+    :update_password_settings,
+    :complete_registration
   ]
-
-  expose(:collaborators) do
-    current_user.account
-                .collaborators_without(current_user)
-                .page(params[:page])
-  end
 
   def correspondent_details
     @active_step = 1
@@ -26,10 +20,6 @@ class AccountsController < ApplicationController
 
   def contact_settings
     @active_step = 3
-  end
-
-  def add_collaborators
-    @active_step = 4
   end
 
   def password_settings
@@ -59,26 +49,21 @@ class AccountsController < ApplicationController
   def update_contact_settings
     current_user.set_step(3)
     if current_user.update(contact_settings_params)
-      redirect_to add_collaborators_account_path
+      redirect_to account_collaborators_path
     else
       @active_step = 3
       render :contact_settings
     end
   end
 
-  def update_add_collaborators
-    if current_user.update(add_collaborators_settings_params)
-      unless current_user.completed_registration
-        current_user.update_attribute(:completed_registration, true)
+  def complete_registration
+    unless current_user.completed_registration
+      current_user.update_attribute(:completed_registration, true)
 
-        flash.notice = 'You account details were successfully saved'
-        redirect_to dashboard_path
-      else
-        redirect_to password_settings_account_path
-      end
+      flash.notice = 'You account details were successfully saved'
+      redirect_to dashboard_path
     else
-      @active_step = 4
-      render :add_collaborators
+      redirect_to password_settings_account_path
     end
   end
 
@@ -104,11 +89,6 @@ class AccountsController < ApplicationController
   end
 
   def contact_settings_params
-    params.require(:user).permit(:prefered_method_of_contact, :subscribed_to_emails, :qae_info_source_other, { qae_info_source: [] })
-  end
-
-  def add_collaborators_settings_params
-    # TODO use real params
     params.require(:user).permit(:prefered_method_of_contact, :subscribed_to_emails, :qae_info_source_other, { qae_info_source: [] })
   end
 

@@ -14,6 +14,7 @@ class Account::CollaboratorsController < Account::BaseController
   end
 
   def index
+    @active_step = 4
   end
 
   def new
