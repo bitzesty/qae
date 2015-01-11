@@ -1,0 +1,9 @@
+tr
+  td 
+    = collaborator.full_name_with_status
+  td
+    = mail_to email
+  td
+    = collaborator.role
+  td.text-right
+    = link_to "Remove"

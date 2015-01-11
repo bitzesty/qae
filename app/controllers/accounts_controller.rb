@@ -10,6 +10,12 @@ class AccountsController < ApplicationController
     :update_password_settings
   ]
 
+  expose(:collaborators) do
+    current_user.account
+                .collaborators_without(current_user)
+                .page(params[:page])
+  end
+
   def correspondent_details
     @active_step = 1
   end

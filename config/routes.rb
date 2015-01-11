@@ -88,6 +88,6 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :users
+    resources :collaborators
   end
 end

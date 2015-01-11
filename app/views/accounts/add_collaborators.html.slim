@@ -24,7 +24,7 @@ header.page-header.group class="#{'page-header-wider' unless current_user.comple
         .visuallyhidden
           = render "form_contact_settings", f: f
 
-        = render "form_add_collaborators", f: f
+        = render "collaborators/list", f: f
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
