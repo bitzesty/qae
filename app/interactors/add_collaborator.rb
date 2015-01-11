@@ -1,14 +1,25 @@
 class AddCollaborator
-  attr_reader :account, :collaborator, :success
+  attr_reader :account, :params, :collaborator, :email
 
-  def initialize(account, collaborator)
+  def initialize(account, params)
     @account = account
-    @collaborator = collaborator
+    @params = params
+    @email = params[:email]
+    @collaborator = find_or_build_collaborator
   end
 
   def run
     persist!
     collaborator
+  end
+
+  def find_or_build_collaborator
+    if Email.new(email).valid?
+      user = User.find_by email: email
+      return user if user.present? && user.account.blank?
+    end
+    
+    User.new(params)
   end
 
   def persist!

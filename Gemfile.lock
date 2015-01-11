@@ -119,6 +119,8 @@ GEM
       activemodel (>= 3.0)
       activesupport (>= 3.0)
       request_store (~> 1.0)
+    email_validator (1.5.0)
+      activemodel
     enumerize (0.8.0)
       activesupport (>= 3.2)
     erubis (2.7.0)
@@ -334,6 +336,7 @@ DEPENDENCIES
   devise (~> 3.4)
   dotenv-rails (~> 1.0)
   draper
+  email_validator
   enumerize (~> 0.8)
   factory_girl_rails
   fancybox2-rails (~> 0.2.8)

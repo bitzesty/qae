@@ -1,7 +1,7 @@
 class Account::CollaboratorsController < Account::BaseController
 
   before_action :require_to_be_account_admin!
-  before_action :require_to_be_not_current_user!, only: [:edit, :update, :destroy]
+  before_action :require_to_be_not_current_user!, only: [:edit, :destroy]
 
   expose(:account) do
     current_user.account
@@ -22,16 +22,7 @@ class Account::CollaboratorsController < Account::BaseController
   end
 
   def create
-    self.collaborator = AddCollaborator.new(
-      account, User.new(create_params)
-    ).run
-  end
-
-  def edit
-  end
-
-  def update
-    collaborator.update(update_params)
+    self.collaborator = AddCollaborator.new(account, create_params).run
   end
 
   def destroy
@@ -44,12 +35,6 @@ class Account::CollaboratorsController < Account::BaseController
   def create_params
     params.require(:collaborator).permit(
       :email, 
-      :role
-    )
-  end
-
-  def update_params
-    params.require(:collaborator).permit(
       :role
     )
   end

@@ -87,6 +87,6 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :collaborators
+    resources :collaborators, except: [:edit, :update]
   end
 end

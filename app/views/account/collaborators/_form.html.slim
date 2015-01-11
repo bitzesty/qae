@@ -6,5 +6,5 @@ h2 New Collaborator
   = f.error_notification
 
   = f.input :email, required: true, input_html: { class: '' }
-  = f.input :role, required: true, input_html: { class: '' }
+  = f.input :role, required: true, input_html: { class: '' }, include_blank: false
   = f.submit "Add"

@@ -26,6 +26,7 @@ gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'country_select'
+gem "email_validator"
 
 # Background jobs
 gem 'sidekiq'
