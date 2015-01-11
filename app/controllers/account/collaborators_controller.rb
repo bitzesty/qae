@@ -22,11 +22,9 @@ class Account::CollaboratorsController < Account::BaseController
   end
 
   def create
-    self.collaborator = User.new(create_params)
-    collaborator.agreed_with_privacy_policy = '1'
-    collaborator.account = account
-
-    collaborator.save
+    self.collaborator = AddCollaborator.new(
+      account, User.new(create_params)
+    ).run
   end
 
   def edit

@@ -1,0 +1,5 @@
+<% if collaborator.persisted? %>
+  $.fancybox.close();
+<% else %>
+  $.fancybox("<%= j(render 'form') %>");
+<% end %>
