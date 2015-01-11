@@ -500,3 +500,7 @@ jQuery ->
   $(document).on 'click', (e) ->
     if !$(e.target).closest('.dropdown').length
       $(".dropdown.dropdown-open").removeClass("dropdown-open")
+
+  $(document).ready ->
+    $("a.fancybox").fancybox()
+    return

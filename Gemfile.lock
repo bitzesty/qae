@@ -128,6 +128,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    fancybox2-rails (0.2.8)
+      railties (>= 3.1.0, < 5.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
     foreman (0.76.0)
@@ -334,6 +336,7 @@ DEPENDENCIES
   draper
   enumerize (~> 0.8)
   factory_girl_rails
+  fancybox2-rails (~> 0.2.8)
   foreman
   govuk_frontend_toolkit!
   govuk_template (= 0.12.0)

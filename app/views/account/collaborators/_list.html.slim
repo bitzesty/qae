@@ -10,7 +10,9 @@ table
       th Email
       th Role
       th.text-right
-        = link_to "+ Add Collaborator"
+        = link_to "+ Add Collaborator", new_account_collaborator_path, remote: true
   tbody
     - collaborators.decorate.each do |collaborator|
       = render 'item', collaborator: collaborator
+
+.collaborators_popup

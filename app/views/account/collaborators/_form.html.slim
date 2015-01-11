@@ -1,0 +1,9 @@
+h2 New Collaborator
+= simple_form_for collaborator, 
+                  url: account_collaborators_path,
+                  html: { class: 'qae-form', method: :post, remote: true } do |f|
+  = f.error_notification
+
+  = f.input :email, required: true, input_html: { class: '' }
+  = f.input :role, required: true, input_html: { class: '' }
+  = f.submit "Add"
