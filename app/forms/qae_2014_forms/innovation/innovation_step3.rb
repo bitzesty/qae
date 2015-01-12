@@ -22,12 +22,12 @@ class QAE2014Forms
         end
 
         options :financial_year_date_changed, 'Did your year-end date change during your <span class="js-entry-period-subtext">2 or 5</span> year entry period?' do
-          classes "sub-question js-entry-period-substitute-text"
+          classes "sub-question js-financial-year-change"
           required
           yes_no
         end
 
-        by_years :financial_year_changed_dates, 'Enter your year-end dates for each financial year.' do
+        by_years_label :financial_year_changed_dates, 'Enter your year-end dates for each financial year.' do
           classes "sub-question"
           required
           type :date
@@ -136,7 +136,7 @@ class QAE2014Forms
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
 
           type :money
-          label ->(y){"Financial year #{y}"}
+          label ->(y){"As at the end of year #{y}"}
           by_year_condition :innovation_performance_years, '2 to 4', 2 
           by_year_condition :innovation_performance_years, '5 plus', 5 
 

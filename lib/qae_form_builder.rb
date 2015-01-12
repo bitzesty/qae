@@ -19,6 +19,7 @@ require 'qae_form_builder/country_question'
 require 'qae_form_builder/address_question'
 require 'qae_form_builder/head_of_business_question'
 
+require 'qae_form_builder/by_years_label_question'
 require 'qae_form_builder/by_years_question'
 require 'qae_form_builder/innovation_financial_year_date_question'
 require 'qae_form_builder/confirm_question'

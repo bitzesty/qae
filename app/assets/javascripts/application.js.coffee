@@ -95,7 +95,7 @@ jQuery ->
 
   # Get the latest financial year date from input
   updateYearEndInput = () ->
-    fy_latest_changed_input = $(".js-financial-year .fy-latest .date-input")
+    fy_latest_changed_input = $(".js-financial-year-changed-dates .fy-latest .date-input")
     fy_latest_changed_input.find("input").removeAttr("disabled")
 
     fy_day = $('.js-financial-year-latest .js-fy-day select').val()
@@ -110,52 +110,46 @@ jQuery ->
     fy_latest_changed_input.find("input.js-fy-month").val(fy_month)
     fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
     fy_latest_changed_input.find("input").attr("disabled", "disabled")
+    $(".js-financial-year-changed-dates").attr("data-year", fy_year)
 
     updateYearEnd()
 
   # Update the financial year labels
   updateYearEnd = () ->
-    $(".js-year-end").removeClass("show-default")
-    if $(".js-financial-year-latest").closest(".question-block").next().find("input:checked").val() == "no"
+    $(".js-financial-conditional .js-year-end").removeClass("show-default")
+    if $(".js-financial-year-change input:checked").val() == "no"
       # Year end hasn't changed, auto select the year
-      fy_latest_changed_input = $(".js-financial-year .fy-latest .date-input")
-      fy_latest_day = fy_latest_changed_input.find(".js-fy-day").val()
-      fy_latest_month = fy_latest_changed_input.find(".js-fy-month").val()
-      fy_latest_year = fy_latest_changed_input.find(".js-fy-year").val()
+      fy_latest_changed_input = $(".js-financial-year")
+      fy_latest_day = fy_latest_changed_input.find(".js-fy-day select").val()
+      fy_latest_month = fy_latest_changed_input.find(".js-fy-month select").val()
+      fy_latest_year = $(".js-financial-year-changed-dates").attr("data-year")
 
       if !fy_latest_day || !fy_latest_month || !fy_latest_year
-        $(".js-year-end").each () ->
-          if $(this).closest(".question-block").hasClass("total-net-assets")
-            default_text = $(this).find(".js-year-default")
-            default_text.text("As at the end of year #{default_text.text().slice(-1)}")
         $(".js-year-end").addClass("show-default")
       else
         $(".js-year-end").each () ->
-          year = parseInt(fy_latest_year) - parseInt($(this).attr("data-year").substr(0, 1)) + 1
+          year = parseInt(fy_latest_year) + parseInt($(this).attr("data-year").substr(0, 1)) - parseInt($(this).attr("data-year").substr(-1, 1))
           pre_text = "Year ending in"
           if $(this).closest(".question-block").hasClass("total-net-assets")
             pre_text = "As at"
           $(this).find(".js-year-text").text("#{pre_text} #{fy_latest_day}/#{fy_latest_month}/#{year}")
     else
       # Year has changed, use what they've inputted
-      $(".js-financial-conditional").each () ->
+      $(".js-financial-conditional > .js-conditional-question").each () ->
         all_years_value = true
         $(this).find(".js-year-end").each () ->
-          fy_input = $(".js-financial-year .date-input[data-year='#{$(this).attr("data-year")}']")
+          fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest("label").find(".date-input")
           fy_day = fy_input.find(".js-fy-day").val()
           fy_month = fy_input.find(".js-fy-month").val()
           fy_year = fy_input.find(".js-fy-year").val()
           if !fy_day || !fy_month || !fy_year
             all_years_value = false
         $(this).find(".js-year-end").each () ->
-          fy_input = $(".js-financial-year .date-input[data-year='#{$(this).attr("data-year")}']")
+          fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest("label").find(".date-input")
           fy_day = fy_input.find(".js-fy-day").val()
           fy_month = fy_input.find(".js-fy-month").val()
           fy_year = fy_input.find(".js-fy-year").val()
           if !all_years_value
-            if $(this).closest(".question-block").hasClass("total-net-assets")
-              default_text = $(this).find(".js-year-default")
-              default_text.text("As at the end of year #{default_text.text().slice(-1)}")
             $(this).addClass("show-default")
           else
             pre_text = "Year ending in"
@@ -164,7 +158,7 @@ jQuery ->
             $(this).find(".js-year-text").text("#{pre_text} #{fy_day}/#{fy_month}/#{fy_year}")
 
   updateYearEndInput()
-  $(".js-financial-year input, .js-financial-year select").change () ->
+  $(".js-financial-year-changed-dates input, .js-financial-year select").change () ->
     updateYearEndInput()
   $(".js-financial-year-latest").closest(".question-block").next().find("input").change () ->
     updateYearEnd()

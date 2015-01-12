@@ -1,0 +1,24 @@
+.js-financial-year-changed-dates
+  - for c in question.by_year_conditions
+    .js-conditional-question data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
+      .row
+        - (1..c.years).each do |y|
+          .span-4 class="#{'fy-latest' if y == c.years}"
+            label
+              span.js-year-end.show-default data-year="#{y}of#{c.years}"
+                span.js-year-default
+                  = question.format_label(y)
+                  - if y == c.years
+                    '  (Current)
+              br
+              ul.errors-container
+              .date-input
+                label
+                  ' Day
+                  input.js-trigger-autosave.tiny.js-fy-day type="text" name=question.input_name(suffix: "#{y}of#{c.years}day") value=question.input_value(suffix: "#{y}of#{c.years}day") maxlength=2 autocomplete="off" *possible_read_only_ops
+                label
+                  ' Month
+                  input.js-trigger-autosave.tiny.js-fy-month type="text" name=question.input_name(suffix: "#{y}of#{c.years}month") value=question.input_value(suffix: "#{y}of#{c.years}month") maxlength=2 autocomplete="off" *possible_read_only_ops
+                label
+                  ' Year
+                  input.js-trigger-autosave.small.js-fy-year type="text" name=question.input_name(suffix: "#{y}of#{c.years}year") value=question.input_value(suffix: "#{y}of#{c.years}year") maxlength=4 autocomplete="off" *possible_read_only_ops
