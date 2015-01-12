@@ -18,6 +18,7 @@ Qae::Application.load_tasks
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include UserStepDefinitions, type: :feature
+  config.include Devise::TestHelpers, type: :controller
 
   config.filter_run focus: true
   config.run_all_when_everything_filtered = true
