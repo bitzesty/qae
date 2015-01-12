@@ -16,7 +16,6 @@ FactoryGirl.define do
         has_management_and_two_employees: true,
         organization_kind: "business",
         industry: "product_business",
-        registered: true,
         self_contained_enterprise: true,
         current_holder: false
       }}.call
