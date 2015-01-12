@@ -4,7 +4,7 @@ p
   ',
 
 p
-  | Application for #{@form_answer.award_application_title}
+  ' Application for #{@form_answer.award_application_title}
   | for
   br
   = @form_owner.general_info
@@ -12,7 +12,7 @@ p
   | has been successfully submitted.
 
 p
-  | Unique Reference Number (URN):
+  ' Unique Reference Number (URN):
   = @form_answer.urn
 
 p

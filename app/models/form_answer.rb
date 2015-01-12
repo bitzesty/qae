@@ -37,13 +37,11 @@ class FormAnswer < ActiveRecord::Base
   before_create :set_account
   before_save :set_urn
   before_save :set_progress
-  before_validation :check_eligibility, if: :submitted
+  before_validation :check_eligibility, if: :submitted?
 
   store_accessor :document
   store_accessor :eligibility
   store_accessor :basic_eligibility
-
-  attr_accessor :submitted
 
   def award_form
     QAE2014Forms.public_send(award_type) if award_type.present?

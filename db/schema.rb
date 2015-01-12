@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150109142716) do
+ActiveRecord::Schema.define(version: 20150112121539) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,11 +74,11 @@ ActiveRecord::Schema.define(version: 20150109142716) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "document"
-    t.string   "award_type"
     t.boolean  "withdrawn",     default: false
     t.integer  "account_id"
+    t.string   "award_type"
     t.string   "urn"
-    t.boolean  "submitted"
+    t.boolean  "submitted",     default: false
     t.float    "fill_progress"
   end
 
