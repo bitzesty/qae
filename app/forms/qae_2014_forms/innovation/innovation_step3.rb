@@ -58,11 +58,11 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        options :innovation_part_of, 'The innovation is an integral part of' do
+        options :innovation_part_of, 'How does your innovation fit within the overall business?' do
           ref 'C 4'
           required
-          option :entire_business, 'The entire business'
-          option :single_product_or_service, 'A single product or service'
+          option :entire_business, 'It’s integral to the whole business'
+          option :single_product_or_service, 'it affects a single product/service'
         end
 
         header :company_financials, 'Company Financials' do
@@ -101,7 +101,7 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        by_years :exports, 'of which exports' do 
+        by_years :exports, 'Of which exports' do 
           classes "sub-question"
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
@@ -210,7 +210,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_exports, 'of which exports' do
+        by_years :sales_exports, 'Of which exports' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required
@@ -226,7 +226,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_royalties, 'of which royalties or licenses' do
+        by_years :sales_royalties, 'Of which royalties or licenses' do
           classes "sub-question"
           context %Q{<p>Please enter '0' if you had none.</p>}
           required

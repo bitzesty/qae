@@ -21,7 +21,7 @@ class QAE2014Forms
           required
           ref 'A 2'
           context %Q{
-            <p>This should reflect the title registered with Companies House. If applicable, include 'trading as', or any other name your organisation uses.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses.</p>
           }
         end
 
@@ -118,16 +118,11 @@ class QAE2014Forms
           words_max 300
         end
 
-
-
-
-
-
         options :innovation_any_contributors, 'Did any external organisation or individual contribute to your innovation?' do
           ref 'A 8'
           required
           context %Q{
-            <p>Excluding suppliers and consultants.</p>
+            <p><span class='text-underline'>Excluding</span> suppliers and consultants.</p>
           }
           yes_no
         end
@@ -197,14 +192,20 @@ class QAE2014Forms
           ref 'A 10'
         end
 
-        text :website_url, 'Website URL' do
+        text :org_telephone, 'Main telephone number' do
           required
           ref 'A 11'
+          style "small"
+        end
+
+        text :website_url, 'Website URL' do
+          required
+          ref 'A 12'
         end
 
         dropdown :business_sector, 'Business Sector' do
           required
-          ref 'A 12'
+          ref 'A 13'
           option '', 'Business Sector'
           option :other, 'Other'
         end
@@ -213,25 +214,6 @@ class QAE2014Forms
           classes "regular-question"
           required
           conditional :business_sector, :other
-        end
-
-        head_of_business :head_of_business, 'Head of your organisation' do
-          classes 'js-a13-details'
-          required
-          ref 'A 13'
-        end
-
-        text :head_job_title, 'Job title / Role in the organisation' do
-          classes "sub-question"
-          required
-          context %Q{
-            <p>e.g. CEO, Managing Director, Founder, Head of your organisational unit</p>
-          }
-        end
-
-        text :head_email, 'Email address' do
-          classes "sub-question"
-          required
         end
 
         header :parent_company_header, 'Parent Companies' do

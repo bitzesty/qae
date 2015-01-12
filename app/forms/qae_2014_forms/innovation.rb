@@ -3,6 +3,7 @@ require 'qae_2014_forms/innovation/innovation_step2'
 require 'qae_2014_forms/innovation/innovation_step3'
 require 'qae_2014_forms/innovation/innovation_step4'
 require 'qae_2014_forms/innovation/innovation_step5'
+require 'qae_2014_forms/innovation/innovation_step6'
 
 class QAE2014Forms
   class << self
@@ -17,7 +18,9 @@ class QAE2014Forms
 
         step 'Declaration of Corporate Responsibility', "Corporate Responsibility", &QAE2014Forms.innovation_step4
 
-        step 'Authorisation/Monitoring', "Authorisation", &QAE2014Forms.innovation_step5
+        step 'Add Links/Documents', "Add Links/Documents", &QAE2014Forms.innovation_step5
+
+        step 'Authorisation/Monitoring', "Authorisation", &QAE2014Forms.innovation_step6
 
       end
     end

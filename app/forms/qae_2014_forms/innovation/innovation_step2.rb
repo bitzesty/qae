@@ -6,7 +6,7 @@ class QAE2014Forms
           <p>Please try to avoid using technical jargon in this section. </p>
         }
 
-        textarea :innovation_desc_short, 'Briefly describe your product/service/initiative' do
+        textarea :innovation_desc_short, 'Briefly describe your innovative product/service/initiative' do
           ref 'B 1'
           required
           context %Q{
@@ -16,7 +16,7 @@ class QAE2014Forms
           words_max 15
         end
 
-        textarea :innovation_desc_long, 'Describe your innovative product/service/initiative in detail' do
+        textarea :innovation_desc_long, 'Summarise your innovative product/service/initiative' do
           classes "sub-question"
           required
           context %Q{
@@ -85,9 +85,6 @@ class QAE2014Forms
         number :innovation_years, 'How long have you had your innovation on the market?' do
           required
           ref 'B 8'
-          context %Q{
-            <p>Please use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
-          }
           max 100
           unit ' years'
           style "small inline"
@@ -97,19 +94,9 @@ class QAE2014Forms
           classes "sub-question"
           rows 5
           words_max 200
-        end
-
-        upload :innovation_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
-          ref 'B 9'
           context %Q{
-            <p>We can't guarantee these will be reviewed, so include any vital information within the form.</p>
-            <p>You can upload files in all common formats, as long as they're less than 5mb.</p>
-            <p>You may link to videos, websites or other media you feel relevant.</p>
-            <p>We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.</p>
-          } # TODO!
-          max_attachments 4
-          links
-          description
+            <p>Please use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
+          }
         end
       }
     end
