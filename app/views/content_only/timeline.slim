@@ -14,6 +14,11 @@
         header
           h1 5. Timeline
 
+          h3 April
+          p Application period opens on 21st April.
+
+          br
+
           h3 September
           p Submission period closes.
 
@@ -70,9 +75,9 @@
 
           .get-started
             - if user_signed_in?
-              = link_to "Apply", dashboard_path, class: "button"
+              = link_to "Check eligibility", dashboard_path, class: "button"
             - else
-              = link_to "Apply", apply_for_queens_award_for_enterprise_path, class: "button"
+              = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
 
           - unless user_signed_in?
             br

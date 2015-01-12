@@ -17,9 +17,9 @@
         p Anyone can make a nomination, but in order to be nominated for the Queen’s Award for Enterprise Promotion, an individual must:
 
         ul
-          li contribute more than just the requirements of their paid job/ primary activity to the promotion of business enterprise and/or entrepreneurial skills.
+          li contribute more than just the requirements of their paid job/ primary activity to the promotion of business enterprise and/or entrepreneurial skills
           li be active in the role/area for which they are being nominated, and have been for at least two years
-          li have been in the UK (including the Channel Islands and the Isle of Man) for their contribution to enterprise promotion.
+          li have been in the UK (including the Channel Islands and the Isle of Man) for their contribution to enterprise promotion
           li not currently hold a Queen’s Award For Enterprise promotion (although previously unsuccessful nominees may be nominated again)
 
         p You can also nominate for a Lifetime Achievement Award, which requires a minimum of ten years of activity in the promotion of business enterprise and/or entrepreneurial skills. Holders of the two-year award can be nominated for this.
@@ -35,9 +35,9 @@
 
         .get-started
           - if user_signed_in?
-            = link_to "Nominate", dashboard_path, class: "button"
+            = link_to "Check eligibility", dashboard_path, class: "button"
           - else
-            = link_to "Nominate", apply_for_queens_award_for_enterprise_path, class: "button"
+            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
 
         - unless user_signed_in?
           br

@@ -12,8 +12,11 @@
     article.group role="article"
       .inner
         header
-          h1#general_eligibility
+          h1
             ' 2. Eligibility for organisations
+
+        h2#general_eligibility
+          ' General eligibility criteria
 
         p To enter any of the Queen’s Awards for Enterprise categories, your organisation (business or non-profit) must:
 
@@ -24,9 +27,9 @@
 
         p
           - if user_signed_in?
-            = link_to "Apply", dashboard_path
+            = link_to "Check eligibility", dashboard_path
           - else
-            = link_to "Apply", apply_for_queens_award_for_enterprise_path
+            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path
 
         br
         br
@@ -34,38 +37,37 @@
         p
           ' Each of the three award categories has additional entry criteria:
 
-        h2#international_trade
+        h2
+          ' Award-specific eligibility criteria
+
+        h3#international_trade
           ' International Trade
         p
-          ' If you want to apply for the International Trade award, you must meet the
-          = link_to "general eligibility criteria", "#general_eligibility"
-          '  above, and:
+          ' If you want to apply for the International Trade award, you must meet the general eligibility criteria above, and:
         ol
-          li Have made a minimum of £100,000 in overseas sales for each year of your entry.
-          li Be able to demonstrate that your organisation has achieved substantial growth in overseas earnings relative to your business size and sector.
+          li Have made a minimum of £100,000 in overseas sales for each year of your entry
+          li Be able to demonstrate that your organisation has achieved substantial growth in overseas earnings relative to your business size and sector
           li
             ' Show either:
             ul
               li steep year on year growth (without dips) in overseas sales over 3 years
-              li continuous year on year growth (without dips) in overseas sales over 6 years.
+              li continuous year on year growth (without dips) in overseas sales over 6 years
         p
           - if user_signed_in?
-            = link_to "Apply", dashboard_path
+            = link_to "Check eligibility", dashboard_path
           - else
-            = link_to "Apply", apply_for_queens_award_for_enterprise_path
+            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path
         br
 
-        h2#innovation
+        h3#innovation
           ' Innovation
         p
-          ' If you want to apply for the Innovation award, you must meet the
-          = link_to "general eligibility criteria", "#general_eligibility"
-          '  above, and:
+          ' If you want to apply for the Innovation award, you must meet the general eligibility criteria above, and:
         ol
-          li Have an innovation that has not been done before.
-          li Have had your innovation available on the market for at least two years.
-          li Have recovered all the investments made in your innovation.
-          li Be able to demonstrate that your innovation has had a substantial positive effect on your organisation’s commercial success (i.e. turnover and/or profitability).
+          li Have an innovation that has not been done before
+          li Have had your innovation available on the market for at least two years
+          li Have recovered all the investments made in your innovation
+          li Be able to demonstrate that your innovation has had a substantial positive effect on your organisation’s commercial success (i.e. turnover and/or profitability)
           li
             ' Show either:
             ul
@@ -80,19 +82,17 @@
           li after-sale support of goods or services
         p
           - if user_signed_in?
-            = link_to "Apply", dashboard_path
+            = link_to "Check eligibility", dashboard_path
           - else
-            = link_to "Apply", apply_for_queens_award_for_enterprise_path
+            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path
         br
 
-        h2#sustainable_development
+        h3#sustainable_development
           ' Sustainable Development
         p
-          ' If you want to apply for the Sustainable Development award, you must meet the
-          = link_to "general eligibility criteria", "#general_eligibility"
-          '  above, and:
+          ' If you want to apply for the Sustainable Development award, you must meet the general eligibility criteria above, and:
         ol
-          li Be able to demonstrate how your business has achieved sustainable development (ie. ensuring better quality of life for everyone, both now and for future generations in the dimensions of: environment, society, economy and leadership) and how you are a good corporate citizen.
+          li Be able to demonstrate how your business has achieved sustainable development (ie. ensuring better quality of life for everyone, both now and for future generations in the dimensions of: environment, society, economy and leadership) and how you are a good corporate citizen
           li
             ' Show either:
             ul
@@ -104,16 +104,16 @@
           li management of resources or people, or of relationships with other organisations (or their representatives)
         p
           - if user_signed_in?
-            = link_to "Apply", dashboard_path
+            = link_to "Check eligibility", dashboard_path
           - else
-            = link_to "Apply", apply_for_queens_award_for_enterprise_path
+            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path
         br
 
         .get-started
           - if user_signed_in?
-            = link_to "Apply", dashboard_path, class: "button"
+            = link_to "Check eligibility", dashboard_path, class: "button"
           - else
-            = link_to "Apply", apply_for_queens_award_for_enterprise_path, class: "button"
+            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
 
         - unless user_signed_in?
           br

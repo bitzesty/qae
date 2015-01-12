@@ -15,20 +15,27 @@
           h1 1. Overview
 
         p
-          ' Established in 1966 by royal warrant, the
-          = link_to "Queen’s Awards for Enterprise", awards_for_organisations_path
+          ' Established in 1966 by royal warrant,
+          strong the Queen’s Awards for Enterprise
           '  are the most prestigious enterprise awards in the country. They are presented by Her Majesty The Queen on the advice of the Prime Minister and an Advisory Committee, and recognise outstanding achievement by UK organisations in three categories:
 
         ul
-          li = link_to "Innovation", awards_for_organisations_path(anchor: "innovation")
-          li = link_to "International Trade", awards_for_organisations_path(anchor: "international_trade")
-          li = link_to "Sustainable Development", awards_for_organisations_path(anchor: "sustainable_development")
-
-        br
+          li
+            strong Innovation
+            p recognising commercial success as a result of innovation
+            br
+          li
+            strong International Trade
+            p recognising growth and commercial success in international trade
+            br
+          li
+            strong Sustainable Development
+            p recognising commercially successful products/services/management approaches that benefit the environment, society and economy
+            br
 
         p
           ' The
-          = link_to "Queen’s Award for Enterprise Promotion", enterprise_promotion_awards_path
+          strong Queen’s Award for Enterprise Promotion
           '  is for individuals who have played an outstanding role (going above and beyond their duties) in promoting the growth of business enterprise and/or entrepreneurial skills in others. It is awarded by nomination only.
 
         p
@@ -41,9 +48,9 @@
 
         .get-started
           - if user_signed_in?
-            = link_to "Apply", dashboard_path, class: "button"
+            = link_to "Check eligibility", dashboard_path, class: "button"
           - else
-            = link_to "Apply", apply_for_queens_award_for_enterprise_path, class: "button"
+            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
 
         - unless user_signed_in?
           br

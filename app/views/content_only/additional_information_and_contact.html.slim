@@ -58,9 +58,9 @@
 
           .get-started
             - if user_signed_in?
-              = link_to "Apply", dashboard_path, class: "button"
+              = link_to "Check eligibility", dashboard_path, class: "button"
             - else
-              = link_to "Apply", apply_for_queens_award_for_enterprise_path, class: "button"
+              = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
 
           - unless user_signed_in?
             br

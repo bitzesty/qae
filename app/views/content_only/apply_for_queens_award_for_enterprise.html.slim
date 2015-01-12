@@ -27,41 +27,51 @@
 
         br
 
-        h2
-          ' Before you start
-        ul
-          li
-            ' The Queen’s Awards for Enterprise are free to enter.
-          li
-            ' All information submitted in your application will be treated in strict confidence.
-          li
-            ' Submission period opens 21st April.
-          li
-            ' Submission period closes at
-            strong
-              ' 23:59 on the last working day of September.
-          li
-            ' You don’t have to complete your application(s) in one sitting.
-
-        br
-
         h3
           ' The application process
         ol
           li
-            ' Register for an account
+            - if user_signed_in?
+              = link_to "Create an account", dashboard_path
+            - else
+              = link_to "Create an account", new_user_registration_path
           li
-            ' Complete the eligibility questionnaire
+            ' Complete the basic eligibility check
           li
-            ' Enter your basic account information
+            ' Enter your account details
           li
-            ' Begin your application(s)
+            ' Check your eligibility for the award(s) you want to apply for
+          li
+            ' Complete and submit your application(s).
 
         br
 
+        h2
+          ' Before you start
+
         .application-notice.help-notice
+          p We recommend that you create an account and complete both of the eligibility checks (basic and award-specific) before you start collecting any detailed information about your organisation.
+
+          p.text-underline This will take around fifteen minutes.
+
+        br
+
+        p This is to ensure that your organisation is eligible before you begin what can be a lengthy process of filling in the application form.
+
+        p All your answers will be saved automatically.
+
+        .application-notice.info-notice
+          p Submission period opens 21st April.
+
           p
-            ' If you are a marketing company applying on behalf of a client, your client should sign up for an account first and add you as a contributor.
+            ' Submission period closes at
+            strong 23:59 on the last working day of September.
+
+        br
+
+        p All the information submitted in your application will be treated in strict confidence.
+
+        p The Queen’s Awards for Enterprise are free to enter.
 
         br
 
@@ -69,5 +79,13 @@
           ' If you want to read more about the Queen’s Award for Enterprise, then
           = link_to "return to the information pages", root_path
           ' .
+
+        h2 Other ways to apply
+
+        p All entries must be submitted via the online form.
+
+        p
+          ' If you are unable to complete your application online - whether due to geographic location, disability or computer literacy - you can seek help through our assisted digital service. Please call the Queen’s Awards Helpline on 020 7215 6880.
+          = link_to "Find out more about call charges.", "https://www.gov.uk/call-charges", target: "_blank"
 
         br

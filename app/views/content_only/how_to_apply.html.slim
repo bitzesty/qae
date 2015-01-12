@@ -14,20 +14,21 @@
         header
           h1 4. How to apply
 
-          p You must submit your application(s) online.
+          h2 The application process
 
           ol
-            li
-              = link_to "Create an account", apply_for_queens_award_for_enterprise_path
-              '  and fill in your details
-              ul
-                li We will check your eligibility, and ask for some basic information about you and your organisation.
-            li
-              ' Start the online applications in your chosen categories
-              ul
-                li You can enter more than one award category if you meet the criteria.
-                li You don’t have to complete your application(s) in one sitting. 
-            li Submit your applications before the last working day of September
+            li = link_to "Create an account", apply_for_queens_award_for_enterprise_path
+            li Complete the basic eligibility check
+            li Enter your account details
+            li Check your eligibility for the specific award(s) you want to apply for
+            li Complete and submit your application(s)
+
+          p You must submit your application(s) online.
+
+          .application-notice.help-notice
+            p We recommend that you create an account and complete both of the eligibility checks (basic and award-specific) before you start collecting any detailed information about your organisation.
+
+            p.text-underline This will take around fifteen minutes.
 
           br
 
@@ -40,7 +41,7 @@
 
           br
 
-          p All information submitted in your application will be treated in strict confidence.
+          p All the information submitted in your application will be treated in strict confidence.
 
           p The Queen’s Awards for Enterprise are free to enter.
 
@@ -48,9 +49,9 @@
 
           .get-started
             - if user_signed_in?
-              = link_to "Apply", dashboard_path, class: "button"
+              = link_to "Check eligibility", dashboard_path, class: "button"
             - else
-              = link_to "Apply", apply_for_queens_award_for_enterprise_path, class: "button"
+              = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
 
           - unless user_signed_in?
             br
