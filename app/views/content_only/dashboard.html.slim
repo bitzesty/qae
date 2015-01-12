@@ -12,7 +12,7 @@ header.page-header.group
         - if any_eligibilities_passed?
           .application-notice.help-notice
             p
-              ' Your organisation meets the eligibility criteria for
+              ' You can now begin your application(s) for the Queen’s Awards for Enterprise. You are eligible to apply for:
             ul
               - [@trade_eligibility, @innovation_eligibility, @development_eligibility, @promotion_eligibility].select(&:passed?).each do |eligibility|
                 li = eligibility.class.award_name
