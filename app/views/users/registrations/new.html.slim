@@ -9,6 +9,9 @@
   .article-container.group
     article.group role="article"
       .inner
+        .application-notice.help-notice
+          p
+            ' If you are a marketing company applying on behalf of a client, your client should sign up for an account first, then add you as a contributor.
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           /= f.error_notification
 
