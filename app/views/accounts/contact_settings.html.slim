@@ -18,12 +18,6 @@ header.page-header.group class="#{'page-header-wider' unless current_user.comple
       = simple_form_for current_user, url: update_contact_settings_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
         = render "form_contact_settings", f: f
 
-        - if current_user.completed_registration
-          fieldset
-            h3
-              ' How would you prefer we contact you?
-            = f.input :prefered_method_of_contact, as: :radio_buttons, item_wrapper_class: 'selectable', label: false
-
         fieldset
           h3
             ' How did you hear about the Queen's Awards?

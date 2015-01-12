@@ -1,4 +1,11 @@
 fieldset
   h3
-    ' Are you happy for us to contact you in the future with information about the Queen’s Awards?
+    ' Are you happy for us to email you in the future with information relating to the Queen’s Awards, and with any other information from the Department of Business, Innovation and Skills?
   = f.input :subscribed_to_emails, label: 'I am happy to be contacted with information about the Queen’s Awards', label_html: { class: 'selectable' }
+
+fieldset
+  h3
+    ' How you would prefer us to contact you regarding your application?
+  = f.input :prefered_method_of_contact, as: :radio_buttons, item_wrapper_class: 'selectable', label: false
+  .clear
+  br
