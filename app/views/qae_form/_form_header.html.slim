@@ -13,10 +13,10 @@ header.page-header.group.page-header-wider
               span.step-number
                 ' Eligibility
         - for step in form.steps do
-          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 1)
+          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
             span
               span.step-number
-                ' #{step_letters[step.index-1]}.
+                ' #{step_letters[step.index]}.
               = step.short_title.html_safe
 
     article.download-article
@@ -25,9 +25,9 @@ header.page-header.group.page-header-wider
           = link_to "Download your application", user_form_answer_path(current_user, @form_answer, format: :pdf)
 
     - for step in form.steps do
-      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 1)
+      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
         ' Step
-        = step.index + 1
+        = step.index + 2
         '  of
         = form.steps.length + 1
         ' :
