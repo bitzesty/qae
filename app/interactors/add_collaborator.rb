@@ -40,4 +40,8 @@ class AddCollaborator
   def send_collaboration_email!
     Users::CollaborationMailer.delay.access_granted(current_user, collaborator)
   end
+
+  def success?
+    @success
+  end
 end

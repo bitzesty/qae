@@ -22,7 +22,10 @@ class Account::CollaboratorsController < Account::BaseController
   end
 
   def create
-    self.collaborator = AddCollaborator.new(account, create_params).run
+    self.collaborator = AddCollaborator.new(
+      current_user, 
+      account, 
+      create_params).run
   end
 
   def destroy
