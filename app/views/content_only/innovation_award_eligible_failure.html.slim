@@ -12,7 +12,7 @@ header.page-header.group
       br
       p
         ' If you think you made a mistake in the eligibility questionnaire,
-        = link_to "go back and check your answers"
+        = link_to "go back and check your answers", form_award_eligibility_path(form_id: params[:form_id])
         ' .
       br
       /p
