@@ -6,7 +6,9 @@
 
 // Fix the .visuallyhidden class from overflowing body
 .visuallyhidden {
-  top: -9999px;
+  position: absolute !important;
+  top: -9999px !important;
+  left: -9999px !important;
 }
 
 // Align text
