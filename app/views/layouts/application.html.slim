@@ -40,7 +40,7 @@ html
                   ' My account
                   span.caret
                 ul.dropdown-menu
-                  - if current_user.completed_registration
+                  - if current_admin || current_user.completed_registration
                     li
                       = link_to "Applications", dashboard_path
                     li
