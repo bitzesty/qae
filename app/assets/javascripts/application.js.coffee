@@ -231,7 +231,7 @@ jQuery ->
     $el = $(el)
 
     wrapper = $el.closest('div.js-upload-wrapper')
-    button = wrapper.find('span.button')
+    button = wrapper.find('.button')
     list = wrapper.find('.js-uploaded-list')
 
     max = wrapper.data('max-attachments')
