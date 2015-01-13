@@ -9,21 +9,26 @@
     .inner
       p You’ve completed the eligibility questionnaire.
 
+      - if @basic_eligibility.answers["kind"] == "nomination"
+        - eligibilities = [@promotion_eligibility]
+      - else
+        - eligibilities = [@trade_eligibility, @innovation_eligibility, @development_eligibility]
+
       - if any_eligibilities_passed?
         h2 You are eligible for:
         ul
-          - [@trade_eligibility, @innovation_eligibility, @development_eligibility, @promotion_eligibility].select(&:passed?).each do |eligibility|
+          - eligibilities.select(&:passed?).each do |eligibility|
             li = eligibility.class.award_name
         br
 
-      - if !all_eligibilities_passed? && (failed_eligibilities = [@trade_eligibility, @innovation_eligibility, @development_eligibility].reject { |e| e.passed? || e.skipped? }).any?
+      - if !all_eligibilities_passed? && (failed_eligibilities = eligibilities.reject { |e| e.passed? || e.skipped? }).any?
         h2 You are not eligible for:
         ul
           - failed_eligibilities.each do |eligibility|
             li = eligibility.class.award_name
         br
 
-      - if (skipped_eligibilities = [@trade_eligibility, @innovation_eligibility, @development_eligibility].select(&:skipped?)).any?
+      - if (skipped_eligibilities = eligibilities.select(&:skipped?)).any?
         h2 You have skipped:
         ul
           - skipped_eligibilities.each do |eligibility|
