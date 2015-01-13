@@ -1,0 +1,15 @@
+p
+  ' Hello,
+
+p
+  = @user_who_added.full_name
+  | added you to collaborators with 
+  = @collaborator.role
+  | role.
+
+p
+  | You need to confirm your email at first:
+  = link_to 'Confirm', confirmation_url(@collaborator, confirmation_token: @collaborator.confirmation_token)
+
+p
+  | Best Regards, Administration Team

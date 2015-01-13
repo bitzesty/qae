@@ -1,7 +1,8 @@
 class AddCollaborator
-  attr_reader :account, :params, :collaborator, :email
+  attr_reader :current_user, :account, :params, :collaborator, :email, :success
 
-  def initialize(account, params)
+  def initialize(current_user, account, params)
+    @current_user = current_user
     @account = account
     @params = params
     @email = params[:email]
@@ -10,6 +11,11 @@ class AddCollaborator
 
   def run
     persist!
+
+    if success?
+      send_collaboration_email!
+    end
+
     collaborator
   end
 
@@ -26,7 +32,12 @@ class AddCollaborator
     collaborator.agreed_with_privacy_policy = '1'
     collaborator.account = account
     collaborator.password = Devise.friendly_token.first(8)
+    collaborator.skip_confirmation_notification!
 
-    collaborator.save
+    @success = collaborator.save
+  end
+
+  def send_collaboration_email!
+    Users::CollaborationMailer.delay.access_granted(current_user, collaborator)
   end
 end
