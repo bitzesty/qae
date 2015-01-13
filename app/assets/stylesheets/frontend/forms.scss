@@ -246,6 +246,11 @@ textarea {
 // Textarea autoResizer line height to match textareas
 .hiddendiv {
   @include core-16($line-height: (20 / 16));
+  position: fixed;
+  top: -100000px;
+  left: -100000px;
+  z-index: -1;
+  visibility: hidden;
 }
 
 // Fix file input vertical alignment
