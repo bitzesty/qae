@@ -58,7 +58,7 @@ jQuery ->
 
     question.each () ->
       if $(this).attr('data-value') == answerVal || ($(this).attr('data-value') == "true" && (answerVal != 'false' && answerVal != false))
-        if clicked || (!clicked && input.attr('type') == 'radio' && input.is(':checked'))
+        if clicked || (!clicked && input.attr('type') == 'radio' && input.is(':checked')) || (!clicked && input.attr('type') != 'radio')
           $(this).addClass("show-question")
       else
         if clicked || (!clicked && input.attr('type') != 'radio')
