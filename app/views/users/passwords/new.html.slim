@@ -16,7 +16,7 @@
             .question
               h2 Email
               .question-body
-                = f.input :email, required: true, autofocus: true, label: false
+                = f.input :email, required: true, autofocus: true, label: false, input_html: {class: "medium"}
 
           .form-actions
             = f.button :submit, "Send me reset password instructions", class: "button large"
