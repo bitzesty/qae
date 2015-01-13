@@ -1,28 +1,29 @@
 - if @eligibility.answers && @eligibility.answers.any?
-  .previous-answers
-    .done-questions
-      article
-        table
-          thead
-            tr
-              th.previous-answers-title colspan="2"
-                ' Your eligibility answers so far
-              /th.link-right.restart
-                = link_to "Start again", eligibility_path
-          tbody
-            - @eligibility.sorted_answers.each do |question, answer|
-              - if question.to_sym != step
-                tr.section
-                  td.previous-question-title
-                    = Eligibility::Basic.label(question)
-                  td.previous-question-body
-                    - if Eligibility::Basic.boolean_question?(question)
-                      = @eligibility.public_send("#{question}?") ? 'Yes' : 'No'
-                    - else
-                      = Eligibility::Basic.enumerized_attributes[question].find_value(answer).text
-                  td.link-right
-                    - unless admin_in_read_only_mode?
-                      = link_to wizard_path(question) do
-                        ' Change
-                        span.visuallyhidden
-                          = ' answer to' + Eligibility::Basic.label(question)
+  - unless @eligibility.sorted_answers.first.first.to_sym == step
+    .previous-answers
+      .done-questions
+        article
+          table
+            thead
+              tr
+                th.previous-answers-title colspan="2"
+                  ' Your eligibility answers so far
+                /th.link-right.restart
+                  = link_to "Start again", eligibility_path
+            tbody
+              - @eligibility.sorted_answers.each do |question, answer|
+                - if question.to_sym != step
+                  tr.section
+                    td.previous-question-title
+                      = Eligibility::Basic.label(question)
+                    td.previous-question-body
+                      - if Eligibility::Basic.boolean_question?(question)
+                        = @eligibility.public_send("#{question}?") ? 'Yes' : 'No'
+                      - else
+                        = Eligibility::Basic.enumerized_attributes[question].find_value(answer).text
+                    td.link-right
+                      - unless admin_in_read_only_mode?
+                        = link_to wizard_path(question) do
+                          ' Change
+                          span.visuallyhidden
+                            = ' answer to' + Eligibility::Basic.label(question)
