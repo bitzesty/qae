@@ -16,6 +16,8 @@
   = link_to 'Confirm', confirmation_url(@collaborator, confirmation_token: @devise_confirmation_token)
   | You also can reset your password after confirmation at:
   = link_to 'Password Settings', password_settings_account_url
+- else
+  = link_to 'View', dashboard_url
 
 | Best Regards, Administration Team
 

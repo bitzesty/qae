@@ -26,6 +26,8 @@ p
       | You also can reset your password after confirmation at:
       br
       = link_to 'Password Settings', password_settings_account_url
+- else
+  = link_to 'View', dashboard_url
 
 p
   | Best Regards, Administration Team
