@@ -40,12 +40,13 @@ html
                   ' My account
                   span.caret
                 ul.dropdown-menu
-                  li
-                    = link_to "Applications", dashboard_path
-                  li
-                    = link_to "Account Settings", correspondent_details_account_path
-                  li
-                    = link_to "Collaborators", add_collaborators_account_path
+                  - if current_user.completed_registration
+                    li
+                      = link_to "Applications", dashboard_path
+                    li
+                      = link_to "Account Settings", correspondent_details_account_path
+                    li
+                      = link_to "Collaborators", add_collaborators_account_path
                   li
                     - if current_admin
                       = link_to "Log out", destroy_admin_session_path, method: :delete
