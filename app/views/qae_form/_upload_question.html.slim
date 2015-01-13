@@ -4,7 +4,10 @@
       li
         div
           - if el['file']
-            = attachments[el['file'].to_i].original_filename
+            - if attachments[el['file'].to_i].file
+              = link_to attachments[el['file'].to_i].original_filename, attachments[el['file'].to_i].file.to_s, target: "_blank"
+            - else
+              = attachments[el['file'].to_i].original_filename
             input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
             a.remove-link href="#"
               | Remove
