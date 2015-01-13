@@ -1,77 +1,91 @@
-doctype html
+- content_for?(:title) ? yield(:title) : "Queen's Awards for Enterprise"
 
-html
-  head
-    title
-      = content_for?(:title) ? yield(:title) : "Queen's Awards for Enterprise"
+- content_for :head do
+  = stylesheet_link_tag "application.css"
+  /[if IE 6]
+    = stylesheet_link_tag "application-ie6.css"
+    script
+      var ieVersion = 6;
+  /[if IE 7]
+    = stylesheet_link_tag "application-ie7.css"
+    script
+      var ieVersion = 7;
+  /[if IE 8]
+    = stylesheet_link_tag "application-ie8.css"
+    script
+      var ieVersion = 8;
+  /[if IE 9]
+    = stylesheet_link_tag "application-ie9.css"
+    script
+      var ieVersion = 9;
 
-    = stylesheet_link_tag "application.css"
-    /[if IE 6]
-      = stylesheet_link_tag "application-ie6.css"
-      script
-        var ieVersion = 6;
-    /[if IE 7]
-      = stylesheet_link_tag "application-ie7.css"
-      script
-        var ieVersion = 7;
-    /[if IE 8]
-      = stylesheet_link_tag "application-ie8.css"
-      script
-        var ieVersion = 8;
-    /[if IE 9]
-      = stylesheet_link_tag "application-ie9.css"
-      script
-        var ieVersion = 9;
+  = csrf_meta_tags
 
-    = javascript_include_tag 'application'
-    = csrf_meta_tags
+  = yield :section_meta_tags
 
-  body
-    .header-proposition
-      .content
-        nav#proposition-menu
-          a#proposition-name href="/"
-            ' Queen's Awards for Enterprise
-            span.alpha-tag ALPHA
-          - if current_admin || current_user
-            ul#proposition-links.user-account-links
-              li.dropdown
-                = link_to "#", class: "dropdown-toggle" do
-                  ' My account
-                  span.caret
-                ul.dropdown-menu
-                  - if current_admin || current_user.completed_registration
-                    li
-                      = link_to "Applications", dashboard_path
-                    li
-                      = link_to "Account Settings", correspondent_details_account_path
-                    li
-                      = link_to "Collaborators", add_collaborators_account_path
+  = yield :head
+
+- content_for :content do
+  .header-proposition
+    .content
+      nav#proposition-menu
+        a#proposition-name href="/"
+          ' Queen's Awards for Enterprise
+          span.alpha-tag ALPHA
+        - if current_admin || current_user
+          ul#proposition-links.user-account-links
+            li.dropdown
+              = link_to "#", class: "dropdown-toggle" do
+                ' My account
+                span.caret
+              ul.dropdown-menu
+                - if current_admin || current_user.completed_registration
                   li
-                    - if current_admin
-                      = link_to "Log out", destroy_admin_session_path, method: :delete
-                    - else
-                      = link_to "Log out", destroy_user_session_path, method: :delete
+                    = link_to "Applications", dashboard_path
+                  li
+                    = link_to "Account Settings", correspondent_details_account_path
+                  li
+                    = link_to "Collaborators", add_collaborators_account_path
+                li
+                  - if current_admin
+                    = link_to "Log out", destroy_admin_session_path, method: :delete
+                  - else
+                    = link_to "Log out", destroy_user_session_path, method: :delete
 
-    #global-breadcrumb.header-context
-      ol.group role="breadcrumbs"
-        - if !user_signed_in? && !landing_page?
-          li = link_to "Home", "https://www.gov.uk/"
+  #global-breadcrumb.header-context
+    ol.group role="breadcrumbs"
+      - if !user_signed_in? && !landing_page?
+        li = link_to "Home", "https://www.gov.uk/"
 
-        li = link_to "Queen's Awards for Enterprise", root_path
+      li = link_to "Queen's Awards for Enterprise", root_path
 
-        - if user_signed_in? && current_user.completed_registration && !landing_page?
-          li = link_to "Applications", dashboard_path
+      - if user_signed_in? && current_user.completed_registration && !landing_page?
+        li = link_to "Applications", dashboard_path
 
-    #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
-      #QAE
-        - if [:alert, :notice].any? { |kind| flash[kind].presence }
-          .flash
-            .flash-inner
-              - [:alert, :notice].each do |kind|
-                - if flash[kind]
-                  div class="#{kind}"
-                    = flash[kind]
+  #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
+    #QAE
+      - if [:alert, :notice].any? { |kind| flash[kind].presence }
+        .flash
+          .flash-inner
+            - [:alert, :notice].each do |kind|
+              - if flash[kind]
+                div class="#{kind}"
+                  = flash[kind]
+      main#content.group class="#{yield :page_content_class}" role="main"
+        = yield
 
-        main#content.group class="#{yield :page_content_class}" role="main"
-          = yield
+- content_for :footer_support_links do
+  h2.visuallyhidden Support links
+  ul
+    li = link_to "Help", "https://www.gov.uk/help"
+    li = link_to "Cookies", "https://www.gov.uk/help/cookies"
+    li = link_to "Contact", "https://www.gov.uk/contact"
+    li = link_to "Cymraeg", "https://www.gov.uk/cymraeg"
+    li
+      ' Built by the
+      = link_to "Government Digital Service", "https://www.gov.uk/government/organisations/government-digital-service"
+
+- content_for :body_end do
+  = javascript_include_tag 'application'
+
+= render :file => 'layouts/govuk_template'
