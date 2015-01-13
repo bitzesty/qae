@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Submission::SuccessNotifier do
+describe Notifiers::Submission::SuccessNotifier do
   let!(:user) { create :user }
   let!(:collaborator) { create :user }
 
@@ -24,7 +24,7 @@ describe Submission::SuccessNotifier do
   describe "#run" do
     describe "Scheduling of delayed mailers" do
       before do
-        Submission::SuccessNotifier.new(form_answer).run
+        Notifiers::Submission::SuccessNotifier.new(form_answer).run
       end
 
       it "should schedule delayed mails to all necessary recipients" do

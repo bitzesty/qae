@@ -51,7 +51,7 @@ class FormController < ApplicationController
     submitted_was_changed = @form_answer.submitted_changed?
 
     if @form_answer.save! && submitted_was_changed
-      Submission::SuccessNotifier.new(@form_answer).run
+      Notifiers::Submission::SuccessNotifier.new(@form_answer).run
     end
 
     redirect_to submit_confirm_url(@form_answer)
