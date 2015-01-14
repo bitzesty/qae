@@ -25,7 +25,10 @@
 
   = yield :head
 
-- content_for :content do
+- content_for :header_class do
+  ' with-proposition
+
+- content_for :proposition_header do
   .header-proposition
     .content
       nav#proposition-menu
@@ -52,6 +55,7 @@
                   - else
                     = link_to "Log out", destroy_user_session_path, method: :delete
 
+- content_for :content do
   #global-breadcrumb.header-context
     ol.group role="breadcrumbs"
       - if !user_signed_in? && !landing_page?
