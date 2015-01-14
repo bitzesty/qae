@@ -19,6 +19,9 @@ class FormAnswer < ActiveRecord::Base
     has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
     has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
     has_many :form_answer_attachments
+
+    has_many :supporters, dependent: :destroy
+    has_many :support_letters, through: :supporters
   end
 
   begin :validations

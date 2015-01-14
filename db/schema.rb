@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150112121539) do
+ActiveRecord::Schema.define(version: 20150113155731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -74,9 +74,9 @@ ActiveRecord::Schema.define(version: 20150112121539) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "document"
+    t.string   "award_type"
     t.boolean  "withdrawn",     default: false
     t.integer  "account_id"
-    t.string   "award_type"
     t.string   "urn"
     t.boolean  "submitted",     default: false
     t.float    "fill_progress"
@@ -84,6 +84,25 @@ ActiveRecord::Schema.define(version: 20150112121539) do
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
+
+  create_table "support_letters", force: true do |t|
+    t.integer  "supporter_id"
+    t.text     "body"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "support_letters", ["supporter_id"], name: "index_support_letters_on_supporter_id", using: :btree
+
+  create_table "supporters", force: true do |t|
+    t.integer  "form_answer_id"
+    t.string   "email"
+    t.string   "access_key"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "supporters", ["form_answer_id"], name: "index_supporters_on_form_answer_id", using: :btree
 
   create_table "users", force: true do |t|
     t.string   "email",                      default: "",    null: false

@@ -71,6 +71,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resource :support_letter, only: [:show, :update]
+
   resources :users, only: [], module: 'users' do
     resources :form_answers, only: [:show]
   end
