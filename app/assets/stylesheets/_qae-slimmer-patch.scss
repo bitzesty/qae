@@ -1,0 +1,58 @@
+#QAE {
+  margin-bottom: $gutter*2;
+}
+
+#footer .footer-categories .footer-inside-government ul li {
+  @media (max-width: 640px) {
+    width: auto;
+  }
+}
+
+#wrapper {
+  max-width: none;
+  margin: 0;
+}
+
+#global-breadcrumb ol li {
+  background-image: url(https://assets.digital.cabinet-office.gov.uk/static/separator-73822610794bc3a64871f144d93d6526.png);
+}
+
+article {
+  ul {
+    list-style-image: url(https://assets.digital.cabinet-office.gov.uk/static/bullet-disc-5px-4180cb91fb35028365a59ddfcfd36e34.gif);
+  }
+
+  .help-notice {
+    background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-important-0976ff4a275422b183be917d4b3ef444.png) no-repeat scroll 0 0.5em;
+  }
+
+  th,
+  td {
+    font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.25;
+    font-weight: 400;
+    text-transform: none;
+    vertical-align: top;
+    padding: .75em .5em .75em 0;
+  }
+
+  th {
+    font-weight: 700;
+  }
+}
+
+fieldset {
+  margin: 0 2px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  font-size: 11px;
+}
+
+.highlight-answer, .highlighted-event {
+  p {
+    margin: 1em 0;
+  }
+}
