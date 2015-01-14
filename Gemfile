@@ -17,7 +17,7 @@ gem 'responders', '~> 1.1'
 gem 'sentry-raven', github: 'getsentry/raven-ruby'
 gem 'simple_form', '~> 3.0'
 gem 'slim-rails', '~> 2.1'
-gem 'slimmer', '~> 5.0.0', github: 'alphagov/slimmer', branch: 'master'
+gem "govuk_template", "0.12.0"
 gem 'wicked', '~> 1.1'
 gem 'prawn'
 gem 'prawn-table'

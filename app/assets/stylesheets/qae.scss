@@ -1,25 +1,43 @@
+@import '_shims';
 @import '_grid_layout';
 @import '_conditionals';
 @import '_colours';
 @import '_css3';
 @import '_typography';
+@import '_device-pixels';
+@import '_measurements';
 @import 'design-patterns/_buttons';
 @import 'design-patterns/_alpha-beta';
 
 $gutter-one-sixth: $gutter/6;
 
-// Footer fix for slim screens
-#footer .footer-categories .footer-inside-government ul li {
-  @media (max-width: 640px) {
-    width: auto;
-  }
-}
+// local styleguide includes
+@import 'styleguide/conditionals2';
 
 // App specific styles
+@import 'helpers/layouts';
+@import 'helpers/reset';
+@import 'helpers/buttons';
+@import 'helpers/core';
+@import 'helpers/ancillary-pages';
+@import 'helpers/footer';
+@import 'helpers/header';
+@import 'helpers/multi-step';
+@import 'helpers/notifications';
+@import 'helpers/organisations';
+@import 'helpers/publisher';
+@import 'helpers/text';
+@import 'helpers/alpha-label';
+@import 'helpers/beta-label';
+@import 'helpers/selectable';
+
 @import 'frontend/smart_answers';
 @import 'frontend/layout';
 @import 'frontend/forms';
 @import 'frontend/attachment';
+
+//
+@import '_qae-slimmer-patch';
 
 // Page specific styles
 #QAE {
@@ -31,10 +49,3 @@ $gutter-one-sixth: $gutter/6;
 
 // Password strength bar
 @import 'frontend/password_strength';
-
-
-// TEMP TODO hide the search with CSS
-.search-toggle,
-.site-search {
-  display: none !important;
-}
