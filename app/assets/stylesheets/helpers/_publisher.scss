@@ -1,0 +1,623 @@
+/* visited link colour overrides */
+#content.multi-page li a:visited,
+#content.multi-page .pagination li a:visited,
+#wrapper.programme .article-container nav a:visited {
+  color: $link-visited-colour;
+}
+
+#content.multi-page {
+  header {
+    position: relative;
+  }
+
+  article {
+    @include ie-lte(7) {
+      min-height: 40em;
+    }
+
+    @include media-down(mobile) {
+      width:auto;
+      min-height: 0;
+    }
+  }
+
+  aside {
+    z-index: 10;
+    border-bottom: 1px solid #bbb;
+    margin-bottom: 1em;
+    padding-bottom: 1em;
+    overflow: hidden;
+
+    @include media(tablet) {
+      margin: 0 0 2.5em 2em;
+    }
+
+    @include ie(6) {
+      zoom: 1;
+    }
+
+    .inner {
+      padding: 0;
+    }
+
+    @include media-down(mobile) {
+      width:auto;
+      overflow:hidden;
+      border-bottom: none;
+      padding-bottom: 0;
+      margin-left: 0;
+    }
+  }
+}
+
+#content.single-page {
+  header div,
+  article {
+    width: auto;
+  }
+
+  header div {
+    padding-bottom: 1em;
+  }
+
+  article {
+    margin: 0;
+
+    .inner {
+      margin-left: 0;
+      padding: 0 10em 0 2em;
+    }
+  }
+}
+
+.alternative-guide {
+  @include core-16;
+  margin: 0 auto 0.5em;
+  overflow: hidden;
+  width: 9.5em;
+
+  @include media-down(mobile) {
+    margin: 1em;
+    width: auto;
+    text-align: left;
+  }
+
+  &.video {
+    .video-wrapper {
+      background: image-url("play-video-cta.png")  no-repeat scroll 0 -80px $panel-colour;
+      height: 5em;
+      margin: 0 auto;
+      overflow: hidden;
+      text-align: center;
+      width: 8.5em;
+
+      &:hover {
+        background: image-url("play-video-cta.png") no-repeat scroll 0 0 $panel-colour;
+      }
+
+      a span {
+        @include core-16($line-height: (32 / 16));
+        display: block;
+        padding-left: 0.5em;
+      }
+
+      @include media-down(mobile) {
+        width: 68px;
+        height: 40px;
+        float: left;
+        margin-right: 1em;
+        background-position: -34px -100px;
+
+        &:hover {
+          background-position: -34px -20px;
+        }
+      }
+
+      img {
+        display: none;
+        margin-top: -0.5em;
+      }
+    }
+
+    @include media-down(mobile) {
+      a span {
+        line-height: 40px;
+      }
+    }
+  }
+}
+
+.video-guide {
+  article .inner {
+    padding-bottom: 2em;
+  }
+
+  .meta-data {
+    border-top: none;
+    margin: 1em 0 2em 2em;
+  }
+}
+
+#wrapper.video-guide article {
+  /* get rid of border on video guide pages */
+  border-left: none;
+  margin-left: 0;
+  width: 100%;
+}
+
+.multi-page article .inner {
+  padding: 0 2em 0 2em;
+
+  @include media-down(mobile) {
+    padding: 0 1em 1em;
+  }
+}
+.licence article .inner {
+  padding-top: 0;
+}
+
+aside .show-all-parts {
+  @include core-19($line-height: (45/19), $line-height-640: (45/13));
+  border: solid 1px $border-colour;
+  border-width: 1px 0;
+
+  padding: 0 16px;
+  display: none;
+
+  @include media-down(mobile) {
+    display: block;
+    background: transparent image-url("accordian-arrow.png") 100% 6px no-repeat;
+  }
+
+  @include device-pixel-ratio() {
+    background-image: image-url("accordian-arrow-2x.png");
+    background-size: 45px 90px;
+  }
+
+  &,
+  &:hover,
+  &:focus {
+    text-decoration:none;
+  }
+
+  &.show-all-parts-open {
+    background-position: 100% -40px;
+    border-bottom: none;
+  }
+}
+
+aside .page-navigation {
+
+  @include media-down(mobile) {
+    margin-top: 0;
+  }
+
+  ol {
+    margin: 0;
+    padding: 0;
+    float:left;
+    display: inline;
+    overflow: hidden;
+    width:50%;
+
+    @include ie-lte(7) {
+      width: 49%;
+    }
+
+    @include media-down(mobile) {
+      float: none;
+      display: block;
+      width: auto;
+    }
+  }
+
+  li {
+    list-style: decimal;
+    list-style-position: outside;
+    margin-right: 0.75em;
+    margin-left: 1.5em;
+    clear: left;
+
+    @include core-16;
+
+    @include ie-lte(7) {
+      list-style: none;
+      margin-left: 0;
+      display: list-item;
+    }
+
+    @include media-down(mobile) {
+      float: none;
+      margin: 0 1em 0 2.25em;
+    }
+
+    a {
+      display: block;
+      padding: 0.25em 1em 0.25em 0;
+
+      @include ie-lte(7) {
+        display: inline;
+        float: left;
+      }
+
+      span {
+        cursor: pointer;
+      }
+
+      &:hover span.part-title,
+      &:focus span.part-title,
+      &:hover span.part-description,
+      &:focus span.part-description {
+        color: $link-hover-colour;
+      }
+    }
+
+    span {
+      @include ie-lte(7) {
+        float: left;
+      }
+
+      &.part-number {
+        display: none;
+        width: 1.75em;
+
+        @include ie-lte(7) {
+          display: inline;
+          padding: 0.25em 0;
+        }
+      }
+
+      &.part-label,
+      &.part-title {
+        line-height: 1.5;
+        display: inline;
+      }
+
+      &.part-label {
+        color: $text-colour;
+        padding:0 0.5em 0 0;
+      }
+
+      &.part-description {
+        line-height: 1.25;
+        display: block;
+        clear: left;
+      }
+
+      &.part-title {
+        color: #2E3191;
+        text-decoration: underline;
+        line-height: 1.5;
+      }
+    }
+
+    &.active {
+      padding: 0.25em 0.25em 0.25em 0;
+
+      span.part-number {
+        padding: 0;
+      }
+
+      span.part-title {
+        color: $text-colour;
+        text-decoration: none;
+      }
+    }
+
+    @include media-down(mobile) {
+      &.active {
+        padding: 0;
+      }
+
+      @include core-19($line-height: (45/19));
+
+      span, a {
+        margin: 0 -1em 0 -2.25em;
+        padding: 0em 1em 0.75em 2.75em;
+      }
+
+      span {
+        display: block;
+
+        &.part-title,
+        &.part-label {
+          display: inline;
+        }
+
+        &.part-label {
+          padding-right: 1em;
+        }
+      }
+    }
+  }
+
+  ol[start] li {
+    margin-left: 1.8em;
+
+    @include media-down(mobile) {
+      margin-left: 2.25em;
+    }
+  }
+}
+
+aside .page-navigation-open {
+  border-bottom: solid 1px $border-colour;
+
+  ol {
+    position: static;
+    left: auto;
+  }
+}
+
+aside .page-navigation-closed {
+  border-bottom: none;
+
+  @include media-down(mobile) {
+    ol {
+      position: absolute;
+      left: -9999em;
+    }
+  }
+}
+
+/* guides pagination */
+.pagination {
+  display: block;
+  margin: 4em 0 0 0;
+  border-bottom: 1px solid $border-colour;
+
+  @include media-down(mobile) {
+    margin: 2em 0 0 0;
+  }
+
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    @include core-16($line-height: (20 / 16));
+    float: left;
+    list-style: none;
+    text-align: right;
+    margin: 0;
+    padding: 0;
+    width: 49%;
+
+    a {
+      background-color: transparent;
+      display: block;
+      color: $link-colour;
+      text-decoration: none;
+
+      @include ie-lte(7) {
+        height: 4.5em;
+      }
+
+      &:hover,
+      &:active {
+        background-color: $canvas-colour;
+      }
+
+      .pagination-label {
+        @include core-27($line-height: (33.75 / 27));
+        margin-bottom: 0.1em;
+        display: block;
+      }
+
+      .pagination-part-title {
+        text-decoration: underline;
+      }
+    }
+
+    &.next {
+      float: right;
+      text-align: right;
+    }
+
+    &.next a:before {
+      background: transparent image-url("arrow-sprite.png") no-repeat -102px -11px;
+      margin: -4px -32px 0 0;
+      display: block;
+      float: right;
+      width: 30px;
+      height: 38px;
+      content: " ";
+    }
+
+    &.previous a:before {
+      background: transparent image-url("arrow-sprite.png") no-repeat -20px -11px;
+      margin: -4px 0 0 -32px;
+      display: block;
+      float: left;
+      width: 30px;
+      height: 38px;
+      content: " ";
+      }
+
+    &.previous {
+      float: left;
+      text-align: left;
+    }
+
+    &.previous a {
+      padding: 0.75em 0 0.75em 3em;
+    }
+    
+    &.next a {
+      padding: 0.75em 3em 0.75em 0;
+    }
+
+    @include media-down(mobile) {
+      &.previous,
+      &.next {
+        float: none;
+        width: 100%;
+      }
+
+      &.next a {
+        text-align: right;
+      }
+    }
+  }
+
+  .first,
+  .last {
+    min-height: 4.5em;
+
+    @include ie-lte(7) {
+      height: 4.5em;
+    }
+
+    span {
+      display: block;
+      min-height: 4.5em;
+      padding: 0.75em 5%;
+      width: 90%;
+
+      @include ie-lte(7) {
+        height: 4.5em;
+      }
+    }
+
+    .pagination-label {
+      display: block;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  @include ie(6) {
+    .first {
+      text-align: left;
+    }
+  }
+}
+
+/*
+ * Transactions and local transactions styles
+ */
+
+.local_transaction {
+
+  .contact-container {
+
+    .contact {
+      margin: 0 -1em;
+
+      p:first-child {
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.find-location-for-service, .find-location-for-licence {
+  background-color: $panel-colour;
+  min-height: 2em;
+  line-height: 2;
+  margin: 2em -1em 0 -1em;
+  padding: 1em 0.75em 1em 1em;
+  position: relative;
+
+  @include media-down(mobile) {
+    margin: 1.2em -1em;
+    padding-left: 1em;
+    padding-right: 1em;
+    .postcode {
+      margin-left: 0;
+    }
+  }
+
+  p.geolocate-me {
+    border-top: 1px solid $border-colour;
+    @include core-16;
+    margin-bottom: 0;
+    padding-top: 1em;
+
+    @include media-down(mobile) {
+      margin-left: -2.5em;
+      padding-right: 2.5em;
+    }
+  }
+
+  input[type="submit"] {
+    border-color: $border-colour;
+  }
+}
+
+/* once we have added a class to external links generated by govspeak we can ditch this */
+#wrapper .get-started a[rel="external"]:after {
+  content: "";
+}
+
+#wrapper.transaction .get-started .button .indicator:after {
+  @include core-27;
+  margin-top: -0.5em;
+  position: absolute;
+  right: 0.5em;
+  top: 50%;
+}
+
+h1#what-you-need-to-know{
+  font-weight: 400;
+}
+
+/*
+ * Helper icons
+ */
+
+ul.helpers li.active,
+ul.helpers li.active h3 a {
+  color: #fff;
+}
+
+.js-enabled #wrapper.programme {
+
+  .part-pagination.return-to-top,
+  article.tabs-panel {
+    display: none;
+  }
+
+  article {
+    min-height: 20em;
+
+    @include ie(6) {
+      height: 20em;
+    }
+
+    @include media-down(mobile) {
+      min-height: 0;
+    }
+  }
+}
+
+#wrapper.programme article.tabs-panel-selected,
+.js-enabled #wrapper.programme article.tabs-panel-selected {
+  display:block;
+}
+
+div.further-information {
+  margin: 0;
+  clear: both;
+  padding-top: 2em;
+
+  @include media-down(mobile) {
+    padding:1em 0;
+  }
+
+  a {
+    padding: 0 0 0 0.8em;
+  }
+}
+
+/* contacts popup */
+#popup.contact-popup {
+  background-color: #F4F4F4;
+  padding: 1em 2em;
+  width: 50%;
+}
+
+.contact-popup .contact {
+  width: auto;
+}
+
