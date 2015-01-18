@@ -1,4 +1,4 @@
-<% if collaborator.account.blank? %>
+<% if collaborator.account_id.blank? %>
   $.fancybox.close();
   $(".js-collaborators-list #<%= dom_id(collaborator) %>").remove();
 <% else %>

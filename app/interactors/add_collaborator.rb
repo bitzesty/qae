@@ -7,7 +7,8 @@ class AddCollaborator
               :success, 
               :new_user, 
               :generated_password,
-              :devise_confirmation_token
+              :devise_confirmation_token,
+              :errors
 
   def initialize(current_user, account, params)
     @current_user = current_user
@@ -18,34 +19,46 @@ class AddCollaborator
   end
 
   def run
-    persist!
+    if valid? && collaborator.valid?
+      persist! 
 
-    if success?
-      send_collaboration_email!
+      if success?
+        send_collaboration_email!
+      end
     end
 
-    collaborator
+    self
   end
 
   def find_or_build_collaborator
     if Email.new(email).valid?
       user = User.find_by email: email
-      return user if user.present? && user.account.blank?
+
+      if user.present?
+        if user.account_id == account.id
+          @errors = Array.wrap "This user already added to collaborators!"
+        end
+
+        user.role = params[:role]
+        return user 
+      end
     end
     
     @new_user = true
-    User.new(params)
+    user = User.new(params)
+    user.agreed_with_privacy_policy = '1'
+    user.password = set_generated_password
+
+    user
   end
 
   def persist!
     collaborator.account = account
-
-    if new_user?
-      collaborator.agreed_with_privacy_policy = '1'
-      collaborator.password = set_generated_password
+    
+    if collaborator.new_record?
       collaborator.skip_confirmation_notification!
       collaborator.send(:generate_confirmation_token!)
-      @devise_confirmation_token = @collaborator.instance_variable_get("@raw_confirmation_token")
+      @devise_confirmation_token = collaborator.instance_variable_get("@raw_confirmation_token")
     end
 
     @success = collaborator.save
@@ -70,5 +83,9 @@ class AddCollaborator
 
   def new_user?
     @new_user
+  end
+
+  def valid?
+    @errors.blank?
   end
 end

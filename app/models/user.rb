@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
     message: "This is not a valid telephone number"
   }, if: :second_step?
 
+  validates_with UserAccountValidator, on: :update, if: "account_id_changed?"
+
   begin :associations
     has_many :form_answers, dependent: :destroy
     has_many :eligibilities, dependent: :destroy

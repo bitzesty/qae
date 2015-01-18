@@ -11,6 +11,12 @@ class Account::CollaboratorsController < Account::BaseController
   expose(:collaborator) do
     collaborators.find(params[:id])
   end
+  expose(:add_collaborator_interactor) do
+    AddCollaborator.new(
+        current_user, 
+        account, 
+        {})
+  end
 
   def index
     @active_step = 4
@@ -21,15 +27,17 @@ class Account::CollaboratorsController < Account::BaseController
   end
 
   def create
-    self.collaborator = AddCollaborator.new(
+    self.add_collaborator_interactor = AddCollaborator.new(
       current_user, 
       account, 
       create_params).run
+    self.collaborator = add_collaborator_interactor.collaborator
   end
 
   def destroy
-    self.collaborator.account = nil
-    self.collaborator.save
+    collaborator.account_id = nil
+    collaborator.role = nil
+    collaborator.save(validate: false)
   end
 
   private
