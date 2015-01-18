@@ -1,6 +1,5 @@
 class Account::CollaboratorsController < Account::BaseController
-
-  before_action :require_to_be_account_admin!
+  
   before_action :require_to_be_not_current_user!, only: [:edit, :destroy]
 
   expose(:account) do
@@ -40,13 +39,6 @@ class Account::CollaboratorsController < Account::BaseController
       :email, 
       :role
     )
-  end
-
-  def require_to_be_account_admin!
-    unless current_user.account_admin?
-      redirect_to root_path,
-                  notice: "Access denied!"
-    end
   end
 
   def require_to_be_not_current_user!

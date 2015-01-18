@@ -1,5 +1,6 @@
 class Account::BaseController < ApplicationController
-  before_action :authenticate_account_admin!
+  before_action :authenticate_user!
+  before_action :require_to_be_account_admin!
   before_action :check_basic_eligibility, :check_award_eligibility
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy
@@ -7,7 +8,10 @@ class Account::BaseController < ApplicationController
 
   private
 
-  def authenticate_account_admin!
-    head :forbidden unless current_user.role.account_admin?
+  def require_to_be_account_admin!
+    unless current_user.account_admin?
+      redirect_to root_path,
+                  notice: "Access denied!"
+    end
   end
 end
