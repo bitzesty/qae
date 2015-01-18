@@ -10,6 +10,7 @@
 #= require govuk_toolkit
 #= require mobile
 #= require browser-check
+#= require fancybox
 #= require_tree .
 
 jQuery ->
