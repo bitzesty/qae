@@ -1,6 +1,6 @@
 class Account::CollaboratorsController < Account::BaseController
   
-  before_action :require_to_be_not_current_user!, only: [:edit, :destroy]
+  before_action :require_to_be_not_current_user!, only: [:destroy]
 
   expose(:account) do
     current_user.account
@@ -50,9 +50,6 @@ class Account::CollaboratorsController < Account::BaseController
   end
 
   def require_to_be_not_current_user!
-    if current_user.id == collaborator.id
-      redirect_to root_path,
-                  notice: "You can't update / remove your self in collaborators!"
-    end
+    render head :forbidden if current_user.id == collaborator.id
   end
 end
