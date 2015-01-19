@@ -2,13 +2,7 @@ require "rails_helper"
 
 describe Notifiers::Submission::SuccessNotifier do
   let!(:user) { create :user }
-  let!(:collaborator) { create :user }
-
-  let!(:account) do 
-    acc = user.account
-    acc.users << collaborator
-    acc.reload
-  end
+  let!(:collaborator) { create :user, account: user.account, role: "regular" }
 
   let(:form_answer) do 
     FactoryGirl.create :form_answer, :submitted, :innovation,
