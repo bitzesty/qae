@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe FormController do
-  let(:user) { create :user }
+  let(:user) { create :user, role: "account_admin" }
   let(:form_answer) do
     FactoryGirl.create :form_answer, :innovation,
                                      user: user,
