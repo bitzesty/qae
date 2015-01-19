@@ -90,4 +90,11 @@ class ApplicationController < ActionController::Base
       return
     end
   end
+
+  def require_to_be_account_admin!
+    unless current_user.account_admin?
+      redirect_to root_path,
+                  notice: "Access denied!"
+    end
+  end
 end
