@@ -25,5 +25,5 @@ footer
       - else
         - if step.submit
           li.submit.qae-form
-            button type="submit" class="button #{step.submit.style.presence}" disabled="#{current_user.account_admin? ? '' : 'disabled'}"
+            button type="submit" class="button #{step.submit.style.presence}" *possible_read_only_ops(true)
               = step.submit.text
