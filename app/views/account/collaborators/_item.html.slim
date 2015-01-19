@@ -1,0 +1,11 @@
+tr id="#{dom_id(collaborator)}"
+  td 
+    = collaborator.full_name_with_status
+  td
+    = mail_to collaborator.email
+  td
+    = collaborator.role
+  td.text-right
+    = link_to "Remove", account_collaborator_path(collaborator),
+                        remote: true,
+                        method: :delete

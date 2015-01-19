@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  POSSIBLE_ROLES = %w(account_admin regular)
+
   def after_initialize
     @current_step = 0
   end
@@ -41,6 +43,8 @@ class User < ActiveRecord::Base
     message: "This is not a valid telephone number"
   }, if: :second_step?
 
+  validates_with UserAccountValidator, on: :update, if: "account_id_changed?"
+
   begin :associations
     has_many :form_answers, dependent: :destroy
     has_many :eligibilities, dependent: :destroy
@@ -54,11 +58,18 @@ class User < ActiveRecord::Base
     belongs_to :account
   end
 
+  begin :scopes
+    scope :excluding, -> (user) { 
+      where.not(id: user.id) 
+    }
+    scope :by_email, -> { order(:email) }
+  end
+
   before_create :create_account
 
   enumerize :prefered_method_of_contact, in: %w(phone email)
   enumerize :qae_info_source, in: %w(govuk competitor business_event national_press business_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other)
-  enumerize :role, in: %w(account_admin regular)
+  enumerize :role, in: POSSIBLE_ROLES, predicates: true
 
   def set_step (step)
     @current_step = step

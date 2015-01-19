@@ -10,6 +10,7 @@ gem 'enumerize', '~> 0.8'
 gem 'govuk_frontend_toolkit', github: 'alphagov/govuk_frontend_toolkit_gem', submodules: true
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
+gem 'fancybox2-rails', '~> 0.2.8'
 gem 'kaminari', '~> 0.16'
 gem 'pg', '~> 0.17'
 gem 'plek', '~> 1.9.0'
@@ -25,6 +26,7 @@ gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'country_select'
+gem "email_validator"
 
 # Background jobs
 gem 'sidekiq'

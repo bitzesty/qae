@@ -1,0 +1,6 @@
+<% if collaborator.account_id.blank? %>
+  $.fancybox.close();
+  $(".js-collaborators-list #<%= dom_id(collaborator) %>").remove();
+<% else %>
+  $.fancybox("<%= j(render 'remove_errors') %>");
+<% end %>

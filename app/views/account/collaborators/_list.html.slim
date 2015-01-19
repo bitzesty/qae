@@ -1,0 +1,16 @@
+table
+  colgroup
+    col width="150"
+    col width="200"
+    col width="100"
+    col width="150"
+  thead
+    tr
+      th Collaborator
+      th Email
+      th Role
+      th.text-right
+        = link_to "+ Add Collaborator", new_account_collaborator_path, remote: true
+  tbody.js-collaborators-list
+    - collaborators.decorate.each do |collaborator|
+      = render 'item', collaborator: collaborator

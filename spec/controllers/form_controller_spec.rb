@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe FormController do
-  let(:user) { create :user }
+  let(:user) { create :user, role: "account_admin" }
   let(:form_answer) do
     FactoryGirl.create :form_answer, :innovation,
                                      user: user,
@@ -16,7 +16,7 @@ describe FormController do
   it 'sends email after submission' do
     notifier = double
     expect(notifier).to receive(:run)
-    expect(Submission::SuccessNotifier).to receive(:new).with(form_answer) { notifier }
+    expect(Notifiers::Submission::SuccessNotifier).to receive(:new).with(form_answer) { notifier }
     expect_any_instance_of(FormAnswer).to receive(:eligible?) { true }
 
     post :submit_form, id: form_answer.id, form: {}

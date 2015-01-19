@@ -4,4 +4,9 @@ class Account < ActiveRecord::Base
 
   belongs_to :owner, class_name: 'User', autosave: false, inverse_of: :owned_account
   validates :owner, presence: true
+
+  def collaborators_without(user)
+    users.excluding(user)
+         .by_email
+  end
 end

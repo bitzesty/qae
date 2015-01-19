@@ -1,9 +1,5 @@
 step "I go to user management page" do
-  if @admin
-    visit '/admin/users'
-  else
-    visit '/account/users'
-  end
+  visit '/admin/users'
 end
 
 step "I create new user" do

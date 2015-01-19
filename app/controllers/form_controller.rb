@@ -9,6 +9,7 @@ class FormController < ApplicationController
     :submit_confirm,
     :autosave
   ]
+  before_action :require_to_be_account_admin!, only: [:submit_form, :submit_confirm]
 
   def new_innovation_form
     form_answer = FormAnswer.create!(user: current_user, account: current_user.account, award_type: 'innovation', document: {
@@ -51,7 +52,7 @@ class FormController < ApplicationController
     submitted_was_changed = @form_answer.submitted_changed?
 
     if @form_answer.save! && submitted_was_changed
-      Submission::SuccessNotifier.new(@form_answer).run
+      Notifiers::Submission::SuccessNotifier.new(@form_answer).run
     end
 
     redirect_to submit_confirm_url(@form_answer)
