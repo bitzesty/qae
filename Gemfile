@@ -61,6 +61,9 @@ group :development do
   gem 'slackistrano', require: false
   gem 'pry'
   gem 'letter_opener'
+  gem 'quiet_assets'
+  gem 'better_errors'
+  gem 'binding_of_caller'
 end
 
 group :test, :development do
