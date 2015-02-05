@@ -33,8 +33,8 @@ class QaePdfForms::General::StepPointer
   end
 
   def render_header
-    form_pdf.text step.complex_title, style: :bold, 
-                                  size: 18, 
+    form_pdf.text step.complex_title, style: :bold,
+                                  size: 18,
                                   align: :left
     form_pdf.default_bottom_margin
   end
