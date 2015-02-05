@@ -1,8 +1,7 @@
-h2 New Collaborator
 = simple_form_for collaborator,
                   as: :collaborator, 
                   url: account_collaborators_path,
-                  html: { class: 'qae-form', method: :post, remote: true } do |f|
+                  html: {class: 'qae-form', method: :post} do |f|
   .field_with_errors
     - if add_collaborator_interactor.errors.present?    
       - add_collaborator_interactor.errors.each do |error|
