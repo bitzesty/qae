@@ -11,6 +11,6 @@ table
       th Role
       th.text-right
         = link_to "+ Add Collaborator", new_account_collaborator_path
-  tbody.js-collaborators-list
+  tbody.collaborators-list
     - collaborators.decorate.each do |collaborator|
       = render 'item', collaborator: collaborator

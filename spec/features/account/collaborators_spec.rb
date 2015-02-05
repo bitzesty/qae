@@ -13,6 +13,8 @@ So that they can collaborate form answers
                               role: "account_admin"
   end
 
+  let(:account) { account_admin.account }
+
   let!(:form_answer) do
     FactoryGirl.create :form_answer, :innovation,
                                      user: account_admin,
@@ -65,7 +67,7 @@ So that they can collaborate form answers
         it "Should see list of account collaborators, excluding his self" do
           expect_to_see "Collaborators"
 
-          within(".js-collaborators-list") do
+          within(".collaborators-list") do
             expect_to_see another_account_admin.decorate.full_name
             expect_to_see regular_admin.decorate.full_name
             expect_to_see_no account_admin.decorate.full_name
@@ -73,13 +75,141 @@ So that they can collaborate form answers
         end
       end
 
+      describe "Add new Collaborator" do
+        before do
+          login_as account_admin
+          visit new_account_collaborator_path
+        end
+
+        describe "Invalid Attempts" do
+          it "can't add person without email" do
+            within("#new_collaborator") do
+              expect {
+                click_on "Add"
+              }.to_not change { 
+                account.reload.users.count
+              }
+            end
+
+            within(".collaborator_email") do
+              expect_to_see "This field cannot be blank"
+            end
+          end
+
+          it "can't add person with invalid email" do
+            within("#new_collaborator") do
+              fill_in "Email", with: "12345678"
+
+              expect {
+                click_on "Add"
+              }.to_not change { 
+                account.reload.users.count
+              }
+            end
+
+            within(".collaborator_email") do
+              expect_to_see "is invalid"
+            end          
+          end
+
+          describe "Attempt to add person, which is already associated with another account" do
+            let!(:user_associated_with_another_account) do
+              FactoryGirl.create :user, :completed_profile,
+                                        role: "account_admin"
+            end
+
+            it "can't add" do
+              within("#new_collaborator") do
+                fill_in "Email", with: user_associated_with_another_account.email
+
+                expect {
+                  click_on "Add"
+                }.to_not change { 
+                  account.reload.users.count
+                }
+              end
+
+              expect_to_see "User already associated with another account!"
+            end
+          end
+         
+          describe "Attempt to add person, which is already in collaborators" do
+            it "can't add" do
+              within("#new_collaborator") do
+                fill_in "Email", with: account_admin.email
+
+                expect {
+                  click_on "Add"
+                }.to_not change { 
+                  account.reload.users.count
+                }
+              end
+
+              expect_to_see "This user already added to collaborators!"
+            end
+          end
+        end
+
+        describe "Success Add to Collaborators" do
+          describe "Adding of existing user, which is not linked with any account" do 
+            let!(:user_without_account) do
+              user = FactoryGirl.create :user, :completed_profile
+              user.account_id = nil
+              user.role = nil
+              user.save(validate: false)
+
+              user
+            end
+
+            it "should add existing user to collaborators" do
+              within("#new_collaborator") do
+                fill_in "Email", with: user_without_account.email
+
+                expect {
+                  click_on "Add"
+                }.to change { 
+                  account.reload.users.count
+                }.by(1)
+              end  
+            end
+          end
+
+          describe "Adding of new user record" do 
+            let(:new_user_email) { "abcdyfg@example.com" }
+
+            it "should create new user record with regular role" do
+              within("#new_collaborator") do
+                fill_in "Email", with: new_user_email
+                select("Regular", from: "Role")
+
+                expect {
+                  click_on "Add"
+                }.to change { 
+                  account.reload.users.count
+                }.by(1)
+
+                new_user = User.last
+                expect(new_user.email).to be_eql new_user_email
+                expect(new_user.role).to be_eql "regular"
+              end
+            end
+          end
+        end
+      end
+
       describe "I'm logged in as regular admin and I can't access the Collaborators section" do
         before do
           login_as regular_admin
-          visit account_collaborators_path
         end
 
         it "Should restrict access for non account admins" do
+          visit account_collaborators_path
+
+          expect_to_see "Access denied!"
+          expect(current_path).to be_eql(root_path)
+
+          visit new_account_collaborator_path
+
           expect_to_see "Access denied!"
           expect(current_path).to be_eql(root_path)
         end
@@ -112,6 +242,9 @@ So that they can collaborate form answers
   #   end
   # end
 
-  # OTHER ADD / REMOVE COLLABORATOR INTERACTIONS ARE COVERED IN 
-  # spec/interactors/add_collaborator_spec.rb
+  def submit_new_collaborator_form
+    within("#new_collaborator") do
+      click_button "Add"
+    end
+  end
 end
