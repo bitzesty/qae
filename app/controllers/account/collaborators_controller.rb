@@ -35,7 +35,7 @@ class Account::CollaboratorsController < Account::BaseController
 
     if add_collaborator_interactor.success?
       redirect_to account_collaborators_path, 
-                  notice: "#{collaborator.email} successfuly added to Collaborators!"
+                  notice: "#{collaborator.email} successfully added to Collaborators!"
     else
       render :new
     end
@@ -47,7 +47,7 @@ class Account::CollaboratorsController < Account::BaseController
     collaborator.save(validate: false)
 
     redirect_to account_collaborators_path, 
-                notice: "#{collaborator.email} successfuly removed from Collaborators!"
+                notice: "#{collaborator.email} successfully removed from Collaborators!"
   end
 
   private

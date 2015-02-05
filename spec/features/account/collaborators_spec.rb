@@ -171,6 +171,12 @@ So that they can collaborate form answers
                   account.reload.users.count
                 }.by(1)
               end  
+
+              user_without_account.reload
+              expect(user_without_account.account_id).to be_eql account.id
+              expect(user_without_account.role).to be_eql "account_admin"
+
+              expect_to_see "#{user_without_account.email} successfully added to Collaborators!"
             end
           end
 
@@ -187,13 +193,46 @@ So that they can collaborate form answers
                 }.to change { 
                   account.reload.users.count
                 }.by(1)
-
-                new_user = User.last
-                expect(new_user.email).to be_eql new_user_email
-                expect(new_user.role).to be_eql "regular"
               end
+
+              new_user = User.last
+              expect(new_user.email).to be_eql new_user_email
+              expect(new_user.role).to be_eql "regular"
+
+              expect_to_see "#{new_user_email} successfully added to Collaborators!"
             end
           end
+        end
+      end
+
+      describe "Remove from Collaborators" do
+        let!(:collaborator) do
+          FactoryGirl.create :user, :completed_profile,
+                                     account_id: account.id,
+                                     role: "regular"
+        end
+
+        before do
+          login_as account_admin
+          visit account_collaborators_path
+        end
+
+        it "should remove user from Collaborators, but do not remove User record" do
+          within(".collaborators-list #user_#{collaborator.id}") do
+            expect_to_see collaborator.email
+
+            expect {
+              click_on "Remove"
+            }.to change { 
+              account.reload.users.count
+            }.by(-1)
+          end
+
+          collaborator.reload
+          expect(collaborator.account_id).to be_nil
+          expect(collaborator.role).to be_nil
+
+          expect_to_see "#{collaborator.email} successfully removed from Collaborators!"
         end
       end
 
