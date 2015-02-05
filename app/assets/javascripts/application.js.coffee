@@ -10,7 +10,6 @@
 #= require govuk_toolkit
 #= require mobile
 #= require browser-check
-#= require fancybox
 #= require_tree .
 
 jQuery ->
@@ -501,7 +500,3 @@ jQuery ->
   $(document).on 'click', (e) ->
     if !$(e.target).closest('.dropdown').length
       $(".dropdown.dropdown-open").removeClass("dropdown-open")
-
-  $(document).ready ->
-    $("a.fancybox").fancybox()
-    return

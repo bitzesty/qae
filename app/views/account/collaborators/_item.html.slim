@@ -7,5 +7,4 @@ tr id="#{dom_id(collaborator)}"
     = collaborator.role
   td.text-right
     = link_to "Remove", account_collaborator_path(collaborator),
-                        remote: true,
                         method: :delete

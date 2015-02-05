@@ -32,12 +32,22 @@ class Account::CollaboratorsController < Account::BaseController
       account, 
       create_params).run
     self.collaborator = add_collaborator_interactor.collaborator
+
+    if add_collaborator_interactor.success?
+      redirect_to account_collaborators_path, 
+                  notice: "#{collaborator.email} successfuly added to Collaborators!"
+    else
+      render :new
+    end
   end
 
   def destroy
     collaborator.account_id = nil
     collaborator.role = nil
     collaborator.save(validate: false)
+
+    redirect_to account_collaborators_path, 
+                notice: "#{collaborator.email} successfuly removed from Collaborators!"
   end
 
   private

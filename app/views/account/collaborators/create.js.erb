@@ -1,6 +1,0 @@
-<% if add_collaborator_interactor.valid? && collaborator.valid? %>
-  $.fancybox.close();
-  $(".js-collaborators-list").append("<%= j(render 'item', collaborator: collaborator.decorate) %>");
-<% else %>
-  $.fancybox("<%= j(render 'form') %>");
-<% end %>
