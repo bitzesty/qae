@@ -35,6 +35,11 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def current_account
+    current_user && current_user.account
+  end
+  helper_method :current_account
+
   protected
 
   def load_eligibilities

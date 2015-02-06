@@ -75,10 +75,6 @@ class User < ActiveRecord::Base
     @current_step = step
   end
 
-  def has_trade_award?
-    form_answers.where(award_type: 'trade').any?
-  end
-
   private
 
   def first_step?
