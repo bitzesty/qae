@@ -59,8 +59,8 @@ class User < ActiveRecord::Base
   end
 
   begin :scopes
-    scope :excluding, -> (user) { 
-      where.not(id: user.id) 
+    scope :excluding, -> (user) {
+      where.not(id: user.id)
     }
     scope :by_email, -> { order(:email) }
   end
@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
 
   def set_step (step)
     @current_step = step
+  end
+
+  def has_trade_award?
+    form_answers.where(award_type: 'trade').any?
   end
 
   private

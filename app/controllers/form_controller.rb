@@ -1,8 +1,8 @@
 require 'qae_2014_forms'
 
 class FormController < ApplicationController
-  before_filter :authenticate_user!, :check_basic_eligibility, :check_award_eligibility, :check_account_completion
-  before_filter :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form]
+  before_action :authenticate_user!, :check_basic_eligibility, :check_award_eligibility, :check_account_completion
+  before_action :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form]
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy,
     :submit_form,
@@ -10,6 +10,7 @@ class FormController < ApplicationController
     :autosave
   ]
   before_action :require_to_be_account_admin!, only: [:submit_form, :submit_confirm]
+  before_action :check_trade_count_limit, only: :new_international_trade_form
 
   def new_innovation_form
     form_answer = FormAnswer.create!(user: current_user, account: current_user.account, award_type: 'innovation', document: {
@@ -102,6 +103,12 @@ class FormController < ApplicationController
     @attachments = @form_answer.form_answer_attachments.inject({}) do |r, attachment|
       r[attachment.id] = attachment
       r
+    end
+  end
+
+  def check_trade_count_limit
+    if current_user.has_trade_award?
+      redirect_to dashboard_url, flash: { alert: 'You can not submit more than one trade form' }
     end
   end
 end
