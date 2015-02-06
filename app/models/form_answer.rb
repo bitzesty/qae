@@ -62,6 +62,10 @@ class FormAnswer < ActiveRecord::Base
     eligibility && eligibility.eligible? && basic_eligibility && basic_eligibility.eligible?
   end
 
+  def document
+    super || {}
+  end
+
   private
 
   def check_eligibility
