@@ -18,7 +18,7 @@ class FormAwardEligibilitiesController < ApplicationController
   def update
     @eligibility.current_step = step
 
-    if @eligibility.update!(eligibility_params)
+    if @eligibility.update(eligibility_params)
       if params[:skipped] == 'true' && (step != @eligibility.questions.last || @eligibility.is_a?(Eligibility::Basic))
         set_steps_and_eligibilities
         setup_wizard
