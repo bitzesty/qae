@@ -21,4 +21,17 @@ describe FormController do
 
     post :submit_form, id: form_answer.id, form: {}
   end
+
+  describe '#new_international_trade_form' do
+    it 'allows to open trade form if it is the first one' do
+      expect(get :new_international_trade_form).to redirect_to(edit_form_url(FormAnswer.where(award_type: 'trade').last))
+    end
+
+    it 'denies to open trade form if it is not the first one' do
+      FactoryGirl.create :form_answer, :trade,
+                                       user: user,
+                                       document: { company_name: "Bitzesty" }
+      expect(get :new_international_trade_form).to redirect_to(dashboard_url)
+    end
+  end
 end

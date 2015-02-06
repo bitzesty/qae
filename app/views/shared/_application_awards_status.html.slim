@@ -17,13 +17,14 @@
 /* action:    Download PDF of your application
 
 ul.applications-list
-  li
-    h3
-      ' International Trade Award
-    small
-      /' Unclear eligibility
-    .pull-right
-      = link_to "New application", apply_international_trade_award_path
+  - unless current_user.has_trade_award?
+    li
+      h3
+        ' International Trade Award
+      small
+        /' Unclear eligibility
+      .pull-right
+        = link_to "New application", apply_international_trade_award_path
   li
     h3
       ' Innovation Award
