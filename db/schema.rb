@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206112027) do
+ActiveRecord::Schema.define(version: 20150113155731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,19 +84,6 @@ ActiveRecord::Schema.define(version: 20150206112027) do
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
-
-  create_table "questionnaires", force: true do |t|
-    t.integer  "payment_usability_rating"
-    t.integer  "security_rating"
-    t.integer  "overall_payment_rating"
-    t.text     "improvement_proposal"
-    t.boolean  "completed",                default: false
-    t.integer  "form_answer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "questionnaires", ["form_answer_id"], name: "index_questionnaires_on_form_answer_id", using: :btree
 
   create_table "support_letters", force: true do |t|
     t.integer  "supporter_id"

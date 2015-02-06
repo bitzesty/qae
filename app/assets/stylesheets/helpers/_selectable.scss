@@ -26,17 +26,6 @@ label.selectable {
     border-color: $black;
   }
 
-  &.selectable-inline {
-    clear: none;
-    margin-right: 5px;
-    padding: 30px 30px 9px 25px;
-
-    input {
-      top: 10px;
-      left: 40%;
-    }
-  }
-
   // Position checkbox within label, to allow text to wrap
   input {
     position: absolute;

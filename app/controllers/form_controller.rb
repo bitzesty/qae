@@ -35,7 +35,7 @@ class FormController < ApplicationController
 
   def edit_form
     if @form_answer.eligible?
-      @form_answer.document = (@form_answer.document || {}).merge(queen_award_holder: current_user.basic_eligibility.current_holder? ? 'yes' : 'no')
+      @form_answer.document = @form_answer.document.merge(queen_award_holder: current_user.basic_eligibility.current_holder? ? 'yes' : 'no')
       @form_answer.save!
       @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document || {}))
       render template: 'qae_form/show'
@@ -55,7 +55,7 @@ class FormController < ApplicationController
       Notifiers::Submission::SuccessNotifier.new(@form_answer).run
     end
 
-    redirect_to form_questionnaire_url(@form_answer)
+    redirect_to submit_confirm_url(@form_answer)
   end
 
   def submit_confirm
