@@ -1,0 +1,40 @@
+header.page-header.group
+  div
+    h1
+      ' How was our payment service?
+
+.article-container.wide-article-container
+  article.group role="article"
+    .inner.step.current
+      p
+        ' Please complete this short survey to help us improve the service.
+      p
+        ' It will take less than a minute to complete.
+      p
+        = link_to "No thanks", submit_confirm_url(@form_answer)
+
+      = simple_form_for @questionnaire, url: update_form_questionnaire_path(@form_answer), html: { class: 'qae-form' } do |f|
+        .current-question
+          .question
+            h2 How easy was it to make the payment?
+            .question-body
+              = f.input :payment_usability_rating, as: :radio_buttons, item_wrapper_class: 'selectable selectable-inline', label_html: { class: 'visuallyhidden' }
+              span.clear
+
+        .current-question
+          .question
+            h2 How secure did the service feel?
+            .question-body
+              = f.input :security_rating, as: :radio_buttons, item_wrapper_class: 'selectable selectable-inline', label_html: { class: 'visuallyhidden' }
+              span.clear
+
+        .current-question
+          .question
+            h2 Overall, how do you rate the new payment service
+            .question-body
+              = f.input :overall_payment_rating, as: :radio_buttons, item_wrapper_class: 'selectable selectable-inline', label_html: { class: 'visuallyhidden' }
+              span.clear
+
+        = f.input :improvement_proposal, as: :text, label: 'How could we improve the service?'
+
+        = f.submit "Submit survey", class: "button medium"

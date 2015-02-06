@@ -24,6 +24,8 @@ Rails.application.routes.draw do
   post '/form/:id'                                      => "form#submit_form",                                            as: 'submit_form'
   post '/form/:id/attachments'                          => "form#add_attachment",                                         as: 'attachments'
   get  '/form/:id/confirmation'                         => "form#submit_confirm",                                         as: 'submit_confirm'
+  get  '/form/:id/questionnaire'                        => "questionnaire#show",                                          as: 'form_questionnaire'
+  post  '/form/:id/questionnaire'                       => "questionnaire#update",                                        as: 'update_form_questionnaire'
   get '/dashboard'                                      => "content_only#dashboard",                                      as: 'dashboard'
 
   get '/apply_innovation_award'                         => "content_only#apply_innovation_award",                         as: 'apply_innovation_award'
