@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe Users::CollaborationMailer do
   let!(:account_admin) do
-    FactoryGirl.create :user, :completed_profile, 
+    FactoryGirl.create :user, :completed_profile,
                               first_name: "Account Admin John",
                               role: "account_admin"
   end
@@ -12,7 +12,7 @@ describe Users::CollaborationMailer do
   describe "#access_granted" do
     describe "New user created and added to collaborators" do
       let!(:new_account_admin) do
-        FactoryGirl.create :user, :completed_profile, 
+        FactoryGirl.create :user, :completed_profile,
                                   first_name: "New Account Admin Mike",
                                   account: account,
                                   role: "account_admin"
@@ -22,11 +22,11 @@ describe Users::CollaborationMailer do
       let(:generated_password) { "strongpass" }
       let(:confirmation_token) { "12345678" }
 
-      let(:mail) { 
+      let(:mail) {
         Users::CollaborationMailer.access_granted(
-          account_admin, 
-          new_account_admin, 
-          new_user, 
+          account_admin,
+          new_account_admin,
+          new_user,
           generated_password,
           confirmation_token
         )
@@ -44,13 +44,13 @@ describe Users::CollaborationMailer do
         expect(mail.body.encoded).to match(new_account_admin.role.humanize)
         expect(mail.body.encoded).to match(new_account_admin.email)
         expect(mail.body.encoded).to match(generated_password)
-        mail.body.encoded.should have_link("Confirm", href: user_confirmation_url(confirmation_token: confirmation_token))
+        expect(mail.body.encoded).to have_link("Confirm", href: user_confirmation_url(confirmation_token: confirmation_token))
       end
     end
 
     describe "Existing user added to collaborators" do
       let!(:new_account_admin) do
-        FactoryGirl.create :user, :completed_profile, 
+        FactoryGirl.create :user, :completed_profile,
                                   first_name: "New Account Admin Mike",
                                   account: account,
                                   role: "account_admin"
@@ -58,10 +58,10 @@ describe Users::CollaborationMailer do
 
       let(:new_user) { false }
 
-      let(:mail) { 
+      let(:mail) {
         Users::CollaborationMailer.access_granted(
-          account_admin, 
-          new_account_admin, 
+          account_admin,
+          new_account_admin,
           new_user
         )
       }
@@ -76,7 +76,7 @@ describe Users::CollaborationMailer do
 
       it "renders the body" do
         expect(mail.body.encoded).to match(new_account_admin.role.humanize)
-        mail.body.encoded.should have_link("View", href: dashboard_url)
+        expect(mail.body.encoded).to have_link("View", href: dashboard_url)
       end
     end
   end

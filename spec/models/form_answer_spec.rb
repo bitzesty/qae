@@ -27,7 +27,7 @@ RSpec.describe FormAnswer, type: :model do
         FormAnswer.connection.execute("ALTER SEQUENCE #{seq} RESTART")
       }
 
-      FormAnswer.any_instance.stub(:eligible?) { true }
+      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
     end
     let!(:form_answer) { FactoryGirl.create(:form_answer, submitted: true) }
 
