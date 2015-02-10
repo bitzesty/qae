@@ -61,9 +61,9 @@ class QAEFormBuilder
       klass_builder = QAEFormBuilder.const_get( "#{meth.to_s.camelize}QuestionBuilder" ) rescue nil
       klass = QAEFormBuilder.const_get( "#{meth.to_s.camelize}Question" ) rescue nil
 
-      if klass_builder && klass && args.length >= 2 && args.length <=3 
+      if klass_builder && klass && args.length >= 2 && args.length <=3
         id, title, opts = args
-        create_question klass_builder, klass, id, title, opts, &block 
+        create_question klass_builder, klass, id, title, opts, &block
       else
         super
       end
@@ -121,4 +121,4 @@ class QAEFormBuilder
     end
 
   end
-end 
+end

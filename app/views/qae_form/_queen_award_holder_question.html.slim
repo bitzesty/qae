@@ -1,0 +1,30 @@
+ul.list-add
+  input name="form[queen_award_holder_details][array]" value="true" type="hidden"
+
+  - question.awards.each_with_index do |award, index|
+    li.js-add-example.js-add-default data-add-example="add-award"
+      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      select.inline name="form[queen_award_holder_details][#{index}][category]"
+        option value="" Category
+        - question.categories.each do |category|
+          option value=category.value selected=(category.value.to_s == award['category']) = category.text
+
+      select.inline name="form[queen_award_holder_details][#{index}][year]"
+        option value="" Year Awarded
+        - question.years.each do |year|
+          option value=year selected=(award['year'] == year.to_s) = year
+  - if question.awards.none?
+    li.js-add-example.js-add-default data-add-example="add-award"
+      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      select.inline name="form[queen_award_holder_details][0][category]"
+        option value="" Category
+        - question.categories.each do |category|
+          option value=category.value = category.text
+
+      select.inline name="form[queen_award_holder_details][0][year]"
+        option value="" Year Awarded
+        - question.years.each do |year|
+          option value=year = year
+
+a.button.button-add.js-button-add href="#" data-add-example="add-award"
+  | + Add another award
