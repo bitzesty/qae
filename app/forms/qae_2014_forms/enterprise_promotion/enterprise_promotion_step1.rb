@@ -74,8 +74,30 @@ class QAE2014Forms
         award_holder :awards, "List of the Awards/Honours nominee currently hold" do
           classes "sub-question"
           year :year, 2010..2014
+          details_words_max 50
 
           conditional :award_holder, :yes
+        end
+
+        header :organization_info, 'Organisation for which the nominee works' do
+          ref 'A 3'
+        end
+
+        text :organization_name, 'Name' do
+          required
+        end
+
+        address :organization_address, '' do
+          required
+        end
+
+        text :website, 'Website URL' do
+          ref 'A 3.1'
+        end
+
+        text :nominee_position, "Nominee's position at the organisation" do
+          required
+          ref 'A 3.2'
         end
       }
     end

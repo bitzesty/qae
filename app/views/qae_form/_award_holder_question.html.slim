@@ -1,7 +1,7 @@
 ul.list-add data-add-limit="10"
   input name="form[awards][array]" value="true" type="hidden"
 
-  - question.awards.each_with_index do |award, index|
+ - question.entities.each_with_index do |award, index|
     li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-default' if index == 0)
       = link_to "Remove", "#", class: "remove-link js-remove-link"
       input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][#{index}][title]" type="text" value=award['title']
@@ -10,10 +10,10 @@ ul.list-add data-add-limit="10"
         - question.award_years.each do |year|
           option value=year selected=(award['year'] == year.to_s) = year
 
-      textarea.award-textarea name="form[awards][#{index}][details]"
+      textarea.award-textarea.js-char-count name="form[awards][#{index}][details]" data-word-max=question.details_words_max
         = award['details']
 
-  - if question.awards.none?
+  - if question.entities.none?
     li.js-add-example.js-add-default data-add-example="add-award"
       = link_to "Remove", "#", class: "remove-link js-remove-link"
       input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][0][title]" type="text"
@@ -22,7 +22,7 @@ ul.list-add data-add-limit="10"
         - question.award_years.each do |year|
           option value=year = year
 
-      textarea.award-textarea name="form[awards][0][details]"
+      textarea.award-textarea.js-char-count name="form[awards][0][details]" data-word-max=question.details_words_max
 
 a.button.button-add.js-button-add href="#" data-add-example="add-award"
   | + Add another award

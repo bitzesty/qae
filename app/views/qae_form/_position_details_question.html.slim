@@ -1,0 +1,49 @@
+ul.list-add.positions
+  input name="form[position_details][array]" value="true" type="hidden"
+
+  - question.entities.each_with_index do |position, index|
+    li.js-add-example.js-add-default data-add-example="add-position"
+      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      input.inline name="form[position_details][#{index}][name]" value=position['name'] type="text"
+      ' Start Date
+      .date-input
+        label
+          ' Month
+          input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][start_month]" value=position['start_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
+        label
+          ' Year
+          input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][start_year]" value=position['start_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
+
+      ' End Date
+      .date-input
+        label
+          ' Month
+          input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
+        label
+          ' Year
+          input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
+
+  - if question.entities.none?
+     li.js-add-example.js-add-default data-add-example="add-position"
+      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      input.inline name="form[position_details][0][name]" type="text"
+      ' Start Date
+      .date-input
+        label
+          ' Month
+          input.js-trigger-autosave.tiny type="text" name="form[position_details][0][start_month]"  maxlength=2 autocomplete="off" *possible_read_only_ops
+        label
+          ' Year
+          input.js-trigger-autosave.small type="text" name="form[position_details][0][start_year]" maxlength=4 autocomplete="off" *possible_read_only_ops
+
+      ' End Date
+      .date-input
+        label
+          ' Month
+          input.js-trigger-autosave.tiny type="text" name="form[position_details][0][end_month]"  maxlength=2 autocomplete="off" *possible_read_only_ops
+        label
+          ' Year
+          input.js-trigger-autosave.small type="text" name="form[position_details][0][end_year]" maxlength=4 autocomplete="off" *possible_read_only_ops
+
+a.button.button-add.js-button-add href="#" data-add-example="add-position"
+  | + Add position

@@ -4,7 +4,7 @@
 ul.list-add data-add-limit="10"
   input name="form[queen_award_holder_details][array]" value="true" type="hidden"
 
-  - question.awards.each_with_index do |award, index|
+  - question.entities.each_with_index do |award, index|
     li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-default' if index == 0)
       = link_to "Remove", "#", class: "remove-link js-remove-link"
       select.inline name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category")
@@ -16,7 +16,7 @@ ul.list-add data-add-limit="10"
         option value="" Year Awarded
         - question.years.each do |year|
           option value=year selected=(award['year'] == year.to_s) = year
-  - if question.awards.none?
+  - if question.entities.none?
     li.js-add-example.js-add-default data-add-example="add-award"
       = link_to "Remove", "#", class: "remove-link js-remove-link"
       select.inline name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category")
