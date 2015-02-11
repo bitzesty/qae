@@ -64,7 +64,7 @@ class QAE2014Forms
           yes_no
         end
 
-        award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
+        queen_award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
           classes "sub-question"
 
           conditional :queen_award_holder, :yes

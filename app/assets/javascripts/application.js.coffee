@@ -317,7 +317,7 @@ jQuery ->
         update_visibility()
         reindex_inputs
         false
-      
+
       list.append(new_el)
       new_el.find('.js-char-count').charcount()
       list.removeClass('visuallyhidden')
@@ -393,6 +393,7 @@ jQuery ->
 
     question = $(this).closest(".question-block")
     add_example = question.find(".js-add-example").html()
+    list_size = 1
 
     # If there is a specific add_example use that
     add_example_attr = $(this).attr("data-add-example")
@@ -414,6 +415,7 @@ jQuery ->
           question.find(".js-button-add").addClass("visuallyhidden")
 
       if can_add
+        add_example = add_example.replace(/(form\[\w+\]\[)(\d+)\]/g, "$1#{list_size+1}]")
         question.find(".list-add").append("<li>#{add_example}</li>")
   # Removing these added fields
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->

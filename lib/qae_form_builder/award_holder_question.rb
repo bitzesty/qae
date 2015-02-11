@@ -1,28 +1,20 @@
 class QAEFormBuilder
-
   AwardHolderCategory = Struct.new(:value, :text)
 
   class AwardHolderQuestionBuilder < QuestionBuilder
-
-    def year year
-      #TODO: type checking
-      @q.years << year
+    def year(name, years)
+      @q.award_years = years
     end
-
-    def category value, text
-      @q.categories << AwardHolderCategory.new(value, text)
-    end
-
   end
 
   class AwardHolderQuestion < Question
-    attr_reader :categories, :years
+    attr_accessor :award_years
 
     def after_create
-      @categories = []
-      @years = []
+      @award_years = []
     end
-
   end
 
+  class AwardHolderQuestionDecorator < MultiQuestionDecorator
+  end
 end

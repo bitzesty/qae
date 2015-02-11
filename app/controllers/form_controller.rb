@@ -2,7 +2,7 @@ require 'qae_2014_forms'
 
 class FormController < ApplicationController
   before_action :authenticate_user!, :check_basic_eligibility, :check_award_eligibility, :check_account_completion
-  before_action :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form]
+  before_action :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form, :new_enterprise_promotion_form]
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy,
     :submit_form,
@@ -31,6 +31,11 @@ class FormController < ApplicationController
 
   def new_sustainable_development_form
     form_answer = FormAnswer.create!(user: current_user, account: current_user.account, award_type: 'development')
+    redirect_to edit_form_url(form_answer)
+  end
+
+  def new_enterprise_promotion_form
+    form_answer = FormAnswer.create!(user: current_user, account: current_user.account, award_type: 'promotion')
     redirect_to edit_form_url(form_answer)
   end
 
@@ -90,11 +95,22 @@ class FormController < ApplicationController
     result = {}
     doc.each do |(k, v)|
       if v.is_a?(Hash)
-        result[k] = v.to_json
+        if doc[k]['array'] == 'true'
+          v.values.each do |value|
+            result[k] ||= []
+
+            if value.is_a?(Hash)
+              result[k] << value.to_json
+            end
+          end
+        else
+          result[k] = v.to_json
+        end
       else
         result[k] = v
       end
     end
+
     result
   end
 

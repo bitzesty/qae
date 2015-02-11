@@ -1,21 +1,28 @@
 ul.list-add
-  li.js-add-example.js-add-default data-add-example="add-award"
-    = link_to "Remove", "#", class: "remove-link js-remove-link"
-    select.inline
-      option value="" Category
-      option value="innovation 2 years" Innovation (2 years)
-      option value="innovation 5 years" Innovation (5 years)
-      option value="international trade 3" International Trade (3 years)
-      option value="international trade 6" International Trade (6 years)
-      option value="sustainable development 2" Sustainable Development (2 years)
-      option value="sustainable development 5" Sustainable Development (5 years)
-    select.inline
-      option value="" Year Awarded
-      option value="2010" 2010
-      option value="2011" 2011
-      option value="2012" 2012
-      option value="2013" 2013
-      option value="2014" 2014
+  input name="form[awards][array]" value="true" type="hidden"
+
+  - question.awards.each_with_index do |award, index|
+    li.js-add-example.js-add-default data-add-example="add-award"
+      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][#{index}][title]" type="text" value=award['title']
+      select.inline name="form[awards][#{index}][year]"
+        option value="" Year Awarded
+        - question.award_years.each do |year|
+          option value=year selected=(award['year'] == year.to_s) = year
+
+      textarea.award-textarea name="form[awards][#{index}][details]"
+        = award['details']
+
+  - if question.awards.none?
+    li.js-add-example.js-add-default data-add-example="add-award"
+      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][0][title]" type="text"
+      select.inline name="form[awards][0][year]"
+        option value="" Year Awarded
+        - question.award_years.each do |year|
+          option value=year = year
+
+      textarea.award-textarea name="form[awards][0][details]"
 
 a.button.button-add.js-button-add href="#" data-add-example="add-award"
   | + Add another award
