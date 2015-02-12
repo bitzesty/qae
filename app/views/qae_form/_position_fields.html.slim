@@ -1,6 +1,6 @@
 li.js-add-example.js-add-default data-add-example="add-position"
   = link_to "Remove", "#", class: "remove-link js-remove-link"
-  input.inline name="form[position_details][#{index}][name]" value=position['name'] type="text"
+  input.inline name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
   ' Start Date
   .date-input
     label

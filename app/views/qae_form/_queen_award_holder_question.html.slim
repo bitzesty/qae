@@ -7,27 +7,38 @@ ul.list-add data-add-limit="10"
   - question.entities.each_with_index do |award, index|
     li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-default' if index == 0)
       = link_to "Remove", "#", class: "remove-link js-remove-link"
+
       select.inline name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category")
-        option value="" Category
+        option value="" *possible_read_only_ops
+          ' Category
         - question.categories.each do |category|
-          option value=category.value selected=(category.value.to_s == award['category']) = category.text
+          option value=category.value selected=(category.value.to_s == award['category']) *possible_read_only_ops
+            = category.text
 
       select.inline name="form[queen_award_holder_details][#{index}][year]"
-        option value="" Year Awarded
+        option value="" *possible_read_only_ops
+          ' Year Awarded
         - question.years.each do |year|
-          option value=year selected=(award['year'] == year.to_s) = year
+          option value=year selected=(award['year'] == year.to_s) *possible_read_only_ops
+            = year
+
   - if question.entities.none?
     li.js-add-example.js-add-default data-add-example="add-award"
       = link_to "Remove", "#", class: "remove-link js-remove-link"
+
       select.inline name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category")
-        option value="" Category
+        option value="" *possible_read_only_ops
+          ' Category
         - question.categories.each do |category|
-          option value=category.value = category.text
+          option value=category.value *possible_read_only_ops
+            = category.text
 
       select.inline name="form[queen_award_holder_details][0][year]"
-        option value="" Year Awarded
+        option value="" *possible_read_only_ops
+          ' Year Awarded
         - question.years.each do |year|
-          option value=year = year
+          option value=year *possible_read_only_ops
+            = year
 
 a.button.button-add.js-button-add href="#" data-add-example="add-award"
   | + Add another award

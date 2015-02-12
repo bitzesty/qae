@@ -6,11 +6,13 @@ ul.list-add data-add-limit="10"
       = link_to "Remove", "#", class: "remove-link js-remove-link"
       input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][#{index}][title]" type="text" value=award['title']
       select.inline name="form[awards][#{index}][year]"
-        option value="" Year Awarded
+        option value="" *possible_read_only_ops
+          ' Year Awarded
         - question.award_years.each do |year|
-          option value=year selected=(award['year'] == year.to_s) = year
+          option value=year selected=(award['year'] == year.to_s) *possible_read_only_ops
+            = year
 
-      textarea.award-textarea.js-char-count name="form[awards][#{index}][details]" data-word-max=question.details_words_max
+      textarea.award-textarea.js-char-count name="form[awards][#{index}][details]" data-word-max=question.details_words_max *possible_read_only_ops
         = award['details']
 
   - if question.entities.none?
@@ -18,11 +20,13 @@ ul.list-add data-add-limit="10"
       = link_to "Remove", "#", class: "remove-link js-remove-link"
       input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][0][title]" type="text"
       select.inline name="form[awards][0][year]"
-        option value="" Year Awarded
+        option value="" *possible_read_only_ops
+          ' Year Awarded
         - question.award_years.each do |year|
-          option value=year = year
+          option value=year *possible_read_only_ops
+            = year
 
-      textarea.award-textarea.js-char-count name="form[awards][0][details]" data-word-max=question.details_words_max
+      textarea.award-textarea.js-char-count name="form[awards][0][details]" data-word-max=question.details_words_max *possible_read_only_ops
 
 a.button.button-add.js-button-add href="#" data-add-example="add-award"
   | + Add another award
