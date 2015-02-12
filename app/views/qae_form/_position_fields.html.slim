@@ -18,3 +18,5 @@ li.js-add-example.js-add-default data-add-example="add-position"
     label
       ' Year
       input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
+
+    textarea.position-textarea.js-char-count name="form[position_details][0][details]" data-word-max=question.details_words_max

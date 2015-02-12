@@ -30,7 +30,7 @@ jQuery ->
         scrollTop: 0
       , 0)
       return false
-      
+
   # Hidden hints as seen on
   # https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
   # Creates the links and adds the arrows
@@ -422,6 +422,10 @@ jQuery ->
         need_to_clear_example = question.find(".list-add").attr("data-need-to-clear-example")
         if (typeof(need_to_clear_example) != typeof(undefined) && need_to_clear_example != false)
           clearFormElements(question.find(".list-add li:last"))
+
+        # charcount needs to be reinitialized
+        question.find(".list-add > li:last .js-char-count").removeCharcountElements()
+        question.find(".list-add > li:last .js-char-count").charcount()
 
   # Removing these added fields
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
