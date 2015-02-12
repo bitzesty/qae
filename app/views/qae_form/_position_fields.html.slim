@@ -3,11 +3,11 @@ li.js-add-example.js-add-default data-add-example="add-position"
   label
     ' Position/Role
     input.medium name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
-  span.row
+  span.row.validate-date-start-end
     span.span-3
       label
         ' Start Date
-      .date-input
+      .date-input.validate-date-start
         label.small
           ' Month
           input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][start_month]" value=position['start_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
@@ -17,7 +17,7 @@ li.js-add-example.js-add-default data-add-example="add-position"
     span.span-3
       label
         ' End Date
-      .date-input
+      .date-input.validate-date-end
         label.small
           ' Month
           input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
