@@ -19,8 +19,9 @@
               input.medium type="text" name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx) 
         - if question.description
           div
-            label.small
-              ' Description
+            label
+              span.label-char-count-reposition
+                ' Description
               / (optional)
               textarea.js-char-count rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx)
                 = question.input_value(suffix: 'description', index: idx)

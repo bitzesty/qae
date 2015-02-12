@@ -1,22 +1,31 @@
 li.js-add-example.js-add-default data-add-example="add-position"
   = link_to "Remove", "#", class: "remove-link js-remove-link"
-  input.inline name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
-  ' Start Date
-  .date-input
-    label
-      ' Month
-      input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][start_month]" value=position['start_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
-    label
-      ' Year
-      input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][start_year]" value=position['start_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
+  label
+    ' Position/Role
+    input.medium name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
+  span.row
+    span.span-3
+      label
+        ' Start Date
+      .date-input
+        label.small
+          ' Month
+          input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][start_month]" value=position['start_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
+        label.small
+          ' Year
+          input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][start_year]" value=position['start_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
+    span.span-3
+      label
+        ' End Date
+      .date-input
+        label.small
+          ' Month
+          input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
+        label.small
+          ' Year
+          input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
 
-  ' End Date
-  .date-input
-    label
-      ' Month
-      input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
-    label
-      ' Year
-      input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
-
-    textarea.position-textarea.js-char-count name="form[position_details][0][details]" data-word-max=question.details_words_max
+  label
+    span.label-char-count-reposition
+      ' Details
+    textarea.position-textarea.js-char-count rows="2" name="form[position_details][0][details]" data-word-max=question.details_words_max

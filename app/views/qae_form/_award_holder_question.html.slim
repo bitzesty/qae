@@ -4,16 +4,27 @@ ul.list-add data-add-limit="10"
  - question.entities.each_with_index do |award, index|
     li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-default' if index == 0)
       = link_to "Remove", "#", class: "remove-link js-remove-link"
-      input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][#{index}][title]" type="text" value=award['title']
-      select.inline name="form[awards][#{index}][year]"
-        option value="" *possible_read_only_ops
-          ' Year Awarded
-        - question.award_years.each do |year|
-          option value=year selected=(award['year'] == year.to_s) *possible_read_only_ops
-            = year
+      span.row
+        span.span-6
+          label
+            ' Award/Honour title
+            input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][#{index}][title]" type="text" value=award['title']
+        span.span-6
+          label
+            ' Year
+            br
+            select.inline name="form[awards][#{index}][year]"
+              option value="" *possible_read_only_ops
+                ' Year Awarded
+              - question.award_years.each do |year|
+                option value=year selected=(award['year'] == year.to_s) *possible_read_only_ops
+                  = year
 
-      textarea.award-textarea.js-char-count name="form[awards][#{index}][details]" data-word-max=question.details_words_max *possible_read_only_ops
-        = award['details']
+      label
+        span.label-char-count-reposition
+          ' Details
+        textarea.award-textarea.js-char-count rows="2" name="form[awards][#{index}][details]" data-word-max=question.details_words_max *possible_read_only_ops
+          = award['details']
 
   - if question.entities.none?
     li.js-add-example.js-add-default data-add-example="add-award"
