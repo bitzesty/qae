@@ -13,10 +13,13 @@ class FormAwardEligibilitiesController < ApplicationController
       redirect_to action: :show, form_id: @form_answer.id, id: @award_eligibility.class.questions.first, skipped: true
       return
     end
+
+    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
   end
 
   def update
     @eligibility.current_step = step
+    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
 
     if @eligibility.update(eligibility_params)
       if params[:skipped] == 'true' && (step != @eligibility.questions.last || @eligibility.is_a?(Eligibility::Basic))
