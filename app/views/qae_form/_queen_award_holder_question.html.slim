@@ -1,7 +1,7 @@
 - children_depends_on = question.children_options_depends_on
 - dependable_values = question.dependable_values
 
-ul.list-add data-add-limit="10"
+ul.list-add data-add-limit="10" data-need-to-clear-example=true
   input name="form[queen_award_holder_details][array]" value="true" type="hidden"
 
   - question.entities.each_with_index do |award, index|
