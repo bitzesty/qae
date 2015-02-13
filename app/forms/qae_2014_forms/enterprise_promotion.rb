@@ -12,7 +12,7 @@ class QAE2014Forms
         step 'Nominee background', 'Nominee background', &QAE2014Forms.promotion_step2
         step 'Recommendation', 'Recommendation', &QAE2014Forms.promotion_step3
         step 'Letters of support', 'Letters of support', &QAE2014Forms.promotion_step4
-        step 'Authorisation and monitoring', 'Authorisation and monitoring', &QAE2014Forms.promotion_step5
+        step 'Authorisation and monitoring', 'Authorisation', &QAE2014Forms.promotion_step5
       end
     end
   end
