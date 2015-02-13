@@ -76,3 +76,10 @@ $(function() {
   // Creates the character count elements
   $(".js-char-count").charcount();
 });
+
+
+$.fn.removeCharcountElements = function() {
+  // Removes the character count elements
+  $(this).unwrap();
+  $('.char-text, .char-text-limit', $(this).closest('li')).remove();
+}

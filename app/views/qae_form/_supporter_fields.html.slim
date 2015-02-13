@@ -1,0 +1,7 @@
+li.js-add-example.js-add-default data-add-example="add-supporter" data-add-limit=question.limit
+  = link_to "Remove", "#", class: "remove-link js-remove-link"
+  span.row
+    span.span-6
+      label
+        ' Email
+        input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']

@@ -30,7 +30,7 @@ jQuery ->
         scrollTop: 0
       , 0)
       return false
-      
+
   # Hidden hints as seen on
   # https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
   # Creates the links and adds the arrows
@@ -393,7 +393,6 @@ jQuery ->
 
     question = $(this).closest(".question-block")
     add_example = question.find(".js-add-example").html()
-    list_size = 1
 
     # If there is a specific add_example use that
     add_example_attr = $(this).attr("data-add-example")
@@ -405,8 +404,10 @@ jQuery ->
 
       # Are there add limits
       add_limit_attr = question.find(".list-add").attr("data-add-limit")
+
+      list_size = question.find(".list-add > li").not(".js-add-example").size() + question.find(".list-add > li.js-add-example.js-add-default").size()
+
       if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
-        list_size = question.find(".list-add > li").not(".js-add-example").size() + question.find(".list-add > li.js-add-example.js-add-default").size()
 
         if list_size >= add_limit_attr
           can_add = false
@@ -415,12 +416,17 @@ jQuery ->
           question.find(".js-button-add").addClass("visuallyhidden")
 
       if can_add
-        add_example = add_example.replace(/(form\[\w+\]\[)(\d+)\]/g, "$1#{list_size+1}]")
+        add_example = add_example.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{list_size+1}]")
         question.find(".list-add").append("<li>#{add_example}</li>")
 
         need_to_clear_example = question.find(".list-add").attr("data-need-to-clear-example")
         if (typeof(need_to_clear_example) != typeof(undefined) && need_to_clear_example != false)
           clearFormElements(question.find(".list-add li:last"))
+
+        # charcount needs to be reinitialized
+        if (textareas = question.find(".list-add > li:last .js-char-count")).length
+          textareas.removeCharcountElements()
+          textareas.charcount()
 
   # Removing these added fields
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->

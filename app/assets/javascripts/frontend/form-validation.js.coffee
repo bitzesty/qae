@@ -212,6 +212,20 @@ window.FormValidation =
           @appendMessage(subq.parent(), "Date should be between #{expDateStart} and #{expDateEnd}.")
           @addErrorClass(question)
 
+  validateDateStartEnd: () ->
+    question.find(".validate-date-start-end").each () ->
+      # Whether we're checking just year or month as well
+      dateInputCount = $(this).find(".validate-date-start label").size()
+
+      for i in [dateInputCount-1..0] by -1
+        startDate = parseInt($(this).find(".validate-date-start label:eq("+i+") input").val())
+        endDate = parseInt($(this).find(".validate-date-end label:eq("+i+") input").val())
+
+        if startDate > endDate
+          @appendMessage(subq.parent(), "Start date cannot be after end date")
+          @addErrorClass(question)
+          return
+
   validate: ->
     @clearAllErrors()
 
@@ -255,6 +269,10 @@ window.FormValidation =
       #if $(".question-block[data-answer='overseas_sales-total-overseas-sales'] > .conditional-question").hasClass("show-question")
       #  console.log "validateTotalOverseas"
       #  @validateTotalOverseas()
+
+      #if question.find(".validate-date-start-end").size() > 0
+      #  console.log "validateDateStartEnd"
+      #  @validateDateStartEnd(question)
 
       #console.log @validates
 

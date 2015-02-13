@@ -1,0 +1,11 @@
+ul.list-add.positions
+  input name="form[position_details][array]" value="true" type="hidden"
+
+  - question.entities.each_with_index do |position, index|
+    = render 'qae_form/position_fields', position: position, index: index, question: question
+
+  - if question.entities.none?
+    = render 'qae_form/position_fields', position: {}, index: 0, question: question
+
+a.button.button-add.js-button-add href="#" data-add-example="add-position"
+  | + Add position
