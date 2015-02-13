@@ -3,8 +3,9 @@ class QAE2014Forms
   class << self
     def promotion_step4
       @promotion_step4 ||= Proc.new {
-        header :letters_of_support_header, 'To be implemented: waiting for wireframes' do
+        supporters :supporters, 'Waiting for wireframes' do
           ref 'D 1'
+          limit 4
         end
       }
     end
