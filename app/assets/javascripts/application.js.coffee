@@ -424,8 +424,9 @@ jQuery ->
           clearFormElements(question.find(".list-add li:last"))
 
         # charcount needs to be reinitialized
-        question.find(".list-add > li:last .js-char-count").removeCharcountElements()
-        question.find(".list-add > li:last .js-char-count").charcount()
+        if (textareas = question.find(".list-add > li:last .js-char-count")).length
+          textareas.removeCharcountElements()
+          textareas.charcount()
 
   # Removing these added fields
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
