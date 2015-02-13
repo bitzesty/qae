@@ -2,62 +2,106 @@ class QAE2014Forms
   class << self
     def trade_step3
       @trade_step3 ||= Proc.new {
-        # TODO Hide this when A5 "List the Queen's Award(s) you currently hold" has a value "International Trade (6 years)"
-        # Act as if this is preslected with "6 plus" for dependent questions below
-        options :trade_commercial_success, "For how long has your organisation seen growth and commercial success in its international trade?" do
+        options_with_preselected_conditions :trade_commercial_success, '' do
+          main_header %Q{
+            How would you describe your organisation's growth and commercial success in international trade?
+          }
+          classes "js-entry-period"
           ref 'C 1'
           required
-          context %Q{
-            <p>Your answer here will determine whether you are assessed for outstanding (over  three years) or continuous (over six years) achievement in international trade.</p>
+          option '3 to 5', 'Outstanding growth over the last 3 years'
+          option '6 plus', 'Continuous growth over the last 6 years'
+          placeholder_preselected_condition :queen_award_holder_details, :category, "international_trade_3", "international_trade_6", "6 plus", %Q{
+            As you currently hold a Queen's Award for Continuous Achievement in International Trade (3 years), you can only apply for the Outstanding Achievement Award (6 years).
           }
-          option '3 to 5', '3-5 years'
-          option '6 plus', '6 years or more'
+          placeholder_preselected_condition :queen_award_holder_details, :category, "international_trade_6", "international_trade_3", "3 to 5", %Q{
+            As you currently hold a Queen's Award for Continuous Achievement in International Trade (6 years), you can only apply for the Outstanding Achievement Award (3 years).
+          }
         end
 
-        # TODO Show this when A5 "List the Queen's Award(s) you currently hold" has a value "International Trade (6 years)"
-        # Act as if the B1 above is preslected with "6 plus" for dependent questions below
-        #header :trade_commercial_success_preselected, "Because you are the current holder of a Queen's Award for Continuous Achievement in International Trade (6 years), you may only apply for the Outstanding Achievement Award (3 years) this year." do
-        #  ref 'C 1'
-        #end
-
-        by_years :financial_year_dates, 'State your financial year end date' do
+        innovation_financial_year_date :financial_year_date, 'Please enter your financial year end date.' do
           ref 'C 2'
           required
-          type :date
-          by_year_condition :trade_commercial_success, '3 to 5', 3
-          by_year_condition :trade_commercial_success, '6 plus', 6
           context %Q{
             <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
           }
-          conditional :trade_commercial_success, :true
         end
 
-        number :employees, 'State the number of people employed by the company for each year of your entry.' do
+        options :financial_year_date_changed, 'Did your year-end date change during your <span class="js-entry-period-subtext">3 or 6</span> year entry period?' do
+          classes "sub-question js-financial-year-change"
+          required
+          yes_no
+        end
+
+        by_years_label :financial_year_changed_dates, 'Enter your year-end dates for each financial year.' do
+          classes "sub-question"
+          required
+          type :date
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :trade_commercial_success, '3 to 5', 3 
+          by_year_condition :trade_commercial_success, '6 plus', 6 
+          conditional :trade_commercial_success, :true
+          conditional :financial_year_date_changed, 'yes'
+        end
+
+        textarea :financial_year_date_changed_explaination, 'Please explain why your year-end date changed.' do
+          classes "sub-question"
+          required
+          rows 5
+          words_max 100
+          conditional :financial_year_date_changed, 'yes'
+        end
+
+        by_years :employees, 'Enter the number of people employed by your organisation in each year of your entry.' do
           ref 'C 3'
           required
           context %Q{
-            <p>State the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
+            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
           }
-          unit ' years'
-          style "small inline"
-          min 2
+          type :number
+          label ->(y){"Financial year #{y}"}
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           conditional :trade_commercial_success, :true
+          conditional :financial_year_date_changed, :true
         end
 
         header :company_financials, 'Company Financials' do
+          context %Q{
+            <p>These figures should be for your entire organisation. If you haven't reached your latest year-end, please use estimates to complete this section.</p>
+          }
           conditional :trade_commercial_success, :true
+          conditional :financial_year_date_changed, :true
         end
 
-        textarea :trade_excluded_explanation, 'Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.' do
+        textarea :innovation_excluded_explanation, "In question A12.3 you said you are applying on behalf of a group but are excluding some member(s)'s financial figures. Please explain why." do
           ref 'C 4'
           rows 5
           words_max 150
           conditional :trade_commercial_success, :true
+          conditional :financial_year_date_changed, :true
+          conditional :applying_for, 'organisation'
+          conditional :parent_group_entry, 'yes'
+          conditional :pareent_group_excluding, 'yes'
         end
 
-        by_years :overseas_sales, 'Total overseas sales' do
+        options :do_you_want_to_calculate_overseas_and_so_on, 'If your organisation is in the financial (or related) services sector and is cyclical in nature, you can calculate overseas sales and total sales as rolling averages. Do you want to do this?' do
           ref 'C 5'
+          classes "sub-question"
+          context %Q{
+            <p>Entries for Outstanding Achievement must submit three three-year rolling averages, whilst Continuous Achievement requires six six-year rolling averages.</p>
+          }
+          conditional :trade_commercial_success, :true
+          yes_no
+        end
+
+        # TODO: add validation "Must be greater than £100,000"
+        by_years :overseas_sales, 'Total overseas sales' do
+          ref 'C 6'
           required
+          context %Q{
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+          }
           type :money
           by_year_condition :trade_commercial_success, '3 to 5', 3
           by_year_condition :trade_commercial_success, '6 plus', 6
@@ -141,12 +185,11 @@ class QAE2014Forms
 
         by_years :total_turnover, 'Total turnover (home plus overseas)' do
           classes "sub-question"
-          required
           type :money
           by_year_condition :trade_commercial_success, '3 to 5', 3
           by_year_condition :trade_commercial_success, '6 plus', 6
           context %Q{
-            <p>Exclude VAT, overseas taxes and, where applicable, excise duties. </p>
+            <p>Exclude VAT, overseas taxes and, where applicable, excise duties.</p>
           }
           conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
@@ -158,6 +201,9 @@ class QAE2014Forms
           type :money
           by_year_condition :trade_commercial_success, '3 to 5', 3
           by_year_condition :trade_commercial_success, '6 plus', 6
+          context %Q{
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+          }
           conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
         end
@@ -169,22 +215,9 @@ class QAE2014Forms
           conditional :trade_commercial_success, :true
         end
 
-        options :company_estimated_figures, 'Are any of these figures estimated?' do
-          classes "sub-question"
-          yes_no
-          conditional :trade_commercial_success, :true
-        end
-
-        textarea :company_estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
-          classes "sub-question"
-          rows 5
-          words_max 200
-          conditional :trade_commercial_success, :true
-          conditional :company_estimated_figures, :yes
-        end
-
         options :resale_overseas, 'Do you purchase your products/services (or any of their components) from overseas for resale overseas?' do
           classes "sub-question"
+          required
           yes_no
           context %Q{
             <p>Excluding raw materials and value added.</p>
@@ -198,13 +231,30 @@ class QAE2014Forms
           type :money
           by_year_condition :trade_commercial_success, '3 to 5', 3
           by_year_condition :trade_commercial_success, '6 plus', 6
+          context %Q{
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.
+          }
           conditional :trade_commercial_success, :true
-          conditional :resale_overseas, :true
+          conditional :resale_overseas, 'yes'
           drop_conditional :drops_in_turnover
         end
 
+        options :company_estimated_figures, 'Are any of these figures estimated?' do
+          classes "sub-question"
+          yes_no
+          conditional :trade_commercial_success, :true
+        end
+
+        textarea :company_estimates_use, 'Explain the use of estimates, and how much of these are actual receipts or firm orders.' do
+          classes "sub-question"
+          rows 5
+          words_max 400
+          conditional :trade_commercial_success, :true
+          conditional :company_estimated_figures, 'yes'
+        end
+
         options :manufacture_overseas, 'Do you manufacture overseas?' do
-          ref 'C 6'
+          ref 'C 7'
           required
           yes_no
         end
@@ -216,18 +266,18 @@ class QAE2014Forms
           by_year_condition :trade_commercial_success, '3 to 5', 3
           by_year_condition :trade_commercial_success, '6 plus', 6
           conditional :trade_commercial_success, :true
-          conditional :manufacture_overseas, :true
+          conditional :manufacture_overseas, 'yes'
         end
 
         textarea :manufacture_model_benefits, 'Describe the benefits of this business model to the UK.' do
           classes "sub-question"
           rows 5
           words_max 400
-          conditional :manufacture_overseas, :true
+          conditional :manufacture_overseas, 'yes'
         end
 
         options :operate_overseas, 'Do you run your overseas operations as a franchise?' do
-          ref 'C 7'
+          ref 'C 8'
           required
           yes_no
         end
@@ -237,11 +287,11 @@ class QAE2014Forms
           required
           rows 5
           words_max 500
-          conditional :operate_overseas, :true
+          conditional :operate_overseas, 'yes'
         end
 
-        options :received_grant, 'Have you received any grant funding to support this product/service?' do
-          ref 'C 8'
+        options :received_grant, 'Did you receive any grant funding to support this product/service?' do
+          ref 'C 9'
           required
           yes_no
         end
@@ -251,7 +301,7 @@ class QAE2014Forms
           required
           rows 5
           words_max 300
-          conditional :received_grant, :true
+          conditional :received_grant, 'yes'
         end
       }
     end

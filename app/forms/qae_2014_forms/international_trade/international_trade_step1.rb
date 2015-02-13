@@ -2,52 +2,65 @@ class QAE2014Forms
   class << self
     def trade_step1
       @trade_step1 ||= Proc.new {
-        # TODO Pre-filled from registration details
-        text :company_name, 'Full/legal name of your organisational unit' do
-          required
+        options :applying_for, "Are you applying on behalf of your:" do
           ref 'A 1'
-          help "What name should I write?", %Q{
-              <p>Your answer should reflect the title registered with Companies House. If applicable, include 'trading as', or any other name by which the business is known.</p>
+          option 'organisation', 'Whole organisation'
+          option 'division branch subsidiary', 'A division, branch or subsidiary'
+        end
+
+        header :business_division_header, '' do
+          context %Q{
+            <div class="application-notice help-notice">
+              <p>Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.</p>
+            </div>
+          }
+          conditional :applying_for, 'division branch subsidiary'
+        end
+
+        text :company_name, 'Full/legal name of your organisation' do
+          required
+          ref 'A 2'
+          context %Q{
+            <p>If applicable, include 'trading as', or any other name your organisation uses.</p>
           }
         end
 
-        options :principal_business, 'Does your unit operate as a principal?' do
+        options :principal_business, 'Does your organisation operate as a principal?' do
           required
-          ref 'A 2'
+          ref 'A 3'
           context %Q{
             <p>We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>
           }
           yes_no
         end
 
-        textarea :invoicing_unit_relations,
-          'Please explain the arrangements made, and your relationship with the invoicing unit.' do
+        textarea :invoicing_unit_relations, 'Please explain your relationship with the invoicing unit, and the arrangements made.' do
           classes "sub-question"
           required
           conditional :principal_business, :no
-          words_max 100
+          words_max 200
           rows 5
         end
 
         number :registration_number, 'Company/Charity Registration Number' do
           required
-          ref 'A 3'
-          help 'What if I do not have a Company/Charity Registration number?', %Q{
-            <p>Please enter 'N/A' if this is not applicable. If an unregistered subsidiary, please enter your parent company's number.</p>
+          ref 'A 4'
+          context %Q{
+            <p>If you don't have a Company/Charity Registration Number please enter 'N/A'. If you're an unregistered subsidiary, please enter your parent company's number.</p>
           }
           style "small"
         end
 
         date :started_trading, 'Date started trading' do
           required
-          ref 'A 4'
-          context '<p>Businesses which began trading after 01/10/2012 are not eligible for this award.</p>'
+          ref 'A 5'
+          context "<p>Organisations that began trading after 01/10/2012 aren't eligible for this award.</p>"
           date_max '01/10/2012'
         end
 
-        options :queen_award_holder, %Q{Are you a current Queen's Award holder (2010-2014)?} do
+        options :queen_award_holder, "Are you a current Queen's Award holder (2010-2014)?" do
           required
-          ref 'A 5'
+          ref 'A 6'
           yes_no
         end
 
@@ -68,9 +81,12 @@ class QAE2014Forms
           year 2012
           year 2013
           year 2014
+
+          children_options_depends_on :category
+          dependable_values [:international_trade_3, :international_trade_6]
         end
 
-        options :business_name_changed, 'Has the name of your organisation changed since your previous entry?' do
+        options :business_name_changed, 'Have you changed the name of your organisation since your last entry?' do
           classes "sub-question"
 
           conditional :queen_award_holder, :yes
@@ -78,54 +94,52 @@ class QAE2014Forms
           yes_no
         end
 
-        previous_name :previous_business_name, '' do
+        text :previous_business_name, 'Name used previously' do
+          classes "regular-question"
+          required
           conditional :business_name_changed, :yes
         end
 
-        options :other_awards_won, 'Have you won any other business or enterprise awards in the past?' do
-          ref 'A 6'
+        textarea :previous_business_ref_num, 'Reference number used previously' do
+          classes "regular-question"
+          required
+          conditional :business_name_changed, :yes
+          rows 5
+          words_max 100
+        end
+
+        options :other_awards_won, 'Have you won any other business awards in the past?' do
+          ref 'A 7'
           yes_no
         end
 
         textarea :other_awards_desc, 'Please describe them' do
           classes "sub-question"
-          context '<p>Only enter the awards you consider most notable.</p>'
+          context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
           conditional :other_awards_won, :yes
           rows 5
           words_max 300
         end
 
-        options :joint_entry, 'Is this entry made jointly with any other organisation(s)?' do
-          ref 'A 7'
-          required
-          help "Should my entry be a joint entry?", %Q{
-            <p>Joint entires can be submitted if two (or more) companies developed the innovation and realised commercial success. Each organisation should submit separate, cross-referenced, entry forms. For more information, see the FAQ.</p>
-          }
-          yes_no
-        end
-
-        text :joint_entry_names, 'Please enter their name(s)' do
-          classes "sub-question"
-          required
-          conditional :joint_entry, :yes
-          style "largest"
-        end
-
-        # Prefilled from registration details
-        address :principal_address, 'Principal address of your organisational unit' do
+        address :principal_address, 'Principal address of your organisation' do
           required
           ref 'A 8'
         end
 
-        text :website_url, 'Website URL' do
+        text :org_telephone, 'Main telephone number' do
           required
           ref 'A 9'
-          type :url
+          style "small"
+        end
+
+        text :website_url, 'Website URL' do
+          required
+          ref 'A 10'
         end
 
         dropdown :business_sector, 'Business Sector' do
           required
-          ref 'A 10'
+          ref 'A 11'
           option '', 'Business Sector'
           option :other, 'Other'
         end
@@ -136,51 +150,53 @@ class QAE2014Forms
           conditional :business_sector, :other
         end
 
-        head_of_business :head_of_business, 'Head of your organisational unit' do
-          required
-          ref 'A 11'
-        end
-
-        text :head_job_title, 'Job title / Role in the organisation' do
-          classes "sub-question"
-          required
-        end
-
-        text :head_email, 'Email address' do
-          classes "sub-question"
-          required
-          type :email
-        end
-
-        options :is_division, 'Are you a division, branch or subsidiary?' do
+        header :parent_company_header, 'Parent Companies' do
           ref 'A 12'
-          yes_no
+          conditional :applying_for, 'true'
         end
 
         text :parent_company, 'Name of immediate parent company' do
-          classes "regular-question"
-          conditional :is_division, :yes
+          classes "sub-question"
+          conditional :applying_for, 'division branch subsidiary'
         end
 
         country :parent_company_country, 'Country of immediate parent company' do
           classes "regular-question"
-          conditional :is_division, :yes
-        end
+          conditional :applying_for, 'division branch subsidiary'
+        end        
 
-        options :parent_ultimate_control, 'Does the immediate parent company have ultimate control?' do
+        options :parent_ultimate_control, 'Does your immediate parent company have ultimate control?' do
           classes "sub-question"
-          conditional :is_division, :yes
+          conditional :applying_for, 'division branch subsidiary'
           yes_no
         end
 
         text :ultimate_control_company, 'Name of organisation with ultimate control' do
           classes "regular-question"
           conditional :parent_ultimate_control, :no
+          conditional :applying_for, 'division branch subsidiary'
         end
 
         country :ultimate_control_company_country, 'Country of organisation with ultimate control' do
           classes "regular-question"
           conditional :parent_ultimate_control, :no
+          conditional :applying_for, 'division branch subsidiary'
+        end
+
+        options :parent_group_entry, 'Are you a parent company making a group entry?' do
+          classes "sub-question"
+          conditional :applying_for, 'organisation'
+          context %Q{
+            <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
+          }
+          yes_no
+        end
+
+        options :pareent_group_excluding, 'Are you excluding any members of your group from this application?' do
+          classes "sub-question"
+          conditional :applying_for, 'organisation'
+          conditional :parent_group_entry, 'yes'
+          yes_no
         end
 
         options :trading_figures, 'Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?' do
@@ -194,21 +210,15 @@ class QAE2014Forms
           conditional :trading_figures, :yes
         end
 
-        textarea :excluded_explanation, 'Parent companies making group entries should include figures for all UK subsidiaries. If any part of the group is excluded, please provide an explanation here.' do
-          classes "sub-question"
-          rows 5
-          words_max 200
-        end
-
         options :export_agent, 'Are you an export agent/merchant?' do
           ref 'A 14'
           required
           yes_no
           help 'What is an export agent?', %Q{
-            <p>An export agent is an individual or company that undertakes export activity on behalf of another company in return for payment by means of a commission.</p>
+            <p>An export agent undertakes exportation on behalf of another company in exchange for commission.</p>
           }
           help 'What is an export merchant?', %Q{
-            <p>An export merchant buys and takes ownership of merchandise to generate income by selling at a higher price. An export merchant may rebrand or repack goods before selling them on.</p>
+            <p>An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).</p>
           }
         end
 
@@ -217,7 +227,7 @@ class QAE2014Forms
           required
           yes_no
           help 'What is an export unit?', %Q{
-            <p>An export unit is a subsidiary or operating unit of a larger company that manages the company's export activities. </p>
+            <p>An export unit is a subsidiary or operating unit of a larger company that manages the company's export activities.</p>
           }
         end
 

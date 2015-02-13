@@ -1,22 +1,40 @@
-ul.list-add
-  li.js-add-example.js-add-default data-add-example="add-subsid-assoc-plant"
-    = link_to "Remove", "#", class: "remove-link js-remove-link"
-    .clear
-    span.row
-      span.span-4
-        label.small
-          ' Name
-          input.medium type="text" autocomplete="off" *possible_read_only_ops
-      span.span-4
-        label.small
-          ' Location
-          input.medium type="text" autocomplete="off" *possible_read_only_ops
-      span.span-4
-        label.small
-          ' Number of UK Employees
-          input.small type="text" autocomplete="off" *possible_read_only_ops
+ul.list-add data-add-limit="10" data-need-to-clear-example="true"
+  input name="#{question.input_name}[array]" value="true" type="hidden"
 
-= link_to "+ Add subsidiary, associate or plant", "#", class: "button button-add js-button-add"
+  - question.subsidiaries.each_with_index do |subsidiary, index|
+    li data-add-example=('add-subsidiaries' if index == 0) class=('js-add-example js-add-default' if index == 0)
+      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      .clear
+      span.row
+        span.span-4
+          label.small
+            ' Name
+            input.medium type="text" name="#{question.input_name}[#{index}][name]" value=subsidiary['name'] autocomplete="off" *possible_read_only_ops
+        span.span-4
+          label.small
+            ' Location
+            input.medium type="text" name="#{question.input_name}[#{index}][location]" value=subsidiary['location']  autocomplete="off" *possible_read_only_ops
+        span.span-4
+          label.small
+            ' Number of UK Employees
+            input.small type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary['employees']  autocomplete="off" *possible_read_only_ops
+  - if question.subsidiaries.none?
+    li.js-add-example.js-add-default data-add-example='add-subsidiaries'
+      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      .clear
+      span.row
+        span.span-4
+          label.small
+            ' Name
+            input.medium type="text" name="#{question.input_name}[0][name]" autocomplete="off" *possible_read_only_ops
+        span.span-4
+          label.small
+            ' Location
+            input.medium type="text" name="#{question.input_name}[0][location]" autocomplete="off" *possible_read_only_ops
+        span.span-4
+          label.small
+            ' Number of UK Employees
+            input.small type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
 
-a.button.button-add.js-button-add href="#" data-add-example="add-subsid-assoc-plant"
+a.button.button-add.js-button-add href="#" data-add-example="add-subsidiaries"
   | + Add subsidiary, associate or plant
