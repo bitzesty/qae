@@ -3,6 +3,10 @@ class QAE2014Forms
   class << self
     def trade_step2
       @trade_step2 ||= Proc.new {
+        context %Q{
+          <p>Please try to avoid using technical jargon in this section. </p>
+        }
+
         textarea :trade_desc_whole, 'Describe your business as a whole' do
           ref 'B 1'
           required
@@ -23,18 +27,17 @@ class QAE2014Forms
           option '5', '5'
         end
 
-        textarea :goods_desc_short, 'Brief description of the goods and/or services being traded overseas' do
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations, 'Briefly describe each type of good/service you trade.' do
           classes "sub-question"
           required
           context %Q{
-            <p>e.g. 'design and manufacture of bespoke steel windows and doors'. If relevant, give details of material used or end use. </p>
+            <p>If relevant, give details of material used or end use. e.g. 'design and manufacture of bespoke steel windows and doors'.</p>
           }
           rows 2
           words_max 15
-        end
-
-        number :total_overseas_trade, '% of your total overseas trade' do
-          classes "sub-question"
+          min 0
+          max 100
+          conditional :trade_goods_amount, :true
         end
 
         textarea :trade_plans_desc, 'Describe your international and domestic trading strategies (plans), their vision/objectives for the future, their method of implementation, and how your actual performance compared to the plans set out.' do
@@ -54,13 +57,13 @@ class QAE2014Forms
           ref 'B 4'
           required
           context %Q{
-            <p>Include evidence of how you segment and manage geographical regions. Please supply market share information. </p>
+            <p>Include evidence of how you segment and manage geographical regions. Please supply market share information.</p>
           }
           rows 5
           words_max 500
         end
 
-        textarea :top_overseas_sales, "State the percentage of total overseas sales made to each of your top 5 overseas countries during the final year of your entry." do
+        textarea :top_overseas_sales, "State the percentage of total overseas sales made to each of your top 5 overseas markets (ie. individual countries) during the final year of your entry." do
           classes "sub-question"
           required
           rows 5
@@ -74,25 +77,11 @@ class QAE2014Forms
           words_max 300
         end
 
-        textarea :trade_factors, "Give details of any special challenges affecting your trade in goods or services, and how you overcame them." do
+        textarea :trade_factors, "Describe any special challenges affecting your trade in goods or services, and how you overcame them." do
           ref 'B 5'
           required
           rows 5
           words_max 200
-        end
-
-        upload :trade_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
-          ref 'B 7'
-          context %Q{
-            <p>We can't guarantee these will be reviewed, so inlcude any vital information within the form.</p>
-            <p>You may upload files of less than 5mb each in either MS Word Document, PDF, MS Excel Spreadsheet or MS Powerpoint Presentation formats. Or MP4 (video) files of up to TODOmb.</p>
-          } # TODO!
-          links
-          description
-          max_attachments 4
-          help 'Information we will not review', %Q{
-            <p>We will not consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitue for completing sections of the form.</p>
-          }
         end
       }
     end

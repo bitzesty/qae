@@ -30,7 +30,7 @@ jQuery ->
         scrollTop: 0
       , 0)
       return false
-
+      
   # Hidden hints as seen on
   # https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
   # Creates the links and adds the arrows
@@ -64,7 +64,7 @@ jQuery ->
       answerVal = input.is(':checked').toString()
 
     question.each () ->
-      if $(this).attr('data-value') == answerVal || ($(this).attr('data-value') == "true" && (answerVal != 'false' && answerVal != false))
+      if $(this).attr('data-value') == answerVal || ($(this).attr('data-value') == "true" && (answerVal != 'false' && answerVal != false)) || ($(this).attr('data-type') == "in_clause_collection" && $(this).attr('data-value') <= answerVal)
         if clicked || (!clicked && input.attr('type') == 'radio' && input.is(':checked')) || (!clicked && input.attr('type') != 'radio')
           $(this).addClass("show-question")
       else
@@ -417,6 +417,11 @@ jQuery ->
       if can_add
         add_example = add_example.replace(/(form\[\w+\]\[)(\d+)\]/g, "$1#{list_size+1}]")
         question.find(".list-add").append("<li>#{add_example}</li>")
+
+        need_to_clear_example = question.find(".list-add").attr("data-need-to-clear-example")
+        if (typeof(need_to_clear_example) != typeof(undefined) && need_to_clear_example != false)
+          clearFormElements(question.find(".list-add li:last"))
+
   # Removing these added fields
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
@@ -502,3 +507,5 @@ jQuery ->
   $(document).on 'click', (e) ->
     if !$(e.target).closest('.dropdown').length
       $(".dropdown.dropdown-open").removeClass("dropdown-open")
+
+  OptionsWithPreselectedConditionsQuestion.init();

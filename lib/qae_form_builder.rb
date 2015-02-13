@@ -28,6 +28,9 @@ require 'qae_form_builder/confirm_question'
 require 'qae_form_builder/contact_email_question'
 require 'qae_form_builder/contact_question'
 
+require 'qae_form_builder/by_trade_goods_and_services_label_question'
+require 'qae_form_builder/options_with_preselected_conditions_question'
+
 class QAEFormBuilder
   class << self
 

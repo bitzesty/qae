@@ -1,0 +1,23 @@
+.js-by-trade-goods-and-services-amount
+  - (1..5).each do |placement|
+    .js-conditional-question data-question=question.step.form[:trade_goods_amount].parameterized_title data-value=placement data-type="in_clause_collection"
+      h2
+        = "Good/Service #{placement}"
+      ul.errors-container
+      .question-group
+        label
+          span.visuallyhidden 
+            = "Good/Service #{placement}"
+        textarea.js-trigger-autosave.js-char-count rows=question.rows data-word-max=question.words_max name=question.input_name(suffix: "desc_short_#{placement}") *possible_read_only_ops
+          = question.input_value(suffix: "desc_short_#{placement}")
+        .clear
+
+      h2 % of your total overseas trade
+      ul.errors-container
+      .question-group
+        label
+          span.visuallyhidden % of your total overseas trade
+          input.js-trigger-autosave type="text" min=question.min max=question.max name=question.input_name(suffix: "total_overseas_trade_#{placement}") value=question.input_value(suffix: "total_overseas_trade_#{placement}") autocomplete="off" *possible_read_only_ops
+        .clear
+
+
