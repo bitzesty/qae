@@ -24,6 +24,10 @@ li.js-add-example.js-add-default data-add-example="add-position"
         label.small
           ' Year
           input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
+        label.small
+          ' Ongoing
+          input.js-trigger-autosave type="hidden" name="form[position_details][#{index}][ongoing]" value='0'
+          input.js-trigger-autosave type="checkbox" name="form[position_details][#{index}][ongoing]" checked=('checked' if position['ongoing'] == '1') value='1'
 
   label
     span.label-char-count-reposition

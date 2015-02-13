@@ -1,43 +1,11 @@
-ul.list-add data-add-limit="10"
-  input name="form[awards][array]" value="true" type="hidden"
+ul.list-add
+  input name="form[#{question.key}][array]" value="true" type="hidden"
 
- - question.entities.each_with_index do |award, index|
-    li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-default' if index == 0)
-      = link_to "Remove", "#", class: "remove-link js-remove-link"
-      span.row
-        span.span-6
-          label
-            ' Award/Honour title
-            input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][#{index}][title]" type="text" value=award['title']
-        span.span-6
-          label
-            ' Year
-            br
-            select.inline name="form[awards][#{index}][year]"
-              option value="" *possible_read_only_ops
-                ' Year Awarded
-              - question.award_years.each do |year|
-                option value=year selected=(award['year'] == year.to_s) *possible_read_only_ops
-                  = year
-
-      label
-        span.label-char-count-reposition
-          ' Details
-        textarea.award-textarea.js-char-count rows="2" name="form[awards][#{index}][details]" data-word-max=question.details_words_max *possible_read_only_ops
-          = award['details']
+  - question.entities.each_with_index do |award, index|
+    = render 'qae_form/award_fields', question: question, award: award, index: index
 
   - if question.entities.none?
-    li.js-add-example.js-add-default data-add-example="add-award"
-      = link_to "Remove", "#", class: "remove-link js-remove-link"
-      input autocomplete="off" class="js-trigger-autosave medium" name="form[awards][0][title]" type="text"
-      select.inline name="form[awards][0][year]"
-        option value="" *possible_read_only_ops
-          ' Year Awarded
-        - question.award_years.each do |year|
-          option value=year *possible_read_only_ops
-            = year
-
-      textarea.award-textarea.js-char-count name="form[awards][0][details]" data-word-max=question.details_words_max *possible_read_only_ops
+    = render 'qae_form/award_fields', question: question, award: {}, index: 0
 
 a.button.button-add.js-button-add href="#" data-add-example="add-award"
   | + Add another award

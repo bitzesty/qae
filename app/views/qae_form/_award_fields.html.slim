@@ -1,0 +1,24 @@
+li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-default' if index == 0)
+
+  = link_to "Remove", "#", class: "remove-link js-remove-link"
+  span.row
+    span.span-6
+      label
+        ' Award/Honour title
+        input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][title]" type="text" value=award['title']
+    span.span-6
+      label
+        ' Year
+        br
+        select.inline name="form[#{question.key}][#{index}][year]"
+          option value="" *possible_read_only_ops
+            ' Year Awarded
+          - question.award_years.each do |year|
+            option value=year selected=(award['year'] == year.to_s) *possible_read_only_ops
+              = year
+
+  label
+    span.label-char-count-reposition
+        ' Details
+    textarea.award-textarea.js-char-count rows="2" name="form[#{question.key}][#{index}][details]" data-word-max=question.details_words_max *possible_read_only_ops
+      = award['details']
