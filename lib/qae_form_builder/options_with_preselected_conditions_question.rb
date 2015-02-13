@@ -2,18 +2,16 @@ class QAEFormBuilder
   class PlaceholderPreselectedCondition
     attr_accessor :question_key, 
                   :question_suffix, 
-                  :parent_question_answer_key,
-                  :answer_key,
-                  :question_value, 
+                  :parent_question_answer_key, 
+                  :answer_key, 
+                  :question_value,
                   :placeholder_text
 
-    def initialize(question_key, question_suffix, parent_question_answer_key, answer_key, question_value, placeholder_text)
+    def initialize(question_key, options={})
       @question_key = question_key
-      @question_suffix = question_suffix
-      @parent_question_answer_key = parent_question_answer_key
-      @answer_key = answer_key
-      @question_value = question_value
-      @placeholder_text = placeholder_text
+      options.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
     end
   end
 
@@ -34,11 +32,9 @@ class QAEFormBuilder
       @q.main_header = text
     end
 
-    def placeholder_preselected_condition(q_key, q_suffix, p_answer_key, answer_key, q_value, placeholder_text)
+    def placeholder_preselected_condition(q_key, options={})
       @q.question_key = q_key
-      @q.placeholder_preselected_conditions << PlaceholderPreselectedCondition.new(
-        q_key, q_suffix, p_answer_key, answer_key, q_value, placeholder_text
-      )
+      @q.placeholder_preselected_conditions << PlaceholderPreselectedCondition.new(q_key, options)
     end
   end
 
@@ -50,11 +46,11 @@ class QAEFormBuilder
     end
 
     def preselected_condition
-      @preselected_condition ||= placeholder_preselected_conditions.select do |c|
+      @preselected_condition ||= placeholder_preselected_conditions.detect do |c|
         linked_answers.select do |a|
           a[c.question_suffix.to_s] == c.parent_question_answer_key
         end.present?
-      end.first
+      end
     end
 
     def placeholder_preselected_conditions
@@ -62,9 +58,9 @@ class QAEFormBuilder
     end
 
     def preselected_condition_by_option(option)
-      placeholder_preselected_conditions.select do |condition|
+      placeholder_preselected_conditions.detect do |condition|
         condition.question_value == option.value
-      end.first
+      end
     end
 
     def depends_on
