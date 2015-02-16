@@ -22,7 +22,7 @@ class FormAnswer < ActiveRecord::Base
 
     has_many :form_answer_attachments
 
-    has_many :supporters, dependent: :destroy
+    has_many :supporters, dependent: :destroy, autosave: true
     has_many :support_letters, through: :supporters
   end
 
@@ -42,6 +42,7 @@ class FormAnswer < ActiveRecord::Base
   before_create :set_account
   before_save :set_urn
   before_save :set_progress
+  before_save :build_supporters
   before_validation :check_eligibility, if: :submitted?
 
   store_accessor :document
@@ -68,7 +69,32 @@ class FormAnswer < ActiveRecord::Base
     super || {}
   end
 
+  def promotion?
+    award_type == 'promotion'
+  end
+
   private
+
+  def build_supporters
+    if promotion? && submitted?
+      if document['supporters'].present?
+        document_supporters = JSON.parse(document['supporters'].presence || '[]').map { |answer| JSON.parse(answer) }
+        document_supporters.each do |supporter|
+          next if supporters.find_by_email(supporter['email'])
+
+          supporter = supporters.build(email: supporter['email'])
+        end
+
+        supporters.each do |saved_supporter|
+          if document_supporters.none? { |s| s['email'] == saved_supporter.email }
+            saved_supporter.mark_for_destruction
+          end
+        end
+      elsif supporters.any?
+        supporters.each(&:mark_for_destruction)
+      end
+    end
+  end
 
   def check_eligibility
     errors.add(:base, "Sorry, you are not eligible") unless eligible?

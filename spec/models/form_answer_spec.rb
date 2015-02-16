@@ -40,4 +40,44 @@ RSpec.describe FormAnswer, type: :model do
       expect(other_form_answer.urn).to eq('QA0002/14T')
     end
   end
+
+  context 'supporters' do
+    let(:form_answer) { FactoryGirl.create(:form_answer, :promotion) }
+
+    before do
+      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
+    end
+
+    it 'creates supporters for ep form' do
+      form_answer.document = { supporters: [{ email: 'supporter1@example.com' }.to_json, { email: 'supporter2@example.com' }.to_json] }
+      form_answer.submitted = true
+      expect { form_answer.save!; form_answer.reload }.to change {
+        form_answer.supporters.count
+      }.by(2)
+    end
+
+    context 'with existing supporters' do
+      before do
+        form_answer.supporters << Supporter.new(email: 'supporter1@example.com')
+        form_answer.supporters << Supporter.new(email: 'supporter2@example.com')
+      end
+
+      it 'destroys all form_answer supporters if form data is blank' do
+        form_answer.submitted = true
+        expect { form_answer.save!; form_answer.reload }.to change {
+          form_answer.supporters.count
+        }.by(-2)
+      end
+
+      it 'destroys only one form_answer supporter which is missingfrom the form data' do
+        form_answer.submitted = true
+        form_answer.document = { supporters: [{ email: 'supporter1@example.com' }.to_json] }
+        expect { form_answer.save!; form_answer.reload }.to change {
+          form_answer.supporters.count
+        }.by(-1)
+
+        expect(form_answer.supporters.first.email).to eq('supporter1@example.com')
+      end
+    end
+  end
 end
