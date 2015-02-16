@@ -6,7 +6,7 @@ p
 
 p
   ' You can fill your support letter
-  = link_to 'here', 'http://' + ENV["mailgun_domain"] + support_letter_path(access_key: @supporter.access_key)
+  = link_to 'here', 'http://' + (ENV["mailgun_domain"] || 'example.com') + support_letter_path(access_key: @supporter.access_key)
 
 p
   | Best Regards, Administration Team
