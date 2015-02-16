@@ -1,0 +1,50 @@
+header.page-header.group
+  div
+    h1
+      ' Your account
+
+.article-container
+  article.group role="article"
+    .inner
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+        /= f.error_notification
+
+        .form-inputs
+          .question
+            h2 Email
+            .question-body
+              = f.input :email, required: true, autofocus: true, label: false, input_html: {autocomplete: "off", class: "medium"}
+
+        - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+          p
+            ' Currently waiting confirmation for:
+            = resource.unconfirmed_email
+
+        .form-inputs-group
+          .form-inputs
+            .question
+              h2 Password
+              .question-body
+                = f.input :password, required: false, autocomplete: "off", label: false, hint: "Leave it blank if you don't want to change it", input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
+
+          .form-inputs
+            .question
+              h2 Password confirmation
+              .question-body
+                = f.input :password_confirmation, required: false, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
+
+          .form-inputs
+            .question
+              h2 Current password
+              .question-body
+                = f.input :current_password, required: true, label: false, hint: "We need your current password to confirm your changes", input_html: { class: "js-disable-copy js-disable-paste" }
+
+        .form-actions
+          = f.button :submit, "Update", class: "button large"
+
+        /
+          h3
+            | Cancel my account
+          p
+            | Unhappy?
+            = link_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete

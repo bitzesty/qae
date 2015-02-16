@@ -1,0 +1,33 @@
+- provide(:page_wrapper_class, "page-devise")
+
+.article-related-positioning-container
+  header.page-header.group
+    div
+      h1
+        | Change your password
+
+  .article-container.group
+    article.group role="article"
+      .inner
+        = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+          /= f.error_notification
+          = f.input :reset_password_token, as: :hidden
+          = f.full_error :reset_password_token
+
+          .form-inputs-group
+            .form-inputs
+              .question
+                h2 New Password
+                .question-body
+                  = f.input :password, required: true, label: false, autofocus: true, input_html: { class: 'password-strength-meter' }
+
+            .form-inputs
+              .question
+                h2 Confirm your new password
+                .question-body
+                  = f.input :password_confirmation, label: false, required: true
+
+          .form-actions
+            = f.button :submit, "Change my password", class: "button large"
+
+        = render "admins/shared/links"
