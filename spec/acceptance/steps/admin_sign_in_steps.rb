@@ -4,8 +4,8 @@ end
 
 step "I sign in as admin" do
   visit '/admins/sign_in'
-  fill_in 'Email', with: @admin.email
-  fill_in 'Password', with: 'password123'
+  fill_in 'admin_email', with: @admin.email
+  fill_in 'admin_password', with: 'password123'
   click_button 'Log in'
 end
 
