@@ -359,6 +359,7 @@ DEPENDENCIES
   kaminari (~> 0.16)
   launchy
   letter_opener
+  nokogiri
   pdf-inspector
   pg (~> 0.17)
   plek (~> 1.9.0)

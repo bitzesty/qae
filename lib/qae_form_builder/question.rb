@@ -1,5 +1,3 @@
-require "nokogiri"
-
 class QAEFormBuilder
 
   class QuestionDecorator < QAEDecorator

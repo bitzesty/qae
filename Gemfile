@@ -26,6 +26,7 @@ gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'country_select'
 gem "email_validator"
+gem "nokogiri"
 
 # Background jobs
 gem 'sidekiq'
