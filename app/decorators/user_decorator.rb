@@ -19,6 +19,10 @@ class UserDecorator < ApplicationDecorator
     "#{full_name}#{confirmation_status}"
   end
 
+  def company
+    company_name.presence || 'N/A'
+  end
+
   def role
     object.role.humanize
   end

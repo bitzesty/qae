@@ -7,21 +7,32 @@ header.page-header.group
   .article-container
     article.group role="article"
       .inner
-        = link_to 'Create user', new_admin_user_path
-        table.table
-          thead
-            tr
-              th Email
-              th Signed in at
-              th
-          tbody
-            - @users.each do |user|
-              tr
-                td = link_to user.email, admin_user_path(user)
-                td = user.last_sign_in_at && user.last_sign_in_at.strftime('%B %e at %l:%M %p')
-                td
-                  =' link_to 'Edit', edit_admin_user_path(user)
-                  = link_to 'Delete', admin_user_path(user), data: { method: :delete, confirm: 'Are you sure?' }
+        form.user-form
+          input#search type='text'
 
+          = link_to 'New user', new_admin_user_path, class: 'new-user'
+          table.table.admin-table
+            thead
+              tr
+                th.sortable
+                  a Name
+                th.sortable
+                  a Email
+                th.sortable
+                  a Company
+                th.filter Role
+                th.filter Category
+                th.sortable
+                  a Signed in at
+            tbody
+              - UserDecorator.decorate_collection(@users).each do |user|
+                tr
+                  td = user.full_name
+                  td = link_to user.email, admin_user_path(user)
+                  td = user.company
+                  td = user.role
+                  td
+                    i Not implemented
+                  td = user.last_sign_in_at && user.last_sign_in_at.strftime('%B %e at %l:%M %p')
 
         = paginate @users
