@@ -10,22 +10,18 @@ header.page-header.group
         table.table
           thead
             tr
-              th User
-              th Created at
-              th
-              th
-              th
+              th Company/Nominee
+              th Reference
+              th Category
+              th Status
+              th Flag
           tbody
-            - @form_answers.each do |form_answer|
+            - collection.each do |obj|
               tr
-                td
-                  = link_to form_answer.user.email, admin_user_path(form_answer.user)
-                td = form_answer.created_at
-                td = "Withdrawn" if form_answer.withdrawn?
-                td 
-                  = link_to "Review", review_admin_form_answer_path(form_answer) 
-                td
-                  - action = form_answer.withdrawn? ? "Restore" : "Withdraw"
-                  =' link_to action, withdraw_admin_form_answer_path(form_answer), method: :post
-
-        = paginate @form_answers
+                td class= obj.consideration_status_label
+                  = obj.company_or_nominee
+                td = obj.urn_reference
+                td = obj.award_type
+                td = obj.progress_text
+                td = application_flags(obj)
+        = paginate collection

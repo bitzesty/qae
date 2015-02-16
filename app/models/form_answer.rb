@@ -73,6 +73,10 @@ class FormAnswer < ActiveRecord::Base
     award_type == 'promotion'
   end
 
+  def important?
+    importance_flag?
+  end
+
   private
 
   def build_supporters

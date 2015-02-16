@@ -1,8 +1,7 @@
 class Admin::FormAnswersController < Admin::BaseController
-  before_filter :find_form_answer, only: [:withdraw, :review]
+  before_filter :load_resource, only: [:withdraw, :review]
 
   def index
-    @form_answers = FormAnswer.order(id: :desc).page(params[:page])
   end
 
   def withdraw
@@ -17,9 +16,15 @@ class Admin::FormAnswersController < Admin::BaseController
     redirect_to edit_form_path(@form_answer, anchor: "company-information")
   end
 
+  helper_method :collection
+
   private
 
-  def find_form_answer
+  def load_resource
     @form_answer = FormAnswer.find(params[:id])
+  end
+
+  def collection
+    @form_answers ||= FormAnswer.order(id: :desc).page(params[:page]).decorate
   end
 end

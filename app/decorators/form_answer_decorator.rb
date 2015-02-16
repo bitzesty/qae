@@ -15,12 +15,34 @@ class FormAnswerDecorator < ApplicationDecorator
       'Innovation'
     when "development"
       'Sustainable Development'
-    when "promotion" 
+    when "promotion"
       'Enterprise promotion'
     end
   end
 
   def award_application_title
     "#{award_type} Award #{Date.today.year}"
+  end
+
+  def company_or_nominee
+    object.user.company_name
+  end
+
+  def urn_reference
+    object.urn || 'Not yet generated'
+  end
+
+  def progress_text
+    # IMPLEMENTME
+    'Application...30%'
+  end
+
+  def consideration_status_label
+    if object.withdrawn?
+      'withdrawn'
+    else
+      # IMPLEMENTME
+      ['pending', 'shortlisted'][rand(2)]
+    end
   end
 end
