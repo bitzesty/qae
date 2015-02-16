@@ -134,7 +134,6 @@ class QAE2014Forms
           }
           yes_no
         end
-        # TODO: if yes, then show B7
 
         options :external_are_aware_about_award, "Are they aware that you're applying for this award?" do
           required
