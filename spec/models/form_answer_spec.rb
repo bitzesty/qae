@@ -69,7 +69,7 @@ RSpec.describe FormAnswer, type: :model do
         }.by(-2)
       end
 
-      it 'destroys only one form_answer supporter which is missingfrom the form data' do
+      it 'destroys only one form_answer supporter which is missing form the form data' do
         form_answer.submitted = true
         form_answer.document = { supporters: [{ email: 'supporter1@example.com' }.to_json] }
         expect { form_answer.save!; form_answer.reload }.to change {
