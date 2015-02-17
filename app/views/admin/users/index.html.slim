@@ -8,22 +8,22 @@ header.page-header.group
     article.group role="article"
       .inner
         form.user-form
-          input#search type='text'
+          input#search type='search'
 
           = link_to 'New user', new_admin_user_path, class: 'new-user'
           table.table.admin-table
             thead
               tr
                 th.sortable
-                  a Name
+                  = sort_link 'Name', @search, :first_name
                 th.sortable
-                  a Email
+                  = sort_link 'Email', @search, :email
                 th.sortable
-                  a Company
+                  = sort_link 'Company', @search, :company_name
                 th.filter Role
                 th.filter Category
                 th.sortable
-                  a Signed in at
+                  = sort_link 'Signed in at', @search, :last_sign_in_at
             tbody
               - UserDecorator.decorate_collection(@users).each do |user|
                 tr
