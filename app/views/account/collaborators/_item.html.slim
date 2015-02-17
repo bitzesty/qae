@@ -1,10 +1,15 @@
-tr id="#{dom_id(collaborator)}"
-  td 
+li id="#{dom_id(collaborator)}"
+  = link_to "Remove", account_collaborator_path(collaborator),
+                      method: :delete,
+                      class: 'remove-link'
+  p
+    strong
+      = collaborator.role
+  br
+  p
     = collaborator.full_name_with_status
-  td
+  p
+    - if collaborator.phone_number.present?
+      = collaborator.phone_number
+      ' &nbsp;
     = mail_to collaborator.email
-  td
-    = collaborator.role
-  td.text-right
-    = link_to "Remove", account_collaborator_path(collaborator),
-                        method: :delete
