@@ -1,0 +1,168 @@
+// Mixins
+  // Screen conditionals
+    @mixin screen-xxs-max {
+      @media (max-width: 240px) and (max-height: 340px) and (orientation: portrait), (max-height: 240px) and (max-width: 340px) and (orientation: landscape) {
+        @content;
+      }
+    }
+    @mixin screen-xs-max {
+      @media (max-width: 479px) {
+        @content;
+      }
+    }
+    @mixin screen-xs-min {
+      @media (min-width: 480px) {
+        @content;
+      }
+    }
+    @mixin screen-xs-to-sm {
+      @media (min-width: 480px) and (max-width: 767px) {
+        @content;
+      }
+    }
+    @mixin screen-sm-max {
+      @media (max-width: 767px) {
+        @content;
+      }
+    }
+    @mixin screen-sm-min {
+      @media (min-width: 768px) {
+        @content;
+      }
+    }
+    @mixin screen-sm-to-md {
+      @media (min-width: 768px) and (max-width: 991px) {
+        @content;
+      }
+    }
+    @mixin screen-md-max {
+      @media (max-width: 991px) {
+        @content;
+      }
+    }
+    @mixin screen-md-min {
+      @media (min-width: 992px) {
+        @content;
+      }
+    }
+    @mixin screen-md-to-lg {
+      @media (min-width: 992px) and (max-width: 1223px) {
+        @content;
+      }
+    }
+    @mixin screen-lg-max {
+      @media (max-width: 1223px) {
+        @content;
+      }
+    }
+    @mixin screen-lg-min {
+      @media (min-width: 1224px) {
+        @content;
+      }
+    }
+    @mixin screen-lg-to-sxl {
+      @media (min-width: 1224px) and (max-width: 1440px) {
+        @content;
+      }
+    }
+    @mixin screen-lg-to-xl {
+      @media (min-width: 1224px) and (max-width: 1823px) {
+        @content;
+      }
+    }
+    @mixin screen-xl-max {
+      @media (max-width : 1823px) {
+        @content;
+      }
+    }
+    @mixin screen-xl-min {
+      @media (min-width: 1824px) {
+        @content;
+      }
+    }
+    @mixin screen-short {
+      @media (max-height: 800px) {
+        @content;
+      }
+    }
+
+  // iOS conditionals
+    $iphone-width: 320px;
+    $iphone-old-height: 480px;
+    $iphone-height: 568px;
+    $ipad-width: 768px;
+    $ipad-height: 1024px;
+
+    @mixin is-ios {
+      @media only screen and (min-device-width : $iphone-width) and (max-device-width : $iphone-old-height) and (orientation : landscape), 
+      only screen and (min-device-height : $iphone-width) and (max-device-height : $iphone-old-height) and (orientation : portrait), 
+      only screen and (min-device-width : $iphone-width) and (max-device-width : $iphone-height) and (orientation : landscape), 
+      only screen and (min-device-height : $iphone-width) and (max-device-height : $iphone-height) and (orientation : portrait), 
+      only screen and (min-device-width : $ipad-width) and (max-device-width : $ipad-height) and (orientation : landscape), 
+      only screen and (min-device-height : $ipad-width) and (max-device-height : $ipad-height) and (orientation : portrait) {
+        @content;
+      }
+    }
+
+    @mixin is-iphone {
+      @media only screen and (min-device-height : $iphone-width) and (max-device-height : $iphone-old-height) and (orientation : landscape), only screen and (min-device-height : $iphone-width) and (max-device-height : $iphone-old-height) and (orientation : portrait), only screen and (min-device-width : $iphone-width) and (max-device-width : $iphone-height) and (orientation : landscape), only screen and (min-device-width : $iphone-width) and (max-device-width : $iphone-height) and (orientation : portrait) {
+        @content;
+      }
+    }
+
+    @mixin iphone($orientation) {
+      @if ($orientation == "landscape") {
+        @media only screen and (min-device-width : $iphone-width) and (max-device-width : $iphone-old-height) and (orientation : landscape), only screen and (min-device-width : $iphone-width) and (max-device-width : $iphone-height) and (orientation : landscape) {
+          @content;
+        }
+      }
+      @if ($orientation == "portrait") {
+        @media only screen and (min-device-height : $iphone-width) and (max-device-height : $iphone-height) and (orientation : portrait), only screen and (min-device-height : $iphone-width) and (max-device-height : $iphone-old-height) and (orientation : portrait) {
+          @content;
+        }
+      }
+    }
+
+    @mixin is-iphone-old {
+      @media only screen and (min-device-width : $iphone-width) and (max-device-width : $iphone-old-height) and (orientation : landscape), only screen and (min-device-height : $iphone-width) and (max-device-height : $iphone-old-height) and (orientation : portrait) {
+        @content;
+      }
+    }
+
+    @mixin iphone-old($orientation) {
+      @if ($orientation == "landscape") {
+        @media only screen and (min-device-width : $iphone-width) and (max-device-width : $iphone-old-height) and (orientation : landscape) {
+          @content;
+        }
+      }
+      @if ($orientation == "portrait") {
+        @media only screen and (min-device-height : $iphone-width) and (max-device-height : $iphone-old-height) and (orientation : portrait) {
+          @content;
+        }
+      }
+    }
+
+    @mixin is-ipad {
+      @media only screen and (min-device-width : $ipad-width) and (max-device-width : $ipad-height) and (orientation : landscape), only screen and (min-device-width : $ipad-width) and (max-device-width : $ipad-height) and (orientation : portrait) {
+        @content;
+      }
+    }
+    @mixin ipad($orientation) {
+      @if ($orientation == "landscape") {
+        @media only screen and (min-device-width : $ipad-width) and (max-device-width : $ipad-height) and (orientation : landscape) {
+          @content;
+        }
+      }
+      @if ($orientation == "portrait") {
+        @media only screen and (min-device-height : $ipad-width) and (max-device-height : $ipad-height) and (orientation : portrait) {
+          @content;
+        }
+      }
+    }
+
+  // Retina conditional
+    @mixin is-retina {
+      @media only screen and (-webkit-min-device-pixel-ratio: 2) {
+        @content;
+      }
+    }

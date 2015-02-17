@@ -1,0 +1,64 @@
+@import "mixins";
+
+#site-header {
+  font-size: 20px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  .navbar {
+    background: #231f20;
+    border: none;
+    border-radius: 0;
+
+    .navbar-brand,
+    .navbar-nav > li > a {
+      color: #fff;
+      text-transform: uppercase;
+      background: transparent;
+    }
+
+    .navbar-brand {
+      width: 58px;
+      height: 67px;
+      padding-top: 0;
+      padding-bottom: 0;
+      text-align: left;
+      text-indent: -9999px;
+      background: image-url("logo-admin.png") no-repeat center center;
+      background-size: 28px 37px;
+
+      @include is-retina {
+        background-image: image-url("logo-admin@2.png");
+      }
+    }
+
+    .navbar-nav > li > a {
+      padding-top: 24px;
+      padding-bottom: 23px;
+    }
+  }
+
+  .nav > li {
+    margin: 0 20px;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    > a {
+      &:hover,
+      &:focus {
+        background-color: #444;
+      }
+    }
+
+    &.active > a {
+      background: transparent image-url("icon-arrow-admin-nav.png") no-repeat center bottom;
+      background-size: 24px 12px;
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-admin-nav@2.png");
+      }
+    }
+  }
+}
