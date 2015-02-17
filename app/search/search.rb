@@ -22,9 +22,15 @@ class Search
     @params = search_params || {}
 
     if params[:sort]
+      column, order = params[:sort].split('.')
 
-      @ordered_desc = params[:sort].split('.').last == 'desc'
-      @ordered_by   = params[:sort].split('.').first
+      if included_in_model_columns?(column)
+        @ordered_desc = order == 'desc'
+        @ordered_by   = column
+      else
+        raise 'not implemented'
+        apply_custom_sort(params[:sort])
+      end
     end
 
     if params[:filter]
@@ -38,15 +44,25 @@ class Search
     @search_results = scope
 
     if ordered_by
-      if ordered_desc
-        @search_results = @search_results.order("#{ordered_by} DESC")
+      if included_in_model_columns?(ordered_by)
+        if ordered_desc
+          @search_results = @search_results.order("#{ordered_by} DESC")
+        else
+          @search_results = @search_results.order(ordered_by)
+        end
       else
-        @search_results = @search_results.order(ordered_by)
+        raise 'not implemented'
+        @search_results = apply_custom_sort(@search_results, params[:sort])
       end
     end
 
     filter.each do |column, value|
-      @search_results = @search_results.where(column: value)
+      if included_in_model_columns?(column)
+        @search_results = @search_results.where(column: value)
+      else
+        raise 'not implemented'
+        @search_results = apply_custom_filter(@search_results, column, value)
+      end
     end
 
     @search_results
@@ -58,5 +74,11 @@ class Search
     else
       super
     end
+  end
+
+  private
+
+  def included_in_model_columns?(column)
+    scope.model.column_names.include?(column)
   end
 end
