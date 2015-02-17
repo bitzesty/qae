@@ -1,16 +1,4 @@
 Rails.application.routes.draw do
-  namespace :form_answer do
-  get 'comments/show'
-  end
-
-  namespace :form_answer do
-  get 'comments/index'
-  end
-
-  namespace :form_answer do
-  get 'comments/create'
-  end
-
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
