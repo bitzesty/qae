@@ -1,0 +1,77 @@
+doctype html
+/[if lt IE 7]
+  <html class="ie ie6 lte9 lte8 lte7">
+/[if IE 7]
+  <html class="ie ie7 lte9 lte8 lte7">
+/[if IE 8]
+  <html class="ie ie8 lte9 lte8">
+/[if IE 9]
+  <html class="ie ie9 lte9">
+| <!--[if (gte IE 9)|!(IE)]<!-->
+html
+  | <!--<![endif]-->
+  head
+    title Queen's Awards for Enterprise - Admin
+    meta content="minimal-ui, width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport"
+    meta http-equiv="content-type" content="text/html; charset=UTF-8"
+
+    = stylesheet_link_tag "application-admin", media: "all"
+
+    = yield :section_meta_tags
+    = csrf_meta_tags
+
+    = yield(:head) if content_for?(:head)
+
+  body#admin-layout class="#{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class}"
+    #wrapper
+      #wrapper-margin
+        #site-header
+          nav.navbar role="navigation"
+            .container
+              .navbar-header
+                button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#nav-main-collapse"
+                  span.sr-only Toggle navigation
+                  span.icon-bar
+                  span.icon-bar
+                  span.icon-bar
+
+                = link_to "Queen's Awards for Enterprise - Admin",
+                          root_path,
+                          class: 'navbar-brand'
+
+              .navbar-collapse.collapse#nav-main-collapse
+                ul.nav.navbar-nav role="navigation"
+                  li
+                    = link_to "Dashboard", "#"
+                  li class="#{'active' if controller_name == 'form_answers'}"
+                    = link_to "Applications", admin_form_answers_path
+                  li class="#{'active' if controller_name == 'users'}"
+                    = link_to "Users", admin_users_path
+
+                ul.nav.navbar-nav.navbar-right role="navigation"
+                  li.dropdown
+                    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                      ' My account
+                      span.caret
+                    ul.dropdown-menu
+                      li
+                        = link_to "Log out",
+                                  destroy_admin_session_path,
+                                  method: :delete
+
+
+        #main-container
+          .container
+            - if [:alert, :notice].any? { |kind| flash[kind].presence }
+              .flash
+                .flash-inner
+                  - [:alert, :notice].each do |kind|
+                    - if flash[kind]
+                      div class="#{kind}"
+                        = flash[kind]
+            = yield
+
+    footer#site-footer
+      .footer-container
+
+    = javascript_include_tag 'application-admin'
