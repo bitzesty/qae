@@ -14,6 +14,6 @@ end
 
 unless Comment.exists?
   FormAnswer.first(3).each do |app|
-    app.comments.create(body: "Random comment", author: User.last)
+    app.comments.create(body: "Random comment", author: Admin.last)
   end
 end
