@@ -4,7 +4,7 @@ end
 
 step "I create new user" do
   step "I go to user management page"
-  click_link 'Create user'
+  click_link 'New user'
 
   fill_in 'Email', with: 'user@example.com'
   select 'Regular', from: 'Role'
@@ -16,7 +16,7 @@ end
 
 step "I edit user" do
   step "I go to user management page"
-
+  click_link @user.email
   click_link 'Edit'
 
   fill_in 'Email', with: 'user@example.com'
@@ -26,6 +26,7 @@ end
 
 step "I delete user" do
   step "I go to user management page"
+  click_link @user.email
 
   click_link 'Delete'
 end

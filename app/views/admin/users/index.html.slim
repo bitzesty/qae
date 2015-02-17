@@ -7,21 +7,35 @@ header.page-header.group
   .article-container
     article.group role="article"
       .inner
-        = link_to 'Create user', new_admin_user_path
-        table.table
-          thead
-            tr
-              th Email
-              th Signed in at
-              th
-          tbody
-            - @users.each do |user|
+        = simple_form_for @search, url: '#', method: :get, as: :search, html: { class: 'search-form' } do |f|
+          input#search type='search'
+          .visuallyhidden
+            = f.submit :submit
+          = link_to 'New user', new_admin_user_path, class: 'new-user'
+          table.table.admin-table
+            thead
               tr
-                td = link_to user.email, admin_user_path(user)
-                td = user.last_sign_in_at && user.last_sign_in_at.strftime('%B %e at %l:%M %p')
-                td
-                  =' link_to 'Edit', edit_admin_user_path(user)
-                  = link_to 'Delete', admin_user_path(user), data: { method: :delete, confirm: 'Are you sure?' }
-
+                th.sortable
+                  = sort_link f, 'Name', @search, :full_name
+                th.sortable
+                  = sort_link f, 'Email', @search, :email
+                th.sortable
+                  = sort_link f, 'Company', @search, :company_name
+                th.filter
+                  = f.simple_fields_for [:filters, @search.filters] do |f|
+                    = f.input :role, collection: User.role.options
+                th.filter Category
+                th.sortable
+                  = sort_link f, 'Signed in at', @search, :last_sign_in_at
+            tbody
+              - UserDecorator.decorate_collection(@users).each do |user|
+                tr
+                  td = user.full_name
+                  td = link_to user.email, admin_user_path(user)
+                  td = user.company
+                  td = user.role
+                  td
+                    i Not implemented
+                  td = user.last_sign_in_at && user.last_sign_in_at.strftime('%B %e at %l:%M %p')
 
         = paginate @users
