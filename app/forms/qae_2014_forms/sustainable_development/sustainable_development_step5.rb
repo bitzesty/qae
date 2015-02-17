@@ -2,37 +2,17 @@ class QAE2014Forms
   class << self
     def development_step5
       @development_step5 ||= Proc.new {
-        options :agree_to_be_contacted, %Q{We will contact you regarding your entry. We may also wish to contact you about other issues relating to The Queen's Awards for Enterprise (eg. acting as a case study). Are you happy for us to do this?} do
+        upload :innovation_materials, 'If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here.' do
           ref 'E 1'
-          yes_no
-        end
-
-        confirm :confirmation_of_consent, 'Confirmation of consent' do
-          ref 'E 2'
-          required
-          text 'I confirm that I have the consent of the Head of the applicant business (as identified in A11) to submit this entry form.'
-        end
-
-        confirm :entry_confirmation, 'Confirmation of entry' do
-          ref 'E 3'
-          required
-          text %Q{
-            By ticking this box, I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
-            <br>
-            <br>
-            I am not aware of any matter which might cast doubt upon the worthiness of this business unit to receive a Queen’s Award. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety.
-          }
-        end
-
-
-        submit "Submit application" do
-          notice %Q{
-            <p>If you have answered all the questions, you can submit your application now. You will be able to edit it any time before 23:59 on the last working day of September.</p>
-            <p>
-              If you are not ready to submit yet, you can save your application and come back later.
-            </p>
-          }
-          style "large"
+          context %Q{
+            <p>We can't guarantee these will be reviewed, so include any vital information within the form.</p>
+            <p>You can upload files in all common formats, as long as they're less than 5mb.</p>
+            <p>You may link to videos, websites or other media you feel relevant.</p>
+            <p>We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.</p>
+          } # TODO!
+          max_attachments 4
+          links
+          description
         end
       }
     end

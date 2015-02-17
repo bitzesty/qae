@@ -59,7 +59,7 @@ class QAE2014Forms
           date_max '01/10/2012'
         end
 
-        header :business_division_header, 'Business awards' do
+        header :business_awards_header, 'Business awards' do
         end
 
         options :queen_award_holder, "Are you a current Queen's Award holder (2010-2014)?" do
@@ -153,7 +153,7 @@ class QAE2014Forms
           conditional :external_are_aware_about_award, 'some'
         end
 
-        options :external_contribute_to_sustainable_product, 'Is this application part of a joint entry with any of the contributing organisation(s)?' do
+        options :part_of_joint_entry, 'Is this application part of a joint entry with any of the contributing organisation(s)?' do
           required
           context %Q{
             <p>
@@ -163,9 +163,9 @@ class QAE2014Forms
           yes_no
         end
 
-        textarea :external_organization_or_individual_names, 'Please enter their name(s)' do
+        textarea :part_of_joint_entry_names, 'Please enter their name(s)' do
           required
-          conditional :external_contribute_to_sustainable_product, 'yes'
+          conditional :part_of_joint_entry, 'yes'
           words_max 200
           rows 5
         end
