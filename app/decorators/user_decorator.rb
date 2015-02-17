@@ -24,6 +24,6 @@ class UserDecorator < ApplicationDecorator
   end
 
   def role
-    object.role.humanize
+    object.role.to_s.humanize
   end
 end
