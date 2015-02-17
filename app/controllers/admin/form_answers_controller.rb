@@ -16,6 +16,9 @@ class Admin::FormAnswersController < Admin::BaseController
     redirect_to edit_form_path(@form_answer, anchor: "company-information")
   end
 
+  def show
+  end
+
   helper_method :collection
 
   private
