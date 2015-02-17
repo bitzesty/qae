@@ -7,7 +7,7 @@ header.page-header.group
   .article-container
     article.group role="article"
       .inner
-        = simple_form_for @search, url: '#', method: :get, html: { class: 'search-form' } do |f|
+        = simple_form_for @search, url: '#', method: :get, as: :search, html: { class: 'search-form' } do |f|
           input#search type='search'
           .visuallyhidden
             = f.submit :submit
@@ -16,17 +16,17 @@ header.page-header.group
             thead
               tr
                 th.sortable
-                  = sort_link 'Name', @search, :first_name
+                  = sort_link f, 'Name', @search, :full_name
                 th.sortable
-                  = sort_link 'Email', @search, :email
+                  = sort_link f, 'Email', @search, :email
                 th.sortable
-                  = sort_link 'Company', @search, :company_name
+                  = sort_link f, 'Company', @search, :company_name
                 th.filter
                   = f.simple_fields_for [:filters, @search.filters] do |f|
                     = f.input :role, collection: User.role.options
                 th.filter Category
                 th.sortable
-                  = sort_link 'Signed in at', @search, :last_sign_in_at
+                  = sort_link f, 'Signed in at', @search, :last_sign_in_at
             tbody
               - UserDecorator.decorate_collection(@users).each do |user|
                 tr

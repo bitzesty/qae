@@ -29,13 +29,8 @@ class Search
     if params[:sort]
       column, order = params[:sort].split('.')
 
-      if included_in_model_columns?(column)
-        @ordered_desc = order == 'desc'
-        @ordered_by   = column
-      else
-        raise 'not implemented'
-        apply_custom_sort(params[:sort])
-      end
+      @ordered_desc = order == 'desc'
+      @ordered_by   = column
     end
 
     if params[:search_filter]
@@ -56,7 +51,6 @@ class Search
           @search_results = @search_results.order(ordered_by)
         end
       else
-        raise 'not implemented'
         @search_results = apply_custom_sort(@search_results, params[:sort])
       end
     end
@@ -65,7 +59,6 @@ class Search
       if included_in_model_columns?(column)
         @search_results = @search_results.where(column => value)
       else
-        raise 'not implemented'
         @search_results = apply_custom_filter(@search_results, column, value)
       end
     end
@@ -85,6 +78,16 @@ class Search
 
   def included_in_model_columns?(column)
     scope.model.column_names.include?(column.to_s)
+  end
+
+  def apply_custom_sort(scoped_results, sort_value)
+    column, order = sort_value.split('.')
+    desc = order == 'desc'
+    public_send("sort_by_#{column}", scoped_results, desc)
+  end
+
+  def apply_custom_filter(scoped_results, column, value)
+    public_send("filter_by_#{column}", scoped_results, value)
   end
 
   class Filter < OpenStruct

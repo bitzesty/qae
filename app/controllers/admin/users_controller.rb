@@ -3,7 +3,7 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     params[:search] ||= { sort: 'first_name' }
-    @search = Search.new(User.all).search(params[:search])
+    @search = UserSearch.new(User.all).search(params[:search])
     @users = @search.results.page(params[:page])
   end
 

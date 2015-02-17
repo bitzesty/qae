@@ -1,6 +1,11 @@
 module SearchHelper
-  def sort_link(name, search, field)
-    link_to(name, { search: { sort: sort_link_param(search, field)} }, { class: sort_link_class(search, field) })
+  def sort_link(f, name, search, field)
+    h = ''.html_safe
+
+    h << link_to(name, { search: { sort: sort_link_param(search, field)} }, { class: sort_link_class(search, field) })
+    h << f.input(:sort, as: :hidden, input_html: { value: "#{field}#{'.desc' if !search.ordered_desc}", disabled: true })
+
+    h
   end
 
   private
