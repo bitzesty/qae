@@ -22,7 +22,7 @@ header.page-header.group
                 th.sortable
                   = sort_link 'Company', @search, :company_name
                 th.filter
-                  = f.simple_fields_for :filters do |f|
+                  = f.simple_fields_for [:filters, @search.filters] do |f|
                     = f.input :role, collection: User.role.options
                 th.filter Category
                 th.sortable

@@ -1,15 +1,17 @@
+require 'ostruct'
+
 class Search
   extend ActiveModel::Naming
   include ActiveModel::Conversion
 
-  attr_reader :scope, :params, :ordered_by, :ordered_desc, :filters
+  attr_reader :scope, :params, :ordered_by, :ordered_desc, :filter_params
 
   # Example usage for users
   # scope = User.scoped
   # params =
   # {
   #   sort: 'last_login.desc', # see UserSearch#last_login for possible implementation of sort by non existing field
-  #   filter: {
+  #   search_filter: {
   #     role: ['regular', 'account_admin']
   #   }
   # }
@@ -18,7 +20,7 @@ class Search
     @params       = {}
     @ordered_by   = nil
     @ordered_desc = false
-    @filters       = {}
+    @filter_params = {}
   end
 
   def search(search_params)
@@ -36,8 +38,8 @@ class Search
       end
     end
 
-    if params[:filters]
-      @filters = params[:filters]
+    if params[:search_filter]
+      @filter_params = params[:search_filter].dup
     end
 
     self
@@ -59,7 +61,7 @@ class Search
       end
     end
 
-    filters.each do |column, value|
+    filter_params.each do |column, value|
       if included_in_model_columns?(column)
         @search_results = @search_results.where(column => value)
       else
@@ -71,12 +73,8 @@ class Search
     @search_results
   end
 
-  def method_missing(method, *args, &block)
-    if included_in_model_columns?(method)
-      filters[method.to_s]
-    else
-      super
-    end
+  def filters
+    @filters ||= Filter.new(filter_params)
   end
 
   def persisted?
@@ -87,5 +85,10 @@ class Search
 
   def included_in_model_columns?(column)
     scope.model.column_names.include?(column.to_s)
+  end
+
+  class Filter < OpenStruct
+    extend ActiveModel::Naming
+    include ActiveModel::Conversion
   end
 end
