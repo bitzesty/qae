@@ -1,4 +1,16 @@
 Rails.application.routes.draw do
+  namespace :form_answer do
+  get 'comments/show'
+  end
+
+  namespace :form_answer do
+  get 'comments/index'
+  end
+
+  namespace :form_answer do
+  get 'comments/create'
+  end
+
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
@@ -89,5 +101,9 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :collaborators, except: [:edit, :update, :show]
+  end
+
+  resources :form_answers, only: [] do
+    resources :comments
   end
 end
