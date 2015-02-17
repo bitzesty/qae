@@ -24,6 +24,7 @@ class FormAnswer < ActiveRecord::Base
 
     has_many :supporters, dependent: :destroy, autosave: true
     has_many :support_letters, through: :supporters
+    has_many :comments, as: :commentable
   end
 
   begin :validations

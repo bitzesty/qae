@@ -5,5 +5,12 @@ module FormAnswerHelper
     if form_answer.important?
       output += "IMPORTANT"
     end
+
+    if form_answer.comments.any?
+      output += "COMMENTS: #{form_answer.comments.size}"
+    end
+
+    output
+
   end
 end
