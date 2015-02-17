@@ -1,5 +1,4 @@
 ready = ->
-  console.log 'here'
   $('body').on 'click', '#build_new_comment', (e)->
     e.preventDefault()
     unless $('#new_comment').length
