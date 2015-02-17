@@ -4,10 +4,10 @@ header.page-header.group
       ' Applications
 
 .article-related-positioning-container
-  .article-container
+  .article-container style= 'width: 95%; max-width: 100%;'
     article.group role="article"
       .inner
-        table.table
+        table.table.applications-table
           thead
             tr
               th Company/Nominee
@@ -18,9 +18,14 @@ header.page-header.group
           tbody
             - collection.each do |obj|
               tr
-                td class= obj.consideration_status_label
+                td class= (obj.consideration_status_label + '-label')
                   = obj.company_or_nominee
-                td = obj.urn_reference
+                td
+                  - if obj.urn.present?
+                    = obj.urn
+                  - else
+                    label.urn-not-generated Not yet generated
+
                 td = obj.award_type
                 td = obj.progress_text
                 td = application_flags(obj)

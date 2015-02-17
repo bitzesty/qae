@@ -28,10 +28,6 @@ class FormAnswerDecorator < ApplicationDecorator
     object.user.company_name
   end
 
-  def urn_reference
-    object.urn || 'Not yet generated'
-  end
-
   def progress_text
     # IMPLEMENTME
     'Application...30%'
