@@ -80,6 +80,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :form_answers do
+      resources :comments
       member do
         post :withdraw
         get :review
@@ -89,9 +90,5 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :collaborators, except: [:edit, :update, :show]
-  end
-
-  resources :form_answers, only: [] do
-    resources :comments
   end
 end

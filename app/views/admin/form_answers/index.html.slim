@@ -19,7 +19,7 @@ header.page-header.group
             - collection.each do |obj|
               tr
                 td class= (obj.consideration_status_label + '-label')
-                  = obj.company_or_nominee
+                  = link_to obj.company_or_nominee, [:admin, obj]
                 td
                   - if obj.urn.present?
                     = obj.urn

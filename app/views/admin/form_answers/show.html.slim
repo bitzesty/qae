@@ -7,3 +7,6 @@ header.page-header.group
     article.group role="article"
     .comments-container
       = render(collection: resource.comments, partial: 'comment')
+
+  = form_for([:admin, resource, resource.comments.build]) do |f|
+    = render('admin/form_answers/comments/form', f: f)
