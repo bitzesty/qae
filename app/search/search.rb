@@ -10,7 +10,7 @@ class Search
   # scope = User.scoped
   # params =
   # {
-  #   sort: 'last_login.desc', # see UserSearch#last_login for possible implementation of sort by non existing field
+  #   sort: 'full_name.desc', # see UserSearch#sort_by_full_name for possible implementation of sort by non existing field
   #   search_filter: {
   #     role: ['regular', 'account_admin']
   #   }
