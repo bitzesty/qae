@@ -8,5 +8,4 @@ header.page-header.group
     .comments-container
       = render(collection: resource.comments, partial: 'comment')
 
-  = form_for([:admin, resource, resource.comments.build]) do |f|
-    = render('admin/form_answers/comments/form', f: f)
+    = link_to 'Enter a Comment', new_admin_form_answer_comment_path(resource), id: 'build_new_comment'

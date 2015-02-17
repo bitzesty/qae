@@ -6,4 +6,8 @@ class Comment < ActiveRecord::Base
   validates :body, presence: true
 
   delegate :email, to: :author, prefix: :author
+
+  def author?(admin)
+    author_id == admin.id
+  end
 end

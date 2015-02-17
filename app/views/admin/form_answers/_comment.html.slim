@@ -1,4 +1,6 @@
-.comment-container style='border: 1px solid #494949; width: 300px'
+.comment style='border: 1px solid #494949; width: 300px'
+  - if comment.author?(current_admin)
+    = link_to 'delete', admin_form_answer_comment_path(id: comment.id, form_answer_id: resource.id), class: 'delete-comment'
   .comment-header
     strong= comment.author_email
     br

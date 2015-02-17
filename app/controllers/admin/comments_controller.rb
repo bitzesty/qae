@@ -1,12 +1,31 @@
 class Admin::CommentsController < Admin::BaseController
+  def new
+    @comment = form_answer.comments.build
+
+    respond_to do |format|
+      format.html{ render :new, layout: false}
+    end
+  end
+
   def create
     @comment = form_answer.comments.build(create_params)
     @comment.save
 
     respond_to do |format|
       format.html do
-        redirect_to [:admin, form_answer]
+        render partial: 'admin/form_answers/comment', locals: { comment: @comment, resource: form_answer }
       end
+    end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    if @comment.author?(current_admin)
+      @comment.destroy
+    end
+
+    respond_to do |format|
+      format.json{ render(json: :ok)}
     end
   end
 
