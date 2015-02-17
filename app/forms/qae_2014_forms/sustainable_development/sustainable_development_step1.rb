@@ -251,7 +251,6 @@ class QAE2014Forms
           conditional :parent_group_entry, 'yes'
           yes_no
         end
-        # TODO: if yes ^ -> then show C5
 
         upload :org_chart, 'Upload an organisational chart (optional).' do
           ref 'A 14'
