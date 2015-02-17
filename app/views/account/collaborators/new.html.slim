@@ -8,9 +8,14 @@ header.page-header.group class=('page-header-wider' unless current_user.complete
     = render "accounts/steps_progress_bar"
 
     h2
-      ' New Collaborator
+      - unless current_user.completed_registration
+        ' Step 4 of 4:
+      ' Collaborators
 
 .article-container
   article.group role="article"
     .inner
+      h2
+        ' Add new collaborator
+
       = render "form"

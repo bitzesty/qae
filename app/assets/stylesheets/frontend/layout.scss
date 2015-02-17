@@ -92,6 +92,9 @@
   // Styles the sub header for `page-header`
   h2 {
     @include core-27;
+  }
+  h2,
+  h3 {
     display: block;
     margin-bottom: 0.15em;
     color: $grey-1;
@@ -99,6 +102,7 @@
 
   // Indent other page-header elements
   h2,
+  h3,
   .steps-progress-bar {
     margin-left: 32px;
 
