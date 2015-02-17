@@ -1,5 +1,8 @@
 class Search
-  attr_reader :scope, :params, :ordered_by, :ordered_desc, :filter
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+
+  attr_reader :scope, :params, :ordered_by, :ordered_desc, :filters
 
   # Example usage for users
   # scope = User.scoped
@@ -15,7 +18,7 @@ class Search
     @params       = {}
     @ordered_by   = nil
     @ordered_desc = false
-    @filter       = {}
+    @filters       = {}
   end
 
   def search(search_params)
@@ -33,8 +36,8 @@ class Search
       end
     end
 
-    if params[:filter]
-      @filter = params[:filter]
+    if params[:filters]
+      @filters = params[:filters]
     end
 
     self
@@ -56,9 +59,9 @@ class Search
       end
     end
 
-    filter.each do |column, value|
+    filters.each do |column, value|
       if included_in_model_columns?(column)
-        @search_results = @search_results.where(column: value)
+        @search_results = @search_results.where(column => value)
       else
         raise 'not implemented'
         @search_results = apply_custom_filter(@search_results, column, value)
@@ -69,16 +72,20 @@ class Search
   end
 
   def method_missing(method, *args, &block)
-    if filter[method.to_s]
-      filter[method.to_s]
+    if included_in_model_columns?(method)
+      filters[method.to_s]
     else
       super
     end
   end
 
+  def persisted?
+    false
+  end
+
   private
 
   def included_in_model_columns?(column)
-    scope.model.column_names.include?(column)
+    scope.model.column_names.include?(column.to_s)
   end
 end
