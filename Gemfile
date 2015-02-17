@@ -28,6 +28,8 @@ gem 'country_select'
 gem "email_validator"
 gem "nokogiri"
 
+gem "bootstrap-sass", ">= 3.3.3"
+
 # Background jobs
 gem 'sidekiq'
 gem 'sidekiq-status'
