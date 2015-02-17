@@ -19,7 +19,7 @@ class Admin::FormAnswersController < Admin::BaseController
   def show
   end
 
-  helper_method :collection
+  helper_method :collection, :resource
 
   private
 
@@ -29,5 +29,9 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def collection
     @form_answers ||= FormAnswer.order(id: :desc).page(params[:page]).decorate
+  end
+
+  def resource
+    @form_answer ||= FormAnswer.find(params[:id]).decorate
   end
 end

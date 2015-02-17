@@ -28,6 +28,10 @@ class FormAnswerDecorator < ApplicationDecorator
     object.user.company_name
   end
 
+  def company_name
+    company_or_nominee
+  end
+
   def progress_text
     # IMPLEMENTME
     'Application...30%'

@@ -1,0 +1,8 @@
+.comment-container style='border: 1px solid #494949; width: 300px'
+  .comment-header
+    strong= comment.author_email
+    br
+    label style='font-style:italic'=comment.created_at
+  .comment-content
+    = comment.body
+
