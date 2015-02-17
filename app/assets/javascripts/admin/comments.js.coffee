@@ -18,10 +18,10 @@ ready = ->
         $('#new_comment').remove()
         $('.comments-container').append(data)
 
-  $('body').on 'click', '.delete-comment', (e)->
+  $('body').on 'submit', '.edit_comment', (e)->
     e.preventDefault()
     $.ajax
-      url: $(this).attr('href'),
+      url: $(this).attr('action'),
       type: 'DELETE'
     $(this).parents('.comment').remove()
 

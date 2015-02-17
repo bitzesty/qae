@@ -26,6 +26,7 @@ class Admin::CommentsController < Admin::BaseController
 
     respond_to do |format|
       format.json{ render(json: :ok)}
+      format.html{ redirect_to admin_form_answer_path(form_answer)}
     end
   end
 
