@@ -54,7 +54,11 @@ class Account::CollaboratorsController < Account::BaseController
 
   def create_params
     params.require(:collaborator).permit(
-      :email, 
+      :title,
+      :first_name,
+      :last_name,
+      :phone_number,
+      :email,
       :role
     )
   end

@@ -186,7 +186,7 @@ So that they can collaborate form answers
             it "should create new user record with regular role" do
               within("#new_collaborator") do
                 fill_in "Email", with: new_user_email
-                select("Regular", from: "Role")
+                select("Only contributer", from: "Role")
 
                 expect {
                   click_on "Add"

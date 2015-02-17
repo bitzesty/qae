@@ -3,7 +3,7 @@
 header.page-header.group class="#{'page-header-wider' unless current_user.completed_registration}"
   div
     h1
-      ' Account settings
+      ' Account details
 
     = render "steps_progress_bar"
 
@@ -16,6 +16,9 @@ header.page-header.group class="#{'page-header-wider' unless current_user.comple
   article.group role="article"
     .inner
       = simple_form_for current_user, url: update_contact_settings_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
+        p
+          ' We'll contact you regarding your application either by phone or email.
+
         = render "form_contact_settings", f: f
 
         fieldset
