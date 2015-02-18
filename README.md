@@ -16,6 +16,11 @@
 * Postgresql 9
 * Redis
 
+### Running application
+
+```
+foreman start
+```
 
 #### Help
 
@@ -31,4 +36,10 @@ This means, that `hstore postgresql` extension needs to be installed:
 
 ```
 sudo apt-get install postgresql-contrib
+```
+
+For OSX users you might need to install pcre headers:
+
+```
+brew install pcre
 ```

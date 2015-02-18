@@ -67,6 +67,7 @@ group :development do
   gem 'quiet_assets'
   gem 'web-console', '~> 2.0'
   gem 'rack-mini-profiler', require: false
+  gem 'passenger'
 end
 
 group :test, :development do

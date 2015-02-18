@@ -1,2 +1,2 @@
-web: bundle exec rails s
+web: passenger start
 worker: bundle exec sidekiq -L log/sidekiq.log
