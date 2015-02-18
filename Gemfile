@@ -94,7 +94,6 @@ group :development do
   gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
-  gem 'web-console', '~> 2.0'
   gem 'rack-mini-profiler', require: false
   gem 'passenger'
 end
@@ -102,4 +101,5 @@ end
 group :test, :development do
   gem 'factory_girl_rails'
   gem 'byebug'
+  gem 'web-console', '~> 2.0'
 end
