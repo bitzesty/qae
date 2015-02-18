@@ -17,7 +17,7 @@ gem 'responders', '~> 1.1'
 gem 'sentry-raven', github: 'getsentry/raven-ruby'
 gem 'simple_form', '~> 3.0'
 gem 'slim-rails', '~> 2.1'
-gem "govuk_template", "0.12.0"
+gem 'govuk_template', '0.12.0'
 gem 'wicked', '~> 1.1'
 gem 'prawn'
 gem 'prawn-table'
@@ -25,10 +25,10 @@ gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'country_select'
-gem "email_validator"
-gem "nokogiri"
+gem 'email_validator'
+gem 'nokogiri'
 
-gem "bootstrap-sass", ">= 3.3.3"
+gem 'bootstrap-sass', '>= 3.3.3'
 
 # Background jobs
 gem 'sidekiq'
@@ -65,8 +65,7 @@ group :development do
   gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
-  gem 'better_errors'
-  gem 'binding_of_caller'
+  gem 'web-console', '~> 2.0'
   gem 'rack-mini-profiler', require: false
 end
 
