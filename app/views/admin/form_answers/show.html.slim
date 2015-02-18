@@ -31,23 +31,37 @@
 
       / TODO Documents
       .well
-        h2 Documents
+        h2
+          span.glyphicon.glyphicon-file
+          ' &nbsp;
+          ' Documents
         p.p-empty No documents have been attached to this case.
-        = link_to "Attach Document", "#", class: "btn btn-default btn-sm btn-attachment"
+        = link_to "#", class: "btn btn-default btn-sm btn-attachment" do
+          span.glyphicon.glyphicon-paperclip
+          ' &nbsp;
+          ' Attach Document
 
       / TODO Users
       .well
         h2
+          span.glyphicon.glyphicon-user
+          ' &nbsp;
           ' User Accounts
           small.pull-right Logged in: 28/09/15 - 08:03
         ul.list-unstyled
           li
             = link_to "Thomas Smith (t.smith@companyname.com)"
-        = link_to "Email All Users", "#", class: "btn btn-default btn-sm btn-email"
+        = link_to "#", class: "btn btn-default btn-sm btn-email"
+          span.glyphicon.glyphicon-envelope
+          ' &nbsp;
+          ' Email All Users
 
       / TODO Assessors
       .well
-        h2 Assessors
+        h2
+          span.glyphicon.glyphicon-user
+          ' &nbsp;
+          ' Assessors
         p.p-empty No assessors have been assigned to this case.
 
   .col-md-8
