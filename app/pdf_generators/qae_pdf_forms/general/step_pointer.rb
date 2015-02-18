@@ -27,7 +27,8 @@ class QaePdfForms::General::StepPointer
       QaePdfForms::General::QuestionPointer.new({
         form_pdf: form_pdf,
         step: self,
-        question: question.decorate
+        question: question.decorate,
+        cached_questions: cached_questions
       }).render!
     end
   end
