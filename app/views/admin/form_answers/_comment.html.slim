@@ -6,7 +6,7 @@
   .comment-header
     h3
       = comment.author_email
-      small = comment.created_at
+      small = l comment.created_at, format: :date_at_time
   .comment-content
     = comment.body
 
