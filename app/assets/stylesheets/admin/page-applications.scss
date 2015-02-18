@@ -1,0 +1,74 @@
+@import "mixins";
+
+.applications-table {
+  .status-label {
+    width: 15px;
+    padding: 0;
+
+    &.pending-label {
+      background-color: #5178bc;
+    }
+
+    &.shortlisted-label {
+      background-color: #87c764;
+    }
+
+    &.withdrawn-label {
+      background-color: #6c6d70;
+    }
+  }
+
+  .company-title {
+    padding-left: 20px;
+    font-size: 1.2em;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  .urn-not-generated {
+    color: #999;
+    font-style: italic;
+  }
+
+  .icon-comment,
+  .icon-flagged {
+    display: block;
+    width: 30px;
+    height: 30px;
+    text-align: left;
+    text-indent: -9999px;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .icon-comment {
+    position: relative;
+    background-image: image-url("icon-comment.png");
+    background-size: 30px 30px;
+
+    @include is-retina {
+      background-image: image-url("icon-comment@2.png");
+    }
+
+    .comment-count {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      margin-left: -5px;
+      font-size: 10px;
+      font-weight: bold;
+      text-indent: 0;
+    }
+  }
+
+  .icon-flagged {
+    background-image: image-url("icon-flag.png");
+    background-size: 30px 30px;
+
+    @include is-retina {
+      background-image: image-url("icon-flag@2.png");
+    }
+  }
+}
