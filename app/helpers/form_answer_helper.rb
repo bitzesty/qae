@@ -1,16 +1,18 @@
 module FormAnswerHelper
   def application_flags(form_answer)
-    # IMPLEMENTME
+    # TODO implement me
     output = ""
     if form_answer.important?
-      output += "IMPORTANT"
+      output += "<span class='icon-flagged'>Flagged</span>"
     end
+    output.html_safe
+  end
 
+  def application_comments(form_answer)
+    output = ""
     if form_answer.comments.any?
-      output += "COMMENTS: #{form_answer.comments.size}"
+      output += "<span class='icon-comment'>Comments: <span class='comment-count'>#{form_answer.comments.size}</span></span>"
     end
-
-    output
-
+    output.html_safe
   end
 end
