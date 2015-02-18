@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.8'
+gem 'rails', '~> 4.2.0'
 
 gem 'dotenv-rails', '~> 1.0'
 
@@ -13,10 +13,10 @@ gem 'jquery-rails'
 gem 'kaminari', '~> 0.16'
 gem 'pg', '~> 0.17'
 gem 'plek', '~> 1.9.0'
-gem 'responders', '~> 1.1'
+gem 'responders', '~> 2.0'
 gem 'sentry-raven', github: 'getsentry/raven-ruby'
 gem 'simple_form', '~> 3.0'
-gem 'slim-rails', '~> 2.1'
+gem 'slim-rails', '~> 3.0.1'
 gem 'govuk_template', '0.12.0'
 gem 'wicked', '~> 1.1'
 gem 'prawn'
@@ -26,7 +26,7 @@ gem 'decent_exposure'
 gem 'decent_decoration'
 gem 'country_select'
 gem 'email_validator'
-gem 'nokogiri'
+gem 'nokogiri', '~> 1.6.0'
 
 gem 'bootstrap-sass', '>= 3.3.3'
 
