@@ -1,0 +1,11 @@
+.comment style='border: 1px solid #494949; width: 300px'
+  - if comment.author?(current_admin)
+    = form_for(comment, url: admin_form_answer_comment_path(id: comment.id, form_answer_id: resource.id), html: { method: :delete }) do |f|
+      = f.submit 'delete'
+  .comment-header
+    strong= comment.author_email
+    br
+    label style='font-style:italic'=comment.created_at
+  .comment-content
+    = comment.body
+

@@ -24,6 +24,7 @@ class FormAnswer < ActiveRecord::Base
 
     has_many :supporters, dependent: :destroy, autosave: true
     has_many :support_letters, through: :supporters
+    has_many :comments, as: :commentable
   end
 
   begin :validations
@@ -71,6 +72,10 @@ class FormAnswer < ActiveRecord::Base
 
   def promotion?
     award_type == 'promotion'
+  end
+
+  def important?
+    importance_flag?
   end
 
   private

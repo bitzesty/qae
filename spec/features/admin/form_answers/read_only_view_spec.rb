@@ -46,7 +46,7 @@ So that I can have 'read only' version of form
     login_admin(admin)
 
     visit admin_form_answers_path
-    click_link "Review"
+    visit review_admin_form_answer_path(form_answer)
   end
 
   describe "Review" do

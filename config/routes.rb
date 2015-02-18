@@ -80,6 +80,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :users
     resources :form_answers do
+      resources :comments
       member do
         post :withdraw
         get :review

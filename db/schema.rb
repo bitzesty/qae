@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113155731) do
+ActiveRecord::Schema.define(version: 20150217114106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,15 @@ ActiveRecord::Schema.define(version: 20150113155731) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "comments", force: true do |t|
+    t.integer  "commentable_id",   null: false
+    t.string   "commentable_type", null: false
+    t.integer  "author_id",        null: false
+    t.text     "body",             null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "eligibilities", force: true do |t|
     t.integer  "user_id"
     t.hstore   "answers"
@@ -75,11 +84,12 @@ ActiveRecord::Schema.define(version: 20150113155731) do
     t.datetime "updated_at"
     t.hstore   "document"
     t.string   "award_type"
-    t.boolean  "withdrawn",     default: false
+    t.boolean  "withdrawn",       default: false
     t.integer  "account_id"
     t.string   "urn"
-    t.boolean  "submitted",     default: false
+    t.boolean  "submitted",       default: false
     t.float    "fill_progress"
+    t.boolean  "importance_flag", default: false
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

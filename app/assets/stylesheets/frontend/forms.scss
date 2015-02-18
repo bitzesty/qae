@@ -981,3 +981,28 @@ input[type="file"] {
   background-image: image-url("icon-step-a7.png");
 }
 */
+
+.pending-label{
+  background-color: #5178bc;
+}
+
+.shortlisted-label{
+  background-color: #87c764;
+}
+
+.withdrawn-label{
+  background-color: #6c6d70;
+}
+
+.applications-table{
+  td{
+    padding-top: 1em;
+    padding-bottom: 1em;
+  }
+
+  .urn-not-generated{
+    font-style: italic;
+    color: #494949;
+  }
+
+}

@@ -4,28 +4,29 @@ header.page-header.group
       ' Applications
 
 .article-related-positioning-container
-  .article-container
+  .article-container style= 'width: 95%; max-width: 100%;'
     article.group role="article"
       .inner
-        table.table
+        table.table.applications-table
           thead
             tr
-              th User
-              th Created at
-              th
-              th
-              th
+              th Company/Nominee
+              th Reference
+              th Category
+              th Status
+              th Flag
           tbody
-            - @form_answers.each do |form_answer|
+            - collection.each do |obj|
               tr
+                td class= (obj.consideration_status_label + '-label')
+                  = link_to obj.company_or_nominee, [:admin, obj]
                 td
-                  = link_to form_answer.user.email, admin_user_path(form_answer.user)
-                td = form_answer.created_at
-                td = "Withdrawn" if form_answer.withdrawn?
-                td 
-                  = link_to "Review", review_admin_form_answer_path(form_answer) 
-                td
-                  - action = form_answer.withdrawn? ? "Restore" : "Withdraw"
-                  =' link_to action, withdraw_admin_form_answer_path(form_answer), method: :post
+                  - if obj.urn.present?
+                    = obj.urn
+                  - else
+                    label.urn-not-generated Not yet generated
 
-        = paginate @form_answers
+                td = obj.award_type
+                td = obj.progress_text
+                td = application_flags(obj)
+        = paginate collection

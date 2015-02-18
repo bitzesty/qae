@@ -1,0 +1,11 @@
+header.page-header.group
+  div
+    h1= resource.company_name
+
+.article-related-positioning-container
+  .article-container style= 'width: 95%; max-width: 100%;'
+    article.group role="article"
+    .comments-container
+      = render(collection: resource.comments, partial: 'comment')
+
+    = link_to 'Enter a Comment', new_admin_form_answer_comment_path(resource), id: 'build_new_comment'

@@ -1,0 +1,2 @@
+module FormAnswer::CommentsHelper
+end
