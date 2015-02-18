@@ -67,8 +67,8 @@
   .col-md-8
     .col-content
       .application-progress = resource.progress_text
-    .col-sidebar
-      .comments-container
-        = render(collection: resource.comments, partial: 'comment')
+    .col-sidebar.comments-container
+      = render(collection: resource.comments, partial: 'comment')
 
-      = link_to 'Enter a Comment', new_admin_form_answer_comment_path(resource), id: 'build_new_comment'
+      .comment-footer
+        = link_to 'Enter a Comment', new_admin_form_answer_comment_path(resource), id: 'build_new_comment', class: "btn btn-default btn-block"
