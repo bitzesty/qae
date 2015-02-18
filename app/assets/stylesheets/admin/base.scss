@@ -94,3 +94,54 @@
       display: none;
     }
   }
+
+// Sortable Tables
+  th.sortable {
+    a {
+      padding-right: 16px;
+      color: #333;
+      background-repeat: no-repeat;
+      background-position: right center;
+      background-size: 10px 6px;
+
+      &:hover {
+        background-image: image-url("icon-arrow-sort-down-grey.png");
+
+        @include is-retina {
+          background-image: image-url("icon-arrow-sort-down-grey@2.png");
+        }
+      }
+
+      &.ordered {
+        background-image: image-url("icon-arrow-sort-down.png");
+
+        @include is-retina {
+          background-image: image-url("icon-arrow-sort-down@2.png");
+        }
+
+        &:hover {
+          background-image: image-url("icon-arrow-sort-up-grey.png");
+
+          @include is-retina {
+            background-image: image-url("icon-arrow-sort-up-grey@2.png");
+          }
+        }
+
+        &.ordered-desc {
+          background-image: image-url("icon-arrow-sort-up.png");
+
+          @include is-retina {
+            background-image: image-url("icon-arrow-sort-up@2.png");
+          }
+
+          &:hover {
+            background-image: image-url("icon-arrow-sort-down-grey.png");
+
+            @include is-retina {
+              background-image: image-url("icon-arrow-sort-down-grey@2.png");
+            }
+          }
+        }
+      }
+    }
+  }
