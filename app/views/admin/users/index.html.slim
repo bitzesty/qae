@@ -1,41 +1,48 @@
-header.page-header.group
-  div
-    h1
-      ' Users
+= simple_form_for @search, url: '#', method: :get, as: :search, html: { class: 'search-form' } do |f|
+  .row
+    .col-md-3
+      .form-group.search-input
+        input.form-control#search type="search" placeholder="Search..."
+        = f.submit :submit
+    .pull-right
+      = link_to new_admin_user_path, class: 'new-user btn btn-primary btn-md' do
+        span.glyphicon.glyphicon-user
+        ' &nbsp;
+        ' New user
 
-.article-related-positioning-container
-  .article-container
-    article.group role="article"
-      .inner
-        = simple_form_for @search, url: '#', method: :get, as: :search, html: { class: 'search-form' } do |f|
-          input#search type='search'
-          .visuallyhidden
-            = f.submit :submit
-          = link_to 'New user', new_admin_user_path, class: 'new-user'
-          table.table.admin-table
-            thead
-              tr
-                th.sortable
-                  = sort_link f, 'Name', @search, :full_name
-                th.sortable
-                  = sort_link f, 'Email', @search, :email
-                th.sortable
-                  = sort_link f, 'Company', @search, :company_name
-                th.filter
-                  = f.simple_fields_for [:filters, @search.filters] do |f|
-                    = f.input :role, collection: User.role.options
-                th.filter Category
-                th.sortable
-                  = sort_link f, 'Signed in at', @search, :last_sign_in_at
-            tbody
-              - UserDecorator.decorate_collection(@users).each do |user|
-                tr
-                  td = user.full_name
-                  td = link_to user.email, admin_user_path(user)
-                  td = user.company
-                  td = user.role
-                  td
-                    i Not implemented
-                  td = user.last_sign_in_at && user.last_sign_in_at.strftime('%B %e at %l:%M %p')
+  br
 
-        = paginate @users
+  .row
+    .col-xs-12
+      table.table.admin-table
+        thead
+          tr
+            th.sortable
+              = sort_link f, 'Name', @search, :full_name
+            th.sortable
+              = sort_link f, 'Email', @search, :email
+            th.sortable
+              = sort_link f, 'Company', @search, :company_name
+            th.filter
+              = f.simple_fields_for [:filters, @search.filters] do |f|
+                = f.input :role, collection: User.role.options
+            th.filter Category
+            th.sortable
+              = sort_link f, 'Signed in at', @search, :last_sign_in_at
+        tbody
+          - UserDecorator.decorate_collection(@users).each do |user|
+            tr
+              td.td-title
+                = link_to user.full_name, edit_admin_user_path(user)
+              td = link_to user.email, "mailto:#{user.email}"
+              td = user.company
+              td = user.role
+              td
+                i Not implemented
+              td
+                i.text-muted = user.last_sign_in_at && user.last_sign_in_at.strftime('%e %B %Y at %H:%M')
+
+  .row
+    .col-xs-12.text-right
+      = paginate @users
+      .clear

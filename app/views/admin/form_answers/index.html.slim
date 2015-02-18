@@ -21,7 +21,7 @@ br
         - collection.each do |obj|
           tr
             td.status-label class="#{obj.consideration_status_label + '-label'}" alt="#{obj.consideration_status_label.capitalize}" title="#{obj.consideration_status_label.capitalize}"
-            td.company-title
+            td.td-title
               = link_to obj.company_or_nominee, [:admin, obj]
             td
               - if obj.urn.present?

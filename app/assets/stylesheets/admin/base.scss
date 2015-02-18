@@ -9,6 +9,15 @@
     font-style: italic;
   }
 
+  .td-title {
+    padding-left: 20px;
+    font-size: 1.2em;
+
+    a {
+      color: inherit;
+    }
+  }
+
 // Icons
   .icon-comment,
   .icon-flagged,

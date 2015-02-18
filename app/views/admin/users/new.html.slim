@@ -1,11 +1,9 @@
-header.page-header.group
-  div
-    h1
-      ' New user
+.row
+  .col-md-4
+    header.page-header
+      h1
+        ' New user
 
+br
 
-.article-related-positioning-container
-  .article-container
-    article.group role="article"
-      .inner
-        = render 'form', user: @user
+= render 'form', user: @user
