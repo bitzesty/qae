@@ -37,6 +37,7 @@ gem 'sinatra', require: false
 gem 'foreman'
 gem 'jquery.fileupload-rails'
 gem 'carrierwave'
+gem 'statesman'
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'
