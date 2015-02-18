@@ -24,7 +24,9 @@ I want to be able to view, create and destroy the comments per application.
     populate_comment_form
     click_button 'Add Comment'
 
-    expect{ click_button 'delete' }.to change{Comment.count}.by(-1)
+    expect{
+      find('.link-delete-comment-confirm').click
+    }.to change{Comment.count}.by(-1)
   end
 
   it 'displays the comments' do

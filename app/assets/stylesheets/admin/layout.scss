@@ -1,0 +1,51 @@
+@import "mixins";
+$footer-height: 0px;
+$footer-height-sm: 0px;
+
+html,
+body,
+body > .ember-view {
+  height: 100%;
+  margin: 0 !important;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  font-size: 16px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @include screen-sm-max {
+    font-size: 14px;
+  }
+}
+
+#site-wrapper {
+  min-height: 100%;
+  _height: 100%;
+  z-index: 2;
+}
+
+#site-wrapper-margin {
+  margin: 0 auto;
+  padding-bottom: $footer-height;
+
+  @include screen-sm-max {
+    padding-bottom: $footer-height-sm;
+  }
+}
+
+#site-footer {
+  position: relative;
+  width: 100%;
+  height: $footer-height;
+  margin-top: -$footer-height;
+  z-index: 2;
+
+  @include screen-sm-max {
+    height: $footer-height-sm;
+    margin-top: -$footer-height-sm;
+  }
+}
