@@ -1,2 +1,3 @@
-= f.text_area :body, autofocus: true
-= f.submit 'Add Comment'
+.comment-new
+  = f.text_area :body, autofocus: true, class: 'form-control', rows: 4
+  = f.submit 'Add Comment', class: 'btn btn-block btn-sm'

@@ -4,6 +4,8 @@ module FormAnswerHelper
     output = ""
     if form_answer.important?
       output += "<span class='icon-flagged'>Flagged</span>"
+    else
+      output += "<span class='icon-unflagged'>Unflagged</span>"
     end
     output.html_safe
   end
