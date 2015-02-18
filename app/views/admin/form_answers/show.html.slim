@@ -1,11 +1,85 @@
-header.page-header.group
-  div
-    h1= resource.company_name
+.row
+  .col-xs-12
+    .page-header
+      = link_to "‹ back to overview", admin_form_answers_path, class: "btn btn-link btn-lg"
+      .pull-right
+        / TODO Prev/next case links
+        = link_to "‹ Prev case", "#", class: "btn btn-default btn-sm"
+        ' &nbsp;
+        = link_to "Next case ›", "#", class: "btn btn-default btn-sm"
 
-.article-related-positioning-container
-  .article-container style= 'width: 95%; max-width: 100%;'
-    article.group role="article"
-    .comments-container
-      = render(collection: resource.comments, partial: 'comment')
+.row
+  .col-md-4
+    .show-sidebar
+      .well
+        h1 = resource.company_name
+        p
+          - if resource.urn.present?
+            = resource.urn
+            ' &nbsp; &nbsp;
+          / TODO SIC
+          ' SIC 3672
+        p = resource.award_type
+        p.p-lg
+          / TODO Address
+          ' 65 Kings Cross Road,
+          br
+          ' London, WC1X 9LW, UK
+        .text-right
+          / TODO Edit page
+          = link_to "Edit details", [:edit, :admin, resource]
 
-    = link_to 'Enter a Comment', new_admin_form_answer_comment_path(resource), id: 'build_new_comment'
+      / TODO Documents
+      .well
+        h2
+          span.glyphicon.glyphicon-file
+          ' &nbsp;
+          ' Documents
+        p.p-empty No documents have been attached to this case.
+        = link_to "#", class: "btn btn-default btn-sm btn-attachment" do
+          span.glyphicon.glyphicon-paperclip
+          ' &nbsp;
+          ' Attach Document
+
+      / TODO Users
+      .well
+        h2
+          span.glyphicon.glyphicon-user
+          ' &nbsp;
+          ' User Accounts
+          small.pull-right Logged in: 28/09/15 - 08:03
+        ul.list-unstyled
+          li
+            = link_to "Thomas Smith (t.smith@companyname.com)"
+        = link_to "#", class: "btn btn-default btn-sm btn-email"
+          span.glyphicon.glyphicon-envelope
+          ' &nbsp;
+          ' Email All Users
+
+      / TODO Assessors
+      .well
+        h2
+          span.glyphicon.glyphicon-user
+          ' &nbsp;
+          ' Assessors
+        p.p-empty No assessors have been assigned to this case.
+
+  .col-md-8
+    .col-content
+      .application-progress = resource.progress_text
+    .col-sidebar
+      .sidebar-header
+        = link_to "#", class: "link-flag"
+          span.icon-text Flag:
+          = application_flags(resource)
+
+        = link_to "#", class: "link-comment"
+          = application_comments(resource)
+          span.icon-text Hide comments:
+        .clear
+
+      .comments-container
+        = render(collection: resource.comments, partial: 'comment')
+
+        .comment-footer
+          = link_to 'Enter a Comment', new_admin_form_answer_comment_path(resource), id: 'build_new_comment', class: "btn btn-default btn-block"

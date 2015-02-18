@@ -1,0 +1,53 @@
+@import "mixins";
+
+.applications-table {
+  .status-label {
+    width: 15px;
+    padding: 0;
+
+    &.pending-label {
+      background-color: #5178bc;
+    }
+
+    &.shortlisted-label {
+      background-color: #87c764;
+    }
+
+    &.withdrawn-label {
+      background-color: #6c6d70;
+    }
+  }
+
+  .company-title {
+    padding-left: 20px;
+    font-size: 1.2em;
+
+    a {
+      color: inherit;
+    }
+  }
+
+  .urn-not-generated {
+    color: #999;
+    font-style: italic;
+  }
+
+  .icon-unflagged {
+    display: none;
+  }
+}
+
+.application-progress {
+  padding: 15px 15px;
+  padding-left: 50px;
+  color: #fff;
+  background: #5178bc;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-image: image-url("icon-application-progress.png");
+  background-size: 30px 30px;
+
+  @include is-retina {
+    background-image: image-url("icon-application-progress@2.png");
+  }
+}

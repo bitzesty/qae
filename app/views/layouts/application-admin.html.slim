@@ -23,8 +23,8 @@ html
     = yield(:head) if content_for?(:head)
 
   body#admin-layout class="#{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class}"
-    #wrapper
-      #wrapper-margin
+    #site-wrapper
+      #site-wrapper-margin
         #site-header
           nav.navbar role="navigation"
             .container
@@ -36,7 +36,7 @@ html
                   span.icon-bar
 
                 = link_to "Queen's Awards for Enterprise - Admin",
-                          root_path,
+                          "#",
                           class: 'navbar-brand'
 
               .navbar-collapse.collapse#nav-main-collapse

@@ -1,11 +1,20 @@
-.comment style='border: 1px solid #494949; width: 300px'
-  - if comment.author?(current_admin)
-    = form_for(comment, url: admin_form_answer_comment_path(id: comment.id, form_answer_id: resource.id), html: { method: :delete }) do |f|
-      = f.submit 'delete'
+.comment
+  .link-delete
+    = link_to "#", class: "link-delete-comment"
+      ' Delete
+      span.icon-delete-comment
+  .overlay-delete
+    .overlay-content
+      p Delete this comment?
+      .btn-actions
+        - if comment.author?(current_admin)
+          = form_for(comment, url: admin_form_answer_comment_path(id: comment.id, form_answer_id: resource.id), html: { method: :delete }) do |f|
+            = f.submit 'Yes', class: "btn btn-default btn-sm link-delete-comment-confirm"
+            ' &nbsp;
+            = link_to "No", "#", class: "btn btn-default btn-sm link-delete-comment-close"
   .comment-header
-    strong= comment.author_email
-    br
-    label style='font-style:italic'=comment.created_at
+    h3
+      = comment.author_email
+      small = l comment.created_at, format: :date_at_time
   .comment-content
     = comment.body
-
