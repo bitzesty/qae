@@ -1,27 +1,37 @@
-table.table.applications-table
-  thead
-    tr
-      th colspan=2 Company/Nominee
-      th Reference
-      th Category
-      th Status
-      th &nbsp;
-      th Flag
-  tbody
-    - collection.each do |obj|
-      tr
-        td.status-label class="#{obj.consideration_status_label + '-label'}" alt="#{obj.consideration_status_label.capitalize}" title="#{obj.consideration_status_label.capitalize}"
-        td.company-title
-          = link_to obj.company_or_nominee, [:admin, obj]
-        td
-          - if obj.urn.present?
-            = obj.urn
-          - else
-            span.urn-not-generated Not yet generated
+.row
+  .col-md-3
+    .form-group.search-input
+      input.form-control#search type="search" placeholder="Search..."
+      input type="submit" name="commit" value="submit"
 
-        td = obj.award_type
-        td = obj.progress_text
-        td = application_comments(obj)
-        td = application_flags(obj)
+br
 
-= paginate collection
+.row
+  .col-xs-12
+    table.table.applications-table
+      thead
+        tr
+          th colspan=2 Company/Nominee
+          th Reference
+          th Category
+          th Status
+          th &nbsp;
+          th Flag
+      tbody
+        - collection.each do |obj|
+          tr
+            td.status-label class="#{obj.consideration_status_label + '-label'}" alt="#{obj.consideration_status_label.capitalize}" title="#{obj.consideration_status_label.capitalize}"
+            td.company-title
+              = link_to obj.company_or_nominee, [:admin, obj]
+            td
+              - if obj.urn.present?
+                = obj.urn
+              - else
+                span.urn-not-generated Not yet generated
+
+            td = obj.award_type
+            td = obj.progress_text
+            td = application_comments(obj)
+            td = application_flags(obj)
+
+    = paginate collection
