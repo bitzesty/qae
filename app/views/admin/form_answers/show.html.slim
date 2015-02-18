@@ -69,7 +69,8 @@
       .application-progress = resource.progress_text
     .col-sidebar
       .sidebar-header
-        = link_to "#", class: "link-flag"
+
+        = link_to toggle_admin_form_answer_flags_path(resource), class: "link-flag", remote: true
           span.icon-text Flag:
           = application_flags(resource)
 

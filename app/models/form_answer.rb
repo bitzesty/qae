@@ -89,6 +89,10 @@ class FormAnswer < ActiveRecord::Base
     importance_flag?
   end
 
+  def toggle_importance_flag
+    update_attributes(importance_flag: !(self.importance_flag))
+  end
+
   private
 
   def build_supporters
