@@ -73,3 +73,34 @@
     }
   }
 }
+
+.application-progress {
+  padding: 15px 15px;
+  padding-left: 50px;
+  color: #fff;
+  background: #5178bc;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-image: image-url("icon-application-progress.png");
+  background-size: 30px 30px;
+
+  @include is-retina {
+    background-image: image-url("icon-application-progress@2.png");
+  }
+}
+
+.form_answers-page {
+  .col-content,
+  .col-sidebar {
+    float: left;
+  }
+
+  .col-content {
+    width: 75%;
+    padding-right: 15px;
+  }
+
+  .col-sidebar {
+    width: 25%;
+  }
+}
