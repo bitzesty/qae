@@ -25,6 +25,7 @@ class FormAnswer < ActiveRecord::Base
     has_many :supporters, dependent: :destroy, autosave: true
     has_many :support_letters, through: :supporters
     has_many :comments, as: :commentable
+    has_many :form_answer_transitions
   end
 
   begin :validations
@@ -49,6 +50,16 @@ class FormAnswer < ActiveRecord::Base
   store_accessor :document
   store_accessor :eligibility
   store_accessor :basic_eligibility
+
+  begin :state_machine
+    delegate :current_state, :trigger!, :available_events, to: :state_machine
+    delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
+      to: :state_machine
+
+    def state_machine
+      @state_machine ||= FormAnswerStateMachine.new(self, transition_class: FormAnswerTransition)
+    end
+  end
 
   def award_form
     QAE2014Forms.public_send(award_type) if award_type.present?

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150217114106) do
+ActiveRecord::Schema.define(version: 20150218141547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -78,6 +78,18 @@ ActiveRecord::Schema.define(version: 20150217114106) do
 
   add_index "form_answer_attachments", ["form_answer_id"], name: "index_form_answer_attachments_on_form_answer_id", using: :btree
 
+  create_table "form_answer_transitions", force: true do |t|
+    t.string   "to_state",                      null: false
+    t.text     "metadata",       default: "{}"
+    t.integer  "sort_key",                      null: false
+    t.integer  "form_answer_id",                null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "form_answer_transitions", ["form_answer_id"], name: "index_form_answer_transitions_on_form_answer_id", using: :btree
+  add_index "form_answer_transitions", ["sort_key", "form_answer_id"], name: "index_form_answer_transitions_on_sort_key_and_form_answer_id", unique: true, using: :btree
+
   create_table "form_answers", force: true do |t|
     t.integer  "user_id"
     t.datetime "created_at"
@@ -90,6 +102,7 @@ ActiveRecord::Schema.define(version: 20150217114106) do
     t.boolean  "submitted",       default: false
     t.float    "fill_progress"
     t.boolean  "importance_flag", default: false
+    t.string   "state",           default: "in_progress", null: false
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
