@@ -67,8 +67,19 @@
   .col-md-8
     .col-content
       .application-progress = resource.progress_text
-    .col-sidebar.comments-container
-      = render(collection: resource.comments, partial: 'comment')
+    .col-sidebar
+      .sidebar-header
+        = link_to "#", class: "link-flag"
+          span.icon-text Flag:
+          = application_flags(resource)
 
-      .comment-footer
-        = link_to 'Enter a Comment', new_admin_form_answer_comment_path(resource), id: 'build_new_comment', class: "btn btn-default btn-block"
+        = link_to "#", class: "link-comment"
+          = application_comments(resource)
+          span.icon-text Hide comments:
+        .clear
+
+      .comments-container
+        = render(collection: resource.comments, partial: 'comment')
+
+        .comment-footer
+          = link_to 'Enter a Comment', new_admin_form_answer_comment_path(resource), id: 'build_new_comment', class: "btn btn-default btn-block"
