@@ -56,6 +56,8 @@ class Search
     end
 
     filter_params.each do |column, value|
+      next unless value.present?
+
       if included_in_model_columns?(column)
         @search_results = @search_results.where(column => value)
       else
