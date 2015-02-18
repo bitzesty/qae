@@ -3,7 +3,7 @@ class AwardEligibilitiesController < ApplicationController
 
   before_action :authenticate_user!
   before_action :load_basic_eligibility, :load_eligibilities
-  before_action :check_basic_eligibility, :set_steps, :setup_wizard
+  before_action :set_steps, :setup_wizard
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy
   ]
@@ -73,7 +73,7 @@ class AwardEligibilitiesController < ApplicationController
   end
 
   def load_basic_eligibility
-    @basic_eligibility = current_account.basic_eligibility
+    @basic_eligibility = current_account.basic_eligibility || current_account.build_basic_eligibility
   end
 
   def set_steps

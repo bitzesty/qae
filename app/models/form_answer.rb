@@ -74,7 +74,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def eligible?
-    eligibility && eligibility.eligible? && basic_eligibility && basic_eligibility.eligible?
+    eligibility && eligibility.eligible? && form_basic_eligibility && form_basic_eligibility.eligible?
   end
 
   def document
@@ -147,7 +147,7 @@ class FormAnswer < ActiveRecord::Base
       method = "#{form_answer.award_type}_eligibility"
 
       unless form_answer.public_send(method)
-        form_answer.public_send("build_#{method}", filter(account.public_send(method).try(:attributes) || {})).save!
+        form_answer.public_send("build_#{method}", filter(account.public_send(method).try(:attributes) || {}).merge(account_id: account.id)).save!
       end
 
       form_answer.public_send(method)
@@ -158,8 +158,8 @@ class FormAnswer < ActiveRecord::Base
         if form_answer.form_basic_eligibility.try(:persisted?)
           form_answer.form_basic_eligibility
         else
-          form_answer.build_form_basic_eligibility(filter(account.basic_eligibility.try(:attributes) || {})).save!
-          form_answer.basic_form_eligibility
+          form_answer.build_form_basic_eligibility(filter(account.basic_eligibility.try(:attributes) || {}).merge(account_id: account.id)).save!
+          form_answer.form_basic_eligibility
         end
       end
     end

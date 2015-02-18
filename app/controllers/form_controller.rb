@@ -1,7 +1,7 @@
 require 'qae_2014_forms'
 
 class FormController < ApplicationController
-  before_action :authenticate_user!, :check_basic_eligibility, :check_award_eligibility, :check_account_completion
+  before_action :authenticate_user!, :check_account_completion
   before_action :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form, :new_enterprise_promotion_form]
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy,

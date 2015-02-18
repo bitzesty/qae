@@ -43,10 +43,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def load_eligibilities
-    @trade_eligibility = current_account.trade_eligibility || current_account.build_trade_eligibility
-    @innovation_eligibility = current_account.innovation_eligibility || current_account.build_innovation_eligibility
-    @development_eligibility = current_account.development_eligibility || current_account.build_development_eligibility
-    @promotion_eligibility = current_account.promotion_eligibility || current_account.build_promotion_eligibility
+    @trade_eligibility = current_account.trade_eligibility || current_account.trade_eligibilities.build
+    @innovation_eligibility = current_account.innovation_eligibility || current_account.innovation_eligibilities.build
+    @development_eligibility = current_account.development_eligibility || current_account.development_eligibilities.build
+    @promotion_eligibility = current_account.promotion_eligibility || current_account.promotion_eligibilities.build
   end
 
   private
@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
 
   def check_basic_eligibility
     if !(current_account.basic_eligibility && current_account.basic_eligibility.passed?)
-      redirect_to eligibility_path
+      redirect_to award_eligibility_path
       return
     end
   end

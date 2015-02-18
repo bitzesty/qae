@@ -29,10 +29,10 @@ FactoryGirl.define do
       completed_profile
 
       after(:create) do |user|
-        user.account.basic_eligibility = create :basic_eligibility
-        user.account.innovation_eligibility = create :innovation_eligibility
-        user.account.development_eligibility = create :development_eligibility
-        user.account.trade_eligibility = create :trade_eligibility
+        create(:basic_eligibility, account: user.account)
+        create(:trade_eligibility, account: user.account)
+        create(:development_eligibility, account: user.account)
+        create(:innovation_eligibility, account: user.account)
       end
     end
 

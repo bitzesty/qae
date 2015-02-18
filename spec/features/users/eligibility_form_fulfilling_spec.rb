@@ -6,18 +6,17 @@ As a User
 I want to be able to check eligibility to awards
 } do
 
-  let!(:user){ create(:user) }
+  let!(:user){ create(:user, :completed_profile) }
   before{ login_as user }
 
   context 'after filling the eligibility form' do
     it 'sees the eligibility summary page' do
       fill_form_with_all_yes
+      visit dashboard_path
+      expect(page).to have_content('You are eligible to apply for:')
 
-      expect(page).to have_content('You are eligible for:')
-
-      eligible_awards = all('article li').first(2).map(&:text)
-
-      expect(eligible_awards).to eq(['Innovation', 'Sustainable Development'])
+      eligible_awards = all('article li.eligible').map(&:text)
+      expect(eligible_awards).to eq(['Innovation'])
     end
   end
 end
@@ -27,19 +26,18 @@ def check_first_checkbox
 end
 
 def fill_form_with_all_yes
-  visit root_path
-  click_link 'Check eligibility'
+  visit new_innovation_form_path
 
-  10.times do
+  8.times do
     check_first_checkbox
-    click_button 'Next step'
+    click_button 'Continue'
   end
 
   fill_in('eligibility_number_of_innovative_products', with: 1)
-  click_button 'Next step'
+  click_button 'Continue'
 
-  6.times do
+  3.times do |i|
     check_first_checkbox
-    click_button 'Next step'
+    click_button 'Continue'
   end
 end
