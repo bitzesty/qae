@@ -4,6 +4,7 @@ class QAE2014Forms
       @innovation_step1 ||= Proc.new {
         options :applying_for, "Are you applying on behalf of your:" do
           ref 'A 1'
+          required
           option 'organisation', 'Whole organisation'
           option 'division branch subsidiary', 'A division, branch or subsidiary'
         end
@@ -107,11 +108,13 @@ class QAE2014Forms
 
         options :other_awards_won, 'Have you won any other business awards in the past?' do
           ref 'A 7'
+          required
           yes_no
         end
 
         textarea :other_awards_desc, 'Please describe them' do
           classes "sub-question"
+          required
           context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
           conditional :other_awards_won, :yes
           rows 5
@@ -206,7 +209,7 @@ class QAE2014Forms
         dropdown :business_sector, 'Business Sector' do
           required
           ref 'A 13'
-          option '', 'Business Sector'
+          option :business_sector, 'Business Sector'
           option :other, 'Other'
         end
 
