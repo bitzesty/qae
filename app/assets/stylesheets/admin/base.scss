@@ -216,6 +216,17 @@
     }
   }
 
+// Filterable Dropdowns
+  th.filter .dropdown-menu li {
+    margin: 0;
+
+    label {
+      display: block;
+      padding: 7px 10px;
+      padding-left: 30px;
+    }
+  }
+
 // Sidebar
   .show-sidebar {
     padding: 0 15px;

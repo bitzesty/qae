@@ -27,7 +27,33 @@
             th.filter
               = f.simple_fields_for [:filters, @search.filters] do |f|
                 = f.input :role, collection: User.role.options
-            th.filter Category
+            th.filter
+              .dropdown
+                button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"
+                  ' Category:
+                  span.text-filter All
+                  span.caret
+                ul.dropdown-menu role="menu"
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      ' Select all
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      ' Innovation
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      ' International Trade
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      ' Sustainable Development
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      ' QAEP
             th.sortable
               = sort_link f, 'Signed in at', @search, :last_sign_in_at
         tbody
