@@ -4,7 +4,8 @@
       .form-group.search-input
         input.form-control#search type="search" placeholder="Search..."
         = f.submit :submit
-    .pull-right
+
+    .col-md-3.pull-right.text-right
       = link_to new_admin_user_path, class: 'new-user btn btn-primary btn-md' do
         span.glyphicon.glyphicon-user
         ' &nbsp;
