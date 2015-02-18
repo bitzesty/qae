@@ -73,7 +73,7 @@ class AwardEligibilitiesController < ApplicationController
   end
 
   def load_basic_eligibility
-    @basic_eligibility = current_user.basic_eligibility
+    @basic_eligibility = current_account.basic_eligibility
   end
 
   def set_steps

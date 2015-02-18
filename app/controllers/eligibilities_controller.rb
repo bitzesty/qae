@@ -37,7 +37,7 @@ class EligibilitiesController < ApplicationController
   private
 
   def load_eligibility
-    @eligibility = current_user.basic_eligibility || current_user.build_basic_eligibility
+    @eligibility = current_account.basic_eligibility || current_account.build_basic_eligibility
   end
 
   def eligibility_params

@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Eligibility::Development, :type => :model do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:account) { FactoryGirl.create(:account) }
 
   context 'answers storage' do
     it 'saves and reads answers' do
-      eligibility = Eligibility::Development.new(user: user)
+      eligibility = Eligibility::Development.new(account: account)
       eligibility.sustainable_development = 'yes'
       eligibility.development_contributed_to_commercial_success = '1'
 
@@ -15,13 +15,13 @@ RSpec.describe Eligibility::Development, :type => :model do
 
       eligibility = Eligibility::Development.last
 
-      expect(eligibility.user).to eq(user)
+      expect(eligibility.account).to eq(account)
       expect(eligibility).to be_sustainable_development
     end
   end
 
   describe '#eligible?' do
-    let(:eligibility) { Eligibility::Development.new(user: user) }
+    let(:eligibility) { Eligibility::Development.new(account: account) }
 
     it 'is not eligible by default' do
       expect(eligibility).not_to be_eligible
