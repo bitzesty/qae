@@ -87,6 +87,12 @@ class FormAnswerStateMachine
       'not_recommended' => 'withdrawn',
       'not_eligible' => 'withdrawn',
       'withdrawn' => 'withdrawn'
-    }[normalized_state]
+    }[normalized_state] || ''
+  end
+
+  # store the state directly in model attribute
+  after_transition do |model, transition|
+    model.state = transition.to_state
+    model.save
   end
 end
