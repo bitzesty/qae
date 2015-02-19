@@ -98,8 +98,8 @@ class QAEFormBuilder
 
     def escaped_title
       title = if delegate_obj.title.present? 
-        delegate_obj.title.capitalize 
-      else 
+        delegate_obj.title
+      else
         delegate_obj.context
       end
 

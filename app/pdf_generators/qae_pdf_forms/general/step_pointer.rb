@@ -2,7 +2,6 @@ class QaePdfForms::General::StepPointer
   attr_reader :award_form,
               :form_pdf,
               :step,
-              :step_headers,
               :step_questions,
               :filtered_questions
 
@@ -17,11 +16,6 @@ class QaePdfForms::General::StepPointer
 
     @filtered_questions = step_questions.select do |question|
       award_form[question.key].visible?
-    end
-
-    @step_headers = step_questions.select do |question|
-      question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion) &&
-      question.show_in_pdf_before.present?
     end
   end
 

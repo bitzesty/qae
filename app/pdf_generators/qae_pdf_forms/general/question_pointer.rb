@@ -5,8 +5,7 @@ class QaePdfForms::General::QuestionPointer
               :key,
               :answer,
               :humanized_answer,
-              :sub_answers,
-              :header
+              :sub_answers
 
   def initialize(ops={})
     ops.each do |k, v|
@@ -17,12 +16,9 @@ class QaePdfForms::General::QuestionPointer
     @answer = answer_by_key
     @humanized_answer = form_pdf.answer_based_on_type(key, answer) if answer.present?
     @sub_answers = fetch_sub_answers
-    @header = detect_header
   end
 
   def render!
-    render_question_header
-
     if humanized_answer.present?
       question_block
     else
@@ -151,13 +147,6 @@ class QaePdfForms::General::QuestionPointer
     end
   end
 
-  def render_question_header
-    if header.present?
-      form_pdf.default_bottom_margin
-      form_pdf.render_text(header.title, {style: :bold})
-    end
-  end
-
   def sub_question_block(sub_question, sub_answer)
     form_pdf.render_text(sub_question, {style: :bold})
     form_pdf.render_text(sub_answer, {style: :italic})
@@ -175,11 +164,5 @@ class QaePdfForms::General::QuestionPointer
 
   def question_checked_value_title
     Nokogiri::HTML.parse(question.text).text.strip if humanized_answer == 'on'
-  end
-
-  def detect_header
-    step.step_headers.detect do |q|
-      q.show_in_pdf_before.include?(key)
-    end
   end
 end

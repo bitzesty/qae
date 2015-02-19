@@ -155,7 +155,7 @@ class QAE2014Forms
 
         header :parent_company_header, 'Parent Companies' do
           ref 'A 12'
-          conditional :applying_for, 'true'
+          conditional :applying_for, :true
         end
 
         text :parent_company, 'Name of immediate parent company' do

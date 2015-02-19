@@ -221,11 +221,7 @@ class QAE2014Forms
 
         header :parent_company_header, 'Parent Companies' do
           ref 'A 14'
-          conditional :applying_for, 'true'
-          show_in_pdf_before [
-            :parent_company,
-            :parent_group_entry
-          ]
+          conditional :applying_for, :true
         end
 
         text :parent_company, 'Name of immediate parent company' do
