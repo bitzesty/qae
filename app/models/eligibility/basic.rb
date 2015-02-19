@@ -1,5 +1,6 @@
 class Eligibility::Basic < Eligibility
   AWARD_NAME = 'General'
+  after_save :set_passed
 
   property :based_in_uk,
             boolean: true,

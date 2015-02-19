@@ -4,8 +4,6 @@ class Eligibility < ActiveRecord::Base
   belongs_to :account
   belongs_to :form_answer
 
-  after_save :set_passed
-
   attr_accessor :current_step
 
   validate :current_step_validation
@@ -116,6 +114,10 @@ class Eligibility < ActiveRecord::Base
     validator.valid?
   end
 
+  def pass!
+    update_column(:passed, true)
+  end
+
   private
 
   def questions_storage
@@ -132,10 +134,6 @@ class Eligibility < ActiveRecord::Base
     end
 
     collection
-  end
-
-  def set_passed
-    update_column(:passed, !skipped? && eligible?)
   end
 
   def current_step_validation

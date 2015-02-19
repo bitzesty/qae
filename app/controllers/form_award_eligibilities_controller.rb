@@ -9,8 +9,18 @@ class FormAwardEligibilitiesController < ApplicationController
   ]
 
   def show
-    if (@award_eligibility.skipped? || !@basic_eligibility || !@basic_eligibility.eligible_on_step?(@basic_eligibility.questions.last)) && !params[:id]
-      step = !@basic_eligibility || @basic_eligibility.passed? ? @award_eligibility.class.questions.first : @basic_eligibility.class.questions.first
+    #    if award eligibility is not passed
+    #      and there's no basic eligibility
+    #      or basic eligibility is not eligible
+    #      and there's no step
+
+    if (!@award_eligibility.passed? || (@basic_eligibility && !@basic_eligibility.eligible_on_step?(@basic_eligibility.questions.last))) && !params[:id]
+      step = if @basic_eligibility && !@basic_eligibility.passed?
+        @basic_eligibility.class.questions.first
+      else
+        @award_eligibility.class.questions.first
+      end
+
       redirect_to action: :show, form_id: @form_answer.id, id: step, skipped: true
       return
     end
@@ -22,6 +32,10 @@ class FormAwardEligibilitiesController < ApplicationController
     @eligibility.current_step = step
     @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
     if @eligibility.update(eligibility_params)
+      if step == @eligibility.questions.last
+        @eligibility.pass!
+      end
+
       if params[:skipped] == 'true' && ((step != @eligibility.questions.last) || @eligibility.is_a?(Eligibility::Basic))
         set_steps_and_eligibilities
         setup_wizard
