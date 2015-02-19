@@ -13,8 +13,10 @@
       table.table.applications-table
         thead
           tr
-            th colspan=2 Company/Nominee
-            th Reference
+            th.sortable colspan=2
+              = sort_link f, 'Company/Nominee', @search, :company_or_nominee_name
+            th.sortable
+              = sort_link f, 'Reference', @search, :urn
             th.filter
               = f.simple_fields_for [:filters, @search.filters] do |f|
                 = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
@@ -67,13 +69,19 @@
                         em = val[:label]
 
             th &nbsp;
-            th Flag
+            th.sortable
+              = sort_link f, 'Flag', @search, :flag
         tbody
           - FormAnswerDecorator.decorate_collection(collection).each do |obj|
             tr
               td.status-label class="#{obj.consideration_status_label + '-label'}" alt="#{obj.consideration_status_label.capitalize}" title="#{obj.consideration_status_label.capitalize}"
               td.td-title
-                = link_to obj.company_or_nominee_name, [:admin, obj]
+                - unless obj.company_or_nominee_name.nil?
+                  = link_to obj.company_or_nominee_name, [:admin, obj]
+                - else
+                  = link_to [:admin, obj] do
+                    em
+                      ' Not found
               td
                 - if obj.urn.present?
                   = obj.urn

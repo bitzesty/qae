@@ -31,9 +31,6 @@ class FormAnswerStatusFiltering
   }
 
   OPTIONS = {
-    SELECT_ALL => {
-      label: 'Select all'
-    },
     application_in_progress: {
       label: 'Application in progress',
       states: [:in_progress1]
@@ -92,13 +89,21 @@ class FormAnswerStatusFiltering
     end
   end
 
-  def self.internal_states(filtering_value)
-    if filtering_values.include?(filtering_value)
-      OPTIONS[filtering_value.to_sym][:states]
+  def self.sub_collection
+    SUB_OPTIONS.map do |k, v|
+      [v[:label], k]
     end
   end
 
-  def self.filtering_values
+  def self.internal_states(filtering_values)
+    filtering_values.map do |val|
+      if supported_filter_attrs.include?(val)
+        OPTIONS[val.to_sym][:states]
+      end
+    end.compact
+  end
+
+  def self.supported_filter_attrs
     OPTIONS.keys.map(&:to_s)
   end
 end
