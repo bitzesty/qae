@@ -2,7 +2,6 @@ class QaePdfForms::General::QuestionPointer
   QUEENS_AWARD_HOLDER_LIST_HEADERS = [
     "Category", "Year Awarded"
   ]
-  EMPTY_TABLE_CELL_PLACEHOLDER = "-"
 
   attr_reader :form_pdf,
               :step,
@@ -82,11 +81,13 @@ class QaePdfForms::General::QuestionPointer
       rows = humanized_answer.map do |item|
         prepared_item = JSON.parse(item)
         
-        [
-          prepared_item['category'] || EMPTY_TABLE_CELL_PLACEHOLDER, 
-          prepared_item['year'] || EMPTY_TABLE_CELL_PLACEHOLDER
-        ]
-      end
+        if prepared_item['category'].present? && prepared_item['year'].present?
+          [
+            prepared_item['category'], 
+            prepared_item['year']
+          ]
+        end
+      end.compact
 
       render_multirows_table(QUEENS_AWARD_HOLDER_LIST_HEADERS, rows)
     else
