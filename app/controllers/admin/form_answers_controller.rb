@@ -2,7 +2,7 @@ class Admin::FormAnswersController < Admin::BaseController
   before_filter :load_resource, only: [:withdraw, :review]
 
   def index
-    params[:search] ||= { sort: 'company_name'}
+    params[:search] ||= { sort: 'company_or_nominee_name'}
     @search = FormAnswerSearch.new(FormAnswer.all).search(params[:search])
     @form_answers = @search.results.page(params[:page])
   end

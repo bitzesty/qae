@@ -1,8 +1,4 @@
 class FormAnswerSearch < Search
-  def sort_by_company_name(scoped_results, desc = false)
-    scoped_results.joins(:user).order("users.company_name #{sort_order(desc)}")
-  end
-
   def sort_by_flag(scoped_results, desc = false)
     flag_order = scoped_results.order(importance_flag: sort_order(!desc).to_sym)
     sort_by_company_name(flag_order, false)

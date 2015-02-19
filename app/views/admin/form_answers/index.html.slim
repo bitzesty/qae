@@ -67,8 +67,7 @@
                         em = val[:label]
 
             th &nbsp;
-            th.sortable
-              = sort_link f, 'Flag', @search, :flag
+            th Flag
         tbody
           - FormAnswerDecorator.decorate_collection(collection).each do |obj|
             tr

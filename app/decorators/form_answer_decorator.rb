@@ -24,12 +24,12 @@ class FormAnswerDecorator < ApplicationDecorator
     "#{award_type} Award #{Date.today.year}"
   end
 
-  def company_or_nominee
-    object.user.company_name
+  def company_or_nominee_name
+    object.company_or_nominee_name
   end
 
   def company_name
-    company_or_nominee
+    company_or_nominee_name
   end
 
   def progress_text
