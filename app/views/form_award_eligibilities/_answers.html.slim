@@ -12,7 +12,7 @@
           = answer
         - elsif !answer.nil?
           = eligibility.class.enumerized_attributes[question].find_value(answer).text
-        - unless eligibility.answer_valid?(question, answer)
+        - if answer.present? && !eligibility.answer_valid?(question, answer)
           span.previous-answer-invalid
             ' This excludes you from entering the
             - if eligibility.is_a?(Eligibility::Basic)

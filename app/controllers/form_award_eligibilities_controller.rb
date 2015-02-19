@@ -9,8 +9,8 @@ class FormAwardEligibilitiesController < ApplicationController
   ]
 
   def show
-    if (@award_eligibility.skipped? || !@basic_eligibility.eligible_on_step?(@basic_eligibility.questions.last)) && !params[:id]
-      step = @basic_eligibility.passed? ? @award_eligibility.class.questions.first : @basic_eligibility.class.questions.first
+    if (@award_eligibility.skipped? || !@basic_eligibility || !@basic_eligibility.eligible_on_step?(@basic_eligibility.questions.last)) && !params[:id]
+      step = !@basic_eligibility || @basic_eligibility.passed? ? @award_eligibility.class.questions.first : @basic_eligibility.class.questions.first
       redirect_to action: :show, form_id: @form_answer.id, id: step, skipped: true
       return
     end
@@ -57,7 +57,7 @@ class FormAwardEligibilitiesController < ApplicationController
     @award_eligibility = builder.eligibility
     @basic_eligibility =  builder.basic_eligibility
 
-    if @basic_eligibility.questions.map(&:to_s).include?(params[:id])
+    if @basic_eligibility && @basic_eligibility.questions.map(&:to_s).include?(params[:id])
       @eligibility = @basic_eligibility
 
       basic_steps = []

@@ -74,7 +74,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def eligible?
-    eligibility && eligibility.eligible? && form_basic_eligibility && form_basic_eligibility.eligible?
+    eligibility && eligibility.eligible? && (promotion? || (form_basic_eligibility && form_basic_eligibility.eligible?))
   end
 
   def document
@@ -155,6 +155,8 @@ class FormAnswer < ActiveRecord::Base
 
     def basic_eligibility
       @basic_eligibility ||= begin
+        return nil if form_answer.promotion?
+
         if form_answer.form_basic_eligibility.try(:persisted?)
           form_answer.form_basic_eligibility
         else
