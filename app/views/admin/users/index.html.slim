@@ -1,41 +1,102 @@
-header.page-header.group
-  div
-    h1
-      ' Users
+= simple_form_for @search, url: '#', method: :get, as: :search, html: { class: 'search-form' } do |f|
+  .row
+    .col-md-3
+      .form-group.search-input
+        input.form-control#search type="search" placeholder="Search..."
+        = f.submit :submit
 
-.article-related-positioning-container
-  .article-container
-    article.group role="article"
-      .inner
-        = simple_form_for @search, url: '#', method: :get, as: :search, html: { class: 'search-form' } do |f|
-          input#search type='search'
-          .visuallyhidden
-            = f.submit :submit
-          = link_to 'New user', new_admin_user_path, class: 'new-user'
-          table.table.admin-table
-            thead
+    .col-md-3.pull-right.text-right
+      = link_to new_admin_user_path, class: 'new-user btn btn-primary btn-md' do
+        span.glyphicon.glyphicon-user
+        ' &nbsp;
+        ' New user
+
+  br
+
+  .row
+    .col-xs-12
+      table.table.admin-table
+        thead
+          tr
+            th.sortable
+              = sort_link f, 'Name', @search, :full_name
+            th.sortable
+              = sort_link f, 'Email', @search, :email
+            th.sortable
+              = sort_link f, 'Company', @search, :company_name
+            th.filter
+              = f.simple_fields_for [:filters, @search.filters] do |f|
+                = f.input :role, collection: User.role.options, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+              .dropdown.if-no-js-hide
+                button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                  ' Role:
+                  span.text-filter
+                    ' All
+                  span.caret
+                ul.dropdown-menu role="menu"
+                  li.checkbox role="presentation"
+                    label data-value="select_all"
+                      input type="checkbox"
+                      em Select all
+                  li.divider
+                  - User.role.options.each do |role|
+                    li.checkbox role="presentation"
+                      label data-value=role[1]
+                        input type="checkbox"
+                        = role[0]
+            th.filter
+              / TODO do category filter dropdown
+              .dropdown.if-no-js-hide
+                button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                  ' Category:
+                  span.text-filter
+                    ' All
+                  span.caret
+                ul.dropdown-menu role="menu"
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      em Select all
+                  li.divider
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      ' Innovation
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      ' International Trade
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      ' Sustainable Development
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      ' QAEP
+            th.sortable
+              = sort_link f, 'Signed in at', @search, :last_sign_in_at
+        tbody
+          - if UserDecorator.decorate_collection(@users).none?
+            tr
+              td.text-center colspan=100
+                br
+                p.p-empty No users found.
+                br
+          - else
+            - UserDecorator.decorate_collection(@users).each do |user|
               tr
-                th.sortable
-                  = sort_link f, 'Name', @search, :full_name
-                th.sortable
-                  = sort_link f, 'Email', @search, :email
-                th.sortable
-                  = sort_link f, 'Company', @search, :company_name
-                th.filter
-                  = f.simple_fields_for [:filters, @search.filters] do |f|
-                    = f.input :role, collection: User.role.options
-                th.filter Category
-                th.sortable
-                  = sort_link f, 'Signed in at', @search, :last_sign_in_at
-            tbody
-              - UserDecorator.decorate_collection(@users).each do |user|
-                tr
-                  td = user.full_name
-                  td = link_to user.email, admin_user_path(user)
-                  td = user.company
-                  td = user.role
-                  td
-                    i Not implemented
-                  td = user.last_sign_in_at && user.last_sign_in_at.strftime('%B %e at %l:%M %p')
+                td.td-title
+                  = link_to user.full_name, edit_admin_user_path(user), class: 'link-edit-user'
+                td = link_to user.email, "mailto:#{user.email}"
+                td = user.company
+                td = user.role
+                td
+                  i Not implemented
+                td
+                  i.text-muted = user.last_sign_in_at && user.last_sign_in_at.strftime('%e %B %Y at %H:%M')
 
-        = paginate @users
+  .row
+    .col-xs-12.text-right
+      = paginate @users
+      .clear

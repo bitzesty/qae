@@ -20,7 +20,7 @@ class UserDecorator < ApplicationDecorator
   end
 
   def company
-    company_name.presence || 'N/A'
+    company_name.presence || '<span class="text-muted">N/A</span>'.html_safe
   end
 
   def role

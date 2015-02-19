@@ -13,15 +13,102 @@ br
         tr
           th colspan=2 Company/Nominee
           th Reference
-          th Category
-          th Status
+          th.filter
+            / TODO do category filter dropdown
+            .dropdown.if-no-js-hide
+              button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                ' Category:
+                span.text-filter
+                  ' All
+                span.caret
+              ul.dropdown-menu role="menu"
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    em Select all
+                li.divider
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Innovation
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' International Trade
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Sustainable Development
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' QAEP
+          th.filter
+            / TODO do status filter dropdown
+            .dropdown.if-no-js-hide
+              button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                ' Status:
+                span.text-filter
+                  ' All
+                span.caret
+              ul.dropdown-menu role="menu"
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    em Select all
+                li.divider
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Application in progress
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Assessment in progress
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Recommended
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Reserve
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Not recommended
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Not eligible
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Withdrawn
+                li.divider
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    em Missing audit certificate
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    em Missing corporate responsibility
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    em Missing feedback
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    em Missing press summary
           th &nbsp;
           th Flag
       tbody
         - collection.each do |obj|
           tr
             td.status-label class="#{obj.consideration_status_label + '-label'}" alt="#{obj.consideration_status_label.capitalize}" title="#{obj.consideration_status_label.capitalize}"
-            td.company-title
+            td.td-title
               = link_to obj.company_or_nominee, [:admin, obj]
             td
               - if obj.urn.present?

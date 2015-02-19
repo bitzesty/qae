@@ -16,8 +16,7 @@ end
 
 step "I edit user" do
   step "I go to user management page"
-  click_link @user.email
-  click_link 'Edit'
+  find(".link-edit-user").click
 
   fill_in 'Email', with: 'user@example.com'
 
@@ -26,7 +25,7 @@ end
 
 step "I delete user" do
   step "I go to user management page"
-  click_link @user.email
+  find(".link-edit-user").click
 
   click_link 'Delete'
 end
