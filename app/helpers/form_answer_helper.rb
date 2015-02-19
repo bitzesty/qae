@@ -17,4 +17,8 @@ module FormAnswerHelper
     end
     output.html_safe
   end
+
+  def award_types_collection
+    FormAnswerDecorator::SELECT_BOX_LABELS.invert.to_a
+  end
 end
