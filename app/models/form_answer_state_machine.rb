@@ -73,6 +73,10 @@ class FormAnswerStateMachine
     end
   end
 
+  def submit
+    transition_to :submitted1
+  end
+
   def categorized_state
     normalized_state = object.state.to_s[0..-2]
     {
