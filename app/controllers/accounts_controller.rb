@@ -49,7 +49,7 @@ class AccountsController < ApplicationController
     current_user.set_step(3)
     if current_user.update(contact_settings_params)
 
-      if user.role.reggular?
+      if current_user.role.reggular?
         current_user.update_attribute(:completed_registration, true)
         flash.notice = 'You account details were successfully saved'
         redirect_to dashboard_path
