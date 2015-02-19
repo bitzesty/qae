@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Eligibility::Innovation, :type => :model do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:account) { FactoryGirl.create(:account) }
 
   context 'answers storage' do
     it 'saves and reads answers' do
-      eligibility = Eligibility::Innovation.new(user: user)
+      eligibility = Eligibility::Innovation.new(account: account)
       eligibility.innovative_product = 'yes'
       eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = true
@@ -18,13 +18,13 @@ RSpec.describe Eligibility::Innovation, :type => :model do
 
       eligibility = Eligibility::Innovation.last
 
-      expect(eligibility.user).to eq(user)
+      expect(eligibility.account).to eq(account)
       expect(eligibility).to be_innovative_product
     end
   end
 
   describe '#eligible?' do
-    let(:eligibility) { Eligibility::Innovation.new(user: user) }
+    let(:eligibility) { Eligibility::Innovation.new(account: account) }
 
     it 'is not eligible by default' do
       expect(eligibility).not_to be_eligible
@@ -54,13 +54,13 @@ RSpec.describe Eligibility::Innovation, :type => :model do
   end
 
   describe '#questions' do
-    let(:eligibility) { Eligibility::Innovation.new(user: user) }
+    let(:eligibility) { Eligibility::Innovation.new(account: account) }
 
     it 'returns all questions for new eligibility' do
       expect(eligibility.questions).to eq([:innovative_product, :number_of_innovative_products, :was_on_market_for_two_years, :innovation_recouped_investments, :had_impact_on_commercial_performace_over_two_years])
     end
 
-    it 'does not return number of innovative products if user does not have them' do
+    it 'does not return number of innovative products if account does not have them' do
       eligibility.innovative_product = 'no'
       expect(eligibility.questions).not_to include(:number_of_innovative_products)
     end

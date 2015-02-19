@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Eligibility::Promotion, :type => :model do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:account) { FactoryGirl.create(:account) }
 
   context 'answers storage' do
     it 'saves and reads answers' do
-      eligibility = Eligibility::Promotion.new(user: user)
+      eligibility = Eligibility::Promotion.new(account: account)
       eligibility.nominee = 'someone_else'
       eligibility.nominee_contributes_to_promotion_of_business_enterprise = true
       eligibility.contribution_is_outside_requirements_of_activity = true
@@ -22,13 +22,13 @@ RSpec.describe Eligibility::Promotion, :type => :model do
 
       eligibility = Eligibility::Promotion.last
 
-      expect(eligibility.user).to eq(user)
+      expect(eligibility.account).to eq(account)
       expect(eligibility).to be_able_to_get_two_letters_of_support
     end
   end
 
   describe '#eligible?' do
-    let(:eligibility) { Eligibility::Promotion.new(user: user) }
+    let(:eligibility) { Eligibility::Promotion.new(account: account) }
 
     it 'is not eligible by default' do
       expect(eligibility).not_to be_eligible
@@ -64,7 +64,7 @@ RSpec.describe Eligibility::Promotion, :type => :model do
   end
 
   describe '#questions' do
-    let(:eligibility) { Eligibility::Promotion.new(user: user) }
+    let(:eligibility) { Eligibility::Promotion.new(account: account) }
 
     it 'returns all questions for new eligibility' do
       expect(eligibility.questions).to eq([:nominee, :nominee_contributes_to_promotion_of_business_enterprise, :contribution_is_outside_requirements_of_activity, :nominee_is_active, :nominee_was_active_for_two_years, :contributed_to_enterprise_promotion_within_uk, :nominee_is_qae_ep_award_holder, :lifetime_achievement_award_nomination, :nominee_was_put_forward_for_honours_this_year, :nomination_for_honours_based_on_their_contribution_to_ep, :able_to_get_two_letters_of_support])

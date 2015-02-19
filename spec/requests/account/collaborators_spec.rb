@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe 'API' do
   let!(:account_admin) do
-    FactoryGirl.create :user, :completed_profile, 
+    FactoryGirl.create :user, :completed_profile,
                               first_name: "Account Admin John",
                               role: "account_admin"
   end
@@ -19,22 +19,22 @@ describe 'API' do
 
   let!(:basic_eligibility) do
     FactoryGirl.create :basic_eligibility, form_answer: form_answer,
-                                           user: account_admin
+                                           account: account
   end
 
   let!(:innovation_eligibility) do
     FactoryGirl.create :innovation_eligibility, form_answer: form_answer,
-                                                user: account_admin
+                                                account: account
   end
 
   let!(:trade_eligibility) do
     FactoryGirl.create :trade_eligibility, form_answer: form_answer,
-                                           user: account_admin
+                                           account: account
   end
 
   let!(:development_eligibility) do
     FactoryGirl.create :development_eligibility, form_answer: form_answer,
-                                                 user: account_admin
+                                                 account: account
   end
 
   before do
@@ -42,7 +42,7 @@ describe 'API' do
   end
 
   describe "GET /account/collaborators" do
-    before do 
+    before do
       get account_collaborators_path
     end
 
@@ -52,7 +52,7 @@ describe 'API' do
   end
 
   describe "GET /account/collaborators/new" do
-    before do 
+    before do
       xhr :get, new_account_collaborator_path
     end
 
@@ -71,7 +71,7 @@ describe 'API' do
       account.reload.users.last
     }
 
-    before do 
+    before do
       xhr :post, account_collaborators_path, collaborator: create_params
     end
 
@@ -89,13 +89,13 @@ describe 'API' do
 
   describe "DELETE /account/collaborators/:id" do
     let!(:existing_collaborator) do
-      FactoryGirl.create :user, :completed_profile, 
+      FactoryGirl.create :user, :completed_profile,
                                 first_name: "Collaborator Matt",
                                 account: account,
                                 role: "regular"
     end
 
-    before do 
+    before do
       xhr :delete, account_collaborator_path(existing_collaborator)
     end
 

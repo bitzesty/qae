@@ -53,18 +53,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :eligibility, only: [:show, :update] do
-    collection do
-      get :failure
-    end
-  end
-
-  resource :award_eligibility, only: [:show, :update] do
-    collection do
-      get :result
-    end
-  end
-
   resource :form_award_eligibility, only: [:show, :update] do
    collection do
       get :result

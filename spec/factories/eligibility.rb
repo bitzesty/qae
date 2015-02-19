@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :eligibility do
-    association :user, factory: :user
+    association :account, factory: :account
     association :form_answer, factory: :form_answer
 
     trait :passed do

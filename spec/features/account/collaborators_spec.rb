@@ -8,12 +8,12 @@ So that they can collaborate form answers
 } do
 
   let!(:account_admin) do
-    FactoryGirl.create :user, :completed_profile, 
+    FactoryGirl.create :user, :completed_profile,
                               first_name: "Account Admin John",
                               role: "account_admin"
   end
 
-  let(:account) { account_admin.account }
+  let!(:account) { account_admin.account }
 
   let!(:form_answer) do
     FactoryGirl.create :form_answer, :innovation,
@@ -24,35 +24,35 @@ So that they can collaborate form answers
 
   let!(:basic_eligibility) do
     FactoryGirl.create :basic_eligibility, form_answer: form_answer,
-                                           user: account_admin
+                                           account: account
   end
 
   let!(:innovation_eligibility) do
     FactoryGirl.create :innovation_eligibility, form_answer: form_answer,
-                                                user: account_admin
-  end
+                                                account: account
+ end
 
   let!(:trade_eligibility) do
     FactoryGirl.create :trade_eligibility, form_answer: form_answer,
-                                           user: account_admin
+                                           account: account
   end
 
   let!(:development_eligibility) do
     FactoryGirl.create :development_eligibility, form_answer: form_answer,
-                                                 user: account_admin
+                                                 account: account
   end
 
   let!(:another_account_admin) do
-    FactoryGirl.create :user, :completed_profile, 
+    FactoryGirl.create :user, :completed_profile,
                               first_name: "Another Account Admin Mike",
-                              account: account_admin.account,
+                              account: account,
                               role: "account_admin"
   end
 
   let!(:regular_admin) do
-    FactoryGirl.create :user, :completed_profile, 
+    FactoryGirl.create :user, :completed_profile,
                               first_name: "Regular Admin Kelly",
-                              account: account_admin.account,
+                              account: account,
                               role: "regular"
   end
 
@@ -86,7 +86,7 @@ So that they can collaborate form answers
             within("#new_collaborator") do
               expect {
                 click_on "Add"
-              }.to_not change { 
+              }.to_not change {
                 account.reload.users.count
               }
             end
@@ -102,14 +102,14 @@ So that they can collaborate form answers
 
               expect {
                 click_on "Add"
-              }.to_not change { 
+              }.to_not change {
                 account.reload.users.count
               }
             end
 
             within(".collaborator_email") do
               expect_to_see "is invalid"
-            end          
+            end
           end
 
           describe "Attempt to add person, which is already associated with another account" do
@@ -124,7 +124,7 @@ So that they can collaborate form answers
 
                 expect {
                   click_on "Add"
-                }.to_not change { 
+                }.to_not change {
                   account.reload.users.count
                 }
               end
@@ -132,7 +132,7 @@ So that they can collaborate form answers
               expect_to_see "User already associated with another account!"
             end
           end
-         
+
           describe "Attempt to add person, which is already in collaborators" do
             it "can't add" do
               within("#new_collaborator") do
@@ -140,7 +140,7 @@ So that they can collaborate form answers
 
                 expect {
                   click_on "Add"
-                }.to_not change { 
+                }.to_not change {
                   account.reload.users.count
                 }
               end
@@ -151,7 +151,7 @@ So that they can collaborate form answers
         end
 
         describe "Success Add to Collaborators" do
-          describe "Adding of existing user, which is not linked with any account" do 
+          describe "Adding of existing user, which is not linked with any account" do
             let!(:user_without_account) do
               user = FactoryGirl.create :user, :completed_profile
               user.account_id = nil
@@ -167,10 +167,10 @@ So that they can collaborate form answers
 
                 expect {
                   click_on "Add"
-                }.to change { 
+                }.to change {
                   account.reload.users.count
                 }.by(1)
-              end  
+              end
 
               user_without_account.reload
               expect(user_without_account.account_id).to be_eql account.id
@@ -180,7 +180,7 @@ So that they can collaborate form answers
             end
           end
 
-          describe "Adding of new user record" do 
+          describe "Adding of new user record" do
             let(:new_user_email) { "abcdyfg@example.com" }
 
             it "should create new user record with regular role" do
@@ -190,7 +190,7 @@ So that they can collaborate form answers
 
                 expect {
                   click_on "Add"
-                }.to change { 
+                }.to change {
                   account.reload.users.count
                 }.by(1)
               end
@@ -223,7 +223,7 @@ So that they can collaborate form answers
 
             expect {
               click_on "Remove"
-            }.to change { 
+            }.to change {
               account.reload.users.count
             }.by(-1)
           end

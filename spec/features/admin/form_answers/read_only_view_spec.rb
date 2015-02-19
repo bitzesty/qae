@@ -24,22 +24,22 @@ So that I can have 'read only' version of form
 
   let!(:basic_eligibility) do
     FactoryGirl.create :basic_eligibility, form_answer: form_answer,
-                                           user: user
+                                           account: user.account
   end
 
   let!(:innovation_eligibility) do
     FactoryGirl.create :innovation_eligibility, form_answer: form_answer,
-                                                user: user
+                                                account: user.account
   end
 
   let!(:trade_eligibility) do
     FactoryGirl.create :trade_eligibility, form_answer: form_answer,
-                                           user: user
+                                           account: user.account
   end
 
   let!(:development_eligibility) do
     FactoryGirl.create :development_eligibility, form_answer: form_answer,
-                                                 user: user
+                                                 account: user.account
   end
 
   before do

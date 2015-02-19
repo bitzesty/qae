@@ -27,10 +27,13 @@ FactoryGirl.define do
 
     trait :eligible do
       completed_profile
-      association :basic_eligibility, factory: :basic_eligibility
-      association :innovation_eligibility, factory: :innovation_eligibility
-      association :development_eligibility, factory: :development_eligibility
-      association :trade_eligibility, factory: :trade_eligibility
+
+      after(:create) do |user|
+        create(:basic_eligibility, account: user.account)
+        create(:trade_eligibility, account: user.account)
+        create(:development_eligibility, account: user.account)
+        create(:innovation_eligibility, account: user.account)
+      end
     end
 
   end

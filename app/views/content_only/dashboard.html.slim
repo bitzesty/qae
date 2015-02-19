@@ -15,7 +15,7 @@ header.page-header.group
               ' You can now begin your application(s) for the Queen’s Awards for Enterprise. You are eligible to apply for:
             ul
               - [@trade_eligibility, @innovation_eligibility, @development_eligibility, @promotion_eligibility].select(&:passed?).each do |eligibility|
-                li = eligibility.class.award_name
+                li.eligible = eligibility.class.award_name
 
         - if @user_award_forms.any?
           h2

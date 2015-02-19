@@ -43,10 +43,10 @@ class ApplicationController < ActionController::Base
   protected
 
   def load_eligibilities
-    @trade_eligibility = current_user.trade_eligibility || current_user.build_trade_eligibility
-    @innovation_eligibility = current_user.innovation_eligibility || current_user.build_innovation_eligibility
-    @development_eligibility = current_user.development_eligibility || current_user.build_development_eligibility
-    @promotion_eligibility = current_user.promotion_eligibility || current_user.build_promotion_eligibility
+    @trade_eligibility = current_account.trade_eligibility || current_account.trade_eligibilities.build
+    @innovation_eligibility = current_account.innovation_eligibility || current_account.innovation_eligibilities.build
+    @development_eligibility = current_account.development_eligibility || current_account.development_eligibilities.build
+    @promotion_eligibility = current_account.promotion_eligibility || current_account.promotion_eligibilities.build
   end
 
   private
@@ -69,25 +69,6 @@ class ApplicationController < ActionController::Base
     [@trade_eligibility, @innovation_eligibility, @development_eligibility, @promotion_eligibility].any?(&:passed?)
   end
   helper_method :any_eligibilities_passed?
-
-  def check_basic_eligibility
-    if !(current_user.basic_eligibility && current_user.basic_eligibility.passed?)
-      redirect_to eligibility_path
-      return
-    end
-  end
-
-  def check_award_eligibility
-    if current_user.basic_eligibility && current_user.basic_eligibility.kind.nomination?
-      if !current_user.promotion_eligibility.passed?
-        redirect_to award_eligibility_path
-        return
-      end
-    elsif %w[trade_eligibility innovation_eligibility development_eligibility].any? { |eligibility| !current_user.public_send(eligibility) }
-      redirect_to award_eligibility_path
-      return
-    end
-  end
 
   def check_account_completion
     if !current_user.completed_registration?

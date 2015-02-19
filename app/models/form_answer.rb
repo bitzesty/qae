@@ -14,7 +14,7 @@ class FormAnswer < ActiveRecord::Base
     belongs_to :user
     belongs_to :account
 
-    has_one :basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
+    has_one :form_basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
     has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
     has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
     has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
@@ -74,7 +74,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def eligible?
-    eligibility && eligibility.eligible? && basic_eligibility && basic_eligibility.eligible?
+    eligibility && eligibility.eligible? && form_basic_eligibility && form_basic_eligibility.eligible?
   end
 
   def document
@@ -136,18 +136,18 @@ class FormAnswer < ActiveRecord::Base
   end
 
   class AwardEligibilityBuilder
-    attr_reader :form_answer, :user
+    attr_reader :form_answer, :account
 
     def initialize(form_answer)
       @form_answer = form_answer
-      @user = form_answer.user
+      @account = form_answer.user.account
     end
 
     def eligibility
       method = "#{form_answer.award_type}_eligibility"
 
       unless form_answer.public_send(method)
-        form_answer.public_send("build_#{method}", filter(user.public_send(method).try(:attributes) || {})).save!
+        form_answer.public_send("build_#{method}", filter(account.public_send(method).try(:attributes) || {}).merge(account_id: account.id)).save!
       end
 
       form_answer.public_send(method)
@@ -155,11 +155,11 @@ class FormAnswer < ActiveRecord::Base
 
     def basic_eligibility
       @basic_eligibility ||= begin
-        if form_answer.basic_eligibility.try(:persisted?)
-          form_answer.basic_eligibility
+        if form_answer.form_basic_eligibility.try(:persisted?)
+          form_answer.form_basic_eligibility
         else
-          form_answer.build_basic_eligibility(filter(user.basic_eligibility.try(:attributes) || {})).save!
-          form_answer.basic_eligibility
+          form_answer.build_form_basic_eligibility(filter(account.basic_eligibility.try(:attributes) || {}).merge(account_id: account.id)).save!
+          form_answer.form_basic_eligibility
         end
       end
     end

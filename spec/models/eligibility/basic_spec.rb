@@ -1,11 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Eligibility::Basic, :type => :model do
-  let(:user) { FactoryGirl.create(:user) }
+  let(:account) { FactoryGirl.create(:account) }
 
   context 'answers storage' do
     it 'saves and reads answers' do
-      eligibility = Eligibility::Basic.new(user: user)
+      eligibility = Eligibility::Basic.new(account: account)
       eligibility.kind = 'application'
       eligibility.based_in_uk = '1'
 
@@ -15,14 +15,14 @@ RSpec.describe Eligibility::Basic, :type => :model do
 
       eligibility = Eligibility::Basic.last
 
-      expect(eligibility.user).to eq(user)
+      expect(eligibility.account).to eq(account)
       expect(eligibility.kind).to eq('application')
       expect(eligibility).to be_based_in_uk
     end
   end
 
   describe '#eligible?' do
-    let(:eligibility) { Eligibility::Basic.new(user: user) }
+    let(:eligibility) { Eligibility::Basic.new(account: account) }
 
     it 'is not eligible by default' do
       expect(eligibility).not_to be_eligible
@@ -59,7 +59,7 @@ RSpec.describe Eligibility::Basic, :type => :model do
   end
 
   describe '#questions' do
-    let(:eligibility) { Eligibility::Basic.new(user: user) }
+    let(:eligibility) { Eligibility::Basic.new(account: account) }
 
     it 'returns all questions for new eligibility' do
       expect(eligibility.questions).to eq([:kind, :based_in_uk, :has_management_and_two_employees, :organization_kind, :industry, :self_contained_enterprise, :current_holder])
