@@ -1,4 +1,9 @@
 class QaePdfForms::General::QuestionPointer
+  QUEENS_AWARD_HOLDER_LIST_HEADERS = [
+    "Category", "Year Awarded"
+  ]
+  EMPTY_TABLE_CELL_PLACEHOLDER = "-"
+
   attr_reader :form_pdf,
               :step,
               :question,
@@ -63,10 +68,29 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::ConfirmQuestion
         title = humanized_answer.present? ? question_checked_value_title : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, {style: :italic})
+      when QAEFormBuilder::QueenAwardHolderQuestion
+        render_current_award_list
       else
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, {style: :italic})
       end
+    end
+  end
+
+  def render_current_award_list
+    if humanized_answer.present?
+      rows = humanized_answer.map do |item|
+        prepared_item = JSON.parse(item)
+        
+        [
+          prepared_item['category'] || EMPTY_TABLE_CELL_PLACEHOLDER, 
+          prepared_item['year'] || EMPTY_TABLE_CELL_PLACEHOLDER
+        ]
+      end
+
+      render_multirows_table(QUEENS_AWARD_HOLDER_LIST_HEADERS, rows)
+    else
+      form_pdf.render_text(FormPdf::UNDEFINED_TITLE, {style: :italic})
     end
   end
 
@@ -122,15 +146,20 @@ class QaePdfForms::General::QuestionPointer
     if cells.present?
       headers = cells.map { |a| a[0] }
       row = cells.map { |a| a[1] }
-      render_simple_table(headers, row)
+      render_single_row_table(headers, row)
     end
 
     comments = sub_answers - cells
     render_sub_questions(comments) if comments.present?
   end
 
-  def render_simple_table(headers, row)
+  def render_single_row_table(headers, row)
     table_lines = [headers, row]
+    form_pdf.render_table(table_lines)
+  end
+
+  def render_multirows_table(headers, rows)
+    table_lines = rows.unshift(headers)
     form_pdf.render_table(table_lines)
   end
 
@@ -138,7 +167,7 @@ class QaePdfForms::General::QuestionPointer
     headers = sub_answers.map { |a| a[0] }
     row = sub_answers.map { |a| a[1] }
     row[1] = Date::MONTHNAMES[row[1].to_i] if row[1].present?
-    render_simple_table(headers, row)
+    render_single_row_table(headers, row)
   end
 
   def render_sub_questions(items)
