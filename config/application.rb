@@ -27,15 +27,6 @@ module Qae
 
     config.autoload_paths += %W( #{config.root}/app/forms/ #{config.root}/app/search/ )
 
-    config.assets.precompile += %w{
-      application.css
-      application-ie9.css
-      application-ie8.css
-      application-ie7.css
-      application-ie6.css
-      application.js
-    }
-
     config.generators do |g|
       g.test_framework :rspec
     end
