@@ -17,4 +17,4 @@ Rails.application.config.assets.precompile += %w{
   application-ie7.scss
   application-ie8.scss
   application-ie9.scss
-]
+}
