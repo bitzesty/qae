@@ -1,7 +1,6 @@
 class FormAnswerStateMachine
 
   include Statesman::Machine
-
   # Prior to End of September Deadline (phase I)
   state :in_progress1, initial: true
   state :submitted1
@@ -72,5 +71,18 @@ class FormAnswerStateMachine
     STATES.each do |state2|
       transition from: state1, to: state2
     end
+  end
+
+  def categorized_state
+    normalized_state = object.state.to_s[0..-2]
+    {
+      'in_progress' => 'pending',
+      'assessment_in_progress' => 'pending',
+      'recommended' => 'shortlisted',
+      'reserved' => 'shortlisted',
+      'not_recommended' => 'withdrawn',
+      'not_eligible' => 'withdrawn',
+      'withdrawn' => 'withdrawn'
+    }[normalized_state]
   end
 end

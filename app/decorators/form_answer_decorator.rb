@@ -33,15 +33,10 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def progress_text
-    "#{object.state.humanize[0..-2]} (not implemented %)"
+    "#{object.state.humanize[0..-2]}...#{fill_progress_in_percents}"
   end
 
-  def consideration_status_label
-    if object.withdrawn?
-      'withdrawn'
-    else
-      # IMPLEMENTME
-      ['pending', 'shortlisted'][rand(2)]
-    end
+  def fill_progress_in_percents
+    "#{((object.fill_progress || 0) * 100).round.to_i}%"
   end
 end

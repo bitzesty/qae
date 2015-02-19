@@ -74,7 +74,7 @@
         tbody
           - FormAnswerDecorator.decorate_collection(collection).each do |obj|
             tr
-              td.status-label class="#{obj.consideration_status_label + '-label'}" alt="#{obj.consideration_status_label.capitalize}" title="#{obj.consideration_status_label.capitalize}"
+              td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
               td.td-title
                 - unless obj.company_or_nominee_name.nil?
                   = link_to obj.company_or_nominee_name, [:admin, obj]

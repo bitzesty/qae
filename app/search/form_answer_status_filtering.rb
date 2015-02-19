@@ -1,6 +1,4 @@
 class FormAnswerStatusFiltering
-  SELECT_ALL = :select_all
-
   SUB_OPTIONS = {
     missing_audit_certificate: {
       label: 'Missing Audit Certificate (not impl.)',

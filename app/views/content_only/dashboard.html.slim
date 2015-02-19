@@ -37,7 +37,7 @@ header.page-header.group
                       - if award.urn?
                         ' Submitted
                       - else
-                        = "#{((award.fill_progress || 0) * 100).round.to_i}%"
+                        = award.decorate.fill_progress_in_percents
                   td.pull-right
                     // TODO use better method to test for submitted awards
                     - if award.urn?
