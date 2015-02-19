@@ -9,4 +9,7 @@ class ContentOnlyController < ApplicationController
     load_eligibilities
     @user_award_forms = current_user.account.form_answers.order("award_type")
   end
+
+  def admin_dashboard
+  end
 end

@@ -95,9 +95,9 @@ ActiveRecord::Schema.define(version: 20150218150006) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "document"
+    t.string   "award_type",      limit: 255
     t.boolean  "withdrawn",                   default: false
     t.integer  "account_id"
-    t.string   "award_type",      limit: 255
     t.string   "urn",             limit: 255
     t.boolean  "submitted",                   default: false
     t.float    "fill_progress"
@@ -107,19 +107,6 @@ ActiveRecord::Schema.define(version: 20150218150006) do
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
-
-  create_table "questionnaires", force: :cascade do |t|
-    t.integer  "payment_usability_rating"
-    t.integer  "security_rating"
-    t.integer  "overall_payment_rating"
-    t.text     "improvement_proposal"
-    t.boolean  "completed",                default: false
-    t.integer  "form_answer_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "questionnaires", ["form_answer_id"], name: "index_questionnaires_on_form_answer_id", using: :btree
 
   create_table "support_letters", force: :cascade do |t|
     t.integer  "supporter_id"
@@ -169,9 +156,9 @@ ActiveRecord::Schema.define(version: 20150218150006) do
     t.boolean  "subscribed_to_emails",                   default: false
     t.string   "qae_info_source",            limit: 255
     t.string   "qae_info_source_other",      limit: 255
+    t.boolean  "completed_registration",                 default: false
     t.integer  "account_id"
     t.string   "role",                       limit: 255
-    t.boolean  "completed_registration",                 default: false
     t.string   "confirmation_token",         limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

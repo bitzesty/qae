@@ -1,0 +1,83 @@
+.row
+  .col-md-4
+    .show-sidebar
+      / TODO Reports
+      .well
+        h2
+          span.glyphicon.glyphicon-signal
+          ' &nbsp;
+          ' Reports
+        ul.list-unstyled.list-actions
+          - ["Case Status", "All Entries", "Press Book List"].each do |report|
+            li
+              = link_to "#"
+                span.action-title
+                  span.glyphicon.glyphicon-file
+                  ' &nbsp;
+                  = report
+              small.pull-right
+                = link_to "#"
+                  span.glyphicon.glyphicon-eye-open
+                  ' &nbsp;
+                  ' View
+                ' &nbsp;
+                = link_to "#"
+                  span.glyphicon.glyphicon-download-alt
+                  ' &nbsp;
+                  ' Download
+      / TODO Email actions
+      .well
+        h2
+          span.glyphicon.glyphicon-envelope
+          ' &nbsp;
+          ' Email actions
+        ul.list-unstyled.list-actions
+          li
+            = link_to "Trigger notification to shortlisted", "#", class: "btn btn-block btn-default"
+          li
+            = link_to "Trigger notification to non-shortlisted", "#", class: "btn btn-block btn-default"
+          li
+            = link_to "Email assessors", "#", class: "btn btn-block btn-default"
+      / TODO Email actions
+      .well
+        h2
+          span.glyphicon.glyphicon-file
+          ' &nbsp;
+          ' Resources
+        ul.list-unstyled.list-actions
+          - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|
+            li
+              = link_to "#"
+                span.action-title
+                  span.glyphicon.glyphicon-file
+                  ' &nbsp;
+                  = resources
+              small.pull-right
+                = link_to "#"
+                  span.glyphicon.glyphicon-eye-open
+                  ' &nbsp;
+                  ' View
+                ' &nbsp;
+                = link_to "#"
+                  span.glyphicon.glyphicon-download-alt
+                  ' &nbsp;
+                  ' Download
+
+  .col-md-8
+    .panel-group#dashboard-details role="tablist" aria-multiselectable="true"
+      .panel.panel-default
+        .panel-heading#stage-one-application-heading role="tab"
+          h4.panel-title
+            a data-toggle="collapse" data-parent="#dashboard-details" href="#stage-one-application" aria-expanded="true" aria-controls="stage-one-application"
+              ' Stage 1 - Application
+        #stage-one-application.panel-collapse.collapse.in role="tabpanel" aria-labelledby="stage-one-application-heading"
+          .panel-body
+            ' Reports TBC
+      .panel.panel-default
+        .panel-heading role="tab" id="stage-two-assessment-header"
+          h4.panel-title
+            a.collapsed data-toggle="collapse" data-parent="#dashboard-details" href="#stage-two-assessment" aria-expanded="false" aria-controls="stage-two-assessment"
+              ' Stage 2 - Application
+        #stage-two-assessment.panel-collapse.collapse role="tabpanel" aria-labelledby="stage-two-assessment-header"
+          .panel-body
+            ' Reports TBC
