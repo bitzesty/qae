@@ -1,43 +1,72 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.8'
+gem 'rails', '~> 4.2.0'
 
+# PostgreSQL
+gem 'pg', '~> 0.17'
+
+# Envrioment variables
 gem 'dotenv-rails', '~> 1.0'
 
+# Assets & Templates
+gem 'slim-rails', '~> 3.0.1'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'devise', '~> 3.4'
-gem 'enumerize', '~> 0.8'
-gem 'govuk_frontend_toolkit', github: 'alphagov/govuk_frontend_toolkit_gem', submodules: true
-gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
-gem 'kaminari', '~> 0.16'
-gem 'pg', '~> 0.17'
-gem 'plek', '~> 1.9.0'
-gem 'responders', '~> 1.1'
-gem 'sentry-raven', github: 'getsentry/raven-ruby'
-gem 'simple_form', '~> 3.0'
-gem 'slim-rails', '~> 2.1'
+gem 'bootstrap-sass', '>= 3.3.3'
+gem 'govuk_frontend_toolkit', github: 'alphagov/govuk_frontend_toolkit_gem',
+                              submodules: true
 gem 'govuk_template', '0.12.0'
-gem 'wicked', '~> 1.1'
-gem 'prawn'
-gem 'prawn-table'
+
+# Decorators & Exposing named methods
 gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'
+
+# Rails 4 Responders
+gem 'responders', '~> 2.0'
+
+# Rails 4 sanitizer
+gem 'rails-html-sanitizer'
+
+# JSON
+gem 'jbuilder', '~> 2.0'
+
+# User authentication
+gem 'devise', '~> 3.4'
+
+# Pagenation
+gem 'kaminari', '~> 0.16'
+
+# step-by-step wizard
+gem 'wicked', '~> 1.1'
+
+# Statemachine
+gem 'statesman'
+
+# Form & Data helpers
+gem 'simple_form', '~> 3.0'
 gem 'country_select'
 gem 'email_validator'
-gem 'nokogiri'
+gem 'enumerize', '~> 0.8'
 
-gem 'bootstrap-sass', '>= 3.3.3'
+# PDF generation
+gem 'prawn'
+gem 'prawn-table'
+gem 'nokogiri', '~> 1.6.0'
+
+# Error reporting
+gem 'sentry-raven', github: 'getsentry/raven-ruby'
+
+# Uploads
+gem 'carrierwave'
+gem 'jquery.fileupload-rails'
 
 # Background jobs
 gem 'sidekiq'
 gem 'sidekiq-status'
 gem 'sinatra', require: false
+
 gem 'foreman'
-gem 'jquery.fileupload-rails'
-gem 'carrierwave'
-gem 'statesman'
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'
@@ -65,7 +94,6 @@ group :development do
   gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
-  gem 'web-console', '~> 2.0'
   gem 'rack-mini-profiler', require: false
   gem 'passenger'
 end
@@ -73,4 +101,5 @@ end
 group :test, :development do
   gem 'factory_girl_rails'
   gem 'byebug'
+  gem 'web-console', '~> 2.0'
 end

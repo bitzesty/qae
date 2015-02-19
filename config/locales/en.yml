@@ -49,3 +49,11 @@ en:
   time:
     formats:
       date_at_time: "%d/%m/%Y at %H:%M"
+      govuk_time: "%-I:%M%P"
+      govuk_date_short: "%-I:%M%P, %-e %b %Y"
+      govuk_date: "%-I:%M%P, %-e %B %Y"
+
+  date:
+    formats:
+      govuk_date_short: "%-e %b %Y"
+      govuk_date: "%-e %B %Y"

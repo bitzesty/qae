@@ -1,11 +1,11 @@
 class AddCollaborator
-  attr_reader :current_user, 
-              :account, 
-              :params, 
-              :collaborator, 
-              :email, 
-              :success, 
-              :new_user, 
+  attr_reader :current_user,
+              :account,
+              :params,
+              :collaborator,
+              :email,
+              :success,
+              :new_user,
               :generated_password,
               :devise_confirmation_token,
               :errors
@@ -20,7 +20,7 @@ class AddCollaborator
 
   def run
     if valid? && collaborator.valid?
-      persist! 
+      persist!
 
       if success?
         send_collaboration_email!
@@ -40,10 +40,10 @@ class AddCollaborator
         end
 
         user.role = params[:role]
-        return user 
+        return user
       end
     end
-    
+
     @new_user = true
     user = User.new(params)
     user.agreed_with_privacy_policy = '1'
@@ -54,7 +54,7 @@ class AddCollaborator
 
   def persist!
     collaborator.account = account
-    
+
     if collaborator.new_record?
       collaborator.skip_confirmation_notification!
       collaborator.send(:generate_confirmation_token!)
@@ -66,8 +66,8 @@ class AddCollaborator
 
   def send_collaboration_email!
     Users::CollaborationMailer.delay.access_granted(
-      current_user, 
-      collaborator, 
+      current_user,
+      collaborator,
       new_user,
       generated_password,
       devise_confirmation_token)

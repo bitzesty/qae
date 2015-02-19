@@ -12,13 +12,14 @@
 ### Pre-requisites
 
 * Ruby 2.1.5
-* Rails 4.1.8
+* Rails 4.2
 * Postgresql 9
 * Redis
 
 ### Running application
 
 ```
+./bin/setup
 foreman start
 ```
 
@@ -38,7 +39,8 @@ This means, that `hstore postgresql` extension needs to be installed:
 sudo apt-get install postgresql-contrib
 ```
 
-For OSX users you might need to install pcre headers:
+For passenger:
+OSX users you might need to install pcre headers:
 
 ```
 brew install pcre
