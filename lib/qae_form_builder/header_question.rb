@@ -1,18 +1,21 @@
 class QAEFormBuilder
   class HeaderQuestionDecorator < QuestionDecorator
-    def pdf_located_before
-      delegate_obj.pdf_located_before
+    def show_in_pdf_before
+      delegate_obj.show_in_pdf_before
     end
   end
 
   class HeaderQuestionBuilder < QuestionBuilder
-    def pdf_located_before q_key
-      @q.pdf_located_before = q_key
+    def show_in_pdf_before dependable_question_keys=[]
+      @q.show_in_pdf_before = dependable_question_keys
     end
   end
 
   class HeaderQuestion < Question
-    attr_accessor :pdf_located_before
-  end
+    attr_accessor :show_in_pdf_before
 
+    def after_create
+      @show_in_pdf_before = []
+    end
+  end
 end

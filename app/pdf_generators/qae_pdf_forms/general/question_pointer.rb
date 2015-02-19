@@ -1,7 +1,6 @@
 class QaePdfForms::General::QuestionPointer
   attr_reader :form_pdf,
               :step,
-              :cached_questions,
               :question,
               :key,
               :answer,
@@ -179,9 +178,8 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def detect_header
-    cached_questions.detect do |q| 
-      q.respond_to?(:pdf_located_before) && 
-      q.pdf_located_before == key
+    step.step_headers.detect do |q|
+      q.show_in_pdf_before.include?(key)
     end
   end
 end

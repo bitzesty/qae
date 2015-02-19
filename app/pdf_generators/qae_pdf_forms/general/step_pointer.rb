@@ -2,7 +2,8 @@ class QaePdfForms::General::StepPointer
   attr_reader :award_form,
               :form_pdf,
               :step,
-              :cached_questions,
+              :step_headers,
+              :step_questions,
               :filtered_questions
 
   def initialize(ops={})
@@ -10,12 +11,17 @@ class QaePdfForms::General::StepPointer
       instance_variable_set("@#{k}", v)
     end
 
-    @cached_questions = step.questions.reject do |question|
+    @step_questions = step.questions.reject do |question|
       FormPdf::HIDDEN_QUESTIONS.include?(question.key.to_s)
     end
 
-    @filtered_questions = cached_questions.select do |question|
+    @filtered_questions = step_questions.select do |question|
       award_form[question.key].visible?
+    end
+
+    @step_headers = step_questions.select do |question|
+      question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion) &&
+      question.show_in_pdf_before.present?
     end
   end
 
@@ -27,8 +33,7 @@ class QaePdfForms::General::StepPointer
       QaePdfForms::General::QuestionPointer.new({
         form_pdf: form_pdf,
         step: self,
-        question: question.decorate,
-        cached_questions: cached_questions
+        question: question.decorate
       }).render!
     end
   end

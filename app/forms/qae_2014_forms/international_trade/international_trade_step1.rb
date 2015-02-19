@@ -156,7 +156,6 @@ class QAE2014Forms
         header :parent_company_header, 'Parent Companies' do
           ref 'A 12'
           conditional :applying_for, 'true'
-          pdf_located_before :parent_company
         end
 
         text :parent_company, 'Name of immediate parent company' do
