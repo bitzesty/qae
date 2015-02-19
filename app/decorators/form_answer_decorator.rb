@@ -33,8 +33,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def progress_text
-    # IMPLEMENTME
-    'Application...30%'
+    "#{object.state.humanize[0..-2]} (not implemented %)"
   end
 
   def consideration_status_label
