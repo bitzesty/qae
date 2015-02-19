@@ -36,13 +36,13 @@ html.no-js
                   span.icon-bar
 
                 = link_to "Queen's Awards for Enterprise - Admin",
-                          "#",
+                          admin_dashboard_index_path,
                           class: 'navbar-brand'
 
               .navbar-collapse.collapse#nav-main-collapse
                 ul.nav.navbar-nav role="navigation"
-                  li
-                    = link_to "Dashboard", "#"
+                  li class="#{'active' if controller_name == 'dashboard'}"
+                    = link_to "Dashboard", admin_dashboard_index_path
                   li class="#{'active' if controller_name == 'form_answers'}"
                     = link_to "Applications", admin_form_answers_path
                   li class="#{'active' if controller_name == 'users'}"

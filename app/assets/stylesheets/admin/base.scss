@@ -18,6 +18,26 @@
     }
   }
 
+  .list-actions {
+    margin-bottom: 0;
+
+    li {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      .action-title {
+        display: inline-block;
+        max-width: 190px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+
 // Icons
   .icon-comment,
   .icon-flagged,
