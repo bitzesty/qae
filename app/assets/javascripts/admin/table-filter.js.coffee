@@ -5,6 +5,8 @@ filterTableDropdowns = () ->
   # Change the checked value on dropbox and the filtered text
   $("th.filter .dropdown-menu").each () ->
     selected_count = 0
+    if document.URL.indexOf('?') > -1
+      $(this).closest(".dropdown").find(".text-filter").text("None selected ")
     $(this).find("li label").each () ->
       # Individual checkboxes
       selected_label = $(this).attr("data-value")
@@ -13,8 +15,6 @@ filterTableDropdowns = () ->
         if selected_option.attr('selected')
           selected_count+=1
           $(this).find("input").attr('checked', 'checked')
-          console.log "#{selected_count} : #{$(this).text()}"
-          $(this).find(".text-filter").text("All ")
           if selected_count == 1
             $(this).closest(".dropdown").find(".text-filter").text($(this).text()+" ")
           else
