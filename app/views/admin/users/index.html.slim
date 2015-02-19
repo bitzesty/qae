@@ -25,10 +25,9 @@
             th.sortable
               = sort_link f, 'Company', @search, :company_name
             th.filter
-              /= f.simple_fields_for [:filters, @search.filters] do |f|
-                = f.input :role, collection: User.role.options
-              / TODO do role filter dropdown
-              .dropdown
+              = f.simple_fields_for [:filters, @search.filters] do |f|
+                = f.input :role, collection: User.role.options, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+              .dropdown.if-no-js-hide
                 button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
                   ' Role:
                   span.text-filter
@@ -36,18 +35,18 @@
                   span.caret
                 ul.dropdown-menu role="menu"
                   li.checkbox role="presentation"
-                    label
+                    label data-value="select_all"
                       input type="checkbox"
                       em Select all
                   li.divider
                   - User.role.options.each do |role|
                     li.checkbox role="presentation"
-                      label
+                      label data-value=role[1]
                         input type="checkbox"
                         = role[0]
             th.filter
               / TODO do category filter dropdown
-              .dropdown
+              .dropdown.if-no-js-hide
                 button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
                   ' Category:
                   span.text-filter
