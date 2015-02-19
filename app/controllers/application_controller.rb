@@ -70,25 +70,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :any_eligibilities_passed?
 
-  def check_basic_eligibility
-    if !(current_account.basic_eligibility && current_account.basic_eligibility.passed?)
-      redirect_to award_eligibility_path
-      return
-    end
-  end
-
-  def check_award_eligibility
-    if current_account.basic_eligibility && current_account.basic_eligibility.kind.nomination?
-      if !current_account.promotion_eligibility.passed?
-        redirect_to award_eligibility_path
-        return
-      end
-    elsif %w[trade_eligibility innovation_eligibility development_eligibility].any? { |eligibility| !current_account.public_send(eligibility) }
-      redirect_to award_eligibility_path
-      return
-    end
-  end
-
   def check_account_completion
     if !current_user.completed_registration?
       redirect_to correspondent_details_account_path
