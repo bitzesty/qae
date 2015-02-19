@@ -25,19 +25,40 @@
             th.sortable
               = sort_link f, 'Company', @search, :company_name
             th.filter
-              = f.simple_fields_for [:filters, @search.filters] do |f|
+              /= f.simple_fields_for [:filters, @search.filters] do |f|
                 = f.input :role, collection: User.role.options
-            th.filter
+              / TODO do role filter dropdown
               .dropdown
-                button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="true"
-                  ' Category:
-                  span.text-filter All
+                button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                  ' Role:
+                  span.text-filter
+                    ' All
                   span.caret
                 ul.dropdown-menu role="menu"
                   li.checkbox role="presentation"
                     label
                       input type="checkbox"
-                      ' Select all
+                      em Select all
+                  li.divider
+                  - User.role.options.each do |role|
+                    li.checkbox role="presentation"
+                      label
+                        input type="checkbox"
+                        = role[0]
+            th.filter
+              / TODO do category filter dropdown
+              .dropdown
+                button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                  ' Category:
+                  span.text-filter
+                    ' All
+                  span.caret
+                ul.dropdown-menu role="menu"
+                  li.checkbox role="presentation"
+                    label
+                      input type="checkbox"
+                      em Select all
+                  li.divider
                   li.checkbox role="presentation"
                     label
                       input type="checkbox"
