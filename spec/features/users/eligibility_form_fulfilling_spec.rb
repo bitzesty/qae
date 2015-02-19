@@ -28,7 +28,7 @@ end
 def fill_form_with_all_yes
   visit new_innovation_form_path
 
-  8.times do
+  7.times do
     check_first_checkbox
     click_button 'Continue'
   end
