@@ -31,11 +31,4 @@ module SearchHelper
       field
     end
   end
-
-  def multifilter_checkbox(key)
-    s_param = params[:search]
-    checked = true if s_param.present? && s_param[:search_filter].try(:has_key?, key)
-
-    check_box_tag "search[search_filter][#{key}]", 1, checked
-  end
 end

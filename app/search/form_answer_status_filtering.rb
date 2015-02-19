@@ -1,23 +1,14 @@
 class FormAnswerStatusFiltering
   SUB_OPTIONS = {
     missing_audit_certificate: {
-      label: 'Missing Audit Certificate (not impl.)',
-      properties: {
-        checked: 'checked'
-      }
+      label: 'Missing Audit Certificate (not impl.)'
     },
     missing_corp_responsibility: {
-      label: 'Missing Corp Responsibility (not impl.)',
-      properties: {
-        checked: 'checked'
-      }
+      label: 'Missing Corp Responsibility (not impl.)'
     },
 
     missing_feedback: {
-      label: 'Missing Feedback (not impl.)',
-      properties: {
-        checked: 'checked'
-      }
+      label: 'Missing Feedback (not impl.)'
     },
 
     missing_press_summary: {
