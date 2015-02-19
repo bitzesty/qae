@@ -48,7 +48,14 @@ class AccountsController < ApplicationController
   def update_contact_settings
     current_user.set_step(3)
     if current_user.update(contact_settings_params)
-      redirect_to account_collaborators_path
+
+      if user.role.reggular?
+        current_user.update_attribute(:completed_registration, true)
+        flash.notice = 'You account details were successfully saved'
+        redirect_to dashboard_path
+      else
+        redirect_to account_collaborators_path
+      end
     else
       @active_step = 3
       render :contact_settings
