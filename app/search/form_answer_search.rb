@@ -1,6 +1,11 @@
 class FormAnswerSearch < Search
   def sort_by_company_name(scoped_results, desc = false)
-    scoped_results.joins(:user).order("users.company_name #{desc ? 'DESC' : 'ASC'}")
+    scoped_results.joins(:user).order("users.company_name #{sort_order(desc)}")
+  end
+
+  def sort_by_flag(scoped_results, desc = false)
+    flag_order = scoped_results.order(importance_flag: sort_order(!desc).to_sym)
+    sort_by_company_name(flag_order, false)
   end
 
   def filter_by_status(scoped_results, value)
@@ -32,5 +37,9 @@ class FormAnswerSearch < Search
 
   def filter_klass
     FormAnswerStatusFiltering
+  end
+
+  def sort_order(desc = false)
+    desc ? 'desc' : 'asc'
   end
 end
