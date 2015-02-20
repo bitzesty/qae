@@ -234,47 +234,47 @@ window.FormValidation =
 
     for _q in $(".question-block")
       question = $(_q)
-      console.log "----"
-      console.log question.find("h2").text()
+      # console.log "----"
+      # console.log question.find("h2").text()
 
       if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
-        console.log "validateRequiredQuestion"
+        # console.log "validateRequiredQuestion"
         @validateRequiredQuestion(question)
 
       if question.hasClass("question-number")
-        console.log "validateNumber"
+        # console.log "validateNumber"
         @validateNumber(question)
 
       if question.hasClass("question-money-by-years")
-        console.log "validateMoneyByYears"
+        # console.log "validateMoneyByYears"
         @validateMoneyByYears(question)
 
       if question.hasClass("question-date-by-years")
-        console.log "validateDateByYears"
+        # console.log "validateDateByYears"
         @validateDateByYears(question)
 
       if question.find(".match").length
-        console.log "validateMatchQuestion"
+        # console.log "validateMatchQuestion"
         @validateMatchQuestion(question)
 
       if question.hasClass("question-date-max")
-        console.log "validateMaxDate"
+        # console.log "validateMaxDate"
         @validateMaxDate(question)
 
       if question.hasClass("question-date-min")
-        console.log "validateMinDate"
+        # console.log "validateMinDate"
         @validateMinDate(question)
 
       if question.hasClass("question-date-between")
-        console.log "validateBetweenDate"
+        # console.log "validateBetweenDate"
         @validateBetweenDate(question)
 
       if $(".question-block[data-answer='overseas_sales-total-overseas-sales'] > .conditional-question").hasClass("show-question")
-        console.log "validateTotalOverseas"
+        # console.log "validateTotalOverseas"
         @validateTotalOverseas()
 
       if question.find(".validate-date-start-end").size() > 0
-        console.log "validateDateStartEnd"
+        # console.log "validateDateStartEnd"
         @validateDateStartEnd(question)
 
       #console.log @validates
