@@ -101,7 +101,7 @@ class FormAnswer < ActiveRecord::Base
     name      = document[comp_attr]
     name      = "#{document['nominee_first_name']} #{document['nominee_last_name']}" if promotion? && name.blank?
     name      = name.try(:strip)
-    name.present? ? name : nil
+    name.presence
   end
 
   private

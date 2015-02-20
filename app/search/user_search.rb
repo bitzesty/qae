@@ -2,7 +2,7 @@ class UserSearch < Search
   DEFAULT_SEARCH = {
     sort: 'full_name',
     search_filter: {
-      role: User.role.options.map(&:last)
+      role: User.role.values
     }
   }
 
