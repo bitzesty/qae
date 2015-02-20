@@ -80,6 +80,15 @@ Rails.application.routes.draw do
         get :review
       end
     end
+
+    resources :notifications, only: [] do
+      collection do
+        get :confirm_notify_shortlisted
+        get :confirm_notify_non_shortlisted
+        post :trigger_notify_shortlisted
+        post :trigger_notify_non_shortlisted
+      end
+    end
   end
 
   namespace :account do

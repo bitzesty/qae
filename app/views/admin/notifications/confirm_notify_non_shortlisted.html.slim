@@ -1,0 +1,10 @@
+.row
+  .col-md-12
+    .well
+      h1 Confirm triggering action to notify non shortlisted applicants
+      p Confirm text
+      p Do you confirm triggering action to notify ALL non shortlisted applicants? If so type 'yes'
+      = simple_form_for @confirmation, as: :confirmation, url: trigger_notify_non_shortlisted_admin_notifications_path do |f|
+        = f.input :confirmation, label: false
+        = link_to 'Cancel', admin_dashboard_index_path, class: 'btn'
+        = f.submit 'Confirm', class: 'btn'
