@@ -152,6 +152,7 @@ class QAE2014Forms
           words_max 200
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
+          drop_condition_parent
         end
 
         options :company_estimated_figures, 'Are any of these figures estimated?' do
