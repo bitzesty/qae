@@ -6,7 +6,7 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
       respond_to do |format|
         format.html do
           unless request.xhr?
-            redirect_to admin_form_answers_path(form_answer)
+            redirect_to admin_form_answer_path(form_answer)
           else
             render_for_js
           end
