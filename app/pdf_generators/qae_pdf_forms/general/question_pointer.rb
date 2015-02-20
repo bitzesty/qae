@@ -1,6 +1,14 @@
 class QaePdfForms::General::QuestionPointer
+  include QaePdfForms::GustomQuestions::FinancialDates
+
   QUEENS_AWARD_HOLDER_LIST_HEADERS = [
     "Category", "Year Awarded"
+  ]
+  YEAR_LABELS = [
+    "day", "month", "year"
+  ]
+  YEAR_LABELS_TABLE_HEADERS = [
+    "Financial year", "Day", "Month", "Year"
   ]
 
   attr_reader :form_pdf,
@@ -67,13 +75,21 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::ConfirmQuestion
         title = humanized_answer.present? ? question_checked_value_title : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, {style: :italic})
-      when QAEFormBuilder::QueenAwardHolderQuestion
+      when QAEFormBuilder::QueenAwardHolderQuestion, QAEFormBuilder::AwardHolderQuestion
         render_current_award_list
+      when QAEFormBuilder::ByYearsLabelQuestion
+        render_years_labels_table
+      when QAEFormBuilder::ByYearsQuestion
+        render_years_table
       else
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, {style: :italic})
       end
     end
+  end
+
+  def render_years_table
+    Rails.logger.info "[YEARS TABLE]"
   end
 
   def render_current_award_list
@@ -167,7 +183,7 @@ class QaePdfForms::General::QuestionPointer
   def render_inline_date
     headers = sub_answers.map { |a| a[0] }
     row = sub_answers.map { |a| a[1] }
-    row[1] = Date::MONTHNAMES[row[1].to_i] if row[1].present?
+    row[1] = to_month(row[1]) if row[1].present?
     render_single_row_table(headers, row)
   end
 
@@ -194,5 +210,9 @@ class QaePdfForms::General::QuestionPointer
 
   def question_checked_value_title
     Nokogiri::HTML.parse(question.text).text.strip if humanized_answer == 'on'
+  end
+
+  def to_month(value)
+    Date::MONTHNAMES[value.to_i]
   end
 end
