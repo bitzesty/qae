@@ -7,6 +7,23 @@
           span.glyphicon.glyphicon-signal
           ' Reports
         ul.list-unstyled.list-actions
+          li
+            =link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT3, format: :csv)
+              span.action-title
+                span.glyphicon.glyphicon-file
+                  ' &nbsp;
+                  ' Admin Report 3
+
+            small.pull-right
+              = link_to "#"
+                span.glyphicon.glyphicon-eye-open
+                ' &nbsp;
+                ' View
+              ' &nbsp;
+              = link_to "#"
+                span.glyphicon.glyphicon-download-alt
+                ' &nbsp;
+                ' Download
           - ["Case Status", "All Entries", "Press Book List"].each do |report|
             li
               = link_to "#"
