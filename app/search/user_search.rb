@@ -1,4 +1,11 @@
 class UserSearch < Search
+  DEFAULT_SEARCH = {
+    sort: 'full_name',
+    search_filter: {
+      role: User.role.options.map(&:last)
+    }
+  }
+
   def sort_by_full_name(scoped_results, desc = false)
     if desc
       scoped_results.order("first_name DESC, last_name DESC")
