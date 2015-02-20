@@ -86,7 +86,7 @@ RSpec.describe FormAnswer, type: :model do
     let(:c_name){ 'company name'}
 
     context 'promotion form' do
-      let(:doc){ { 'organization_name' => c_name}}
+      let(:doc){ { 'organization_name' => " #{c_name} "}}
       let(:kind){ :promotion }
       it 'gets the orgzanization name first' do
         expect(subject.company_or_nominee_from_document).to eq(c_name)

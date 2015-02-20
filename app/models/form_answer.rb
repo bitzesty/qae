@@ -99,8 +99,9 @@ class FormAnswer < ActiveRecord::Base
   def company_or_nominee_from_document
     comp_attr = promotion? ? 'organization_name' : 'company_name'
     name      = document[comp_attr]
-    name      = "#{document['nominee_first_name']} #{document['nominee_last_name']}".strip if promotion? && name.blank?
-    name
+    name      = "#{document['nominee_first_name']} #{document['nominee_last_name']}" if promotion? && name.blank?
+    name      = name.try(:strip)
+    name.presence
   end
 
   private

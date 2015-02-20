@@ -2,7 +2,7 @@ class Admin::UsersController < Admin::BaseController
   before_filter :find_user, only: [:show, :edit, :update, :destroy]
 
   def index
-    params[:search] ||= { sort: 'full_name' }
+    params[:search] ||= UserSearch::DEFAULT_SEARCH
 
     @search = UserSearch.new(User.all).search(params[:search])
     @users = @search.results.page(params[:page])

@@ -35,11 +35,12 @@
           span.glyphicon.glyphicon-file
           ' &nbsp;
           ' Documents
-        - unless resource.form_answer_attachments.any?
-          p.p-empty No documents have been attached to this case.
-        - else
-          .document-list
-            = render(resource.form_answer_attachments)
+        .document-list
+
+          - unless resource.form_answer_attachments.any?
+            p.p-empty No documents have been attached to this case.
+          - else
+              = render(resource.form_answer_attachments)
         = form_for [:admin, resource, resource.form_answer_attachments.build], html: { multipart: true} do |form|
           span.btn.btn-default.btn-sm.btn-attachment
             = form.file_field :file

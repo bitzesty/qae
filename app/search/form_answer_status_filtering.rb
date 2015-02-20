@@ -95,4 +95,8 @@ class FormAnswerStatusFiltering
   def self.supported_filter_attrs
     OPTIONS.keys.map(&:to_s)
   end
+
+  def self.all
+    collection.map{|s| s.last.to_s} + sub_collection.map{|s| s.last.to_s}
+  end
 end
