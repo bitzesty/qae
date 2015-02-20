@@ -16,7 +16,7 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
   end
 
   def show
-    send_data resource.file.read, filename: resource.filename
+    send_data resource.file.read, filename: resource.filename, disposition: 'inline'
   end
 
   private
@@ -26,7 +26,10 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
   end
 
   def render_for_js
-    render partial: 'form_answer_attachment', locals: { form_answer_attachment: @form_answer_attachment, form_answer: form_answer }
+    render partial: 'form_answer_attachment', locals: {
+                                                        form_answer_attachment: @form_answer_attachment,
+                                                        form_answer: form_answer
+                                                      }
   end
 
   def create_params
