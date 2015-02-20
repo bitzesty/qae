@@ -89,7 +89,6 @@ window.FormValidation =
 
   validateMaxDate: (question) ->
     val = question.find("input[type='text']").val()
-    console.log("[ERROR - MaxDate] val:" + val)
 
     if not val
       return
@@ -99,12 +98,10 @@ window.FormValidation =
 
     if not @toDate(val).isValid()
       @addErrorMessage(question, "Not a valid date")
-      console.log("[ERROR - MaxDate] " + question.find("h2").text())
       return
 
     if diff > 0
       @addErrorMessage(question, "Date cannot be after #{expDate}")
-      console.log("[ERROR - MaxDate] " + question.find("h2").text())
 
   validateMinDate: (question) ->
     val = question.find("input[type='text']").val()
