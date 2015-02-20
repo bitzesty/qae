@@ -1,14 +1,8 @@
 class QaePdfForms::General::QuestionPointer
-  include QaePdfForms::GustomQuestions::FinancialDates
+  include QaePdfForms::CustomQuestions::ByYear
 
   QUEENS_AWARD_HOLDER_LIST_HEADERS = [
     "Category", "Year Awarded"
-  ]
-  YEAR_LABELS = [
-    "day", "month", "year"
-  ]
-  YEAR_LABELS_TABLE_HEADERS = [
-    "Financial year", "Day", "Month", "Year"
   ]
 
   attr_reader :form_pdf,
@@ -86,10 +80,6 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.render_text(title, {style: :italic})
       end
     end
-  end
-
-  def render_years_table
-    Rails.logger.info "[YEARS TABLE]"
   end
 
   def render_current_award_list
