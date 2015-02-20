@@ -35,11 +35,18 @@
           span.glyphicon.glyphicon-file
           ' &nbsp;
           ' Documents
-        p.p-empty No documents have been attached to this case.
-        = link_to "#", class: "btn btn-default btn-sm btn-attachment" do
-          span.glyphicon.glyphicon-paperclip
-          ' &nbsp;
-          ' Attach Document
+        - unless resource.form_answer_attachments.any?
+          p.p-empty No documents have been attached to this case.
+        - else
+          .document-list
+            = render(resource.form_answer_attachments)
+        = form_for [:admin, resource, resource.form_answer_attachments.build], html: { multipart: true} do |form|
+          span.btn.btn-default.btn-sm.btn-attachment
+            = form.file_field :file
+            span.glyphicon.glyphicon-paperclip
+            ' &nbsp;
+            ' Attach Document
+          = form.submit 'Attach Document', class: 'if-js-hide'
 
       / TODO Users
       .well

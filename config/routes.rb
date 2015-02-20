@@ -70,6 +70,8 @@ Rails.application.routes.draw do
     resources :users
     resources :form_answers do
       resources :comments
+      resources :form_answer_attachments, only: [:create, :show]
+
       resources :flags, only: [] do
         collection{ get :toggle }
       end
