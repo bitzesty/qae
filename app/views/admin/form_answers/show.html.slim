@@ -75,7 +75,8 @@
   .col-md-8
     .col-content
       .application-progress = resource.progress_text
-      iframe src= review_admin_form_answer_path(resource) style='width:750px;height:750px;'
+      .iframeholder data-src= review_admin_form_answer_path(resource) data-style='width:750px;height:750px;'
+      = link_to 'review application', review_admin_form_answer_path(resource), class: 'if-js-hide'
     .col-sidebar
       .sidebar-header
 
