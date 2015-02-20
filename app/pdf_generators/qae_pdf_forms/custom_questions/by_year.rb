@@ -5,9 +5,13 @@ module QaePdfForms::CustomQuestions::ByYear
   YEAR_LABELS_TABLE_HEADERS = [
     "Financial year", "Day", "Month", "Year"
   ]
+  IN_PROGRESS = "in progress..."
 
   def render_years_labels_table
     rows = financial_year_changed_dates_entries
+    rows.map do |e| 
+      e[1] = to_month(e[1])
+    end
 
     rows.push(latest_year_label)
     active_fields.length.times do |i| 
@@ -19,7 +23,8 @@ module QaePdfForms::CustomQuestions::ByYear
 
   def render_years_table
     rows = active_fields.map do |field|
-      year_entry(field)[1]
+      entry = year_entry(field)
+      entry.present? ? entry : IN_PROGRESS
     end
 
     render_single_row_table(financial_years_decorated_headers, rows)
@@ -56,9 +61,9 @@ module QaePdfForms::CustomQuestions::ByYear
 
     if entry.present?
       if with_month_check && year_label == 'month'
-        to_month(entry[1])
+        to_month(entry)
       else
-        entry[1]
+        entry
       end
     else
       "-"
@@ -66,10 +71,11 @@ module QaePdfForms::CustomQuestions::ByYear
   end
 
   def year_entry(field, year_label=nil, q_key=nil)
-    Rails.logger.info "[field] #{field}"
-    form_pdf.filled_answers.detect do |k, v|
+    entry = form_pdf.filled_answers.detect do |k, v|
       k == "#{q_key || key}_#{field}#{year_label}"
     end
+
+    entry[1] if entry.present?
   end
 
   def latest_year_label(with_month_check=true)
