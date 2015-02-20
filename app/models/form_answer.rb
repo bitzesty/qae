@@ -41,11 +41,14 @@ class FormAnswer < ActiveRecord::Base
     scope :for_award_type, -> (award_type) { where award_type: award_type }
   end
 
-  before_create :set_account
-  before_save :set_urn
-  before_save :set_progress
-  before_save :build_supporters
-  before_validation :check_eligibility, if: :submitted?
+  begin :callbacks
+    before_create :set_account
+    before_save :set_urn
+    before_save :set_progress
+    before_save :build_supporters
+    before_validation :check_eligibility, if: :submitted?
+    before_save :assign_company_or_nominee_name
+  end
 
   store_accessor :document
   store_accessor :eligibility
@@ -87,6 +90,17 @@ class FormAnswer < ActiveRecord::Base
 
   def important?
     importance_flag?
+  end
+
+  def toggle_importance_flag
+    update_attributes(importance_flag: !(self.importance_flag))
+  end
+
+  def company_or_nominee_from_document
+    comp_attr = promotion? ? 'organization_name' : 'company_name'
+    name      = document[comp_attr]
+    name      = "#{document['nominee_first_name']} #{document['nominee_last_name']}".strip if promotion? && name.blank?
+    name
   end
 
   private
@@ -133,6 +147,10 @@ class FormAnswer < ActiveRecord::Base
   def set_progress
     form = award_form.decorate(answers: HashWithIndifferentAccess.new(document || {}))
     self.fill_progress = form.progress
+  end
+
+  def assign_company_or_nominee_name
+    self.company_or_nominee_name = company_or_nominee_from_document
   end
 
   class AwardEligibilityBuilder

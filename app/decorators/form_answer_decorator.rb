@@ -1,4 +1,13 @@
 class FormAnswerDecorator < ApplicationDecorator
+  AWARD_TYPE_LABELS = {
+    'innovation' => 'Innovation',
+    'trade' => 'International Trade',
+    'development' => 'Sustainable Development',
+    'promotion' => 'Enterprise promotion'
+  }
+
+  SELECT_BOX_LABELS = AWARD_TYPE_LABELS.merge({'promotion' => 'QAEP'})
+
   def pdf_generator
     "QaePdfForms::Awards2014::#{object.award_type.capitalize}::Base".constantize.new(object)
   end
@@ -8,41 +17,26 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def award_type
-    case object.award_type
-    when "trade"
-      'International Trade'
-    when "innovation"
-      'Innovation'
-    when "development"
-      'Sustainable Development'
-    when "promotion"
-      'Enterprise promotion'
-    end
+    AWARD_TYPE_LABELS[object.award_type]
   end
 
   def award_application_title
     "#{award_type} Award #{Date.today.year}"
   end
 
-  def company_or_nominee
-    object.user.company_name
+  def company_or_nominee_name
+    object.company_or_nominee_name
   end
 
   def company_name
-    company_or_nominee
+    company_or_nominee_name
   end
 
   def progress_text
-    # IMPLEMENTME
-    'Application...30%'
+    "#{object.state.humanize[0..-2]}...#{fill_progress_in_percents}"
   end
 
-  def consideration_status_label
-    if object.withdrawn?
-      'withdrawn'
-    else
-      # IMPLEMENTME
-      ['pending', 'shortlisted'][rand(2)]
-    end
+  def fill_progress_in_percents
+    "#{((object.fill_progress || 0) * 100).round.to_i}%"
   end
 end

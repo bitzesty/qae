@@ -70,6 +70,9 @@ Rails.application.routes.draw do
     resources :users
     resources :form_answers do
       resources :comments
+      resources :flags, only: [] do
+        collection{ get :toggle }
+      end
       member do
         post :withdraw
         get :review

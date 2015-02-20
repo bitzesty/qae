@@ -6,7 +6,7 @@ class SearchForm
     do @bindSortLinks
 
   bindSelectFilters: ->
-    ($ '.filter select', @form).on 'change', ->
+    ($ '.filter input:checkbox', @form).on 'change', ->
       do @form.submit
 
   bindSortLinks: ->

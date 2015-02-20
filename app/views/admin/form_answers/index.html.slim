@@ -1,129 +1,101 @@
-.row
-  .col-md-3
-    .form-group.search-input
-      input.form-control#search type="search" placeholder="Search..."
-      input type="submit" name="commit" value="submit"
+= simple_form_for @search, url: admin_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
 
-br
+  .row
+    .col-md-3
+      .form-group.search-input
+        input.form-control#search type="search" placeholder="Search..."
+        input type="submit" name="commit" value="submit"
 
-.row
-  .col-xs-12
-    table.table.applications-table
-      thead
-        tr
-          th colspan=2 Company/Nominee
-          th Reference
-          th.filter
-            / TODO do category filter dropdown
-            .dropdown.if-no-js-hide
-              button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
-                ' Category:
-                span.text-filter
-                  ' All
-                span.caret
-              ul.dropdown-menu role="menu"
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    em Select all
-                li.divider
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' Innovation
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' International Trade
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' Sustainable Development
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' QAEP
-          th.filter
-            / TODO do status filter dropdown
-            .dropdown.if-no-js-hide
-              button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
-                ' Status:
-                span.text-filter
-                  ' All
-                span.caret
-              ul.dropdown-menu role="menu"
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    em Select all
-                li.divider
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' Application in progress
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' Assessment in progress
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' Recommended
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' Reserve
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' Not recommended
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' Not eligible
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    ' Withdrawn
-                li.divider
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    em Missing audit certificate
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    em Missing corporate responsibility
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    em Missing feedback
-                li.checkbox role="presentation"
-                  label
-                    input type="checkbox"
-                    em Missing press summary
-          th &nbsp;
-          th Flag
-      tbody
-        - collection.each do |obj|
+  br
+
+  .row
+    .col-xs-12
+      table.table.applications-table
+        thead
           tr
-            td.status-label class="#{obj.consideration_status_label + '-label'}" alt="#{obj.consideration_status_label.capitalize}" title="#{obj.consideration_status_label.capitalize}"
-            td.td-title
-              = link_to obj.company_or_nominee, [:admin, obj]
-            td
-              - if obj.urn.present?
-                = obj.urn
-              - else
-                span.urn-not-generated Not yet generated
+            th.sortable colspan=2
+              = sort_link f, 'Company/Nominee', @search, :company_or_nominee_name
+            th.sortable
+              = sort_link f, 'Reference', @search, :urn
+            th.filter
+              = f.simple_fields_for [:filters, @search.filters] do |f|
+                = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+              / TODO do category filter dropdown
+              .dropdown.if-no-js-hide
+                button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                  ' Category:
+                  span.text-filter
+                    ' All
+                  span.caret
+                ul.dropdown-menu role="menu"
+                  li.checkbox role="presentation"
+                    label data-value='select_all'
+                      input type="checkbox"
+                      em Select all
+                  li.divider
+                  - award_types_collection.each do |key,v|
+                    li.checkbox role="presentation"
+                      label data-value=v
+                        input type="checkbox"
+                        = key
 
-            td = obj.award_type
-            td = obj.progress_text
-            td
-              = link_to [:admin, obj]
-                = application_comments(obj)
-            td = application_flags(obj)
+            th.filter
+              = f.simple_fields_for [:filters, @search.filters] do |f|
+                = f.input :status, collection: FormAnswerStatusFiltering.collection, label: false, input_html: { multiple: true, class: 'if-js-hide'}
+              .dropdown.if-no-js-hide
+                button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                  ' Status:
+                  span.text-filter
+                    ' All
+                  span.caret
+                ul.dropdown-menu role="menu"
+                  li.checkbox role="presentation"
+                    label data-value='select_all'
+                      input type="checkbox"
+                      em Select all
+                  - FormAnswerStatusFiltering.collection.each do |state|
+                    li.checkbox role='presentation'
+                      label data-value=state[1]
+                        input type='checkbox'
+                        = state[0]
+                  li.divider
+                  = f.simple_fields_for [:filters, @search.filters] do |f|
+                    = f.input :status, collection: FormAnswerStatusFiltering.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+                  - FormAnswerStatusFiltering::SUB_OPTIONS.each do |key, val|
 
-.row
-  .col-xs-12.text-right
-    = paginate collection
-    .clear
+                    li.checkbox role="presentation"
+                      label data-value=key
+                        input type="checkbox"
+                        em = val[:label]
+
+            th &nbsp;
+            th.sortable
+              = sort_link f, 'Flag', @search, :flag
+        tbody
+          - FormAnswerDecorator.decorate_collection(collection).each do |obj|
+            tr
+              td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
+              td.td-title
+                - unless obj.company_or_nominee_name.nil?
+                  = link_to obj.company_or_nominee_name, [:admin, obj]
+                - else
+                  = link_to [:admin, obj] do
+                    em
+                      ' Not found
+              td
+                - if obj.urn.present?
+                  = obj.urn
+                - else
+                  span.urn-not-generated Not yet generated
+
+                td = obj.award_type
+                td = obj.progress_text
+                td
+                  = link_to [:admin, obj]
+                    = application_comments(obj)
+                td = application_flags(obj)
+
+  .row
+    .col-xs-12.text-right
+      = paginate collection
+      .clear

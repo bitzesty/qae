@@ -80,4 +80,32 @@ RSpec.describe FormAnswer, type: :model do
       end
     end
   end
+
+  describe '#company_or_nominee_from_document' do
+    subject{ build(:form_answer, kind, document: doc)}
+    let(:c_name){ 'company name'}
+
+    context 'promotion form' do
+      let(:doc){ { 'organization_name' => c_name}}
+      let(:kind){ :promotion }
+      it 'gets the orgzanization name first' do
+        expect(subject.company_or_nominee_from_document).to eq(c_name)
+      end
+
+      context 'organization name blank' do
+        let(:doc){ {'nominee_first_name' => c_name}}
+        it 'gets the nominee name' do
+          expect(subject.company_or_nominee_from_document).to eq(c_name)
+        end
+      end
+    end
+
+    context 'innovation form' do
+      let(:doc){ {'company_name' => c_name } }
+      let(:kind){ :innovation }
+      it 'gets the company name' do
+        expect(subject.company_or_nominee_from_document).to eq(c_name)
+      end
+    end
+  end
 end
