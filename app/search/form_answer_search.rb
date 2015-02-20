@@ -1,5 +1,11 @@
 class FormAnswerSearch < Search
-
+  DEFAULT_SEARCH = {
+    sort: 'company_or_nominee_name',
+    search_filter: {
+      award_type: FormAnswerDecorator::SELECT_BOX_LABELS.invert.values,
+      status: FormAnswerStatusFiltering.all
+    }
+  }
   def sort_by_flag(scoped_results, desc = false)
     scoped_results.order(importance_flag: sort_order(!desc).to_sym).order(company_or_nominee_name: :asc)
   end
