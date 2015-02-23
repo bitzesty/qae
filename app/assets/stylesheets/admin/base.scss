@@ -54,11 +54,63 @@
     }
   }
 
-  .iframeholder iframe {
-    width: 100%;
-    height: 750px;
+  .iframeholder {
+    position: relative;
     margin-top: 20px;
-    border: 1px solid #999;
+
+    iframe {
+      width: 100%;
+      height: 750px;
+      border: 1px solid #999;
+    }
+
+    .js-expand-iframe {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 10px 15px;
+      color: #fff;
+      text-decoration: none;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      transition: background-color 0.15s ease, opacity 0.15s ease;
+
+      &:hover {
+        background: #212121;
+      }
+    }
+
+    &:hover .js-expand-iframe {
+      opacity: 1;
+    }
+
+    .expanded-show {
+      display: none;
+    }
+
+    &.iframe-expanded {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      margin-top: 0;
+      background: #fff;
+      z-index: 9999;
+
+      .collapsed-show {
+        display: none;
+      }
+
+      .expanded-show {
+        display: block;
+      }
+
+      iframe {
+        height: 100%;
+        border: none;
+      }
+    }
   }
 
 // Icons

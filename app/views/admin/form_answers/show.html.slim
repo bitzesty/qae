@@ -77,6 +77,9 @@
     .col-content
       .application-progress = resource.progress_text
       .iframeholder data-src= review_admin_form_answer_path(resource)
+        = link_to "#", class: 'if-no-js-hide js-expand-iframe'
+          span.collapsed-show Expand
+          span.expanded-show Close
       = link_to 'review application', review_admin_form_answer_path(resource), class: 'if-js-hide'
     .col-sidebar
       .sidebar-header
