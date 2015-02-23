@@ -17,22 +17,29 @@ class Ability
 
   def admin_actions
     {
+      dashboard: :read,
       users: :manage,
       assessors: :manage,
       admins: :manage,
-      form_answers: :manage
+      comments: :manage,
+      form_answers: :manage,
+      notifications: :manage
     }
   end
 
   def lead_assessor_actions
     {
-      form_answers: [:read, :comment]
+      dashboard: :read,
+      form_answers: :read,
+      comments: [:read, :create]
     }
   end
 
   def assessor_actions
     {
-      form_answers: [:read, :comment]
+      dashboard: :read,
+      form_answers: :read,
+      comments: [:read, :create]
     }
   end
 end
