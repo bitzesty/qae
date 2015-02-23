@@ -21,7 +21,12 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def update
-    @user.update(user_params)
+    if user_params[:password].present?
+      @user.update(user_params)
+    else
+      @user.update_without_password(user_params)
+    end
+
     respond_with :admin, @user
   end
 

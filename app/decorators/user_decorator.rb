@@ -1,11 +1,5 @@
 class UserDecorator < ApplicationDecorator
-  def full_name
-    if object.first_name.present?
-      "#{object.first_name} #{object.last_name}"
-    else
-      "Anonymous"
-    end
-  end
+  include FullNameDecorator
 
   def general_info
     "#{object.company_name}: #{full_name}"

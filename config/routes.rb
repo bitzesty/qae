@@ -68,6 +68,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :dashboard, only: [:index]
     resources :users
+    resources :assessors
+    resources :admins
     resources :form_answers do
       resources :comments
       resources :form_answer_attachments, only: [:create, :show]

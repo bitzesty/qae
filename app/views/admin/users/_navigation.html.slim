@@ -1,0 +1,5 @@
+.row
+  .col-md-3
+    ul.tabs
+      - %w[users assessors admins].each do |role|
+        li = link_to role, public_send("admin_#{role}_path")

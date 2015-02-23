@@ -1,0 +1,15 @@
+header.page-header.group
+  div
+    h1
+      ' Admins
+
+
+.article-related-positioning-container
+  .article-container
+    article.group role="article"
+      .inner
+        =' link_to 'Edit', edit_admin_admin_path(@admin)
+        = link_to 'Delete', admin_admin_path(@admin), data: { method: :delete, confirm: 'Are you sure?' }
+        dl
+          dt Email
+          dd = @admin.email
