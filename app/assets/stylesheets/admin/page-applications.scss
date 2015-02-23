@@ -42,3 +42,60 @@
     background-image: image-url("icon-application-progress@2.png");
   }
 }
+
+.applicant-view,
+.submitted-view {
+  margin-top: 20px;
+}
+
+.js .submitted-view {
+  .form-group {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #999;
+
+    &:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  .form-control {
+    display: none;
+  }
+
+  .form-edit {
+    border-bottom: none;
+
+    .form-control {
+      display: block;
+    }
+
+    .form-value,
+    .form-edit-link {
+      display: none;
+    }
+  }
+}
+
+#financial-summary .form-group {
+  margin-bottom: 30px;
+  border-bottom: none;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  table.table {
+    margin-bottom: 0;
+  }
+}
+
+.form-edit-link {
+  font-size: 13px;
+
+  .glyphicon {
+    font-size: 10px;
+    margin-right: 5px;
+  }
+}

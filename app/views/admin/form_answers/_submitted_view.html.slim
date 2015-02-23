@@ -1,0 +1,191 @@
+.panel-group#submitted-application role="tablist" aria-multiselectable="true"
+  .panel.panel-default
+    .panel-heading#case-summary-heading role="tab"
+      h4.panel-title
+        a data-toggle="collapse" data-parent="#submitted-application" href="#case-summary" aria-expanded="true" aria-controls="case-summary"
+          ' Case Summary
+          small.pull-right
+            ' Updated by Admin User - 28/09/15 at 08:03
+    #case-summary.panel-collapse.collapse.in role="tabpanel" aria-labelledby="case-summary-heading"
+      .panel-body
+        / TODO Case Summary
+        .form-group
+          .form-value.hide-if-no-js
+            p
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+            = link_to "#", class: "form-edit-link pull-right"
+              span.glyphicon.glyphicon-pencil
+              ' edit
+            .clear
+          textarea.form-control rows=10
+            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+  .panel.panel-default
+    .panel-heading role="tab" id="case-grading-header"
+      h4.panel-title
+        a.collapsed data-toggle="collapse" data-parent="#submitted-application" href="#case-grading" aria-expanded="false" aria-controls="case-grading"
+          ' Case Grading
+          small.pull-right
+            ' Updated by Admin User - 28/09/15 at 08:03
+    #case-grading.panel-collapse.collapse.in role="tabpanel" aria-labelledby="case-grading-header"
+      .panel-body
+        / TODO Case Grading
+        .form-group
+          label.form-label
+            ' Nature of activities:
+          .form-value.hide-if-no-js
+            p
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+            = link_to "#", class: "form-edit-link pull-right"
+              span.glyphicon.glyphicon-pencil
+              ' edit
+            .clear
+          textarea.form-control rows=5
+            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        .form-group
+          label.form-label
+            ' Impact/Achievement:
+          .form-value.hide-if-no-js
+            p
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+            = link_to "#", class: "form-edit-link pull-right"
+              span.glyphicon.glyphicon-pencil
+              ' edit
+            .clear
+          textarea.form-control rows=5
+            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        .form-group
+          label.form-label
+            ' Nature of activities:
+          .form-value.hide-if-no-js
+            p
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+            = link_to "#", class: "form-edit-link pull-right"
+              span.glyphicon.glyphicon-pencil
+              ' edit
+            .clear
+          textarea.form-control rows=5
+            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+  .panel.panel-default
+    .panel-heading#financial-summary-heading role="tab"
+      h4.panel-title
+        a data-toggle="collapse" data-parent="#submitted-application" href="#financial-summary" aria-expanded="true" aria-controls="financial-summary"
+          ' Financial Summary
+          small.pull-right
+            ' Updated by Admin User - 28/09/15 at 08:03
+    #financial-summary.panel-collapse.collapse.in role="tabpanel" aria-labelledby="financial-summary-heading"
+      .panel-body
+        / TODO Financial Summary
+        .form-group
+          table.table.table-striped
+            colgroup
+              col width="300"
+            thead
+              tr
+                th &nbsp;
+                th Year 1
+                th Year 2
+                th Year 3
+            tbody
+              tr
+                th Year end date
+                td
+                  .form-value.hide-if-no-js
+                    ' 28/08/2012
+                  input.form-control type="text" value="28/08/2012"
+                td
+                  .form-value.hide-if-no-js
+                    ' 28/08/2013
+                  input.form-control type="text" value="28/08/2012"
+                td
+                  .form-value.hide-if-no-js
+                    ' 28/08/2014
+                  input.form-control type="text" value="28/08/2012"
+              - ["Number of UK employees", "Overseas sales accepted (£)", "Total sales accepted (£)", "Net profit (£)", "Overseas sales net of imported costs (£)"].each do |category|
+                tr
+                  th = category
+                  td
+                    .form-value.hide-if-no-js
+                      ' 100,000
+                    input.form-control type="number" value="100000"
+                  td
+                    .form-value.hide-if-no-js
+                      ' 100,000
+                    input.form-control type="number" value="100000"
+                  td
+                    .form-value.hide-if-no-js
+                      ' 100,000
+                    input.form-control type="number" value="100000"
+
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' edit
+          .clear
+
+        .form-group
+          table.table.table-striped
+            colgroup
+              col width="300"
+            thead
+              tr
+                th &nbsp;
+                th Year 1
+                th Year 2
+                th Year 3
+            tbody
+              tr
+                th % Growth overseas earnings
+                td 0.00
+                td 0.00
+                td 0.00
+              tr
+                th % Sales exported
+                td 100,000
+                td 100,000
+                td 100,000
+              tr
+                th Sector advantage
+                td 13
+                td 13
+                td 13
+
+        .form-group
+          table.table.table-striped
+            colgroup
+              col width="300"
+            tbody
+              tr
+                th Overall growth £[year 1 - 3]
+                td 100,000
+              tr
+                th Overall growth %[year 1 - 3]
+                td 100,000
+
+  .panel.panel-default
+    .panel-heading#press-summary-heading role="tab"
+      h4.panel-title
+        a data-toggle="collapse" data-parent="#submitted-application" href="#press-summary" aria-expanded="true" aria-controls="press-summary"
+          ' Press Summary
+          small.pull-right
+            ' Updated by Admin User - 28/09/15 at 08:03
+    #press-summary.panel-collapse.collapse.in role="tabpanel" aria-labelledby="press-summary-heading"
+      .panel-body
+        / TODO Press Summary
+        .form-group
+          .form-value.hide-if-no-js
+            p
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+            = link_to "#", class: "form-edit-link pull-right"
+              span.glyphicon.glyphicon-pencil
+              ' edit
+            .clear
+          textarea.form-control rows=10
+            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

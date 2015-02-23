@@ -13,4 +13,13 @@ ready = ->
     e.preventDefault()
     iframeHolder.toggleClass("iframe-expanded")
 
+  $(document).on "click", ".js-switch-admin-view", (e) ->
+    e.preventDefault()
+    $(".applicant-view").toggleClass("hidden")
+    $(".submitted-view").toggleClass("hidden")
+
+  $(document).on "click", ".form-edit-link", (e) ->
+    e.preventDefault()
+    $(this).closest(".form-group").addClass("form-edit")
+
 $(document).ready(ready)
