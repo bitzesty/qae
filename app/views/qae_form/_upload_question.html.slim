@@ -25,11 +25,11 @@
               / (optional)
               textarea.js-char-count rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx)
                 = question.input_value(suffix: 'description', index: idx)
-  span.button.button-add
+  span.button.button-add *possible_read_only_ops
     span
       | + Upload
     input.fileinput-button.js-file-upload type="file" name="form[file]" *possible_read_only_ops
   - if question.links
     | &nbsp;
-    a.button.button-add.js-file-upload data-add-link="1" href="#"
+    a.button.button-add.js-file-upload data-add-link="1" href="#" *possible_read_only_ops
       | + Add link

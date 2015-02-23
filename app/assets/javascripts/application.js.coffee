@@ -337,7 +337,8 @@ jQuery ->
     if is_link
       $el.click (e) ->
         e.preventDefault()
-        upload_done(null, null, true)
+        if !$(this).hasClass("read_only")
+          upload_done(null, null, true)
         false
     else
       $el.fileupload(
