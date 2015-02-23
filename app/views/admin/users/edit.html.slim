@@ -2,8 +2,8 @@
   .col-md-4
     header.page-header
       h1
-        ' Edit user
+        = "Edit #{controller_name.singularize}"
 
 br
 
-= render 'form', user: @user
+= render 'form', resource: @resource

@@ -1,46 +1,44 @@
-class Admin::AssessorsController < Admin::BaseController
-  before_filter :find_assessor, only: [:show, :edit, :update, :destroy]
-
+class Admin::AssessorsController < Admin::UsersController
   def index
     params[:search] ||= AssessorSearch::DEFAULT_SEARCH
 
     @search = AssessorSearch.new(Admin.where(role: %w[lead_assessor assessor])).search(params[:search])
-    @assessors = @search.results.page(params[:page])
+    @resources = @search.results.page(params[:page])
   end
 
   def new
-    @assessor = Admin.new
+    @resource = Admin.new
   end
 
   def create
-    @assessor = Admin.new(assessor_params)
+    @resource = Admin.new(resource_params)
 
-    @assessor.save
-    respond_with :admin, @assessor, location: admin_assessor_path(@assessor)
+    @resource.save
+    respond_with :admin, @resource, location: admin_assessor_path(@resource)
   end
 
   def update
-    if assessor_params[:password].present?
-      @assessor.update(assessor_params)
+    if resource_params[:password].present?
+      @resource.update(resource_params)
     else
-      @assessor.update_without_password(assessor_params)
+      @resource.update_without_password(resource_params)
     end
 
-    respond_with :admin, @assessor, location: admin_assessor_path(@assessor)
+    respond_with :admin, @resource, location: admin_assessor_path(@resource)
   end
 
   def destroy
-    @assessor.destroy
-    respond_with :admin, @assessor, location: admin_assessors_path
+    @resource.destroy
+    respond_with :admin, @resource, location: admin_assessors_path
   end
 
   private
 
-  def find_assessor
-    @assessor = Admin.where(role: %w[lead_assessor assessor]).find(params[:id])
+  def find_resource
+    @resource = Admin.where(role: %w[lead_assessor assessor]).find(params[:id])
   end
 
-  def assessor_params
+  def resource_params
     params.require(:assessor).permit(:email, :password, :password_confirmation, :first_name, :last_name, :role)
   end
 end

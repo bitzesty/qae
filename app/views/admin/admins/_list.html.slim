@@ -1,0 +1,26 @@
+.row
+  .col-xs-12
+    table.table.admin-table
+      thead
+        tr
+          th.sortable
+            = sort_link f, 'Name', @search, :full_name
+          th.sortable
+            = sort_link f, 'Email', @search, :email
+          th.sortable
+            = sort_link f, 'Signed in at', @search, :last_sign_in_at
+      tbody
+        - if AdminDecorator.decorate_collection(resources).none?
+          tr
+            td.text-center colspan=100
+              br
+              p.p-empty No admins found.
+              br
+        - else
+          - AdminDecorator.decorate_collection(resources).each do |admin|
+            tr
+              td.td-title
+                = link_to admin.full_name, edit_admin_admin_path(admin), class: 'link-edit-user'
+              td = mail_to admin.email
+              td
+                i.text-muted = admin.last_sign_in_at && admin.last_sign_in_at.strftime('%e %B %Y at %H:%M')

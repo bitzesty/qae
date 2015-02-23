@@ -1,4 +1,4 @@
-= simple_form_for [:admin, assessor], as: :assessor, url: assessor.persisted? ? admin_assessor_path(assessor) : admin_assessors_path, html: { class: 'qae-form' } do |f|
+= simple_form_for [:admin, resource], as: :assessor, url: resource.persisted? ? admin_assessor_path(resource) : admin_assessors_path, html: { class: 'qae-form' } do |f|
   .row
     .col-sm-4
       = f.input :email,
@@ -42,7 +42,7 @@
 
       .pull-right
         - if action_name == "edit" && current_admin.can?(:destroy, :assessors)
-          = link_to 'Delete', admin_assessor_path(@assessor), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-md'
+          = link_to 'Delete', admin_assessor_path(resource), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-md'
 
           ' &nbsp;
 

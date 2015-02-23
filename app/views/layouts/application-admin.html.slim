@@ -41,13 +41,15 @@ html.no-js
 
               .navbar-collapse.collapse#nav-main-collapse
                 ul.nav.navbar-nav role="navigation"
-                  li class="#{'active' if controller_name == 'dashboard'}"
+                  li class=('active' if controller_name == 'dashboard')
                     = link_to "Dashboard", admin_dashboard_index_path
+
                   - if current_admin.can?(:read, :form_answers)
-                    li class="#{'active' if controller_name == 'form_answers'}"
+                    li class=('active' if controller_name == 'form_answers')
                       = link_to "Applications", admin_form_answers_path
+
                   - if current_admin.can?(:read, :users)
-                    li class="#{'active' if controller_name == 'users'}"
+                    li class=('active' if %w[users admins assessors].include?(controller_name))
                       = link_to "Users", admin_users_path
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
