@@ -14,14 +14,16 @@ ready = ->
     iframeHolder.toggleClass("iframe-expanded")
   formClass = '.edit_form_answer_attachment'
 
-  $(document).on 'click', "#{formClass} a", (e)->
+  $(document).on 'click', "#{formClass} a", (e) ->
     form = $(this).parents(formClass)
     $.ajax
       url: form.attr('action'),
       type: 'DELETE'
     form.parents('.form_answer_attachment').remove()
     if $('.form_answer_attachment').length == 0
-      $('.document-list').prepend($("<p class='p-empty'>No documents have been attached to this case.</p>"))
+      noDoc = $("<p class='p-empty'></p>")
+      noDoc.text('No documents have been attached to this case.')
+      $('.document-list').prepend(noDoc)
 
 
   $(document).on "click", ".js-switch-admin-view", (e) ->

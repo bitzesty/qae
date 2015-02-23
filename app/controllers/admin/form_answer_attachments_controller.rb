@@ -29,10 +29,10 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
 
     respond_to do |format|
       format.html do
-        unless request.xhr?
-          redirect_to admin_form_answer_path(form_answer)
-        else
+        if request.xhr?
           render nothing: true
+        else
+          redirect_to admin_form_answer_path(form_answer)
         end
       end
     end
