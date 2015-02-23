@@ -4,6 +4,8 @@ FactoryGirl.define do
   end
 
   factory :admin do
+    first_name "John"
+    last_name "Doe"
     password { 'strongpass' }
     role 'admin'
     email
