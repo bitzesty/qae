@@ -618,7 +618,7 @@ input[type="file"] {
     @include core-16;
     float: right;
 
-    &.read_only,
+    &.read-only,
     &.disabled,
     &.disabled:hover,
     &[disabled],

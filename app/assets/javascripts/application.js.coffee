@@ -327,7 +327,7 @@ jQuery ->
     wrapper.find('a.remove-link').each (idx, el) ->
       $(el).click (e) ->
         e.preventDefault()
-        if !$(this).hasClass("read_only")
+        if !$(this).hasClass("read-only")
           li = $(el).closest 'li'
           li.remove()
           update_visibility()
@@ -338,7 +338,7 @@ jQuery ->
     if is_link
       $el.click (e) ->
         e.preventDefault()
-        if !$(this).hasClass("read_only")
+        if !$(this).hasClass("read-only")
           upload_done(null, null, true)
         false
     else
@@ -393,7 +393,7 @@ jQuery ->
   $(document).on "click", ".question-block .js-button-add", (e) ->
     e.preventDefault()
 
-    if !$(this).hasClass("read_only")
+    if !$(this).hasClass("read-only")
       question = $(this).closest(".question-block")
       add_example = question.find(".js-add-example").html()
 
@@ -434,7 +434,7 @@ jQuery ->
   # Removing these added fields
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
-    if !$(this).hasClass("read_only")
+    if !$(this).hasClass("read-only")
       $(this).closest(".question-group").find(".js-button-add").removeClass("visuallyhidden")
       $(this).closest("li").remove()
 
