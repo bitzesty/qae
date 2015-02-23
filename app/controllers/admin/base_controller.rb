@@ -9,7 +9,8 @@ class Admin::BaseController < ApplicationController
   before_action :check_create_permissions!, only: [:new, :create]
   before_action :check_update_permissions!, only: [:edit, :update]
   before_action :check_destroy_permissions!, only: [:destroy]
-  before_action :check_custom_permissions!, except: [:index, :show, :new, :create, :edit, :update, :destroy]
+  before_action :check_custom_permissions!,
+                except: [:index, :show, :new, :create, :edit, :update, :destroy]
 
   private
 
@@ -20,6 +21,7 @@ class Admin::BaseController < ApplicationController
   end
 
   def check_custom_permissions!
-    head 401 unless current_admin.can?(action_name.to_sym, controller_name.to_sym)
+    head 401 unless current_admin.can?(action_name.to_sym,
+                                       controller_name.to_sym)
   end
 end

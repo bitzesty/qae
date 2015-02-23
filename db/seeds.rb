@@ -1,5 +1,6 @@
 unless Admin.exists?
-  Admin.create!(email: 'admin@example.com', password: 'admin123', role: 'admin').tap {|admin| admin.confirm!}
+  Admin.create!(email: "admin@example.com", password: "admin123", role: "admin").
+    tap(&:confirm!)
 end
 
 # unless User.exists?

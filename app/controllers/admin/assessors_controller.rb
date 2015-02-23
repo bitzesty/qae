@@ -2,7 +2,8 @@ class Admin::AssessorsController < Admin::UsersController
   def index
     params[:search] ||= AssessorSearch::DEFAULT_SEARCH
 
-    @search = AssessorSearch.new(Admin.where(role: %w[lead_assessor assessor])).search(params[:search])
+    @search = AssessorSearch.new(Admin.where(role: %w[lead_assessor assessor])).
+                             search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
@@ -39,6 +40,12 @@ class Admin::AssessorsController < Admin::UsersController
   end
 
   def resource_params
-    params.require(:assessor).permit(:email, :password, :password_confirmation, :first_name, :last_name, :role)
+    params.require(:assessor).
+      permit(:email,
+             :password,
+             :password_confirmation,
+             :first_name,
+             :last_name,
+             :role)
   end
 end

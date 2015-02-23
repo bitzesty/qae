@@ -2,7 +2,8 @@ class Admin::AdminsController < Admin::UsersController
   def index
     params[:search] ||= AdminSearch::DEFAULT_SEARCH
 
-    @search = AdminSearch.new(Admin.where(role: "admin")).search(params[:search])
+    @search = AdminSearch.new(Admin.where(role: "admin")).
+                         search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
@@ -25,6 +26,11 @@ class Admin::AdminsController < Admin::UsersController
   end
 
   def resource_params
-    params.require(:admin).permit(:email, :password, :password_confirmation, :first_name, :last_name)
+    params.require(:admin).
+      permit(:email,
+             :password,
+             :password_confirmation,
+             :first_name,
+             :last_name)
   end
 end

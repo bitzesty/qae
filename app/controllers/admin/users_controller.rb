@@ -14,7 +14,7 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @resource = User.new(resource_params)
-    @resource.agreed_with_privacy_policy = '1'
+    @resource.agreed_with_privacy_policy = "1"
 
     @resource.save
     respond_with :admin, @resource
