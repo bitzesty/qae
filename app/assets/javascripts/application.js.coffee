@@ -409,20 +409,20 @@ jQuery ->
         # Are there add limits
         add_limit_attr = question.find(".list-add").attr("data-add-limit")
 
-        list_excl_egs = question.find(".list-add > li").not(".js-add-example").size()
-        list_defaults = question.find(".list-add > li.js-add-example.js-add-default").size()
-        list_size = list_excl_egs + list_defaults
+        li_excl_eg = question.find(".list-add > li").not(".js-add-example").size()
+        li_default = question.find(".list-add > li.js-add-example.js-add-default").size()
+        li_size = li_excl_eg + li_default
 
         if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
 
-          if list_size >= add_limit_attr
+          if li_size >= add_limit_attr
             can_add = false
 
-          if list_size + 1 >= add_limit_attr
+          if li_size + 1 >= add_limit_attr
             question.find(".js-button-add").addClass("visuallyhidden")
 
         if can_add
-          add_eg = add_eg.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{list_size+1}]")
+          add_eg = add_eg.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size+1}]")
           question.find(".list-add").append("<li>#{add_eg}</li>")
 
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
@@ -438,7 +438,9 @@ jQuery ->
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("read-only")
-      $(this).closest(".question-group").find(".js-button-add").removeClass("visuallyhidden")
+      $(this).closest(".question-group")
+             .find(".js-button-add")
+             .removeClass("visuallyhidden")
       $(this).closest("li").remove()
 
   # Disable copy/pasting in confirmation fields
