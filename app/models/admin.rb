@@ -11,4 +11,5 @@ class Admin < ActiveRecord::Base
 
   scope :admins, -> { where(role: "admin") }
   scope :assessors, -> { where(role: %w[lead_assessor assessor]) }
+  has_many :form_answer_attachments, as: :attachable
 end

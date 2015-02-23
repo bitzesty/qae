@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
     has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
 
     belongs_to :account
+    has_many :form_answer_attachments, as: :attachable
   end
 
   begin :scopes

@@ -3,6 +3,8 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
     @form_answer_attachment = form_answer.form_answer_attachments.build(create_params)
     authorize @form_answer_attachment, :create?
 
+    @form_answer_attachment.attachable = current_admin
+
     if @form_answer_attachment.save
       respond_to do |format|
         format.html do
@@ -22,6 +24,7 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
   end
 
   def destroy
+    authorize resource, :destroy?
     resource.destroy
 
     respond_to do |format|

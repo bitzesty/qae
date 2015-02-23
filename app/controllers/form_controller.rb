@@ -84,7 +84,9 @@ class FormController < ApplicationController
 
     attachment_params = attachment_params.permit(:original_filename, :file, :description, :link, :form_answer_id)
 
-    @attachment = FormAnswerAttachment.create!(attachment_params)
+    @attachment = FormAnswerAttachment.new(attachment_params)
+    @attachment.attachable = current_user
+    @attachment.save!
 
     render json: @attachment, status: :created
   end
