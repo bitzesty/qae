@@ -66,6 +66,7 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
+    root to: "dashboard#index"
     resources :dashboard, only: [:index]
     resources :users
     resources :form_answers do
