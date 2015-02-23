@@ -66,10 +66,10 @@ input[type="file"] {
   top: 0;
   right: 0;
   margin: 0;
-  opacity: 0;
-  font-size: 200px;
-  direction: ltr;
   cursor: pointer;
+  font-size: 200px;
+  opacity: 0 !important;
+  direction: ltr;
 }
 
 input[type="text"],
@@ -617,6 +617,16 @@ input[type="file"] {
   .remove-link {
     @include core-16;
     float: right;
+
+    &.read-only,
+    &.disabled,
+    &.disabled:hover,
+    &[disabled],
+    &[disabled]:hover,
+    &[disabled="disabled"],
+    &[disabled="disabled"]:hover {
+      opacity: 0.5;
+    }
   }
 }
 .button-add {
@@ -625,21 +635,42 @@ input[type="file"] {
   margin-right: $gutter-half;
   padding: (18px $gutter $gutter-half $gutter);
   border: 1px solid $panel-colour;
-  -webkit-box-shadow: none;
-     -moz-box-shadow: none;
-          box-shadow: none;
+  cursor: pointer;
 
   &,
   &:link,
   &:hover,
   &:focus,
-  &:visited {
+  &:visited,
+  &.disabled,
+  &.disabled:hover,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled="disabled"],
+  &[disabled="disabled"]:hover {
     color: $black;
     background: $panel-colour;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
   }
 
   &:hover {
     border-color: $black;
+  }
+
+  &.disabled,
+  &.disabled:hover,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled="disabled"],
+  &[disabled="disabled"]:hover {
+    border-color: transparent;
+    cursor: default;
+  }
+
+  &:focus {
+    outline: none;
   }
 
   &:active {
@@ -663,6 +694,10 @@ input[type="file"] {
     margin: 0;
     padding: 0;
     border: none;
+
+    &[disabled] {
+      cursor: default;
+    }
   }
 }
 .js-add-example {

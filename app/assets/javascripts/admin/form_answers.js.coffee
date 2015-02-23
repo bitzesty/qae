@@ -7,6 +7,10 @@ ready = ->
   iframeHolder = $('.iframeholder')
   iframe = $('<iframe>')
   iframe.attr('src', iframeHolder.data('src'))
-  iframe.attr('style', iframeHolder.data('style'))
   iframeHolder.append(iframe)
+
+  $(document).on "click", ".js-expand-iframe", (e) ->
+    e.preventDefault()
+    iframeHolder.toggleClass("iframe-expanded")
+
 $(document).ready(ready)

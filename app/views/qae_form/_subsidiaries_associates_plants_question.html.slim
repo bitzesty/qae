@@ -3,7 +3,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true"
 
   - question.subsidiaries.each_with_index do |subsidiary, index|
     li data-add-example=('add-subsidiaries' if index == 0) class=('js-add-example js-add-default' if index == 0)
-      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
       .clear
       span.row
         span.span-4
@@ -20,7 +20,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true"
             input.small type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary['employees']  autocomplete="off" *possible_read_only_ops
   - if question.subsidiaries.none?
     li.js-add-example.js-add-default data-add-example='add-subsidiaries'
-      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
       .clear
       span.row
         span.span-4

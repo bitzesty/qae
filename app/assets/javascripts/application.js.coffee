@@ -327,17 +327,19 @@ jQuery ->
     wrapper.find('a.remove-link').each (idx, el) ->
       $(el).click (e) ->
         e.preventDefault()
-        li = $(el).closest 'li'
-        li.remove()
-        update_visibility()
-        false
+        if !$(this).hasClass("read-only")
+          li = $(el).closest 'li'
+          li.remove()
+          update_visibility()
+          false
 
     update_visibility()
 
     if is_link
       $el.click (e) ->
         e.preventDefault()
-        upload_done(null, null, true)
+        if !$(this).hasClass("read-only")
+          upload_done(null, null, true)
         false
     else
       $el.fileupload(
@@ -391,48 +393,55 @@ jQuery ->
   $(document).on "click", ".question-block .js-button-add", (e) ->
     e.preventDefault()
 
-    question = $(this).closest(".question-block")
-    add_example = question.find(".js-add-example").html()
+    if !$(this).hasClass("read-only")
+      question = $(this).closest(".question-block")
+      add_eg = question.find(".js-add-example").html()
 
-    # If there is a specific add_example use that
-    add_example_attr = $(this).attr("data-add-example")
-    if ((typeof(add_example_attr) != typeof(undefined)) && add_example_attr != false)
-      add_example = question.find(".js-add-example[data-add-example=#{add_example_attr}]").html()
+      # If there is a specific add_eg use that
+      add_eg_attr = $(this).attr("data-add-example")
+      add_eg_attr_undefined = typeof(add_eg_attr) != typeof(undefined)
+      if (add_eg_attr_undefined && add_eg_attr != false)
+        add_eg = question.find(".js-add-example[data-add-example=#{add_eg_attr}]").html()
 
-    if question.find(".list-add").size() > 0
-      can_add = true
+      if question.find(".list-add").size() > 0
+        can_add = true
 
-      # Are there add limits
-      add_limit_attr = question.find(".list-add").attr("data-add-limit")
+        # Are there add limits
+        add_limit_attr = question.find(".list-add").attr("data-add-limit")
 
-      list_size = question.find(".list-add > li").not(".js-add-example").size() + question.find(".list-add > li.js-add-example.js-add-default").size()
+        li_excl_eg = question.find(".list-add > li").not(".js-add-example").size()
+        li_default = question.find(".list-add > li.js-add-example.js-add-default").size()
+        li_size = li_excl_eg + li_default
 
-      if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
+        if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
 
-        if list_size >= add_limit_attr
-          can_add = false
+          if li_size >= add_limit_attr
+            can_add = false
 
-        if list_size + 1 >= add_limit_attr
-          question.find(".js-button-add").addClass("visuallyhidden")
+          if li_size + 1 >= add_limit_attr
+            question.find(".js-button-add").addClass("visuallyhidden")
 
-      if can_add
-        add_example = add_example.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{list_size+1}]")
-        question.find(".list-add").append("<li>#{add_example}</li>")
+        if can_add
+          add_eg = add_eg.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size+1}]")
+          question.find(".list-add").append("<li>#{add_eg}</li>")
 
-        need_to_clear_example = question.find(".list-add").attr("data-need-to-clear-example")
-        if (typeof(need_to_clear_example) != typeof(undefined) && need_to_clear_example != false)
-          clearFormElements(question.find(".list-add li:last"))
+          clear_example = question.find(".list-add").attr("data-need-to-clear-example")
+          if (typeof(clear_example) != typeof(undefined) && clear_example != false)
+            clearFormElements(question.find(".list-add li:last"))
 
-        # charcount needs to be reinitialized
-        if (textareas = question.find(".list-add > li:last .js-char-count")).length
-          textareas.removeCharcountElements()
-          textareas.charcount()
+          # charcount needs to be reinitialized
+          if (textareas = question.find(".list-add > li:last .js-char-count")).length
+            textareas.removeCharcountElements()
+            textareas.charcount()
 
   # Removing these added fields
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
-    $(this).closest(".question-group").find(".js-button-add").removeClass("visuallyhidden")
-    $(this).closest("li").remove()
+    if !$(this).hasClass("read-only")
+      $(this).closest(".question-group")
+             .find(".js-button-add")
+             .removeClass("visuallyhidden")
+      $(this).closest("li").remove()
 
   # Disable copy/pasting in confirmation fields
   $('.js-disable-copy').bind "cut copy", (e) ->
