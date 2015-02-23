@@ -1,5 +1,5 @@
 li.js-add-example.js-add-default data-add-example="add-supporter" data-add-limit=question.limit
-  = link_to "Remove", "#", class: "remove-link js-remove-link"
+  = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
   span.row
     span.span-6
       label

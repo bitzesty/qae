@@ -617,6 +617,16 @@ input[type="file"] {
   .remove-link {
     @include core-16;
     float: right;
+
+    &.read_only,
+    &.disabled,
+    &.disabled:hover,
+    &[disabled],
+    &[disabled]:hover,
+    &[disabled="disabled"],
+    &[disabled="disabled"]:hover {
+      opacity: 0.5;
+    }
   }
 }
 .button-add {

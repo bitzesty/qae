@@ -9,10 +9,10 @@
             - else
               = attachments[el['file'].to_i].original_filename
             input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
-            a.remove-link href="#"
+            a.remove-link href="#" *possible_read_only_ops
               | Remove
           - else
-            a.remove-link href="#"
+            a.remove-link href="#" *possible_read_only_ops
               | Remove
             label
               ' Website Link

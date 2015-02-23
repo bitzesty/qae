@@ -1,5 +1,5 @@
 li.js-add-example.js-add-default data-add-example="add-position"
-  = link_to "Remove", "#", class: "remove-link js-remove-link"
+  = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
   label
     ' Position/Role
     input.medium name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops

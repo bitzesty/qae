@@ -6,16 +6,16 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true
 
   - question.entities.each_with_index do |award, index|
     li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-default' if index == 0)
-      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
 
-      select.inline name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category")
+      select.inline name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category") *possible_read_only_ops
         option value="" *possible_read_only_ops
           ' Category
         - question.categories.each do |category|
           option value=category.value selected=(category.value.to_s == award['category']) *possible_read_only_ops
             = category.text
 
-      select.inline name="form[queen_award_holder_details][#{index}][year]"
+      select.inline name="form[queen_award_holder_details][#{index}][year]" *possible_read_only_ops
         option value="" *possible_read_only_ops
           ' Year Awarded
         - question.years.each do |year|
@@ -24,21 +24,21 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true
 
   - if question.entities.none?
     li.js-add-example.js-add-default data-add-example="add-award"
-      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
 
-      select.inline name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category")
+      select.inline name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category") *possible_read_only_ops
         option value="" *possible_read_only_ops
           ' Category
         - question.categories.each do |category|
           option value=category.value *possible_read_only_ops
             = category.text
 
-      select.inline name="form[queen_award_holder_details][0][year]"
+      select.inline name="form[queen_award_holder_details][0][year]" *possible_read_only_ops
         option value="" *possible_read_only_ops
           ' Year Awarded
         - question.years.each do |year|
           option value=year *possible_read_only_ops
             = year
 
-a.button.button-add.js-button-add href="#" data-add-example="add-award"
+a.button.button-add.js-button-add href="#" data-add-example="add-award" *possible_read_only_ops
   | + Add another award
