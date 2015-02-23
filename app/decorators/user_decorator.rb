@@ -1,5 +1,5 @@
 class UserDecorator < ApplicationDecorator
-  include FullNameDecorator
+  include UserSharedDecorator
 
   def general_info
     "#{object.company_name}: #{full_name}"

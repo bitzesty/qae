@@ -9,6 +9,9 @@ class Admin < ActiveRecord::Base
   enumerize :role, in: %w[admin lead_assessor assessor], predicates: true
   validates :role, :first_name, :last_name, presence: true
 
+  scope :admins, -> { where(role: "admin") }
+  scope :assessors, -> { where(role: %w[lead_assessor assessor]) }
+
   def ability
     @ability ||= Ability.new(self)
   end

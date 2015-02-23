@@ -2,7 +2,7 @@ class Admin::AdminsController < Admin::UsersController
   def index
     params[:search] ||= AdminSearch::DEFAULT_SEARCH
 
-    @search = AdminSearch.new(Admin.where(role: "admin")).
+    @search = AdminSearch.new(Admin.admins).
                          search(params[:search])
     @resources = @search.results.page(params[:page])
   end
@@ -22,7 +22,7 @@ class Admin::AdminsController < Admin::UsersController
   private
 
   def find_resource
-    @resource = Admin.where(role: "admin").find(params[:id])
+    @resource = Admin.admins.find(params[:id])
   end
 
   def resource_params

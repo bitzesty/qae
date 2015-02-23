@@ -1,3 +1,3 @@
 class AssessorDecorator < ApplicationDecorator
-  include FullNameDecorator
+  include UserSharedDecorator
 end

@@ -1,3 +1,3 @@
 class AdminDecorator < ApplicationDecorator
-  include FullNameDecorator
+  include UserSharedDecorator
 end

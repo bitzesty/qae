@@ -2,7 +2,7 @@ class Admin::AssessorsController < Admin::UsersController
   def index
     params[:search] ||= AssessorSearch::DEFAULT_SEARCH
 
-    @search = AssessorSearch.new(Admin.where(role: %w[lead_assessor assessor])).
+    @search = AssessorSearch.new(Admin.assessors).
                              search(params[:search])
     @resources = @search.results.page(params[:page])
   end
@@ -36,7 +36,7 @@ class Admin::AssessorsController < Admin::UsersController
   private
 
   def find_resource
-    @resource = Admin.where(role: %w[lead_assessor assessor]).find(params[:id])
+    @resource = Admin.assessors.find(params[:id])
   end
 
   def resource_params
