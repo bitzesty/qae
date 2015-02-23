@@ -48,32 +48,127 @@
   margin-top: 20px;
 }
 
-.js .submitted-view {
-  .form-group {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #999;
+.submitted-view {
+  .nav-tabs {
+    margin-bottom: 20px;
+    border-bottom: none;
+    font-size: 11px;
 
-    &:last-child {
-      margin-bottom: 0;
-      padding-bottom: 0;
-      border-bottom: none;
+    > li {
+      > a {
+        margin: 0;
+        margin-left: 5px;
+
+        &,
+        &:focus {
+          padding: 3px 10px;
+          border: 2px solid #aaa;
+          border-radius: 100px;
+          color: #aaa;
+        }
+
+        &:hover {
+          border: 2px solid #666;
+          background: transparent;
+          color: #666;
+        }
+
+        .active-arrow {
+          display: none;
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          width: 8px;
+          height: 4px;
+          margin-bottom: -6px;
+          margin-left: -4px;
+          background-image: image-url("icon-arrow-tab.png");
+          background-size: 8px 4px;
+
+          @include is-retina {
+            background-image: image-url("icon-arrow-tab@2.png");
+          }
+        }
+      }
+
+      &.active > a {
+        &,
+        &:hover,
+        &:focus {
+          border: 2px solid #666;
+          color: #666;
+        }
+
+        .active-arrow {
+          display: block;
+        }
+      }
     }
   }
 
-  .form-control {
-    display: none;
+  #case-grading .form-label {
+    position: relative;
+    padding-right: 30px;
   }
 
-  .form-edit {
-    border-bottom: none;
+  .glyphicon {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    background-size: 20px 20px;
+    text-align: left;
+    text-indent: -9999px;
+  }
+
+  .glyphicon-positive {
+    background-image: image-url("icon-grade-positive.png");
+    @include is-retina {
+      background-image: image-url("icon-grade-positive@2.png");
+    }
+  }
+  .glyphicon-average {
+    background-image: image-url("icon-grade-average.png");
+    @include is-retina {
+      background-image: image-url("icon-grade-average@2.png");
+    }
+  }
+  .glyphicon-negative {
+    background-image: image-url("icon-grade-negative.png");
+    @include is-retina {
+      background-image: image-url("icon-grade-negative@2.png");
+    }
+  }
+
+  .js & {
+    .form-group {
+      padding-bottom: 10px;
+      border-bottom: 1px solid #999;
+
+      &:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+      }
+    }
 
     .form-control {
-      display: block;
+      display: none;
     }
 
-    .form-value,
-    .form-edit-link {
-      display: none;
+    .form-edit {
+      border-bottom: none;
+
+      .form-control {
+        display: block;
+      }
+
+      .form-value,
+      .form-edit-link {
+        display: none;
+      }
     }
   }
 }

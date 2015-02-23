@@ -31,47 +31,104 @@
     #case-grading.panel-collapse.collapse.in role="tabpanel" aria-labelledby="case-grading-header"
       .panel-body
         / TODO Case Grading
-        .form-group
-          label.form-label
-            ' Nature of activities:
-          .form-value.hide-if-no-js
-            p
-              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        div role="tabpanel"
+          ul.nav.nav-tabs.pull-right role="tablist"
+            li.active role="presentation"
+              a href="#primary-assessment" aria-controls="primary-assessment" role="tab" data-toggle="tab"
+                ' Primary Assessment
+                span.active-arrow
+            li role="presentation"
+              a href="#secondary-assessment" aria-controls="secondary-assessment" role="tab" data-toggle="tab"
+                ' Secondary Assessment
+                span.active-arrow
+          .clear
 
-            = link_to "#", class: "form-edit-link pull-right"
-              span.glyphicon.glyphicon-pencil
-              ' edit
-            .clear
-          textarea.form-control rows=5
-            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+          .tab-content
+            .tab-pane.active#primary-assessment role="tabpanel"
+              .form-group
+                label.form-label
+                  ' Nature of activities:
+                  span.glyphicon.glyphicon-positive
+                .form-value.hide-if-no-js
+                  p
+                    ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-        .form-group
-          label.form-label
-            ' Impact/Achievement:
-          .form-value.hide-if-no-js
-            p
-              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  = link_to "#", class: "form-edit-link pull-right"
+                    span.glyphicon.glyphicon-pencil
+                    ' edit
+                  .clear
+                textarea.form-control rows=5
+                  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-            = link_to "#", class: "form-edit-link pull-right"
-              span.glyphicon.glyphicon-pencil
-              ' edit
-            .clear
-          textarea.form-control rows=5
-            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              .form-group
+                label.form-label
+                  ' Impact/Achievement:
+                  span.glyphicon.glyphicon-average
+                .form-value.hide-if-no-js
+                  p
+                    ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-        .form-group
-          label.form-label
-            ' Nature of activities:
-          .form-value.hide-if-no-js
-            p
-              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                  = link_to "#", class: "form-edit-link pull-right"
+                    span.glyphicon.glyphicon-pencil
+                    ' edit
+                  .clear
+                textarea.form-control rows=5
+                  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
-            = link_to "#", class: "form-edit-link pull-right"
-              span.glyphicon.glyphicon-pencil
-              ' edit
-            .clear
-          textarea.form-control rows=5
-            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              .form-group
+                label.form-label
+                  ' Nature of activities:
+                  span.glyphicon.glyphicon-negative
+                .form-value.hide-if-no-js
+                  p
+                    ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+                  = link_to "#", class: "form-edit-link pull-right"
+                    span.glyphicon.glyphicon-pencil
+                    ' edit
+                  .clear
+                textarea.form-control rows=5
+                  ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+            .tab-pane#secondary-assessment role="tabpanel"
+              .form-group
+                label.form-label
+                  ' Nature of activities:
+                  span.glyphicon.glyphicon-positive
+                .form-value.hide-if-no-js
+                  p.empty-text No comment.
+
+                  = link_to "#", class: "form-edit-link pull-right"
+                    span.glyphicon.glyphicon-pencil
+                    ' edit
+                  .clear
+                textarea.form-control rows=5
+
+              .form-group
+                label.form-label
+                  ' Impact/Achievement:
+                  span.glyphicon.glyphicon-average
+                .form-value.hide-if-no-js
+                  p.empty-text No comment.
+
+                  = link_to "#", class: "form-edit-link pull-right"
+                    span.glyphicon.glyphicon-pencil
+                    ' edit
+                  .clear
+                textarea.form-control rows=5
+
+              .form-group
+                label.form-label
+                  ' Nature of activities:
+                  span.glyphicon.glyphicon-negative
+                .form-value.hide-if-no-js
+                  p.empty-text No comment.
+
+                  = link_to "#", class: "form-edit-link pull-right"
+                    span.glyphicon.glyphicon-pencil
+                    ' edit
+                  .clear
+                textarea.form-control rows=5
 
   .panel.panel-default
     .panel-heading#financial-summary-heading role="tab"
