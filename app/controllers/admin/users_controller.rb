@@ -3,24 +3,36 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
-
+    authorize User, :index?
     @search = UserSearch.new(User.all).search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
   def new
     @resource = User.new
+    authorize @resource, :create?
+  end
+
+  def show
+    authorize @resource, :show?
+  end
+
+  def edit
+    authorize @resource, :update?
   end
 
   def create
     @resource = User.new(resource_params)
     @resource.agreed_with_privacy_policy = "1"
+    authorize @resource, :create?
 
     @resource.save
     respond_with :admin, @resource
   end
 
   def update
+    authorize @resource, :update?
+
     if resource_params[:password].present?
       @resource.update(resource_params)
     else
@@ -31,6 +43,8 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def destroy
+    authorize @resource, :destroy?
+
     @resource.destroy
     respond_with :admin, @resource
   end

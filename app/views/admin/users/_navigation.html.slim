@@ -2,6 +2,6 @@
   .col-md-3
     ul.tabs
       - %w[users assessors admins].each do |role|
-        - if current_admin.can?(:read, role.to_sym)
+        - if policy(role.singularize.to_sym).index?
           li class=('current' if controller_name == role)
             = link_to role, public_send("admin_#{role}_path")

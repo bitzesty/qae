@@ -1,6 +1,7 @@
 class Admin::AssessorsController < Admin::UsersController
   def index
     params[:search] ||= AssessorSearch::DEFAULT_SEARCH
+    authorize :assessor, :index?
 
     @search = AssessorSearch.new(Admin.assessors).
                              search(params[:search])
@@ -9,16 +10,21 @@ class Admin::AssessorsController < Admin::UsersController
 
   def new
     @resource = Admin.new
+    authorize @resource, :create?
   end
 
   def create
     @resource = Admin.new(resource_params)
+    authorize @resource, :create?
 
     @resource.save
-    respond_with :admin, @resource, location: admin_assessor_path(@resource)
+    location = @resource.persisted? ? admin_assessor_path(@resource) : nil
+    respond_with :admin, @resource, location: location
   end
 
   def update
+    authorize @resource, :update?
+
     if resource_params[:password].present?
       @resource.update(resource_params)
     else
@@ -29,6 +35,7 @@ class Admin::AssessorsController < Admin::UsersController
   end
 
   def destroy
+    authorize @resource, :destroy?
     @resource.destroy
     respond_with :admin, @resource, location: admin_assessors_path
   end

@@ -7,7 +7,9 @@ header.page-header.group
   .article-container
     article.group role="article"
       .inner
-        =' link_to 'Edit', public_send("edit_admin_#{controller_name.singularize}_path", @resource)
-        = link_to 'Delete', public_send("admin_#{controller_name.singularize}_path", @resource), data: { method: :delete, confirm: 'Are you sure?' }
+        - if policy(@resource).update?
+          =' link_to 'Edit', public_send("edit_admin_#{controller_name.singularize}_path", @resource)
+        - if policy(@resource).destroy?
+          = link_to 'Delete', public_send("admin_#{controller_name.singularize}_path", @resource), data: { method: :delete, confirm: 'Are you sure?' }
 
         = render 'resource_attributes', resource: @resource.decorate
