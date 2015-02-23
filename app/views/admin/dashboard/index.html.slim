@@ -11,12 +11,6 @@
             =link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT3, format: :csv)
               span.action-title
                 span.glyphicon.glyphicon-file
-                  ' &nbsp;
-                  ' Admin Report 3
-
-            small.pull-right
-              = link_to "#"
-                span.glyphicon.glyphicon-eye-open
                 ' &nbsp;
                 ' View
               ' &nbsp;
@@ -24,16 +18,8 @@
                 span.glyphicon.glyphicon-download-alt
                 ' &nbsp;
                 ' Download
-          - ["Case Status", "All Entries", "Press Book List"].each do |report|
-            li
-              = link_to "#"
-                span.action-title
-                  span.glyphicon.glyphicon-file
-                  = report
-              small.pull-right
-                = link_to "#"
-                  span.glyphicon.glyphicon-download-alt
-                  ' Download
+                ' Report1
+
       / TODO Email actions
       .well
         h2

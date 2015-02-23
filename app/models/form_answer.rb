@@ -108,6 +108,18 @@ class FormAnswer < ActiveRecord::Base
     award_type == 'promotion'
   end
 
+  def trade?
+    award_type == 'trade'
+  end
+
+  def development?
+    award_type == 'development'
+  end
+
+  def innovation?
+    award_type == 'innovation'
+  end
+
   def important?
     importance_flag?
   end
@@ -122,6 +134,10 @@ class FormAnswer < ActiveRecord::Base
     name = nominee_full_name_from_document if promotion? && name.blank?
     name = name.try(:strip)
     name.presence
+  end
+
+  def fill_progress_in_percents
+    "#{((fill_progress || 0) * 100).round.to_i}%"
   end
 
   private
