@@ -395,12 +395,13 @@ jQuery ->
 
     if !$(this).hasClass("read-only")
       question = $(this).closest(".question-block")
-      add_example = question.find(".js-add-example").html()
+      add_eg = question.find(".js-add-example").html()
 
-      # If there is a specific add_example use that
-      add_example_attr = $(this).attr("data-add-example")
-      if ((typeof(add_example_attr) != typeof(undefined)) && add_example_attr != false)
-        add_example = question.find(".js-add-example[data-add-example=#{add_example_attr}]").html()
+      # If there is a specific add_eg use that
+      add_eg_attr = $(this).attr("data-add-example")
+      add_eg_attr_undefined = typeof(add_eg_attr) != typeof(undefined)
+      if (add_eg_attr_undefined && add_eg_attr != false)
+        add_eg = question.find(".js-add-example[data-add-example=#{add_eg_attr}]").html()
 
       if question.find(".list-add").size() > 0
         can_add = true
@@ -408,7 +409,9 @@ jQuery ->
         # Are there add limits
         add_limit_attr = question.find(".list-add").attr("data-add-limit")
 
-        list_size = question.find(".list-add > li").not(".js-add-example").size() + question.find(".list-add > li.js-add-example.js-add-default").size()
+        list_excl_egs = question.find(".list-add > li").not(".js-add-example").size()
+        list_defaults = question.find(".list-add > li.js-add-example.js-add-default").size()
+        list_size = list_excl_egs + list_defaults
 
         if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
 
@@ -419,11 +422,11 @@ jQuery ->
             question.find(".js-button-add").addClass("visuallyhidden")
 
         if can_add
-          add_example = add_example.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{list_size+1}]")
-          question.find(".list-add").append("<li>#{add_example}</li>")
+          add_eg = add_eg.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{list_size+1}]")
+          question.find(".list-add").append("<li>#{add_eg}</li>")
 
-          need_to_clear_example = question.find(".list-add").attr("data-need-to-clear-example")
-          if (typeof(need_to_clear_example) != typeof(undefined) && need_to_clear_example != false)
+          clear_example = question.find(".list-add").attr("data-need-to-clear-example")
+          if (typeof(clear_example) != typeof(undefined) && clear_example != false)
             clearFormElements(question.find(".list-add li:last"))
 
           # charcount needs to be reinitialized
