@@ -29,18 +29,18 @@
           / TODO Edit page
           = link_to "Edit details", [:edit, :admin, resource]
 
-      / TODO Documents
       .well
         h2
           span.glyphicon.glyphicon-file
           ' &nbsp;
           ' Documents
         .document-list
-
           - unless resource.form_answer_attachments.any?
             p.p-empty No documents have been attached to this case.
-          - else
+          ul.list-unstyled.list-actions
+            - if resource.form_answer_attachments.any?
               = render(resource.form_answer_attachments)
+          br
         = form_for [:admin, resource, resource.form_answer_attachments.build], html: { multipart: true} do |form|
           span.btn.btn-default.btn-sm.btn-attachment
             = form.file_field :file
@@ -59,6 +59,7 @@
         ul.list-unstyled.list-actions
           li
             = link_to "Thomas Smith (t.smith@companyname.com)"
+        br
         = link_to "#", class: "btn btn-default btn-sm btn-email"
           span.glyphicon.glyphicon-envelope
           ' &nbsp;
