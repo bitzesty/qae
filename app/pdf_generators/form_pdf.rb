@@ -42,7 +42,7 @@ class FormPdf < Prawn::Document
     @answers = fetch_answers
 
     @award_form = form_answer.award_form.decorate(answers: answers)
-    @steps = [award_form.steps.third]
+    @steps = award_form.steps
     @all_questions = steps.map { |s| s.questions }.flatten
     @form_answer_attachments = form_answer.form_answer_attachments
     @filled_answers = fetch_filled_answers
