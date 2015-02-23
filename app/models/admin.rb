@@ -7,7 +7,7 @@ class Admin < ActiveRecord::Base
   extend Enumerize
 
   enumerize :role, in: %w[admin lead_assessor assessor], predicates: true
-  validates :role, presence: true
+  validates :role, :first_name, :last_name, presence: true
 
   def ability
     @ability ||= Ability.new(self)

@@ -4,7 +4,7 @@ class Admin::AdminsController < Admin::BaseController
   def index
     params[:search] ||= AdminSearch::DEFAULT_SEARCH
 
-    @search = AdminSearch.new(Admin.all).search(params[:search])
+    @search = AdminSearch.new(Admin.where(role: "admin")).search(params[:search])
     @admins = @search.results.page(params[:page])
   end
 
@@ -14,7 +14,7 @@ class Admin::AdminsController < Admin::BaseController
 
   def create
     @admin = Admin.new(admin_params)
-    @admin.role = 'admin'
+    @admin.role = "admin"
 
     @admin.save
     respond_with :admin, @admin
@@ -38,7 +38,7 @@ class Admin::AdminsController < Admin::BaseController
   private
 
   def find_admin
-    @admin = Admin.find(params[:id])
+    @admin = Admin.where(role: "admin").find(params[:id])
   end
 
   def admin_params
