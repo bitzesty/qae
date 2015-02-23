@@ -32,7 +32,7 @@
           ' &nbsp;
           ' Email actions
         ul.list-unstyled.list-actions
-          - if current_admin.can?(:trigger, :notifications)
+          - if policy(:notification).create?
             li
               = link_to "Trigger notification to shortlisted", confirm_notify_shortlisted_admin_notifications_path, class: "btn btn-block btn-default"
             li

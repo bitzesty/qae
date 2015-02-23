@@ -3,12 +3,13 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
-
+    authorize :form_answer, :index?
     @search = FormAnswerSearch.new(FormAnswer.all).search(params[:search])
     @form_answers = @search.results.page(params[:page])
   end
 
   def withdraw
+    authorize :form_answer, :withdraw?
     @form_answer.toggle!(:withdrawn)
     redirect_to action: :index
   end
@@ -16,11 +17,13 @@ class Admin::FormAnswersController < Admin::BaseController
   def review
     sign_in(@form_answer.user, bypass: true)
     session[:admin_in_read_only_mode] = true
+    authorize :form_answer, :review?
 
     redirect_to edit_form_path(@form_answer, anchor: "company-information")
   end
 
   def show
+    authorize :form_answer, :show?
   end
 
   helper_method :collection, :resource

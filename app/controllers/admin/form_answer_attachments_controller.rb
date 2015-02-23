@@ -1,6 +1,7 @@
 class Admin::FormAnswerAttachmentsController < Admin::BaseController
   def create
     @form_answer_attachment = form_answer.form_answer_attachments.build(create_params)
+    authorize @form_answer_attachment, :create?
 
     if @form_answer_attachment.save
       respond_to do |format|
@@ -16,6 +17,7 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
   end
 
   def show
+    authorize resource, :show?
     send_data resource.file.read, filename: resource.filename, disposition: 'inline'
   end
 

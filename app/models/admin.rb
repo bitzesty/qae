@@ -11,10 +11,4 @@ class Admin < ActiveRecord::Base
 
   scope :admins, -> { where(role: "admin") }
   scope :assessors, -> { where(role: %w[lead_assessor assessor]) }
-
-  def ability
-    @ability ||= Ability.new(self)
-  end
-
-  delegate :can?, to: :ability
 end

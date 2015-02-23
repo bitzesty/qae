@@ -1,0 +1,2 @@
+class AssessorPolicy < AdminPolicy
+end
