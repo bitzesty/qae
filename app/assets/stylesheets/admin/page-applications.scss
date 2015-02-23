@@ -54,59 +54,57 @@
     border-bottom: none;
     font-size: 11px;
 
-    > li {
-      > a {
-        margin: 0;
-        margin-left: 5px;
+    > li > a {
+      margin: 0;
+      margin-left: 5px;
 
-        &,
-        &:focus {
-          padding: 3px 10px;
-          border: 2px solid #aaa;
-          border-radius: 100px;
-          color: #aaa;
-        }
-
-        &:hover {
-          border: 2px solid #666;
-          background: transparent;
-          color: #666;
-        }
-
-        .active-arrow {
-          display: none;
-          position: absolute;
-          bottom: 0;
-          left: 50%;
-          width: 8px;
-          height: 4px;
-          margin-bottom: -6px;
-          margin-left: -4px;
-          background-image: image-url("icon-arrow-tab.png");
-          background-size: 8px 4px;
-
-          @include is-retina {
-            background-image: image-url("icon-arrow-tab@2.png");
-          }
-        }
+      &,
+      &:focus {
+        padding: 3px 10px;
+        border: 2px solid #aaa;
+        border-radius: 100px;
+        color: #aaa;
       }
 
-      &.active > a {
-        &,
-        &:hover,
-        &:focus {
-          border: 2px solid #666;
-          color: #666;
-        }
+      &:hover {
+        border: 2px solid #666;
+        background: transparent;
+        color: #666;
+      }
 
-        .active-arrow {
-          display: block;
+      .active-arrow {
+        display: none;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 8px;
+        height: 4px;
+        margin-bottom: -6px;
+        margin-left: -4px;
+        background-image: image-url("icon-arrow-tab.png");
+        background-size: 8px 4px;
+
+        @include is-retina {
+          background-image: image-url("icon-arrow-tab@2.png");
         }
+      }
+    }
+
+    > li.active > a {
+      &,
+      &:hover,
+      &:focus {
+        border: 2px solid #666;
+        color: #666;
+      }
+
+      .active-arrow {
+        display: block;
       }
     }
   }
 
-  #case-grading .form-label {
+  .section-case-grading .form-label {
     position: relative;
     padding-right: 30px;
   }
@@ -125,18 +123,23 @@
 
   .glyphicon-positive {
     background-image: image-url("icon-grade-positive.png");
+
     @include is-retina {
       background-image: image-url("icon-grade-positive@2.png");
     }
   }
+
   .glyphicon-average {
     background-image: image-url("icon-grade-average.png");
+
     @include is-retina {
       background-image: image-url("icon-grade-average@2.png");
     }
   }
+
   .glyphicon-negative {
     background-image: image-url("icon-grade-negative.png");
+
     @include is-retina {
       background-image: image-url("icon-grade-negative@2.png");
     }
@@ -181,7 +184,7 @@
     margin-bottom: 0;
   }
 
-  table.table {
+  .table {
     margin-bottom: 0;
   }
 }
@@ -190,7 +193,7 @@
   font-size: 13px;
 
   .glyphicon {
-    font-size: 10px;
     margin-right: 5px;
+    font-size: 10px;
   }
 }
