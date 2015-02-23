@@ -10,11 +10,11 @@ li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-de
       label
         ' Year
         br
-        select.inline name="form[#{question.key}][#{index}][year]"
-          option value="" *possible_read_only_ops
+        select.inline name="form[#{question.key}][#{index}][year]" *possible_read_only_ops
+          option value=""
             ' Year Awarded
           - question.award_years.each do |year|
-            option value=year selected=(award['year'] == year.to_s) *possible_read_only_ops
+            option value=year selected=(award['year'] == year.to_s)
               = year
 
   label
