@@ -2,8 +2,8 @@
   .col-md-4
     header.page-header
       h1
-        ' New user
+        = "New #{controller_name.singularize}"
 
 br
 
-= render 'form', user: @user
+= render 'form', resource: @resource

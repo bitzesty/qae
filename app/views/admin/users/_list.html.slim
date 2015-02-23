@@ -1,0 +1,82 @@
+.row
+  .col-xs-12
+    table.table.admin-table
+      thead
+        tr
+          th.sortable
+            = sort_link f, 'Name', @search, :full_name
+          th.sortable
+            = sort_link f, 'Email', @search, :email
+          th.sortable
+            = sort_link f, 'Company', @search, :company_name
+          th.filter
+            = f.simple_fields_for [:filters, @search.filters] do |f|
+              = f.input :role, collection: User.role.options, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+            .dropdown.if-no-js-hide
+              button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                ' Role:
+                span.text-filter
+                  ' All
+                span.caret
+              ul.dropdown-menu role="menu"
+                li.checkbox role="presentation"
+                  label data-value="select_all"
+                    input type="checkbox"
+                    em Select all
+                li.divider
+                - User.role.options.each do |role|
+                  li.checkbox role="presentation"
+                    label data-value=role[1]
+                      input type="checkbox"
+                      = role[0]
+          th.filter
+            / TODO do category filter dropdown
+            .dropdown.if-no-js-hide
+              button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                ' Category:
+                span.text-filter
+                  ' All
+                span.caret
+              ul.dropdown-menu role="menu"
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    em Select all
+                li.divider
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Innovation
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' International Trade
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' Sustainable Development
+                li.checkbox role="presentation"
+                  label
+                    input type="checkbox"
+                    ' QAEP
+          th.sortable
+            = sort_link f, 'Signed in at', @search, :last_sign_in_at
+      tbody
+        - if UserDecorator.decorate_collection(resources).none?
+          tr
+            td.text-center colspan=100
+              br
+              p.p-empty No users found.
+              br
+        - else
+          - UserDecorator.decorate_collection(resources).each do |user|
+            tr
+              td.td-title
+                = link_to user.full_name, edit_admin_user_path(user), class: 'link-edit-user'
+              td = mail_to user.email
+              td = user.company
+              td = user.role
+              td
+                i Not implemented
+              td
+                i.text-muted = user.formatted_last_sign_in_at

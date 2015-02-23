@@ -1,0 +1,26 @@
+.row
+  .col-xs-12
+    table.table.assessor-table
+      thead
+        tr
+          th.sortable
+            = sort_link f, 'Name', @search, :full_name
+          th.sortable
+            = sort_link f, 'Email', @search, :email
+          th.sortable
+            = sort_link f, 'Signed in at', @search, :last_sign_in_at
+      tbody
+        - if AssessorDecorator.decorate_collection(resources).none?
+          tr
+            td.text-center colspan=100
+              br
+              p.p-empty No assessors found.
+              br
+        - else
+          - AssessorDecorator.decorate_collection(resources).each do |assessor|
+            tr
+              td.td-title
+                = link_to assessor.full_name, edit_admin_assessor_path(assessor), class: 'link-edit-user'
+              td = mail_to assessor.email
+              td
+                i.text-muted = assessor.formatted_last_sign_in_at
