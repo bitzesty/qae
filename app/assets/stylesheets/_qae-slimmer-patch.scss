@@ -1,5 +1,10 @@
 #QAE {
   margin-bottom: $gutter*2;
+
+  &.admin-mode {
+    margin-bottom: 0;
+    padding-bottom: $gutter*2;
+  }
 }
 
 #footer .footer-categories .footer-inside-government ul li {

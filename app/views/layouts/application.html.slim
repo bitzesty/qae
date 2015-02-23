@@ -56,18 +56,19 @@
                     = link_to "Log out", destroy_user_session_path, method: :delete
 
 - content_for :content do
-  #global-breadcrumb.header-context
-    ol.group role="breadcrumbs"
-      - if !user_signed_in? && !landing_page?
-        li = link_to "Home", "https://www.gov.uk/"
+  - unless admin_in_read_only_mode?
+    #global-breadcrumb.header-context
+      ol.group role="breadcrumbs"
+        - if !user_signed_in? && !landing_page?
+          li = link_to "Home", "https://www.gov.uk/"
 
-      li = link_to "Queen's Awards for Enterprise", root_path
+        li = link_to "Queen's Awards for Enterprise", root_path
 
-      - if user_signed_in? && current_user.completed_registration && !landing_page?
-        li = link_to "Applications", dashboard_path
+        - if user_signed_in? && current_user.completed_registration && !landing_page?
+          li = link_to "Applications", dashboard_path
 
   #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
-    #QAE
+    #QAE class="#{'admin-mode' if admin_in_read_only_mode?}"
       - if [:alert, :notice].any? { |kind| flash[kind].presence }
         .flash
           .flash-inner
