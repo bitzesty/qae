@@ -10,7 +10,12 @@ li.form_answer_attachment
       ' &nbsp;
       ' View
     ' &nbsp;
-    = link_to "#", class: "text-danger"
-      span.glyphicon.glyphicon-remove
-      | &nbsp;
-      ' Remove
+
+
+    = form_for(form_answer_attachment, url: admin_form_answer_form_answer_attachment_path(form_answer_attachment.form_answer, form_answer_attachment), html: {method: :delete, style: 'display:inline-block;'}) do |f|
+      = f.submit 'Remove', class: 'if-js-hide'
+
+      = link_to "#", class: "text-danger if-no-js-hide"
+        span.glyphicon.glyphicon-remove
+        | &nbsp;
+        ' Remove

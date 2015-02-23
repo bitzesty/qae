@@ -21,6 +21,20 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
     send_data resource.file.read, filename: resource.filename, disposition: 'inline'
   end
 
+  def destroy
+    resource.destroy
+
+    respond_to do |format|
+      format.html do
+        unless request.xhr?
+          redirect_to admin_form_answer_path(form_answer)
+        else
+          render nothing: true
+        end
+      end
+    end
+  end
+
   private
 
   def resource
