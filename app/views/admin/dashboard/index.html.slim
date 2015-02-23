@@ -72,7 +72,111 @@
               ' Stage 1 - Application
         #stage-one-application.panel-collapse.collapse.in role="tabpanel" aria-labelledby="stage-one-application-heading"
           .panel-body
-            ' Reports TBC
+            / TODO Stage 1 - Application
+            table.table.table-striped
+              colgroup
+                col width="200"
+              thead
+                tr
+                  th &nbsp;
+                  th Last 24h
+                  th Last 7 days
+                  th Total so far
+                  th Total last year
+                  th Trend
+              tbody
+                - ["Registered Users", "Applicants not eligible", "Applications not started", "Applications in progress", "Applications submitted"].each do |status|
+                  tr
+                    th = status
+                    td 1
+                    td 3
+                    td
+                      strong 81
+                    td 193
+                    td -23%
+
+            br
+
+            table.table.table-striped
+              colgroup
+                col width="200"
+              thead
+                tr
+                  th Applications Completion
+                  th 0%
+                  th 1 - 24%
+                  th 25 - 49%
+                  th 50 - 74%
+                  th 75 - 99%
+                  th 100%
+                  th.table-total
+                    strong TOTAL
+              tbody
+                - ["International Trade", "Innovation", "Sustainable development", "QAEP"].each do |award|
+                  tr
+                    th = award
+                    td 51
+                    td 31
+                    td 70
+                    td 16
+                    td 12
+                    td 278
+                    td.table-total
+                      strong 458
+                tr.table-total
+                  th
+                    strong TOTAL
+                  td
+                    strong 204
+                  td
+                    strong 124
+                  td
+                    strong 280
+                  td
+                    strong 64
+                  td
+                    strong 48
+                  td
+                    strong 556
+                  td
+                    strong 1,832
+
+            br
+
+            table.table.table-striped
+              colgroup
+                col width="200"
+              thead
+                tr
+                  th Applications Submitted
+                  th Last 24h
+                  th Last 7 days
+                  th Total so far
+                  th Total last year
+                  th Trend
+              tbody
+                - ["International Trade", "Innovation", "Sustainable development", "QAEP"].each do |award|
+                  tr
+                    th = award
+                    td 1
+                    td 3
+                    td
+                      strong 81
+                    td 193
+                    td -23%
+                tr.table-total
+                  th
+                    strong TOTAL
+                  td
+                    strong 1
+                  td
+                    strong 3
+                  td
+                    strong 81
+                  td
+                    strong 193
+                  td
+                    strong -23%
       .panel.panel-default
         .panel-heading role="tab" id="stage-two-assessment-header"
           h4.panel-title
@@ -80,4 +184,81 @@
               ' Stage 2 - Application
         #stage-two-assessment.panel-collapse.collapse role="tabpanel" aria-labelledby="stage-two-assessment-header"
           .panel-body
-            ' Reports TBC
+            / TODO Stage 2 - Application
+            table.table.table-striped
+              colgroup
+                col width="200"
+              thead
+                tr
+                  th Assessment Stages
+                  th Not Started
+                  th Assessors Assigned
+                  th 1st Assessor Reviewed
+                  th 2nd Assessor Reviewed
+                  th Assessment Approved
+                  th.table-total
+                    strong TOTAL
+              tbody
+                - ["International Trade", "Innovation", "Sustainable development", "QAEP"].each do |award|
+                  tr
+                    th = award
+                    td 0
+                    td 94
+                    td 2
+                    td 1
+                    td 0
+                    td.table-total
+                      strong 94
+                tr.table-total
+                  th
+                    strong TOTAL
+                    td
+                      strong 0
+                    td
+                      strong 94
+                    td
+                      strong 2
+                    td
+                      strong 1
+                    td
+                      strong 0
+                    td
+                      strong 94
+
+            br
+
+            table.table.table-striped
+              colgroup
+                col width="200"
+              thead
+                tr
+                  th Assessment Results
+                  th Pending
+                  th Recommended
+                  th Reserve
+                  th Not Recommended
+                  th.table-total
+                    strong TOTAL
+              tbody
+                - ["International Trade", "Innovation", "Sustainable development", "QAEP"].each do |award|
+                  tr
+                    th = award
+                    td 0
+                    td 94
+                    td 2
+                    td 0
+                    td.table-total
+                      strong 94
+                tr.table-total
+                  th
+                    strong TOTAL
+                    td
+                      strong 0
+                    td
+                      strong 378
+                    td
+                      strong 8
+                    td
+                      strong 0
+                    td
+                      strong 378
