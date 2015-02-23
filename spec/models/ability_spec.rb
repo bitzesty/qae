@@ -23,7 +23,7 @@ describe Ability do
     let(:ability) { Ability.new(user) }
 
     it 'returns true for permitted actions' do
-      expect(ability.can?(:comment, :form_answers)).to be true
+      expect(ability.can?(:create, :comments)).to be true
     end
 
     it 'returns false for unexisting resources' do

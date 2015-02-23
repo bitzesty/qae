@@ -23,7 +23,9 @@ class Ability
       admins: :manage,
       comments: :manage,
       form_answers: :manage,
-      notifications: :manage
+      form_answer_attachments: :manage,
+      notifications: :manage,
+      flags: :toggle
     }
   end
 
@@ -31,7 +33,9 @@ class Ability
     {
       dashboard: :read,
       form_answers: :read,
-      comments: [:read, :create]
+      form_answer_attachments: :manage,
+      comments: [:read, :create],
+      flags: :toggle
     }
   end
 
@@ -39,7 +43,9 @@ class Ability
     {
       dashboard: :read,
       form_answers: :read,
-      comments: [:read, :create]
+      form_answer_attachments: :manage,
+      comments: [:read, :create],
+      flags: :toggle
     }
   end
 end
