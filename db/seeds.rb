@@ -1,5 +1,13 @@
 unless Admin.exists?
-  Admin.create!(email: "admin@example.com", password: "admin123", role: "admin").
+  admin_args = {
+    email: "admin@example.com",
+    password: "admin123",
+    role: "admin",
+    first_name: "First name",
+    last_name: "Last name"
+  }
+
+  Admin.create!(admin_args).
     tap(&:confirm!)
 end
 

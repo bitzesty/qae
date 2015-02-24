@@ -26,19 +26,19 @@ ActiveRecord::Schema.define(version: 20150223123005) do
   add_index "accounts", ["owner_id"], name: "index_accounts_on_owner_id", using: :btree
 
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                  limit: 255, default: "", null: false
-    t.string   "encrypted_password",     limit: 255, default: "", null: false
-    t.string   "reset_password_token",   limit: 255
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,  null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "confirmation_token",     limit: 255
+    t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "role"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20150223123005) do
     t.boolean  "passed"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type",           limit: 255
+    t.string   "type"
     t.integer  "form_answer_id"
   end
 
@@ -104,15 +104,19 @@ ActiveRecord::Schema.define(version: 20150223123005) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "document"
-    t.string   "award_type",              limit: 255
-    t.boolean  "withdrawn",                           default: false
+    t.string   "award_type"
+    t.boolean  "withdrawn",               default: false
     t.integer  "account_id"
-    t.string   "urn",                     limit: 255
-    t.boolean  "submitted",                           default: false
+    t.string   "urn"
+    t.boolean  "submitted",               default: false
     t.float    "fill_progress"
-    t.boolean  "importance_flag",                     default: false
-    t.string   "state",                               default: "in_progress1", null: false
+    t.boolean  "importance_flag",         default: false
+    t.string   "state",                   default: "in_progress1", null: false
     t.string   "company_or_nominee_name"
+    t.integer  "current_award_year",      default: 2014,           null: false
+    t.string   "nominee_full_name"
+    t.string   "user_full_name"
+    t.string   "award_type_full_name"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
@@ -139,12 +143,12 @@ ActiveRecord::Schema.define(version: 20150223123005) do
   add_index "supporters", ["form_answer_id"], name: "index_supporters_on_form_answer_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                      limit: 255, default: "",    null: false
-    t.string   "encrypted_password",         limit: 255, default: "",    null: false
-    t.string   "reset_password_token",       limit: 255
+    t.string   "email",                      default: "",    null: false
+    t.string   "encrypted_password",         default: "",    null: false
+    t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                          default: 0,     null: false
+    t.integer  "sign_in_count",              default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
