@@ -94,20 +94,20 @@
         background-image: image-url("icon-arrow-tab@2.png");
       }
     }
+  }
 
-    &.active {
-      > a {
-        &,
-        &:hover,
-        &:focus {
-          border: 2px solid #666;
-          color: #666;
-        }
+  > li.active {
+    > a {
+      &,
+      &:hover,
+      &:focus {
+        border: 2px solid #666;
+        color: #666;
       }
+    }
 
-      .active-arrow {
-        display: block;
-      }
+    .active-arrow {
+      display: block;
     }
   }
 }
