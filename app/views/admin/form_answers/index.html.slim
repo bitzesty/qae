@@ -72,7 +72,7 @@
             th.sortable
               = sort_link f, 'Flag', @search, :flag
         tbody
-          - FormAnswerDecorator.decorate_collection(collection).each do |obj|
+          - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
             tr
               td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
               td.td-title
@@ -97,5 +97,5 @@
 
   .row
     .col-xs-12.text-right
-      = paginate collection
+      = paginate @form_answers
       .clear
