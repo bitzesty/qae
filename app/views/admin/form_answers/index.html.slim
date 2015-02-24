@@ -3,9 +3,8 @@
   .row
     .col-md-3
       .form-group.search-input
-        input.form-control#search type="search" placeholder="Search..."
+        = text_field_tag :query, search_query, class: "form-control", placeholder: "Search...", type: "search"
         input type="submit" name="commit" value="submit"
-
   br
 
   .row
@@ -13,6 +12,7 @@
       table.table.applications-table
         thead
           tr
+<<<<<<< HEAD
             th &nbsp;
             th.sortable
               = sort_link f, 'Company/Nominee', @search, :company_or_nominee_name
@@ -35,9 +35,31 @@
                       em Select all
                   li.divider
                   - award_types_collection.each do |key,v|
+=======
+            th.sortable colspan=2
+              = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: search_query.present?
+            th.sortable
+              = sort_link f, "Reference", @search, :urn, disabled: search_query.present?
+
+            - if search_query.present?
+              th Award Type
+            - else
+              th.filter
+                = f.simple_fields_for [:filters, @search.filters] do |f|
+                  = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+                / TODO do category filter dropdown
+                .dropdown.if-no-js-hide
+                  button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                    ' Category:
+                    span.text-filter
+                      ' All
+                    span.caret
+                  ul.dropdown-menu role="menu"
+>>>>>>> Form answers list search functionality
                     li.checkbox role="presentation"
-                      label data-value=v
+                      label data-value='select_all'
                         input type="checkbox"
+<<<<<<< HEAD
                         = key
 
             th.filter
@@ -64,14 +86,53 @@
                     = f.input :status, collection: FormAnswerStatusFiltering.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
                   - FormAnswerStatusFiltering::SUB_OPTIONS.each do |key, val|
 
+=======
+                        em Select all
+                    li.divider
+                    - award_types_collection.each do |key,v|
+                      li.checkbox role="presentation"
+                        label data-value=v
+                          input type="checkbox"
+                          = key
+            - if search_query.present?
+              th Status
+            - else
+              th.filter
+                = f.simple_fields_for [:filters, @search.filters] do |f|
+                  = f.input :status, collection: FormAnswerStatusFiltering.collection, label: false, input_html: { multiple: true, class: 'if-js-hide'}
+                .dropdown.if-no-js-hide
+                  button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                    ' Status:
+                    span.text-filter
+                      ' All
+                    span.caret
+                  ul.dropdown-menu role="menu"
+>>>>>>> Form answers list search functionality
                     li.checkbox role="presentation"
-                      label data-value=key
+                      label data-value='select_all'
                         input type="checkbox"
-                        em = val[:label]
+                        em Select all
+                    - FormAnswerStatusFiltering.collection.each do |state|
+                      li.checkbox role='presentation'
+                        label data-value=state[1]
+                          input type='checkbox'
+                          = state[0]
+                    li.divider
+                    = f.simple_fields_for [:filters, @search.filters] do |f|
+                      = f.input :status, collection: FormAnswerStatusFiltering.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+                    - FormAnswerStatusFiltering::SUB_OPTIONS.each do |key, val|
+
+                      li.checkbox role="presentation"
+                        label data-value=key
+                          input type="checkbox"
+                          em = val[:label]
 
             th &nbsp;
-            th.sortable
-              = sort_link f, 'Flag', @search, :flag
+            - if search_query.present?
+              th Flag
+            - else
+              th.sortable
+                = sort_link f, 'Flag', @search, :flag
         tbody
           - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
             tr

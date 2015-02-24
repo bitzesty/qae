@@ -68,6 +68,7 @@ gem 'sidekiq-status'
 gem 'sinatra', require: false
 
 gem 'foreman'
+gem 'pg_search'
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'

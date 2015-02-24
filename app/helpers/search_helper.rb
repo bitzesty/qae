@@ -1,5 +1,7 @@
 module SearchHelper
-  def sort_link(f, name, search, field)
+  def sort_link(f, name, search, field, options = {})
+    return name if options[:disabled]
+
     h = ''.html_safe
 
     h << link_to(name, { search: { sort: sort_link_param(search, field)} }, { class: sort_link_class(search, field) })

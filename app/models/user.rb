@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
   end
 
   before_create :create_account
+  around_save :update_user_full_name
 
   enumerize :prefered_method_of_contact, in: %w(phone email)
   enumerize :qae_info_source, in: %w(govuk competitor business_event national_press business_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other)
@@ -68,6 +69,10 @@ class User < ActiveRecord::Base
 
   def set_step (step)
     @current_step = step
+  end
+
+  def full_name
+    "#{first_name} #{last_name}".strip
   end
 
   private
@@ -86,5 +91,11 @@ class User < ActiveRecord::Base
 
   def create_account
     self.account = Account.create(owner: self) unless account
+  end
+
+  def update_user_full_name
+    full_name_changed = first_name_changed? || last_name_changed?
+    yield
+    form_answers.each{ |f| f.update_attributes(user_full_name: full_name)}
   end
 end

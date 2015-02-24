@@ -1,12 +1,29 @@
 require 'qae_2014_forms'
 
 class FormAnswer < ActiveRecord::Base
+  include PgSearch
+  pg_search_scope :basic_search, against: [
+                                            :urn,
+                                            :award_type_full_name,
+                                            :current_award_year,
+                                            :company_or_nominee_name,
+                                            :nominee_full_name,
+                                            :user_full_name
+                                          ]
+
   POSSIBLE_AWARDS = [
     "trade", # International Trade Award
     "innovation", # Innovation Award
     "development", # Sustainable Development Award
     "promotion" # Enterprise promotion Award
   ]
+
+  AWARD_TYPE_FULL_NAMES = {
+    'innovation' => 'Innovation',
+    'trade' => 'International Trade',
+    'development' => 'Sustainable Development',
+    'promotion' => 'Enterprise promotion'
+  }
 
   CURRENT_AWARD_YEAR = '14'
 
@@ -47,7 +64,7 @@ class FormAnswer < ActiveRecord::Base
     before_save :set_progress
     before_save :build_supporters
     before_validation :check_eligibility, if: :submitted?
-    before_save :assign_company_or_nominee_name
+    before_save :assign_searching_attributes
   end
 
   store_accessor :document
@@ -99,12 +116,16 @@ class FormAnswer < ActiveRecord::Base
   def company_or_nominee_from_document
     comp_attr = promotion? ? 'organization_name' : 'company_name'
     name      = document[comp_attr]
-    name      = "#{document['nominee_first_name']} #{document['nominee_last_name']}" if promotion? && name.blank?
+    name      = nominee_full_name_from_document if promotion? && name.blank?
     name      = name.try(:strip)
     name.presence
   end
 
   private
+
+  def nominee_full_name_from_document
+    "#{document['nominee_first_name']} #{document['nominee_last_name']}".strip
+  end
 
   def build_supporters
     if promotion? && submitted?
@@ -138,7 +159,7 @@ class FormAnswer < ActiveRecord::Base
 
     next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize("urn_seq_#{award_type}")})")
 
-    self.urn = "QA#{sprintf("%.4d", next_seq)}/#{CURRENT_AWARD_YEAR}#{award_type[0].capitalize}"
+    self.urn = "QA#{sprintf("%.4d", next_seq)}/#{current_award_year.to_s.last(2)}#{award_type[0].capitalize}"
   end
 
   def set_account
@@ -150,8 +171,10 @@ class FormAnswer < ActiveRecord::Base
     self.fill_progress = form.progress
   end
 
-  def assign_company_or_nominee_name
+  def assign_searching_attributes
     self.company_or_nominee_name = company_or_nominee_from_document
+    self.nominee_full_name       = nominee_full_name_from_document
+    self.award_type_full_name    = AWARD_TYPE_FULL_NAMES[award_type]
   end
 
   class AwardEligibilityBuilder
