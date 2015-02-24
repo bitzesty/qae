@@ -209,7 +209,7 @@ class QAE2014Forms
         dropdown :business_sector, 'Business Sector' do
           required
           ref 'A 13'
-          option :business_sector, 'Business Sector'
+          option "business_sector", 'Business Sector'
           option :other, 'Other'
         end
 

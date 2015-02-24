@@ -12,7 +12,10 @@ class QAE2014Forms
         header :business_division_header, '' do
           context %Q{
             <div class="application-notice help-notice">
-              <p>Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.</p>
+              <p>
+                Where the form refers to your organisation, 
+                please enter the details of your division, branch or subsidiary.
+              </p>
             </div>
           }
           conditional :applying_for, 'division branch subsidiary'
@@ -30,12 +33,15 @@ class QAE2014Forms
           required
           ref 'A 3'
           context %Q{
-            <p>We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>
+            <p>
+              We recommend that you apply as a principal. 
+              A principal invoices its customers (or their buying agents) and is the body to receive those payments.
+            </p>
           }
           yes_no
         end
 
-        textarea :invoicing_unit_relations, 'Please explain your relationship with the invoicing unit, and the arrangements made.' do
+        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
           classes "sub-question"
           required
           conditional :principal_business, :no
@@ -47,7 +53,10 @@ class QAE2014Forms
           required
           ref 'A 4'
           context %Q{
-            <p>If you don't have a Company/Charity Registration Number please enter 'N/A'. If you're an unregistered subsidiary, please enter your parent company's number.</p>
+            <p>
+              If you don't have a Company/Charity Registration Number please enter 'N/A'. 
+              If you're an unregistered subsidiary, please enter your parent company's number.
+            </p>
           }
           style "small"
         end
@@ -55,7 +64,11 @@ class QAE2014Forms
         date :started_trading, 'Date started trading' do
           required
           ref 'A 5'
-          context "<p>Organisations that began trading after 01/10/2012 aren't eligible for this award.</p>"
+          context %Q{
+            <p>
+              Organisations that began trading after 01/10/2012 aren't eligible for this award.
+            </p>
+          }
           date_max '01/10/2012'
         end
 
@@ -90,7 +103,7 @@ class QAE2014Forms
           dependable_values [:international_trade_3, :international_trade_6]
         end
 
-        options :business_name_changed, 'Have you changed the name of your organisation since your last entry?' do
+        options :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
           classes "sub-question"
           required
           conditional :queen_award_holder, :yes
@@ -117,16 +130,21 @@ class QAE2014Forms
           yes_no
         end
 
-        textarea :other_awards_desc, 'Please describe them' do
+        textarea :other_awards_desc, "Please describe them" do
           classes "sub-question"
           required
-          context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
+          context %Q{
+            <p>
+              If you can't fit all of your awards below, then choose those you're most proud of.
+            </p>
+          }
           conditional :other_awards_won, :yes
           rows 5
           words_max 300
         end
 
-        options :external_contribute_to_sustainable_product, 'Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?' do
+        options :external_contribute_to_sustainable_product, 
+                "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
           ref 'A 8'
           required
           context %Q{
@@ -137,7 +155,8 @@ class QAE2014Forms
           yes_no
         end
 
-        options :external_are_aware_about_award, "Are they aware that you're applying for this award?" do
+        options :external_are_aware_about_award, 
+                "Are they aware that you're applying for this award?" do
           required
           option 'yes', "Yes, they are aware"
           option 'no', "No, they aren't aware"
@@ -148,18 +167,23 @@ class QAE2014Forms
         header :external_organization_or_individual_info_header, '' do
           context %Q{
             <div class="application-notice help-notice">
-              <p>We recommend that you notify all the contributors to your product/service/management approach of this entry.</p>
+              <p>
+                We recommend that you notify all the contributors to your product/service/management approach of this entry.
+              </p>
             </div>
           }
           conditional :external_are_aware_about_award, 'no'
           conditional :external_are_aware_about_award, 'some'
         end
 
-        options :part_of_joint_entry, 'Is this application part of a joint entry with any of the contributing organisation(s)?' do
+        options :part_of_joint_entry, 
+                "Is this application part of a joint entry with any of the contributing organisation(s)?" do
           required
           context %Q{
             <p>
-              If you two or more organisations made a significant contribution to the product/service/management approach, and achieved commercial success, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
+              If you two or more organisations made a significant contribution to the product/service/management approach, 
+              and achieved commercial success, then you should make a joint entry. 
+              Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           }
           yes_no
@@ -191,7 +215,7 @@ class QAE2014Forms
         dropdown :business_sector, 'Business Sector' do
           required
           ref 'A 12'
-          option :business_sector, 'Business Sector'
+          option "business_sector", 'Business Sector'
           option :other, 'Other'
         end
 
