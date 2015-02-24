@@ -16,8 +16,16 @@
   }
 }
 
-.table > thead > tr > th {
-  vertical-align: middle;
+.table {
+  > thead > tr > th {
+    border-color: #333;
+    vertical-align: middle;
+  }
+
+  > tbody > tr > td {
+    background-color: #fff;
+    transform: translateY(10px);
+  }
 }
 
   .clear {
