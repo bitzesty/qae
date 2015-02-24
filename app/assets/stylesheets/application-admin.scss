@@ -1,7 +1,11 @@
 /*
- *= require_tree ./admin
  *= require_self
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "admin/_toggle";
+@import "admin/layout";
+@import "admin/base";
+@import "admin/header-footer";
+@import "admin/page-applications";
