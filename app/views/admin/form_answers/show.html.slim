@@ -84,7 +84,7 @@
 
   .col-md-8
     .col-content
-      .application-progress class=resource.progress_class
+      .application-progress class=@form_answer.progress_class
         = @form_answer.progress_text
         - if Rails.env.development?
           span.pull-right.if-no-js-hide
