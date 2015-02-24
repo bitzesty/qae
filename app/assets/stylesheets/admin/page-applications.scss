@@ -187,15 +187,8 @@
   }
 
   .js & {
-    .form-group {
-      padding-bottom: 10px;
-      border-bottom: 1px solid #999;
-
-      &:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
-        border-bottom: none;
-      }
+    .form-group:last-child {
+      margin-bottom: 0;
     }
 
     .form-control {
@@ -236,6 +229,7 @@
 }
 
 .form-edit-link {
+  margin-top: 10px;
   font-size: 13px;
 
   .glyphicon {

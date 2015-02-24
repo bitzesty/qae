@@ -22,9 +22,17 @@
     vertical-align: middle;
   }
 
-  > tbody > tr > td {
-    background-color: #fff;
-    transform: translateY(10px);
+  > tbody > tr {
+    > td,
+    > th {
+      background-color: #fff;
+    }
+  }
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+  > td,
+  > th {
+    background-color: #ececec;
   }
 }
 
