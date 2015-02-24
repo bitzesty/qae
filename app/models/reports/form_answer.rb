@@ -87,6 +87,10 @@ class Reports::FormAnswer
     end
   end
 
+  def qao_permission
+    obj.user.subscribed_to_emails
+  end
+
   def business_form?
     obj.trade? || obj.innovation? || obj.development?
   end

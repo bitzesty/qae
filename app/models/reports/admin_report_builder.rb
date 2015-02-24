@@ -102,7 +102,8 @@ class Reports::AdminReportBuilder
       label: "Employees"
     },
     {
-      label: "QAOPermission"
+      label: "QAOPermission",
+      method: :qao_permission
     },
     {
       label: "HowDidYouHearAboutQA",
