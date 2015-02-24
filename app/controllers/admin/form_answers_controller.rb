@@ -1,5 +1,5 @@
 class Admin::FormAnswersController < Admin::BaseController
-  before_filter :load_resource, only: [:withdraw, :review]
+  before_filter :load_resource, only: [:withdraw, :review, :show]
 
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
@@ -8,37 +8,27 @@ class Admin::FormAnswersController < Admin::BaseController
     @form_answers = @search.results.page(params[:page])
   end
 
+  def show
+    authorize @form_answer, :show?
+  end
+
   def withdraw
-    authorize :form_answer, :withdraw?
+    authorize @form_answer, :withdraw?
     @form_answer.toggle!(:withdrawn)
     redirect_to action: :index
   end
 
   def review
-    authorize :form_answer, :review?
+    authorize @form_answer, :review?
     sign_in(@form_answer.user, bypass: true)
     session[:admin_in_read_only_mode] = true
 
     redirect_to edit_form_path(@form_answer, anchor: "company-information")
   end
 
-  def show
-    authorize :form_answer, :show?
-  end
-
-  helper_method :collection, :resource
-
   private
 
   def load_resource
-    @form_answer = FormAnswer.find(params[:id])
-  end
-
-  def collection
-    @form_answers ||= FormAnswer.order(id: :desc).page(params[:page]).decorate
-  end
-
-  def resource
-    @form_answer ||= FormAnswer.find(params[:id]).decorate
+    @form_answer = FormAnswer.find(params[:id]).decorate
   end
 end
