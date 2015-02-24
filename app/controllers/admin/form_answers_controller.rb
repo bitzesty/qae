@@ -29,6 +29,6 @@ class Admin::FormAnswersController < Admin::BaseController
   private
 
   def load_resource
-    @form_answer = FormAnswer.find(params[:id])
+    @form_answer = FormAnswer.find(params[:id]).decorate
   end
 end
