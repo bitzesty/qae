@@ -1,6 +1,21 @@
 @import "mixins";
 
 // Basic
+.page-header-nav {
+  margin-bottom: 0;
+  border-color: #333;
+
+  .btn-link {
+    padding-right: 0;
+    padding-left: 0;
+    color: #333;
+  }
+
+  .pull-right {
+    margin-top: 0.5em;
+  }
+}
+
 .table > thead > tr > th {
   vertical-align: middle;
 }
@@ -366,7 +381,7 @@ th.filter {
 
 // Sidebar
   .show-sidebar {
-    padding: 0 15px;
+    padding: 15px;
     background: #fff;
 
     h1,
@@ -406,6 +421,11 @@ th.filter {
 
       &:first-child {
         padding-top: 0;
+      }
+
+      &:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
       }
     }
   }
