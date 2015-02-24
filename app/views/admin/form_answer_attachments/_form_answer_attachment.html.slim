@@ -5,17 +5,10 @@ li.form_answer_attachment
       ' &nbsp;
       = form_answer_attachment.filename
   small.pull-right
-    = link_to [:admin, form_answer_attachment.form_answer, form_answer_attachment], target: '_blank'
-      span.glyphicon.glyphicon-eye-open
-      ' &nbsp;
-      ' View
-    ' &nbsp;
-
     - if policy(form_answer_attachment).destroy?
       = form_for(form_answer_attachment, url: admin_form_answer_form_answer_attachment_path(form_answer_attachment.form_answer, form_answer_attachment), html: {method: :delete, style: 'display:inline-block;'}) do |f|
         = f.submit 'Remove', class: 'if-js-hide'
 
         = link_to "#", class: "text-danger if-no-js-hide"
           span.glyphicon.glyphicon-remove
-          | &nbsp;
           ' Remove
