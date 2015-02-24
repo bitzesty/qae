@@ -148,9 +148,9 @@ window.FormValidation =
       @addErrorMessage(question, "Not a valid number")
 
   validateTotalOverseas: () ->
-    questions = $(".question-block[data-answer='overseas_sales-total-overseas-sales'] .question-group .conditional-question.show-question span.currency-input")
-    direct = $(".question-block[data-answer='overseas_sales_direct-of-which-direct'] .question-group .conditional-question.show-question span.currency-input")
-    indirect = $(".question-block[data-answer='overseas_sales_indirect-of-which-indirect'] .question-group .conditional-question.show-question span.currency-input")
+    questions = $(".question-block[data-answer='overseas_sales-total-overseas-sales'] .show-question .currency-input")
+    direct = $(".question-block[data-answer='overseas_sales_direct-of-which-direct'] .show-question .currency-input")
+    indirect = $(".question-block[data-answer='overseas_sales_indirect-of-which-indirect'] .show-question .currency-input")
 
     $(".question-block[data-answer='overseas_sales-total-overseas-sales']").removeClass("question-has-errors")
 
@@ -237,15 +237,17 @@ window.FormValidation =
     drop = false
     last_val = 0
 
-    question.find(".currency-input input").each () ->
-      if $(this).val()
-        value = parseFloat $(this).val()
+    $.each question.find(".currency-input input"), (index, el) ->
+      if $(el).val()
+        value = parseFloat $(el).val()
         if value < last_val
           drop = true
         last_val = value
 
     if drop
-      error_message = "Sorry, you are not eligible. You must have constant growth in overseas sales for the entire entry period to be eligible for a Queen's Award for Enterprise: International Trade."
+      error_message = "Sorry, you are not eligible. \
+      You must have constant growth in overseas sales for the entire entry period to be eligible \
+      for a Queen's Award for Enterprise: International Trade."
       @addErrorMessage(question, error_message)
       return
 
@@ -289,7 +291,8 @@ window.FormValidation =
         # console.log "validateBetweenDate"
         @validateBetweenDate(question)
 
-      if question.attr("data-answer") == 'overseas_sales-total-overseas-sales' && question.find("show-question")
+      if question.attr("data-answer") == 'overseas_sales-total-overseas-sales' &&
+         question.find(".show-question").length > 0
         # console.log "validateTotalOverseas"
         @validateTotalOverseas()
 

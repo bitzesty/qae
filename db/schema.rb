@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224115503) do
+ActiveRecord::Schema.define(version: 20150223123005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,13 +50,17 @@ ActiveRecord::Schema.define(version: 20150224115503) do
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "commentable_id",               null: false
-    t.string   "commentable_type", limit: 255, null: false
-    t.integer  "author_id",                    null: false
-    t.text     "body",                         null: false
+    t.integer  "commentable_id",   null: false
+    t.string   "commentable_type", null: false
+    t.integer  "author_id",        null: false
+    t.text     "body",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
 
   create_table "eligibilities", force: :cascade do |t|
     t.integer  "account_id"
@@ -84,10 +88,10 @@ ActiveRecord::Schema.define(version: 20150224115503) do
   add_index "form_answer_attachments", ["form_answer_id"], name: "index_form_answer_attachments_on_form_answer_id", using: :btree
 
   create_table "form_answer_transitions", force: :cascade do |t|
-    t.string   "to_state",       limit: 255,                null: false
-    t.text     "metadata",                   default: "{}"
-    t.integer  "sort_key",                                  null: false
-    t.integer  "form_answer_id",                            null: false
+    t.string   "to_state",                      null: false
+    t.text     "metadata",       default: "{}"
+    t.integer  "sort_key",                      null: false
+    t.integer  "form_answer_id",                null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -107,24 +111,12 @@ ActiveRecord::Schema.define(version: 20150224115503) do
     t.boolean  "submitted",                           default: false
     t.float    "fill_progress"
     t.boolean  "importance_flag",                     default: false
-    t.string   "state",                   limit: 255, default: "in_progress1", null: false
+    t.string   "state",                               default: "in_progress1", null: false
     t.string   "company_or_nominee_name"
-    t.integer  "current_award_year",                  default: 2014,           null: false
-    t.string   "nominee_full_name"
-    t.string   "user_full_name"
-    t.string   "award_type_full_name"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
-
-  create_table "pg_search_documents", force: :cascade do |t|
-    t.text     "content"
-    t.integer  "searchable_id"
-    t.string   "searchable_type"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
-  end
 
   create_table "support_letters", force: :cascade do |t|
     t.integer  "supporter_id"
@@ -137,12 +129,13 @@ ActiveRecord::Schema.define(version: 20150224115503) do
 
   create_table "supporters", force: :cascade do |t|
     t.integer  "form_answer_id"
-    t.string   "email",          limit: 255
-    t.string   "access_key",     limit: 255
+    t.string   "email"
+    t.string   "access_key"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  add_index "supporters", ["access_key"], name: "index_supporters_on_access_key", using: :btree
   add_index "supporters", ["form_answer_id"], name: "index_supporters_on_form_answer_id", using: :btree
 
   create_table "users", force: :cascade do |t|
@@ -177,7 +170,7 @@ ActiveRecord::Schema.define(version: 20150224115503) do
     t.integer  "account_id"
     t.string   "role",                       limit: 255
     t.boolean  "completed_registration",                 default: false
-    t.string   "confirmation_token",         limit: 255
+    t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
   end
