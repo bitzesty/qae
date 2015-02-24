@@ -86,64 +86,72 @@ describe QAEFormBuilder do
     expect(sample_invisible[:child].visible?).to be_falsey
   end
 
-  it 'should report visible depending on drop conditionals' do
-    sample = QAEFormBuilder.build 'test' do
-      step 'test_step', 'test step' do
-        options :grandparent, 'Grand' do
-          option '2 years', '2'
-          option '5 years', '5'
-        end
+  describe "Drop conditions" do
+    let(:sample) do
+      QAEFormBuilder.build 'test' do
+        step 'test_step', 'test step' do
+          options :grandparent, 'Grand' do
+            option '2 years', '2'
+            option '5 years', '5'
+          end
 
-        by_years :parent, 'Parent' do
-          by_year_condition :grandparent, '2', 2
-          by_year_condition :grandparent, '5', 5
-        end
+          by_years :parent, 'Parent' do
+            by_year_condition :grandparent, '2', 2
+            by_year_condition :grandparent, '5', 5
+            drop_conditional :child
+          end
 
-        text :child, 'Child' do
-          drop_conditional :parent
+          text :child, 'Child' do
+            drop_condition_parent
+          end
         end
       end
     end
 
-    sample2invisible = sample.decorate(answers: HashWithIndifferentAccess.new({
-      grandparent: '2',
-      parent_1of2: 1,
-      parent_2of2: 2,
-      parent_1of5: 5,
-      parent_2of5: 4,
-      parent_3of5: 3,
-      parent_4of5: 2,
-      parent_5of5: 1}))
-    sample2visible = sample.decorate(answers: HashWithIndifferentAccess.new({
-      grandparent: '2',
-      parent_1of2: 2,
-      parent_2of2: 1,
-      parent_1of5: 5,
-      parent_2of5: 4,
-      parent_3of5: 3,
-      parent_4of5: 2,
-      parent_5of5: 1}))
-    sample5invisible = sample.decorate(answers: HashWithIndifferentAccess.new({
-      grandparent: '5',
-      parent_1of2: 2,
-      parent_2of2: 1,
-      parent_1of5: 1,
-      parent_2of5: 2,
-      parent_3of5: 3,
-      parent_4of5: 4,
-      parent_5of5: 5}))
-    sample5visible = sample.decorate(answers: HashWithIndifferentAccess.new({
-      grandparent: '5',
-      parent_1of2: 2,
-      parent_2of2: 1,
-      parent_1of5: 1,
-      parent_2of5: 2,
-      parent_3of5: 3,
-      parent_4of5: 0,
-      parent_5of5: 5}))
-    expect(sample2invisible[:child].visible?).to be_falsey
-    expect(sample5invisible[:child].visible?).to be_falsey
-    expect(sample2visible[:child].visible?).to be_truthy
-    expect(sample5visible[:child].visible?).to be_truthy
+    let(:sample2visible) do
+      sample.decorate(answers: HashWithIndifferentAccess.new({
+        grandparent: '2',
+        parent_1of2: 2,
+        parent_2of2: 1
+      }))
+    end
+
+    let(:sample2invisible) do
+      sample.decorate(answers: HashWithIndifferentAccess.new({
+        grandparent: '2',
+        parent_1of2: 1,
+        parent_2of2: 2
+      }))
+    end
+
+    let(:sample5visible) do
+      sample.decorate(answers: HashWithIndifferentAccess.new({
+        grandparent: '5',
+        parent_1of5: 1,
+        parent_2of5: 2,
+        parent_3of5: 3,
+        parent_4of5: 0,
+        parent_5of5: 5
+      }))
+    end
+
+    let(:sample5invisible) do
+      sample.decorate(answers: HashWithIndifferentAccess.new({
+        grandparent: '5',
+        parent_1of5: 1,
+        parent_2of5: 2,
+        parent_3of5: 3,
+        parent_4of5: 4,
+        parent_5of5: 5
+      }))
+    end
+
+    it 'should report visible depending on drop conditionals' do
+      expect(sample2visible[:child].visible?).to be_truthy
+      expect(sample2invisible[:child].visible?).to be_falsey
+
+      expect(sample5visible[:child].visible?).to be_truthy
+      expect(sample5invisible[:child].visible?).to be_falsey
+    end
   end
 end
