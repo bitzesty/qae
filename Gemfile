@@ -31,8 +31,9 @@ gem 'rails-html-sanitizer'
 # JSON
 gem 'jbuilder', '~> 2.0'
 
-# User authentication
+# User authentication & authorization
 gem 'devise', '~> 3.4'
+gem 'pundit', '~> 0.3'
 
 # Pagenation
 gem 'kaminari', '~> 0.16'

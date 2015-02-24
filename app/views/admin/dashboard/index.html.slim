@@ -32,10 +32,11 @@
           ' &nbsp;
           ' Email actions
         ul.list-unstyled.list-actions
-          li
-            = link_to "Trigger notification to shortlisted", confirm_notify_shortlisted_admin_notifications_path, class: "btn btn-block btn-default"
-          li
-            = link_to "Trigger notification to non-shortlisted", confirm_notify_non_shortlisted_admin_notifications_path, class: "btn btn-block btn-default"
+          - if policy(:notification).create?
+            li
+              = link_to "Trigger notification to shortlisted", confirm_notify_shortlisted_admin_notifications_path, class: "btn btn-block btn-default"
+            li
+              = link_to "Trigger notification to non-shortlisted", confirm_notify_non_shortlisted_admin_notifications_path, class: "btn btn-block btn-default"
           li
             = link_to "Email assessors", "#", class: "btn btn-block btn-default"
       / TODO Email actions

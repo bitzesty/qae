@@ -1,4 +1,6 @@
 class Admin::NotificationsController < Admin::BaseController
+  before_action :authorize_notifications_creation
+
   def confirm_notify_shortlisted
     @confirmation = ActionConfirmationForm.new
   end
@@ -31,5 +33,11 @@ class Admin::NotificationsController < Admin::BaseController
     end
 
     redirect_to admin_dashboard_index_path
+  end
+
+  private
+
+  def authorize_notifications_creation
+    authorize :notifications, :create?
   end
 end

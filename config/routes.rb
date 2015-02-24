@@ -69,6 +69,8 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
     resources :users
+    resources :assessors
+    resources :admins
     resources :form_answers do
       resources :comments
       resources :form_answer_attachments, only: [:create, :show]

@@ -1,6 +1,7 @@
 class Admin::CommentsController < Admin::BaseController
   def new
     @comment = form_answer.comments.build
+    authorize @comment, :create?
 
     respond_to do |format|
       format.html{ render :new, layout: false}
@@ -9,6 +10,8 @@ class Admin::CommentsController < Admin::BaseController
 
   def create
     @comment = form_answer.comments.build(create_params)
+    authorize @comment, :create?
+
     @comment.save
 
     respond_to do |format|
@@ -20,9 +23,9 @@ class Admin::CommentsController < Admin::BaseController
 
   def destroy
     @comment = Comment.find(params[:id])
-    if @comment.author?(current_admin)
-      @comment.destroy
-    end
+    authorize @comment, :destroy?
+
+    @comment.destroy
 
     respond_to do |format|
       format.json{ render(json: :ok)}

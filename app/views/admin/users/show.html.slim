@@ -1,15 +1,15 @@
 header.page-header.group
   div
-    h1
-      ' Users
+    h1 = controller_name.humanize.capitalize
 
 
 .article-related-positioning-container
   .article-container
     article.group role="article"
       .inner
-        =' link_to 'Edit', edit_admin_user_path(@user)
-        = link_to 'Delete', admin_user_path(@user), data: { method: :delete, confirm: 'Are you sure?' }
-        dl
-          dt Email
-          dd = @user.email
+        - if policy(@resource).update?
+          =' link_to 'Edit', public_send("edit_admin_#{controller_name.singularize}_path", @resource)
+        - if policy(@resource).destroy?
+          = link_to 'Delete', public_send("admin_#{controller_name.singularize}_path", @resource), data: { method: :delete, confirm: 'Are you sure?' }
+
+        = render 'resource_attributes', resource: @resource.decorate

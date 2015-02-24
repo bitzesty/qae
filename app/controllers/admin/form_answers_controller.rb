@@ -3,17 +3,19 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
-
+    authorize :form_answer, :index?
     @search = FormAnswerSearch.new(FormAnswer.all).search(params[:search])
     @form_answers = @search.results.page(params[:page])
   end
 
   def withdraw
+    authorize :form_answer, :withdraw?
     @form_answer.toggle!(:withdrawn)
     redirect_to action: :index
   end
 
   def review
+    authorize :form_answer, :review?
     sign_in(@form_answer.user, bypass: true)
     session[:admin_in_read_only_mode] = true
 
@@ -21,6 +23,7 @@ class Admin::FormAnswersController < Admin::BaseController
   end
 
   def show
+    authorize :form_answer, :show?
   end
 
   helper_method :collection, :resource

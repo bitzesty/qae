@@ -4,8 +4,19 @@ FactoryGirl.define do
   end
 
   factory :admin do
-    password { 'strongpass' }
+    first_name "John"
+    last_name "Doe"
+    password { "strongpass" }
+    role "admin"
     email
     confirmed_at { Time.zone.now }
+
+    trait :lead_assessor do
+      role "lead_assessor"
+    end
+
+    trait :assessor do
+      role "assessor"
+    end
   end
 end
