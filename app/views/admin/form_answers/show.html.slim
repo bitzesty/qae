@@ -80,13 +80,13 @@
         - if Rails.env.development?
           span.pull-right.if-no-js-hide
             = link_to "Switch View", "#", class: "btn btn-xs btn-default js-switch-admin-view"
-      .applicant-view
+      .applicant-view.hidden
         .iframeholder data-src= review_admin_form_answer_path(resource)
           = link_to "#", class: 'if-no-js-hide js-expand-iframe'
             span.collapsed-show Expand
             span.expanded-show Close
         = link_to "Review application", review_admin_form_answer_path(resource), class: "if-js-hide"
-      .submitted-view.hidden
+      .submitted-view
         = render partial: "submitted_view"
     .col-sidebar
       .sidebar-header

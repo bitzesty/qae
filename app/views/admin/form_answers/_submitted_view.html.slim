@@ -10,7 +10,7 @@
       .panel-body
         / TODO Case Summary
         .form-group
-          .form-value.hide-if-no-js
+          .form-value
             p
               ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -32,12 +32,12 @@
       .panel-body
         / TODO Case Grading
         div role="tabpanel"
-          ul.nav.nav-tabs.pull-right role="tablist"
-            li.active role="presentation"
+          ul.nav.nav-tabs.submitted-tabs.pull-right role="tablist"
+            li.submitted-tabs-li.active role="presentation"
               a href="#primary-assessment" aria-controls="primary-assessment" role="tab" data-toggle="tab"
                 ' Primary Assessment
                 span.active-arrow
-            li role="presentation"
+            li.submitted-tabs-li role="presentation"
               a href="#secondary-assessment" aria-controls="secondary-assessment" role="tab" data-toggle="tab"
                 ' Secondary Assessment
                 span.active-arrow
@@ -45,11 +45,13 @@
 
           .tab-content
             .tab-pane.active#primary-assessment role="tabpanel"
+              h4.tab-header
+                ' Primary Assessment
               .form-group
                 label.form-label
                   ' Nature of activities:
                   span.glyphicon.glyphicon-positive
-                .form-value.hide-if-no-js
+                .form-value
                   p
                     ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
@@ -64,7 +66,7 @@
                 label.form-label
                   ' Impact/Achievement:
                   span.glyphicon.glyphicon-average
-                .form-value.hide-if-no-js
+                .form-value
                   p
                     ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
@@ -79,7 +81,7 @@
                 label.form-label
                   ' Nature of activities:
                   span.glyphicon.glyphicon-negative
-                .form-value.hide-if-no-js
+                .form-value
                   p
                     ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
@@ -91,11 +93,13 @@
                   ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
 
             .tab-pane#secondary-assessment role="tabpanel"
+              h4.tab-header
+                ' Secondary Assessment
               .form-group
                 label.form-label
                   ' Nature of activities:
                   span.glyphicon.glyphicon-positive
-                .form-value.hide-if-no-js
+                .form-value
                   p.empty-text No comment.
 
                   = link_to "#", class: "form-edit-link pull-right"
@@ -108,7 +112,7 @@
                 label.form-label
                   ' Impact/Achievement:
                   span.glyphicon.glyphicon-average
-                .form-value.hide-if-no-js
+                .form-value
                   p.empty-text No comment.
 
                   = link_to "#", class: "form-edit-link pull-right"
@@ -121,7 +125,7 @@
                 label.form-label
                   ' Nature of activities:
                   span.glyphicon.glyphicon-negative
-                .form-value.hide-if-no-js
+                .form-value
                   p.empty-text No comment.
 
                   = link_to "#", class: "form-edit-link pull-right"
@@ -154,30 +158,30 @@
               tr
                 th Year end date
                 td
-                  .form-value.hide-if-no-js
+                  .form-value
                     ' 28/08/2012
                   input.form-control type="text" value="28/08/2012"
                 td
-                  .form-value.hide-if-no-js
+                  .form-value
                     ' 28/08/2013
                   input.form-control type="text" value="28/08/2012"
                 td
-                  .form-value.hide-if-no-js
+                  .form-value
                     ' 28/08/2014
                   input.form-control type="text" value="28/08/2012"
               - ["Number of UK employees", "Overseas sales accepted (£)", "Total sales accepted (£)", "Net profit (£)", "Overseas sales net of imported costs (£)"].each do |category|
                 tr
                   th = category
                   td
-                    .form-value.hide-if-no-js
+                    .form-value
                       ' 100,000
                     input.form-control type="number" value="100000"
                   td
-                    .form-value.hide-if-no-js
+                    .form-value
                       ' 100,000
                     input.form-control type="number" value="100000"
                   td
-                    .form-value.hide-if-no-js
+                    .form-value
                       ' 100,000
                     input.form-control type="number" value="100000"
 
@@ -236,7 +240,7 @@
       .panel-body
         / TODO Press Summary
         .form-group
-          .form-value.hide-if-no-js
+          .form-value
             p
               ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
@@ -246,3 +250,6 @@
             .clear
           textarea.form-control rows=10
             ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+.text-right.if-js-hide
+  = link_to "Update", "#", class: "btn btn-primary"

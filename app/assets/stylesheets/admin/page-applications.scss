@@ -48,13 +48,18 @@
   margin-top: 20px;
 }
 
-.submitted-view {
-  .nav-tabs {
-    margin-bottom: 20px;
-    border-bottom: none;
-    font-size: 11px;
 
-    > li > a {
+.nav-tabs.submitted-tabs {
+  margin-bottom: 20px;
+  border-bottom: none;
+  font-size: 11px;
+
+  .no-js & {
+    display: none;
+  }
+
+  > li {
+    > a {
       margin: 0;
       margin-left: 5px;
 
@@ -71,31 +76,33 @@
         background: transparent;
         color: #666;
       }
+    }
 
-      .active-arrow {
-        display: none;
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        width: 8px;
-        height: 4px;
-        margin-bottom: -6px;
-        margin-left: -4px;
-        background-image: image-url("icon-arrow-tab.png");
-        background-size: 8px 4px;
+    .active-arrow {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 8px;
+      height: 4px;
+      margin-bottom: -6px;
+      margin-left: -4px;
+      background-image: image-url("icon-arrow-tab.png");
+      background-size: 8px 4px;
 
-        @include is-retina {
-          background-image: image-url("icon-arrow-tab@2.png");
-        }
+      @include is-retina {
+        background-image: image-url("icon-arrow-tab@2.png");
       }
     }
 
-    > li.active > a {
-      &,
-      &:hover,
-      &:focus {
-        border: 2px solid #666;
-        color: #666;
+    &.active {
+      > a {
+        &,
+        &:hover,
+        &:focus {
+          border: 2px solid #666;
+          color: #666;
+        }
       }
 
       .active-arrow {
@@ -103,12 +110,28 @@
       }
     }
   }
+}
 
-  .section-case-grading .form-label {
-    position: relative;
-    padding-right: 30px;
+.no-js .tab-content > .tab-pane {
+  display: block;
+  margin-bottom: 30px;
+  visibility: visible;
+
+  &:last-child {
+    margin-bottom: 0;
   }
+}
 
+.tab-header {
+  display: none;
+  margin-bottom: 15px;
+
+  .no-js & {
+    display: block;
+  }
+}
+
+.submitted-view {
   .glyphicon {
     position: absolute;
     top: 50%;
@@ -145,6 +168,13 @@
     }
   }
 
+  .no-js & {
+    .form-value,
+    .form-edit-link {
+      display: none;
+    }
+  }
+
   .js & {
     .form-group {
       padding-bottom: 10px;
@@ -176,7 +206,12 @@
   }
 }
 
-#financial-summary .form-group {
+.section-case-grading .form-label {
+  position: relative;
+  padding-right: 30px;
+}
+
+.section-financial-summary .form-group {
   margin-bottom: 30px;
   border-bottom: none;
 
