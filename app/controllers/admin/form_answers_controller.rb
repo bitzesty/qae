@@ -15,9 +15,9 @@ class Admin::FormAnswersController < Admin::BaseController
   end
 
   def review
+    authorize :form_answer, :review?
     sign_in(@form_answer.user, bypass: true)
     session[:admin_in_read_only_mode] = true
-    authorize :form_answer, :review?
 
     redirect_to edit_form_path(@form_answer, anchor: "company-information")
   end
