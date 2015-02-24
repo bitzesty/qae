@@ -4,7 +4,7 @@
     .col-md-3
       .form-group.search-input
         = text_field_tag :query, search_query, class: "form-control", placeholder: "Search...", type: "search"
-        input type="submit" name="commit" value="submit"
+        = submit_tag :submit
 
   br
 

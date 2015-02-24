@@ -65,6 +65,7 @@ class FormAnswer < ActiveRecord::Base
     before_save :build_supporters
     before_validation :check_eligibility, if: :submitted?
     before_save :assign_searching_attributes
+    before_create :set_user_full_name
   end
 
   store_accessor :document
@@ -175,6 +176,10 @@ class FormAnswer < ActiveRecord::Base
     self.company_or_nominee_name = company_or_nominee_from_document
     self.nominee_full_name       = nominee_full_name_from_document
     self.award_type_full_name    = AWARD_TYPE_FULL_NAMES[award_type]
+  end
+
+  def set_user_full_name
+    self.user_full_name ||= user.full_name if user.present?
   end
 
   class AwardEligibilityBuilder
