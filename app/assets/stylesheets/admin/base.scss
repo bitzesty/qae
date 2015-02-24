@@ -750,3 +750,60 @@ th.filter {
     font-size: 13px;
   }
 }
+
+// Collapsable panes
+.panel {
+  background-color: transparent;
+  box-shadow: none;
+
+  tbody {
+    border: 2px solid #333;
+
+    > tr > th {
+      border-right: 2px solid #333;
+    }
+  }
+}
+
+.panel-group .panel {
+  border: none;
+  border-radius: 0;
+}
+
+.panel-default > .panel-heading {
+  border: none;
+  border-radius: 0;
+  background-color: #dadad9;
+}
+
+.panel-title {
+  font-weight: bold;
+  text-transform: uppercase;
+
+  > a {
+    padding-left: 25px;
+    background-image: image-url("icon-arrow-collapse-down.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 12px 8px;
+    text-decoration: none;
+
+    @include is-retina {
+      background-image: image-url("icon-arrow-collapse-down@2.png");
+    }
+
+    .expanded & {
+      background-image: image-url("icon-arrow-collapse-up.png");
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-collapse-up@2.png");
+      }
+    }
+  }
+
+  .pull-right {
+    margin-top: 0.3em;
+    font-style: italic;
+    text-transform: none;
+  }
+}
