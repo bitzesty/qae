@@ -110,8 +110,8 @@ class QAEFormBuilder
         delegate_obj.context
       end
 
-      title = Nokogiri::HTML.parse(title).text.strip
-      "#{delegate_obj.ref} #{title}"
+      title = Nokogiri::HTML.parse(title).text
+      "#{delegate_obj.ref} #{title}".strip
     end
   end
 
