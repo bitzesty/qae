@@ -8,7 +8,6 @@ class Admin::FormAnswersController < Admin::BaseController
     @form_answers = @search.results.page(params[:page])
   end
 
-
   def show
     authorize @form_answer, :show?
   end
