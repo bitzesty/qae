@@ -19,4 +19,16 @@ describe 'Form answer attachments management', %q{
     click_button 'Attach Document'
     expect(page).to have_selector('.form_answer_attachment', count: 1)
   end
+
+  context "with existing attachment" do
+    before do
+      form_answer.form_answer_attachments.create
+      visit admin_form_answer_path(form_answer)
+    end
+
+    it "destroys the attachment" do
+      click_button "Remove"
+      expect(page).to have_content("No documents")
+    end
+  end
 end

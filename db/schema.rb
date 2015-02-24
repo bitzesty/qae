@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223115842) do
+ActiveRecord::Schema.define(version: 20150224115503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,8 @@ ActiveRecord::Schema.define(version: 20150223115842) do
     t.text     "original_filename"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
   end
 
   add_index "form_answer_attachments", ["form_answer_id"], name: "index_form_answer_attachments_on_form_answer_id", using: :btree
@@ -105,12 +107,24 @@ ActiveRecord::Schema.define(version: 20150223115842) do
     t.boolean  "submitted",                           default: false
     t.float    "fill_progress"
     t.boolean  "importance_flag",                     default: false
-    t.string   "state",                               default: "in_progress1", null: false
+    t.string   "state",                   limit: 255, default: "in_progress1", null: false
     t.string   "company_or_nominee_name"
+    t.integer  "current_award_year",                  default: 2014,           null: false
+    t.string   "nominee_full_name"
+    t.string   "user_full_name"
+    t.string   "award_type_full_name"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
+
+  create_table "pg_search_documents", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "searchable_id"
+    t.string   "searchable_type"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
 
   create_table "support_letters", force: :cascade do |t|
     t.integer  "supporter_id"
@@ -160,9 +174,9 @@ ActiveRecord::Schema.define(version: 20150223115842) do
     t.boolean  "subscribed_to_emails",                   default: false
     t.string   "qae_info_source",            limit: 255
     t.string   "qae_info_source_other",      limit: 255
-    t.boolean  "completed_registration",                 default: false
     t.integer  "account_id"
     t.string   "role",                       limit: 255
+    t.boolean  "completed_registration",                 default: false
     t.string   "confirmation_token",         limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"

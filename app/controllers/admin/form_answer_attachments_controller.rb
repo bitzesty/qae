@@ -3,6 +3,8 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
     @form_answer_attachment = form_answer.form_answer_attachments.build(create_params)
     authorize @form_answer_attachment, :create?
 
+    @form_answer_attachment.attachable = current_admin
+
     if @form_answer_attachment.save
       respond_to do |format|
         format.html do
@@ -19,6 +21,21 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
   def show
     authorize resource, :show?
     send_data resource.file.read, filename: resource.filename, disposition: 'inline'
+  end
+
+  def destroy
+    authorize resource, :destroy?
+    resource.destroy
+
+    respond_to do |format|
+      format.html do
+        if request.xhr?
+          render nothing: true
+        else
+          redirect_to admin_form_answer_path(form_answer)
+        end
+      end
+    end
   end
 
   private
