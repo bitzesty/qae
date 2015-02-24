@@ -92,8 +92,9 @@
                 td = obj.award_type
                 td = obj.progress_text
                 td
-                  = link_to [:admin, obj]
-                    = application_comments(obj)
+                  - if obj.comments.any?
+                    = link_to [:admin, obj]
+                      = application_comments(obj)
                 td = application_flags(obj)
 
   .row

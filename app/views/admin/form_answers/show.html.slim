@@ -90,7 +90,6 @@
         = render partial: "submitted_view"
     .col-sidebar
       .sidebar-header
-
         = link_to toggle_admin_form_answer_flags_path(@form_answer), class: "link-flag", remote: true
           span.icon-text Flag:
           = application_flags(@form_answer)

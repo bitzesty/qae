@@ -11,10 +11,13 @@ module FormAnswerHelper
   end
 
   def application_comments(form_answer)
-    output = ""
+    output = "<span class='icon-comment'>Comments: <span class='comment-count'>"
     if form_answer.comments.any?
-      output += "<span class='icon-comment'>Comments: <span class='comment-count'>#{form_answer.comments.size}</span></span>"
+      output += "#{form_answer.comments.size}"
+    else
+      output += "0"
     end
+    output += "</span></span>";
     output.html_safe
   end
 
