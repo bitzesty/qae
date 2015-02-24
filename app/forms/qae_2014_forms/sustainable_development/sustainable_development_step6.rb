@@ -1,7 +1,7 @@
 class QAE2014Forms
   class << self
-    def trade_step6
-      @trade_step6 ||= proc do
+    def development_step6
+      @development_step6 ||= proc do
         header :head_of_bussines_header, "Head of your organisation" do
           ref "F 1"
         end
@@ -76,6 +76,9 @@ class QAE2014Forms
             <p>If you have answered all the questions, you can submit your application now. You will be able to edit it any time before 23:59 on the last working day of September.</p>
             <p>
               If you are not ready to submit yet, you can save your application and come back later.
+            </p>
+            <p>
+              You can still edit your submitted application at any time before 23:59 on the last working day of September.
             </p>
                     )
           style "large"

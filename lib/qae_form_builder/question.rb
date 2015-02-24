@@ -63,7 +63,14 @@ class QAEFormBuilder
     end
 
     def has_drops?
-      false
+      if delegate_obj.drop_condition_parent.present?
+        step.questions.select do |q|
+          q.drop_condition.present? && 
+          q.drop_condition == key
+        end.any? do |q|
+          q.has_drops?
+        end
+      end
     end
 
     def required?
@@ -71,7 +78,7 @@ class QAEFormBuilder
     end
 
     def visible?
-      dc = delegate_obj.drop_condition
+      dc = delegate_obj.drop_condition_parent
       delegate_obj.conditions.
         all?{|condition|
           question_value = condition.question_value
@@ -83,7 +90,7 @@ class QAEFormBuilder
             parent_question_answer == question_value.to_s
           end
         } &&
-      (!dc || step.form[dc].has_drops?)
+      (!dc || (dc.present? && has_drops?))
     end
 
     def required_visible?
@@ -98,13 +105,13 @@ class QAEFormBuilder
 
     def escaped_title
       title = if delegate_obj.title.present? 
-        delegate_obj.title.capitalize 
-      else 
+        delegate_obj.title
+      else
         delegate_obj.context
       end
 
-      title = Nokogiri::HTML.parse(title).text.strip
-      "#{delegate_obj.ref} #{title}"
+      title = Nokogiri::HTML.parse(title).text
+      "#{delegate_obj.ref} #{title}".strip
     end
   end
 
@@ -141,6 +148,10 @@ class QAEFormBuilder
       @q.drop_condition = key.to_s.to_sym
     end
 
+    def drop_condition_parent
+      @q.drop_condition_parent = true
+    end
+
     def header header
       @q.header = header
     end
@@ -156,7 +167,7 @@ class QAEFormBuilder
 
   class Question
     attr_accessor :step, :key,  :title, :context, :opts,
-      :required, :help, :ref, :conditions, :header, :header_context, :classes, :drop_condition
+      :required, :help, :ref, :conditions, :header, :header_context, :classes, :drop_condition, :drop_condition_parent
 
     def initialize step, key, title, opts={}
       @step = step

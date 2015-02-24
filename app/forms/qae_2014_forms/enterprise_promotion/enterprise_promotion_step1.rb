@@ -1,73 +1,72 @@
 class QAE2014Forms
   class << self
     def promotion_step1
-      @promotion_step1 ||= Proc.new {
-        dropdown :nominee_title, 'Title' do
+      @promotion_step1 ||= proc do
+        dropdown :nominee_title, "Title" do
           required
-          ref 'A 1'
-          option 'prof', 'Prof'
-          option 'dr', 'Dr'
-          option 'mr', 'Mr'
-          option 'mrs', 'Mrs'
-          option 'miss', 'Miss'
-          option 'other', 'Other'
+          ref "A 1"
+          option "prof", "Prof"
+          option "dr", "Dr"
+          option "mr", "Mr"
+          option "mrs", "Mrs"
+          option "miss", "Miss"
+          option "other", "Other"
         end
 
-        text :nominee_title_other, 'Please specify' do
+        text :nominee_title_other, "Please specify" do
           classes "sub-question"
-          conditional :title, 'other'
+          conditional :title, "other"
         end
 
-        text :nominee_first_name, 'First name' do
+        text :nominee_first_name, "First name" do
           required
         end
 
-        text :nominee_last_name, 'Surname' do
+        text :nominee_last_name, "Surname" do
           required
         end
 
-        text :nominee_former_name, 'Former name, or any other name known by' do
+        text :nominee_former_name, "Former name, or any other name known by" do
           required
           context "<p>e.g. maiden name</p>"
         end
 
-        address :nominee_personal_address, 'Personal address' do
+        address :nominee_personal_address, "Personal address" do
           required
-          ref 'A 1.1'
+          ref "A 1.1"
         end
 
-        text :nominee_phone, 'Telephone number' do
+        text :nominee_phone, "Telephone number" do
           required
-          ref 'A 1.2'
+          ref "A 1.2"
           style "small"
         end
 
-        text :nominee_email, 'Email address' do
+        text :nominee_email, "Email address" do
           required
-          ref 'A 1.3'
+          ref "A 1.3"
         end
 
-
-        date :nominee_date_of_birth, 'Date of birth' do
+        date :nominee_date_of_birth, "Date of birth" do
           required
-          ref 'A 1.3'
+          ref "A 1.3"
         end
 
-        options :nominee_nationality, 'Nationality' do
+        options :nominee_nationality, "Nationality" do
           required
-          ref 'A 1.4'
-          option 'british', 'British'
-          option 'other', 'Other'
+          ref "A 1.4"
+          option "british", "British"
+          option "other", "Other"
         end
 
-        text :nominee_nationality_other, 'Please specify' do
+        text :nominee_nationality_other, "Please specify" do
           classes "sub-question"
-          conditional :nominee_nationality, 'other'
+          conditional :nominee_nationality, "other"
         end
 
         options :award_holder, "Does the nominee currently hold any Awards/Honours?" do
           required
-          ref 'A 2'
+          ref "A 2"
           yes_no
         end
 
@@ -81,7 +80,7 @@ class QAE2014Forms
 
         options :nominated_for_award, "Is the nominee currently being nominated for another award/honor?" do
           required
-          ref 'A 2.1'
+          ref "A 2.1"
           yes_no
         end
 
@@ -93,27 +92,27 @@ class QAE2014Forms
           conditional :nominated_for_award, :yes
         end
 
-        header :organization_info, 'Organisation for which the nominee works' do
-          ref 'A 3'
+        header :organization_info, "Organisation for which the nominee works" do
+          ref "A 3"
         end
 
-        text :organization_name, 'Name' do
+        text :organization_name, "Name" do
           required
         end
 
-        address :organization_address, '' do
+        address :organization_address, "" do
           required
         end
 
-        text :website, 'Website URL' do
-          ref 'A 3.1'
+        text :website, "Website URL" do
+          ref "A 3.1"
         end
 
         text :nominee_position, "Nominee's position at the organisation" do
           required
-          ref 'A 3.2'
+          ref "A 3.2"
         end
-      }
+      end
     end
   end
 end

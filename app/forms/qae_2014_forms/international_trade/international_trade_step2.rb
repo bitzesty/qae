@@ -2,37 +2,37 @@
 class QAE2014Forms
   class << self
     def trade_step2
-      @trade_step2 ||= Proc.new {
-        context %Q{
+      @trade_step2 ||= proc do
+        context %(
           <p>Please try to avoid using technical jargon in this section. </p>
-        }
+                )
 
-        textarea :trade_desc_whole, 'Describe your business as a whole' do
-          ref 'B 1'
+        textarea :trade_desc_whole, "Describe your business as a whole" do
+          ref "B 1"
           required
-          context %Q{
+          context %(
             <p>Include a brief history, your overall growth strategy, corporate targets/direction/vision, and a full description of the products/services you export.</p>
-          }
+                    )
           rows 5
           words_max 500
         end
 
-        options :trade_goods_amount, 'How many types of goods/services make up your international trade?' do
-          ref 'B 2'
+        options :trade_goods_amount, "How many types of goods/services make up your international trade?" do
+          ref "B 2"
           required
-          option '1', '1'
-          option '2', '2'
-          option '3', '3'
-          option '4', '4'
-          option '5', '5'
+          option "1", "1"
+          option "2", "2"
+          option "3", "3"
+          option "4", "4"
+          option "5", "5"
         end
 
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, 'Briefly describe each type of good/service you trade.' do
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Briefly describe each type of good/service you trade." do
           classes "sub-question"
           required
-          context %Q{
+          context %(
             <p>If relevant, give details of material used or end use. e.g. 'design and manufacture of bespoke steel windows and doors'.</p>
-          }
+                    )
           rows 2
           words_max 15
           min 0
@@ -40,10 +40,10 @@ class QAE2014Forms
           conditional :trade_goods_amount, :true
         end
 
-        textarea :trade_plans_desc, 'Describe your international and domestic trading strategies (plans), their vision/objectives for the future, their method of implementation, and how your actual performance compared to the plans set out.' do
-          ref 'B 3'
+        textarea :trade_plans_desc, "Describe your international and domestic trading strategies (plans), their vision/objectives for the future, their method of implementation, and how your actual performance compared to the plans set out." do
+          ref "B 3"
           required
-          context %Q{
+          context %{
             <p>Include, for example, comparisons between domestic and international strategies, treatment of different markets (linking to top performing markets), market research, market development, routes to market, after sales and technical advice, staff language training, export practices, overseas distributors, inward/outward trade missions, trade fairs and visits to existing/potential markets. Make sure you explain how your actual performance compares to your planned performance.</p>
           }
           rows 5
@@ -54,11 +54,11 @@ class QAE2014Forms
         end
 
         textarea :markets_geo_spread, "Describe the geographical spread of your overseas markets." do
-          ref 'B 4'
+          ref "B 4"
           required
-          context %Q{
+          context %(
             <p>Include evidence of how you segment and manage geographical regions. Please supply market share information.</p>
-          }
+                    )
           rows 5
           words_max 500
         end
@@ -78,12 +78,12 @@ class QAE2014Forms
         end
 
         textarea :trade_factors, "Describe any special challenges affecting your trade in goods or services, and how you overcame them." do
-          ref 'B 5'
+          ref "B 5"
           required
           rows 5
           words_max 200
         end
-      }
+      end
     end
   end
 end

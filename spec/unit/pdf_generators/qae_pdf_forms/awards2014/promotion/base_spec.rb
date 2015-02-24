@@ -1,16 +1,16 @@
 require 'rails_helper'
 
-describe "QaePdfForms::Awards2014::Innovation::Base" do
+describe "QaePdfForms::Awards2014::Promotion::Base" do
   include_context "pdf file checks"
 
   let(:step1_question_answers) {
     {
-      company_name: "Bitzesty",
-      registration_number: '123'
+      nominee_first_name: "Genry",
+      nominee_last_name: "Greenfield"
     }
   }
 
-  let(:award_type) { :innovation }
+  let(:award_type) { :promotion }
 
   let(:form_answer) do
     FactoryGirl.create :form_answer, :submitted, award_type,

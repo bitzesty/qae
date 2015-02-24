@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe "QaePdfForms::Awards2014::Innovation::Base" do
+describe "QaePdfForms::Awards2014::Trade::Base" do
   include_context "pdf file checks"
 
   let(:step1_question_answers) {
@@ -10,7 +10,7 @@ describe "QaePdfForms::Awards2014::Innovation::Base" do
     }
   }
 
-  let(:award_type) { :innovation }
+  let(:award_type) { :trade }
 
   let(:form_answer) do
     FactoryGirl.create :form_answer, :submitted, award_type,
