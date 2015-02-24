@@ -7,4 +7,8 @@ class FormAnswerAttachment < ActiveRecord::Base
   def filename
     read_attribute(:file)
   end
+
+  def created_by_admin?
+    attachable.blank? || attachable.try(:admin?)
+  end
 end

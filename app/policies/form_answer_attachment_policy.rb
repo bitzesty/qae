@@ -8,6 +8,6 @@ class FormAnswerAttachmentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.attachable.blank? || record.attachable_type == 'Admin'
+    record.created_by_admin?
   end
 end
