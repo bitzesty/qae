@@ -171,9 +171,21 @@ class QAEFormBuilder
   QuestionHelp = Struct.new(:title, :text)
 
   class Question
-    attr_accessor :step, :key,  :title, :context, :opts,
-      :required, :help, :ref, :conditions, :header, :header_context,
-      :classes, :drop_condition, :drop_condition_parent, :drop_block_condition
+    attr_accessor :step,
+                  :key,
+                  :title,
+                  :context,
+                  :opts,
+                  :required,
+                  :help,
+                  :ref,
+                  :conditions,
+                  :header,
+                  :header_context,
+                  :classes,
+                  :drop_condition,
+                  :drop_condition_parent,
+                  :drop_block_condition
 
     def initialize step, key, title, opts={}
       @step = step
