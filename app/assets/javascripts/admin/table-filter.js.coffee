@@ -6,7 +6,7 @@ filterTableDropdowns = () ->
   $("th.filter .dropdown-menu").each () ->
     selected_count = 0
     if document.URL.indexOf('?') > -1
-      $(this).closest(".dropdown").find(".text-filter").text("None selected ")
+      $(this).closest(".dropdown").find(".text-filter").text("None selected")
     $(this).find("li label").each () ->
       # Individual checkboxes
       selected_label = $(this).attr("data-value")
@@ -16,9 +16,9 @@ filterTableDropdowns = () ->
           selected_count+=1
           $(this).find("input").attr('checked', 'checked')
           if selected_count == 1
-            $(this).closest(".dropdown").find(".text-filter").text($(this).text()+" ")
+            $(this).closest(".dropdown").find(".text-filter").text($(this).text())
           else
-            $(this).closest(".dropdown").find(".text-filter").text(selected_count+" selected ")
+            $(this).closest(".dropdown").find(".text-filter").text(selected_count+" selected")
 
     # Select all checkboxes
     all_selected = true
@@ -28,7 +28,7 @@ filterTableDropdowns = () ->
         all_selected = false
     if all_selected
       $(this).find("label[data-value='select_all'] input").attr('checked', 'checked')
-      $(this).closest(".dropdown").find(".text-filter").text("All ")
+      $(this).closest(".dropdown").find(".text-filter").text("All")
 
   # On clicking the dropbox filters
   $(document).on "click", "th.filter .dropdown-menu li label", () ->

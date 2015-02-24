@@ -1,6 +1,10 @@
 @import "mixins";
 
 // Basic
+.table > thead > tr > th {
+  vertical-align: middle;
+}
+
   .clear {
     clear: both;
   }
@@ -261,62 +265,85 @@
   }
 
 // Sortable Tables
-  th.sortable {
-    a {
-      padding-right: 16px;
-      color: #333;
-      background-repeat: no-repeat;
-      background-position: right center;
-      background-size: 10px 6px;
+th.sortable {
+  a {
+    padding-right: 16px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 10px 6px;
+    color: #333;
+
+    &:hover {
+      background-image: image-url("icon-arrow-sort-down-grey.png");
+      text-decoration: none;
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-sort-down-grey@2.png");
+      }
+    }
+
+    &.ordered {
+      background-image: image-url("icon-arrow-sort-down.png");
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-sort-down@2.png");
+      }
 
       &:hover {
-        background-image: image-url("icon-arrow-sort-down-grey.png");
+        background-image: image-url("icon-arrow-sort-up-grey.png");
 
         @include is-retina {
-          background-image: image-url("icon-arrow-sort-down-grey@2.png");
+          background-image: image-url("icon-arrow-sort-up-grey@2.png");
         }
       }
 
-      &.ordered {
-        background-image: image-url("icon-arrow-sort-down.png");
+      &.ordered-desc {
+        background-image: image-url("icon-arrow-sort-up.png");
 
         @include is-retina {
-          background-image: image-url("icon-arrow-sort-down@2.png");
+          background-image: image-url("icon-arrow-sort-up@2.png");
         }
 
         &:hover {
-          background-image: image-url("icon-arrow-sort-up-grey.png");
+          background-image: image-url("icon-arrow-sort-down-grey.png");
 
           @include is-retina {
-            background-image: image-url("icon-arrow-sort-up-grey@2.png");
-          }
-        }
-
-        &.ordered-desc {
-          background-image: image-url("icon-arrow-sort-up.png");
-
-          @include is-retina {
-            background-image: image-url("icon-arrow-sort-up@2.png");
-          }
-
-          &:hover {
-            background-image: image-url("icon-arrow-sort-down-grey.png");
-
-            @include is-retina {
-              background-image: image-url("icon-arrow-sort-down-grey@2.png");
-            }
+            background-image: image-url("icon-arrow-sort-down-grey@2.png");
           }
         }
       }
     }
   }
+}
 
 // Filterable Dropdowns
-  th.filter .dropdown-menu li {
-    margin: 0;
+th.filter {
+  .dropdown-toggle {
+    padding: 4px 10px;
+    color: #999;
+    font-size: inherit;
 
-    &.divider {
-      margin: 5px 0;
+    .text-filter,
+    .caret {
+      color: #333;
+    }
+
+    .text-filter {
+      font-weight: bold;
+    }
+
+    .caret {
+      margin-left: 5px;
+    }
+  }
+
+  .dropdown-menu {
+    li {
+      margin: 0;
+
+      &.divider {
+        margin: 5px 0;
+      }
     }
 
     label {
@@ -334,6 +361,7 @@
       font-size: 0.95em;
     }
   }
+}
 
 // Sidebar
   .show-sidebar {

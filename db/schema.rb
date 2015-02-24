@@ -167,6 +167,7 @@ ActiveRecord::Schema.define(version: 20150223123005) do
     t.boolean  "subscribed_to_emails",                   default: false
     t.string   "qae_info_source",            limit: 255
     t.string   "qae_info_source_other",      limit: 255
+    t.boolean  "completed_registration",                 default: false
     t.integer  "account_id"
     t.string   "role",                       limit: 255
     t.boolean  "completed_registration",                 default: false

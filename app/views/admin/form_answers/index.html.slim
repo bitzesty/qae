@@ -13,7 +13,8 @@
       table.table.applications-table
         thead
           tr
-            th.sortable colspan=2
+            th &nbsp;
+            th.sortable
               = sort_link f, 'Company/Nominee', @search, :company_or_nominee_name
             th.sortable
               = sort_link f, 'Reference', @search, :urn
@@ -22,7 +23,7 @@
                 = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
               / TODO do category filter dropdown
               .dropdown.if-no-js-hide
-                button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
                   ' Category:
                   span.text-filter
                     ' All
@@ -43,7 +44,7 @@
               = f.simple_fields_for [:filters, @search.filters] do |f|
                 = f.input :status, collection: FormAnswerStatusFiltering.collection, label: false, input_html: { multiple: true, class: 'if-js-hide'}
               .dropdown.if-no-js-hide
-                button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
                   ' Status:
                   span.text-filter
                     ' All

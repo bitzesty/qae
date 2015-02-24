@@ -13,7 +13,7 @@
             = f.simple_fields_for [:filters, @search.filters] do |f|
               = f.input :role, collection: User.role.options, label: false, input_html: {multiple: true, class: 'if-js-hide'}
             .dropdown.if-no-js-hide
-              button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+              button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
                 ' Role:
                 span.text-filter
                   ' All
@@ -32,7 +32,7 @@
           th.filter
             / TODO do category filter dropdown
             .dropdown.if-no-js-hide
-              button.btn.btn-default.btn-sm.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+              button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
                 ' Category:
                 span.text-filter
                   ' All
