@@ -32,6 +32,10 @@ class FormAnswerDecorator < ApplicationDecorator
     company_or_nominee_name
   end
 
+  def progress_class
+    "#{object.state.dasherize[0..-2]}"
+  end
+
   def progress_text
     "#{object.state.humanize[0..-2]}...#{fill_progress_in_percents}"
   end
