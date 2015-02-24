@@ -12,19 +12,19 @@ class QAE2014Forms
           option '3 to 5', 'Outstanding growth over the last 3 years'
           option '6 plus', 'Continuous growth over the last 6 years'
           placeholder_preselected_condition :queen_award_holder_details, {
-            question_suffix: :category, 
-            parent_question_answer_key: "international_trade_3", 
-            answer_key: "international_trade_6", 
-            question_value: "6 plus", 
+            question_suffix: :category,
+            parent_question_answer_key: "international_trade_3",
+            answer_key: "international_trade_6",
+            question_value: "6 plus",
             placeholder_text: %Q{
               As you currently hold a Queen's Award for Continuous Achievement in International Trade (3 years), you can only apply for the Outstanding Achievement Award (6 years).
             }
           }
           placeholder_preselected_condition :queen_award_holder_details, {
             question_suffix: :category,
-            parent_question_answer_key: "international_trade_6", 
-            answer_key: "international_trade_3", 
-            question_value: "3 to 5", 
+            parent_question_answer_key: "international_trade_6",
+            answer_key: "international_trade_3",
+            question_value: "3 to 5",
             placeholder_text: %Q{
               As you currently hold a Queen's Award for Continuous Achievement in International Trade (6 years), you can only apply for the Outstanding Achievement Award (3 years).
             }
@@ -50,8 +50,8 @@ class QAE2014Forms
           required
           type :date
           label ->(y){"Financial year #{y}"}
-          by_year_condition :trade_commercial_success, '3 to 5', 3 
-          by_year_condition :trade_commercial_success, '6 plus', 6 
+          by_year_condition :trade_commercial_success, '3 to 5', 3
+          by_year_condition :trade_commercial_success, '6 plus', 6
           conditional :trade_commercial_success, :true
           conditional :financial_year_date_changed, 'yes'
         end
@@ -207,7 +207,7 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        by_years :net_profit, 'Net profit after tax but before dividends' do 
+        by_years :net_profit, 'Net profit after tax but before dividends' do
           classes "sub-question"
           required
           type :money
@@ -237,7 +237,7 @@ class QAE2014Forms
           conditional :trade_commercial_success, :true
         end
 
-        by_years :total_imported_cost, 'Total cost of the products/services/components imported for resale overseas' do 
+        by_years :total_imported_cost, 'Total cost of the products/services/components imported for resale overseas' do
           classes "sub-question"
           required
           type :money
@@ -271,7 +271,7 @@ class QAE2014Forms
           yes_no
         end
 
-        by_years :overseas_yearly_percentage, 'Indicate the yearly percentage of your goods produced overseas.' do 
+        by_years :overseas_yearly_percentage, 'Indicate the yearly percentage of your goods produced overseas.' do
           classes "sub-question"
           required
           type :percent

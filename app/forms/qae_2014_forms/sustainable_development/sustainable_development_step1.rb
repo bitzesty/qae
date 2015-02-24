@@ -13,7 +13,7 @@ class QAE2014Forms
           context %Q{
             <div class="application-notice help-notice">
               <p>
-                Where the form refers to your organisation, 
+                Where the form refers to your organisation,
                 please enter the details of your division, branch or subsidiary.
               </p>
             </div>
@@ -34,7 +34,7 @@ class QAE2014Forms
           ref 'A 3'
           context %Q{
             <p>
-              We recommend that you apply as a principal. 
+              We recommend that you apply as a principal.
               A principal invoices its customers (or their buying agents) and is the body to receive those payments.
             </p>
           }
@@ -54,7 +54,7 @@ class QAE2014Forms
           ref 'A 4'
           context %Q{
             <p>
-              If you don't have a Company/Charity Registration Number please enter 'N/A'. 
+              If you don't have a Company/Charity Registration Number please enter 'N/A'.
               If you're an unregistered subsidiary, please enter your parent company's number.
             </p>
           }
@@ -143,7 +143,7 @@ class QAE2014Forms
           words_max 300
         end
 
-        options :external_contribute_to_sustainable_product, 
+        options :external_contribute_to_sustainable_product,
                 "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
           ref 'A 8'
           required
@@ -155,7 +155,7 @@ class QAE2014Forms
           yes_no
         end
 
-        options :external_are_aware_about_award, 
+        options :external_are_aware_about_award,
                 "Are they aware that you're applying for this award?" do
           required
           option 'yes', "Yes, they are aware"
@@ -176,13 +176,13 @@ class QAE2014Forms
           conditional :external_are_aware_about_award, 'some'
         end
 
-        options :part_of_joint_entry, 
+        options :part_of_joint_entry,
                 "Is this application part of a joint entry with any of the contributing organisation(s)?" do
           required
           context %Q{
             <p>
-              If you two or more organisations made a significant contribution to the product/service/management approach, 
-              and achieved commercial success, then you should make a joint entry. 
+              If you two or more organisations made a significant contribution to the product/service/management approach,
+              and achieved commercial success, then you should make a joint entry.
               Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           }
@@ -240,7 +240,7 @@ class QAE2014Forms
           required
           classes "regular-question"
           conditional :applying_for, 'division branch subsidiary'
-        end        
+        end
 
         options :parent_ultimate_control, 'Does your immediate parent company have ultimate control?' do
           required

@@ -9,12 +9,12 @@ module QaePdfForms::CustomQuestions::ByYear
 
   def render_years_labels_table
     rows = financial_year_changed_dates_entries
-    rows.map do |e| 
+    rows.map do |e|
       e[1] = to_month(e[1])
     end
 
     rows.push(latest_year_label)
-    active_fields.length.times do |i| 
+    active_fields.length.times do |i|
       rows[i].unshift(i + 1)
     end
 
@@ -31,7 +31,7 @@ module QaePdfForms::CustomQuestions::ByYear
   end
 
   def financial_years_decorated_headers
-    headers = financial_year_changed_dates_entries.map do |entry| 
+    headers = financial_year_changed_dates_entries.map do |entry|
       decorated_label(entry)
     end
 

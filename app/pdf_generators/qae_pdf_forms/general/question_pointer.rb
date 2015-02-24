@@ -48,7 +48,7 @@ class QaePdfForms::General::QuestionPointer
       sub_answer = form_pdf.fetch_answer_by_key("#{key}_#{sub_field_key}")
 
       res << [
-        sub_field[sub_field_key], 
+        sub_field[sub_field_key],
         sub_answer ? form_pdf.answer_based_on_type(sub_field_key, sub_answer) : FormPdf::UNDEFINED_TITLE
       ]
     end
@@ -86,10 +86,10 @@ class QaePdfForms::General::QuestionPointer
     if humanized_answer.present?
       rows = humanized_answer.map do |item|
         prepared_item = JSON.parse(item)
-        
+
         if prepared_item['category'].present? && prepared_item['year'].present?
           [
-            prepared_item['category'], 
+            prepared_item['category'],
             prepared_item['year']
           ]
         end
@@ -103,7 +103,7 @@ class QaePdfForms::General::QuestionPointer
 
   def render_attachments
     if humanized_answer.present?
-      humanized_answer.each do |k, v| 
+      humanized_answer.each do |k, v|
         attachment_by_type(k, v)
       end
     else
@@ -193,7 +193,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def question_option_title
-    question.options.select do |option| 
+    question.options.select do |option|
       option.value.to_s == humanized_answer.to_s
     end.first.text
   end

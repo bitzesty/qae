@@ -75,7 +75,7 @@ describe QAEFormBuilder do
         end
 
         text :child, 'Child' do
-          conditional :parent, 'yes' 
+          conditional :parent, 'yes'
         end
       end
     end

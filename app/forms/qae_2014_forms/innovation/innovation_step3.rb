@@ -32,8 +32,8 @@ class QAE2014Forms
           required
           type :date
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :yes
         end
@@ -53,8 +53,8 @@ class QAE2014Forms
           }
           type :number
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
@@ -94,52 +94,52 @@ class QAE2014Forms
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
-        by_years :exports, 'Of which exports' do 
+        by_years :exports, 'Of which exports' do
           classes "sub-question"
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
-        by_years :net_profit, 'Net profit after tax but before dividends' do 
+        by_years :net_profit, 'Net profit after tax but before dividends' do
           classes "sub-question"
           required
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
-        by_years :total_net_assets, 'Total net assets' do 
+        by_years :total_net_assets, 'Total net assets' do
           classes "sub-question total-net-assets"
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
 
           type :money
           label ->(y){"As at the end of year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -181,15 +181,15 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
- 
+
         by_years :units_sold, 'Number of innovative units/contracts sold' do
           classes "sub-question"
           required
 
           type :number
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -197,14 +197,14 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales, 'Sales of your innovative product/service' do 
+        by_years :sales, 'Sales of your innovative product/service' do
           classes "sub-question"
           required
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -219,8 +219,8 @@ class QAE2014Forms
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -235,8 +235,8 @@ class QAE2014Forms
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -253,14 +253,14 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        by_years :avg_unit_price, 'Average unit selling price/contract value' do 
+        by_years :avg_unit_price, 'Average unit selling price/contract value' do
           classes "sub-question"
           required
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -277,14 +277,14 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        by_years :avg_unit_cost_self, 'Direct cost, to you, of a single unit/contract' do 
+        by_years :avg_unit_cost_self, 'Direct cost, to you, of a single unit/contract' do
           classes "sub-question"
           required
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :innovation_performance_years, '2 to 4', 2 
-          by_year_condition :innovation_performance_years, '5 plus', 5 
+          by_year_condition :innovation_performance_years, '2 to 4', 2
+          by_year_condition :innovation_performance_years, '5 plus', 5
 
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -338,7 +338,7 @@ class QAE2014Forms
           }
           rows 5
           words_max 300
-        end 
+        end
 
         textarea :investments_details, 'Please enter details of all your investments in the innovation. <em>Include all investments made both during and prior to your entry period.</em> Also include the year(s) in which they were made.' do
           ref 'C 9'

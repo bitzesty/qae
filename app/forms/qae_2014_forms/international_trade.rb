@@ -9,28 +9,28 @@ class QAE2014Forms
   class << self
     def trade
       @trade ||= QAEFormBuilder.build "Apply for the International Trade Award" do
-        step "Company Information", 
-             "Company Info", 
+        step "Company Information",
+             "Company Info",
              &QAE2014Forms.trade_step1
 
-        step "Description of Goods or Services, Markets and Marketing", 
-             "Description", 
+        step "Description of Goods or Services, Markets and Marketing",
+             "Description",
              &QAE2014Forms.trade_step2
 
         step "Commercial Performance",
-             "Commercial Performance", 
+             "Commercial Performance",
              &QAE2014Forms.trade_step3
 
-        step "Declaration of Corporate Responsibility", 
-             "Corporate Responsibility", 
+        step "Declaration of Corporate Responsibility",
+             "Corporate Responsibility",
              &QAE2014Forms.trade_step4
 
-        step "Add Links/Documents", 
-             "Add Links/Documents", 
+        step "Add Links/Documents",
+             "Add Links/Documents",
              &QAE2014Forms.trade_step5
 
-        step "Authorisation/Monitoring", 
-             "Authorisation", 
+        step "Authorisation/Monitoring",
+             "Authorisation",
              &QAE2014Forms.trade_step6
       end
     end

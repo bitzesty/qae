@@ -9,28 +9,28 @@ class QAE2014Forms
   class << self
     def development
       @development ||= QAEFormBuilder.build "Apply for the Sustainable Development Award" do
-        step "Company Information", 
-             "Company Info", 
+        step "Company Information",
+             "Company Info",
              &QAE2014Forms.development_step1
 
-        step "Management Approach, Goods, or Services", 
-             "Description", 
+        step "Management Approach, Goods, or Services",
+             "Description",
              &QAE2014Forms.development_step2
 
-        step "Commercial Performance", 
-             "Commercial Performance", 
+        step "Commercial Performance",
+             "Commercial Performance",
              &QAE2014Forms.development_step3
 
-        step "Declaration of Corporate Responsibility", 
-             "Corporate Responsibility", 
+        step "Declaration of Corporate Responsibility",
+             "Corporate Responsibility",
              &QAE2014Forms.development_step4
 
-        step "Add Links/Documents", 
-             "Add Links/Documents", 
+        step "Add Links/Documents",
+             "Add Links/Documents",
              &QAE2014Forms.development_step5
 
-        step "Authorisation/Monitoring", 
-             "Authorisation", 
+        step "Authorisation/Monitoring",
+             "Authorisation",
              &QAE2014Forms.development_step6
       end
     end

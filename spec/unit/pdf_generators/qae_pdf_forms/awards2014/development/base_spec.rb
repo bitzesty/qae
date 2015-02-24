@@ -13,7 +13,7 @@ describe "QaePdfForms::Awards2014::Development::Base" do
   let(:award_type) { :development }
 
   let(:form_answer) do
-    FactoryGirl.create :form_answer, :submitted, award_type, 
+    FactoryGirl.create :form_answer, :submitted, award_type,
       user: user,
       document: step1_question_answers.merge(step2_question_answers)
   end

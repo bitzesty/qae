@@ -28,8 +28,8 @@ class QAE2014Forms
           required
           type :date
           label ->(y){"Financial year #{y}"}
-          by_year_condition :development_performance_years, '2 to 4', 2 
-          by_year_condition :development_performance_years, '5 plus', 5 
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :yes
         end
@@ -50,8 +50,8 @@ class QAE2014Forms
           }
           type :number
           label ->(y){"Financial year #{y}"}
-          by_year_condition :development_performance_years, '2 to 4', 2 
-          by_year_condition :development_performance_years, '5 plus', 5 
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
@@ -89,52 +89,52 @@ class QAE2014Forms
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :development_performance_years, '2 to 4', 2 
-          by_year_condition :development_performance_years, '5 plus', 5 
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
-        by_years :exports, 'Of which exports' do 
+        by_years :exports, 'Of which exports' do
           classes "sub-question"
           required
           context %Q{<p>Please enter '0' if you had none.</p>}
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :development_performance_years, '2 to 4', 2 
-          by_year_condition :development_performance_years, '5 plus', 5 
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
-        by_years :net_profit, 'Net profit after tax but before dividends' do 
+        by_years :net_profit, 'Net profit after tax but before dividends' do
           classes "sub-question"
           required
 
           type :money
           label ->(y){"Financial year #{y}"}
-          by_year_condition :development_performance_years, '2 to 4', 2 
-          by_year_condition :development_performance_years, '5 plus', 5 
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
 
-        by_years :total_net_assets, 'Total net assets' do 
+        by_years :total_net_assets, 'Total net assets' do
           classes "sub-question total-net-assets"
           required
           context %Q{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
 
           type :money
           label ->(y){"As at the end of year #{y}"}
-          by_year_condition :development_performance_years, '2 to 4', 2 
-          by_year_condition :development_performance_years, '5 plus', 5 
+          by_year_condition :development_performance_years, '2 to 4', 2
+          by_year_condition :development_performance_years, '5 plus', 5
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -177,7 +177,7 @@ class QAE2014Forms
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
         end
- 
+
         by_years :units_sold, 'Number of units/contracts sold' do
           classes "sub-question"
           required
@@ -190,7 +190,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales, 'Sales' do 
+        by_years :sales, 'Sales' do
           classes "sub-question"
           required
           type :money
@@ -311,7 +311,7 @@ class QAE2014Forms
           }
           rows 5
           words_max 300
-        end 
+        end
 
         textarea :investments_details, "Please enter details of all investments in your product/service/management approach. *Include all investments made both during and prior to your entry period.* Also include the year(s) in which they were made." do
           ref 'C 11'

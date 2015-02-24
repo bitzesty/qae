@@ -166,7 +166,7 @@ class QAE2014Forms
         country :parent_company_country, 'Country of immediate parent company' do
           classes "regular-question"
           conditional :applying_for, 'division branch subsidiary'
-        end        
+        end
 
         options :parent_ultimate_control, 'Does your immediate parent company have ultimate control?' do
           classes "sub-question"

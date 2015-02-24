@@ -25,12 +25,12 @@ class FormPdf < Prawn::Document
     "entry_confirmation"
   ]
 
-  attr_reader :user, 
-              :form_answer, 
-              :award_form, 
+  attr_reader :user,
+              :form_answer,
+              :award_form,
               :steps,
               :all_questions,
-              :answers, 
+              :answers,
               :filled_answers,
               :form_answer_attachments
 
@@ -46,7 +46,7 @@ class FormPdf < Prawn::Document
     @all_questions = steps.map { |s| s.questions }.flatten
     @form_answer_attachments = form_answer.form_answer_attachments
     @filled_answers = fetch_filled_answers
-    
+
     generate!
   end
 
@@ -78,7 +78,7 @@ class FormPdf < Prawn::Document
     filled_answers.select do |key, value|
       key.include?(key.to_s)
     end
-  end  
+  end
 
   def at_least_of_one_answer_by_key?(key)
     answers_by_key(key).any?
@@ -94,9 +94,9 @@ class FormPdf < Prawn::Document
 
   def answer_based_on_type(key, value)
     if key.to_s.include?('country')
-      ISO3166::Country.countries.select do |country| 
+      ISO3166::Country.countries.select do |country|
         country[1] == value.strip
-      end[0][0]      
+      end[0][0]
     else
       value
     end

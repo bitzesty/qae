@@ -52,7 +52,7 @@ class QAE2014Forms
             <p>Do you encourage best practice or require them to meet your own standards? To what extent are you succeeding?</p>
           }
           rows 5
-          words_max 500 
+          words_max 500
         end
 
         textarea :employees_relations, 'Relations with employees' do
@@ -65,7 +65,7 @@ class QAE2014Forms
             <p>How you keep your employees engaged e.g. communication, assessments, incentives, opportunities for career development.</p>
           }
           rows 5
-          words_max 500 
+          words_max 500
         end
 
         textarea :customers_relations, 'Relations with customers' do
@@ -78,7 +78,7 @@ class QAE2014Forms
             <p>The criteria by which you select clients and how you ensure they are appropriate for your services.</p>
           }
           rows 5
-          words_max 500 
+          words_max 500
         end
 
         confirm :declaration_of_corporate_responsibility, '' do

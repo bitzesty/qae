@@ -8,12 +8,12 @@ describe "QaePdfForms::Awards2014::Trade::Base" do
       company_name: "Bitzesty",
       registration_number: '123'
     }
-  } 
+  }
 
   let(:award_type) { :trade }
 
   let(:form_answer) do
-    FactoryGirl.create :form_answer, :submitted, award_type, 
+    FactoryGirl.create :form_answer, :submitted, award_type,
       user: user,
       document: step1_question_answers.merge(step2_question_answers)
   end
