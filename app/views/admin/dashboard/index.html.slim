@@ -5,7 +5,6 @@
       .well
         h2
           span.glyphicon.glyphicon-signal
-          ' &nbsp;
           ' Reports
         ul.list-unstyled.list-actions
           - ["Case Status", "All Entries", "Press Book List"].each do |report|
@@ -13,18 +12,15 @@
               = link_to "#"
                 span.action-title
                   span.glyphicon.glyphicon-file
-                  ' &nbsp;
                   = report
               small.pull-right
                 = link_to "#"
                   span.glyphicon.glyphicon-download-alt
-                  ' &nbsp;
                   ' Download
       / TODO Email actions
       .well
         h2
           span.glyphicon.glyphicon-envelope
-          ' &nbsp;
           ' Email actions
         ul.list-unstyled.list-actions
           - if policy(:notification).create?
@@ -38,7 +34,6 @@
       .well
         h2
           span.glyphicon.glyphicon-file
-          ' &nbsp;
           ' Resources
         ul.list-unstyled.list-actions
           - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|
@@ -46,12 +41,10 @@
               = link_to "#"
                 span.action-title
                   span.glyphicon.glyphicon-file
-                  ' &nbsp;
                   = resources
               small.pull-right
                 = link_to "#"
                   span.glyphicon.glyphicon-download-alt
-                  ' &nbsp;
                   ' Download
 
   .col-md-8

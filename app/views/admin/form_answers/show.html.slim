@@ -32,7 +32,6 @@
       .well
         h2
           span.glyphicon.glyphicon-file
-          ' &nbsp;
           ' Documents
         .document-list
           - unless @form_answer.form_answer_attachments.any?
@@ -43,17 +42,15 @@
           br
         = form_for [:admin, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
           span.btn.btn-default.btn-sm.btn-attachment
-            = form.file_field :file
             span.glyphicon.glyphicon-paperclip
-            ' &nbsp;
             ' Attach Document
+            = form.file_field :file
           = form.submit 'Attach Document', class: 'if-js-hide'
 
       / TODO Users
       .well
         h2
           span.glyphicon.glyphicon-user
-          ' &nbsp;
           ' User Accounts
           small.pull-right Logged in: 28/09/15 - 08:03
         ul.list-unstyled.list-actions
@@ -76,14 +73,12 @@
         br
         = link_to "#", class: "btn btn-default btn-sm btn-email"
           span.glyphicon.glyphicon-envelope
-          ' &nbsp;
           ' Email All Users
 
       / TODO Assessors
       .well
         h2
           span.glyphicon.glyphicon-user
-          ' &nbsp;
           ' Assessors
         p.p-empty No assessors have been assigned to this case.
 

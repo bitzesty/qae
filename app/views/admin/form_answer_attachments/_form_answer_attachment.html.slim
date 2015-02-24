@@ -2,7 +2,6 @@ li.form_answer_attachment
   = link_to [:admin, form_answer_attachment.form_answer, form_answer_attachment], target: '_blank'
     span.action-title
       span.glyphicon.glyphicon-file
-      ' &nbsp;
       = form_answer_attachment.filename
   small.pull-right
     - if policy(form_answer_attachment).destroy?

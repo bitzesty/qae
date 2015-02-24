@@ -9,6 +9,10 @@
   text-overflow: ellipsis;
 }
 
+.btn .glyphicon:first-child {
+  margin-right: 5px;
+}
+
 .page-header-nav {
   margin-bottom: 0;
   border-color: #333;
@@ -68,6 +72,16 @@
       color: inherit;
     }
 
+    .pull-right {
+      a {
+        color: #337ab7;
+      }
+    }
+
+    .glyphicon {
+      margin-right: 5px;
+    }
+
     li {
       margin-bottom: 10px;
 
@@ -95,6 +109,7 @@
       left: 0;
       right: 0;
       bottom: 0;
+      cursor: pointer;
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
       opacity: 0;
@@ -433,6 +448,10 @@ th.filter {
       &:first-child {
         margin-top: 0;
       }
+
+      .glyphicon {
+        margin-right: 5px;
+      }
     }
 
     h1 {
@@ -440,6 +459,7 @@ th.filter {
     }
 
     h2 {
+      margin-bottom: 20px;
       font-size: 16px;
       text-transform: uppercase;
 
