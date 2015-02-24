@@ -3,24 +3,35 @@ class QAE2014Forms
   class << self
     def promotion_step3
       @promotion_step3 ||= proc do
-        textarea :reasons_to_nominate, "Explain why you think your nominee deserves this award." do
+        textarea :reasons_to_nominate, "Explain why your nominee deserves a Queen's Award for Enterprise Promotion." do
           ref "C 1"
           required
           context %(
             <p>
-              Include details of how they have made a significant contribution in their area of activity whether in public/private and/or voluntary sectors. Give as much detail as possible about what makes your nominee stand out against others.
+              How have they made a significant contribution in their area of activity
+              whether in public/private and/or voluntary sectors?
+              What makes your nominee stand out against others?
             </p>
                     )
           rows 3
           words_max 500
         end
 
-        textarea :benefits_from_nominee_service, "Describe the benefits resulting from the nominee’s services to a particular field, group, community or society as a whole. " do
+        textarea :benefits_from_nominee_service, "Describe the benefits of your nominee’s services to a particular field, group, community or society as a whole." do
           ref "C 2"
           required
           context %(
             <p>
-              What has their impact been? How wide is their influence? What are their achievements? Include details of the length of time involved and quantitative evidence that demonstrate the clear impact of the nominee’s activities.
+              What has their impact been? How wide is their influence?
+              What are their achievements?
+              Include details of the length of time
+              involved and quantitative evidence
+              that demonstrate the clear impact of the nominee’s activities.
+              <br />
+              Include when your nominee's activities have taken place
+              within challenging circumstances
+              or disadvantaged/deprived communities,
+              or where young people or under-represented groups have benefited.
             </p>
                     )
           rows 3
@@ -34,13 +45,18 @@ class QAE2014Forms
           words_max 300
         end
 
-        options :nominee_deservers_lifetime_achievement_award, "Do you think your nominee deserves a Lifetime Achievement Award?" do
+        options :nominee_deservers_lifetime_achievement_award, "Your nominee is eligible for a Lifetime Achievement Award?" do
           required
           ref "C 4"
           yes_no
           context %(
             <p>
-              A Lifetime Achievement Award is a special Enterprise Promotion Award that is given for outstanding, consistent and effective promotion of business enterprise skills and attitudes <u>over at least ten years.</u>
+              A Lifetime Achievement Award is a special Enterprise Promotion award
+              that is given for outstanding, consistent and effective promotion of business
+              enterprise skills and attitudes
+              <u>over at least ten years.</u>.
+              All those nominated for Lifetime Achievement are still considered
+              for the standard award.
             </p>
                     )
         end
