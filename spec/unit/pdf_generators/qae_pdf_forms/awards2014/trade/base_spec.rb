@@ -63,7 +63,13 @@ describe "QaePdfForms::Awards2014::Trade::Base" do
 
     it "should include steps headers" do
       steps.each do |step|
-        expect(pdf_content).to include(step.complex_title)
+        title = step.complex_title
+        # PDF::Inspector::Text will return 
+        # "Step 2 of 6: Description of Goods or Services, Markets and", "Marketing"
+        # instead of "Step 2 of 6: Description of Goods or Services, Markets and Marketing"
+        # as "Marketing" is on new line
+        title = title.gsub(" Marketing", '') if step.index == 1
+        expect(pdf_content).to include(title)
       end
     end
 
