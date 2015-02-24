@@ -58,7 +58,21 @@
           small.pull-right Logged in: 28/09/15 - 08:03
         ul.list-unstyled.list-actions
           li
-            = link_to "Thomas Smith (t.smith@companyname.com)"
+            = link_to "#", class: "ellipsis"
+              span.icon-role A
+              ' Thomas Smith (t.smith@companyname.com)
+          li
+            = link_to "#", class: "ellipsis"
+              span.icon-role C
+              ' James Moriss (j.moriss@companyname.com)
+          li
+            = link_to "#", class: "ellipsis"
+              span.icon-role L
+              ' James Moriss (j.moriss@companyname.com)
+          li
+            = link_to "#", class: "ellipsis"
+              span.icon-role 1
+              ' James Moriss (j.moriss@companyname.com)
         br
         = link_to "#", class: "btn btn-default btn-sm btn-email"
           span.glyphicon.glyphicon-envelope
