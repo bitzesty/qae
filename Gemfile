@@ -98,6 +98,7 @@ group :development do
   gem 'passenger'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rubocop', require: false
 end
 
 group :test, :development do
