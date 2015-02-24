@@ -7,9 +7,9 @@
 
   .navbar {
     margin-bottom: 40px;
-    background: #231f20;
     border: none;
     border-radius: 0;
+    background: #1c1c1b;
 
     .navbar-brand,
     .navbar-nav > li > a {
@@ -61,6 +61,13 @@
         background-image: image-url("icon-arrow-admin-nav@2.png");
       }
     }
+  }
+
+  .caret {
+    margin-left: 5px;
+    border-top-width: 7px;
+    border-right-width: 6px;
+    border-left-width: 6px;
   }
 }
 

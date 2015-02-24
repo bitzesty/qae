@@ -1,9 +1,57 @@
 @import "mixins";
 
 // Basic
-  .clear {
-    clear: both;
+.ellipsis {
+  display: inline-block;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.btn .glyphicon:first-child {
+  margin-right: 5px;
+}
+
+.page-header-nav {
+  margin-bottom: 0;
+  border-color: #333;
+
+  .btn-link {
+    padding-right: 0;
+    padding-left: 0;
+    color: #333;
   }
+
+  .pull-right {
+    margin-top: 0.5em;
+  }
+}
+
+.table {
+  > thead > tr > th {
+    border-color: #333;
+    vertical-align: middle;
+  }
+
+  > tbody > tr {
+    > td,
+    > th {
+      background-color: #fff;
+    }
+  }
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+  > td,
+  > th {
+    background-color: #ececec;
+  }
+}
+
+.clear {
+  clear: both;
+}
 
   .p-empty {
     font-style: italic;
@@ -20,6 +68,20 @@
 
   .list-actions {
     margin-bottom: 0;
+
+    a {
+      color: inherit;
+    }
+
+    .pull-right {
+      a {
+        color: #337ab7;
+      }
+    }
+
+    .glyphicon {
+      margin-right: 5px;
+    }
 
     li {
       margin-bottom: 10px;
@@ -48,6 +110,7 @@
       left: 0;
       right: 0;
       bottom: 0;
+      cursor: pointer;
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
       opacity: 0;
@@ -127,7 +190,8 @@
   .icon-comment {
     position: relative;
     background-image: image-url("icon-comment.png");
-    background-size: 30px 30px;
+    background-position: left bottom;
+    background-size: 26px 23px;
 
     @include is-retina {
       background-image: image-url("icon-comment@2.png");
@@ -147,7 +211,7 @@
 
   .icon-flagged {
     background-image: image-url("icon-flag.png");
-    background-size: 30px 30px;
+    background-size: 20px 26px;
 
     @include is-retina {
       background-image: image-url("icon-flag@2.png");
@@ -163,36 +227,54 @@
     }
   }
 
+.icon-role {
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  border: 2px solid #333;
+  border-radius: 100px;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+}
+
 // Search
-  .search-input {
-    position: relative;
+.search-input {
+  position: relative;
 
-    input[type="search"] {
-      padding-right: 40px;
-    }
+  [type="search"] {
+    padding-right: 40px;
+    font-size: 16px;
+    font-style: italic;
+  }
 
-    input[type="submit"] {
-      position: absolute;
-      width: 30px;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      margin: 0;
-      padding: 0;
-      text-align: left;
-      text-indent: -9999px;
-      background: transparent;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-image: image-url("icon-search.png");
-      background-size: 14px 19px;
-      border: none;
+  [type="submit"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 30px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    background-image: image-url("icon-search.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 15px 21px;
+    text-align: left;
+    text-indent: -9999px;
 
-      @include is-retina {
-        background-image: image-url("icon-search@2.png");
-      }
+    @include is-retina {
+      background-image: image-url("icon-search@2.png");
     }
   }
+}
 
 // Pagination
   .pagination {
@@ -259,62 +341,85 @@
   }
 
 // Sortable Tables
-  th.sortable {
-    a {
-      padding-right: 16px;
-      color: #333;
-      background-repeat: no-repeat;
-      background-position: right center;
-      background-size: 10px 6px;
+.sortable {
+  a {
+    padding-right: 16px;
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 10px 6px;
+    color: #333;
+
+    &:hover {
+      background-image: image-url("icon-arrow-sort-down-grey.png");
+      text-decoration: none;
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-sort-down-grey@2.png");
+      }
+    }
+
+    &.ordered {
+      background-image: image-url("icon-arrow-sort-down.png");
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-sort-down@2.png");
+      }
 
       &:hover {
-        background-image: image-url("icon-arrow-sort-down-grey.png");
+        background-image: image-url("icon-arrow-sort-up-grey.png");
 
         @include is-retina {
-          background-image: image-url("icon-arrow-sort-down-grey@2.png");
+          background-image: image-url("icon-arrow-sort-up-grey@2.png");
         }
       }
 
-      &.ordered {
-        background-image: image-url("icon-arrow-sort-down.png");
+      &.ordered-desc {
+        background-image: image-url("icon-arrow-sort-up.png");
 
         @include is-retina {
-          background-image: image-url("icon-arrow-sort-down@2.png");
+          background-image: image-url("icon-arrow-sort-up@2.png");
         }
 
         &:hover {
-          background-image: image-url("icon-arrow-sort-up-grey.png");
+          background-image: image-url("icon-arrow-sort-down-grey.png");
 
           @include is-retina {
-            background-image: image-url("icon-arrow-sort-up-grey@2.png");
-          }
-        }
-
-        &.ordered-desc {
-          background-image: image-url("icon-arrow-sort-up.png");
-
-          @include is-retina {
-            background-image: image-url("icon-arrow-sort-up@2.png");
-          }
-
-          &:hover {
-            background-image: image-url("icon-arrow-sort-down-grey.png");
-
-            @include is-retina {
-              background-image: image-url("icon-arrow-sort-down-grey@2.png");
-            }
+            background-image: image-url("icon-arrow-sort-down-grey@2.png");
           }
         }
       }
     }
   }
+}
 
 // Filterable Dropdowns
-  th.filter .dropdown-menu li {
-    margin: 0;
+.filter {
+  .dropdown-toggle {
+    padding: 4px 10px;
+    color: #999;
+    font-size: inherit;
 
-    &.divider {
-      margin: 5px 0;
+    .text-filter,
+    .caret {
+      color: #333;
+    }
+
+    .text-filter {
+      font-weight: bold;
+    }
+
+    .caret {
+      margin-left: 5px;
+    }
+  }
+
+  .dropdown-menu {
+    li {
+      margin: 0;
+
+      &.divider {
+        margin: 5px 0;
+      }
     }
 
     label {
@@ -332,16 +437,21 @@
       font-size: 0.95em;
     }
   }
+}
 
 // Sidebar
   .show-sidebar {
-    padding: 0 15px;
+    padding: 15px;
     background: #fff;
 
     h1,
     h2 {
       &:first-child {
         margin-top: 0;
+      }
+
+      .glyphicon {
+        margin-right: 5px;
       }
     }
 
@@ -350,6 +460,7 @@
     }
 
     h2 {
+      margin-bottom: 20px;
       font-size: 16px;
       text-transform: uppercase;
 
@@ -376,216 +487,101 @@
       &:first-child {
         padding-top: 0;
       }
+
+      &:last-child {
+        padding-bottom: 0;
+        border-bottom: none;
+      }
     }
   }
 
 // Comments sidebar
-  .col-content,
-  .col-sidebar {
+.col-content,
+.col-sidebar {
+  .sidebar-open & {
+    float: left;
+  }
+}
+
+.col-content {
+  width: auto;
+  margin-right: 50px;
+
+  .sidebar-open & {
+    width: 70%;
+    padding-right: 15px;
+  }
+}
+
+.col-sidebar {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  width: 40px;
+
+  .sidebar-open & {
+    width: 30%;
+  }
+}
+
+.sidebar-header {
+  font-size: 13px;
+
+  .sidebar-open & {
+    padding: 10px 15px;
+    background: #706f6f;
+  }
+
+  &,
+  a,
+  .comment-count {
+    &,
+    &:hover,
+    &:active,
+    &:focus {
+      color: #dadad9;
+    }
+  }
+
+  .link-flag,
+  .link-comment {
+    display: block;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 1px;
+    background: #706f6f;
+    text-align: center;
+    text-decoration: none;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    .sidebar-open & {
+      display: inline-block;
+      width: auto;
+      height: auto;
+      margin: 0;
+    }
+  }
+
+  .link-flag {
     .sidebar-open & {
       float: left;
     }
   }
 
-  .col-content {
-    width: auto;
-    margin-right: 50px;
-
+  .link-comment {
     .sidebar-open & {
-      width: 70%;
-      padding-right: 15px;
-    }
-  }
-
-  .col-sidebar {
-    position: absolute;
-    top: 0;
-    right: 15px;
-    width: 40px;
-
-    .sidebar-open & {
-      width: 30%;
-    }
-  }
-
-  .sidebar-header {
-    font-size: 13px;
-
-    .sidebar-open & {
-      padding: 0 15px;
-      background: #706f6f;
-    }
-
-    &,
-    a,
-    .comment-count {
-      &,
-      &:hover,
-      &:active,
-      &:focus {
-        color: #dadad9;
-      }
-    }
-
-    .link-flag,
-    .link-comment {
-      display: block;
-      width: 40px;
-      height: 40px;
-      margin-bottom: 1px;
-      text-align: center;
-      text-decoration: none;
-      background: #706f6f;
-
-      .sidebar-open & {
-        display: inline-block;
-        width: auto;
-        margin: 0;
-      }
-    }
-
-    .link-flag {
-      .sidebar-open & {
-        float: left;
-      }
-    }
-
-    .link-comment {
-      .sidebar-open & {
-        float: right;
-      }
-
-      .icon-text {
-        padding-right: 18px;
-        background-image: image-url("icon-close-comment.png");
-        background-size: 12px 12px;
-        background-repeat: no-repeat;
-        background-position: right;
-
-        @include is-retina {
-          background-image: image-url("icon-close-comment@2.png");
-        }
-      }
-    }
-
-    .icon-comment,
-    .icon-flagged,
-    .icon-unflagged {
-      height: 20px;
-      margin-top: 10px;
-    }
-
-    .icon-comment {
-      background-image: image-url("icon-comment-grey.png");
-
-      @include is-retina {
-        background-image: image-url("icon-comment-grey@2.png");
-      }
-    }
-
-    .icon-flagged,
-    .icon-unflagged {
-      width: 20px;
-    }
-
-    .comment-count {
-      display: block;
-
-      .sidebar-open & {
-        display: none;
-      }
+      float: right;
     }
 
     .icon-text {
-      display: none;
-
-      .sidebar-open & {
-        display: inline;
-      }
-    }
-  }
-
-  .comments-container {
-    display: none;
-    color: #fff;
-    background: #57585a;
-
-    .sidebar-open & {
-      display: block;
-    }
-
-    .comment,
-    .comment-footer {
-      padding: 15px 10px;
-    }
-
-    .comment {
-      position: relative;
-      min-height: 60px;
-      border-bottom: 1px solid #333;
-    }
-  }
-
-  .comment-header {
-    margin-bottom: 10px;
-
-    h3 {
-      margin: 0;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-
-    small {
-      display: block;
-      color: #aaa;
-      font-size: 13px;
-    }
-  }
-
-  .comment-content {
-    font-size: 13px;
-  }
-
-  .link-delete-comment {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 5px 10px;
-    padding-right: 25px;
-    background: #706f6f;
-    opacity: 0;
-
-    &,
-    &:hover,
-    &:active,
-    &:focus {
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .comment:hover & {
-      opacity: 0.8;
-
-      &:hover {
-        opacity: 1;
-      }
-    }
-
-    .show-delete-comment & {
-      display: none;
-    }
-
-    .icon-delete-comment {
-      position: absolute;
-      width: 10px;
-      height: 10px;
-      top: 50%;
-      right: 10px;
-      margin-top: -5px;
+      padding-right: 18px;
       background-image: image-url("icon-close-comment.png");
-      background-size: 10px 10px;
       background-repeat: no-repeat;
       background-position: right;
+      background-size: 12px 12px;
 
       @include is-retina {
         background-image: image-url("icon-close-comment@2.png");
@@ -593,35 +589,266 @@
     }
   }
 
-  .overlay-delete {
-    position: absolute;
+  .icon-comment {
+    margin-top: 2px;
+    background-image: image-url("icon-comment-grey.png");
+    background-size: 23px 21px;
+
+    @include is-retina {
+      background-image: image-url("icon-comment-grey@2.png");
+    }
+
+    .sidebar-open & {
+      width: 20px;
+      height: 18px;
+      margin-top: 0;
+      margin-right: 7px;
+      background-image: image-url("icon-comment-sm-grey.png");
+      background-size: 20px 18px;
+
+      @include is-retina {
+        background-image: image-url("icon-comment-sm-grey@2.png");
+      }
+    }
+  }
+
+  .icon-flagged,
+  .icon-unflagged {
+    margin-top: 5px;
+    background-size: 15px 20px;
+
+    .sidebar-open & {
+      width: 12px;
+      height: 15px;
+      margin-top: 0;
+      margin-left: 7px;
+      background-size: 12px 15px;
+    }
+  }
+
+  .icon-flagged {
+    background-image: image-url("icon-flag-md.png");
+
+    @include is-retina {
+      background-image: image-url("icon-flag-md@2.png");
+    }
+
+    .sidebar-open & {
+      background-image: image-url("icon-flag-sm.png");
+
+      @include is-retina {
+        background-image: image-url("icon-flag-sm@2.png");
+      }
+    }
+  }
+
+  .icon-unflagged {
+    background-image: image-url("icon-flag-md-grey.png");
+
+    @include is-retina {
+      background-image: image-url("icon-flag-md-grey@2.png");
+    }
+
+    .sidebar-open & {
+      background-image: image-url("icon-flag-sm-grey.png");
+
+      @include is-retina {
+        background-image: image-url("icon-flag-sm-grey@2.png");
+      }
+    }
+  }
+
+  .comment-count {
+    display: block;
+
+    .sidebar-open & {
+      display: none;
+    }
+  }
+
+  .icon-text {
     display: none;
-    width: 100%;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    text-align: center;
-    background: rgba(0,0,0,0.8);
 
-    .show-delete-comment & {
-      display: block;
-    }
-
-    .overlay-content {
-      position: absolute;
-      width: 100%;
-      top: 50%;
-      margin-top: -30px;
+    .sidebar-open & {
+      display: inline;
     }
   }
+}
 
-  .comment-new {
+.comments-container {
+  display: none;
+  background: #57585a;
+  color: #fff;
+
+  .sidebar-open & {
+    display: block;
+  }
+
+  .comment,
+  .comment-footer {
     padding: 15px 10px;
-    padding-top: 0;
+  }
 
-    textarea {
-      margin-bottom: 5px;
-      font-size: 13px;
+  .comment {
+    position: relative;
+    min-height: 60px;
+    border-bottom: 1px solid #333;
+  }
+}
+
+.comment-header {
+  margin-bottom: 10px;
+
+  h3 {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  small {
+    display: block;
+    color: #aaa;
+    font-size: 13px;
+  }
+}
+
+.comment-content {
+  font-size: 13px;
+}
+
+.link-delete-comment {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 5px 10px;
+  padding-right: 25px;
+  background: #706f6f;
+  opacity: 0;
+
+  &,
+  &:hover,
+  &:active,
+  &:focus {
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .comment:hover & {
+    opacity: 0.8;
+
+    &:hover {
+      opacity: 1;
     }
   }
+
+  .show-delete-comment & {
+    display: none;
+  }
+
+  .icon-delete-comment {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    width: 10px;
+    height: 10px;
+    margin-top: -5px;
+    background-image: image-url("icon-close-comment.png");
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 10px 10px;
+
+    @include is-retina {
+      background-image: image-url("icon-close-comment@2.png");
+    }
+  }
+}
+
+.overlay-delete {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+
+  .show-delete-comment & {
+    display: block;
+  }
+
+  .overlay-content {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    margin-top: -30px;
+  }
+}
+
+.comment-new {
+  padding: 15px 10px;
+  padding-top: 0;
+
+  textarea {
+    margin-bottom: 5px;
+    font-size: 13px;
+  }
+}
+
+// Collapsable panes
+.panel {
+  background-color: transparent;
+  box-shadow: none;
+
+  tbody {
+    border: 2px solid #333;
+
+    > tr > th {
+      border-right: 2px solid #333;
+    }
+  }
+}
+
+.panel-group .panel {
+  border: none;
+  border-radius: 0;
+}
+
+.panel-default > .panel-heading {
+  border: none;
+  border-radius: 0;
+  background-color: #dadad9;
+}
+
+.panel-title {
+  font-weight: bold;
+  text-transform: uppercase;
+
+  > a {
+    padding-left: 25px;
+    background-image: image-url("icon-arrow-collapse-down.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 12px 8px;
+    text-decoration: none;
+
+    @include is-retina {
+      background-image: image-url("icon-arrow-collapse-down@2.png");
+    }
+
+    .expanded & {
+      background-image: image-url("icon-arrow-collapse-up.png");
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-collapse-up@2.png");
+      }
+    }
+  }
+
+  .pull-right {
+    margin-top: 0.3em;
+    font-style: italic;
+    text-transform: none;
+  }
+}

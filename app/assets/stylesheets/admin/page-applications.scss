@@ -29,23 +29,34 @@
 }
 
 .application-progress {
+  margin-top: 15px;
   padding: 15px 15px;
   padding-left: 50px;
-  color: #fff;
   background: #5178bc;
+  background-image: image-url("icon-progress-pending.png");
   background-repeat: no-repeat;
   background-position: 10px center;
-  background-image: image-url("icon-application-progress.png");
-  background-size: 30px 30px;
+  background-size: 32px 32px;
+  color: #fff;
 
   @include is-retina {
-    background-image: image-url("icon-application-progress@2.png");
+    background-image: image-url("icon-progress-pending@2.png");
+  }
+
+  &.recommended {
+    background-color: #93c255;
+    background-image: image-url("icon-progress-success.png");
+    color: #333;
+
+    @include is-retina {
+      background-image: image-url("icon-progress-success@2.png");
+    }
   }
 }
 
 .applicant-view,
 .submitted-view {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 
@@ -132,7 +143,7 @@
 }
 
 .submitted-view {
-  .glyphicon {
+  .form-label .glyphicon {
     position: absolute;
     top: 50%;
     right: 0;
@@ -176,15 +187,8 @@
   }
 
   .js & {
-    .form-group {
-      padding-bottom: 10px;
-      border-bottom: 1px solid #999;
-
-      &:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
-        border-bottom: none;
-      }
+    .form-group:last-child {
+      margin-bottom: 0;
     }
 
     .form-control {
@@ -225,10 +229,15 @@
 }
 
 .form-edit-link {
+  margin-top: 10px;
   font-size: 13px;
 
   .glyphicon {
     margin-right: 5px;
     font-size: 10px;
   }
+}
+
+.section-applicant-details .text-right a {
+  font-size: 14px;
 }
