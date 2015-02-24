@@ -79,7 +79,7 @@ window.FormValidation =
     else
       if not @validateSingleQuestion(question)
         @addErrorMessage(question, "This field is required.")
-  
+
   validateMatchQuestion: (question) ->
     q = question.find(".match")
     match_name = q.data("match")
@@ -148,12 +148,14 @@ window.FormValidation =
       @addErrorMessage(question, "Not a valid number")
 
   validateTotalOverseas: () ->
-    questions = $(".question-block[data-answer='overseas_sales-total-overseas-sales'] .question-group .conditional-question.show-question .row span")
-    direct = $(".question-block[data-answer='overseas_sales_direct-of-which-direct'] .question-group .conditional-question.show-question .row span")
-    indirect = $(".question-block[data-answer='overseas_sales_indirect-of-which-indirect'] .question-group .conditional-question.show-question .row span")
+    questions = $(".question-block[data-answer='overseas_sales-total-overseas-sales'] .show-question .currency-input")
+    direct = $(".question-block[data-answer='overseas_sales_direct-of-which-direct'] .show-question .currency-input")
+    indirect = $(".question-block[data-answer='overseas_sales_indirect-of-which-indirect'] .show-question .currency-input")
 
     $(".question-block[data-answer='overseas_sales-total-overseas-sales']").removeClass("question-has-errors")
-    
+
+    total_doesnt_match = false
+
     for question,i in questions
       $(question).find(".errors-container").empty()
 
@@ -162,8 +164,13 @@ window.FormValidation =
       ind = parseFloat($(indirect[i]).find("input").val() or 0)
 
       if (dir + ind) != val
-        @appendMessage(question, "Total doesn't match values from questions below.")
-        @addErrorClass($(".question-block[data-answer='overseas_sales-total-overseas-sales']"))
+        total_doesnt_match = true
+
+    if total_doesnt_match
+      question_block = $(".question-block[data-answer='overseas_sales-total-overseas-sales']")
+      @appendMessage(question_block, "Total doesn't match values from questions below.")
+      @addErrorClass(question_block)
+      return
 
   validateMoneyByYears: (question) ->
     for subquestion in question.find("input")
@@ -226,6 +233,24 @@ window.FormValidation =
           @addErrorClass(question)
           return
 
+  validateDropBlockCondition: (question) ->
+    drop = false
+    last_val = 0
+
+    $.each question.find(".currency-input input"), (index, el) ->
+      if $(el).val()
+        value = parseFloat $(el).val()
+        if value < last_val
+          drop = true
+        last_val = value
+
+    if drop
+      error_message = "Sorry, you are not eligible. \
+      You must have constant growth in overseas sales for the entire entry period to be eligible \
+      for a Queen's Award for Enterprise: International Trade."
+      @addErrorMessage(question, error_message)
+      return
+
   validate: ->
     @clearAllErrors()
 
@@ -266,13 +291,18 @@ window.FormValidation =
         # console.log "validateBetweenDate"
         @validateBetweenDate(question)
 
-      if $(".question-block[data-answer='overseas_sales-total-overseas-sales'] > .conditional-question").hasClass("show-question")
+      if question.attr("data-answer") == 'overseas_sales-total-overseas-sales' &&
+         question.find(".show-question").length > 0
         # console.log "validateTotalOverseas"
         @validateTotalOverseas()
 
       if question.find(".validate-date-start-end").size() > 0
         # console.log "validateDateStartEnd"
         @validateDateStartEnd(question)
+
+      if question.hasClass("js-conditional-drop-block-answer")
+        # console.log "validateDropBlockCondition"
+        @validateDropBlockCondition(question)
 
       #console.log @validates
 

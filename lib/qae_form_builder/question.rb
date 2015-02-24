@@ -51,8 +51,9 @@ class QAEFormBuilder
       result = ["question-block",
        "js-conditional-answer"]
       result << delegate_obj.classes if delegate_obj.classes
-      result << 'question-required' if delegate_obj.required
-      result << 'js-conditional-drop-answer' if delegate_obj.drop_condition
+      result << "question-required" if delegate_obj.required
+      result << "js-conditional-drop-answer" if delegate_obj.drop_condition
+      result << "js-conditional-drop-block-answer" if delegate_obj.drop_block_condition
       result
     end
 
@@ -148,6 +149,10 @@ class QAEFormBuilder
       @q.drop_condition = key.to_s.to_sym
     end
 
+    def drop_block_conditional
+      @q.drop_block_condition = true
+    end
+
     def drop_condition_parent
       @q.drop_condition_parent = true
     end
@@ -166,8 +171,21 @@ class QAEFormBuilder
   QuestionHelp = Struct.new(:title, :text)
 
   class Question
-    attr_accessor :step, :key,  :title, :context, :opts,
-      :required, :help, :ref, :conditions, :header, :header_context, :classes, :drop_condition, :drop_condition_parent
+    attr_accessor :step,
+                  :key,
+                  :title,
+                  :context,
+                  :opts,
+                  :required,
+                  :help,
+                  :ref,
+                  :conditions,
+                  :header,
+                  :header_context,
+                  :classes,
+                  :drop_condition,
+                  :drop_condition_parent,
+                  :drop_block_condition
 
     def initialize step, key, title, opts={}
       @step = step

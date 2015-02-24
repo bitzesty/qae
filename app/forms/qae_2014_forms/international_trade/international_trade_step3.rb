@@ -114,6 +114,7 @@ class QAE2014Forms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           conditional :trade_commercial_success, :true
+          drop_block_conditional
         end
 
         by_years :overseas_sales_direct, "of which direct" do
@@ -151,6 +152,7 @@ class QAE2014Forms
             <br>
           }
           conditional :trade_commercial_success, :true
+          drop_block_conditional
         end
 
         by_years :overseas_sales_indirect, "of which indirect" do
@@ -189,11 +191,13 @@ class QAE2014Forms
             <br>
           }
           conditional :trade_commercial_success, :true
+          drop_block_conditional
         end
 
         by_years :total_turnover, "Total turnover (home plus overseas)" do
           classes "sub-question"
           type :money
+          required
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %(
@@ -201,6 +205,7 @@ class QAE2014Forms
                     )
           conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
+          drop_block_conditional
         end
 
         by_years :net_profit, "Net profit after tax but before dividends" do
@@ -214,6 +219,7 @@ class QAE2014Forms
                     )
           conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
+          drop_block_conditional
         end
 
         textarea :drops_in_turnover, "Explain any drops in turnover or net profit, and any losses made." do
