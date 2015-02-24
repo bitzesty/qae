@@ -164,35 +164,37 @@
   }
 
 // Search
-  .search-input {
-    position: relative;
+.search-input {
+  position: relative;
 
-    input[type="search"] {
-      padding-right: 40px;
-    }
+  input[type="search"] {
+    padding-right: 40px;
+    font-size: 16px;
+    font-style: italic;
+  }
 
-    input[type="submit"] {
-      position: absolute;
-      width: 30px;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      margin: 0;
-      padding: 0;
-      text-align: left;
-      text-indent: -9999px;
-      background: transparent;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-image: image-url("icon-search.png");
-      background-size: 14px 19px;
-      border: none;
+  input[type="submit"] {
+    position: absolute;
+    width: 30px;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    text-indent: -9999px;
+    background: transparent;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-image: image-url("icon-search.png");
+    background-size: 15px 21px;
+    border: none;
 
-      @include is-retina {
-        background-image: image-url("icon-search@2.png");
-      }
+    @include is-retina {
+      background-image: image-url("icon-search@2.png");
     }
   }
+}
 
 // Pagination
   .pagination {
