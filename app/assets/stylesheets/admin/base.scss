@@ -4,9 +4,9 @@
 .ellipsis {
   display: inline-block;
   max-width: 100%;
+  text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 .btn .glyphicon:first-child {
@@ -41,6 +41,7 @@
     }
   }
 }
+
 .table-striped > tbody > tr:nth-of-type(odd) {
   > td,
   > th {
@@ -226,48 +227,48 @@
     }
   }
 
-  .icon-role {
-    display: inline-block;
-    position: relative;
-    top: -3px;
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
-    border: 2px solid #333;
-    border-radius: 100px;
-    font-size: 9px;
-    font-weight: bold;
-    line-height: 1.25;
-    text-align: center;
-    text-transform: uppercase;
-  }
+.icon-role {
+  display: inline-block;
+  position: relative;
+  top: -3px;
+  width: 16px;
+  height: 16px;
+  margin-right: 5px;
+  border: 2px solid #333;
+  border-radius: 100px;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1.25;
+  text-align: center;
+  text-transform: uppercase;
+}
 
 // Search
 .search-input {
   position: relative;
 
-  input[type="search"] {
+  [type="search"] {
     padding-right: 40px;
     font-size: 16px;
     font-style: italic;
   }
 
-  input[type="submit"] {
+  [type="submit"] {
     position: absolute;
-    width: 30px;
     top: 0;
     right: 0;
     bottom: 0;
+    width: 30px;
     margin: 0;
     padding: 0;
-    text-align: left;
-    text-indent: -9999px;
+    border: none;
     background: transparent;
+    background-image: image-url("icon-search.png");
     background-repeat: no-repeat;
     background-position: center center;
-    background-image: image-url("icon-search.png");
     background-size: 15px 21px;
-    border: none;
+    text-align: left;
+    text-indent: -9999px;
 
     @include is-retina {
       background-image: image-url("icon-search@2.png");
@@ -340,7 +341,7 @@
   }
 
 // Sortable Tables
-th.sortable {
+.sortable {
   a {
     padding-right: 16px;
     background-repeat: no-repeat;
@@ -392,7 +393,7 @@ th.sortable {
 }
 
 // Filterable Dropdowns
-th.filter {
+.filter {
   .dropdown-toggle {
     padding: 4px 10px;
     color: #999;
@@ -676,8 +677,8 @@ th.filter {
 
 .comments-container {
   display: none;
-  color: #fff;
   background: #57585a;
+  color: #fff;
 
   .sidebar-open & {
     display: block;
@@ -746,15 +747,15 @@ th.filter {
 
   .icon-delete-comment {
     position: absolute;
-    width: 10px;
-    height: 10px;
     top: 50%;
     right: 10px;
+    width: 10px;
+    height: 10px;
     margin-top: -5px;
     background-image: image-url("icon-close-comment.png");
-    background-size: 10px 10px;
     background-repeat: no-repeat;
     background-position: right;
+    background-size: 10px 10px;
 
     @include is-retina {
       background-image: image-url("icon-close-comment@2.png");
@@ -763,15 +764,15 @@ th.filter {
 }
 
 .overlay-delete {
-  position: absolute;
   display: none;
-  width: 100%;
+  position: absolute;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
   text-align: center;
-  background: rgba(0,0,0,0.8);
 
   .show-delete-comment & {
     display: block;

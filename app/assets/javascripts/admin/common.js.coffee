@@ -7,8 +7,8 @@ ready = ->
 
     setTimeout(updateCollapseHeaderClass, 400)
 
-updateCollapseHeaderClass = () ->
-  $(".panel-title > a").each () ->
+updateCollapseHeaderClass = ->
+  $(".panel-title > a").each ->
     panel = $($(this).attr("href"))
 
     if panel.hasClass("in")

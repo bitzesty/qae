@@ -17,7 +17,7 @@ module FormAnswerHelper
     else
       output += "0"
     end
-    output += "</span></span>";
+    output += "</span></span>"
     output.html_safe
   end
 
