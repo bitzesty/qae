@@ -62,6 +62,13 @@
       }
     }
   }
+
+  .caret {
+    margin-left: 5px;
+    border-top-width: 7px;
+    border-right-width: 6px;
+    border-left-width: 6px;
+  }
 }
 
 #admin-layout .page-header {
