@@ -96,6 +96,6 @@ class User < ActiveRecord::Base
   def update_user_full_name
     full_name_changed = first_name_changed? || last_name_changed?
     yield
-    form_answers.each{ |f| f.update_attributes(user_full_name: full_name)}
+    form_answers.each { |f| f.update_attributes(user_full_name: full_name) } if full_name_changed
   end
 end

@@ -3,13 +3,13 @@ require 'qae_2014_forms'
 class FormAnswer < ActiveRecord::Base
   include PgSearch
   pg_search_scope :basic_search, against: [
-                                            :urn,
-                                            :award_type_full_name,
-                                            :current_award_year,
-                                            :company_or_nominee_name,
-                                            :nominee_full_name,
-                                            :user_full_name
-                                          ]
+    :urn,
+    :award_type_full_name,
+    :current_award_year,
+    :company_or_nominee_name,
+    :nominee_full_name,
+    :user_full_name
+  ]
 
   POSSIBLE_AWARDS = [
     "trade", # International Trade Award
@@ -19,13 +19,11 @@ class FormAnswer < ActiveRecord::Base
   ]
 
   AWARD_TYPE_FULL_NAMES = {
-    'innovation' => 'Innovation',
-    'trade' => 'International Trade',
-    'development' => 'Sustainable Development',
-    'promotion' => 'Enterprise promotion'
+    "innovation" => "Innovation",
+    "trade" => "International Trade",
+    "development" => "Sustainable Development",
+    "promotion" => "Enterprise promotion"
   }
-
-  CURRENT_AWARD_YEAR = '14'
 
   begin :associations
     belongs_to :user
@@ -116,9 +114,9 @@ class FormAnswer < ActiveRecord::Base
 
   def company_or_nominee_from_document
     comp_attr = promotion? ? 'organization_name' : 'company_name'
-    name      = document[comp_attr]
-    name      = nominee_full_name_from_document if promotion? && name.blank?
-    name      = name.try(:strip)
+    name = document[comp_attr]
+    name = nominee_full_name_from_document if promotion? && name.blank?
+    name = name.try(:strip)
     name.presence
   end
 
@@ -159,8 +157,8 @@ class FormAnswer < ActiveRecord::Base
     return unless award_type
 
     next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize("urn_seq_#{award_type}")})")
-
-    self.urn = "QA#{sprintf("%.4d", next_seq)}/#{current_award_year.to_s.last(2)}#{award_type[0].capitalize}"
+    year = current_award_year.to_s.last(2)
+    self.urn = "QA#{sprintf('%.4d', next_seq)}/#{year}#{award_type[0].capitalize}"
   end
 
   def set_account
@@ -174,8 +172,8 @@ class FormAnswer < ActiveRecord::Base
 
   def assign_searching_attributes
     self.company_or_nominee_name = company_or_nominee_from_document
-    self.nominee_full_name       = nominee_full_name_from_document
-    self.award_type_full_name    = AWARD_TYPE_FULL_NAMES[award_type]
+    self.nominee_full_name = nominee_full_name_from_document
+    self.award_type_full_name = AWARD_TYPE_FULL_NAMES[award_type]
   end
 
   def set_user_full_name

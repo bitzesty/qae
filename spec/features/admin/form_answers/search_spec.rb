@@ -1,12 +1,10 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Form answer search", %q{
+describe "Form answer search", "
   As Admin
-  I want to search by applications using bunch of attributes.
-} do
-
-  let!(:admin){ create(:admin) }
+  I want to search by applications using bunch of attributes." do
+  let!(:admin) { create(:admin) }
 
   before do
     create(:form_answer)
@@ -16,9 +14,9 @@ describe "Form answer search", %q{
 
   context "success searching" do
     context "by user name" do
-      let!(:user){ create(:user, first_name: first_name )}
-      let(:first_name){ "user-#{rand(100000)}"}
-      let!(:form_answer){ create(:form_answer, user: user)}
+      let!(:user) { create(:user, first_name: first_name) }
+      let(:first_name) { "user-#{rand(100000)}" }
+      let!(:form_answer) { create(:form_answer, user: user) }
 
       it "searchs for form answer with first name" do
         within ".search-input" do
@@ -33,7 +31,7 @@ describe "Form answer search", %q{
     end
 
     context "by award type" do
-      let!(:form_answer){ create(:form_answer, :development)}
+      let!(:form_answer) { create(:form_answer, :development) }
       it "search for form answer by award fullname" do
         within ".search-input" do
           fill_in "query", with: "sustainable"
