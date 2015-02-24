@@ -5,7 +5,7 @@ class QaePdfForms::General::StepPointer
               :step_questions,
               :filtered_questions
 
-  def initialize(ops={})
+  def initialize(ops = {})
     ops.each do |k, v|
       instance_variable_set("@#{k}", v)
     end
@@ -24,11 +24,9 @@ class QaePdfForms::General::StepPointer
     render_header
 
     filtered_questions.each do |question|
-      QaePdfForms::General::QuestionPointer.new({
-        form_pdf: form_pdf,
-        step: self,
-        question: question.decorate
-      }).render!
+      QaePdfForms::General::QuestionPointer.new(form_pdf: form_pdf,
+                                                step: self,
+                                                question: question.decorate).render!
     end
   end
 

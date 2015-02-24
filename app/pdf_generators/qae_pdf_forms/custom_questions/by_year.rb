@@ -1,7 +1,5 @@
 module QaePdfForms::CustomQuestions::ByYear
-  YEAR_LABELS = [
-    "day", "month", "year"
-  ]
+  YEAR_LABELS = %w(day month year)
   YEAR_LABELS_TABLE_HEADERS = [
     "Financial year", "Day", "Month", "Year"
   ]
@@ -56,11 +54,11 @@ module QaePdfForms::CustomQuestions::ByYear
     question.decorate(answers: form_pdf.filled_answers).active_fields
   end
 
-  def fetch_year_label(field, year_label, q_key=nil, with_month_check=true)
+  def fetch_year_label(field, year_label, q_key = nil, with_month_check = true)
     entry = year_entry(field, year_label, q_key)
 
     if entry.present?
-      if with_month_check && year_label == 'month'
+      if with_month_check && year_label == "month"
         to_month(entry)
       else
         entry
@@ -70,23 +68,23 @@ module QaePdfForms::CustomQuestions::ByYear
     end
   end
 
-  def year_entry(field, year_label=nil, q_key=nil)
-    entry = form_pdf.filled_answers.detect do |k, v|
+  def year_entry(field, year_label = nil, q_key = nil)
+    entry = form_pdf.filled_answers.detect do |k, _v|
       k == "#{q_key || key}_#{field}#{year_label}"
     end
 
     entry[1] if entry.present?
   end
 
-  def latest_year_label(with_month_check=true)
+  def latest_year_label(with_month_check = true)
     month = if with_month_check
-      to_month(form_pdf.filled_answers["financial_year_date_month"])
-    else
-      form_pdf.filled_answers["financial_year_date_month"]
+              to_month(form_pdf.filled_answers["financial_year_date_month"])
+            else
+              form_pdf.filled_answers["financial_year_date_month"]
     end
 
     [
-      '0' + form_pdf.filled_answers["financial_year_date_day"],
+      "0" + form_pdf.filled_answers["financial_year_date_day"],
       month,
       Date.today.year
     ]

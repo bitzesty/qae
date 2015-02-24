@@ -1,78 +1,78 @@
 class QAE2014Forms
   class << self
     def development_step6
-      @development_step6 ||= Proc.new {
+      @development_step6 ||= proc do
         header :head_of_bussines_header, "Head of your organisation" do
           ref "F 1"
         end
 
-        dropdown :head_of_bussines_title, '' do
+        dropdown :head_of_bussines_title, "" do
           required
-          context %Q{
+          context %(
             <p class='question_label_with_5px_margins'>Title</p>
-          }
-          option 'prof', 'Prof'
-          option 'dr', 'Dr'
-          option 'mr', 'Mr'
-          option 'mrs', 'Mrs'
-          option 'miss', 'Miss'
-          option 'other', 'Other'
+                    )
+          option "prof", "Prof"
+          option "dr", "Dr"
+          option "mr", "Mr"
+          option "mrs", "Mrs"
+          option "miss", "Miss"
+          option "other", "Other"
         end
 
-        text :head_of_bussines_title_other, '' do
+        text :head_of_bussines_title_other, "" do
           classes "sub-question"
-          context %Q{
+          context %(
             <p class='question_label_with_5px_margins'>Please specify</p>
-          }
-          conditional :head_of_bussines_title, 'other'
+                    )
+          conditional :head_of_bussines_title, "other"
         end
 
-        head_of_business :head_of_business, '' do
+        head_of_business :head_of_business, "" do
           required
         end
 
-        text :head_job_title, 'Job title / Role in the organisation' do
+        text :head_job_title, "Job title / Role in the organisation" do
           classes "sub-question"
           required
-          context %Q{
+          context %(
             <p>e.g. CEO, Managing Director, Founder, Head of your organisational unit</p>
-          }
+                    )
         end
 
-        text :head_email, 'Email address' do
+        text :head_email, "Email address" do
           classes "sub-question"
           required
         end
 
-        confirm :confirmation_of_consent, 'Confirmation of consent' do
-          ref 'F 2'
+        confirm :confirmation_of_consent, "Confirmation of consent" do
+          ref "F 2"
           required
-          text 'I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form.'
+          text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
         end
 
-        confirm :agree_to_be_contacted, 'Confirmation of contact' do
-          ref 'F 3'
+        confirm :agree_to_be_contacted, "Confirmation of contact" do
+          ref "F 3"
           text "I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info)."
         end
 
-        confirm :agree_to_be_contacted_by_department, 'Confirmation of contact by Department of Business, Innovation and Skills' do
-          ref 'F 4'
+        confirm :agree_to_be_contacted_by_department, "Confirmation of contact by Department of Business, Innovation and Skills" do
+          ref "F 4"
           text "I am happy to be contacted by the Department of Business, Innovation and Skills."
         end
 
-        confirm :entry_confirmation, 'Confirmation of entry' do
-          ref 'F 5'
+        confirm :entry_confirmation, "Confirmation of entry" do
+          ref "F 5"
           required
-          text %Q{
+          text %(
             By ticking this box, I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
             <br>
             <br>
             I am not aware of any matter which might cast doubt upon the worthiness of this business unit to receive a Queen’s Award. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety.
-          }
+                    )
         end
 
         submit "Submit application" do
-          notice %Q{
+          notice %(
             <p>If you have answered all the questions, you can submit your application now. You will be able to edit it any time before 23:59 on the last working day of September.</p>
             <p>
               If you are not ready to submit yet, you can save your application and come back later.
@@ -80,10 +80,10 @@ class QAE2014Forms
             <p>
               You can still edit your submitted application at any time before 23:59 on the last working day of September.
             </p>
-          }
+                    )
           style "large"
         end
-      }
+      end
     end
   end
 end

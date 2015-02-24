@@ -23,7 +23,7 @@ class QAE2014Forms
 
         step "Declaration of Corporate Responsibility",
              "Corporate Responsibility",
-              &QAE2014Forms.innovation_step4
+             &QAE2014Forms.innovation_step4
 
         step "Add Links/Documents",
              "Add Links/Documents",

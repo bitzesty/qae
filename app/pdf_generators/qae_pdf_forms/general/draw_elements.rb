@@ -25,7 +25,7 @@ module QaePdfForms::General::DrawElements
       "#{current_host}#{attachment.file.url}",
       description ? description : attachment.file.file.filename,
       DOWNLOAD_ICON,
-      {description_left_margin: 100})
+      description_left_margin: 100)
   end
 
   def draw_link(v)
@@ -37,7 +37,7 @@ module QaePdfForms::General::DrawElements
       {})
   end
 
-  def base_link_sceleton(url, description, icon, ops={})
+  def base_link_sceleton(url, description, icon, ops = {})
     text_box description, at: [ops[:description_left_margin] || 0, cursor], style: :italic
 
     move_up 7
@@ -50,19 +50,19 @@ module QaePdfForms::General::DrawElements
 
       transparent(0) do
         formatted_text([{
-          text: "|||",
-          size: 25,
-          link: url,
-        }], align: :center)
+                         text: "|||",
+                         size: 25,
+                         link: url
+                       }], align: :center)
       end
     end
 
     move_up 24
     formatted_text([{
-      text: "Visit",
-      link: url,
-      styles: [:italic]
-    }], align: :right)
+                     text: "Visit",
+                     link: url,
+                     styles: [:italic]
+                   }], align: :right)
   end
 
   def main_header
@@ -82,33 +82,27 @@ module QaePdfForms::General::DrawElements
   def render_award_information
     stroke_line 29.mm, 138.5.mm + DEFAULT_OFFSET, 29.mm, 114.5.mm + DEFAULT_OFFSET
     text_box form_answer.decorate.award_application_title,
-             default_text_box_properties.merge({
-               at: [32.mm, 142.mm + DEFAULT_OFFSET]
-             })
+             default_text_box_properties.merge(at: [32.mm, 142.mm + DEFAULT_OFFSET])
   end
 
   def render_user_information
     text_box user.decorate.general_info,
-             default_text_box_properties.merge({
-               at: [32.mm, 135.mm + DEFAULT_OFFSET]
-             })
+             default_text_box_properties.merge(at: [32.mm, 135.mm + DEFAULT_OFFSET])
   end
 
   def render_urn
     text_box form_answer.urn,
-      default_text_box_properties.merge({
-        at: [32.mm, 129.mm + DEFAULT_OFFSET]
-      })
+             default_text_box_properties.merge(at: [32.mm, 129.mm + DEFAULT_OFFSET])
   end
 
-  def render_text(title, ops={})
+  def render_text(title, ops = {})
     default_bottom_margin
     text title, ops
   end
 
   def render_table(table_lines)
     default_bottom_margin
-    table table_lines, row_colors: ["F0F0F0", "FFFFFF"],
+    table table_lines, row_colors: %w(F0F0F0 FFFFFF),
                        cell_style: { size: 10, font_style: :bold }
   end
 

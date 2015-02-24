@@ -1,50 +1,50 @@
 class QAE2014Forms
   class << self
     def innovation_step2
-      @innovation_step2 ||= Proc.new {
-        context %Q{
+      @innovation_step2 ||= proc do
+        context %(
           <p>Please try to avoid using technical jargon in this section. </p>
-        }
+                )
 
-        textarea :innovation_desc_short, 'Briefly describe your innovative product/service/initiative' do
-          ref 'B 1'
+        textarea :innovation_desc_short, "Briefly describe your innovative product/service/initiative" do
+          ref "B 1"
           required
-          context %Q{
+          context %(
             <p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>
-          }
+                    )
           rows 2
           words_max 15
         end
 
-        textarea :innovation_desc_long, 'Summarise your innovative product/service/initiative' do
+        textarea :innovation_desc_long, "Summarise your innovative product/service/initiative" do
           classes "sub-question"
           required
-          context %Q{
+          context %{
             <p>Describe the product/service/initiative itself. Explain any aspect(s) you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Also explain how it fits within the overall business i.e. is it your sole product?</p>
           }
           rows 5
           words_max 800
         end
 
-        textarea :innovation_context, 'Describe the market conditions that led to the creation of your innovation.' do
-          ref 'B 2'
+        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation." do
+          ref "B 2"
           required
-          context %Q{
+          context %(
             <p>Or otherwise, how you identified a gap in the market.</p>
-          }
+                    )
           rows 5
           words_max 500
         end
 
         textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior problems, and any difficulties you overcame in achieving these solutions." do
-          ref 'B 3'
+          ref "B 3"
           required
           rows 5
           words_max 800
         end
 
-        textarea :innovation_external_contributors, 'Please name the external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s).' do
-          ref 'B 4'
+        textarea :innovation_external_contributors, "Please name the external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s)." do
+          ref "B 4"
           required
           conditional :innovation_any_contributors, :yes
           rows 5
@@ -52,24 +52,24 @@ class QAE2014Forms
         end
 
         textarea :innovation_befits_details, "How does the innovation benefit your customers and your business?" do
-          ref 'B 5'
+          ref "B 5"
           required
-          context %Q{
+          context %(
             <p>e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim. <span class='text-underline'>You will have the opportunity to include the financial benefits to your organisation in the next section.<span></p>
-          }
+                    )
           rows 5
           words_max 800
         end
 
         textarea :innovation_competitors, "Describe any products/services/initiatives made by others that compete with your innovation, and explain how your innovation differs." do
-          ref 'B 6'
+          ref "B 6"
           required
           rows 5
           words_max 300
         end
 
-        options :innovations_grant_funding, 'Have you received any grant funding to support your innovation?' do
-          ref 'B 7'
+        options :innovations_grant_funding, "Have you received any grant funding to support your innovation?" do
+          ref "B 7"
           required
           yes_no
         end
@@ -82,23 +82,23 @@ class QAE2014Forms
           words_max 300
         end
 
-        number :innovation_years, 'How long have you had your innovation on the market?' do
+        number :innovation_years, "How long have you had your innovation on the market?" do
           required
-          ref 'B 8'
+          ref "B 8"
           max 100
-          unit ' years'
+          unit " years"
           style "small inline"
         end
 
-        textarea :innovation_additional_comments, 'Additional comments (optional)' do
+        textarea :innovation_additional_comments, "Additional comments (optional)" do
           classes "sub-question"
           rows 5
           words_max 200
-          context %Q{
+          context %(
             <p>Please use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
-          }
+                    )
         end
-      }
+      end
     end
   end
 end
