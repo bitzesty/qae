@@ -28,8 +28,8 @@ class Account < ActiveRecord::Base
   end
 
   def has_trade_award_in_this_year?
-    form_answers.for_year("20#{FormAnswer::CURRENT_AWARD_YEAR}".to_i)
-                .for_award_type(:trade)
-                .present?
+    form_answers.for_year("20#{FormAnswer::CURRENT_AWARD_YEAR}".to_i).
+                 for_award_type(:trade).
+                 present?
   end
 end
