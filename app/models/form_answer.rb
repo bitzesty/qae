@@ -56,7 +56,7 @@ class FormAnswer < ActiveRecord::Base
 
   begin :scopes
     scope :for_award_type, -> (award_type) { where award_type: award_type }
-    scope :for_year, -> (year) { where current_award_year: year }
+    scope :for_year, -> (year) { where award_year: year }
   end
 
   begin :callbacks

@@ -14,12 +14,12 @@ describe Account do
     end
 
     it "returns false when there is trade award, but for previous year" do
-      create(:form_answer, :trade, user: user, current_award_year: previous_year)
+      create(:form_answer, :trade, user: user, award_year: previous_year)
       expect(account.reload.has_trade_award_in_this_year?).to be_falsey
     end
 
     it "returns true when there is a trade award for current year" do
-      create(:form_answer, :trade, user: user, current_award_year: current_year)
+      create(:form_answer, :trade, user: user, award_year: current_year)
       expect(account.reload.has_trade_award_in_this_year?).to be_truthy
     end
   end
