@@ -105,19 +105,19 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def promotion?
-    award_type == 'promotion'
+    award_type == "promotion"
   end
 
   def trade?
-    award_type == 'trade'
+    award_type == "trade"
   end
 
   def development?
-    award_type == 'development'
+    award_type == "development"
   end
 
   def innovation?
-    award_type == 'innovation'
+    award_type == "innovation"
   end
 
   def important?

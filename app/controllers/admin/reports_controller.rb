@@ -4,7 +4,7 @@ class Admin::ReportsController < Admin::BaseController
 
     respond_to do |format|
       format.html
-      format.csv{ send_data resource.build }
+      format.csv { send_data resource.build }
     end
   end
 

@@ -138,6 +138,6 @@ class Reports::AdminReportBuilder
   private
 
   def headers
-    MAPPING.map{|m| m[:label]}
+    MAPPING.map { |m| m[:label] }
   end
 end
