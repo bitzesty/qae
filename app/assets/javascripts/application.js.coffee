@@ -232,6 +232,34 @@ jQuery ->
   # Fade out alerts after 10sec
   $(".flash").delay(10000).fadeOut()
 
+  updateUploadListVisiblity = (list, button, max) ->
+    list_elements = list.find("li")
+    count = list_elements.length
+    if count > 0
+      list.removeClass("visuallyhidden")
+
+    if !max || count < max
+      button.removeClass("visuallyhidden")
+    else
+      button.addClass("visuallyhidden")
+
+  reindexUploadListInputs = (list) ->
+    idx = 0
+    list.find("li").each (i, li) ->
+      process_input = (j, input_el) ->
+        name = $(input_el).attr("name")
+        match = /([^\[]+)\[([^\]]+)\]\[([0-9]*)\](.*)/.exec name
+        if match
+          $(input_el).attr("name", "#{match[1]}[#{match[2]}][#{idx}]#{match[4]}")
+
+      $(li).find("input").each process_input
+      $(li).find("textarea").each process_input
+      idx++
+
+  appendLinkDocumentRemoveLink = (div) ->
+    remove_link = $("<a>").addClass("remove-link").prop("href", "#").text("Remove")
+    div.append(remove_link)
+
   $('.js-file-upload').each (idx, el) ->
     form = $(el).closest('form')
     attachments_url = form.data 'attachments-url'
@@ -250,30 +278,6 @@ jQuery ->
     progress_all = (e, data) ->
       # TODO
 
-    reindex_inputs = () ->
-      idx = 0
-      list.find('li').each (i, li) ->
-        process_input = (j, input_el) ->
-          name = $(input_el).attr('name')
-          match = /([^\[]+)\[([^\]]+)\]\[([0-9]*)\](.*)/.exec name
-          if match
-            $(input_el).attr('name', "#{match[1]}[#{match[2]}][#{idx}]#{match[4]}")
-
-        $(li).find('input').each process_input
-        $(li).find('textarea').each process_input
-        idx++
-
-    update_visibility = () ->
-      list_elements = list.find('li')
-      count = list_elements.length
-      if count > 0
-        list.removeClass('visuallyhidden')
-
-      if !max || count < max
-        button.removeClass('visuallyhidden')
-      else
-        button.addClass('visuallyhidden')
-
     upload_started = (e, data) ->
       button.addClass('visuallyhidden') #TODO: show progressbar
 
@@ -286,6 +290,7 @@ jQuery ->
         input = $("<input class=\"medium\" type=\"text\">").
           prop('name', "#{form_name}[#{name}][][link]")
         label.append(input)
+        appendLinkDocumentRemoveLink(div)
         div.append(label)
         new_el.append(div)
       else
@@ -297,11 +302,7 @@ jQuery ->
           prop('value', data.result['id'])
 
         div.append(hidden_input)
-
-        remove_link = $("<a>").addClass('remove-link').prop('href', '#').text('Remove')
-        remove_link.click remove_link_clicked
-
-        div.append(remove_link)
+        appendLinkDocumentRemoveLink(div)
         new_el.append(div)
 
       if needs_description
@@ -311,29 +312,13 @@ jQuery ->
         desc_div.append(label)
         new_el.append(desc_div)
 
-      remove_link_clicked = (e) ->
-        e.preventDefault()
-        new_el.remove()
-        update_visibility()
-        reindex_inputs
-        false
-
       list.append(new_el)
       new_el.find('.js-char-count').charcount()
       list.removeClass('visuallyhidden')
-      update_visibility()
-      reindex_inputs()
+      updateUploadListVisiblity(list, button, max)
+      reindexUploadListInputs(list)
 
-    wrapper.find('a.remove-link').each (idx, el) ->
-      $(el).click (e) ->
-        e.preventDefault()
-        if !$(this).hasClass("read-only")
-          li = $(el).closest 'li'
-          li.remove()
-          update_visibility()
-          false
-
-    update_visibility()
+    updateUploadListVisiblity(list, button, max)
 
     if is_link
       $el.click (e) ->
@@ -349,6 +334,21 @@ jQuery ->
         progressall: progress_all
         send: upload_started
       )
+
+  $(document).on "click", ".js-upload-wrapper .remove-link", (e) ->
+    e.preventDefault()
+
+    if !$(this).hasClass("read-only")
+      li = $(this).closest 'li'
+      list = li.closest(".js-uploaded-list")
+      wrapper = list.closest(".js-upload-wrapper")
+      button = wrapper.find(".button-add")
+      max = wrapper.data('max-attachments')
+
+      li.remove()
+      updateUploadListVisiblity(list, button, max)
+      reindexUploadListInputs(list)
+      false
 
   # Show current holder info when they are a current holder on basic eligibility current holder question
   if $(".eligibility_current_holder").size() > 0
