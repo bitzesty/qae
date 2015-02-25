@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223123005) do
+ActiveRecord::Schema.define(version: 20150225090728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20150223123005) do
     t.boolean  "importance_flag",         default: false
     t.string   "state",                   default: "in_progress1", null: false
     t.string   "company_or_nominee_name"
-    t.integer  "award_year",      default: 2014,           null: false
+    t.integer  "award_year",              default: 2014,           null: false
     t.string   "nominee_full_name"
     t.string   "user_full_name"
     t.string   "award_type_full_name"
@@ -155,26 +155,25 @@ ActiveRecord::Schema.define(version: 20150223123005) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title",                      limit: 255
-    t.string   "first_name",                 limit: 255
-    t.string   "last_name",                  limit: 255
-    t.string   "job_title",                  limit: 255
-    t.string   "phone_number",               limit: 255
-    t.string   "company_name",               limit: 255
-    t.string   "company_address_first",      limit: 255
-    t.string   "company_address_second",     limit: 255
-    t.string   "company_city",               limit: 255
-    t.string   "company_country",            limit: 255
-    t.string   "company_postcode",           limit: 255
-    t.string   "company_phone_number",       limit: 255
-    t.string   "prefered_method_of_contact", limit: 255
-    t.boolean  "subscribed_to_emails",                   default: false
-    t.string   "qae_info_source",            limit: 255
-    t.string   "qae_info_source_other",      limit: 255
-    t.boolean  "completed_registration",                 default: false
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "job_title"
+    t.string   "phone_number"
+    t.string   "company_name"
+    t.string   "company_address_first"
+    t.string   "company_address_second"
+    t.string   "company_city"
+    t.string   "company_country"
+    t.string   "company_postcode"
+    t.string   "company_phone_number"
+    t.string   "prefered_method_of_contact"
+    t.boolean  "subscribed_to_emails",       default: false
+    t.string   "qae_info_source"
+    t.string   "qae_info_source_other"
     t.integer  "account_id"
-    t.string   "role",                       limit: 255
-    t.boolean  "completed_registration",                 default: false
+    t.string   "role"
+    t.boolean  "completed_registration",     default: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
