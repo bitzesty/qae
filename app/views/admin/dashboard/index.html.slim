@@ -7,19 +7,16 @@
           span.glyphicon.glyphicon-signal
           ' Reports
         ul.list-unstyled.list-actions
-          li
-            =link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT3, format: :csv)
-              span.action-title
-                span.glyphicon.glyphicon-file
-                ' &nbsp;
-                ' View
-              ' &nbsp;
+          - ["Case Status", "All Entries", "Press Book List"].each do |report|
+            li
               = link_to "#"
-                span.glyphicon.glyphicon-download-alt
-                ' &nbsp;
-                ' Download
-                ' Report1
-
+                span.action-title
+                  span.glyphicon.glyphicon-file
+                  = report
+              small.pull-right
+                =link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT3, format: :csv)
+                  span.glyphicon.glyphicon-download-alt
+                  ' Download
       / TODO Email actions
       .well
         h2
