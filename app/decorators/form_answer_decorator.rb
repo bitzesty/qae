@@ -1,12 +1,6 @@
 class FormAnswerDecorator < ApplicationDecorator
-  AWARD_TYPE_LABELS = {
-    'innovation' => 'Innovation',
-    'trade' => 'International Trade',
-    'development' => 'Sustainable Development',
-    'promotion' => 'Enterprise promotion'
-  }
 
-  SELECT_BOX_LABELS = AWARD_TYPE_LABELS.merge({'promotion' => 'QAEP'})
+  SELECT_BOX_LABELS = FormAnswer::AWARD_TYPE_FULL_NAMES.merge("promotion" => "QAEP")
 
   def pdf_generator
     "QaePdfForms::Awards2014::#{object.award_type.capitalize}::Base".constantize.new(object)
@@ -17,7 +11,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def award_type
-    AWARD_TYPE_LABELS[object.award_type]
+    object.class::AWARD_TYPE_FULL_NAMES[object.award_type]
   end
 
   def award_application_title

@@ -68,6 +68,7 @@ gem 'sidekiq-status'
 gem 'sinatra', require: false
 
 gem 'foreman'
+gem 'pg_search'
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'
@@ -76,6 +77,7 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'
+  gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'rspec-rails'

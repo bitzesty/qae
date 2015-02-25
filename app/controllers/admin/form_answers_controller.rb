@@ -5,6 +5,15 @@ class Admin::FormAnswersController < Admin::BaseController
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
     authorize :form_answer, :index?
     @search = FormAnswerSearch.new(FormAnswer.all).search(params[:search])
+
+    if search_query.present?
+      scope = FormAnswer.basic_search(search_query)
+    else
+      scope = FormAnswer.all
+    end
+
+    @search = FormAnswerSearch.new(scope).search(params[:search])
+
     @form_answers = @search.results.page(params[:page])
   end
 
@@ -26,7 +35,13 @@ class Admin::FormAnswersController < Admin::BaseController
     redirect_to edit_form_path(@form_answer, anchor: "company-information")
   end
 
+  helper_method :search_query
+
   private
+
+  def search_query
+    params[:query]
+  end
 
   def load_resource
     @form_answer = FormAnswer.find(params[:id]).decorate
