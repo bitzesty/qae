@@ -129,7 +129,10 @@
       #section-collaborators.section-collaborators.panel-collapse.collapse role="tabpanel" aria-labelledby="section-collaborators-header"
         .panel-body
           / TODO collaborators
-          ' TODO
+          - if params[:action] == "edit"
+            - collaborators = resource.account.collaborators_without(resource)
+            = render "account/collaborators/list", collaborators: collaborators
+          = link_to "+ Add a collaborator", new_account_collaborator_path, class: "btn btn-default"
 
     - if params[:action] == "edit"
       .panel.panel-default
