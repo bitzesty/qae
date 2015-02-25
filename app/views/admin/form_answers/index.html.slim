@@ -35,13 +35,15 @@
                     li.checkbox role="presentation"
                       label data-value='select_all'
                         input type="checkbox"
-                        em Select all
+                        span.label-contents
+                          em Select all
                     li.divider
                     - award_types_collection.each do |key,v|
                       li.checkbox role="presentation"
                         label data-value=v
                           input type="checkbox"
-                          = key
+                          span.label-contents
+                            = key
             - if search_query.present?
               th Status
             - else
@@ -58,12 +60,14 @@
                     li.checkbox role="presentation"
                       label data-value='select_all'
                         input type="checkbox"
-                        em Select all
+                        span.label-contents
+                          em Select all
                     - FormAnswerStatusFiltering.collection.each do |state|
                       li.checkbox role='presentation'
                         label data-value=state[1]
                           input type='checkbox'
-                          = state[0]
+                          span.label-contents
+                            = state[0]
                     li.divider
                     = f.simple_fields_for [:filters, @search.filters] do |f|
                       = f.input :status, collection: FormAnswerStatusFiltering.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
@@ -72,7 +76,8 @@
                       li.checkbox role="presentation"
                         label data-value=key
                           input type="checkbox"
-                          em = val[:label]
+                          span.label-contents
+                            em = val[:label]
 
             th &nbsp;
             th.sortable
