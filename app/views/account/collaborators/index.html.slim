@@ -26,7 +26,9 @@ header.page-header.group class=('page-header-wider' unless current_user.complete
         .visuallyhidden
           = render "accounts/form_contact_settings", f: f
 
-        = render "list", f: f
+        = render "list"
+
+        = link_to "+ Add a collaborator", new_account_collaborator_path, class: "button button-add"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

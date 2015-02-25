@@ -1,7 +1,6 @@
-.row
-  .col-md-3
-    ul.tabs
-      - %w[users assessors admins].each do |role|
-        - if policy(role.singularize.to_sym).index?
-          li class=('current' if controller_name == role)
-            = link_to role, public_send("admin_#{role}_path")
+ul.nav.nav-pills
+  - %w[users assessors admins].each do |role|
+    - if policy(role.singularize.to_sym).index?
+      li class=('active' if controller_name == role) role="presentation"
+        = link_to role.titleize, public_send("admin_#{role}_path")
+br
