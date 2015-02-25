@@ -1,0 +1,6524 @@
+---
+- code: '1623'
+  description: Manufacture of other builders' carpentry and joinery
+  year1: '2'
+  year2: '2'
+  year3: '2'
+  year4: '2'
+  year5: '2'
+  year6: '2'
+- code: '2332'
+  description: Manufacture of bricks, tiles and construction products, in baked clay
+  year1: '2'
+  year2: '2'
+  year3: '2'
+  year4: '2'
+  year5: '2'
+  year6: '2'
+- code: '2361'
+  description: Manufacture of concrete products for construction purposes
+  year1: '3'
+  year2: '2'
+  year3: '2'
+  year4: '2'
+  year5: '2'
+  year6: '2'
+- code: '1013'
+  description: Production of meat and poultry meat products
+  year1: '1'
+  year2: '2'
+  year3: '2'
+  year4: '2'
+  year5: '3'
+  year6: '3'
+- code: '3102'
+  description: Manufacture of kitchen furniture
+  year1: '3'
+  year2: '2'
+  year3: '3'
+  year4: '3'
+  year5: '3'
+  year6: '3'
+- code: 0811
+  description: Quarrying of ornamental and building stone, limestone, gypsum, chalk
+    and slate
+  year1: '4'
+  year2: '2'
+  year3: '3'
+  year4: '2'
+  year5: 1*
+  year6: 1*
+- code: '1071'
+  description: Manufacture of bread; manufacture of fresh pastry goods and cakes
+  year1: '3'
+  year2: '3'
+  year3: '3'
+  year4: '3'
+  year5: '3'
+  year6: '3'
+- code: '2362'
+  description: Manufacture of plaster products for construction purposes
+  year1: '4'
+  year2: '3'
+  year3: '3'
+  year4: '4'
+  year5: '3'
+  year6: '3'
+- code: '2512'
+  description: Manufacture of doors and windows of metal
+  year1: '3'
+  year2: '3'
+  year3: '4'
+  year4: '3'
+  year5: '3'
+  year6: '3'
+- code: '2364'
+  description: Manufacture of mortars
+  year1: '5'
+  year2: '3'
+  year3: '7'
+  year4: '4'
+  year5: '4'
+  year6: '4'
+- code: 0893
+  description: Extraction of salt
+  year1: '4'
+  year2: '3'
+  year3: '5'
+  year4: '5'
+  year5: 1*
+  year6: 1*
+- code: '2370'
+  description: Cutting, shaping and finishing of stone
+  year1: '5'
+  year2: '4'
+  year3: '4'
+  year4: '4'
+  year5: '6'
+  year6: '6'
+- code: '2011'
+  description: Manufacture of industrial gases
+  year1: '5'
+  year2: '5'
+  year3: '4'
+  year4: '5'
+  year5: '5'
+  year6: '5'
+- code: '2540'
+  description: Manufacture of weapons and ammunition
+  year1: '3'
+  year2: '5'
+  year3: 99*
+  year4: 99*
+  year5: '5'
+  year6: '5'
+- code: '1103'
+  description: Manufacture of cider and other fruit wines
+  year1: '4'
+  year2: '6'
+  year3: '5'
+  year4: '5'
+  year5: '6'
+  year6: '6'
+- code: '1039'
+  description: Other processing and preserving of fruit and vegetables
+  year1: '6'
+  year2: '6'
+  year3: '6'
+  year4: '7'
+  year5: '7'
+  year6: '7'
+- code: '1624'
+  description: Manufacture of wooden containers
+  year1: '5'
+  year2: '6'
+  year3: '7'
+  year4: '8'
+  year5: '7'
+  year6: '7'
+- code: '2351'
+  description: Manufacture of cement
+  year1: '4'
+  year2: '6'
+  year3: '6'
+  year4: '7'
+  year5: '7'
+  year6: '7'
+- code: '3103'
+  description: Manufacture of mattresses
+  year1: '5'
+  year2: '6'
+  year3: '6'
+  year4: '6'
+  year5: '7'
+  year6: '7'
+- code: '2365'
+  description: Manufacture of fibre cement
+  year1: '6'
+  year2: '7'
+  year3: '10'
+  year4: '14'
+  year5: '8'
+  year6: '8'
+- code: '1813'
+  description: Pre-press and pre-media services
+  year1: '5'
+  year2: '7'
+  year3: '12'
+  year4: '16'
+  year5: '15'
+  year6: '15'
+- code: '1721'
+  description: Manufacture of corrugated paper and paperboard and of containers of
+    paper and paperboard
+  year1: '9'
+  year2: '8'
+  year3: '8'
+  year4: '7'
+  year5: '8'
+  year6: '8'
+- code: 1721/1
+  description: Manufacture of corrugated paper and paperboard; manufacture of sacks
+    and bags of paper
+  year1: '9'
+  year2: '8'
+  year3: '8'
+  year4: '7'
+  year5: '8'
+  year6: '8'
+- code: 1721/9
+  description: Manufacture of paper and paperboard containers other than sacks and
+    bags
+  year1: '9'
+  year2: '8'
+  year3: '8'
+  year4: '7'
+  year5: '8'
+  year6: '8'
+- code: '2452'
+  description: Casting of steel
+  year1: '9'
+  year2: '8'
+  year3: '8'
+  year4: '9'
+  year5: '10'
+  year6: '10'
+- code: 0812
+  description: Operation of gravel and sand pits; mining of clays and kaolin
+  year1: '15'
+  year2: '8'
+  year3: '17'
+  year4: '8'
+  year5: 1*
+  year6: 1*
+- code: '1610'
+  description: Sawmilling and planing of wood
+  year1: '8'
+  year2: '9'
+  year3: '8'
+  year4: '7'
+  year5: '6'
+  year6: '6'
+- code: '1107'
+  description: Manufacture of soft drinks; production of mineral waters and other
+    bottled waters
+  year1: '9'
+  year2: '9'
+  year3: '8'
+  year4: '9'
+  year5: '8'
+  year6: '8'
+- code: '2511'
+  description: Manufacture of metal structures and parts of structures
+  year1: '8'
+  year2: '9'
+  year3: '7'
+  year4: '8'
+  year5: '9'
+  year6: '9'
+- code: '1032'
+  description: Manufacture of fruit and vegetable juice
+  year1: '10'
+  year2: '9'
+  year3: '9'
+  year4: '10'
+  year5: '12'
+  year6: '12'
+- code: '2223'
+  description: Manufacture of builders’ ware of plastic
+  year1: '10'
+  year2: '10'
+  year3: '11'
+  year4: '10'
+  year5: '9'
+  year6: '9'
+- code: '2521'
+  description: Manufacture of central heating radiators and boilers
+  year1: '10'
+  year2: '10'
+  year3: '9'
+  year4: '10'
+  year5: '10'
+  year6: '10'
+- code: '3020'
+  description: Manufacture of railway locomotives and rolling stock
+  year1: '43'
+  year2: '10'
+  year3: '51'
+  year4: '38'
+  year5: '10'
+  year6: '10'
+- code: '1012'
+  description: Processing and preserving of poultry meat
+  year1: '9'
+  year2: '10'
+  year3: '11'
+  year4: '10'
+  year5: '11'
+  year6: '11'
+- code: '2015'
+  description: Manufacture of fertilisers and nitrogen compounds
+  year1: '11'
+  year2: '10'
+  year3: '8'
+  year4: '11'
+  year5: '11'
+  year6: '11'
+- code: '1629'
+  description: Manufacture of other products of wood; manufacture of articles of cork,
+    straw and plaiting materials
+  year1: '13'
+  year2: '10'
+  year3: '16'
+  year4: '15'
+  year5: '15'
+  year6: '15'
+- code: '1052'
+  description: Manufacture of ice cream
+  year1: '11'
+  year2: '11'
+  year3: '15'
+  year4: '14'
+  year5: '13'
+  year6: '13'
+- code: '1092'
+  description: Manufacture of prepared pet foods
+  year1: '11'
+  year2: '11'
+  year3: '10'
+  year4: '15'
+  year5: '15'
+  year6: '15'
+- code: '2352'
+  description: Manufacture of lime and plaster
+  year1: '15'
+  year2: '12'
+  year3: '15'
+  year4: '13'
+  year5: '15'
+  year6: '15'
+- code: '1072'
+  description: Manufacture of rusks and biscuits; manufacture of preserved pastry
+    goods and cakes
+  year1: '13'
+  year2: '13'
+  year3: '13'
+  year4: '14'
+  year5: '14'
+  year6: '14'
+- code: '2313'
+  description: Manufacture of hollow glass
+  year1: '14'
+  year2: '13'
+  year3: '15'
+  year4: '18'
+  year5: '20'
+  year6: '20'
+- code: '1621'
+  description: Manufacture of veneer sheets and wood-based panels
+  year1: '13'
+  year2: '14'
+  year3: '15'
+  year4: '15'
+  year5: '12'
+  year6: '12'
+- code: '1031'
+  description: Processing and preserving of potatoes
+  year1: '14'
+  year2: '14'
+  year3: '15'
+  year4: '14'
+  year5: '15'
+  year6: '15'
+- code: '3101'
+  description: Manufacture of office and shop furniture
+  year1: '14'
+  year2: '14'
+  year3: '15'
+  year4: '15'
+  year5: '15'
+  year6: '15'
+- code: '1051'
+  description: Operation of dairies and cheese making
+  year1: '11'
+  year2: '14'
+  year3: '15'
+  year4: '15'
+  year5: '16'
+  year6: '16'
+- code: 1051/1
+  description: Liquid milk and cream production
+  year1: '11'
+  year2: '14'
+  year3: '15'
+  year4: '15'
+  year5: '16'
+  year6: '16'
+- code: 1051/2
+  description: Butter and cheese production
+  year1: '11'
+  year2: '14'
+  year3: '15'
+  year4: '15'
+  year5: '16'
+  year6: '16'
+- code: 1051/9
+  description: Manufacture of milk products (other than liquid milk and cream, butter,
+    cheese) n.e.c.
+  year1: '11'
+  year2: '14'
+  year3: '15'
+  year4: '15'
+  year5: '16'
+  year6: '16'
+- code: '1105'
+  description: Manufacture of beer
+  year1: '10'
+  year2: '14'
+  year3: '14'
+  year4: '16'
+  year5: '19'
+  year6: '19'
+- code: '1085'
+  description: Manufacture of prepared meals and dishes
+  year1: '13'
+  year2: '14'
+  year3: '15'
+  year4: '44'
+  year5: '49'
+  year6: '49'
+- code: '3211'
+  description: Striking of coins
+  year1: '42'
+  year2: '14'
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1084'
+  description: Manufacture of condiments and seasonings
+  year1: '14'
+  year2: '15'
+  year3: '14'
+  year4: '16'
+  year5: '15'
+  year6: '15'
+- code: '1722'
+  description: Manufacture of household and sanitary goods and of toilet requisites
+  year1: '19'
+  year2: '15'
+  year3: '18'
+  year4: '14'
+  year5: '16'
+  year6: '16'
+- code: '1089'
+  description: Manufacture of other food products n.e.c.
+  year1: '15'
+  year2: '15'
+  year3: '15'
+  year4: '14'
+  year5: '17'
+  year6: '17'
+- code: '2920'
+  description: Manufacture of bodies (coachwork) for motor vehicles; manufacture of
+    trailers and semi-trailers
+  year1: '15'
+  year2: '16'
+  year3: '15'
+  year4: '13'
+  year5: '16'
+  year6: '16'
+- code: 2920/1
+  description: Manufacture of bodies (coachwork) for motor vehicles (except caravans)
+  year1: '15'
+  year2: '16'
+  year3: '15'
+  year4: '13'
+  year5: '16'
+  year6: '16'
+- code: 2920/2
+  description: Manufacture of trailers and semi-trailers
+  year1: '15'
+  year2: '16'
+  year3: '15'
+  year4: '13'
+  year5: '16'
+  year6: '16'
+- code: 2920/3
+  description: Manufacture of caravans
+  year1: '15'
+  year2: '16'
+  year3: '15'
+  year4: '13'
+  year5: '16'
+  year6: '16'
+- code: '1082'
+  description: Manufacture of cocoa, chocolate and sugar confectionery
+  year1: '16'
+  year2: '16'
+  year3: '24'
+  year4: '27'
+  year5: '29'
+  year6: '29'
+- code: 1082/1
+  description: Manufacture of cocoa, and chocolate confectionery
+  year1: '16'
+  year2: '16'
+  year3: '24'
+  year4: '27'
+  year5: '29'
+  year6: '29'
+- code: 1082/2
+  description: Manufacture of sugar confectionery
+  year1: '16'
+  year2: '16'
+  year3: '24'
+  year4: '27'
+  year5: '29'
+  year6: '29'
+- code: '1061'
+  description: Manufacture of grain mill products
+  year1: '18'
+  year2: '18'
+  year3: '18'
+  year4: '18'
+  year5: '18'
+  year6: '18'
+- code: 1061/1
+  description: Grain milling
+  year1: '18'
+  year2: '18'
+  year3: '18'
+  year4: '18'
+  year5: '18'
+  year6: '18'
+- code: 1061/2
+  description: Manufacture of breakfast cereals and cereals-based foods
+  year1: '18'
+  year2: '18'
+  year3: '18'
+  year4: '18'
+  year5: '18'
+  year6: '18'
+- code: '2312'
+  description: Shaping and processing of flat glass
+  year1: '19'
+  year2: '18'
+  year3: '22'
+  year4: '19'
+  year5: '18'
+  year6: '18'
+- code: '3109'
+  description: Manufacture of other furniture
+  year1: '17'
+  year2: '18'
+  year3: '20'
+  year4: '19'
+  year5: '19'
+  year6: '19'
+- code: '1200'
+  description: Manufacture of tobacco products
+  year1: '21'
+  year2: '20'
+  year3: '16'
+  year4: '15'
+  year5: '15'
+  year6: '15'
+- code: '2451'
+  description: Casting of iron
+  year1: '23'
+  year2: '20'
+  year3: '16'
+  year4: '16'
+  year5: '16'
+  year6: '16'
+- code: '1723'
+  description: Manufacture of paper stationery
+  year1: '16'
+  year2: '20'
+  year3: '19'
+  year4: '18'
+  year5: '19'
+  year6: '19'
+- code: '2311'
+  description: Manufacture of flat glass
+  year1: '20'
+  year2: '20'
+  year3: '23'
+  year4: '23'
+  year5: '19'
+  year6: '19'
+- code: '2369'
+  description: Manufacture of other articles of concrete, plaster and cement
+  year1: '23'
+  year2: '21'
+  year3: '20'
+  year4: '17'
+  year5: '28'
+  year6: '28'
+- code: '1106'
+  description: Manufacture of malt
+  year1: '19'
+  year2: '22'
+  year3: '22'
+  year4: '19'
+  year5: '16'
+  year6: '16'
+- code: '1073'
+  description: Manufacture of macaroni, noodles, couscous and similar farinaceous
+    products
+  year1: '30'
+  year2: '22'
+  year3: '27'
+  year4: '50'
+  year5: '19'
+  year6: '19'
+- code: '2331'
+  description: Manufacture of ceramic tiles and flags
+  year1: '8'
+  year2: '22'
+  year3: '64'
+  year4: '79'
+  year5: '33'
+  year6: '33'
+- code: '2592'
+  description: Manufacture of light metal packaging
+  year1: '27'
+  year2: '23'
+  year3: '25'
+  year4: '28'
+  year5: '38'
+  year6: '38'
+- code: '1081'
+  description: Manufacture of sugar
+  year1: '24'
+  year2: '24'
+  year3: '14'
+  year4: '13'
+  year5: '11'
+  year6: '11'
+- code: '1042'
+  description: Manufacture of margarine and similar edible fats
+  year1: 99*
+  year2: '24'
+  year3: '9'
+  year4: '13'
+  year5: '13'
+  year6: '13'
+- code: '1011'
+  description: Processing and preserving of meat
+  year1: '20'
+  year2: '24'
+  year3: '28'
+  year4: '25'
+  year5: '23'
+  year6: '23'
+- code: '2222'
+  description: Manufacture of plastic packing goods
+  year1: '22'
+  year2: '24'
+  year3: '24'
+  year4: '22'
+  year5: '25'
+  year6: '25'
+- code: '2752'
+  description: Manufacture of non-electric domestic appliances
+  year1: '24'
+  year2: '24'
+  year3: '25'
+  year4: '27'
+  year5: '31'
+  year6: '31'
+- code: '1412'
+  description: Manufacture of workwear
+  year1: '19'
+  year2: '25'
+  year3: '41'
+  year4: '38'
+  year5: '47'
+  year6: '47'
+- code: '1062'
+  description: Manufacture of starches and starch products
+  year1: '20'
+  year2: '26'
+  year3: '31'
+  year4: '34'
+  year5: '6'
+  year6: '6'
+- code: '2530'
+  description: Manufacture of steam generators, except central heating hot water boilers
+  year1: '24'
+  year2: '28'
+  year3: '34'
+  year4: '32'
+  year5: '37'
+  year6: '37'
+- code: '2612'
+  description: Manufacture of loaded electronic boards
+  year1: '30'
+  year2: '29'
+  year3: '25'
+  year4: '27'
+  year5: '26'
+  year6: '26'
+- code: '1393'
+  description: Manufacture of carpets and rugs
+  year1: '30'
+  year2: '31'
+  year3: '30'
+  year4: '30'
+  year5: '34'
+  year6: '34'
+- code: 1393/1
+  description: Manufacture of woven or tufted carpets and rugs
+  year1: '30'
+  year2: '31'
+  year3: '30'
+  year4: '30'
+  year5: '34'
+  year6: '34'
+- code: 1393/9
+  description: Manufacture of carpets and rugs (other than woven or tufted) n.e.c.
+  year1: '30'
+  year2: '31'
+  year3: '30'
+  year4: '30'
+  year5: '34'
+  year6: '34'
+- code: '1729'
+  description: Manufacture of other articles of paper and paperboard
+  year1: '32'
+  year2: '31'
+  year3: '33'
+  year4: '34'
+  year5: '36'
+  year6: '36'
+- code: '1392'
+  description: Manufacture of made-up textile articles, except apparel
+  year1: '31'
+  year2: '33'
+  year3: '26'
+  year4: '24'
+  year5: '36'
+  year6: '36'
+- code: 1392/1
+  description: Manufacture of soft furnishings
+  year1: '31'
+  year2: '33'
+  year3: '26'
+  year4: '24'
+  year5: '36'
+  year6: '36'
+- code: 1392/2
+  description: Manufacture of canvas goods, sacks etc.
+  year1: '31'
+  year2: '33'
+  year3: '26'
+  year4: '24'
+  year5: '36'
+  year6: '36'
+- code: 1392/3
+  description: Manufacture of household textiles
+  year1: '31'
+  year2: '33'
+  year3: '26'
+  year4: '24'
+  year5: '36'
+  year6: '36'
+- code: '1083'
+  description: Processing of tea and coffee
+  year1: '27'
+  year2: '34'
+  year3: '28'
+  year4: '30'
+  year5: '32'
+  year6: '32'
+- code: 1083/1
+  description: Tea processing
+  year1: '27'
+  year2: '34'
+  year3: '28'
+  year4: '30'
+  year5: '32'
+  year6: '32'
+- code: 1083/2
+  description: Production of coffee and coffee substitutes
+  year1: '27'
+  year2: '34'
+  year3: '28'
+  year4: '30'
+  year5: '32'
+  year6: '32'
+- code: '2399'
+  description: Manufacture of other non-metallic mineral products n.e.c.
+  year1: '31'
+  year2: '35'
+  year3: '37'
+  year4: '35'
+  year5: '39'
+  year6: '39'
+- code: '2229'
+  description: Manufacture of other plastic products
+  year1: '32'
+  year2: '36'
+  year3: '36'
+  year4: '36'
+  year5: '37'
+  year6: '37'
+- code: '2433'
+  description: Cold forming or folding
+  year1: '44'
+  year2: '38'
+  year3: '41'
+  year4: '40'
+  year5: '40'
+  year6: '40'
+- code: '3099'
+  description: Manufacture of other transport equipment n.e.c.
+  year1: '27'
+  year2: '38'
+  year3: '58'
+  year4: '62'
+  year5: '77'
+  year6: '77'
+- code: '1041'
+  description: Manufacture of oils and fats
+  year1: '13'
+  year2: '39'
+  year3: '30'
+  year4: '41'
+  year5: '33'
+  year6: '33'
+- code: '2052'
+  description: Manufacture of glues
+  year1: '39'
+  year2: '40'
+  year3: '45'
+  year4: '42'
+  year5: '42'
+  year6: '42'
+- code: '2221'
+  description: Manufacture of plastic plates, sheets, tubes and profiles
+  year1: '37'
+  year2: '41'
+  year3: '43'
+  year4: '42'
+  year5: '45'
+  year6: '45'
+- code: '2751'
+  description: Manufacture of electric domestic appliances
+  year1: '40'
+  year2: '42'
+  year3: '48'
+  year4: '44'
+  year5: '53'
+  year6: '53'
+- code: '2030'
+  description: Manufacture of paints, varnishes and similar coatings, printing ink
+    and mastics
+  year1: '39'
+  year2: '43'
+  year3: '43'
+  year4: '41'
+  year5: '41'
+  year6: '41'
+- code: 2030/1
+  description: Manufacture of paints, varnishes and similar coatings, mastics and
+    sealants
+  year1: '39'
+  year2: '43'
+  year3: '43'
+  year4: '41'
+  year5: '41'
+  year6: '41'
+- code: 2030/2
+  description: Manufacture of printing ink
+  year1: '39'
+  year2: '43'
+  year3: '43'
+  year4: '41'
+  year5: '41'
+  year6: '41'
+- code: '2932'
+  description: Manufacture of other parts and accessories for motor vehicles
+  year1: '50'
+  year2: '44'
+  year3: '51'
+  year4: '50'
+  year5: '50'
+  year6: '50'
+- code: '2593'
+  description: Manufacture of wire products, chain and springs
+  year1: '52'
+  year2: '44'
+  year3: '48'
+  year4: '52'
+  year5: '55'
+  year6: '55'
+- code: '2825'
+  description: Manufacture of non-domestic cooling and ventilation equipment
+  year1: '51'
+  year2: '46'
+  year3: '52'
+  year4: '56'
+  year5: '54'
+  year6: '54'
+- code: '2314'
+  description: Manufacture of glass fibres
+  year1: '48'
+  year2: '46'
+  year3: '47'
+  year4: '53'
+  year5: '62'
+  year6: '62'
+- code: '2349'
+  description: Manufacture of other ceramic products
+  year1: '81'
+  year2: '47'
+  year3: '46'
+  year4: '43'
+  year5: '50'
+  year6: '50'
+- code: '2591'
+  description: Manufacture of steel drums and similar containers
+  year1: '44'
+  year2: '48'
+  year3: '43'
+  year4: '38'
+  year5: '42'
+  year6: '42'
+- code: '2849'
+  description: Manufacture of other machine tools
+  year1: '62'
+  year2: '48'
+  year3: '54'
+  year4: '53'
+  year5: '49'
+  year6: '49'
+- code: '2732'
+  description: Manufacture of other electronic and electric wires and cables
+  year1: '54'
+  year2: '48'
+  year3: '50'
+  year4: '50'
+  year5: '50'
+  year6: '50'
+- code: '2529'
+  description: Manufacture of other tanks, reservoirs and containers of metal
+  year1: '47'
+  year2: '48'
+  year3: '46'
+  year4: '49'
+  year5: '53'
+  year6: '53'
+- code: '2740'
+  description: Manufacture of electric lighting equipment
+  year1: '53'
+  year2: '49'
+  year3: '50'
+  year4: '51'
+  year5: '50'
+  year6: '50'
+- code: '2343'
+  description: Manufacture of ceramic insulators and insulating fittings
+  year1: '49'
+  year2: '50'
+  year3: '56'
+  year4: '50'
+  year5: '60'
+  year6: '60'
+- code: '1724'
+  description: Manufacture of wallpaper
+  year1: '51'
+  year2: '54'
+  year3: '54'
+  year4: '56'
+  year5: '60'
+  year6: '60'
+- code: '1020'
+  description: Processing and preserving of fish, crustaceans and molluscs
+  year1: '35'
+  year2: '55'
+  year3: '38'
+  year4: '48'
+  year5: '26'
+  year6: '26'
+- code: '1712'
+  description: Manufacture of paper and paperboard
+  year1: '43'
+  year2: '57'
+  year3: '60'
+  year4: '54'
+  year5: '54'
+  year6: '54'
+- code: '2572'
+  description: Manufacture of locks and hinges
+  year1: '54'
+  year2: '57'
+  year3: '56'
+  year4: '54'
+  year5: '71'
+  year6: '71'
+- code: '2443'
+  description: Lead, zinc and tin production
+  year1: '81'
+  year2: '58'
+  year3: '65'
+  year4: '65'
+  year5: '62'
+  year6: '62'
+- code: '1511'
+  description: Tanning and dressing of leather; dressing and dyeing of fur
+  year1: '54'
+  year2: '60'
+  year3: '62'
+  year4: '72'
+  year5: '63'
+  year6: '63'
+- code: '2041'
+  description: Manufacture of soap and detergents, cleaning and polishing preparations
+  year1: '66'
+  year2: '60'
+  year3: '68'
+  year4: '68'
+  year5: '71'
+  year6: '71'
+- code: 2041/1
+  description: Manufacture of soap and detergents
+  year1: '66'
+  year2: '60'
+  year3: '68'
+  year4: '68'
+  year5: '71'
+  year6: '71'
+- code: 2041/2
+  description: Manufacture of cleaning and polishing preparations
+  year1: '66'
+  year2: '60'
+  year3: '68'
+  year4: '68'
+  year5: '71'
+  year6: '71'
+- code: '1395'
+  description: Manufacture of non-wovens and articles made from non-wovens, except
+    apparel
+  year1: '61'
+  year2: '61'
+  year3: '69'
+  year4: '68'
+  year5: '66'
+  year6: '66'
+- code: '1310'
+  description: Preparation and spinning of textile fibres
+  year1: '28'
+  year2: '64'
+  year3: '94'
+  year4: '93'
+  year5: '84'
+  year6: '84'
+- code: '2341'
+  description: Manufacture of ceramic household and ornamental articles
+  year1: '69'
+  year2: '66'
+  year3: '60'
+  year4: '65'
+  year5: '53'
+  year6: '53'
+- code: '2712'
+  description: Manufacture of electricity distribution and control apparatus
+  year1: '73'
+  year2: '66'
+  year3: '67'
+  year4: '66'
+  year5: '66'
+  year6: '66'
+- code: '2830'
+  description: Manufacture of agricultural and forestry machinery
+  year1: '21'
+  year2: '66'
+  year3: '68'
+  year4: '70'
+  year5: '83'
+  year6: '83'
+- code: 2830/1
+  description: Manufacture of agricultural tractors
+  year1: '21'
+  year2: '66'
+  year3: '68'
+  year4: '70'
+  year5: '83'
+  year6: '83'
+- code: 2830/2
+  description: Manufacture of agricultural and forestry machinery (other than agricultural
+    tractors)
+  year1: '21'
+  year2: '66'
+  year3: '68'
+  year4: '70'
+  year5: '83'
+  year6: '83'
+- code: '3291'
+  description: Manufacture of brooms and brushes
+  year1: '59'
+  year2: '66'
+  year3: '93'
+  year4: '95'
+  year5: 99*
+  year6: 99*
+- code: '1394'
+  description: Manufacture of cordage, rope, twine and netting
+  year1: '32'
+  year2: '67'
+  year3: '59'
+  year4: '64'
+  year5: '76'
+  year6: '76'
+- code: '2822'
+  description: Manufacture of lifting and handling equipment
+  year1: '64'
+  year2: '69'
+  year3: '74'
+  year4: '89'
+  year5: '78'
+  year6: '78'
+- code: '1431'
+  description: Manufacture of knitted and crocheted hosiery
+  year1: '69'
+  year2: '69'
+  year3: '82'
+  year4: '93'
+  year5: 99*
+  year6: 99*
+- code: '2434'
+  description: Cold drawing of wire
+  year1: '54'
+  year2: '70'
+  year3: '77'
+  year4: '81'
+  year5: '75'
+  year6: '75'
+- code: '2219'
+  description: Manufacture of other rubber products
+  year1: '67'
+  year2: '72'
+  year3: '74'
+  year4: '68'
+  year5: '68'
+  year6: '68'
+- code: '2444'
+  description: Copper production
+  year1: '79'
+  year2: '72'
+  year3: '88'
+  year4: '98'
+  year5: 99*
+  year6: 99*
+- code: '2931'
+  description: Manufacture of electrical and electronic equipment for motor vehicles
+  year1: '57'
+  year2: '74'
+  year3: '67'
+  year4: '73'
+  year5: '74'
+  year6: '74'
+- code: '2910'
+  description: Manufacture of motor vehicles
+  year1: '71'
+  year2: '74'
+  year3: '81'
+  year4: '81'
+  year5: '75'
+  year6: '75'
+- code: '1391'
+  description: Manufacture of knitted and crocheted fabrics
+  year1: '73'
+  year2: '74'
+  year3: '91'
+  year4: '65'
+  year5: '79'
+  year6: '79'
+- code: '2599'
+  description: Manufacture of other fabricated metal products n.e.c.
+  year1: '80'
+  year2: '76'
+  year3: '73'
+  year4: '78'
+  year5: '79'
+  year6: '79'
+- code: '1399'
+  description: Manufacture of other textiles n.e.c.
+  year1: '55'
+  year2: '77'
+  year3: '84'
+  year4: '78'
+  year5: '69'
+  year6: '69'
+- code: '3012'
+  description: Building of pleasure and sporting boats
+  year1: '85'
+  year2: '79'
+  year3: '91'
+  year4: '86'
+  year5: '72'
+  year6: '72'
+- code: '2012'
+  description: Manufacture of dyes and pigments
+  year1: '73'
+  year2: '79'
+  year3: '82'
+  year4: '86'
+  year5: '81'
+  year6: '81'
+- code: '2893'
+  description: Manufacture of machinery for food, beverage and tobacco processing
+  year1: '63'
+  year2: '81'
+  year3: '66'
+  year4: '88'
+  year5: '85'
+  year6: '85'
+- code: '2016'
+  description: Manufacture of plastics in primary forms
+  year1: '72'
+  year2: '81'
+  year3: '82'
+  year4: '76'
+  year5: '86'
+  year6: '86'
+- code: '2320'
+  description: Manufacture of refractory products
+  year1: '76'
+  year2: '84'
+  year3: '74'
+  year4: '69'
+  year5: '64'
+  year6: '64'
+- code: '2420'
+  description: Manufacture of tubes, pipes, hollow profiles and related fittings,
+    of steel
+  year1: '90'
+  year2: '84'
+  year3: '74'
+  year4: '95'
+  year5: '82'
+  year6: '82'
+- code: '2731'
+  description: Manufacture of fibre optic cables
+  year1: '77'
+  year2: '84'
+  year3: '79'
+  year4: '77'
+  year5: '91'
+  year6: '91'
+- code: '2812'
+  description: Manufacture of fluid power equipment
+  year1: '88'
+  year2: '84'
+  year3: '82'
+  year4: '92'
+  year5: '93'
+  year6: '93'
+- code: '2442'
+  description: Aluminium production
+  year1: '77'
+  year2: '88'
+  year3: '85'
+  year4: '88'
+  year5: '75'
+  year6: '75'
+- code: '2017'
+  description: Manufacture of synthetic rubber in primary forms
+  year1: '77'
+  year2: '89'
+  year3: 1*
+  year4: '87'
+  year5: '86'
+  year6: '86'
+- code: '2319'
+  description: Manufacture and processing of other glass, including technical glassware
+  year1: '75'
+  year2: '91'
+  year3: '57'
+  year4: '67'
+  year5: '45'
+  year6: '45'
+- code: '2013'
+  description: Manufacture of other inorganic basic chemicals
+  year1: '68'
+  year2: '91'
+  year3: '80'
+  year4: '82'
+  year5: '86'
+  year6: '86'
+- code: '2053'
+  description: Manufacture of essential oils
+  year1: '77'
+  year2: '92'
+  year3: '78'
+  year4: '77'
+  year5: 99*
+  year6: 99*
+- code: '2711'
+  description: Manufacture of electric motors, generators and transformers
+  year1: '88'
+  year2: '93'
+  year3: '90'
+  year4: '93'
+  year5: '87'
+  year6: '87'
+- code: '2342'
+  description: Manufacture of ceramic sanitary fixtures
+  year1: '46'
+  year2: '93'
+  year3: '34'
+  year4: '82'
+  year5: 99*
+  year6: 99*
+- code: '2573'
+  description: Manufacture of tools
+  year1: '80'
+  year2: '94'
+  year3: '93'
+  year4: '92'
+  year5: '85'
+  year6: '85'
+- code: '2829'
+  description: Manufacture of other general-purpose machinery n.e.c.
+  year1: '85'
+  year2: '94'
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2821'
+  description: Manufacture of ovens, furnaces and furnace burners
+  year1: 99*
+  year2: '95'
+  year3: '90'
+  year4: '77'
+  year5: 99*
+  year6: 99*
+- code: '1086'
+  description: Manufacture of homogenised food preparations and dietetic food
+  year1: 99*
+  year2: '97'
+  year3: 99*
+  year4: 99*
+  year5: 1*
+  year6: 1*
+- code: '2211'
+  description: Manufacture of rubber tyres and tubes; retreading and rebuilding of
+    rubber tyres
+  year1: 99*
+  year2: '97'
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2813'
+  description: Manufacture of other pumps and compressors
+  year1: '88'
+  year2: '99'
+  year3: '94'
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2813/1
+  description: Manufacture of pumps
+  year1: '88'
+  year2: '99'
+  year3: '94'
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2813/2
+  description: Manufacture of compressors
+  year1: '88'
+  year2: '99'
+  year3: '94'
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2051'
+  description: Manufacture of explosives
+  year1: '1'
+  year2: 1*
+  year3: '1'
+  year4: '1'
+  year5: '1'
+  year6: '1'
+- code: '1622'
+  description: Manufacture of assembled parquet floors
+  year1: '9'
+  year2: 1*
+  year3: '74'
+  year4: 99*
+  year5: '51'
+  year6: '51'
+- code: '0111'
+  description: Growing of cereals (except rice), leguminous crops and oil seeds
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0112'
+  description: Growing of rice
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0113'
+  description: Growing of vegetables and melons, roots and tubers
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0114'
+  description: Growing of sugar cane
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0115'
+  description: Growing of tobacco
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0116'
+  description: Growing of fibre crops
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 0119
+  description: Growing of other non-perennial crops
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0121'
+  description: Growing of grapes
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0122'
+  description: Growing of tropical and subtropical fruits
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0123'
+  description: Growing of citrus fruits
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0124'
+  description: Growing of pome fruits and stone fruits
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0125'
+  description: Growing of other tree and bush fruits and nuts
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0126'
+  description: Growing of oleaginous fruits
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0127'
+  description: Growing of beverage crops
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 0128
+  description: Growing of spices, aromatic, drug and pharmaceutical crops
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 0129
+  description: Growing of other perennial crops
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0130'
+  description: Plant propagation
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0141'
+  description: Raising of dairy cattle
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0142'
+  description: Raising of other cattle and buffaloes
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0143'
+  description: Raising of horses and other equines
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0144'
+  description: Raising of camels and camelids
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0145'
+  description: Raising of sheep and goats
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0146'
+  description: Raising of swine/pigs
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0147'
+  description: Raising of poultry
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 0149
+  description: Raising of other animals
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0150'
+  description: Mixed farming
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0170'
+  description: Hunting, trapping and related service activities
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0210'
+  description: Silviculture and other forestry activities
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0220'
+  description: Logging
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0230'
+  description: Gathering of wild growing non-wood products
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0311'
+  description: Marine fishing
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0312'
+  description: Freshwater fishing
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0321'
+  description: Marine aquaculture
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0322'
+  description: Freshwater aquaculture
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0510'
+  description: Mining of hard coal
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 0510/1
+  description: Mining of hard coal from deep coal mines (underground mining)
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 0510/2
+  description: Mining of hard coal from open cast coal working (surface mining)
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0520'
+  description: Mining of lignite
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0610'
+  description: Extraction of crude petroleum
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0620'
+  description: Extraction of natural gas
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0710'
+  description: Mining of iron ores
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '0721'
+  description: Mining of uranium and thorium ores
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 0729
+  description: Mining of other non-ferrous metal ores
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 0892
+  description: Extraction of peat
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1091'
+  description: Manufacture of prepared feeds for farm animals
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1104'
+  description: Manufacture of other non-distilled fermented beverages
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1330'
+  description: Finishing of textiles
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1711'
+  description: Manufacture of pulp
+  year1: 99*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1811'
+  description: Printing of newspapers
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1812'
+  description: Other printing
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 1812/1
+  description: Manufacture of printed labels
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 1812/9
+  description: Printing (other than printing of newspapers and printing on labels
+    and tags) n.e.c.
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1814'
+  description: Binding and related services
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1820'
+  description: Reproduction of recorded media
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 1820/1
+  description: Reproduction of sound recording
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 1820/2
+  description: Reproduction of video recording
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 1820/3
+  description: Reproduction of computer media
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1910'
+  description: Manufacture of coke oven products
+  year1: 1*
+  year2: 1*
+  year3: '5'
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '1920'
+  description: Manufacture of refined petroleum products
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 1920/1
+  description: Mineral oil refining
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: 1920/9
+  description: Other treatment of petroleum products (excluding mineral oil refining/petrochemicals
+    manufacture)
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '2363'
+  description: Manufacture of ready-mixed concrete
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '2410'
+  description: Manufacture of basic iron and steel and of ferro-alloys
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '2446'
+  description: Processing of nuclear fuel
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '2453'
+  description: Casting of light metals
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '2454'
+  description: Casting of other non-ferrous metals
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '2550'
+  description: Forging, pressing, stamping and roll-forming of metal; powder metallurgy
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '2561'
+  description: Treatment and coating of metals
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '2562'
+  description: Machining
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3011'
+  description: Building of ships and floating structures
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3040'
+  description: Manufacture of military fighting vehicles
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3311'
+  description: Repair of fabricated metal products
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3312'
+  description: Repair of machinery
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3313'
+  description: Repair of electronic and optical equipment
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3314'
+  description: Repair of electrical equipment
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3315'
+  description: Repair and maintenance of ships and boats
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3316'
+  description: Repair and maintenance of aircraft and spacecraft
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3317'
+  description: Repair and maintenance of other transport equipment
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3319'
+  description: Repair of other equipment
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3320'
+  description: Installation of industrial machinery and equipment
+  year1: 1*
+  year2: 1*
+  year3: 1*
+  year4: 1*
+  year5: 1*
+  year6: 1*
+- code: '3831'
+  description: Dismantling of wrecks
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '3832'
+  description: Recovery of sorted materials
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4511'
+  description: Sale of cars and light motor vehicles
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4511/1
+  description: Sale of new cars and light motor vehicles
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4511/2
+  description: Sale of used cars and light motor vehicles
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4519'
+  description: Sale of other motor vehicles
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4520'
+  description: Maintenance and repair of motor vehicles
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4531'
+  description: Wholesale trade of motor vehicle parts and accessories
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4532'
+  description: Retail trade of motor vehicle parts and accessories
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4540'
+  description: Sale, maintenance and repair of motorcycles and related parts and accessories
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4621'
+  description: Wholesale of grain, unmanufactured tobacco, seeds and animal feeds
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4622'
+  description: Wholesale of flowers and plants
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4623'
+  description: Wholesale of live animals
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4624'
+  description: Wholesale of hides, skins and leather
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4631'
+  description: Wholesale of fruit and vegetables
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4632'
+  description: Wholesale of meat and meat products
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4633'
+  description: Wholesale of dairy products, eggs and edible oils and fats
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4634'
+  description: Wholesale of beverages
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4634/1
+  description: Wholesale of fruit and vegetable juices, mineral waters and soft drinks
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4634/2
+  description: Wholesale of wine, beer, spirits and other alcoholic beverages
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4635'
+  description: Wholesale of tobacco products
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4636'
+  description: Wholesale of sugar and chocolate and sugar confectionery
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4637'
+  description: Wholesale of coffee, tea, cocoa and spices
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4638'
+  description: Wholesale of other food, including fish, crustaceans and molluscs
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4639'
+  description: Non-specialised wholesale of food, beverages and tobacco
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4641'
+  description: Wholesale of textiles
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4642'
+  description: Wholesale of clothing and footwear
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4643'
+  description: Wholesale of electrical household appliances
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4643/1
+  description: Wholesale of gramophone records, audio tapes, compact discs and video
+    tapes and of the equipment on which these are played
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4643/9
+  description: Wholesale of radio and television goods and of electrical household
+    appliances n.e.c.
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4644'
+  description: Wholesale of china and glassware and cleaning materials
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4645'
+  description: Wholesale of perfume and cosmetics
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4646'
+  description: Wholesale of pharmaceutical goods
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4647'
+  description: Wholesale of furniture, carpets and lighting equipment
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4648'
+  description: Wholesale of watches and jewellery
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4649'
+  description: Wholesale of other household goods
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4649/1
+  description: Wholesale of musical instruments
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4649/9
+  description: Wholesale of household goods (other than musical instruments) n.e.c.
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4651'
+  description: Wholesale of computers, computer peripheral equipment and software
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4652'
+  description: Wholesale of electronic and telecommunications equipment and parts
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4661'
+  description: Wholesale of agricultural machinery, equipment and supplies
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4662'
+  description: Wholesale of machine tools
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4663'
+  description: Wholesale of mining, construction and civil engineering machinery
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4664'
+  description: Wholesale of machinery for the textile industry and of sewing and knitting
+    machines
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4665'
+  description: Wholesale of office furniture
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4666'
+  description: Wholesale of other office machinery and equipment
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4669'
+  description: Wholesale of other machinery and equipment
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4671'
+  description: Wholesale of solid, liquid and gaseous fuels and related products
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4671/1
+  description: Wholesale of petroleum and petroleum products
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4671/9
+  description: Wholesale of fuels and related products (other than petroleum and petroleum
+    products)
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4672'
+  description: Wholesale of metals and metal ores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4673'
+  description: Wholesale of wood, construction materials and sanitary equipment
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4674'
+  description: Wholesale of hardware, plumbing and heating equipment and supplies
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4675'
+  description: Wholesale of chemical products
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4676'
+  description: Wholesale of other intermediate products
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4677'
+  description: Wholesale of waste and scrap
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4690'
+  description: Non-specialised wholesale trade
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4711'
+  description: Retail sale in non-specialised stores with food, beverages or tobacco
+    predominating
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4719'
+  description: Other retail sale in non-specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4721'
+  description: Retail sale of fruit and vegetables in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4722'
+  description: Retail sale of meat and meat products in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4723'
+  description: Retail sale of fish, crustaceans and molluscs in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4724'
+  description: Retail sale of bread, cakes, flour confectionery and sugar confectionery
+    in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4725'
+  description: Retail sale of beverages in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4726'
+  description: Retail sale of tobacco products in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4729'
+  description: Other retail sale of food in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4730'
+  description: Retail sale of automotive fuel in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4741'
+  description: Retail sale of computers, peripheral units and software in specialised
+    stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4742'
+  description: Retail sale of telecommunications equipment in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4742/1
+  description: Retail sale of mobile telephones in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4742/9
+  description: Retail sale of telecommunications equipment (other than mobile telephones)
+    n.e.c., in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4743'
+  description: Retail sale of audio and video equipment in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4751'
+  description: Retail sale of textiles in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4752'
+  description: Retail sale of hardware, paints and glass in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4753'
+  description: Retail sale of carpets, rugs, wall and floor coverings in specialised
+    stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4754'
+  description: Retail sale of electrical household appliances in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4759'
+  description: Retail sale of furniture, lighting equipment and other household articles
+    in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4759/1
+  description: Retail sale of musical instruments and scores in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4759/9
+  description: Retail sale of furniture, lighting equipment and other household articles
+    (other than musical instruments) n.e.c., in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4761'
+  description: Retail sale of books in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4762'
+  description: Retail sale of newspapers and stationery in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4763'
+  description: Retail sale of music and video recordings in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4764'
+  description: Retail sale of sporting equipment in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4765'
+  description: Retail sale of games and toys in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4771'
+  description: Retail sale of clothing in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4772'
+  description: Retail sale of footwear and leather goods in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4772/1
+  description: Retail sale of footwear in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4772/2
+  description: Retail sale of leather goods in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4773'
+  description: Dispensing chemist in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4774'
+  description: Retail sale of medical and orthopaedic goods in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4774/1
+  description: Retail sale of hearing aids in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4774/9
+  description: Retail sale of medical and orthopaedic goods (other than hearing aids)
+    n.e.c., in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4775'
+  description: Retail sale of cosmetic and toilet articles in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4776'
+  description: Retail sale of flowers, plants, seeds, fertilisers, pet animals and
+    pet food in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4777'
+  description: Retail sale of watches and jewellery in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4778'
+  description: Other retail sale of new goods in specialised stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4778/1
+  description: Retail sale in commercial art galleries
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4778/2
+  description: Retail sale by opticians
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4778/9
+  description: Other retail sale of new goods in specialised stores (other than by
+    opticians or commercial art galleries), n.e.c
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4779'
+  description: Retail sale of second-hand goods in stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4779/1
+  description: Retail sale of antiques including antique books, in stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: 4779/9
+  description: Retail sale of second-hand goods (other than antiques and antique books)
+    in stores
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4781'
+  description: Retail sale via stalls and markets of food, beverages and tobacco products
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4782'
+  description: Retail sale via stalls and markets of textiles, clothing and footwear
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4789'
+  description: Retail sale via stalls and markets of other goods
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4791'
+  description: Retail sale via mail order houses or via Internet
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '4799'
+  description: Other retail sale not in stores, stalls or markets
+  year1: 50*
+  year2: 50*
+  year3: 50*
+  year4: 50*
+  year5: 50*
+  year6: 50*
+- code: '2391'
+  description: Production of abrasive products
+  year1: '87'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: '89'
+  year6: '89'
+- code: '2841'
+  description: Manufacture of metal forming machinery
+  year1: '89'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: '95'
+  year6: '95'
+- code: '3299'
+  description: Other manufacturing n.e.c.
+  year1: '97'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: '97'
+  year6: '97'
+- code: 0891
+  description: Mining of chemical and fertiliser minerals
+  year1: '93'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 0899
+  description: Other mining and quarrying n.e.c.
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1101'
+  description: Distilling, rectifying and blending of spirits
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1102'
+  description: Manufacture of wine from grape
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1320'
+  description: Weaving of textiles
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1396'
+  description: Manufacture of other technical and industrial textiles
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1411'
+  description: Manufacture of leather clothes
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1413'
+  description: Manufacture of other outerwear
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 1413/1
+  description: Manufacture of men's outerwear, other than leather clothes and workwear
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 1413/2
+  description: Manufacture of women's outerwear, other than leather clothes and workwear
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1414'
+  description: Manufacture of underwear
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 1414/1
+  description: Manufacture of men's underwear
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 1414/2
+  description: Manufacture of women's underwear
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1419'
+  description: Manufacture of other wearing apparel and accessories
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1420'
+  description: Manufacture of articles of fur
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1439'
+  description: Manufacture of other knitted and crocheted apparel
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1512'
+  description: Manufacture of luggage, handbags and the like, saddlery and harness
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '1520'
+  description: Manufacture of footwear
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2014'
+  description: Manufacture of other organic basic chemicals
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2020'
+  description: Manufacture of pesticides and other agrochemical products
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2042'
+  description: Manufacture of perfumes and toilet preparations
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2059'
+  description: Manufacture of other chemical products n.e.c.
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2060'
+  description: Manufacture of man-made fibres
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2110'
+  description: Manufacture of basic pharmaceutical products
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2120'
+  description: Manufacture of pharmaceutical preparations
+  year1: '95'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2344'
+  description: Manufacture of other technical ceramic products
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2431'
+  description: Cold drawing of bars
+  year1: '68'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2432'
+  description: Cold rolling of narrow strip
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2441'
+  description: Precious metals production
+  year1: 1*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2445'
+  description: Other non-ferrous metal production
+  year1: '80'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2571'
+  description: Manufacture of cutlery
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2594'
+  description: Manufacture of fasteners and screw machine products
+  year1: '98'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2611'
+  description: Manufacture of electronic components
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2620'
+  description: Manufacture of computers and peripheral equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2630'
+  description: Manufacture of communication equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2630/1
+  description: Manufacture of telegraph and telephone apparatus and equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2630/9
+  description: Manufacture of communication equipment (other than telegraph and telephone
+    apparatus and equipment)
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2640'
+  description: Manufacture of consumer electronics
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2651'
+  description: Manufacture of instruments and appliances for measuring, testing and
+    navigation
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2651/1
+  description: Manufacture of electronic instruments and appliances for measuring,
+    testing, and navigation, except industrial process control equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2651/2
+  description: Manufacture of electronic industrial process control equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2651/3
+  description: Manufacture of non-electronic instruments and appliances for measuring,
+    testing and navigation, except industrial process control equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2651/4
+  description: Manufacture of non-electronic industrial process control equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2652'
+  description: Manufacture of watches and clocks
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2660'
+  description: Manufacture of irradiation, electromedical and electrotherapeutic equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2670'
+  description: Manufacture of optical instruments and photographic equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2670/1
+  description: Manufacture of optical precision instruments
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2670/2
+  description: Manufacture of photographic and cinematographic equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2680'
+  description: Manufacture of magnetic and optical media
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2720'
+  description: Manufacture of batteries and accumulators
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2733'
+  description: Manufacture of wiring devices
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2790'
+  description: Manufacture of other electrical equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2811'
+  description: Manufacture of engines and turbines, except aircraft, vehicle and cycle
+    engines
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2814'
+  description: Manufacture of other taps and valves
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2815'
+  description: Manufacture of bearings, gears, gearing and driving elements
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2823'
+  description: Manufacture of office machinery and equipment (except computers and
+    peripheral equipment)
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2824'
+  description: Manufacture of power-driven hand tools
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2891'
+  description: Manufacture of machinery for metallurgy
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2892'
+  description: Manufacture of machinery for mining, quarrying and construction
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2892/1
+  description: Manufacture of machinery for mining
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2892/2
+  description: Manufacture of earthmoving equipment
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 2892/3
+  description: Manufacture of equipment for concrete crushing and screening roadworks
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2894'
+  description: Manufacture of machinery for textile, apparel and leather production
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2895'
+  description: Manufacture of machinery for paper and paperboard production
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2896'
+  description: Manufacture of plastics and rubber machinery
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '2899'
+  description: Manufacture of other special-purpose machinery n.e.c.
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: '86'
+  year5: 99*
+  year6: 99*
+- code: '3030'
+  description: Manufacture of air and spacecraft and related machinery
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '3091'
+  description: Manufacture of motorcycles
+  year1: 99*
+  year2: 99*
+  year3: '92'
+  year4: '95'
+  year5: 99*
+  year6: 99*
+- code: '3092'
+  description: Manufacture of bicycles and invalid carriages
+  year1: '87'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '3212'
+  description: Manufacture of jewellery and related articles
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '3213'
+  description: Manufacture of imitation jewellery and related articles
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '3220'
+  description: Manufacture of musical instruments
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '3230'
+  description: Manufacture of sports goods
+  year1: '97'
+  year2: 99*
+  year3: '96'
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '3240'
+  description: Manufacture of games and toys
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 3240/1
+  description: Manufacture of professional and arcade games and toys
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: 3240/9
+  description: Manufacture of games and toys (other than professional and arcade games
+    and toys) n.e.c.
+  year1: 99*
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '3250'
+  description: Manufacture of medical and dental instruments and supplies
+  year1: '99'
+  year2: 99*
+  year3: 99*
+  year4: 99*
+  year5: 99*
+  year6: 99*
+- code: '0161'
+  description: Support activities for crop production
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '0162'
+  description: Support activities for animal production
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 0162/1
+  description: Farm animal boarding and care
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 0162/9
+  description: Support activities for animal production (other than farm animal boarding
+    and care) n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '0163'
+  description: Post-harvest crop activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '0164'
+  description: Seed processing for propagation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '0240'
+  description: Support services to forestry
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 0910
+  description: Support activities for petroleum and natural gas extraction
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 0990
+  description: Support activities for other mining and quarrying
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3511'
+  description: Production of electricity
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3512'
+  description: Transmission of electricity
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3513'
+  description: Distribution of electricity
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3514'
+  description: Trade of electricity
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3521'
+  description: Manufacture of gas
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3522'
+  description: Distribution of gaseous fuels through mains
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3523'
+  description: Trade of gas through mains
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3530'
+  description: Steam and air conditioning supply
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3600'
+  description: Water collection, treatment and supply
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3700'
+  description: Sewerage
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3811'
+  description: Collection of non-hazardous waste
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3812'
+  description: Collection of hazardous waste
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3821'
+  description: Treatment and disposal of non-hazardous waste
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3822'
+  description: Treatment and disposal of hazardous waste
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '3900'
+  description: Remediation activities and other waste management services
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4110'
+  description: Development of building projects
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4120'
+  description: Construction of residential and non-residential buildings
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 4120/1
+  description: Construction of commercial buildings
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 4120/2
+  description: Construction of domestic buildings
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4211'
+  description: Construction of roads and motorways
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4212'
+  description: Construction of railways and underground railways
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4213'
+  description: Construction of bridges and tunnels
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4221'
+  description: Construction of utility projects for fluids
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4222'
+  description: Construction of utility projects for electricity and telecommunications
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4291'
+  description: Construction of water projects
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4299'
+  description: Construction of other civil engineering projects n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4311'
+  description: Demolition
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4312'
+  description: Site preparation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4313'
+  description: Test drilling and boring
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4321'
+  description: Electrical installation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4322'
+  description: Plumbing, heat and air-conditioning installation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4329'
+  description: Other construction installation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4331'
+  description: Plastering
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4332'
+  description: Joinery installation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4333'
+  description: Floor and wall covering
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4334'
+  description: Painting and glazing
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 4334/1
+  description: Painting
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 4334/2
+  description: Glazing
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4339'
+  description: Other building completion and finishing
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4391'
+  description: Roofing activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4399'
+  description: Other specialised construction activities n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 4399/1
+  description: Scaffold erection
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 4399/9
+  description: Specialised construction activities (other than scaffold erection)
+    n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4611'
+  description: Agents involved in the sale of agricultural raw materials, live animals,
+    textile raw materials and semi-finished goods
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4612'
+  description: Agents involved in the sale of fuels, ores, metals and industrial chemicals
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4613'
+  description: Agents involved in the sale of timber and building materials
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4614'
+  description: Agents involved in the sale of machinery, industrial equipment, ships
+    and aircraft
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4615'
+  description: Agents involved in the sale of furniture, household goods, hardware
+    and ironmongery
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4616'
+  description: Agents involved in the sale of textiles, clothing, fur, footwear and
+    leather goods
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4617'
+  description: Agents involved in the sale of food, beverages and tobacco
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4618'
+  description: Agents specialised in the sale of other particular products
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4619'
+  description: Agents involved in the sale of a variety of goods
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4910'
+  description: Passenger rail transport, interurban
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4920'
+  description: Freight rail transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4931'
+  description: Urban and suburban passenger land transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 4931/1
+  description: Urban, suburban or metropolitan area passenger railway transportation
+    by underground, metro and similar systems
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 4931/9
+  description: Urban, suburban or metropolitan area passenger land transport other
+    than railway transportation by underground, metro and similar systems
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4932'
+  description: Taxi operation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4939'
+  description: Other passenger land transport n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4941'
+  description: Freight transport by road
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4942'
+  description: Removal services
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '4950'
+  description: Transport via pipeline
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5010'
+  description: Sea and coastal passenger water transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5020'
+  description: Sea and coastal freight water transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5030'
+  description: Inland passenger water transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5040'
+  description: Inland freight water transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5110'
+  description: Passenger air transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5110/1
+  description: Scheduled passenger air transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5110/2
+  description: Non-scheduled passenger air transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5121'
+  description: Freight air transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5122'
+  description: Space transport
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5210'
+  description: Warehousing and storage
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5210/1
+  description: Operation of warehousing and storage facilities for water transport
+    activities of division 50
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5210/2
+  description: Operation of warehousing and storage facilities for air transport activities
+    of division 51
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5210/3
+  description: Operation of warehousing and storage facilities for land transport
+    activities of division 49
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5221'
+  description: Service activities incidental to land transportation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5221/1
+  description: Operation of rail freight terminals
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5221/2
+  description: Operation of rail passenger facilities at railway stations
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5221/3
+  description: Operation of bus and coach passenger facilities at bus and coach stations
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5221/9
+  description: Other service activities incidental to land transportation n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5222'
+  description: Service activities incidental to water transportation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5223'
+  description: Service activities incidental to air transportation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5224'
+  description: Cargo handling
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5224/1
+  description: Cargo handling for water transport activities of division 50
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5224/2
+  description: Cargo handling for air transport activities of division 51
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5224/3
+  description: Cargo handling for land transport activities of division 49
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5229'
+  description: Other transportation support activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5310'
+  description: Postal activities under universal service obligation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5320'
+  description: Other postal and courier activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5320/1
+  description: Licensed Carriers
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5320/2
+  description: Unlicensed Carriers
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5510'
+  description: Hotels and similar accommodation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5520'
+  description: Holiday and other short-stay accommodation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5520/1
+  description: Holiday centres and villages
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5520/2
+  description: Youth hostels
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5520/9
+  description: Other holiday and other short-stay accommodation (not including holiday
+    centres and villages or youth hostels) n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5530'
+  description: Camping grounds, recreational vehicle parks and trailer parks
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5590'
+  description: Other accommodation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5610'
+  description: Restaurants and mobile food service activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5610/1
+  description: Licensed restaurants
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5610/2
+  description: Unlicensed restaurants and cafes
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5610/3
+  description: Take away food shops and mobile food stands
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5621'
+  description: Event catering activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5629'
+  description: Other food service activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5630'
+  description: Beverage serving activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5630/1
+  description: Licensed clubs
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5630/2
+  description: Public houses and bars
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5811'
+  description: Book publishing
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5812'
+  description: Publishing of directories and mailing lists
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5813'
+  description: Publishing of newspapers
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5814'
+  description: Publishing of journals and periodicals
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5814/1
+  description: Publishing of learned journals
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5814/2
+  description: Publishing of consumer, business and professional journals and periodicals
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5819'
+  description: Other publishing activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5821'
+  description: Publishing of computer games
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5829'
+  description: Other software publishing
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5911'
+  description: Motion picture, video and television programme production activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5911/1
+  description: Motion picture production activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5911/2
+  description: Video production activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5911/3
+  description: Television programme production activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5912'
+  description: Motion picture, video and television programme post-production activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5913'
+  description: Motion picture, video and television programme distribution activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5913/1
+  description: Motion picture distribution activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5913/2
+  description: Video distribution activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 5913/3
+  description: Television programme distribution activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5914'
+  description: Motion picture projection activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '5920'
+  description: Sound recording and music publishing activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6010'
+  description: Radio broadcasting
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6020'
+  description: Television programming and broadcasting activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6110'
+  description: Wired telecommunications activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6120'
+  description: Wireless telecommunications activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6130'
+  description: Satellite telecommunications activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6190'
+  description: Other telecommunications activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6201'
+  description: Computer programming activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6201/1
+  description: Ready-made interactive leisure and entertainment software development
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6201/2
+  description: Business and domestic software development
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6202'
+  description: Computer consultancy activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6203'
+  description: Computer facilities management activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6209'
+  description: Other information technology and computer service activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6311'
+  description: Data processing, hosting and related activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6312'
+  description: Web portals
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6391'
+  description: News agency activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6399'
+  description: Other information service activities n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6411'
+  description: Central banking
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6419'
+  description: Other monetary intermediation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6419/1
+  description: Banks
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6419/2
+  description: Building societies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6420'
+  description: Activities of holding companies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6420/1
+  description: Activities of agricultural holding companies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6420/2
+  description: Activities of production holding companies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6420/3
+  description: Activities of construction holding companies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6420/4
+  description: Activities of distribution holding companies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6420/5
+  description: Activities of financial services holding companies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6420/9
+  description: Activities of other holding companies n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6430'
+  description: Trusts, funds and similar financial entities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6430/1
+  description: Activities of investment trusts
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6430/2
+  description: Activities of unit trusts
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6430/3
+  description: Activities of venture and development capital companies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6430/4
+  description: Activities of open-ended investment companies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6430/5
+  description: Activities of property unit trusts
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6430/6
+  description: Activities of real estate investment trusts
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6491'
+  description: Financial leasing
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6492'
+  description: Other credit granting
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6492/1
+  description: Credit granting by non-deposit taking finance houses and other specialist
+    consumer credit grantors
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6492/2
+  description: Activities of mortgage finance companies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6492/9
+  description: Other credit granting n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6499'
+  description: Other financial service activities, except insurance and pension funding,
+    n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6499/1
+  description: Security dealing on own account
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6499/2
+  description: Factoring
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6499/9
+  description: Other financial service activities, except insurance and pension funding,
+    (not including security dealing on own account and factoring) n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6511'
+  description: Life insurance
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6512'
+  description: Non-life insurance
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6520'
+  description: Reinsurance
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6520/1
+  description: Life reinsurance
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6520/2
+  description: Non-life reinsurance
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6530'
+  description: Pension funding
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6611'
+  description: Administration of financial markets
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6612'
+  description: Security and commodity contracts brokerage
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6619'
+  description: Other activities auxiliary to financial services, except insurance
+    and pension funding
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6621'
+  description: Risk and damage evaluation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6622'
+  description: Activities of insurance agents and brokers
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6629'
+  description: Other activities auxiliary to insurance and pension funding
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6630'
+  description: Fund management activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6810'
+  description: Buying and selling of own real estate
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6820'
+  description: Renting and operating of own or leased real estate
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6820/1
+  description: Renting and operating of Housing Association real estate
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6820/2
+  description: Letting and operating of conference and exhibition centres
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6820/9
+  description: Letting and operating of own or leased real estate (other than Housing
+    Association real estate and conference and exhibition services) n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6831'
+  description: Real estate agencies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6832'
+  description: Management of real estate on a fee or contract basis
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6910'
+  description: Legal activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6910/1
+  description: Barristers at law
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6910/2
+  description: Solicitors
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6910/9
+  description: Activities of patent and copyright agents; other legal activities (other
+    than those of barristers and solicitors) n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '6920'
+  description: Accounting, bookkeeping and auditing activities; tax consultancy
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6920/1
+  description: Accounting, and auditing activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6920/2
+  description: Bookkeeping activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 6920/3
+  description: Tax consultancy
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7010'
+  description: Activities of head offices
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7021'
+  description: Public relations and communication activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7022'
+  description: Business and other management consultancy activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7022/1
+  description: Financial management
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7022/9
+  description: Management consultancy activities (other than financial management)
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7111'
+  description: Architectural activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7111/1
+  description: Architectural activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7111/2
+  description: Urban planning and landscape architectural activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7112'
+  description: Engineering activities and related technical consultancy
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7112/1
+  description: Engineering design activities for industrial process and production
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7112/2
+  description: Engineering related scientific and technical consulting activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7112/9
+  description: Other engineering activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7120'
+  description: Technical testing and analysis
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7211'
+  description: Research and experimental development on biotechnology
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7219'
+  description: Other research and experimental development on natural sciences and
+    engineering
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7220'
+  description: Research and experimental development on social sciences and humanities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7311'
+  description: Advertising agencies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7312'
+  description: Media representation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7320'
+  description: Market research and public opinion polling
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7410'
+  description: Specialised design activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7420'
+  description: Photographic activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7420/1
+  description: Portrait photographic activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7420/2
+  description: Other specialist photography (not including portrait photography)
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7420/3
+  description: Film processing
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7420/9
+  description: Other photographic activities (not including portrait and other specialist
+    photography and film processing) n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7430'
+  description: Translation and interpretation activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7490'
+  description: Other professional, scientific and technical activities n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7490/1
+  description: Environmental consulting activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7490/2
+  description: Quantity surveying activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7490/9
+  description: Other professional, scientific and technical activities (not including
+    environmental consultancy or quantity surveying) n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7500'
+  description: Veterinary activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7711'
+  description: Renting and leasing of cars and light motor vehicles
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7712'
+  description: Renting and leasing of trucks
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7721'
+  description: Renting and leasing of recreational and sports goods
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7722'
+  description: Renting of video tapes and disks
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7729'
+  description: Renting and leasing of other personal and household goods
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7729/1
+  description: Renting and leasing of media entertainment equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7729/9
+  description: Renting and leasing of other personal and household goods (other than
+    media entertainment equipment)
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7731'
+  description: Renting and leasing of agricultural machinery and equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7732'
+  description: Renting and leasing of construction and civil engineering machinery
+    and equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7733'
+  description: Renting and leasing of office machinery and equipment (including computers)
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7734'
+  description: Renting and leasing of water transport equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7734/1
+  description: Renting and leasing of passenger water transport equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7734/2
+  description: Renting and leasing of freight water transport equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7735'
+  description: Renting and leasing of air transport equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7735/1
+  description: Renting and leasing of passenger air transport equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7735/2
+  description: Renting and leasing of freight air transport equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7739'
+  description: Renting and leasing of other machinery, equipment and tangible goods
+    n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7740'
+  description: Leasing of intellectual property and similar products, except copyrighted
+    works
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7810'
+  description: Activities of employment placement agencies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7810/1
+  description: Motion picture, television and other theatrical casting
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7810/9
+  description: Activities of employment placement agencies (other than motion picture,
+    television and other theatrical casting) n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7820'
+  description: Temporary employment agency activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7830'
+  description: Other human resources provision
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7911'
+  description: Travel agency activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7912'
+  description: Tour operator activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '7990'
+  description: Other reservation service and related activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7990/1
+  description: Activities of tourist guides
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 7990/9
+  description: Other reservation service activities (not including activities of tourist
+    guides)
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8010'
+  description: Private security activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8020'
+  description: Security systems service activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8030'
+  description: Investigation activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8110'
+  description: Combined facilities support activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8121'
+  description: General cleaning of buildings
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8122'
+  description: Other building and industrial cleaning activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8122/1
+  description: Window cleaning services
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8122/2
+  description: Specialised cleaning services
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8122/3
+  description: Furnace and chimney cleaning services
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8122/9
+  description: Building and industrial cleaning activities (other than window cleaning,
+    specialised cleaning and furnace and chimney cleaning services) n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8129'
+  description: Other cleaning activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8129/1
+  description: Disinfecting and extermination services
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8129/9
+  description: Cleaning services (other than disinfecting and extermination services)
+    n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8130'
+  description: Landscape service activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8211'
+  description: Combined office administrative service activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8219'
+  description: Photocopying, document preparation and other specialised office support
+    activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8220'
+  description: Activities of call centres
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8230'
+  description: Organisation of conventions and trade shows
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8230/1
+  description: Activities of exhibition and fair organizers
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8230/2
+  description: Activities of conference organizers
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8291'
+  description: Activities of collection agencies and credit bureaus
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8291/1
+  description: Activities of collection agencies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8291/2
+  description: Activities of credit bureaus
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8292'
+  description: Packaging activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8299'
+  description: Other business support service activities n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8411'
+  description: General public administration activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8412'
+  description: Regulation of the activities of providing health care, education, cultural
+    services and other social services, excluding social security
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8413'
+  description: Regulation of and contribution to more efficient operation of businesses
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8421'
+  description: Foreign affairs
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8422'
+  description: Defence activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8423'
+  description: Justice and judicial activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8424'
+  description: Public order and safety activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8425'
+  description: Fire service activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8430'
+  description: Compulsory social security activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8510'
+  description: Pre-primary education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8520'
+  description: Primary education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8531'
+  description: General secondary education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8532'
+  description: Technical and vocational secondary education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8541'
+  description: Post-secondary non-tertiary education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8542'
+  description: Tertiary education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8542/1
+  description: First-degree level higher education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8542/2
+  description: Post-graduate level higher education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8551'
+  description: Sports and recreation education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8552'
+  description: Cultural education
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8553'
+  description: Driving school activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8559'
+  description: Other education n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8560'
+  description: Educational support activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8610'
+  description: Hospital activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8610/1
+  description: Hospital activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 8610/2
+  description: Medical nursing home activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8621'
+  description: General medical practice activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8622'
+  description: Specialist medical practice activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8623'
+  description: Dental practice activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8690'
+  description: Other human health activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8710'
+  description: Residential nursing care activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8720'
+  description: Residential care activities for learning disabilities, mental health
+    and substance abuse
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8730'
+  description: Residential care activities for the elderly and disabled
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8790'
+  description: Other residential care activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8810'
+  description: Social work activities without accommodation for the elderly and disabled
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8891'
+  description: Child day-care activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '8899'
+  description: Other social work activities without accommodation n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9001'
+  description: Performing arts
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9002'
+  description: Support activities to performing arts
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9003'
+  description: Artistic creation
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9004'
+  description: Operation of arts facilities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9101'
+  description: Library and archive activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 9101/1
+  description: Library activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 9101/2
+  description: Archive activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9102'
+  description: Museum activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9103'
+  description: Operation of historical sites and buildings and similar visitor attractions
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9104'
+  description: Botanical and zoological gardens and nature reserve activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9200'
+  description: Gambling and betting activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9311'
+  description: Operation of sports facilities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9312'
+  description: Activities of sport clubs
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9313'
+  description: Fitness facilities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9319'
+  description: Other sports activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 9319/1
+  description: Activities of racehorse owners
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: 9319/9
+  description: Other sports activities (not including activities of racehorse owners)
+    n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9321'
+  description: Activities of amusement parks and theme parks
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9329'
+  description: Other amusement and recreation activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9411'
+  description: Activities of business and employers membership organisations
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9412'
+  description: Activities of professional membership organisations
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9420'
+  description: Activities of trade unions
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9491'
+  description: Activities of religious organisations
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9492'
+  description: Activities of political organisations
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9499'
+  description: Activities of other membership organisations n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9511'
+  description: Repair of computers and peripheral equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9512'
+  description: Repair of communication equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9521'
+  description: Repair of consumer electronics
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9522'
+  description: Repair of household appliances and home and garden equipment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9523'
+  description: Repair of footwear and leather goods
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9524'
+  description: Repair of furniture and home furnishings
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9525'
+  description: Repair of watches, clocks and jewellery
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9529'
+  description: Repair of other personal and household goods
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9601'
+  description: Washing and (dry-)cleaning of textile and fur products
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9602'
+  description: Hairdressing and other beauty treatment
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9603'
+  description: Funeral and related activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9604'
+  description: Physical well-being activities
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9609'
+  description: Other personal service activities n.e.c.
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9700'
+  description: Activities of households as employers of domestic personnel
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9810'
+  description: Undifferentiated goods-producing activities of private households for
+    own use
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9820'
+  description: Undifferentiated service-producing activities of private households
+    for own use
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
+- code: '9900'
+  description: Activities of extraterritorial organisations and bodies
+  year1: '999'
+  year2: '999'
+  year3: '999'
+  year4: '999'
+  year5: '999'
+  year6: '999'
