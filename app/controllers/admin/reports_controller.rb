@@ -1,5 +1,7 @@
 class Admin::ReportsController < Admin::BaseController
   def show
+    authorize :report, :show?
+
     respond_to do |format|
       format.html
       format.csv{ send_data resource.build }
