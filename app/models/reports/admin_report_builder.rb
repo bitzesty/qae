@@ -1,3 +1,5 @@
+require "csv"
+
 class Reports::AdminReportBuilder
   MAPPING = [
     {
@@ -119,8 +121,6 @@ class Reports::AdminReportBuilder
     @scope = ::FormAnswer.all.includes(:user)
   end
 
-  require "csv"
-
   def build
     csv_string = CSV.generate do |csv|
       csv << headers
@@ -134,7 +134,6 @@ class Reports::AdminReportBuilder
 
     csv_string
   end
-
 
   private
 

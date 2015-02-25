@@ -1,13 +1,11 @@
 class Reports::AdminReport
-  ADMIN_REPORT3 = "admin_report3"
+  ADMIN_REPORT = "admin_report"
 
   def initialize(id)
     @id = id
   end
 
   def build
-    if @id == ADMIN_REPORT3
-      Reports::AdminReportBuilder.new.build
-    end
+    Reports::AdminReportBuilder.new.build if @id == ADMIN_REPORT
   end
 end
