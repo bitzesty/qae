@@ -8,59 +8,7 @@
             '  Details
       #user-details.section-user-details.panel-collapse.collapse.in role="tabpanel" aria-labelledby="user-details-heading"
         .panel-body
-          fieldset.question-group
-            h3 Full name
-            .row
-              .col-sm-1
-                = f.input :title,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" }
-            .row
-              .col-sm-4
-                = f.input :first_name,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" }
-            .row
-              .col-sm-4
-                = f.input :last_name,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" }
-
-          fieldset.question-group
-            h3 Job title
-            .row
-              .col-sm-4
-                = f.input :job_title,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" },
-                          label_html: { class: "visuallyhidden" }
-
-          fieldset.question-group
-            h3 Telephone number
-            .row
-              .col-sm-2
-                = f.input :phone_number,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" },
-                          label_html: { class: "visuallyhidden" }
-
-          fieldset.question-group
-            h3 Email
-            .row
-              .col-sm-4
-                = f.input :email,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" },
-                          label_html: { class: "visuallyhidden" }
-
-          fieldset.question-group
-            h3 Role
-            .row
-              .col-sm-2
-                = f.input :role,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" },
-                          label_html: { class: "visuallyhidden" }
+          = render "fields_user_details", f: f
 
     .panel.panel-default
       .panel-heading role="tab" id="organisation-details-header"
@@ -69,23 +17,7 @@
             ' Organisation Details
       #organisation-details.section-organisation-details.panel-collapse.collapse role="tabpanel" aria-labelledby="organisation-details-header"
         .panel-body
-          fieldset.question-group
-            h3 Name of the organisation
-            .row
-              .col-sm-4
-                = f.input :company_name,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" },
-                          label_html: { class: "visuallyhidden" }
-
-          fieldset.question-group
-            h3 Main telephone number
-            .row
-              .col-sm-4
-                = f.input :company_phone_number,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" },
-                          label_html: { class: "visuallyhidden" }
+          = render "fields_organisation_details", f: f
 
     .panel.panel-default
       .panel-heading role="tab" id="contact-preferences-header"
@@ -94,32 +26,7 @@
             ' Contact Preferences
       #contact-preferences.section-contact-preferences.panel-collapse.collapse role="tabpanel" aria-labelledby="contact-preferences-header"
         .panel-body
-          fieldset.question-group
-            h3 Is the user happy for us to email them in the future with information relating to the Queen’s Awards, and with any other information from the Department of Business, Innovation and Skills?
-            = f.input :subscribed_to_emails,
-                      wrapper_html: { class: "checkbox" },
-                      label_html: { class: "selectable" },
-                      label: "I am happy to be contacted with information about the Queen’s Awards"
-
-          fieldset.question-group
-            h3
-              ' How did the
-              = controller_name.singularize
-              '  hear about the Queen's Awards?
-            .row
-              .col-sm-4
-                = f.input :qae_info_source,
-                          as: :select,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" },
-                          label_html: { class: "visuallyhidden" }
-
-                span.clear
-                #qae_info_source_other.visuallyhidden
-                  = f.input :qae_info_source_other,
-                            wrapper_html: { class: "form-group" },
-                            input_html: { class: "form-control" },
-                            label: "Please specify"
+          = render "fields_contact_preferences", f: f
 
     .panel.panel-default
       .panel-heading role="tab" id="section-collaborators-header"
@@ -128,11 +35,7 @@
             ' Collaborators
       #section-collaborators.section-collaborators.panel-collapse.collapse role="tabpanel" aria-labelledby="section-collaborators-header"
         .panel-body
-          / TODO collaborators
-          - if params[:action] == "edit"
-            - collaborators = resource.account.collaborators_without(resource)
-            = render "account/collaborators/list", collaborators: collaborators
-          = link_to "+ Add a collaborator", new_account_collaborator_path, class: "btn btn-default"
+          = render "fields_collaborators", f: f, resource: resource
 
     .panel.panel-default
       .panel-heading role="tab" id="section-password-header"
@@ -141,41 +44,7 @@
             ' Password
       #section-password.section-password.panel-collapse.collapse role="tabpanel" aria-labelledby="section-password-header"
         .panel-body
-          - if params[:action] == "edit"
-            fieldset.question-group
-              h3 Current password
-              .row
-                .col-sm-4
-                  = f.input :current_password,
-                            wrapper_html: { class: "form-group" },
-                            input_html: { class: "form-control" },
-                            hint: "We need the #{controller_name.singularize}'s current password to confirm your changes",
-                            label_html: { class: "visuallyhidden" }
-
-          fieldset.question-group
-            h3
-              - if params[:action] == "edit"
-                ' New password
-                - password_hint = "Leave it blank if you don't want to change it"
-              - else
-                ' Password
-                - password_hint = ""
-            .row
-              .col-sm-4
-                = f.input :password,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control password-strength-meter" },
-                          hint: password_hint,
-                          label_html: { class: "visuallyhidden" }
-
-          fieldset.question-group
-            h3 Retype password
-            .row
-              .col-sm-4
-                = f.input :password_confirmation,
-                          wrapper_html: { class: "form-group" },
-                          input_html: { class: "form-control" },
-                          label_html: { class: "visuallyhidden" }
+          = render "fields_password", f: f
 
   br
   = link_to "Cancel",

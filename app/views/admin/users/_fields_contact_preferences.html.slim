@@ -1,0 +1,26 @@
+fieldset.question-group
+  h3 Is the user happy for us to email them in the future with information relating to the Queen’s Awards, and with any other information from the Department of Business, Innovation and Skills?
+  = f.input :subscribed_to_emails,
+            wrapper_html: { class: "checkbox" },
+            label_html: { class: "selectable" },
+            label: "I am happy to be contacted with information about the Queen’s Awards"
+
+fieldset.question-group
+  h3
+    ' How did the
+    = controller_name.singularize
+    '  hear about the Queen's Awards?
+  .row
+    .col-sm-4
+      = f.input :qae_info_source,
+                as: :select,
+                wrapper_html: { class: "form-group" },
+                input_html: { class: "form-control" },
+                label_html: { class: "visuallyhidden" }
+
+      span.clear
+      #qae_info_source_other.visuallyhidden
+        = f.input :qae_info_source_other,
+                  wrapper_html: { class: "form-group" },
+                  input_html: { class: "form-control" },
+                  label: "Please specify"
