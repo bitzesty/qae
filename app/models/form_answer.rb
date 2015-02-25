@@ -11,6 +11,8 @@ class FormAnswer < ActiveRecord::Base
     :user_full_name
   ]
 
+  CURRENT_AWARD_YEAR = "14"
+
   POSSIBLE_AWARDS = [
     "trade", # International Trade Award
     "innovation", # Innovation Award
@@ -54,6 +56,7 @@ class FormAnswer < ActiveRecord::Base
 
   begin :scopes
     scope :for_award_type, -> (award_type) { where award_type: award_type }
+    scope :for_year, -> (year) { where current_award_year: year }
   end
 
   begin :callbacks

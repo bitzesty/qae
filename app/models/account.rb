@@ -27,7 +27,9 @@ class Account < ActiveRecord::Base
     users.excluding(user).by_email
   end
 
-  def has_trade_award?
-    form_answers.where(award_type: 'trade').any?
+  def has_trade_award_in_this_year?
+    form_answers.for_year("20#{FormAnswer::CURRENT_AWARD_YEAR}".to_i)
+                .for_award_type(:trade)
+                .present?
   end
 end

@@ -151,8 +151,10 @@ class FormController < ApplicationController
   end
 
   def check_trade_count_limit
-    if current_account.has_trade_award?
-      redirect_to dashboard_url, flash: { alert: "You can not submit more than one trade form" }
+    if current_account.has_trade_award_in_this_year?
+      redirect_to dashboard_url, flash: {
+        alert: "You can not submit more than one trade form per year"
+      }
     end
   end
 end
