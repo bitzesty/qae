@@ -68,13 +68,15 @@ html.no-js
 
         #main-container
           .container
-            - if [:alert, :notice].any? { |kind| flash[kind].presence }
-              .flash
-                .flash-inner
-                  - [:alert, :notice].each do |kind|
-                    - if flash[kind]
-                      div class="#{kind}"
-                        = flash[kind]
+            - unless notice.blank?
+              .alert-container
+                .alert.alert-success
+                  == notice
+            - unless alert.blank?
+              .alert-container
+                .alert.alert-danger
+                  == alert
+
             = yield
 
     footer#site-footer
