@@ -22,13 +22,15 @@
                 li.checkbox role="presentation"
                   label data-value="select_all"
                     input type="checkbox"
-                    em Select all
+                    span.label-contents
+                      em Select all
                 li.divider
                 - User.role.options.each do |role|
                   li.checkbox role="presentation"
                     label data-value=role[1]
                       input type="checkbox"
-                      = role[0]
+                      span.label-contents
+                        = role[0]
           th.filter
             / TODO do category filter dropdown
             .dropdown.if-no-js-hide
@@ -41,24 +43,29 @@
                 li.checkbox role="presentation"
                   label
                     input type="checkbox"
-                    em Select all
+                    span.label-contents
+                      em Select all
                 li.divider
                 li.checkbox role="presentation"
                   label
                     input type="checkbox"
-                    ' Innovation
+                    span.label-contents
+                      ' Innovation
                 li.checkbox role="presentation"
                   label
                     input type="checkbox"
-                    ' International Trade
+                    span.label-contents
+                      ' International Trade
                 li.checkbox role="presentation"
                   label
                     input type="checkbox"
-                    ' Sustainable Development
+                    span.label-contents
+                      ' Sustainable Development
                 li.checkbox role="presentation"
                   label
                     input type="checkbox"
-                    ' QAEP
+                    span.label-contents
+                      ' QAEP
           th.sortable
             = sort_link f, 'Signed in at', @search, :last_sign_in_at
       tbody
