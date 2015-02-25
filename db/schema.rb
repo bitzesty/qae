@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 20150225090728) do
     t.string   "nominee_full_name"
     t.string   "user_full_name"
     t.string   "award_type_full_name"
+    t.string   "sic_code"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

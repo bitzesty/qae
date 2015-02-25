@@ -1,6 +1,8 @@
 require 'csv'
 
 class SICCode < ActiveYaml::Base
+  REGEX = /\A\d{4}(\/\d{1})?\z/ # based on the sic codes spreadsheet
+
   set_root_path Rails.root
   set_filename "sic_codes"
 
@@ -29,5 +31,9 @@ class SICCode < ActiveYaml::Base
     file = File.open("#{Rails.root}/sic_codes.yml", "w+")
     file.write(res.to_yaml)
     file.close
+  end
+
+  def by_year(year)
+    public_send("year#{year}")
   end
 end
