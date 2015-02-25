@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20150223123005) do
     t.boolean  "importance_flag",         default: false
     t.string   "state",                   default: "in_progress1", null: false
     t.string   "company_or_nominee_name"
-    t.integer  "current_award_year",      default: 2014,           null: false
+    t.integer  "award_year",      default: 2014,           null: false
     t.string   "nominee_full_name"
     t.string   "user_full_name"
     t.string   "award_type_full_name"

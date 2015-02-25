@@ -5,7 +5,7 @@ class FormAnswer < ActiveRecord::Base
   pg_search_scope :basic_search, against: [
     :urn,
     :award_type_full_name,
-    :current_award_year,
+    :award_year,
     :company_or_nominee_name,
     :nominee_full_name,
     :user_full_name
@@ -157,7 +157,7 @@ class FormAnswer < ActiveRecord::Base
     return unless award_type
 
     next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize("urn_seq_#{award_type}")})")
-    year = current_award_year.to_s.last(2)
+    year = award_year.to_s.last(2)
     self.urn = "QA#{sprintf('%.4d', next_seq)}/#{year}#{award_type[0].capitalize}"
   end
 
