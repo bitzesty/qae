@@ -10,7 +10,7 @@
 $error-colour: #df3034;
 $yellow: #ffbf47;
 $button-colour: #00823b;
-@import 'frontend/password_strength';
+@import "frontend/password_strength";
 
 @import "admin/_toggle";
 @import "admin/layout";
