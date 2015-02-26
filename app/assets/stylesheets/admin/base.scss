@@ -1,6 +1,30 @@
 @import "mixins";
 
 // Basic
+span.visible-lg {
+  @include screen-lg-min {
+    display: inline !important;
+  }
+}
+
+span.visible-md {
+  @include screen-md-min {
+    display: inline !important;
+  }
+}
+
+span.visible-sm {
+  @include screen-sm-min {
+    display: inline !important;
+  }
+}
+
+span.visible-xs {
+  @include screen-xs-min {
+    display: inline !important;
+  }
+}
+
 .ellipsis {
   display: inline-block;
   max-width: 100%;
@@ -143,6 +167,10 @@ table .ellipsis {
     .pull-right {
       a {
         color: #337ab7;
+
+        &.text-danger {
+          color: #a94442;
+        }
       }
     }
 
@@ -159,7 +187,7 @@ table .ellipsis {
 
       .action-title {
         display: inline-block;
-        max-width: 190px;
+        max-width: 180px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -552,6 +580,10 @@ table .ellipsis {
     padding: 15px;
     background: #fff;
 
+    @include screen-md-max {
+      margin-bottom: 30px;
+    }
+
     h1,
     h2 {
       &:first-child {
@@ -565,6 +597,10 @@ table .ellipsis {
 
     h1 {
       font-size: 32px;
+
+      @include screen-md-max {
+        font-size: 24px;
+      }
     }
 
     h2 {
@@ -572,15 +608,32 @@ table .ellipsis {
       font-size: 16px;
       text-transform: uppercase;
 
+      @include screen-md-max {
+        font-size: 15px;
+      }
+
       small {
         margin-top: 0.4em;
         font-size: 12px;
         text-transform: none;
       }
+
+      .pull-right {
+        @include screen-md-max {
+          display: inline-block;
+          width: 100%;
+          margin-top: 10px;
+          float: none !important;
+        }
+      }
     }
 
     .p-lg {
       font-size: 16px;
+
+      @include screen-md-max {
+        font-size: 14px;
+      }
     }
 
     .well {
@@ -604,31 +657,33 @@ table .ellipsis {
   }
 
 // Comments sidebar
-.col-content,
-.col-sidebar {
-  .sidebar-open & {
-    float: left;
-  }
-}
-
 .col-content {
   width: auto;
-  margin-right: 50px;
+  padding-right: 50px;
 
   .sidebar-open & {
-    width: 70%;
-    padding-right: 15px;
+    padding-right: 315px;
+
+    @include screen-md-max {
+      width: 100%;
+      padding-right: 0;
+    }
   }
 }
 
 .col-sidebar {
-  position: absolute;
-  top: 0;
-  right: 15px;
   width: 40px;
+  float: right;
 
   .sidebar-open & {
-    width: 30%;
+    width: 300px;
+
+    @include screen-md-max {
+      width: 100%;
+      margin-bottom: 15px;
+      padding-top: 67px;
+      float: none;
+    }
   }
 }
 
@@ -909,6 +964,10 @@ table .ellipsis {
   background-color: transparent;
   box-shadow: none;
 
+  thead > tr > th {
+    vertical-align: bottom;
+  }
+
   tbody {
     border: 2px solid #333;
 
@@ -958,5 +1017,13 @@ table .ellipsis {
     margin-top: 0.3em;
     font-style: italic;
     text-transform: none;
+
+    @include screen-md-max {
+      display: inline-block;
+      width: 100%;
+      margin-top: 10px;
+      padding-left: 25px;
+      float: none !important;
+    }
   }
 }

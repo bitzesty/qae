@@ -43,6 +43,10 @@
     background-image: image-url("icon-progress-pending@2.png");
   }
 
+  @include screen-md-max {
+    margin-top: 0;
+  }
+
   &.recommended {
     background-color: #93c255;
     background-image: image-url("icon-progress-success.png");
@@ -50,6 +54,15 @@
 
     @include is-retina {
       background-image: image-url("icon-progress-success@2.png");
+    }
+  }
+
+  .sidebar-open & {
+    @include screen-md-max {
+      position: absolute;
+      top: 0;
+      right: 15px;
+      left: 15px;
     }
   }
 }
@@ -193,6 +206,7 @@
 
     .form-control {
       display: none;
+      min-width: 100px;
     }
 
     .form-edit {
@@ -240,4 +254,8 @@
 
 .section-applicant-details .text-right a {
   font-size: 14px;
+
+  @include screen-md-max {
+    font-size: 13px;
+  }
 }
