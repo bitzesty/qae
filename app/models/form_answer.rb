@@ -133,6 +133,17 @@ class FormAnswer < ActiveRecord::Base
     ((fill_progress || 0) * 100).round.to_s + "%"
   end
 
+  def performance_years
+    case award_type
+    when "innovation"
+      document["innovation_performance_years"]
+    end
+  end
+
+  def financial_data_submitted?
+    performance_years.present?
+  end
+
   private
 
   def nominee_full_name_from_document

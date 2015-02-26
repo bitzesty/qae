@@ -1,0 +1,7 @@
+tr
+  td = row.keys.first
+
+  - row.values.flatten.each do |field|
+    td
+      = field[:value]
+      = text_field_tag "form[#{field[:name]}]", field[:value], class: 'form-control'

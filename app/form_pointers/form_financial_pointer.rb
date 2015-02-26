@@ -32,12 +32,16 @@ class FormFinancialPointer
   end
 
   def data
-    target_financial_questions.map do |question|
+    @data ||= target_financial_questions.map do |question|
       FinancialYearPointer.new(
         question: question,
         financial_pointer: self
       ).data
     end
+  end
+
+  def period_length
+    data.first.values.flatten.size
   end
 
   def fetch_financial_questions

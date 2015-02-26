@@ -57,3 +57,7 @@ en:
     formats:
       govuk_date_short: "%-e %b %Y"
       govuk_date: "%-e %B %Y"
+
+  admin:
+    form_answers:
+      financial_year_changed_dates: Year and date
