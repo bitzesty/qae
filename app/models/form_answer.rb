@@ -2,6 +2,8 @@ require 'qae_2014_forms'
 
 class FormAnswer < ActiveRecord::Base
   include PgSearch
+  extend Enumerize
+
   pg_search_scope :basic_search, against: [
     :urn,
     :award_type_full_name,
@@ -26,6 +28,8 @@ class FormAnswer < ActiveRecord::Base
     "development" => "Sustainable Development",
     "promotion" => "Enterprise promotion"
   }
+
+  enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true
 
   begin :associations
     belongs_to :user
@@ -102,22 +106,6 @@ class FormAnswer < ActiveRecord::Base
 
   def document
     super || {}
-  end
-
-  def promotion?
-    award_type == "promotion"
-  end
-
-  def trade?
-    award_type == "trade"
-  end
-
-  def development?
-    award_type == "development"
-  end
-
-  def innovation?
-    award_type == "innovation"
   end
 
   def important?
