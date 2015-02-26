@@ -137,7 +137,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def fill_progress_in_percents
-    "#{((fill_progress || 0) * 100).round.to_i}%"
+    ((fill_progress || 0) * 100).round.to_s + "%"
   end
 
   private

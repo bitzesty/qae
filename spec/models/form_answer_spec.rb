@@ -108,4 +108,11 @@ RSpec.describe FormAnswer, type: :model do
       end
     end
   end
+
+  describe "#fill_progress_in_percents" do
+    it "returns fill progress as formatted string" do
+      form_answer = build(:form_answer, fill_progress: 0.11)
+      expect(form_answer.fill_progress_in_percents).to eq("11%")
+    end
+  end
 end
