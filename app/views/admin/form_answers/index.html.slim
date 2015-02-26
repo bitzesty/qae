@@ -87,6 +87,7 @@
               tr
                 td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
                 td.td-title
+                = link_to [:admin, obj], class: "ellipsis"
                   - unless obj.company_or_nominee_name.nil?
                     = link_to obj.company_or_nominee_name, [:admin, obj]
                   - else
@@ -105,6 +106,7 @@
                     = link_to [:admin, obj]
                       = application_comments(obj)
                 td = application_flags(obj)
+                td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"
 
   .row
     .col-xs-12.text-right

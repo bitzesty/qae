@@ -417,6 +417,27 @@ table .ellipsis {
   text-transform: uppercase;
 }
 
+.icon-view {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: left;
+  text-indent: -9999px;
+  background-image: image-url("icon-computer.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 30px 26px;
+  opacity: 0.3;
+
+  @include is-retina {
+    background-image: image-url("icon-computer@2.png");
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+}
+
 // Search
 .search-input {
   position: relative;
