@@ -14,6 +14,11 @@ class FormAnswerDecorator < ApplicationDecorator
     object.class::AWARD_TYPE_FULL_NAMES[object.award_type]
   end
 
+  def award_type_short_name
+    award_titles = { "Innovation" => "Innovation", "International Trade"=> "Intl Trade", "Sustainable Development"=> "Sus Dev", "Enterprise promotion" => "QAEP" }
+    award_titles[object.class::AWARD_TYPE_FULL_NAMES[object.award_type]]
+  end
+
   def award_application_title
     "#{award_type} Award #{Date.today.year}"
   end

@@ -44,7 +44,8 @@
                           label data-value=v
                             input type="checkbox"
                             span.label-contents
-                              = key
+                              - award_titles = { "Innovation" => "Innovation", "International Trade"=> "Intl Trade", "Sustainable Development"=> "Sus Dev", "QAEP" => "QAEP" }
+                              = award_titles[key]
               - if @search.query?
                 th Status
               - else
@@ -79,7 +80,6 @@
                             input type="checkbox"
                             span.label-contents
                               em = val[:label]
-
               th &nbsp;
               th.sortable
                 = sort_link f, "Flag", @search, :flag, disabled: @search.query?
@@ -99,14 +99,13 @@
                     = obj.urn
                   - else
                     span.urn-not-generated Not yet generated
-
-                  td = obj.award_type
-                  td = obj.progress_text
-                  td
-                    - if obj.comments.any?
-                      = link_to [:admin, obj]
-                        = application_comments(obj)
-                  td = application_flags(obj)
+                td = obj.award_type_short_name
+                td = obj.progress_text
+                td
+                  - if obj.comments.any?
+                    = link_to [:admin, obj]
+                      = application_comments(obj)
+                td = application_flags(obj)
 
   .row
     .col-xs-12.text-right
