@@ -80,10 +80,14 @@
             tr
               td.td-title
                 = link_to user.full_name, edit_admin_user_path(user), class: 'link-edit-user'
-              td = mail_to user.email
+              td = mail_to user.email, user.email, {class: "ellipsis"}
               td = user.company
               td = user.role
               td
                 i Not implemented
               td
-                i.text-muted = user.formatted_last_sign_in_at
+                small.text-muted
+                  span.visible-lg
+                    = user.formatted_last_sign_in_at_long
+                  span.hidden-lg
+                    = user.formatted_last_sign_in_at_short

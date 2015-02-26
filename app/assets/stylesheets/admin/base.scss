@@ -9,6 +9,10 @@
   overflow: hidden;
 }
 
+table .ellipsis {
+  max-width: 200px;
+}
+
 .btn .glyphicon:first-child {
   margin-right: 5px;
 }

@@ -21,6 +21,10 @@
             tr
               td.td-title
                 = link_to assessor.full_name, edit_admin_assessor_path(assessor), class: 'link-edit-user'
-              td = mail_to assessor.email
+              td = mail_to assessor.email, assessor.email, {class: "ellipsis"}
               td
-                i.text-muted = assessor.formatted_last_sign_in_at
+                small.text-muted
+                  span.visible-lg
+                    = assessor.formatted_last_sign_in_at_long
+                  span.hidden-lg
+                    = assessor.formatted_last_sign_in_at_short

@@ -1,11 +1,11 @@
 = simple_form_for @search, url: '#', method: :get, as: :search, html: { class: 'search-form' } do |f|
   .row
-    .col-md-3
+    .col-md-3.col-xs-8
       .form-group.search-input
         input.form-control#search type="search" placeholder="Search..."
         = f.submit :submit
 
-    .col-md-3.pull-right.text-right
+    .col-md-3.col-xs-4.pull-right.text-right
       = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-primary btn-md' do
         span.glyphicon.glyphicon-user
         = "New #{controller_name.singularize}"
