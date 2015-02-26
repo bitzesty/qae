@@ -47,4 +47,5 @@ class FormFinancialPointer
       award_form[question.key].visible?
     end
   end
+
 end

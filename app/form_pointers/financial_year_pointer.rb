@@ -53,7 +53,7 @@ class FinancialYearPointer
     end
   end
 
-  def entry(field, year_label=nil)
+  def entry(field, year_label = nil)
     entry = financial_pointer.filled_answers.detect do |k, _v|
       k == "#{key}_#{field}#{year_label}"
     end
@@ -68,4 +68,5 @@ class FinancialYearPointer
       Date.today.year
     ]
   end
+
 end
