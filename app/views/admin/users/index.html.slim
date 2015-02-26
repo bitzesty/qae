@@ -1,8 +1,8 @@
-= simple_form_for @search, url: '#', method: :get, as: :search, html: { class: 'search-form' } do |f|
+= simple_form_for @search, url: "#", method: :get, as: :search, html: { class: "search-form" } do |f|
   .row
     .col-md-3.col-xs-8
       .form-group.search-input
-        input.form-control#search type="search" placeholder="Search..."
+        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = f.submit :submit
 
     .col-md-3.col-xs-4.pull-right.text-right

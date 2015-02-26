@@ -19,7 +19,6 @@ class FormAnswer < ActiveRecord::Base
                     }
                   }
 
-
   POSSIBLE_AWARDS = [
     "trade", # International Trade Award
     "innovation", # Innovation Award

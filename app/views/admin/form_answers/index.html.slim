@@ -3,7 +3,7 @@
   .row
     .col-md-3
       .form-group.search-input
-        = text_field_tag :query, search_query, class: "form-control", placeholder: "Search...", type: "search"
+        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = submit_tag :submit
 
   br
@@ -16,10 +16,10 @@
             tr
               th &nbsp;
               th.sortable
-                = sort_link f, 'Company/Nominee', @search, :company_or_nominee_name, disabled: search_query.present?
+                = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
               th.sortable
-                = sort_link f, 'Reference', @search, :urn, disabled: search_query.present?
-              - if search_query.present?
+                = sort_link f, "Reference", @search, :urn, disabled: @search.query?
+              - if @search.query?
                 th Award Type
               - else
                 th.filter
@@ -45,7 +45,7 @@
                             input type="checkbox"
                             span.label-contents
                               = key
-              - if search_query.present?
+              - if @search.query?
                 th Status
               - else
                 th.filter
@@ -82,7 +82,7 @@
 
               th &nbsp;
               th.sortable
-                = sort_link f, 'Flag', @search, :flag, disabled: search_query.present?
+                = sort_link f, "Flag", @search, :flag, disabled: @search.query?
           tbody
             - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
               tr

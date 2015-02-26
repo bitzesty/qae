@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
+  include PgSearch
+  extend Enumerize
+
   POSSIBLE_ROLES = %w(account_admin regular)
 
   def after_initialize
     @current_step = 0
   end
 
-  extend Enumerize
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
@@ -66,6 +68,19 @@ class User < ActiveRecord::Base
   enumerize :prefered_method_of_contact, in: %w(phone email)
   enumerize :qae_info_source, in: %w(govuk competitor business_event national_press business_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other)
   enumerize :role, in: POSSIBLE_ROLES, predicates: true
+
+  pg_search_scope :basic_search,
+                  against: [
+                    :email,
+                    :first_name,
+                    :last_name,
+                    :company_name
+                  ],
+                  using: {
+                    tsearch: {
+                      prefix: true
+                    }
+                  }
 
   def set_step (step)
     @current_step = step

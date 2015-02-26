@@ -4,6 +4,7 @@ class Admin::UsersController < Admin::BaseController
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
     authorize User, :index?
+
     @search = UserSearch.new(User.all).search(params[:search])
     @resources = @search.results.page(params[:page])
   end
