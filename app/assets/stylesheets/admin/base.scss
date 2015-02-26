@@ -8,27 +8,28 @@ a {
   }
 }
 
-span.visible-lg {
-  @include screen-lg-min {
-    display: inline !important;
-  }
-}
+span {
+  &.visible-lg {
+    @include screen-lg-min {
+      display: inline !important;
+    }
 
-span.visible-md {
-  @include screen-md-min {
-    display: inline !important;
+  &.visible-md {
+    @include screen-md-min {
+      display: inline !important;
+    }
   }
-}
 
-span.visible-sm {
-  @include screen-sm-min {
-    display: inline !important;
+  &.visible-sm {
+    @include screen-sm-min {
+      display: inline !important;
+    }
   }
-}
 
-span.visible-xs {
-  @include screen-xs-min {
-    display: inline !important;
+  &.visible-xs {
+    @include screen-xs-min {
+      display: inline !important;
+    }
   }
 }
 
@@ -216,8 +217,8 @@ table .ellipsis {
       padding: 0;
       border: none;
       background: transparent !important;
-      overflow: visible;
       box-shadow: none !important;
+      overflow: visible;
     }
 
     .attachment-text {
