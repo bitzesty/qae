@@ -2,6 +2,8 @@ require 'qae_2014_forms'
 
 class FormAnswer < ActiveRecord::Base
   include PgSearch
+  extend Enumerize
+
   pg_search_scope :basic_search, against: [
     :urn,
     :award_type_full_name,
@@ -26,6 +28,8 @@ class FormAnswer < ActiveRecord::Base
     "development" => "Sustainable Development",
     "promotion" => "Enterprise promotion"
   }
+
+  enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true
 
   begin :associations
     belongs_to :user
@@ -104,10 +108,6 @@ class FormAnswer < ActiveRecord::Base
     super || {}
   end
 
-  def promotion?
-    award_type == 'promotion'
-  end
-
   def important?
     importance_flag?
   end
@@ -122,6 +122,10 @@ class FormAnswer < ActiveRecord::Base
     name = nominee_full_name_from_document if promotion? && name.blank?
     name = name.try(:strip)
     name.presence
+  end
+
+  def fill_progress_in_percents
+    ((fill_progress || 0) * 100).round.to_s + "%"
   end
 
   private

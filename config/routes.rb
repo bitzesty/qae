@@ -71,6 +71,7 @@ Rails.application.routes.draw do
     resources :users
     resources :assessors
     resources :admins
+    resources :reports, only: [:show]
     resources :form_answers do
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]

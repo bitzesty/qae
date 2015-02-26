@@ -14,7 +14,7 @@
                   span.glyphicon.glyphicon-file
                   = report
               small.pull-right
-                = link_to "#"
+                =link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT, format: :csv)
                   span.glyphicon.glyphicon-download-alt
                   ' Download
       / TODO Email actions
