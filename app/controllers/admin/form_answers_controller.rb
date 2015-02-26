@@ -4,7 +4,6 @@ class Admin::FormAnswersController < Admin::BaseController
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
     authorize :form_answer, :index?
-    @search = FormAnswerSearch.new(FormAnswer.all).search(params[:search])
 
     if search_query.present?
       scope = FormAnswer.basic_search(search_query)
@@ -33,11 +32,6 @@ class Admin::FormAnswersController < Admin::BaseController
     session[:admin_in_read_only_mode] = true
 
     redirect_to edit_form_path(@form_answer, anchor: "company-information")
-  end
-
-  def update
-    authorize @form_answer, :update?
-    # TODO
   end
 
   helper_method :search_query
