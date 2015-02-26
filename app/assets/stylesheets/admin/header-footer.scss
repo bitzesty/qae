@@ -5,6 +5,26 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  @include screen-md-max {
+    font-size: 16px;
+  }
+
+  .caret {
+    margin-left: 5px;
+    border-top-width: 7px;
+    border-right-width: 6px;
+    border-left-width: 6px;
+  }
+
+  .navbar-toggle {
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    .icon-bar {
+      background-color: #fff;
+    }
+  }
+
   .navbar {
     margin-bottom: 40px;
     border: none;
@@ -36,11 +56,28 @@
     .navbar-nav > li > a {
       padding-top: 24px;
       padding-bottom: 23px;
+
+      @include screen-md-max {
+        padding-right: 10px;
+        padding-left: 10px;
+      }
+
+      @include screen-sm-max {
+        padding: 20px 15px;
+      }
     }
   }
 
   .nav > li {
     margin: 0 20px;
+
+    @include screen-md-max {
+      margin: 0 10px;
+    }
+
+    @include screen-sm-max {
+      margin: 0;
+    }
 
     &:last-child {
       margin-right: 0;
@@ -50,6 +87,16 @@
       &:hover,
       &:focus {
         background-color: #444;
+
+        @include is-ios {
+          background-color: transparent;
+        }
+      }
+
+      &:focus {
+        @include screen-sm-max {
+          background-color: transparent;
+        }
       }
     }
 
@@ -60,13 +107,38 @@
       @include is-retina {
         background-image: image-url("icon-arrow-admin-nav@2.png");
       }
+
+      @include screen-sm-max {
+        background: #333;
+        font-weight: bold;
+      }
     }
   }
 
-  .caret {
-    margin-left: 5px;
-    border-top-width: 7px;
-    border-right-width: 6px;
-    border-left-width: 6px;
+  .dropdown-menu {
+    @include screen-sm-max {
+      border-radius: 0;
+      background: #333;
+    }
+
+    > li > a {
+      @include screen-sm-max {
+        padding: 15px;
+        padding-left: 35px;
+        color: #fff;
+        text-transform: uppercase;
+      }
+
+      &:hover,
+      &:focus {
+        @include screen-sm-max {
+          background: #444;
+        }
+
+        @include is-ios {
+          background-color: transparent;
+        }
+      }
+    }
   }
 }
