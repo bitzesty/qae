@@ -24,4 +24,13 @@ module FormAnswerHelper
   def award_types_collection
     FormAnswerDecorator::SELECT_BOX_LABELS.invert.to_a
   end
+
+  def average_growth_for(form_answer, year)
+    growth = form_answer.average_growth_for(year)
+    if growth
+      growth
+    else
+      content_tag :span, "-", class: "centered"
+    end
+  end
 end
