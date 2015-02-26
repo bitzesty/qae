@@ -4,14 +4,21 @@ class FormAnswer < ActiveRecord::Base
   include PgSearch
   extend Enumerize
 
-  pg_search_scope :basic_search, against: [
-    :urn,
-    :award_type_full_name,
-    :award_year,
-    :company_or_nominee_name,
-    :nominee_full_name,
-    :user_full_name
-  ]
+  pg_search_scope :basic_search,
+                  against: [
+                    :urn,
+                    :award_type_full_name,
+                    :award_year,
+                    :company_or_nominee_name,
+                    :nominee_full_name,
+                    :user_full_name
+                  ],
+                  using: {
+                    tsearch: {
+                      prefix: true
+                    }
+                  }
+
 
   CURRENT_AWARD_YEAR = "14"
 
