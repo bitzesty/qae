@@ -74,7 +74,6 @@
                       = f.simple_fields_for [:filters, @search.filters] do |f|
                         = f.input :status, collection: FormAnswerStatusFiltering.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
                       - FormAnswerStatusFiltering::SUB_OPTIONS.each do |key, val|
-
                         li.checkbox role="presentation"
                           label data-value=key
                             input type="checkbox"
