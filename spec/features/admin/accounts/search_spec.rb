@@ -16,7 +16,7 @@ describe "Users search", "
 
   context "success searching" do
     context "by user name" do
-      it "search for users with first name" do
+      it "search for users with first name", js: true do
         within ".search-input" do
           fill_in "search_query", with: user.first_name
           click_button :submit

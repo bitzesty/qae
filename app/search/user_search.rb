@@ -7,8 +7,4 @@ class UserSearch < Search
   }
 
   include FullNameSort
-
-  def find_by_query(scoped_results, value)
-    scoped_results.basic_search(value)
-  end
 end

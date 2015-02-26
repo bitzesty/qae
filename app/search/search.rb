@@ -69,7 +69,7 @@ class Search
     end
 
     if query
-      @search_results = find_by_query(@search_results, query)
+      @search_results = @search_results.basic_search(query)
     end
 
     @search_results

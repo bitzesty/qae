@@ -1,10 +1,12 @@
 class Admin < ActiveRecord::Base
+  include PgSearch
+  extend Enumerize
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  extend Enumerize
 
   enumerize :role, in: %w[admin lead_assessor assessor], predicates: true
   validates :role, :first_name, :last_name, presence: true
@@ -13,4 +15,16 @@ class Admin < ActiveRecord::Base
   scope :assessors, -> { where(role: %w[lead_assessor assessor]) }
 
   has_many :form_answer_attachments, as: :attachable
+
+  pg_search_scope :basic_search,
+                  against: [
+                    :first_name,
+                    :last_name,
+                    :email
+                  ],
+                  using: {
+                    tsearch: {
+                      prefix: true
+                    }
+                  }
 end
