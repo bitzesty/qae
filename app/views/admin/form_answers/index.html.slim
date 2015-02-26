@@ -10,102 +10,103 @@
 
   .row
     .col-xs-12
-      table.table.applications-table
-        thead
-          tr
-            th &nbsp;
-            th.sortable
-              = sort_link f, 'Company/Nominee', @search, :company_or_nominee_name, disabled: search_query.present?
-            th.sortable
-              = sort_link f, 'Reference', @search, :urn, disabled: search_query.present?
-            - if search_query.present?
-              th Award Type
-            - else
-              th.filter
-                = f.simple_fields_for [:filters, @search.filters] do |f|
-                  = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
-                / TODO do category filter dropdown
-                .dropdown.if-no-js-hide
-                  button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
-                    ' Category:
-                    span.text-filter
-                      ' All
-                    span.caret
-                  ul.dropdown-menu role="menu"
-                    li.checkbox role="presentation"
-                      label data-value='select_all'
-                        input type="checkbox"
-                        span.label-contents
-                          em Select all
-                    li.divider
-                    - award_types_collection.each do |key,v|
-                      li.checkbox role="presentation"
-                        label data-value=v
-                          input type="checkbox"
-                          span.label-contents
-                            = key
-            - if search_query.present?
-              th Status
-            - else
-              th.filter
-                = f.simple_fields_for [:filters, @search.filters] do |f|
-                  = f.input :status, collection: FormAnswerStatusFiltering.collection, label: false, input_html: { multiple: true, class: 'if-js-hide'}
-                .dropdown.if-no-js-hide
-                  button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
-                    ' Status:
-                    span.text-filter
-                      ' All
-                    span.caret
-                  ul.dropdown-menu role="menu"
-                    li.checkbox role="presentation"
-                      label data-value='select_all'
-                        input type="checkbox"
-                        span.label-contents
-                          em Select all
-                    - FormAnswerStatusFiltering.collection.each do |state|
-                      li.checkbox role='presentation'
-                        label data-value=state[1]
-                          input type='checkbox'
-                          span.label-contents
-                            = state[0]
-                    li.divider
-                    = f.simple_fields_for [:filters, @search.filters] do |f|
-                      = f.input :status, collection: FormAnswerStatusFiltering.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
-                    - FormAnswerStatusFiltering::SUB_OPTIONS.each do |key, val|
-
-                      li.checkbox role="presentation"
-                        label data-value=key
-                          input type="checkbox"
-                          span.label-contents
-                            em = val[:label]
-
-            th &nbsp;
-            th.sortable
-              = sort_link f, 'Flag', @search, :flag, disabled: search_query.present?
-        tbody
-          - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
+      .table-overflow-container
+        table.table.applications-table
+          thead
             tr
-              td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
-              td.td-title
-                - unless obj.company_or_nominee_name.nil?
-                  = link_to obj.company_or_nominee_name, [:admin, obj]
-                - else
-                  = link_to [:admin, obj] do
-                    em
-                      ' Not found
-              td
-                - if obj.urn.present?
-                  = obj.urn
-                - else
-                  span.urn-not-generated Not yet generated
+              th &nbsp;
+              th.sortable
+                = sort_link f, 'Company/Nominee', @search, :company_or_nominee_name, disabled: search_query.present?
+              th.sortable
+                = sort_link f, 'Reference', @search, :urn, disabled: search_query.present?
+              - if search_query.present?
+                th Award Type
+              - else
+                th.filter
+                  = f.simple_fields_for [:filters, @search.filters] do |f|
+                    = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+                  / TODO do category filter dropdown
+                  .dropdown.if-no-js-hide
+                    button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                      ' Category:
+                      span.text-filter
+                        ' All
+                      span.caret
+                    ul.dropdown-menu role="menu"
+                      li.checkbox role="presentation"
+                        label data-value='select_all'
+                          input type="checkbox"
+                          span.label-contents
+                            em Select all
+                      li.divider
+                      - award_types_collection.each do |key,v|
+                        li.checkbox role="presentation"
+                          label data-value=v
+                            input type="checkbox"
+                            span.label-contents
+                              = key
+              - if search_query.present?
+                th Status
+              - else
+                th.filter
+                  = f.simple_fields_for [:filters, @search.filters] do |f|
+                    = f.input :status, collection: FormAnswerStatusFiltering.collection, label: false, input_html: { multiple: true, class: 'if-js-hide'}
+                  .dropdown.if-no-js-hide
+                    button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                      ' Status:
+                      span.text-filter
+                        ' All
+                      span.caret
+                    ul.dropdown-menu role="menu"
+                      li.checkbox role="presentation"
+                        label data-value='select_all'
+                          input type="checkbox"
+                          span.label-contents
+                            em Select all
+                      - FormAnswerStatusFiltering.collection.each do |state|
+                        li.checkbox role='presentation'
+                          label data-value=state[1]
+                            input type='checkbox'
+                            span.label-contents
+                              = state[0]
+                      li.divider
+                      = f.simple_fields_for [:filters, @search.filters] do |f|
+                        = f.input :status, collection: FormAnswerStatusFiltering.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+                      - FormAnswerStatusFiltering::SUB_OPTIONS.each do |key, val|
 
-                td = obj.award_type
-                td = obj.progress_text
+                        li.checkbox role="presentation"
+                          label data-value=key
+                            input type="checkbox"
+                            span.label-contents
+                              em = val[:label]
+
+              th &nbsp;
+              th.sortable
+                = sort_link f, 'Flag', @search, :flag, disabled: search_query.present?
+          tbody
+            - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
+              tr
+                td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
+                td.td-title
+                  - unless obj.company_or_nominee_name.nil?
+                    = link_to obj.company_or_nominee_name, [:admin, obj]
+                  - else
+                    = link_to [:admin, obj] do
+                      em
+                        ' Not found
                 td
-                  - if obj.comments.any?
-                    = link_to [:admin, obj]
-                      = application_comments(obj)
-                td = application_flags(obj)
+                  - if obj.urn.present?
+                    = obj.urn
+                  - else
+                    span.urn-not-generated Not yet generated
+
+                  td = obj.award_type
+                  td = obj.progress_text
+                  td
+                    - if obj.comments.any?
+                      = link_to [:admin, obj]
+                        = application_comments(obj)
+                  td = application_flags(obj)
 
   .row
     .col-xs-12.text-right

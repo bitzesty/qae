@@ -1,12 +1,49 @@
 @import "mixins";
 
 // Basic
+a {
+  &:active,
+  &:focus {
+    outline: none !important;
+  }
+}
+
+span {
+  &.visible-lg {
+    @include screen-lg-min {
+      display: inline !important;
+    }
+  }
+
+  &.visible-md {
+    @include screen-md-min {
+      display: inline !important;
+    }
+  }
+
+  &.visible-sm {
+    @include screen-sm-min {
+      display: inline !important;
+    }
+  }
+
+  &.visible-xs {
+    @include screen-xs-min {
+      display: inline !important;
+    }
+  }
+}
+
 .ellipsis {
   display: inline-block;
   max-width: 100%;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+}
+
+table .ellipsis {
+  max-width: 175px;
 }
 
 .btn .glyphicon:first-child {
@@ -34,6 +71,12 @@
 
   .pull-right {
     margin-top: 0.5em;
+  }
+}
+
+.table-overflow-container {
+  @include screen-sm-max {
+    overflow-x: auto;
   }
 }
 
@@ -139,6 +182,10 @@
     .pull-right {
       a {
         color: #337ab7;
+
+        &.text-danger {
+          color: #a94442;
+        }
       }
     }
 
@@ -155,7 +202,7 @@
 
       .action-title {
         display: inline-block;
-        max-width: 190px;
+        max-width: 180px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
@@ -167,6 +214,20 @@
     position: relative;
     overflow: hidden;
 
+    .ie & {
+      padding: 0;
+      border: none;
+      background: transparent !important;
+      box-shadow: none !important;
+      overflow: visible;
+    }
+
+    .attachment-text {
+      .ie & {
+        display: none;
+      }
+    }
+
     input[type="file"] {
       position: absolute;
       top: 0;
@@ -177,6 +238,11 @@
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
       opacity: 0;
+
+      .ie & {
+        position: relative;
+        opacity: 1;
+      }
     }
   }
 
@@ -199,6 +265,10 @@
     color: #fff;
     text-decoration: none;
     opacity: 0;
+
+    @include is-ios {
+      opacity: 1;
+    }
 
     &:hover {
       background: #212121;
@@ -548,6 +618,10 @@
     padding: 15px;
     background: #fff;
 
+    @include screen-md-max {
+      margin-bottom: 30px;
+    }
+
     h1,
     h2 {
       &:first-child {
@@ -561,6 +635,10 @@
 
     h1 {
       font-size: 32px;
+
+      @include screen-md-max {
+        font-size: 24px;
+      }
     }
 
     h2 {
@@ -568,15 +646,32 @@
       font-size: 16px;
       text-transform: uppercase;
 
+      @include screen-md-max {
+        font-size: 15px;
+      }
+
       small {
         margin-top: 0.4em;
         font-size: 12px;
         text-transform: none;
       }
+
+      .pull-right {
+        @include screen-md-max {
+          display: inline-block;
+          width: 100%;
+          margin-top: 10px;
+          float: none !important;
+        }
+      }
     }
 
     .p-lg {
       font-size: 16px;
+
+      @include screen-md-max {
+        font-size: 14px;
+      }
     }
 
     .well {
@@ -600,31 +695,33 @@
   }
 
 // Comments sidebar
-.col-content,
-.col-sidebar {
-  .sidebar-open & {
-    float: left;
-  }
-}
-
 .col-content {
   width: auto;
-  margin-right: 50px;
+  padding-right: 50px;
 
   .sidebar-open & {
-    width: 70%;
-    padding-right: 15px;
+    padding-right: 315px;
+
+    @include screen-md-max {
+      width: 100%;
+      padding-right: 0;
+    }
   }
 }
 
 .col-sidebar {
-  position: absolute;
-  top: 0;
-  right: 15px;
   width: 40px;
+  float: right;
 
   .sidebar-open & {
-    width: 30%;
+    width: 300px;
+
+    @include screen-md-max {
+      width: 100%;
+      margin-bottom: 15px;
+      padding-top: 67px;
+      float: none;
+    }
   }
 }
 
@@ -829,6 +926,10 @@
   background: #706f6f;
   opacity: 0;
 
+  @include is-ios {
+    opacity: 1;
+  }
+
   &,
   &:hover,
   &:active,
@@ -905,6 +1006,10 @@
   background-color: transparent;
   box-shadow: none;
 
+  thead > tr > th {
+    vertical-align: bottom;
+  }
+
   tbody {
     border: 2px solid #333;
 
@@ -954,5 +1059,13 @@
     margin-top: 0.3em;
     font-style: italic;
     text-transform: none;
+
+    @include screen-md-max {
+      display: inline-block;
+      width: 100%;
+      margin-top: 10px;
+      padding-left: 25px;
+      float: none !important;
+    }
   }
 }

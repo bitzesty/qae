@@ -21,6 +21,10 @@
             tr
               td.td-title
                 = link_to admin.full_name, edit_admin_admin_path(admin), class: 'link-edit-user'
-              td = mail_to admin.email
+              td = mail_to admin.email, admin.email, {class: "ellipsis"}
               td
-                i.text-muted = admin.formatted_last_sign_in_at
+                small.text-muted
+                  span.visible-lg
+                    = admin.formatted_last_sign_in_at_long
+                  span.hidden-lg
+                    = admin.formatted_last_sign_in_at_short

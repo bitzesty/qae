@@ -1,13 +1,15 @@
 doctype html
 /[if lt IE 7]
-  <html class="ie ie6 lte9 lte8 lte7">
+  <html class="ie ie6 lte9 lte8 lte7 no-js">
 /[if IE 7]
-  <html class="ie ie7 lte9 lte8 lte7">
+  <html class="ie ie7 lte9 lte8 lte7 no-js">
 /[if IE 8]
-  <html class="ie ie8 lte9 lte8">
+  <html class="ie ie8 lte9 lte8 no-js">
 /[if IE 9]
-  <html class="ie ie9 lte9">
-| <!--[if (gte IE 9)|!(IE)]<!-->
+  <html class="ie ie9 lte9 no-js">
+/[if gt IE 9]
+  <html class="ie no-js">
+| <!--[if !(IE)]<!-->
 html.no-js
   | <!--<![endif]-->
   head
