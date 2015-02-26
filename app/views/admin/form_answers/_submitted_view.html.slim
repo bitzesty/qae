@@ -1,24 +1,24 @@
-.panel-group.panel-group-parent#submitted-application-parent role="tablist" aria-multiselectable="true"
-  .panel.panel-default
+.panel-group#submitted-application-parent role="tablist" aria-multiselectable="true"
+  .panel.panel-default.panel-parent
     .panel-heading#application-info-heading role="tab"
       h4.panel-title
         a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-application-info" aria-expanded="true" aria-controls="section-application-info"
           ' Application info
     #section-application-info.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="application-info-heading"
       .panel-body
-        .panel-group.panel-group-parent#panel-application-info role="tablist" aria-multiselectable="true"
+        .panel-group#panel-application-info role="tablist" aria-multiselectable="true"
           = render "section_admin_comments"
           = render "section_company_details"
           = render "section_financial_summary"
 
-  .panel.panel-default
+  .panel.panel-default.panel-parent
     .panel-heading#assessment-heading role="tab"
       h4.panel-title
         a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-assessment" aria-expanded="true" aria-controls="section-assessment"
           ' Assessment
     #section-assessment.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="assessment-heading"
       .panel-body
-        .panel-group.panel-group-parent#panel-assessment role="tablist" aria-multiselectable="true"
+        .panel-group#panel-assessment role="tablist" aria-multiselectable="true"
           = render "section_critical_comments"
           = render "section_draft_notes"
           = render "section_appraisal_form_primary"

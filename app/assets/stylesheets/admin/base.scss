@@ -1122,3 +1122,30 @@ table .ellipsis {
     }
   }
 }
+
+.panel-parent {
+  > .panel-heading {
+    background-color: #706f6f;
+
+    > .panel-title a {
+      background-image: image-url("icon-arrow-collapse-down-white.png");
+      color: #fff;
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-collapse-down-white@2.png");
+      }
+    }
+
+    &.expanded > .panel-title a {
+      background-image: image-url("icon-arrow-collapse-up-white.png");
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-collapse-up-white@2.png");
+      }
+    }
+  }
+
+  > .panel-collapse > .panel-body {
+    padding-right: 0;
+  }
+}
