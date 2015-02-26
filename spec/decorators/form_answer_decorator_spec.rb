@@ -1,8 +1,8 @@
-require 'rails_helper'
+require "rails_helper"
 
 describe FormAnswerDecorator do
   describe "#average_growth_for" do
-    subject{ described_class.new form_answer }
+    subject { described_class.new form_answer }
     let(:form_answer) { build(:form_answer, sic_code: sic_code.code) }
     let(:year) { 1 }
 
@@ -14,7 +14,7 @@ describe FormAnswerDecorator do
     end
 
     context "sic code not present" do
-      let(:sic_code){ double(code: nil) }
+      let(:sic_code) { double(code: nil) }
       it "returns nil" do
         expect(subject.average_growth_for(year)).to be_nil
       end

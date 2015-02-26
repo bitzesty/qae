@@ -1,4 +1,4 @@
-require 'csv'
+require "csv"
 
 class SICCode < ActiveYaml::Base
   REGEX = /\A\d{4}(\/\d{1})?\z/ # based on the sic codes spreadsheet
@@ -10,14 +10,14 @@ class SICCode < ActiveYaml::Base
     csv = CSV.parse File.open(csv_filename).read
 
     headers = {
-      0 => 'code',
-      1 => 'description',
-      2 => 'year1',
-      3 => 'year2',
-      4 => 'year3',
-      5 => 'year4',
-      6 => 'year5',
-      7 => 'year6'
+      0 => "code",
+      1 => "description",
+      2 => "year1",
+      3 => "year2",
+      4 => "year3",
+      5 => "year4",
+      6 => "year5",
+      7 => "year6"
     }
 
     res = csv[1..-1].map do |row|

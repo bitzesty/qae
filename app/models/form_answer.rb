@@ -52,7 +52,7 @@ class FormAnswer < ActiveRecord::Base
                              in: POSSIBLE_AWARDS
                            }
     validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
-    validates :sic_code, format: { with: SICCode::REGEX }, allow_blank: true
+    validates :sic_code, format: { with: SICCode::REGEX }, allow_nil: true
   end
 
   begin :scopes

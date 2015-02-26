@@ -41,7 +41,7 @@ class FormAnswerDecorator < ApplicationDecorator
   def average_growth_for(year)
     if object.sic_code.present?
       sic = SICCode.find_by_code(object.sic_code)
-      sic.by_year(year)
+      sic.by_year(year) if sic
     end
   end
 end
