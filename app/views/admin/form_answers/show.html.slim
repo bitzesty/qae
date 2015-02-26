@@ -4,9 +4,8 @@
       = link_to "‹ back to overview", admin_form_answers_path, class: "btn btn-link btn-lg"
       .pull-right
         / TODO Prev/next case links
-        = link_to "‹ Prev case", "#", class: "btn btn-default btn-sm"
-        ' &nbsp;
-        = link_to "Next case ›", "#", class: "btn btn-default btn-sm"
+        = link_to "‹ Prev case", "#"
+        = link_to "Next case ›", "#"
 
 .row
   .col-md-4
@@ -41,7 +40,7 @@
               = render(@form_answer.form_answer_attachments)
           br
         = form_for [:admin, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
-          span.btn.btn-default.btn-sm.btn-attachment
+          span.btn.btn-default.btn-attachment
             span.attachment-text
               span.glyphicon.glyphicon-paperclip
               ' Attach Document
@@ -72,7 +71,7 @@
               span.icon-role 1
               ' James Moriss (j.moriss@companyname.com)
         br
-        = link_to "#", class: "btn btn-default btn-sm btn-email"
+        = link_to "#", class: "btn btn-default btn-email"
           span.glyphicon.glyphicon-envelope
           ' Email All Users
 

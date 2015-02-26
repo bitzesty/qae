@@ -9,9 +9,9 @@
       .btn-actions
         - if comment.author?(current_admin)
           = form_for(comment, url: admin_form_answer_comment_path(id: comment.id, form_answer_id: @form_answer.id), html: { method: :delete }) do |f|
-            = f.submit 'Yes', class: "btn btn-danger btn-sm link-delete-comment-confirm"
+            = f.submit 'Yes', class: "btn btn-danger link-delete-comment-confirm"
             ' &nbsp;
-            = link_to "No", "#", class: "btn btn-default btn-sm link-delete-comment-close"
+            = link_to "No", "#", class: "btn btn-default link-delete-comment-close"
   .comment-header
     h3
       = comment.author_email
