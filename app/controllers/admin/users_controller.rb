@@ -4,7 +4,14 @@ class Admin::UsersController < Admin::BaseController
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
     authorize User, :index?
-    @search = UserSearch.new(User.all).search(params[:search])
+
+    if search_query.present?
+      scope = User.basic_search(search_query)
+    else
+      scope = User.all
+    end
+
+    @search = UserSearch.new(scope).search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
@@ -50,6 +57,12 @@ class Admin::UsersController < Admin::BaseController
   end
 
   private
+
+  helper_method :search_query
+
+  def search_query
+    params[:query]
+  end
 
   def find_resource
     @resource = User.find(params[:id])
