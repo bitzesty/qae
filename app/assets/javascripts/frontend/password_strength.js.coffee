@@ -6,11 +6,12 @@ class PasswordStrengthMeter
     @resultChanged 0
 
   appendMeter: ->
-    @$meter = $("<div />", class: "password-meter inline-hints")
-    @$meter.append $("<span />", class: "password-meter-bar")
-    @$meter.find(".password-meter-bar").append $("<span />", class: "password-meter-bar-inner")
-    @$meter.append $("<span />", class: "password-meter-text")
-    @$input.after @$meter
+    if !@$input.parent().find(".password-meter").size() > 0
+      @$meter = $("<div />", class: "password-meter inline-hints")
+      @$meter.append $("<span />", class: "password-meter-bar")
+      @$meter.find(".password-meter-bar").append $("<span />", class: "password-meter-bar-inner")
+      @$meter.append $("<span />", class: "password-meter-text")
+      @$input.after @$meter
 
   listener: ->
     @$input.on "keyup", (e) =>
