@@ -3,7 +3,7 @@ require "csv"
 class SICCode < ActiveYaml::Base
   REGEX = /\A\d{4}(\/\d{1})?\z/ # based on the sic codes spreadsheet
 
-  set_root_path Rails.root
+  set_root_path "#{Rails.root}/db/fixtures"
   set_filename "sic_codes"
 
   def self.load_csv(csv_filename = "#{Rails.root}/sic_codes.csv")
