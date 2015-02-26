@@ -69,6 +69,7 @@ gem 'sinatra', require: false
 
 gem 'foreman'
 gem 'pg_search'
+gem "active_hash"
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'

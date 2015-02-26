@@ -37,4 +37,11 @@ class FormAnswerDecorator < ApplicationDecorator
   def fill_progress_in_percents
     "#{((object.fill_progress || 0) * 100).round.to_i}%"
   end
+
+  def average_growth_for(year)
+    if object.sic_code.present?
+      sic = SICCode.find_by_code(object.sic_code)
+      sic.by_year(year) if sic
+    end
+  end
 end

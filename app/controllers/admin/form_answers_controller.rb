@@ -4,7 +4,6 @@ class Admin::FormAnswersController < Admin::BaseController
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
     authorize :form_answer, :index?
-    @search = FormAnswerSearch.new(FormAnswer.all).search(params[:search])
 
     if search_query.present?
       scope = FormAnswer.basic_search(search_query)

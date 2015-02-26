@@ -212,10 +212,11 @@
                 td 100,000
                 td 100,000
               tr
-                th Sector advantage
-                td 13
-                td 13
-                td 13
+                th % Sector average growth
+                td = average_growth_for(@form_answer, 1)
+                td = average_growth_for(@form_answer, 2)
+                td = average_growth_for(@form_answer, 3)
+
 
         .form-group
           table.table.table-striped

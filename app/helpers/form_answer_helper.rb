@@ -1,6 +1,5 @@
 module FormAnswerHelper
   def application_flags(form_answer)
-    # TODO implement me
     output = ""
     if form_answer.important?
       output += "<span class='icon-flagged'>Flagged</span>"
@@ -23,5 +22,15 @@ module FormAnswerHelper
 
   def award_types_collection
     FormAnswerDecorator::SELECT_BOX_LABELS.invert.to_a
+  end
+
+  def average_growth_for(form_answer, year)
+    growth = form_answer.average_growth_for(year)
+    growth || content_tag(:span, "-", class: "centered")
+  end
+
+  def sic_code(form_answer)
+    code = form_answer.sic_code
+    code || "-"
   end
 end
