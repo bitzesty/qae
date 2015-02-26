@@ -189,9 +189,13 @@
   }
 }
 
-.section-case-grading .form-label {
-  position: relative;
-  padding-right: 30px;
+.section-appraisal-form,
+.section-recommendation {
+  .form-label {
+    position: relative;
+    padding-right: 30px;
+    font-weight: bold;
+  }
 }
 
 .section-financial-summary .form-group {
@@ -209,11 +213,11 @@
 
 .form-edit-link {
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 16px;
 
   .glyphicon {
     margin-right: 5px;
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 

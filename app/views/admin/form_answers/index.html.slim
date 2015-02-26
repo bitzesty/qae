@@ -82,6 +82,7 @@
               th &nbsp;
               th.sortable
                 = sort_link f, "Flag", @search, :flag, disabled: @search.query?
+              th &nbsp;
           tbody
             - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
               tr

@@ -1054,6 +1054,10 @@ table .ellipsis {
     vertical-align: bottom;
   }
 
+  label {
+    font-weight: bold;
+  }
+
   tbody {
     border: 2px solid #333;
 
@@ -1100,12 +1104,12 @@ table .ellipsis {
   }
 
   small {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 25px;
     color: #555;
     font-size: 14px;
-  }
-
-  .pull-right {
-    margin-top: 0.15em;
     font-style: italic;
     text-transform: none;
 
