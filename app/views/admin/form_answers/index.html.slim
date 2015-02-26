@@ -87,13 +87,13 @@
               tr
                 td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
                 td.td-title
-                = link_to [:admin, obj], class: "ellipsis"
-                  - unless obj.company_or_nominee_name.nil?
-                    = link_to obj.company_or_nominee_name, [:admin, obj]
-                  - else
-                    = link_to [:admin, obj] do
-                      em
-                        ' Not found
+                  = link_to [:admin, obj], class: "ellipsis"
+                    - unless obj.company_or_nominee_name.nil?
+                      = link_to obj.company_or_nominee_name, [:admin, obj]
+                    - else
+                      = link_to [:admin, obj] do
+                        em
+                          ' Not found
                 td
                   - if obj.urn.present?
                     = obj.urn

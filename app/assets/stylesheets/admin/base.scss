@@ -436,6 +436,16 @@ table .ellipsis {
   &:hover {
     opacity: 1;
   }
+
+  .btn & {
+    position: relative;
+    top: 2px;
+    width: 20px;
+    height: 16px;
+    margin-right: 5px;
+    background-size: 18px 14px;
+    opacity: 1;
+  }
 }
 
 // Search

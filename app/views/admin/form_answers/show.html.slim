@@ -38,6 +38,11 @@
           / TODO Edit page
           = link_to "Edit details", [:edit, :admin, @form_answer]
 
+        br
+        = link_to review_admin_form_answer_path(@form_answer), class: "btn btn-default btn-block", target: "_blank"
+          span.icon-view
+          ' View application as admin
+
       .well
         h2
           ' Documents
