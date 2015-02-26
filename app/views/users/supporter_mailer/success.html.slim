@@ -1,12 +1,12 @@
 p
   ' Hello,
 p
-  =' @user.full_name
+  => @user.full_name
   | asked you to fill support letter for his Queen's Awards for Enterprise application
 
 p
   ' You can fill your support letter
-  = link_to 'here', 'http://' + (ENV["mailgun_domain"] || 'example.com') + support_letter_path(access_key: @supporter.access_key)
+  = link_to 'here', support_letter_url(access_key: @supporter.access_key)
 
 p
   | Best Regards, Administration Team
