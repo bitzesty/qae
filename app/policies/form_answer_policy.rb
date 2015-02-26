@@ -14,4 +14,8 @@ class FormAnswerPolicy < ApplicationPolicy
   def show?
     admin.admin?
   end
+
+  def update?
+    admin.admin? || admin.assessor?
+  end
 end

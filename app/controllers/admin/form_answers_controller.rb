@@ -35,6 +35,11 @@ class Admin::FormAnswersController < Admin::BaseController
     redirect_to edit_form_path(@form_answer, anchor: "company-information")
   end
 
+  def update
+    authorize @form_answer, :update?
+    # TODO
+  end
+
   helper_method :search_query
 
   private

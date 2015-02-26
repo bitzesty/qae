@@ -33,4 +33,10 @@ module FormAnswerHelper
       content_tag :span, "-", class: "centered"
     end
   end
+
+  def sic_code(form_answer)
+    code = form_answer.sic_code
+    code ||= '-'
+    code
+  end
 end
