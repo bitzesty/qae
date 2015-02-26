@@ -20,6 +20,11 @@ class QAEFormBuilder
       @index ||= @decorator_options.fetch(:collection_idx)
     end
 
+    def progress
+      return 0 if required_visible_questions_total.zero?
+      required_visible_questions_filled.to_f / required_visible_questions_total
+    end
+
     def required_visible_questions_filled
       count_questions :required_visible_filled?
     end

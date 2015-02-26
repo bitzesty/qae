@@ -54,7 +54,8 @@ class Reports::AdminReportBuilder
       method: :telephone1
     },
     {
-      label: "RegisteredUserTelephone2"
+      label: "RegisteredUserTelephone2",
+      method: :telephone2
     },
     {
       label: "RegisteredUserMobile"
@@ -68,26 +69,36 @@ class Reports::AdminReportBuilder
       method: :percentage_complete
     },
     {
-      label: "Section 1"
+      label: "Section 1",
+      method: :section1
     },
     {
-      label: "Section 2"
+      label: "Section 2",
+      method: :section2
     },
     {
-      label: "Section 4"
+      label: "Section 3",
+      method: :section3
     },
     {
-      label: "Section 5"
+      label: "Section 4",
+      method: :section4
     },
     {
-      label: "Section 6"
+      label: "Section 5",
+      method: :section5
     },
     {
-      label: "Created"
+      label: "Section 6",
+      method: :section6
+    },
+    {
+      label: "Created",
+      method: :created_at
     },
     {
       label: "UserCreationDate",
-      method: :created_at
+      method: :user_creation_date
     },
     {
       label: "BusinessSector",
