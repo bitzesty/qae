@@ -5,13 +5,11 @@ describe Users::SupporterMailer do
   let(:supporter) { create(:supporter) }
   let(:email) { Users::SupporterMailer.success(supporter.id, user.id) }
 
-  before do
-    expect(ENV).to receive(:[]).with("mailgun_domain") { 'qae.local' }
-  end
-
   it 'contains link to the support letter form' do
     expect(email.subject).to eq("[Queen's Awards for Enterprise] Support Letter Request")
     expect(email.to).to eq([supporter.email])
-    expect(email.body.encoded).to have_link('here', href: "http://qae.local/support_letter?access_key=#{supporter.access_key}")
+
+    url = "http://example.com/support_letter?access_key=#{supporter.access_key}"
+    expect(email.body.encoded).to have_link("here", href: url)
   end
 end

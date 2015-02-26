@@ -45,7 +45,7 @@ gem 'wicked', '~> 1.1'
 gem 'statesman'
 
 # Form & Data helpers
-gem 'simple_form', '~> 3.0'
+gem 'simple_form', '~> 3.1'
 gem 'country_select'
 gem 'email_validator'
 gem 'enumerize', '~> 0.8'

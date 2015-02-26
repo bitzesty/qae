@@ -4,14 +4,14 @@ describe Notifiers::Submission::SuccessNotifier do
   let!(:user) { create :user }
   let!(:collaborator) { create :user, account: user.account, role: "regular" }
 
-  let(:form_answer) do 
+  let(:form_answer) do
     FactoryGirl.create :form_answer, :submitted, :innovation,
                                                  user: user,
                                                  document: { company_name: "Bitzesty" }
   end
 
   before do
-    FormAnswer.any_instance.stub(:eligible?) { true }
+    allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
     form_answer
   end
 
@@ -29,7 +29,7 @@ describe Notifiers::Submission::SuccessNotifier do
     describe "Deliver" do
       before do
         ActionMailer::Base.deliveries.clear
-        Users::SubmissionMailer.success(user.id, form_answer.id).deliver!
+        Users::SubmissionMailer.success(user.id, form_answer.id).deliver_now!
       end
 
       it "should deliver emails about submission created to all necessary recipients" do

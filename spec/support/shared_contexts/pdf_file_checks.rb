@@ -12,14 +12,14 @@ shared_context "pdf file checks" do
   let(:award_form) { form_answer.award_form }
   let(:steps) { award_form.decorate.steps }
 
-  let(:pdf_generator) do 
+  let(:pdf_generator) do
     form_answer.decorate.pdf_generator
   end
 
   let(:step1) { award_form.steps.first }
   let(:step2) { award_form.steps.second }
 
-  let(:pdf_content) do 
+  let(:pdf_content) do
     rendered_pdf = pdf_generator.render
     PDF::Inspector::Text.analyze(rendered_pdf).strings
   end
@@ -37,11 +37,11 @@ shared_context "pdf file checks" do
   end
 
   before do
-    FormAnswer.any_instance.stub(:eligible?) { true }
+    allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
     form_answer
   end
 
-  describe "PDF generation" do 
+  describe "PDF generation" do
     it "should include main header information" do
       expect(pdf_content).to include(award_application_title)
       expect(pdf_content).to include(user_general_info)
@@ -80,7 +80,7 @@ shared_context "pdf file checks" do
   end
 
   def question_option_title(question, answer)
-    question.options.select do |option| 
+    question.options.select do |option|
       option.value.to_s == answer.to_s
     end.first.text
   end
