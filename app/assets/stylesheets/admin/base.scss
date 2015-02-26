@@ -212,6 +212,20 @@ table .ellipsis {
     position: relative;
     overflow: hidden;
 
+    .ie & {
+      padding: 0;
+      border: none;
+      background: transparent !important;
+      overflow: visible;
+      box-shadow: none !important;
+    }
+
+    .attachment-text {
+      .ie & {
+        display: none;
+      }
+    }
+
     input[type="file"] {
       position: absolute;
       top: 0;
@@ -222,6 +236,11 @@ table .ellipsis {
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
       opacity: 0;
+
+      .ie & {
+        position: relative;
+        opacity: 1;
+      }
     }
   }
 

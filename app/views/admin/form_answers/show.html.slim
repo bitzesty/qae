@@ -42,8 +42,9 @@
           br
         = form_for [:admin, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
           span.btn.btn-default.btn-sm.btn-attachment
-            span.glyphicon.glyphicon-paperclip
-            ' Attach Document
+            span.attachment-text
+              span.glyphicon.glyphicon-paperclip
+              ' Attach Document
             = form.file_field :file
           = form.submit 'Attach Document', class: 'if-js-hide'
 
