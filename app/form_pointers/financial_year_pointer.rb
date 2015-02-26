@@ -68,5 +68,4 @@ class FinancialYearPointer
       Date.today.year
     ]
   end
-
 end

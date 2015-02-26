@@ -38,5 +38,4 @@ module FormAnswersBasePointer
       value
     end
   end
-
 end
