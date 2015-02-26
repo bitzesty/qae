@@ -1,6 +1,13 @@
 @import "mixins";
 
 // Basic
+a {
+  &:active,
+  &:focus {
+    outline: none !important;
+  }
+}
+
 span.visible-lg {
   @include screen-lg-min {
     display: inline !important;
@@ -237,6 +244,10 @@ table .ellipsis {
     color: #fff;
     text-decoration: none;
     opacity: 0;
+
+    @include is-ios {
+      opacity: 1;
+    }
 
     &:hover {
       background: #212121;
@@ -893,6 +904,10 @@ table .ellipsis {
   padding-right: 25px;
   background: #706f6f;
   opacity: 0;
+
+  @include is-ios {
+    opacity: 1;
+  }
 
   &,
   &:hover,
