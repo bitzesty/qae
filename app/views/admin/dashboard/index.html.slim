@@ -4,7 +4,6 @@
       / TODO Reports
       .well
         h2
-          span.glyphicon.glyphicon-signal
           ' Reports
         ul.list-unstyled.list-actions
           - ["Case Status", "All Entries", "Press Book List"].each do |report|
@@ -21,7 +20,6 @@
       / TODO Email actions
       .well
         h2
-          span.glyphicon.glyphicon-envelope
           ' Email actions
         ul.list-unstyled.list-actions
           - if policy(:notification).create?
@@ -34,7 +32,6 @@
       / TODO Email actions
       .well
         h2
-          span.glyphicon.glyphicon-file
           ' Resources
         ul.list-unstyled.list-actions
           - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|

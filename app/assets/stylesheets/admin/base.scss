@@ -648,6 +648,7 @@ table .ellipsis {
     h2 {
       margin-bottom: 20px;
       font-size: 16px;
+      font-weight: bold;
       text-transform: uppercase;
 
       @include screen-md-max {
