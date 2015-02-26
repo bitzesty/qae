@@ -30,10 +30,6 @@
             ' Status:
           = @form_answer.progress_text
 
-        - if Rails.env.development?
-          .pull-left.if-no-js-hide
-            = link_to "Switch View", "#", class: "js-switch-admin-view"
-
         .text-right
           / TODO Edit page
           = link_to "Edit details", [:edit, :admin, @form_answer]
@@ -42,6 +38,10 @@
         = link_to review_admin_form_answer_path(@form_answer), class: "btn btn-default btn-block", target: "_blank"
           span.icon-view
           ' View application as admin
+
+        br
+        - if Rails.env.development?
+          = link_to "Switch application view", "#", class: "btn btn-default btn-block js-switch-admin-view"
 
       .well
         h2
