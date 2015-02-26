@@ -12,7 +12,7 @@ class QAEFormBuilder
 
     def input_value options = {}
       result = if options[:index]
-        suffix = options.fetch(:suffix)  
+        suffix = options.fetch(:suffix)
       ## TODO: maybe we switch to JSON from hstore?
         json = JSON.parse(answers[delegate_obj.key] || {})
         json[options[:index]][suffix]
@@ -66,7 +66,7 @@ class QAEFormBuilder
     def has_drops?
       if delegate_obj.drop_condition_parent.present?
         step.questions.select do |q|
-          q.drop_condition.present? && 
+          q.drop_condition.present? &&
           q.drop_condition == key
         end.any? do |q|
           q.has_drops?
@@ -105,7 +105,7 @@ class QAEFormBuilder
     end
 
     def escaped_title
-      title = if delegate_obj.title.present? 
+      title = if delegate_obj.title.present?
         delegate_obj.title
       else
         delegate_obj.context
