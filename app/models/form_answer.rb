@@ -11,8 +11,6 @@ class FormAnswer < ActiveRecord::Base
     :user_full_name
   ]
 
-  CURRENT_AWARD_YEAR = "14"
-
   POSSIBLE_AWARDS = [
     "trade", # International Trade Award
     "innovation", # Innovation Award
@@ -61,6 +59,7 @@ class FormAnswer < ActiveRecord::Base
 
   begin :callbacks
     before_create :set_account
+    before_save :set_award_year, unless: :award_year?
     before_save :set_urn
     before_save :set_progress
     before_save :build_supporters
@@ -160,11 +159,16 @@ class FormAnswer < ActiveRecord::Base
     return unless award_type
 
     next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize("urn_seq_#{award_type}")})")
-    self.urn = "QA#{sprintf('%.4d', next_seq)}/#{CURRENT_AWARD_YEAR}#{award_type[0].capitalize}"
+
+    self.urn = "QA#{sprintf('%.4d', next_seq)}/#{award_year.to_s[2..-1]}#{award_type[0].capitalize}"
   end
 
   def set_account
     self.account = user.account
+  end
+
+  def set_award_year
+    self.award_year = Date.current.year + 1
   end
 
   def set_progress

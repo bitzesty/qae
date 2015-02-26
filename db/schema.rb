@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150225090728) do
+ActiveRecord::Schema.define(version: 20150226141107) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -113,7 +113,7 @@ ActiveRecord::Schema.define(version: 20150225090728) do
     t.boolean  "importance_flag",         default: false
     t.string   "state",                   default: "in_progress1", null: false
     t.string   "company_or_nominee_name"
-    t.integer  "award_year",              default: 2014,           null: false
+    t.integer  "award_year"
     t.string   "nominee_full_name"
     t.string   "user_full_name"
     t.string   "award_type_full_name"

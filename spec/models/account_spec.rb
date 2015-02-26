@@ -3,7 +3,7 @@ require "rails_helper"
 describe Account do
   let(:user) { FactoryGirl.build(:user) }
   let(:account) { user.account }
-  let(:current_year) { "20#{FormAnswer::CURRENT_AWARD_YEAR}".to_i }
+  let(:current_year) { Date.today.year + 1 }
   let(:previous_year) { current_year - 1 }
 
   describe "#has_trade_award_in_this_year?" do
