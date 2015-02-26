@@ -4,7 +4,7 @@ class Search
   extend ActiveModel::Naming
   include ActiveModel::Conversion
 
-  attr_reader :scope, :params, :ordered_by, :ordered_desc, :filter_params
+  attr_reader :scope, :params, :ordered_by, :ordered_desc, :filter_params, :query
 
   # Example usage for users
   # scope = User.scoped
@@ -21,6 +21,7 @@ class Search
     @ordered_by   = nil
     @ordered_desc = false
     @filter_params = {}
+    @query         = nil
   end
 
   def search(search_params)
@@ -36,6 +37,8 @@ class Search
     if params[:search_filter]
       @filter_params = params[:search_filter].dup
     end
+
+    @query = params[:query] if params[:query].present?
 
     self
   end
@@ -65,6 +68,10 @@ class Search
       end
     end
 
+    if query
+      @search_results = find_by_query(@search_results, query)
+    end
+
     @search_results
   end
 
@@ -74,6 +81,10 @@ class Search
 
   def persisted?
     false
+  end
+
+  def query?
+    query.present?
   end
 
   private

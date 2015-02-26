@@ -18,7 +18,7 @@ describe "Users search", "
     context "by user name" do
       it "search for users with first name" do
         within ".search-input" do
-          fill_in "query", with: user.first_name
+          fill_in "search_query", with: user.first_name
           click_button :submit
         end
 

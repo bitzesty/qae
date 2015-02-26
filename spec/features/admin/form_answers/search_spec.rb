@@ -20,7 +20,7 @@ describe "Form answer search", "
 
       it "searchs for form answer with first name" do
         within ".search-input" do
-          fill_in "query", with: first_name
+          fill_in "search_query", with: first_name
           click_button :submit
         end
 
@@ -34,7 +34,7 @@ describe "Form answer search", "
       let!(:form_answer) { create(:form_answer, :development) }
       it "search for form answer by award fullname" do
         within ".search-input" do
-          fill_in "query", with: "sustainable"
+          fill_in "search_query", with: "sustainable"
           click_button :submit
         end
 

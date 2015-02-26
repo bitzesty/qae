@@ -14,6 +14,10 @@ class FormAnswerSearch < Search
     scoped_results.where(state: filter_klass.internal_states(value))
   end
 
+  def find_by_query(scoped_results, value)
+    scoped_results.basic_search(value)
+  end
+
   private
 
   def filter_klass
