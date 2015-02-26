@@ -29,42 +29,7 @@
 }
 
 .application-progress {
-  margin-top: 15px;
-  padding: 15px 15px;
-  padding-left: 50px;
-  background: #5178bc;
-  background-image: image-url("icon-progress-pending.png");
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 32px 32px;
-  color: #fff;
-
-  @include is-retina {
-    background-image: image-url("icon-progress-pending@2.png");
-  }
-
-  @include screen-md-max {
-    margin-top: 0;
-  }
-
-  &.recommended {
-    background-color: #93c255;
-    background-image: image-url("icon-progress-success.png");
-    color: #333;
-
-    @include is-retina {
-      background-image: image-url("icon-progress-success@2.png");
-    }
-  }
-
-  .sidebar-open & {
-    @include screen-md-max {
-      position: absolute;
-      top: 0;
-      right: 15px;
-      left: 15px;
-    }
-  }
+  margin: 15px 0;
 }
 
 .applicant-view,

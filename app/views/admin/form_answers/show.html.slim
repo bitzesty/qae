@@ -24,6 +24,16 @@
           ' 65 Kings Cross Road,
           br
           ' London, WC1X 9LW, UK
+
+        p.application-progress class=@form_answer.progress_class
+          strong
+            ' Status:
+          = @form_answer.progress_text
+
+        - if Rails.env.development?
+          .pull-left.if-no-js-hide
+            = link_to "Switch View", "#", class: "js-switch-admin-view"
+
         .text-right
           / TODO Edit page
           = link_to "Edit details", [:edit, :admin, @form_answer]
