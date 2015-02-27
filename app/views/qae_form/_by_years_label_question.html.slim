@@ -1,9 +1,9 @@
 .js-financial-year-changed-dates
   - for c in question.by_year_conditions
-    .js-conditional-question data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
+    .js-conditional-question.js-fy-entry-container data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
       .row
         - (1..c.years).each do |y|
-          .span-4 class="#{'fy-latest' if y == c.years}"
+          .span-4.js-fy-entries class="#{'fy-latest' if y == c.years}"
             label
               span.js-year-end.show-default data-year="#{y}of#{c.years}"
                 span.js-year-default
