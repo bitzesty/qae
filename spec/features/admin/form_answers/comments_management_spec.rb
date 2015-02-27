@@ -17,12 +17,12 @@ I want to be able to view, create and destroy the comments per application.
   it "adds the comment" do
     populate_comment_form
 
-    expect { click_button "Add Comment" }.to change { Comment.count }.by(1)
+    expect { click_button "Comment" }.to change { Comment.count }.by(1)
   end
 
   it "deletes the comment" do
     populate_comment_form
-    click_button "Add Comment"
+    click_button "Comment"
 
     expect{
       find(".link-delete-comment-confirm").click
@@ -31,7 +31,7 @@ I want to be able to view, create and destroy the comments per application.
 
   it "displays the comments" do
     populate_comment_form
-    click_button "Add Comment"
+    click_button "Comment"
     visit admin_form_answer_path(form_answer)
 
     expect(page).to have_css(".comment-content", text: "body")
@@ -40,7 +40,6 @@ I want to be able to view, create and destroy the comments per application.
   private
 
   def populate_comment_form
-    click_link "Comment"
     fill_in("comment_body", with: "body")
   end
 end

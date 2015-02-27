@@ -8,3 +8,5 @@
       .comments-container data-comment-form=new_admin_form_answer_comment_path(@form_answer)
         = render(collection: @form_answer.comments, partial: 'comment')
         .comment-footer
+        = form_for([:admin, @form_answer, Comment.new(commentable: @form_answer)]) do |f|
+          = render('admin/comments/form', f: f)
