@@ -1,4 +1,6 @@
 ready = ->
+  changeRagStatus()
+
   $('#new_form_answer_attachment').fileupload
     success: (result, textStatus, jqXHR)->
       $('.document-list .p-empty').remove()
@@ -26,5 +28,17 @@ ready = ->
   $(document).on "click", ".form-edit-link", (e) ->
     e.preventDefault()
     $(this).closest(".form-group").addClass("form-edit")
+
+changeRagStatus = ->
+  $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->
+    e.preventDefault()
+    rag_clicked = $(this).closest("li").attr("class")
+    rag_status = $(this).closest(".btn-rag").find(".dropdown-toggle")
+    rag_status.removeClass("rag-neutral")
+              .removeClass("rag-positive")
+              .removeClass("rag-average")
+              .removeClass("rag-negative")
+              .addClass(rag_clicked)
+    rag_status.find(".rag-text").text($(this).find(".rag-text").text())
 
 $(document).ready(ready)

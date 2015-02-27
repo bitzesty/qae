@@ -117,42 +117,6 @@
 .submitted-view {
   margin-top: 15px;
 
-  .form-label .glyphicon {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    background-size: 20px 20px;
-    text-align: left;
-    text-indent: -9999px;
-  }
-
-  .glyphicon-positive {
-    background-image: image-url("icon-grade-positive.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-positive@2.png");
-    }
-  }
-
-  .glyphicon-average {
-    background-image: image-url("icon-grade-average.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-average@2.png");
-    }
-  }
-
-  .glyphicon-negative {
-    background-image: image-url("icon-grade-negative.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-negative@2.png");
-    }
-  }
-
   .no-js & {
     .form-value,
     .form-edit-link {
@@ -185,13 +149,8 @@
   }
 }
 
-.section-appraisal-form,
-.section-recommendation {
-  .form-label {
-    position: relative;
-    padding-right: 30px;
-    font-weight: bold;
-  }
+.section-appraisal-form .form-label {
+  font-weight: bold;
 }
 
 .section-financial-summary .form-group {

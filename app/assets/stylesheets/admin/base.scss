@@ -916,3 +916,113 @@ table .ellipsis {
     padding-right: 0;
   }
 }
+
+// RAG dropdown
+.btn-rag {
+  .icon-rag {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    margin-right: 0 !important;
+    background-size: 20px 20px;
+    text-align: left;
+    text-indent: -9999px;
+  }
+
+  .rag-neutral .icon-rag {
+    background-image: image-url("icon-grade-neutral.png");
+
+    @include is-retina {
+      background-image: image-url("icon-grade-neutral@2.png");
+    }
+  }
+
+  .rag-neutral {
+    &,
+    a {
+      color: #333 !important;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-neutral.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-neutral@2.png");
+      }
+    }
+  }
+
+  .rag-positive {
+    &,
+    a {
+      color: #93c355 !important;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-green.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-greenb@2.png");
+      }
+    }
+  }
+
+  .rag-average {
+    &,
+    a {
+      color: #f39200 !important;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-amber.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-amber@2.png");
+      }
+    }
+  }
+
+  .rag-negative {
+    &,
+    a {
+      color: #e30613 !important;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-red.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-red@2.png");
+      }
+    }
+  }
+
+  .dropdown-toggle,
+  .dropdown-menu a {
+    position: relative;
+    font-weight: bold;
+  }
+
+  .dropdown-toggle {
+    padding-left: 25px;
+
+    .rag-text {
+      margin-right: 5px;
+    }
+  }
+
+  .dropdown-menu {
+    a {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 37px;
+    }
+
+    .icon-rag {
+      left: 12px;
+    }
+  }
+}
