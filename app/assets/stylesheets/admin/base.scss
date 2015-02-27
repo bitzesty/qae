@@ -52,7 +52,7 @@ table .ellipsis {
 
 .page-header {
   margin-top: 0;
-  border-color: #333;
+  border-color: $black;
 
   h1 {
     margin-top: 0;
@@ -66,7 +66,7 @@ table .ellipsis {
   .btn-link {
     padding-right: 0;
     padding-left: 0;
-    color: #333;
+    color: $black;
   }
 
   .pull-right {
@@ -86,14 +86,14 @@ table .ellipsis {
 
 .table {
   > thead > tr > th {
-    border-color: #333;
+    border-color: $black;
     vertical-align: middle;
   }
 
   > tbody > tr {
     > td,
     > th {
-      background-color: #fff;
+      background-color: $white-true;
     }
   }
 }
@@ -137,7 +137,7 @@ table .ellipsis {
   clear: left;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: $white-true;
   cursor: pointer;
 
   .checkbox & {
@@ -315,7 +315,7 @@ table .ellipsis {
       top: 0;
       left: 100%;
       margin-left: -5px;
-      color: #333;
+      color: $black;
       font-size: 10px;
       font-weight: bold;
       text-indent: 0;
@@ -347,7 +347,7 @@ table .ellipsis {
   width: 16px;
   height: 16px;
   margin-right: 5px;
-  border: 2px solid #333;
+  border: 2px solid $black;
   border-radius: 100px;
   font-size: 9px;
   font-weight: bold;
@@ -360,12 +360,12 @@ table .ellipsis {
   display: inline-block;
   width: 30px;
   height: 30px;
-  text-align: left;
-  text-indent: -9999px;
   background-image: image-url("icon-computer.png");
   background-repeat: no-repeat;
   background-position: center center;
   background-size: 30px 26px;
+  text-align: left;
+  text-indent: -9999px;
   opacity: 0.3;
 
   @include is-retina {
@@ -437,7 +437,7 @@ table .ellipsis {
       &:hover,
       &:active,
       &:focus {
-        color: #333;
+        color: $black;
       }
     }
 
@@ -448,7 +448,7 @@ table .ellipsis {
     }
 
     .page + .page {
-      border-left: 1px solid #333;
+      border-left: 1px solid $black;
     }
 
     .first,
@@ -466,7 +466,7 @@ table .ellipsis {
         white-space: nowrap;
         vertical-align: middle;
         background-image: none;
-        background-color: #fff;
+        background-color: $white-true;
         border: 1px solid #ccc;
         border-radius: 4px;
         cursor: pointer;
@@ -491,7 +491,7 @@ table .ellipsis {
     background-repeat: no-repeat;
     background-position: right center;
     background-size: 10px 6px;
-    color: #333;
+    color: $black;
 
     &:hover {
       background-image: image-url("icon-arrow-sort-down-grey.png");
@@ -540,12 +540,12 @@ table .ellipsis {
 .filter {
   .dropdown-toggle {
     padding: 4px 10px;
-    color: #999;
+    color: $grey;
     font-size: inherit;
 
     .text-filter,
     .caret {
-      color: #333;
+      color: $black;
     }
 
     .text-filter {
@@ -598,7 +598,7 @@ table .ellipsis {
 // Sidebar
   .show-sidebar {
     padding: 15px;
-    background: #fff;
+    background: $white-true;
 
     @include screen-md-max {
       margin-bottom: 30px;
@@ -662,7 +662,7 @@ table .ellipsis {
       padding: 20px 0;
       background: transparent;
       border: none;
-      border-bottom: 1px solid #999;
+      border-bottom: 1px solid $grey;
       border-radius: 0;
       box-shadow: none;
 
@@ -678,14 +678,14 @@ table .ellipsis {
   }
 
 // Comments sidebar
-.comments-container textarea {
-  display: block !important;
+.js .submitted-view .comments-container .form-control {
+  display: block;
 }
 
 .comment {
   position: relative;
   padding: 15px 0;
-  border-bottom: 1px solid #999;
+  border-bottom: 1px solid $grey;
 }
 
 .comment-header {
@@ -702,7 +702,7 @@ table .ellipsis {
 .comment-action {
   display: block;
   margin-top: 10px;
-  color: #999;
+  color: $grey;
   font-size: 14px;
 
   .divider {
@@ -725,7 +725,7 @@ table .ellipsis {
   &,
   &:hover,
   &:focus {
-    color: #999;
+    color: $grey;
   }
 
   .comment-flagged & {
@@ -738,7 +738,7 @@ table .ellipsis {
     &,
     &:hover,
     &:focus {
-      color: #333;
+      color: $black;
     }
   }
 
@@ -789,7 +789,7 @@ table .ellipsis {
   left: 0;
   width: 100%;
   background: rgba(0, 0, 0, 0.8);
-  color: #fff;
+  color: $white-true;
   text-align: center;
 
   .show-delete-comment & {
@@ -826,10 +826,10 @@ table .ellipsis {
   }
 
   tbody {
-    border: 2px solid #333;
+    border: 2px solid $black;
 
     > tr > th {
-      border-right: 2px solid #333;
+      border-right: 2px solid $black;
     }
   }
 }
@@ -875,7 +875,7 @@ table .ellipsis {
     width: 100%;
     margin-top: 10px;
     padding-left: 25px;
-    color: #555;
+    color: $grey-dark;
     font-size: 14px;
     font-style: italic;
     text-transform: none;
@@ -896,7 +896,7 @@ table .ellipsis {
 
     > .panel-title a {
       background-image: image-url("icon-arrow-collapse-down-white.png");
-      color: #fff;
+      color: $white-true;
 
       @include is-retina {
         background-image: image-url("icon-arrow-collapse-down-white@2.png");
@@ -926,24 +926,17 @@ table .ellipsis {
     width: 20px;
     height: 20px;
     margin-top: -10px;
-    margin-right: 0 !important;
     background-size: 20px 20px;
     text-align: left;
     text-indent: -9999px;
   }
 
-  .rag-neutral .icon-rag {
-    background-image: image-url("icon-grade-neutral.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-neutral@2.png");
-    }
-  }
-
   .rag-neutral {
     &,
-    a {
-      color: #333 !important;
+    a,
+    a:hover,
+    a:focus {
+      color: $black;
     }
 
     .icon-rag {
@@ -957,8 +950,10 @@ table .ellipsis {
 
   .rag-positive {
     &,
-    a {
-      color: #93c355 !important;
+    a,
+    a:hover,
+    a:focus {
+      color: $green;
     }
 
     .icon-rag {
@@ -972,8 +967,10 @@ table .ellipsis {
 
   .rag-average {
     &,
-    a {
-      color: #f39200 !important;
+    a,
+    a:hover,
+    a:focus {
+      color: $amber;
     }
 
     .icon-rag {
@@ -987,8 +984,10 @@ table .ellipsis {
 
   .rag-negative {
     &,
-    a {
-      color: #e30613 !important;
+    a,
+    a:hover,
+    a:focus {
+      color: $red;
     }
 
     .icon-rag {

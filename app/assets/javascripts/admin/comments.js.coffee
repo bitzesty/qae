@@ -1,7 +1,7 @@
 ready = ->
   buildComment = ->
     unless $("#new_comment").length
-      $.get $(".comments-container").attr("data-comment-form"), (data)->
+      $.get $(".comments-container").attr("data-comment-form"), (data) ->
         $(".comments-container").append(data)
       , "html"
 
