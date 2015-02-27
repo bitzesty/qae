@@ -1,3 +1,5 @@
+$grey-dark: #555;
+
 .page-devise {
   div.input {
     margin: 0.2em 0 1.25em 0;
@@ -20,7 +22,7 @@
 
   .hint {
     clear: left;
-    color: $grey-dark;
+    color: #555;
     display: block;
     font-size: 14px;
     font-style: italic;

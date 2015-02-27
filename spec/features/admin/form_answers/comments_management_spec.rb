@@ -40,7 +40,7 @@ I want to be able to view, create and destroy the comments per application.
   private
 
   def populate_comment_form
-    click_link "Enter a Comment"
+    click_link "Comment"
     fill_in("comment_body", with: "body")
   end
 end
