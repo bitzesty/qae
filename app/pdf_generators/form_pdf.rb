@@ -2,6 +2,7 @@ require "prawn/measurement_extensions"
 
 class FormPdf < Prawn::Document
   include QaePdfForms::General::DrawElements
+  include FormAnswersBasePointer
 
   UNDEFINED_TITLE = "in the progress of filling.."
   UNDEFINED_TYPE = "undefined type UNDEFINED"
@@ -10,7 +11,6 @@ class FormPdf < Prawn::Document
   JUST_NOTES = [
     "QAEFormBuilder::HeaderQuestion"
   ]
-  HIDDEN_QUESTIONS = %w(agree_to_be_contacted contact_email_confirmation entry_confirmation)
 
   attr_reader :user,
               :form_answer,
@@ -44,44 +44,6 @@ class FormPdf < Prawn::Document
       QaePdfForms::General::StepPointer.new(award_form: award_form,
                                             form_pdf: self,
                                             step: step).render!
-    end
-  end
-
-  def fetch_answers
-    ActiveSupport::HashWithIndifferentAccess.new(form_answer.document).select do |key, _value|
-      !HIDDEN_QUESTIONS.include?(key.to_s)
-    end
-  end
-
-  def fetch_filled_answers
-    answers.reject do |_key, value|
-      value.blank?
-    end
-  end
-
-  def answers_by_key(_key)
-    filled_answers.select do |key, _value|
-      key.include?(key.to_s)
-    end
-  end
-
-  def at_least_of_one_answer_by_key?(key)
-    answers_by_key(key).any?
-  end
-
-  def fetch_answer_by_key(key)
-    JSON.parse(answers[key])
-  rescue
-    answers[key]
-  end
-
-  def answer_based_on_type(key, value)
-    if key.to_s.include?("country")
-      ISO3166::Country.countries.select do |country|
-        country[1] == value.strip
-      end[0][0]
-    else
-      value
     end
   end
 end
