@@ -32,12 +32,6 @@
   margin: 15px 0;
 }
 
-.applicant-view,
-.submitted-view {
-  margin-top: 15px;
-}
-
-
 .nav-tabs.submitted-tabs {
   margin-bottom: 20px;
   border-bottom: none;
@@ -121,6 +115,8 @@
 }
 
 .submitted-view {
+  margin-top: 15px;
+
   .form-label .glyphicon {
     position: absolute;
     top: 50%;

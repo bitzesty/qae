@@ -39,10 +39,6 @@
           span.icon-view
           ' View application as admin
 
-        br
-        - if Rails.env.development?
-          = link_to "Switch application view", "#", class: "btn btn-default btn-block js-switch-admin-view"
-
       .well
         h2
           ' Documents
@@ -67,12 +63,5 @@
           ' Assessors
         p.p-empty No assessors have been assigned to this case.
 
-  .col-md-8
-    .applicant-view.hidden
-      .iframeholder data-src= review_admin_form_answer_path(@form_answer)
-        = link_to "#", class: 'if-no-js-hide js-expand-iframe'
-          span.collapsed-show Expand
-          span.expanded-show Close
-      = link_to "Review application", review_admin_form_answer_path(@form_answer), class: "if-js-hide"
-    .submitted-view
-      = render partial: "submitted_view"
+  .col-md-8.submitted-view
+    = render partial: "submitted_view"

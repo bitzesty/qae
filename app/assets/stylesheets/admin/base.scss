@@ -258,67 +258,6 @@ table .ellipsis {
     }
   }
 
-.iframeholder {
-  position: relative;
-
-  iframe {
-    width: 100%;
-    height: 750px;
-    border: 1px solid #999;
-  }
-
-  .js-expand-iframe {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px 15px;
-    transition: background-color 0.15s ease, opacity 0.15s ease;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    text-decoration: none;
-    opacity: 0;
-
-    @include is-ios {
-      opacity: 1;
-    }
-
-    &:hover {
-      background: #212121;
-    }
-  }
-
-  &:hover .js-expand-iframe {
-    opacity: 1;
-  }
-
-  .expanded-show {
-    display: none;
-  }
-
-  &.iframe-expanded {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #fff;
-    z-index: 9999;
-
-    .collapsed-show {
-      display: none;
-    }
-
-    .expanded-show {
-      display: block;
-    }
-
-    iframe {
-      height: 100%;
-      border: none;
-    }
-  }
-}
-
 // Alerts
 .alert-container {
   position: fixed;

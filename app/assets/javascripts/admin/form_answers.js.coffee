@@ -4,14 +4,6 @@ ready = ->
       $('.document-list .p-empty').remove()
       $('.document-list ul').append(result)
 
-  iframeHolder = $('.iframeholder')
-  iframe = $('<iframe>')
-  iframe.attr('src', iframeHolder.data('src'))
-  iframeHolder.append(iframe)
-
-  $(document).on "click", ".js-expand-iframe", (e) ->
-    e.preventDefault()
-    iframeHolder.toggleClass("iframe-expanded")
   formClass = '.edit_form_answer_attachment'
 
   $(document).on 'click', "#{formClass} a", (e) ->
