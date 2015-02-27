@@ -12,8 +12,8 @@ $yellow: #ffbf47;
 $button-colour: #00823b;
 @import "frontend/password_strength";
 
-@import "admin/_variables";
-@import "admin/_toggle";
+@import "admin/variables";
+@import "admin/toggle";
 @import "admin/layout";
 @import "admin/base";
 @import "admin/header-footer";
