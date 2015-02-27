@@ -8,11 +8,7 @@ class Admin < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
 
-  enumerize :role, in: %w[admin lead_assessor assessor], predicates: true
-  validates :role, :first_name, :last_name, presence: true
-
-  scope :admins, -> { where(role: "admin") }
-  scope :assessors, -> { where(role: %w[lead_assessor assessor]) }
+  validates :first_name, :last_name, presence: true
 
   has_many :form_answer_attachments, as: :attachable
 
@@ -27,4 +23,7 @@ class Admin < ActiveRecord::Base
                       prefix: true
                     }
                   }
+  def admin?
+    true # REMOVEME
+  end
 end

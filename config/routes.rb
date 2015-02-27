@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     confirmations: 'devise/confirmations'
   }
 
+  devise_for :assessors
+
   get '/apply-for-queens-award-for-enterprise'          => "content_only#apply_for_queens_award_for_enterprise",          as: 'apply-for-queens-award-for-enterprise'
 
   get '/terms'                                          => "content_only#terms",                                          as: 'terms'
