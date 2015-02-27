@@ -68,36 +68,11 @@
         p.p-empty No assessors have been assigned to this case.
 
   .col-md-8
-    .col-sidebar
-      .sidebar-header
-        = link_to toggle_admin_form_answer_flags_path(@form_answer), class: "link-flag", remote: true
-          span.icon-text Flag:
-          = application_flags(@form_answer)
-
-        = link_to "#", class: "link-comment"
-          = application_comments(@form_answer)
-          span.icon-text Hide comments:
-        .clear
-
-      .comments-container
-        = render(collection: @form_answer.comments, partial: 'comment')
-
-        .comment-footer
-          = link_to 'Enter a Comment', new_admin_form_answer_comment_path(@form_answer), id: 'build_new_comment', class: "btn btn-default btn-block"
-
-    .col-content
-      .application-progress class=@form_answer.progress_class
-        = @form_answer.progress_text
-        - if Rails.env.development?
-          span.pull-right.if-no-js-hide
-            = link_to "Switch View", "#", class: "btn btn-xs btn-default js-switch-admin-view"
-      .applicant-view
-        .iframeholder data-src= review_admin_form_answer_path(@form_answer)
-          = link_to "#", class: 'if-no-js-hide js-expand-iframe'
-            span.collapsed-show Expand
-            span.expanded-show Close
-        = link_to "Review application", review_admin_form_answer_path(@form_answer), class: "if-js-hide"
-      .submitted-view.hidden
-        = render partial: "submitted_view"
-
-    .clear
+    .applicant-view.hidden
+      .iframeholder data-src= review_admin_form_answer_path(@form_answer)
+        = link_to "#", class: 'if-no-js-hide js-expand-iframe'
+          span.collapsed-show Expand
+          span.expanded-show Close
+      = link_to "Review application", review_admin_form_answer_path(@form_answer), class: "if-js-hide"
+    .submitted-view
+      = render partial: "submitted_view"

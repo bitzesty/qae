@@ -5,4 +5,6 @@
         ' Critical Comments
   #section-critical-comments.section-critical-comments.panel-collapse.collapse.in role="tabpanel" aria-labelledby="critical-comments-heading"
     .panel-body
-      ' Test
+      .comments-container.comment-assessor data-comment-form=new_admin_form_answer_comment_path(@form_answer)
+        = render(collection: @form_answer.comments, partial: 'comment')
+        .comment-footer

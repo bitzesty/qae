@@ -1,3 +1,6 @@
 .comment-new
+  label
+    ' Add a comment
   = f.text_area :body, autofocus: true, class: 'form-control', rows: 4
-  = f.submit 'Add Comment', class: 'btn btn-block btn-primary'
+  .comment-actions.text-right
+    = f.submit 'Comment', class: 'btn btn-default'

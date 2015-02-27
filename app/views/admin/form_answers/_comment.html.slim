@@ -1,8 +1,4 @@
 .comment
-  .link-delete
-    = link_to "#", class: "link-delete-comment"
-      ' Delete
-      span.icon-delete-comment
   .overlay-delete
     .overlay-content
       p Delete this comment?
@@ -12,9 +8,20 @@
             = f.submit 'Yes', class: "btn btn-danger link-delete-comment-confirm"
             ' &nbsp;
             = link_to "No", "#", class: "btn btn-default link-delete-comment-close"
+
   .comment-header
     h3
       = comment.author_email
-      small = l comment.created_at, format: :date_at_time
+      span.pull-right
+        = link_to "#", class: "link-delete-comment"
+          ' Delete
+          span.icon-delete-comment
+
   .comment-content
     = comment.body
+
+  .comment-action
+    = l comment.created_at, format: :date_at_time
+    span.divider •
+    = link_to "#flag-comment", class: "link-flag-comment"
+      ' Flag
