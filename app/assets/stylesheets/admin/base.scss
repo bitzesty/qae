@@ -892,7 +892,7 @@ table .ellipsis {
 
 .panel-parent {
   > .panel-heading {
-    background-color: #706f6f;
+    background-color: $grey-panel-dark;
 
     > .panel-title a {
       background-image: image-url("icon-arrow-collapse-down-white.png");
