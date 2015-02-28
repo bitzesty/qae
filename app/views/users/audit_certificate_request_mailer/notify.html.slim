@@ -1,0 +1,18 @@
+p
+  ' Hi
+  = @recipient.full_name
+  ',
+
+p
+  ' Application for #{@award_title}
+  | for
+  br
+  = @form_owner.general_info
+  br
+  | You need to download, check and complete an audit certificate!
+
+p
+  = link_to "Review Audit Certificate", users_form_answer_audit_certificate_url(@form_answer)
+
+p
+  | Best Regards, Administration Team

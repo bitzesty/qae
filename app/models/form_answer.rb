@@ -44,6 +44,7 @@ class FormAnswer < ActiveRecord::Base
     has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
     has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
     has_one :promotion_eligibility, class_name: 'Eligibility::Promotion', dependent: :destroy
+    has_one :audit_certificate, dependent: :destroy
 
     has_many :form_answer_attachments
 

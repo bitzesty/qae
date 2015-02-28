@@ -61,8 +61,10 @@ Rails.application.routes.draw do
 
   resource :support_letter, only: [:show, :update]
 
-  resources :users, only: [], module: 'users' do
-    resources :form_answers, only: [:show]
+  namespace :users do
+    resources :form_answers, only: [:show] do
+      resource :audit_certificate, only: [:show, :create]
+    end
   end
 
   namespace :admin do

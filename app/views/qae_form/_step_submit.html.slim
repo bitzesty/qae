@@ -1,7 +1,7 @@
 .form-submit
   .form-download
     p
-      = link_to "Download your application", user_form_answer_path(current_user, @form_answer, format: :pdf)
+      = link_to "Download your application", users_form_answer_path(@form_answer, format: :pdf)
 
   - if submit.notice
     br
