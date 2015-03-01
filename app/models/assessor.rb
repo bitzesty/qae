@@ -32,8 +32,8 @@ class Assessor < ActiveRecord::Base
                     }
                   }
 
-  def self.roles
-    [["Not Assigned", nil], ["Lead Assessor", "lead"], ["Assessor", "regular"]]
+  def self.roles_for_collection
+    [["Lead Assessor", "lead"], ["Assessor", "regular"]]
   end
 
   private

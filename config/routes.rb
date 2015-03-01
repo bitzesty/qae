@@ -83,6 +83,11 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
   end
 
+  namespace :assessor do
+    root to: "dashboard#index"
+    resources :dashboard, only: [:index]
+  end
+
   namespace :admin do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
