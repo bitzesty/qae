@@ -5,7 +5,7 @@ class Assessor < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :first_name, :last_name, :role, presence: true
   has_many :form_answer_attachments, as: :attachable
@@ -25,6 +25,6 @@ class Assessor < ActiveRecord::Base
                 }
 
   def self.roles_for_collection
-    [["Lead Assessor", "lead"], ["Basic Assessor", "regular"]]
+    [["Lead Assessor", "lead"], ["Assessor", "regular"]]
   end
 end

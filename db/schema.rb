@@ -12,6 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20150227135432) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
@@ -84,13 +85,13 @@ ActiveRecord::Schema.define(version: 20150227135432) do
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id",   null: false
     t.string   "commentable_type", null: false
-    t.integer  "author_id",        null: false
     t.text     "body",             null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "authorable_type",  null: false
+    t.integer  "authorable_id",    null: false
   end
 
-  add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
 

@@ -1,5 +1,5 @@
 class NotificationPolicy < ApplicationPolicy
   def create?
-    admin.admin?
+    admin?
   end
 end
