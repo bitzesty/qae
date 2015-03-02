@@ -1,12 +1,19 @@
 @import "mixins";
 
 #site-header {
-  font-size: 20px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
+  @include screen-lg-max {
+    font-size: 14px;
+  }
+
   @include screen-md-max {
-    font-size: 16px;
+    font-size: 13px;
+  }
+
+  @include screen-sm-max {
+    font-size: 14px;
   }
 
   .caret {
@@ -21,7 +28,7 @@
     margin-bottom: 16px;
 
     .icon-bar {
-      background-color: #fff;
+      background-color: $white-true;
     }
   }
 
@@ -33,9 +40,9 @@
 
     .navbar-brand,
     .navbar-nav > li > a {
-      background: transparent;
       color: $white-true;
       text-transform: uppercase;
+      background: transparent;
     }
 
     .navbar-brand {
@@ -69,10 +76,10 @@
   }
 
   .nav > li {
-    margin: 0 20px;
+    margin: 0 10px;
 
-    @include screen-md-max {
-      margin: 0 10px;
+    @include screen-lg-max {
+      margin: 0;
     }
 
     @include screen-sm-max {

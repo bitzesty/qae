@@ -60,6 +60,17 @@ html.no-js
                   li
                     = link_to "Settings"
 
+                  / TODO Award year select
+                  li.dropdown
+                    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                      ' Award Year
+                      = "2015 - 2016"
+                      span.caret
+                    ul.dropdown-menu
+                      - [2015, 2016, 2017, 2018].each do | start_year |
+                        li
+                          = link_to "Award Year #{start_year} - #{start_year + 1}"
+
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
