@@ -13,16 +13,16 @@ class Assessor < ActiveRecord::Base
   enumerize :role, in: %w[lead regular]
 
   pg_search_scope :basic_search,
-                against: [
-                  :first_name,
-                  :last_name,
-                  :email
-                ],
-                using: {
-                  tsearch: {
-                    prefix: true
+                  against: [
+                    :first_name,
+                    :last_name,
+                    :email
+                  ],
+                  using: {
+                    tsearch: {
+                      prefix: true
+                    }
                   }
-                }
 
   def self.roles_for_collection
     [["Lead Assessor", "lead"], ["Assessor", "regular"]]
