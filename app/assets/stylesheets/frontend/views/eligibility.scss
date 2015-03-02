@@ -38,3 +38,8 @@ article .current-question li {
   margin-top: 1em;
   color: $error-colour;
 }
+
+.eligibility-failed {
+  padding-left: $gutter-two-thirds;
+  border-left: 4px solid $error-colour;
+}
