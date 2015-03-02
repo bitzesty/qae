@@ -12,7 +12,7 @@ header.page-header.group class=('page-header-wider')
 .article-container
   article.group role="article"
     .inner
-      - if form_answer.audit_certificate.present?
+      - if form_answer.audit_certificate.present? && form_answer.audit_certificate.persisted?
         h2
           ' Audit Certificate completed!
       - else

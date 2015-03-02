@@ -32,7 +32,7 @@ class Users::AuditCertificatesController < Users::BaseController
   def create
     self.audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
-    if audit_certificate.save!
+    if audit_certificate.save
       redirect_to users_form_answer_audit_certificate_path(form_answer),
                   notice: "Audit Certificate successfully uploaded!"
     else
@@ -42,6 +42,10 @@ class Users::AuditCertificatesController < Users::BaseController
 
   private
     def audit_certificate_params
+      # This is fix of "missing 'audit_certificate' param"
+      # if no any file selected in file input
+      params.merge!({audit_certificate: {attachment: ''}}) if params[:audit_certificate].blank?
+
       params.require(:audit_certificate).permit(
         :attachment
       )
