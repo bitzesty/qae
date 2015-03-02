@@ -13,8 +13,16 @@ class FormAnswerDecorator < ApplicationDecorator
     "QaePdfForms::Awards2014::#{object.award_type.capitalize}::Base".constantize.new(object)
   end
 
+  def download_filename
+    "#{object.award_type}_award_#{created_at}"
+  end
+
   def pdf_filename
-    "#{object.award_type}_award_#{object.decorate.created_at}.pdf"
+    "#{download_filename}.pdf"
+  end
+
+  def csv_filename
+    "#{object.id}_#{download_filename}.csv"
   end
 
   def award_type

@@ -24,7 +24,7 @@ header.page-header.group.page-header-wider
       .inner
         .form-download
           p
-            = link_to "Download a PDF of your application", user_form_answer_path(current_user, @form_answer, format: :pdf)
+            = link_to "Download a PDF of your application", users_form_answer_path(@form_answer, format: :pdf)
 
         .application-notice.help-notice
           p
@@ -44,7 +44,7 @@ header.page-header.group.page-header-wider
           li provide an external accountant’s certificate by mid-January (please note audited accounts are not required)
 
         h3 March
-        p All unsuccessful applicants will receive feedback on their applications (including where the entry failed to meet the standards required, and how it could be improved). 
+        p All unsuccessful applicants will receive feedback on their applications (including where the entry failed to meet the standards required, and how it could be improved).
 
         h3 April
         p The winners are announced publicly.
