@@ -1,59 +1,59 @@
-header.page-header.group.page-header-wider
-  header.page-header.group
+= render "steps_progress_bar", cant_access_future: true
+
+.steps-progress-content
+  header.page-header.group.page-header-wider
     div
       h1
         = "Apply for the #{@form_answer.award_type.capitalize} Award"
-
-      = render "steps_progress_bar", cant_access_future: true
       h2
         ' Step 1 of 6: Eligibility
 
 
-.article-container.article-container-wider
-  article.group role="article"
-    .inner.step.current
-      - if step
-        = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
-          .current-question#current-question
-            .question
-              h2
-                = @eligibility.class.label(step)
-              - if @eligibility.is_a?(Eligibility::Basic)
-                = render "form_award_eligibilities/basic_questions/#{step.to_s}", f: f
-              - else
-                = render("form_award_eligibilities/questions/#{step.to_s}", f: f) rescue render("form_award_eligibilities/questions/question", f: f, question: step.to_s)
-
-            .next-question
-              = f.submit "Continue", class: "button medium"
-      - else
-        .previous-answers
-          - if @form_answer.eligible?
-            p Before you start your application, please check your eligibility answers are correct.
-          - else
-            .eligibility-failed
-              p
-                - if @form_answer.award_type == "promotion"
-                  ' Your nominee is
-                - else
-                  ' At the moment you are
-                strong not eligible
-                '  for this award, please see questions below for the reason. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
-
-              p
-                - if @form_answer.award_type == "promotion"
-                  ' Also, you may consider nominating someone else or your organisation
-                - else
-                  ' Also, you
-                ' might be eligible for awards in other categories. Go to the
-                = link_to "applications page", dashboard_path
-                - if @form_answer.award_type == "promotion"
-                  '  to nominate/apply.
-                - else
-                  '  to apply.
-
-    = render "previous_answers"
-    - unless step
+  .article-container.article-container-wider
+    article.group role="article"
       .inner.step.current
-        .previous-answers
-          .text-right
-            = link_to "Continue", result_form_award_eligibility_url(form_id: @form_answer.id), class: "button medium"
+        - if step
+          = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
+            .current-question#current-question
+              .question
+                h2
+                  = @eligibility.class.label(step)
+                - if @eligibility.is_a?(Eligibility::Basic)
+                  = render "form_award_eligibilities/basic_questions/#{step.to_s}", f: f
+                - else
+                  = render("form_award_eligibilities/questions/#{step.to_s}", f: f) rescue render("form_award_eligibilities/questions/question", f: f, question: step.to_s)
+
+              .next-question
+                = f.submit "Continue", class: "button medium"
+        - else
+          .previous-answers
+            - if @form_answer.eligible?
+              p Before you start your application, please check your eligibility answers are correct.
+            - else
+              .eligibility-failed
+                p
+                  - if @form_answer.award_type == "promotion"
+                    ' Your nominee is
+                  - else
+                    ' At the moment you are
+                  strong not eligible
+                  '  for this award, please see questions below for the reason. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
+
+                p
+                  - if @form_answer.award_type == "promotion"
+                    ' Also, you may consider nominating someone else or your organisation
+                  - else
+                    ' Also, you
+                  ' might be eligible for awards in other categories. Go to the
+                  = link_to "applications page", dashboard_path
+                  - if @form_answer.award_type == "promotion"
+                    '  to nominate/apply.
+                  - else
+                    '  to apply.
+
+      = render "previous_answers"
+      - unless step
+        .inner.step.current
+          .previous-answers
+            .text-right
+              = link_to "Continue", result_form_award_eligibility_url(form_id: @form_answer.id), class: "button medium"

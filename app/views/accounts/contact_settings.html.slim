@@ -1,42 +1,43 @@
 - provide(:page_content_class, "multi-page page-account")
 
-header.page-header.group class="#{'page-header-wider' unless current_user.completed_registration}"
-  div
-    h1
-      ' Account details
+= render "steps_progress_bar"
 
-    = render "steps_progress_bar"
+.steps-progress-content
+  header.page-header.group class="#{'page-header-wider' unless current_user.completed_registration}"
+    div
+      h1
+        ' Account details
 
-    h2
-      - unless current_user.completed_registration
-        ' Step 3 of 4:
-      ' Contact Preferences
+      h2
+        - unless current_user.completed_registration
+          ' Step 3 of 4:
+        ' Contact Preferences
 
-.article-container
-  article.group role="article"
-    .inner
-      = simple_form_for current_user, url: update_contact_settings_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
-        p
-          ' We'll contact you regarding your application either by phone or email.
+  .article-container
+    article.group role="article"
+      .inner
+        = simple_form_for current_user, url: update_contact_settings_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
+          p
+            ' We'll contact you regarding your application either by phone or email.
 
-        = render "form_contact_settings", f: f
+          = render "form_contact_settings", f: f
 
-        fieldset
-          h3
-            ' How did you hear about the Queen's Awards?
-          = f.input :qae_info_source, as: :select, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+          fieldset
+            h3
+              ' How did you hear about the Queen's Awards?
+            = f.input :qae_info_source, as: :select, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
 
-          span.clear
-          #qae_info_source_other.visuallyhidden
-            = f.input :qae_info_source_other, label: 'Please specify'
+            span.clear
+            #qae_info_source_other.visuallyhidden
+              = f.input :qae_info_source_other, label: 'Please specify'
 
-        footer
-          nav.pagination role="navigation" aria-label="Pagination"
-            ul.group
-              li.previous.previous-alternate
-                = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part" do
-                  span class="pagination-label"
-                    ' Previous section
+          footer
+            nav.pagination role="navigation" aria-label="Pagination"
+              ul.group
+                li.previous.previous-alternate
+                  = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part" do
+                    span class="pagination-label"
+                      ' Previous section
 
-              li.submit
-                = f.submit "Save and continue", class: "button"
+                li.submit
+                  = f.submit "Save and continue", class: "button"
