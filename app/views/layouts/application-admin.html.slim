@@ -57,8 +57,8 @@ html.no-js
                       = link_to "Users", admin_users_path
 
                   / TODO Settings page
-                  li
-                    = link_to "Settings"
+                  li class=('active' if controller_name == 'settings')
+                    = link_to "Settings", admin_settings_path
 
                   / TODO Award year select
                   li.dropdown

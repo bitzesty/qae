@@ -1,0 +1,29 @@
+.panel.panel-default
+  .panel-heading#application-submission-stage-deadlines-heading role="tab"
+    h4.panel-title
+      a data-toggle="collapse" data-parent="#panel-application-submission-stage" href="#section-application-submission-stage-deadlines" aria-expanded="true" aria-controls="section-application-submission-stage-deadlines"
+        ' Deadlines
+  #section-application-submission-stage-deadlines.section-appraisal-form.section-application-submission-stage-deadlines.panel-collapse.collapse.in role="tabpanel" aria-labelledby="application-submission-stage-deadlines-heading"
+    .panel-body
+      p
+        ' Submission start and closing dates will change system settings for when applications can be submitted.
+        br
+        ' These dates will also be reflected in relevant email text.
+
+      ul
+        li
+          .form-value
+            ' Submission period starts on
+            strong
+              = "21 Apr 2015"
+            '  at
+            = "00:01 am"
+          = link_to "Edit"
+        li
+          .form-value
+            ' Submission period closes on
+            strong
+              = "21 Apr 2015"
+            '  at
+            = "00:01 am"
+          = link_to "Edit"
