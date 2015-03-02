@@ -52,12 +52,11 @@ ActiveRecord::Schema.define(version: 20150302095528) do
     t.integer  "assessor_id", null: false
     t.string   "category",    null: false
     t.string   "role",        null: false
-    t.integer  "year",        null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "assessment_roles", ["assessor_id", "category", "role", "year"], name: "assessment_roles_multiassignment_unique_index", unique: true, using: :btree
+  add_index "assessment_roles", ["assessor_id", "category", "role"], name: "assessment_roles_multiassignment_unique_index", unique: true, using: :btree
 
   create_table "assessors", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

@@ -14,7 +14,6 @@ class AssessmentRole < ActiveRecord::Base
               in: FormAnswer::POSSIBLE_AWARDS
             } # normalization candidate
 
-  validates :year, presence: true, format: { with: /\A\d{4}\z/ }
   validates :role,
             presence: true,
             inclusion: {
