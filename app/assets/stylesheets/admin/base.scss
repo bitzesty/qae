@@ -668,6 +668,14 @@ table .ellipsis {
         border-bottom: none;
       }
     }
+
+    .sidebar-section {
+      margin-bottom: 45px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
 // Comments sidebar
