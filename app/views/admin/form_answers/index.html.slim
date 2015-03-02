@@ -44,11 +44,7 @@
                           label data-value=v
                             input type="checkbox"
                             span.label-contents
-                              - award_titles = { "Innovation" => "Innovation",
-                                                 "International Trade"=> "Intl Trade",
-                                                 "Sustainable Development"=> "Sus Dev",
-                                                 "QAEP" => "QAEP" }
-                              = award_titles[key]
+                              = FormAnswerDecorator::AWARD_TITLES[key]
               - if @search.query?
                 th Status
               - else
