@@ -7,10 +7,9 @@ class Assessor < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
-  validates :first_name, :last_name, :role, presence: true
+  validates :first_name, :last_name, presence: true
   has_many :form_answer_attachments, as: :attachable
-
-  enumerize :role, in: %w[lead regular]
+  has_many :assessment_roles
 
   pg_search_scope :basic_search,
                   against: [
@@ -23,8 +22,4 @@ class Assessor < ActiveRecord::Base
                       prefix: true
                     }
                   }
-
-  def self.roles_for_collection
-    [["Lead Assessor", "lead"], ["Assessor", "regular"]]
-  end
 end
