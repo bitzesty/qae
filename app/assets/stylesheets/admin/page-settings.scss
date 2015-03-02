@@ -1,0 +1,45 @@
+.settings-page {
+  ul {
+    padding-left: 1.25em;
+
+    li {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .panel-section {
+    padding: 15px 0;
+    border-bottom: 1px solid $grey;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  .form-value {
+    display: inline-block;
+    width: 30em;
+
+    @include screen-xs-max {
+      display: inline;
+      margin-right: 10px;
+    }
+  }
+
+  .btn-add-schedule {
+      margin: 20px 0;
+  }
+
+  .link-email-example {
+    text-decoration: underline;
+  }
+}

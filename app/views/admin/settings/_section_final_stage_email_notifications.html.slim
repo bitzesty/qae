@@ -5,4 +5,77 @@
         ' Email notification
   #section-final-stage-email-notifications.section-appraisal-form.section-final-stage-email-notifications.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-email-notifications-heading"
     .panel-body
-      ' Test
+      .panel-section
+        p
+          ' SHORTLISTED : Email notifying all shortlisted applicants including audit certificate instructions.
+
+        p
+          = link_to "View email example", "#", class: "link-email-example"
+
+        = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule"
+
+        ul
+          li
+            .form-value
+              ' Scheduled to be sent on
+              strong
+                = "21 Apr 2015"
+            = link_to "Edit"
+            '  |
+            = link_to "Delete"
+          li
+            .form-value
+              ' Already sent on
+              strong
+                = "29 Apr 2015"
+            = link_to "Edit"
+
+      .panel-section
+        p
+          ' SHORTLISTED : Reminder to submit *audit certificates* (for short listed applicants who haven't submitted yet).
+
+        p
+          = link_to "View email example", "#", class: "link-email-example"
+
+        = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule"
+
+        ul
+          li
+            .form-value
+              ' Scheduled to be sent on
+              strong
+                = "21 Apr 2015"
+            = link_to "Edit"
+            '  |
+            = link_to "Delete"
+          li
+            .form-value
+              ' Already sent on
+              strong
+                = "29 Apr 2015"
+            = link_to "Edit"
+
+      .panel-section
+        p
+          ' NOT SHORTLISTED : Email notifying unsuccessful applicants.
+
+        p
+          = link_to "View email example", "#", class: "link-email-example"
+
+        = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule"
+
+        ul
+          li
+            .form-value
+              ' Scheduled to be sent on
+              strong
+                = "21 Apr 2015"
+            = link_to "Edit"
+            '  |
+            = link_to "Delete"
+          li
+            .form-value
+              ' Already sent on
+              strong
+                = "29 Apr 2015"
+            = link_to "Edit"
