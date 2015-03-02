@@ -28,10 +28,6 @@
   }
 }
 
-.application-progress {
-  margin: 15px 0;
-}
-
 .nav-tabs.submitted-tabs {
   margin-bottom: 20px;
   border-bottom: none;
@@ -176,12 +172,68 @@
   }
 }
 
-.section-applicant-details .text-right a {
-  font-size: 14px;
+.section-applicant-details {
+  border-bottom: none;
 
-  @include screen-md-max {
-    font-size: 13px;
+  h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: normal;
+    text-transform: none;
   }
+
+  p {
+    font-size: 18px;
+
+    @include screen-md-max {
+      font-size: 16px;
+    }
+  }
+
+  .btn {
+    margin-top: 20px;
+  }
+}
+
+.section-applicant-status {
+  h2 {
+    margin-bottom: 5px;
+  }
+
+  .btn-group {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .dropdown-toggle {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    float: none;
+    color: $black;
+    font-size: 20px;
+    text-align: left;
+    text-decoration: none;
+
+    .caret {
+      margin-left: 5px;
+      border-top-width: 7px;
+      border-right-width: 6px;
+      border-left-width: 6px;
+    }
+  }
+
+  p {
+    margin-bottom: 5px;
+    font-size: 15px;
+  }
+}
+
+.section-applicant-users ul label {
+  width: 5.5em;
+  font-weight: normal;
 }
 
 .centered {

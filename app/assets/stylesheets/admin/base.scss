@@ -634,6 +634,7 @@ table .ellipsis {
       }
 
       small {
+        display: block;
         margin-top: 0.25em;
         font-size: 14px;
         text-transform: none;
@@ -646,14 +647,6 @@ table .ellipsis {
           margin-top: 10px;
           float: none !important;
         }
-      }
-    }
-
-    .p-lg {
-      font-size: 16px;
-
-      @include screen-md-max {
-        font-size: 14px;
       }
     }
 
@@ -673,6 +666,14 @@ table .ellipsis {
       &:last-child {
         padding-bottom: 0;
         border-bottom: none;
+      }
+    }
+
+    .sidebar-section {
+      margin-bottom: 45px;
+
+      &:last-child {
+        margin-bottom: 0;
       }
     }
   }

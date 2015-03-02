@@ -41,8 +41,12 @@ class FormAnswerDecorator < ApplicationDecorator
     "#{object.state.dasherize[0..-2]}"
   end
 
+  def progress_text_short
+    "#{object.state.humanize[0..-2]}"
+  end
+
   def progress_text
-    "#{object.state.humanize[0..-2]}...#{fill_progress_in_percents}"
+    "#{progress_text_short}...#{fill_progress_in_percents}"
   end
 
   def average_growth_for(year)
