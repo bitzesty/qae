@@ -2,9 +2,15 @@ class QAE2014Forms
   class << self
     def promotion_step1
       @promotion_step1 ||= proc do
-        dropdown :nominee_title, "Title" do
-          required
+        header :nominee, "Nominee" do
           ref "A 1"
+        end
+
+        dropdown :nominee_title, "" do
+          required
+          context %(
+            <p class='question_label_with_5px_margins'>Title</p>
+                    )
           option "prof", "Prof"
           option "dr", "Dr"
           option "mr", "Mr"
@@ -13,23 +19,21 @@ class QAE2014Forms
           option "other", "Other"
         end
 
-        text :nominee_title_other, "Please specify" do
-          required
+        text :nominee_title_other, "" do
           classes "sub-question"
+          context %(
+            <p class='question_label_with_5px_margins'>Please specify</p>
+                    )
           conditional :nominee_title, "other"
         end
 
-        text :nominee_first_name, "First name" do
+        user_info :nominee_info, "" do
           required
-        end
-
-        text :nominee_last_name, "Surname" do
-          required
-        end
-
-        text :nominee_former_name, "Former name, or any other name known by" do
-          required
-          context "<p>e.g. maiden name</p>"
+          sub_fields([
+            {first_name: "First name"},
+            {last_name: "Surname"},
+            {former_name: "Former name, or any other name known by (e.g. maiden name)"}
+          ])
         end
 
         address :nominee_personal_address, "Personal address" do
@@ -94,9 +98,18 @@ class QAE2014Forms
           conditional :nominated_for_award, :yes
         end
 
-        organization_address :organization_address, "Organisation for which the nominee works" do
+        address :organization_address, "Organisation for which the nominee works" do
           required
           ref "A 3"
+          sub_fields([
+            {name: "Name"},
+            {building: "Building"},
+            {street: "Street"},
+            {city: "Town or city"},
+            {country: "Country"},
+            {postcode: "Postcode"},
+            {website_url: "Website URL"}
+          ])
         end
 
         text :nominee_position, "Nominee's position at the organisation" do
