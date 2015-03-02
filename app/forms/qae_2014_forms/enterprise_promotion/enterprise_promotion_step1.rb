@@ -14,8 +14,9 @@ class QAE2014Forms
         end
 
         text :nominee_title_other, "Please specify" do
+          required
           classes "sub-question"
-          conditional :title, "other"
+          conditional :nominee_title, "other"
         end
 
         text :nominee_first_name, "First name" do
@@ -49,17 +50,18 @@ class QAE2014Forms
 
         date :nominee_date_of_birth, "Date of birth" do
           required
-          ref "A 1.3"
+          ref "A 1.4"
         end
 
         options :nominee_nationality, "Nationality" do
           required
-          ref "A 1.4"
+          ref "A 1.5"
           option "british", "British"
           option "other", "Other"
         end
 
         text :nominee_nationality_other, "Please specify" do
+          required
           classes "sub-question"
           conditional :nominee_nationality, "other"
         end
@@ -92,25 +94,14 @@ class QAE2014Forms
           conditional :nominated_for_award, :yes
         end
 
-        header :organization_info, "Organisation for which the nominee works" do
+        organization_address :organization_address, "Organisation for which the nominee works" do
+          required
           ref "A 3"
-        end
-
-        text :organization_name, "Name" do
-          required
-        end
-
-        address :organization_address, "" do
-          required
-        end
-
-        text :website, "Website URL" do
-          ref "A 3.1"
         end
 
         text :nominee_position, "Nominee's position at the organisation" do
           required
-          ref "A 3.2"
+          ref "A 3.1"
         end
       end
     end
