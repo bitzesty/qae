@@ -10,7 +10,7 @@
       = f.input :role,
                 wrapper_html: { class: 'form-group' },
                 input_html: { class: 'form-control' },
-                collection: Admin.role.options.delete_if { |o| o.last == 'admin' }
+                collection: Assessor.roles_for_collection
 
   .row
     .col-sm-4

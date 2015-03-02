@@ -1,5 +1,5 @@
 class AdminPolicy < UserPolicy
   def destroy?
-    admin.admin? && admin != record
+    admin? && subject != record
   end
 end

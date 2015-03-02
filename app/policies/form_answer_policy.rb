@@ -1,17 +1,17 @@
 class FormAnswerPolicy < ApplicationPolicy
   def index?
-    admin.admin?
+    admin?
   end
 
   def withdraw?
-    admin.admin?
+    admin?
   end
 
   def review?
-    admin.admin?
+    admin?
   end
 
   def show?
-    admin.admin?
+    admin?
   end
 end

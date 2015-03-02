@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :comment do
     body 'Comment body'
-    author{ create(:admin)}
+    authorable { create(:admin) }
   end
 end

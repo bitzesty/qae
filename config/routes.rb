@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     confirmations: 'devise/confirmations'
   }
 
+  devise_for :assessors
+
   get '/apply-for-queens-award-for-enterprise'          => "content_only#apply_for_queens_award_for_enterprise",          as: 'apply-for-queens-award-for-enterprise'
 
   get '/terms'                                          => "content_only#terms",                                          as: 'terms'
@@ -65,6 +67,11 @@ Rails.application.routes.draw do
     resources :form_answers, only: [:show] do
       resource :audit_certificate, only: [:show, :create]
     end
+  end
+
+  namespace :assessor do
+    root to: "dashboard#index"
+    resources :dashboard, only: [:index]
   end
 
   namespace :admin do

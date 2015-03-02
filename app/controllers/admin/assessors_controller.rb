@@ -3,18 +3,18 @@ class Admin::AssessorsController < Admin::UsersController
     params[:search] ||= AssessorSearch::DEFAULT_SEARCH
     authorize :assessor, :index?
 
-    @search = AssessorSearch.new(Admin.assessors).
+    @search = AssessorSearch.new(Assessor.all).
                              search(params[:search])
     @resources = @search.results.page(params[:page])
   end
 
   def new
-    @resource = Admin.new
+    @resource = Assessor.new
     authorize @resource, :create?
   end
 
   def create
-    @resource = Admin.new(resource_params)
+    @resource = Assessor.new(resource_params)
     authorize @resource, :create?
 
     @resource.save
@@ -43,7 +43,7 @@ class Admin::AssessorsController < Admin::UsersController
   private
 
   def find_resource
-    @resource = Admin.assessors.find(params[:id])
+    @resource = Assessor.find(params[:id])
   end
 
   def resource_params

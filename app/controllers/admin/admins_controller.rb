@@ -2,7 +2,7 @@ class Admin::AdminsController < Admin::UsersController
   def index
     params[:search] ||= AdminSearch::DEFAULT_SEARCH
     authorize Admin, :index?
-    @search = AdminSearch.new(Admin.admins).
+    @search = AdminSearch.new(Admin.all).
                          search(params[:search])
     @resources = @search.results.page(params[:page])
   end
@@ -14,7 +14,6 @@ class Admin::AdminsController < Admin::UsersController
 
   def create
     @resource = Admin.new(resource_params)
-    @resource.role = "admin"
     authorize @resource, :create?
 
     @resource.save
@@ -24,7 +23,7 @@ class Admin::AdminsController < Admin::UsersController
   private
 
   def find_resource
-    @resource = Admin.admins.find(params[:id])
+    @resource = Admin.find(params[:id])
   end
 
   def resource_params
