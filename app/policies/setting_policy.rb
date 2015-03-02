@@ -1,5 +1,5 @@
 class SettingPolicy < ApplicationPolicy
   def index?
-    admin.admin?
+    admin?
   end
 end
