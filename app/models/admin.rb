@@ -1,6 +1,5 @@
 class Admin < ActiveRecord::Base
   include PgSearch
-  extend Enumerize
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable

@@ -2,7 +2,6 @@ unless Admin.exists?
   admin_args = {
     email: "admin@example.com",
     password: "admin123",
-    role: "admin",
     first_name: "First name",
     last_name: "Last name"
   }
@@ -15,7 +14,6 @@ unless Assessor.exists?
   assessor_args = {
     email: "assessor@example.com",
     password: "assessor123",
-    role: "lead",
     first_name: "First name",
     last_name: "Last name"
   }
