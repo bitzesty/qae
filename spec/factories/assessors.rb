@@ -1,6 +1,5 @@
 FactoryGirl.define do
   factory :assessor do
-    role "regular"
     first_name "John"
     last_name "Doe"
     password { "strongpass" }
