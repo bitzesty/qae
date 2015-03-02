@@ -68,6 +68,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
+    resources :settings, only: [:index]
     resources :users
     resources :assessors
     resources :admins
