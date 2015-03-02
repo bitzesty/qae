@@ -64,5 +64,4 @@ class Users::AuditCertificatesController < Users::BaseController
         return
       end
     end
-
 end

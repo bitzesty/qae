@@ -1,14 +1,12 @@
 # lib/file_size_validator.rb
 # Based on: https://github.com/carrierwaveuploader/carrierwave/wiki/How-to%3A-Validate-attachment-file-size
 # Source: https://gist.github.com/795665
-
-
 class FileSizeValidator < ActiveModel::EachValidator
-  MESSAGES  = { is: :wrong_size, minimum: :size_too_small, maximum: :size_too_big }.freeze
-  CHECKS    = { is: :==, minimum: :>=, :maximum => :<= }.freeze
+  MESSAGES = { is: :wrong_size, minimum: :size_too_small, maximum: :size_too_big }.freeze
+  CHECKS = { is: :==, minimum: :>=, :maximum => :<= }.freeze
 
   DEFAULT_TOKENIZER = lambda { |value| value.split(//) }
-  RESERVED_OPTIONS  = [:minimum, :maximum, :within, :is, :tokenizer, :too_short, :too_long]
+  RESERVED_OPTIONS = [:minimum, :maximum, :within, :is, :tokenizer, :too_short, :too_long]
 
   def initialize(options)
     if range = (options.delete(:in) || options.delete(:within))
@@ -42,7 +40,7 @@ class FileSizeValidator < ActiveModel::EachValidator
       raise(ArgumentError, "A CarrierWave::Uploader::Base object was expected")
     end
 
-    value = (options[:tokenizer] || DEFAULT_TOKENIZER).call(value) if value.kind_of?(String)
+    value = (options[:tokenizer] || DEFAULT_TOKENIZER).call(value) if value.is_a?(String)
 
     CHECKS.each do |key, validity_check|
       next unless check_value = options[key]
