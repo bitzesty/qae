@@ -9,6 +9,7 @@ class Assessor < ActiveRecord::Base
 
   validates :first_name, :last_name, :role, presence: true
   has_many :form_answer_attachments, as: :attachable
+  has_many :assessment_roles
 
   enumerize :role, in: %w[lead regular]
 
