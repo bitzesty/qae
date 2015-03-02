@@ -91,10 +91,26 @@
             = form.submit 'Attach Document', class: 'if-js-hide'
 
       / TODO Assessors
-      .well
+      .well.section-applicant-users
         h2
           ' Assessors
-        p.p-empty No assessors have been assigned to this case.
+        /p.p-empty No assessors have been assigned to this case.
+        ul.list-unstyled.list-actions
+          li
+            = link_to "#", class: "ellipsis"
+              span.icon-role L
+              label Lead:
+              ' Rebecca Moore
+          li
+            = link_to "#", class: "ellipsis"
+              span.icon-role 1
+              label Primary:
+              ' Peter Langdon
+          li
+            = link_to "#", class: "ellipsis"
+              span.icon-role 2
+              label Secondary:
+              ' James Malgrove
 
   .col-md-8.submitted-view
     = render partial: "submitted_view"
