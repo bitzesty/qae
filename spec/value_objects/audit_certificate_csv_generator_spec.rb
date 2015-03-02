@@ -6,11 +6,11 @@ describe AuditCertificateCsvGenerator do
   }
 
   let!(:user) do
-    FactoryGirl.create :user
+    create :user
   end
 
   let(:form_answer) do
-    FactoryGirl.create :form_answer, :submitted, :innovation,
+    create :form_answer, :submitted, :innovation,
       user: user,
       document: audit_certificate_answers_sample
   end

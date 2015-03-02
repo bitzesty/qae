@@ -3,7 +3,7 @@ require "rails_helper"
 describe Users::AuditCertificateRequestMailer do
   let!(:user) { create :user }
   let(:form_answer) do
-    FactoryGirl.create :form_answer, :submitted, :innovation,
+    create :form_answer, :submitted, :innovation,
                                                  user: user,
                                                  document: { company_name: "Bitzesty" }
 

@@ -8,11 +8,11 @@ So that I can check, complete it and then upload it to application
 } do
 
   let!(:user) do
-    FactoryGirl.create :user
+    create :user
   end
 
   let!(:form_answer) do
-    FactoryGirl.create :form_answer, :innovation,
+    create :form_answer, :innovation,
       user: user,
       urn: "QA0001/19T",
       document: { company_name: "Bitzesty" }
@@ -97,7 +97,7 @@ So that I can check, complete it and then upload it to application
 
     describe "Audit Certificate already completed" do
       let(:audit_certificate) {
-        FactoryGirl.create(:audit_certificate, form_answer: form_answer)
+        create(:audit_certificate, form_answer: form_answer)
       }
 
       before do

@@ -1,8 +1,8 @@
 class Users::FormAnswersController < Users::BaseController
   expose(:form_answer) {
-    current_user.account
-                .form_answers
-                .find(params[:id])
+    current_user.account.
+                form_answers.
+                find(params[:id])
   }
 
   def show

@@ -25,7 +25,7 @@ class FileSizeValidator < ActiveModel::EachValidator
 
     if keys.empty?
       raise ArgumentError,
-           'Range unspecified. Specify the :within, :maximum, :minimum, or :is option.'
+           "Range unspecified. Specify the :within, :maximum, :minimum, or :is option."
     end
 
     keys.each do |key|
@@ -38,7 +38,7 @@ class FileSizeValidator < ActiveModel::EachValidator
   end
 
   def validate_each(record, attribute, value)
-    unless value.kind_of? CarrierWave::Uploader::Base
+    unless value.is_a?(CarrierWave::Uploader::Base)
       raise(ArgumentError, "A CarrierWave::Uploader::Base object was expected")
     end
 

@@ -1,20 +1,19 @@
 class Users::AuditCertificatesController < Users::BaseController
   before_action :check_certificate_if_exists, only: [:create]
 
-  expose(:form_answer) {
-    current_user.account
-                .form_answers
-                .find(params[:form_answer_id])
-  }
+  expose(:form_answer) do
+    current_user.account.
+                form_answers.
+                find(params[:form_answer_id])
+  end
 
-  expose(:csv_data) {
-    AuditCertificateCsvGenerator.new(form_answer)
-                                .run
-  }
+  expose(:csv_data) do
+    AuditCertificateCsvGenerator.new(form_answer).run
+  end
 
-  expose(:audit_certificate) {
+  expose(:audit_certificate) do
     form_answer.audit_certificate
-  }
+  end
 
   def show
     respond_to do |format|
@@ -41,10 +40,17 @@ class Users::AuditCertificatesController < Users::BaseController
   end
 
   private
+
     def audit_certificate_params
       # This is fix of "missing 'audit_certificate' param"
       # if no any file selected in file input
-      params.merge!({audit_certificate: {attachment: ''}}) if params[:audit_certificate].blank?
+      if params[:audit_certificate].blank?
+        params.merge!({
+          audit_certificate: {
+            attachment: ""
+          }
+        })
+      end
 
       params.require(:audit_certificate).permit(
         :attachment
@@ -53,7 +59,10 @@ class Users::AuditCertificatesController < Users::BaseController
 
     def check_certificate_if_exists
       if audit_certificate.present?
-        redirect_to :back, notice: "Audit Certificate already completed!"
+        redirect_to users_form_answer_audit_certificate_url(form_answer),
+                    notice: "Audit Certificate already completed!"
+        return
       end
     end
+
 end

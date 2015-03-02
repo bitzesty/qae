@@ -14,7 +14,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def download_filename
-    "#{object.award_type}_award_#{object.decorate.created_at}"
+    "#{object.award_type}_award_#{created_at}"
   end
 
   def pdf_filename
