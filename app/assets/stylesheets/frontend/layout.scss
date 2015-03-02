@@ -73,13 +73,6 @@
 
   &.page-header-wider div {
     width: 100%;
-
-    &.steps-progress-bar {
-      width: 97%;
-      @media (max-width: 640px) {
-        width: 100%;
-      }
-    }
   }
   // Slightly wider
   &.page-header-wider-minor div {
@@ -355,12 +348,22 @@ header.page-header aside .inner {
 // Progress steps based on `2. Progress bar`
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators
 .steps-progress-bar {
-  width: 100%;
+  width: 240px;
   margin: 0;
-  padding: 0 !important;
+  margin-top: 2.5em;
+  margin-left: 32px;
+  padding: 0;
+  float: left;
   border: 1px solid $border-colour;
-  border-left: none;
   border-right: none;
+  border-left: none;
+
+  @media (max-width: 990px) {
+    width: auto;
+    margin: 0 1em;
+    margin-bottom: $gutter;
+    float: none;
+  }
 
   ol,
   ul {
@@ -383,15 +386,11 @@ header.page-header aside .inner {
   }
 
   li {
-    @include core-16;
-    display: inline-block;
+    @include core-19;
+    display: block;
     margin: 0 15px;
     vertical-align: top;
     text-align: left;
-
-    @media (max-width: 1035px) {
-      display: block;
-    }
 
     &,
     a {
@@ -400,23 +399,13 @@ header.page-header aside .inner {
 
     > a,
     > span {
-      float: left;
-      display: inline-block;
+      display: block;
+      max-width: 100%;
       margin: 0;
       padding: 7px 0;
       border: 5px solid transparent;
       border-left: none;
       border-right: none;
-
-      @media (max-width: 1035px) {
-        float: none;
-        max-width: 100%;
-        margin: 0;
-
-        br {
-          display: none;
-        }
-      }
     }
 
     &.step-past {
@@ -427,6 +416,8 @@ header.page-header aside .inner {
     }
 
     &.step-current {
+      margin-bottom: 15px;
+
       &,
       a {
         color: $black;
@@ -437,11 +428,37 @@ header.page-header aside .inner {
         border-bottom-color: $black;
       }
     }
+
+    &.divider {
+      margin-top: $gutter-one-sixth;
+      margin-bottom: $gutter-one-sixth;
+      border-top: 1px solid $border-colour;
+    }
   }
 
   .page-header & {
     margin-top: 16px;
     margin-bottom: $gutter;
+  }
+}
+
+.steps-progress-content {
+  margin: 0;
+  margin-left: 272px;
+
+  @media (max-width: 990px) {
+    margin-left: 0;
+  }
+
+  > .group:after {
+    clear: none;
+  }
+
+  .article-container,
+  .article-container-wider,
+  .page-header div {
+    max-width: none;
+    margin-right: 0;
   }
 }
 

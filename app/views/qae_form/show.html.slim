@@ -1,4 +1,26 @@
 form.qae-form.award-form data-autosave-url=autosave_url(@form_answer) action=submit_form_url(@form_answer) method="POST" data-attachments-url=attachments_url(@form_answer)
   input name="authenticity_token" type="hidden" value=form_authenticity_token
-  = render partial: 'qae_form/form_header', object: @form, as: 'form'
-  = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form, answers: (HashWithIndifferentAccess.new(@form_answer.document || {})), attachments: HashWithIndifferentAccess.new(@attachments)}
+  .steps-progress-bar
+    ol
+      li.js-step-condition.step-past
+        span
+          = link_to form_award_eligibility_url(form_id: @form_answer.id) do
+            span.step-number
+              ' Eligibility
+
+      - step_letters = ["A", "B", "C", "D", "E", "F"]
+      - for step in @form.steps do
+        li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
+          span
+            span.step-number
+              ' #{step_letters[step.index]}.
+            = step.short_title.html_safe
+
+      li.divider
+      li.step-past
+        = link_to "Download your application", users_form_answer_path(@form_answer, format: :pdf)
+
+  .steps-progress-content
+    = render partial: 'qae_form/form_header', object: @form, as: 'form'
+
+    = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form, answers: (HashWithIndifferentAccess.new(@form_answer.document || {})), attachments: HashWithIndifferentAccess.new(@attachments)}
