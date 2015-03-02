@@ -56,6 +56,10 @@ html.no-js
                     li class=('active' if %w[users admins assessors].include?(controller_name))
                       = link_to "Users", admin_users_path
 
+                  / TODO Settings page
+                  li
+                    = link_to "Settings"
+
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"

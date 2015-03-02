@@ -19,7 +19,7 @@
   }
 
   .urn-not-generated {
-    color: #999;
+    color: $grey;
     font-style: italic;
   }
 
@@ -29,49 +29,8 @@
 }
 
 .application-progress {
-  margin-top: 15px;
-  padding: 15px 15px;
-  padding-left: 50px;
-  background: #5178bc;
-  background-image: image-url("icon-progress-pending.png");
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 32px 32px;
-  color: #fff;
-
-  @include is-retina {
-    background-image: image-url("icon-progress-pending@2.png");
-  }
-
-  @include screen-md-max {
-    margin-top: 0;
-  }
-
-  &.recommended {
-    background-color: #93c255;
-    background-image: image-url("icon-progress-success.png");
-    color: #333;
-
-    @include is-retina {
-      background-image: image-url("icon-progress-success@2.png");
-    }
-  }
-
-  .sidebar-open & {
-    @include screen-md-max {
-      position: absolute;
-      top: 0;
-      right: 15px;
-      left: 15px;
-    }
-  }
+  margin: 15px 0;
 }
-
-.applicant-view,
-.submitted-view {
-  margin-top: 15px;
-}
-
 
 .nav-tabs.submitted-tabs {
   margin-bottom: 20px;
@@ -156,41 +115,7 @@
 }
 
 .submitted-view {
-  .form-label .glyphicon {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    background-size: 20px 20px;
-    text-align: left;
-    text-indent: -9999px;
-  }
-
-  .glyphicon-positive {
-    background-image: image-url("icon-grade-positive.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-positive@2.png");
-    }
-  }
-
-  .glyphicon-average {
-    background-image: image-url("icon-grade-average.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-average@2.png");
-    }
-  }
-
-  .glyphicon-negative {
-    background-image: image-url("icon-grade-negative.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-negative@2.png");
-    }
-  }
+  margin-top: 15px;
 
   .no-js & {
     .form-value,
@@ -224,9 +149,8 @@
   }
 }
 
-.section-case-grading .form-label {
-  position: relative;
-  padding-right: 30px;
+.section-appraisal-form .form-label {
+  font-weight: bold;
 }
 
 .section-financial-summary .form-group {
@@ -244,11 +168,11 @@
 
 .form-edit-link {
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 16px;
 
   .glyphicon {
     margin-right: 5px;
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 

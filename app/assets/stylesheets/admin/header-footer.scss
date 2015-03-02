@@ -33,9 +33,9 @@
 
     .navbar-brand,
     .navbar-nav > li > a {
-      color: #fff;
-      text-transform: uppercase;
       background: transparent;
+      color: $white-true;
+      text-transform: uppercase;
     }
 
     .navbar-brand {
