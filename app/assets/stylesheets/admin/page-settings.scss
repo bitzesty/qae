@@ -42,4 +42,43 @@
   .link-email-example {
     text-decoration: underline;
   }
+
+  .well {
+    max-width: 300px;
+    margin: 20px 0;
+    background-color: $white-true;
+    box-shadow: none;
+
+    @include screen-sm-max {
+      max-width: none;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    .control-date {
+      padding-right: 40px;
+      background-image: image-url("icon-date-picker.png");
+      background-repeat: no-repeat;
+      background-position: right bottom;
+      background-size: 31px 30px;
+
+      @include is-retina {
+        background-image: image-url("icon-date-picker@2.png");
+      }
+
+      @include screen-sm-max {
+        padding-right: 55px;
+      }
+
+      .form-group {
+        margin-bottom: 0;
+      }
+    }
+
+    .control-action {
+      margin-top: 1.7em;
+    }
+  }
 }
