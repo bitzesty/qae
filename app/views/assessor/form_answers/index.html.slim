@@ -76,8 +76,8 @@
                     span.urn-not-generated Not yet generated
                     = obj.award_type
                 td Not implemented
-                td Not implemented
-                td Not implemented
+                td= obj.assessors.primary.try(:full_name) || "Not Assigned"
+                td= obj.assessors.secondary.try(:full_name) || "Not Assigned"
                 td
                 td Not implemented
 

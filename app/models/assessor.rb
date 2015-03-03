@@ -2,12 +2,20 @@ class Assessor < ActiveRecord::Base
   include PgSearch
 
   AVAILABLE_ROLES = ["lead", "regular"]
+  # lead - created & assigned to Admin to specific categories
+  # has access to almost all resources from all form answers within this category
+  # regular - assigned by lead, as primary/secondary from set of all assessors assigned
+  # to specific category (award type), they act per specific form answer.
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable
 
   validates :first_name, :last_name, presence: true
   has_many :form_answer_attachments, as: :attachable
+  has_many :assessor_assignments
+
+  has_many :form_answers,
+           through: :assessor_assignments
 
   before_validation :nil_if_blank
 
@@ -36,14 +44,30 @@ class Assessor < ActiveRecord::Base
     [["Not Assigned", nil], ["Lead Assessor", "lead"], ["Assessor", "regular"]]
   end
 
+  def self.available_for(category)
+    where(role_meth(category) => ["regular", "lead"])
+  end
+
   def applications_assigned_to_as(roles = ["regular", "lead"])
     FormAnswer.for_award_type(assigned_categories_as(roles))
   end
 
+  def self.role_meth(category)
+    "#{category}_role"
+  end
+
+  def full_name
+    "#{first_name} #{last_name}".strip
+  end
+
+  def can_assign_regular_assessors?(assignment)
+    get_role(assignment.form_answer.award_type) == "lead"
+  end
+
   private
 
-  def get_role(name)
-    public_send("#{name}_role")
+  def get_role(category)
+    public_send self.class.role_meth(category)
   end
 
   def assigned_categories_as(roles)

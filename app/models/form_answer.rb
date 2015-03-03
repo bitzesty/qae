@@ -53,6 +53,23 @@ class FormAnswer < ActiveRecord::Base
     has_many :support_letters, dependent: :destroy
     has_many :comments, as: :commentable
     has_many :form_answer_transitions
+    has_many :assessor_assignments
+
+    has_many :assessors, through: :assessor_assignments do
+      def primary
+        where(assessor_assignments: {
+          position: AssessorAssignment::PRIMARY_POSITION
+          }
+        ).first
+      end
+
+      def secondary
+        where(assessor_assignments: {
+          position: AssessorAssignment::SECONDARY_POSITION
+          }
+        ).first
+      end
+    end
   end
 
   begin :validations

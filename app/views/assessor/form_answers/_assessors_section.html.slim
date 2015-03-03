@@ -1,0 +1,25 @@
+/ TOREFACTOR after claryfing the view
+.well.section-applicant-users
+  h2
+    ' Assign Assessors (waits for wireframes)
+    / probably can be handled by AJAX to keep the data consistent
+    / and for example remove the assigned assessors from the selects
+  /p.p-empty No assessors have been assigned to this case.
+  ul.list-unstyled.list-actions
+    = form_for([namespace_name, (resource.assessor_assignments.primary.first || AssessorAssignment.new(position: 0))]) do |form|
+      = form.hidden_field :form_answer_id, value: resource.id
+      = form.hidden_field :position
+      li
+        ' Primary Assessor
+        = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.email, a.id]}, { include_blank: true }
+      =form.submit :add
+
+    = form_for([namespace_name, (resource.assessor_assignments.secondary.first || AssessorAssignment.new(position: 1))]) do |form|
+      = form.hidden_field :form_answer_id, value: resource.id
+      = form.hidden_field :position
+      li
+        ' Secondary Assessor
+        = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.email, a.id]}, { include_blank: true }
+
+      =form.submit :add
+

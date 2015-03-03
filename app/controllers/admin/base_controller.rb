@@ -21,9 +21,4 @@ class Admin::BaseController < ApplicationController
   def namespace_name
     :assessor
   end
-
-  def user_not_authorized
-    flash.alert = "You are not authorized to perform this action."
-    redirect_to(admin_dashboard_index_path)
-  end
 end

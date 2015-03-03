@@ -97,14 +97,15 @@
             = link_to "#", class: "ellipsis"
               span.icon-role L
               label Lead:
-              ' Rebecca Moore
+              ' Not implemented
           li
             = link_to "#", class: "ellipsis"
               span.icon-role 1
               label Primary:
-              ' Peter Langdon
+              = resource.assessors.primary.try(:full_name)
           li
             = link_to "#", class: "ellipsis"
               span.icon-role 2
               label Secondary:
-              ' James Malgrove
+              = resource.assessors.secondary.try(:full_name)
+      = render("assessors_section")
