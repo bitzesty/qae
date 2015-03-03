@@ -455,22 +455,18 @@ header.page-header aside .inner {
     width: 0;
     height: 0;
     margin-right: 7px;
-    vertical-align: middle;
     border-top: 7px solid;
     border-right: 6px solid transparent;
     border-left: 6px solid transparent;
+    vertical-align: middle;
   }
 
   .dropdown-menu {
     display: none;
     margin-top: 10px;
 
-    a {
-      padding-left: 20px;
-    }
-
-    .js-step-link > span {
-      margin-left: 20px;
+    li {
+      margin-left: 35px;
     }
   }
 
@@ -494,11 +490,7 @@ header.page-header aside .inner {
     .dropdown-menu {
       display: block;
 
-      a {
-        padding-left: 0;
-      }
-
-      .js-step-link > span {
+      li {
         margin-left: 0;
       }
     }
