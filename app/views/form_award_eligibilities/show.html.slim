@@ -14,7 +14,7 @@
       .inner.step.current
         - if step
           = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
-            .current-question#current-question
+            .current-question.qae-form#current-question
               .question
                 h2
                   = @eligibility.class.label(step)

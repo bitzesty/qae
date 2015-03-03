@@ -348,21 +348,26 @@ header.page-header aside .inner {
 // Progress steps based on `2. Progress bar`
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators
 .steps-progress-bar {
+  position: absolute;
   width: 240px;
   margin: 0;
   margin-top: 2.5em;
   margin-left: 32px;
   padding: 0;
-  float: left;
   border: 1px solid $border-colour;
   border-right: none;
   border-left: none;
 
   @media (max-width: 990px) {
+    position: static;
     width: auto;
-    margin: 0 1em;
+    margin: 0 2em;
     margin-bottom: $gutter;
-    float: none;
+  }
+
+  @media (max-width: 640px) {
+    margin-right: 1em;
+    margin-left: 1em;
   }
 
   ol,
@@ -448,10 +453,6 @@ header.page-header aside .inner {
 
   @media (max-width: 990px) {
     margin-left: 0;
-  }
-
-  > .group:after {
-    clear: none;
   }
 
   .article-container,
