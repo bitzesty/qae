@@ -1,15 +1,6 @@
 class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
-  include QaePdfForms::CustomQuestions::AwardLists
-
-  QUEENS_AWARD_HOLDER_LIST_HEADERS = [
-    "Category", "Year Awarded"
-  ]
-  AWARD_HOLDER_LIST_HEADERS = [
-    "Award/Honour title",
-    "Year",
-    "Details"
-  ]
+  include QaePdfForms::CustomQuestions::Lists
 
   attr_reader :form_pdf,
               :step,
@@ -75,14 +66,12 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::ConfirmQuestion
         title = humanized_answer.present? ? question_checked_value_title : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, style: :italic)
-      when QAEFormBuilder::QueenAwardHolderQuestion, QAEFormBuilder::AwardHolderQuestion
-        render_current_award_list
+      when *LIST_TYPES
+        render_list
       when QAEFormBuilder::ByYearsLabelQuestion
         render_years_labels_table
       when QAEFormBuilder::ByYearsQuestion
         render_years_table
-      when QAEFormBuilder::PositionDetailsQuestion
-        # render_position_details
       when QAEFormBuilder::SupportersQuestion
         # render_supporters
       else
