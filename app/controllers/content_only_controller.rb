@@ -12,21 +12,29 @@ class ContentOnlyController < ApplicationController
 
   def award_info_development
     @form_answer = current_account.form_answers.find(params[:form_id])
-    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+    @form = @form_answer.award_form.decorate(
+      answers: HashWithIndifferentAccess.new(@form_answer.document)
+    )
   end
 
   def award_info_innovation
     @form_answer = current_account.form_answers.find(params[:form_id])
-    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+    @form = @form_answer.award_form.decorate(
+      answers: HashWithIndifferentAccess.new(@form_answer.document)
+    )
   end
 
   def award_info_trade
     @form_answer = current_account.form_answers.find(params[:form_id])
-    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+    @form = @form_answer.award_form.decorate(
+      answers: HashWithIndifferentAccess.new(@form_answer.document)
+    )
   end
 
   def award_info_promotion
     @form_answer = current_account.form_answers.find(params[:form_id])
-    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+    @form = @form_answer.award_form.decorate(
+      answers: HashWithIndifferentAccess.new(@form_answer.document)
+    )
   end
 end
