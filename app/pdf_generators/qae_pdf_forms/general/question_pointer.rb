@@ -101,7 +101,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def complex_question
-   form_pdf.render_text(question.escaped_title, style: :bold)
+    form_pdf.render_text(question.escaped_title, style: :bold)
 
     if sub_answers.length > 1
       sub_answers_by_type
