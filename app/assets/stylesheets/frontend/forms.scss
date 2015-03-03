@@ -340,6 +340,15 @@ input[type="file"] {
     }
   }
 
+  span.selectable {
+    padding: 0;
+
+    label {
+      display: block;
+      padding: 18px 30px 15px 45px;
+    }
+  }
+
   input,
   select,
   textarea {
