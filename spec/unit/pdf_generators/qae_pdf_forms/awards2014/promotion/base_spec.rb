@@ -5,8 +5,8 @@ describe "QaePdfForms::Awards2014::Promotion::Base" do
 
   let(:step1_question_answers) {
     {
-      nominee_first_name: "Genry",
-      nominee_last_name: "Greenfield"
+      nominee_phone: generate(:phone),
+      nominee_email: generate(:email)
     }
   }
 
