@@ -13,16 +13,19 @@
             = answer
           - elsif !answer.nil?
             = eligibility.class.enumerized_attributes[question].find_value(answer).text
-          - if answer.present? && !eligibility.answer_valid?(question, answer)
-            span.previous-answer-invalid
-              ' This excludes you from entering the
-              - if eligibility.is_a?(Eligibility::Basic)
-                ' Queen's Awards for Enterprise
-              - else
-                = eligibility.class.award_name
                 '  Award
         td.link-right
           = link_to wizard_path(question, form_id: @form_answer.id, skipped: !eligibility.answer_valid?(question, answer)) do
             ' Change
             span.visuallyhidden
               = ' answer to' + eligibility.class.label(question)
+
+      - if answer.present? && !eligibility.answer_valid?(question, answer)
+        tr.previous-answer-invalid
+          td colspan=3
+            span
+              ' This excludes you from entering the
+              - if eligibility.is_a?(Eligibility::Basic)
+                ' Queen's Awards for Enterprise
+              - else
+                = eligibility.class.award_name

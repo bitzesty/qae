@@ -33,9 +33,8 @@ article .current-question li {
   max-width: 40em;
 }
 
-.previous-answer-invalid {
-  display: block;
-  margin-top: 1em;
+.previous-answer-invalid td {
+  padding-top: 1em;
   color: $error-colour;
 }
 
