@@ -5,22 +5,16 @@ class QAE2014Forms
       @promotion_step4 ||= proc do
         header :support_letters_intro, "" do
           context %(
-            <p>As nominator you have sole responsibility for sourcing at least 2 letters of support. Nominations with less than 2 letters will not be accepted. We recommend asking 6-8 supporters to ensure you meet the minimum requirements, as some people might not reply.</p>
-                  )
+            <p>
+              As nominator you have sole responsibility for sourcing at least 2 letters of support. Nominations with less than 2 letters will not be accepted. We recommend asking 6-8 supporters to ensure you meet the minimum requirements, as some people might not reply.
+            </p>
 
-          hint "Who should I choose to write letters of support?", %(
             <p>
-              Letters of support should be from those with first-hand knowledge of the nominee’s contribution to enterprise promotion and the impact their work has had on others. This could be colleagues, collaborators, or those who have benefitted from their work. You, the nominator, may not write a letter of support.
+              <strong>
+                How does the letters of support system work?
+              </strong>
             </p>
-            <p>
-              At least one letter should be from a large organisation (eg. employer, nonprofit, college, local authority) able to provide an assessment of the extent to which the nominee’s contribution sets them aside from their peers.
-            </p>
-            <p>
-              When selecting supporters, you should cover a variety of the nominee's activities, and a variety of perspectives on those activities, where possible.
-            </p>
-          )
 
-          hint "How does the letters of support system work?", %(
             <p>
               First, you should enter details of your chosen supporters below. We will then email them a link to a web form, where they can enter their letter of support.
             </p>
@@ -35,6 +29,22 @@ class QAE2014Forms
             </p>
             <p>
               If you have supporters who would rather write a hard copy letter, please see question D2.
+            </p>
+
+            <p>
+              <strong>
+                Who should I choose to write letters of support?
+              </strong>
+            </p>
+
+            <p>
+              Letters of support should be from those with first-hand knowledge of the nominee’s contribution to enterprise promotion and the impact their work has had on others. This could be colleagues, collaborators, or those who have benefitted from their work. You, the nominator, may not write a letter of support.
+            </p>
+            <p>
+              At least one letter should be from a large organisation (eg. employer, nonprofit, college, local authority) able to provide an assessment of the extent to which the nominee’s contribution sets them aside from their peers.
+            </p>
+            <p>
+              When selecting supporters, you should cover a variety of the nominee's activities, and a variety of perspectives on those activities, where possible.
             </p>
           )
 
@@ -76,14 +86,21 @@ class QAE2014Forms
           limit 10
         end
 
-        supporters :supporter_letters_list, "Here you can manually upload letters of support up to 5mb in size.
-          This is for any of your supporters who would rather write a hard copy
-          letter and send it to you directly." do
+        options :manually_upload, "Would you like to manually upload any of your letters of support" do
           ref "D 2"
-
-          hint "I want to manually upload my letters of support.", %(
+          required
+          yes_no
+          context %(
             <p>
-              You should first confirm that your chosen supporter(s) are willing and able to write a letter of support for your nominee, then *send them the letter of support guidelines below*.
+              This is for any of your supporters who would rather write a hard copy letter and send it to you directly.
+            </p>
+          )
+        end
+
+        supporters :supporter_letters_list, "Manual upload" do
+          context %(
+            <p>
+              You should first confirm that your chosen supporter(s) are willing and able to write a letter of support for your nominee, then send them the letter of support guidelines below.
             </p>
             <p>
               Make sure they submit the letter to you well before the nomination deadline.
@@ -93,6 +110,9 @@ class QAE2014Forms
             </p>
             <p>
               If you haven't already, please see the guidance at the top of this page for information on choosing supporters.
+            </p>
+            <p>
+              Here you can manually upload letters of support up to 5mb in size.
             </p>
           )
 
@@ -122,6 +142,7 @@ class QAE2014Forms
 
           limit 4
           list_type :manuall_upload
+          conditional :manually_upload, :yes
         end
       end
     end
