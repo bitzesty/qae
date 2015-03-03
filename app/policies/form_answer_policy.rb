@@ -12,7 +12,7 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def show?
-    admin?
+    admin? || assessor?
   end
 
   def update?

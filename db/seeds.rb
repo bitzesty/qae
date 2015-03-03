@@ -20,6 +20,7 @@ unless Assessor.exists?
 
   Assessor.create!(assessor_args).tap(&:confirm!)
 end
+
 # unless User.exists?
 #   5.times do |i|
 #     User.create!(

@@ -1,5 +1,6 @@
 class Admin::BaseController < ApplicationController
   include Pundit
+  helper_method :namespace_name
 
   layout "application-admin"
 
@@ -16,6 +17,10 @@ class Admin::BaseController < ApplicationController
   end
 
   private
+
+  def namespace_name
+    :assessor
+  end
 
   def user_not_authorized
     flash.alert = "You are not authorized to perform this action."

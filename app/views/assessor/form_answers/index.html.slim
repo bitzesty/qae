@@ -1,4 +1,4 @@
-= simple_form_for @search, url: admin_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
+= simple_form_for @search, url: "", method: :get, as: :search, html: { class: 'search-form'} do |f|
 
   .row
     .col-md-3
@@ -62,11 +62,11 @@
               tr
                 td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
                 td.td-title
-                  = link_to [:admin, obj], class: "ellipsis"
+                  = link_to [namespace_name, obj], class: "ellipsis"
                     - unless obj.company_or_nominee_name.nil?
-                      = link_to obj.company_or_nominee_name, [:admin, obj]
+                      = link_to obj.company_or_nominee_name, [namespace_name, obj]
                     - else
-                      = link_to [:admin, obj] do
+                      = link_to [namespace_name, obj] do
                         em
                           ' Not found
                 td
@@ -74,6 +74,7 @@
                     = obj.urn
                   - else
                     span.urn-not-generated Not yet generated
+                    = obj.award_type
                 td Not implemented
                 td Not implemented
                 td Not implemented

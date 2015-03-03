@@ -14,4 +14,12 @@ class Assessor::BaseController < ApplicationController
   def pundit_user
     current_assessor
   end
+
+  private
+
+  helper_method :namespace_name
+
+  def namespace_name
+    :assessor
+  end
 end

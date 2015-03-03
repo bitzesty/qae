@@ -19,6 +19,7 @@ class Assessor < ActiveRecord::Base
               in: AVAILABLE_ROLES
             },
             allow_nil: true
+
   pg_search_scope :basic_search,
                   against: [
                     :first_name,
@@ -31,16 +32,30 @@ class Assessor < ActiveRecord::Base
                     }
                   }
 
-  def self.roles_for_collection
-    [["Lead Assessor", "lead"], ["Assessor", "regular"]]
+  def self.roles
+    [["Not Assigned", nil], ["Lead Assessor", "lead"], ["Assessor", "regular"]]
+  end
+
+  def applications_assigned_to_as(roles = ["regular", "lead"])
+    FormAnswer.for_award_type(assigned_categories_as(roles))
   end
 
   private
 
+  def get_role(name)
+    public_send("#{name}_role")
+  end
+
+  def assigned_categories_as(roles)
+    ["trade", "innovation", "development", "promotion"].map do |award|
+      award if roles.include?(get_role(award).to_s)
+    end.compact
+  end
+
   def nil_if_blank
-    self.trade_role = nil if trade_role.blank?
-    self.innovation_role = nil if innovation_role.blank?
-    self.development_role = nil if development_role.blank?
-    self.promotion_role = nil if promotion_role.blank?
+    self.trade_role = nil if get_role("trade").blank?
+    self.innovation_role = nil if get_role("innovation").blank?
+    self.development_role = nil if get_role("development").blank?
+    self.promotion_role = nil if get_role("promotion").blank?
   end
 end
