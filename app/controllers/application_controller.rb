@@ -43,10 +43,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def load_eligibilities
-    @trade_eligibility = current_account.trade_eligibility || current_account.trade_eligibilities.build
-    @innovation_eligibility = current_account.innovation_eligibility || current_account.innovation_eligibilities.build
-    @development_eligibility = current_account.development_eligibility || current_account.development_eligibilities.build
-    @promotion_eligibility = current_account.promotion_eligibility || current_account.promotion_eligibilities.build
   end
 
   private
