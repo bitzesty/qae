@@ -1,4 +1,4 @@
-= render "steps_progress_bar", cant_access_future: true
+= render "steps_progress_bar", cant_access_future: true, previous_questions: step
 
 .steps-progress-content
   header.page-header.group.page-header-wider
@@ -52,6 +52,7 @@
                     '  to apply.
 
       = render "previous_answers"
+
       - unless step
         .inner.step.current
           .previous-answers
