@@ -1,4 +1,4 @@
-= render "steps_progress_bar", cant_access_future: true
+= render "steps_progress_bar", cant_access_future: true, previous_questions: step
 
 .steps-progress-content
   header.page-header.group.page-header-wider
@@ -52,8 +52,9 @@
                     '  to apply.
 
       = render "previous_answers"
+
       - unless step
         .inner.step.current
           .previous-answers
             .text-right
-              = link_to "Continue", result_form_award_eligibility_url(form_id: @form_answer.id), class: "button medium"
+              = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"

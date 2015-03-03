@@ -8,13 +8,26 @@ form.qae-form.award-form data-autosave-url=autosave_url(@form_answer) action=sub
             span.step-number
               ' Eligibility
 
-      - step_letters = ["A", "B", "C", "D", "E", "F"]
-      - for step in @form.steps do
-        li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
-          span
+      li.js-step-condition.step-past
+        span
+          = link_to [:award_info, @form_answer.award_type, form_id: @form_answer.id] do
             span.step-number
-              ' #{step_letters[step.index]}.
-            = step.short_title.html_safe
+              ' Application Info
+
+      - step_letters = ["A", "B", "C", "D", "E", "F"]
+      li.js-step-condition
+        span.open
+          = link_to "#", class: "dropdown-toggle dropdown-active" do
+            span.step-number
+              b.caret
+              ' Form
+          ul.dropdown-menu
+            - for step in @form.steps do
+              li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
+                span
+                  span.step-number
+                    ' #{step_letters[step.index]}.
+                  = step.short_title.html_safe
 
       li.divider
       li.step-past

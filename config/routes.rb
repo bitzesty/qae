@@ -1,46 +1,50 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: {
-    registrations: 'users/registrations'
+    registrations: "users/registrations"
   }
   devise_for :admins, controllers: {
-    confirmations: 'devise/confirmations'
+    confirmations: "devise/confirmations"
   }
 
   devise_for :assessors
 
-  get '/apply-for-queens-award-for-enterprise'          => "content_only#apply_for_queens_award_for_enterprise",          as: 'apply-for-queens-award-for-enterprise'
+  get "/apply-for-queens-award-for-enterprise"          => "content_only#apply_for_queens_award_for_enterprise",          as: "apply-for-queens-award-for-enterprise"
 
-  get '/terms'                                          => "content_only#terms",                                          as: 'terms'
+  get "/terms"                                          => "content_only#terms",                                          as: "terms"
 
-  get '/awards_for_organisations'                       => "content_only#awards_for_organisations",                       as: 'awards_for_organisations'
-  get '/enterprise_promotion_awards'                    => "content_only#enterprise_promotion_awards",                    as: 'enterprise_promotion_awards'
-  get '/how_to_apply'                                   => "content_only#how_to_apply",                                   as: 'how_to_apply'
-  get '/timeline'                                       => "content_only#timeline",                                       as: 'timeline'
-  get '/additional_information_and_contact'             => "content_only#additional_information_and_contact",             as: 'additional_information_and_contact'
+  get "/awards_for_organisations"                       => "content_only#awards_for_organisations",                       as: "awards_for_organisations"
+  get "/enterprise_promotion_awards"                    => "content_only#enterprise_promotion_awards",                    as: "enterprise_promotion_awards"
+  get "/how_to_apply"                                   => "content_only#how_to_apply",                                   as: "how_to_apply"
+  get "/timeline"                                       => "content_only#timeline",                                       as: "timeline"
+  get "/additional_information_and_contact"             => "content_only#additional_information_and_contact",             as: "additional_information_and_contact"
 
-  get  '/new_innovation_form'                           => "form#new_innovation_form",                                    as: 'new_innovation_form'
-  get  '/new_international_trade_form'                  => "form#new_international_trade_form",                           as: 'new_international_trade_form'
-  get  '/new_sustainable_development_form'              => "form#new_sustainable_development_form",                       as: 'new_sustainable_development_form'
-  get  '/new_enterprise_promotion_form'                 => "form#new_enterprise_promotion_form",                          as: 'new_enterprise_promotion_form'
-  get  '/form/:id'                                      => "form#edit_form",                                              as: 'edit_form'
-  post '/form_autosave/:id'                             => "form#autosave",                                               as: 'autosave'
-  post '/form/:id'                                      => "form#submit_form",                                            as: 'submit_form'
-  post '/form/:id/attachments'                          => "form#add_attachment",                                         as: 'attachments'
-  get  '/form/:id/confirmation'                         => "form#submit_confirm",                                         as: 'submit_confirm'
-  get '/dashboard'                                      => "content_only#dashboard",                                      as: 'dashboard'
+  get  "/new_innovation_form"                           => "form#new_innovation_form",                                    as: "new_innovation_form"
+  get  "/new_international_trade_form"                  => "form#new_international_trade_form",                           as: "new_international_trade_form"
+  get  "/new_sustainable_development_form"              => "form#new_sustainable_development_form",                       as: "new_sustainable_development_form"
+  get  "/new_enterprise_promotion_form"                 => "form#new_enterprise_promotion_form",                          as: "new_enterprise_promotion_form"
+  get  "/form/:id"                                      => "form#edit_form",                                              as: "edit_form"
+  post "/form_autosave/:id"                             => "form#autosave",                                               as: "autosave"
+  post "/form/:id"                                      => "form#submit_form",                                            as: "submit_form"
+  post "/form/:id/attachments"                          => "form#add_attachment",                                         as: "attachments"
+  get  "/form/:id/confirmation"                         => "form#submit_confirm",                                         as: "submit_confirm"
+  get "/dashboard"                                      => "content_only#dashboard",                                      as: "dashboard"
 
-  get '/apply_innovation_award'                         => "content_only#apply_innovation_award",                         as: 'apply_innovation_award'
-  get '/innovation_award_eligible_failure'              => "content_only#innovation_award_eligible_failure",              as: 'innovation_award_eligible_failure'
+  get "/apply_innovation_award"                         => "content_only#apply_innovation_award",                         as: "apply_innovation_award"
+  get "/award_info_innovation"                          => "content_only#award_info_innovation",                          as: "award_info_innovation"
+  get "/innovation_award_eligible_failure"              => "content_only#innovation_award_eligible_failure",              as: "innovation_award_eligible_failure"
 
-  get '/apply_international_trade_award'                => "content_only#apply_international_trade_award",                as: 'apply_international_trade_award'
-  get '/international_trade_award_eligible_failure'     => "content_only#international_trade_award_eligible_failure",     as: 'trade_award_eligible_failure'
+  get "/apply_international_trade_award"                => "content_only#apply_international_trade_award",                as: "apply_international_trade_award"
+  get "/award_info_trade"                               => "content_only#award_info_trade",                               as: "award_info_trade"
+  get "/international_trade_award_eligible_failure"     => "content_only#international_trade_award_eligible_failure",     as: "trade_award_eligible_failure"
 
-  get '/apply_sustainable_development_award'            => "content_only#apply_sustainable_development_award",            as: 'apply_sustainable_development_award'
-  get '/sustainable_development_award_eligible_failure' => "content_only#sustainable_development_award_eligible_failure", as: 'development_award_eligible_failure'
+  get "/apply_sustainable_development_award"            => "content_only#apply_sustainable_development_award",            as: "apply_sustainable_development_award"
+  get "/award_info_development"                         => "content_only#award_info_development",                         as: "award_info_development"
+  get "/sustainable_development_award_eligible_failure" => "content_only#sustainable_development_award_eligible_failure", as: "development_award_eligible_failure"
 
-  get '/apply_enterprise_promotion_award'               => "content_only#apply_enterprise_promotion_award",               as: 'apply_enterprise_promotion_award'
+  get "/apply_enterprise_promotion_award"               => "content_only#apply_enterprise_promotion_award",               as: "apply_enterprise_promotion_award"
+  get "/award_info_promotion"                           => "content_only#award_info_promotion",                           as: "award_info_promotion"
 
-  root to: 'content_only#home'
+  root to: "content_only#home"
 
   resource :account, only: :show do
     collection do
