@@ -36,12 +36,16 @@ class FormAwardEligibilitiesController < ApplicationController
         @eligibility.pass!
       end
 
-      if params[:skipped] == 'true' && ((step != @eligibility.questions.last) || @eligibility.is_a?(Eligibility::Basic))
+      if @eligibility.eligible?
         set_steps_and_eligibilities
         setup_wizard
-        redirect_to next_wizard_path(form_id: @form_answer.id, skipped: true)
+        if params[:skipped] == 'true'
+          redirect_to next_wizard_path(form_id: @form_answer.id, skipped: true)
+        else
+          redirect_to action: :show, form_id: @form_answer.id
+        end
       else
-        redirect_to action: :show, form_id: @form_answer.id
+        redirect_to result_form_award_eligibility_url(form_id: @form_answer.id)
       end
 
       return
