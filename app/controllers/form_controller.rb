@@ -91,7 +91,6 @@ class FormController < ApplicationController
   end
 
   def submit_confirm
-    load_eligibilities
     render template: "qae_form/confirm"
   end
 
@@ -155,17 +154,6 @@ class FormController < ApplicationController
       redirect_to dashboard_url, flash: {
         alert: "You can not submit more than one trade form per year"
       }
-    end
-  end
-
-  def load_eligibilities
-    if @form_answer
-      @trade_eligibility = @form_answer.trade_eligibility || @form_answer.build_trade_eligibility(account_id: current_account.id)
-      @innovation_eligibility = @form_answer.innovation_eligibility || @form_answer.build_innovation_eligibility(account_id: current_account.id)
-      @development_eligibility = @form_answer.development_eligibility || @form_answer.build_development_eligibility(account_id: current_account.id)
-      @promotion_eligibility = @form_answer.promotion_eligibility || @form_answer.build_promotion_eligibility(account_id: current_account.id)
-    else
-      super
     end
   end
 end

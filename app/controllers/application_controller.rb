@@ -40,11 +40,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_account
 
-  protected
-
-  def load_eligibilities
-  end
-
   private
 
   def configure_permitted_parameters
@@ -60,11 +55,6 @@ class ApplicationController < ActionController::Base
                :prefered_method_of_contact, :subscribed_to_emails)
     end
   end
-
-  def any_eligibilities_passed?
-    [@trade_eligibility, @innovation_eligibility, @development_eligibility, @promotion_eligibility].any?(&:passed?)
-  end
-  helper_method :any_eligibilities_passed?
 
   def check_account_completion
     if !current_user.completed_registration?
