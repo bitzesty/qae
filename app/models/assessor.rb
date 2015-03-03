@@ -19,7 +19,6 @@ class Assessor < ActiveRecord::Base
               in: AVAILABLE_ROLES
             },
             allow_nil: true
-
   pg_search_scope :basic_search,
                   against: [
                     :first_name,

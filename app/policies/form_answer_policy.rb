@@ -1,6 +1,6 @@
 class FormAnswerPolicy < ApplicationPolicy
   def index?
-    admin?
+    admin? || assessor?
   end
 
   def withdraw?
