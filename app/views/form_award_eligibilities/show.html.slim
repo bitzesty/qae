@@ -12,7 +12,7 @@
   .article-container.article-container-wider
     article.group role="article"
       .inner.step.current
-        - if step
+        - if step && step.to_s != "wicked_finish"
           = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
             .current-question.qae-form#current-question
               .question
