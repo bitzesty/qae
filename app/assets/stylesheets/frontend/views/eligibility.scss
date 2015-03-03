@@ -33,6 +33,11 @@ article .current-question li {
   max-width: 40em;
 }
 
+// Fix previous questions width
+.done-questions table tbody .section td {
+  width: auto;
+}
+
 .previous-answer-invalid td {
   padding-top: 1em;
   color: $error-colour;
