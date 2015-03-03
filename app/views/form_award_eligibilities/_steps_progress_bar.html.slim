@@ -3,5 +3,19 @@
 .steps-progress-bar
   ol
     = step_link_to "Eligibility", form_award_eligibility_path(form_id: @form_answer.id), index: 1, active: 1, index_name: "",  cant_access_future: false
-    - @form.steps.each_with_index do |step, index|
-      = step_link_to step.short_title.html_safe, "#", index: index + 2, active: 1, index_name: "#{step_letters[index]}.", cant_access_future: false
+
+    li.js-step-condition
+      span
+        = link_to "#" do
+          span.step-number
+            ' Application Info
+
+    li.js-step-condition
+      span
+        = link_to "#", class: "dropdown-toggle" do
+          span.step-number
+            b.caret
+            ' Form
+        ul.dropdown-menu
+          - @form.steps.each_with_index do |step, index|
+            = step_link_to step.short_title.html_safe, "#", index: index + 2, active: 1, index_name: "#{step_letters[index]}.", cant_access_future: false

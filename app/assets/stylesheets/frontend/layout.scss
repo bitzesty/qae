@@ -345,8 +345,9 @@ header.page-header aside .inner {
   margin-top: 2em;
 }
 
-// Progress steps based on `2. Progress bar`
-// https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators
+// Progress steps based on `3. Summary menu`
+// https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators#summary-menu
+// Included a dropdown
 .steps-progress-bar {
   position: absolute;
   width: 240px;
@@ -438,6 +439,68 @@ header.page-header aside .inner {
       margin-top: $gutter-one-sixth;
       margin-bottom: $gutter-one-sixth;
       border-top: 1px solid $border-colour;
+    }
+  }
+
+  .dropdown-toggle {
+    display: block;
+
+    &.dropdown-active {
+      color: $black;
+    }
+  }
+
+  .caret {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-right: 7px;
+    vertical-align: middle;
+    border-top: 7px solid;
+    border-right: 6px solid transparent;
+    border-left: 6px solid transparent;
+  }
+
+  .dropdown-menu {
+    display: none;
+    margin-top: 10px;
+
+    a {
+      padding-left: 20px;
+    }
+
+    .js-step-link > span {
+      margin-left: 20px;
+    }
+  }
+
+  .open {
+    .caret {
+      border-top: none;
+      border-bottom: 7px solid;
+    }
+
+    .dropdown-menu {
+      display: block;
+    }
+  }
+
+  .no-js & {
+    .dropdown-toggle {
+      display: none;
+      margin-top: -10px;
+    }
+
+    .dropdown-menu {
+      display: block;
+
+      a {
+        padding-left: 0;
+      }
+
+      .js-step-link > span {
+        margin-left: 0;
+      }
     }
   }
 

@@ -523,4 +523,9 @@ jQuery ->
     if !$(e.target).closest('.dropdown').length
       $(".dropdown.dropdown-open").removeClass("dropdown-open")
 
+  # Dropdowns for sidebar
+  $(document).on "click", ".steps-progress-bar .dropdown-toggle", (e) ->
+    e.preventDefault()
+    $(this).closest("span").toggleClass("open")
+
   OptionsWithPreselectedConditionsQuestion.init();

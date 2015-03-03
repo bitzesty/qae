@@ -10,5 +10,12 @@
           span.step-number
             ' Application Info
 
-    - @form.steps.each_with_index do |step, index|
-      = step_link_to step.short_title.html_safe, result_form_award_eligibility_url(form_id: @form_answer.id, anchor: step.short_title.html_safe.parameterize), index: index + 3, active: 2, index_name: "#{step_letters[index]}.", cant_access_future: false
+    li.js-step-condition
+      span
+        = link_to "#", class: "dropdown-toggle" do
+          span.step-number
+            b.caret
+            ' Form
+        ul.dropdown-menu
+          - @form.steps.each_with_index do |step, index|
+            = step_link_to step.short_title.html_safe, result_form_award_eligibility_url(form_id: @form_answer.id, anchor: step.short_title.html_safe.parameterize), index: index + 3, active: 2, index_name: "#{step_letters[index]}.", cant_access_future: false
