@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150302095528) do
+ActiveRecord::Schema.define(version: 20150303123415) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,16 +48,6 @@ ActiveRecord::Schema.define(version: 20150302095528) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
-  create_table "assessment_roles", force: :cascade do |t|
-    t.integer  "assessor_id", null: false
-    t.string   "category",    null: false
-    t.string   "role",        null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "assessment_roles", ["assessor_id", "category", "role"], name: "assessment_roles_multiassignment_unique_index", unique: true, using: :btree
-
   create_table "assessors", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -76,6 +66,10 @@ ActiveRecord::Schema.define(version: 20150302095528) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "trade_role"
+    t.string   "innovation_role"
+    t.string   "development_role"
+    t.string   "promotion_role"
   end
 
   add_index "assessors", ["confirmation_token"], name: "index_assessors_on_confirmation_token", unique: true, using: :btree
