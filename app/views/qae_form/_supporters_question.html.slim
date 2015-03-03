@@ -1,4 +1,4 @@
-ul.list-add
+ul.list-add data-need-to-clear-example=true data-add-limit=question.limit
   input name="form[#{question.key}][array]" value="true" type="hidden"
 
   - question.entities.each_with_index do |supporter, index|
@@ -8,4 +8,4 @@ ul.list-add
     = render 'qae_form/supporter_fields', question: question, supporter: {}, index: 0
 
 a.button.button-add.js-button-add href="#" data-add-example="add-supporter"
-  | + Add another supporter
+  | + Add a supporter

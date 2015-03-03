@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20150303123415) do
   add_index "assessors", ["reset_password_token"], name: "index_assessors_on_reset_password_token", unique: true, using: :btree
 
   create_table "audit_certificates", force: :cascade do |t|
-    t.integer  "form_answer_id", null: false
+    t.integer  "form_answer_id"
     t.string   "attachment"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
