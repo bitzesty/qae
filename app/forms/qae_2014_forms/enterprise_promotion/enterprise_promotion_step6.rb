@@ -3,7 +3,7 @@ class QAE2014Forms
   class << self
     def promotion_step6
       @promotion_step6 ||= proc do
-        header :nominee, "Your full name" do
+        header :user_info_header, "Your full name" do
           ref "F 1"
         end
 
@@ -36,7 +36,7 @@ class QAE2014Forms
           ])
         end
 
-        address :personal_address, "Personal address" do
+        address :personal_address, "Your personal address" do
           required
           ref "F 1.1"
           sub_fields([
@@ -54,7 +54,7 @@ class QAE2014Forms
           required
         end
 
-        header :nominee, "Confirmation of contact" do
+        header :confirmation_of_contact_header, "Confirmation of contact" do
           ref "F 2"
         end
 
@@ -66,7 +66,7 @@ class QAE2014Forms
           text "I am happy to be contacted by the Department of Business, Innovation and Skills."
         end
 
-        header :nominee, "Confirmation of entry" do
+        header :confirmation_of_entry_header, "Confirmation of entry" do
           ref "F 3"
         end
 
@@ -81,11 +81,15 @@ class QAE2014Forms
 
         submit "Submit application" do
           notice %(
-            <p>If you have answered all the questions, you can submit your application now. You will be able to edit it any time before 23:59 on the last working day of September.</p>
+            <p>If you have answered all the questions, you can submit your application now.</p>
+            <p>
+              You can still edit your submitted nomination at any time
+              before 23:59 on the last working day of September.
+              </p>
             <p>
               If you are not ready to submit yet, you can save your application and come back later.
             </p>
-                    )
+          )
           style "large"
         end
       end

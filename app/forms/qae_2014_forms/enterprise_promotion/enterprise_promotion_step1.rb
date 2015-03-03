@@ -2,7 +2,7 @@ class QAE2014Forms
   class << self
     def promotion_step1
       @promotion_step1 ||= proc do
-        header :nominee, "Nominee" do
+        header :nominee_header, "Nominee" do
           ref "A 1"
         end
 
@@ -20,6 +20,7 @@ class QAE2014Forms
         end
 
         text :nominee_title_other, "" do
+          required
           classes "sub-question"
           context %(
             <p class='question_label_with_5px_margins'>Please specify</p>
