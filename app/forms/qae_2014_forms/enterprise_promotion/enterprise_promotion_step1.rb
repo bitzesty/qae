@@ -31,9 +31,9 @@ class QAE2014Forms
         user_info :nominee_info, "" do
           required
           sub_fields([
-            {first_name: "First name"},
-            {last_name: "Surname"},
-            {former_name: "Former name, or any other name known by (e.g. maiden name)"}
+            { first_name: "First name" },
+            { last_name: "Surname" },
+            { former_name: "Former name, or any other name known by (e.g. maiden name)" }
           ])
         end
 
@@ -103,13 +103,13 @@ class QAE2014Forms
           required
           ref "A 3"
           sub_fields([
-            {name: "Name"},
-            {building: "Building"},
-            {street: "Street"},
-            {city: "Town or city"},
-            {country: "Country"},
-            {postcode: "Postcode"},
-            {website_url: "Website URL"}
+            { name: "Name" },
+            { building: "Building" },
+            { street: "Street" ,
+            { city: "Town or city" },
+            { country: "Country" },
+            { postcode: "Postcode" },
+            { website_url: "Website URL" }
           ])
         end
 

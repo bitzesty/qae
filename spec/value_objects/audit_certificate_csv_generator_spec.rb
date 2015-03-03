@@ -28,7 +28,6 @@ describe AuditCertificateCsvGenerator do
     let(:data) { csv_generator.run }
 
     it "should return proper CSV data in accordance with form financial data" do
-      Rails.logger.info "data: #{data} class: #{data.class}"
       expect(data).not_to be_nil
 
       expected_data_entries = [

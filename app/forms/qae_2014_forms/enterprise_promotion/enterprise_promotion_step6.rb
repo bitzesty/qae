@@ -31,8 +31,8 @@ class QAE2014Forms
         user_info :user_info, "" do
           required
           sub_fields([
-            {first_name: "First name"},
-            {last_name: "Surname"}
+            { first_name: "First name" },
+            { last_name: "Surname" }
           ])
         end
 
@@ -40,13 +40,13 @@ class QAE2014Forms
           required
           ref "F 1.1"
           sub_fields([
-            {building: "Building"},
-            {street: "Street"},
-            {city: "Town or city"},
-            {country: "Country"},
-            {postcode: "Postcode"},
-            {phone: "Telephone number"},
-            {email: "Email address"}
+            { building: "Building" },
+            { street: "Street" },
+            { city: "Town or city" },
+            { country: "Country" },
+            { postcode: "Postcode" },
+            { phone: "Telephone number" },
+            { email: "Email address" }
           ])
         end
 

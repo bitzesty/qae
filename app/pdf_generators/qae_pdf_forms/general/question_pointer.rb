@@ -54,8 +54,6 @@ class QaePdfForms::General::QuestionPointer
   def question_block
     form_pdf.render_text(question.escaped_title, style: :bold)
 
-    Rails.logger.info "[QUESTION_BLOCK] #{question.ref} [key] #{key}, class: #{question.delegate_obj.class}, humanized_answer: #{humanized_answer} "
-
     unless FormPdf::JUST_NOTES.include?(question.delegate_obj.class.to_s)
       case question.delegate_obj
       when QAEFormBuilder::UploadQuestion
@@ -73,7 +71,7 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::ByYearsQuestion
         render_years_table
       when QAEFormBuilder::SupportersQuestion
-        # render_supporters
+        # TODO: NEED TO CONFIRM
       else
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, style: :italic)
@@ -103,9 +101,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def complex_question
-    Rails.logger.info "[COMPLEX_QUESTION] #{question.ref} [key] #{key}, class: #{question.delegate_obj.class}, humanized_answer: #{humanized_answer}"
-
-    form_pdf.render_text(question.escaped_title, style: :bold)
+   form_pdf.render_text(question.escaped_title, style: :bold)
 
     if sub_answers.length > 1
       sub_answers_by_type
@@ -116,8 +112,6 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def sub_answers_by_type
-    Rails.logger.info "[SUB_ANSWERS_BY_TYPE] #{question.ref} [key] #{key}, class: #{question.delegate_obj.class}, humanized_answer: #{humanized_answer} "
-
     case key.to_s
     when *FormPdf::TABLE_WITH_COMMENT_QUESTION
       render_table_with_optional_extra
