@@ -224,7 +224,7 @@ window.FormValidation =
             @appendMessage(q_parent, "Date should be between #{expDateStart} and #{expDateEnd}.")
             @addErrorClass(question)
 
-  validateDateStartEnd: () ->
+  validateDateStartEnd: (question) ->
     question.find(".validate-date-start-end").each () ->
       # Whether we're checking just year or month as well
       dateInputCount = $(this).find(".validate-date-start label").size()
