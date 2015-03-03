@@ -38,9 +38,19 @@ article .current-question li {
   width: auto;
 }
 
+// Error
 .previous-answer-invalid td {
   padding-top: 1em;
+  padding-bottom: 0.9em;
+  padding-left: 25px;
+  background: image-url("icon-important-sm-red.png") no-repeat scroll left center;
   color: $error-colour;
+
+  @include device-pixel-ratio() {
+    background-image: image-url("icon-important-sm-red-2x.png");
+    background-size: 16px 16px;
+  }
+
 }
 
 .eligibility-failed {
