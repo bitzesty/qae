@@ -52,6 +52,10 @@ class Admin::AssessorsController < Admin::UsersController
              :password,
              :password_confirmation,
              :first_name,
-             :last_name)
+             :last_name,
+             :trade_role,
+             :innovation_role,
+             :development_role,
+             :promotion_role)
   end
 end

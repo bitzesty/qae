@@ -7,7 +7,38 @@
 
   .row
     .col-sm-2
-      label Waits for wireframes - roles multi assignment instead of one single role
+      = f.input :trade_role,
+                wrapper_html: { class: "form-group" },
+                input_html: { class: "form-control"},
+                as: :select,
+                collection: Assessor.roles,
+                include_blank: false
+
+  .row
+    .col-sm-2
+      = f.input :innovation_role,
+                wrapper_html: { class: "form-group" },
+                input_html: { class: "form-control"},
+                as: :select,
+                collection: Assessor.roles,
+                include_blank: false
+
+  .row
+    .col-sm-2
+      = f.input :development_role,
+                wrapper_html: { class: "form-group" },
+                input_html: { class: "form-control"},
+                as: :select,
+                collection: Assessor.roles,
+                include_blank: false
+  .row
+    .col-sm-2
+      = f.input :promotion_role,
+                wrapper_html: { class: "form-group" },
+                input_html: { class: "form-control"},
+                as: :select,
+                collection: Assessor.roles,
+                include_blank: false
 
   .row
     .col-sm-4
