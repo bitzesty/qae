@@ -23,6 +23,26 @@
       br
 
       .form-group
+        label.form-label SIC Code
+        .form-value
+          p
+            - if @form_answer.sic_code.present?
+              = @form_answer.sic_code
+            - else
+              ' -
+        .input.form-group
+          select.form-control
+            option Select SIC Code
+        .clear
+
+        = link_to "#", class: "form-edit-link pull-right"
+          span.glyphicon.glyphicon-pencil
+          ' Edit
+        .clear
+
+      br
+
+      .form-group
         label.form-label User accounts
         ul.list-unstyled.list-actions
           li
