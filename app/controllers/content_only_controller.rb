@@ -9,4 +9,24 @@ class ContentOnlyController < ApplicationController
     load_eligibilities
     @user_award_forms = current_user.account.form_answers.order("award_type")
   end
+
+  def award_info_development
+    @form_answer = current_account.form_answers.find(params[:form_id])
+    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+  end
+
+  def award_info_innovation
+    @form_answer = current_account.form_answers.find(params[:form_id])
+    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+  end
+
+  def award_info_trade
+    @form_answer = current_account.form_answers.find(params[:form_id])
+    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+  end
+
+  def award_info_promotion
+    @form_answer = current_account.form_answers.find(params[:form_id])
+    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+  end
 end
