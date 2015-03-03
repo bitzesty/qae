@@ -110,7 +110,7 @@ class QAE2014Forms
           )
         end
 
-        supporters :supporters, "Letters of Support" do
+        supporters :supporters, "Support Requests" do
           ref "D 1"
           limit 10
         end
@@ -169,6 +169,11 @@ class QAE2014Forms
               </p>
             </div>
           )
+        end
+
+        supporters :supporter_letters_list, "" do
+          limit 4
+          list_type :manuall_upload
         end
       end
     end
