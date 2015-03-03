@@ -529,3 +529,4 @@ jQuery ->
     $(this).closest("span").toggleClass("open")
 
   OptionsWithPreselectedConditionsQuestion.init();
+  ShowHideNoteQuestion.init();
