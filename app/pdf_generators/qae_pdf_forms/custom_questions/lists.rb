@@ -63,14 +63,11 @@ module QaePdfForms::CustomQuestions::Lists
 
   def position_details_query_conditions(prepared_item)
     if prepared_item["name"].present?
-      list_entry = [
+      [
         prepared_item["name"],
         "#{prepared_item['start_month']}/#{prepared_item['start_year']}",
         "#{prepared_item['end_month']}/#{prepared_item['end_year']}",
-        prepared_item["ongoing"].to_s == "1" ? "yes" : "no"
-      ]
-
-      list_entry += [
+        prepared_item["ongoing"].to_s == "1" ? "yes" : "no",
         prepared_item["details"].present? ? prepared_item["details"] : FormPdf::UNDEFINED_TITLE
       ]
     end
