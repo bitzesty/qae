@@ -38,6 +38,8 @@ Rails.application.routes.draw do
   get '/apply_sustainable_development_award'            => "content_only#apply_sustainable_development_award",            as: 'apply_sustainable_development_award'
   get '/sustainable_development_award_eligible_failure' => "content_only#sustainable_development_award_eligible_failure", as: 'development_award_eligible_failure'
 
+  get '/apply_enterprise_promotion_award'               => "content_only#apply_enterprise_promotion_award",               as: 'apply_enterprise_promotion_award'
+
   root to: 'content_only#home'
 
   resource :account, only: :show do
