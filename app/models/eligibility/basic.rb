@@ -53,8 +53,10 @@ class Eligibility::Basic < Eligibility
   private
 
   def set_passed
-    if current_step == questions.last && eligible?
+    if (current_step == questions.last) && eligible?
       update_column(:passed, true)
+    else
+      update_column(:passed, false)
     end
   end
 end
