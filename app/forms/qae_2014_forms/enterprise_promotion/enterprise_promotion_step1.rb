@@ -105,7 +105,7 @@ class QAE2014Forms
           sub_fields([
             { name: "Name" },
             { building: "Building" },
-            { street: "Street" ,
+            { street: "Street" },
             { city: "Town or city" },
             { country: "Country" },
             { postcode: "Postcode" },
