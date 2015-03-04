@@ -1,10 +1,12 @@
 p
   ' Dear,
+  / TODO @supporter.full_name
   = @user.full_name
 p
   ' You’ve been chosen by
   => @user.full_name
   ' to write a letter of support in aid of the nomination of
+  / TODO @nominee.full_name
   => @user.full_name
   ' for a Queen’s Award for Enterprise Promotion.
 
@@ -22,6 +24,7 @@ p
 
 p
   ' To see guidance information, and support the nomination of
+  / TODO @nominee.full_name
   => @user.full_name
   ' for this award, please
   = link_to "go to the support letter form page.", support_letter_url(access_key: @supporter.access_key), target: "_blank"
