@@ -39,28 +39,23 @@ class QAE2014Forms
 
         address :nominee_personal_address, "Personal address" do
           required
-          ref "A 1.1"
         end
 
         text :nominee_phone, "Telephone number" do
           required
-          ref "A 1.2"
           style "small"
         end
 
         text :nominee_email, "Email address" do
           required
-          ref "A 1.3"
         end
 
         date :nominee_date_of_birth, "Date of birth" do
           required
-          ref "A 1.4"
         end
 
         options :nominee_nationality, "Nationality" do
           required
-          ref "A 1.5"
           option "british", "British"
           option "other", "Other"
         end
@@ -87,7 +82,6 @@ class QAE2014Forms
 
         options :nominated_for_award, "Is the nominee currently being nominated for another award/honor?" do
           required
-          ref "A 2.1"
           yes_no
         end
 
@@ -115,7 +109,6 @@ class QAE2014Forms
 
         text :nominee_position, "Nominee's position at the organisation" do
           required
-          ref "A 3.1"
         end
       end
     end
