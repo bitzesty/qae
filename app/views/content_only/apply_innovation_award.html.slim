@@ -5,24 +5,27 @@ header.page-header.group
 .article-related-positioning-container
   .article-container
     article.group role="article"
-      .inner
-        p Before you begin the application, you need to take a 10-minute eligibility questionnaire.
+      = form_tag new_innovation_form_path, method: :get do
 
-        p By completing this now you can be sure that your organisation is eligible for an award.
+        .inner
+          p Before you begin the application, you need to take a 10-minute eligibility questionnaire.
 
-        p You will then be given instructions in more detail, and be able to start your application in full.
+          p By completing this now you can be sure that your organisation is eligible for an award.
 
-        br
+          p You will then be given instructions in more detail, and be able to start your application in full.
 
-        fieldset.question-block
-          h2 Please choose a nickname for this application:
-          p This is for your personal use.
-          .question-group
-            label
-              span.visuallyhidden
-                ' Name your application
-            input.big.medium autocomplete="off" type="text"
-            .clear
+          br
 
-        p#get-started.get-started.group
-          = link_to "Save and start eligibility", new_innovation_form_path, class: "button", rel: "external"
+          fieldset.question-block
+            h2 Please choose a nickname for this application:
+            p This is for your personal use.
+            .question-group
+              label
+                span.visuallyhidden
+                  ' Name your application
+              = text_field_tag :nickname, '', autocomplete: "off", type: "text", class: "big medium"
+
+              .clear
+
+          p#get-started.get-started.group
+            = submit_tag "Save and start eligibility", class: "button", rel: "external"
