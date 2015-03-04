@@ -729,11 +729,13 @@ input[type="file"] {
   &[disabled]:hover,
   &[disabled="disabled"],
   &[disabled="disabled"]:hover {
-    background: $white;
+    background: $black;
+    color: $white;
   }
 
   &:hover {
-    background: $panel-colour;
+    background: $white;
+    color: $black;
   }
 
   &.disabled,

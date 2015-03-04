@@ -83,3 +83,30 @@
 .question-block .span-2-4 {
   padding-right: 0;
 }
+
+// Read-only view
+.visible-read-only {
+  display: none;
+}
+
+.read-only {
+  input[disabled="disabled"] {
+    padding: 0;
+    border: none;
+    background: transparent;
+    color: $black;
+    opacity: 1;
+  }
+
+  .application-notice p {
+    margin: 0.75em 0;
+  }
+
+  .button {
+    display: none;
+  }
+
+  .visible-read-only {
+    display: block;
+  }
+}
