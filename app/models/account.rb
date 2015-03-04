@@ -12,15 +12,8 @@ class Account < ActiveRecord::Base
   belongs_to :owner, class_name: 'User', autosave: false, inverse_of: :owned_account
   validates :owner, presence: true
 
-  [:basic_eligibilities,
-   :trade_eligibilities,
-   :innovation_eligibilities,
-   :development_eligibilities,
-   :promotion_eligibilities
-  ].each do |relation|
-    define_method("#{relation.to_s.singularize}") do
-      public_send(relation).first
-    end
+  def basic_eligibility
+    basic_eligibilities.first
   end
 
   def collaborators_without(user)

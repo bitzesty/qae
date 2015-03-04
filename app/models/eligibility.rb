@@ -65,7 +65,7 @@ class Eligibility < ActiveRecord::Base
   end
 
   def eligible?
-    !skipped? && questions.all? do |question|
+    questions.all? do |question|
       answer = answers && answers[question.to_s]
       answer_valid?(question, answer)
     end
@@ -104,8 +104,9 @@ class Eligibility < ActiveRecord::Base
     questions_storage.keys
   end
 
+  # legacy
   def skipped?
-    public_send(self.class.questions.first) == 'skip'
+    false
   end
 
   def answer_valid?(question, answer)

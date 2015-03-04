@@ -13,7 +13,6 @@ class ContentOnlyController < ApplicationController
   }
 
   def dashboard
-    load_eligibilities
     @user_award_forms = current_user.account.form_answers.order("award_type")
   end
 
