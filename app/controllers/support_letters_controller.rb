@@ -15,7 +15,11 @@ class SupportLettersController < ApplicationController
     @supporter =  Supporter.find_by_access_key(params[:access_key])
 
     if @supporter
-      @support_letter = @supporter.support_letter || @supporter.build_support_letter
+      @support_letter = @supporter.support_letter || @supporter.build_support_letter(
+        first_name: @supporter.first_name,
+        last_name: @supporter.last_name,
+        relationship_to_nominee: @supporter.relationship_to_nominee
+      )
     else
       head 404
     end

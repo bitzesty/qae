@@ -12,6 +12,16 @@ class Supporter < ActiveRecord::Base
     validates :email, :form_answer, presence: true
   end
 
+  begin :validations
+    validates :email, email: true
+
+    validates :first_name,
+              :last_name,
+              :user,
+              :form_answer,
+              :relationship_to_nominee, presence: true
+  end
+
   before_create :generate_access_key
   after_create :notify!
 

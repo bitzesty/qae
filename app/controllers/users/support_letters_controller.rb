@@ -17,8 +17,6 @@ class Users::SupportLettersController < Users::BaseController
   end
 
   def create
-    Rails.logger.info "[support_letter] #{support_letter.inspect}"
-
     if support_letter.save
       attachment.support_letter = support_letter
       attachment.save!

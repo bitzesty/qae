@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304144532) do
+ActiveRecord::Schema.define(version: 20150304145423) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20150304144532) do
   add_index "assessors", ["reset_password_token"], name: "index_assessors_on_reset_password_token", unique: true, using: :btree
 
   create_table "audit_certificates", force: :cascade do |t|
-    t.integer  "form_answer_id"
+    t.integer  "form_answer_id", null: false
     t.string   "attachment"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -201,6 +201,9 @@ ActiveRecord::Schema.define(version: 20150304144532) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "relationship_to_nominee"
   end
 
   add_index "supporters", ["form_answer_id"], name: "index_supporters_on_form_answer_id", using: :btree
