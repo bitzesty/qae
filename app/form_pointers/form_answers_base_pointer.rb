@@ -4,7 +4,7 @@ module FormAnswersBasePointer
   def fetch_answers
     ActiveSupport::HashWithIndifferentAccess.new(form_answer.document).select do |key, _value|
       !HIDDEN_QUESTIONS.include?(key.to_s)
-    end
+    end.merge(ActiveSupport::HashWithIndifferentAccess.new(form_answer.financial_data))
   end
 
   def fetch_filled_answers

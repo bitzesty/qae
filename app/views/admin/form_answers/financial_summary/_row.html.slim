@@ -4,4 +4,4 @@ tr
   - row.values.flatten.each do |field|
     td
       = field[:value]
-      = text_field_tag "form[#{field[:name]}]", field[:value], class: 'form-control'
+      = text_field_tag "financial_data[#{field[:name]}]", field[:value], class: 'form-control'

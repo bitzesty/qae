@@ -20,10 +20,11 @@
         th % Sales exported
         - financial_pointer.period_length.times do |i|
           td = financial_pointer.sales_exported(i)
-      tr
+      tr.sector-average-growth
         th % Sector average growth
         - financial_pointer.period_length.times do |i|
           td = average_growth_for(@form_answer, i + 1)
+  / label.avg-growth-legend= @form_answer.average_growth_legend([1,2,3])
 
 .form-group.table-overflow-container
   table.table.table-striped
