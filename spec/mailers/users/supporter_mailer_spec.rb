@@ -10,6 +10,6 @@ describe Users::SupporterMailer do
     expect(email.to).to eq([supporter.email])
 
     url = "http://example.com/support_letter?access_key=#{supporter.access_key}"
-    expect(email.body.encoded).to have_link("here", href: url)
+    expect(email.body.encoded).to have_link("go to the support letter form page.", href: url)
   end
 end
