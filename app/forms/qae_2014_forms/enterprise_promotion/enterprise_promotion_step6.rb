@@ -80,13 +80,14 @@ class QAE2014Forms
 
         submit "Submit application" do
           notice %(
-            <p>If you have answered all the questions, you can submit your application now.</p>
             <p>
-              You can still edit your submitted nomination at any time
-              before 23:59 on the last working day of September.
-              </p>
+              If you've answered all the questions you can now submit your nomination.
+            </p>
             <p>
-              If you are not ready to submit yet, you can save your application and come back later.
+              You can still edit your submitted nomination at any time before 23:59 on the last working day of September.
+            </p>
+            <p>
+              If you aren't ready to submit yet then you can save your nomination and come back later.
             </p>
           )
           style "large"

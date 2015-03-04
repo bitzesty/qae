@@ -33,7 +33,7 @@ class QAE2014Forms
           sub_fields([
             { first_name: "First name" },
             { last_name: "Surname" },
-            { former_name: "Former name, or any other name known by (e.g. maiden name)" }
+            { former_name: "Former name, or any other name known by" }
           ])
         end
 
@@ -72,7 +72,7 @@ class QAE2014Forms
           yes_no
         end
 
-        award_holder :awards, "List of the Awards/Honours nominee currently hold" do
+        award_holder :awards, "List them below" do
           classes "sub-question"
           year :year, 2010..2014
           details_words_max 50
@@ -85,7 +85,7 @@ class QAE2014Forms
           yes_no
         end
 
-        award_holder :nomination_awards, "List of the Awards/Honours nominee is currently being nominated for" do
+        award_holder :nomination_awards, "List them below" do
           classes "sub-question"
           year :year, 2010..2014
           details_words_max 50
