@@ -54,7 +54,7 @@
       = render "previous_answers"
 
       - unless step
-      .inner.step.current
-        .previous-answers
-          .text-right
-            = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
+        .inner.step.current
+          .previous-answers
+            .text-right
+              = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
