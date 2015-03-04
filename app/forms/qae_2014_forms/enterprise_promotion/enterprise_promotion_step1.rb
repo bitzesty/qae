@@ -70,6 +70,7 @@ class QAE2014Forms
           required
           ref "A 2"
           yes_no
+          option "unknown", "I don't know"
         end
 
         award_holder :awards, "List them below" do
@@ -83,6 +84,7 @@ class QAE2014Forms
         options :nominated_for_award, "Is the nominee currently being nominated for another award/honor?" do
           required
           yes_no
+          option "unknown", "I don't know"
         end
 
         award_holder :nomination_awards, "List them below" do
