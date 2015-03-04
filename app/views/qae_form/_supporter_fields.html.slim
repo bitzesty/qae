@@ -1,4 +1,4 @@
-li.js-add-example.js-add-default data-add-example="add-supporter"
+li.js-add-example.js-add-default class=(supporter["support_letter_id"].present? || supporter["supporter_id"].present? ? "read-only" : "") data-add-example="add-supporter"
   = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
   input.js-support-entry-id type="hidden" name="form[#{question.key}][#{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]" value=(question.list_type == :manuall_upload ? supporter["support_letter_id"] : supporter["supporter_id"])
   .js-system-tag data-new-hidden-input-name="form[#{question.key}][#{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]"
@@ -8,21 +8,24 @@ li.js-add-example.js-add-default data-add-example="add-supporter"
         ul.errors-container
         ' First Name
         input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter["first_name"]
+        span.visible-read-only = supporter["first_name"]
   span.row
     span.span-6
       label
         ul.errors-container
         ' Surname
         input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter["last_name"]
+        span.visible-read-only = supporter["last_name"]
   span.row
     span.span-6
       label
         ul.errors-container
         ' Relationship to Nominee
         input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter["relationship_to_nominee"]
+        span.visible-read-only = supporter["relationship_to_nominee"]
   span.row
     - if question.list_type == :manuall_upload
-      span.span-6
+      span.span-12
         label
           ul.errors-container
           ' Letter of Support
@@ -37,6 +40,7 @@ li.js-add-example.js-add-default data-add-example="add-supporter"
           ul.errors-container
           ' Email
           input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
+          span.visible-read-only = supporter['email']
   span.row
     span.span-12
       a.button.button-alt.js-save-collection class=(supporter["support_letter_id"].present? || supporter["supporter_id"].present? ? "visuallyhidden" : "") data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
@@ -45,7 +49,7 @@ li.js-add-example.js-add-default data-add-example="add-supporter"
         - else
           | Send support request
 
-  .visible-read-only class=(supporter["support_letter_id"].present? || supporter["supporter_id"].present? ? "display_block" : "")
+  .visible-read-only
     .application-notice.help-notice
       p
         - if question.list_type == :manuall_upload

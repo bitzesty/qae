@@ -99,6 +99,7 @@ window.SupportLetters =
             success: (response) ->
               parent.find(".js-support-entry-id").prop('value', response)
               parent.find(".errors-container").html("")
+              parent.addClass("read-only")
               SupportLetters.disable_item_fields_and_controls(parent)
               SupportLetters.autosave()
 
