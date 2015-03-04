@@ -1,12 +1,35 @@
 p
-  ' Hello,
+  ' Dear,
+  = @user.full_name
 p
+  ' You’ve been chosen by
   => @user.full_name
-  | asked you to fill support letter for his Queen's Awards for Enterprise application
+  ' to write a letter of support in aid of the nomination of
+  => @user.full_name
+  ' for a Queen’s Award for Enterprise Promotion.
 
 p
-  ' You can fill your support letter
-  = link_to 'here', support_letter_url(access_key: @supporter.access_key)
+  ' The Queen’s Award for Enterprise Promotion is a nomination-only award recognising individuals who have played an outstanding role in promoting the growth of enterprise and/or entrepreneurial skills and attitudes in others.
 
 p
-  | Best Regards, Administration Team
+  ' If you feel like you are not in a position to write a letter of support, please email the nominator as soon as possible at
+  =>  @user.email
+  ' so they can contact alternative supporters. You can also email them with any questions regarding the nomination.
+
+p
+  strong
+    ' As this is an honorary award, all information relating to it should remain confidential - even from the nominee in question.
+
+p
+  ' To see guidance information, and support the nomination of
+  => @user.full_name
+  ' for this award, please
+  = link_to "go to the support letter form page.", support_letter_url(access_key: @supporter.access_key), target: "_blank"
+
+p
+  ' Thank you,
+  br
+  ' The Queen’s Awards Office
+
+p
+  = link_to "More information on the The Queen’s Award for Enterprise Promotion.", "https://www.gov.uk/queens-awards-for-enterprise", target: "_blank"
