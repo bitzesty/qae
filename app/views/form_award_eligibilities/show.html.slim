@@ -53,7 +53,7 @@
 
       = render "previous_answers"
 
-      - unless step
+      - if !step || step.to_s == "wicked_finish"
         .inner.step.current
           .previous-answers
             .text-right
