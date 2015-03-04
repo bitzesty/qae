@@ -1,13 +1,94 @@
-header.page-header.group
-  div
-    h1
-      ' Support letter for
-      = @supporter.form_answer.user.decorate.general_info
+.page-support-letter
+  header.page-header.group
+    div
+      h1
+        ' Support letter for:
+        = @supporter.form_answer.user.decorate.full_name
 
-.article-container
-  article.group role="article"
-    .inner
-      = simple_form_for @support_letter, url: support_letter_path(access_key: @supporter.access_key), html: { class: "qae-form" }, method: :put do |f|
-        = f.input :body, label: false, input_html: { rows: 10 }
+  .article-container
+    article.group role="article"
+      .inner
+        = simple_form_for @support_letter, url: support_letter_path(access_key: @supporter.access_key), html: { class: "qae-form" }, method: :put do |f|
 
-        = f.submit "Save", class: "button"
+          .sub-question
+            h2 Your Personal Details
+
+          fieldset
+            = f.input :first_name, input_html: { class: "medium" }, wrapper_html: { class: "question-group" }
+
+            = f.input :last_name, input_html: { class: "medium" }, wrapper_html: { class: "question-group" }, label: "Surname"
+
+          / TODO placeholder
+          fieldset
+            .sub-question
+              h2 Organisation Name (if applicable)
+            .question-group
+              label.control-label.visuallyhidden
+                ' Organisation Name (if applicable)
+              input.medium type="text"
+
+
+          fieldset
+            .sub-question
+              h2 Address
+            .question-group
+              label.control-label
+                ' Building and street
+                input.large type="text"
+              input.large type="text"
+
+            .question-group
+              label.control-label
+                ' Town or city
+                input.medium type="text"
+
+            .question-group
+              label.control-label
+                ' Town or city
+                select
+                  option selected="selected" value="GB" United Kingdom
+
+            .question-group
+              label.control-label
+                ' Postcode
+                input.small type="text"
+
+          fieldset
+            .sub-question
+              h2 Phone number
+            .question-group
+              label.control-label.visuallyhidden
+                ' Phone number
+              input.small type="text"
+
+          fieldset
+            .sub-question
+              h2 Relationship to nominee
+            .question-group
+              label.control-label.visuallyhidden
+                ' Relationship to nominee
+              input.medium type="text"
+
+          h2 What should be included in a letter of support?
+
+          p Letters of support should be about 500 words in length, making it clear why a nomination is being supported and NOT simply saying “I wish to support the nomination of …”.
+
+          p The Queen’s Award for Enterprise Promotion recognises those who have gone above and beyond their duties promoting enterprise and entrepreneurial skills, so your letter should focus mainly on the nominee’s achievements outside of the requirements of their paid job, using your first hand knowledge of these where possible.
+
+          p Ideally, we are looking for evidence that demonstrates the clear impact of the nominee’s activities in enterprise promotion:
+
+          ul
+            li Qualitative and quantitative evidence of the impact resulting from the nominee’s services to a particular field, area, group, community, location or society as a whole. Financials are not expected, but some quantifiable data is e.g. a number of schools visited, length of time involved or number of enterprises helped to set up and percentage of those still trading.
+
+            li A personal perspective from those who have benefited from, or had direct experience of, the success of the nominee’s work, including the impact it has had on them or their business.
+
+          p If you are writing on behalf of an organisation, you should be able to provide an assessment of the extent to which the nominee’s activities set them apart from their peers.
+
+          br
+
+          .sub-question
+            h2 Support letter
+
+          = f.input :body, label: false, input_html: { rows: 10 }, wrapper_html: { class: "question-group" }
+
+          = f.submit "Save", class: "button large"

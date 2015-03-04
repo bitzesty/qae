@@ -118,3 +118,8 @@ label > .visible-read-only {
     font-weight: bold;
   }
 }
+
+.page-support-letter .page-header div h1 {
+  @include heading-27;
+  font-weight: bold;
+}
