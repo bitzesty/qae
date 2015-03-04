@@ -5,24 +5,5 @@ header.page-header.group
 .article-related-positioning-container
   .article-container
     article.group role="article"
-      .inner
-        p Before you begin your nomination, you need to take a 10-minute eligibility questionnaire.
-
-        p By completing this now you can be sure that your nominee is eligible for an award.
-
-        p You will then be given instructions in more detail, and be able to start the nomination in full.
-
-        br
-
-        fieldset.question-block
-          h2 Please choose a nickname for this nomination:
-          p This is for your personal use.
-          .question-group
-            label
-              span.visuallyhidden
-                ' Name your nomination
-            input.big.medium autocomplete="off" type="text"
-            .clear
-
-        p#get-started.get-started.group
-          = link_to "Save and start eligibility", new_enterprise_promotion_form_path, class: "button", rel: "external"
+      = form_tag new_enterprise_promotion_form_path, method: :get do
+        = render "award_nickname"

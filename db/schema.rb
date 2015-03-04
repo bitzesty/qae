@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303123415) do
+ActiveRecord::Schema.define(version: 20150304155948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,7 @@ ActiveRecord::Schema.define(version: 20150303123415) do
     t.string   "user_full_name"
     t.string   "award_type_full_name"
     t.string   "sic_code"
+    t.string   "nickname"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
