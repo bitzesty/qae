@@ -95,9 +95,6 @@ ActiveRecord::Schema.define(version: 20150303123415) do
     t.integer  "authorable_id",    null: false
   end
 
-  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
-  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
-
   create_table "eligibilities", force: :cascade do |t|
     t.integer  "account_id"
     t.hstore   "answers"
@@ -176,7 +173,6 @@ ActiveRecord::Schema.define(version: 20150303123415) do
     t.datetime "updated_at"
   end
 
-  add_index "supporters", ["access_key"], name: "index_supporters_on_access_key", using: :btree
   add_index "supporters", ["form_answer_id"], name: "index_supporters_on_form_answer_id", using: :btree
 
   create_table "users", force: :cascade do |t|

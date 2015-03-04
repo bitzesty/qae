@@ -16,12 +16,18 @@
 
           h2 The application process
 
-          ol
-            li = link_to "Create an account", apply_for_queens_award_for_enterprise_path
-            li Complete the basic eligibility check
-            li Enter your account details
-            li Check your eligibility for the specific award(s) you want to apply for
-            li Complete and submit your application(s)
+          ol.steps
+            li
+              p
+                = link_to "Create an account", apply_for_queens_award_for_enterprise_path
+            li
+              p Complete the basic eligibility check
+            li
+              p Enter your account details
+            li
+              p Check your eligibility for the specific award(s) you want to apply for
+            li
+              p Complete and submit your application(s)
 
           p You must submit your application(s) online.
 

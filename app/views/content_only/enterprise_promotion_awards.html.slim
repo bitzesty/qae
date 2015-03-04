@@ -33,18 +33,10 @@
 
         br
 
-        .get-started
-          - if user_signed_in?
-            = link_to "Check eligibility", dashboard_path, class: "button"
-          - else
-            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
-
-        - unless user_signed_in?
-          br
+        .application-notice.info-notice
           p
-            ' If you have already begun your application then
-            = link_to "log in to continue", new_user_session_path
-            ' .
+            | Sign up to &nbsp;
+            = link_to "check eligibility for the Enterprise Promotion award", apply_for_queens_award_for_enterprise_path
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
