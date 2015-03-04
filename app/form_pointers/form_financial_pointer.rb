@@ -41,7 +41,15 @@ class FormFinancialPointer
   end
 
   def period_length
-    data.first.values.flatten.size
+    @period_length ||= data.first.values.flatten.size
+  end
+
+  def growth_overseas_earnings(year)
+    "10%"
+  end
+
+  def sales_exported(year)
+    "30%"
   end
 
   def fetch_financial_questions
