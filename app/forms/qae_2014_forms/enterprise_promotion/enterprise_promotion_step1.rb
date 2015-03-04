@@ -74,7 +74,7 @@ class QAE2014Forms
 
         award_holder :awards, "List them below" do
           classes "sub-question"
-          year :year, 2010..2014
+          award_years_present true
           details_words_max 50
 
           conditional :award_holder, :yes
@@ -87,7 +87,6 @@ class QAE2014Forms
 
         award_holder :nomination_awards, "List them below" do
           classes "sub-question"
-          year :year, 2010..2014
           details_words_max 50
 
           conditional :nominated_for_award, :yes
