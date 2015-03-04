@@ -1,5 +1,5 @@
 class Admin::FormAnswersController < Admin::BaseController
-  before_filter :load_resource, only: [:withdraw, :review, :show]
+  before_filter :load_resource, only: [:withdraw, :review, :show, :update]
 
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
@@ -12,6 +12,25 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def show
     authorize @form_answer, :show?
+  end
+
+  def update
+    authorize @form_answer, :update?
+
+    @form_answer.update(update_params)
+    respond_to do |format|
+      format.json do
+        @form_answer = @form_answer.decorate
+        render json: {
+          form_answer: {
+            sic_codes: @form_answer.all_average_growths,
+            legend: @form_answer.average_growth_legend
+          }
+        }
+      end
+
+      format.html { redirect_to admin_form_answer_path(@form_answer) }
+    end
   end
 
   def withdraw
@@ -32,5 +51,9 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def load_resource
     @form_answer = FormAnswer.find(params[:id]).decorate
+  end
+
+  def update_params
+    params.require(:form_answer).permit(:sic_code)
   end
 end

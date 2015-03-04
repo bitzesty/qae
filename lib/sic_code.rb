@@ -46,4 +46,12 @@ class SICCode < ActiveYaml::Base
   def by_year(year)
     public_send("year#{year}")
   end
+
+  def name
+    "#{code} - #{description}"
+  end
+
+  def self.collection
+    SICCode.all.map { |sic| [sic.name, sic.code] }
+  end
 end

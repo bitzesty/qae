@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20150304155948) do
   add_index "assessors", ["reset_password_token"], name: "index_assessors_on_reset_password_token", unique: true, using: :btree
 
   create_table "audit_certificates", force: :cascade do |t|
-    t.integer  "form_answer_id"
+    t.integer  "form_answer_id", null: false
     t.string   "attachment"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -94,6 +94,9 @@ ActiveRecord::Schema.define(version: 20150304155948) do
     t.string   "authorable_type",  null: false
     t.integer  "authorable_id",    null: false
   end
+
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
 
   create_table "eligibilities", force: :cascade do |t|
     t.integer  "account_id"
@@ -207,6 +210,7 @@ ActiveRecord::Schema.define(version: 20150304155948) do
     t.string   "relationship_to_nominee"
   end
 
+  add_index "supporters", ["access_key"], name: "index_supporters_on_access_key", using: :btree
   add_index "supporters", ["form_answer_id"], name: "index_supporters_on_form_answer_id", using: :btree
   add_index "supporters", ["user_id"], name: "index_supporters_on_user_id", using: :btree
 

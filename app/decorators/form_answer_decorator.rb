@@ -67,4 +67,25 @@ class FormAnswerDecorator < ApplicationDecorator
       sic.by_year(year) if sic
     end
   end
+
+  def all_average_growths
+    res = {}
+    (1..6).each { |y| res[y] = average_growth_for(y) }
+    res
+  end
+
+  def sic_code_name
+    sic = object.sic_code
+    if sic.present?
+      SICCode.find_by_code(sic).name
+    end
+  end
+
+  def average_growth_legend(years = [1, 2, 3])
+    growths = years.map { |y| average_growth_for(y) }.uniq
+    growths.map do |g|
+      note = SICCode::NOTES[g]
+      "#{g} - #{note}" if note
+    end.compact.join("\n")
+  end
 end
