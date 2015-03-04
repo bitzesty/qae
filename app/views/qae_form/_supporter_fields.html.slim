@@ -1,54 +1,55 @@
-li.js-add-example.js-add-default data-add-example="add-supporter"
-  = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
-  input.js-support-entry-id type="hidden" name="form[#{question.key}][#{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]" value=(question.list_type == :manuall_upload ? supporter["support_letter_id"] : supporter["supporter_id"])
-  .js-system-tag data-new-hidden-input-name="form[#{question.key}][#{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]"
-  span.row
-    span.span-6
-      label
-        ul.errors-container
-        ' First Name
-        input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter["first_name"]
-  span.row
-    span.span-6
-      label
-        ul.errors-container
-        ' Surname
-        input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter["last_name"]
-  span.row
-    span.span-6
-      label
-        ul.errors-container
-        ' Relationship to Nominee
-        input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter["relationship_to_nominee"]
-  span.row
-    - if question.list_type == :manuall_upload
+- (1..(question.default ? question.default : 1)).each do |default_questions|
+  li.js-add-example.js-add-default data-add-example="add-supporter"
+    = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
+    input.js-support-entry-id type="hidden" name="form[#{question.key}][#{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]" value=(question.list_type == :manuall_upload ? supporter["support_letter_id"] : supporter["supporter_id"])
+    .js-system-tag data-new-hidden-input-name="form[#{question.key}][#{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]"
+    span.row
       span.span-6
         label
           ul.errors-container
-          ' Letter of Support
-          input class="js-trigger-autosave js-support-letter-attachment medium" name="form[#{question.key}][#{index}][letter_of_support]" type='file'
-          - if supporter['letter_of_support']
-            = render "support_letters/attachment", question: question,
-                                                   index: index,
-                                                   attachment_id: supporter['letter_of_support']
-    - else
+          ' First Name
+          input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter["first_name"]
+    span.row
       span.span-6
         label
           ul.errors-container
-          ' Email
-          input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
-  span.row
-    span.span-12
-      a.button.button-alt.js-save-collection class=(supporter["support_letter_id"].present? || supporter["supporter_id"].present? ? "visuallyhidden" : "") data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
-        - if question.list_type == :manuall_upload
-          | Submit letter of support
-        - else
-          | Send support request
+          ' Surname
+          input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter["last_name"]
+    span.row
+      span.span-6
+        label
+          ul.errors-container
+          ' Relationship to Nominee
+          input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter["relationship_to_nominee"]
+    span.row
+      - if question.list_type == :manuall_upload
+        span.span-6
+          label
+            ul.errors-container
+            ' Letter of Support
+            input class="js-trigger-autosave js-support-letter-attachment medium" name="form[#{question.key}][#{index}][letter_of_support]" type='file'
+            - if supporter['letter_of_support']
+              = render "support_letters/attachment", question: question,
+                                                     index: index,
+                                                     attachment_id: supporter['letter_of_support']
+      - else
+        span.span-6
+          label
+            ul.errors-container
+            ' Email
+            input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
+    span.row
+      span.span-12
+        a.button.button-alt.js-save-collection class=(supporter["support_letter_id"].present? || supporter["supporter_id"].present? ? "visuallyhidden" : "") data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
+          - if question.list_type == :manuall_upload
+            | Submit letter of support
+          - else
+            | Send support request
 
-  .visible-read-only class=(supporter["support_letter_id"].present? || supporter["supporter_id"].present? ? "display_block" : "")
-    .application-notice.help-notice
-      p
-        - if question.list_type == :manuall_upload
-          ' Letter of support uploaded
-        - else
-          ' Support request sent
+    .visible-read-only class=(supporter["support_letter_id"].present? || supporter["supporter_id"].present? ? "display_block" : "")
+      .application-notice.help-notice
+        p
+          - if question.list_type == :manuall_upload
+            ' Letter of support uploaded
+          - else
+            ' Support request sent
