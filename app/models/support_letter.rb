@@ -1,5 +1,20 @@
 class SupportLetter < ActiveRecord::Base
-  belongs_to :supporter
+  begin :associations
+    belongs_to :supporter
+    belongs_to :form_answer
+    belongs_to :user
 
-  validates :supporter, :body, presence: true
+    has_one :support_letter_attachment
+  end
+
+  begin :validations
+    validates :first_name,
+              :last_name,
+              :user,
+              :form_answer,
+              :relationship_to_nominee, presence: true
+    validates :attachment, presence: true, if: "self.manual?"
+  end
+
+  attr_accessor :attachment
 end

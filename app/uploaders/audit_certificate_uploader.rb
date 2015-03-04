@@ -1,5 +1,5 @@
 class AuditCertificateUploader < FileUploader
   def extension_white_list
-    %w(csv)
+    %w(csv jpg)
   end
 end
