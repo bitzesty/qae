@@ -65,7 +65,12 @@ class FormController < ApplicationController
 
   def edit_form
     if @form_answer.eligible?
-      queen_award_holder = current_account.basic_eligibility.current_holder? ? "yes" : "no"
+      queen_award_holder = if @form_answer.promotion?
+        @form_answer.eligibility.nominee_is_qae_ep_award_holder? ? "yes" : "no"
+      else
+        current_account.basic_eligibility.current_holder? ? "yes" : "no"
+      end
+
       @form_answer.document = @form_answer.document.merge(queen_award_holder: queen_award_holder)
       @form_answer.save!
       @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
