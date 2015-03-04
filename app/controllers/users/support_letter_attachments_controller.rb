@@ -40,7 +40,6 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
       support_letter_attachment.errors.
                                full_messages.
                                reject { |m| m == "Attachment This field cannot be blank" }.
-                               join(", ").
-                               gsub("Attachment", "")
+                               join(", ")
     end
 end

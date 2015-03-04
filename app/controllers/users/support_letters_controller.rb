@@ -25,7 +25,7 @@ class Users::SupportLettersController < Users::BaseController
       render json: support_letter,
              status: :created
     else
-      render json: humanized_errors,
+      render json: support_letter.errors.messages.to_json,
              status: :unprocessable_entity
     end
   end
@@ -39,11 +39,5 @@ class Users::SupportLettersController < Users::BaseController
         :relationship_to_nominee,
         :attachment
       )
-    end
-
-    def humanized_errors
-      support_letter.errors.
-                    full_messages.
-                    join(", ")
     end
 end

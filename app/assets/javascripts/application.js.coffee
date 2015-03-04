@@ -423,17 +423,17 @@ jQuery ->
 
         if can_add
           add_eg = add_eg.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size+1}]")
-          question.find(".list-add").append("<li>#{add_eg}</li>")
+          question.find(".list-add").append("<li class='js-list-item'>#{add_eg}</li>")
 
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)
-            clearFormElements(question.find(".list-add li:last"))
+            clearFormElements(question.find(".list-add li.js-list-item:last"))
 
           # If .js-add-example has file field (like in SupportLetters)
           # Then we also need to clean filename and init fileupload
           example_has_file_field = question.find(".list-add").attr("data-example-has-file-field")
           if (typeof(example_has_file_field) != typeof(undefined) && example_has_file_field != false)
-            SupportLetters.new_item_init(question.find(".list-add li:last"))
+            SupportLetters.new_item_init(question.find(".list-add li.js-list-item:last"))
 
           # charcount needs to be reinitialized
           if (textareas = question.find(".list-add > li:last .js-char-count")).length
