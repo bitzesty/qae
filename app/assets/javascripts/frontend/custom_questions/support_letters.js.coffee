@@ -17,7 +17,7 @@ window.SupportLetters =
       SupportLetters.clean_up_system_tags(parent)
 
       filename = data.result['original_filename']
-      file_title = $("<span class='support_letter_attachment_filename'>" + filename + "</span>")
+      file_title = $("<span class='support-letter-attachment-filename'>" + filename + "</span>")
       hidden_input = $("<input class='js-support-letter-attachment-id'>").prop('type', 'hidden').
                                                                           prop('name', $el.attr("name")).
                                                                           prop('value', data.result['id'])
@@ -41,7 +41,7 @@ window.SupportLetters =
 
   clean_up_system_tags: (parent) ->
     parent.find("input[type='hidden']").remove()
-    parent.find(".support_letter_attachment_filename").remove()
+    parent.find(".support-letter-attachment-filename").remove()
 
   enable_item_fields_and_controls: (parent) ->
     parent.find(".js-save-collection").removeClass("visuallyhidden")
