@@ -33,7 +33,11 @@
           ' Name your application
       = text_field_tag :nickname, "", autocomplete: "off", type: "text", class: "big medium"
 
-      p.hint = "e.g. “Nomination of John Smith”"
+      p.hint
+        - if award_type == "promotion"
+          ' e.g. “Nomination of John Smith”
+        - else
+          ' Smith and Sons App #2
       .clear
 
   p#get-started.get-started.group
