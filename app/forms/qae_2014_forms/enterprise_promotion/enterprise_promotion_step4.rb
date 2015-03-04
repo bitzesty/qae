@@ -84,6 +84,7 @@ class QAE2014Forms
         supporters :supporters, "Support Requests" do
           ref "D 1"
           limit 10
+          default 2
         end
 
         options :manually_upload, "Would you like to manually upload any of your letters of support" do
