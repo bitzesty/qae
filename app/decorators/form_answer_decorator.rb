@@ -29,6 +29,10 @@ class FormAnswerDecorator < ApplicationDecorator
     object.class::AWARD_TYPE_FULL_NAMES[object.award_type]
   end
 
+  def application_name
+    object.nickname || award_type
+  end
+
   def award_type_short_name
     AWARD_TITLES[object.class::AWARD_TYPE_FULL_NAMES[object.award_type]]
   end

@@ -26,21 +26,21 @@ end
 step "I create innovation form" do
   step "I go to dashboard"
   click_link "New application", href: '/apply_innovation_award'
-  click_link "Start application", href: '/new_innovation_form'
+  click_button "Save and start eligibility"
   click_button "Continue" #eligibility step
 end
 
 step "I create international trade form" do
   step "I go to dashboard"
   click_link "New application", href: '/apply_international_trade_award'
-  click_link "Start application", href: '/new_international_trade_form'
+  click_button "Save and start eligibility"
   click_button "Continue" #eligibility step
 end
 
 step "I create sustainable development form" do
   step "I go to dashboard"
   click_link "New application", href: '/apply_sustainable_development_award'
-  click_link "Start application", href: '/new_sustainable_development_form'
+  click_button "Save and start eligibility"
   click_button "Continue" #eligibility step
 end
 
