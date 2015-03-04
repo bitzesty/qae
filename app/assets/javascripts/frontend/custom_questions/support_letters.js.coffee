@@ -111,7 +111,7 @@ window.SupportLetters =
                 field_error_container = parent.find(key_selector).
                                               closest("label").
                                               find(".errors-container")
-                field_error_container.html("<li>" + error_message + "</li>")
+                field_error_container.html("<li>" + error_message[0] + "</li>")
               button.removeClass("visuallyhidden")
 
               return
