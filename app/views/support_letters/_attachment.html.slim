@@ -4,4 +4,4 @@ span.support_letter_attachment_filename
     = link_to file.original_filename, file.attachment.to_s, target: "_blank"
   - else
     = file.original_filename
-input type="hidden" name="form[#{question.key}][#{index}][letter_of_support]" value=attachment_id
+input.js-support-letter-attachment-id type="hidden" name="form[#{question.key}][#{index}][letter_of_support]" value=attachment_id

@@ -4,6 +4,7 @@ class SupportLetterAttachment < ActiveRecord::Base
   begin :associations
     belongs_to :user
     belongs_to :form_answer
+    belongs_to :support_letter
   end
 
   begin :validations

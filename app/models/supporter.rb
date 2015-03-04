@@ -1,10 +1,16 @@
 require 'securerandom'
 
 class Supporter < ActiveRecord::Base
-  belongs_to :form_answer
-  has_one :support_letter, dependent: :destroy
+  begin :associations
+    belongs_to :form_answer
+    belongs_to :user
 
-  validates :email, :form_answer, presence: true
+    has_one :support_letter, dependent: :destroy
+  end
+
+  begin :associations
+    validates :email, :form_answer, presence: true
+  end
 
   before_create :generate_access_key
   after_create :notify!

@@ -1,18 +1,18 @@
-li.js-add-example.js-add-default data-add-example="add-supporter"
+li.js-add-example.js-add-default data-add-example="add-supporter" data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
   = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
   span.row
     span.span-6
       label
         ' First Name
-        input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter['first_name']
+        input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter['first_name']
     span.span-6
       label
         ' Surname
-        input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter['last_name']
+        input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter['last_name']
     span.span-6
       label
         ' Relationship to Nominee
-        input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter['relationship_to_nominee']
+        input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter['relationship_to_nominee']
     - if question.list_type == :manuall_upload
       span.span-6
         label
@@ -26,10 +26,10 @@ li.js-add-example.js-add-default data-add-example="add-supporter"
       span.span-6
         label
           ' Email
-          input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
+          input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
   span.row
     span.span-6
-      a.button
+      a.button.js-save-collection
         - if question.list_type == :manuall_upload
           | Submit letter of support
         - else

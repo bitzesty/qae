@@ -50,7 +50,7 @@ class FormAnswer < ActiveRecord::Base
     has_many :support_letter_attachments, dependent: :destroy
 
     has_many :supporters, dependent: :destroy, autosave: true
-    has_many :support_letters, through: :supporters
+    has_many :support_letters, dependent: :destroy
     has_many :comments, as: :commentable
     has_many :form_answer_transitions
   end
