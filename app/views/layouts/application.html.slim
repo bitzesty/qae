@@ -26,11 +26,11 @@
   = yield :head
 
 - content_for :header_class do
-  - unless defined? @landing_page?
+  - unless landing_page?
     ' with-proposition
 
 - content_for :proposition_header do
-  - unless defined? @landing_page?
+  - unless landing_page?
     .header-proposition
       .content
         nav#proposition-menu
@@ -58,16 +58,17 @@
                       = link_to "Log out", destroy_user_session_path, method: :delete
 
 - content_for :inside_header do
-  = link_to "Search", "#search", class: "search-toggle js-header-toggle"
-  form#search.site-search action="/search" method="get" role="search"
-    .content
-      label for="site-search-text"
-        ' Search
-      input.js-search-focus#site-search-text type="search" name="q" title="Search"
-      input.submit type="submit" value="Search"
+  - if landing_page?
+    = link_to "Search", "#search", class: "search-toggle js-header-toggle"
+    form#search.site-search action="/search" method="get" role="search"
+      .content
+        label for="site-search-text"
+          ' Search
+        input.js-search-focus#site-search-text type="search" name="q" title="Search"
+        input.submit type="submit" value="Search"
 
 - content_for :content do
-  - if defined? @landing_page?
+  - if landing_page?
     #global-breadcrumb.header-context
       ol.group role="breadcrumbs"
         li = link_to "Home", "https://www.gov.uk/"
@@ -77,12 +78,12 @@
     - unless admin_in_read_only_mode?
       #global-breadcrumb.header-context
         ol.group role="breadcrumbs"
-          - if !user_signed_in? && !landing_page?
+          - if !user_signed_in?
             li = link_to "Home", "https://www.gov.uk/"
 
           li = link_to "Queen's Awards for Enterprise", root_path
 
-          - if user_signed_in? && current_user.completed_registration && !landing_page?
+          - if user_signed_in? && current_user.completed_registration
             li = link_to "Applications", dashboard_path
 
   #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
