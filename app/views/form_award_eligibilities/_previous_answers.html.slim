@@ -12,5 +12,6 @@
               /th.link-right.restart
                 = link_to "Start again", form_award_eligibility_path(form_id: @form_answer.id)
           tbody
+            - @already_has_invalid_questions = false
             = render "answers", eligibility: @basic_eligibility if @basic_eligibility
             = render "answers", eligibility: @award_eligibility

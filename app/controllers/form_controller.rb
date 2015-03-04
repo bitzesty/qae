@@ -12,6 +12,13 @@ class FormController < ApplicationController
   before_action :require_to_be_account_admin!, only: [:submit_form, :submit_confirm]
   before_action :check_trade_count_limit, only: :new_international_trade_form
 
+  expose(:support_letter_attachments) do
+    @form_answer.support_letter_attachments.inject({}) do |r, attachment|
+      r[attachment.id] = attachment
+      r
+    end
+  end
+
   def new_innovation_form
     form_answer = FormAnswer.create!(
       user: current_user,

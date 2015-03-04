@@ -5,7 +5,6 @@ require "qae_form_builder/question"
 require "qae_form_builder/multi_question_decorator"
 
 require "qae_form_builder/header_question"
-require "qae_form_builder/show_hide_note_question"
 require "qae_form_builder/text_question"
 require "qae_form_builder/number_question"
 require "qae_form_builder/textarea_question"
