@@ -1,21 +1,41 @@
 .inner
-  p Before you begin your nomination, you need to take a 10-minute eligibility questionnaire.
+  h2 The Process
 
-  p By completing this now you can be sure that your nominee is eligible for an award.
+  ol
+    li
+      p Complete the eligibility questionnaire
+      ul
+        li This is to ensure that your nominee meets the key eligibility criteria for an award.
+        li It will take about 10 minutes to complete.
 
-  p You will then be given instructions in more detail, and be able to start the nomination in full.
+    li
+      p Complete the form
+      ul
+        li The form can be completed over a number of days.
+        li You can save and return to the form at any point.
+        li You will be given more detailed instructions after the eligibility questionnaire.
+
+    li
+      p Submit your nomination
+      ul
+        / TODO pull in deadline
+        li The deadline for submissions is 23:59 on the last working day of September.
+        li You can still edit submitted nominations up to this date.
 
   br
 
   fieldset.question-block
-    h2 Please choose a nickname for this nomination:
-    p This is for your personal use.
+    h2 Please choose a nickname for this application:
+    p This is for your own use. It will appear alongside this nomination on your application dashboard. Once chosen, the nickname is permanent.
     .question-group
       label
         span.visuallyhidden
-          ' Name your nomination
-        = text_field_tag :nickname, "", autocomplete: "off", type: "text", class: "big medium"
-        .clear
+          ' Name your application
+      = text_field_tag :nickname, "", autocomplete: "off", type: "text", class: "big medium"
+
+      p.hint = "e.g. “Nomination of John Smith”"
+      .clear
 
   p#get-started.get-started.group
     = submit_tag "Save and start eligibility", class: "button", rel: "external"
+

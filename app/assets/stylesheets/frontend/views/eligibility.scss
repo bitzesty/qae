@@ -57,3 +57,23 @@ article .current-question li {
   padding-left: $gutter-two-thirds;
   border-left: 4px solid $error-colour;
 }
+
+.page-pre-eligibility {
+  ol {
+    padding-left: 1.4em;
+
+    li {
+      padding-left: 0;
+
+      ul {
+        margin-bottom: $gutter;
+        padding-left: 0.7em;
+        list-style-position: outside;
+      }
+    }
+  }
+
+  input {
+    margin-left: 0;
+  }
+}
