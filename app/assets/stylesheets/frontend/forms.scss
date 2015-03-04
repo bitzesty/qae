@@ -378,6 +378,8 @@ input[type="file"] {
   }
 
   input[type="file"] {
+    padding-left: 0;
+    border: none;
     line-height: 1;
   }
 
@@ -638,6 +640,7 @@ input[type="file"] {
     }
   }
 }
+.button-alt,
 .button-add {
   @include core-19;
   position: relative;
@@ -709,6 +712,41 @@ input[type="file"] {
     }
   }
 }
+
+.button-alt {
+  @include core-16;
+  padding: (12px $gutter-half $gutter-one-third $gutter-half);
+  border-color: $black;
+
+  &,
+  &:link,
+  &:hover,
+  &:focus,
+  &:visited,
+  &.disabled,
+  &.disabled:hover,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled="disabled"],
+  &[disabled="disabled"]:hover {
+    background: $white;
+  }
+
+  &:hover {
+    background: $panel-colour;
+  }
+
+  &.disabled,
+  &.disabled:hover,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled="disabled"],
+  &[disabled="disabled"]:hover {
+    border-color: $panel-colour;
+    cursor: default;
+  }
+}
+
 .js-add-example {
   display: none !important;
 
