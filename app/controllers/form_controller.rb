@@ -24,7 +24,7 @@ class FormController < ApplicationController
       user: current_user,
       account: current_user.account,
       award_type: "innovation",
-      nickname: params[:nickname],
+      nickname: nickname,
       document: {
         company_name: current_user.company_name,
         principal_address_building: current_user.company_address_first,
@@ -41,7 +41,7 @@ class FormController < ApplicationController
       user: current_user,
       account: current_user.account,
       award_type: "trade",
-      nickname: params[:nickname]
+      nickname: nickname
     )
 
     redirect_to edit_form_url(form_answer)
@@ -52,7 +52,7 @@ class FormController < ApplicationController
       user: current_user,
       account: current_user.account,
       award_type: "development",
-      nickname: params[:nickname]
+      nickname: nickname
     )
 
     redirect_to edit_form_url(form_answer)
@@ -63,7 +63,7 @@ class FormController < ApplicationController
       user: current_user,
       account: current_user.account,
       award_type: "promotion",
-      nickname: params[:nickname],
+      nickname: nickname,
       document: {
         email: current_user.email,
         first_name: current_user.first_name,
@@ -171,5 +171,9 @@ class FormController < ApplicationController
         alert: "You can not submit more than one trade form per year"
       }
     end
+  end
+
+  def nickname
+    params[:nickname].presence
   end
 end
