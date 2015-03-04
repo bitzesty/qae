@@ -4,7 +4,7 @@ class SupportLetter < ActiveRecord::Base
     belongs_to :form_answer
     belongs_to :user
 
-    has_one :support_letter_attachment, dependent: :destroy
+    has_one :support_letter_attachment
   end
 
   begin :validations

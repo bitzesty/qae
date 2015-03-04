@@ -433,7 +433,7 @@ jQuery ->
           # Then we also need to clean filename and init fileupload
           example_has_file_field = question.find(".list-add").attr("data-example-has-file-field")
           if (typeof(example_has_file_field) != typeof(undefined) && example_has_file_field != false)
-            SupportLetterAttachments.new_item_init(question.find(".list-add li:last"))
+            SupportLetters.new_item_init(question.find(".list-add li:last"))
 
           # charcount needs to be reinitialized
           if (textareas = question.find(".list-add > li:last .js-char-count")).length
@@ -536,4 +536,4 @@ jQuery ->
 
   OptionsWithPreselectedConditionsQuestion.init()
   ongoingDateDuration()
-  SupportLetterAttachments.init()
+  SupportLetters.init();
