@@ -95,7 +95,11 @@
 
     <%= yield :after_header %>
 
-    <div id="global-header-bar"></div>
+    <div id="global-header-bar">
+      <div class="inner-block">
+        <div class="header-bar"></div>
+      </div>
+    </div>
     <!--end global-header-bar-->
 
     <%= content_for?(:content) ? yield(:content) : yield %>
