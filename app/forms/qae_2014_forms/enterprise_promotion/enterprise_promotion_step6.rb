@@ -78,7 +78,7 @@ class QAE2014Forms
           )
         end
 
-        submit "Submit application" do
+        submit "Submit nomination" do
           notice %(
             <p>
               If you've answered all the questions you can now submit your nomination.
