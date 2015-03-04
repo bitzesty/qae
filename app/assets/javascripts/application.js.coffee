@@ -530,3 +530,4 @@ jQuery ->
 
   OptionsWithPreselectedConditionsQuestion.init();
   ShowHideNoteQuestion.init();
+  ongoingDateDuration()

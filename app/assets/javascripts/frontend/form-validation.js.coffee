@@ -226,17 +226,19 @@ window.FormValidation =
 
   validateDateStartEnd: (question) ->
     question.find(".validate-date-start-end").each () ->
-      # Whether we're checking just year or month as well
-      dateInputCount = $(this).find(".validate-date-start label").size()
+      # Whether we need to validate if date is ongoing
+      if $(this).find(".validate-date-end input[disabled]").size() == 0
+        # Whether we're checking just year or month as well
+        dateInputCount = $(this).find(".validate-date-start label").size()
 
-      for i in [dateInputCount-1..0] by -1
-        startDate = parseInt($(this).find(".validate-date-start label:eq("+i+") input").val())
-        endDate = parseInt($(this).find(".validate-date-end label:eq("+i+") input").val())
+        for i in [dateInputCount-1..0] by -1
+          startDate = parseInt($(this).find(".validate-date-start label:eq("+i+") input").val())
+          endDate = parseInt($(this).find(".validate-date-end label:eq("+i+") input").val())
 
-        if startDate > endDate
-          @appendMessage(subq.parent(), "Start date cannot be after end date")
-          @addErrorClass(question)
-          return
+          if startDate > endDate
+            @appendMessage(subq.parent(), "Start date cannot be after end date")
+            @addErrorClass(question)
+            return
 
   validateDropBlockCondition: (question) ->
     drop = false

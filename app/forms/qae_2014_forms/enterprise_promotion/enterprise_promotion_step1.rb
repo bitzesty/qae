@@ -33,34 +33,29 @@ class QAE2014Forms
           sub_fields([
             { first_name: "First name" },
             { last_name: "Surname" },
-            { former_name: "Former name, or any other name known by (e.g. maiden name)" }
+            { former_name: "Former name, or any other name known by" }
           ])
         end
 
         address :nominee_personal_address, "Personal address" do
           required
-          ref "A 1.1"
         end
 
         text :nominee_phone, "Telephone number" do
           required
-          ref "A 1.2"
           style "small"
         end
 
         text :nominee_email, "Email address" do
           required
-          ref "A 1.3"
         end
 
         date :nominee_date_of_birth, "Date of birth" do
           required
-          ref "A 1.4"
         end
 
         options :nominee_nationality, "Nationality" do
           required
-          ref "A 1.5"
           option "british", "British"
           option "other", "Other"
         end
@@ -75,11 +70,12 @@ class QAE2014Forms
           required
           ref "A 2"
           yes_no
+          option "unknown", "I don't know"
         end
 
-        award_holder :awards, "List of the Awards/Honours nominee currently hold" do
+        award_holder :awards, "List them below" do
           classes "sub-question"
-          year :year, 2010..2014
+          award_years_present true
           details_words_max 50
 
           conditional :award_holder, :yes
@@ -87,13 +83,12 @@ class QAE2014Forms
 
         options :nominated_for_award, "Is the nominee currently being nominated for another award/honor?" do
           required
-          ref "A 2.1"
           yes_no
+          option "unknown", "I don't know"
         end
 
-        award_holder :nomination_awards, "List of the Awards/Honours nominee is currently being nominated for" do
+        award_holder :nomination_awards, "List them below" do
           classes "sub-question"
-          year :year, 2010..2014
           details_words_max 50
 
           conditional :nominated_for_award, :yes
@@ -115,7 +110,6 @@ class QAE2014Forms
 
         text :nominee_position, "Nominee's position at the organisation" do
           required
-          ref "A 3.1"
         end
       end
     end
