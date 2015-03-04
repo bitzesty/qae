@@ -91,6 +91,10 @@
   &.display_block {
     display: block;
   }
+
+  .application-notice p {
+    margin: 0.75em 0;
+  }
 }
 
 .read-only {
@@ -100,10 +104,6 @@
     background: transparent;
     color: $black;
     opacity: 1;
-  }
-
-  .application-notice p {
-    margin: 0.75em 0;
   }
 
   .button {
