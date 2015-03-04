@@ -1,5 +1,5 @@
 - file = support_letter_attachments[attachment_id.to_i]
-span.support_letter_attachment_filename
+span.support-letter-attachment-filename
   - if file.attachment
     = link_to file.original_filename, file.attachment.to_s, target: "_blank"
   - else
