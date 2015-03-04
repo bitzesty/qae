@@ -13,7 +13,7 @@ class QAE2014Forms
               What makes your nominee stand out against others?
             </p>
                     )
-          rows 3
+          rows 5
           words_max 500
         end
 
@@ -34,7 +34,7 @@ class QAE2014Forms
               or where young people or under-represented groups have benefited.
             </p>
                     )
-          rows 3
+          rows 5
           words_max 600
         end
 
@@ -52,7 +52,7 @@ class QAE2014Forms
               A Lifetime Achievement Award is a special Enterprise Promotion award
               that is given for outstanding, consistent and effective promotion of business
               enterprise skills and attitudes
-              <u>over at least ten years.</u>.
+              <u>over at least ten years.</u>
               All those nominated for Lifetime Achievement are still considered
               for the standard award.
             </p>
@@ -63,7 +63,7 @@ class QAE2014Forms
         textarea :reasons_to_nominate_for_lifetime_achievemnt_award, "Explain why they deserve this award." do
           conditional :nominee_active_in_сurrent_enterprise_promotion_role, :yes
           words_max 300
-          rows 3
+          rows 5
           classes "sub-question"
         end
       end
