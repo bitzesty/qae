@@ -203,9 +203,9 @@ window.FormValidation =
       year = subq.find("input.js-fy-year").val()
 
       if (not day or not month or not year)
-        if question.hasClass("question-required") && errors_container.length < 1
-          @appendMessage(q_parent, "This field is required.")
-          @addErrorClass(question)
+        #if question.hasClass("question-required") && errors_container.length < 1
+        #  @appendMessage(q_parent, "This field is required.")
+        #  @addErrorClass(question)
       else
         complex_date_string = day + "/" + month + "/" + year
         date = @toDate(complex_date_string)
