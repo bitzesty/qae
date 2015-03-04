@@ -50,6 +50,11 @@ window.SupportLetters =
     fields = parent.find("input")
     fields.removeClass("read-only")
     parent.find(".errors-container").html("")
+    parent.find(".js-support-letter-id")
+    form_name_prefix = parent.find(".js-system-tag").data("name-prefix") + "[support_letter_id]"
+    letter_id_hidden_input = $("<input class='js-support-letter-id'>").prop('type', 'hidden').
+                                                                       prop('name', form_name_prefix)
+    parent.append(letter_id_hidden_input)
 
   disable_item_fields_and_controls: (parent) ->
     parent.find(".js-save-collection").addClass("visuallyhidden")
@@ -93,6 +98,7 @@ window.SupportLetters =
             data: data
             dataType: 'json'
             success: (response) ->
+              parent.find(".js-support-letter-id").prop('value', response)
               parent.find(".errors-container").html("")
               SupportLetters.disable_item_fields_and_controls(parent)
               SupportLetters.autosave()

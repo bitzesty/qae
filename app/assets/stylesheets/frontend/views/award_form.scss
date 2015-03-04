@@ -87,6 +87,10 @@
 // Read-only view
 .visible-read-only {
   display: none;
+
+  &.display_block {
+    display: block;
+  }
 }
 
 .read-only {

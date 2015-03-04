@@ -22,7 +22,7 @@ class Users::SupportLettersController < Users::BaseController
       attachment.support_letter = support_letter
       attachment.save!
 
-      render json: support_letter,
+      render json: support_letter.id,
              status: :created
     else
       render json: support_letter.errors.messages.to_json,
