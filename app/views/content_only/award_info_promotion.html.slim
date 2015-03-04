@@ -3,47 +3,43 @@
 .steps-progress-content
   header.page-header.group
     div
-      h1
-        ' Enterprise Promotion award information
+      h1 Your nominee is eligible for an Enterprise Promotion Award.
 
   .article-related-positioning-container
     .article-container
       article.group role="article"
         .inner
-          h2
-            ' Help and resources
+          h2 Help and resources
           ul
             li
-              = link_to "Download a PDF of the entire application form"
-            li
-              = link_to "Download exemplary answers"
+              = link_to "Download a PDF of the entire application form."
           br
 
-          h2
-            ' What you will need:
+          h2 What you will need:
           h3 Section A
-          p Basic information about your organisation and its structure.
+          p Basic information about your nominee and the organisation they work for.
 
           h3 Section B
-          p Detailed knowledge of your innovation, and its impact.
+          p Knowledge of your nominee’s recent voluntary and employed positions.
 
           h3 Section C
-          p Detailed financial information (we recommend you add a collaborator from your finance department to complete this section).
+          p Knowledge and quantitative evidence of your nominee’s contribution to enterprise promotion.
+
+          h3 Section D
+          p A selection of candidates who could write letters of support to aid your nomination.
 
           br
 
-          h2
-            ' Application guidance:
+          h2 Nomination guidance:
           ul
             li The deadline for submissions is 23:59 on the last working day of September.
-            li Your information is only shared with those involved in the assessment process.
+            li Submitted information is only shared with those involved in the assessment process.
             li Try to take full advantage of the word limits. However, the quality of your answer is more important than its length.
-            li All questions are mandatory unless stated otherwise.
-            li It can take up to 50 man-hours to complete the entry form, so you aren’t expected to complete it in one sitting.
-            li You can skip questions and return to them later.
+            li All questions are mandatory unless stated otherwise. But you can skip questions and return to them later.
+            li You don’t need to complete the form in one sitting.
             li Your answers are saved automatically as you go.
 
           br
 
           p#get-started.get-started.group
-            = link_to "Continue", result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
+            = link_to "Start nomination", result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
