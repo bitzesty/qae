@@ -31,7 +31,7 @@ class FormAwardEligibilitiesController < ApplicationController
       end
 
       if step
-        redirect_to action: :show, form_id: @form_answer.id, id: step, skipped: true
+        redirect_to action: :show, form_id: @form_answer.id, id: step, skipped: false
         return
       end
     end
@@ -47,7 +47,7 @@ class FormAwardEligibilitiesController < ApplicationController
         @eligibility.pass!
       end
 
-      if params[:skipped] == "true"
+      if params[:skipped] == "false"
         set_steps_and_eligibilities
         setup_wizard
 
