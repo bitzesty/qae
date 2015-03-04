@@ -528,6 +528,6 @@ jQuery ->
     e.preventDefault()
     $(this).closest("span").toggleClass("open")
 
-  OptionsWithPreselectedConditionsQuestion.init();
-  ShowHideNoteQuestion.init();
+  OptionsWithPreselectedConditionsQuestion.init()
   ongoingDateDuration()
+  SupportLetterAttachments.init()

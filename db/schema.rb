@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303123415) do
+ActiveRecord::Schema.define(version: 20150303163541) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 20150303123415) do
   add_index "assessors", ["reset_password_token"], name: "index_assessors_on_reset_password_token", unique: true, using: :btree
 
   create_table "audit_certificates", force: :cascade do |t|
-    t.integer  "form_answer_id", null: false
+    t.integer  "form_answer_id"
     t.string   "attachment"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -156,6 +156,18 @@ ActiveRecord::Schema.define(version: 20150303123415) do
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
 
+  create_table "support_letter_attachments", force: :cascade do |t|
+    t.integer  "user_id",           null: false
+    t.integer  "form_answer_id",    null: false
+    t.string   "attachment"
+    t.string   "original_filename"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "support_letter_attachments", ["form_answer_id"], name: "index_support_letter_attachments_on_form_answer_id", using: :btree
+  add_index "support_letter_attachments", ["user_id"], name: "index_support_letter_attachments_on_user_id", using: :btree
+
   create_table "support_letters", force: :cascade do |t|
     t.integer  "supporter_id"
     t.text     "body"
@@ -217,4 +229,6 @@ ActiveRecord::Schema.define(version: 20150303123415) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "support_letter_attachments", "form_answers"
+  add_foreign_key "support_letter_attachments", "users"
 end

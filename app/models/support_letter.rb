@@ -1,5 +1,10 @@
 class SupportLetter < ActiveRecord::Base
-  belongs_to :supporter
+  begin :associations
+    belongs_to :supporter
+    has_many :support_letter_attachments, dependent: :destroy
+  end
 
-  validates :supporter, :body, presence: true
+  begin :validations
+    validates :supporter, :body, presence: true
+  end
 end
