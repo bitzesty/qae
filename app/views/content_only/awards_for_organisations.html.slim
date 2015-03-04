@@ -20,33 +20,32 @@
 
         p To enter any of the Queen’s Awards for Enterprise categories, your organisation (business or non-profit) must:
 
-        ul
+        ol
           li be based in the UK (including the Channel Islands and the Isle of Man)
           li be a self-contained enterprise which markets its own products or services and is under its own management
           li have at least 2 full-time employees or part-time equivalents
 
-        p
-          ' Each of the three award categories has additional entry criteria.
+        p = link_to "Apply", apply_for_queens_award_for_enterprise_path, rel: 'external'
 
-        h2
-          ' Award-specific eligibility criteria
+        p
+          ' Each of the three award categories has additional entry criteria:
+
+        h2 Award-specific eligibility criteria
 
         h3#international_trade
           ' International Trade
-        p
-          ' If you want to apply for the International Trade award, you must meet the general eligibility criteria above, and:
+        p  If you want to apply for the International Trade award, you must meet the general eligibility criteria above, and:
         ol
-          li Have made a minimum of £100,000 in overseas sales for each year of your entry
-          li Be able to demonstrate that your organisation has achieved substantial growth in overseas earnings relative to your business size and sector
+          li Have made a minimum of £100,000 in overseas sales for each year of your entry.
+          li Be able to demonstrate that your organisation has achieved substantial growth in overseas earnings relative to your business size and sector.
           li
             ' Show either:
             ul
               li steep year on year growth (without dips) in overseas sales over 3 years
               li continuous year on year growth (without dips) in overseas sales over 6 years
+
         .application-notice.info-notice
-          p
-            | Sign up to &nbsp;
-            = link_to "check eligibility for the International Trade award", apply_for_queens_award_for_enterprise_path, rel: 'external'
+          p = link_to "Sign up to check eligibility and apply for the International Trade Award.", apply_for_queens_award_for_enterprise_path, rel: 'external'
 
         h3#innovation
           ' Innovation
@@ -71,14 +70,11 @@
           li after-sale support of goods or services
 
         .application-notice.info-notice
-          p
-            | Sign up to &nbsp;
-            = link_to "check eligibility for the Innvoation award", apply_for_queens_award_for_enterprise_path, rel: 'external'
+          p = link_to "Sign up to check eligibility and apply for the Innovation Award.", apply_for_queens_award_for_enterprise_path, rel: 'external'
 
         h3#sustainable_development
           ' Sustainable Development
-        p
-          ' If you want to apply for the Sustainable Development award, you must meet the general eligibility criteria above, and:
+        p If you want to apply for the Sustainable Development award, you must meet the general eligibility criteria above, and:
         ol
           li Be able to demonstrate how your business has achieved sustainable development (ie. ensuring better quality of life for everyone, both now and for future generations in the dimensions of: environment, society, economy and leadership) and how you are a good corporate citizen
           li
@@ -92,9 +88,11 @@
           li management of resources or people, or of relationships with other organisations (or their representatives)
 
         .application-notice.info-notice
+          p = link_to "Sign up to check eligibility and apply for the Sustainable Development Award.", apply_for_queens_award_for_enterprise_path, rel: 'external'
           p
-            | Sign up to &nbsp;
-            = link_to "check eligibility for the Sustainable Development award", apply_for_queens_award_for_enterprise_path, rel: 'external'
+            ' Or if you have already begun your application then
+            = link_to "log in to continue", new_user_session_path, rel: "external"
+            ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
