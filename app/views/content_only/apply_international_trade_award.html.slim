@@ -1,46 +1,26 @@
 header.page-header.group
   div
-    h1
-      ' Apply for the International Trade Award
+    h1 Apply for the International Trade Award
 
 .article-related-positioning-container
   .article-container
     article.group role="article"
       .inner
-        h2
-          ' Help and resources
-        ul
-          li
-            = link_to "Download a PDF of the entire application form"
-          li
-            = link_to "Download exemplary answers"
-        br
+        p Before you begin the application, you will need to complete a 10-minute eligibility questionnaire to ensure you are able to apply.
 
-        h2
-          ' What you will need:
-        h3 Section A
-        p Basic information about your organisation and its structure.
-
-        h3 Section B
-        p Detailed knowledge of your innovation, and its impact.
-
-        h3 Section C
-        p Detailed financial information (we recommend you add a collaborator from your finance department to complete this section).
+        p You will then be given instructions in more detail, and be able to start your application in full.
 
         br
 
-        h2
-          ' Application guidance:
-        ul
-          li The deadline for submissions is 23:59 on the last working day of September.
-          li Your information is only shared with those involved in the assessment process.
-          li Try to take full advantage of the word limits. However, the quality of your answer is more important than its length.
-          li All questions are mandatory unless stated otherwise.
-          li It can take up to 50 man-hours to complete the entry form, so you aren’t expected to complete it in one sitting.
-          li You can skip questions and return to them later.
-          li Your answers are saved automatically as you go.
-
-        br
+        fieldset.question-block
+          h2 Please choose a nickname for this application:
+          p This is for your personal use.
+          .question-group
+            label
+              span.visuallyhidden
+                ' Name your application
+            input.big.medium autocomplete="off" type="text"
+            .clear
 
         p#get-started.get-started.group
-          = link_to "Start application", new_international_trade_form_path, class: "button", rel: "external"
+          = link_to "Save and start eligibility", new_international_trade_form_path, class: "button", rel: "external"
