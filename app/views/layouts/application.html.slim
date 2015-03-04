@@ -56,16 +56,23 @@
                     = link_to "Log out", destroy_user_session_path, method: :delete
 
 - content_for :content do
-  - unless admin_in_read_only_mode?
+  - if defined? @is_landing_page
     #global-breadcrumb.header-context
       ol.group role="breadcrumbs"
-        - if !user_signed_in? && !landing_page?
-          li = link_to "Home", "https://www.gov.uk/"
+        li = link_to "Home", "https://www.gov.uk/"
+        li = link_to "Business and self-employed", "https://www.gov.uk/browse/business"
+        li = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company"
+  - else
+    - unless admin_in_read_only_mode?
+      #global-breadcrumb.header-context
+        ol.group role="breadcrumbs"
+          - if !user_signed_in? && !landing_page?
+            li = link_to "Home", "https://www.gov.uk/"
 
-        li = link_to "Queen's Awards for Enterprise", root_path
+          li = link_to "Queen's Awards for Enterprise", root_path
 
-        - if user_signed_in? && current_user.completed_registration && !landing_page?
-          li = link_to "Applications", dashboard_path
+          - if user_signed_in? && current_user.completed_registration && !landing_page?
+            li = link_to "Applications", dashboard_path
 
   #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?}"
