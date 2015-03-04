@@ -26,11 +26,11 @@
   = yield :head
 
 - content_for :header_class do
-  - unless defined? @is_landing_page
+  - unless defined? @landing_page?
     ' with-proposition
 
 - content_for :proposition_header do
-  - unless defined? @is_landing_page
+  - unless defined? @landing_page?
     .header-proposition
       .content
         nav#proposition-menu
@@ -67,7 +67,7 @@
       input.submit type="submit" value="Search"
 
 - content_for :content do
-  - if defined? @is_landing_page
+  - if defined? @landing_page?
     #global-breadcrumb.header-context
       ol.group role="breadcrumbs"
         li = link_to "Home", "https://www.gov.uk/"

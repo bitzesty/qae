@@ -8,7 +8,7 @@ class ContentOnlyController < ApplicationController
     :award_info_promotion
   ]
 
-  before_action :is_landing_page, only: [
+  before_action :landing_page?, only: [
     :home,
     :awards_for_organisations,
     :enterprise_promotion_awards,
@@ -33,7 +33,7 @@ class ContentOnlyController < ApplicationController
     )
   end
 
-  def is_landing_page
-    @is_landing_page = true
+  def landing_page?
+    @landing_page? = true
   end
 end
