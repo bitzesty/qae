@@ -1,0 +1,21 @@
+.inner
+  p Before you begin your nomination, you need to take a 10-minute eligibility questionnaire.
+
+  p By completing this now you can be sure that your nominee is eligible for an award.
+
+  p You will then be given instructions in more detail, and be able to start the nomination in full.
+
+  br
+
+  fieldset.question-block
+    h2 Please choose a nickname for this nomination:
+    p This is for your personal use.
+    .question-group
+      label
+        span.visuallyhidden
+          ' Name your nomination
+        = text_field_tag :nickname, "", autocomplete: "off", type: "text", class: "big medium"
+        .clear
+
+  p#get-started.get-started.group
+    = submit_tag "Save and start eligibility", class: "button", rel: "external"
