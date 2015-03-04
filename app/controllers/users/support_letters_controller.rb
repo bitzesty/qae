@@ -7,7 +7,8 @@ class Users::SupportLettersController < Users::BaseController
   expose(:support_letter) do
     form_answer.support_letters.new(
       support_letter_params.merge({
-        user_id: current_user.id
+        user_id: current_user.id,
+        manual: true
       })
     )
   end

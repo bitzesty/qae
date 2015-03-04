@@ -12,8 +12,8 @@ class SupportLetter < ActiveRecord::Base
               :last_name,
               :user,
               :form_answer,
-              :relationship_to_nominee,
-              :attachment, presence: true
+              :relationship_to_nominee, presence: true
+    validates :attachment, presence: true, if: "self.manual?"
   end
 
   attr_accessor :attachment
