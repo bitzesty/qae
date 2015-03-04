@@ -26,34 +26,45 @@
   = yield :head
 
 - content_for :header_class do
-  ' with-proposition
+  - unless defined? @is_landing_page
+    ' with-proposition
 
 - content_for :proposition_header do
-  .header-proposition
+  - unless defined? @is_landing_page
+    .header-proposition
+      .content
+        nav#proposition-menu
+          a#proposition-name href="/"
+            ' Queen's Awards for Enterprise
+            span.alpha-tag ALPHA
+          - if current_admin || current_user
+            ul#proposition-links.user-account-links
+              li.dropdown
+                = link_to "#", class: "dropdown-toggle" do
+                  ' My account
+                  span.caret
+                ul.dropdown-menu
+                  - if current_admin || current_user.completed_registration
+                    li
+                      = link_to "Applications", dashboard_path
+                    li
+                      = link_to "Account details", correspondent_details_account_path
+                    li
+                      = link_to "Collaborators", account_collaborators_path
+                  li
+                    - if current_admin
+                      = link_to "Log out", destroy_admin_session_path, method: :delete
+                    - else
+                      = link_to "Log out", destroy_user_session_path, method: :delete
+
+- content_for :inside_header do
+  = link_to "Search", "#search", class: "search-toggle js-header-toggle"
+  form#search.site-search action="/search" method="get" role="search"
     .content
-      nav#proposition-menu
-        a#proposition-name href="/"
-          ' Queen's Awards for Enterprise
-          span.alpha-tag ALPHA
-        - if current_admin || current_user
-          ul#proposition-links.user-account-links
-            li.dropdown
-              = link_to "#", class: "dropdown-toggle" do
-                ' My account
-                span.caret
-              ul.dropdown-menu
-                - if current_admin || current_user.completed_registration
-                  li
-                    = link_to "Applications", dashboard_path
-                  li
-                    = link_to "Account details", correspondent_details_account_path
-                  li
-                    = link_to "Collaborators", account_collaborators_path
-                li
-                  - if current_admin
-                    = link_to "Log out", destroy_admin_session_path, method: :delete
-                  - else
-                    = link_to "Log out", destroy_user_session_path, method: :delete
+      label for="site-search-text"
+        ' Search
+      input.js-search-focus#site-search-text type="search" name="q" title="Search"
+      input.submit type="submit" value="Search"
 
 - content_for :content do
   - if defined? @is_landing_page
