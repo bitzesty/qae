@@ -52,7 +52,7 @@ class FormAwardEligibilitiesController < ApplicationController
         setup_wizard
 
         if @eligibility.eligible_on_step?(step)
-          redirect_to next_wizard_path(form_id: @form_answer.id, skipped: true)
+          redirect_to next_wizard_path(form_id: @form_answer.id, skipped: false)
         else
           redirect_to action: :show, form_id: @form_answer.id
         end
