@@ -43,6 +43,7 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   context "supporters" do
+    let(:user) { create :user }
     let(:form_answer) { FactoryGirl.create(:form_answer, :promotion) }
 
     before do
@@ -63,9 +64,23 @@ RSpec.describe FormAnswer, type: :model do
     end
 
     context "with existing supporters" do
+      let(:base_supporter_ops) do
+        {
+          first_name: "Test",
+          last_name: "Test",
+          relationship_to_nominee: "Friend",
+          user: user,
+          form_answer: form_answer
+        }
+      end
+
       before do
-        form_answer.supporters << Supporter.new(email: "supporter1@example.com")
-        form_answer.supporters << Supporter.new(email: "supporter2@example.com")
+        form_answer.supporters << Supporter.new(
+          base_supporter_ops.merge({email: "supporter1@example.com"})
+        )
+        form_answer.supporters << Supporter.new(
+          base_supporter_ops.merge({email: "supporter2@example.com"})
+        )
       end
 
       it "destroys all form_answer supporters if form data is blank" do
@@ -77,7 +92,12 @@ RSpec.describe FormAnswer, type: :model do
 
       it "destroys only one form_answer supporter which is missing form the form data" do
         form_answer.submitted = true
-        form_answer.document = { supporters: [{ email: "supporter1@example.com" }.to_json] }
+        form_answer.document = { supporters: [{
+          first_name: "Test",
+          last_name: "Test",
+          relationship_to_nominee: "Friend",
+          email: "supporter1@example.com",
+        }.to_json] }
         expect { form_answer.save!; form_answer.reload }.to change {
           form_answer.supporters.count
         }.by(-1)
