@@ -429,6 +429,12 @@ jQuery ->
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)
             clearFormElements(question.find(".list-add li:last"))
 
+          # If .js-add-example has file field (like in SupportLetters)
+          # Then we also need to clean filename and init fileupload
+          example_has_file_field = question.find(".list-add").attr("data-example-has-file-field")
+          if (typeof(example_has_file_field) != typeof(undefined) && example_has_file_field != false)
+            SupportLetterAttachments.new_item_init(question.find(".list-add li:last"))
+
           # charcount needs to be reinitialized
           if (textareas = question.find(".list-add > li:last .js-char-count")).length
             textareas.removeCharcountElements()

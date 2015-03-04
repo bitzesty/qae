@@ -1,4 +1,4 @@
-li.js-add-example.js-add-default data-add-example="add-supporter" data-attachments-url=(users_form_answer_support_letter_attachments_path(@form_answer))
+li.js-add-example.js-add-default data-add-example="add-supporter"
   = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
   span.row
     span.span-6
@@ -17,10 +17,11 @@ li.js-add-example.js-add-default data-add-example="add-supporter" data-attachmen
       span.span-6
         label
           ' Letter of Support
-          - if supporter['file']
-            = supporter['file']
-          - else
-            input class="js-trigger-autosave js-support-letter-attachment-upload medium" name="form[#{question.key}][#{index}][letter_of_support]" type='file'
+          input class="js-trigger-autosave js-support-letter-attachment-upload medium" name="form[#{question.key}][#{index}][letter_of_support]" type='file'
+          - if supporter['letter_of_support']
+            = render "support_letters/attachment", question: question,
+                                                   index: index,
+                                                   attachment_id: supporter['letter_of_support']
     - else
       span.span-6
         label

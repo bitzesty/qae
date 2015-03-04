@@ -1,4 +1,4 @@
-ul.list-add data-need-to-clear-example=true data-add-limit=question.limit
+ul.list-add data-need-to-clear-example=true data-add-limit=question.limit data-attachments-url=(users_form_answer_support_letter_attachments_path(@form_answer)) data-example-has-file-field=true
   input name="form[#{question.key}][array]" value="true" type="hidden"
 
   - question.entities.each_with_index do |supporter, index|
