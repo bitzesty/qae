@@ -8,6 +8,16 @@ class ContentOnlyController < ApplicationController
     :award_info_promotion
   ]
 
+  before_action :landing_page, only: [
+    :home,
+    :awards_for_organisations,
+    :enterprise_promotion_awards,
+    :how_to_apply,
+    :timeline,
+    :additional_information_and_contact,
+    :apply_for_queens_award_for_enterprise
+  ]
+
   expose(:form_answer) {
     current_user.form_answers.find(params[:id])
   }
@@ -23,4 +33,13 @@ class ContentOnlyController < ApplicationController
     )
   end
 
+  def landing_page
+    @is_landing_page = true
+  end
+
+  def landing_page?
+    if defined? @is_landing_page
+      return true
+    end
+  end
 end

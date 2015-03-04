@@ -26,16 +26,7 @@
           li have at least 2 full-time employees or part-time equivalents
 
         p
-          - if user_signed_in?
-            = link_to "Check eligibility", dashboard_path
-          - else
-            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path
-
-        br
-        br
-
-        p
-          ' Each of the three award categories has additional entry criteria:
+          ' Each of the three award categories has additional entry criteria.
 
         h2
           ' Award-specific eligibility criteria
@@ -52,12 +43,10 @@
             ul
               li steep year on year growth (without dips) in overseas sales over 3 years
               li continuous year on year growth (without dips) in overseas sales over 6 years
-        p
-          - if user_signed_in?
-            = link_to "Check eligibility", dashboard_path
-          - else
-            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path
-        br
+        .application-notice.info-notice
+          p
+            | Sign up to &nbsp;
+            = link_to "check eligibility for the International Trade award", apply_for_queens_award_for_enterprise_path, rel: 'external'
 
         h3#innovation
           ' Innovation
@@ -80,12 +69,11 @@
           li performance of services and products
           li marketing and distribution
           li after-sale support of goods or services
-        p
-          - if user_signed_in?
-            = link_to "Check eligibility", dashboard_path
-          - else
-            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path
-        br
+
+        .application-notice.info-notice
+          p
+            | Sign up to &nbsp;
+            = link_to "check eligibility for the Innvoation award", apply_for_queens_award_for_enterprise_path, rel: 'external'
 
         h3#sustainable_development
           ' Sustainable Development
@@ -102,25 +90,11 @@
         ul
           li invention, design, production, performance, marketing, distribution or after sales support of goods/services
           li management of resources or people, or of relationships with other organisations (or their representatives)
-        p
-          - if user_signed_in?
-            = link_to "Check eligibility", dashboard_path
-          - else
-            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path
-        br
 
-        .get-started
-          - if user_signed_in?
-            = link_to "Check eligibility", dashboard_path, class: "button"
-          - else
-            = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
-
-        - unless user_signed_in?
-          br
+        .application-notice.info-notice
           p
-            ' If you have already begun your application then
-            = link_to "log in to continue", new_user_session_path
-            ' .
+            | Sign up to &nbsp;
+            = link_to "check eligibility for the Sustainable Development award", apply_for_queens_award_for_enterprise_path, rel: 'external'
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

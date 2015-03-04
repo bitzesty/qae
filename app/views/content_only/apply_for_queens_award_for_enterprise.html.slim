@@ -31,10 +31,7 @@
           ' The application process
         ol
           li
-            - if user_signed_in?
-              = link_to "Create an account", dashboard_path
-            - else
-              = link_to "Create an account", new_user_registration_path
+            ' Create an account
           li
             ' Complete the basic eligibility check
           li
