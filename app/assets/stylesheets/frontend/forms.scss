@@ -796,7 +796,7 @@ input[type="file"] {
 
 // Numbered steps for form sections
 // Taken from https://github.com/alphagov/calculators/blob/9181624cc9e00a079bea2141a650321f7183b6d0/app/assets/stylesheets/calculators/child_benefit.scss
-.steps {
+.question-block .steps {
   float: left;
   width: 23px;
   height: 23px;
@@ -806,7 +806,7 @@ input[type="file"] {
 }
 
 // TODO temp
-.steps {
+.question-block .steps {
   width: auto;
   min-width: 13px;
   padding: 3px 10px;
