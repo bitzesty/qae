@@ -1,5 +1,5 @@
 class SupportLetterAttachment < ActiveRecord::Base
-  mount_uploader :file, FormAnswerAttachmentUploader
+  mount_uploader :attachment, FormAnswerAttachmentUploader
 
   begin :associations
     belongs_to :user
@@ -12,9 +12,5 @@ class SupportLetterAttachment < ActiveRecord::Base
                            file_size: {
                              maximum: 5.megabytes.to_i
                            }
-  end
-
-  def filename
-    read_attribute(:file)
   end
 end

@@ -15,8 +15,13 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
   end
 
   def create
-    support_letter_attachment.save!
-    render json: support_letter_attachment, status: :created
+    if support_letter_attachment.save
+      render json: support_letter_attachment,
+             status: :created
+    else
+      render json: humanized_errors,
+             status: :unprocessable_entity
+    end
   end
 
   private
@@ -29,5 +34,13 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
 
     def original_filename
       support_letter_attachment_params[:attachment].try(:original_filename)
+    end
+
+    def humanized_errors
+      support_letter_attachment.errors.
+                               full_messages.
+                               reject { |m| m == "Attachment This field cannot be blank" }.
+                               join(", ").
+                               gsub("Attachment", "")
     end
 end
