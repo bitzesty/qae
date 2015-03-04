@@ -20,7 +20,8 @@
             span.visuallyhidden
               = ' answer to' + eligibility.class.label(question)
 
-      - if (!step || answer.present?) && !eligibility.answer_valid?(question, answer)
+      - if (!step || answer.present?) && !@already_has_invalid_questions && !eligibility.answer_valid?(question, answer)
+        - @already_has_invalid_questions = true
         tr.previous-answer-invalid
           td colspan=3
             span
