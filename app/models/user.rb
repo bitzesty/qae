@@ -25,10 +25,6 @@ class User < ActiveRecord::Base
   validates :job_title, presence: true, if: :first_step?
   validates :phone_number, presence: true, if: :first_step?
 
-  # Second step validations
-  validates :company_name, presence: true, if: :second_step?
-  validates :company_phone_number, presence: true, if: :second_step?
-
   validates :phone_number, length: {
     minimum: 7,
     maximum: 20,
