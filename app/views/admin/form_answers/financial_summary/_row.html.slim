@@ -1,7 +1,7 @@
-tr
-  td = row.keys.first
+tr class=row.keys.first
+  td = t(".#{row.keys.first}")
 
   - row.values.flatten.each do |field|
-    td
-      = field[:value]
+    td.value
+      span = field[:value]
       = text_field_tag "financial_data[#{field[:name]}]", field[:value], class: 'form-control'

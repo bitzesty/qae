@@ -51,7 +51,7 @@ class FormFinancialPointer
       if exports[year - 1][:value].to_f.zero?
         0
       else
-        (exports[year][:value].to_f / exports[year - 1][:value].to_f * 100).round(2)
+        (exports[year][:value].to_f  / exports[year - 1][:value].to_f * 100 - 100).round(2)
       end
     else
       '-'
@@ -63,10 +63,10 @@ class FormFinancialPointer
     total_turnover = data_values(:total_turnover)
 
     if export && total_turnover && export[year] && total_turnover[year]
-      if export[year][:value].to_f.zero?
+      if total_turnover[year][:value].to_f.zero?
         0
       else
-        (total_turnover[year][:value].to_f / export[year][:value].to_f * 100).round(2)
+        (export[year][:value].to_f / total_turnover[year][:value].to_f * 100).round(2)
       end
     else
       '-'
@@ -83,7 +83,7 @@ class FormFinancialPointer
     turnover = data_values(:total_turnover)
 
     if turnover && turnover.any? && !turnover.first[:value].to_f.zero?
-      (turnover.last[:value].to_f / turnover.first[:value].to_f * 100).round(2)
+      (turnover.last[:value].to_f / turnover.first[:value].to_f * 100 -100).round(2)
     else
       '-'
     end
