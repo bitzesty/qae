@@ -3,6 +3,10 @@
   @include bold-19;
 }
 
+.sub-question.former-name h2 {
+  font-weight: 400;
+}
+
 // Regular question style
 .regular-question h2 {
   @include core-19;

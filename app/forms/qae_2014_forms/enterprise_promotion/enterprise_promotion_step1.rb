@@ -33,8 +33,11 @@ class QAE2014Forms
           sub_fields([
             { first_name: "First name" },
             { last_name: "Surname" },
-            { former_name: "Former name, or any other name known by" }
           ])
+        end
+
+        text :former_name, "Former name, or any other name known by" do
+          classes "sub-question former-name"
         end
 
         address :nominee_personal_address, "Personal address" do
