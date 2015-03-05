@@ -251,6 +251,7 @@ class QAE2014Forms
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
+          drop_condition_parent
         end
 
         by_years :avg_unit_price, "Average unit selling price/contract value" do

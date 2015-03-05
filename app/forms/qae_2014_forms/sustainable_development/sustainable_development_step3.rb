@@ -143,11 +143,11 @@ class QAE2014Forms
 
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
-          required
           rows 5
           words_max 200
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
+          drop_condition_parent
         end
 
         options :company_estimated_figures, "Are any of these figures estimated?" do
@@ -230,11 +230,11 @@ class QAE2014Forms
 
         textarea :drops_in_sales, "Explain any drop in sales or number of units sold." do
           classes "sub-question js-conditional-drop-question"
-          required
           rows 5
           words_max 300
           conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
+          drop_condition_parent
         end
 
         by_years :avg_unit_price, "Average unit selling price/contract value" do
