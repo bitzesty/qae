@@ -29,14 +29,6 @@ module FormAnswerHelper
     growth || content_tag(:span, "-", class: "centered")
   end
 
-  def average_growth_legend(form_answer, years = [1, 2, 3])
-    growths = years.map { |y| form_answer.average_growth_for(y) }.uniq
-    growths.map do |g|
-      note = SICCode::NOTES[g]
-      "#{g} - #{note}" if note
-    end.compact.join("\n")
-  end
-
   def sic_code(form_answer)
     code = form_answer.sic_code
     code || "-"

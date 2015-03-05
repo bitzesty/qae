@@ -74,12 +74,12 @@
               td 100,000
               td 100,000
               td 100,000
-            tr
+            tr.sector-average-growth
               th % Sector average growth
               td = average_growth_for(@form_answer, 1)
               td = average_growth_for(@form_answer, 2)
               td = average_growth_for(@form_answer, 3)
-        = average_growth_legend(@form_answer, [1,2,3])
+        label.avg-growth-legend= @form_answer.average_growth_legend([1,2,3])
 
 
       .form-group

@@ -1,5 +1,6 @@
 ready = ->
   changeRagStatus()
+  editFormAnswerAutoUpdate()
 
   $('#new_form_answer_attachment').fileupload
     success: (result, textStatus, jqXHR)->
@@ -40,5 +41,26 @@ changeRagStatus = ->
               .removeClass("rag-negative")
               .addClass(rag_clicked)
     rag_status.find(".rag-text").text($(this).find(".rag-text").text())
+
+editFormAnswerAutoUpdate = ->
+  $("#form_answer_sic_code").on "change", ->
+    that = $(this)
+    form = that.parents("form")
+    $.ajax
+      action: form.attr("action")
+      data: form.serialize()
+      method: "PATCH"
+      dataType: "json"
+
+      success: (result) ->
+        formGroup = that.parents(".form-group")
+        formGroup.removeClass("form-edit")
+        formGroup.find(".form-value p").text(that.find("option:selected").text())
+        sicCodes = result["form_answer"]["sic_codes"]
+        counter = 1
+        for row in $(".sector-average-growth td")
+          $(row).text(sicCodes[counter.toString()])
+          counter += 1
+        $(".avg-growth-legend").text(result["form_answer"]["legend"])
 
 $(document).ready(ready)
