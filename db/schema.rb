@@ -154,8 +154,8 @@ ActiveRecord::Schema.define(version: 20150305104844) do
     t.string   "user_full_name"
     t.string   "award_type_full_name"
     t.string   "sic_code"
-    t.hstore   "financial_data"
     t.string   "nickname"
+    t.hstore   "financial_data"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

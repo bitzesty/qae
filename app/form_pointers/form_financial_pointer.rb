@@ -45,11 +45,48 @@ class FormFinancialPointer
   end
 
   def growth_overseas_earnings(year)
-    "10%"
+    exports = data_values(:exports)
+
+    if exports && exports[year] && exports[year - 1] && year != 0
+      if exports[year - 1][:value].to_f.zero?
+        0
+      else
+        (exports[year][:value].to_f / exports[year - 1][:value].to_f * 100).round(2)
+      end
+    else
+      '-'
+    end
   end
 
   def sales_exported(year)
-    "30%"
+    export = data_values(:exports)
+    total_turnover = data_values(:total_turnover)
+
+    if export && total_turnover && export[year] && total_turnover[year]
+      if export[year][:value].to_f.zero?
+        0
+      else
+        (total_turnover[year][:value].to_f / export[year][:value].to_f * 100).round(2)
+      end
+    else
+      '-'
+    end
+  end
+
+  def overall_growth
+    turnover = data_values(:total_turnover)
+
+    turnover.last && turnover.first ? turnover.last[:value].to_i - turnover.first[:value].to_i : '-'
+  end
+
+  def overall_growth_in_percents
+    turnover = data_values(:total_turnover)
+
+    if turnover && turnover.any? && !turnover.first[:value].to_f.zero?
+      (turnover.last[:value].to_f / turnover.first[:value].to_f * 100).round(2)
+    else
+      '-'
+    end
   end
 
   def fetch_financial_questions
@@ -58,5 +95,12 @@ class FormFinancialPointer
       TARGET_FINANCIAL_DATA_QUESTION_TYPES.include?(question.delegate_obj.class) &&
       award_form[question.key].visible?
     end
+  end
+
+  private
+
+  def data_values(key)
+    values = data.detect { |d| d[key] }
+    values && values[key]
   end
 end

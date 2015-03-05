@@ -24,7 +24,7 @@
         th % Sector average growth
         - financial_pointer.period_length.times do |i|
           td = average_growth_for(@form_answer, i + 1)
-  / label.avg-growth-legend= @form_answer.average_growth_legend([1,2,3])
+  label.avg-growth-legend = @form_answer.average_growth_legend([1,2,3])
 
 .form-group.table-overflow-container
   table.table.table-striped
@@ -32,8 +32,10 @@
       col width="300"
     tbody
       tr
-        th Overall growth £[year 1 - 3]
-        td 100,000
+        th
+          'Overall growth £[year 1 - #{financial_pointer.period_length}]
+        td = financial_pointer.overall_growth
       tr
-        th Overall growth %[year 1 - 3]
-        td 100,000
+        th
+          ' Overall growth %[year 1 - #{financial_pointer.period_length}]
+        td = financial_pointer.overall_growth_in_percents

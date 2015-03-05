@@ -145,6 +145,7 @@ class FormAnswer < ActiveRecord::Base
 
   def financial_data_submitted?
     performance_years.present?
+    true
   end
 
   private
