@@ -1,20 +1,24 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe SupportLettersController, :type => :controller do
-  context 'access key check' do
-    let!(:supporter) { create(:supporter) }
+  context "access key check" do
+    let!(:user) { create(:user) }
+    let!(:form_answer) { create(:form_answer, user: user) }
+    let!(:supporter) do
+      create :supporter, form_answer: form_answer,
+                         user: user
+    end
 
-    it 'renders 404 if access key is invalid' do
-      get :show, access_key: 'hack'
+    it "renders 404 if access key is invalid" do
+      get :show, access_key: "hack"
 
       expect(response.status).to eq(404)
     end
 
-    it 'builds support letter if access key is valid' do
+    it "renders 200 if access key is valid" do
       get :show, access_key: supporter.access_key
 
       expect(response.status).to eq(200)
-      expect(assigns(:support_letter).supporter).to eq(supporter)
     end
   end
 end

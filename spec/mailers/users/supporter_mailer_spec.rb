@@ -3,13 +3,15 @@ require "rails_helper"
 describe Users::SupporterMailer do
   let(:user) { create(:user) }
   let(:supporter) { create(:supporter) }
-  let(:email) { Users::SupporterMailer.success(supporter.id, user.id) }
+  let(:mail) { Users::SupporterMailer.success(supporter.id, user.id) }
 
-  it 'contains link to the support letter form' do
-    expect(email.subject).to eq("[Queen's Awards for Enterprise] Support Letter Request")
-    expect(email.to).to eq([supporter.email])
+  it "renders the headers" do
+    expect(mail.subject).to eq("[Queen's Awards for Enterprise] Support Letter Request")
+    expect(mail.to).to eq([supporter.email])
+    expect(mail.from).to eq(["support@qae.co.uk"])
+  end
 
-    url = "http://example.com/support_letter?access_key=#{supporter.access_key}"
-    expect(email.body.encoded).to have_link("here", href: url)
+  it "contains link to the support letter form" do
+    expect(mail.body.encoded).to have_link("go to the support letter form page", href: support_letter_url(access_key: supporter.access_key))
   end
 end

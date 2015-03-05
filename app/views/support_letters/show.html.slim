@@ -2,12 +2,9 @@ header.page-header.group
   div
     h1
       ' Support letter for
-      = @supporter.form_answer.user.decorate.general_info
+      = supporter.form_answer.user.decorate.general_info
 
 .article-container
   article.group role="article"
     .inner
-      = simple_form_for @support_letter, url: support_letter_path(access_key: @supporter.access_key), html: { class: "qae-form" }, method: :put do |f|
-        = f.input :body, label: false, input_html: { rows: 10 }
-
-        = f.submit "Save", class: "button"
+      = render "support_letters/form"
