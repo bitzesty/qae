@@ -49,6 +49,12 @@ class Admin::FormAnswersController < Admin::BaseController
 
   private
 
+  helper_method :resource
+
+  def resource
+    @form_answer ||= load_resource
+  end
+
   def load_resource
     @form_answer = FormAnswer.find(params[:id]).decorate
   end

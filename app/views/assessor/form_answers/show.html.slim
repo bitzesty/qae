@@ -87,25 +87,8 @@
           /     = form.file_field :file
           /   = form.submit 'Attach Document', class: 'if-js-hide'
 
-      / TODO Assessors
-      .well.section-applicant-users
-        h2
-          ' Assessors
-        /p.p-empty No assessors have been assigned to this case.
-        ul.list-unstyled.list-actions
-          li
-            = link_to "#", class: "ellipsis"
-              span.icon-role L
-              label Lead:
-              ' Not implemented
-          li
-            = link_to "#", class: "ellipsis"
-              span.icon-role 1
-              label Primary:
-              = resource.assessors.primary.try(:full_name)
-          li
-            = link_to "#", class: "ellipsis"
-              span.icon-role 2
-              label Secondary:
-              = resource.assessors.secondary.try(:full_name)
+      = render("admin/form_answers/assessors_section")
       = render("assessors_section")
+  .col-md-8.submitted-view
+    = render "submitted_view"
+

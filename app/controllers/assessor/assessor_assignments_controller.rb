@@ -11,9 +11,9 @@ class Assessor::AssessorAssignmentsController < Assessor::BaseController
   end
 
   def update
-    resource.update(create_params)
     authorize resource, :update?
 
+    resource.update(create_params)
     redirect_to :back
   end
 
