@@ -227,6 +227,7 @@ class QAE2014Forms
           rows 5
           words_max 500
           conditional :trade_commercial_success, :true
+          drop_condition_parent
         end
 
         options :resale_overseas, "Do you purchase your products/services (or any of their components) from overseas for resale overseas?" do

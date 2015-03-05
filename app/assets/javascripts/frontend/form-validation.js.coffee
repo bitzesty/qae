@@ -75,9 +75,11 @@ window.FormValidation =
     if question.find(".question-group .question-group").length
       for subquestion in question.find(".question-group .question-group")
         if not @validateSingleQuestion($(subquestion))
+          @log_this(question, "validateRequiredQuestion", "This field is required.")
           @addErrorMessage($(subquestion), "This field is required.")
     else
       if not @validateSingleQuestion(question)
+        @log_this(question, "validateRequiredQuestion", "This field is required.")
         @addErrorMessage(question, "This field is required.")
 
   validateMatchQuestion: (question) ->
@@ -85,6 +87,7 @@ window.FormValidation =
     match_name = q.data("match")
 
     if q.val() isnt $("input[name='#{match_name}']").val()
+      @log_this(question, "validateMatchQuestion", "Emails don't match.")
       @addErrorMessage(question, "Emails don't match.")
 
   validateMaxDate: (question) ->
@@ -97,10 +100,12 @@ window.FormValidation =
     diff = @compareDateInDays(val, expDate)
 
     if not @toDate(val).isValid()
+      @log_this(question, "validateMaxDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
 
     if diff > 0
+      @log_this(question, "validateMaxDate", "Date cannot be after #{expDate}")
       @addErrorMessage(question, "Date cannot be after #{expDate}")
 
   validateMinDate: (question) ->
@@ -113,10 +118,12 @@ window.FormValidation =
     diff = @compareDateInDays(val, expDate)
 
     if not @toDate(val).isValid()
+      @log_this(question, "validateMinDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
 
     if diff > 0
+      @log_this(question, "validateMinDate", "Date cannot be before #{expDate}")
       @addErrorMessage(question, "Date cannot be before #{expDate}")
 
   validateBetweenDate: (question) ->
@@ -132,10 +139,12 @@ window.FormValidation =
     diffEnd = @compareDateInDays(val, expDateEnd)
 
     if not @toDate(val).isValid()
+      @log_this(question, "validateBetweenDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
 
     if diffStart < 0 or diffEnd > 0
+      @log_this(question, "validateBetweenDate", "Date should be between #{expDateStart} and #{expDateEnd}.")
       @addErrorMessage(question, "Date should be between #{expDateStart} and #{expDateEnd}.")
 
   validateNumber: (question) ->
@@ -145,6 +154,7 @@ window.FormValidation =
       return
 
     if not val.val().toString().match(@numberRegex) && val.val().toString().toLowerCase().trim() != "n/a"
+      @log_this(question, "validateNumber", "Not a valid number")
       @addErrorMessage(question, "Not a valid number")
 
   validateTotalOverseas: (question) ->
@@ -168,6 +178,7 @@ window.FormValidation =
 
     if total_doesnt_match
       question_block = $(".question-block[data-answer='overseas_sales-total-overseas-sales']")
+      @log_this(question, "validateTotalOverseas", "Total doesn't match values from questions below.")
       @appendMessage(question_block, "Total doesn't match values from questions below.")
       @addErrorClass(question_block)
       return
@@ -182,6 +193,7 @@ window.FormValidation =
       if shown_question
         subq = $(subquestion)
         if not subq.val() and question.hasClass("question-required")
+          @log_this(question, "validateMoneyByYears", "This field is required.")
           @appendMessage(subq.closest("label"), "This field is required.")
           @addErrorClass(question)
           continue
@@ -189,6 +201,7 @@ window.FormValidation =
           continue
 
         if not subq.val().toString().match(@numberRegex)
+          @log_this(question, "validateMoneyByYears", "Not a valid currency value.")
           @appendMessage(subq.closest("label"), "Not a valid currency value.")
           @addErrorClass(question)
 
@@ -211,6 +224,7 @@ window.FormValidation =
         date = @toDate(complex_date_string)
 
         if not date.isValid()
+          @log_this(question, "validateDateByYears", "Not a valid date")
           @appendMessage(q_parent, "Not a valid date")
           @addErrorClass(question)
 
@@ -221,6 +235,7 @@ window.FormValidation =
           expDateEnd = dates[1]
 
           if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
+            @log_this(question, "validateDateByYears", "Date should be between #{expDateStart} and #{expDateEnd}.")
             @appendMessage(q_parent, "Date should be between #{expDateStart} and #{expDateEnd}.")
             @addErrorClass(question)
 
@@ -236,6 +251,7 @@ window.FormValidation =
           endDate = parseInt($(this).find(".validate-date-end label:eq("+i+") input").val())
 
           if startDate > endDate
+            @log_this(question, "validateDateStartEnd", "Start date cannot be after end date")
             @appendMessage(subq.parent(), "Start date cannot be after end date")
             @addErrorClass(question)
             return
@@ -255,8 +271,24 @@ window.FormValidation =
       error_message = "Sorry, you are not eligible. \
       You must have constant growth in overseas sales for the entire entry period to be eligible \
       for a Queen's Award for Enterprise: International Trade."
+      @log_this(question, "validateDropBlockCondition", error_message)
       @addErrorMessage(question, error_message)
       return
+
+  # It's for easy debug of validation errors
+  # As it really tricky to find out the validation which blocks form
+  # and do not display any error massage on form
+  log_this: (question, validator, message) ->
+    step_title = $.trim($(".js-step-link.step-current").text())
+    q_ref = $.trim(question.find("h2 span.visuallyhidden").text())
+    q_title = $.trim(question.find("h2").text())
+
+    if typeof console != "undefined"
+      console.log "-----------------------------"
+      console.log("[STEP]: " + step_title)
+      console.log("  [QUESTION] " + q_ref + ": "+ q_title)
+      console.log("  [" + validator + "]: " + message)
+      console.log "-----------------------------"
 
   validate: ->
     @clearAllErrors()
