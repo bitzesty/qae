@@ -48,6 +48,17 @@ ActiveRecord::Schema.define(version: 20150305084628) do
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
 
+  create_table "assessor_assignments", force: :cascade do |t|
+    t.integer  "form_answer_id",             null: false
+    t.integer  "assessor_id",                null: false
+    t.integer  "position",       default: 0, null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "assessor_assignments", ["assessor_id", "form_answer_id"], name: "index_assessor_assignments_on_assessor_id_and_form_answer_id", unique: true, using: :btree
+  add_index "assessor_assignments", ["form_answer_id", "position"], name: "index_assessor_assignments_on_form_answer_id_and_position", unique: true, using: :btree
+
   create_table "assessors", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false

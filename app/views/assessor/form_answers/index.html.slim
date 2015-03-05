@@ -1,0 +1,87 @@
+= simple_form_for @search, url: "", method: :get, as: :search, html: { class: 'search-form'} do |f|
+
+  .row
+    .col-md-3
+      .form-group.search-input
+        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
+        = submit_tag :submit
+
+  br
+
+  .row
+    .col-xs-12
+      .table-overflow-container
+        table.table.applications-table
+          thead
+            tr
+              th &nbsp;
+              th.sortable
+                = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
+              th.sortable
+                = sort_link f, "Reference", @search, :urn, disabled: @search.query?
+              - if @search.query?
+                th Award Type
+              - else
+                th.filter
+                  = f.simple_fields_for [:filters, @search.filters] do |f|
+                    = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+                  / TODO do category filter dropdown
+                  .dropdown.if-no-js-hide
+                    button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                      ' Status:
+                      span.text-filter
+                        ' All
+                      span.caret
+                    ul.dropdown-menu role="menu"
+                      li.checkbox role="presentation"
+                        label data-value='select_all'
+                          input type="checkbox"
+                          span.label-contents
+                            em Select all
+                        - FormAnswerStatus::ForAssessorFilter.collection.each do |section|
+                          = section[:section][:label]
+                          - section[:options].each do |k, v|
+                            li.checkbox role="presentation"
+                              label data-value=k
+                                input type="checkbox"
+                                span.label-contents
+                                  = v[:label]
+                          li.divider
+
+
+                th
+                  ' Assessor 1
+                th
+                  ' Assessor 2
+              th &nbsp;
+              th.sortable
+                = sort_link f, "Flag", @search, :flag, disabled: @search.query?
+              th &nbsp;
+          tbody
+            - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
+              tr
+                td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
+                td.td-title
+                  = link_to [namespace_name, obj], class: "ellipsis"
+                    - unless obj.company_or_nominee_name.nil?
+                      = link_to obj.company_or_nominee_name, [namespace_name, obj]
+                    - else
+                      = link_to [namespace_name, obj] do
+                        em
+                          ' Not found
+                td
+                  - if obj.urn.present?
+                    = obj.urn
+                  - else
+                    span.urn-not-generated Not yet generated
+                    = obj.award_type
+                td Not implemented
+                td= obj.assessors.primary.try(:full_name) || "Not Assigned"
+                td= obj.assessors.secondary.try(:full_name) || "Not Assigned"
+                td
+                td Not implemented
+
+  .row
+    .col-xs-12.text-right
+      = paginate @form_answers
+      .clear

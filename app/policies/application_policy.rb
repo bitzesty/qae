@@ -39,4 +39,8 @@ class ApplicationPolicy
   def admin?
     subject.is_a?(Admin)
   end
+
+  def assessor?
+    subject.is_a?(Assessor)
+  end
 end
