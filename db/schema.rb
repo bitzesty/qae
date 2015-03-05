@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305104844) do
+ActiveRecord::Schema.define(version: 20150305171327) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -121,6 +121,15 @@ ActiveRecord::Schema.define(version: 20150305104844) do
 
   add_index "eligibilities", ["account_id"], name: "index_eligibilities_on_account_id", using: :btree
   add_index "eligibilities", ["form_answer_id"], name: "index_eligibilities_on_form_answer_id", using: :btree
+
+  create_table "form_answer_assessments", force: :cascade do |t|
+    t.hstore   "document"
+    t.integer  "assessor_assignment_id", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "form_answer_assessments", ["assessor_assignment_id"], name: "index_form_answer_assessments_on_assessor_assignment_id", unique: true, using: :btree
 
   create_table "form_answer_attachments", force: :cascade do |t|
     t.integer  "form_answer_id"

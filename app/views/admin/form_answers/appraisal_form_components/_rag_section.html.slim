@@ -1,0 +1,14 @@
+.form-group
+  label.form-label
+    = section.label
+    = render "admin/form_answers/rag_button"
+
+  .form-value
+    p= assessment.send(section.attribute)
+
+    = link_to "#", class: "form-edit-link pull-right"
+      span.glyphicon.glyphicon-pencil
+      ' Edit
+    .clear
+  textarea.form-control rows=5
+    = assessment.send(section.attribute)
