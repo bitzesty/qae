@@ -1,7 +1,7 @@
 - eligibility.questions.each do |question|
   - answer = eligibility.public_send(question)
   - if question != step
-    - if final_eligibility_page?(step) || answer.present?
+    - if (final_eligibility_page?(step) && !@already_has_invalid_questions) || answer.present?
       tr.section
         td.previous-question-title
           = eligibility.class.label(question)
