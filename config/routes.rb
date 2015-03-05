@@ -79,8 +79,10 @@ Rails.application.routes.draw do
       resources :flags, only: [] do
         collection{ get :toggle }
       end
+
       member do
         post :withdraw
+        patch :update_financials
         get :review
       end
     end

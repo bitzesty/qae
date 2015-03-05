@@ -14,4 +14,8 @@ class FormAnswerPolicy < ApplicationPolicy
   def show?
     admin.admin?
   end
+
+  def update_financials?
+    true
+  end
 end
