@@ -1,0 +1,15 @@
+= simple_form_for support_letter, url: support_letter_path(access_key: supporter.access_key), html: { class: "qae-form" }, method: :put do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :organization_name
+  = f.input :phone
+  = f.input :relationship_to_nominee
+  = f.input :address_first
+  = f.input :address_second
+  = f.input :city
+  = f.country_select :country, {priority_countries: ["GB", "US"]}
+  = f.input :postcode
+  = render "support_letters/notes"
+  = f.input :body, label: false, input_html: { rows: 10 }
+
+  = f.submit "Submit", class: "button"

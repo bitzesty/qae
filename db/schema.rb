@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304155948) do
+ActiveRecord::Schema.define(version: 20150305084628) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -94,6 +94,9 @@ ActiveRecord::Schema.define(version: 20150304155948) do
     t.string   "authorable_type",  null: false
     t.integer  "authorable_id",    null: false
   end
+
+  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
+  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
 
   create_table "eligibilities", force: :cascade do |t|
     t.integer  "account_id"
@@ -182,7 +185,7 @@ ActiveRecord::Schema.define(version: 20150304155948) do
     t.string   "last_name"
     t.string   "organization_name"
     t.string   "phone"
-    t.text     "relationship_to_nominee"
+    t.string   "relationship_to_nominee"
     t.string   "address_first"
     t.string   "address_second"
     t.string   "city"
@@ -207,6 +210,7 @@ ActiveRecord::Schema.define(version: 20150304155948) do
     t.string   "relationship_to_nominee"
   end
 
+  add_index "supporters", ["access_key"], name: "index_supporters_on_access_key", using: :btree
   add_index "supporters", ["form_answer_id"], name: "index_supporters_on_form_answer_id", using: :btree
   add_index "supporters", ["user_id"], name: "index_supporters_on_user_id", using: :btree
 
