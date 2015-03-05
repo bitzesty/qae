@@ -35,7 +35,7 @@ class User < ActiveRecord::Base
     minimum: 7,
     maximum: 20,
     message: "This is not a valid telephone number"
-  }, if: :second_step?
+  }, allow_blank: true, if: :second_step?
 
   validates_with UserAccountValidator, on: :update, if: "account_id_changed?"
 
