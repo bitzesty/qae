@@ -12,6 +12,9 @@ describe Users::SupporterMailer do
   end
 
   it "contains link to the support letter form" do
-    expect(mail.body.encoded).to have_link("go to the support letter form page", href: support_letter_url(access_key: supporter.access_key))
+    expect(mail.body.encoded).to have_link(
+      "go to the support letter form page",
+      href: support_letter_url(access_key: supporter.access_key)
+    )
   end
 end

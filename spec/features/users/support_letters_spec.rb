@@ -1,11 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
-describe "Submission of SupportLetter", %q{
+describe "Submission of SupportLetter", %{
 As a Supporter
 I want to be able to fill and submit support letter
 So that I can support my nominator
 } do
-
   let!(:user) { create(:user) }
   let!(:form_answer) { create(:form_answer, user: user) }
   let!(:supporter) do
