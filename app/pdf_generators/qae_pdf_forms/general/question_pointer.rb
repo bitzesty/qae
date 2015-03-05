@@ -1,9 +1,6 @@
 class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
-
-  QUEENS_AWARD_HOLDER_LIST_HEADERS = [
-    "Category", "Year Awarded"
-  ]
+  include QaePdfForms::CustomQuestions::Lists
 
   attr_reader :form_pdf,
               :step,
@@ -67,35 +64,18 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::ConfirmQuestion
         title = humanized_answer.present? ? question_checked_value_title : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, style: :italic)
-      when QAEFormBuilder::QueenAwardHolderQuestion, QAEFormBuilder::AwardHolderQuestion
-        render_current_award_list
+      when *LIST_TYPES
+        render_list
       when QAEFormBuilder::ByYearsLabelQuestion
         render_years_labels_table
       when QAEFormBuilder::ByYearsQuestion
         render_years_table
+      when QAEFormBuilder::SupportersQuestion
+        # TODO: NEED TO CONFIRM
       else
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
         form_pdf.render_text(title, style: :italic)
       end
-    end
-  end
-
-  def render_current_award_list
-    if humanized_answer.present?
-      rows = humanized_answer.map do |item|
-        prepared_item = JSON.parse(item)
-
-        if prepared_item["category"].present? && prepared_item["year"].present?
-          [
-            prepared_item["category"],
-            prepared_item["year"]
-          ]
-        end
-      end.compact
-
-      render_multirows_table(QUEENS_AWARD_HOLDER_LIST_HEADERS, rows)
-    else
-      form_pdf.render_text(FormPdf::UNDEFINED_TITLE, style: :italic)
     end
   end
 

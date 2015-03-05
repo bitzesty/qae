@@ -1,0 +1,69 @@
+= simple_form_for [:admin, @form_answer] do |f|
+  .panel.panel-default
+    .panel-heading#company-details-heading role="tab"
+      h4.panel-title
+        a data-toggle="collapse" data-parent="#panel-application-info" href="#section-company-details" aria-expanded="true" aria-controls="section-company-details"
+          ' Company Details
+          small
+            ' Logged in: 28/09/15 - 08:03
+    #section-company-details.section-company-details.panel-collapse.collapse.in role="tabpanel" aria-labelledby="company-details-heading"
+      .panel-body
+        .form-group
+          label.form-label Company name
+          .form-value
+            p = @form_answer.company_name
+          .input.form-group
+            input.form-control type="text"
+          .clear
+
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
+
+        br
+
+        .form-group
+          label.form-label SIC Code
+          .form-value
+            p
+              - if @form_answer.sic_code.present?
+                = @form_answer.sic_code_name
+              - else
+                ' -
+          = f.input :sic_code,
+                    wrapper_html: { class: "form-group" },
+                    input_html: { class: "form-control" },
+                    as: :select,
+                    collection: SICCode.collection,
+                    include_blank: true,
+                    label: false
+          .clear
+
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
+
+        br
+
+        = f.submit :update_application, class: "if-js-hide"
+        .form-group
+          label.form-label User accounts
+          ul.list-unstyled.list-actions
+            li
+              = link_to "#", class: "ellipsis"
+                span.icon-role A
+                ' Thomas Smith (t.smith@companyname.com)
+            li
+              = link_to "#", class: "ellipsis"
+                span.icon-role C
+                ' James Moriss (j.moriss@companyname.com)
+            li
+              = link_to "#", class: "ellipsis"
+                span.icon-role L
+                ' James Moriss (j.moriss@companyname.com)
+            li
+              = link_to "#", class: "ellipsis"
+                span.icon-role 1
+                ' James Moriss (j.moriss@companyname.com)

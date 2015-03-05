@@ -4,116 +4,113 @@
       = link_to "‹ back to overview", admin_form_answers_path, class: "btn btn-link btn-lg"
       .pull-right
         / TODO Prev/next case links
-        = link_to "‹ Prev case", "#", class: "btn btn-default btn-sm"
-        ' &nbsp;
-        = link_to "Next case ›", "#", class: "btn btn-default btn-sm"
+        = link_to "‹ Prev case", "#"
+        = link_to "Next case ›", "#"
 
 .row
   .col-md-4
     .show-sidebar
       .well.section-applicant-details
-        h1 = @form_answer.company_name
-        p
-          - if @form_answer.urn.present?
+        - if @form_answer.urn.present?
+          h1
             = @form_answer.urn
-            ' &nbsp; &nbsp;
-          / TODO SIC
-          = sic_code(@form_answer)
+        h2 = @form_answer.company_name
         p = @form_answer.award_type
-        p.p-lg
-          / TODO Address
-          ' 65 Kings Cross Road,
-          br
-          ' London, WC1X 9LW, UK
-        .text-right
-          / TODO Edit page
-          = link_to "Edit details", [:edit, :admin, @form_answer]
+
+        = link_to review_admin_form_answer_path(@form_answer), class: "btn btn-default btn-block", target: "_blank"
+          span.icon-view
+          ' View application as admin
+
+      .well.section-applicant-status
+        / This is where you change the application status
+        h2
+          ' Status
+          small Updated by Admin User - 28/09/15 at 08:03
+
+        .btn-group
+          button.btn.btn-link.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="false"
+            = @form_answer.progress_text_short
+            span.caret
+          ul.dropdown-menu role="menu"
+            - FormAnswerStatusFiltering.collection.each do |state|
+              li.checkbox role='presentation'
+                = link_to state[0]
+            li.divider
+            - FormAnswerStatusFiltering::SUB_OPTIONS.each do |key, val|
+              li.checkbox role="presentation"
+                = link_to val[:label]
+        p Case Summary - Missing
+        p Audit Certificate - Missing
 
       .well
-        h2
-          span.glyphicon.glyphicon-file
-          ' Documents
-        .document-list
-          - unless @form_answer.form_answer_attachments.any?
-            p.p-empty No documents have been attached to this case.
+        .sidebar-section
+          h2
+            ' Application & Supporting Docs
+          / TODO uploaded docs by applicant (Can't delete)
           ul.list-unstyled.list-actions
-            - if @form_answer.form_answer_attachments.any?
-              = render(@form_answer.form_answer_attachments)
-          br
-        = form_for [:admin, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
-          span.btn.btn-default.btn-sm.btn-attachment
-            span.attachment-text
-              span.glyphicon.glyphicon-paperclip
-              ' Attach Document
-            = form.file_field :file
-          = form.submit 'Attach Document', class: 'if-js-hide'
+            li
+              = link_to "#"
+                span.glyphicon.glyphicon-file
+                ' company-application.pdf
+            li
+              = link_to "#"
+                span.glyphicon.glyphicon-file
+                ' company-compliance-outline.pdf
 
-      / TODO Users
-      .well
+        .sidebar-section
+          / TODO Auto generated Docs
+          h2
+            ' Post Shortlisting Docs
+          ul.list-unstyled.list-actions
+            li
+              = link_to "View/print Audit Certificate"
+            li
+              = link_to "View/print Case Summary"
+
+        / TODO Only appears for EP but for now we need to think more on it
+        /.sidebar-section
+          h2
+            ' EP ?
+
+        .sidebar-section
+          h2
+            ' Other Docs
+          .document-list
+            - unless @form_answer.form_answer_attachments.any?
+              p.p-empty No documents have been attached to this case.
+            ul.list-unstyled.list-actions
+              - if @form_answer.form_answer_attachments.any?
+                = render(@form_answer.form_answer_attachments)
+            br
+          = form_for [:admin, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
+            span.btn.btn-default.btn-attachment
+              span.attachment-text
+                span.glyphicon.glyphicon-paperclip
+                ' Attach Document
+              = form.file_field :file
+            = form.submit 'Attach Document', class: 'if-js-hide'
+
+      / TODO Assessors
+      .well.section-applicant-users
         h2
-          span.glyphicon.glyphicon-user
-          ' User Accounts
-          small.pull-right Logged in: 28/09/15 - 08:03
+          ' Assessors
+        /p.p-empty No assessors have been assigned to this case.
         ul.list-unstyled.list-actions
           li
             = link_to "#", class: "ellipsis"
-              span.icon-role A
-              ' Thomas Smith (t.smith@companyname.com)
-          li
-            = link_to "#", class: "ellipsis"
-              span.icon-role C
-              ' James Moriss (j.moriss@companyname.com)
-          li
-            = link_to "#", class: "ellipsis"
               span.icon-role L
-              ' James Moriss (j.moriss@companyname.com)
+              label Lead:
+              ' Rebecca Moore
           li
             = link_to "#", class: "ellipsis"
               span.icon-role 1
-              ' James Moriss (j.moriss@companyname.com)
-        br
-        = link_to "#", class: "btn btn-default btn-sm btn-email"
-          span.glyphicon.glyphicon-envelope
-          ' Email All Users
+              label Primary:
+              ' Peter Langdon
+          li
+            = link_to "#", class: "ellipsis"
+              span.icon-role 2
+              label Secondary:
+              ' James Malgrove
 
-      / TODO Assessors
-      .well
-        h2
-          span.glyphicon.glyphicon-user
-          ' Assessors
-        p.p-empty No assessors have been assigned to this case.
-
-  .col-md-8
-    .col-sidebar
-      .sidebar-header
-        = link_to toggle_admin_form_answer_flags_path(@form_answer), class: "link-flag", remote: true
-          span.icon-text Flag:
-          = application_flags(@form_answer)
-
-        = link_to "#", class: "link-comment"
-          = application_comments(@form_answer)
-          span.icon-text Hide comments:
-        .clear
-
-      .comments-container
-        = render(collection: @form_answer.comments, partial: 'comment')
-
-        .comment-footer
-          = link_to 'Enter a Comment', new_admin_form_answer_comment_path(@form_answer), id: 'build_new_comment', class: "btn btn-default btn-block"
-
-    .col-content
-      .application-progress class=@form_answer.progress_class
-        = @form_answer.progress_text
-        - if Rails.env.development?
-          span.pull-right.if-no-js-hide
-            = link_to "Switch View", "#", class: "btn btn-xs btn-default js-switch-admin-view"
-      .applicant-view
-        .iframeholder data-src= review_admin_form_answer_path(@form_answer)
-          = link_to "#", class: 'if-no-js-hide js-expand-iframe'
-            span.collapsed-show Expand
-            span.expanded-show Close
-        = link_to "Review application", review_admin_form_answer_path(@form_answer), class: "if-js-hide"
-      .submitted-view.hidden
-        = render partial: "submitted_view"
-
-    .clear
+  .col-md-8.submitted-view
+    = render partial: "submitted_view"

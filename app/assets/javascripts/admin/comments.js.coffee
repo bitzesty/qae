@@ -1,11 +1,4 @@
 ready = ->
-  $('body').on 'click', '#build_new_comment', (e)->
-    e.preventDefault()
-    unless $('#new_comment').length
-      $.get $(this).attr('href'), (data)->
-        $('.comments-container').append(data)
-      , 'html'
-
   $('body').on 'submit', '#new_comment', (e)->
     e.preventDefault()
     $.ajax
@@ -14,7 +7,7 @@ ready = ->
       data: $(this).serialize(),
       dataType: 'HTML',
       success: (data)->
-        $('#new_comment').remove()
+        $('#new_comment textarea').val("")
         $('.comments-container .comment-footer').before(data)
 
   $('body').on 'submit', '.edit_comment', (e)->
@@ -25,22 +18,12 @@ ready = ->
     $(this).parents('.comment').remove()
 
   toggleFlagged()
-  showCommentsSidebar()
   deleteCommentAlert()
 
-showCommentsSidebar = ->
-  $(document).on "click", ".link-comment", (e) ->
-    e.preventDefault()
-    $(this).closest(".col-sidebar").parent().toggleClass("sidebar-open")
-
 toggleFlagged = ->
-  $(document).on "click", ".link-flag", (e) ->
+  $(document).on "click", ".link-flag-comment", (e) ->
     e.preventDefault()
-
-    if $(this).find(".icon-flagged").size() > 0
-      $(this).find(".icon-flagged").addClass("icon-unflagged").removeClass("icon-flagged")
-    else
-      $(this).find(".icon-unflagged").addClass("icon-flagged").removeClass("icon-unflagged")
+    $(this).closest(".comment").toggleClass("comment-flagged")
 
 deleteCommentAlert = ->
   $(document).on "click", ".link-delete-comment", (e) ->

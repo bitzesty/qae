@@ -1,8 +1,8 @@
 class ApplicationPolicy
-  attr_reader :admin, :record
+  attr_reader :subject, :record
 
-  def initialize(admin, record)
-    @admin = admin
+  def initialize(subject, record)
+    @subject = subject
     @record = record
   end
 
@@ -32,5 +32,11 @@ class ApplicationPolicy
 
   def destroy?
     false
+  end
+
+  private
+
+  def admin?
+    subject.is_a?(Admin)
   end
 end

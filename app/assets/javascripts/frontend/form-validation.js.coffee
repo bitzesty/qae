@@ -147,7 +147,7 @@ window.FormValidation =
     if not val.val().toString().match(@numberRegex) && val.val().toString().toLowerCase().trim() != "n/a"
       @addErrorMessage(question, "Not a valid number")
 
-  validateTotalOverseas: () ->
+  validateTotalOverseas: (question) ->
     questions = $(".question-block[data-answer='overseas_sales-total-overseas-sales'] .show-question .currency-input")
     direct = $(".question-block[data-answer='overseas_sales_direct-of-which-direct'] .show-question .currency-input")
     indirect = $(".question-block[data-answer='overseas_sales_indirect-of-which-indirect'] .show-question .currency-input")
@@ -156,10 +156,10 @@ window.FormValidation =
 
     total_doesnt_match = false
 
-    for question,i in questions
-      $(question).find(".errors-container").empty()
+    for q,i in questions
+      $(q).find(".errors-container").empty()
 
-      val = parseFloat($(question).find("input").val() or 0)
+      val = parseFloat($(q).find("input").val() or 0)
       dir = parseFloat($(direct[i]).find("input").val() or 0)
       ind = parseFloat($(indirect[i]).find("input").val() or 0)
 
@@ -193,45 +193,52 @@ window.FormValidation =
           @addErrorClass(question)
 
   validateDateByYears: (question) ->
-    for subquestion in question.find(".js-conditional-question.show-question input")
-      if $(subquestion).closest(".js-conditional-question").hasClass("show-question")
-        subq = $(subquestion)
+    for subquestion_block in question.find(".js-fy-entry-container.show-question .date-input")
+      subq = $(subquestion_block)
+      q_parent = subq.closest(".js-fy-entries")
+      errors_container = q_parent.find(".errors-container").html()
 
-        val = subq.val()
+      day = subq.find("input.js-fy-day").val()
+      month = subq.find("input.js-fy-month").val()
+      year = subq.find("input.js-fy-year").val()
 
-        if not val and question.hasClass("question-required")
-          @appendMessage(subq.parent(), "This field is required.")
-          @addErrorClass(question)
-          continue
-        else if not val
-          continue
-
-        dates = subq.parent().find(".date-range").text().trim().split(" - ")
-        expDateStart = dates[0]
-        expDateEnd = dates[1]
-        date = @toDate(val)
+      if (not day or not month or not year)
+        #if question.hasClass("question-required") && errors_container.length < 1
+        #  @appendMessage(q_parent, "This field is required.")
+        #  @addErrorClass(question)
+      else
+        complex_date_string = day + "/" + month + "/" + year
+        date = @toDate(complex_date_string)
 
         if not date.isValid()
-          @appendMessage(subq.parent(), "Not a valid date")
+          @appendMessage(q_parent, "Not a valid date")
           @addErrorClass(question)
 
-        if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
-          @appendMessage(subq.parent(), "Date should be between #{expDateStart} and #{expDateEnd}.")
-          @addErrorClass(question)
+        dateRange = q_parent.find(".date-range").text()
+        if dateRange.length > 0
+          dates = dateRange.trim().split(" - ")
+          expDateStart = dates[0]
+          expDateEnd = dates[1]
 
-  validateDateStartEnd: () ->
+          if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
+            @appendMessage(q_parent, "Date should be between #{expDateStart} and #{expDateEnd}.")
+            @addErrorClass(question)
+
+  validateDateStartEnd: (question) ->
     question.find(".validate-date-start-end").each () ->
-      # Whether we're checking just year or month as well
-      dateInputCount = $(this).find(".validate-date-start label").size()
+      # Whether we need to validate if date is ongoing
+      if $(this).find(".validate-date-end input[disabled]").size() == 0
+        # Whether we're checking just year or month as well
+        dateInputCount = $(this).find(".validate-date-start label").size()
 
-      for i in [dateInputCount-1..0] by -1
-        startDate = parseInt($(this).find(".validate-date-start label:eq("+i+") input").val())
-        endDate = parseInt($(this).find(".validate-date-end label:eq("+i+") input").val())
+        for i in [dateInputCount-1..0] by -1
+          startDate = parseInt($(this).find(".validate-date-start label:eq("+i+") input").val())
+          endDate = parseInt($(this).find(".validate-date-end label:eq("+i+") input").val())
 
-        if startDate > endDate
-          @appendMessage(subq.parent(), "Start date cannot be after end date")
-          @addErrorClass(question)
-          return
+          if startDate > endDate
+            @appendMessage(subq.parent(), "Start date cannot be after end date")
+            @addErrorClass(question)
+            return
 
   validateDropBlockCondition: (question) ->
     drop = false
@@ -294,7 +301,7 @@ window.FormValidation =
       if question.attr("data-answer") == 'overseas_sales-total-overseas-sales' &&
          question.find(".show-question").length > 0
         # console.log "validateTotalOverseas"
-        @validateTotalOverseas()
+        @validateTotalOverseas(question)
 
       if question.find(".validate-date-start-end").size() > 0
         # console.log "validateDateStartEnd"

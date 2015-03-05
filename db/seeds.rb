@@ -2,7 +2,6 @@ unless Admin.exists?
   admin_args = {
     email: "admin@example.com",
     password: "admin123",
-    role: "admin",
     first_name: "First name",
     last_name: "Last name"
   }
@@ -11,6 +10,16 @@ unless Admin.exists?
     tap(&:confirm!)
 end
 
+unless Assessor.exists?
+  assessor_args = {
+    email: "assessor@example.com",
+    password: "assessor123",
+    first_name: "First name",
+    last_name: "Last name"
+  }
+
+  Assessor.create!(assessor_args).tap(&:confirm!)
+end
 # unless User.exists?
 #   5.times do |i|
 #     User.create!(

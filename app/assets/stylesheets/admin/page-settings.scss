@@ -1,0 +1,84 @@
+.settings-page {
+  ul {
+    padding-left: 1.25em;
+
+    li {
+      margin-bottom: 10px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .panel-section {
+    padding: 15px 0;
+    border-bottom: 1px solid $grey;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  .form-value {
+    display: inline-block;
+    width: 30em;
+
+    @include screen-xs-max {
+      display: inline;
+      margin-right: 10px;
+    }
+  }
+
+  .btn-add-schedule {
+    margin: 20px 0;
+  }
+
+  .link-email-example {
+    text-decoration: underline;
+  }
+
+  .well {
+    max-width: 300px;
+    margin: 20px 0;
+    background-color: $white-true;
+    box-shadow: none;
+
+    @include screen-sm-max {
+      max-width: none;
+    }
+
+    h3 {
+      margin-top: 0;
+    }
+
+    .control-date {
+      padding-right: 40px;
+      background-image: image-url("icon-date-picker.png");
+      background-repeat: no-repeat;
+      background-position: right bottom;
+      background-size: 31px 30px;
+
+      @include is-retina {
+        background-image: image-url("icon-date-picker@2.png");
+      }
+
+      @include screen-sm-max {
+        padding-right: 55px;
+      }
+
+      .form-group {
+        margin-bottom: 0;
+      }
+    }
+
+    .control-action {
+      margin-top: 1.7em;
+    }
+  }
+}

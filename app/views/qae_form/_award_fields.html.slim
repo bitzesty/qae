@@ -6,16 +6,12 @@ li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-de
       label
         ' Award/Honour title
         input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][title]" type="text" value=award['title']
-    span.span-6
-      label
-        ' Year
-        br
-        select.inline name="form[#{question.key}][#{index}][year]" *possible_read_only_ops
-          option value=""
-            ' Year Awarded
-          - question.award_years.each do |year|
-            option value=year selected=(award['year'] == year.to_s)
-              = year
+
+    - if question.award_years_present
+      span.span-3
+        label
+          ' Year
+          input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][year]" type="text" value=award['year']
 
   label
     span.label-char-count-reposition

@@ -1,0 +1,58 @@
+.panel.panel-default
+  .panel-heading#application-submission-stage-email-notifications-heading role="tab"
+    h4.panel-title
+      a data-toggle="collapse" data-parent="#panel-application-submission-stage" href="#section-application-submission-stage-email-notifications" aria-expanded="true" aria-controls="section-application-submission-stage-email-notifications"
+        ' Email notification
+  #section-application-submission-stage-email-notifications.section-appraisal-form.section-application-submission-stage-email-notifications.panel-collapse.collapse.in role="tabpanel" aria-labelledby="application-submission-stage-email-notifications-heading"
+    .panel-body
+      .panel-section
+        p
+          ' Reminder to submit the applications (to all those who started but not yet submitted applications).
+
+        p
+          = link_to "View email example", "#", class: "link-email-example"
+
+        = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule"
+
+        = render "schedule_new"
+
+        ul
+          li
+            .form-value
+              ' Scheduled to be sent on
+              strong
+                = "21 Apr 2015"
+            = link_to "Edit"
+            '  |
+            = link_to "Delete"
+          li
+            .form-value
+              ' Already sent on
+              strong
+                = "29 Apr 2015"
+            = link_to "Edit"
+
+      .panel-section
+        p
+          ' ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted).
+
+        p
+          = link_to "View email example", "#", class: "link-email-example"
+
+        = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule"
+
+        ul
+          li
+            .form-value
+              ' Scheduled to be sent on
+              strong
+                = "21 Apr 2015"
+            = link_to "Edit"
+            '  |
+            = link_to "Delete"
+          li
+            .form-value
+              ' Already sent on
+              strong
+                = "29 Apr 2015"
+            = link_to "Edit"

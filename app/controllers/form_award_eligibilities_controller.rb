@@ -14,15 +14,26 @@ class FormAwardEligibilitiesController < ApplicationController
     #      or basic eligibility is not eligible
     #      and there's no step
 
-    if (!@award_eligibility.passed? || (@basic_eligibility && !@basic_eligibility.eligible_on_step?(@basic_eligibility.questions.last))) && !params[:id]
-      step = if @basic_eligibility && !@basic_eligibility.passed?
-        @basic_eligibility.class.questions.first
-      else
-        @award_eligibility.class.questions.first
+    if !params[:id] &&
+      (@form_answer.promotion? ||
+      (@basic_eligibility && (@basic_eligibility.eligible? || @basic_eligibility.answers.none?))) &&
+      (@award_eligibility.eligible? || @award_eligibility.answers.none?)
+
+      step = nil
+
+      if @basic_eligibility &&
+        (@basic_eligibility.answers.none? ||
+         @basic_eligibility.questions.size != @basic_eligibility.answers.size)
+
+        step = @basic_eligibility.questions.first
+      elsif @award_eligibility.answers.none?
+        step = @award_eligibility.questions.first
       end
 
-      redirect_to action: :show, form_id: @form_answer.id, id: step, skipped: true
-      return
+      if step
+        redirect_to action: :show, form_id: @form_answer.id, id: step, skipped: false
+        return
+      end
     end
 
     @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
@@ -36,10 +47,15 @@ class FormAwardEligibilitiesController < ApplicationController
         @eligibility.pass!
       end
 
-      if params[:skipped] == 'true' && ((step != @eligibility.questions.last) || @eligibility.is_a?(Eligibility::Basic))
+      if params[:skipped] == "false"
         set_steps_and_eligibilities
         setup_wizard
-        redirect_to next_wizard_path(form_id: @form_answer.id, skipped: true)
+
+        if @eligibility.eligible_on_step?(step)
+          redirect_to next_wizard_path(form_id: @form_answer.id, skipped: false)
+        else
+          redirect_to action: :show, form_id: @form_answer.id
+        end
       else
         redirect_to action: :show, form_id: @form_answer.id
       end

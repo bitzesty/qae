@@ -12,6 +12,7 @@ class Admin::CommentsController < Admin::BaseController
     @comment = form_answer.comments.build(create_params)
     authorize @comment, :create?
 
+    @comment.authorable = current_admin
     @comment.save
 
     respond_to do |format|
@@ -38,9 +39,7 @@ class Admin::CommentsController < Admin::BaseController
   helper_method :form_answer
 
   def create_params
-    attrs             = params.require(:comment).permit :body
-    attrs[:author_id] = current_admin.id
-    attrs
+    params.require(:comment).permit :body
   end
 
   def form_answer

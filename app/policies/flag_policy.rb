@@ -1,5 +1,5 @@
 class FlagPolicy < ApplicationPolicy
   def toggle?
-    admin.admin?
+    admin?
   end
 end

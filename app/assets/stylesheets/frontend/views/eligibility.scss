@@ -33,8 +33,47 @@ article .current-question li {
   max-width: 40em;
 }
 
-.previous-answer-invalid {
-  display: block;
-  margin-top: 1em;
+// Fix previous questions width
+.done-questions table tbody .section td {
+  width: auto;
+}
+
+// Error
+.previous-answer-invalid td {
+  padding-top: 1em;
+  padding-bottom: 0.9em;
+  padding-left: 25px;
+  background: image-url("icon-important-sm-red.png") no-repeat scroll left center;
   color: $error-colour;
+
+  @include device-pixel-ratio() {
+    background-image: image-url("icon-important-sm-red-2x.png");
+    background-size: 16px 16px;
+  }
+
+}
+
+.eligibility-failed {
+  padding-left: $gutter-two-thirds;
+  border-left: 4px solid $error-colour;
+}
+
+.page-pre-eligibility {
+  ol {
+    padding-left: 1.4em;
+
+    li {
+      padding-left: 0;
+
+      ul {
+        margin-bottom: $gutter;
+        padding-left: 0.7em;
+        list-style-position: outside;
+      }
+    }
+  }
+
+  input {
+    margin-left: 0;
+  }
 }

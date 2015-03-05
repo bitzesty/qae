@@ -56,6 +56,21 @@ html.no-js
                     li class=('active' if %w[users admins assessors].include?(controller_name))
                       = link_to "Users", admin_users_path
 
+                  / TODO Settings page
+                  li class=('active' if controller_name == 'settings')
+                    = link_to "Settings", admin_settings_path
+
+                  / TODO Award year select
+                  li.dropdown
+                    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+                      ' Award Year
+                      = "2015 - 2016"
+                      span.caret
+                    ul.dropdown-menu
+                      - [2015, 2016, 2017, 2018].each do | start_year |
+                        li
+                          = link_to "Award Year #{start_year} - #{start_year + 1}"
+
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"

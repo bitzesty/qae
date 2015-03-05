@@ -25,10 +25,6 @@ class User < ActiveRecord::Base
   validates :job_title, presence: true, if: :first_step?
   validates :phone_number, presence: true, if: :first_step?
 
-  # Second step validations
-  validates :company_name, presence: true, if: :second_step?
-  validates :company_phone_number, presence: true, if: :second_step?
-
   validates :phone_number, length: {
     minimum: 7,
     maximum: 20,
@@ -39,7 +35,7 @@ class User < ActiveRecord::Base
     minimum: 7,
     maximum: 20,
     message: "This is not a valid telephone number"
-  }, if: :second_step?
+  }, allow_blank: true, if: :second_step?
 
   validates_with UserAccountValidator, on: :update, if: "account_id_changed?"
 
@@ -49,6 +45,8 @@ class User < ActiveRecord::Base
 
     belongs_to :account
     has_many :form_answer_attachments, as: :attachable
+    has_many :support_letter_attachments, dependent: :destroy
+    has_many :supporters, dependent: :destroy
   end
 
   begin :scopes

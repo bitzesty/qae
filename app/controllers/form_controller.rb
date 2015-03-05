@@ -12,11 +12,19 @@ class FormController < ApplicationController
   before_action :require_to_be_account_admin!, only: [:submit_form, :submit_confirm]
   before_action :check_trade_count_limit, only: :new_international_trade_form
 
+  expose(:support_letter_attachments) do
+    @form_answer.support_letter_attachments.inject({}) do |r, attachment|
+      r[attachment.id] = attachment
+      r
+    end
+  end
+
   def new_innovation_form
     form_answer = FormAnswer.create!(
       user: current_user,
       account: current_user.account,
       award_type: "innovation",
+      nickname: nickname,
       document: {
         company_name: current_user.company_name,
         principal_address_building: current_user.company_address_first,
@@ -32,7 +40,8 @@ class FormController < ApplicationController
     form_answer = FormAnswer.create!(
       user: current_user,
       account: current_user.account,
-      award_type: "trade"
+      award_type: "trade",
+      nickname: nickname
     )
 
     redirect_to edit_form_url(form_answer)
@@ -42,7 +51,8 @@ class FormController < ApplicationController
     form_answer = FormAnswer.create!(
       user: current_user,
       account: current_user.account,
-      award_type: "development"
+      award_type: "development",
+      nickname: nickname
     )
 
     redirect_to edit_form_url(form_answer)
@@ -53,6 +63,7 @@ class FormController < ApplicationController
       user: current_user,
       account: current_user.account,
       award_type: "promotion",
+      nickname: nickname,
       document: {
         email: current_user.email,
         first_name: current_user.first_name,
@@ -65,7 +76,12 @@ class FormController < ApplicationController
 
   def edit_form
     if @form_answer.eligible?
-      queen_award_holder = current_account.basic_eligibility.current_holder? ? "yes" : "no"
+      queen_award_holder = if @form_answer.promotion?
+        @form_answer.eligibility.nominee_is_qae_ep_award_holder? ? "yes" : "no"
+      else
+        current_account.basic_eligibility.current_holder? ? "yes" : "no"
+      end
+
       @form_answer.document = @form_answer.document.merge(queen_award_holder: queen_award_holder)
       @form_answer.save!
       @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
@@ -91,7 +107,6 @@ class FormController < ApplicationController
   end
 
   def submit_confirm
-    load_eligibilities
     render template: "qae_form/confirm"
   end
 
@@ -156,5 +171,9 @@ class FormController < ApplicationController
         alert: "You can not submit more than one trade form per year"
       }
     end
+  end
+
+  def nickname
+    params[:nickname].presence
   end
 end

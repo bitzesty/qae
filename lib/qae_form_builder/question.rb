@@ -141,6 +141,10 @@ class QAEFormBuilder
       @q.help << QuestionHelp.new(title, text)
     end
 
+    def hint title, text
+      @q.hint << QuestionHelp.new(title, text)
+    end
+
     def conditional key, value
       @q.conditions << QuestionCondition.new(key, value)
     end
@@ -178,6 +182,7 @@ class QAEFormBuilder
                   :opts,
                   :required,
                   :help,
+                  :hint,
                   :ref,
                   :conditions,
                   :header,
@@ -194,6 +199,7 @@ class QAEFormBuilder
       @opts = opts
       @required = false
       @help = []
+      @hint = []
       @conditions = []
       self.after_create if self.respond_to?(:after_create)
     end

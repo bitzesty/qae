@@ -1,0 +1,9 @@
+header.page-header.group
+  div
+    h1 Nominate for the Enterprise Promotion Award
+
+.article-related-positioning-container
+  .article-container
+    article.group role="article"
+      = form_tag new_enterprise_promotion_form_path, method: :get do
+        = render "award_nickname", award_type: "promotion"

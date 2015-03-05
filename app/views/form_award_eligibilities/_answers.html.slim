@@ -1,27 +1,32 @@
 - eligibility.questions.each do |question|
   - answer = eligibility.public_send(question)
   - if question != step
-    tr.section
-      td.previous-question-title
-        = eligibility.class.label(question)
-      td.previous-question-body
-        - if eligibility.class.boolean_question?(question)
-          - unless answer.nil?
-            = eligibility.public_send("#{question}?") ? 'Yes' : 'No'
-        - elsif eligibility.class.integer_question?(question)
-          = answer
-        - elsif !answer.nil?
-          = eligibility.class.enumerized_attributes[question].find_value(answer).text
-        - if answer.present? && !eligibility.answer_valid?(question, answer)
-          span.previous-answer-invalid
-            ' This excludes you from entering the
-            - if eligibility.is_a?(Eligibility::Basic)
-              ' Queen's Awards for Enterprise
-            - else
-              = eligibility.class.award_name
-              '  Award
-      td.link-right
-        = link_to wizard_path(question, form_id: @form_answer.id, skipped: !eligibility.answer_valid?(question, answer)) do
-          ' Change
-          span.visuallyhidden
-            = ' answer to' + eligibility.class.label(question)
+    - if final_eligibility_page?(step) || answer.present?
+      tr.section
+        td.previous-question-title
+          = eligibility.class.label(question)
+        td.previous-question-body
+          - if eligibility.class.boolean_question?(question)
+            - unless answer.nil?
+              = eligibility.public_send("#{question}?") ? 'Yes' : 'No'
+          - elsif eligibility.class.integer_question?(question)
+            = answer
+          - elsif !answer.nil?
+            = eligibility.class.enumerized_attributes[question].find_value(answer).text
+
+        td.link-right
+          = link_to wizard_path(question, form_id: @form_answer.id, skipped: eligibility.answer_valid?(question, answer)) do
+            ' Change
+            span.visuallyhidden
+              = ' answer to' + eligibility.class.label(question)
+
+      - if final_eligibility_page?(step) && !@already_has_invalid_questions && !eligibility.answer_valid?(question, answer)
+        - @already_has_invalid_questions = true
+        tr.previous-answer-invalid
+          td colspan=3
+            span
+              ' This excludes you from entering the
+              - if eligibility.is_a?(Eligibility::Basic)
+                ' Queen's Awards for Enterprise
+              - else
+                = eligibility.class.award_name

@@ -17,17 +17,11 @@
           h3 April
           p Application period opens on 21st April.
 
-          br
-
           h3 September
           p Submission period closes.
 
-          br
-
           h3 October &amp; November
           p Each entry is judged on its own merits against the relevant Award criteria as well as against other entrants in same sector.
-
-          br
 
           h3 December
           p Organisations will be notified if they have been shortlisted at the end of November or the beginning of December. The Queen’s Awards Office undertakes due diligence checks of shortlisted candidates. Shortlisted organisations are expected to provide an external accountant’s certificate by mid January (please note audited accounts are not required).
@@ -37,17 +31,11 @@
               ' Enterprise Promotion
             ' award are not contacted at this stage.
 
-          br
-
           h3 January
           p All information from the previous stage (shortlist and auditor’s certificate) is drawn up for consideration by the Judging Panels.
 
-          br
-
           h3 January &amp; February
           p Each category has a separate judging panel which makes a recommendation to the Prime Minister’s Advisory Committee. The committee then makes a final recommendation to Her Majesty The Queen, who decides the winners.
-
-          br
 
           h3 March
           p
@@ -56,35 +44,22 @@
               ' Queen’s Award for Enterprise Promotion
             ' are informed whether their nomination was successful.
 
-          br
-
           h3 April
-          p Winning organisations and individuals are confirmed and informed. 
-
-          br
+          p Winning organisations and individuals are confirmed and informed.
 
           h3 21 April
-          p Winners are officially announced on 21 April each year, published as a supplement in the London Gazette and on the Queen’s Awards website. They receive a grant of appointment, a presentational item and an invitation from Her Majesty the Queen to a reception at Buckingham Palace. 
-
-          br
+          p Winners are officially announced on 21 April each year, published as a supplement in the London Gazette and on the Queen’s Awards website. They receive a grant of appointment, a presentational item and an invitation from Her Majesty the Queen to a reception at Buckingham Palace.
 
           h3 July
           p Winning organisations, winning individuals and their nominators are invited to a Buckingham Palace reception.
 
-          br
-
-          .get-started
-            - if user_signed_in?
-              = link_to "Check eligibility", dashboard_path, class: "button"
-            - else
-              = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
-
-          - unless user_signed_in?
-            br
+          .application-notice.info-notice
             p
-              ' If you have already begun your application then
-              = link_to "log in to continue", new_user_session_path
+              = link_to "Sign up to check eligibility and apply", apply_for_queens_award_for_enterprise_path, rel: 'external'
+              '. Or if you have already begun your application then
+              = link_to "log in to continue", new_user_session_path, rel: "external"
               ' .
+
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

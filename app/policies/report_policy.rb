@@ -1,5 +1,5 @@
 class ReportPolicy < ApplicationPolicy
   def show?
-    admin.admin?
+    admin?
   end
 end

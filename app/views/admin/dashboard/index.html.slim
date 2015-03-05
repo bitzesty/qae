@@ -4,7 +4,6 @@
       / TODO Reports
       .well
         h2
-          span.glyphicon.glyphicon-signal
           ' Reports
         ul.list-unstyled.list-actions
           - ["Case Status", "All Entries", "Press Book List"].each do |report|
@@ -13,7 +12,7 @@
                 span.action-title
                   span.glyphicon.glyphicon-file
                   = report
-              small.pull-right
+              .pull-right
                 =link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT, format: :csv)
                   span.glyphicon.glyphicon-download-alt
                   span.visible-lg.visible-md
@@ -21,7 +20,6 @@
       / TODO Email actions
       .well
         h2
-          span.glyphicon.glyphicon-envelope
           ' Email actions
         ul.list-unstyled.list-actions
           - if policy(:notification).create?
@@ -34,7 +32,6 @@
       / TODO Email actions
       .well
         h2
-          span.glyphicon.glyphicon-file
           ' Resources
         ul.list-unstyled.list-actions
           - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|
@@ -43,7 +40,7 @@
                 span.action-title
                   span.glyphicon.glyphicon-file
                   = resources
-              small.pull-right
+              .pull-right
                 = link_to "#"
                   span.glyphicon.glyphicon-download-alt
                   span.visible-lg.visible-md

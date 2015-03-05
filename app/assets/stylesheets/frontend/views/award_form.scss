@@ -83,3 +83,43 @@
 .question-block .span-2-4 {
   padding-right: 0;
 }
+
+// Read-only view
+.visible-read-only {
+  display: none;
+
+  .application-notice p {
+    margin: 0.75em 0;
+  }
+}
+
+.support-letter-attachment-filename,
+label > .visible-read-only {
+  margin-bottom: 10px;
+  font-weight: normal;
+}
+
+.support-letter-attachment-filename {
+  display: block;
+}
+
+.read-only {
+  input,
+  .button {
+    display: none;
+  }
+
+  .support-letter-attachment-filename,
+  .visible-read-only {
+    display: block;
+  }
+
+  label {
+    font-weight: bold;
+  }
+}
+
+.page-support-letter .page-header div h1 {
+  @include heading-27;
+  font-weight: bold;
+}

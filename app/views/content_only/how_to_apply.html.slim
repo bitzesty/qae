@@ -16,17 +16,22 @@
 
           h2 The application process
 
-          ol
-            li = link_to "Create an account", apply_for_queens_award_for_enterprise_path
-            li Complete the basic eligibility check
-            li Enter your account details
-            li Check your eligibility for the specific award(s) you want to apply for
-            li Complete and submit your application(s)
+          ol.steps
+            li
+              p Create an account
+            li
+              p Confirm your email address
+            li
+              p Enter your account details
+            li
+              p Check your eligibility for the award(s) you want to apply for
+            li
+              p Complete and submit your application(s)
 
           p You must submit your application(s) online.
 
           .application-notice.help-notice
-            p We recommend that you create an account and complete both of the eligibility checks (basic and award-specific) before you start collecting any detailed information about your organisation.
+            p We recommend that you create an account and complete the eligibility questionnaire before you start collecting any detailed information about your organisation. This is to ensure that your organisation is eligible before you begin the application form.
 
             p.text-underline This will take around fifteen minutes.
 
@@ -47,17 +52,11 @@
 
           br
 
-          .get-started
-            - if user_signed_in?
-              = link_to "Check eligibility", dashboard_path, class: "button"
-            - else
-              = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
-
-          - unless user_signed_in?
-            br
+          .application-notice.info-notice
             p
-              ' If you have already begun your application then
-              = link_to "log in to continue", new_user_session_path
+              = link_to "Sign up to check eligibility and apply", apply_for_queens_award_for_enterprise_path, rel: 'external'
+              '. Or if you have already begun your application then
+              = link_to "log in to continue", new_user_session_path, rel: "external"
               ' .
 
         footer

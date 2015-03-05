@@ -12,7 +12,7 @@ fieldset
   = f.input :company_city, input_html: { class: "big medium", autocomplete: "off"}, label: 'City'
   /= f.input :company_country, input_html: { class: "big medium"}, as: :string, label: 'Country'
   .input.question-group
-    label.control-label
+    label.form-label
       ' Country
     = country_select(:user, :company_country, priority_countries: ["GB", "US"], selected: current_user.company_country)
   = f.input :company_postcode, input_html: { class: "big small", autocomplete: "off"}, label: 'Postcode'

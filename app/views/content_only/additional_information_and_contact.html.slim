@@ -26,7 +26,7 @@
             li
               p
                 ' Check
-                = link_to "previous Queen's Awards for Enterprise winners", "http://www.queensawardsmagazine.com/awardwinners/search", target: "_blank"
+                = link_to "previous Queen's Awards for Enterprise winners", "http://www.queensawardsmagazine.com/awardwinners/search", target: "_blank", rel: "external"
             li
               p
                 ' Get latest news from Queen's Awards Office via
@@ -34,15 +34,15 @@
             li
               p
                 ' Watch informative videos on
-                = link_to "Queen's Awards for Enterprise YouTube Channel", "https://www.youtube.com/channel/UCCBFS6jzWVIdA5NBdEjPVSg", target: "_blank"
+                = link_to "Queen's Awards for Enterprise YouTube Channel", "https://www.youtube.com/channel/UCCBFS6jzWVIdA5NBdEjPVSg", target: "_blank", rel: "external"
             li
               p
                 ' Join the conversation on our
-                = link_to "LinkedIn Group.", "https://www.linkedin.com/groups?gid=3318767", target: "_blank"
+                = link_to "LinkedIn Group.", "https://www.linkedin.com/groups?gid=3318767", target: "_blank", rel: "external"
             li
               p
                 ' Keep updated by following the
-                = link_to "Queen’s Awards Twitter account.", "https://twitter.com/thequeensawards", target: "_blank"
+                = link_to "Queen’s Awards Twitter account.", "https://twitter.com/thequeensawards", target: "_blank", rel: "external"
 
           br
 
@@ -53,21 +53,6 @@
             ' Telephone: 020 7215 6880
             br
             = link_to "Find out about call charges", "https://www.gov.uk/call-charges", target: "_blank"
-
-          br
-
-          .get-started
-            - if user_signed_in?
-              = link_to "Check eligibility", dashboard_path, class: "button"
-            - else
-              = link_to "Check eligibility", apply_for_queens_award_for_enterprise_path, class: "button"
-
-          - unless user_signed_in?
-            br
-            p
-              ' If you have already begun your application then
-              = link_to "log in to continue", new_user_session_path
-              ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"

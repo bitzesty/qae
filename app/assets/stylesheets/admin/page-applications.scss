@@ -19,7 +19,7 @@
   }
 
   .urn-not-generated {
-    color: #999;
+    color: $grey;
     font-style: italic;
   }
 
@@ -27,51 +27,6 @@
     display: none;
   }
 }
-
-.application-progress {
-  margin-top: 15px;
-  padding: 15px 15px;
-  padding-left: 50px;
-  background: #5178bc;
-  background-image: image-url("icon-progress-pending.png");
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 32px 32px;
-  color: #fff;
-
-  @include is-retina {
-    background-image: image-url("icon-progress-pending@2.png");
-  }
-
-  @include screen-md-max {
-    margin-top: 0;
-  }
-
-  &.recommended {
-    background-color: #93c255;
-    background-image: image-url("icon-progress-success.png");
-    color: #333;
-
-    @include is-retina {
-      background-image: image-url("icon-progress-success@2.png");
-    }
-  }
-
-  .sidebar-open & {
-    @include screen-md-max {
-      position: absolute;
-      top: 0;
-      right: 15px;
-      left: 15px;
-    }
-  }
-}
-
-.applicant-view,
-.submitted-view {
-  margin-top: 15px;
-}
-
 
 .nav-tabs.submitted-tabs {
   margin-bottom: 20px;
@@ -156,41 +111,7 @@
 }
 
 .submitted-view {
-  .form-label .glyphicon {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    margin-top: -10px;
-    background-size: 20px 20px;
-    text-align: left;
-    text-indent: -9999px;
-  }
-
-  .glyphicon-positive {
-    background-image: image-url("icon-grade-positive.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-positive@2.png");
-    }
-  }
-
-  .glyphicon-average {
-    background-image: image-url("icon-grade-average.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-average@2.png");
-    }
-  }
-
-  .glyphicon-negative {
-    background-image: image-url("icon-grade-negative.png");
-
-    @include is-retina {
-      background-image: image-url("icon-grade-negative@2.png");
-    }
-  }
+  margin-top: 15px;
 
   .no-js & {
     .form-value,
@@ -224,9 +145,8 @@
   }
 }
 
-.section-case-grading .form-label {
-  position: relative;
-  padding-right: 30px;
+.section-appraisal-form .form-label {
+  font-weight: bold;
 }
 
 .section-financial-summary .form-group {
@@ -244,20 +164,76 @@
 
 .form-edit-link {
   margin-top: 10px;
-  font-size: 13px;
+  font-size: 16px;
 
   .glyphicon {
     margin-right: 5px;
-    font-size: 10px;
+    font-size: 12px;
   }
 }
 
-.section-applicant-details .text-right a {
-  font-size: 14px;
+.section-applicant-details {
+  border-bottom: none;
 
-  @include screen-md-max {
-    font-size: 13px;
+  h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 24px;
+    font-weight: normal;
+    text-transform: none;
   }
+
+  p {
+    font-size: 18px;
+
+    @include screen-md-max {
+      font-size: 16px;
+    }
+  }
+
+  .btn {
+    margin-top: 20px;
+  }
+}
+
+.section-applicant-status {
+  h2 {
+    margin-bottom: 5px;
+  }
+
+  .btn-group {
+    display: block;
+    margin-bottom: 5px;
+  }
+
+  .dropdown-toggle {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+    float: none;
+    color: $black;
+    font-size: 20px;
+    text-align: left;
+    text-decoration: none;
+
+    .caret {
+      margin-left: 5px;
+      border-top-width: 7px;
+      border-right-width: 6px;
+      border-left-width: 6px;
+    }
+  }
+
+  p {
+    margin-bottom: 5px;
+    font-size: 15px;
+  }
+}
+
+.section-applicant-users ul label {
+  width: 5.5em;
+  font-weight: normal;
 }
 
 .centered {

@@ -4,6 +4,6 @@ class CommentPolicy < ApplicationPolicy
   def update?; true; end
 
   def destroy?
-    record.author?(admin)
+    record.author?(subject)
   end
 end

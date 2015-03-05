@@ -1,28 +1,7 @@
-- step_letters = ["A", "B", "C", "D", "E", "F"]
-
 header.page-header.group.page-header-wider
   div
     h1
       = form.title
-
-    .steps-progress-bar
-      ol
-        li.js-step-condition.step-past
-          span
-            = link_to form_award_eligibility_url(form_id: @form_answer.id) do
-              span.step-number
-                ' Eligibility
-        - for step in form.steps do
-          li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
-            span
-              span.step-number
-                ' #{step_letters[step.index]}.
-              = step.short_title.html_safe
-
-    article.download-article
-      .form-download
-        p
-          = link_to "Download your application", user_form_answer_path(current_user, @form_answer, format: :pdf)
 
     - for step in form.steps do
       h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)

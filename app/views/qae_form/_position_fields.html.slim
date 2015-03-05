@@ -3,31 +3,35 @@ li.js-add-example.js-add-default data-add-example="add-position"
   label
     ' Position/Role
     input.medium name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
-  span.row.validate-date-start-end
-    span.span-3
-      label
-        ' Start Date
-      .date-input.validate-date-start
+  .validate-date-start-end
+    span.row
+      span.span-3
+        label
+          ' Start Date
+        .date-input.validate-date-start
+          label.small
+            ' Month
+            input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][start_month]" value=position['start_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
+          label.small
+            ' Year
+            input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][start_year]" value=position['start_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
+    span.row
+      span.span-3
+        label
+          ' End Date
+        .date-input.validate-date-end
+          label.small
+            ' Month
+            input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" disabled=(position['ongoing'] == '1' ? "disabled" : nil) *possible_read_only_ops
+          label.small
+            ' Year
+            input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" disabled=(position['ongoing'] == '1' ? "disabled" : nil) *possible_read_only_ops
+      span.span-3.date-ongoing
+        br
         label.small
-          ' Month
-          input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][start_month]" value=position['start_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
-        label.small
-          ' Year
-          input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][start_year]" value=position['start_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
-    span.span-3
-      label
-        ' End Date
-      .date-input.validate-date-end
-        label.small
-          ' Month
-          input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
-        label.small
-          ' Year
-          input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
-        label.small
-          ' Ongoing
           input.js-trigger-autosave type="hidden" name="form[position_details][#{index}][ongoing]" value='0'
           input.js-trigger-autosave type="checkbox" name="form[position_details][#{index}][ongoing]" checked=('checked' if position['ongoing'] == '1') value='1'
+          ' Ongoing
 
   label
     span.label-char-count-reposition

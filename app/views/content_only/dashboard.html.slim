@@ -9,14 +9,6 @@ header.page-header.group
   .article-container
     article.group role="article"
       .inner
-        - if any_eligibilities_passed?
-          .application-notice.help-notice
-            p
-              ' You can now begin your application(s) for the Queen’s Awards for Enterprise. You are eligible to apply for:
-            ul
-              - [@trade_eligibility, @innovation_eligibility, @development_eligibility, @promotion_eligibility].select(&:passed?).each do |eligibility|
-                li.eligible = eligibility.class.award_name
-
         - if @user_award_forms.any?
           h2
             ' Current Applications
@@ -30,7 +22,7 @@ header.page-header.group
                 tr
                   td
                     h3
-                      = award.decorate.award_type
+                      = award.decorate.application_name
                   td
                     p
                       // TODO use better method to test for submitted awards
@@ -67,7 +59,7 @@ header.page-header.group
             small
               /' Unclear eligibility
             .pull-right
-              = link_to "New nomination", new_enterprise_promotion_form_path
+              = link_to "New nomination", apply_enterprise_promotion_award_path
 
   .related-positioning.related-positioning-no-header
     .related-container

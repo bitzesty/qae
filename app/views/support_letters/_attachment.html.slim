@@ -1,0 +1,7 @@
+- file = support_letter_attachments[attachment_id.to_i]
+span.support-letter-attachment-filename
+  - if file.attachment
+    = link_to file.original_filename, file.attachment.to_s, target: "_blank"
+  - else
+    = file.original_filename
+input.js-support-letter-attachment-id type="hidden" name="form[#{question.key}][#{index}][letter_of_support]" value=attachment_id

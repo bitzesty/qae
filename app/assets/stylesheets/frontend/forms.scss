@@ -29,7 +29,8 @@
 
 .field_with_errors .error,
 .smart_answer article .error,
-.question-has-errors .errors-container li {
+.question-has-errors .errors-container li,
+.supporters_list .errors-container li {
   @include core-19;
   clear: both;
   display: block;
@@ -340,6 +341,15 @@ input[type="file"] {
     }
   }
 
+  span.selectable {
+    padding: 0;
+
+    label {
+      display: block;
+      padding: 18px 30px 15px 45px;
+    }
+  }
+
   input,
   select,
   textarea {
@@ -369,6 +379,8 @@ input[type="file"] {
   }
 
   input[type="file"] {
+    padding-left: 0;
+    border: none;
     line-height: 1;
   }
 
@@ -446,7 +458,7 @@ input[type="file"] {
 
   &,
   p {
-    @include core-16;
+    @include core-19;
     display: block;
   }
 
@@ -629,6 +641,7 @@ input[type="file"] {
     }
   }
 }
+.button-alt,
 .button-add {
   @include core-19;
   position: relative;
@@ -700,6 +713,43 @@ input[type="file"] {
     }
   }
 }
+
+.button-alt {
+  @include core-16;
+  padding: (12px $gutter-half $gutter-one-third $gutter-half);
+  border-color: $black;
+
+  &,
+  &:link,
+  &:hover,
+  &:focus,
+  &:visited,
+  &.disabled,
+  &.disabled:hover,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled="disabled"],
+  &[disabled="disabled"]:hover {
+    background: $black;
+    color: $white;
+  }
+
+  &:hover {
+    background: $white;
+    color: $black;
+  }
+
+  &.disabled,
+  &.disabled:hover,
+  &[disabled],
+  &[disabled]:hover,
+  &[disabled="disabled"],
+  &[disabled="disabled"]:hover {
+    border-color: $panel-colour;
+    cursor: default;
+  }
+}
+
 .js-add-example {
   display: none !important;
 
@@ -787,17 +837,15 @@ input[type="file"] {
 
 // Numbered steps for form sections
 // Taken from https://github.com/alphagov/calculators/blob/9181624cc9e00a079bea2141a650321f7183b6d0/app/assets/stylesheets/calculators/child_benefit.scss
-.steps {
+.question-block .steps {
   float: left;
   width: 23px;
   height: 23px;
   margin: 0;
   margin-right: 0.75em;
   background-repeat: no-repeat;
-}
 
-// TODO temp
-.steps {
+  // TODO Styled with HTML5 border-radius and regular text unlike using images above
   width: auto;
   min-width: 13px;
   padding: 3px 10px;

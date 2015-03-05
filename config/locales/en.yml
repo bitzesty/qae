@@ -61,3 +61,8 @@ en:
   admin:
     form_answers:
       financial_year_changed_dates: Year and date
+  errors:
+    messages:
+      wrong_size: "is the wrong size (should be %{file_size})"
+      size_too_small: "is too small (should be at least %{file_size})"
+      size_too_big: "is too big (should be at most %{file_size})"

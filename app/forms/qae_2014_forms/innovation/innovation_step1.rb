@@ -98,7 +98,7 @@ class QAE2014Forms
           conditional :business_name_changed, :yes
         end
 
-        textarea :previous_business_ref_num, "Reference number used previously" do
+        textarea :previous_business_ref_num, "Reference number(s) used previously" do
           classes "regular-question"
           required
           conditional :business_name_changed, :yes

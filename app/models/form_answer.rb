@@ -44,11 +44,13 @@ class FormAnswer < ActiveRecord::Base
     has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
     has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
     has_one :promotion_eligibility, class_name: 'Eligibility::Promotion', dependent: :destroy
+    has_one :audit_certificate, dependent: :destroy
 
     has_many :form_answer_attachments
+    has_many :support_letter_attachments, dependent: :destroy
 
     has_many :supporters, dependent: :destroy, autosave: true
-    has_many :support_letters, through: :supporters
+    has_many :support_letters, dependent: :destroy
     has_many :comments, as: :commentable
     has_many :form_answer_transitions
   end
@@ -221,7 +223,7 @@ class FormAnswer < ActiveRecord::Base
       method = "#{form_answer.award_type}_eligibility"
 
       unless form_answer.public_send(method)
-        form_answer.public_send("build_#{method}", filter(account.public_send(method).try(:attributes) || {}).merge(account_id: account.id)).save!
+        form_answer.public_send("build_#{method}", account_id: account.id).save!
       end
 
       form_answer.public_send(method)

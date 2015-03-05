@@ -52,7 +52,7 @@ table .ellipsis {
 
 .page-header {
   margin-top: 0;
-  border-color: #333;
+  border-color: $black;
 
   h1 {
     margin-top: 0;
@@ -66,11 +66,15 @@ table .ellipsis {
   .btn-link {
     padding-right: 0;
     padding-left: 0;
-    color: #333;
+    color: $black;
   }
 
   .pull-right {
     margin-top: 0.5em;
+
+    a {
+      margin-left: 20px;
+    }
   }
 }
 
@@ -82,14 +86,14 @@ table .ellipsis {
 
 .table {
   > thead > tr > th {
-    border-color: #333;
+    border-color: $black;
     vertical-align: middle;
   }
 
   > tbody > tr {
     > td,
     > th {
-      background-color: #fff;
+      background-color: $white-true;
     }
   }
 }
@@ -133,7 +137,7 @@ table .ellipsis {
   clear: left;
   border: 1px solid #e3e3e3;
   border-radius: 4px;
-  background-color: #fff;
+  background-color: $white-true;
   cursor: pointer;
 
   .checkbox & {
@@ -169,6 +173,14 @@ table .ellipsis {
 
     a {
       color: inherit;
+    }
+
+    .ellipsis {
+      max-width: 350px;
+
+      @include screen-md-max {
+        max-width: 250px;
+      }
     }
   }
 
@@ -246,67 +258,6 @@ table .ellipsis {
     }
   }
 
-.iframeholder {
-  position: relative;
-
-  iframe {
-    width: 100%;
-    height: 750px;
-    border: 1px solid #999;
-  }
-
-  .js-expand-iframe {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 10px 15px;
-    transition: background-color 0.15s ease, opacity 0.15s ease;
-    background: rgba(0, 0, 0, 0.5);
-    color: #fff;
-    text-decoration: none;
-    opacity: 0;
-
-    @include is-ios {
-      opacity: 1;
-    }
-
-    &:hover {
-      background: #212121;
-    }
-  }
-
-  &:hover .js-expand-iframe {
-    opacity: 1;
-  }
-
-  .expanded-show {
-    display: none;
-  }
-
-  &.iframe-expanded {
-    position: fixed;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: #fff;
-    z-index: 9999;
-
-    .collapsed-show {
-      display: none;
-    }
-
-    .expanded-show {
-      display: block;
-    }
-
-    iframe {
-      height: 100%;
-      border: none;
-    }
-  }
-}
-
 // Alerts
 .alert-container {
   position: fixed;
@@ -364,7 +315,7 @@ table .ellipsis {
       top: 0;
       left: 100%;
       margin-left: -5px;
-      color: #333;
+      color: $black;
       font-size: 10px;
       font-weight: bold;
       text-indent: 0;
@@ -396,13 +347,44 @@ table .ellipsis {
   width: 16px;
   height: 16px;
   margin-right: 5px;
-  border: 2px solid #333;
+  border: 2px solid $black;
   border-radius: 100px;
   font-size: 9px;
   font-weight: bold;
   line-height: 1.25;
   text-align: center;
   text-transform: uppercase;
+}
+
+.icon-view {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-image: image-url("icon-computer.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 30px 26px;
+  text-align: left;
+  text-indent: -9999px;
+  opacity: 0.3;
+
+  @include is-retina {
+    background-image: image-url("icon-computer@2.png");
+  }
+
+  &:hover {
+    opacity: 1;
+  }
+
+  .btn & {
+    position: relative;
+    top: 2px;
+    width: 20px;
+    height: 16px;
+    margin-right: 5px;
+    background-size: 18px 14px;
+    opacity: 1;
+  }
 }
 
 // Search
@@ -455,7 +437,7 @@ table .ellipsis {
       &:hover,
       &:active,
       &:focus {
-        color: #333;
+        color: $black;
       }
     }
 
@@ -466,7 +448,7 @@ table .ellipsis {
     }
 
     .page + .page {
-      border-left: 1px solid #333;
+      border-left: 1px solid $black;
     }
 
     .first,
@@ -484,7 +466,7 @@ table .ellipsis {
         white-space: nowrap;
         vertical-align: middle;
         background-image: none;
-        background-color: #fff;
+        background-color: $white-true;
         border: 1px solid #ccc;
         border-radius: 4px;
         cursor: pointer;
@@ -509,7 +491,7 @@ table .ellipsis {
     background-repeat: no-repeat;
     background-position: right center;
     background-size: 10px 6px;
-    color: #333;
+    color: $black;
 
     &:hover {
       background-image: image-url("icon-arrow-sort-down-grey.png");
@@ -558,12 +540,12 @@ table .ellipsis {
 .filter {
   .dropdown-toggle {
     padding: 4px 10px;
-    color: #999;
+    color: $grey;
     font-size: inherit;
 
     .text-filter,
     .caret {
-      color: #333;
+      color: $black;
     }
 
     .text-filter {
@@ -616,7 +598,7 @@ table .ellipsis {
 // Sidebar
   .show-sidebar {
     padding: 15px;
-    background: #fff;
+    background: $white-true;
 
     @include screen-md-max {
       margin-bottom: 30px;
@@ -644,6 +626,7 @@ table .ellipsis {
     h2 {
       margin-bottom: 20px;
       font-size: 16px;
+      font-weight: bold;
       text-transform: uppercase;
 
       @include screen-md-max {
@@ -651,8 +634,9 @@ table .ellipsis {
       }
 
       small {
-        margin-top: 0.4em;
-        font-size: 12px;
+        display: block;
+        margin-top: 0.25em;
+        font-size: 14px;
         text-transform: none;
       }
 
@@ -666,20 +650,12 @@ table .ellipsis {
       }
     }
 
-    .p-lg {
-      font-size: 16px;
-
-      @include screen-md-max {
-        font-size: 14px;
-      }
-    }
-
     .well {
       margin: 0;
       padding: 20px 0;
       background: transparent;
       border: none;
-      border-bottom: 1px solid #999;
+      border-bottom: 1px solid $grey;
       border-radius: 0;
       box-shadow: none;
 
@@ -692,259 +668,96 @@ table .ellipsis {
         border-bottom: none;
       }
     }
+
+    .sidebar-section {
+      margin-bottom: 45px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
   }
 
 // Comments sidebar
-.col-content {
-  width: auto;
-  padding-right: 50px;
-
-  .sidebar-open & {
-    padding-right: 315px;
-
-    @include screen-md-max {
-      width: 100%;
-      padding-right: 0;
-    }
-  }
+.js .submitted-view .comments-container .form-control {
+  display: block;
 }
 
-.col-sidebar {
-  width: 40px;
-  float: right;
-
-  .sidebar-open & {
-    width: 300px;
-
-    @include screen-md-max {
-      width: 100%;
-      margin-bottom: 15px;
-      padding-top: 67px;
-      float: none;
-    }
-  }
-}
-
-.sidebar-header {
-  font-size: 13px;
-
-  .sidebar-open & {
-    padding: 10px 15px;
-    background: #706f6f;
-  }
-
-  &,
-  a,
-  .comment-count {
-    &,
-    &:hover,
-    &:active,
-    &:focus {
-      color: #dadad9;
-    }
-  }
-
-  .link-flag,
-  .link-comment {
-    display: block;
-    width: 40px;
-    height: 40px;
-    margin-bottom: 1px;
-    background: #706f6f;
-    text-align: center;
-    text-decoration: none;
-
-    &:hover {
-      opacity: 0.9;
-    }
-
-    .sidebar-open & {
-      display: inline-block;
-      width: auto;
-      height: auto;
-      margin: 0;
-    }
-  }
-
-  .link-flag {
-    .sidebar-open & {
-      float: left;
-    }
-  }
-
-  .link-comment {
-    .sidebar-open & {
-      float: right;
-    }
-
-    .icon-text {
-      padding-right: 18px;
-      background-image: image-url("icon-close-comment.png");
-      background-repeat: no-repeat;
-      background-position: right;
-      background-size: 12px 12px;
-
-      @include is-retina {
-        background-image: image-url("icon-close-comment@2.png");
-      }
-    }
-  }
-
-  .icon-comment {
-    margin-top: 2px;
-    background-image: image-url("icon-comment-grey.png");
-    background-size: 23px 21px;
-
-    @include is-retina {
-      background-image: image-url("icon-comment-grey@2.png");
-    }
-
-    .sidebar-open & {
-      width: 20px;
-      height: 18px;
-      margin-top: 0;
-      margin-right: 7px;
-      background-image: image-url("icon-comment-sm-grey.png");
-      background-size: 20px 18px;
-
-      @include is-retina {
-        background-image: image-url("icon-comment-sm-grey@2.png");
-      }
-    }
-  }
-
-  .icon-flagged,
-  .icon-unflagged {
-    margin-top: 5px;
-    background-size: 15px 20px;
-
-    .sidebar-open & {
-      width: 12px;
-      height: 15px;
-      margin-top: 0;
-      margin-left: 7px;
-      background-size: 12px 15px;
-    }
-  }
-
-  .icon-flagged {
-    background-image: image-url("icon-flag-md.png");
-
-    @include is-retina {
-      background-image: image-url("icon-flag-md@2.png");
-    }
-
-    .sidebar-open & {
-      background-image: image-url("icon-flag-sm.png");
-
-      @include is-retina {
-        background-image: image-url("icon-flag-sm@2.png");
-      }
-    }
-  }
-
-  .icon-unflagged {
-    background-image: image-url("icon-flag-md-grey.png");
-
-    @include is-retina {
-      background-image: image-url("icon-flag-md-grey@2.png");
-    }
-
-    .sidebar-open & {
-      background-image: image-url("icon-flag-sm-grey.png");
-
-      @include is-retina {
-        background-image: image-url("icon-flag-sm-grey@2.png");
-      }
-    }
-  }
-
-  .comment-count {
-    display: block;
-
-    .sidebar-open & {
-      display: none;
-    }
-  }
-
-  .icon-text {
-    display: none;
-
-    .sidebar-open & {
-      display: inline;
-    }
-  }
-}
-
-.comments-container {
-  display: none;
-  background: #57585a;
-  color: #fff;
-
-  .sidebar-open & {
-    display: block;
-  }
-
-  .comment,
-  .comment-footer {
-    padding: 15px 10px;
-  }
-
-  .comment {
-    position: relative;
-    min-height: 60px;
-    border-bottom: 1px solid #333;
-  }
+.comment {
+  position: relative;
+  padding: 15px 0;
+  border-bottom: 1px solid $grey;
 }
 
 .comment-header {
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 
   h3 {
     margin: 0;
     font-size: 16px;
+    font-weight: bold;
     line-height: 1.5;
   }
+}
 
-  small {
-    display: block;
-    color: #aaa;
-    font-size: 13px;
+.comment-action {
+  display: block;
+  margin-top: 10px;
+  color: $grey;
+  font-size: 14px;
+
+  .divider {
+    margin: 0 8px;
   }
 }
 
-.comment-content {
-  font-size: 13px;
-}
+.link-flag-comment {
+  margin-left: 3px;
+  padding-left: 17px;
+  background-image: image-url("icon-flag-sm-grey.png");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 12px 15px;
 
-.link-delete-comment {
-  position: absolute;
-  top: 0;
-  right: 0;
-  padding: 5px 10px;
-  padding-right: 25px;
-  background: #706f6f;
-  opacity: 0;
-
-  @include is-ios {
-    opacity: 1;
+  @include is-retina {
+    background-image: image-url("icon-flag-sm-grey@2.png");
   }
 
   &,
   &:hover,
-  &:active,
   &:focus {
-    color: #fff;
-    text-decoration: none;
+    color: $grey;
   }
 
-  .comment:hover & {
-    opacity: 0.8;
+  .comment-flagged & {
+    background-image: image-url("icon-flag-sm.png");
 
-    &:hover {
-      opacity: 1;
+    @include is-retina {
+      background-image: image-url("icon-flag-sm@2.png");
+    }
+
+    &,
+    &:hover,
+    &:focus {
+      color: $black;
     }
   }
+
+  .comment-assessor .comment-flagged & {
+    background-image: image-url("icon-flag-sm-yellow.png");
+
+    @include is-retina {
+      background-image: image-url("icon-flag-sm-yellow@2.png");
+    }
+  }
+}
+
+.link-delete-comment {
+  display: inline-block;
+  position: relative;
+  padding-right: 15px;
+  font-size: 14px;
+  font-weight: normal;
 
   .show-delete-comment & {
     display: none;
@@ -953,7 +766,7 @@ table .ellipsis {
   .icon-delete-comment {
     position: absolute;
     top: 50%;
-    right: 10px;
+    right: 0;
     width: 10px;
     height: 10px;
     margin-top: -5px;
@@ -977,6 +790,7 @@ table .ellipsis {
   left: 0;
   width: 100%;
   background: rgba(0, 0, 0, 0.8);
+  color: $white-true;
   text-align: center;
 
   .show-delete-comment & {
@@ -987,18 +801,16 @@ table .ellipsis {
     position: absolute;
     width: 100%;
     top: 50%;
-    margin-top: -30px;
+    margin-top: -36px;
   }
 }
 
-.comment-new {
-  padding: 15px 10px;
-  padding-top: 0;
+.comment-footer {
+  margin-top: 15px;
+}
 
-  textarea {
-    margin-bottom: 5px;
-    font-size: 13px;
-  }
+.comment-actions {
+  margin-top: 10px;
 }
 
 // Collapsable panes
@@ -1010,11 +822,15 @@ table .ellipsis {
     vertical-align: bottom;
   }
 
+  label {
+    font-weight: bold;
+  }
+
   tbody {
-    border: 2px solid #333;
+    border: 2px solid $black;
 
     > tr > th {
-      border-right: 2px solid #333;
+      border-right: 2px solid $black;
     }
   }
 }
@@ -1055,8 +871,13 @@ table .ellipsis {
     }
   }
 
-  .pull-right {
-    margin-top: 0.3em;
+  small {
+    display: inline-block;
+    width: 100%;
+    margin-top: 10px;
+    padding-left: 25px;
+    color: $grey-dark;
+    font-size: 14px;
     font-style: italic;
     text-transform: none;
 
@@ -1066,6 +887,142 @@ table .ellipsis {
       margin-top: 10px;
       padding-left: 25px;
       float: none !important;
+    }
+  }
+}
+
+.panel-parent {
+  > .panel-heading {
+    background-color: $grey-panel-dark;
+
+    > .panel-title a {
+      background-image: image-url("icon-arrow-collapse-down-white.png");
+      color: $white-true;
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-collapse-down-white@2.png");
+      }
+    }
+
+    &.expanded > .panel-title a {
+      background-image: image-url("icon-arrow-collapse-up-white.png");
+
+      @include is-retina {
+        background-image: image-url("icon-arrow-collapse-up-white@2.png");
+      }
+    }
+  }
+
+  > .panel-collapse > .panel-body {
+    padding-right: 0;
+  }
+}
+
+// RAG dropdown
+.btn-rag {
+  .icon-rag {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    margin-top: -10px;
+    background-size: 20px 20px;
+    text-align: left;
+    text-indent: -9999px;
+  }
+
+  .rag-neutral {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $black;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-neutral.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-neutral@2.png");
+      }
+    }
+  }
+
+  .rag-positive {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $green;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-green.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-greenb@2.png");
+      }
+    }
+  }
+
+  .rag-average {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $amber;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-amber.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-amber@2.png");
+      }
+    }
+  }
+
+  .rag-negative {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $red;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-red.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-red@2.png");
+      }
+    }
+  }
+
+  .dropdown-toggle,
+  .dropdown-menu a {
+    position: relative;
+    font-weight: bold;
+  }
+
+  .dropdown-toggle {
+    padding-left: 25px;
+
+    .rag-text {
+      margin-right: 5px;
+    }
+  }
+
+  .dropdown-menu {
+    a {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 37px;
+    }
+
+    .icon-rag {
+      left: 12px;
     }
   }
 }
