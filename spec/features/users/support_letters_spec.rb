@@ -57,11 +57,11 @@ So that I can support my nominator
       it "should not allow to submit empty letter" do
         # Clear prefilled supporter data
         fill_in "First name", with: ""
-        fill_in "Last name", with: ""
-        fill_in "Relationship to nominee", with: ""
+        fill_in "Surname", with: ""
+        fill_in "support_letter_relationship_to_nominee", with: ""
 
         expect do
-          click_on "Submit"
+          click_on "Save"
         end.not_to change {
           SupportLetter.count
         }
@@ -72,11 +72,11 @@ So that I can support my nominator
 
     it "should allow to submit proper letter" do
       fill_in "First name", with: "Test"
-      fill_in "Last name", with: "Test"
-      fill_in "Relationship to nominee", with: "Friend"
+      fill_in "Surname", with: "Test"
+      fill_in "support_letter_relationship_to_nominee", with: "Friend"
 
       expect do
-        click_on "Submit"
+        click_on "Save"
       end.to change {
         SupportLetter.count
       }.by(1)
