@@ -1,5 +1,5 @@
 class Admin::FormAnswersController < Admin::BaseController
-  before_filter :load_resource, only: [:withdraw, :review, :show, :update]
+  before_filter :load_resource, only: [:withdraw, :review, :show, :update, :update_financials]
 
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
@@ -37,6 +37,26 @@ class Admin::FormAnswersController < Admin::BaseController
     authorize @form_answer, :withdraw?
     @form_answer.toggle!(:withdrawn)
     redirect_to action: :index
+  end
+
+  def update_financials
+    authorize @form_answer, :update_financials?
+    @form_answer.financial_data = params[:financial_data]
+    @form_answer.financial_data["updated_at"] = Time.zone.now
+    @form_answer.financial_data["updated_by_id"] = current_admin.id
+    @form_answer.financial_data["updated_by_type"] = current_admin.class
+
+    @form_answer.save
+
+    if request.xhr?
+      head :ok, content_type: "text/html"
+
+      return
+    else
+      flash.notice = "Financial data updated"
+      redirect_to action: :show
+      return
+    end
   end
 
   def review

@@ -18,4 +18,8 @@ class FormAnswerPolicy < ApplicationPolicy
   def update?
     admin?
   end
+
+  def update_financials?
+    true
+  end
 end

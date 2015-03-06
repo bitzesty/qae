@@ -86,19 +86,20 @@ class FormAnswer < ActiveRecord::Base
   end
 
   begin :callbacks
-    before_create :set_account
+    before_validation :check_eligibility, if: :submitted?
+
     before_save :set_award_year, unless: :award_year?
     before_save :set_urn
     before_save :set_progress
     before_save :build_supporters
-    before_validation :check_eligibility, if: :submitted?
     before_save :assign_searching_attributes
+
+    before_create :set_account
     before_create :set_user_full_name
   end
 
   store_accessor :document
-  store_accessor :eligibility
-  store_accessor :basic_eligibility
+  store_accessor :financial_data
 
   begin :state_machine
     delegate :current_state, :trigger!, :available_events, to: :state_machine
@@ -148,6 +149,13 @@ class FormAnswer < ActiveRecord::Base
 
   def fill_progress_in_percents
     ((fill_progress || 0) * 100).round.to_s + "%"
+  end
+
+  def performance_years
+    case award_type
+    when "innovation"
+      document["innovation_performance_years"]
+    end
   end
 
   private

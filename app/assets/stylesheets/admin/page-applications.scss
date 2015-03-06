@@ -130,10 +130,15 @@
       min-width: 100px;
     }
 
+    .form-save-button {
+      display: none;
+    }
+
     .form-edit {
       border-bottom: none;
 
-      .form-control {
+      .form-control,
+      .form-save-button {
         display: block;
       }
 

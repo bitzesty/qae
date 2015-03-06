@@ -1,0 +1,31 @@
+.panel-body
+  .form-group.table-overflow-container
+    = form_for @form_answer, url: update_financials_admin_form_answer_path(@form_answer) do |f|
+      table.table.table-striped#financial-table
+        colgroup
+          col width="300"
+
+        thead
+          tr
+            th &nbsp;
+
+            - financial_pointer.period_length.times do |i|
+              th = "Year #{i + 1}"
+        tbody
+          = render "admin/form_answers/financial_summary/years_row", f: f, financial_pointer: financial_pointer
+
+          - financial_pointer.data.each_with_index do |row, index|
+            - next if row[:financial_year_changed_dates]
+            = render "admin/form_answers/financial_summary/row", f: f, row: row
+
+      = link_to "#", class: "form-edit-link pull-right"
+        span.glyphicon.glyphicon-pencil
+        ' edit
+      .clear
+
+      = button_tag "Save", class: "form-save-button pull-right"
+      .clear
+
+
+
+  = render "admin/form_answers/financial_summary/benchmarks", financial_pointer: financial_pointer
