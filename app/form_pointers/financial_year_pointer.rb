@@ -62,10 +62,12 @@ class FinancialYearPointer
   end
 
   def latest_year_label
-    [
-      "0" + financial_pointer.filled_answers["financial_year_date_day"],
-      financial_pointer.filled_answers["financial_year_date_month"],
-      Date.today.year
-    ]
+    day = financial_pointer.filled_answers["financial_year_date_day"]
+    month = financial_pointer.filled_answers["financial_year_date_month"]
+
+    day = "0" + day if day.size == 1
+    month = "0" + month if month.size == 1
+
+    [day, month, Date.today.year ]
   end
 end
