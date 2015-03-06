@@ -143,11 +143,6 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
-  def financial_data_submitted?
-    performance_years.present?
-    true
-  end
-
   private
 
   def nominee_full_name_from_document
