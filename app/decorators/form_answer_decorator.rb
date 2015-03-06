@@ -94,6 +94,8 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def financial_summary_updated_by
+    return unless object.financial_data
+
     id = object.financial_data["updated_by_id"]
     kind = object.financial_data["updated_by_type"]
 
@@ -107,6 +109,6 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def financial_summary_updated_at
-    object.financial_data["updated_at"]
+    object.financial_data && object.financial_data["updated_at"]
   end
 end
