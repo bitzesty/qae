@@ -4,13 +4,13 @@ FactoryGirl.define do
     attachment do
       Rack::Test::UploadedFile.new(
         File.join(
-          Rails.root,'spec','support','file_samples','audit_certificate_sample.csv'
+          Rails.root,'spec','support','file_samples','audit_certificate_sample.pdf'
         )
       )
     end
   end
 
-  sequence :audit_certificate_answers_sample do
+  sequence :financial_data_sample do
     ActiveSupport::HashWithIndifferentAccess.new({
       applying_for: "organisation",
       company_name: "Bitzesty",

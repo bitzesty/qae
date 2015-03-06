@@ -15,7 +15,7 @@ So that I can check, complete it and then upload it to application
     create :form_answer, :innovation,
       user: user,
       urn: "QA0001/19T",
-      document: { company_name: "Bitzesty" }
+      document: generate(:financial_data_sample)
   end
 
   before do
@@ -32,26 +32,26 @@ So that I can check, complete it and then upload it to application
       expect_to_see form_answer.decorate.award_application_title
       expect(page).to have_link(
         "Review Audit Certificate",
-        href: users_form_answer_audit_certificate_url(form_answer, format: :csv)
+        href: users_form_answer_audit_certificate_url(form_answer, format: :pdf)
       )
     end
   end
 
   describe "Download Audit Certificate prefilled with my financial data" do
     let(:audit_certificate_filename) do
-      "audit_certificate_#{form_answer.decorate.csv_filename}"
+      "audit_certificate_#{form_answer.decorate.pdf_filename}"
     end
 
     before do
-      visit users_form_answer_audit_certificate_url(form_answer, format: :csv)
+      visit users_form_answer_audit_certificate_url(form_answer, format: :pdf)
     end
 
-    it "should generate csv file" do
+    it "should generate pdf file" do
       expect(page.status_code).to eq(200)
       expect(page.response_headers["Content-Disposition"]).to be_eql(
         "attachment; filename=\"#{audit_certificate_filename}\""
       )
-      expect(page.response_headers["Content-Type"]).to be_eql "application/csv"
+      expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
     end
   end
 
@@ -71,13 +71,13 @@ So that I can check, complete it and then upload it to application
 
         attach_file('audit_certificate_attachment', sample_txt_file_path)
         click_on "Upload"
-        expect_to_see "You are not allowed to upload \"txt\" files, allowed types: csv"
+        expect_to_see "You are not allowed to upload \"txt\" files"
       end
     end
 
     describe "proper uploading" do
-      let(:sample_csv_file_path) {
-        "#{Rails.root}/spec/support/file_samples/audit_certificate_sample.csv"
+      let(:sample_pdf_file_path) {
+        "#{Rails.root}/spec/support/file_samples/photo_with_size_less_than_5MB.jpg"
       }
 
       before do
@@ -86,7 +86,7 @@ So that I can check, complete it and then upload it to application
 
       it "should upload proper file" do
         within("#new_audit_certificate") do
-          attach_file('audit_certificate_attachment', sample_csv_file_path)
+          attach_file('audit_certificate_attachment', sample_pdf_file_path)
           click_on "Upload"
         end
 
