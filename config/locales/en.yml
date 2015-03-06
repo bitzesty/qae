@@ -60,7 +60,15 @@ en:
 
   admin:
     form_answers:
-      financial_year_changed_dates: Year and date
+      financial_summary:
+        years_row:
+          financial_year_changed_dates: Year and date
+        row:
+          employees: Number of UK employees
+          exports: Overseas sales accepted (£)
+          total_turnover: Total sales accepted (£)
+          net_profit: Net profit (£)
+          total_net_assets: Total Net assets (£)
   errors:
     messages:
       wrong_size: "is the wrong size (should be %{file_size})"

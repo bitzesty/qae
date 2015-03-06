@@ -9,6 +9,11 @@ jQuery ->
     ($ "input", form).on "change keyup keydown paste", ->
       timer ||= setTimeout(saveFinancials, 500 )
 
+    ($ "button", form).on "click", (event) ->
+      do event.preventDefault
+      $(this).closest(".form-group").removeClass("form-edit")
+
+
     updateExportsGrowth = (exports) ->
       exportsGrowth = ($ 'tr.exports-growth td.value', benchmarksTable)
       values = exports.map (i, td) ->
