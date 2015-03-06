@@ -46,6 +46,7 @@ class FormFinancialPointer
 
   def growth_overseas_earnings(year)
     exports = data_values(:exports)
+    exports ||= data_values(:overseas_sales)
 
     if exports && exports[year] && exports[year - 1] && year != 0
       if exports[year - 1][:value].to_f.zero?
@@ -60,6 +61,7 @@ class FormFinancialPointer
 
   def sales_exported(year)
     export = data_values(:exports)
+    export ||= data_values(:overseas_sales)
     total_turnover = data_values(:total_turnover)
 
     if export && total_turnover && export[year] && total_turnover[year]

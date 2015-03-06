@@ -1,4 +1,4 @@
-tr class=row.keys.first
+tr class=(row.keys.first == 'overseas_sales' ? 'exports' : row.keys.first)
   td = t(".#{row.keys.first}")
 
   - row.values.flatten.each do |field|
