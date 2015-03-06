@@ -88,4 +88,21 @@ class FormAnswerDecorator < ApplicationDecorator
       "#{g} - #{note}" if note
     end.compact.join("\n")
   end
+
+  def financial_summary_updated_by
+    id = object.financial_data["updated_by_id"]
+    kind = object.financial_data["updated_by_type"]
+
+    if id && kind
+      if %w[Admin Assessor].include?(kind)
+        user = kind.constantize.find_by_id(id)
+
+        user.decorate.full_name if user
+      end
+    end
+  end
+
+  def financial_summary_updated_at
+    object.financial_data["updated_at"]
+  end
 end

@@ -44,6 +44,7 @@ class Admin::FormAnswersController < Admin::BaseController
     @form_answer.financial_data = params[:financial_data]
     @form_answer.financial_data["updated_at"] = Time.zone.now
     @form_answer.financial_data["updated_by_id"] = current_admin.id
+    @form_answer.financial_data["updated_by_type"] = current_admin.class
 
     @form_answer.save
 
