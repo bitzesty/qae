@@ -7,8 +7,8 @@ class Users::AuditCertificatesController < Users::BaseController
                 find(params[:form_answer_id])
   end
 
-  expose(:csv_data) do
-    AuditCertificateCsvGenerator.new(form_answer).run
+  expose(:pdf_data) do
+    form_answer.decorate.pdf_audit_certificate_generator
   end
 
   expose(:audit_certificate) do
@@ -18,12 +18,10 @@ class Users::AuditCertificatesController < Users::BaseController
   def show
     respond_to do |format|
       format.html
-      format.csv do
-        send_data(
-          csv_data,
-          filename: "audit_certificate_#{form_answer.decorate.csv_filename}",
-          type: "application/csv"
-        )
+      format.pdf do
+        send_data pdf_data.render,
+                  filename: "audit_certificate_#{form_answer.decorate.pdf_filename}",
+                  type: "application/pdf"
       end
     end
   end
