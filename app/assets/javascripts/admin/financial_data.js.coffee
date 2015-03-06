@@ -28,24 +28,24 @@ jQuery ->
 
     updateExportsPercentage = (exports, turnover) ->
       exportsPercentage = ($ 'tr.exports-percentage td.value', benchmarksTable)
-      exports_values = exports.map (i, td) ->
+      exportsValues = exports.map (i, td) ->
         parseInt(($ 'input', ($ td)).val())
-      turnover_values = turnover.map (i, td) ->
+      turnoverValues = turnover.map (i, td) ->
         parseInt(($ 'input', ($ td)).val())
 
-      if exports_values.length && turnover_values.length
+      if exportsValues.length && turnoverValues.length
         exportsPercentage.each (i, td) ->
-          if exports_values[i] != NaN && turnover_values[i] != 0 && turnover_values[i] != NaN && exports_values[i] != 0
-            growth = Math.round(exports_values[i] / turnover_values[i] * 100)
+          if exportsValues[i] != NaN && turnoverValues[i] && turnoverValues[i] != NaN && exportsValues[i]
+            growth = Math.round(exportsValues[i] / turnoverValues[i] * 100)
             ($ td).text(growth)
 
     updateOverallGrowth = (turnover) ->
-      turnover_values = turnover.map (i, td) ->
+      turnoverValues = turnover.map (i, td) ->
         parseInt(($ 'input', ($ td)).val())
 
-      if i = turnover_values.length
-        growth = turnover_values[i - 1] - turnover_values[0]
-        growthInPercents = Math.round(turnover_values[i - 1] / turnover_values[0] * 100 - 100)
+      if i = turnoverValues.length
+        growth = turnoverValues[i - 1] - turnoverValues[0]
+        growthInPercents = Math.round(turnoverValues[i - 1] / turnoverValues[0] * 100 - 100)
 
         ($ 'tr.overall-growth td.value', overallBenchmarksTable).text(growth)
         ($ 'tr.overall-growth-in-percents td.value', overallBenchmarksTable).text(growthInPercents)
@@ -61,12 +61,12 @@ jQuery ->
     saveFinancials = ->
       timer = null
       url = form.attr('action')
-      form_data = form.serialize()
+      formData = form.serialize()
       updateBenchmarks()
 
       jqXHR = $.ajax({
         url: url
-        data: form_data
+        data: formData
         type: 'POST'
         dataType: 'js'
       })

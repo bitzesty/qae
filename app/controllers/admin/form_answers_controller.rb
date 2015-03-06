@@ -42,8 +42,8 @@ class Admin::FormAnswersController < Admin::BaseController
   def update_financials
     authorize @form_answer, :update_financials?
     @form_answer.financial_data = params[:financial_data]
-    @form_answer.financial_data['updated_at'] = Time.zone.now
-    @form_answer.financial_data['updated_by_id'] = current_admin.id
+    @form_answer.financial_data["updated_at"] = Time.zone.now
+    @form_answer.financial_data["updated_by_id"] = current_admin.id
 
     @form_answer.save
 

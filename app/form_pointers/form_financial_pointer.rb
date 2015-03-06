@@ -52,10 +52,10 @@ class FormFinancialPointer
       if exports[year - 1][:value].to_f.zero?
         0
       else
-        (exports[year][:value].to_f  / exports[year - 1][:value].to_f * 100 - 100).round(2)
+        (exports[year][:value].to_f / exports[year - 1][:value].to_f * 100 - 100).round(2)
       end
     else
-      '-'
+      "-"
     end
   end
 
@@ -71,23 +71,23 @@ class FormFinancialPointer
         (export[year][:value].to_f / total_turnover[year][:value].to_f * 100).round(2)
       end
     else
-      '-'
+      "-"
     end
   end
 
   def overall_growth
     turnover = data_values(:total_turnover)
 
-    turnover.last && turnover.first ? turnover.last[:value].to_i - turnover.first[:value].to_i : '-'
+    turnover.last && turnover.first ? turnover.last[:value].to_i - turnover.first[:value].to_i : "-"
   end
 
   def overall_growth_in_percents
     turnover = data_values(:total_turnover)
 
     if turnover && turnover.any? && !turnover.first[:value].to_f.zero?
-      (turnover.last[:value].to_f / turnover.first[:value].to_f * 100 -100).round(2)
+      (turnover.last[:value].to_f / turnover.first[:value].to_f * 100 - 100).round(2)
     else
-      '-'
+      "-"
     end
   end
 
