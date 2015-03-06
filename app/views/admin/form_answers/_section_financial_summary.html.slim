@@ -1,5 +1,5 @@
 - financial_pointer = FormFinancialPointer.new(@form_answer)
-- unless financial_pointer.period_length.zero?
+- if !financial_pointer.period_length.zero? && @form_answer.submitted?
   .panel.panel-default
     .panel-heading#financial-summary-heading role="tab"
       h4.panel-title
