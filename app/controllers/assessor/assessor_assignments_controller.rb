@@ -3,7 +3,7 @@ class Assessor::AssessorAssignmentsController < Assessor::BaseController
     authorize :assessor_assignment, :create?
     assessor_assignment = AssessorAssignment.new(create_params)
 
-    if current_assessor.can_assign_regular_assessors?(assessor_assignment)
+    if current_assessor.lead?(form_answer)
       assessor_assignment.save
     end
 
@@ -12,15 +12,29 @@ class Assessor::AssessorAssignmentsController < Assessor::BaseController
 
   def update
     authorize resource, :update?
-
+    # auth
     resource.update(create_params)
-    redirect_to :back
+
+    respond_to do |format|
+      format.js do
+        render nothing: true
+      end
+      format.html do
+        redirect_to :back
+      end
+    end
   end
 
   private
 
   def create_params
-    params.require(:assessor_assignment).permit :form_answer_id, :assessor_id, :position
+    permitted = Assessment::AppraisalForm.all
+    permitted += [:form_answer_id, :assessor_id, :position] if current_assessor.lead?(form_answer)
+    params.require(:assessor_assignment).permit(*permitted)
+  end
+
+  def form_answer
+    @form_answer ||= FormAnswer.find(params[:assessor_assignment][:form_answer_id])
   end
 
   def resource

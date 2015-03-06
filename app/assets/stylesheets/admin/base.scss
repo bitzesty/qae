@@ -932,6 +932,24 @@ table .ellipsis {
     text-indent: -9999px;
   }
 
+
+  .rag-blank {
+    &,
+    a,
+    a:hover,
+    a:focus {
+      color: $black;
+    }
+
+    .icon-rag {
+      background-image: image-url("icon-grade-neutral.png");
+
+      @include is-retina {
+        background-image: image-url("icon-grade-neutral@2.png");
+      }
+    }
+  }
+
   .rag-neutral {
     &,
     a,

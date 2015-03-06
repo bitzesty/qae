@@ -83,6 +83,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :form_answers
     resources :assessor_assignments, only: [:create, :update]
+
   end
 
   namespace :admin do

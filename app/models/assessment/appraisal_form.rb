@@ -2,7 +2,8 @@ class Assessment::AppraisalForm
   TRADE = {
     overseas_earnings_growth: {
       type: :rag,
-      label: "Overseas Earnings Growth:"
+      label: "Overseas Earnings Growth:",
+
     },
     commercial_success: {
       type: :rag,
@@ -64,10 +65,70 @@ class Assessment::AppraisalForm
     commercial_success: {
       type: :rag,
       label: "Commercial Success:"
+    },
+    strategy: {
+      type: :rag,
+      label: "Strategy:"
+    },
+    environment: {
+      type: :rag,
+      label: "Environment:"
+    },
+    social: {
+      type: :rag,
+      label: "Social:"
+    },
+    economic: {
+      type: :rag,
+      label: "Economic:"
+    },
+    leadership_management: {
+      type: :rag,
+      label: "Leadership & Management:"
+    },
+    environment_protection: {
+      type: :strengths,
+      label: "Environment Protection and Management:"
+    },
+    benefiting_the_wilder_community: {
+      type: :strengths,
+      label: "Benefiting the Wider Community:"
+    },
+    sustainable_resource: {
+      type: :strengths,
+      label: "Sustainable Resource Use: Select Key Strengths and Focuses:"
+    },
+    economic_sustainability: {
+      type: :strengths,
+      label: "Economic Sustainability:"
+    },
+    supporting_employees: {
+      type: :strengths,
+      label: "Supporting Employees:"
+    },
+    internal_leadership: {
+      type: :strengths,
+      label: "Internal Leadership & Management:"
+    },
+    industry_sector: {
+      type: :strengths,
+      label: "Industry/Sector Leadership:"
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall Verdict:"
     }
   }
 
   def self.all
-    TRADE.keys + INNOVATION.keys + ENTERPRISE.keys
+    keys = TRADE.keys + INNOVATION.keys + ENTERPRISE.keys + DEVELOPMENT.keys
+    out = keys.map { |k| "#{k}_rate".to_sym }
+    out += keys.map { |k| "#{k}_desc".to_sym }
+    out
+  end
+
+  def self.struct(form_answer)
+    meth = form_answer.respond_to?(:award_type_slug) ? :award_type_slug : :award_type
+    const_get(form_answer.public_send(meth).upcase)
   end
 end
