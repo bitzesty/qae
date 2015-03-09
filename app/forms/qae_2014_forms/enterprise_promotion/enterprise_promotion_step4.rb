@@ -142,6 +142,7 @@ class QAE2014Forms
           )
 
           limit 4
+          default 1
           list_type :manuall_upload
           conditional :manually_upload, :yes
         end

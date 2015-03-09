@@ -8,11 +8,5 @@ ul.list-add.supporters_list data-need-to-clear-example=true data-add-limit=quest
     - question.entities.each_with_index do |supporter, index|
       = render 'qae_form/supporter_fields', question: question, supporter: supporter, index: index
 
-  /- question.entities.each_with_index do |supporter, index|
-  /  = render 'qae_form/supporter_fields', question: question, supporter: supporter, index: index
-
-  /- if question.entities.none?
-  /  = render 'qae_form/supporter_fields', question: question, supporter: {}, index: 0
-
 a.button.button-add.js-button-add href="#" data-add-example="add-supporter"
   | + Add another supporter
