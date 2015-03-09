@@ -11,15 +11,5 @@
         ' This date will be used in relevant emails with winning applicants.
 
       ul
-        li
-          .form-value
-            ' Buckingham Palace reception attendees details due by
-            strong
-              = "21 Apr 2015"
-          = link_to "Edit"
-        li
-          .form-value
-            ' Press release comments due by
-            strong
-              = "21 Apr 2015"
-          = link_to "Edit"
+        li = render 'deadline_form', kind: 'buckingham_palace_attendees_details'
+        li = render 'deadline_form', kind: 'press_release_comments'

@@ -69,7 +69,7 @@ html.no-js
                     ul.dropdown-menu
                       - [2015, 2016, 2017, 2018].each do | start_year |
                         li
-                          = link_to "Award Year #{start_year} - #{start_year + 1}"
+                          = link_to "Award Year #{start_year} - #{start_year + 1}", admin_settings_url(year: start_year)
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown

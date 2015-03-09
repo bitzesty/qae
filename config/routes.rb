@@ -93,7 +93,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
-    resources :settings, only: [:index]
     resources :users
     resources :assessors
     resources :admins
@@ -111,6 +110,11 @@ Rails.application.routes.draw do
         patch :update_financials
         get :review
       end
+    end
+
+    resource :settings, only: [:show] do
+      resources :deadlines, only: [:update]
+      resources :email_notifications, only: [:create, :update, :destroy]
     end
 
     resources :notifications, only: [] do

@@ -11,19 +11,5 @@
         ' These dates will also be reflected in relevant email text.
 
       ul
-        li
-          .form-value
-            ' Submission period starts on
-            strong
-              = "21 Apr 2015"
-            '  at
-            = "00:01 am"
-          = link_to "Edit"
-        li
-          .form-value
-            ' Submission period closes on
-            strong
-              = "21 Apr 2015"
-            '  at
-            = "00:01 am"
-          = link_to "Edit"
+        li = render 'deadline_form', kind: 'submission_start'
+        li = render 'deadline_form', kind: 'submission_end'

@@ -27,7 +27,7 @@
 
   .form-value {
     display: inline-block;
-    width: 30em;
+    width: 35em;
 
     @include screen-xs-max {
       display: inline;
@@ -80,5 +80,16 @@
     .control-action {
       margin-top: 1.7em;
     }
+  }
+
+  .field_with_errors {
+    clear: both;
+    display: block;
+    margin: 0;
+    margin-bottom: 0.2em;
+    padding: 0;
+    background: transparent;
+    border: none;
+    color: $error-colour;
   }
 }

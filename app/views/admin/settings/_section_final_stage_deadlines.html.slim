@@ -11,9 +11,4 @@
         ' However this date will be used in relevant emails with shortlisted applicants.
 
       ul
-        li
-          .form-value
-            ' Audit certificates due bby
-            strong
-              = "21 Apr 2015"
-          = link_to "Edit"
+        li = render 'deadline_form', kind: 'audit_certificates'

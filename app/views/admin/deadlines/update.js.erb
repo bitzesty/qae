@@ -1,0 +1,12 @@
+wrapper = $("#deadline-" + "<%= @deadline.id %>");
+
+<% if @deadline.valid? %>
+  $(".form-value", wrapper).show();
+  $(".deadline-form", wrapper).hide();
+  $(".edit-deadline", wrapper).show();
+  $(".deadline-form input.datepicker", wrapper).val("<%= @deadline.formatted_trigger_at_date %>");
+  $(".deadline-form input.timepicker", wrapper).val("<%= @deadline.formatted_trigger_at_time %>");
+  $(".trigger-at", wrapper).html("<%= @deadline.decorate.formatted_trigger_time %>");
+<% else %>
+  $(".deadline-form input", wrapper).closest(".input").addClass("field_with_errors");
+<% end %>
