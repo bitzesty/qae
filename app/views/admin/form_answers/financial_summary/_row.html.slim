@@ -3,5 +3,5 @@ tr class=(row.keys.first == 'overseas_sales' ? 'exports' : row.keys.first)
 
   - row.values.flatten.each do |field|
     td.value
-      span = field[:value]
+      span.form-value = field[:value]
       = text_field_tag "financial_data[#{field[:name]}]", field[:value], class: 'form-control'
