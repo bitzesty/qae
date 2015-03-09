@@ -2,27 +2,35 @@ class AssessorAssignment < ActiveRecord::Base
   PRIMARY_POSITION = 0
   SECONDARY_POSITION = 1
 
-  validates :form_answer_id,
-            :assessor_id,
-            presence: true
+  begin :validations
+    validates :form_answer_id,
+              :assessor_id,
+              presence: true
 
-  validates :position,
-            inclusion: {
-              in: [PRIMARY_POSITION, SECONDARY_POSITION]
-            },
-            presence: true
+    validates :position,
+              inclusion: {
+                in: [PRIMARY_POSITION, SECONDARY_POSITION]
+              },
+              presence: true
 
-  validate :award_specific_attributes
-  validate :mandatory_fields_for_submitted
+    validate :award_specific_attributes
+    validate :mandatory_fields_for_submitted
 
-  validate do
-    validate_rate :rag
-    validate_rate :strengths
-    validate_rate :verdict
+    validate do
+      validate_rate :rag
+      validate_rate :strengths
+      validate_rate :verdict
+    end
   end
 
-  belongs_to :assessor
-  belongs_to :form_answer
+  begin :associations
+    belongs_to :assessor
+    belongs_to :form_answer
+  end
+
+  begin :callbacks
+    before_save :clean_document
+  end
 
   store_accessor :document, *Assessment::AppraisalForm.all
 
@@ -74,5 +82,11 @@ class AssessorAssignment < ActiveRecord::Base
 
   def struct
     Assessment::AppraisalForm
+  end
+
+  def clean_document
+    # erase the assessment if asssessor assignment changed
+    return if new_record?
+    self.document = nil if assessor_id_changed?
   end
 end
