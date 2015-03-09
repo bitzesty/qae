@@ -46,8 +46,12 @@ table .ellipsis {
   max-width: 175px;
 }
 
-.btn .glyphicon:first-child {
-  margin-right: 5px;
+.btn {
+  border-radius: 0;
+
+  .glyphicon:first-child {
+    margin-right: 5px;
+  }
 }
 
 .page-header {
