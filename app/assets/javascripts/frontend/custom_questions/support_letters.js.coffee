@@ -2,7 +2,7 @@ window.SupportLetters =
   init: ->
     $('.js-support-letter-attachment').each (idx, el) ->
       SupportLetters.fileupload_init(el)
-      SupportLetters.save_collection_init()
+    SupportLetters.save_collection_init()
 
   new_item_init: (el) ->
     SupportLetters.clean_up_system_tags(el)
