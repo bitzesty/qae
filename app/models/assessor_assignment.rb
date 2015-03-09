@@ -12,9 +12,8 @@ class AssessorAssignment < ActiveRecord::Base
             },
             presence: true
 
-  validates :form_answer, presence: true
   validate :award_specific_attributes
-  validate :overall_verdict_existence
+  validate :mandatory_fields_for_submitted
 
   belongs_to :assessor
   belongs_to :form_answer
@@ -31,19 +30,25 @@ class AssessorAssignment < ActiveRecord::Base
 
   private
 
-  def sections_attributes
-    struct = Assessment::AppraisalForm.struct(form_answer)
-    struct.keys.map { |k| ["#{k}_desc".to_sym, "#{k}_rate".to_sym] }.flatten
-  end
-
   def award_specific_attributes
-    (Assessment::AppraisalForm.all.map(&:to_sym) - sections_attributes).uniq.each do |att|
-      errors.add(att, "Can not be present for this Award Type") if public_send(att).present?
+    Assessment::AppraisalForm.diff(form_answer.award_type).each do |att|
+      if public_send(att).present?
+        errors.add(att, "Can not be present for this Award Type")
+      end
     end
   end
 
-  def overall_verdict_existence
-    # TODO - all sections are mandatory for assessors and need to be
-     # assigned before overall verdict
+  def mandatory_fields_for_submitted
+    return unless submitted?
+    att = Assessment::AppraisalForm.meths_for_award_type(form_answer.award_type)
+    att.each do |meth|
+      if public_send(meth).blank?
+        errors.add(meth, "Can not be blank for submitted assessment")
+      end
+    end
+  end
+
+  def submitted?
+    submitted_at.present?
   end
 end

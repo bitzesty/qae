@@ -120,6 +120,22 @@ class Assessment::AppraisalForm
     }
   }
 
+  def self.rate(key)
+    "#{key}_rate"
+  end
+
+  def self.desc(key)
+    "#{key}_desc"
+  end
+
+  def self.meths_for_award_type(award_type)
+    const_get(award_type.upcase).map { |k, _| [rate(k), desc(k)] }.flatten.map(&:to_sym)
+  end
+
+  def self.diff(award_type)
+    (all.map(&:to_sym) - meths_for_award_type(award_type)).uniq
+  end
+
   def self.all
     keys = TRADE.keys + INNOVATION.keys + ENTERPRISE.keys + DEVELOPMENT.keys
     out = keys.map { |k| "#{k}_rate".to_sym }

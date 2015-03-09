@@ -59,13 +59,13 @@ class FormAnswer < ActiveRecord::Base
       def primary
         where(assessor_assignments: {
           position: AssessorAssignment::PRIMARY_POSITION
-        }).first
+        }).order(created_at: :asc).last
       end
 
       def secondary
         where(assessor_assignments: {
           position: AssessorAssignment::SECONDARY_POSITION
-        }).first
+        }).order(created_at: :asc).last
       end
     end
   end

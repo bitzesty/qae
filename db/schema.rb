@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306122216) do
+ActiveRecord::Schema.define(version: 20150309114427) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20150306122216) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "document"
+    t.datetime "submitted_at"
   end
 
   add_index "assessor_assignments", ["assessor_id", "form_answer_id"], name: "index_assessor_assignments_on_assessor_id_and_form_answer_id", unique: true, using: :btree
