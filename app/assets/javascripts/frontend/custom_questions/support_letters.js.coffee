@@ -2,7 +2,7 @@ window.SupportLetters =
   init: ->
     $('.js-support-letter-attachment').each (idx, el) ->
       SupportLetters.fileupload_init(el)
-      SupportLetters.save_collection_init()
+    SupportLetters.save_collection_init()
 
   new_item_init: (el) ->
     SupportLetters.clean_up_system_tags(el)
@@ -102,8 +102,7 @@ window.SupportLetters =
               parent.addClass("read-only")
               parent.find("input[type='text']").each ->
                 show_el = $(this).closest("label").find(".visible-read-only")
-                if show_el.text() == ""
-                  show_el.text($(this).val())
+                show_el.text($(this).val())
               SupportLetters.disable_item_fields_and_controls(parent)
               SupportLetters.autosave()
 
