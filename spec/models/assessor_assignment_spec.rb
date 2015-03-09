@@ -52,6 +52,32 @@ describe AssessorAssignment do
       end
     end
   end
+
+  describe "Rates values" do
+    context "rag section" do
+      context "with not allowed value" do
+        subject do
+          build :assessor_assignment,
+                :trade,
+                commercial_success_rate: "invalid"
+        end
+        it "is invalid" do
+          expect(subject).to_not be_valid
+          expect(subject.errors.keys).to include(:commercial_success_rate)
+        end
+      end
+    end
+    context "with allowed value" do
+      subject do
+        build :assessor_assignment,
+              :trade,
+              commercial_success_rate: "negative"
+      end
+      it "is valid" do
+        expect(subject).to be_valid
+      end
+    end
+  end
 end
 
 def build_assignment_with(award_type, meth)

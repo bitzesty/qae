@@ -28,6 +28,7 @@ class Assessor::AssessorAssignmentsController < Assessor::BaseController
   private
 
   def create_params
+    params[:assessor_assignment].delete_if { |_, v| v.blank? }
     permitted = Assessment::AppraisalForm.all
     permitted += [:form_answer_id, :assessor_id, :position] if current_assessor.lead?(form_answer)
     params.require(:assessor_assignment).permit(*permitted)

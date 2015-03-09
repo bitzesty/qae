@@ -1,4 +1,23 @@
 class Assessment::AppraisalForm
+  RAG_ALLOWED_VALUES = [
+    "negative",
+    "average",
+    "positive"
+  ]
+
+  STRENGTHS_ALLOWED_VALUES = [
+    "blank",
+    "negative",
+    "average",
+    "positive"
+  ]
+
+  VERDICT_ALLOWED_VALUES = [
+    "negative",
+    "average",
+    "positive"
+  ]
+
   TRADE = {
     overseas_earnings_growth: {
       type: :rag,
@@ -138,13 +157,17 @@ class Assessment::AppraisalForm
 
   def self.all
     keys = TRADE.keys + INNOVATION.keys + ENTERPRISE.keys + DEVELOPMENT.keys
-    out = keys.map { |k| "#{k}_rate".to_sym }
-    out += keys.map { |k| "#{k}_desc".to_sym }
+    out = keys.map { |k| rate(k).to_sym }
+    out += keys.map { |k| desc(k).to_sym }
     out
   end
 
   def self.struct(form_answer)
     meth = form_answer.respond_to?(:award_type_slug) ? :award_type_slug : :award_type
     const_get(form_answer.public_send(meth).upcase)
+  end
+
+  def self.rates(form_answer, type)
+    struct(form_answer).select { |_, v| v[:type] == type }
   end
 end
