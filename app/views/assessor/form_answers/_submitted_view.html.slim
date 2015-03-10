@@ -17,5 +17,8 @@
     #section-assessment.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="assessment-heading"
       .panel-body
         .panel-group#panel-assessment role="tablist" aria-multiselectable="true"
-          = render "admin/form_answers/section_appraisal_form_primary"
-          = render "admin/form_answers/section_appraisal_form_secondary"
+          - unless current_assessor.lead?(resource)
+            - if current_assessor.primary?(resource)
+              = render "admin/form_answers/section_appraisal_form_primary"
+            - if current_assessor.secondary?(resource)
+              = render "admin/form_answers/section_appraisal_form_secondary"

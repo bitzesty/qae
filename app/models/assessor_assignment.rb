@@ -29,10 +29,6 @@ class AssessorAssignment < ActiveRecord::Base
     belongs_to :form_answer
   end
 
-  begin :callbacks
-    before_save :clean_document
-  end
-
   store_accessor :document, *Assessment::AppraisalForm.all
 
   def self.primary
