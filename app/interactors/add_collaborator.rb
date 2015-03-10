@@ -65,12 +65,12 @@ class AddCollaborator
   end
 
   def send_collaboration_email!
-    Users::CollaborationMailer.delay.access_granted(
+    Users::CollaborationMailer.access_granted(
       current_user,
       collaborator,
       new_user,
       generated_password,
-      devise_confirmation_token)
+      devise_confirmation_token).deliver_later!
   end
 
   def set_generated_password

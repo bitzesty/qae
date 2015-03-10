@@ -1,5 +1,6 @@
 require 'rails_helper'
 include Warden::Test::Helpers
+include ActiveJob::TestHelper
 
 describe "Collaborators", %q{
 As a Account Admin

@@ -21,10 +21,6 @@ ActiveRecord::Migration.check_pending!
 ActiveRecord::Migration.maintain_test_schema!
 Qae::Application.load_tasks
 
-RSpec::Sidekiq.configure do |config|
-  config.warn_when_jobs_not_processed_by_sidekiq = false
-end
-
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include UserStepDefinitions, type: :feature

@@ -24,7 +24,7 @@ class ActionConfirmationForm
 
   def notify!(mailer_class, users)
     users.each do |user|
-      mailer_class.delay.notify(user)
+      mailer_class.notify(user).deliver_later!
     end
 
     true

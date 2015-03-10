@@ -87,4 +87,8 @@ Rails.application.configure do
     domain:         ENV["mailgun_domain"],
     authentication: :plain
   }
+
+  # TODO: uncomment lines below - once you done with AWS SQS and new servers setup
+  # Should be config.active_job.queue_adapter = :shoryuken
+  config.active_job.queue_adapter = :inline
 end

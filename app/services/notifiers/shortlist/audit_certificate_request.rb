@@ -6,7 +6,7 @@ class Notifiers::Shortlist::AuditCertificateRequest < Notifiers::AccountNotifier
 
   def run
     recipients.each do |recipient|
-      Users::AuditCertificateRequestMailer.delay.notify(recipient.id, form_answer.id)
+      Users::AuditCertificateRequestMailer.notify(recipient.id, form_answer.id).deliver_later!
     end
   end
 end

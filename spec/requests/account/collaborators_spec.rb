@@ -2,6 +2,8 @@ require 'rails_helper'
 include Warden::Test::Helpers
 
 describe 'API' do
+  include ActiveJob::TestHelper
+
   let!(:account_admin) do
     FactoryGirl.create :user, :completed_profile,
                               first_name: "Account Admin John",
@@ -72,6 +74,7 @@ describe 'API' do
     }
 
     before do
+      clear_enqueued_jobs
       xhr :post, account_collaborators_path, collaborator: create_params
     end
 
@@ -83,7 +86,7 @@ describe 'API' do
       expect(new_regular_admin.account_id).to be_eql account.id
       expect(new_regular_admin.role).to be_eql role
 
-      expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to be_eql(1)
+      expect(enqueued_jobs.size).to be_eql(1)
     end
   end
 
@@ -96,6 +99,7 @@ describe 'API' do
     end
 
     before do
+      clear_enqueued_jobs
       xhr :delete, account_collaborator_path(existing_collaborator)
     end
 
@@ -103,7 +107,7 @@ describe 'API' do
       expect(User.count).to be_eql 2
       expect(account.reload.users.count).to be_eql 1
 
-      expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to be_eql(0)
+      expect(enqueued_jobs.size).to be_eql(0)
     end
   end
 end
