@@ -53,7 +53,7 @@ describe AssessorAssignment do
     end
   end
 
-  describe "Rates values" do
+  describe "rates" do
     context "rag section" do
       context "with not allowed value" do
         subject do
@@ -76,6 +76,19 @@ describe AssessorAssignment do
       it "is valid" do
         expect(subject).to be_valid
       end
+    end
+  end
+
+  describe "submitted_at immutability" do
+    it "allows to set up submitted_at only once" do
+      obj = build(:assessor_assignment)
+      obj.submitted_at = DateTime.now
+      obj.valid?
+      expect(obj.errors).to_not include(:submitted_at)
+      obj.save(validate: false)
+      obj.submitted_at = DateTime.now - 1.day
+      obj.valid?
+      expect(obj.errors.keys).to include(:submitted_at)
     end
   end
 end

@@ -1,10 +1,10 @@
 ready = ->
   changeRagStatus()
   editFormAnswerAutoUpdate()
-  bindRags("#section-appraisal-form-primary form")
-  bindAppraisalFields("#section-appraisal-form-primary form")
-  bindRags("#section-appraisal-form-secondary form")
-  bindAppraisalFields("#section-appraisal-form-secondary form")
+  bindRags("#section-appraisal-form-primary .edit_assessor_assignment")
+  bindAppraisalFields("#section-appraisal-form-primary .edit_assessor_assignment")
+  bindRags("#section-appraisal-form-secondary .edit_assessor_assignment")
+  bindAppraisalFields("#section-appraisal-form-secondary .edit_assessor_assignment")
 
   $('#new_form_answer_attachment').fileupload
     success: (result, textStatus, jqXHR)->
@@ -33,6 +33,13 @@ ready = ->
   $(document).on "click", ".form-edit-link", (e) ->
     e.preventDefault()
     $(this).closest(".form-group").addClass("form-edit")
+  $(".submit-assessment").on "ajax:error", (e, data, status, xhr)->
+    errors = data.responseJSON
+    $(this).find(".feedbackHolder").html(errors.error)
+  $(".submit-assessment").on "ajax:success", (e, data, status, xhr)->
+    console.log("her")
+    $(this).find(".feedbackHolder").html("Assessment Submitted")
+    $(this).find("input:submit").remove()
 
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->

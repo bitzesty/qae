@@ -21,6 +21,8 @@ class AssessorAssignment < ActiveRecord::Base
       validate_rate :strengths
       validate_rate :verdict
     end
+
+    validate :submitted_at_immutability
   end
 
   begin :associations
@@ -42,6 +44,15 @@ class AssessorAssignment < ActiveRecord::Base
     where(position: SECONDARY_POSITION).first
   end
 
+  def submit_assessment
+    return if submitted?
+    update(submitted_at: DateTime.now)
+  end
+
+  def submitted?
+    submitted_at.present?
+  end
+
   private
 
   def award_specific_attributes
@@ -54,15 +65,11 @@ class AssessorAssignment < ActiveRecord::Base
 
   def mandatory_fields_for_submitted
     return unless submitted?
-    meths.each do |meth|
+    struct.meths_for_award_type(form_answer.award_type).each do |meth|
       if public_send(meth).blank?
-        errors.add(meth, "Can not be blank for submitted assessment")
+        errors.add(meth, "can not be blank for submitted assessment")
       end
     end
-  end
-
-  def submitted?
-    submitted_at.present?
   end
 
   def validate_rate(rate_type)
@@ -88,5 +95,12 @@ class AssessorAssignment < ActiveRecord::Base
     # erase the assessment if asssessor assignment changed
     return if new_record?
     self.document = nil if assessor_id_changed?
+  end
+
+  def submitted_at_immutability
+    return if new_record?
+    if submitted_at_changed? && submitted_at_was.present?
+      errors.add(:submitted_at, "Can not be re-submitted")
+    end
   end
 end
