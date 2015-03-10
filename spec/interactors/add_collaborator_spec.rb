@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 describe "Interactors::AddCollaborator" do
+  include ActiveJob::TestHelper
+
   let!(:account_admin) do
-    FactoryGirl.create :user, :completed_profile, 
+    FactoryGirl.create :user, :completed_profile,
                               first_name: "Account Admin John",
                               role: "account_admin"
   end
@@ -16,25 +18,29 @@ describe "Interactors::AddCollaborator" do
                                      document: { company_name: "Bitzesty" }
   end
 
-  let(:add_collaborator_interactor) {
+  let(:add_collaborator_interactor) do
     AddCollaborator.new(
-      account_admin, 
-      account, 
+      account_admin,
+      account,
       create_params)
-  }
+  end
 
   describe "Add new user account and add him to Collaborators" do
     let(:new_user_email) { generate :email }
     let(:role) { "regular" }
-    let(:create_params) {
+    let(:create_params) do
       { email: new_user_email, role: role }
-    }
-    let(:new_regular_admin) {
+    end
+    let(:new_regular_admin) do
       account.reload.users.last
-    }
+    end
+
+    before do
+      clear_enqueued_jobs
+    end
 
     it "should generate new User account, send welcome email and add person to collaborators" do
-      expect { 
+      expect {
         add_collaborator_interactor.run
       }.to change {
         User.count
@@ -46,13 +52,13 @@ describe "Interactors::AddCollaborator" do
       expect(new_regular_admin.account_id).to be_eql account.id
       expect(new_regular_admin.role).to be_eql role
 
-      expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to be_eql(1)
+      expect(enqueued_jobs.size).to be_eql(1)
     end
   end
 
   describe "Add existing user to Collaborators" do
     let!(:existing_user_without_account_association) do
-      user = FactoryGirl.create :user, :completed_profile, 
+      user = FactoryGirl.create :user, :completed_profile,
                                 first_name: "Mike",
                                 role: "regular"
       user.role = nil
@@ -64,15 +70,19 @@ describe "Interactors::AddCollaborator" do
 
     let(:existing_user_email) { existing_user_without_account_association.email }
     let(:role) { "account_admin" }
-    let(:create_params) {
+    let(:create_params) do
       { email: existing_user_email, role: role }
-    }
-    let(:new_account_admin) {
+    end
+    let(:new_account_admin) do
       account.reload.users.last
-    }
+    end
+
+    before do
+      clear_enqueued_jobs
+    end
 
     it "should add existing user to collaborators and send welcome email" do
-      expect { 
+      expect {
         add_collaborator_interactor.run
       }.to change {
         account.reload.users.count
@@ -84,39 +94,43 @@ describe "Interactors::AddCollaborator" do
       expect(new_account_admin.account_id).to be_eql account.id
       expect(new_account_admin.role).to be_eql role
 
-      expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to be_eql(1)
+      expect(enqueued_jobs.size).to be_eql(1)
     end
   end
 
   describe "Attempt to add to Collaborators of existing user, which is belongs_to another Account" do
    let!(:existing_user_with_another_account_association) do
-      FactoryGirl.create :user, :completed_profile, 
+      FactoryGirl.create :user, :completed_profile,
                                 first_name: "Another Account Admin Dave",
                                 role: "account_admin"
     end
 
     let(:existing_user_email) { existing_user_with_another_account_association.email }
     let(:role) { "regular" }
-    let(:create_params) {
+    let(:create_params) do
       { email: existing_user_email, role: role }
-    }
+    end
+
+    before do
+      clear_enqueued_jobs
+    end
 
     it "should not add existing user to collaborators as it already associated with another account" do
-      expect { 
+      expect {
         add_collaborator_interactor.run
       }.not_to change {
         account.reload.users.count
       }
 
       expect(account.reload.users.count).to be_eql 1
-      expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to be_eql(0)
+      expect(enqueued_jobs.size).to be_eql(0)
       expect(add_collaborator_interactor.collaborator.errors[:base]).to be_eql ["User already associated with another account!"]
     end
   end
 
   describe "Attempt to add user to Collaborators twice" do
     let!(:existing_collaborator) do
-      FactoryGirl.create :user, :completed_profile, 
+      FactoryGirl.create :user, :completed_profile,
                                 first_name: "Collaborator Matt",
                                 account: account,
                                 role: "regular"
@@ -128,15 +142,19 @@ describe "Interactors::AddCollaborator" do
       { email: existing_user_email, role: role }
     }
 
+    before do
+      clear_enqueued_jobs
+    end
+
     it "should not add user to collaborators twice" do
-      expect { 
+      expect {
         add_collaborator_interactor.run
       }.not_to change {
         account.reload.users.count
       }
 
       expect(account.reload.users.count).to be_eql 2
-      expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to be_eql(0)
+      expect(enqueued_jobs.size).to be_eql(0)
       expect(add_collaborator_interactor.errors).to be_eql ["This user already added to collaborators!"]
     end
   end

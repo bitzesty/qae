@@ -7,7 +7,7 @@ class Notifiers::Submission::SuccessNotifier < Notifiers::AccountNotifier
 
   def run
     recipients.each do |recipient|
-      Users::SubmissionMailer.delay.success(recipient.id, form_answer.id)
+      Users::SubmissionMailer.success(recipient.id, form_answer.id).deliver_later!
     end
   end
 end

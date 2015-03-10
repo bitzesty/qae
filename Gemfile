@@ -63,9 +63,7 @@ gem 'carrierwave'
 gem 'jquery.fileupload-rails'
 
 # Background jobs
-gem 'sidekiq'
-gem 'sidekiq-status'
-gem 'sinatra', require: false
+gem 'shoryuken'
 
 gem 'foreman'
 gem 'pg_search'
@@ -85,7 +83,6 @@ group :test do
   gem 'turnip'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
-  gem 'rspec-sidekiq'
   gem 'codeclimate-test-reporter', group: :test, require: nil
 end
 
@@ -93,7 +90,6 @@ group :development do
   gem 'capistrano', '~> 3.2.0'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv'
-  gem 'capistrano-sidekiq'
   gem 'slackistrano', require: false
   gem 'pry'
   gem 'letter_opener'

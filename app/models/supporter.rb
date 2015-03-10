@@ -23,7 +23,7 @@ class Supporter < ActiveRecord::Base
   end
 
   before_create :generate_access_key
-  after_create :notify!
+  after_create :notify!, unless: proc { Rails.env.test? }
 
   private
 
@@ -32,6 +32,6 @@ class Supporter < ActiveRecord::Base
   end
 
   def notify!
-    Users::SupporterMailer.delay.success(self.id, form_answer.user.id)
+    Users::SupporterMailer.success(self.id, form_answer.user.id).deliver_later!
   end
 end

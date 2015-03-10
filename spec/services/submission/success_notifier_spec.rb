@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe Notifiers::Submission::SuccessNotifier do
+  include ActiveJob::TestHelper
+
   let!(:user) { create :user }
   let!(:collaborator) { create :user, account: user.account, role: "regular" }
 
@@ -18,11 +20,12 @@ describe Notifiers::Submission::SuccessNotifier do
   describe "#run" do
     describe "Scheduling of delayed mailers" do
       before do
+        clear_enqueued_jobs
         Notifiers::Submission::SuccessNotifier.new(form_answer).run
       end
 
       it "should schedule delayed mails to all necessary recipients" do
-        expect(Sidekiq::Extensions::DelayedMailer.jobs.size).to be_eql(2)
+        expect(enqueued_jobs.size).to be_eql(2)
       end
     end
 
