@@ -7,15 +7,14 @@
           ' Updated by Admin User - 28/09/15 at 08:03
   #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse.in role="tabpanel" aria-labelledby="appraisal-form-secondary-heading"
     .panel-body
-      - if secondary_assessment.present?
-        = simple_form_for([namespace_name, secondary_assessment], remote: true) do |f|
-          = f.hidden_field :form_answer_id
-          = render_section(resource, f)
-          = f.submit :add, class: "if-js-hide"
-        - unless secondary_assessment.submitted?
-          = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, class: "submit-assessment", "data-type" => "json")
-            = hidden_field_tag :assessment_id, secondary_assessment.id
-            = submit_tag "Submit Case Assessment"
-            .feedbackHolder
-        - else
-          span Assessment Submitted
+      = simple_form_for([namespace_name, secondary_assessment], remote: true) do |f|
+        = f.hidden_field :form_answer_id
+        = render_section(resource, f)
+        = f.submit :add, class: "if-js-hide"
+      - unless secondary_assessment.submitted?
+        = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, class: "submit-assessment", "data-type" => "json")
+          = hidden_field_tag :assessment_id, secondary_assessment.id
+          = submit_tag "Submit Case Assessment"
+          .feedbackHolder
+      - else
+        span Assessment Submitted

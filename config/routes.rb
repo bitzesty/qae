@@ -82,7 +82,7 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
     resources :form_answers
-    resources :assessor_assignments, only: [:create, :update]
+    resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
   end
 

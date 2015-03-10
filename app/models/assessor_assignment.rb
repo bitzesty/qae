@@ -4,7 +4,6 @@ class AssessorAssignment < ActiveRecord::Base
 
   begin :validations
     validates :form_answer_id,
-              :assessor_id,
               presence: true
 
     validates :position,
@@ -37,11 +36,11 @@ class AssessorAssignment < ActiveRecord::Base
   store_accessor :document, *Assessment::AppraisalForm.all
 
   def self.primary
-    where(position: PRIMARY_POSITION).first
+    find_or_create_by!(position: PRIMARY_POSITION)
   end
 
   def self.secondary
-    where(position: SECONDARY_POSITION).first
+    find_or_create_by(position: SECONDARY_POSITION)
   end
 
   def submit_assessment

@@ -1,15 +1,4 @@
 class Assessor::AssessorAssignmentsController < Assessor::BaseController
-  def create
-    authorize :assessor_assignment, :create?
-    assessor_assignment = AssessorAssignment.new(create_params)
-
-    if current_assessor.lead?(form_answer)
-      assessor_assignment.save
-    end
-
-    redirect_to :back # wireframes to be confirmed
-  end
-
   def update
     authorize resource, :update?
     # auth

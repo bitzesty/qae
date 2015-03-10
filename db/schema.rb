@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309114427) do
+ActiveRecord::Schema.define(version: 20150310114756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20150309114427) do
 
   create_table "assessor_assignments", force: :cascade do |t|
     t.integer  "form_answer_id",             null: false
-    t.integer  "assessor_id",                null: false
+    t.integer  "assessor_id"
     t.integer  "position",       default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
