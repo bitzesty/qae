@@ -1,6 +1,6 @@
 class AssessorAssignmentPolicy < ApplicationPolicy
   def update?
-    admin? || assessor?
+    record.is_editable_for?(subject)
   end
 
   def submit?
