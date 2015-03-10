@@ -21,10 +21,10 @@ class Assessor::FormAnswersController < Assessor::BaseController
   end
 
   def primary_assessment
-    resource.assessor_assignments.primary
+    resource.assessor_assignments.primary.decorate
   end
 
   def secondary_assessment
-    resource.assessor_assignments.secondary
+    resource.assessor_assignments.secondary.decorate
   end
 end

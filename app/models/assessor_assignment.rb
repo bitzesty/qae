@@ -27,6 +27,7 @@ class AssessorAssignment < ActiveRecord::Base
   begin :associations
     belongs_to :assessor
     belongs_to :form_answer
+    belongs_to :editable, polymorphic: true
   end
 
   store_accessor :document, *Assessment::AppraisalForm.all
