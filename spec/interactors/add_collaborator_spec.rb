@@ -18,22 +18,22 @@ describe "Interactors::AddCollaborator" do
                                      document: { company_name: "Bitzesty" }
   end
 
-  let(:add_collaborator_interactor) {
+  let(:add_collaborator_interactor) do
     AddCollaborator.new(
       account_admin,
       account,
       create_params)
-  }
+  end
 
   describe "Add new user account and add him to Collaborators" do
     let(:new_user_email) { generate :email }
     let(:role) { "regular" }
-    let(:create_params) {
+    let(:create_params) do
       { email: new_user_email, role: role }
-    }
-    let(:new_regular_admin) {
+    end
+    let(:new_regular_admin) do
       account.reload.users.last
-    }
+    end
 
     before do
       clear_enqueued_jobs
@@ -70,12 +70,12 @@ describe "Interactors::AddCollaborator" do
 
     let(:existing_user_email) { existing_user_without_account_association.email }
     let(:role) { "account_admin" }
-    let(:create_params) {
+    let(:create_params) do
       { email: existing_user_email, role: role }
-    }
-    let(:new_account_admin) {
+    end
+    let(:new_account_admin) do
       account.reload.users.last
-    }
+    end
 
     before do
       clear_enqueued_jobs
@@ -107,9 +107,9 @@ describe "Interactors::AddCollaborator" do
 
     let(:existing_user_email) { existing_user_with_another_account_association.email }
     let(:role) { "regular" }
-    let(:create_params) {
+    let(:create_params) do
       { email: existing_user_email, role: role }
-    }
+    end
 
     before do
       clear_enqueued_jobs
