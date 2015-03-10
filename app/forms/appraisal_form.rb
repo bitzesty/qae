@@ -1,4 +1,4 @@
-class Assessment::AppraisalForm
+class AppraisalForm
   RAG_ALLOWED_VALUES = [
     "negative",
     "average",
@@ -21,7 +21,7 @@ class Assessment::AppraisalForm
   TRADE = {
     overseas_earnings_growth: {
       type: :rag,
-      label: "Overseas Earnings Growth:",
+      label: "Overseas Earnings Growth:"
 
     },
     commercial_success: {
@@ -148,7 +148,9 @@ class Assessment::AppraisalForm
   end
 
   def self.meths_for_award_type(award_type)
-    const_get(award_type.upcase).map { |k, _| [rate(k), desc(k)] }.flatten.map(&:to_sym)
+    const_get(award_type.upcase).map do |k, _|
+      [rate(k), desc(k)]
+    end.flatten.map(&:to_sym)
   end
 
   def self.diff(award_type)

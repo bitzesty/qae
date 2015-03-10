@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe AssessorAssignment do
-  let(:form) { Assessment::AppraisalForm }
+  let(:form) { AppraisalForm }
 
   context "Trade award" do
     context "with Innovation fields present" do

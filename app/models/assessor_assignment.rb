@@ -30,7 +30,7 @@ class AssessorAssignment < ActiveRecord::Base
     belongs_to :editable, polymorphic: true
   end
 
-  store_accessor :document, *Assessment::AppraisalForm.all
+  store_accessor :document, *AppraisalForm.all
 
   def self.primary
     find_or_create_by!(position: PRIMARY_POSITION)
@@ -115,7 +115,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def struct
-    Assessment::AppraisalForm
+    AppraisalForm
   end
 
   def clean_document

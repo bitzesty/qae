@@ -16,7 +16,7 @@ class AssessorAssignmentService
   end
 
   def permitted_params
-    permitted = Assessment::AppraisalForm.all
+    permitted = AppraisalForm.all
     permitted += assignment_params if current_subject.lead?(form_answer)
     permitted
   end
