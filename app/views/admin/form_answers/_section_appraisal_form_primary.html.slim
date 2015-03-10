@@ -7,6 +7,7 @@
           = primary_assessment.last_editor_info
   #section-appraisal-form-primary.section-appraisal-form.section-appraisal-form-primary.panel-collapse.collapse.in role="tabpanel" aria-labelledby="appraisal-form-primary-heading"
     .panel-body
+
       = simple_form_for([namespace_name, primary_assessment], remote: true) do |f|
         = f.hidden_field :form_answer_id
         = render_section(resource, f)

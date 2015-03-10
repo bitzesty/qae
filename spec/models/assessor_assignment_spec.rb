@@ -91,6 +91,47 @@ describe AssessorAssignment do
       expect(obj.errors.keys).to include(:submitted_at)
     end
   end
+
+  describe "#is_visible_for?" do
+    let(:assessor1) { create(:assessor) }
+    let(:assessor2) { create(:assessor) }
+    let(:form_answer) { create(:form_answer) }
+    let(:primary) { form_answer.assessor_assignments.primary }
+    let(:secondary) { form_answer.assessor_assignments.secondary }
+    before do
+      primary.assessor = assessor1
+      secondary.assessor = assessor2
+      primary.save
+      secondary.save
+    end
+
+    context "both submitted" do
+      before do
+        allow_any_instance_of(described_class).to receive(:submitted?).and_return(true)
+      end
+
+      it "is visible to both assessors" do
+        expect(primary.is_visible_for?(assessor1)).to eq(true)
+        expect(primary.is_visible_for?(assessor2)).to eq(true)
+        expect(secondary.is_visible_for?(assessor1)).to eq(true)
+        expect(secondary.is_visible_for?(assessor2)).to eq(true)
+      end
+    end
+
+    context "none submitted" do
+      before do
+        allow_any_instance_of(described_class).to receive(:valid?).and_return(false)
+      end
+
+      it "is visible only for assigned assessor" do
+        expect(primary.is_visible_for?(assessor1)).to eq(true)
+        expect(secondary.is_visible_for?(assessor2)).to eq(true)
+
+        expect(primary.is_visible_for?(assessor2)).to eq(false)
+        expect(secondary.is_visible_for?(assessor1)).to eq(false)
+      end
+    end
+  end
 end
 
 def build_assignment_with(award_type, meth)

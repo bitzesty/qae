@@ -64,14 +64,6 @@ class Assessor < ActiveRecord::Base
     get_role(form_answer.read_attribute(:award_type)) == "lead"
   end
 
-  def primary?(form_answer)
-    form_answer.assessor_assignments.primary.assessor == self
-  end
-
-  def secondary?(form_answer)
-    form_answer.assessor_assignments.secondary.assessor == self
-  end
-
   private
 
   def get_role(category)

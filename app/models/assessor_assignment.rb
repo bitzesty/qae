@@ -49,7 +49,38 @@ class AssessorAssignment < ActiveRecord::Base
     submitted_at.present?
   end
 
+  def primary?
+    position == PRIMARY_POSITION
+  end
+
+  def secondary?
+    position == SECONDARY_POSITION
+  end
+
+  def is_visible_for?(subject)
+    return true if owner_or_administrative?(subject)
+    # regular assessors flow
+    assessments = Array(self)
+    assessments << form_answer.assessor_assignments.secondary if primary?
+    assessments << form_answer.assessor_assignments.primary if secondary?
+
+    if assessments.all?(&:submitted?)
+      return assessments.any? { |a| a.assessor_id == subject.id }
+    end
+    false
+  end
+
+  def is_editable_for?(subject)
+    owner_or_administrative?(subject)
+  end
+
   private
+
+  def owner_or_administrative?(subject)
+    subject.is_a?(Admin) ||
+    subject.try(:lead?, form_answer) ||
+    assessor_id == subject.id
+  end
 
   def award_specific_attributes
     struct.diff(form_answer.award_type).each do |att|
