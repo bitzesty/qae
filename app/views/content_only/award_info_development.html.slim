@@ -9,26 +9,28 @@
     .article-container
       article.group role="article"
         .inner
-          h2 Help and resources
-          ul
-            li
-              = link_to "Download a PDF of the entire application form."
-          br
-
           h2 What you will need:
-          h3 Section A
+          h3 Section A: Company Info
           p Basic information about your organisation and its structure.
 
-          h3 Section B
+          h3 Section B: Your Sustainable Development
           p Detailed knowledge of your sustainable product/service/management approach.
 
-          h3 Section C
-          p
-            ' Detailed financial information (we recommend you
-            = link_to "add a collaborator", account_collaborators_path
-            '  from your finance department to complete this section).
+          h3 Section C: Commercial Performance
+          p Detailed financial information.
 
           br
+          ul
+            li
+              ' For planning purposes you can
+              = link_to "download a PDF of the entire application form"
+              ' . However, the application has to be filled out online.
+            li
+              ' You can
+              = link_to "add a collaborator", account_collaborators_path
+              '  to help you fill out the application. But be aware that
+              span.text-underline they will be able to see and edit all of your applications
+              ' .
 
           h2 Application guidance:
           ul
@@ -43,4 +45,7 @@
           br
 
           p#get-started.get-started.group
-            = link_to "Start application", result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
+            = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
+              ' Start application
+              / TODO if application is started
+              / ' Continue application
