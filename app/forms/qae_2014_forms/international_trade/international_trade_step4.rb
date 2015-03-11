@@ -23,6 +23,7 @@ class QAE2014Forms
         textarea :impact_on_society, "The impact of your business operations on society" do
           ref "D 2"
           required
+          conditional :corp_responsibility_form, :complete_now
           context %(
             <p>What activities do you undertake to foster good relations with local communities? Outline how you evaluate and report on their impact.</p>
             <p>If you have operations in the third world or developing countries, are these conducted with proper regard for the current and future welfare of the people employed there?</p>
