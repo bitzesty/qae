@@ -54,6 +54,27 @@ table .ellipsis {
   }
 }
 
+.alert {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 0;
+}
+
+.alert-glyphicon {
+  position: relative;
+  padding-left: 40px;
+
+  .glyphicon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+}
+
+.panel-body .alert {
+  margin-bottom: 30px;
+}
+
 .page-header {
   margin-top: 0;
   border-color: $black;
