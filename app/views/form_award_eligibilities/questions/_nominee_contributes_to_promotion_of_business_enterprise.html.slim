@@ -1,0 +1,18 @@
+.question-body
+  p.hint == @eligibility.class.hint(step)
+
+  p.hint Activities undertaken can include, but are not limited to:
+  ul
+    li using innovative methods to increase the understanding of business skills and processes in particular communities e.g. schools, deprived areas
+    li mentoring/offering financial support to startups/ prospective entrepreneurs
+    li promoting and developing enterprise and risk management skills
+    li working to help innovators and inventors bring business ideas to fruition
+    li developing relationships between the business community and educational institutions/ youth organisations.
+    li promoting business enterprise in disadvantaged communities
+    li working against the perception that businesses can’t be successfully established in deprived areas
+    li social enterprise, education, training and youth work providing people of all ages with enterprise training and guidance
+
+  br
+
+  = f.input :nominee_contributes_to_promotion_of_business_enterprise, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+span.clear
