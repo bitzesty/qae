@@ -115,7 +115,13 @@ jQuery ->
     # Updates the latest changed financial year input
     fy_latest_changed_input.find("input.js-fy-day").val(fy_day)
     fy_latest_changed_input.find("input.js-fy-month").val(fy_month)
-    fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
+
+
+    # Auto fill the year for previous years
+    $(".js-financial-year-changed-dates .js-fy-entries").each ->
+      parent_fy = $(this).parent().find(".js-fy-entries")
+      this_fy_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
+      $(this).find("input.js-fy-year").val(this_fy_year).attr("disabled", "disabled")
     fy_latest_changed_input.find("input").attr("disabled", "disabled")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)
 
