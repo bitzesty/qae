@@ -1,11 +1,11 @@
 .row
   .col-xs-12
     .page-header.page-header-nav
-      = link_to "‹ back to overview", admin_form_answers_path, class: "btn btn-link btn-lg"
+      = link_to "‹ Back to overview", admin_form_answers_path, class: "btn btn-link btn-lg"
       .pull-right
         / TODO Prev/next case links
-        = link_to "‹ Prev case", "#"
-        = link_to "Next case ›", "#"
+        = link_to "‹ Prev case", "#", class: "btn btn-link btn-lg"
+        = link_to "Next case ›", "#", class: "btn btn-link btn-lg"
 
 .row
   .col-md-4
@@ -14,7 +14,8 @@
         - if @form_answer.urn.present?
           h1
             = @form_answer.urn
-        h2 = @form_answer.company_name
+        h2.ellipsis
+          = @form_answer.company_name
         p = @form_answer.award_type
 
         = link_to review_admin_form_answer_path(@form_answer), class: "btn btn-default btn-block", target: "_blank"

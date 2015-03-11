@@ -1,12 +1,15 @@
 .panel.panel-default
-  .panel-heading#draft-notes-heading role="tab"
+  .panel-heading#press-summary-heading role="tab"
     h4.panel-title
-      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-draft-notes" aria-expanded="true" aria-controls="section-draft-notes"
-        ' Draft Notes
-        small
-          ' Updated by Admin User - 28/09/15 at 08:03
-  #section-draft-notes.section-draft-notes.panel-collapse.collapse.in role="tabpanel" aria-labelledby="draft-notes-heading"
+      a data-toggle="collapse" data-parent="#panel-winners" href="#section-press-summary" aria-expanded="true" aria-controls="section-press-summary"
+        ' Press Summary
+  #section-press-summary.section-press-summary.panel-collapse.collapse.in role="tabpanel" aria-labelledby="press-summary-heading"
     .panel-body
+      .alert.alert-glyphicon.alert-info
+        span.glyphicon.glyphicon-info-sign
+        p
+          ' Some instructions on how to use this or what this section is about. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+
       .form-group
         .form-value
           p
@@ -20,3 +23,11 @@
           ' Edit
         = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
         .clear
+
+      .form-group
+        label.form-label
+          ' Comments by Applicant
+        .form-value
+          / TODO pulled in from application
+          p
+            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

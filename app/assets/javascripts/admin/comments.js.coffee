@@ -8,7 +8,7 @@ ready = ->
       dataType: 'HTML',
       success: (data)->
         $('#new_comment textarea').val("")
-        $('.comments-container .comment-footer').before(data)
+        $('.comments-container .comment-insert').after(data)
 
   $('body').on 'submit', '.edit_comment', (e)->
     e.preventDefault()
@@ -24,6 +24,7 @@ toggleFlagged = ->
   $(document).on "click", ".link-flag-comment", (e) ->
     e.preventDefault()
     $(this).closest(".comment").toggleClass("comment-flagged")
+    $(this).closest(".comment-actions").toggleClass("comment-flagged")
 
 deleteCommentAlert = ->
   $(document).on "click", ".link-delete-comment", (e) ->

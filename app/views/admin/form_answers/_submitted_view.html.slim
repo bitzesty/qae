@@ -25,3 +25,15 @@
           / # = render "section_appraisal_form_primary"
           / # = render "section_appraisal_form_secondary"
           = render "section_appraisal_form_moderated"
+          = render "section_case_summary"
+
+  .panel.panel-default.panel-parent
+    .panel-heading#winners-heading role="tab"
+      h4.panel-title
+        a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-winners" aria-expanded="true" aria-controls="section-winners"
+          ' Winners
+    #section-winners.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="winners-heading"
+      .panel-body
+        .panel-group#panel-winners role="tablist" aria-multiselectable="true"
+          = render "section_press_summary"
+          = render "section_palace_attendees"

@@ -1,0 +1,15 @@
+.form-collaborator {
+  .well {
+    display: none;
+  }
+
+  &.show-form {
+    .btn-add-collaborator {
+      display: none;
+    }
+
+    .well {
+      display: block;
+    }
+  }
+}

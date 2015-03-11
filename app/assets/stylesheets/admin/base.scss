@@ -46,8 +46,33 @@ table .ellipsis {
   max-width: 175px;
 }
 
-.btn .glyphicon:first-child {
-  margin-right: 5px;
+.btn {
+  border-radius: 0;
+
+  .glyphicon:first-child {
+    margin-right: 5px;
+  }
+}
+
+.alert {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 0;
+}
+
+.alert-glyphicon {
+  position: relative;
+  padding-left: 40px;
+
+  .glyphicon {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+  }
+}
+
+.panel-body .alert {
+  margin-bottom: 30px;
 }
 
 .page-header {
@@ -66,15 +91,10 @@ table .ellipsis {
   .btn-link {
     padding-right: 0;
     padding-left: 0;
-    color: $black;
   }
 
-  .pull-right {
-    margin-top: 0.5em;
-
-    a {
-      margin-left: 20px;
-    }
+  .pull-right a {
+    margin-left: 20px;
   }
 }
 
@@ -125,6 +145,23 @@ table .ellipsis {
 
 .form-group label {
   font-weight: normal;
+}
+
+.well {
+  background-color: $white-true;
+  box-shadow: none;
+
+  fieldset:first-child h3 {
+    margin-top: 0;
+  }
+}
+
+.form-actions {
+  margin-top: 30px;
+
+  .btn {
+    margin-right: 15px;
+  }
 }
 
 .selectable {
@@ -686,7 +723,7 @@ table .ellipsis {
 .comment {
   position: relative;
   padding: 15px 0;
-  border-bottom: 1px solid $grey;
+  border-top: 1px solid $grey;
 }
 
 .comment-header {
@@ -729,6 +766,10 @@ table .ellipsis {
     color: $grey;
   }
 
+  .flagged-visible {
+    display: none;
+  }
+
   .comment-flagged & {
     background-image: image-url("icon-flag-sm.png");
 
@@ -740,6 +781,14 @@ table .ellipsis {
     &:hover,
     &:focus {
       color: $black;
+    }
+
+    .flagged-visible {
+      display: inline;
+    }
+
+    .unflagged-visible {
+      display: none;
     }
   }
 
@@ -805,12 +854,17 @@ table .ellipsis {
   }
 }
 
-.comment-footer {
+.comment-insert {
   margin-top: 15px;
 }
 
 .comment-actions {
   margin-top: 10px;
+
+  .link-flag-comment {
+    display: inline-block;
+    margin-top: 5px;
+  }
 }
 
 // Collapsable panes
