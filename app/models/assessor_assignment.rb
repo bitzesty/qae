@@ -1,15 +1,13 @@
 class AssessorAssignment < ActiveRecord::Base
-  PRIMARY_POSITION = 0
-  SECONDARY_POSITION = 1
+  enum position: {
+    primary: 0,
+    secondary: 1,
+    moderated: 2
+  }
 
   begin :validations
     validates :form_answer_id,
-              presence: true
-
-    validates :position,
-              inclusion: {
-                in: [PRIMARY_POSITION, SECONDARY_POSITION]
-              },
+              :position,
               presence: true
 
     validate :award_specific_attributes
@@ -33,11 +31,11 @@ class AssessorAssignment < ActiveRecord::Base
   store_accessor :document, *AppraisalForm.all
 
   def self.primary
-    find_or_create_by!(position: PRIMARY_POSITION)
+    find_or_create_by(position: 0)
   end
 
   def self.secondary
-    find_or_create_by(position: SECONDARY_POSITION)
+    find_or_create_by(position: 1)
   end
 
   def submit_assessment
@@ -47,14 +45,6 @@ class AssessorAssignment < ActiveRecord::Base
 
   def submitted?
     submitted_at.present?
-  end
-
-  def primary?
-    position == PRIMARY_POSITION
-  end
-
-  def secondary?
-    position == SECONDARY_POSITION
   end
 
   def visible_for?(subject)
