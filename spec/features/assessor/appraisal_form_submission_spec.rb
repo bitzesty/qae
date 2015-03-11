@@ -30,7 +30,7 @@ describe "Assessor submits appraisal form", %(
         expect(page).to have_selector(rag, text: "Select RAG", count: 2)
         expect(page).to have_selector(rag, text: "Red", count: 1)
         expect(page).to have_selector(rag, text: "Select verdict", count: 1)
-
+        sleep(0.5)
         visit assessor_form_answer_path(form_answer)
 
         expect(page).to have_selector(rag, text: "Select RAG", count: 2)
@@ -54,7 +54,7 @@ describe "Assessor submits appraisal form", %(
         expect(page).to have_selector("textarea", count: 1)
         fill_in("assessor_assignment_level_of_innovation_desc", with: text)
         find(".panel-body").click # click anywhere, inactivate the textarea
-
+        sleep(0.5)
         visit assessor_form_answer_path(form_answer)
         expect(page).to have_selector(".form-value p", text: text, count: 1)
         first(".form-edit-link").click
@@ -74,7 +74,7 @@ describe "Assessor submits appraisal form", %(
         expect(page).to have_selector(".rag-text", text: "Select verdict", count: 1)
         all(".btn-rag").last.click
         find(".dropdown-menu .rag-positive").click
-
+        sleep(0.5)
         visit assessor_form_answer_path(form_answer)
         expect(page).to_not have_selector(".rag-text", text: "Select verdict")
         expect(page).to have_selector(".rag-text", text: "Recommended", count: 1)
