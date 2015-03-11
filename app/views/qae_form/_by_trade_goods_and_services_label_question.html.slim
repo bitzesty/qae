@@ -12,12 +12,10 @@
           = question.input_value(suffix: "desc_short_#{placement}")
         .clear
 
-      h2 % of your total overseas trade
-      ul.errors-container
       .question-group
+        h2 % of your total overseas trade
+        ul.errors-container
         label
           span.visuallyhidden % of your total overseas trade
           input.js-trigger-autosave type="text" min=question.min max=question.max name=question.input_name(suffix: "total_overseas_trade_#{placement}") value=question.input_value(suffix: "total_overseas_trade_#{placement}") autocomplete="off" *possible_read_only_ops
         .clear
-
-

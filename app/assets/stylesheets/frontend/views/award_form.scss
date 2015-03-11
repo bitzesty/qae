@@ -123,3 +123,12 @@ label > .visible-read-only {
   @include heading-27;
   font-weight: bold;
 }
+
+// Fix spacing for the International Trade B2
+.js-by-trade-goods-and-services-amount > .conditional-question {
+  margin-bottom: 60px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
