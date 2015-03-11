@@ -40,6 +40,10 @@ ready = ->
     $(this).find(".feedbackHolder").html("Assessment Submitted")
     $(this).find("input:submit").remove()
 
+  $(document).on "click", ".form-save-link", (e) ->
+    e.preventDefault()
+    $(this).closest(".form-group").removeClass("form-edit")
+
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->
     e.preventDefault()

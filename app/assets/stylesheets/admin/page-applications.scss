@@ -130,7 +130,8 @@
       min-width: 100px;
     }
 
-    .form-save-button {
+    .form-save-button,
+    .form-save-link {
       display: none;
     }
 
@@ -138,7 +139,8 @@
       border-bottom: none;
 
       .form-control,
-      .form-save-button {
+      .form-save-button,
+      .form-save-link {
         display: block;
       }
 
@@ -175,6 +177,11 @@
     margin-right: 5px;
     font-size: 12px;
   }
+}
+
+.form-save-button,
+.form-save-link {
+  margin-top: 10px;
 }
 
 .section-applicant-details {
