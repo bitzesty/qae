@@ -8,7 +8,7 @@ ready = ->
       dataType: 'HTML',
       success: (data)->
         $('#new_comment textarea').val("")
-        $('.comments-container .comment-footer').before(data)
+        $('.comments-container .comment-insert').after(data)
 
   $('body').on 'submit', '.edit_comment', (e)->
     e.preventDefault()
