@@ -2,4 +2,4 @@
 - if action_name == "edit"
   - collaborators = resource.account.collaborators_without(resource)
   = render "account/collaborators/list", collaborators: collaborators
-= link_to "+ Add a collaborator", new_account_collaborator_path, class: "btn btn-default"
+= render "collaborator_form"

@@ -126,6 +126,23 @@ table .ellipsis {
   font-weight: normal;
 }
 
+.well {
+  background-color: $white-true;
+  box-shadow: none;
+
+  fieldset:first-child h3 {
+    margin-top: 0;
+  }
+}
+
+.form-actions {
+  margin-top: 30px;
+
+  .btn {
+    margin-right: 15px;
+  }
+}
+
 .selectable {
   display: block;
   position: relative;
