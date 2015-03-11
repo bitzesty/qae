@@ -27,13 +27,15 @@
   .form-value
     p
       = f.object.public_send(section.desc)
-    - if editable
-      = link_to "#", class: "form-edit-link pull-right"
-        span.glyphicon.glyphicon-pencil
-        ' Edit
+
     .clear
   = f.input section.desc,
             wrapper_html: { class: 'form-group' },
             input_html: { class: 'form-control', rows: 5 },
             as: :text,
             label: false
+  - if editable
+    = link_to "#", class: "form-edit-link pull-right"
+      span.glyphicon.glyphicon-pencil
+      ' Edit
+    = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"

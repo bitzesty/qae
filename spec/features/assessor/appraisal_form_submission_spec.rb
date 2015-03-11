@@ -53,7 +53,7 @@ describe "Assessor submits appraisal form", %(
         first(".form-edit-link").click
         expect(page).to have_selector("textarea", count: 1)
         fill_in("assessor_assignment_level_of_innovation_desc", with: text)
-        find(".panel-body").click # click anywhere, inactivate the textarea
+        find(".form-save-link").click
         sleep(0.5)
         visit assessor_form_answer_path(form_answer)
         expect(page).to have_selector(".form-value p", text: text, count: 1)
