@@ -12,7 +12,3 @@
     .application-notice.info-notice
       == submit.notice
     br
-
-
-  - unless admin_in_read_only_mode?
-    = link_to "Save and come back later", dashboard_path, class: "save-quit-link"
