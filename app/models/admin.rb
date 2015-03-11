@@ -22,5 +22,4 @@ class Admin < ActiveRecord::Base
                       prefix: true
                     }
                   }
-
 end

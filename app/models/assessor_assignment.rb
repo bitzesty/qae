@@ -57,7 +57,7 @@ class AssessorAssignment < ActiveRecord::Base
     position == SECONDARY_POSITION
   end
 
-  def is_visible_for?(subject)
+  def visible_for?(subject)
     return true if owner_or_administrative?(subject)
     # regular assessors flow
     assessments = Array(self)
@@ -70,7 +70,7 @@ class AssessorAssignment < ActiveRecord::Base
     false
   end
 
-  def is_editable_for?(subject)
+  def editable_for?(subject)
     owner_or_administrative?(subject)
   end
 

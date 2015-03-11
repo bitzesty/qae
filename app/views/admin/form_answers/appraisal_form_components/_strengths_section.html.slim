@@ -1,6 +1,6 @@
 - options = [["Insufficient Information Supplied", "blank"], ["Priority Focus for Development", "negative"], ["Positive - Scop for Ongoing Development", "average"], ["Key Strength", "positive"]]
 - option = options.detect{|opt| opt[1] == f.object.public_send(section.rate)} || ["Select Key Strengths and Focuses", "neutral"]
-- editable = f.object.is_editable_for?(current_subject)
+- editable = f.object.editable_for?(current_subject)
 
 .form-group.strengths-section
   = f.input section.rate,

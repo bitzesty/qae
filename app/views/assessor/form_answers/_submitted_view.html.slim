@@ -17,7 +17,7 @@
     #section-assessment.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="assessment-heading"
       .panel-body
         .panel-group#panel-assessment role="tablist" aria-multiselectable="true"
-          - if primary_assessment.is_visible_for?(current_subject)
+          - if primary_assessment.visible_for?(current_subject)
             = render "admin/form_answers/section_appraisal_form_primary"
-          - if secondary_assessment.is_visible_for?(current_subject)
+          - if secondary_assessment.visible_for?(current_subject)
             = render "admin/form_answers/section_appraisal_form_secondary"

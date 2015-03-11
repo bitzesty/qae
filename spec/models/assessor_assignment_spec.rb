@@ -92,7 +92,7 @@ describe AssessorAssignment do
     end
   end
 
-  describe "#is_visible_for?" do
+  describe "#visible_for?" do
     let(:assessor1) { create(:assessor) }
     let(:assessor2) { create(:assessor) }
     let(:form_answer) { create(:form_answer) }
@@ -111,10 +111,10 @@ describe AssessorAssignment do
       end
 
       it "is visible to both assessors" do
-        expect(primary.is_visible_for?(assessor1)).to eq(true)
-        expect(primary.is_visible_for?(assessor2)).to eq(true)
-        expect(secondary.is_visible_for?(assessor1)).to eq(true)
-        expect(secondary.is_visible_for?(assessor2)).to eq(true)
+        expect(primary.visible_for?(assessor1)).to eq(true)
+        expect(primary.visible_for?(assessor2)).to eq(true)
+        expect(secondary.visible_for?(assessor1)).to eq(true)
+        expect(secondary.visible_for?(assessor2)).to eq(true)
       end
     end
 
@@ -124,11 +124,11 @@ describe AssessorAssignment do
       end
 
       it "is visible only for assigned assessor" do
-        expect(primary.is_visible_for?(assessor1)).to eq(true)
-        expect(secondary.is_visible_for?(assessor2)).to eq(true)
+        expect(primary.visible_for?(assessor1)).to eq(true)
+        expect(secondary.visible_for?(assessor2)).to eq(true)
 
-        expect(primary.is_visible_for?(assessor2)).to eq(false)
-        expect(secondary.is_visible_for?(assessor1)).to eq(false)
+        expect(primary.visible_for?(assessor2)).to eq(false)
+        expect(secondary.visible_for?(assessor1)).to eq(false)
       end
     end
   end

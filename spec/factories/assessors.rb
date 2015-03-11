@@ -12,6 +12,5 @@ FactoryGirl.define do
       development_role "lead"
       promotion_role "lead"
     end
-
   end
 end

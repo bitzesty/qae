@@ -1,6 +1,6 @@
 class AssessorAssignmentPolicy < ApplicationPolicy
   def update?
-    record.is_editable_for?(subject)
+    record.editable_for?(subject)
   end
 
   def submit?

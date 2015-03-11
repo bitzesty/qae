@@ -33,11 +33,10 @@ ready = ->
   $(document).on "click", ".form-edit-link", (e) ->
     e.preventDefault()
     $(this).closest(".form-group").addClass("form-edit")
-  $(".submit-assessment").on "ajax:error", (e, data, status, xhr)->
+  $(".submit-assessment").on "ajax:error", (e, data, status, xhr) ->
     errors = data.responseJSON
     $(this).find(".feedbackHolder").html(errors.error)
-  $(".submit-assessment").on "ajax:success", (e, data, status, xhr)->
-    console.log("her")
+  $(".submit-assessment").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".feedbackHolder").html("Assessment Submitted")
     $(this).find("input:submit").remove()
 
@@ -84,7 +83,7 @@ bindRags =(klass) ->
       if $(this).val() == ragClicked
         $(this).parents("select").val(ragClicked)
     $(klass).submit()
-bindAppraisalFields=(klass)->
+bindAppraisalFields=(klass) ->
   $("body").on "click", (e) ->
     if e.target.nodeName != "TEXTAREA"
       area = $(klass).find("textarea:visible")
