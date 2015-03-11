@@ -28,7 +28,7 @@ class AssessorAssignmentService
   private
 
   def normalize_params
-    update_params.delete_if { |_, v| v.blank? }
+    params[:assessor_assignment].delete_if { |_, v| v.blank? }
   end
 
   def assignment_request?
