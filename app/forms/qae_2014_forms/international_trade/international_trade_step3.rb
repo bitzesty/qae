@@ -95,7 +95,6 @@ class QAE2014Forms
 
         options :do_you_want_to_calculate_overseas_and_so_on, "If your organisation is in the financial (or related) services sector and is cyclical in nature, you can calculate overseas sales and total sales as rolling averages. Do you want to do this?" do
           ref "C 5"
-          classes "sub-question"
           context %(
             <p>Entries for Outstanding Achievement must submit three three-year rolling averages, whilst Continuous Achievement requires six six-year rolling averages.</p>
                     )
