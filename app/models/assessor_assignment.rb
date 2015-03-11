@@ -73,8 +73,8 @@ class AssessorAssignment < ActiveRecord::Base
 
   def owner_or_administrative?(subject)
     subject.is_a?(Admin) ||
-    subject.try(:lead?, form_answer) ||
-    assessor_id == subject.id
+      subject.try(:lead?, form_answer) ||
+      (!moderated? && assessor_id == subject.id)
   end
 
   def award_specific_attributes

@@ -77,6 +77,17 @@ class FormAnswerStateMachine
     transition_to :submitted1
   end
 
+  def assign_lead_verdict(verdict)
+    new_state = {
+      "negative" => :not_recommended3,
+      "average" => :reserved3,
+      "positive" => :recommended3
+    }[verdict]
+
+    # TODO: explicit list of transitions - waits for next stages clarification
+    transition_to new_state
+  end
+
   def categorized_state
     normalized_state = object.state.to_s[0..-2]
     {

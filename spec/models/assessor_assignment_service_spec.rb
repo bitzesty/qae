@@ -17,8 +17,7 @@ describe AssessorAssignmentService do
     let(:params) do
       {
         assessor_assignment: {
-          form_answer_id: form_answer.id,
-          position: 0
+          assessor_id: 1
         },
         id: primary.id
       }.with_indifferent_access

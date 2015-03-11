@@ -11,7 +11,7 @@ describe "Assessor submits appraisal form", %(
   let!(:form_answer) { create(:form_answer, :innovation) }
   let(:primary) { "#section-appraisal-form-primary" }
   let(:secondary) { "#section-appraisal-form-secondary" }
-  let(:moderated) { "#section-appraisal-form-moderated"}
+  let(:moderated) { "#section-appraisal-form-moderated" }
 
   before do
     login_as(lead, scope: :assessor)
