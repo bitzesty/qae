@@ -1,6 +1,10 @@
 ready = ->
   changeRagStatus()
   editFormAnswerAutoUpdate()
+  bindRags("#section-appraisal-form-primary .edit_assessor_assignment")
+  bindAppraisalFields("#section-appraisal-form-primary .edit_assessor_assignment")
+  bindRags("#section-appraisal-form-secondary .edit_assessor_assignment")
+  bindAppraisalFields("#section-appraisal-form-secondary .edit_assessor_assignment")
 
   $('#new_form_answer_attachment').fileupload
     success: (result, textStatus, jqXHR)->
@@ -29,6 +33,12 @@ ready = ->
   $(document).on "click", ".form-edit-link", (e) ->
     e.preventDefault()
     $(this).closest(".form-group").addClass("form-edit")
+  $(".submit-assessment").on "ajax:error", (e, data, status, xhr) ->
+    errors = data.responseJSON
+    $(this).find(".feedbackHolder").html(errors.error)
+  $(".submit-assessment").on "ajax:success", (e, data, status, xhr) ->
+    $(this).find(".feedbackHolder").html("Assessment Submitted")
+    $(this).find("input:submit").remove()
 
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->
@@ -39,6 +49,7 @@ changeRagStatus = ->
               .removeClass("rag-positive")
               .removeClass("rag-average")
               .removeClass("rag-negative")
+              .removeClass("rag-blank")
               .addClass(rag_clicked)
     rag_status.find(".rag-text").text($(this).find(".rag-text").text())
 
@@ -62,5 +73,24 @@ editFormAnswerAutoUpdate = ->
           $(row).text(sicCodes[counter.toString()])
           counter += 1
         $(".avg-growth-legend").text(result["form_answer"]["legend"])
+bindRags =(klass) ->
+  $(document).on "click", "#{klass} .btn-rag .dropdown-menu a", (e) ->
+    e.preventDefault()
+    ragClicked = $(this).closest("li").attr("class")
+    ragClicked = ragClicked.replace("rag-", "")
+    ragSection = $(this).parents(".form-group")
+    ragSection.find("option").each ->
+      if $(this).val() == ragClicked
+        $(this).parents("select").val(ragClicked)
+    $(klass).submit()
+bindAppraisalFields=(klass) ->
+  $("body").on "click", (e) ->
+    if e.target.nodeName != "TEXTAREA"
+      area = $(klass).find("textarea:visible")
+      if area.length
+        parent = area.parents(".form-group")
+        parent.removeClass("form-edit")
+        parent.find(".form-value p").text(area.val())
+        $(klass).submit()
 
 $(document).ready(ready)

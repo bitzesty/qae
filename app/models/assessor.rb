@@ -60,8 +60,8 @@ class Assessor < ActiveRecord::Base
     "#{first_name} #{last_name}".strip
   end
 
-  def can_assign_regular_assessors?(assignment)
-    get_role(assignment.form_answer.award_type) == "lead"
+  def lead?(form_answer)
+    get_role(form_answer.read_attribute(:award_type)) == "lead"
   end
 
   private

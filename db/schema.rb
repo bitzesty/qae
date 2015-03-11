@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305104844) do
+ActiveRecord::Schema.define(version: 20150310130907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,10 +50,15 @@ ActiveRecord::Schema.define(version: 20150305104844) do
 
   create_table "assessor_assignments", force: :cascade do |t|
     t.integer  "form_answer_id",             null: false
-    t.integer  "assessor_id",                null: false
+    t.integer  "assessor_id"
     t.integer  "position",       default: 0, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.hstore   "document"
+    t.datetime "submitted_at"
+    t.string   "editable_type"
+    t.integer  "editable_id"
+    t.datetime "assessed_at"
   end
 
   add_index "assessor_assignments", ["assessor_id", "form_answer_id"], name: "index_assessor_assignments_on_assessor_id_and_form_answer_id", unique: true, using: :btree

@@ -1,6 +1,6 @@
 class Admin::BaseController < ApplicationController
   include Pundit
-  helper_method :namespace_name
+  helper_method :namespace_name, :current_subject
 
   layout "application-admin"
 
@@ -25,5 +25,9 @@ class Admin::BaseController < ApplicationController
 
   def namespace_name
     :assessor
+  end
+
+  def current_subject
+    current_admin
   end
 end

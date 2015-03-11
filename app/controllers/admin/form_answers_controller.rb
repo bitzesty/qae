@@ -69,7 +69,7 @@ class Admin::FormAnswersController < Admin::BaseController
 
   private
 
-  helper_method :resource
+  helper_method :resource, :primary_assessment, :secondary_assessment
 
   def resource
     @form_answer ||= load_resource
@@ -81,5 +81,13 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def update_params
     params.require(:form_answer).permit(:sic_code)
+  end
+
+  def primary_assessment
+    resource.assessor_assignments.primary.decorate
+  end
+
+  def secondary_assessment
+    resource.assessor_assignments.secondary.decorate
   end
 end

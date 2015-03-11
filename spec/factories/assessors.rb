@@ -6,8 +6,11 @@ FactoryGirl.define do
     email
     confirmed_at { Time.zone.now }
 
-    trait :lead do
-      role "lead"
+    trait :lead_for_all do
+      trade_role "lead"
+      innovation_role "lead"
+      development_role "lead"
+      promotion_role "lead"
     end
   end
 end

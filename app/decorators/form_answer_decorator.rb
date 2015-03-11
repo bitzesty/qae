@@ -31,6 +31,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def award_type
+    # TODO: remove this !
     object.class::AWARD_TYPE_FULL_NAMES[object.award_type]
   end
 
