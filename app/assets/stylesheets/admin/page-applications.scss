@@ -113,6 +113,14 @@
 .submitted-view {
   margin-top: 15px;
 
+  .form-control {
+    margin-bottom: 5px;
+  }
+
+  .form-group .row {
+    margin-bottom: 10px;
+  }
+
   .no-js & {
     .form-value,
     .form-edit-link {
@@ -125,7 +133,8 @@
       margin-bottom: 0;
     }
 
-    .form-control {
+    .form-control,
+    .form-fields {
       display: none;
       min-width: 100px;
     }
@@ -138,6 +147,7 @@
     .form-edit {
       border-bottom: none;
 
+      .form-fields,
       .form-control,
       .form-save-button,
       .form-save-link {
