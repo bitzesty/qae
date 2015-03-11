@@ -560,9 +560,21 @@ input[type="file"] {
   margin-bottom: -1.8em;
 }
 
+.char-space {
+  display: inline-block;
+  width: 160px;
+  height: 1em;
+}
+
+.errors-container.char-spacing {
+  padding-right: 160px;
+}
+
 .char-count {
   position: relative;
+  margin-top: -1.7em;
 }
+
 .char-text-limit {
   @include core-19($line-height: (20 / 16));
   margin-top: 0.5em;
