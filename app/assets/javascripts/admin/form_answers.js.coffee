@@ -2,9 +2,7 @@ ready = ->
   changeRagStatus()
   editFormAnswerAutoUpdate()
   bindRags("#section-appraisal-form-primary .edit_assessor_assignment")
-  bindAppraisalFields("#section-appraisal-form-primary .edit_assessor_assignment")
   bindRags("#section-appraisal-form-secondary .edit_assessor_assignment")
-  bindAppraisalFields("#section-appraisal-form-secondary .edit_assessor_assignment")
 
   $('#new_form_answer_attachment').fileupload
     success: (result, textStatus, jqXHR)->
@@ -42,7 +40,14 @@ ready = ->
 
   $(document).on "click", ".form-save-link", (e) ->
     e.preventDefault()
-    $(this).closest(".form-group").removeClass("form-edit")
+    formGroup = $(this).closest(".form-group")
+    area = formGroup.find("textarea:visible")
+    formGroup.removeClass("form-edit")
+
+    if area.length
+      formGroup.find(".form-value p").text(area.val())
+      $(formGroup).closest("form").submit()
+
 
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->
@@ -87,14 +92,5 @@ bindRags =(klass) ->
       if $(this).val() == ragClicked
         $(this).parents("select").val(ragClicked)
     $(klass).submit()
-bindAppraisalFields=(klass) ->
-  $("body").on "click", (e) ->
-    if e.target.nodeName != "TEXTAREA"
-      area = $(klass).find("textarea:visible")
-      if area.length
-        parent = area.parents(".form-group")
-        parent.removeClass("form-edit")
-        parent.find(".form-value p").text(area.val())
-        $(klass).submit()
 
 $(document).ready(ready)
