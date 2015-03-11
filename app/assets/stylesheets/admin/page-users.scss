@@ -1,6 +1,15 @@
 .form-collaborator {
   .well {
     display: none;
+
+    .no-js & {
+      display: block;
+    }
+  }
+  .btn-add-collaborator {
+    .no-js & {
+      display: none;
+    }
   }
 
   &.show-form {

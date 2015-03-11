@@ -34,6 +34,11 @@ span {
   }
 }
 
+.no-js .collapse {
+  display: block;
+  visibility: visible;
+}
+
 .ellipsis {
   display: inline-block;
   max-width: 100%;
