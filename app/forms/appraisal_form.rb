@@ -57,7 +57,7 @@ class AppraisalForm
     }
   }
 
-  ENTERPRISE = {
+  PROMOTION = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:"
@@ -158,7 +158,7 @@ class AppraisalForm
   end
 
   def self.all
-    keys = TRADE.keys + INNOVATION.keys + ENTERPRISE.keys + DEVELOPMENT.keys
+    keys = TRADE.keys + INNOVATION.keys + PROMOTION.keys + DEVELOPMENT.keys
     out = keys.map { |k| rate(k).to_sym }
     out += keys.map { |k| desc(k).to_sym }
     out
