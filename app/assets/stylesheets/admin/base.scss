@@ -815,6 +815,11 @@ table .ellipsis {
 
 .comment-actions {
   margin-top: 10px;
+
+  .link-flag-comment {
+    display: inline-block;
+    margin-top: 5px;
+  }
 }
 
 // Collapsable panes

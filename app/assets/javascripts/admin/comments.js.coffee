@@ -24,6 +24,7 @@ toggleFlagged = ->
   $(document).on "click", ".link-flag-comment", (e) ->
     e.preventDefault()
     $(this).closest(".comment").toggleClass("comment-flagged")
+    $(this).closest(".comment-actions").toggleClass("comment-flagged")
 
 deleteCommentAlert = ->
   $(document).on "click", ".link-delete-comment", (e) ->

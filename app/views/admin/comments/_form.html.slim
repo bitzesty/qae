@@ -2,5 +2,9 @@
   label
     ' Add a comment
   = f.text_area :body, class: 'form-control', rows: 4
-  .comment-actions.text-right
-    = f.submit 'Comment', class: 'btn btn-default'
+  .comment-actions
+    = link_to "#flag-comment", class: "link-flag-comment"
+      ' Flag
+    .pull-right
+      = f.submit 'Comment', class: 'btn btn-default'
+  .clear
