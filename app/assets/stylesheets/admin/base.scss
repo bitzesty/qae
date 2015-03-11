@@ -733,6 +733,10 @@ table .ellipsis {
     color: $grey;
   }
 
+  .flagged-visible {
+    display: none;
+  }
+
   .comment-flagged & {
     background-image: image-url("icon-flag-sm.png");
 
@@ -744,6 +748,13 @@ table .ellipsis {
     &:hover,
     &:focus {
       color: $black;
+    }
+
+    .flagged-visible {
+      display: inline;
+    }
+    .unflagged-visible {
+      display: none;
     }
   }
 
