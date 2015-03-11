@@ -1,5 +1,8 @@
 class Assessor::FormAnswersController < Assessor::BaseController
-  helper_method :resource, :primary_assessment, :secondary_assessment
+  helper_method :resource,
+                :primary_assessment,
+                :secondary_assessment,
+                :moderated_assessment
 
   def index
     authorize :form_answer, :index?
@@ -21,10 +24,16 @@ class Assessor::FormAnswersController < Assessor::BaseController
   end
 
   def primary_assessment
-    resource.assessor_assignments.primary.decorate
+    @primary_assessment ||= resource.assessor_assignments.primary.decorate
   end
 
   def secondary_assessment
-    resource.assessor_assignments.secondary.decorate
+    @secondary_assessment ||= resource.assessor_assignments.secondary.decorate
+  end
+
+  def moderated_assessment
+    if current_subject.lead?(resource)
+      @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
+    end
   end
 end

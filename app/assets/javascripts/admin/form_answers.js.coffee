@@ -3,6 +3,7 @@ ready = ->
   editFormAnswerAutoUpdate()
   bindRags("#section-appraisal-form-primary .edit_assessor_assignment")
   bindRags("#section-appraisal-form-secondary .edit_assessor_assignment")
+  bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
 
   $('#new_form_answer_attachment').fileupload
     success: (result, textStatus, jqXHR)->

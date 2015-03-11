@@ -131,6 +131,25 @@ describe AssessorAssignment do
         expect(secondary.visible_for?(assessor1)).to eq(false)
       end
     end
+
+    context "for primary/secondary assessor" do
+      let(:lead) { create(:assessor, :lead_for_all) }
+      it "moderated form is not visible" do
+        moderated = form_answer.assessor_assignments.moderated
+        expect(moderated.visible_for?(assessor1)).to eq(false)
+        expect(moderated.visible_for?(assessor2)).to eq(false)
+        expect(moderated.visible_for?(lead)).to eq(true)
+      end
+    end
+  end
+
+  context "moderated assessment" do
+    subject { build(:assessor_assignment_moderated) }
+    it "can not have assigned assessor" do
+      subject.assessor_id = 1
+      expect(subject).to_not be_valid
+      expect(subject.errors.values.join).to match("moderated assessment")
+    end
   end
 end
 

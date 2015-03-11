@@ -20,6 +20,7 @@ class AssessorAssignment < ActiveRecord::Base
     end
 
     validate :submitted_at_immutability
+    validate :assessor_existence
   end
 
   begin :associations
@@ -36,6 +37,10 @@ class AssessorAssignment < ActiveRecord::Base
 
   def self.secondary
     find_or_create_by(position: 1)
+  end
+
+  def self.moderated
+    find_or_create_by(position: 2)
   end
 
   def submit_assessment
@@ -118,6 +123,12 @@ class AssessorAssignment < ActiveRecord::Base
     return if new_record?
     if submitted_at_changed? && submitted_at_was.present?
       errors.add(:submitted_at, "Can not be re-submitted")
+    end
+  end
+
+  def assessor_existence
+    if moderated? && assessor_id.present?
+      errors.add(:assessor_id, "Can not be present for moderated assessment.")
     end
   end
 end
