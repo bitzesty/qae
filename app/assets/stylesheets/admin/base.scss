@@ -70,15 +70,10 @@ table .ellipsis {
   .btn-link {
     padding-right: 0;
     padding-left: 0;
-    color: $black;
   }
 
-  .pull-right {
-    margin-top: 0.5em;
-
-    a {
-      margin-left: 20px;
-    }
+  .pull-right a {
+    margin-left: 20px;
   }
 }
 
