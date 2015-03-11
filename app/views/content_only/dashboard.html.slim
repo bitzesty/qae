@@ -33,9 +33,19 @@ header.page-header.group
                   td.pull-right
                     // TODO use better method to test for submitted awards
                     - if award.urn?
-                      = link_to "Edit application", edit_form_path(award.id)
+                      = link_to edit_form_path(award.id)
+                        ' Edit
+                        - if award.award_type == "promotion"
+                          ' nomination
+                        - else
+                          ' application
                     - else
-                      = link_to "Continue application", edit_form_path(award.id)
+                      = link_to edit_form_path(award.id)
+                        ' Continue
+                        - if award.award_type == "promotion"
+                          ' nomination
+                        - else
+                          ' application
           br
 
         h2
