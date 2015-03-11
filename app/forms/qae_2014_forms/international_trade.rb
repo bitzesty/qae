@@ -13,8 +13,8 @@ class QAE2014Forms
              "Company Info",
              &QAE2014Forms.trade_step1
 
-        step "Description of Goods or Services, Markets and Marketing",
-             "Description",
+        step "Your International Trade",
+             "Your International Trade",
              &QAE2014Forms.trade_step2
 
         step "Commercial Performance",

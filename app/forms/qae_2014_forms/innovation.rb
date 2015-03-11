@@ -13,8 +13,8 @@ class QAE2014Forms
              "Company Info",
              &QAE2014Forms.innovation_step1
 
-        step "Description of Goods or Services",
-             "Description",
+        step "Your Innovation",
+             "Your Innovation",
              &QAE2014Forms.innovation_step2
 
         step "Commercial Performance",
