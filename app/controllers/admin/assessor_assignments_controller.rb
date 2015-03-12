@@ -1,8 +1,8 @@
 class Admin::AssessorAssignmentsController < Admin::BaseController
   def update
-    authorize AssessorAssignment.find(params[:id]), :update?
-
     assessment = AssessorAssignmentService.new(params, current_subject)
+    authorize assessment.resource, :update?
+
     assessment.save
 
     respond_to do |format|
