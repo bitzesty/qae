@@ -6,15 +6,13 @@
     / and for example remove the assigned assessors from the selects
   /p.p-empty No assessors have been assigned to this case.
   ul.list-unstyled.list-actions
-    = form_for([namespace_name, (resource.assessor_assignments.primary || AssessorAssignment.new(position: 0))]) do |form|
-      = form.hidden_field :position
+    = form_for([namespace_name, (resource.assessor_assignments.primary || AssessorAssignment.new(position: "primary"))]) do |form|
       li
         ' Primary Assessor
         = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.email, a.id]}, { include_blank: true }
       =form.submit :add
 
-    = form_for([namespace_name, (resource.assessor_assignments.secondary || AssessorAssignment.new(position: 1))]) do |form|
-      = form.hidden_field :position
+    = form_for([namespace_name, (resource.assessor_assignments.secondary || AssessorAssignment.new(position: "secondary"))]) do |form|
       li
         ' Secondary Assessor
         = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.email, a.id]}, { include_blank: true }

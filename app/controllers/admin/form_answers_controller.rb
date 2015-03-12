@@ -69,7 +69,10 @@ class Admin::FormAnswersController < Admin::BaseController
 
   private
 
-  helper_method :resource, :primary_assessment, :secondary_assessment
+  helper_method :resource,
+                :primary_assessment,
+                :secondary_assessment,
+                :moderated_assessment
 
   def resource
     @form_answer ||= load_resource
@@ -89,5 +92,9 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def secondary_assessment
     resource.assessor_assignments.secondary.decorate
+  end
+
+  def moderated_assessment
+    # TODO
   end
 end

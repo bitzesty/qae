@@ -21,3 +21,5 @@
             = render "admin/form_answers/section_appraisal_form_primary"
           - if secondary_assessment.visible_for?(current_subject)
             = render "admin/form_answers/section_appraisal_form_secondary"
+          - if moderated_assessment.present?
+            = render "admin/form_answers/section_appraisal_form_moderated"

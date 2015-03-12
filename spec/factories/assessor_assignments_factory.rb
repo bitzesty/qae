@@ -15,4 +15,9 @@ FactoryGirl.define do
       submitted_at DateTime.now - 1.minute
     end
   end
+
+  factory :assessor_assignment_moderated, class: AssessorAssignment do
+    form_answer
+    position "moderated"
+  end
 end

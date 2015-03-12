@@ -11,6 +11,7 @@ describe "Assessor submits appraisal form", %(
   let!(:form_answer) { create(:form_answer, :innovation) }
   let(:primary) { "#section-appraisal-form-primary" }
   let(:secondary) { "#section-appraisal-form-secondary" }
+  let(:moderated) { "#section-appraisal-form-moderated" }
 
   before do
     login_as(lead, scope: :assessor)
@@ -42,6 +43,7 @@ describe "Assessor submits appraisal form", %(
     it "updates the rag rate" do
       within(primary) { rag_case.call }
       within(secondary) { rag_case.call }
+      within(moderated) { rag_case.call }
     end
   end
 
@@ -65,6 +67,7 @@ describe "Assessor submits appraisal form", %(
     it "updates the description" do
       within(primary) { description_case.call }
       within(secondary) { description_case.call }
+      within(moderated) { description_case.call }
     end
   end
 
@@ -84,6 +87,7 @@ describe "Assessor submits appraisal form", %(
     it "updates verdict" do
       within(primary) { verdict_case.call }
       within(secondary) { verdict_case.call }
+      within(moderated) { verdict_case.call }
     end
   end
 
