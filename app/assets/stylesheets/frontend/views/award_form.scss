@@ -26,8 +26,8 @@
   display: none;
 
   .help-notice {
-    color: $error-colour;
     background-image: image-url("icon-important-red.png");
+    color: $error-colour;
 
     // Retina
     @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {

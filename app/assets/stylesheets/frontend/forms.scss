@@ -29,6 +29,10 @@
   margin-bottom: 0.2em;
   padding: 0;
   list-style: none;
+
+  &.char-spacing {
+    padding-right: 160px;
+  }
 }
 
 .field_with_errors .error,
@@ -564,10 +568,6 @@ input[type="file"] {
   display: inline-block;
   width: 160px;
   height: 1em;
-}
-
-.errors-container.char-spacing {
-  padding-right: 160px;
 }
 
 .char-count {

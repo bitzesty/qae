@@ -1,9 +1,9 @@
 $.fn.charcount = function() {
   // Adds class to parent so that we can position the question and input closer
-  var prev_el = this.closest(".question-group").prev();
-  prev_el.addClass("char-spacing");
-  if (prev_el.hasClass("errors-container")) {
-    prev_el.prev().append("<span class='char-space'></div>");
+  var prevElement = this.closest(".question-group").prev();
+  prevElement.addClass("char-spacing");
+  if (prevElement.hasClass("errors-container")) {
+    prevElement.prev().append("<span class='char-space'></div>");
   }
 
   // Creates the character count elements
