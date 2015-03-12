@@ -5,7 +5,7 @@
         ' Appraisal Form (Secondary)
         small
           = secondary_assessment.last_editor_info
-  #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse.in role="tabpanel" aria-labelledby="appraisal-form-secondary-heading"
+  #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse role="tabpanel" aria-labelledby="appraisal-form-secondary-heading"
     .panel-body
       = simple_form_for([namespace_name, secondary_assessment], remote: true) do |f|
         = f.hidden_field :form_answer_id
