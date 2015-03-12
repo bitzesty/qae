@@ -1,0 +1,44 @@
+- if award_applications.any?
+  table.applications-table
+    colgroup
+      col width="300"
+      col width="200"
+      col width="200"
+    tbody
+      /tr
+        td colspan="3"
+          h3
+            = award_applications.first.decorate.award_type
+            '  Award
+      - award_applications.each do |award|
+        tr
+          td
+            h4
+              = award.decorate.application_name
+              br
+              small
+                = award.decorate.award_type
+                '  Award
+          td
+            p
+              // TODO use better method to test for submitted awards
+              - if award.urn?
+                ' Submitted
+              - else
+                = award.decorate.fill_progress_in_percents
+          td.pull-right
+            // TODO use better method to test for submitted awards
+            - if award.urn?
+              = link_to edit_form_path(award.id)
+                ' Edit
+                - if award.award_type == "promotion"
+                  ' nomination
+                - else
+                  ' application
+            - else
+              = link_to edit_form_path(award.id)
+                ' Continue
+                - if award.award_type == "promotion"
+                  ' nomination
+                - else
+                  ' application
