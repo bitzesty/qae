@@ -1,4 +1,4 @@
-.panel-group#admin-settings role="tablist" aria-multiselectable="true"
+.panel-group#admin-settings-parent role="tablist" aria-multiselectable="true"
   .panel.panel-default.panel-parent
     .panel-heading#application-submission-stage-heading role="tab"
       h4.panel-title
@@ -6,7 +6,7 @@
           ' Application Submission Stage
     #application-submission-stage.panel-collapse.collapse.in role="tabpanel" aria-labelledby="application-submission-stage-heading"
       .panel-body
-        .panel-group#panel-application-submission-stage role="tablist" aria-multiselectable="true"
+        .panel-group#panel-application-submission-stage-parent role="tablist" aria-multiselectable="true"
           = render "section_application_submission_stage_deadlines"
           = render "section_application_submission_stage_email_notifications"
 
@@ -17,7 +17,7 @@
           ' Shortlisted Stage
     #shortlisted-stage.panel-collapse.collapse.in role="tabpanel" aria-labelledby="shortlisted-stage-header"
       .panel-body
-        .panel-group#panel-shortlisted-stage role="tablist" aria-multiselectable="true"
+        .panel-group#panel-shortlisted-stage-parent role="tablist" aria-multiselectable="true"
           = render "section_shortlisted_stage_deadlines"
           = render "section_shortlisted_stage_email_notifications"
 
@@ -28,6 +28,6 @@
           ' Final Stage
     #final-stage.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-header"
       .panel-body
-        .panel-group#panel-final-stage role="tablist" aria-multiselectable="true"
+        .panel-group#panel-final-stage-parent role="tablist" aria-multiselectable="true"
           = render "section_final_stage_deadlines"
           = render "section_final_stage_email_notifications"

@@ -1,4 +1,4 @@
-.panel-group#submitted-application-parent role="tablist" aria-multiselectable="true"
+.panel-group#submitted-application-parent-parent role="tablist" aria-multiselectable="true"
   .panel.panel-default.panel-parent
     .panel-heading#application-info-heading role="tab"
       h4.panel-title
@@ -6,7 +6,7 @@
           ' Application info
     #section-application-info.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="application-info-heading"
       .panel-body
-        .panel-group#panel-application-info role="tablist" aria-multiselectable="true"
+        .panel-group#panel-application-info-parent role="tablist" aria-multiselectable="true"
           = render "section_admin_comments"
           = render "section_company_details"
           = render "section_financial_summary"
@@ -18,7 +18,7 @@
           ' Assessment
     #section-assessment.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="assessment-heading"
       .panel-body
-        .panel-group#panel-assessment role="tablist" aria-multiselectable="true"
+        .panel-group#panel-assessment-parent role="tablist" aria-multiselectable="true"
           = render "section_critical_comments"
           = render "section_draft_notes"
           label Appraisal sections for admin - to implement
@@ -35,6 +35,6 @@
           ' Winners
     #section-winners.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="winners-heading"
       .panel-body
-        .panel-group#panel-winners role="tablist" aria-multiselectable="true"
+        .panel-group#panel-winners-parent role="tablist" aria-multiselectable="true"
           = render "section_press_summary"
           = render "section_palace_attendees"
