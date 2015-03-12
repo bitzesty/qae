@@ -8,7 +8,7 @@ class ContentOnlyController < ApplicationController
                   :how_to_apply,
                   :timeline,
                   :additional_information_and_contact,
-                  :terms,
+                  :privacy,
                   :apply_for_queens_award_for_enterprise,
                   :sign_up_complete
                 ]
