@@ -6,7 +6,7 @@ class QAE2014Forms
         header :support_letters_intro, "" do
           context %(
             <p>
-              As nominator you have sole responsibility for sourcing at least 2 letters of support. Nominations with less than 2 letters will not be accepted. We recommend asking 6-8 supporters to ensure you meet the minimum requirements, as some people might not reply.
+              As nominator you have sole responsibility for sourcing at least 2 letters of support. Nominations with less than 2 letters will not be accepted. We recommend asking 3-5 supporters to ensure you meet the minimum requirements, as some people might not reply.
             </p>
 
             <p>
@@ -27,7 +27,7 @@ class QAE2014Forms
             <p>
               Supporters are much more likely to submit letters promptly if you follow up our initial email by phoning them yourself.
             </p>
-            <p>
+            <p class="text-underline">
               If you have supporters who would rather write a hard copy letter, please see question D2.
             </p>
 
@@ -84,7 +84,7 @@ class QAE2014Forms
         supporters :supporters, "Support Requests" do
           ref "D 1"
           limit 10
-          default 2
+          default 1
         end
 
         options :manually_upload, "Would you like to manually upload any of your letters of support" do
