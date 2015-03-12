@@ -9,6 +9,8 @@ class QAE2014Forms
               As nominator you have sole responsibility for sourcing at least 2 letters of support. Nominations with less than 2 letters will not be accepted. We recommend asking 3-5 supporters to ensure you meet the minimum requirements, as some people might not reply.
             </p>
 
+            <br>
+
             <p>
               <strong>
                 How does the letters of support system work?
@@ -31,6 +33,8 @@ class QAE2014Forms
               If you have supporters who would rather write a hard copy letter, please see question D2.
             </p>
 
+            <br>
+
             <p>
               <strong>
                 Who should I choose to write letters of support?
@@ -46,6 +50,8 @@ class QAE2014Forms
             <p>
               When selecting supporters, you should cover a variety of the nominee's activities, and a variety of perspectives on those activities, where possible.
             </p>
+
+            <br>
           )
 
           hint "See the guidance we will provide to your chosen supporters.", %(
