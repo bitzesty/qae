@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
                :company_name, :company_address_first, :company_address_second,
                :company_city, :company_country, :company_postcode,
                :company_phone_number,
-               :prefered_method_of_contact, :subscribed_to_emails)
+               :prefered_method_of_contact, :subscribed_to_emails, :agree_being_contacted_by_department_of_business)
     end
   end
 

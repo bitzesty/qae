@@ -95,7 +95,7 @@ class AccountsController < ApplicationController
   end
 
   def contact_settings_params
-    params.require(:user).permit(:prefered_method_of_contact, :subscribed_to_emails, :qae_info_source_other, { qae_info_source: [] })
+    params.require(:user).permit(:prefered_method_of_contact, :subscribed_to_emails, :agree_being_contacted_by_department_of_business, :qae_info_source_other, { qae_info_source: [] })
   end
 
   def password_settings_params

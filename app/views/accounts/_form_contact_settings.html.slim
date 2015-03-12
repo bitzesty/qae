@@ -1,7 +1,7 @@
 fieldset
-  h3
-    ' Are you happy for us to email you in the future with information relating to the Queen’s Awards, and with any other information from the Department of Business, Innovation and Skills?
-  = f.input :subscribed_to_emails, label: 'I am happy to be contacted with information about the Queen’s Awards', label_html: { class: 'selectable' }
+  = f.input :subscribed_to_emails, label: "I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).", label_html: { class: "selectable" }
+
+  = f.input :agree_being_contacted_by_department_of_business, label: "I am happy to be contacted by the Department of Business, Innovation and Skills.", label_html: { class: "selectable" }
 
 /fieldset
   h3
