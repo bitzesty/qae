@@ -9,8 +9,4 @@ class EmailNotification < ActiveRecord::Base
   enumerize :kind, in: %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit winners_press_release_comments_request unsuccessfull_notification all_unsuccessfull_feedback shortlisted_notifier shortlisted_audit_certificate_reminder not_shortlisted_notifier)
 
   validates :kind, :trigger_at, presence: true
-
-  def self.email_example(kind)
-    "TODO: render email"
-  end
 end

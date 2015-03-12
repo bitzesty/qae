@@ -7,7 +7,7 @@
   p
     = link_to "View email example", "#", class: "link-email-example"
     div.email-example
-      = EmailNotification.email_example(kind)
+      = MailRenderer.new.public_send(kind)
 
   = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule"
 

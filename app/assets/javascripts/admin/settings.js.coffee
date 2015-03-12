@@ -1,6 +1,6 @@
 # require jquery-ui
 jQuery ->
-  if ($ "#admin-settings").length
+  if ($ "#admin-settings-parent").length
     ($ ".deadline-form").hide()
     ($ ".notification-edit-form, .notification-form").hide()
     ($ ".email-example").hide()
