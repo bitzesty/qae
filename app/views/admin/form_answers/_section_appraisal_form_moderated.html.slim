@@ -3,8 +3,9 @@
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-assessment" href="#section-appraisal-form-moderated" aria-expanded="true" aria-controls="section-appraisal-form-moderated"
         ' Appraisal Form (Moderated)
-        small
-          = moderated_assessment.last_editor_info
+        - if moderated_assessment.last_editor_info.present?
+          small
+            = moderated_assessment.last_editor_info
 
   #section-appraisal-form-moderated.section-appraisal-form.section-appraisal-form-moderated.panel-collapse.collapse role="tabpanel" aria-labelledby="appraisal-form-moderated-heading"
     .panel-body
