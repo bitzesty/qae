@@ -29,6 +29,10 @@
   margin-bottom: 0.2em;
   padding: 0;
   list-style: none;
+
+  &.char-spacing {
+    padding-right: 160px;
+  }
 }
 
 .field_with_errors .error,
@@ -560,9 +564,17 @@ input[type="file"] {
   margin-bottom: -1.8em;
 }
 
+.char-space {
+  display: inline-block;
+  width: 160px;
+  height: 1em;
+}
+
 .char-count {
   position: relative;
+  margin-top: -1.7em;
 }
+
 .char-text-limit {
   @include core-19($line-height: (20 / 16));
   margin-top: 0.5em;
@@ -754,19 +766,7 @@ input[type="file"] {
   }
 }
 
-.js-add-example {
-  display: none !important;
-
-  &.js-add-default {
-    display: block !important;
-  }
-
-  &.hidden {
-    display: none !important;
-  }
-}
-
-.js-add-default .js-remove-link {
+.js-default-reached .js-remove-link {
   display: none !important;
 }
 

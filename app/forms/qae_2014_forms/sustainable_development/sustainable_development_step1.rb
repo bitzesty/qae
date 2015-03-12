@@ -164,7 +164,7 @@ class QAE2014Forms
           conditional :external_contribute_to_sustainable_product, "yes"
         end
 
-        header :external_organization_or_individual_info_header, "" do
+        header :external_organization_or_individual_info_header_no, "" do
           context %(
             <div class="application-notice help-notice">
               <p>
@@ -173,6 +173,16 @@ class QAE2014Forms
             </div>
                     )
           conditional :external_are_aware_about_award, "no"
+        end
+
+        header :external_organization_or_individual_info_header_some, "" do
+          context %(
+            <div class="application-notice help-notice">
+              <p>
+                We recommend that you notify all the contributors to your product/service/management approach of this entry.
+              </p>
+            </div>
+                    )
           conditional :external_are_aware_about_award, "some"
         end
 

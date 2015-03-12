@@ -68,6 +68,7 @@ class Admin::UsersController < Admin::BaseController
       :company_name,
       :company_phone_number,
       :subscribed_to_emails,
+      :agree_being_contacted_by_department_of_business,
       :qae_info_source,
       :qae_info_source_other,
       :current_password,

@@ -38,27 +38,34 @@ class Eligibility::Promotion < Eligibility
             label: "Does your nominee currently hold a Queen's Award for Enterprise Promotion?",
             accept: :not_nil
 
-  property :lifetime_achievement_award_nomination,
+  property :nominee_has_honours,
             boolean: true,
-            label: "Are you nominating them for a Lifetime Achievement Award?",
-            accept: :true,
-            if: proc { nominee_is_qae_ep_award_holder.nil? || nominee_is_qae_ep_award_holder? }
+            label: "Does your nominee hold any honours?",
+            accept: :not_nil,
+            hint: "Honours' refers to honours awarded by the Queen e.g. MBE, OBE, Knighthood"
+
+  property :honour_was_ep,
+            boolean: true,
+            label: "Were they awarded for contribution to enterprise promotion?",
+            accept: :false,
+            if: proc { nominee_has_honours.nil? || nominee_has_honours? }
 
   property :nominee_was_put_forward_for_honours_this_year,
             boolean: true,
             label: "Is your nominee being put forward for honours this year?",
             accept: :not_nil,
-            hint: "Honours' refers to honours awarded by the Queen e.g. MBE, OBE, Knighthood"
+            hint: "Honours' refers to honours awarded by the Queen e.g. MBE, OBE, Knighthood",
+            if: proc { nominee_has_honours.nil? || !nominee_has_honours? }
 
   property :nomination_for_honours_based_on_their_contribution_to_ep,
             boolean: true,
-            label: "Is their nomination for honours also based on their contribution to enterprise promotion?",
+            label: "Is their nomination for honours based on their contribution to enterprise promotion?",
             accept: :false,
             if: proc { nominee_was_put_forward_for_honours_this_year.nil? || nominee_was_put_forward_for_honours_this_year? }
 
   property :able_to_get_two_letters_of_support,
             boolean: true,
-            label: "Will you be able to get at least two letters of support for this nomination?",
+            label: "Will you be able to source at least two letters of support for this nomination?",
             accept: :true,
             hint: "Letters of support should be from those (not the nominator) with first-hand knowledge of the nominee’s contribution to enterprise promotion, and the impact their work has had on others. One should be from a large organisation e.g. employer, non-profit, local authority."
 end

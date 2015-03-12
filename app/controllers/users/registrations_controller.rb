@@ -13,6 +13,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def after_inactive_sign_up_path_for(resource)
+    if resource.is_a?(User)
+      sign_up_complete_path
+    else
+      super
+    end
+  end
+
   def build_resource(hash=nil)
     super
 

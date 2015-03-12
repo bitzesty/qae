@@ -87,18 +87,42 @@ class AccountsController < ApplicationController
   private
 
   def correspondent_details_params
-    params.require(:user).permit(:title, :first_name, :last_name, :job_title, :phone_number)
+    params.require(:user).permit(
+      :title,
+      :first_name,
+      :last_name,
+      :job_title,
+      :phone_number
+    )
   end
 
   def company_details_params
-    params.require(:user).permit(:company_name, :company_address_first, :company_address_second, :company_city, :company_country, :company_postcode, :company_phone_number)
+    params.require(:user).permit(
+      :company_name,
+      :company_address_first,
+      :company_address_second,
+      :company_city,
+      :company_country,
+      :company_postcode,
+      :company_phone_number
+    )
   end
 
   def contact_settings_params
-    params.require(:user).permit(:prefered_method_of_contact, :subscribed_to_emails, :qae_info_source_other, { qae_info_source: [] })
+    params.require(:user).permit(
+      :prefered_method_of_contact,
+      :subscribed_to_emails,
+      :agree_being_contacted_by_department_of_business,
+      :qae_info_source_other,
+      { qae_info_source: [] }
+    )
   end
 
   def password_settings_params
-    params.require(:user).permit(:current_password, :password, :password_confirmation)
+    params.require(:user).permit(
+      :current_password,
+      :password,
+      :password_confirmation
+    )
   end
 end

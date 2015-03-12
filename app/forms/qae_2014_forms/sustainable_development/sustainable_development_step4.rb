@@ -14,10 +14,26 @@ class QAE2014Forms
 
         header :complete_now_header, "" do
           context %(
-            <p>The Declaration of Corporate Responsibility is a chance for you to outline your responsible business conduct, and its social, economic and environmental impact.</p>
-            <p>You don't have to demonstrate strength in all of the areas below.</p>
-            <p>If you have too many initiatives, just outline the ones you think are most relevant/important.</p>
-                    )
+            <p>
+              The Declaration of Corporate Responsibility is a chance for you to outline your responsible business conduct, and its social, economic and environmental impact.
+            </p>
+            <p>
+              You don't have to demonstrate strength in all of the areas below.
+            </p>
+            <p>
+              The guidance notes below each section are not exhaustive. Answer the questions in a way that best suits your organisation.
+            </p>
+            <p>
+              If you can give quantitative evidence of your initiatives/improvement/success, then do so.
+              </p>
+            <p>
+              If you have too many initiatives, just outline the ones you think are most relevant/important.
+            </p>
+            <p>
+              If you have already provided relevant information in your entry, please refer to that information and give any additional information under the relevant heading(s) below.
+            </p>
+          )
+          conditional :corp_responsibility_form, :complete_now
         end
 
         textarea :impact_on_society, "The impact of your business operations on society" do
@@ -29,6 +45,7 @@ class QAE2014Forms
                     )
           rows 5
           words_max 500
+          conditional :corp_responsibility_form, :complete_now
         end
 
         textarea :impact_on_environment, "The environmental impact of your business operations" do
@@ -83,7 +100,7 @@ class QAE2014Forms
 
         confirm :declaration_of_corporate_responsibility, "" do
           required
-          text "I declare corporate responsibility lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br><br>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+          text "I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise."
           conditional :corp_responsibility_form, :declare_now
         end
       end

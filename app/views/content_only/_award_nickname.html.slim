@@ -5,7 +5,13 @@
     li
       p Complete the eligibility questionnaire
       ul
-        li This is to ensure that your nominee meets the key eligibility criteria for an award.
+        li
+          ' This is to ensure that your
+          - if award_type == "promotion"
+            ' nominee
+          - else
+            ' organisation
+          ' meets the key eligibility criteria for an award.
         li It will take about 10 minutes to complete.
 
     li
@@ -20,13 +26,29 @@
       ul
         / TODO pull in deadline
         li The deadline for submissions is 23:59 on the last working day of September.
-        li You can still edit submitted nominations up to this date.
+        li
+          ' You can still edit submitted
+          - if award_type == "promotion"
+            ' nominations
+          - else
+            ' applications
+          ' up to this date.
 
   br
 
   fieldset.question-block
-    h2 Please choose a nickname for this application:
-    p This is for your own use. It will appear alongside this nomination on your application dashboard. Once chosen, the nickname is permanent.
+    h2
+      ' Please choose a nickname for this
+      - if award_type == "promotion"
+        ' nomination:
+      - else
+        ' application:
+    p
+      - if award_type == "promotion"
+        ' This is for your own use. It will appear alongside this nomination on your application dashboard. Once chosen, the nickname is permanent.
+      - else
+        ' This is for use by you and your collaborators. It will appear alongside this nomination on your application dashboard. Once chosen, the nickname is permanent.
+
     .question-group
       label
         span.visuallyhidden
@@ -37,7 +59,7 @@
         - if award_type == "promotion"
           ' e.g. “Nomination of John Smith”
         - else
-          ' Smith and Sons App #2
+          ' e.g. “Smith and Sons App #2”
       .clear
 
   p#get-started.get-started.group

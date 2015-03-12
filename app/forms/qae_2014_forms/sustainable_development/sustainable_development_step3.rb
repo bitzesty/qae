@@ -313,7 +313,7 @@ class QAE2014Forms
           words_max 300
         end
 
-        textarea :investments_details, "Please enter details of all investments in your product/service/management approach. *Include all investments made both during and prior to your entry period.* Also include the year(s) in which they were made." do
+        textarea :investments_details, "Please enter details of all investments in your product/service/management approach. <span class='text-underline'>Include all investments made both during and prior to your entry period.</span> Also include the year(s) in which they were made." do
           ref "C 11"
           required
           rows 5
@@ -322,7 +322,6 @@ class QAE2014Forms
 
         textarea :roi_details, "How long did it take the investment indicated above to be repaid out of profits? When and how was this repayment achieved?" do
           ref "C 12"
-          classes "sub-question"
           required
           context %(
             <p>When calculating expenditure paid for out of profits, please include capital costs where appropriate.</p>

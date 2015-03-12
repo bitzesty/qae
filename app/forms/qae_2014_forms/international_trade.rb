@@ -13,8 +13,8 @@ class QAE2014Forms
              "Company Info",
              &QAE2014Forms.trade_step1
 
-        step "Description of Goods or Services, Markets and Marketing",
-             "Description",
+        step "Your International Trade",
+             "Your International Trade",
              &QAE2014Forms.trade_step2
 
         step "Commercial Performance",
@@ -29,7 +29,7 @@ class QAE2014Forms
              "Add Links/Documents",
              &QAE2014Forms.trade_step5
 
-        step "Authorisation/Monitoring",
+        step "Authorisation",
              "Authorisation",
              &QAE2014Forms.trade_step6
       end

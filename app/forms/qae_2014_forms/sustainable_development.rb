@@ -13,8 +13,8 @@ class QAE2014Forms
              "Company Info",
              &QAE2014Forms.development_step1
 
-        step "Management Approach, Goods, or Services",
-             "Description",
+        step "Your Sustainable Development",
+             "Your Sustainable Development",
              &QAE2014Forms.development_step2
 
         step "Commercial Performance",
@@ -29,7 +29,7 @@ class QAE2014Forms
              "Add Links/Documents",
              &QAE2014Forms.development_step5
 
-        step "Authorisation/Monitoring",
+        step "Authorisation",
              "Authorisation",
              &QAE2014Forms.development_step6
       end

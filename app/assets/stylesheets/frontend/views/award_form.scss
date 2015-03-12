@@ -21,6 +21,32 @@
   }
 }
 
+// Show/hide the error step after submitting the form with errors
+.step-error {
+  display: none;
+
+  .help-notice {
+    background-image: image-url("icon-important-red.png");
+    color: $error-colour;
+
+    // Retina
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+      background-image: image-url("icon-important-red-2x.png");
+      background-size: 34px 34px;
+    }
+  }
+}
+
+.show-error-page & {
+  .step-error {
+    display: block;
+  }
+
+  .step-current {
+    display: none;
+  }
+}
+
 // Fix spacing on the previous answers
 .award-finish-previous-answers {
   .previous-answers {
@@ -122,4 +148,13 @@ label > .visible-read-only {
 .page-support-letter .page-header div h1 {
   @include heading-27;
   font-weight: bold;
+}
+
+// Fix spacing for the International Trade B2
+.js-by-trade-goods-and-services-amount > .conditional-question {
+  margin-bottom: 60px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
 }

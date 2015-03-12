@@ -26,6 +26,7 @@ jQuery ->
   $(document).on "submit", ".qae-form", (e) ->
     $("body").addClass("tried-submitting")
     if not validate()
+      $("body").addClass("show-error-page")
       $("html, body").animate(
         scrollTop: 0
       , 0)
@@ -115,7 +116,13 @@ jQuery ->
     # Updates the latest changed financial year input
     fy_latest_changed_input.find("input.js-fy-day").val(fy_day)
     fy_latest_changed_input.find("input.js-fy-month").val(fy_month)
-    fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
+
+
+    # Auto fill the year for previous years
+    $(".js-financial-year-changed-dates .js-fy-entries").each ->
+      parent_fy = $(this).parent().find(".js-fy-entries")
+      this_fy_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
+      $(this).find("input.js-fy-year").val(this_fy_year).attr("disabled", "disabled")
     fy_latest_changed_input.find("input").attr("disabled", "disabled")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)
 
@@ -172,6 +179,8 @@ jQuery ->
 
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
+    $("body").removeClass("show-error-page")
+
     $(".js-step-condition.step-current").removeClass("step-current")
 
     window.location.hash = "##{step.substr(5)}"
@@ -397,21 +406,13 @@ jQuery ->
       question = $(this).closest(".question-block")
       add_eg = question.find(".js-add-example").html()
 
-      # If there is a specific add_eg use that
-      add_eg_attr = $(this).attr("data-add-example")
-      add_eg_attr_undefined = typeof(add_eg_attr) != typeof(undefined)
-      if (add_eg_attr_undefined && add_eg_attr != false)
-        add_eg = question.find(".js-add-example[data-add-example=#{add_eg_attr}]").html()
-
       if question.find(".list-add").size() > 0
         can_add = true
 
         # Are there add limits
         add_limit_attr = question.find(".list-add").attr("data-add-limit")
 
-        li_excl_eg = question.find(".list-add > li").not(".js-add-example").size()
-        li_default = question.find(".list-add > li.js-add-example.js-add-default").size()
-        li_size = li_excl_eg + li_default
+        li_size = question.find(".list-add > li")
 
         if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
 
@@ -423,7 +424,7 @@ jQuery ->
 
         if can_add
           add_eg = add_eg.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size+1}]")
-          question.find(".list-add").append("<li class='js-list-item'>#{add_eg}</li>")
+          question.find(".list-add").append("<li class='js-add-example'>#{add_eg}</li>")
 
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)
@@ -440,14 +441,36 @@ jQuery ->
             textareas.removeCharcountElements()
             textareas.charcount()
 
+          # remove the default reached class to allow removing again
+          questionAddDefaultReached(question.find(".list-add"))
+
   # Removing these added fields
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("read-only")
+      parent_ul = $(this).closest("ul")
       $(this).closest(".question-group")
              .find(".js-button-add")
              .removeClass("visuallyhidden")
       $(this).closest("li").remove()
+
+      questionAddDefaultReached(parent_ul)
+
+  questionAddDefaultReached = (ul) ->
+    if ul.size() > 0
+      attr = ul.attr("data-default")
+      hasAttrDefault = false
+
+      if typeof attr != typeof undefined && attr != false
+        hasAttrDefault = true
+
+      if hasAttrDefault
+        ul.removeClass("js-default-reached")
+        if ul.find("li").size() <= attr
+          ul.addClass("js-default-reached")
+
+  $(".list-add").each ->
+    questionAddDefaultReached($(this))
 
   # Disable copy/pasting in confirmation fields
   $('.js-disable-copy').bind "cut copy", (e) ->

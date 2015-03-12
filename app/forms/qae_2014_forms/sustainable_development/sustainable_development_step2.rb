@@ -44,15 +44,13 @@ class QAE2014Forms
           words_max 500
         end
 
-        header :provide_evidence_header, "" do
-          context %(
-            <p>Where possible, provide evidence of your product/service/management approach's contribution to each of the dimensions of sustainable development below. If your contribution is weak in any of them, describe the relevant actions taken to improve this.</p>
-                    )
+        header :provide_evidence_header, "Where possible, provide evidence of your product/service/management approach's contribution to each of the dimensions of sustainable development below. If your contribution is weak in any of them, describe the relevant actions taken to improve this." do
+          ref "B 5"
         end
 
         textarea :environmental_contribution, "Explain how your approach contributes to environmental dimensions of sustainable development." do
-          ref "B 5"
           required
+          classes "sub-question"
           context %(
             <p>'Environmental dimensions' means respecting the limits of the planet’s environment, resources and biodiversity e.g. resource efficiency, waste reduction and biological diversity/productivity.</p>
                     )

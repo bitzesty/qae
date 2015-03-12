@@ -12,30 +12,11 @@ header.page-header.group
         - if @user_award_forms.any?
           h2
             ' Current Applications
-          table.applications-table
-            colgroup
-              col width="300"
-              col width="200"
-              col width="200"
-            tbody
-              - @user_award_forms.each do |award|
-                tr
-                  td
-                    h3
-                      = award.decorate.application_name
-                  td
-                    p
-                      // TODO use better method to test for submitted awards
-                      - if award.urn?
-                        ' Submitted
-                      - else
-                        = award.decorate.fill_progress_in_percents
-                  td.pull-right
-                    // TODO use better method to test for submitted awards
-                    - if award.urn?
-                      = link_to "Edit application", edit_form_path(award.id)
-                    - else
-                      = link_to "Continue application", edit_form_path(award.id)
+          = render "current_applications", award_applications: @user_award_forms_trade
+          = render "current_applications", award_applications: @user_award_forms_innovation
+          = render "current_applications", award_applications: @user_award_forms_development
+          = render "current_applications", award_applications: @user_award_forms_promotion
+
           br
 
         h2

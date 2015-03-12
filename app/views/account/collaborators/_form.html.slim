@@ -33,7 +33,9 @@
   fieldset
     h3
       ' Administrative rights
-    = f.input :role, collection: [["Admin and contributer", "account_admin"], ["Only contributer", "regular"]], required: true, include_blank: false, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+    p
+      ' A ‘Contributor’ can only write and edit your applications/nominations. Whilst an ‘Admin and Contributor’ is also able to add new collaborators.
+    = f.input :role, collection: [["Admin and contributer", "account_admin"], ["Contributer", "regular"]], required: true, include_blank: false, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
 
   footer
     nav.pagination role="navigation" aria-label="Pagination"

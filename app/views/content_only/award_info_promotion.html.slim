@@ -9,25 +9,31 @@
     .article-container
       article.group role="article"
         .inner
-          h2 Help and resources
-          ul
-            li
-              = link_to "Download a PDF of the entire application form."
-          br
-
           h2 What you will need:
-          h3 Section A
+          h3 Section A: Nominee
           p Basic information about your nominee and the organisation they work for.
 
-          h3 Section B
+          h3 Section B: Nominee Background
           p Knowledge of your nominee’s recent voluntary and employed positions.
 
-          h3 Section C
+          h3 Section C: Recommendation
           p Knowledge and quantitative evidence of your nominee’s contribution to enterprise promotion.
 
-          h3 Section D
+          h3 Section D: Letters of Support
           p A selection of candidates who could write letters of support to aid your nomination.
 
+          br
+          ul
+            li
+              ' For planning purposes you can
+              = link_to "download a PDF of the entire application form"
+              ' . However, the application has to be filled out online.
+            li
+              ' You can
+              = link_to "add a collaborator", account_collaborators_path
+              '  to help you fill out the application. But be aware that
+              span.text-underline they will be able to see and edit all of your applications
+              ' .
           br
 
           h2 Nomination guidance:
@@ -42,4 +48,7 @@
           br
 
           p#get-started.get-started.group
-            = link_to "Start nomination", result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
+            = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
+              ' Start nomination
+              / TODO if application is started
+              / ' Continue application

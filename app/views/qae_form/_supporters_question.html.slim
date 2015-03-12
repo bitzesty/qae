@@ -1,4 +1,4 @@
-ul.list-add.supporters_list data-need-to-clear-example=true data-add-limit=question.limit data-attachments-url=(users_form_answer_support_letter_attachments_path(@form_answer)) data-example-has-file-field=true
+ul.list-add.supporters_list data-need-to-clear-example=true data-add-limit=question.limit data-attachments-url=(users_form_answer_support_letter_attachments_path(@form_answer)) data-example-has-file-field=true data-default=question.default
   input name="form[#{question.key}][array]" value="true" type="hidden"
 
   - if question.entities.present?
@@ -14,5 +14,5 @@ ul.list-add.supporters_list data-need-to-clear-example=true data-add-limit=quest
     - (0...question.default.to_i).each do |index|
       = render 'qae_form/supporter_fields', question: question, supporter: {}, index: index
 
-a.button.button-add.js-button-add href="#" data-add-example="add-supporter"
+a.button.button-add.js-button-add href="#"
   | + Add another supporter

@@ -80,14 +80,21 @@
 // Styles the `Current application` table
 .applications-table {
   width: 100%;
+  margin-top: 0;
+  margin-bottom: 0;
 
   h3,
+  h4,
   p {
     margin: 0;
   }
 
   p {
     @include core-16;
+  }
+
+  small {
+    color: $grey-1;
   }
 
   .pull-right {

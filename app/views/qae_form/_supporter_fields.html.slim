@@ -1,5 +1,5 @@
 - persisted = supporter["support_letter_id"].present? || supporter["supporter_id"].present?
-li class="#{'js-add-example js-add-default' if index < question.default.to_i} #{(persisted ? 'read-only' : '')}" data-add-example="add-supporter"
+li.js-add-example class=(persisted ? 'read-only' : '')
   = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
   input.js-support-entry-id type="hidden" name="form[#{question.key}][#{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]" value=(question.list_type == :manuall_upload ? supporter["support_letter_id"] : supporter["supporter_id"])
   .js-system-tag data-new-hidden-input-name="form[#{question.key}][#{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]"

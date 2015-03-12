@@ -41,3 +41,5 @@ form.qae-form.award-form data-autosave-url=autosave_url(@form_answer) action=sub
     = render partial: 'qae_form/form_header', object: @form, as: 'form'
 
     = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form, answers: (HashWithIndifferentAccess.new(@form_answer.document || {})), attachments: HashWithIndifferentAccess.new(@attachments)}
+
+    = render "qae_form/step_error"

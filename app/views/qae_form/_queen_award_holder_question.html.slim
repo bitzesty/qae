@@ -1,11 +1,11 @@
 - children_depends_on = question.children_options_depends_on
 - dependable_values = question.dependable_values
 
-ul.list-add data-add-limit="10" data-need-to-clear-example=true
+ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1
   input name="form[queen_award_holder_details][array]" value="true" type="hidden"
 
   - question.entities.each_with_index do |award, index|
-    li data-add-example=('add-award' if index == 0) class=('js-add-example js-add-default' if index == 0)
+    li.js-add-example
       = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
 
       select.inline name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category") *possible_read_only_ops
@@ -23,7 +23,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true
             = year
 
   - if question.entities.none?
-    li.js-add-example.js-add-default data-add-example="add-award"
+    li.js-add-example
       = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
 
       select.inline name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=('js-options-with-dependent-child-question' if children_depends_on.to_s == "category") *possible_read_only_ops
@@ -40,5 +40,5 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true
           option value=year
             = year
 
-a.button.button-add.js-button-add href="#" data-add-example="add-award" *possible_read_only_ops
+a.button.button-add.js-button-add href="#" *possible_read_only_ops
   | + Add another award
