@@ -95,6 +95,6 @@ class Admin::FormAnswersController < Admin::BaseController
   end
 
   def moderated_assessment
-    # TODO
+    @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
   end
 end

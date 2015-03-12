@@ -1,4 +1,4 @@
-class Assessor::AssessmentSubmissionsController < Assessor::BaseController
+class Admin::AssessmentSubmissionsController < Assessor::BaseController
   def create
     @assignment = AssessorAssignment.find(params[:assessment_id])
 
@@ -7,7 +7,7 @@ class Assessor::AssessmentSubmissionsController < Assessor::BaseController
 
     respond_to do |format|
       format.json { render(json_response) }
-      format.html { redirect_to assessor_form_answer_path(@assignment.form_answer) }
+      format.html { redirect_to admin_form_answer_path(@assignment.form_answer) }
     end
   end
 

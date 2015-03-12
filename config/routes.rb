@@ -117,6 +117,8 @@ Rails.application.routes.draw do
         post :trigger_notify_non_shortlisted
       end
     end
+    resources :assessor_assignments, only: [:update]
+    resources :assessment_submissions, only: [:create]
   end
 
   namespace :account do
