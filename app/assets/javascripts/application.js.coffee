@@ -26,6 +26,7 @@ jQuery ->
   $(document).on "submit", ".qae-form", (e) ->
     $("body").addClass("tried-submitting")
     if not validate()
+      $("body").addClass("show-error-page")
       $("html, body").animate(
         scrollTop: 0
       , 0)
@@ -178,6 +179,8 @@ jQuery ->
 
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
+    $("body").removeClass("show-error-page")
+
     $(".js-step-condition.step-current").removeClass("step-current")
 
     window.location.hash = "##{step.substr(5)}"
