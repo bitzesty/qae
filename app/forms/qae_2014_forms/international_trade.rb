@@ -29,7 +29,7 @@ class QAE2014Forms
              "Add Links/Documents",
              &QAE2014Forms.trade_step5
 
-        step "Authorisation/Monitoring",
+        step "Authorisation",
              "Authorisation",
              &QAE2014Forms.trade_step6
       end
