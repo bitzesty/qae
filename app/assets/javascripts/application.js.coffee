@@ -412,7 +412,7 @@ jQuery ->
         # Are there add limits
         add_limit_attr = question.find(".list-add").attr("data-add-limit")
 
-        li_size = question.find(".list-add > li")
+        li_size = question.find(".list-add > li").size()
 
         if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
 
