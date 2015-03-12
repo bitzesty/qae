@@ -12,6 +12,9 @@ describe "Assessor submits appraisal form", %(
   let(:primary) { "#section-appraisal-form-primary" }
   let(:secondary) { "#section-appraisal-form-secondary" }
   let(:moderated) { "#section-appraisal-form-moderated" }
+  let(:primary_header) { "#appraisal-form-primary-heading" }
+  let(:secondary_header) { "#appraisal-form-secondary-heading" }
+  let(:moderated_header) { "#appraisal-form-moderated-heading" }
 
   before do
     login_as(lead, scope: :assessor)
@@ -20,30 +23,42 @@ describe "Assessor submits appraisal form", %(
 
   describe "RAG change" do
     let(:rag_case) do
-      lambda do
+      lambda do |section_id, header_id|
         rag = ".rag-text"
-        expect(page).to have_selector(rag, text: "Select RAG", count: 3)
-        expect(page).to have_selector(rag, text: "Select verdict", count: 1)
 
-        first(".btn-rag").click
-        find(".dropdown-menu .rag-negative").click
+        find("#{header_id} .panel-title a").click
 
-        expect(page).to have_selector(rag, text: "Select RAG", count: 2)
-        expect(page).to have_selector(rag, text: "Red", count: 1)
-        expect(page).to have_selector(rag, text: "Select verdict", count: 1)
+        within section_id do
+          expect(page).to have_selector(rag, text: "Select RAG", count: 3)
+          expect(page).to have_selector(rag, text: "Select verdict", count: 1)
+
+          first(".btn-rag").click
+          find(".dropdown-menu .rag-negative").click
+
+          expect(page).to have_selector(rag, text: "Select RAG", count: 2)
+          expect(page).to have_selector(rag, text: "Red", count: 1)
+          expect(page).to have_selector(rag, text: "Select verdict", count: 1)
+        end
+
         sleep(0.5)
         visit assessor_form_answer_path(form_answer)
 
-        expect(page).to have_selector(rag, text: "Select RAG", count: 2)
-        expect(page).to have_selector(rag, text: "Red", count: 1)
-        expect(page).to have_selector(rag, text: "Select verdict", count: 1)
+        find("#{header_id} .panel-title a").click
+
+        within section_id do
+          expect(page).to have_selector(rag, text: "Select RAG", count: 2)
+          expect(page).to have_selector(rag, text: "Red", count: 1)
+          expect(page).to have_selector(rag, text: "Select verdict", count: 1)
+        end
       end
     end
 
     it "updates the rag rate" do
-      within(primary) { rag_case.call }
-      within(secondary) { rag_case.call }
-      within(moderated) { rag_case.call }
+      rag_case.call(primary, primary_header)
+      visit assessor_form_answer_path(form_answer)
+      rag_case.call(secondary, secondary_header)
+      visit assessor_form_answer_path(form_answer)
+      rag_case.call(moderated, moderated_header)
     end
   end
 
@@ -51,48 +66,73 @@ describe "Assessor submits appraisal form", %(
     let(:text) { "textareatext123" }
 
     let(:description_case) do
-      lambda do
-        first(".form-edit-link").click
-        expect(page).to have_selector("textarea", count: 1)
-        fill_in("assessor_assignment_level_of_innovation_desc", with: text)
-        find(".form-save-link").click
+      lambda do |section_id, header_id|
+        find("#{header_id} .panel-title a").click
+
+        within section_id do
+          first(".form-edit-link").click
+          expect(page).to have_selector("textarea", count: 1)
+          fill_in("assessor_assignment_level_of_innovation_desc", with: text)
+          find(".form-save-link").click
+        end
+
         sleep(0.5)
         visit assessor_form_answer_path(form_answer)
-        expect(page).to have_selector(".form-value p", text: text, count: 1)
-        first(".form-edit-link").click
-        expect(page).to have_selector("textarea", text: text)
+
+        find("#{header_id} .panel-title a").click
+
+        within section_id do
+          expect(page).to have_selector(".form-value p", text: text, count: 1)
+          first(".form-edit-link").click
+          expect(page).to have_selector("textarea", text: text)
+        end
       end
     end
 
     it "updates the description" do
-      within(primary) { description_case.call }
-      within(secondary) { description_case.call }
-      within(moderated) { description_case.call }
+      description_case.call(primary, primary_header)
+      visit assessor_form_answer_path(form_answer)
+      description_case.call(secondary, secondary_header)
+      visit assessor_form_answer_path(form_answer)
+      description_case.call(moderated, moderated_header)
     end
   end
 
   describe "Overall verdict change" do
     let(:verdict_case) do
-      lambda do
-        expect(page).to have_selector(".rag-text", text: "Select verdict", count: 1)
-        all(".btn-rag").last.click
-        find(".dropdown-menu .rag-positive").click
+      lambda do |section_id, header_id|
+        find("#{header_id} .panel-title a").click
+
+        within section_id do
+          expect(page).to have_selector(".rag-text", text: "Select verdict", count: 1)
+          all(".btn-rag").last.click
+          find(".dropdown-menu .rag-positive").click
+        end
+
         sleep(0.5)
         visit assessor_form_answer_path(form_answer)
-        expect(page).to_not have_selector(".rag-text", text: "Select verdict")
-        expect(page).to have_selector(".rag-text", text: "Recommended", count: 1)
+        page.find("#{header_id} .panel-title a").click
+
+        within section_id do
+          expect(page).to_not have_selector(".rag-text", text: "Select verdict")
+          expect(page).to have_selector(".rag-text", text: "Recommended", count: 1)
+        end
       end
     end
 
     it "updates verdict" do
-      within(primary) { verdict_case.call }
-      within(secondary) { verdict_case.call }
-      within(moderated) { verdict_case.call }
+      verdict_case.call(primary, primary_header)
+      visit assessor_form_answer_path(form_answer)
+      verdict_case.call(secondary, secondary_header)
+      visit assessor_form_answer_path(form_answer)
+      verdict_case.call(moderated, moderated_header)
     end
   end
 
   it "submits the form" do
     allow_any_instance_of(AssessorAssignment).to receive(:valid?).and_return(true)
+    find("#{primary_header} .panel-title a").click
+
     within "#section-appraisal-form-primary" do
       click_button "Submit Case Assessment"
     end
