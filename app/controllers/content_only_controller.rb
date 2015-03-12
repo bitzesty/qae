@@ -1,5 +1,15 @@
 class ContentOnlyController < ApplicationController
-  before_action :authenticate_user!, :check_account_completion, except: [:home, :awards_for_organisations, :enterprise_promotion_awards, :how_to_apply, :timeline, :additional_information_and_contact, :terms, :apply_for_queens_award_for_enterprise]
+  before_action :authenticate_user!, :check_account_completion, except: [
+    :home,
+    :awards_for_organisations,
+    :enterprise_promotion_awards,
+    :how_to_apply,
+    :timeline,
+    :additional_information_and_contact,
+    :terms,
+    :apply_for_queens_award_for_enterprise,
+    :sign_up_complete
+  ]
 
   before_action :get_current_form, only: [
     :award_info_innovation,
@@ -15,7 +25,8 @@ class ContentOnlyController < ApplicationController
     :how_to_apply,
     :timeline,
     :additional_information_and_contact,
-    :apply_for_queens_award_for_enterprise
+    :apply_for_queens_award_for_enterprise,
+    :sign_up_complete
   ]
 
   expose(:form_answer) {
