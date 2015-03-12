@@ -50,7 +50,8 @@ class ApplicationController < ActionController::Base
       :agreed_with_privacy_policy
     ) }
     devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(:email,
+      u.permit(
+        :email,
         :current_password,
         :password,
         :password_confirmation,

@@ -1,33 +1,37 @@
 class ContentOnlyController < ApplicationController
-  before_action :authenticate_user!, :check_account_completion, except: [
-    :home,
-    :awards_for_organisations,
-    :enterprise_promotion_awards,
-    :how_to_apply,
-    :timeline,
-    :additional_information_and_contact,
-    :terms,
-    :apply_for_queens_award_for_enterprise,
-    :sign_up_complete
-  ]
+  before_action :authenticate_user!,
+                :check_account_completion,
+                except: [
+                  :home,
+                  :awards_for_organisations,
+                  :enterprise_promotion_awards,
+                  :how_to_apply,
+                  :timeline,
+                  :additional_information_and_contact,
+                  :terms,
+                  :apply_for_queens_award_for_enterprise,
+                  :sign_up_complete
+                ]
 
-  before_action :get_current_form, only: [
-    :award_info_innovation,
-    :award_info_trade,
-    :award_info_development,
-    :award_info_promotion
-  ]
+  before_action :get_current_form,
+                only: [
+                  :award_info_innovation,
+                  :award_info_trade,
+                  :award_info_development,
+                  :award_info_promotion
+                ]
 
-  before_action :landing_page, only: [
-    :home,
-    :awards_for_organisations,
-    :enterprise_promotion_awards,
-    :how_to_apply,
-    :timeline,
-    :additional_information_and_contact,
-    :apply_for_queens_award_for_enterprise,
-    :sign_up_complete
-  ]
+  before_action :landing_page,
+                only: [
+                  :home,
+                  :awards_for_organisations,
+                  :enterprise_promotion_awards,
+                  :how_to_apply,
+                  :timeline,
+                  :additional_information_and_contact,
+                  :apply_for_queens_award_for_enterprise,
+                  :sign_up_complete
+                ]
 
   expose(:form_answer) {
     current_user.form_answers.find(params[:id])
