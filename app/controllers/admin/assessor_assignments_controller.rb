@@ -1,4 +1,4 @@
-class Assessor::AssessorAssignmentsController < Assessor::BaseController
+class Admin::AssessorAssignmentsController < Admin::BaseController
   def update
     authorize AssessorAssignment.find(params[:id]), :update?
 

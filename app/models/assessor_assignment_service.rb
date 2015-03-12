@@ -18,7 +18,7 @@ class AssessorAssignmentService
 
   def permitted_params
     permitted = AppraisalForm.all
-    permitted += assignment_params if current_subject.lead?(form_answer)
+    permitted += assignment_params if resource.editable_for?(current_subject)
     permitted
   end
 

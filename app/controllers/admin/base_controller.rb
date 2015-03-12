@@ -24,7 +24,7 @@ class Admin::BaseController < ApplicationController
   end
 
   def namespace_name
-    :assessor
+    :admin
   end
 
   def current_subject

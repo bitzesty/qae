@@ -69,6 +69,14 @@ class AssessorAssignment < ActiveRecord::Base
     owner_or_administrative?(subject)
   end
 
+  def as_json
+    if errors.blank?
+      {}
+    else
+      { error: "All assessment sections should be fulfilled" }
+    end
+  end
+
   private
 
   def owner_or_administrative?(subject)
