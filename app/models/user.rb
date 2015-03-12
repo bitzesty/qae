@@ -56,8 +56,8 @@ class User < ActiveRecord::Base
     scope :by_email, -> { order(:email) }
 
     # Scopes need to be changed once we have shortlisted/non shortlisted applications
-    scope :shortlisted, -> { where("1 = 0")}
-    scope :non_shortlisted, -> { where("1 = 0")}
+    scope :shortlisted, -> { where("1 = 0") }
+    scope :non_shortlisted, -> { where("1 = 0") }
   end
 
   before_create :create_account

@@ -70,6 +70,8 @@ gem 'foreman'
 gem 'pg_search'
 gem "active_hash"
 
+gem 'whenever'
+
 group :assets do
   gem 'uglifier', '>= 1.3.0'
 end

@@ -13,7 +13,7 @@ class Settings < ActiveRecord::Base
   end
 
   def self.current
-    for_year(Date.current.year)
+    @current ||= for_year(Date.current.year)
   end
 
   private

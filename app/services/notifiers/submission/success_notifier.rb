@@ -1,5 +1,4 @@
 class Notifiers::Submission::SuccessNotifier < Notifiers::AccountNotifier
-
   def initialize(form_answer)
     @form_answer = form_answer
     @account = form_answer.account

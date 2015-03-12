@@ -63,7 +63,7 @@ module Models::FormattedTime::DateTimeFor
           def #{date}
             value = #{attr}
             if value
-              value = value.in_time_zone(ActiveSupport::TimeZone["UTC"])
+              value = value.utc
               value.to_date
             end
           end
@@ -71,7 +71,7 @@ module Models::FormattedTime::DateTimeFor
           def #{time}
             value = #{attr}
             if value
-              value = value.in_time_zone(ActiveSupport::TimeZone["UTC"])
+              value = value.utc
 
               value.to_i - value.beginning_of_day.to_i
             end
