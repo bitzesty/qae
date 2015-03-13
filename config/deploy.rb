@@ -48,4 +48,7 @@ namespace :deploy do
   after :finishing, 'deploy:cleanup'
   before :finishing, 'deploy:restart'
   after 'deploy:rollback', 'deploy:restart'
+
+  after "deploy:updated",  "whenever:update_crontab"
+  after "deploy:reverted", "whenever:update_crontab"
 end
