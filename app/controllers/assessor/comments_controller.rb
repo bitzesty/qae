@@ -1,8 +1,8 @@
-class Admin::CommentsController < Admin::BaseController
+class Assessor::CommentsController < Assessor::BaseController
   helper_method :form_answer
 
   def new
-    @comment = form_answer.comments.build
+    @comment = form_answer.comments.build(section: "critical")
     authorize @comment, :create?
 
     respond_to do |format|
@@ -14,12 +14,13 @@ class Admin::CommentsController < Admin::BaseController
     @comment = form_answer.comments.build(create_params)
     authorize @comment, :create?
 
-    @comment.authorable = current_admin
+    @comment.authorable = current_assessor
     @comment.save
 
     respond_to do |format|
       format.html do
-        render partial: 'admin/form_answers/comment', locals: { comment: @comment, resource: form_answer }
+        render partial: "admin/form_answers/comment",
+               locals: { comment: @comment, resource: form_answer }
       end
     end
   end
@@ -40,23 +41,23 @@ class Admin::CommentsController < Admin::BaseController
     resource.destroy
 
     respond_to do |format|
-      format.json{ render(json: :ok)}
-      format.html{ redirect_to admin_form_answer_path(form_answer)}
+      format.json { render(json: :ok) }
+      format.html { redirect_to assessor_form_answer_path(form_answer) }
     end
   end
 
   private
 
   def update_params
-    params.require(:comment).permit(:flagged)
+    params.require(:comment).permit(:flagged).merge(section: "critical")
   end
 
   def resource
-    @comment ||= form_answer.comments.find(params[:id])
+    @comment ||= form_answer.comments.critical.find(params[:id])
   end
 
   def create_params
-    params.require(:comment).permit :body, :section, :flagged
+    params.require(:comment).permit(:body, :flagged).merge(section: "critical")
   end
 
   def form_answer

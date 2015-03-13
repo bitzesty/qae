@@ -6,8 +6,8 @@ class CommentPolicy < ApplicationPolicy
   def update?
     return true if admin?
     if assessor? && record.critical?
-      subject.lead?(record.form_answer) ||
-        subject.regular?(record.form_answer)
+      subject.lead?(record.commentable) ||
+        subject.regular?(record.commentable)
     end
   end
 
