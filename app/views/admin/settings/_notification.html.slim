@@ -1,0 +1,22 @@
+li id="notification-#{notification.id}"
+  .form-value
+    - if !notification.sent?
+      ' Scheduled to be sent on
+    - else
+      ' Already sent on
+
+    span.trigger-at
+      = notification.formatted_trigger_time
+  .notification-edit-form.form-inline
+    .row
+      = simple_form_for notification, url: admin_settings_email_notification_path(notification), remote: true do |f|
+        .col-sm-6
+          = f.input :trigger_at, as: :separated_date_time, input_html: { id: '' }
+        .col-sm-4.control-action
+          = f.submit "Save", class: "btn btn-primary"
+  span.actions
+    = link_to "Edit", "#", class: "edit-notification"
+
+    - if policy(notification).destroy?
+      '  |
+      = button_to "Delete", admin_settings_email_notification_path(notification), { onclick: "return confirm('Are you sure?')", method: :delete, remote: true }

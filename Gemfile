@@ -12,6 +12,7 @@ gem 'dotenv-rails', '~> 1.0'
 gem 'slim-rails', '~> 3.0.1'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 gem 'bootstrap-sass', '>= 3.3.3'
 gem 'govuk_frontend_toolkit', github: 'alphagov/govuk_frontend_toolkit_gem',
                               submodules: true
@@ -68,6 +69,8 @@ gem 'shoryuken'
 gem 'foreman'
 gem 'pg_search'
 gem "active_hash"
+
+gem 'whenever'
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'

@@ -30,4 +30,14 @@ class Admin::BaseController < ApplicationController
   def current_subject
     current_admin
   end
+
+  def load_settings
+    if params[:year] && Settings::AVAILABLE_YEARS.include?(params[:year].to_i)
+      @settings = Settings.for_year(params[:year].to_i)
+    else
+      @settings = Settings.current
+    end
+
+    @deadlines = @settings.deadlines.to_a
+  end
 end

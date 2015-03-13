@@ -1,0 +1,16 @@
+- deadline = @deadlines.detect { |d| d.kind == kind }.decorate
+
+.deadline id="deadline-#{deadline.id}"
+  .form-value
+    => deadline.message
+    span.trigger-at
+      = deadline.formatted_trigger_time
+  .deadline-form.form-inline
+    .row
+      = simple_form_for deadline, url: admin_settings_deadline_path(deadline), remote: true do |f|
+        .col-sm-6
+          = f.input :trigger_at, as: :separated_date_time, input_html: { id: '' }
+        .col-sm-4.control-action
+          = f.submit "Save", class: "btn btn-primary"
+
+  = link_to "Edit", "#", class: 'edit-deadline'

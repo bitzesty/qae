@@ -64,12 +64,13 @@ html.no-js
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' Award Year
-                      = "2015 - 2016"
+                      - year = params[:year] ? params[:year].to_i : Date.current.year
+                      = "#{year} - #{year + 1}"
                       span.caret
                     ul.dropdown-menu
-                      - [2015, 2016, 2017, 2018].each do | start_year |
+                      - Settings::AVAILABLE_YEARS.each do | start_year |
                         li
-                          = link_to "Award Year #{start_year} - #{start_year + 1}"
+                          = link_to "Award Year #{start_year} - #{start_year + 1}", admin_settings_url(year: start_year)
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown

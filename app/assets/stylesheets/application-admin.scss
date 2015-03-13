@@ -1,5 +1,6 @@
 /*
  *= require_self
+ *= require jquery-ui
  */
 
 // Bootstrap
@@ -20,3 +21,4 @@ $button-colour: #00823b;
 @import "admin/page-applications";
 @import "admin/page-users";
 @import "admin/page-settings";
+@import "admin/time_picker";

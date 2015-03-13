@@ -1,0 +1,19 @@
+- notifications = @email_notifications.select { |n| n.kind == kind }
+- notifications = EmailNotificationDecorator.decorate_collection(notifications)
+
+.panel-section id="email_notification_#{kind}"
+  p
+    = I18n.t("email_notification_headers.#{kind}")
+  p
+    = link_to "View email example", "#", class: "link-email-example"
+    div.email-example
+      = MailRenderer.new.public_send(kind)
+
+  = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule"
+
+  .notification-form
+    = render "schedule_new", notification: @settings.email_notifications.build(kind: kind)
+
+  ul.notifications
+    - notifications.each do |notification|
+      = render 'notification', notification: notification.decorate

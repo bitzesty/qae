@@ -93,7 +93,6 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
-    resources :settings, only: [:index]
     resources :users
     resources :assessors
     resources :admins
@@ -113,14 +112,11 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :notifications, only: [] do
-      collection do
-        get :confirm_notify_shortlisted
-        get :confirm_notify_non_shortlisted
-        post :trigger_notify_shortlisted
-        post :trigger_notify_non_shortlisted
-      end
+    resource :settings, only: [:show] do
+      resources :deadlines, only: [:update]
+      resources :email_notifications, only: [:create, :update, :destroy]
     end
+
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
   end
