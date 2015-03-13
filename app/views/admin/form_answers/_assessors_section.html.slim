@@ -17,7 +17,7 @@
       label
         span.icon-role 1
         ' Primary:
-      - if current_subject.try(:lead?, resource) || current_subject.is_a?(Admin)
+      - if policy(resource).assign_assessor?
         = form_for([namespace_name, (resource.assessor_assignments.primary || AssessorAssignment.new(position: "primary"))]) do |form|
           .form-fields
             = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.email, a.id]}, { include_blank: true }
@@ -38,7 +38,7 @@
       label
         span.icon-role 2
         span.assessor-label Secondary:
-      - if current_subject.try(:lead?, resource) || current_subject.is_a?(Admin)
+      - if policy(resource).assign_assessor?
         = form_for([namespace_name, (resource.assessor_assignments.secondary || AssessorAssignment.new(position: "secondary"))]) do |form|
           .form-fields
             = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.email, a.id]}, { include_blank: true }
