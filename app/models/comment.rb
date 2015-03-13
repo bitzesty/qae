@@ -17,4 +17,12 @@ class Comment < ActiveRecord::Base
   def author?(subject)
     authorable == subject
   end
+
+  def self.admin
+    where(section: 0)
+  end
+
+  def self.critical
+    where(section: 1)
+  end
 end

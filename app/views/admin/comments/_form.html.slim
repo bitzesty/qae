@@ -1,6 +1,7 @@
 .comment-new
   label
     ' Add a comment
+  = f.hidden_field :section
   = f.text_area :body, class: 'form-control', rows: 4
   .comment-actions
     = link_to "#flag-comment", class: "link-flag-comment"

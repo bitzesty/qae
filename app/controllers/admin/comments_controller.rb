@@ -4,7 +4,7 @@ class Admin::CommentsController < Admin::BaseController
     authorize @comment, :create?
 
     respond_to do |format|
-      format.html{ render :new, layout: false}
+      format.html { render :new, layout: false }
     end
   end
 
@@ -39,7 +39,8 @@ class Admin::CommentsController < Admin::BaseController
   helper_method :form_answer
 
   def create_params
-    params.require(:comment).permit :body
+    # Depends on the context - todo
+    params.require(:comment).permit :body, :section
   end
 
   def form_answer
