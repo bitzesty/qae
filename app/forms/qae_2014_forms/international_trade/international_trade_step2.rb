@@ -51,11 +51,12 @@ class QAE2014Forms
         end
 
         header :overseas_markets_header, "Overseas Markets" do
+          ref "B 4"
         end
 
         textarea :markets_geo_spread, "Describe the geographical spread of your overseas markets." do
-          ref "B 4"
           required
+          classes "sub-question"
           context %(
             <p>Include evidence of how you segment and manage geographical regions. Please supply market share information.</p>
                     )
