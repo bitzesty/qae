@@ -19,12 +19,13 @@
           = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
             .current-question.qae-form#current-question
               .question
-                h2
-                  = @eligibility.class.label(step)
-                - if @eligibility.is_a?(Eligibility::Basic)
-                  = render "form_award_eligibilities/basic_questions/#{step.to_s}", f: f
-                - else
-                  = render("form_award_eligibilities/questions/#{step.to_s}", f: f) rescue render("form_award_eligibilities/questions/question", f: f, question: step.to_s)
+                label
+                  h2
+                    = @eligibility.class.label(step)
+                  - if @eligibility.is_a?(Eligibility::Basic)
+                    = render "form_award_eligibilities/basic_questions/#{step.to_s}", f: f
+                  - else
+                    = render("form_award_eligibilities/questions/#{step.to_s}", f: f) rescue render("form_award_eligibilities/questions/question", f: f, question: step.to_s)
 
               .next-question
                 = f.submit "Continue", class: "button medium"

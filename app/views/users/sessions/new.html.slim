@@ -13,15 +13,17 @@
 
           .form-inputs
             .question
-              h2 Email
-              .question-body
-                = f.input :email, required: false, autofocus: true, label: false, input_html: {class: "medium"}
+              label
+                h2 Email
+                .question-body
+                  = f.input :email, required: false, autofocus: true, label: false, input_html: {class: "medium"}
 
           .form-inputs
             .question
-              h2 Password
-              .question-body
-                = f.input :password, required: false, label: false, input_html: {class: "medium"}
+              label
+                h2 Password
+                .question-body
+                  = f.input :password, required: false, label: false, input_html: {class: "medium"}
 
           .form-inputs
             .question

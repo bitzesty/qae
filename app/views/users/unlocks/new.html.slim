@@ -15,9 +15,10 @@
 
           .form-inputs
             .question
-              h2 Email
-              .question-body
-                = f.input :email, required: true, autofocus: true, label: false, input_html: {class: "medium"}
+              label
+                h2 Email
+                .question-body
+                  = f.input :email, required: true, autofocus: true, label: false, input_html: {class: "medium"}
 
           .form-actions
             = f.button :submit, "Resend unlock instructions", class: "button large"

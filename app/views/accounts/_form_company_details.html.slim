@@ -1,7 +1,8 @@
 fieldset
-  h3
-    ' Name of your organisation
-  = f.input :company_name, input_html: { class: 'big medium', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+  label
+    h3
+      ' Name of your organisation
+    = f.input :company_name, input_html: { class: 'big medium', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
 
 /fieldset
   h3
@@ -18,6 +19,7 @@ fieldset
   = f.input :company_postcode, input_html: { class: "big small", autocomplete: "off"}, label: 'Postcode'
 
 fieldset
-  h3
-    ' Main telephone number
-  = f.input :company_phone_number, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+  label
+    h3
+      ' Main telephone number
+    = f.input :company_phone_number, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
