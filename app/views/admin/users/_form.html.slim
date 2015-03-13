@@ -46,16 +46,17 @@
         .panel-body
           = render "fields_password", f: f
 
-  br
-  = link_to "Cancel",
-            admin_users_path,
-            class: "btn btn-default btn-md"
+    br
+    = link_to "Cancel",
+              admin_users_path,
+              class: "btn btn-default btn-md"
 
-  .pull-right
-    - if action_name == "edit" && policy(resource).destroy?
-      = link_to "Delete", admin_user_path(resource), data: { method: :delete, confirm: "Are you sure?" }, class: "btn btn-danger btn-md"
+    .pull-right
+      - if action_name == "edit" && policy(resource).destroy?
+        = link_to "Delete", admin_user_path(resource), data: { method: :delete, confirm: "Are you sure?" }, class: "btn btn-danger btn-md"
 
-      ' &nbsp;
+        ' &nbsp;
 
-    = f.button :submit,
-              class: "btn btn-primary btn-md"
+      = f.button :submit,
+                class: "btn btn-primary btn-md"
+    .clear
