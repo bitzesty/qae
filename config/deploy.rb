@@ -1,4 +1,6 @@
 require 'capistrano/rails/migrations'
+require "whenever/capistrano"
+
 
 # config valid only for Capistrano 3.1
 lock '3.2.1'
@@ -23,10 +25,6 @@ set :deploy_to, "/home/qae/application"
 set :deploy_via, :remote_cache
 
 # Default value for :linked_files is []
-set :whenever_command, "bundle exec whenever"
-
-require "whenever/capistrano"
-
 set :linked_files, %w(config/database.yml config/secrets.yml .env)
 
 # Default value for linked_dirs is []
