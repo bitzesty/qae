@@ -10,7 +10,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
     scope = current_assessor.applications_assigned_to_as
 
     @search = FormAnswerSearch.new(scope).search(params[:search])
-    @form_answers = @search.results.page(params[:page])
+    @form_answers = @search.results.page(params[:page]).includes(:comments)
   end
 
   def show

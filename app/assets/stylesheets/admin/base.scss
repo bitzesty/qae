@@ -367,9 +367,21 @@ table .ellipsis {
   .icon-flagged {
     background-image: image-url("icon-flag.png");
     background-size: 20px 26px;
+    position: relative;
 
     @include is-retina {
       background-image: image-url("icon-flag@2.png");
+    }
+
+    .flag-count {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      margin-left: -5px;
+      color: $black;
+      font-size: 10px;
+      font-weight: bold;
+      text-indent: 0;
     }
   }
 

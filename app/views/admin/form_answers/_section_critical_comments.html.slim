@@ -5,6 +5,8 @@
         ' Critical Comments
   #section-critical-comments.section-critical-comments.panel-collapse.collapse role="tabpanel" aria-labelledby="critical-comments-heading"
     .panel-body
-      .comments-container.comment-assessor data-comment-form=new_admin_form_answer_comment_path(@form_answer)
+      .comments-container.comment-assessor
+        = form_for([namespace_name, @form_answer, Comment.new(commentable: @form_answer, section: "critical")]) do |f|
+          = render("admin/comments/form", f: f)
         .comment-insert
-        = render(collection: @form_answer.comments, partial: 'comment')
+        = render(collection: @form_answer.comments.critical, partial: "admin/form_answers/comment")

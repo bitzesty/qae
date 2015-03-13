@@ -83,7 +83,9 @@ Rails.application.routes.draw do
   namespace :assessor do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
-    resources :form_answers
+    resources :form_answers do
+      resources :comments
+    end
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
   end
