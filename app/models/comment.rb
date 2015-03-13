@@ -19,10 +19,14 @@ class Comment < ActiveRecord::Base
   end
 
   def self.admin
-    where(section: 0)
+    where(section: 0).order(created_at: :desc)
   end
 
   def self.critical
-    where(section: 1)
+    where(section: 1).order(created_at: :desc)
+  end
+
+  def self.flagged
+    where(flagged: true).order(created_at: :desc)
   end
 end

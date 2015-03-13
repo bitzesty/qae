@@ -20,7 +20,7 @@
   .comment-content
     = comment.body
   = form_for([namespace_name, @form_answer, comment], remote: true, authenticity_token: true) do |f|
-    = f.check_box :flagged, class: "flag-comment-checkbox", class: "if-js-hide"
+    = f.check_box :flagged, class: "flag-comment-checkbox if-js-hide"
     .comment-action
       = l comment.created_at, format: :date_at_time
       span.divider •

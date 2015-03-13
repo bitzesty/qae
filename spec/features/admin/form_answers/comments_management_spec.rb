@@ -9,6 +9,7 @@ I want to be able to view, create and destroy the comments per application.
   let!(:admin) { create(:admin) }
   let!(:form_answer) { create(:form_answer) }
   let(:admin_comments) { "#section-admin-comments" }
+  let(:critical_comments) { "#section-critical-comments" }
   before do
     login_admin(admin)
     visit admin_form_answer_path(form_answer)
@@ -39,6 +40,37 @@ I want to be able to view, create and destroy the comments per application.
       visit admin_form_answer_path(form_answer)
     end
     expect(page).to have_css(".comment-content", text: "body")
+  end
+
+  describe "adding flags", js: true do
+    context "Admin comments" do
+      it "adds flag to created comment" do
+        first("#admin-comments-heading a").click
+        within admin_comments do
+          populate_comment_form
+          find(".link-flag-comment").click
+          click_button "Comment"
+          expect(page).to have_selector(".comment-flagged", count: 1)
+
+          within ".comment" do
+            find(".link-flag-comment").click #unclick flag
+          end
+          visit admin_form_answer_path(form_answer)
+          expect(page).to have_selector(".comment-flagged", count: 0)
+        end
+      end
+    end
+    context "Critical comments" do
+      it "adds flag to created comment" do
+        first("#critical-comments-heading a").click
+        within critical_comments do
+          populate_comment_form
+          find(".link-flag-comment").click
+          click_button "Comment"
+          expect(page).to have_selector(".comment-flagged", count: 1)
+        end
+      end
+    end
   end
 
   private

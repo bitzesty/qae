@@ -105,7 +105,7 @@
                   - if obj.comments.any?
                     = link_to [:admin, obj]
                       = application_comments(obj)
-                td = application_flags(obj)
+                td = application_flags(obj.comments)
                 td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"
 
   .row
