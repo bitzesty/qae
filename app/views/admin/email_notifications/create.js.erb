@@ -6,5 +6,5 @@ wrapper = $("#email_notification_" + "<%= @email_notification.kind %>");
   $(".timepicker", wrapper).timePicker()
   $(".datepicker", wrapper).datepicker()
 <% else %>
-  $(".notification-form input", wrapper).closest(".input").addClass("field_with_errors");
+  $(".notification-form input", wrapper).closest(".input").addClass("field-with-errors");
 <% end %>

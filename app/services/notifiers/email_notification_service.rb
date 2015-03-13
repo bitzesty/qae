@@ -6,7 +6,7 @@ class Notifiers::EmailNotificationService
   end
 
   def initialize
-    @email_notifications = Settings.current.email_notifications.where("trigger_at < ?", Time.now.utc).where(sent: false)
+    @email_notifications = Settings.current.email_notifications.current
   end
 
   def run

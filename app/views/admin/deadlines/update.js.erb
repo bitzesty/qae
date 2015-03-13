@@ -8,5 +8,5 @@ wrapper = $("#deadline-" + "<%= @deadline.id %>");
   $(".deadline-form input.timepicker", wrapper).val("<%= @deadline.formatted_trigger_at_time %>");
   $(".trigger-at", wrapper).html("<%= @deadline.decorate.formatted_trigger_time %>");
 <% else %>
-  $(".deadline-form input", wrapper).closest(".input").addClass("field_with_errors");
+  $(".deadline-form input", wrapper).closest(".input").addClass("field-with-errors");
 <% end %>
