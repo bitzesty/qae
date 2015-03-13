@@ -1103,3 +1103,34 @@ table .ellipsis {
     }
   }
 }
+
+// Fields that are added dynamically
+.list-add {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    display: block;
+
+    .form-group & .row,
+    .form-control {
+      margin-bottom: 0;
+    }
+
+    .form-control {
+      @include screen-sm-max {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .pull-right {
+    margin-top: 0.4em;
+
+    @include screen-sm-max {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+  }
+}
