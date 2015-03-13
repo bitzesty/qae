@@ -9,4 +9,18 @@ describe MailRenderer do
       expect(rendered).to match("Enterprise promotion Award 2015")
     end
   end
+
+  describe "#shortlisted_notifier" do
+    it "renders e-mail" do
+      rendered = described_class.new.shortlisted_notifier
+      expect(rendered).to match("Jon Doe")
+    end
+  end
+
+  describe "#not_shortlisted_notifier" do
+    it "renders e-mail" do
+      rendered = described_class.new.not_shortlisted_notifier
+      expect(rendered).to match("Jon Doe")
+    end
+  end
 end

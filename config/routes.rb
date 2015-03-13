@@ -117,14 +117,6 @@ Rails.application.routes.draw do
       resources :email_notifications, only: [:create, :update, :destroy]
     end
 
-    resources :notifications, only: [] do
-      collection do
-        get :confirm_notify_shortlisted
-        get :confirm_notify_non_shortlisted
-        post :trigger_notify_shortlisted
-        post :trigger_notify_non_shortlisted
-      end
-    end
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
   end

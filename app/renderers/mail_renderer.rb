@@ -9,6 +9,12 @@ class MailRenderer
     end
   end
 
+  # this will be removed after all methods are implemented
+  %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit winners_press_release_comments_request unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
+    define_method method do
+      "<b>TODO</b>".html_safe
+    end
+  end
 
   def shortlisted_audit_certificate_reminder
     assigns = {}
@@ -18,7 +24,25 @@ class MailRenderer
     assigns[:form_answer] = FormAnswer.new(id: 0, user: assigns[:user], award_type: 'promotion').decorate
     assigns[:award_title] = assigns[:form_answer].award_application_title
 
+    render(assigns, "users/audit_certificate_request_mailer/notify")
+  end
+
+  def not_shortlisted_notifier
+    assigns = {}
+    assigns[:user] = User.new(first_name: 'Jon', last_name: 'Doe').decorate
+    render(assigns, "users/notify_non_shortlisted_mailer/notify")
+  end
+
+  def shortlisted_notifier
+    assigns = {}
+    assigns[:user] = User.new(first_name: 'Jon', last_name: 'Doe').decorate
+    render(assigns, "users/notify_shortlisted_mailer/notify")
+  end
+
+  private
+
+  def render(assigns, template)
     view = View.new(ActionController::Base.view_paths, assigns)
-    view.render(template: "users/audit_certificate_request_mailer/notify")
+    view.render(template: template)
   end
 end

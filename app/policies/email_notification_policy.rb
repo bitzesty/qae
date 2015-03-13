@@ -4,10 +4,10 @@ class EmailNotificationPolicy < ApplicationPolicy
   end
 
   def update?
-    admin?
+    !record.sent? && admin?
   end
 
   def destroy?
-    admin?
+    !record.sent? && admin?
   end
 end

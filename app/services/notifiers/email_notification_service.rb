@@ -1,14 +1,6 @@
 class Notifiers::EmailNotificationService
   attr_reader :email_notifications
 
-  MAPPER = {
-    shortlisted_audit_certificate_reminder: {
-      class: 'Notifiers::Shortlist::AuditCertificateRequest',
-      iterate_on: 'FormAnswer',
-      scope: 'shortlisted_with_no_certificate'
-    }
-  }
-
   def self.run
     new.run
   end
@@ -19,22 +11,34 @@ class Notifiers::EmailNotificationService
 
   def run
     email_notifications.each do |notification|
-      if settings = notification_settings(notification.kind)
-        entities = settings[:iterate_on].constantize.public_send(settings[:scope])
+      public_send(notification.kind)
 
-        entities.each do |entity|
-          service = settings[:class].constantize
-          service.new(entity).run
-        end
-
-        notification.update_column(:sent, true)
-      end
+      notification.update_column(:sent, true)
     end
   end
 
-  private
+  # this will be removed after all methods are implemented
+  %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit winners_press_release_comments_request unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
+    define_method method do
+      nil
+    end
+  end
 
-  def notification_settings(kind)
-    MAPPER[kind.to_sym]
+  def shortlisted_notifier
+    User.shortlisted.each do |user|
+      Users::NotifyShortlistedMailer.notify(user).deliver_later!
+    end
+  end
+
+  def not_shortlisted_notifier
+    User.non_shortlisted.each do |user|
+      Users::NotifyNonShortlistedMailer.notify(user).deliver_later!
+    end
+  end
+
+  def shortlisted_audit_certificate_reminder
+    FormAnswer.shortlisted_with_no_certificate.each do |form_answer|
+      Notifiers::Shortlist::AuditCertificateRequest.new(form_answer).run
+    end
   end
 end
