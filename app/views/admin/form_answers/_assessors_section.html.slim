@@ -26,7 +26,7 @@
             ' Edit
           = form.submit :add, class: "btn btn-primary form-save-button"
 
-      .form-value class=("ellipsis edit-value" if current_subject.try(:lead?, resource) || current_subject.is_a?(Admin))
+      .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
         - if resource.assessors.primary.present?
           = link_to "#", class: "ellipsis"
             = resource.assessors.primary.try(:full_name)
@@ -47,7 +47,7 @@
             ' Edit
           = form.submit :add, class: "btn btn-primary form-save-button"
 
-      .form-value class=("ellipsis edit-value" if current_subject.try(:lead?, resource) || current_subject.is_a?(Admin))
+      .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
         - if resource.assessors.secondary.present?
           = link_to "#", class: "ellipsis"
             = resource.assessors.secondary.try(:full_name)
