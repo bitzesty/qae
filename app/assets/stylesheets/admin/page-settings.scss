@@ -25,7 +25,9 @@
     }
   }
 
-  .form-value {
+  .form-value,
+  .deadline-form,
+  .notification-edit-form {
     display: inline-block;
     width: 35em;
 
@@ -44,7 +46,7 @@
   }
 
   .well {
-    max-width: 300px;
+    max-width: 430px;
     margin: 20px 0;
     background-color: $white-true;
     box-shadow: none;
@@ -91,5 +93,19 @@
     background: transparent;
     border: none;
     color: $error-colour;
+  }
+
+  .actions {
+    .button_to {
+      display: inline;
+
+      input[type="submit"] {
+        text-align: center;
+        color: #337ab7;
+        background: none;
+        padding: 0;
+        border: none;
+      }
+    }
   }
 }

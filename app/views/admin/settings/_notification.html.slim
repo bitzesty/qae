@@ -10,7 +10,7 @@ li id="notification-#{notification.id}"
   .notification-edit-form.form-inline
     .row
       = simple_form_for notification, url: admin_settings_email_notification_path(notification), remote: true do |f|
-        .col-sm-4
+        .col-sm-6
           = f.input :trigger_at, as: :separated_date_time, input_html: { id: '' }
         .col-sm-4.control-action
           = f.submit "Save", class: "btn btn-primary"
@@ -19,4 +19,4 @@ li id="notification-#{notification.id}"
 
     - if policy(notification).destroy?
       '  |
-      = button_to "Delete", admin_settings_email_notification_path(notification), method: :delete, remote: true
+      = button_to "Delete", admin_settings_email_notification_path(notification), { onclick: "return confirm('Are you sure?')", method: :delete, remote: true }

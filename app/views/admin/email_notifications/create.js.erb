@@ -1,8 +1,10 @@
 wrapper = $("#email_notification_" + "<%= @email_notification.kind %>");
 
 <% if @email_notification.valid? %>
-  $(".notification-form", wrapper).hide();
   $("ul.notifications", wrapper).append('<%= escape_javascript(render "admin/settings/notification", notification: @email_notification.decorate) %>');
+  $(".notification-edit-form, .notification-form", wrapper).hide();
+  $(".timepicker", wrapper).timePicker()
+  $(".datepicker", wrapper).datepicker()
 <% else %>
   $(".notification-form input", wrapper).closest(".input").addClass("field_with_errors");
 <% end %>
