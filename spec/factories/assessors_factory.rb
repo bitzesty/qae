@@ -12,5 +12,12 @@ FactoryGirl.define do
       development_role "lead"
       promotion_role "lead"
     end
+
+    trait :lead_for_trade do
+      trade_role "lead"
+    end
+
+    trait :regular_for_trade do
+    end
   end
 end

@@ -1,17 +1,23 @@
 class CommentPolicy < ApplicationPolicy
   def create?
-    true # TODO: it's not true
+    return true if admin?
+    lead_or_assigned?
   end
 
   def update?
     return true if admin?
-    if assessor? && record.critical?
-      subject.lead?(record.commentable) ||
-        subject.regular?(record.commentable)
-    end
+    lead_or_assigned?
   end
 
   def destroy?
     record.author?(subject)
+  end
+
+  private
+
+  def lead_or_assigned?
+    assessor? &&
+      record.critical? &&
+      subject.lead_or_assigned?(record.commentable)
   end
 end

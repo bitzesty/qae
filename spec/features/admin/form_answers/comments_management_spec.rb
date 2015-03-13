@@ -52,7 +52,7 @@ I want to be able to view, create and destroy the comments per application.
           expect(page).to have_selector(".comment-flagged", count: 1)
 
           within ".comment" do
-            find(".link-flag-comment").click #unclick flag
+            find(".link-flag-comment").click # unclick flag
           end
           visit admin_form_answer_path(form_answer)
           expect(page).to have_selector(".comment-flagged", count: 0)

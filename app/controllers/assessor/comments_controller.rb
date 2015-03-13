@@ -19,8 +19,12 @@ class Assessor::CommentsController < Assessor::BaseController
 
     respond_to do |format|
       format.html do
-        render partial: "admin/form_answers/comment",
-               locals: { comment: @comment, resource: form_answer }
+        if request.xhr?
+          render partial: "admin/form_answers/comment",
+                 locals: { comment: @comment, resource: form_answer }
+        else
+          redirect_to assessor_form_answer_path(form_answer)
+        end
       end
     end
   end

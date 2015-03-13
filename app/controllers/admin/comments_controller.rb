@@ -19,7 +19,12 @@ class Admin::CommentsController < Admin::BaseController
 
     respond_to do |format|
       format.html do
-        render partial: 'admin/form_answers/comment', locals: { comment: @comment, resource: form_answer }
+        if request.xhr?
+          render partial: "admin/form_answers/comment",
+                 locals: { comment: @comment, resource: form_answer }
+        else
+          redirect_to admin_form_answer_path(form_answer)
+        end
       end
     end
   end

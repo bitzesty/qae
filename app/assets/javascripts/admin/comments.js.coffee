@@ -1,5 +1,5 @@
 ready = ->
-  $('body').on 'submit', '.new_comment', (e)->
+  $('body').on 'submit', '.new_comment', (e) ->
     that = $(this)
     e.preventDefault()
     $.ajax
@@ -11,7 +11,7 @@ ready = ->
         that.parents(".comments-container").find("textarea").val("")
         that.parents(".comments-container").find(".comment-insert").after(data)
 
-  $('body').on 'submit', '.destroy-comment', (e)->
+  $('body').on 'submit', '.destroy-comment', (e) ->
     e.preventDefault()
     $.ajax
       url: $(this).attr('action'),
@@ -24,16 +24,18 @@ ready = ->
 toggleFlagged = ->
   $(document).on "click", ".link-flag-comment", (e) ->
     e.preventDefault()
-
+    flagged = "comment-flagged"
     newComment = $(this).closest(".comment-actions")
-    newComment.toggleClass("comment-flagged")
-    state = newComment.is(".comment-flagged")
-    newComment.closest(".comment-new").find(".flag-comment-checkbox").prop("checked", state)
+    newComment.toggleClass(flagged)
+    newComment.closest(".comment-new").
+      find(".flag-comment-checkbox").
+      prop("checked", newComment.hasClass(flagged))
 
     editComment = $(this).closest(".comment")
-    editComment.toggleClass("comment-flagged")
-    state = editComment.is(".comment-flagged")
-    editComment.find(".flag-comment-checkbox").prop("checked", state)
+    editComment.toggleClass(flagged)
+    state = editComment.is(flagged)
+    editComment.find(".flag-comment-checkbox").
+      prop("checked", editComment.hasClass(flagged))
     form = editComment.find(".edit_comment")
     form.submit()
 deleteCommentAlert = ->
