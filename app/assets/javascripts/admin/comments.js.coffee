@@ -1,5 +1,6 @@
 ready = ->
-  $('body').on 'submit', '#new_comment', (e)->
+  $('body').on 'submit', '.new_comment', (e)->
+    that = $(this)
     e.preventDefault()
     $.ajax
       url: $(this).attr('action'),
@@ -7,8 +8,8 @@ ready = ->
       data: $(this).serialize(),
       dataType: 'HTML',
       success: (data)->
-        $('#new_comment textarea').val("")
-        $('.comments-container .comment-insert').after(data)
+        that.parents(".comments-container").find("textarea").val("")
+        that.parents(".comments-container").find(".comment-insert").after(data)
 
   $('body').on 'submit', '.edit_comment', (e)->
     e.preventDefault()
