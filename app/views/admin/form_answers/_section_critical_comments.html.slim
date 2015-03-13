@@ -9,4 +9,4 @@
         = form_for([namespace_name, @form_answer, Comment.new(commentable: @form_answer, section: "critical")]) do |f|
           = render("admin/comments/form", f: f)
         .comment-insert
-        = render(collection: @form_answer.comments.critical, partial: 'comment')
+        = render(collection: @form_answer.comments.critical.reverse, partial: "comment")

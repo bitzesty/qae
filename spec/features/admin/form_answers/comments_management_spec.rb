@@ -8,21 +8,24 @@ I want to be able to view, create and destroy the comments per application.
 
   let!(:admin) { create(:admin) }
   let!(:form_answer) { create(:form_answer) }
-
+  let(:admin_comments) { "#section-admin-comments" }
   before do
     login_admin(admin)
     visit admin_form_answer_path(form_answer)
   end
 
   it "adds the comment" do
-    populate_comment_form
-
-    expect { click_button "Comment" }.to change { Comment.count }.by(1)
+    within admin_comments do
+      populate_comment_form
+      expect { click_button "Comment" }.to change { Comment.count }.by(1)
+    end
   end
 
   it "deletes the comment" do
-    populate_comment_form
-    click_button "Comment"
+    within admin_comments do
+      populate_comment_form
+      click_button "Comment"
+    end
 
     expect{
       find(".link-delete-comment-confirm").click
@@ -30,10 +33,11 @@ I want to be able to view, create and destroy the comments per application.
   end
 
   it "displays the comments" do
-    populate_comment_form
-    click_button "Comment"
-    visit admin_form_answer_path(form_answer)
-
+    within admin_comments do
+      populate_comment_form
+      click_button "Comment"
+      visit admin_form_answer_path(form_answer)
+    end
     expect(page).to have_css(".comment-content", text: "body")
   end
 

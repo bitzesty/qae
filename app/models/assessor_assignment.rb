@@ -21,6 +21,7 @@ class AssessorAssignment < ActiveRecord::Base
 
     validate :submitted_at_immutability
     validate :assessor_existence
+    validate :assessor_assignment_to_category
   end
 
   begin :associations
@@ -138,5 +139,9 @@ class AssessorAssignment < ActiveRecord::Base
     if moderated? && assessor_id.present?
       errors.add(:assessor_id, "Can not be present for moderated assessment.")
     end
+  end
+
+  def assessor_assignment_to_category
+    # TODO: check if assessor is regular or lead per form category
   end
 end

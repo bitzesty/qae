@@ -1,4 +1,6 @@
 class Admin::CommentsController < Admin::BaseController
+  helper_method :form_answer
+
   def new
     @comment = form_answer.comments.build
     authorize @comment, :create?
@@ -22,6 +24,16 @@ class Admin::CommentsController < Admin::BaseController
     end
   end
 
+  def update
+    authorize resource, :update?
+    resource.update(update_params)
+
+    respond_to do |format|
+      format.html { redirect_to([namespace_name, form_answer]) }
+      format.js { render nothing: true }
+    end
+  end
+
   def destroy
     @comment = Comment.find(params[:id])
     authorize @comment, :destroy?
@@ -36,11 +48,17 @@ class Admin::CommentsController < Admin::BaseController
 
   private
 
-  helper_method :form_answer
+  def update_params
+    params.require(:comment).permit(:flagged)
+  end
+
+  def resource
+    @comment ||= form_answer.comments.find(params[:id])
+  end
 
   def create_params
     # Depends on the context - todo
-    params.require(:comment).permit :body, :section
+    params.require(:comment).permit :body, :section, :flagged
   end
 
   def form_answer
