@@ -79,7 +79,7 @@
                 td= obj.assessors.primary.try(:full_name) || "Not Assigned"
                 td= obj.assessors.secondary.try(:full_name) || "Not Assigned"
                 td
-                td Not implemented
+                td = application_flags(obj.comments)
 
   .row
     .col-xs-12.text-right

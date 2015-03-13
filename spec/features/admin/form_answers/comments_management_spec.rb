@@ -5,7 +5,6 @@ describe "Admin comments management", %(
 As a Admin
 I want to be able to view, create and destroy the comments per application.
 ) do
-
   let!(:admin) { create(:admin) }
   let!(:form_answer) { create(:form_answer) }
   let(:admin_comments) { "#section-admin-comments" }
@@ -79,3 +78,4 @@ I want to be able to view, create and destroy the comments per application.
     fill_in("comment_body", with: "body")
   end
 end
+# TODO: can be added as shared example per assessor
