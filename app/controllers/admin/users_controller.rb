@@ -14,10 +14,6 @@ class Admin::UsersController < Admin::BaseController
     authorize @resource, :create?
   end
 
-  def show
-    authorize @resource, :show?
-  end
-
   def edit
     authorize @resource, :update?
   end
@@ -28,7 +24,8 @@ class Admin::UsersController < Admin::BaseController
     authorize @resource, :create?
 
     @resource.save
-    respond_with :admin, @resource
+    location = @resource.persisted? ? admin_users_path : nil
+    respond_with :admin, @resource, location: location
   end
 
   def update
@@ -40,7 +37,7 @@ class Admin::UsersController < Admin::BaseController
       @resource.update_without_password(resource_params)
     end
 
-    respond_with :admin, @resource
+    respond_with :admin, @resource, location: admin_users_path
   end
 
   def destroy

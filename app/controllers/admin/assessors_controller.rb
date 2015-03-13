@@ -18,7 +18,7 @@ class Admin::AssessorsController < Admin::UsersController
     authorize @resource, :create?
 
     @resource.save
-    location = @resource.persisted? ? admin_assessor_path(@resource) : nil
+    location = @resource.persisted? ? admin_assessors_path : nil
     respond_with :admin, @resource, location: location
   end
 
@@ -31,7 +31,7 @@ class Admin::AssessorsController < Admin::UsersController
       @resource.update_without_password(resource_params)
     end
 
-    respond_with :admin, @resource, location: admin_assessor_path(@resource)
+    respond_with :admin, @resource, location: admin_assessors_path
   end
 
   def destroy
