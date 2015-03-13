@@ -13,10 +13,13 @@
         = f.hidden_field :form_answer_id
         = render_section(resource, f)
         = f.submit :add, class: "if-js-hide"
+      .clear
+      br
       - unless primary_assessment.submitted?
         = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, class: "submit-assessment", "data-type" => "json")
           = hidden_field_tag :assessment_id, primary_assessment.id
-          = submit_tag "Submit Case Assessment"
+          = submit_tag "Submit Case Assessment", class: "btn btn-default btn-block"
           .feedbackHolder
       - else
-        span Assessment Submitted
+        p
+          em Assessment Submitted
