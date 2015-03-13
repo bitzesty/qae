@@ -110,7 +110,7 @@
   }
 }
 
-.submitted-view {
+.inline-form-view {
   margin-top: 15px;
 
   .form-control {
@@ -253,9 +253,45 @@
   }
 }
 
-.section-applicant-users ul label {
-  width: 5.5em;
-  font-weight: normal;
+.section-applicant-users {
+  li {
+    position: relative;
+    clear: both;
+  }
+
+  label {
+    float: left;
+    width: 35%;
+    margin-bottom: 0;
+    font-weight: normal;
+  }
+
+  .form-value,
+  .form-fields {
+    width: 65%;
+    float: right;
+  }
+
+  .edit-value {
+    padding-right: 60px;
+  }
+
+  select {
+    width: 100%;
+  }
+
+  .form-edit-link {
+    position: absolute;
+    right: 0;
+    margin-top: 0;
+    font-size: 14px;
+  }
+
+  .form-save-button {
+    margin-bottom: 10px;
+    float: right;
+    clear: both;
+  }
 }
 
 .centered {
