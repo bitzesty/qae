@@ -107,8 +107,9 @@ ActiveRecord::Schema.define(version: 20150312114528) do
     t.text     "body",                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "authorable_type",              null: false
-    t.integer  "authorable_id",                null: false
+    t.string   "authorable_type",  null: false
+    t.integer  "authorable_id",    null: false
+    t.integer  "section",          null: false
   end
 
   create_table "eligibilities", force: :cascade do |t|
