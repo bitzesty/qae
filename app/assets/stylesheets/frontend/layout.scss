@@ -279,6 +279,8 @@
   z-index: 999;
 }
 #global-header .header-proposition #proposition-menu .user-account-links {
+  display: block;
+
   @media (min-width: 990px) {
     position: absolute;
     top: 0;
@@ -293,6 +295,8 @@
 
     &.dropdown {
       position: relative;
+      width: auto;
+      border: none;
 
       > a .caret {
         display: inline-block;
@@ -315,10 +319,17 @@
         background: $white;
         border: 1px solid $grey-2;
 
+        @media (max-width: 990px) {
+          right: auto;
+          left: 0;
+        }
+
         li {
           float: none;
+          width: auto;
           margin: 0.5em 0;
           padding: 0;
+          border: none;
 
           a {
             display: block;
@@ -326,6 +337,10 @@
             font-weight: normal;
             text-align: right;
             white-space: nowrap;
+
+            @media (max-width: 989px) {
+              text-align: left;
+            }
           }
         }
       }
