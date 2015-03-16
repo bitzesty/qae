@@ -17,7 +17,20 @@ class Admin::AdminsController < Admin::UsersController
     authorize @resource, :create?
 
     @resource.save
-    respond_with :admin, @resource
+    location = @resource.persisted? ? admin_admins_path : nil
+    respond_with :admin, @resource, location: location
+  end
+
+  def update
+    authorize @resource, :update?
+
+    if resource_params[:password].present?
+      @resource.update(resource_params)
+    else
+      @resource.update_without_password(resource_params)
+    end
+
+    respond_with :admin, @resource, location: admin_admins_path
   end
 
   private

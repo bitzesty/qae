@@ -6,11 +6,9 @@ class QAE2014Forms
           ref "F 1"
         end
 
-        dropdown :head_of_bussines_title, "" do
+        dropdown :head_of_bussines_title, "Title" do
           required
-          context %(
-            <p class='question_label_with_5px_margins'>Title</p>
-                    )
+          classes "regular-question"
           option "prof", "Prof"
           option "dr", "Dr"
           option "mr", "Mr"

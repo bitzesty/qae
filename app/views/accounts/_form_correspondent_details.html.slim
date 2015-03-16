@@ -6,11 +6,13 @@ fieldset
   = f.input :last_name, input_html: { class: 'big medium', autocomplete: "off"}
 
 fieldset
-  h3
-    ' Your job title
-  = f.input :job_title, input_html: { class: 'big medium', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+  label
+    h3
+      ' Your job title
+    = f.input :job_title, input_html: { class: 'big medium', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
 
 fieldset
-  h3
-    ' Your telephone number
-  = f.input :phone_number, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+  label
+    h3
+      ' Your telephone number
+    = f.input :phone_number, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }

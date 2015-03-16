@@ -73,13 +73,31 @@
 
         br
 
-        / TODO not sure what input type this should be
+        / TODO placeholder, no JS attached either
         .form-group
           label.form-label Previous winnings
           .form-value
             p -
-          .input.form-group
-            input.form-control type="text"
+          .input.form-group.form-fields
+            ul.list-add
+              li.well
+                .pull-right
+                  = link_to "Remove"
+                .row
+                  .col-sm-5
+                    select.form-control
+                      option Innovation (2 years)
+                      option Innovation (5 years)
+                      option International Trade (3 years)
+                      option International Trade (6 years)
+                      option Sustainable Development (2 years)
+                      option Sustainable Development (5 years)
+                  .col-sm-2
+                    select.form-control
+                      - ((Date.today.year - 6)...Date.today.year).each do |year|
+                        option = year
+
+            = link_to "+ Add another winnings", "#", class: "btn btn-default"
           .clear
 
           = link_to "#", class: "form-edit-link pull-right"

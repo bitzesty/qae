@@ -1,23 +1,56 @@
 / TODO Assessors
+/ probably can be handled by AJAX to keep the data consistent
+/ and for example remove the assigned assessors from the selects
 .well.section-applicant-users
   h2
     ' Assessors
-  /p.p-empty No assessors have been assigned to this case.
   ul.list-unstyled.list-actions
-    li
-      = link_to "#", class: "ellipsis"
+    li.form-group
+      label
         span.icon-role L
-        label Lead:
+        span.assessor-label Lead:
+      .form-value
         ' Not implemented
-    li
-      = link_to "#", class: "ellipsis"
+      .clear
+
+    li.form-group
+      label
         span.icon-role 1
-        label Primary:
-        = resource.assessors.primary.try(:full_name)
-    li
-      = link_to "#", class: "ellipsis"
+        ' Primary:
+      - if policy(resource).assign_assessor?
+        = form_for([namespace_name, (resource.assessor_assignments.primary || AssessorAssignment.new(position: "primary"))]) do |form|
+          .form-fields
+            = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.email, a.id]}, { include_blank: true }
+          = link_to "#", class: "form-edit-link"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          = form.submit :add, class: "btn btn-primary form-save-button"
+
+      .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
+        - if resource.assessors.primary.present?
+          = link_to "#", class: "ellipsis"
+            = resource.assessors.primary.try(:full_name)
+        - else
+          span.p-empty Not assigned
+      .clear
+
+    li.form-group
+      label
         span.icon-role 2
-        label Secondary:
-        = resource.assessors.secondary.try(:full_name)
-- if current_subject.try(:lead?, resource) || current_subject.is_a?(Admin) # temp as ui not sorted
-  = render("admin/form_answers/assessors_form")
+        span.assessor-label Secondary:
+      - if policy(resource).assign_assessor?
+        = form_for([namespace_name, (resource.assessor_assignments.secondary || AssessorAssignment.new(position: "secondary"))]) do |form|
+          .form-fields
+            = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.email, a.id]}, { include_blank: true }
+          = link_to "#", class: "form-edit-link"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          = form.submit :add, class: "btn btn-primary form-save-button"
+
+      .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
+        - if resource.assessors.secondary.present?
+          = link_to "#", class: "ellipsis"
+            = resource.assessors.secondary.try(:full_name)
+        - else
+          span.p-empty Not assigned
+      .clear

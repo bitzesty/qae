@@ -7,18 +7,19 @@
 fieldset class=question.fieldset_classes data=question.fieldset_data_hash
   = condition_divs question do
     - if question.title != ""
-      h2
-        - if question.ref
-          span class="steps step-#{question.ref.to_s.parameterize}"
-            span.visuallyhidden
-              = "Step #{question.ref.to_s}"
-            span.todo
-              = question.ref.to_s
+      label for="q_#{question.key}"
+        h2
+          - if question.ref
+            span class="steps step-#{question.ref.to_s.parameterize}"
+              span.visuallyhidden
+                = "Step #{question.ref.to_s}"
+              span.todo
+                = question.ref.to_s
 
-        == question.title
+          == question.title
 
-        /- unless question.required
-          '  (optional)
+          /- unless question.required
+            '  (optional)
 
     - if question.context
       == question.context
@@ -35,10 +36,11 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
     ul.errors-container
 
     .question-group
-      label
-        span.visuallyhidden
-          = question.title
-          /- unless question.required
-            '  (optional)
+      - if question.title != ""
+        label
+          span.visuallyhidden
+            = question.title
+            /- unless question.required
+              '  (optional)
       = render partial: "qae_form/#{question.delegate_obj.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
       .clear

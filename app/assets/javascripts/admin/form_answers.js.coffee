@@ -23,12 +23,6 @@ ready = ->
       noDoc.text('No documents have been attached to this case.')
       $('.document-list').prepend(noDoc)
 
-
-  $(document).on "click", ".js-switch-admin-view", (e) ->
-    e.preventDefault()
-    $(".applicant-view").toggleClass("hidden")
-    $(".submitted-view").toggleClass("hidden")
-
   $(document).on "click", ".form-edit-link", (e) ->
     e.preventDefault()
     $(this).closest(".form-group").addClass("form-edit")

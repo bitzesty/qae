@@ -4,11 +4,13 @@
 
   - if sub_field_key == :building
     .question-group
-      label
-        ' Building and street
-        ul.errors-container
-        input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'building') value=question.input_value(suffix: 'building') autocomplete="off" *possible_read_only_ops
-      input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" *possible_read_only_ops
+      label for="q_#{question.key}_line_1"
+        ' Building and
+      label for="q_#{question.key}_line_2"
+        ' street
+      ul.errors-container
+      input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'building') value=question.input_value(suffix: 'building') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops
+      input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
   - elsif sub_field_key == :country
     .question-group
       label
