@@ -90,4 +90,24 @@ class ApplicationController < ActionController::Base
                   notice: "Access denied!"
     end
   end
+
+  def settings
+    @settings ||= Settings.current
+  end
+
+  def submission_started?
+    deadline = settings.deadlines.where(kind: "submission_start").first
+    deadline.passed?
+  end
+  helper_method :submission_started?
+
+  def submission_ended?
+    submission_deadline.passed?
+  end
+  helper_method :submission_ended?
+
+  def submission_deadline
+    @submission_deadline ||= settings.deadlines.where(kind: "submission_end").first
+  end
+  helper_method :submission_deadline
 end

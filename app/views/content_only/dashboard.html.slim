@@ -19,37 +19,38 @@ header.page-header.group
 
           br
 
-        h2
-          ' Applying for a Queen’s Award for your organisation?
+        - if submission_started? && !submission_ended?
+          h2
+            ' Applying for a Queen’s Award for your organisation?
 
-        p To begin your application, select the award(s) you want to apply for. You can apply for more than one category, as long as you meet the criteria.
+          p To begin your application, select the award(s) you want to apply for. You can apply for more than one category, as long as you meet the criteria.
 
-        = render "shared/application_awards_status"
+          = render "shared/application_awards_status"
 
-        br
+          br
 
-        h2
-          ' Nominating an individual for the Queen's Award for Enterprise Promotion?
+          h2
+            ' Nominating an individual for the Queen's Award for Enterprise Promotion?
 
-        p To begin a new nomination, click below. You can make more than one nomination as long as you submit a separate application for each of them.
+          p To begin a new nomination, click below. You can make more than one nomination as long as you submit a separate application for each of them.
 
-        ul.applications-list
-          li
-            h3
-              ' Enterprise Promotion Award
-            small
-              /' Unclear eligibility
-            .pull-right
-              = link_to "New nomination", apply_enterprise_promotion_award_path
+          ul.applications-list
+            li
+              h3
+                ' Enterprise Promotion Award
+              small
+                /' Unclear eligibility
+              .pull-right
+                = link_to "New nomination", apply_enterprise_promotion_award_path
 
   .related-positioning.related-positioning-no-header
     .related-container
       .related#related
         .highlighted-event
-          p
-            ' Submission deadline
-            em 23:59 Wednesday
-            em 30 September
+          - if submission_deadline && submission_deadline.trigger_at
+            p
+              ' Submission deadline
+              em = submission_deadline.decorate.formatted_trigger_time
 
         /.inner.group.related-section
           h2#parent-section
