@@ -35,8 +35,8 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def withdraw
     authorize @form_answer, :withdraw?
-    @form_answer.toggle!(:withdrawn)
-    redirect_to action: :index
+    @form_answer.state_machine.withdraw
+    redirect_to action: :show
   end
 
   def update_financials

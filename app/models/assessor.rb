@@ -50,6 +50,7 @@ class Assessor < ActiveRecord::Base
 
   def applications_assigned_to_as(roles = ["regular", "lead"])
     FormAnswer.for_award_type(assigned_categories_as(roles))
+              .where("state NOT IN (?)", FormAnswerStatusFiltering.internal_states("withdrawn"))
   end
 
   def self.role_meth(category)
