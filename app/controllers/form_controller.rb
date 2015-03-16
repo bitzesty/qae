@@ -1,7 +1,7 @@
 require "qae_2014_forms"
 
 class FormController < ApplicationController
-  before_action :authenticate_user!, :check_account_completion
+  before_action :authenticate_user!, :check_account_completion, :check_deadlines
   before_action :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form, :new_enterprise_promotion_form]
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy,
@@ -175,5 +175,19 @@ class FormController < ApplicationController
 
   def nickname
     params[:nickname].presence
+  end
+
+  def check_deadlines
+    return if admin_in_read_only_mode?
+
+    unless submission_started?
+      flash.alert = "Sorry, submission is still closed"
+      redirect_to dashboard_url
+    end
+
+    if submission_ended?
+      flash.alert = "Sorry, submission has already ended"
+      redirect_to dashboard_url
+    end
   end
 end

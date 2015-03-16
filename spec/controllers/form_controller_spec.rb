@@ -8,6 +8,8 @@ describe FormController do
                                      document: { company_name: "Bitzesty" }
   end
 
+  let!(:settings) { create :settings, :submission_deadlines }
+
   before do
     sign_in user
     described_class.skip_before_action :check_basic_eligibility, :check_award_eligibility, :check_account_completion

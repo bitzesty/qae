@@ -1,12 +1,13 @@
 Feature: Creating application forms
   Background:
-    Given I am eligible user
+    Given settings with submission deadlines exists
+    And I am eligible user
 
   Scenario: I see application links on dashboard
     When I go to dashboard
-    Then I should see innovation application link 
-    And I should see international trade application link 
-    And I should see sustainable development application link 
+    Then I should see innovation application link
+    And I should see international trade application link
+    And I should see sustainable development application link
 
   Scenario: I'm able to create innovation form
     When I create innovation form
