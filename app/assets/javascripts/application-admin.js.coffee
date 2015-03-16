@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require bootstrap-sprockets
 #= require jquery.fileupload
+#= require select2.full.min
 #= require ./frontend/password_strength
 #= require_tree ./admin
 #= require search

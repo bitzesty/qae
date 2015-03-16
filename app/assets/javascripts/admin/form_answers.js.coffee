@@ -5,6 +5,8 @@ ready = ->
   bindRags("#section-appraisal-form-secondary .edit_assessor_assignment")
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
 
+  $(".edit_assessor_assignment select").select2()
+
   $('#new_form_answer_attachment').fileupload
     success: (result, textStatus, jqXHR)->
       $('.document-list .p-empty').remove()
