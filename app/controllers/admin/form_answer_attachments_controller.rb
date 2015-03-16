@@ -1,17 +1,15 @@
 class Admin::FormAnswerAttachmentsController < Admin::BaseController
   def create
-    @form_answer_attachment = form_answer.form_answer_attachments.build(create_params)
-    authorize @form_answer_attachment, :create?
+    service = FormAnswerAttachmentService.new(params, current_subject)
+    authorize service.resource, :create?
 
-    @form_answer_attachment.attachable = current_admin
-
-    if @form_answer_attachment.save
+    if service.save
       respond_to do |format|
         format.html do
-          unless request.xhr?
-            redirect_to admin_form_answer_path(form_answer)
+          if request.xhr?
+            render service.for_js
           else
-            render_for_js
+            redirect_to admin_form_answer_path(form_answer)
           end
         end
       end
@@ -42,17 +40,6 @@ class Admin::FormAnswerAttachmentsController < Admin::BaseController
 
   def resource
     @form_answer_attachment ||= form_answer.form_answer_attachments.find(params[:id])
-  end
-
-  def render_for_js
-    render partial: 'form_answer_attachment', locals: {
-                                                        form_answer_attachment: @form_answer_attachment,
-                                                        form_answer: form_answer
-                                                      }
-  end
-
-  def create_params
-    params[:form_answer_attachment].permit(:file)
   end
 
   def form_answer
