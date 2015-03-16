@@ -77,6 +77,10 @@ class FormAnswerStateMachine
     transition_to :submitted1
   end
 
+  def withdraw
+    transition_to :withdrawn1
+  end
+
   def assign_lead_verdict(verdict)
     new_state = {
       "negative" => :not_recommended3,

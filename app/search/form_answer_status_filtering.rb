@@ -1,35 +1,35 @@
 class FormAnswerStatusFiltering
   SUB_OPTIONS = {
     missing_audit_certificate: {
-      label: 'Missing Audit Certificate (not impl.)'
+      label: "Missing Audit Certificate (not impl.)"
     },
     missing_corp_responsibility: {
-      label: 'Missing Corp Responsibility (not impl.)'
+      label: "Missing Corp Responsibility (not impl.)"
     },
 
     missing_feedback: {
-      label: 'Missing Feedback (not impl.)'
+      label: "Missing Feedback (not impl.)"
     },
 
     missing_press_summary: {
-      label: 'Missing Press Summary (not impl.)',
+      label: "Missing Press Summary (not impl.)",
       properties: {
-        checked: 'checked'
+        checked: "checked"
       }
     }
   }
 
   OPTIONS = {
     application_in_progress: {
-      label: 'Application in progress',
+      label: "Application in progress",
       states: [:in_progress1]
     },
     assessment_in_progress: {
-      label: 'Assessment in progress (not impl.)',
+      label: "Assessment in progress (not impl.)",
       states: [:assessment_in_progress2]
     },
     recommended: {
-      label: 'Recommended (not impl.)',
+      label: "Recommended (not impl.)",
       states: [
         :recommended3,
         :recommended4,
@@ -37,7 +37,7 @@ class FormAnswerStatusFiltering
       ]
     },
     reserve: {
-      label: 'Reserve (not impl.)',
+      label: "Reserve (not impl.)",
       states: [
         :reserved3,
         :reserved4,
@@ -45,7 +45,7 @@ class FormAnswerStatusFiltering
       ]
     },
     not_recommended: {
-      label: 'Not recomended (not impl.)',
+      label: "Not recomended (not impl.)",
       states: [
         :not_recommended3,
         :not_recommended4,
@@ -53,7 +53,7 @@ class FormAnswerStatusFiltering
       ]
     },
     not_eligible: {
-      label: 'Not Eligible (not impl.)',
+      label: "Not Eligible (not impl.)",
       states: [
         :not_eligible1,
         :not_eligible2,
@@ -61,7 +61,7 @@ class FormAnswerStatusFiltering
       ]
     },
     withdrawn: {
-      label: 'Withdrawn (not impl.)',
+      label: "Withdrawn",
       states: [
         :withdrawn1,
         :withdrawn2,
