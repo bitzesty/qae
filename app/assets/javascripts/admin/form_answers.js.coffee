@@ -43,6 +43,18 @@ ready = ->
       formGroup.find(".form-value p").text(area.val())
       $(formGroup).closest("form").submit()
 
+  # Show the audit certificates `changes made` textarea
+  # TODO temp
+  $("[name='radio-audit-cert']").on "change", ->
+    $(".audit-cert-changed-val p").text($(".audit-cert-description textarea").val())
+
+    if $("#radio-audit-cert2:checked").size() > 0
+      $(this).closest(".panel-body").addClass("audit-cert-changes-made")
+      $(this).closest(".panel-body").removeClass("audit-cert-no-change")
+    else
+      $(this).closest(".panel-body").removeClass("audit-cert-changes-made")
+      $(this).closest(".panel-body").addClass("audit-cert-no-change")
+
 
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->
