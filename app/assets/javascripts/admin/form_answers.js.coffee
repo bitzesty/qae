@@ -5,7 +5,7 @@ ready = ->
   bindRags("#section-appraisal-form-secondary .edit_assessor_assignment")
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
 
-  $(".edit_assessor_assignment select").select2()
+  $(".section-applicant-users .edit_assessor_assignment select").select2()
 
   $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
     form = $(this)
