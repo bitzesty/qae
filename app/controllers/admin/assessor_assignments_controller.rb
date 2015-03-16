@@ -6,7 +6,14 @@ class Admin::AssessorAssignmentsController < Admin::BaseController
     assessment.save
 
     respond_to do |format|
-      format.js { render(nothing: true) }
+      format.json do
+        if assessment.save
+          render json: { errors: [] }
+        else
+          render status: :unprocessable_entity,
+                 json: { errors: assessment.resource.errors }
+        end
+      end
       format.html { redirect_to(:back) }
     end
   end

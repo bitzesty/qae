@@ -7,6 +7,20 @@ ready = ->
 
   $(".edit_assessor_assignment select").select2()
 
+  $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
+    form = $(this)
+    form.find(".errors-holder").text("")
+    form.closest(".form-group").removeClass("form-edit")
+    formValueBox = form.closest(".form-group").find(".edit-value")
+    formValue = form.find("select :selected").text()
+    formValueBox.text(formValue)
+  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
+    form = $(this)
+    errors = ""
+    for k, error of data.responseJSON["errors"]
+      errors += error
+
+    form.find(".errors-holder").text(errors)
   $('#new_form_answer_attachment').fileupload
     success: (result, textStatus, jqXHR)->
       $('.document-list .p-empty').remove()

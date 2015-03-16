@@ -22,6 +22,7 @@ class AssessorAssignment < ActiveRecord::Base
     validate :submitted_at_immutability
     validate :assessor_existence
     validate :assessor_assignment_to_category
+    validates :assessor_id, uniqueness: { scope: [:form_answer_id] }
   end
 
   begin :associations
