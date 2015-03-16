@@ -42,55 +42,7 @@
                 = link_to val[:label]
         p Case Summary - Missing
         p Audit Certificate - Missing
-
-      .well
-        .sidebar-section
-          h2
-            ' Application & Supporting Docs
-          / TODO uploaded docs by applicant (Can't delete)
-          ul.list-unstyled.list-actions
-            li
-              = link_to "#"
-                span.glyphicon.glyphicon-file
-                ' company-application.pdf
-            li
-              = link_to "#"
-                span.glyphicon.glyphicon-file
-                ' company-compliance-outline.pdf
-
-        .sidebar-section
-          / TODO Auto generated Docs
-          h2
-            ' Post Shortlisting Docs
-          ul.list-unstyled.list-actions
-            li
-              = link_to "View/print Audit Certificate"
-            li
-              = link_to "View/print Case Summary"
-
-        / TODO Only appears for EP but for now we need to think more on it
-        /.sidebar-section
-          h2
-            ' EP ?
-
-        .sidebar-section
-          h2
-            ' Other Docs
-          .document-list
-            - unless @form_answer.form_answer_attachments.any?
-              p.p-empty No documents have been attached to this case.
-            ul.list-unstyled.list-actions
-              - if @form_answer.form_answer_attachments.any?
-                = render(@form_answer.form_answer_attachments)
-            br
-          = form_for [:admin, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
-            span.btn.btn-default.btn-attachment
-              span.attachment-text
-                span.glyphicon.glyphicon-paperclip
-                ' Attach Document
-              = form.file_field :file
-            = form.submit 'Attach Document', class: 'if-js-hide'
-
+      = render("section_documents")
       = render("admin/form_answers/assessors_section")
 
   .col-md-8.submitted-view
