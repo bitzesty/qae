@@ -104,9 +104,13 @@ class QAE2014Forms
             { street: "Street" },
             { city: "Town or city" },
             { country: "Country" },
-            { postcode: "Postcode" },
-            { website_url: "Website URL" }
+            { postcode: "Postcode" }
           ])
+        end
+
+        text :website_url, "Website URL" do
+          classes "regular-question"
+          type :url
         end
 
         text :nominee_position, "Nominee's position at the organisation" do
