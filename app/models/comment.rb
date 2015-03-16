@@ -29,4 +29,12 @@ class Comment < ActiveRecord::Base
   def self.flagged
     where(flagged: true).order(created_at: :desc)
   end
+
+  def main_for?(subject)
+    meth = {
+      "Admin" => :admin?,
+      "Assessor" => :critical?
+    }[subject.class.to_s]
+    public_send(meth)
+  end
 end
