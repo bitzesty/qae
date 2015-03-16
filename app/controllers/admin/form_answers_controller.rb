@@ -5,7 +5,7 @@ class Admin::FormAnswersController < Admin::BaseController
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
     authorize :form_answer, :index?
 
-    @search = FormAnswerSearch.new(FormAnswer.all).search(params[:search])
+    @search = FormAnswerSearch.new(FormAnswer.all, current_admin).search(params[:search])
 
     @form_answers = @search.results.page(params[:page]).includes(:comments)
   end

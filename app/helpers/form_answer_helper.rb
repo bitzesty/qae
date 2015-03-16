@@ -1,9 +1,10 @@
 module FormAnswerHelper
   def application_flags(comments)
-    scope = namespace_name.equal?(:admin) ? :admin? : :critical?
     content_tag :span, class: "icon-flagged" do
       content_tag :span, class: "flag-count" do
-        comments.select(&scope).size.to_s
+        comments.select do |c|
+          c.main_for?(current_subject) && c.flagged?
+        end.size.to_s
       end
     end
   end
