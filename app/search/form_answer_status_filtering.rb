@@ -85,6 +85,7 @@ class FormAnswerStatusFiltering
   end
 
   def self.internal_states(filtering_values)
+    filtering_values = Array(filtering_values)
     filtering_values.flat_map do |val|
       if supported_filter_attrs.include?(val)
         OPTIONS[val.to_sym][:states]
