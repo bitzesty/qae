@@ -85,6 +85,7 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :form_answers do
       resources :comments
+      resources :form_answer_attachments, only: [:create, :show, :destroy]
     end
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]

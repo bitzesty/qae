@@ -1,4 +1,6 @@
 class FormAnswerAttachmentPolicy < ApplicationPolicy
+  # TODO: needs clarification
+
   def create?
     true
   end
