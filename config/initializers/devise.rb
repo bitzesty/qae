@@ -1,11 +1,11 @@
 # Use this hook to configure devise mailer, warden hooks and so forth. The first
 # four configuration values can also be set straight in your models.
 Devise.setup do |config|
-  config.secret_key = ENV['DEVISE_SECRET_KEY']
+  config.secret_key = ENV['DEVISE_SECRET_KEY'] || "2e540986ced007b7f4f525f404de81dd1203f0d029d989b56428b0b5b4b5e19bca5905d9b89420b005fa116879eb518b3322e3474ed5cdfc3d8657ce7aa4c4e2"
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = "no-reply@qae.direct.gov.uk"
+  config.mailer_sender = ENV["MAILER_FROM"] || "support@qae.co.uk"
 
   # Configure the class responsible to send e-mails.
   #config.mailer = "Devise::Mailer"

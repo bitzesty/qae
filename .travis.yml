@@ -8,6 +8,7 @@ addons:
 before_script:
   - /bin/cp $TRAVIS_BUILD_DIR/config/database.yml.example $TRAVIS_BUILD_DIR/config/database.yml
   - /bin/cp $TRAVIS_BUILD_DIR/.env.example $TRAVIS_BUILD_DIR/.env
+  - /bin/cp $TRAVIS_BUILD_DIR/config/secrets.yml.example $TRAVIS_BUILD_DIR/config/secrets.yml
 script:
  - RAILS_ENV=test bundle exec rake db:create
  - RAILS_ENV=test bundle exec rake db:migrate

@@ -1,6 +1,4 @@
-class Users::SupporterMailer < ActionMailer::Base
-  default from: "support@qae.co.uk"
-
+class Users::SupporterMailer < ApplicationMailer
   def success(supporter_id, user_id)
     @user = User.find(user_id).decorate
     @supporter = Supporter.find(supporter_id).decorate

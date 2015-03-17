@@ -1,6 +1,4 @@
-class Users::CollaborationMailer < ActionMailer::Base
-  default from: "support@qae.co.uk"
-
+class Users::CollaborationMailer < ApplicationMailer
   def access_granted(user_who_added, collaborator, new_user=false, generated_password=nil, devise_confirmation_token=nil)
     @user_who_added = user_who_added.decorate
     @collaborator = collaborator
