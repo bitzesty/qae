@@ -1,6 +1,4 @@
-class Users::AuditCertificateRequestMailer < ActionMailer::Base
-  default from: "support@qae.co.uk"
-
+class Users::AuditCertificateRequestMailer < ApplicationMailer
   def notify(user_id, form_answer_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
     @form_owner = @form_answer.user.decorate

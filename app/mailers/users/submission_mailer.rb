@@ -1,6 +1,4 @@
-class Users::SubmissionMailer < ActionMailer::Base
-  default from: "support@qae.co.uk"
-
+class Users::SubmissionMailer < ApplicationMailer
   def success(user_id, form_answer_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
     @form_owner = @form_answer.user.decorate

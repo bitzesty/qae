@@ -39,7 +39,6 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # TODO: uncomment line above once you will apply SSL certificate
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.
@@ -52,7 +51,7 @@ Rails.application.configure do
   # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
 
   # Use a different cache store in production.
-  # Cache settings set in config/initializers/redis.rb
+  # config.cache_store = :mem_cache_store
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
   # config.action_controller.asset_host = "http://assets.example.com"
@@ -60,7 +59,7 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: ENV["MAILER_HOST"] }
+  config.action_mailer.default_url_options = { host: ENV["mailer_host"] }
 
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
@@ -79,5 +78,17 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  # AWS SES mail settings are in config/initializers/aws_ses.rb
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    port:           587,
+    address:        'smtp.mailgun.org',
+    user_name:      ENV["mailgun_username"],
+    password:       ENV["mailgun_password"],
+    domain:         ENV["mailgun_domain"],
+    authentication: :plain
+  }
+
+  # TODO: uncomment lines below - once you done with AWS SQS and new servers setup
+  # Should be config.active_job.queue_adapter = :shoryuken
+  config.active_job.queue_adapter = :inline
 end

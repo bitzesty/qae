@@ -1,6 +1,6 @@
 require 'capistrano/rails/migrations'
 
-# config valid only for Capistrano 3.2.1 =)
+# config valid only for Capistrano 3.1
 lock '3.2.1'
 
 set :application, 'qae'
@@ -12,20 +12,20 @@ set :slack_token, "7uY0wzrA6uBDBgN8YtSDpASb"
 set :slack_icon_emoji,   ->{ ":rocket:" }
 set :slack_channel,      ->{ "#qae" }
 set :migration_role, 'app'
+# Default branch is :master
+# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
-set :stages, %w(production staging dev demo)
+set :stages, %w(staging demo)
 set :default_stage, 'staging'
-set :use_sudo, false
-set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
-set :scm, :git
 
-set :webserver, "passenger"
+# Default deploy_to directory is /var/www/my_app
+set :deploy_to, "/home/qae/application"
+set :deploy_via, :remote_cache
 
-set :rbenv_type, :user
-set :rbenv_ruby, '2.1.5'
-set :rbenv_roles, :all
-
+# Default value for :linked_files is []
 set :linked_files, %w(config/database.yml config/secrets.yml .env)
+
+# Default value for linked_dirs is []
 set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 set :whenever_command, "bundle exec whenever"
@@ -33,10 +33,10 @@ set :whenever_command, "bundle exec whenever"
 set :ssh_options, {
   forward_agent: true
 }
-
-set :keep_releases, 5
+set :rbenv_ruby, '2.1.5'
 
 namespace :deploy do
+
   desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
@@ -52,5 +52,3 @@ namespace :deploy do
   after "deploy:updated",  "whenever:update_crontab"
   after "deploy:reverted", "whenever:update_crontab"
 end
-
-

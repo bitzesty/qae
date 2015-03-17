@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
 
+# Security HTTP Headers
+gem 'secure_headers'
+
 # PostgreSQL
 gem 'pg', '~> 0.17'
 
@@ -62,14 +65,26 @@ gem 'sentry-raven', github: 'getsentry/raven-ruby'
 # Uploads
 gem 'carrierwave'
 gem 'jquery.fileupload-rails'
+gem "fog"
+gem "fog-aws"
 
 # Background jobs
-gem 'shoryuken'
+gem "shoryuken", github: "phstc/shoryuken", branch: "master"
 
+# Redis
+gem 'redis-rails'
+gem 'redis-store'
+
+# Process manager
 gem 'foreman'
-gem 'pg_search'
-gem "active_hash"
 
+# Text Search
+gem 'pg_search'
+
+# YAML/Hash loading
+gem 'active_hash'
+
+# CronJob Sceduler
 gem 'whenever'
 
 group :assets do
@@ -89,11 +104,17 @@ group :test do
   gem 'codeclimate-test-reporter', group: :test, require: nil
 end
 
-group :development do
+# We need capistrano in terms to run deploy on
+# new EC-2 instances added via AWS Auto-scaling group
+group :development, :staging, :production do
   gem 'capistrano', '~> 3.2.0'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv'
+  gem "capistrano-shoryuken", github: "joekhoobyar/capistrano-shoryuken"
   gem 'slackistrano', require: false
+end
+
+group :development do
   gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
