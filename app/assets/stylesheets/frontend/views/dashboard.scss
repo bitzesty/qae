@@ -135,3 +135,60 @@
     }
   }
 }
+
+// TODO temp switch dashboard view
+.page-dashboard .page-header {
+  position: relative;
+}
+
+.js-switch-dashboard-view-btn {
+  position: absolute;
+  top: 0;
+  right: 1.75em;
+  margin-right: 0;
+  padding: 10px;
+  font-size: 14px;
+
+  @media (max-width: 640px) {
+    right: 1em;
+  }
+}
+
+.dashboard-post-submission {
+  display: none;
+
+  h2,
+  h3 {
+    small,
+    .pull-right {
+      @include core-16;
+    }
+
+    small {
+      display: block;
+      color: $grey-1;
+    }
+
+    .pull-right {
+      float: right;
+    }
+  }
+}
+
+.dashboard-post & {
+  .dashboard-pre-submission {
+    display: none;
+  }
+
+  .dashboard-post-submission {
+    display: block;
+  }
+}
+
+.js-press-comment-feeback {
+  display: none;
+
+  &.press-comment-incorrect {
+    display: block;
+  }
+}

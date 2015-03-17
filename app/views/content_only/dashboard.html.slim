@@ -5,74 +5,10 @@ header.page-header.group
     h1
       ' Applications
 
-.article-related-positioning-container
-  .article-container
-    article.group role="article"
-      .inner
-        - if @user_award_forms.any?
-          h2
-            ' Current Applications
-          = render "current_applications", award_applications: @user_award_forms_trade
-          = render "current_applications", award_applications: @user_award_forms_innovation
-          = render "current_applications", award_applications: @user_award_forms_development
-          = render "current_applications", award_applications: @user_award_forms_promotion
+  - if Rails.env.development?
+    = link_to "Switch view", "#", class: "button button-add js-switch-dashboard-view-btn"
 
-          br
-
-        - if submission_started? && !submission_ended?
-          h2
-            ' Applying for a Queen’s Award for your organisation?
-
-          p To begin your application, select the award(s) you want to apply for. You can apply for more than one category, as long as you meet the criteria.
-
-          = render "shared/application_awards_status"
-
-          br
-
-          h2
-            ' Nominating an individual for the Queen's Award for Enterprise Promotion?
-
-          p To begin a new nomination, click below. You can make more than one nomination as long as you submit a separate application for each of them.
-
-          ul.applications-list
-            li
-              h3
-                ' Enterprise Promotion Award
-              small
-                /' Unclear eligibility
-              .pull-right
-                = link_to "New nomination", apply_enterprise_promotion_award_path
-
-  .related-positioning.related-positioning-no-header
-    .related-container
-      .related#related
-        .highlighted-event
-          - if submission_deadline && submission_deadline.trigger_at
-            p
-              ' Submission deadline
-              em = submission_deadline.decorate.formatted_trigger_time
-
-        /.inner.group.related-section
-          h2#parent-section
-            ' Submitted award applications
-
-          nav role="navigation" aria-labelledby="parent-section"
-            ul
-              li
-                ' 2014 - Innovation
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-              li
-                ' 2014 - International Trade
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-              li
-                ' 2013 - Innovation
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-              li
-                ' 2013 - International Trade
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-              li
-                ' 2012 - Substainability Development
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-
-        /.inner.group
-          = link_to "Return to top ↑", "#content", class: "return-to-top"
+.dashboard-pre-submission
+  = render "dashboard_pre_submission"
+.dashboard-post-submission
+  = render "dashboard_post_submission"

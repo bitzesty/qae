@@ -1,0 +1,42 @@
+p
+  ' Your application for the
+  = award.decorate.award_type
+  '  Award was successful.
+p
+  ' Visit
+  = link_to "the winners page", award_winners_section_path
+  '  to download media to display on your website.
+
+br
+
+h3 Press Comment
+/ If press comment has not been confirmed
+p Please read over the press comment we've prepared for you and confirm that it's factually correct.
+p = link_to "View press comment", press_comment_path
+.application-notice.help-notice
+  p Press comment has not been confirmed yet.
+/ else
+  .application-notice.info-notice
+    p
+      = link_to "Press comment", press_comment_path
+      '  has been confirmed to be correct.
+
+br
+
+h3
+  ' Buckingham Palace Attendees
+/ If attendees details have not been finalised
+p You're also invited to visit Buckingham Palace to collect your awards. We'll need some details from you and those accompanying you in preparation for this.
+p You're allowed to have up to 3 guests accompany you to the award ceremonies.
+.application-notice.help-notice
+  p
+    ' Attendance has not been confirmed yet.
+    = link_to "Visit this page to confirm your details and your guests.", buckingham_palace_attendance_path
+/ else
+  p
+    ' You have confirmed attendance of
+    = "1"
+    '  person.
+  ul.list-add
+    li
+      = render "buckingham_palace_attendees"

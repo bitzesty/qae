@@ -15,6 +15,7 @@ $.fn.charcount = function() {
     var maxlength = parseInt($(this).attr('data-word-max'));
     if (maxlength) {
       $(this).before("<div class='char-text-limit'>Word limit: <span class='total-count'>" +maxlength+ "</span></div>");
+      $(this).closest(".char-count").addClass("char-max-shift");
       $(this).closest(".char-count").find(".char-text").append("/<span class='total-count'>" +maxlength+ "</span>");
 
       // hard limit to word count

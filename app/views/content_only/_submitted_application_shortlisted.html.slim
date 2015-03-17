@@ -1,0 +1,29 @@
+p
+  ' Your application for the
+  = award.decorate.award_type
+  '  Award was shortlisted.
+
+/ if they answered D1 with complete full declaration later
+/- if corp_responsibility_form == "declare_now"
+.application-notice.help-notice
+  p
+    ' Please complete the Declaration of Corporate Responsibility by
+    = link_to "filling out this form", declaration_of_corporate_responsibility_path
+    ' .
+
+br
+
+h3 Audit Certificate
+p
+  ' Please
+  = link_to "download and complete this audit certificate"
+  ' . Afterwards, upload the completed form.
+
+/ Hide once uploaded
+= link_to "+ Upload Audit Certificate", "#", class: "button button-add"
+
+/ Show once uploaded
+  ul.list-add
+    li
+      = link_to "Remove", "#", class: "remove-link js-remove-link"
+      = link_to "Uploaded Audit Certificate"
