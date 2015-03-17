@@ -10,4 +10,37 @@
               ' Updated by #{@form_answer.financial_summary_updated_by} - #{@form_answer.financial_summary_updated_at}
 
     #financial-summary.section-financial-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="financial-summary-heading"
-      = render 'admin/form_answers/financial_summary/list', financial_pointer: financial_pointer
+      .panel-body
+        / TODO placeholder
+        .form-group
+          label.form-label Audit Certificate
+          p = link_to "View Audit Certificate", "#", target: "_blank"
+          .form-value
+            p.audit-cert-nil-val Not confirmed yet.
+            p.audit-cert-no-change-val No change necessary
+            .audit-cert-changed-val
+              label.control-label Changes made
+              p Test
+          .input.form-group.form-fields
+            .radio
+              label
+                input type="radio" name="radio-audit-cert" id="radio-audit-cert1" value="no-change"
+                ' No change necessary
+            .radio
+              label
+                input type="radio" name="radio-audit-cert" id="radio-audit-cert2" value="confirm-changes"
+                ' Confirmed changes
+
+          .audit-cert-description
+            .input.form-group.form-fields
+              label.control-label Changes made
+              textarea.form-control rows="5"
+              .clear
+
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+          .clear
+
+        = render 'admin/form_answers/financial_summary/list', financial_pointer: financial_pointer

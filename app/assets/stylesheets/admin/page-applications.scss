@@ -297,3 +297,30 @@
 .centered {
   padding-left: 25px;
 }
+
+.audit-cert-no-change-val,
+.audit-cert-changed-val,
+.audit-cert-no-change .audit-cert-nil-val,
+.audit-cert-changes-made .audit-cert-nil-val {
+  display: none;
+}
+
+.audit-cert-no-change .audit-cert-no-change-val {
+  display: block;
+}
+
+.audit-cert-changes-made .audit-cert-changed-val {
+  display: block;
+}
+
+.audit-cert-description {
+  display: none;
+
+  .audit-cert-changes-made & {
+    display: block;
+  }
+}
+
+.form-group .list-attendees li .row {
+  margin-bottom: 20px;
+}

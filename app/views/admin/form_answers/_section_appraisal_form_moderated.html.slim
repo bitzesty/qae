@@ -13,3 +13,6 @@
         = f.hidden_field :form_answer_id
         = render_section(resource, f)
         = f.submit :add, class: "if-js-hide"
+
+        / This triggers the case summary to need to be completed by primary assessors
+        = submit_tag "Submit Appraisal", class: "btn btn-default btn-block"
