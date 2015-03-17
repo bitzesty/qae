@@ -47,6 +47,7 @@ Rails.application.routes.draw do
   get "/award_info_promotion"                           => "content_only#award_info_promotion",                           as: "award_info_promotion"
 
   get "/declaration_of_corporate_responsibility"        => "content_only#declaration_of_corporate_responsibility",        as: "declaration_of_corporate_responsibility"
+  get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
 
   root to: "content_only#home"
 
