@@ -5,7 +5,7 @@ Devise.setup do |config|
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = ENV["MAILER_FROM"] || "no-reply@qae.direct.gov.uk"
+  config.mailer_sender = ENV["MAILER_FROM"] || "info@queensawards.org.uk"
 
   # Configure the class responsible to send e-mails.
   #config.mailer = "Devise::Mailer"
