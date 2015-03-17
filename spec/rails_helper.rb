@@ -20,6 +20,7 @@ Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 ActiveRecord::Migration.check_pending!
 ActiveRecord::Migration.maintain_test_schema!
 Qae::Application.load_tasks
+Capybara::Screenshot.webkit_options = { width: 1024, height: 768 }
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
