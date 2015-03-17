@@ -184,3 +184,11 @@
     display: block;
   }
 }
+
+.js-press-comment-feeback {
+  display: none;
+
+  &.press-comment-incorrect {
+    display: block;
+  }
+}

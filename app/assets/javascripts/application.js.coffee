@@ -565,3 +565,9 @@ jQuery ->
   $(".js-switch-dashboard-view-btn").on "click", (e) ->
     e.preventDefault()
     $(".page-dashboard").toggleClass("dashboard-post")
+
+  $(".js-press-comment-correct input").change ->
+    $(".js-press-comment-feeback").removeClass("press-comment-incorrect")
+
+    if $(".js-press-comment-correct input:checked").val() == "no"
+      $(".js-press-comment-feeback").addClass("press-comment-incorrect")
