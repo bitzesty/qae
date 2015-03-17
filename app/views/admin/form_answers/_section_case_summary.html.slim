@@ -27,6 +27,7 @@
           = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
           .clear
 
+        / These are new fields that are copied from the moderated
         = simple_form_for([namespace_name, moderated_assessment], remote: true, authenticity_token: true) do |f|
           = f.hidden_field :form_answer_id
           = render_section(resource, f)

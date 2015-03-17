@@ -25,7 +25,7 @@ describe "Assessor submits appraisal form", %(
       allow_any_instance_of(AssessorAssignment).to receive(:valid?).and_return(true)
       find("#appraisal-form-primary-heading .panel-title a").click
       within "#section-appraisal-form-primary" do
-        click_button "Submit Case Assessment"
+        click_button "Submit Appraisal"
       end
       expect(page).to have_selector(".feedbackHolder", text: "Assessment Submitted")
       expect(form_answer.assessor_assignments.primary).to be_submitted
