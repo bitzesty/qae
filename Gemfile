@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
 
+# Security HTTP Headers
+gem 'secure_headers'
+
 # PostgreSQL
 gem 'pg', '~> 0.17'
 
