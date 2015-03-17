@@ -39,6 +39,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  # TODO: uncomment line above once you will apply SSL certificate
   # config.force_ssl = true
 
   # Set to :debug to see everything in the log.

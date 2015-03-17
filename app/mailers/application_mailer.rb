@@ -1,3 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: ENV["MAILER_FROM"] || "support@qae.co.uk"
+  default from: ENV["MAILER_FROM"] || "no-reply@qae.direct.gov.uk"
 end
