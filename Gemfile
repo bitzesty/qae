@@ -86,6 +86,7 @@ gem 'active_hash'
 
 # CronJob Sceduler
 gem 'whenever'
+gem "virtus"
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'

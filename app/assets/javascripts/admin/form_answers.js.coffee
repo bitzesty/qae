@@ -6,6 +6,7 @@ ready = ->
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
 
   $(".section-applicant-users .edit_assessor_assignment select").select2()
+  $("#new_assessor_assignment_collection select").select2()
 
   $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
     form = $(this)
@@ -71,6 +72,12 @@ ready = ->
       $(this).closest(".panel-body").removeClass("audit-cert-changes-made")
       $(this).closest(".panel-body").addClass("audit-cert-no-change")
 
+  $(document).on "submit", "#new_assessor_assignment_collection", (e) ->
+    form = $(this)
+    ids = ""
+    $(".form-answer-check:checked").each ->
+      ids += ($(@).val() + ",")
+    $("#assessor_assignment_collection_form_answer_ids").val(ids)
 
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->

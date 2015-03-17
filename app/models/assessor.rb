@@ -65,6 +65,14 @@ class Assessor < ActiveRecord::Base
     get_role(form_answer.read_attribute(:award_type)) == "lead"
   end
 
+  def regular?(form_answer)
+    get_role(form_answer.read_attribute(:award_type)) == "regular"
+  end
+
+  def assignable?(form_answer)
+    lead?(form_answer) || regular?(form_answer)
+  end
+
   def lead_or_assigned?(form_answer)
     lead?(form_answer) || assigned?(form_answer)
   end

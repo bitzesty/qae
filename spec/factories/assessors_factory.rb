@@ -19,5 +19,12 @@ FactoryGirl.define do
 
     trait :regular_for_trade do
     end
+
+    trait :regular_for_all do
+      trade_role "regular"
+      innovation_role "regular"
+      development_role "regular"
+      promotion_role "regular"
+    end
   end
 end
