@@ -65,17 +65,23 @@ gem 'jquery.fileupload-rails'
 gem "fog"
 gem "fog-aws"
 
-# Background jobs"
+# Background jobs
 gem "shoryuken", github: "phstc/shoryuken", branch: "master"
 
 # Redis
 gem 'redis-rails'
 gem 'redis-store'
 
+# Process manager
 gem 'foreman'
-gem 'pg_search'
-gem "active_hash"
 
+# Text Search
+gem 'pg_search'
+
+# YAML/Hash loading
+gem 'active_hash'
+
+# CronJob Sceduler
 gem 'whenever'
 
 group :assets do
