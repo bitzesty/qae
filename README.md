@@ -45,3 +45,27 @@ OSX users you might need to install pcre headers:
 ```
 brew install pcre
 ```
+
+### Deploy
+
+#### Dev (http://qae.dev.bitzesty.com)
+
+```
+$ cap dev deploy OLD_SERVERS=true
+```
+
+#### Demo (http://qae.demo.bitzesty.com)
+
+```
+$ cap demo deploy OLD_SERVERS=true
+```
+
+#### Staging (http://stagingloadbalancer-1721077944.eu-west-1.elb.amazonaws.com/)
+```
+$ cap staging deploy
+```
+
+#### Production (http://productionloadbalancer-1974356064.eu-west-1.elb.amazonaws.com/)
+```
+$ cap production deploy
+```
