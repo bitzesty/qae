@@ -1,31 +1,30 @@
-form  
-  div
-    header.group.page-header.page-header-wider
-      div
-        h1 Winners Page
+div
+  header.group.page-header.page-header-wider
+    div
+      h1 Winners Page
 
-    .article-container.article-container-wider
-      article.group role="article"
-        .inner
-          p Here you can find a download of the Queen's Awards for Enterprise logo to display on your website.
+  .article-container.article-container-wider
+    article.group role="article"
+      .inner
+        p Here you can find a download of the Queen's Awards for Enterprise logo to display on your website.
 
-          br
+        br
 
-          h2 Download the logo to embed on your website
+        h2 Download the logo to embed on your website
 
-          section.attachment.embedded
-            .attachment-thumb
-              = link_to image_path("queens-awards-emblem.png"), class: "thumbnail", target: "_blank"
-                = image_tag "queens-awards-emblem-thumbnail.png"
-            .attachment-details
-              h2.title
-                = link_to "Queen's Award Emblem", image_path("queens-awards-emblem.png"), target: "_blank"
-              p.metadata
-                span.type PNG
+        section.attachment.embedded
+          .attachment-thumb
+            = link_to image_path("queens-awards-emblem.png"), class: "thumbnail", target: "_blank"
+              = image_tag "queens-awards-emblem-thumbnail.png"
+          .attachment-details
+            h2.title
+              = link_to "Queen's Award Emblem", image_path("queens-awards-emblem.png"), target: "_blank"
+            p.metadata
+              span.type PNG
 
-          footer
-            nav.pagination aria-label="Pagination" role="navigation"
-              ul.group
-                li.previous
-                  = link_to dashboard_path
-                    span.pagination-label Back to Dashboard
+        footer
+          nav.pagination aria-label="Pagination" role="navigation"
+            ul.group
+              li.previous
+                = link_to dashboard_path
+                  span.pagination-label Back to Dashboard
