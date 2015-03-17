@@ -1,5 +1,5 @@
 - financial_pointer = FormFinancialPointer.new(@form_answer)
-- if !financial_pointer.period_length.zero? #&& @form_answer.submitted?
+- if !financial_pointer.period_length.zero? && @form_answer.submitted?
   .panel.panel-default
     .panel-heading#financial-summary-heading role="tab"
       h4.panel-title
@@ -9,7 +9,7 @@
             small
               ' Updated by #{@form_answer.financial_summary_updated_by} - #{@form_answer.financial_summary_updated_at}
 
-    #financial-summary.section-financial-summary.panel-collapse.collapse.in role="tabpanel" aria-labelledby="financial-summary-heading"
+    #financial-summary.section-financial-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="financial-summary-heading"
       .panel-body
         / TODO placeholder
         .form-group
