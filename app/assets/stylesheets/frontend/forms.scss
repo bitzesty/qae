@@ -572,6 +572,8 @@ input[type="file"] {
 
 .char-count {
   position: relative;
+}
+.char-max-shift {
   margin-top: -1.7em;
 }
 
@@ -636,6 +638,10 @@ input[type="file"] {
 
   label input {
     margin-bottom: 1em;
+  }
+
+  .hint {
+    margin-top: -0.5em;
   }
 
   select {

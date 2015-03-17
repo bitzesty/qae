@@ -1,0 +1,106 @@
+div
+  header.group.page-header.page-header-wider
+    div
+      h1 Buckingham Palace Attendees
+
+  .article-container.article-container-wider
+    article.group role="article"
+      .inner
+        p You're allowed to have up to 3 guests accompany you to the award ceremonies.
+
+        br
+
+        form.qae-form
+          / ### Business Award winner
+          / Each winning business sends two representatives. If a business is successful in more than one business category they are allowed to send two reps for each winning category. The invitation is sent to the head of the winning unit.
+
+          / ### EP winner
+          / Each QAEP recipient is allowed just one person to go with them and that person is their nominator.
+          / The invitation is sent to the winning QAEP recipient only, not the nominator.
+          ul.list-add
+            li
+              = link_to "Remove", "#", class: "remove-link js-remove-link"
+
+              fieldset.question-block
+                .question-group
+                  / Fields are identical to admin ones
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Title
+                      input.small autocomplete="off" type="text"
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' First name
+                      input.medium autocomplete="off" type="text"
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Last name
+                      input.medium autocomplete="off" type="text"
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Job Title / Position
+                      input.medium autocomplete="off" type="text"
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Decorations / Post Nominals
+                      input.medium autocomplete="off" type="text"
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Address 1
+                      input.large autocomplete="off" type="text"
+                      span.hint First line on envelope
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Address 2
+                      input.large autocomplete="off" type="text"
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Address 3
+                      input.large autocomplete="off" type="text"
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Address 4
+                      input.large autocomplete="off" type="text"
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Postcode
+                      input.small autocomplete="off" type="text"
+                  .question-group
+                    label
+                      ul.errors-container
+                      ' Telephone number
+                      input.small autocomplete="off" type="text"
+                      span.hint If known
+                  .question-group
+                    label
+                      ' Product or brief description
+                      ul.errors-container
+                      .question-group
+                        textarea.js-char-count data-word-max="20" rows="5"
+                  .question-group
+                    label
+                      ' Additional Information e.g. Wheelchair user
+                      ul.errors-container
+                      .question-group
+                        textarea.js-char-count rows="5"
+
+          = link_to "+ Add Attendee", "#", class: "button button-add"
+
+          footer
+            nav.pagination aria-label="Pagination" role="navigation"
+              ul.group
+                li.previous.previous-alternate
+                  = link_to dashboard_path
+                    span.pagination-label Back to Dashboard
+                li.submit
+                  a.button rel="next" href="#" Confirm Attendees
