@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '~> 4.2.0'
 
+# Security HTTP Headers
+gem 'secure_headers'
+
 # PostgreSQL
 gem 'pg', '~> 0.17'
 
@@ -65,17 +68,23 @@ gem 'jquery.fileupload-rails'
 gem "fog"
 gem "fog-aws"
 
-# Background jobs"
+# Background jobs
 gem "shoryuken", github: "phstc/shoryuken", branch: "master"
 
 # Redis
 gem 'redis-rails'
 gem 'redis-store'
 
+# Process manager
 gem 'foreman'
-gem 'pg_search'
-gem "active_hash"
 
+# Text Search
+gem 'pg_search'
+
+# YAML/Hash loading
+gem 'active_hash'
+
+# CronJob Sceduler
 gem 'whenever'
 
 group :assets do
