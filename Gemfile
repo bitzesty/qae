@@ -104,17 +104,12 @@ group :test do
   gem 'codeclimate-test-reporter', group: :test, require: nil
 end
 
-# We need capistrano in terms to run deploy on
-# new EC-2 instances added via AWS Auto-scaling group
-group :development, :staging, :production do
+group :development do
   gem 'capistrano', '~> 3.2.0'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv'
   gem "capistrano-shoryuken", github: "joekhoobyar/capistrano-shoryuken"
   gem 'slackistrano', require: false
-end
-
-group :development do
   gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
