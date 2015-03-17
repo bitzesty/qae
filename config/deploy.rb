@@ -17,7 +17,7 @@ set :stages, %w(production staging dev demo)
 set :default_stage, 'staging'
 set :use_sudo, false
 
-if ENV["OLD_SERVERS"].present?
+if ENV["OLD_SERVERS"]
   set :deploy_to, "/home/qae/application"
 else
   set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"

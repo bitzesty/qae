@@ -1,6 +1,6 @@
 # TODO: remove else condition - once old servers (dev and demo) will be terminated
 CarrierWave.configure do |config|
-  if (Rails.env.staging? || Rails.env.production?) && ENV["AWS_ACCESS_KEY_ID"].present?
+  if (Rails.env.staging? || Rails.env.production?) && ENV["AWS_ACCESS_KEY_ID"]
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],

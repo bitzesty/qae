@@ -1,5 +1,5 @@
 # TODO: remove else condition - once old servers (dev and demo) will be terminated
-if (Rails.env.staging? || Rails.env.production?) && ENV["AWS_SES_DOMAIN_NAME"].present?
+if (Rails.env.staging? || Rails.env.production?) && ENV["AWS_SES_DOMAIN_NAME"]
   Rails.application.configure do
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {

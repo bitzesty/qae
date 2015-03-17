@@ -4,7 +4,7 @@ $redis = Redis.new(
 )
 
 # TODO: remove check on ENV var - once old servers (dev and demo) will be terminated
-if (Rails.env.staging? || Rails.env.production?) && ENV["AWS_ELASTIC_CACHE_REDIS_CLUSTER_HOST"].present?
+if (Rails.env.staging? || Rails.env.production?) && ENV["AWS_ELASTIC_CACHE_REDIS_CLUSTER_HOST"]
   Rails.application.configure do
     config.cache_store = :redis_store, {
       host: ENV["AWS_ELASTIC_CACHE_REDIS_CLUSTER_HOST"],
