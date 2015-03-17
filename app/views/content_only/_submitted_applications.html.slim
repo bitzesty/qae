@@ -1,0 +1,26 @@
+- unless award_applications.any?
+  .application-notice.help-notice
+    p You did not submit any applications.
+- else
+  - award_applications.each do |award|
+    h2
+      = award.decorate.application_name
+      .pull-right
+        = link_to edit_form_path(award.id)
+          ' View
+          - if award.award_type == "promotion"
+            ' nomination
+          - else
+            ' application
+      small
+        = award.decorate.award_type
+        '  Award
+
+    / if unsuccessful
+    = render "submitted_application_unsuccessful", award: award
+
+    / if shortlisted
+      = render "submitted_application_shortlisted", award: award
+
+    / if winner
+      = render "submitted_application_successful", award: award

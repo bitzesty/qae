@@ -560,4 +560,8 @@ jQuery ->
 
   OptionsWithPreselectedConditionsQuestion.init()
   ongoingDateDuration()
-  SupportLetters.init();
+  SupportLetters.init()
+
+  $(".js-switch-dashboard-view-btn").on "click", (e) ->
+    e.preventDefault()
+    $(".page-dashboard").toggleClass("dashboard-post")

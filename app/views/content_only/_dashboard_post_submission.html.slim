@@ -1,0 +1,12 @@
+.article-related-positioning-container
+  .article-container
+    article.group role="article"
+      .inner
+        = render "submitted_applications", award_applications: @user_award_forms_submitted
+
+  .related-positioning.related-positioning-no-header
+    .related-container
+      .related#related
+        .highlighted-event
+          p
+            em Submission closed
