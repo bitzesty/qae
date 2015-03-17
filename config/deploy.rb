@@ -16,7 +16,13 @@ set :migration_role, 'app'
 set :stages, %w(production staging dev demo)
 set :default_stage, 'staging'
 set :use_sudo, false
-set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
+
+if ENV["OLD_SERVERS"].present?
+  set :deploy_to, "/home/qae/application"
+else
+  set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
+end
+
 set :scm, :git
 
 set :webserver, "passenger"

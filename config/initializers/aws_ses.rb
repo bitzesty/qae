@@ -1,4 +1,5 @@
-if Rails.env.staging? || Rails.env.production?
+# TODO: remove else condition - once old servers (dev and demo) will be terminated
+if (Rails.env.staging? || Rails.env.production?) && ENV["AWS_SES_DOMAIN_NAME"].present?
   Rails.application.configure do
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
@@ -9,6 +10,18 @@ if Rails.env.staging? || Rails.env.production?
       user_name: ENV["AWS_SES_USERNAME"],
       password: ENV["AWS_SES_PASSWORD"],
       enable_starttls_auto: true
+    }
+  end
+else
+  Rails.application.configure do
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+      port:           587,
+      address:        'smtp.mailgun.org',
+      user_name:      ENV["mailgun_username"],
+      password:       ENV["mailgun_password"],
+      domain:         ENV["mailgun_domain"],
+      authentication: :plain
     }
   end
 end
