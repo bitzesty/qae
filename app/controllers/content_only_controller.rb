@@ -10,7 +10,8 @@ class ContentOnlyController < ApplicationController
                   :additional_information_and_contact,
                   :privacy,
                   :apply_for_queens_award_for_enterprise,
-                  :sign_up_complete
+                  :sign_up_complete,
+                  :declaration_of_corporate_responsibility
                 ]
 
   before_action :get_current_form,

@@ -46,6 +46,8 @@ Rails.application.routes.draw do
   get "/apply_enterprise_promotion_award"               => "content_only#apply_enterprise_promotion_award",               as: "apply_enterprise_promotion_award"
   get "/award_info_promotion"                           => "content_only#award_info_promotion",                           as: "award_info_promotion"
 
+  get "/declaration_of_corporate_responsibility"        => "content_only#declaration_of_corporate_responsibility",        as: "declaration_of_corporate_responsibility"
+
   root to: "content_only#home"
 
   resource :account, only: :show do
