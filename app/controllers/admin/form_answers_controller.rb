@@ -64,7 +64,7 @@ class Admin::FormAnswersController < Admin::BaseController
     sign_in(@form_answer.user, bypass: true)
     session[:admin_in_read_only_mode] = true
 
-    redirect_to edit_form_path(@form_answer, anchor: "company-information")
+    redirect_to edit_form_path(@form_answer)
   end
 
   private
