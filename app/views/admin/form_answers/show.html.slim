@@ -10,17 +10,7 @@
 .row.inline-form-view
   .col-md-4
     .show-sidebar
-      .well.section-applicant-details
-        - if @form_answer.urn.present?
-          h1
-            = @form_answer.urn
-        h2.ellipsis
-          = @form_answer.company_name
-        p = @form_answer.award_type
-
-        = link_to review_admin_form_answer_path(@form_answer), class: "btn btn-default btn-block", target: "_blank"
-          span.icon-view
-          ' View application as admin
+      = render("applicant_details")
 
       .well.section-applicant-status
         / This is where you change the application status

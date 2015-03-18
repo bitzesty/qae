@@ -1,3 +1,4 @@
+- ongoing_opts = position["ongoing"] == "1" ? { disabled: "disabled" } : {}
 li.js-add-example
   = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
   label
@@ -22,10 +23,10 @@ li.js-add-example
         .date-input.validate-date-end
           label.small
             ' Month
-            input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" disabled=(position['ongoing'] == '1' ? "disabled" : nil) *possible_read_only_ops
+            input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" *(possible_read_only_ops.merge(ongoing_opts))
           label.small
             ' Year
-            input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" disabled=(position['ongoing'] == '1' ? "disabled" : nil) *possible_read_only_ops
+            input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *(possible_read_only_ops.merge(ongoing_opts))
       span.span-3.date-ongoing
         br
         label.small

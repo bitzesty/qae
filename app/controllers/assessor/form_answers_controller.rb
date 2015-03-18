@@ -18,6 +18,14 @@ class Assessor::FormAnswersController < Assessor::BaseController
     authorize resource, :show?
   end
 
+  def review
+    authorize resource, :review?
+    sign_in(resource.user, bypass: true)
+    session[:admin_in_read_only_mode] = true
+
+    redirect_to edit_form_path(resource, anchor: "company-information")
+  end
+
   private
 
   def resource

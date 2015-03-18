@@ -8,7 +8,8 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def review?
-    admin?
+    return true if admin?
+    subject.lead_or_assigned?(record)
   end
 
   def show?

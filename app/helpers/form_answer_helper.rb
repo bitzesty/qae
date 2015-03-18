@@ -9,13 +9,15 @@ module FormAnswerHelper
     end
   end
 
-  def application_comments(form_answer)
-    output = "<span class='icon-comment'>Comments: <span class='comment-count'>"
-    if form_answer.comments.any?
-      output += "#{form_answer.comments.size}"
-    else
-      output += "0"
+  def application_comments(comments)
+    visible_comments = comments.select do |c|
+      c.main_for?(current_subject)
     end
+
+    return unless visible_comments.present?
+
+    output = "<span class='icon-comment'>Comments: <span class='comment-count'>"
+    output += "#{visible_comments.size}"
     output += "</span></span>"
     output.html_safe
   end
