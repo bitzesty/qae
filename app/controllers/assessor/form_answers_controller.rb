@@ -5,6 +5,8 @@ class Assessor::FormAnswersController < Assessor::BaseController
                 :moderated_assessment
 
   def index
+    # TODO: implement searching for assessor
+    # TODO: implement the form answers filtering by current category
     authorize :form_answer, :index?
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
 

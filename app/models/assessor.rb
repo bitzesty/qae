@@ -77,6 +77,20 @@ class Assessor < ActiveRecord::Base
     lead?(form_answer) || assigned?(form_answer)
   end
 
+  def categories_as_lead
+    categories.select { |k, v| v == "lead" }.keys
+  end
+
+  private
+
+  def categories
+    out = {}
+    ["trade", "innovation", "development", "promotion"].each do |cat|
+      out[cat] = public_send(self.class.role_meth(cat))
+    end
+    out
+  end
+
   def assigned?(form_answer)
     form_answer.assessors.include?(self)
   end

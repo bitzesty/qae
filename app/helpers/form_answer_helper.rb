@@ -43,4 +43,14 @@ module FormAnswerHelper
     code = form_answer.sic_code
     code || "-"
   end
+
+  def current_award_type
+    return "trade" if current_subject.is_a?(Admin) && params[:award_type].blank?
+    categories = current_subject.categories_as_lead
+    if params[:award_type].present?
+      params[:award_type] if categories.include?(params[:award_type])
+    else
+      categories.first
+    end
+  end
 end

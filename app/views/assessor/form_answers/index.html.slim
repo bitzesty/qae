@@ -4,16 +4,25 @@
     = simple_form_for @search, url: "", method: :get, as: :search, html: { class: 'search-form'} do |f|
       = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
       = submit_tag :submit
+
+- if current_subject.categories_as_lead.present?
   .col-md-6
     .btn.btn-default.bulk-assign-assessors Bulk Assign Assessors
   .col-md-6
     = flash[:error]
     = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
       .form-fields
-        = f.select :primary_assessor_id, [["Not Assigned", "not assigned"]] + Assessor.available_for("trade").map{|a| [a.full_name, a.id]}, { include_blank: true }
-        = f.select :secondary_assessor_id, [["Not Assigned", "not assigned"]] + Assessor.available_for("trade").map{|a| [a.full_name, a.id]}, { include_blank: true }
+        = f.select :primary_assessor_id, [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]}, { include_blank: true }
+        = f.select :secondary_assessor_id, [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]}, { include_blank: true }
         = f.text_field :form_answer_ids, class: "if-js-hide"
         = f.submit :assign
+
+br
+ul.nav.nav-pills
+  - if current_subject.categories_as_lead.present?
+    - current_subject.categories_as_lead.each do |category|
+      li role="presentation"
+      = link_to FormAnswer::AWARD_TYPE_FULL_NAMES[category], assessor_form_answers_path(award_type: category)
 br
 
 .row
