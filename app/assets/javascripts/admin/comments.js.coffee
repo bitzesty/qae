@@ -27,9 +27,13 @@ toggleFlagged = ->
     flagged = "comment-flagged"
     newComment = $(this).closest(".comment-actions")
     newComment.toggleClass(flagged)
-    newComment.closest(".comment-new").
-      find(".flag-comment-checkbox").
-      prop("checked", newComment.hasClass(flagged))
+    toggleGlobalFlag =(id, commentBox, flagged) ->
+      checkbox = commentBox.closest(".comments-container").find(id)
+      checkbox.prop("checked", commentBox.hasClass(flagged))
+      checkbox.closest("form").submit()
+
+    toggleGlobalFlag("#_assessor_importance_flag", newComment, flagged)
+    toggleGlobalFlag("#_admin_importance_flag", newComment, flagged)
 
     editComment = $(this).closest(".comment")
     editComment.toggleClass(flagged)
@@ -38,6 +42,7 @@ toggleFlagged = ->
       prop("checked", editComment.hasClass(flagged))
     form = editComment.find(".edit_comment")
     form.submit()
+
 deleteCommentAlert = ->
   $(document).on "click", ".link-delete-comment", (e) ->
     e.preventDefault()

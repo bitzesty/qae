@@ -1,12 +1,20 @@
 module FormAnswerHelper
-  def application_flags(comments)
+  def application_flags(fa)
+    comments = fa.comments
     content_tag :span, class: "icon-flagged" do
       content_tag :span, class: "flag-count" do
-        comments.select do |c|
+        c_size = comments.select do |c|
           c.main_for?(current_subject) && c.flagged?
-        end.size.to_s
+        end.size
+
+        c_size += 1 if importance_flag?(fa)
+        c_size.to_s
       end
     end
+  end
+
+  def importance_flag?(fa)
+    fa.public_send("#{current_subject.class.to_s.downcase}_importance_flag?")
   end
 
   def application_comments(comments)

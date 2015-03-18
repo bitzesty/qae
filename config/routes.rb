@@ -98,6 +98,9 @@ Rails.application.routes.draw do
         end
       end
       member { get(:review) }
+      resources :flags, only: [] do
+        collection { post :toggle }
+      end
     end
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
@@ -121,7 +124,7 @@ Rails.application.routes.draw do
       end
 
       resources :flags, only: [] do
-        collection{ get :toggle }
+        collection { post :toggle }
       end
 
       member do
