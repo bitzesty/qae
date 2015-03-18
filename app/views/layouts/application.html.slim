@@ -86,7 +86,7 @@
           - if user_signed_in? && current_user.completed_registration
             li = link_to "Applications", dashboard_path
 
-  #wrapper.guide.smart_answer.answer class="#{yield :page_wrapper_class}"
+  #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?}"
       - if [:alert, :notice].any? { |kind| flash[kind].presence }
         .flash

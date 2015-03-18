@@ -1,5 +1,5 @@
 .settings-page {
-  ul {
+  .panel-body ul {
     padding-left: 1.25em;
 
     li {
@@ -27,7 +27,8 @@
 
   .form-value,
   .deadline-form,
-  .notification-edit-form {
+  .notification-edit-form,
+  .date-time-text {
     display: inline-block;
     width: 35em;
 
@@ -46,6 +47,7 @@
   }
 
   .well {
+    display: block;
     max-width: 430px;
     margin: 20px 0;
     background-color: $white-true;
@@ -59,24 +61,8 @@
       margin-top: 0;
     }
 
-    .control-date {
-      padding-right: 40px;
-      background-image: image-url("icon-date-picker.png");
-      background-repeat: no-repeat;
-      background-position: right bottom;
-      background-size: 31px 30px;
-
-      @include is-retina {
-        background-image: image-url("icon-date-picker@2.png");
-      }
-
-      @include screen-sm-max {
-        padding-right: 55px;
-      }
-
-      .form-group {
-        margin-bottom: 0;
-      }
+    .control-date .form-group {
+      margin-bottom: 0;
     }
 
     .control-action {

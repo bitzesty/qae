@@ -53,10 +53,12 @@ $.fn.extend
       wrapper.appendTo('body').hide()
 
       ($ "li", optionsList).mouseover( ->
-        ($ this).addClass 'selected'
+        ($ this).addClass "selected"
       ).mouseout( ->
-        ($ this).removeClass 'selected'
+        ($ this).removeClass "selected"
       ).click( ->
+        ($ this).closest("ul").find(".active").removeClass("active")
+        ($ this).addClass "active"
         _setValue(element, this, wrapper)
       )
 
@@ -90,7 +92,7 @@ $.fn.extend
 
         closestOption = ($ "li:contains(#{_timeToString(closestMin)})", wrapper)
         if closestMin && closestOption.length
-          closestOption.addClass 'selected'
+          closestOption.addClass "active"
           wrapper[0].scrollTop = closestOption[0].offsetTop
 
       ($ element).focus(showPicker).click(showPicker)

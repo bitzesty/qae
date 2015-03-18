@@ -152,6 +152,19 @@ table .ellipsis {
   font-weight: normal;
 }
 
+.field-with-errors {
+  .error {
+    display: block;
+    margin-bottom: 5px;
+    color: $error-colour;
+  }
+
+  .form-control {
+    border-color: $error-colour;
+    background-color: $error-border-colour;
+  }
+}
+
 .well {
   background-color: $white-true;
   box-shadow: none;
@@ -365,12 +378,20 @@ table .ellipsis {
   }
 
   .icon-flagged {
+    position: relative;
     background-image: image-url("icon-flag.png");
     background-size: 20px 26px;
-    position: relative;
 
     @include is-retina {
       background-image: image-url("icon-flag@2.png");
+    }
+
+    .assessor-layout & {
+      background-image: image-url("icon-flag-yellow.png");
+
+      @include is-retina {
+        background-image: image-url("icon-flag-yellow@2.png");
+      }
     }
 
     .flag-count {
@@ -521,7 +542,7 @@ table .ellipsis {
         vertical-align: middle;
         background-image: none;
         background-color: $white-true;
-        border: 1px solid #ccc;
+        border: 1px solid $grey-light;
         border-radius: 4px;
         cursor: pointer;
 

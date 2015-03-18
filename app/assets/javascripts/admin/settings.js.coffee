@@ -1,34 +1,34 @@
 # require jquery-ui
 jQuery ->
   if (settingsWrapper = ($ "#admin-settings-parent")).length
-    ($ ".deadline-form").hide()
-    ($ ".notification-edit-form, .notification-form").hide()
-    ($ ".email-example").hide()
+    ($ ".deadline-form").addClass("hidden")
+    ($ ".notification-edit-form, .notification-form").addClass("hidden")
+    ($ ".email-example").addClass("hidden")
 
     settingsWrapper.on "click", ".edit-deadline", (e) ->
       e.preventDefault()
 
       wrapper = ($ e.currentTarget).closest('.deadline')
 
-      ($ ".form-value", wrapper).hide()
-      ($ ".deadline-form", wrapper).show()
-      ($ e.currentTarget).hide()
+      ($ ".form-value", wrapper).addClass("hidden")
+      ($ ".deadline-form", wrapper).removeClass("hidden")
+      ($ e.currentTarget).addClass("hidden")
 
     settingsWrapper.on "click", ".edit-notification", (e) ->
       e.preventDefault()
 
       wrapper = ($ e.currentTarget).closest('li')
 
-      ($ ".form-value", wrapper).hide()
-      ($ ".notification-edit-form", wrapper).show()
-      ($ ".actions", wrapper).hide()
+      ($ ".form-value", wrapper).addClass("hidden")
+      ($ ".notification-edit-form", wrapper).removeClass("hidden")
+      ($ ".actions", wrapper).addClass("hidden")
 
     settingsWrapper.on "click", ".btn-add-schedule", (e) ->
       e.preventDefault()
       wrapper = ($ e.currentTarget).closest('.panel-section')
-      ($ ".notification-form", wrapper).toggle()
+      ($ ".notification-form", wrapper).toggleClass("hidden")
 
     settingsWrapper.on "click", ".link-email-example", (e) ->
       e.preventDefault()
       wrapper = ($ e.currentTarget).closest('.panel-section')
-      ($ ".email-example", wrapper).toggle()
+      ($ ".email-example", wrapper).toggleClass("hidden")

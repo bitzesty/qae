@@ -1,15 +1,14 @@
 .panel.panel-default
-  .panel-heading#shortlisted-stage-deadlines-heading role="tab"
+  .panel-heading#final-stage-deadlines-heading role="tab"
     h4.panel-title
-      a data-toggle="collapse" data-parent="#panel-shortlisted-stage" href="#section-shortlisted-stage-deadlines" aria-expanded="true" aria-controls="section-shortlisted-stage-deadlines"
+      a data-toggle="collapse" data-parent="#panel-final-stage" href="#section-final-stage-deadlines" aria-expanded="true" aria-controls="section-final-stage-deadlines"
         ' Deadlines
-  #section-shortlisted-stage-deadlines.section-appraisal-form.section-shortlisted-stage-deadlines.panel-collapse.collapse.in role="tabpanel" aria-labelledby="shortlisted-stage-deadlines-heading"
+  #section-final-stage-deadlines.section-appraisal-form.section-final-stage-deadlines.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-deadlines-heading"
     .panel-body
       p
-        ' This will change system settings and applicants will be *not* able to submit attendees details or to make press release comments after this date.
+        ' This will not change system settings and applicants will be able to upload audit certificates after this date.
         br
-        ' This date will be used in relevant emails with winning applicants.
+        ' However this date will be used in relevant emails with shortlisted applicants.
 
       ul
-        li = render 'deadline_form', kind: 'buckingham_palace_attendees_details'
-        li = render 'deadline_form', kind: 'press_release_comments'
+        li = render 'deadline_form', kind: 'audit_certificates'

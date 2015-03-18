@@ -1,9 +1,13 @@
-.row
-  .col-md-3
-    .form-group.search-input
-      = simple_form_for @search, url: "", method: :get, as: :search, html: { class: 'search-form'} do |f|
-        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
-        = submit_tag :submit
+= simple_form_for @search, url: "", method: :get, as: :search, html: { class: 'search-form'} do |f|
+  - if @search.query?
+    h2
+      = "Search results for '#{@search.query}'"
+  - else
+    .row
+      .col-md-3
+        .form-group.search-input
+          = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
+          = submit_tag :submit
 
   - if current_subject.categories_as_lead.present?
     .col-md-3.pull-right.text-right.if-no-js-hide
@@ -86,7 +90,6 @@ br
                                   = v[:label]
                           li.divider
 
-
                 th
                   ' Primary Assessor
                 th
@@ -94,21 +97,30 @@ br
               th &nbsp;
               th.sortable
                 = sort_link f, "Flag", @search, :flag, disabled: @search.query?
-              th &nbsp;
-        tbody
-          - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
-            tr
-              td= check_box_tag :check, obj.id, false, class: "form-answer-check"
-              td.td-title
-                = link_to [namespace_name, obj], class: "ellipsis"
-                  - unless obj.company_or_nominee_name.nil?
-                    = link_to obj.company_or_nominee_name, [namespace_name, obj]
+          tbody
+            - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
+              tr
+                td= check_box_tag :check, obj.id, false, class: "form-answer-check"
+                td.td-title
+                  = link_to [namespace_name, obj], class: "ellipsis"
+                    - unless obj.company_or_nominee_name.nil?
+                      = link_to obj.company_or_nominee_name, [namespace_name, obj]
+                    - else
+                      = link_to [namespace_name, obj] do
+                        em
+                          ' Not found
+                td
+                  - if obj.urn.present?
+                    = obj.urn
                   - else
                     span.urn-not-generated Not yet generated
-                    = obj.award_type
-                td Not implemented
-                td= obj.assessors.primary.try(:full_name) || "Not Assigned"
-                td= obj.assessors.secondary.try(:full_name) || "Not Assigned"
+                    
+                - if @search.query?
+                  td = obj.award_type
+                - else
+                  td Not implemented
+                  td= obj.assessors.primary.try(:full_name) || "Not Assigned"
+                  td= obj.assessors.secondary.try(:full_name) || "Not Assigned"
                 td
                   - app_comments = application_comments(obj.comments)
                   - if app_comments.present?

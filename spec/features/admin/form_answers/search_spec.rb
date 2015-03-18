@@ -40,7 +40,7 @@ describe "Form answer search", "
 
         within ".applications-table" do
           expect(page).to have_selector("td.td-title", count: 1)
-          expect(all("td")[3].text).to eq("Sus Dev")
+          expect(all("td")[2].text).to eq("Sus Dev")
         end
       end
     end

@@ -26,7 +26,7 @@ html.no-js
 
     = yield(:head) if content_for?(:head)
 
-  body#admin-layout class="#{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class}"
+  body#admin-layout class="admin-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class}"
     #site-wrapper
       #site-wrapper-margin
         #site-header
