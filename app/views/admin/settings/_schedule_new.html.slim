@@ -9,7 +9,10 @@
       .col-sm-8.control-date
         .form-group
           label.control-label Send at
-          = f.input :trigger_at, as: :separated_date_time, input_html: { id: '' }
+          = f.input :trigger_at,
+                    as: :separated_date_time,
+                    input_html: { id: "" }
 
       .col-sm-4.control-action
         = f.submit "Save", class: "btn btn-primary btn-block"
+

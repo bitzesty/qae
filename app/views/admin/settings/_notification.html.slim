@@ -1,5 +1,5 @@
 li id="notification-#{notification.id}"
-  .form-value
+  span.date-time-text
     - if !notification.sent?
       ' Scheduled to be sent on
     - else
@@ -7,15 +7,17 @@ li id="notification-#{notification.id}"
 
     span.trigger-at
       = notification.formatted_trigger_time
-  .notification-edit-form.form-inline
+  .notification-edit-form.well
     .row
       = simple_form_for notification, url: admin_settings_email_notification_path(notification), remote: true do |f|
-        .col-sm-6
-          = f.input :trigger_at, as: :separated_date_time, input_html: { id: '' }
+        .col-sm-8.control-date
+          = f.input :trigger_at,
+                    as: :separated_date_time,
+                    input_html: { id: '' }
         .col-sm-4.control-action
-          = f.submit "Save", class: "btn btn-primary"
+          = f.submit "Save", class: "btn btn-primary btn-block"
   span.actions
-    = link_to "Edit", "#", class: "edit-notification"
+    = link_to "Edit", "#", class: "edit-notification if-no-js-hide"
 
     - if policy(notification).destroy?
       '  |
