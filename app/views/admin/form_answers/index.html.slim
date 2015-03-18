@@ -18,7 +18,6 @@
         table.table.applications-table
           thead
             tr
-              th &nbsp;
               th.sortable
                 = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
               th.sortable
@@ -89,7 +88,6 @@
           tbody
             - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
               tr
-                td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
                 td.td-title
                   = link_to [namespace_name, obj], class: "ellipsis"
                     - unless obj.company_or_nominee_name.nil?

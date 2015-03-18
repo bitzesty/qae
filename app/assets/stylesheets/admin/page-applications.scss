@@ -1,24 +1,6 @@
 @import "mixins";
 
 .applications-table {
-  .status-label {
-    width: 15px;
-    padding: 0;
-    background-color: #999;
-
-    &.pending-label {
-      background-color: #5178bc;
-    }
-
-    &.shortlisted-label {
-      background-color: #87c764;
-    }
-
-    &.withdrawn-label {
-      background-color: #6c6d70;
-    }
-  }
-
   .urn-not-generated {
     color: $grey;
     font-style: italic;
