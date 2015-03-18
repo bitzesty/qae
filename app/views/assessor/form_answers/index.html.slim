@@ -9,9 +9,9 @@
           = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
           = submit_tag :submit
 
-  - if current_subject.categories_as_lead.present?
-    .col-md-3.pull-right.text-right.if-no-js-hide
-      .btn.btn-success.bulk-assign-assessors-link Bulk Assign Assessors
+      - if current_subject.categories_as_lead.present?
+        .col-md-3.pull-right.text-right.if-no-js-hide
+          .btn.btn-success.bulk-assign-assessors-link Bulk Assign Assessors
 
 - if current_subject.categories_as_lead.present?
   .well.bulk-assign-assessors-form
