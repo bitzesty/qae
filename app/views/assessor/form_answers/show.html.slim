@@ -10,14 +10,7 @@
 .row.inline-form-view
   .col-md-4
     .show-sidebar
-      .well.section-applicant-details
-        - if @form_answer.urn.present?
-          h1
-            = @form_answer.urn
-        h2 = @form_answer.company_name
-        p = @form_answer.award_type
-
-
+      = render("admin/form_answers/applicant_details")
       .well.section-applicant-status
         / This is where you change the application status
         h2

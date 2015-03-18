@@ -97,6 +97,7 @@ Rails.application.routes.draw do
           post :approve
         end
       end
+      member { get(:review) }
     end
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
