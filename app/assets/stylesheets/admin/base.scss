@@ -365,12 +365,20 @@ table .ellipsis {
   }
 
   .icon-flagged {
+    position: relative;
     background-image: image-url("icon-flag.png");
     background-size: 20px 26px;
-    position: relative;
 
     @include is-retina {
       background-image: image-url("icon-flag@2.png");
+    }
+
+    #assessor-layout & {
+      background-image: image-url("icon-flag-yellow.png");
+
+      @include is-retina {
+        background-image: image-url("icon-flag-yellow@2.png");
+      }
     }
 
     .flag-count {
