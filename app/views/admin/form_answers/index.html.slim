@@ -87,11 +87,11 @@
               tr
                 td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
                 td.td-title
-                  = link_to [:admin, obj], class: "ellipsis"
+                  = link_to [namespace_name, obj], class: "ellipsis"
                     - unless obj.company_or_nominee_name.nil?
                       = link_to obj.company_or_nominee_name, [:admin, obj]
                     - else
-                      = link_to [:admin, obj] do
+                      = link_to [namespace_name, obj] do
                         em
                           ' Not found
                 td
@@ -104,9 +104,9 @@
                 td
                   - app_comments = application_comments(obj.comments)
                   - if app_comments.present?
-                    = link_to [:admin, obj]
+                    = link_to [namespace_name, obj]
                       = app_comments
-                td = application_flags(obj.comments)
+                td = application_flags(obj)
                 td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"
 
   .row

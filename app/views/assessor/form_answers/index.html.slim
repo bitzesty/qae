@@ -81,9 +81,9 @@
                 td
                   - app_comments = application_comments(obj.comments)
                   - if app_comments.present?
-                    = link_to [:assessor, obj]
+                    = link_to [namespace_name, obj]
                       = app_comments
-                td = application_flags(obj.comments)
+                td = application_flags(obj)
 
   .row
     .col-xs-12.text-right

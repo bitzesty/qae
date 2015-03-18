@@ -6,7 +6,12 @@
   #section-admin-comments.section-admin-comments.panel-collapse.collapse role="tabpanel" aria-labelledby="admin-comments-heading"
     .panel-body
       .comments-container data-comment-form=new_admin_form_answer_comment_path(@form_answer)
+        = form_tag [:toggle, namespace_name, @form_answer, :flags], remote: true, class: "critical-flag" do
+          - checked = "checked" if @form_answer.admin_importance_flag?
+          = check_box nil, :admin_importance_flag, { class: "flag-comment-checkbox if-js-hide", checked: checked}, 1, 0
+
+          = submit_tag :update, class: "if-js-hide"
         = form_for([:admin, @form_answer, Comment.new(commentable: @form_answer, section: "admin")]) do |f|
-          = render('admin/comments/form', f: f)
+          = render('admin/comments/form', f: f, section_flagged: @form_answer.admin_importance_flag?)
         .comment-insert
         = render(collection: @form_answer.comments.admin, partial: 'comment')

@@ -137,14 +137,6 @@ class FormAnswer < ActiveRecord::Base
     super || {}
   end
 
-  def important?
-    importance_flag?
-  end
-
-  def toggle_importance_flag
-    update_attributes(importance_flag: !(self.importance_flag))
-  end
-
   def company_or_nominee_from_document
     comp_attr = promotion? ? 'organization_name' : 'company_name'
     name = document[comp_attr]

@@ -27,4 +27,12 @@ class FormAnswerPolicy < ApplicationPolicy
   def assign_assessor?
     admin? || subject.lead?(record)
   end
+
+  def toggle_admin_flag?
+    admin?
+  end
+
+  def toggle_assessor_flag?
+    admin? || subject.lead_or_assigned?(record)
+  end
 end
