@@ -104,6 +104,7 @@ class QAE2014Forms
             { street: "Street" },
             { city: "Town or city" },
             { country: "Country" },
+            { county: "County" },
             { postcode: "Postcode" }
           ])
         end
