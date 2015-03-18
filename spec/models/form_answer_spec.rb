@@ -119,7 +119,7 @@ RSpec.describe FormAnswer, type: :model do
       end
 
       context "organization name blank" do
-        let(:doc) { { "nominee_first_name" => c_name } }
+        let(:doc) { { "nominee_info_first_name" => c_name } }
         it "gets the nominee name" do
           expect(subject.company_or_nominee_from_document).to eq(c_name)
         end
