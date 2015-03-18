@@ -2,12 +2,15 @@
                   as: :audit_certificate,
                   url: users_form_answer_audit_certificate_path(form_answer),
                   html: {class: 'qae-form', method: :post} do |f|
-  fieldset
-    h3
-      ' File
-  = f.input :attachment, as: :file, required: true, label: false
+  span.button.button-add
+    span + Upload Audit Certificate
+    = f.input :attachment,
+              as: :file,
+              required: true,
+              label: false,
+              input_html: { class: "fileinput-button js-file-upload" }
 
-  footer
+  footer.if-js-hide
     nav.pagination role="navigation"
       ul.group
         li.submit
