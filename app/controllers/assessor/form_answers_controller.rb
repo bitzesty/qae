@@ -10,7 +10,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
     authorize :form_answer, :index?
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
 
-    scope = current_assessor.applications_assigned_to_as
+    scope = current_assessor.applications_assigned_to_as.where(award_type: params[:award_type])
 
     @search = FormAnswerSearch.new(scope, current_assessor).search(params[:search])
     @form_answers = @search.results.page(params[:page]).includes(:comments)

@@ -39,7 +39,7 @@
 br
 
 ul.nav.nav-pills
-  - if current_subject.categories_as_lead.present?
+  - if show_award_tabs_for_assessor?
     - current_subject.categories_as_lead.each_with_index do |category, index|
       li role="presentation" class="#{'active' if params[:award_type] == category} #{'active' if !params[:award_type].present? and index == 0}"
         = link_to FormAnswer::AWARD_TYPE_FULL_NAMES[category], assessor_form_answers_path(award_type: category)
