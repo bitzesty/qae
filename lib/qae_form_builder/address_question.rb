@@ -1,18 +1,40 @@
 class QAEFormBuilder
 
   class AddressQuestionDecorator < QuestionDecorator
+    COUNTIES = [
+      "East",
+      "East Midlands",
+      "West Midlands",
+      "London",
+      "North East",
+      "North West",
+      "South East",
+      "South West",
+      "Yorkshire and the Humber",
+      "Channel Islands",
+      "Isle of Man",
+      "Northern Ireland",
+      "Scotland",
+      "Wales"
+    ]
+
     def required_sub_fields
       if sub_fields.present?
         sub_fields
       else
         [
-          {building: "Building"},
-          {street: "Street"},
-          {city: "Town or city"},
-          {country: "Country"},
-          {postcode: "Postcode"}
+          { building: "Building" },
+          { street: "Street" },
+          { city: "Town or city" },
+          { country: "Country" },
+          { county: "County" },
+          { postcode: "Postcode" }
         ]
       end
+    end
+
+    def counties
+      COUNTIES
     end
 
     def rendering_sub_fields
