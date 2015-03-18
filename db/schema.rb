@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313090152) do
+ActiveRecord::Schema.define(version: 20150317130146) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,17 @@ ActiveRecord::Schema.define(version: 20150313090152) do
 
   add_index "email_notifications", ["settings_id"], name: "index_email_notifications_on_settings_id", using: :btree
 
+  create_table "feedbacks", force: :cascade do |t|
+    t.integer  "form_answer_id"
+    t.boolean  "submitted",      default: false
+    t.boolean  "approved",       default: false
+    t.hstore   "document"
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "feedbacks", ["form_answer_id"], name: "index_feedbacks_on_form_answer_id", using: :btree
+
   create_table "form_answer_attachments", force: :cascade do |t|
     t.integer  "form_answer_id"
     t.text     "file"
@@ -193,8 +204,8 @@ ActiveRecord::Schema.define(version: 20150313090152) do
     t.string   "user_full_name"
     t.string   "award_type_full_name"
     t.string   "sic_code"
-    t.hstore   "financial_data"
     t.string   "nickname"
+    t.hstore   "financial_data"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
@@ -303,6 +314,7 @@ ActiveRecord::Schema.define(version: 20150313090152) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "feedbacks", "form_answers"
   add_foreign_key "support_letter_attachments", "form_answers"
   add_foreign_key "support_letter_attachments", "support_letters"
   add_foreign_key "support_letter_attachments", "users"

@@ -26,6 +26,17 @@
           = render "section_appraisal_form_moderated"
           = render "section_case_summary"
 
+  / TODO: display only for unsuccessfull applications
+  - if true
+    .panel.panel-default.panel-parent
+      .panel-heading#feedback-heading role="tab"
+        h4.panel-title
+          a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-feedback" aria-expanded="true" aria-controls="section-feedback"
+            ' Feedback
+      #section-feedback.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="feedback-heading"
+        .panel-body
+          = render "admin/feedbacks/section", form_answer: @form_answer
+
   .panel.panel-default.panel-parent
     .panel-heading#winners-heading role="tab"
       h4.panel-title

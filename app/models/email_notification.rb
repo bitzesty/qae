@@ -1,6 +1,6 @@
 class EmailNotification < ActiveRecord::Base
   extend Enumerize
-  include Models::FormattedTime::DateTimeFor
+  include FormattedTime::DateTimeFor
 
   date_time_for :trigger_at
 

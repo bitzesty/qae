@@ -1,4 +1,4 @@
-module Models::FormattedTime::DateTimeFor
+module FormattedTime::DateTimeFor
   extend ActiveSupport::Concern
 
   module ClassMethods

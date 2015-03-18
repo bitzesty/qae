@@ -91,6 +91,12 @@ Rails.application.routes.draw do
     resources :form_answers do
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]
+      resources :feedbacks, only: [:create, :update] do
+        member do
+          post :submit
+          post :approve
+        end
+      end
     end
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
@@ -106,6 +112,12 @@ Rails.application.routes.draw do
     resources :form_answers do
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]
+      resources :feedbacks, only: [:create, :update] do
+        member do
+          post :submit
+          post :approve
+        end
+      end
 
       resources :flags, only: [] do
         collection{ get :toggle }
