@@ -167,7 +167,7 @@ class FormAnswer < ActiveRecord::Base
   private
 
   def nominee_full_name_from_document
-    "#{document['nominee_first_name']} #{document['nominee_last_name']}".strip
+    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
   end
 
   def build_supporters
