@@ -1,0 +1,11 @@
+.panel.panel-default
+  .panel-heading#shortlisted-stage-email-notifications-heading role="tab"
+    h4.panel-title
+      a data-toggle="collapse" data-parent="#panel-shortlisted-stage" href="#section-shortlisted-stage-email-notifications" aria-expanded="true" aria-controls="section-shortlisted-stage-email-notifications"
+        ' Email notification
+  #section-shortlisted-stage-email-notifications.section-appraisal-form.section-shortlisted-stage-email-notifications.panel-collapse.collapse.in role="tabpanel" aria-labelledby="shortlisted-stage-email-notifications-heading"
+    .panel-body
+      = render 'email_notification', kind: 'winners_notification'
+      = render 'email_notification', kind: 'winners_press_release_comments_request'
+      = render 'email_notification', kind: 'unsuccessfull_notification'
+      = render 'email_notification', kind: 'all_unsuccessfull_feedback'
