@@ -1,28 +1,48 @@
 .row
   .col-md-3
     .form-group.search-input
-    = simple_form_for @search, url: "", method: :get, as: :search, html: { class: 'search-form'} do |f|
-      = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
-      = submit_tag :submit
+      = simple_form_for @search, url: "", method: :get, as: :search, html: { class: 'search-form'} do |f|
+        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
+        = submit_tag :submit
+
+  - if current_subject.categories_as_lead.present?
+    .col-md-3.pull-right.text-right.if-no-js-hide
+      .btn.btn-success.bulk-assign-assessors-link Bulk Assign Assessors
 
 - if current_subject.categories_as_lead.present?
-  .col-md-6
-    .btn.btn-default.bulk-assign-assessors Bulk Assign Assessors
-  .col-md-6
-    = flash[:error]
+  .well.bulk-assign-assessors-form
+    h3 Bulk Assign Assessors
     = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
-      .form-fields
-        = f.select :primary_assessor_id, [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]}, { include_blank: true }
-        = f.select :secondary_assessor_id, [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]}, { include_blank: true }
-        = f.text_field :form_answer_ids, class: "if-js-hide"
-        = f.submit :assign
+      = flash[:error]
+      fieldset.question-group
+        .row
+          .col-md-4.col-sm-5
+            .input.select.form-group
+              label.select.control-label
+                ' Assign Primary Assessor to these applications
+                = f.select :primary_assessor_id,
+                           [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
+                           { include_blank: true },
+                           class: "form-control"
+            .input.select.form-group
+              label.select.control-label
+                ' Assign Secondary Assessor to these applications
+                = f.select :secondary_assessor_id,
+                           [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
+                           { include_blank: true },
+                           class: "form-control"
+          = f.text_field :form_answer_ids, class: "if-js-hide"
+
+        = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
+        = f.submit :assign, class: "btn btn-primary"
 
 br
+
 ul.nav.nav-pills
   - if current_subject.categories_as_lead.present?
-    - current_subject.categories_as_lead.each do |category|
-      li role="presentation"
-      = link_to FormAnswer::AWARD_TYPE_FULL_NAMES[category], assessor_form_answers_path(award_type: category)
+    - current_subject.categories_as_lead.each_with_index do |category, index|
+      li role="presentation" class="#{'active' if params[:award_type] == category} #{'active' if !params[:award_type].present? and index == 0}"
+        = link_to FormAnswer::AWARD_TYPE_FULL_NAMES[category], assessor_form_answers_path(award_type: category)
 br
 
 .row
@@ -32,7 +52,6 @@ br
         = simple_form_for @search, url: "", method: :get, as: :search, html: { class: 'search-form'} do |f|
           thead
             tr
-              th &nbsp;
               th= check_box_tag :check_all
               th.sortable
                 = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
@@ -69,9 +88,9 @@ br
 
 
                 th
-                  ' Assessor 1
+                  ' Primary Assessor
                 th
-                  ' Assessor 2
+                  ' Secondary Assessor
               th &nbsp;
               th.sortable
                 = sort_link f, "Flag", @search, :flag, disabled: @search.query?
@@ -79,7 +98,6 @@ br
         tbody
           - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
             tr
-              td.status-label class="#{obj.state_machine.categorized_state + '-label'}" alt="#{obj.state_machine.categorized_state.capitalize}" title="#{obj.state_machine.categorized_state.capitalize}"
               td= check_box_tag :check, obj.id, false, class: "form-answer-check"
               td.td-title
                 = link_to [namespace_name, obj], class: "ellipsis"
@@ -97,7 +115,6 @@ br
                     = link_to [namespace_name, obj]
                       = app_comments
                 td = application_flags(obj)
-
 .row
   .col-xs-12.text-right
     = paginate @form_answers

@@ -26,6 +26,10 @@
   .icon-unflagged {
     display: none;
   }
+
+  > thead > tr > th {
+    border-top: none;
+  }
 }
 
 .nav-tabs.submitted-tabs {
@@ -323,4 +327,34 @@
 
 .form-group .list-attendees li .row {
   margin-bottom: 20px;
+}
+
+.js .bulk-assign-assessors-form {
+  display: none;
+}
+
+.js .show-bulk-assign .bulk-assign-assessors-form {
+  display: block;
+}
+
+.js .show-bulk-assign .bulk-assign-assessors-link {
+  display: none;
+}
+
+.bulk-assign-assessors-form {
+  h3 {
+    margin-top: 0;
+  }
+
+  label {
+    font-weight: bold;
+  }
+
+  .btn {
+    margin-right: 10px;
+  }
+
+  .control-label {
+    display: block;
+  }
 }

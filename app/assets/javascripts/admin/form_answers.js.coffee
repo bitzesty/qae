@@ -79,6 +79,15 @@ ready = ->
       ids += ($(@).val() + ",")
     $("#assessor_assignment_collection_form_answer_ids").val(ids)
 
+  # Show/hide the bulk assign assessors form
+  $(".bulk-assign-assessors-link").on "click", (e) ->
+    e.preventDefault()
+    $(".bulk-assign-assessors-form").closest(".container").addClass("show-bulk-assign")
+
+  $(".bulk-assign-assessors-cancel-link").on "click", (e) ->
+    e.preventDefault()
+    $(".bulk-assign-assessors-form").closest(".container").removeClass("show-bulk-assign")
+
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->
     e.preventDefault()
