@@ -102,9 +102,10 @@
                 td = obj.award_type_short_name
                 td = obj.progress_text
                 td
-                  - if obj.comments.any?
+                  - app_comments = application_comments(obj.comments)
+                  - if app_comments.present?
                     = link_to [:admin, obj]
-                      = application_comments(obj)
+                      = app_comments
                 td = application_flags(obj.comments)
                 td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"
 
