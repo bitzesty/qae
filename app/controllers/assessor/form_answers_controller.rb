@@ -2,15 +2,13 @@ class Assessor::FormAnswersController < Assessor::BaseController
   helper_method :resource,
                 :primary_assessment,
                 :secondary_assessment,
-                :moderated_assessment
+                :moderated_assessment,
+                :current_award_type
 
   def index
-    # TODO: implement searching for assessor
-    # TODO: implement the form answers filtering by current category
     authorize :form_answer, :index?
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
-
-    scope = current_assessor.applications_assigned_to_as.where(award_type: params[:award_type])
+    scope = current_assessor.applications_assigned_to_as.where(award_type: current_award_type)
 
     @search = FormAnswerSearch.new(scope, current_assessor).search(params[:search])
     @form_answers = @search.results.page(params[:page]).includes(:comments)
@@ -45,6 +43,15 @@ class Assessor::FormAnswersController < Assessor::BaseController
   def moderated_assessment
     if current_subject.lead?(resource)
       @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
+    end
+  end
+
+  def current_award_type
+    categories = current_subject.categories_as_lead
+    if params[:award_type].present?
+      params[:award_type] if categories.include?(params[:award_type])
+    else
+      categories.first
     end
   end
 end

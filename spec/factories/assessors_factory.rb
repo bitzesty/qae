@@ -18,6 +18,11 @@ FactoryGirl.define do
     end
 
     trait :regular_for_trade do
+      trade_role "regular"
+    end
+
+    trait :not_avail_for_trade do
+      trade_role nil
     end
 
     trait :regular_for_all do

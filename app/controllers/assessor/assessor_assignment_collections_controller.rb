@@ -4,7 +4,6 @@ class Assessor::AssessorAssignmentCollectionsController < Assessor::BaseControll
     authorize @assessor_assignment_collection, :create?
 
     @assessor_assignment_collection.subject = current_subject
-
     @assessor_assignment_collection.save
     respond_to do |format|
       format.html do

@@ -21,12 +21,10 @@ class AssessorAssignmentCollection
 
   def save
     return unless valid?
-
     form_answers.each do |fa|
       next unless @subject.lead?(fa)
-      prim = fa.assessor_assignments.detect(&:primary?)
-      sec = fa.assessor_assignments.detect(&:secondary?)
-
+      prim = fa.assessor_assignments.primary
+      sec = fa.assessor_assignments.secondary
       handle_double_assignment(fa, prim, sec)
       assign(fa, prim, sec)
     end

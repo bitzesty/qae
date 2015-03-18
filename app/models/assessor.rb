@@ -78,7 +78,7 @@ class Assessor < ActiveRecord::Base
   end
 
   def categories_as_lead
-    categories.select { |k, v| v == "lead" }.keys
+    categories.select { |_, v| v == "lead" }.keys
   end
 
   private
