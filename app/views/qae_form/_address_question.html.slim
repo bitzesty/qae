@@ -2,7 +2,8 @@
   - sub_field_key = sub_field_block[0]
   - sub_field_title = sub_field_block[1]
 
-  - if sub_field_key == :building
+  - case sub_field_key
+  - when :building
     .question-group
       label for="q_#{question.key}_line_1"
         ' Building and
@@ -11,11 +12,19 @@
       ul.errors-container
       input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'building') value=question.input_value(suffix: 'building') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops
       input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
-  - elsif sub_field_key == :country
+  - when :country
     .question-group
       label
         ' Country
         = country_select(question.step.form.form_name, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value(suffix: 'country')}, possible_read_only_ops.merge({name: question.input_name(suffix: 'country'), class: 'js-trigger-autosave required'}))
+
+  - when :region
+    .question-group.question-required
+      label
+        ' Region
+        = select_tag("#{question.key}_region", options_for_select(question.regions, question.input_value(suffix: 'region')), possible_read_only_ops.merge({name: question.input_name(suffix: 'region'), class: 'js-trigger-autosave required', include_blank: true}))
+        ul.errors-container
+
   - else
     .question-group
       label

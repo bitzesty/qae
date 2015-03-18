@@ -104,7 +104,8 @@ class QAE2014Forms
             { street: "Street" },
             { city: "Town or city" },
             { country: "Country" },
-            { postcode: "Postcode" }
+            { postcode: "Postcode" },
+            { region: "Region" }
           ])
         end
 
