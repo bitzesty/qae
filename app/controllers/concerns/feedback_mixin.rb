@@ -12,19 +12,7 @@ module FeedbackMixin
 
     @feedback.save
 
-    respond_to do |format|
-      format.html do
-        if @feedback.valid?
-          flash.notice = "Feedback was successfully updated"
-        else
-          flash.alert = "Feedback was not updated"
-        end
-
-        redirect_to [namespace_name, @form_answer]
-      end
-
-      format.js { render "admin/feedbacks/create" }
-    end
+    render_create
   end
 
   def update
@@ -32,49 +20,19 @@ module FeedbackMixin
 
     @feedback.update_attributes(feedback_params)
 
-    respond_to do |format|
-      format.html do
-        if @feedback.valid?
-          flash.notice = "Feedback was successfully updated"
-        else
-          flash.alert = "Feedback was not updated"
-        end
-
-        redirect_to [namespace_name, @form_answer]
-      end
-
-      format.js { render "admin/feedbacks/create" }
-    end
+    render_create
   end
 
   def submit
     authorize @feedback, :submit?
     @feedback.submitted = true
-    @feedback.save
-
-    respond_to do |format|
-      format.html do
-        flash.notice = "Feedback was successfully submitted"
-        redirect_to [namespace_name, @form_answer]
-      end
-
-      format.js { render "admin/feedbacks/create" }
-    end
+    save_and_render_submit("submitted")
   end
 
   def approve
     authorize @feedback, :approve?
     @feedback.approved = true
-    @feedback.save
-
-    respond_to do |format|
-      format.html do
-        flash.notice = "Feedback was successfully approved"
-        redirect_to [namespace_name, @form_answer]
-      end
-
-      format.js { render "admin/feedbacks/create" }
-    end
+    save_and_render_submit("approved")
   end
 
   private
@@ -93,5 +51,34 @@ module FeedbackMixin
 
   def load_feedback
     @feedback = @form_answer.feedback
+  end
+
+  def render_create
+    respond_to do |format|
+      format.html do
+        if @feedback.valid?
+          flash.notice = "Feedback was successfully updated"
+        else
+          flash.alert = "Feedback was not updated"
+        end
+
+        redirect_to [namespace_name, @form_answer]
+      end
+
+      format.js { render "admin/feedbacks/create" }
+    end
+  end
+
+  def save_and_render_submit(action)
+    @feedback.save
+
+    respond_to do |format|
+      format.html do
+        flash.notice = "Feedback was successfully #{action}"
+        redirect_to [namespace_name, @form_answer]
+      end
+
+      format.js { render "admin/feedbacks/create" }
+    end
   end
 end
