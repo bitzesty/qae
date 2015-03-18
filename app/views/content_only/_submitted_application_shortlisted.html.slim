@@ -14,16 +14,29 @@ p
 br
 
 h3 Audit Certificate
+
 p
   ' Please
-  = link_to "download and complete this audit certificate"
+  = link_to "download and complete this audit certificate",
+            users_form_answer_audit_certificate_url(award, format: :pdf),
+            target: "_blank"
   ' . Afterwards, upload the completed form.
 
-/ Hide once uploaded
-= link_to "+ Upload Audit Certificate", "#", class: "button button-add"
+/- if award.audit_certificate.present? && award.audit_certificate.persisted?
+/  ul.list-add
+/    li
+/      = link_to "Remove", "#", class: "remove-link js-remove-link"
+/      = link_to "Uploaded Audit Certificate", award.audit_certificate.attachment_url, target: "_blank"
+/
+/.js-audit-cert-upload class=("js-audit-cert-uploaded" if award.audit_certificate.present? && award.audit_certificate.persisted?)
+/  = render "users/audit_certificates/form", form_answer: award, audit_certificate: award.audit_certificate
 
-/ Show once uploaded
-  ul.list-add
-    li
-      = link_to "Remove", "#", class: "remove-link js-remove-link"
-      = link_to "Uploaded Audit Certificate"
+.js-upload-wrapper data-max-attachments=1 data-form-name="audit-cert-form" data-name="audit-cert-name" data-filename="Uploaded Audit Certificate"
+  ul.js-uploaded-list.list-add.visuallyhidden
+    - if award.audit_certificate.present? && award.audit_certificate.persisted?
+      li
+        div
+          = link_to "Uploaded Audit Certificate", award.audit_certificate.attachment_url, target: "_blank"
+          = link_to "Remove", "#", class: "remove-link"
+
+  = render "users/audit_certificates/form", form_answer: award, audit_certificate: award.audit_certificate

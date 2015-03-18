@@ -31,6 +31,8 @@ $gutter-one-sixth: $gutter/6;
 @import 'helpers/beta-label';
 @import 'helpers/selectable';
 
+@import "admin/toggle";
+
 @import 'frontend/smart_answers';
 @import 'frontend/layout';
 @import 'frontend/forms';

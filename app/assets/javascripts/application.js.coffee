@@ -275,13 +275,14 @@ jQuery ->
     $el = $(el)
 
     wrapper = $el.closest('div.js-upload-wrapper')
-    button = wrapper.find('.button')
+    button = wrapper.find('.button-add')
     list = wrapper.find('.js-uploaded-list')
 
     max = wrapper.data('max-attachments')
     name = wrapper.data('name')
     form_name = wrapper.data('form-name')
     needs_description = !!wrapper.data('description')
+    has_filename = !!wrapper.data('filename')
     is_link = !!$el.data('add-link')
 
     progress_all = (e, data) ->
@@ -303,7 +304,11 @@ jQuery ->
         div.append(label)
         new_el.append(div)
       else
-        div = $("<div>").text(data.result['original_filename'])
+        if has_filename
+          filename = wrapper.data('filename')
+        else
+          filename = data.result['original_filename']
+        div = $("<div>").text(filename)
 
         hidden_input = $("<input>").
           prop('type', 'hidden').

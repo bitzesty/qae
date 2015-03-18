@@ -19,10 +19,10 @@
     / Nominators don't get any options after submision
     - unless award.award_type == "promotion"
       / if unsuccessful
-      = render "submitted_application_unsuccessful", award: award
+        = render "submitted_application_unsuccessful", award: award
 
       / if shortlisted
-        = render "submitted_application_shortlisted", award: award
+      = render "submitted_application_shortlisted", award: award
 
       / if winner
         = render "submitted_application_successful", award: award
