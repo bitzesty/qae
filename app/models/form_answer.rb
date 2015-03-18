@@ -60,7 +60,7 @@ class FormAnswer < ActiveRecord::Base
       def primary
         where(assessor_assignments:
           {
-            position: "primary"
+            position: 0
           }
         ).first
       end
@@ -68,7 +68,7 @@ class FormAnswer < ActiveRecord::Base
       def secondary
         where(assessor_assignments:
           {
-            position: "secondary"
+            position: 1
           }
         ).first
       end

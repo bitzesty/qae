@@ -5,6 +5,23 @@ ready = ->
   bindRags("#section-appraisal-form-secondary .edit_assessor_assignment")
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
 
+  $(".section-applicant-users .edit_assessor_assignment select").select2()
+  $("#new_assessor_assignment_collection select").select2()
+
+  $(".section-applicant-users form").on "ajax:success", (e, data, status, xhr) ->
+    form = $(this)
+    form.find(".errors-holder").text("")
+    form.closest(".form-group").removeClass("form-edit")
+    formValueBox = form.closest(".form-group").find(".edit-value")
+    formValue = form.find("select :selected").text()
+    formValueBox.text(formValue)
+  $(".section-applicant-users form").on "ajax:error", (e, data, status, xhr) ->
+    form = $(this)
+    errors = ""
+    for k, error of data.responseJSON["errors"]
+      errors += error
+
+    form.find(".errors-holder").text(errors)
   $('#new_form_answer_attachment').fileupload
     success: (result, textStatus, jqXHR)->
       $('.document-list .p-empty').remove()
@@ -55,6 +72,21 @@ ready = ->
       $(this).closest(".panel-body").removeClass("audit-cert-changes-made")
       $(this).closest(".panel-body").addClass("audit-cert-no-change")
 
+  $(document).on "submit", "#new_assessor_assignment_collection", (e) ->
+    form = $(this)
+    ids = ""
+    $(".form-answer-check:checked").each ->
+      ids += ($(@).val() + ",")
+    $("#assessor_assignment_collection_form_answer_ids").val(ids)
+
+  # Show/hide the bulk assign assessors form
+  $(".bulk-assign-assessors-link").on "click", (e) ->
+    e.preventDefault()
+    $(".bulk-assign-assessors-form").closest(".container").addClass("show-bulk-assign")
+
+  $(".bulk-assign-assessors-cancel-link").on "click", (e) ->
+    e.preventDefault()
+    $(".bulk-assign-assessors-form").closest(".container").removeClass("show-bulk-assign")
 
 changeRagStatus = ->
   $(document).on "click", ".btn-rag .dropdown-menu a", (e) ->

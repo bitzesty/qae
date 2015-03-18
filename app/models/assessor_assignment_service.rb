@@ -13,7 +13,7 @@ class AssessorAssignmentService
     resource.editable = current_subject
     resource.assessed_at = DateTime.now unless assignment_request?
     handle_with_form_answer_transition
-    resource.save!
+    resource.save
   end
 
   def permitted_params

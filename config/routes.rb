@@ -104,6 +104,7 @@ Rails.application.routes.draw do
     end
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
+    resources :assessor_assignment_collections, only: [:create]
   end
 
   namespace :admin do
