@@ -152,6 +152,19 @@ table .ellipsis {
   font-weight: normal;
 }
 
+.field_with_errors {
+  .error {
+    display: block;
+    margin-bottom: 5px;
+    color: $error-colour;
+  }
+
+  .form-control {
+    border-color: $error-colour;
+    background-color: #f2dede;
+  }
+}
+
 .well {
   background-color: $white-true;
   box-shadow: none;
