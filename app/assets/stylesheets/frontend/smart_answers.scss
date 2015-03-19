@@ -74,7 +74,7 @@ $is-ie: false !default;
     }
 
     table {
-      width: auto;
+      width: 100%;
 
       .previous-answers-title {
         @include bold-19;
