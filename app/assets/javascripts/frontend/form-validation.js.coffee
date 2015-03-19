@@ -178,8 +178,8 @@ window.FormValidation =
 
     if total_doesnt_match
       question_block = $(".question-block[data-answer='overseas_sales-total-overseas-sales']")
-      @log_this(question, "validateTotalOverseas", "Total doesn't match values from questions below.")
-      @appendMessage(question_block, "Total doesn't match values from questions below.")
+      @log_this(question, "validateTotalOverseas", "These values should equal the sum of direct and indirect overseas sales.")
+      @appendMessage(question_block, "These values should equal the sum of direct and indirect overseas sales.")
       @addErrorClass(question_block)
       return
 
