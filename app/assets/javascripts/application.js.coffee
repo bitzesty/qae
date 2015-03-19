@@ -27,6 +27,7 @@ jQuery ->
     $("body").addClass("tried-submitting")
     if not validate()
       $("body").addClass("show-error-page")
+      $(".steps-progress-bar .step-current").removeClass("step-current")
       $("html, body").animate(
         scrollTop: 0
       , 0)
