@@ -2,3 +2,7 @@ header.page-header.group.page-header-wider
   div
     h1
       = form.title
+
+    - for step in form.steps do
+      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
+        = step.title
