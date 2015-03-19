@@ -206,11 +206,9 @@ class QAE2014Forms
           ref "A 12"
         end
 
-        dropdown :business_sector, "Business Sector" do
+        business_sector_dropdown :business_sector, "Business Sector" do
           required
           ref "A 13"
-          option "business_sector", "Business Sector"
-          option :other, "Other"
         end
 
         text :business_sector_other, "Please specify" do

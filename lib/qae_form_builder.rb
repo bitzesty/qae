@@ -10,6 +10,7 @@ require "qae_form_builder/number_question"
 require "qae_form_builder/textarea_question"
 require "qae_form_builder/options_question"
 require "qae_form_builder/dropdown_question"
+require "qae_form_builder/business_sector_dropdown_question"
 require "qae_form_builder/date_question"
 require "qae_form_builder/upload_question"
 
