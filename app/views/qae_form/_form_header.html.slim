@@ -5,9 +5,4 @@ header.page-header.group.page-header-wider
 
     - for step in form.steps do
       h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
-        ' Step
-        = step.index + 2
-        '  of
-        = form.steps.length + 1
-        ' :
         = step.title
