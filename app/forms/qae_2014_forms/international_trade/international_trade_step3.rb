@@ -204,7 +204,6 @@ class QAE2014Forms
                     )
           conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
-          drop_block_conditional
         end
 
         by_years :net_profit, "Net profit after tax but before dividends" do
@@ -218,7 +217,6 @@ class QAE2014Forms
                     )
           conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
-          drop_block_conditional
         end
 
         textarea :drops_in_turnover, "Explain any drops in turnover or net profit, and any losses made." do
