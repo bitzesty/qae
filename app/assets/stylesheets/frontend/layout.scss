@@ -105,6 +105,11 @@
   }
 }
 
+// Make the header smaller
+header.page-header div h1 {
+  font-size: 36px;
+}
+
 // Wider content
 .article-container.article-container-wider {
   width: 100%;
