@@ -117,4 +117,14 @@ class FormAnswerDecorator < ApplicationDecorator
   def financial_summary_updated_at
     object.financial_data && object.financial_data["updated_at"]
   end
+
+  def lead_assessors
+    award_leads = Assessor.all.where("#{object.decorate.award_type_slug}_role" => "lead")
+
+    if award_leads.any?
+      award_leads.map { |lead| lead.full_name }.join(", ")
+    else
+      "<span class='p-empty'>Not assigned</span>".html_safe
+    end
+  end
 end
