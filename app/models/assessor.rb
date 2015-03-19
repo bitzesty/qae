@@ -113,4 +113,8 @@ class Assessor < ActiveRecord::Base
     self.development_role = nil if get_role("development").blank?
     self.promotion_role = nil if get_role("promotion").blank?
   end
+
+  def self.leads_for(category)
+    where(role_meth(category) => "lead")
+  end
 end
