@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
   get "/press_comment"                                  => "content_only#press_comment",                                  as: "press_comment"
   get "/buckingham_palace_attendance"                   => "content_only#buckingham_palace_attendance",                   as: "buckingham_palace_attendance"
+  get "/submitted_nomination_successful"                => "content_only#submitted_nomination_successful",                as: "submitted_nomination_successful"
 
   root to: "content_only#home"
 

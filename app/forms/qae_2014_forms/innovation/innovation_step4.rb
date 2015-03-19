@@ -28,7 +28,7 @@ class QAE2014Forms
               If you can give quantitative evidence of your initiatives/improvement/success, then do so.
               </p>
             <p>
-              If you have too many initiatives, just outline the ones you think are most relevant/important.
+              If you have too many initiatives, just outline the ones you think are most relevant/important you think are most relevant/important.
             </p>
           )
           conditional :corp_responsibility_form, :complete_now

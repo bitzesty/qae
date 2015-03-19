@@ -1,14 +1,23 @@
 p
-  ' Your application for the
+  ' Congratulations! Your application for the
   = award.decorate.award_type
-  '  Award was shortlisted.
+  '  has been shortlisted.
 
 / if they answered D1 with complete full declaration later
 /- if corp_responsibility_form == "declare_now"
 .application-notice.help-notice
   p
-    ' Please complete the Declaration of Corporate Responsibility by
-    = link_to "filling out this form", declaration_of_corporate_responsibility_path
+    ' You should now complete both the audit certificate and full Declaration of Corporate Responsibility by
+    = application_deadline "audit_certificates"
+    ' .
+p
+  ' Please
+  = link_to "fill out the full Declaration of Corporate Responsibility", declaration_of_corporate_responsibility_path
+  ' . 
+/ else
+  p
+    ' You have already completed the full Declaration of Corporate Responsibility. You can
+    = link_to "view and edit it here", declaration_of_corporate_responsibility_path
     ' .
 
 br
@@ -16,27 +25,18 @@ br
 h3 Audit Certificate
 
 p
-  ' Please
-  = link_to "download and complete this audit certificate",
+  ' Please download and complete
+  = link_to "this audit certificate",
             users_form_answer_audit_certificate_url(award, format: :pdf),
             target: "_blank"
-  ' . Afterwards, upload the completed form.
-
-/- if award.audit_certificate.present? && award.audit_certificate.persisted?
-/  ul.list-add
-/    li
-/      = link_to "Remove", "#", class: "remove-link js-remove-link"
-/      = link_to "Uploaded Audit Certificate", award.audit_certificate.attachment_url, target: "_blank"
-/
-/.js-audit-cert-upload class=("js-audit-cert-uploaded" if award.audit_certificate.present? && award.audit_certificate.persisted?)
-/  = render "users/audit_certificates/form", form_answer: award, audit_certificate: award.audit_certificate
+  ' . You can then upload your completed certificate below.
 
 .js-upload-wrapper data-max-attachments=1 data-form-name="audit-cert-form" data-name="audit-cert-name" data-filename="Uploaded Audit Certificate"
   ul.js-uploaded-list.list-add.visuallyhidden
     - if award.audit_certificate.present? && award.audit_certificate.persisted?
       li
         div
-          = link_to "Uploaded Audit Certificate", award.audit_certificate.attachment_url, target: "_blank"
+          = link_to "Uploaded audit certificate", award.audit_certificate.attachment_url, target: "_blank"
           = link_to "Remove", "#", class: "remove-link"
 
   = render "users/audit_certificates/form", form_answer: award, audit_certificate: award.audit_certificate

@@ -1,42 +1,49 @@
 p
-  ' Your application for the
+  ' Congratulations! Your application for the
   = award.decorate.award_type
   '  Award was successful.
 p
-  ' Visit
-  = link_to "the winners page", award_winners_section_path
-  '  to download media to display on your website.
+  = link_to "Visit Winners’ Resources", award_winners_section_path
+  '  to download media for websites and advertisements.
+
+.application-notice.help-notice
+  p You are not allowed to announce your success until after April 21st.
 
 br
 
 h3 Press Comment
 / If press comment has not been confirmed
-p Please read over the press comment we've prepared for you and confirm that it's factually correct.
+p Please read over the press comment we’ve prepared for you and check that it’s factually correct.
 p = link_to "View press comment", press_comment_path
 .application-notice.help-notice
-  p Press comment has not been confirmed yet.
+  p Your press comment hasn’t been confirmed.
 / else
   .application-notice.info-notice
     p
-      = link_to "Press comment", press_comment_path
-      '  has been confirmed to be correct.
+      = link_to "Your press comment", press_comment_path
+      '  has been confirmed as correct.
 
 br
 
 h3
   ' Buckingham Palace Attendees
 / If attendees details have not been finalised
-p You're also invited to visit Buckingham Palace to collect your awards. We'll need some details from you and those accompanying you in preparation for this.
-p You're allowed to have up to 3 guests accompany you to the award ceremonies.
+p You’re also invited to visit Buckingham Palace to collect your awards. You may send up to two representatives from your organisation for every award you have won.
+p
+  ' In preparation for the event, we require you to
+  = link_to "submit details of those in attendance", buckingham_palace_attendance_path
+  ' .
 .application-notice.help-notice
   p
-    ' Attendance has not been confirmed yet.
-    = link_to "Visit this page to confirm your details and your guests.", buckingham_palace_attendance_path
+    ' Your attendance hasn’t been confirmed.
 / else
-  p
-    ' You have confirmed attendance of
-    = "1"
-    '  person.
   ul.list-add
     li
       = render "buckingham_palace_attendees"
+
+  p
+    ' You may
+    = "add more attendees", buckingham_palace_attendance_path
+    '  up until
+    = application_deadline "buckingham_palace_attendees_details"
+    ' .
