@@ -117,6 +117,6 @@ class ApplicationController < ActionController::Base
   def application_deadline(kind)
     settings.deadlines.where(kind: kind).first.decorate.formatted_trigger_time
   end
-  helper_method :application_deadline
 
+  helper_method :application_deadline
 end
