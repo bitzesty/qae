@@ -11,6 +11,10 @@ class QAE2014Forms
           }
           option "2 to 4", "Outstanding performance improvements over the last 2 years"
           option "5 plus", "Steady performance improvements over the last 5 years"
+          financial_date_selector({
+            "2 to 4" => "2",
+            "5 plus" => "5"
+          })
         end
 
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
@@ -19,6 +23,7 @@ class QAE2014Forms
           context %(
             <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
                     )
+          financial_date_pointer
         end
 
         options :financial_year_date_changed, 'Did your year-end date change during your <span class="js-entry-period-subtext">2 or 5</span> year entry period?' do

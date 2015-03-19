@@ -2,18 +2,25 @@ require "prawn/measurement_extensions"
 
 class AuditCertificatePdf < Prawn::Document
   include PdfAuditCertificates::General::SharedElements
+  include PdfAuditCertificates::General::FinancialTable
   include FormAnswersBasePointer
 
   attr_reader :audit_data,
               :form_answer,
-              :award_type
+              :award_type,
+              :financial_pointer,
+              :step_questions,
+              :filled_answers
 
   def initialize(form_answer)
     super()
 
     @form_answer = form_answer.decorate
     @award_type = form_answer.award_type.downcase
-    @audit_data = FormFinancialPointer.new(form_answer).data
+    @financial_pointer = FormFinancialPointer.new(form_answer)
+    @audit_data = financial_pointer.data
+    @step_questions = financial_pointer.financial_step.questions
+    @filled_answers = financial_pointer.filled_answers
 
     generate!
   end

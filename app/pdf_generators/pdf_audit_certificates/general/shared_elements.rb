@@ -33,7 +33,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_financial_table
-    rows = [financial_dates.unshift("")]
+    rows = [financial_table_headers.unshift("")]
     table_headers.map do |label|
       question_key = label["id"]
 
@@ -46,17 +46,12 @@ module PdfAuditCertificates::General::SharedElements
     table rows, table_default_ops
   end
 
-  def financial_dates
-    financial_data(
-      :financial_year_changed_dates,
-      get_audit_data(:financial_year_changed_dates)
-    )
-  end
-
   def get_audit_data(key)
-    audit_data.detect do |d|
+    res = audit_data.detect do |d|
       d.keys.first.to_s == key.to_s
-    end[key.to_sym]
+    end
+
+    res.present? ? res[key.to_sym] : financial_empty_values
   end
 
   def table_headers

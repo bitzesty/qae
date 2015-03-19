@@ -25,6 +25,10 @@ class QAE2014Forms
                                                                                      placeholder_text: %{
               As you currently hold a Queen's Award for Continuous Achievement in International Trade (6 years), you can only apply for the Outstanding Achievement Award (3 years).
             }
+          financial_date_selector({
+            "3 to 5" => "3",
+            "6 plus" => "6"
+          })
         end
 
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
@@ -33,6 +37,7 @@ class QAE2014Forms
           context %(
             <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
                     )
+          financial_date_pointer
         end
 
         options :financial_year_date_changed, 'Did your year-end date change during your <span class="js-entry-period-subtext">3 or 6</span> year entry period?' do
