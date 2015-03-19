@@ -573,7 +573,13 @@ jQuery ->
     $(".page-dashboard").toggleClass("dashboard-post")
 
   $(".js-press-comment-correct input").change ->
-    $(".js-press-comment-feeback").removeClass("press-comment-incorrect")
+    $(".js-press-comment-feeback").removeClass("section-confirmed")
 
     if $(".js-press-comment-correct input:checked").val() == "no"
-      $(".js-press-comment-feeback").addClass("press-comment-incorrect")
+      $(".js-press-comment-feeback").addClass("section-confirmed")
+
+  $(".js-accept-nomination input").change ->
+    $(".js-accept-nomination-details").removeClass("section-confirmed")
+
+    if $(".js-accept-nomination input:checked").val() == "yes"
+      $(".js-accept-nomination-details").addClass("section-confirmed")

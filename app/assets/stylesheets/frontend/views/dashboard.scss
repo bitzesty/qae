@@ -185,10 +185,11 @@
   }
 }
 
-.js-press-comment-feeback {
+.js-press-comment-feeback,
+.js-accept-nomination-details {
   display: none;
 
-  &.press-comment-incorrect {
+  &.section-confirmed {
     display: block;
   }
 }
