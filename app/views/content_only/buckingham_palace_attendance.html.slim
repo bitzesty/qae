@@ -6,7 +6,10 @@ div
   .article-container.article-container-wider
     article.group role="article"
       .inner
-        p You're allowed to have up to 3 guests accompany you to the award ceremonies.
+        p
+          ' On
+          = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first.decorate.formatted_trigger_time
+          '  there will be a Royal reception held at Buckingham Palace for organisations and individuals who have won Queen’s Awards. Winning organisations can send up to two attendees per award won.
 
         br
 
@@ -17,9 +20,11 @@ div
           / ### EP winner
           / Each QAEP recipient is allowed just one person to go with them and that person is their nominator.
           / The invitation is sent to the winning QAEP recipient only, not the nominator.
-          ul.list-add
+          ul.list-add.palace-attendees-list
             li
               = link_to "Remove", "#", class: "remove-link js-remove-link"
+
+              h2 Attendee 1
 
               fieldset.question-block
                 .question-group

@@ -17,7 +17,8 @@ form
             p You don't have to demonstrate strength in all of the areas below.
             p The guidance notes below each section are not exhaustive. Answer the questions in a way that best suits your organisation.
             p If you can give quantitative evidence of your initiatives/improvement/success, then do so.
-            p If you have too many initiatives, just outline the ones you think are most relevant/important.
+            p
+              ' If you have too many initiatives, just outline the ones you think are most relevant/important you think are most relevant/important.
             .clear
 
           fieldset.question-block
@@ -86,6 +87,14 @@ form
             .question-group
               textarea.js-char-count data-word-max="500" rows="5"
               .clear
+
+          br
+
+          .application-notice.info-notice
+            p
+              ' You may still edit your submitted Declaration of Corporate Responsibility up until the deadline on
+              = Settings.current.deadlines.where(kind: "audit_certificates").first.decorate.formatted_trigger_time
+              ' .
 
           footer
             nav.pagination aria-label="Pagination" role="navigation"

@@ -27,7 +27,7 @@ class QAE2014Forms
               If you can give quantitative evidence of your initiatives/improvement/success, then do so.
               </p>
             <p>
-              If you have too many initiatives, just outline the ones you think are most relevant/important.
+              If you have too many initiatives, just outline the ones you think are most relevant/important you think are most relevant/important.
             </p>
             <p>
               If you have already provided relevant information in your entry, please refer to that information and give any additional information under the relevant heading(s) below.
