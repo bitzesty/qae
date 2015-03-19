@@ -8,7 +8,7 @@ div
       .inner
         p
           ' On
-          = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first.decorate.formatted_trigger_time
+          = application_deadline "buckingham_palace_attendees_details"
           '  there will be a Royal reception held at Buckingham Palace for organisations and individuals who have won Queen’s Awards. Winning organisations can send up to two attendees per award won.
 
         br

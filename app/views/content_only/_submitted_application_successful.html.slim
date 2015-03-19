@@ -45,5 +45,5 @@ p
     ' You may
     = "add more attendees", buckingham_palace_attendance_path
     '  up until
-    = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first.decorate.formatted_trigger_time
+    = application_deadline "buckingham_palace_attendees_details"
     ' .

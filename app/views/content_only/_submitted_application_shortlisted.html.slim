@@ -8,7 +8,7 @@ p
 .application-notice.help-notice
   p
     ' You should now complete both the audit certificate and full Declaration of Corporate Responsibility by
-    = Settings.current.deadlines.where(kind: "audit_certificates").first.decorate.formatted_trigger_time
+    = application_deadline "audit_certificates"
     ' .
 p
   ' Please

@@ -47,7 +47,7 @@ div
             / If attendees details have not been finalised
             p
               ' On
-              = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first.decorate.formatted_trigger_time
+              = application_deadline "buckingham_palace_attendees_details"
               '  there will be a Royal reception held at Buckingham Palace for organisations and individuals who have won Queen’s Awards. Both you and your nominee are invited.
 
             p

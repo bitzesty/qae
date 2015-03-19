@@ -93,7 +93,7 @@ form
           .application-notice.info-notice
             p
               ' You may still edit your submitted Declaration of Corporate Responsibility up until the deadline on
-              = Settings.current.deadlines.where(kind: "audit_certificates").first.decorate.formatted_trigger_time
+              = application_deadline "audit_certificates"
               ' .
 
           footer
