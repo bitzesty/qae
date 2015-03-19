@@ -1,0 +1,8 @@
+- unless assessment.submitted?
+  = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, class: "submit-assessment", "data-type" => "json")
+    = hidden_field_tag :assessment_id, assessment.id
+    = submit_tag "Submit Appraisal", class: "btn btn-default btn-block"
+    .feedbackHolder
+- else
+  p
+    em Assessment Submitted

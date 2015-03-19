@@ -23,8 +23,11 @@
             = render "admin/form_answers/section_appraisal_form_primary"
           - if secondary_assessment.visible_for?(current_subject)
             = render "admin/form_answers/section_appraisal_form_secondary"
-          - if moderated_assessment.present?
+          - if show_section_appraisal_moderated?
             = render "admin/form_answers/section_appraisal_form_moderated"
+          - if show_section_case_summary?
+            = render "admin/form_answers/section_case_summary"
+
 
   / TODO: display only for unsuccessfull applications
   - if true

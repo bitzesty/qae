@@ -3,7 +3,9 @@ class Assessor::FormAnswersController < Assessor::BaseController
                 :primary_assessment,
                 :secondary_assessment,
                 :moderated_assessment,
-                :current_award_type
+                :current_award_type,
+                :lead_case_summary_assessment,
+                :primary_case_summary_assessment
 
   def index
     authorize :form_answer, :index?
@@ -41,9 +43,15 @@ class Assessor::FormAnswersController < Assessor::BaseController
   end
 
   def moderated_assessment
-    if current_subject.lead?(resource)
-      @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
-    end
+    @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
+  end
+
+  def primary_case_summary_assessment
+    @primary_case_summary_assessment ||= resource.assessor_assignments.primary_case_summary.decorate
+  end
+
+  def lead_case_summary_assessment
+    @lead_case_summary_assessment ||= resource.assessor_assignments.lead_case_summary.decorate
   end
 
   def current_award_type

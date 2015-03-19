@@ -81,6 +81,14 @@ class Assessor < ActiveRecord::Base
     categories.select { |_, v| v == "lead" }.keys
   end
 
+  def assigned?(form_answer)
+    form_answer.assessors.include?(self)
+  end
+
+  def primary?(form_answer)
+    form_answer.assessor_assignments.primary.assessor_id == id
+  end
+
   private
 
   def categories
@@ -90,12 +98,6 @@ class Assessor < ActiveRecord::Base
     end
     out
   end
-
-  def assigned?(form_answer)
-    form_answer.assessors.include?(self)
-  end
-
-  private
 
   def get_role(category)
     public_send self.class.role_meth(category)
