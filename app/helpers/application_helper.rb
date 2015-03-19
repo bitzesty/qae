@@ -55,4 +55,8 @@ module ApplicationHelper
   def landing_page?
     controller_name == 'content_only' && %w[home awards_for_organisations enterprise_promotion_awards how_to_apply timeline additional_information_and_contact terms apply_for_queens_award_for_enterprise].include?(action_name)
   end
+
+  def application_deadline(kind)
+    Settings.current.deadlines.where(kind: kind).first.decorate.formatted_trigger_time
+  end
 end

@@ -113,10 +113,4 @@ class ApplicationController < ActionController::Base
     @submission_deadline ||= settings.deadlines.where(kind: "submission_end").first
   end
   helper_method :submission_deadline
-
-  def application_deadline(kind)
-    settings.deadlines.where(kind: kind).first.decorate.formatted_trigger_time
-  end
-
-  helper_method :application_deadline
 end
