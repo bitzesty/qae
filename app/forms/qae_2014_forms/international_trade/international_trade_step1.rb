@@ -140,46 +140,9 @@ class QAE2014Forms
           ref "A 10"
         end
 
-        dropdown :business_sector, "Business Sector" do
+        business_sector_dropdown :business_sector, "Business Sector" do
           required
           ref "A 11"
-          option "", "Select business sector"
-          option "agriculture_forestry_fishing", "Agriculture, Forestry, Fishing"
-          option "mining_and_quarrying", "Mining and Quarrying"
-          option "manufacture_food_products", "Manufacture > Food Products"
-          option "manufacture_beverages", "Manufacture > Beverages"
-          option "manufacture_textiles", "Manufacture > Textiles"
-          option "manufacture_leather", "Manufacture > Leather"
-          option "manufacture_wood", "Manufacture > Wood"
-          option "manufacture_paper", "Manufacture > Paper"
-          option "manufacture_coke / Petroleum", "Manufacture > Coke / Petroleum"
-          option "manufacture_chemicals", "Manufacture > Chemicals"
-          option "manufacture_rubber / Plastic", "Manufacture > Rubber / Plastic"
-          option "manufacture_other_non_metallic", "Manufacture > Other Non-Metallic"
-          option "manufacture_basic_metals", "Manufacture > Basic Metals"
-          option "manufacture_fabricated_metal", "Manufacture > Fabricated Metal"
-          option "manufacture_computer_electronic_optical", "Manufacture > Computer / Electronic / Optical"
-          option "manufacture_electrical_equipment", "Manufacture > Electrical Equipment"
-          option "manufacture_machinery_equipment", "Manufacture > Machinery Equipment"
-          option "manufacture_motor_vehicles", "Manufacture > Motor Vehicles"
-          option "manufacture_other_transport_equipment", "Manufacture > Other Transport Equipment"
-          option "manufacture_furniture", "Manufacture > Furniture"
-          option "printing_reproduction_recorded_media", "Printing / Reproduction / Recorded Media"
-          option "repair_installation_machinery_equipment", "Repair / Installation / Machinery Equipment"
-          option "electricity_gas_water_supply", "Electricity / Gas / Water Supply"
-          option "construction", "Construction"
-          option "wholesale_retail_trade", "Wholesale Retail Trade"
-          option "transportation_storage", "Transportation Storage"
-          option "cccommodation_food_service_activities", "Accommodation / Food Service Activities"
-          option "information_communication", "Information Communication"
-          option "financial_insurance_activities", "Financial Insurance Activities"
-          option "professional_scientific_technical", "Professional, Scientific, Technical"
-          option "administrative_support_service_activities", "Administrative Support Service Activities"
-          option "public_administration_defence", "Public Administration, Defence"
-          option "education", "Education"
-          option "human_health_social_work", "Human Health, Social Work"
-          option "arts_entertainment_recreation", "Arts, Entertainment, Recreation"
-          option :other, "Other"
         end
 
         text :business_sector_other, "Please specify" do
