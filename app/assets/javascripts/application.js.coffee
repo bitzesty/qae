@@ -543,7 +543,7 @@ jQuery ->
       $(this).closest(".question-body").find(".error").remove()
 
   # Disable using enter key to submit on the form
-  $("form").on 'keypress', (e) ->
+  $("form .steps-progress-content").on 'keypress', (e) ->
     if e.keyCode == 13
       target = $(e.target)
       if !target.is("textarea") && !target.is(":button,:submit")
