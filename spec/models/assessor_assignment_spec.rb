@@ -148,7 +148,7 @@ describe AssessorAssignment do
     it "can not have assigned assessor" do
       subject.assessor_id = 1
       expect(subject).to_not be_valid
-      expect(subject.errors.values.join).to match("moderated assessment")
+      expect(subject.errors.values.join).to match("Can not be present for this")
     end
   end
 end

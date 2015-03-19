@@ -58,12 +58,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def self.lead_case_summary
-    find_or_create_by(position: 3)
-  end
-
-  def submit_assessment
-    return if submitted?
-    update(submitted_at: DateTime.now)
+    find_or_create_by(position: 4)
   end
 
   def submitted?
