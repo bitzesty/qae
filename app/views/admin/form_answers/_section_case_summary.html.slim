@@ -14,22 +14,9 @@
       / For Primary Assessor
       / It becomes read-only for primary assessor after submission
       - if true
-        .form-group
-          label.form-label Application Background
-          .form-value
-            p
-              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          textarea.form-control rows=10
-            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..form-group
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-          .clear
-
-        / These are new fields that are copied from the moderated
-        = simple_form_for([namespace_name, moderated_assessment], remote: true, authenticity_token: true) do |f|
-          = f.hidden_field :form_answer_id
+        = simple_form_for([namespace_name, case_summary_assessment], remote: true, authenticity_token: true) do |f|
+          = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
+            locals: { f: f}
           = render_section(resource, f)
           = f.submit :add, class: "if-js-hide"
 

@@ -2,7 +2,8 @@ class AssessorAssignment < ActiveRecord::Base
   enum position: {
     primary: 0,
     secondary: 1,
-    moderated: 2
+    moderated: 2,
+    case_summary: 3
   }
 
   begin :validations
@@ -25,6 +26,7 @@ class AssessorAssignment < ActiveRecord::Base
     validates :assessor_id,
               uniqueness: { scope: [:form_answer_id] },
               allow_nil: true
+    validate :application_background_section
   end
 
   begin :associations
@@ -34,6 +36,9 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   store_accessor :document, *AppraisalForm.all
+
+  # TODO: consider pre-creating the assessment records after the FormAnswer creation
+  # and decreasing the possible overhead with creating 4 records/n+1
 
   def self.primary
     find_or_create_by(position: 0)
@@ -45,6 +50,10 @@ class AssessorAssignment < ActiveRecord::Base
 
   def self.moderated
     find_or_create_by(position: 2)
+  end
+
+  def self.case_summary
+    find_or_create_by(position: 3)
   end
 
   def submit_assessment
@@ -117,18 +126,21 @@ class AssessorAssignment < ActiveRecord::Base
     end
   end
 
+  def application_background_section
+    # case summary sections has additional attribute related with background summary
+    # as it's only one attribute can be done now without extracting the appraisal type
+    # but if any new differences will came relating form structure with the position is expected
+    if application_background_section_desc.present? && !case_summary?
+      errors.add(:application_background_section_desc, "Can not be present for this appraisal.")
+    end
+  end
+
   def section_rate(section)
     public_send(struct.rate(section))
   end
 
   def struct
     AppraisalForm
-  end
-
-  def clean_document
-    # erase the assessment if asssessor assignment changed
-    return if new_record?
-    self.document = nil if assessor_id_changed?
   end
 
   def submitted_at_immutability
@@ -139,7 +151,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def assessor_existence
-    if moderated? && assessor_id.present?
+    if (moderated? || case_summary?) && assessor_id.present?
       errors.add(:assessor_id, "Can not be present for moderated assessment.")
     end
   end
