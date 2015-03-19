@@ -119,7 +119,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def lead_assessors
-    award_leads = Assessor.all.where("#{object.decorate.award_type_slug}_role" => "lead")
+    award_leads = Assessor.leads_for(object.award_type)
 
     if award_leads.any?
       award_leads.map(&:full_name).join(", ")
