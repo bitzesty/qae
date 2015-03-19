@@ -433,7 +433,7 @@ jQuery ->
             question.find(".js-button-add").addClass("visuallyhidden")
 
         if can_add
-          add_eg = add_eg.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size+1}]")
+          add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size}]")
           question.find(".list-add").append("<li class='js-add-example js-list-item'>#{add_eg}</li>")
 
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
@@ -462,7 +462,12 @@ jQuery ->
       $(this).closest(".question-group")
              .find(".js-button-add")
              .removeClass("visuallyhidden")
-      $(this).closest("li").remove()
+
+      if $(this).data("remove-association")
+        $(this).closest("li").addClass("visuallyhidden")
+        $("input.remove", $(this).closest("li")).val("1")
+      else
+        $(this).closest("li").remove()
 
       questionAddDefaultReached(parent_ul)
 

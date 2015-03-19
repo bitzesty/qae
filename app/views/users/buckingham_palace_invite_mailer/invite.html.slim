@@ -1,0 +1,10 @@
+p
+  ' Hi,
+
+p
+  ' You've been invited to Buckingham Palace Evening Reception.
+  br
+  ' Please fill in
+  = link_to "attendee details", edit_palace_invite_url(id: @token)
+  br
+  | Best Regards, Administration Team

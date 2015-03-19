@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323155826) do
+ActiveRecord::Schema.define(version: 20150325133040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -216,14 +216,45 @@ ActiveRecord::Schema.define(version: 20150323155826) do
     t.string   "user_full_name"
     t.string   "award_type_full_name"
     t.string   "sic_code"
-    t.string   "nickname"
     t.hstore   "financial_data"
+    t.string   "nickname"
     t.boolean  "admin_importance_flag",    default: false
     t.boolean  "assessor_importance_flag", default: false
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
+
+  create_table "palace_attendees", force: :cascade do |t|
+    t.string   "title"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "job_name"
+    t.string   "post_nominals"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "address_3"
+    t.string   "address_4"
+    t.string   "postcode"
+    t.string   "phone_number"
+    t.string   "product_description"
+    t.text     "additional_info"
+    t.integer  "palace_invite_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "palace_attendees", ["palace_invite_id"], name: "index_palace_attendees_on_palace_invite_id", using: :btree
+
+  create_table "palace_invites", force: :cascade do |t|
+    t.string   "email"
+    t.integer  "form_answer_id"
+    t.string   "token"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "palace_invites", ["form_answer_id"], name: "index_palace_invites_on_form_answer_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.integer  "year"
@@ -329,6 +360,8 @@ ActiveRecord::Schema.define(version: 20150323155826) do
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "feedbacks", "form_answers"
+  add_foreign_key "palace_attendees", "palace_invites"
+  add_foreign_key "palace_invites", "form_answers"
   add_foreign_key "support_letter_attachments", "form_answers"
   add_foreign_key "support_letter_attachments", "support_letters"
   add_foreign_key "support_letter_attachments", "users"
