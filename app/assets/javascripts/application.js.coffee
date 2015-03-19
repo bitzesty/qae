@@ -572,14 +572,17 @@ jQuery ->
     e.preventDefault()
     $(".page-dashboard").toggleClass("dashboard-post")
 
+  if $(".js-press-comment-correct input:checked").val() == "no"
+    $(".js-press-comment-feeback").addClass("section-confirmed")
   $(".js-press-comment-correct input").change ->
     $(".js-press-comment-feeback").removeClass("section-confirmed")
-
     if $(".js-press-comment-correct input:checked").val() == "no"
       $(".js-press-comment-feeback").addClass("section-confirmed")
 
+
+  if $(".js-accept-nomination input:checked").val() == "yes"
+    $(".js-accept-nomination-details").addClass("section-confirmed")
   $(".js-accept-nomination input").change ->
     $(".js-accept-nomination-details").removeClass("section-confirmed")
-
     if $(".js-accept-nomination input:checked").val() == "yes"
       $(".js-accept-nomination-details").addClass("section-confirmed")
