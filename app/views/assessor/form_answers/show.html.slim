@@ -2,15 +2,12 @@
   .col-xs-12
     .page-header.page-header-nav
       = link_to "‹ Back to overview", assessor_form_answers_path, class: "btn btn-link btn-lg"
-      .pull-right
-        / TODO Prev/next case links
-        = link_to "‹ Prev case", "#", class: "btn btn-link btn-lg"
-        = link_to "Next case ›", "#", class: "btn btn-link btn-lg"
 
 .row.inline-form-view
   .col-md-4
     .show-sidebar
       = render("admin/form_answers/applicant_details")
+
       .well.section-applicant-status
         / This is where you change the application status
         h2
@@ -25,6 +22,7 @@
             - FormAnswerStatusFiltering.collection.each do |state|
               li.checkbox role='presentation'
                 = link_to state[0]
+
             li.divider
             - FormAnswerStatusFiltering::SUB_OPTIONS.each do |key, val|
               li.checkbox role="presentation"
@@ -33,6 +31,7 @@
         p Audit Certificate - Missing
       = render("admin/form_answers/section_documents")
       = render("admin/form_answers/assessors_section")
+
   .col-md-8.submitted-view
     = render "submitted_view"
 
