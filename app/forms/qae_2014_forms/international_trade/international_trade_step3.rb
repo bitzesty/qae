@@ -254,7 +254,7 @@ class QAE2014Forms
         end
 
         options :company_estimated_figures, "Are any of these figures estimated?" do
-          classes "sub-question"
+          ref "C 7"
           yes_no
           conditional :trade_commercial_success, :true
         end
@@ -268,7 +268,7 @@ class QAE2014Forms
         end
 
         options :manufacture_overseas, "Do you manufacture overseas?" do
-          ref "C 7"
+          ref "C 8"
           required
           yes_no
         end
@@ -291,7 +291,7 @@ class QAE2014Forms
         end
 
         options :operate_overseas, "Do you run your overseas operations as a franchise?" do
-          ref "C 8"
+          ref "C 9"
           required
           yes_no
         end
@@ -305,7 +305,7 @@ class QAE2014Forms
         end
 
         options :received_grant, "Did you receive any grant funding to support this product/service?" do
-          ref "C 9"
+          ref "C 10"
           required
           yes_no
         end

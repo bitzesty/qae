@@ -302,8 +302,20 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        options :product_estimated_figures, "Are any of these figures estimated?" do
+        textarea :financial_comments, "Additional comments (optional)" do
           classes "sub-question"
+          rows 5
+          context %(
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+                    )
+          words_max 100
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
+        options :product_estimated_figures, "Are any of these figures estimated?" do
+          ref "C 8"
           yes_no
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
@@ -319,20 +331,8 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :financial_comments, "Additional comments (optional)" do
-          classes "sub-question"
-          rows 5
-          context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
-          words_max 100
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-        end
-
         textarea :innovation_performance, "Describe how, when, and to what extent the innovation improved the commercial performance of your business." do
-          ref "C 8"
+          ref "C 9"
           required
           context %(
             <p>e.g. new sales, cost savings, and their overall effect on turnover and profitability.</p>
@@ -342,7 +342,7 @@ class QAE2014Forms
         end
 
         textarea :investments_details, "Please enter details of all your investments in the innovation. <em>Include all investments made both during and prior to your entry period.</em> Also include the year(s) in which they were made." do
-          ref "C 9"
+          ref "C 10"
           required
           rows 5
           words_max 300
