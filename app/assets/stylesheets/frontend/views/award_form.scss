@@ -63,6 +63,9 @@
 }
 
 // Fix the financial questions year ending style
+.js-year-end {
+  white-space: nowrap;
+}
 .js-year-default {
   display: none;
 }
