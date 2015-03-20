@@ -7,7 +7,9 @@ class AssessmentSubmissionService
 
   def perform
     return if resource.submitted?
-    submit
+
+    submit_assessment
+
     populate_primary_case_summary
     populate_lead_case_summary
   end
@@ -16,7 +18,7 @@ class AssessmentSubmissionService
 
   private
 
-  def submit
+  def submit_assessment
     resource.update(submitted_at: DateTime.now)
   end
 
@@ -24,14 +26,14 @@ class AssessmentSubmissionService
     return unless resource.moderated?
     rec = record(3)
     rec.document = resource.document
-    rec.save!
+    rec.save
   end
 
   def populate_lead_case_summary
     return unless resource.primary_case_summary?
     rec = record(4)
     rec.document = resource.document
-    rec.save!
+    rec.save
   end
 
   def record(position)
