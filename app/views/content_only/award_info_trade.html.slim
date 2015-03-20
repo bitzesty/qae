@@ -26,7 +26,7 @@ header.page-header.group.page-header-over-sidebar
             ul
               li
                 ' For planning purposes you can
-                = link_to "download a PDF of the entire application form"
+                = link_to "download a PDF of the entire application form", users_form_answer_path(@form_answer, format: :pdf)
                 ' . However, the application has to be filled out online.
               li
                 ' You can
