@@ -427,6 +427,7 @@ input[type="file"] {
   // Currency prepended inputs
   .currency-input {
     position: relative;
+    display: block;
 
     .currency-unit {
       position: absolute;
