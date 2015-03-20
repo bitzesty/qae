@@ -8,29 +8,47 @@ window.AuditCertificatesUpload =
     form = $(el).closest('form')
     $el = $(el)
 
-    wrapper = $el.closest('div.js-upload-wrapper')
-    button = wrapper.find('.button-add')
-    list = wrapper.find('.js-uploaded-list')
+    parent = $el.closest('div.js-upload-wrapper')
+    list = parent.find('.js-uploaded-list')
+    form = parent.find('form')
 
     progress_all = (e, data) ->
       # TODO
 
     upload_started = (e, data) ->
-      button.addClass('visuallyhidden') #TODO: show progressbar
+      form.addClass('visuallyhidden') #TODO: show progressbar
 
     upload_done = (e, data, link) ->
+      file_url = data.result["attachment"]["url"]
       list.removeClass('visuallyhidden')
+      list.find(".js-audit-certificate-title").attr("href", file_url)
+
+    failed = (e, data) ->
+      console.log("cool")
+      error_message = data.jqXHR.responseText
+      parent.find(".errors-container").html("<li>" + error_message + "</li>")
+      list.addClass('visuallyhidden')
+      form.removeClass('visuallyhidden')
 
     $el.fileupload(
+      url: form.attr("action")
       formData: () -> {}
       done: upload_done
       progressall: progress_all
       send: upload_started
+      fail: failed
     )
 
   remove_attachment_init: ->
     $(document).on "click", ".js-upload-wrapper .js-remove-audit-certificate-link", (e) ->
       e.preventDefault()
 
-      $(this).closest('.js-uploaded-list').addClass('visuallyhidden')
+      parent = $(this).closest('.js-upload-wrapper')
+      list = parent.find('.js-uploaded-list')
+      form = parent.find('form')
+
+      parent.find(".errors-container").html("")
+      list.addClass('visuallyhidden')
+      form.removeClass('visuallyhidden')
+
       false

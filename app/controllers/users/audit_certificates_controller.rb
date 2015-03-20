@@ -30,10 +30,11 @@ class Users::AuditCertificatesController < Users::BaseController
     self.audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
     if audit_certificate.save
-      redirect_to users_form_answer_audit_certificate_path(form_answer),
-                  notice: "Audit Certificate successfully uploaded!"
+      render json: audit_certificate,
+             status: :created
     else
-      render :show
+      render json: humanized_errors,
+             status: :unprocessable_entity
     end
   end
 
@@ -66,5 +67,12 @@ class Users::AuditCertificatesController < Users::BaseController
                     notice: "Audit Certificate already completed!"
         return
       end
+    end
+
+    def humanized_errors
+      audit_certificate.errors.
+                       full_messages.
+                       reject { |m| m == "Attachment This field cannot be blank" }.
+                       join(", ")
     end
 end
