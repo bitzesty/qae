@@ -5,11 +5,11 @@
   p
     = I18n.t("email_notification_headers.#{kind}")
   p
-    = link_to "View email example", "#", class: "link-email-example"
-    div.email-example
-      = MailRenderer.new.public_send(kind)
+    = link_to "View email example", "#", class: "link-email-example if-no-js-hide"
+  .email-example.well
+    = MailRenderer.new.public_send(kind)
 
-  = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule"
+  = link_to "+ Schedule new email", "#", class: "btn btn-default btn-add-schedule if-no-js-hide"
 
   .notification-form
     = render "schedule_new", notification: @settings.email_notifications.build(kind: kind)

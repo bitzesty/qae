@@ -17,7 +17,7 @@
   }
 
   @include screen-sm-max {
-    width: auto;
+    width: 100%;
   }
 }
 
@@ -31,7 +31,9 @@
   }
 
   @include screen-sm-max {
-    width: auto;
+    width: 100%;
+    margin-top: 10px;
+    margin-left: 0;
   }
 }
 

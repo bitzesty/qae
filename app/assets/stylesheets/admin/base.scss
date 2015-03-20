@@ -504,7 +504,8 @@ table .ellipsis {
     }
 
     .page.current,
-    a {
+    a,
+    .page.gap {
       display: inline-block;
       padding: 2px 8px;
 
@@ -1194,4 +1195,9 @@ table .ellipsis {
       text-decoration: none;
     }
   }
+}
+
+.search-form h2 .btn-link {
+  margin-right: 15px;
+  padding-left: 0;
 }

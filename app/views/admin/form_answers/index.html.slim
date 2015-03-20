@@ -1,7 +1,7 @@
 = simple_form_for @search, url: admin_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
-
   - if @search.query?
-    h2
+    h2.ellipsis
+      = link_to "‹ Back to overview", admin_form_answers_path, class: "btn btn-link btn-lg pull-left"
       = "Search results for '#{@search.query}'"
   - else
     .row
