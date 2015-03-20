@@ -21,5 +21,5 @@
             - if previous_questions or !@form_answer.eligible?
               - form_path = "#"
             - else
-              - form_path = result_form_award_eligibility_url(form_id: @form_answer.id, anchor: step.short_title.html_safe.parameterize)
+              - form_path = result_form_award_eligibility_url(form_id: @form_answer.id, anchor: step.title.html_safe.parameterize)
             = step_link_to step.short_title.html_safe, form_path, index: index + 2, active: 1, index_name: "#{step_letters[index]}.", cant_access_future: false
