@@ -356,6 +356,14 @@
   }
 }
 
+.js-attachment-form .form-group {
+  margin-top: 15px;
+
+  .form-control {
+    display: block;
+  }
+}
+
 .uploaded-file .btn-attachment {
   display: none;
 }
