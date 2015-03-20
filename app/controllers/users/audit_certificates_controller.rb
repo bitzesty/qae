@@ -37,6 +37,11 @@ class Users::AuditCertificatesController < Users::BaseController
     end
   end
 
+  def destroy
+    audit_certificate.destroy
+    render nothing: true
+  end
+
   private
 
     def audit_certificate_params

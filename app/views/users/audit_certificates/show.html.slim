@@ -3,26 +3,28 @@
 header.page-header.group class=('page-header-wider')
   div
     h1
-      ' Audit Certificate
-    aside
-
+      = form_answer.decorate.application_name
     h2
-      = form_answer.decorate.award_application_title
-
+      = form_answer.decorate.award_type
+      '  Award
+    aside
 .article-container
   article.group role="article"
     .inner
-      - if form_answer.audit_certificate.present? && form_answer.audit_certificate.persisted?
-        h2
-          ' Audit Certificate completed!
-      - else
-        h3 You need to download, check and complete an audit certificate!
-        p
-          = link_to "Review Audit Certificate",
-                    users_form_answer_audit_certificate_url(form_answer, format: :pdf)
+      p
+        ' Your application for the
+        = form_answer.decorate.award_type
+        '  Award was shortlisted.
 
-        h2
-          ' Upload completed Audit Certificate
+      h2 Audit Certificate
+      p
+        ' Please
+        = link_to "download and complete this audit certificate",
+                  users_form_answer_audit_certificate_url(form_answer, format: :pdf),
+                  target: "_blank"
+        ' . Afterwards, upload the completed form.
 
-        = render "form"
+      h2
+        ' Upload completed Audit Certificate
+      = render "users/audit_certificates/upload_block", award: form_answer
 

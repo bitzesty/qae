@@ -571,6 +571,7 @@ jQuery ->
   OptionsWithPreselectedConditionsQuestion.init()
   ongoingDateDuration()
   SupportLetters.init()
+  AuditCertificatesUpload.init()
 
   $(".js-switch-dashboard-view-btn").on "click", (e) ->
     e.preventDefault()

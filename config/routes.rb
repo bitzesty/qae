@@ -79,7 +79,7 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :form_answers, only: [:show] do
-      resource :audit_certificate, only: [:show, :create]
+      resource :audit_certificate, only: [:show, :create, :destroy]
       resource :support_letter_attachments, only: [:create]
       resource :supporters, only: [:create]
       resource :support_letters, only: [:create]

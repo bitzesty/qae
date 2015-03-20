@@ -1,16 +1,16 @@
 = simple_form_for (audit_certificate || form_answer.build_audit_certificate),
                   as: :audit_certificate,
                   url: users_form_answer_audit_certificate_path(form_answer),
-                  html: {class: 'qae-form', method: :post} do |f|
+                  html: {class: "qae-form #{"visuallyhidden" if cert_exists}", method: :post} do |f|
   span.button.button-add
     span + Upload Audit Certificate
     = f.input :attachment,
               as: :file,
               required: true,
               label: false,
-              input_html: { class: "fileinput-button js-file-upload" }
+              input_html: { class: "fileinput-button js-audit-certificate-file-upload" }
 
-  footer.if-js-hide
+  footer.display_none
     nav.pagination role="navigation"
       ul.group
         li.submit

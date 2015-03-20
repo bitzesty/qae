@@ -650,7 +650,7 @@ input[type="file"] {
     margin-right: $gutter-one-third;
   }
 
-  .remove-link {
+  .remove-link, .js-remove-audit-certificate-link {
     @include core-16;
     float: right;
 
