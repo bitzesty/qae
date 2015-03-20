@@ -60,12 +60,12 @@ $ cap dev deploy OLD_SERVERS=true
 $ cap demo deploy OLD_SERVERS=true
 ```
 
-#### Staging (http://stagingloadbalancer-1721077944.eu-west-1.elb.amazonaws.com/)
+#### Staging (http://stagingloadbalancer-46995185.eu-west-1.elb.amazonaws.com)
 ```
 $ cap staging deploy
 ```
 
-#### Production (http://productionloadbalancer-1974356064.eu-west-1.elb.amazonaws.com/)
+#### Production (http://productionloadbalancer-1868729055.eu-west-1.elb.amazonaws.com)
 ```
 $ cap production deploy
 ```
