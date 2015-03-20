@@ -763,8 +763,8 @@ table .ellipsis {
     }
 
     .form-actions {
-      .btn:first-child {
-        margin-right: 10px;
+      .btn:last-child {
+        margin-right: 0;
       }
     }
 
