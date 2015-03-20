@@ -8,7 +8,7 @@ require "qae_2014_forms/innovation/innovation_step6"
 class QAE2014Forms
   class << self
     def innovation
-      @innovation ||= QAEFormBuilder.build "Apply for the Innovation Award" do
+      @innovation ||= QAEFormBuilder.build "Innovation Award Application" do
         step "Company Information",
              "Company Info",
              &QAE2014Forms.innovation_step1

@@ -8,7 +8,7 @@ require "qae_2014_forms/international_trade/international_trade_step6"
 class QAE2014Forms
   class << self
     def trade
-      @trade ||= QAEFormBuilder.build "Apply for the International Trade Award" do
+      @trade ||= QAEFormBuilder.build "International Trade Award Application" do
         step "Company Information",
              "Company Info",
              &QAE2014Forms.trade_step1

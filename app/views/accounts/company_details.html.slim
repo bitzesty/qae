@@ -1,35 +1,36 @@
 - provide(:page_content_class, "multi-page page-account")
 
-= render "steps_progress_bar"
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      ' Account details
 
-.steps-progress-content
-  header.page-header.group class="#{'page-header-wider' unless current_user.completed_registration}"
-    div
-      h1
-        ' Account details
+.steps-progress-container
+  .steps-progress-content
+    header.page-header.group
+      div
+        h2
+          ' Organisation Details
 
-      h2
-        - unless current_user.completed_registration
-          ' Step 2 of 4:
-        ' Organisation Details
+    .article-container
+      article.group role="article"
+        .inner
+          p If you’re nominating an individual for the Enterprise Promotion award, this section is optional.
 
-  .article-container
-    article.group role="article"
-      .inner
-        p If you’re nominating an individual for the Enterprise Promotion award, this section is optional.
+          br
 
-        br
+          = simple_form_for current_user, url: update_company_details_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
+            = render "form_company_details", f: f
 
-        = simple_form_for current_user, url: update_company_details_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
-          = render "form_company_details", f: f
+            footer
+              nav.pagination role="navigation" aria-label="Pagination"
+                ul.group
+                  li.previous.previous-alternate
+                    = link_to correspondent_details_account_path, rel: "prev", title: "Navigate to previous part" do
+                      span class="pagination-label"
+                        ' Previous section
 
-          footer
-            nav.pagination role="navigation" aria-label="Pagination"
-              ul.group
-                li.previous.previous-alternate
-                  = link_to correspondent_details_account_path, rel: "prev", title: "Navigate to previous part" do
-                    span class="pagination-label"
-                      ' Previous section
+                  li.submit
+                    = f.submit "Save and continue", class: "button"
 
-                li.submit
-                  = f.submit "Save and continue", class: "button"
+  = render "steps_progress_bar"
