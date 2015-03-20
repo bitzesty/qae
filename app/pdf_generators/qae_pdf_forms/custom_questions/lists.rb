@@ -2,7 +2,8 @@ module QaePdfForms::CustomQuestions::Lists
   LIST_TYPES = [
     QAEFormBuilder::AwardHolderQuestion,
     QAEFormBuilder::QueenAwardHolderQuestion,
-    QAEFormBuilder::PositionDetailsQuestion
+    QAEFormBuilder::PositionDetailsQuestion,
+    QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
   ]
   AWARD_HOLDER_LIST_HEADERS = [
     "Award/Honour title",
@@ -12,6 +13,11 @@ module QaePdfForms::CustomQuestions::Lists
   QUEENS_AWARD_HOLDER_LIST_HEADERS = [
     "Category",
     "Year Awarded"
+  ]
+  SUBSIDIARIES_ASSOCIATES_PLANTS_HEADERS = [
+    "Name",
+    "Location",
+    "Employees"
   ]
   POSITION_LIST_HEADERS = [
     "Name",
@@ -37,6 +43,8 @@ module QaePdfForms::CustomQuestions::Lists
       QUEENS_AWARD_HOLDER_LIST_HEADERS
     when QAEFormBuilder::PositionDetailsQuestion
       POSITION_LIST_HEADERS
+    when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
+      SUBSIDIARIES_ASSOCIATES_PLANTS_HEADERS
     else
       raise "[#{self.class.name}] Unrecognized list type!"
     end
@@ -73,6 +81,16 @@ module QaePdfForms::CustomQuestions::Lists
     end
   end
 
+  def subsidiaries_associates_plants_query_conditions(prepared_item)
+    if prepared_item["name"].present?
+      [
+        prepared_item["name"],
+        prepared_item["location"].present? ? prepared_item["location"] : FormPdf::UNDEFINED_TITLE,
+        prepared_item["employees"].present? ? prepared_item["employees"] : FormPdf::UNDEFINED_TITLE
+      ]
+    end
+  end
+
   def list_rows
     humanized_answer.map do |item|
       prepared_item = JSON.parse(item)
@@ -84,6 +102,8 @@ module QaePdfForms::CustomQuestions::Lists
         queen_award_holder_query_conditions(prepared_item)
       when QAEFormBuilder::PositionDetailsQuestion
         position_details_query_conditions(prepared_item)
+      when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
+        subsidiaries_associates_plants_query_conditions(prepared_item)
       end
     end.compact
   end

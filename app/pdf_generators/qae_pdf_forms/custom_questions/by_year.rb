@@ -37,10 +37,14 @@ module QaePdfForms::CustomQuestions::ByYear
   end
 
   def financial_year_changed_dates_entries
-    financial_year_changed_dates_question.active_fields[0..-2].map do |field|
-      YEAR_LABELS.map do |year_label|
-        fetch_year_label(field, year_label, :financial_year_changed_dates, false)
+    if financial_year_changed_dates_question.present?
+      financial_year_changed_dates_question.active_fields[0..-2].map do |field|
+        YEAR_LABELS.map do |year_label|
+          fetch_year_label(field, year_label, :financial_year_changed_dates, false)
+        end
       end
+    else
+      []
     end
   end
 
