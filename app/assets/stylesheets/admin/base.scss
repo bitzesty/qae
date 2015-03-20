@@ -681,7 +681,8 @@ table .ellipsis {
     }
 
     h1,
-    h2 {
+    h2,
+    h3 {
       &:first-child {
         margin-top: 0;
       }
@@ -726,6 +727,16 @@ table .ellipsis {
       }
     }
 
+    h3 {
+      margin-bottom: 20px;
+      font-size: 16px;
+      font-weight: bold;
+
+      @include screen-md-max {
+        font-size: 15px;
+      }
+    }
+
     .well {
       margin: 0;
       padding: 20px 0;
@@ -742,6 +753,18 @@ table .ellipsis {
       &:last-child {
         padding-bottom: 0;
         border-bottom: none;
+      }
+
+      .well {
+        padding: 19px;
+        border: 1px solid $grey;
+        border-radius: 4px;
+      }
+    }
+
+    .form-actions {
+      .btn:first-child {
+        margin-right: 10px;
       }
     }
 

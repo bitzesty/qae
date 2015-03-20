@@ -38,10 +38,24 @@
         - if @form_answer.form_answer_attachments.any?
           = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments)
       br
+
+    = link_to "#", class: "btn btn-default btn-block js-attachment-link if-no-js-hide"
+        span.glyphicon.glyphicon-paperclip
+        ' Attach Document
+
     = form_for [namespace_name, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
-      span.btn.btn-default.btn-attachment
-        span.attachment-text
-          span.glyphicon.glyphicon-paperclip
-          ' Attach Document
-        = form.file_field :file
-      = form.submit 'Attach Document', class: 'if-js-hide'
+      .well.js-attachment-form
+        h3 Attach Document
+
+        ul.list-unstyled
+        span.btn.btn-default.btn-block.btn-attachment
+          ' + Upload Document
+          = form.file_field :file
+
+        .checkbox
+          label
+            input type="checkbox"
+            ' Only admin can view this document
+        .form-actions.text-right
+          = link_to "Cancel", "#", class: "btn btn-default btn-cancel"
+          = form.submit "Attach", class: "btn btn-primary btn-submit"

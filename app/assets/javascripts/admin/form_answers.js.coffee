@@ -22,10 +22,19 @@ ready = ->
       errors += error
 
     form.find(".errors-holder").text(errors)
-  $('#new_form_answer_attachment').fileupload
+  $("#new_form_answer_attachment").fileupload
     success: (result, textStatus, jqXHR)->
-      $('.document-list .p-empty').remove()
-      $('.document-list ul').append(result)
+      $("#new_form_answer_attachment").addClass("uploaded-file")
+      $("#new_form_answer_attachment ul").append(result)
+
+  # Show/hide the attach document form
+  $(".js-attachment-link").on "click", (e) ->
+    e.preventDefault()
+    $(this).closest(".sidebar-section").addClass("show-attachment-form")
+
+  $(".js-attachment-form .btn-cancel").on "click", (e) ->
+    e.preventDefault()
+    $(this).closest(".sidebar-section").removeClass("show-attachment-form")
 
   formClass = '.edit_form_answer_attachment'
 
