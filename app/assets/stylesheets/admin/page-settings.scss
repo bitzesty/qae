@@ -88,21 +88,21 @@
     .control-action {
       position: relative;
       margin-top: 1.7em;
+    }
 
-      .btn {
+    .btn {
+      @include screen-sm-max {
+        display: block;
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+      }
+
+      &:first-child {
+        margin-right: 10px;
+
         @include screen-sm-max {
-          display: block;
-          width: 100%;
-          padding-left: 0;
-          padding-right: 0;
-        }
-
-        &:first-child {
-          margin-right: 10px;
-
-          @include screen-sm-max {
-            margin-right: 0;
-          }
+          margin-right: 0;
         }
       }
     }
