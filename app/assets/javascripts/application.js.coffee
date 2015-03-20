@@ -513,13 +513,13 @@ jQuery ->
     new_input = ""
     # if it isn't the year input accept 2 numbers (48-57) or moving right (39)
     if this_label.index() != $(this).closest(".date-input").find("label:last-child").index()
-      if (e.which >= 48 && e.which <= 57) || e.which == 39
+      if (e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105) || e.keyCode == 39
         if $(this).val().length == 2
           # focus on the next input
           new_input = this_label.next().find("input")
     # if it isn't the day input you can go backwards by backspacing (8) or moving left (37)
     if this_label.index() != $(this).closest(".date-input").find("label:first-child").index()
-      if e.which == 8 || e.which == 37
+      if e.keyCode == 8 || e.keyCode == 37
         if $(this).val().length == 0
           # focus on the next input
           new_input = this_label.prev().find("input")
@@ -531,7 +531,7 @@ jQuery ->
 
   # only accept numbers(48-47), backspace(8), tab(9), cursor keys left(37) and right(39) and enter for submitting
   $(".date-input input").on 'keypress keydown keyup', (e) ->
-    if !((e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105) || e.which == 8 || e.which == 9 || e.which == 37 || e.which == 39 || e.which == 13)
+    if !((e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105) || e.keyCode == 8 || e.keyCode == 9 || e.keyCode == 37 || e.keyCode == 39 || e.keyCode == 13)
       e.preventDefault()
       return false
 
