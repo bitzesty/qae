@@ -1,6 +1,4 @@
 class Users::AuditCertificatesController < Users::BaseController
-  before_action :check_certificate_if_exists, only: [:create]
-
   expose(:form_answer) do
     current_user.account.
                 form_answers.
@@ -59,14 +57,6 @@ class Users::AuditCertificatesController < Users::BaseController
       params.require(:audit_certificate).permit(
         :attachment
       )
-    end
-
-    def check_certificate_if_exists
-      if audit_certificate.present?
-        redirect_to users_form_answer_audit_certificate_url(form_answer),
-                    notice: "Audit Certificate already completed!"
-        return
-      end
     end
 
     def humanized_errors

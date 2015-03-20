@@ -28,10 +28,9 @@ So that I can check, complete it and then upload it to application
     end
 
     it "should render page" do
-      expect_to_see "You need to download, check and complete an audit certificate!"
-      expect_to_see form_answer.decorate.award_application_title
+      expect_to_see form_answer.decorate.application_name
       expect(page).to have_link(
-        "Review Audit Certificate",
+        "download and complete this audit certificate",
         href: users_form_answer_audit_certificate_url(form_answer, format: :pdf)
       )
     end
@@ -52,63 +51,6 @@ So that I can check, complete it and then upload it to application
         "attachment; filename=\"#{audit_certificate_filename}\""
       )
       expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
-    end
-  end
-
-  describe "Upload completed Audit Certificate" do
-    let(:sample_txt_file_path) {
-      "#{Rails.root}/spec/support/file_samples/simple_txt_sample.txt"
-    }
-
-    describe "validations" do
-      before do
-        visit users_form_answer_audit_certificate_url(form_answer)
-      end
-
-      it "should display errors" do
-        click_on "Upload"
-        expect_to_see "This field cannot be blank"
-
-        attach_file('audit_certificate_attachment', sample_txt_file_path)
-        click_on "Upload"
-        expect_to_see "You are not allowed to upload \"txt\" files"
-      end
-    end
-
-    describe "proper uploading" do
-      let(:sample_pdf_file_path) {
-        "#{Rails.root}/spec/support/file_samples/photo_with_size_less_than_5MB.jpg"
-      }
-
-      before do
-        visit users_form_answer_audit_certificate_url(form_answer)
-      end
-
-      it "should upload proper file" do
-        within("#new_audit_certificate") do
-          attach_file('audit_certificate_attachment', sample_pdf_file_path)
-          click_on "Upload"
-        end
-
-        expect_to_see "Audit Certificate completed!"
-        expect_to_see_no "You need to download, check and complete an audit certificate!"
-      end
-    end
-
-    describe "Audit Certificate already completed" do
-      let(:audit_certificate) {
-        create(:audit_certificate, form_answer: form_answer)
-      }
-
-      before do
-        audit_certificate
-        visit users_form_answer_audit_certificate_url(form_answer)
-      end
-
-      it "should not allow to upload another certificate if it's already exists" do
-        expect_to_see "Audit Certificate completed!"
-        expect_to_see_no "You need to download, check and complete an audit certificate!"
-      end
     end
   end
 end
