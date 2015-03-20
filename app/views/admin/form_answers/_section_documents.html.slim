@@ -56,10 +56,12 @@
           label.form-label Document title
           input.form-control type="text"
 
-        .checkbox
-          label
-            input type="checkbox"
-            ' Only admin can view this document
+        - if current_user.role == "account_admin"
+          .checkbox
+            label
+              input type="checkbox"
+              ' Only admin can view this document
+
         .form-actions.text-right
           = link_to "Cancel", "#", class: "btn btn-default btn-cancel"
           = form.submit "Attach", class: "btn btn-primary btn-submit"
