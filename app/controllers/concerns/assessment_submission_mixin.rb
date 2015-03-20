@@ -1,7 +1,7 @@
 module AssessmentSubmissionMixin
   def create
     authorize resource, :submit?
-    @service = AssessmentSubmissionService.new(resource)
+    @service = AssessmentSubmissionService.new(resource, current_subject)
     @service.perform
 
     respond_to do |format|

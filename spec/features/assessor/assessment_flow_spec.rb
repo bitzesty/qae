@@ -82,6 +82,6 @@ end
 
 def submit_primary_case_summary
   assessment = form_answer.assessor_assignments.primary_case_summary
-  service = AssessmentSubmissionService.new(assessment)
+  service = AssessmentSubmissionService.new(assessment, primary)
   service.perform
 end

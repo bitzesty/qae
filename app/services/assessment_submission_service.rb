@@ -1,17 +1,17 @@
 class AssessmentSubmissionService
-  attr_reader :resource
+  attr_reader :resource, :current_subject
 
-  def initialize(assignment)
+  def initialize(assignment, current_subject)
     @resource = assignment
+    @current_subject = current_subject
   end
 
   def perform
     return if resource.submitted?
-
-    submit_assessment
-
-    populate_primary_case_summary
-    populate_lead_case_summary
+    if submit_assessment
+      populate_primary_case_summary
+      populate_lead_case_summary
+    end
   end
 
   delegate :as_json, to: :resource
@@ -30,10 +30,14 @@ class AssessmentSubmissionService
   end
 
   def populate_lead_case_summary
-    return unless resource.primary_case_summary?
-    rec = record(4)
-    rec.document = resource.document
-    rec.save
+    if (current_subject.lead?(resource.form_answer) &&
+       current_subject.primary?(resource.form_answer)) ||
+       resource.primary_case_summary?
+
+      rec = record(4)
+      rec.document = resource.document
+      rec.save
+    end
   end
 
   def record(position)

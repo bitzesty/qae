@@ -152,8 +152,10 @@ class AppraisalForm
   end
 
   def self.meths_for_award_type(award_type)
-    const_get(award_type.upcase).map do |k, _|
-      [rate(k), desc(k)]
+    const_get(award_type.upcase).map do |k, obj|
+      methods = Array(rate(k))
+      methods << desc(k) if [:rag, :verdict].include?(obj[:type])
+      methods
     end.flatten.map(&:to_sym)
   end
 
@@ -162,9 +164,16 @@ class AppraisalForm
   end
 
   def self.all
-    keys = TRADE.keys + INNOVATION.keys + PROMOTION.keys + DEVELOPMENT.keys
-    out = keys.map { |k| rate(k).to_sym }
-    out += keys.map { |k| desc(k).to_sym }
+    forms = [TRADE, INNOVATION, PROMOTION, DEVELOPMENT]
+    out = []
+    forms.each do |form|
+      form.each do |k, obj|
+        out << rate(k).to_sym if [:strengths, :rag, :verdict].include?(obj[:type])
+        # strenghts doesn't have description
+        out << desc(k).to_sym if [:rag, :verdict].include?(obj[:type])
+      end
+    end
+
     out += CASE_SUMMARY_METHODS
     out
   end
