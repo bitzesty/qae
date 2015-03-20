@@ -1,75 +1,78 @@
-= render "steps_progress_bar", cant_access_future: true, previous_questions: step
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      - if @form_answer.award_type == "promotion"
+        ' Enterprise Promotion Award Nomination
+      - else
+        = "#{@form_answer.decorate.award_type.split.map(&:capitalize)*' '} Award Application"
 
-.steps-progress-content
-  header.page-header.group.page-header-wider
-    div
-      h1
-        - if @form_answer.award_type == "promotion"
-          ' Nominate for the Enterprise Promotion Award
-        - else
-          = "Apply for the #{@form_answer.award_type.capitalize} Award"
-      h2
-        ' Eligibility
+.steps-progress-container
+  .steps-progress-content
+    header.page-header.group.page-header-wider
+      div
+        h2
+          ' Eligibility
 
+    .article-container.article-container-wider
+      article.group role="article"
+        .inner.step.current
+          - if step && step.to_s != "wicked_finish"
+            = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
+              .current-question.qae-form#current-question
+                .question
+                  label
+                    h2
+                      = @eligibility.class.label(step)
+                    - if @eligibility.is_a?(Eligibility::Basic)
+                      = render "form_award_eligibilities/basic_questions/#{step.to_s}", f: f
+                    - else
+                      = render("form_award_eligibilities/questions/#{step.to_s}", f: f) rescue render("form_award_eligibilities/questions/question", f: f, question: step.to_s)
 
-  .article-container.article-container-wider
-    article.group role="article"
-      .inner.step.current
-        - if step && step.to_s != "wicked_finish"
-          = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
-            .current-question.qae-form#current-question
-              .question
-                label
-                  h2
-                    = @eligibility.class.label(step)
-                  - if @eligibility.is_a?(Eligibility::Basic)
-                    = render "form_award_eligibilities/basic_questions/#{step.to_s}", f: f
-                  - else
-                    = render("form_award_eligibilities/questions/#{step.to_s}", f: f) rescue render("form_award_eligibilities/questions/question", f: f, question: step.to_s)
-
-              .next-question
-                = f.submit "Continue", class: "button medium"
-        - else
-          .previous-answers
-            - if @form_answer.eligible?
-              p Before you start your application, please check your eligibility answers are correct.
-            - else
-              .eligibility-failed
-                p
-                  - if @form_answer.award_type == "promotion"
-                    ' Your nominee is
-                  - else
-                    ' At the moment you are
-                  strong not eligible
-                  '  for this award. Please see your answers below for the reason. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
-
-                p
-                  - if @form_answer.award_type == "promotion"
-                    ' Also, you may consider nominating someone else or your organisation
-                  - else
-                    ' Also, you
-                  ' might be eligible for awards in other categories. Go to the
-                  = link_to "applications page", dashboard_path
-                  - if @form_answer.award_type == "promotion"
-                    '  to nominate/apply.
-                  - else
-                    '  to apply.
-
-      = render "previous_answers"
-
-      - if (!step || step.to_s == "wicked_finish")
-        - if @form_answer.eligible?
-          .inner.step.current
+                .next-question
+                  = f.submit "Continue", class: "button medium"
+          - else
             .previous-answers
-              .text-right
-                = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
-        - else
-          footer
-            nav.pagination role="navigation" aria-label="Pagination"
-              ul.group
-                li.previous
-                  = link_to dashboard_path, rel: "prev", title: "Navigate to previous part" do
-                    span.pagination-label
-                      ' Back
-                    span.pagination-part-title
-                      ' Dashboard
+              - if @form_answer.eligible?
+                p Before you start your application, please check your eligibility answers are correct.
+              - else
+                .eligibility-failed
+                  p
+                    - if @form_answer.award_type == "promotion"
+                      ' Your nominee is
+                    - else
+                      ' At the moment you are
+                    strong not eligible
+                    '  for this award. Please see your answers below for the reason. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
+
+                  p
+                    - if @form_answer.award_type == "promotion"
+                      ' Also, you may consider nominating someone else or your organisation
+                    - else
+                      ' Also, you
+                    ' might be eligible for awards in other categories. Go to the
+                    = link_to "applications page", dashboard_path
+                    - if @form_answer.award_type == "promotion"
+                      '  to nominate/apply.
+                    - else
+                      '  to apply.
+
+        = render "previous_answers"
+
+        - if (!step || step.to_s == "wicked_finish")
+          - if @form_answer.eligible?
+            .inner.step.current
+              .previous-answers
+                .text-right
+                  = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
+          - else
+            footer
+              nav.pagination role="navigation" aria-label="Pagination"
+                ul.group
+                  li.previous
+                    = link_to dashboard_path, rel: "prev", title: "Navigate to previous part" do
+                      span.pagination-label
+                        ' Back
+                      span.pagination-part-title
+                        ' Dashboard
+
+  = render "steps_progress_bar", cant_access_future: true, previous_questions: step

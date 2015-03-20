@@ -1,22 +1,23 @@
 - provide(:page_content_class, "multi-page page-account")
 
-= render "accounts/steps_progress_bar"
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      ' Account details
 
-.steps-progress-content
-  header.page-header.group class=('page-header-wider' unless current_user.completed_registration)
-    div
-      h1
-        ' Account details
-
-      h2
-        - unless current_user.completed_registration
-          ' Step 4 of 4:
-        ' Collaborators
-
-  .article-container
-    article.group role="article"
-      .inner
+.steps-progress-container
+  .steps-progress-content
+    header.page-header.group
+      div
         h2
-          ' Add new collaborator
+          ' Collaborators
 
-        = render "form"
+    .article-container
+      article.group role="article"
+        .inner
+          h2
+            ' Add new collaborator
+
+          = render "form"
+
+  = render "accounts/steps_progress_bar"

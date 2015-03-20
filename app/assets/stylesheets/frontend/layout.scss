@@ -82,6 +82,10 @@
     }
   }
 
+  &.page-header-over-sidebar div {
+    width: 100%;
+  }
+
   // Styles the sub header for `page-header`
   h2 {
     @include core-27;
@@ -105,9 +109,14 @@
   }
 }
 
-// Make the header smaller
-header.page-header div h1 {
-  font-size: 36px;
+// Make the header smaller and take less space
+header.page-header div {
+  padding-top: 1em;
+  padding-bottom: 1em;
+
+  h1 {
+    font-size: 36px;
+  }
 }
 
 // Wider content
@@ -368,8 +377,23 @@ header.page-header aside .inner {
 // Progress steps based on `3. Summary menu`
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators#summary-menu
 // Included a dropdown
+.steps-progress-container {
+  position: relative;
+
+  .steps-progress-bar {
+    margin-top: 0.5em;
+  }
+
+  .page-header div {
+    padding-top: 0;
+    padding-bottom: 0.5em;
+  }
+}
+
 .steps-progress-bar {
   position: absolute;
+  top: 0;
+  left: 0;
   width: 240px;
   margin: 0;
   margin-top: 2.5em;
@@ -535,6 +559,15 @@ header.page-header aside .inner {
   .page-header div {
     max-width: none;
     margin-right: 0;
+  }
+}
+
+.big-notice {
+  margin-top: 15px;
+
+  p {
+    margin-top: 0;
+    font-size: 24px;
   }
 }
 

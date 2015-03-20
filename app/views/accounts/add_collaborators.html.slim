@@ -1,43 +1,44 @@
 - provide(:page_content_class, "multi-page page-account")
 
-= render "steps_progress_bar"
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      ' Account details
 
-.steps-progress-content
-  header.page-header.group class="#{'page-header-wider' unless current_user.completed_registration}"
-    div
-      h1
-        ' Account details
+.steps-progress-container
+  .steps-progress-content
+    header.page-header.group
+      div
+        h2
+          ' Collaborators
 
-      h2
-        - unless current_user.completed_registration
-          ' Step 4 of 4:
-        ' Collaborators
+    .article-container
+      article.group role="article"
+        .inner
+          p Because the application process is long and requires a wide variety of information, we recommend that you add at least one collaborator. Many applicants involve their finance and marketing departments, as well as senior team members.
 
-  .article-container
-    article.group role="article"
-      .inner
-        p Because the application process is long and requires a wide variety of information, we recommend that you add at least one collaborator. Many applicants involve their finance and marketing departments, as well as senior team members.
+          br
 
-        br
+          = simple_form_for current_user, url: complete_registration_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
+            // TODO remove form_contact_settins
+            .visuallyhidden
+              = render "form_contact_settings", f: f
 
-        = simple_form_for current_user, url: complete_registration_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
-          // TODO remove form_contact_settins
-          .visuallyhidden
-            = render "form_contact_settings", f: f
+            = render "collaborators/list", f: f
 
-          = render "collaborators/list", f: f
+            footer
+              nav.pagination role="navigation" aria-label="Pagination"
+                ul.group
+                  li.previous.previous-alternate
+                    = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
+                      span class="pagination-label"
+                        ' Previous section
 
-          footer
-            nav.pagination role="navigation" aria-label="Pagination"
-              ul.group
-                li.previous.previous-alternate
-                  = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
-                    span class="pagination-label"
-                      ' Previous section
+                  - unless current_user.completed_registration
+                    li.submit
+                      = f.submit "Continue to applications", class: "button"
+                  - else
+                    li.submit
+                      = f.submit "Save and continue", class: "button"
 
-                - unless current_user.completed_registration
-                  li.submit
-                    = f.submit "Continue to applications", class: "button"
-                - else
-                  li.submit
-                    = f.submit "Save and continue", class: "button"
+  = render "steps_progress_bar"

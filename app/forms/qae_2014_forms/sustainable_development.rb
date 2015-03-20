@@ -8,7 +8,7 @@ require "qae_2014_forms/sustainable_development/sustainable_development_step6"
 class QAE2014Forms
   class << self
     def development
-      @development ||= QAEFormBuilder.build "Apply for the Sustainable Development Award" do
+      @development ||= QAEFormBuilder.build "Sustainable Development Award Application" do
         step "Company Information",
              "Company Info",
              &QAE2014Forms.development_step1

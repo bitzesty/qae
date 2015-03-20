@@ -8,7 +8,7 @@ require "qae_2014_forms/enterprise_promotion/enterprise_promotion_step6"
 class QAE2014Forms
   class << self
     def promotion
-      @promotion ||= QAEFormBuilder.build "Nominate for the Enterprise Promotion Award" do
+      @promotion ||= QAEFormBuilder.build "Enterprise Promotion Award Nomination" do
         step "Nominee",
              "Nominee",
              &QAE2014Forms.promotion_step1
