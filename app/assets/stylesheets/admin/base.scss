@@ -504,7 +504,8 @@ table .ellipsis {
     }
 
     .page.current,
-    a {
+    a,
+    .page.gap {
       display: inline-block;
       padding: 2px 8px;
 
