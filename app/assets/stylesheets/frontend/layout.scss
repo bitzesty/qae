@@ -82,6 +82,10 @@
     }
   }
 
+  &.page-header-over-sidebar div {
+    width: 100%;
+  }
+
   // Styles the sub header for `page-header`
   h2 {
     @include core-27;
@@ -373,10 +377,6 @@ header.page-header aside .inner {
 // Progress steps based on `3. Summary menu`
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators#summary-menu
 // Included a dropdown
-.page-header.page-header-over-sidebar div {
-  width: 100%;
-}
-
 .steps-progress-container {
   position: relative;
 
