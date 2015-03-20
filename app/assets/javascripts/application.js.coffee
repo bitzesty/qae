@@ -197,9 +197,13 @@ jQuery ->
         $(this).addClass("step-past")
 
   if window.location.hash
-    showAwardStep("step-#{window.location.hash.substr(1)}")
-    # Resize textareas that were previously hidden
-    resetResizeTextarea()
+    step = window.location.hash.substr(1)
+    if $(".js-step-condition[data-step='step-#{step}']").size() > 0
+      showAwardStep("step-#{step}")
+      # Resize textareas that were previously hidden
+      resetResizeTextarea()
+    else
+      window.location.hash = $(".js-step-condition.step-current").attr("data-step").substr(5)
   $(document).on "click", ".js-step-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("step-current")
