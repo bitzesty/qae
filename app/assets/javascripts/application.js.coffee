@@ -430,7 +430,7 @@ jQuery ->
 
         if can_add
           add_eg = add_eg.replace(/(form\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size+1}]")
-          question.find(".list-add").append("<li class='js-list-item'>#{add_eg}</li>")
+          question.find(".list-add").append("<li class='js-add-example js-list-item'>#{add_eg}</li>")
 
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)

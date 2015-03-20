@@ -84,6 +84,10 @@
 
   &.page-header-over-sidebar div {
     width: 100%;
+
+    @media (max-width: 640px) {
+      width: auto;
+    }
   }
 
   // Styles the sub header for `page-header`
@@ -549,9 +553,14 @@ header.page-header aside .inner {
 .steps-progress-content {
   margin: 0;
   margin-left: 272px;
+  padding-right: 32px;
 
   @media (max-width: 990px) {
     margin-left: 0;
+  }
+
+  @media (max-width: 640px) {
+    padding-right: 0;
   }
 
   .article-container,
