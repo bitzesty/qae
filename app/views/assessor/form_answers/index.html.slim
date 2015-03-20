@@ -14,40 +14,41 @@
         .col-md-3.pull-right.text-right.if-no-js-hide
           .btn.btn-success.bulk-assign-assessors-link Bulk Assign Assessors
 
-    - if current_subject.categories_as_lead.present?
-      .well.bulk-assign-assessors-form
-        h3 Bulk Assign Assessors
-        = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
-          = flash[:error]
-          fieldset.question-group
-            .row
-              .col-md-4.col-sm-5
-                .input.select.form-group
-                  label.select.control-label
-                    ' Assign Primary Assessor to these applications
-                    = f.select :primary_assessor_id,
-                               [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
-                               { include_blank: true },
-                               class: "form-control"
-                .input.select.form-group
-                  label.select.control-label
-                    ' Assign Secondary Assessor to these applications
-                    = f.select :secondary_assessor_id,
-                               [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
-                               { include_blank: true },
-                               class: "form-control"
-              = f.text_field :form_answer_ids, class: "if-js-hide"
+- unless @search.query?
+  - if current_subject.categories_as_lead.present?
+    .well.bulk-assign-assessors-form
+      h3 Bulk Assign Assessors
+      = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
+        = flash[:error]
+        fieldset.question-group
+          .row
+            .col-md-4.col-sm-5
+              .input.select.form-group
+                label.select.control-label
+                  ' Assign Primary Assessor to these applications
+                  = f.select :primary_assessor_id,
+                             [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
+                             { include_blank: true },
+                             class: "form-control"
+              .input.select.form-group
+                label.select.control-label
+                  ' Assign Secondary Assessor to these applications
+                  = f.select :secondary_assessor_id,
+                             [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
+                             { include_blank: true },
+                             class: "form-control"
+            = f.text_field :form_answer_ids, class: "if-js-hide"
 
-            = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
-            = f.submit "Assign", class: "btn btn-primary"
+          = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
+          = f.submit "Assign", class: "btn btn-primary"
 
-    br
+  br
 
+  - if show_award_tabs_for_assessor?
     ul.nav.nav-pills
-      - if show_award_tabs_for_assessor?
-        - current_subject.categories_as_lead.each_with_index do |category, index|
-          li role="presentation" class="#{'active' if params[:award_type] == category} #{'active' if !params[:award_type].present? and index == 0}"
-            = link_to FormAnswer::AWARD_TYPE_FULL_NAMES[category], assessor_form_answers_path(award_type: category)
+      - current_subject.categories_as_lead.each_with_index do |category, index|
+        li role="presentation" class="#{'active' if params[:award_type] == category} #{'active' if !params[:award_type].present? and index == 0}"
+          = link_to FormAnswer::AWARD_TYPE_FULL_NAMES[category], assessor_form_answers_path(award_type: category)
 
 br
 
