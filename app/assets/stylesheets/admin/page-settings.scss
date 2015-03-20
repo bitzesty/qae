@@ -26,14 +26,13 @@
   }
 
   .form-value,
-  .deadline-form,
-  .notification-edit-form,
   .date-time-text {
     display: inline-block;
     width: 35em;
 
-    @include screen-xs-max {
+    @include screen-sm-max {
       display: inline;
+      width: auto;
       margin-right: 10px;
     }
   }
@@ -48,7 +47,7 @@
 
   .well {
     display: block;
-    max-width: 430px;
+    max-width: 435px;
     margin: 20px 0;
     background-color: $white-true;
     box-shadow: none;
@@ -57,16 +56,68 @@
       max-width: none;
     }
 
+    &.email-example {
+      max-width: none;
+    }
+
     h3 {
       margin-top: 0;
     }
 
-    .control-date .form-group {
-      margin-bottom: 0;
+    .control-date,
+    .control-action {
+      float: left;
+
+      @include screen-sm-max {
+        float: none;
+      }
+    }
+
+    .control-date {
+      margin-right: 20px;
+
+      @include screen-sm-max {
+        margin-right: 0;
+      }
+
+      .form-group {
+        margin-bottom: 0;
+      }
     }
 
     .control-action {
+      position: relative;
       margin-top: 1.7em;
+
+      .btn {
+        @include screen-sm-max {
+          display: block;
+          width: 100%;
+          padding-left: 0;
+          padding-right: 0;
+        }
+
+        &:first-child {
+          margin-right: 10px;
+
+          @include screen-sm-max {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    .btn-submit {
+      @include screen-sm-max {
+        margin-bottom: 45px;
+      }
+    }
+
+    .btn-cancel {
+      @include screen-sm-max {
+        position: absolute;
+        top: 45px;
+      }
     }
   }
 

@@ -1,18 +1,18 @@
 - if @email_notification && @email_notification.kind == notification.kind
   - notification = @email_notification
 
-.well.question-group
+.well.question-group.notification-new-form
   h3 Schedule new email
-  .row
-    = simple_form_for notification, url: admin_settings_email_notifications_path(year: params[:year]), remote: true do |f|
-      = f.input :kind, as: :hidden
-      .col-sm-8.control-date
-        .form-group
-          label.control-label Send at
-          = f.input :trigger_at,
-                    as: :separated_date_time,
-                    input_html: { id: "" }
+  = simple_form_for notification, url: admin_settings_email_notifications_path(year: params[:year]), remote: true do |f|
+    = f.input :kind, as: :hidden
+    .control-date
+      .form-group
+        label.control-label Send at
+        = f.input :trigger_at,
+                  as: :separated_date_time,
+                  input_html: { id: "" }
 
-      .col-sm-4.control-action
-        = f.submit "Save", class: "btn btn-primary btn-block"
-
+    .control-action
+      = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide"
+      = f.submit "Save", class: "btn btn-primary btn-submit"
+    .clear
