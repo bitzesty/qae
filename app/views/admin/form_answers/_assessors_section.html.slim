@@ -20,7 +20,7 @@
       - if policy(resource).assign_assessor?
         = form_for([namespace_name, resource.assessor_assignments.primary], remote: true, html: { "data-type" => "json"}) do |form|
           .form-fields
-            = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.full_name, a.id]}, { include_blank: true }, class: "select2"
+            = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.full_name, a.id]}, { include_blank: true }
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
             ' Edit
@@ -41,7 +41,7 @@
       - if policy(resource).assign_assessor?
         = form_for([namespace_name, resource.assessor_assignments.secondary], remote: true, html: { "data-type" => "json"}) do |form|
           .form-fields
-            = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.full_name, a.id]}, { include_blank: true }, class: "select2"
+            = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.full_name, a.id]}, { include_blank: true }
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
             ' Edit
