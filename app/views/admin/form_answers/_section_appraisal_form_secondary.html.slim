@@ -14,11 +14,4 @@
         = f.submit :add, class: "if-js-hide"
       .clear
       br
-      - unless secondary_assessment.submitted?
-        = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, authenticity_token: true, class: "submit-assessment", "data-type" => "json")
-          = hidden_field_tag :assessment_id, secondary_assessment.id
-          = submit_tag "Submit Appraisal", class: "btn btn-default btn-block"
-          .feedbackHolder
-      - else
-        p
-          em Assessment Submitted
+      = render("admin/form_answers/appraisal_form_components/submit_appraisal_form", assessment: secondary_assessment)

@@ -1,0 +1,15 @@
+.form-group.application-background-section
+  label.form-label Application Background
+  .form-value
+    p
+      = f.object.application_background_section_desc
+  = f.input :application_background_section_desc,
+            wrapper_html: { class: "form-group" },
+            input_html: { class: "form-control", rows: 10 },
+            as: :text,
+            label: false
+  = link_to "#", class: "form-edit-link pull-right"
+    span.glyphicon.glyphicon-pencil
+    ' Edit
+  = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+  .clear

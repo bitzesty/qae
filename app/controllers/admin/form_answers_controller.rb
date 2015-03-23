@@ -72,7 +72,9 @@ class Admin::FormAnswersController < Admin::BaseController
   helper_method :resource,
                 :primary_assessment,
                 :secondary_assessment,
-                :moderated_assessment
+                :moderated_assessment,
+                :primary_case_summary_assessment,
+                :lead_case_summary_assessment
 
   def resource
     @form_answer ||= load_resource
@@ -87,14 +89,22 @@ class Admin::FormAnswersController < Admin::BaseController
   end
 
   def primary_assessment
-    resource.assessor_assignments.primary.decorate
+    @primary_assessment ||= resource.assessor_assignments.primary.decorate
   end
 
   def secondary_assessment
-    resource.assessor_assignments.secondary.decorate
+    @secondary_assessment ||= resource.assessor_assignments.secondary.decorate
   end
 
   def moderated_assessment
     @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
+  end
+
+  def primary_case_summary_assessment
+    @primary_case_summary_assessment ||= resource.assessor_assignments.primary_case_summary.decorate
+  end
+
+  def lead_case_summary_assessment
+    @lead_case_summary_assessment ||= resource.assessor_assignments.lead_case_summary.decorate
   end
 end

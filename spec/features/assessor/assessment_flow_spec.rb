@@ -1,0 +1,88 @@
+require "rails_helper"
+include Warden::Test::Helpers
+
+Warden.test_mode!
+
+describe "Assessment flow", %(
+  As Assessor
+  I want to participate in assessment flow.
+), js: true do
+
+  let!(:form_answer) { create(:form_answer, :innovation) }
+  let!(:lead) { create(:assessor, :lead_for_all) }
+  let!(:primary) { create(:assessor, :regular_for_innovation) }
+  let(:text) { "textextextt" }
+
+  before do
+    p = form_answer.assessor_assignments.primary
+    p.assessor = primary
+    p.save
+  end
+
+  it "follows the appropriate assessment flow" do
+    login_as(lead, scope: :assessor)
+    visit assessor_form_answer_path(form_answer)
+    expect(page).to_not have_selector("#case-summary-heading")
+    login_as(primary, scope: :assessor)
+    visit assessor_form_answer_path(form_answer)
+    expect(page).to_not have_selector("#case-summary-heading")
+    expect(page).to_not have_selector("#appraisal-form-moderated-heading")
+    login_as(lead, scope: :assessor)
+    visit assessor_form_answer_path(form_answer)
+
+    find("#appraisal-form-moderated-heading .panel-title a").click
+    within "#section-appraisal-form-moderated" do
+      all(".btn-rag").each do |rag|
+        rag.click
+        find(".dropdown-menu .rag-positive").click
+      end
+
+      all(".form-edit-link").each(&:click)
+
+      all("textarea").each do |textarea|
+        textarea.set text
+      end
+
+      all(".form-save-link").each(&:click)
+      click_button "Submit Appraisal"
+    end
+
+    visit assessor_form_answer_path(form_answer)
+    expect(page).to_not have_selector("#case-summary-heading")
+    login_as(primary, scope: :assessor)
+    visit assessor_form_answer_path(form_answer)
+    expect(page).to have_selector("#case-summary-heading")
+    find("#case-summary-heading .panel-title a").click
+    within "#section-case-summary" do
+      expect(page).to have_selector(".form-value p", text: text, count: 4)
+      expect(page).to have_selector(".rag-text", text: "Green", count: 3)
+      expect(page).to have_selector("input[value='Confirm Case Summary']")
+      first(".btn-rag").click
+      find(".dropdown-menu .rag-negative").click
+      wait_for_ajax
+      expect(Assessors::PrimaryCaseSummaryMailer).to receive(:notify).once.and_return(double(deliver_later!: true))
+
+      submit_primary_case_summary
+
+      visit assessor_form_answer_path(form_answer)
+    end
+    find("#case-summary-heading .panel-title a").click
+    expect(page).to_not have_selector("input[value='Confirm Case Summary']")
+    login_as(lead, scope: :assessor)
+    visit assessor_form_answer_path(form_answer)
+    find("#case-summary-heading .panel-title a").click
+
+    within "#section-case-summary" do
+      expect(page).to have_selector(".form-value p", text: text, count: 4)
+      expect(page).to have_selector(".rag-text", text: "Green", count: 2)
+      expect(page).to have_selector(".rag-text", text: "Red", count: 1)
+      expect(page).to have_selector("input[value='Confirm Case Summary']")
+    end
+  end
+end
+
+def submit_primary_case_summary
+  assessment = form_answer.assessor_assignments.primary_case_summary
+  service = AssessmentSubmissionService.new(assessment, primary)
+  service.perform
+end

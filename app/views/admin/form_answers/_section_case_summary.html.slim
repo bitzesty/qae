@@ -13,29 +13,29 @@
       / Only show if Moderated Appraisal is submitted
       / For Primary Assessor
       / It becomes read-only for primary assessor after submission
-      - if true
-        .form-group
-          label.form-label Application Background
-          .form-value
-            p
-              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          textarea.form-control rows=10
-            ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum..form-group
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-          .clear
+      - if current_subject.is_a?(Admin) || current_subject.lead?(resource)
+        - assessment = lead_case_summary_assessment
+      - elsif current_subject.primary?(resource)
+        - assessment = primary_case_summary_assessment
 
-        / These are new fields that are copied from the moderated
-        = simple_form_for([namespace_name, moderated_assessment], remote: true, authenticity_token: true) do |f|
-          = f.hidden_field :form_answer_id
-          = render_section(resource, f)
-          = f.submit :add, class: "if-js-hide"
+      = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true) do |f|
+        = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
+          locals: { f: f}
+        = render_section(resource, f)
+        = f.submit :add, class: "if-js-hide"
 
-        = submit_tag "Submit Case Summary", class: "btn btn-default btn-block"
+      .clear
+      br
+
+      - unless assessment.submitted?
+        = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, class: "submit-assessment", "data-type" => "json")
+          = hidden_field_tag :assessment_id, assessment.id
+          = submit_tag "Confirm Case Summary", class: "btn btn-default btn-block"
+          .feedbackHolder
+      - else
+        p
+          em Case Summary Submitted
+
 
       / Only show once primary assessor has submitted the case summary
       / Lead assessor must confirm it
-      /
-        = submit_tag "Confirm Case Summary", class: "btn btn-default btn-block"

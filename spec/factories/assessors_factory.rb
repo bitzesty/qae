@@ -21,6 +21,10 @@ FactoryGirl.define do
       trade_role "regular"
     end
 
+    trait :regular_for_innovation do
+      innovation_role "regular"
+    end
+
     trait :not_avail_for_trade do
       trade_role nil
     end

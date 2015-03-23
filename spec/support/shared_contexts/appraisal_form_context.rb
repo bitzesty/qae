@@ -7,14 +7,6 @@ shared_context "successful appraisal form edition" do
   let(:secondary_header) { "#appraisal-form-secondary-heading" }
   let(:moderated_header) { "#appraisal-form-moderated-heading" }
 
-  let(:show_path) do
-    if scope == :assessor
-      assessor_form_answer_path form_answer
-    else
-      admin_form_answer_path form_answer
-    end
-  end
-
   before do
     login_as(subject, scope: scope)
     visit show_path
@@ -44,6 +36,25 @@ shared_context "successful appraisal form edition" do
       assert_verdict_change(secondary, secondary_header)
       assert_verdict_change(moderated, moderated_header)
     end
+  end
+end
+
+shared_context "successful case summary edition" do
+  let(:case_summary_header) { "#case-summary-heading" }
+  let(:case_summary) { "#section-case-summary" }
+  let!(:form_answer) { create(:form_answer, :innovation) }
+  let(:text) { "textareatext123123" }
+
+  before do
+    login_as(subject, scope: scope)
+    visit show_path
+  end
+
+  it "updates verdict fields" do
+    assert_verdict_change(case_summary, case_summary_header)
+  end
+  it "updates the rag fields" do
+    assert_rag_change(case_summary, case_summary_header)
   end
 end
 
@@ -118,4 +129,12 @@ def assert_verdict_change(section_id, header_id)
     expect(page).to have_selector(".rag-text", text: "Recommended", count: 1)
   end
   visit show_path
+end
+
+def show_path
+  if scope == :assessor
+    assessor_form_answer_path form_answer
+  else
+    admin_form_answer_path form_answer
+  end
 end

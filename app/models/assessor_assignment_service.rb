@@ -18,7 +18,7 @@ class AssessorAssignmentService
 
   def permitted_params
     permitted = AppraisalForm.all
-    permitted += assignment_params if resource.editable_for?(current_subject)
+    permitted += assignment_params if admin_or_lead?
     permitted
   end
 
@@ -28,8 +28,12 @@ class AssessorAssignmentService
 
   private
 
+  def admin_or_lead?
+    current_subject.is_a?(Admin) || current_subject.try(:lead?, form_answer)
+  end
+
   def handle_with_form_answer_transition
-    if resource.moderated? && resource.editable_for?(current_subject)
+    if resource.moderated? && admin_or_lead?
       # get the state from the overall verdict
       # TODO: as we collect more information about next phases need to add
       # more strict logic in states transitions + permissions as I can imagine

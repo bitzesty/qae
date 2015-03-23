@@ -22,4 +22,7 @@ class Admin < ActiveRecord::Base
                       prefix: true
                     }
                   }
+  def lead?(*)
+    true
+  end
 end
