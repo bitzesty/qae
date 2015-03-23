@@ -10,6 +10,6 @@ class FormAnswerAttachmentPolicy < ApplicationPolicy
   end
 
   def destroy?
-    record.created_by_admin?
+    admin? && record.created_by_admin?
   end
 end

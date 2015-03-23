@@ -30,6 +30,9 @@ class FormAnswerAttachmentService
   end
 
   def create_params
-    params[:form_answer_attachment].permit(:file)
+    attrs = [:file, :title]
+    attrs << :restricted_to_admin if subject.is_a?(Admin)
+
+    params[:form_answer_attachment].permit(*attrs)
   end
 end

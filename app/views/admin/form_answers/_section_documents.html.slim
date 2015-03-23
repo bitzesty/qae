@@ -36,7 +36,7 @@
         p.p-empty No documents have been attached to this case.
       ul.list-unstyled.list-actions
         - if @form_answer.form_answer_attachments.any?
-          = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments)
+          = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.visible_for(current_subject))
       br
 
     = form_for [namespace_name, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
@@ -48,15 +48,18 @@
         .if-js-hide.attachment-link
           = form.file_field :file
 
+
         .form-group
           label.form-label Document title
-          input.form-control type="text"
+          = form.text_field :title, class: "form-control"
+          - if current_subject.is_a?(Admin)
+            / Only admin can see/set this
+            .checkbox
+              label
+                = form.check_box :restricted_to_admin
 
-        / Only admin can see/set this
-          .checkbox
-            label
-              input type="checkbox"
-              ' Only admin can view this document
+                ' Only admin can view this document
+
 
         .form-actions.text-right
           = link_to "Cancel", "#", class: "btn btn-default btn-cancel"
