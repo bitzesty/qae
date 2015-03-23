@@ -27,14 +27,13 @@ ready = ->
       $("#new_form_answer_attachment").addClass("uploaded-file")
       $("#new_form_answer_attachment ul").append(result)
 
-  # Show/hide the attach document form
-  $(".js-attachment-link").on "click", (e) ->
-    e.preventDefault()
-    $(this).closest(".sidebar-section").addClass("show-attachment-form")
+      # Show/hide the attach document form
+      $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
 
   $(".js-attachment-form .btn-cancel").on "click", (e) ->
     e.preventDefault()
     $(this).closest(".sidebar-section").removeClass("show-attachment-form")
+    $("#new_form_answer_attachment").removeClass("uploaded-file")
 
   formClass = '.edit_form_answer_attachment'
 

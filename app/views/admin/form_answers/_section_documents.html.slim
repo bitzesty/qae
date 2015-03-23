@@ -39,24 +39,25 @@
           = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments)
       br
 
-    = link_to "#", class: "btn btn-default btn-block js-attachment-link if-no-js-hide"
+    = form_for [namespace_name, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
+
+      span.btn.btn-default.btn-block.btn-attachment.attachment-link.if-no-js-hide
         span.glyphicon.glyphicon-paperclip
         ' Attach Document
+        = form.file_field :file
 
-    = form_for [namespace_name, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
       .well.js-attachment-form
         h3 Attach Document
 
         ul.list-unstyled
-        span.btn.btn-default.btn-block.btn-attachment
-          ' + Upload Document
+        .if-js-hide
           = form.file_field :file
 
         .form-group
           label.form-label Document title
           input.form-control type="text"
 
-        - if current_user.role == "account_admin"
+        / Only admin can see/set this
           .checkbox
             label
               input type="checkbox"
