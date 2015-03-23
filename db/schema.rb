@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323132637) do
+ActiveRecord::Schema.define(version: 20150323155826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -125,6 +125,17 @@ ActiveRecord::Schema.define(version: 20150323132637) do
   end
 
   add_index "deadlines", ["settings_id"], name: "index_deadlines_on_settings_id", using: :btree
+
+  create_table "draft_notes", force: :cascade do |t|
+    t.text     "content"
+    t.string   "notable_type",       null: false
+    t.integer  "notable_id",         null: false
+    t.string   "authorable_type",    null: false
+    t.integer  "authorable_id",      null: false
+    t.datetime "content_updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "eligibilities", force: :cascade do |t|
     t.integer  "account_id"

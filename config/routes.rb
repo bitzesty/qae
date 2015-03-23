@@ -102,6 +102,7 @@ Rails.application.routes.draw do
       resources :flags, only: [] do
         collection { post :toggle }
       end
+      resources :draft_notes, only: [:create, :update]
     end
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
@@ -124,6 +125,7 @@ Rails.application.routes.draw do
           post :approve
         end
       end
+      resources :draft_notes, only: [:create, :update]
 
       resources :flags, only: [] do
         collection { post :toggle }

@@ -43,4 +43,10 @@ class ApplicationPolicy
   def assessor?
     subject.is_a?(Assessor)
   end
+
+  def admin_or_lead_or_assigned?(fa)
+    return true if subject.is_a?(Admin)
+    assessor? &&
+      subject.lead_or_assigned?(fa)
+  end
 end
