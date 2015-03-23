@@ -12,4 +12,5 @@ $(document).ready(() ->
   $("html").removeClass("no-js").addClass("js")
   ($ ".timepicker").timePicker()
   ($ ".datepicker").datepicker()
+  ($ "select.select2").select2({width: "style"})
 )

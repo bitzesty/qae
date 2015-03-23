@@ -116,13 +116,14 @@
                 = @form_answer.sic_code_name
               - else
                 ' -
-          = f.input :sic_code,
-                    wrapper_html: { class: "form-group" },
-                    input_html: { class: "form-control" },
-                    as: :select,
-                    collection: SICCode.collection,
-                    include_blank: true,
-                    label: false
+          .form-fields
+            = f.input :sic_code,
+                      wrapper_html: { class: "form-group" },
+                      input_html: { class: "form-control select2" },
+                      as: :select,
+                      collection: SICCode.collection,
+                      include_blank: true,
+                      label: false
           .clear
 
           = link_to "#", class: "form-edit-link pull-right"
