@@ -41,16 +41,11 @@
 
     = form_for [namespace_name, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
 
-      span.btn.btn-default.btn-block.btn-attachment.attachment-link.if-no-js-hide
-        span.glyphicon.glyphicon-paperclip
-        ' Attach Document
-        = form.file_field :file
-
       .well.js-attachment-form
         h3 Attach Document
 
         ul.list-unstyled
-        .if-js-hide
+        .if-js-hide.attachment-link
           = form.file_field :file
 
         .form-group
