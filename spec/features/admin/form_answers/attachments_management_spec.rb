@@ -17,7 +17,7 @@ describe 'Form answer attachments management', %q{
   it "adds the attachment" do
     within "#new_form_answer_attachment" do
       attach_file "form_answer_attachment_file", "#{Rails.root}/spec/fixtures/cat.jpg"
-      find(".spec-submit").click
+      find("input[type='submit']").click
     end
     expect(page).to have_selector(".form_answer_attachment", count: 1)
   end
