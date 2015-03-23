@@ -37,9 +37,7 @@ describe "Assessment flow", %(
         find(".dropdown-menu .rag-positive").click
       end
 
-      all(".form-edit-link").each do |edit|
-        edit.click
-      end
+      all(".form-edit-link").each(&:click)
 
       all("textarea").each do |textarea|
         textarea.set text

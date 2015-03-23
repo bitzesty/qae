@@ -47,9 +47,11 @@ class AssessmentSubmissionService
   end
 
   def notify
-    if current_subject.primary?(resource.form_answer) && !current_subject.lead?(resource.form_answer)
+    if current_subject.primary?(resource.form_answer) &&
+       !current_subject.lead?(resource.form_answer)
       Assessor.leads_for(resource.form_answer.award_type).each do |assessor|
-        Assessors::PrimaryCaseSummaryMailer.notify(assessor.id, resource.form_answer.id).deliver_later!
+        mailer = Assessors::PrimaryCaseSummaryMailer
+        mailer.notify(assessor.id, resource.form_answer.id).deliver_later!
       end
     end
   end

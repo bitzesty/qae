@@ -11,13 +11,13 @@ module PartialsVisibilityHelper
 
     if primary_case_summary_assessment.submitted? &&
        (current_subject.lead?(@form_answer) || current_subject.primary?(@form_answer))
-       # Both Lead/Primary see it when Primary has submitted his summary
+      # Both Lead/Primary see it when Primary has submitted his summary
       return true
     end
 
     if !primary_case_summary_assessment.submitted? &&
-        current_subject.primary?(@form_answer)
-        # If Primary has not submitted, he sees it only
+       current_subject.primary?(@form_answer)
+      # If Primary has not submitted, he sees it only
       return true
     end
   end

@@ -1,3 +1,3 @@
-class Admin::AssessmentSubmissionsController < Assessor::BaseController
+class Admin::AssessmentSubmissionsController < Admin::BaseController
   include AssessmentSubmissionMixin
 end
