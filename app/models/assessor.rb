@@ -48,6 +48,10 @@ class Assessor < ActiveRecord::Base
     where(role_meth(category) => ["regular", "lead"])
   end
 
+  def self.leads_for(category)
+    where(role_meth(category) => "lead")
+  end
+
   def applications_assigned_to_as(roles = ["regular", "lead"])
     FormAnswer.for_award_type(assigned_categories_as(roles))
               .where.not(state: FormAnswerStatusFiltering.internal_states("withdrawn"))
