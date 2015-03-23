@@ -341,3 +341,29 @@
     display: block;
   }
 }
+
+.js .js-attachment-form {
+  display: none;
+}
+
+.show-attachment-form {
+  .attachment-link {
+    display: none;
+  }
+
+  .js-attachment-form {
+    display: block;
+  }
+}
+
+.js-attachment-form .form-group {
+  margin-top: 15px;
+
+  .form-control {
+    display: block;
+  }
+}
+
+.uploaded-file .btn-attachment {
+  display: none;
+}

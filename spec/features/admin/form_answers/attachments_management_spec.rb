@@ -14,10 +14,12 @@ describe 'Form answer attachments management', %q{
     visit admin_form_answer_path(form_answer)
   end
 
-  it 'adds the attachment' do
-    attach_file 'form_answer_attachment_file', "#{Rails.root}/spec/fixtures/cat.jpg"
-    click_button 'Attach Document'
-    expect(page).to have_selector('.form_answer_attachment', count: 1)
+  it "adds the attachment" do
+    within "#new_form_answer_attachment" do
+      attach_file "form_answer_attachment_file", "#{Rails.root}/spec/fixtures/cat.jpg"
+      find("input[type='submit']").click
+    end
+    expect(page).to have_selector(".form_answer_attachment", count: 1)
   end
 
   context "with existing attachment" do
