@@ -10,7 +10,7 @@ shared_examples "date_time_for" do |field|
   end
 
   it "returns Time" do
-    subject.public_send "formatted_#{field}_date=", "09/06/2012"
+    subject.public_send "formatted_#{field}_date=", "06/09/2012"
     subject.public_send "formatted_#{field}_time=", "01:30"
     expect(subject.public_send(field)).to eq(Time.utc(2012, 9, 6, 1, 30))
   end
@@ -24,13 +24,13 @@ shared_examples "date_time_for" do |field|
 
   it "updates date" do
     subject.public_send("#{field}=", Time.utc(2012, 9, 6, 1, 30))
-    subject.public_send("formatted_#{field}_date=", "09/05/2012")
+    subject.public_send("formatted_#{field}_date=", "05/09/2012")
     expect(subject.public_send(field)).to eq(Time.utc(2012, 9, 5, 1, 30))
   end
 
   it "updates time twice" do
     subject.public_send("#{field}=", Time.utc(2012, 9, 6, 1, 30))
-    subject.public_send("formatted_#{field}_date=", "09/05/2012")
+    subject.public_send("formatted_#{field}_date=", "05/09/2012")
     subject.public_send "formatted_#{field}_time=", "01:30"
     subject.public_send "formatted_#{field}_time=", "03:30"
     expect(subject.public_send(field)).to eq(Time.utc(2012, 9, 5, 3, 30))

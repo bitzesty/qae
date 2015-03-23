@@ -11,6 +11,6 @@
 $(document).ready(() ->
   $("html").removeClass("no-js").addClass("js")
   ($ ".timepicker").timePicker()
-  ($ ".datepicker").datepicker()
+  ($ ".datepicker").datepicker({dateFormat: "dd/mm/yy"})
   ($ "select.select2").select2({width: "style"})
 )
