@@ -7,7 +7,10 @@
           ' Financial Summary
           - if @form_answer.financial_summary_updated_by
             small
-              ' Updated by #{@form_answer.financial_summary_updated_by} - #{@form_answer.financial_summary_updated_at}
+              ' Updated by
+              = @form_answer.financial_summary_updated_by
+              ' - 
+              = l @form_answer.financial_summary_updated_at.to_datetime, format: :date_at_time
 
     #financial-summary.section-financial-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="financial-summary-heading"
       .panel-body

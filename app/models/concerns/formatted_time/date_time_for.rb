@@ -35,13 +35,13 @@ module FormattedTime::DateTimeFor
           attr_accessible "formatted_#{attr}" if respond_to?(:attr_accessible)
 
           define_method("formatted_#{attr}=") do |value|
-            date = Date.strptime(value, "%m/%d/%Y") rescue nil
+            date = Date.strptime(value, "%d/%m/%Y") rescue nil
             self.public_send("#{attr}=", date)
           end
 
           define_method("formatted_#{attr}") do
             date = public_send(attr)
-            date && date.strftime("%m/%d/%Y")
+            date && date.strftime("%d/%m/%Y")
           end
         end
       end
