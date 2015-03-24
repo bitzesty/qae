@@ -46,15 +46,16 @@ class FormAnswer < ActiveRecord::Base
     has_one :promotion_eligibility, class_name: 'Eligibility::Promotion', dependent: :destroy
     has_one :audit_certificate, dependent: :destroy
     has_one :feedback, dependent: :destroy
+    has_one :draft_note, as: :notable, dependent: :destroy
 
-    has_many :form_answer_attachments
+    has_many :form_answer_attachments, dependent: :destroy
     has_many :support_letter_attachments, dependent: :destroy
 
     has_many :supporters, dependent: :destroy, autosave: true
     has_many :support_letters, dependent: :destroy
-    has_many :comments, as: :commentable
+    has_many :comments, as: :commentable, dependent: :destroy
     has_many :form_answer_transitions
-    has_many :assessor_assignments
+    has_many :assessor_assignments, dependent: :destroy
 
     has_many :assessors, through: :assessor_assignments do
       def primary
