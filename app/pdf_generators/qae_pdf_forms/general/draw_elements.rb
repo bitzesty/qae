@@ -4,6 +4,7 @@ module QaePdfForms::General::DrawElements
   LOGO_ICON = "logo-pdf.png"
   ATTACHMENT_ICON = "icon-attachment.png"
   ALERT_ICON = "icon-important-print.png"
+  ALERT_BIG_ICON = "icon-important-big-print.png"
 
   def attachment_icon(attachment)
     case attachment.file.file.extension.to_s
@@ -63,7 +64,11 @@ module QaePdfForms::General::DrawElements
     render_user_information
     render_urn if form_answer.urn.present?
 
-    move_down 50.mm
+    move_down 45.mm
+
+    render_intro_text
+
+    move_down 15.mm
   end
 
   def render_logo
@@ -87,6 +92,28 @@ module QaePdfForms::General::DrawElements
     text_box user.decorate.general_info_print,
              header_text_properties.merge(at: [32.mm, 122.mm + DEFAULT_OFFSET],
                                           inline_format: true)
+  end
+
+  def render_intro_text
+    bounding_box([0, cursor], :width => 190.mm, :height => 40.mm) do
+      stroke_color "999999"
+      stroke_bounds
+
+      image "#{IMAGES_PATH}#{ALERT_BIG_ICON}",
+            at: [5.5.mm, cursor - 3.mm],
+            width: 22.5.mm
+
+      intro_text = %(
+        This PDF version of the #{form_answer.decorate.award_type} Award application is for <b>reference only</b>.
+
+        <b>Please do not send in</b> this form to apply for this award. To apply for this award, complete this form online.
+      )
+
+      text_box intro_text,
+            at: [35.mm, cursor - 3.mm],
+            width: 145.mm,
+            inline_format: true
+    end
   end
 
   def render_text(title, ops = {})
