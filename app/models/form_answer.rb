@@ -159,6 +159,10 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
+  def trigger_eligibility_transition
+    # TODO: implement
+  end
+
   private
 
   def nominee_full_name_from_document

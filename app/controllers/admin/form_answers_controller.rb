@@ -35,7 +35,7 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def withdraw
     authorize @form_answer, :withdraw?
-    @form_answer.state_machine.withdraw
+    @form_answer.state_machine.withdraw(current_subject)
     redirect_to action: :show
   end
 

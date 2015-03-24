@@ -38,7 +38,7 @@ class AssessorAssignmentService
       # TODO: as we collect more information about next phases need to add
       # more strict logic in states transitions + permissions as I can imagine
       # that lead assessor is not permitted to change the state assigned by PM
-      form_answer.state_machine.assign_lead_verdict(resource.verdict_rate)
+      form_answer.state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
     end
   end
 
