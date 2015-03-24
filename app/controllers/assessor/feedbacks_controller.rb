@@ -4,6 +4,6 @@ class Assessor::FeedbacksController < Assessor::BaseController
   private
 
   def form_answers_scope
-    current_assessor.applications_assigned_to_as
+    current_assessor.applications_scope
   end
 end

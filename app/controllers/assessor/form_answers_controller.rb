@@ -5,12 +5,18 @@ class Assessor::FormAnswersController < Assessor::BaseController
                 :moderated_assessment,
                 :current_award_type,
                 :lead_case_summary_assessment,
-                :primary_case_summary_assessment
+                :primary_case_summary_assessment,
+                :visible_categories
 
   def index
     authorize :form_answer, :index?
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
-    scope = current_assessor.applications_assigned_to_as.where(award_type: current_award_type)
+
+    scope = current_assessor.applications_scope
+
+    if params[:search][:query].blank? && current_subject.categories_as_lead.size > 1
+      scope = scope.where(award_type: current_award_type)
+    end
 
     @search = FormAnswerSearch.new(scope, current_assessor).search(params[:search])
     @form_answers = @search.results.page(params[:page]).includes(:comments)
@@ -31,7 +37,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
   private
 
   def resource
-    @form_answer ||= current_assessor.applications_assigned_to_as.find(params[:id]).decorate
+    @form_answer ||= current_assessor.applications_scope.find(params[:id]).decorate
   end
 
   def primary_assessment
@@ -55,11 +61,21 @@ class Assessor::FormAnswersController < Assessor::BaseController
   end
 
   def current_award_type
-    categories = current_subject.categories_as_lead
+    lead_categories = current_subject.categories_as_lead
+    return nil if lead_categories.blank?
+    # only lead can see the tabs to display separated categories
+    regular_categories = current_subject.applications_scope.pluck(:award_type).uniq
+    categories = lead_categories + regular_categories
     if params[:award_type].present?
       params[:award_type] if categories.include?(params[:award_type])
     else
       categories.first
     end
+  end
+
+  def visible_categories
+    lead_categories = current_subject.categories_as_lead
+    regular_categories = current_subject.applications_scope.pluck(:award_type).uniq
+    (lead_categories + regular_categories).uniq
   end
 end
