@@ -25,12 +25,18 @@ ready = ->
 
     form.find(".errors-holder").text(errors)
   $("#new_form_answer_attachment").fileupload
-    success: (result, textStatus, jqXHR)->
-      $("#new_form_answer_attachment").addClass("uploaded-file")
-      $("#new_form_answer_attachment ul").append(result)
-
-      # Show/hide the attach document form
+    autoUpload: false,
+    add: (e, data) ->
       $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
+      $("#new_form_answer_attachment .btn-submit").unbind("click").on "click", (e) ->
+        e.preventDefault()
+        data.submit()
+    success: (result, textStatus, jqXHR) ->
+      $(".document-list ul").append(result)
+      form = $("#new_form_answer_attachment")
+      form.closest(".sidebar-section").removeClass("show-attachment-form")
+      $("#form_answer_attachment_title").val(null)
+      $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
 
   # Move the attach document button
   $(".attachment-link").removeClass("if-js-hide")
@@ -43,6 +49,8 @@ ready = ->
     e.preventDefault()
     $(this).closest(".sidebar-section").removeClass("show-attachment-form")
     $("#new_form_answer_attachment").removeClass("uploaded-file")
+    $("#form_answer_attachment_title").val(null)
+    $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
 
   formClass = '.edit_form_answer_attachment'
 

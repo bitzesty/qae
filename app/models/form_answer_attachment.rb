@@ -9,6 +9,12 @@ class FormAnswerAttachment < ActiveRecord::Base
   end
 
   def created_by_admin?
-    attachable.blank? || attachable.try(:admin?)
+    attachable.blank? || attachable.is_a?(Admin)
+  end
+
+  def self.visible_for(subject)
+    out = all
+    out = all.where(restricted_to_admin: false) unless subject.is_a?(Admin)
+    out
   end
 end
