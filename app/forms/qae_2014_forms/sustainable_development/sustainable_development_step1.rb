@@ -10,14 +10,13 @@ class QAE2014Forms
         end
 
         header :business_division_header, "" do
+          classes "application-notice help-notice"
           context %(
-            <div class="application-notice help-notice">
               <p>
                 Where the form refers to your organisation,
                 please enter the details of your division, branch or subsidiary.
               </p>
-            </div>
-                    )
+            )
           conditional :applying_for, "division branch subsidiary"
         end
 
@@ -165,24 +164,22 @@ class QAE2014Forms
         end
 
         header :external_organization_or_individual_info_header_no, "" do
+          classes "application-notice help-notice"
           context %(
-            <div class="application-notice help-notice">
               <p>
                 We recommend that you notify all the contributors to your product/service/management approach of this entry.
               </p>
-            </div>
-                    )
+            )
           conditional :external_are_aware_about_award, "no"
         end
 
         header :external_organization_or_individual_info_header_some, "" do
+          classes "application-notice help-notice"
           context %(
-            <div class="application-notice help-notice">
               <p>
                 We recommend that you notify all the contributors to your product/service/management approach of this entry.
               </p>
-            </div>
-                    )
+            )
           conditional :external_are_aware_about_award, "some"
         end
 

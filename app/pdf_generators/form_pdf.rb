@@ -38,6 +38,8 @@ class FormPdf < Prawn::Document
   end
 
   def generate!
+    fill_color = "333333"
+
     main_header
 
     steps.each do |step|

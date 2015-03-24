@@ -16,7 +16,22 @@ module QaePdfForms::CustomQuestions::ByYear
       rows[i].unshift(i + 1)
     end
 
-    render_multirows_table(YEAR_LABELS_TABLE_HEADERS, rows)
+    rows.each_with_index do |row, index|
+      form_pdf.default_bottom_margin
+
+      financial_year_text = "#{YEAR_LABELS_TABLE_HEADERS[0]} #{row[0]}"
+      if row == rows.last
+        financial_year_text += " (Current)"
+      end
+
+      financial_date_text = ""
+      (1...row.count).each do |col|
+        financial_date_text += "#{row[col]} "
+      end
+
+      form_pdf.text "#{financial_year_text}: <font name='Times-Roman'><color rgb='999999'>#{financial_date_text}</color></font>",
+                    inline_format: true
+    end
   end
 
   def render_years_table
@@ -25,7 +40,7 @@ module QaePdfForms::CustomQuestions::ByYear
       entry.present? ? entry : IN_PROGRESS
     end
 
-    render_single_row_table(financial_years_decorated_headers, rows)
+    render_single_row_list(financial_years_decorated_headers, rows)
   end
 
   def financial_years_decorated_headers

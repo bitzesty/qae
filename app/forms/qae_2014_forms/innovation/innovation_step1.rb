@@ -10,11 +10,12 @@ class QAE2014Forms
         end
 
         header :business_division_header, "" do
+          classes "application-notice help-notice"
           context %(
-            <div class="application-notice help-notice">
-              <p>Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.</p>
-            </div>
-                    )
+              <p>
+                Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.
+              </p>
+            )
           conditional :applying_for, "division branch subsidiary"
         end
 
