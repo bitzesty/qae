@@ -63,6 +63,21 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def question_block
+    # Valid/pending icon
+    # TODO If it has validation
+    if false
+      # TODO If it is valid
+      if false
+        valid_icon = "icon-valid-pdf.png"
+      else
+        valid_icon = "icon-pending-pdf.png"
+      end
+
+      form_pdf.image "#{Rails.root}/app/assets/images/#{valid_icon}",
+                     at: [0, form_pdf.cursor - 4.mm],
+                     width: 7.mm
+    end
+
     if question.ref.present?
       form_pdf.text_box "#{question.ref.gsub(/\s+/, '')}.",
                            style: :bold,
