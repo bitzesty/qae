@@ -52,13 +52,21 @@ class Assessor < ActiveRecord::Base
     where(role_meth(category) => "lead")
   end
 
-  def applications_assigned_to_as(roles = ["regular", "lead"])
-    FormAnswer.for_award_type(assigned_categories_as(roles))
-              .where.not(state: FormAnswerStatusFiltering.internal_states("withdrawn"))
-  end
-
   def self.role_meth(category)
     "#{category}_role"
+  end
+
+  def applications_scope
+    c = assigned_categories_as(%w(lead))
+    join = "LEFT OUTER JOIN assessor_assignments ON
+    assessor_assignments.form_answer_id = form_answers.id"
+
+    out = FormAnswer.joins(join)
+    out.where("
+      (award_type in (?) OR
+      (assessor_assignments.position in (?) AND assessor_assignments.assessor_id = ?))
+      AND state NOT IN (?)
+    ", c, [0, 1], id, FormAnswerStatusFiltering.internal_states("withdrawn"))
   end
 
   def full_name

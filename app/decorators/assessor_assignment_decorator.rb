@@ -1,5 +1,6 @@
 class AssessorAssignmentDecorator < ApplicationDecorator
   def last_editor_info
+    return unless object.assessed_at
     editor = object.editable
     if editor
       if editor.first_name.present? && editor.last_name.present?

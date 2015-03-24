@@ -1,4 +1,4 @@
-= simple_form_for @search, url: "", method: :get, as: :search, html: { class: 'search-form'} do |f|
+= simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   - if @search.query?
     h2.ellipsis
       = link_to "‹ Back to overview", assessor_form_answers_path, class: "btn btn-link btn-lg pull-left"
@@ -10,12 +10,12 @@
           = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
           = submit_tag :submit
 
-      - if current_subject.categories_as_lead.present?
+      - if current_subject.categories_as_lead.include?(current_award_type)
         .col-md-3.pull-right.text-right.if-no-js-hide
           .btn.btn-success.bulk-assign-assessors-link Bulk Assign Assessors
 
 - unless @search.query?
-  - if current_subject.categories_as_lead.present?
+  - if current_subject.categories_as_lead.include?(current_award_type)
     .well.bulk-assign-assessors-form
       h3 Bulk Assign Assessors
       = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
@@ -46,7 +46,7 @@
 
   - if show_award_tabs_for_assessor?
     ul.nav.nav-pills
-      - current_subject.categories_as_lead.each_with_index do |category, index|
+      - visible_categories.each_with_index do |category, index|
         li role="presentation" class="#{'active' if params[:award_type] == category} #{'active' if !params[:award_type].present? and index == 0}"
           = link_to FormAnswer::AWARD_TYPE_FULL_NAMES[category], assessor_form_answers_path(award_type: category)
 
@@ -119,7 +119,7 @@ br
                     = obj.urn
                   - else
                     span.urn-not-generated Not yet generated
-                    
+
                 - if @search.query?
                   td = obj.award_type
                 - else
