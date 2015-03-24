@@ -68,6 +68,7 @@ shared_context "pdf file checks" do
         question = fetch_question_by_question_key(step1.questions, question_key)
 
         expect(pdf_content).to include(question.decorate.escaped_title)
+        expect(pdf_content).to include(question.decorate.escaped_context)
         expect(pdf_content).to include(question_answer)
       end
     end

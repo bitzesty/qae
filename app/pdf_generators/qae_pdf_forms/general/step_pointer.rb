@@ -31,9 +31,13 @@ class QaePdfForms::General::StepPointer
   end
 
   def render_header
-    form_pdf.text step.title, style: :bold,
-                              size: 18,
-                              align: :left
+    form_pdf.text "#{step.title.upcase}:",
+                  style: :bold,
+                  size: 16,
+                  align: :left
+    form_pdf.stroke_color = "999999"
+    form_pdf.move_down 4.mm
+    form_pdf.stroke_horizontal_line 0, 192.mm
     form_pdf.default_bottom_margin
   end
 end
