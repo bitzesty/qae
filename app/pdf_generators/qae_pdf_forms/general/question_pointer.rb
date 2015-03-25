@@ -24,6 +24,9 @@ class QaePdfForms::General::QuestionPointer
                      "sustainable_development_2" => "Sustainable Development (2 years)",
                      "sustainable_development_5" => "Sustainable Development (5 years)" }
 
+  ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='999999'>"
+  ANSWER_FONT_END = "</font></color>"
+
   def initialize(ops = {})
     ops.each do |k, v|
       instance_variable_set("@#{k}", v)
@@ -105,9 +108,9 @@ class QaePdfForms::General::QuestionPointer
 
     if question.ref.present?
       form_pdf.text_box "#{question.ref.gsub(/\s+/, '')}.",
-                           style: :bold,
-                           width: 20.mm,
-                           at: [11.mm, form_pdf.cursor - 5.mm]
+                        style: :bold,
+                        width: 20.mm,
+                        at: [11.mm, form_pdf.cursor - 5.mm]
       if question.escaped_title.present?
         form_pdf.indent 22.mm do
           form_pdf.render_text question.escaped_title,
@@ -124,7 +127,7 @@ class QaePdfForms::General::QuestionPointer
         else
           form_pdf.indent 22.mm do
             if question_block_type(question) == "inline" && humanized_answer.present?
-              form_pdf.text "#{question.escaped_title}: <font name='Times-Roman'><color rgb='999999'>#{question_answer(question, 'inline')}</color></font>",
+              form_pdf.text "#{question.escaped_title}: #{ANSWER_FONT_START}#{question_answer(question, 'inline')}#{ANSWER_FONT_END}",
                             inline_format: true
             else
               form_pdf.text "#{question.escaped_title}:"
@@ -177,7 +180,11 @@ class QaePdfForms::General::QuestionPointer
           # TODO loop through all the options with dependencies
           ["yes"].each do | option |
             dependencies = ["A8.1", "A8.2", "B4"]
-            form_pdf.render_text "If #{option}, please answer the questions #{dependencies.to_sentence}",
+            dependencies_text = "If "
+            dependencies_text += option
+            dependencies_text += ", please answer the questions "
+            dependencies_text += dependencies.to_sentence
+            form_pdf.render_text dependencies_text,
                                  color: "999999",
                                  style: :italic,
                                  size: 10
@@ -278,7 +285,7 @@ class QaePdfForms::General::QuestionPointer
         if humanized_answer.present?
           form_pdf.indent 7.mm do
             list_rows.each do |subsidiary|
-              form_pdf.render_text "#{subsidiary[0]} <font name='Times-Roman'><color rgb='999999'>in #{subsidiary[1]} with #{subsidiary[2]} employees</color></font>",
+              form_pdf.render_text "#{subsidiary[0]} #{ANSWER_FONT_START}in #{subsidiary[1]} with #{subsidiary[2]} employees#{ANSWER_FONT_END}",
                                    inline_format: true
             end
           end
@@ -301,7 +308,7 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.indent 7.mm do
           form_pdf.font("Times-Roman") do
             form_pdf.text title,
-                                 color: "999999"
+                          color: "999999"
           end
         end
       when *LIST_TYPES
@@ -413,7 +420,7 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.indent 7.mm do
       headers.each_with_index do |_col, index|
         form_pdf.default_bottom_margin
-        form_pdf.text "#{headers[index]}: <font name='Times-Roman'><color rgb='999999'>#{row[index]}</color></font>",
+        form_pdf.text "#{headers[index]}: #{ANSWER_FONT_START}#{row[index]}#{ANSWER_FONT_END}",
                       inline_format: true
       end
     end
@@ -445,7 +452,7 @@ class QaePdfForms::General::QuestionPointer
 
   def sub_question_block(sub_question, sub_answer)
     form_pdf.default_bottom_margin
-    form_pdf.text "#{sub_question}: <font name='Times-Roman'><color rgb='999999'>#{sub_answer}</color></font>",
+    form_pdf.text "#{sub_question}: #{ANSWER_FONT_START}#{sub_answer}#{ANSWER_FONT_END}",
                   inline_format: true
   end
 
@@ -469,7 +476,7 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.text "Test", color: "ffffff"
     form_pdf.move_up 4.5.mm
 
-    form_pdf.bounding_box([0, form_pdf.cursor], :width => 3.mm, :height => 3.mm) do
+    form_pdf.bounding_box([0, form_pdf.cursor], width: 3.mm, height: 3.mm) do
       form_pdf.stroke_color "333333"
       form_pdf.stroke_bounds
     end

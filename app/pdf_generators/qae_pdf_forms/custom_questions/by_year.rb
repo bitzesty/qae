@@ -29,7 +29,12 @@ module QaePdfForms::CustomQuestions::ByYear
         financial_date_text += "#{row[col]} "
       end
 
-      form_pdf.text "#{financial_year_text}: <font name='Times-Roman'><color rgb='999999'>#{financial_date_text}</color></font>",
+      financial_date_compiled_text = "#{financial_year_text}: "
+      financial_date_compiled_text += "<font name='Times-Roman'><color rgb='999999'>"
+      financial_date_compiled_text += financial_date_text
+      financial_date_compiled_text += "</color></font>"
+
+      form_pdf.text financial_date_compiled_text,
                     inline_format: true
     end
   end
