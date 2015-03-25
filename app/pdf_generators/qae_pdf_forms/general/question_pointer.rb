@@ -122,7 +122,13 @@ class QaePdfForms::General::QuestionPointer
         if question.classes == "regular-question"
           form_pdf.indent 22.mm do
             if question_block_type(question) == "inline" && humanized_answer.present?
-              form_pdf.text "#{question.escaped_title}: #{ANSWER_FONT_START}#{question_answer(question, 'inline')}#{ANSWER_FONT_END}",
+              inline_question_text = question.escaped_title
+              inline_question_text += ": "
+              inline_question_text += ANSWER_FONT_START
+              inline_question_text += question_answer(question, 'inline')
+              inline_question_text += ANSWER_FONT_END
+
+              form_pdf.text inline_question_text,
                             inline_format: true
             else
               form_pdf.text "#{question.escaped_title}:"
@@ -285,7 +291,16 @@ class QaePdfForms::General::QuestionPointer
         if humanized_answer.present?
           form_pdf.indent 7.mm do
             list_rows.each do |subsidiary|
-              form_pdf.render_text "#{subsidiary[0]} #{ANSWER_FONT_START}in #{subsidiary[1]} with #{subsidiary[2]} employees#{ANSWER_FONT_END}",
+              subsidiary_text = subsidiary[0]
+              subsidiary_text += ANSWER_FONT_START
+              subsidiary_text += " in "
+              subsidiary_text += subsidiary[1]
+              subsidiary_text += " with "
+              subsidiary_text += subsidiary[2]
+              subsidiary_text += " employees"
+              subsidiary_text += ANSWER_FONT_END
+
+              form_pdf.render_text subsidiary_text,
                                    inline_format: true
             end
           end
