@@ -12,6 +12,10 @@ class AssessmentSubmissionService
       populate_primary_case_summary
       populate_lead_case_summary
     end
+
+    if resource.moderated?
+      resource.form_answer.state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
+    end
   end
 
   delegate :as_json, to: :resource
@@ -30,14 +34,19 @@ class AssessmentSubmissionService
   end
 
   def populate_lead_case_summary
-    if (current_subject.lead?(resource.form_answer) &&
-       current_subject.primary?(resource.form_answer)) ||
+    if (primary_and_lead_is_the_same_person? && resource.moderated?) ||
        resource.primary_case_summary?
       notify
       rec = record(4)
       rec.document = resource.document
       rec.save
     end
+  end
+
+  def primary_and_lead_is_the_same_person?
+    # possibly some logic can be reviewed
+    primary = resource.form_answer.assessors.primary
+    Assessor.leads_for(resource.form_answer.award_type).include?(primary)
   end
 
   def record(position)
@@ -47,8 +56,7 @@ class AssessmentSubmissionService
   end
 
   def notify
-    if current_subject.primary?(resource.form_answer) &&
-       !current_subject.lead?(resource.form_answer)
+    if resource.primary_case_summary?
       Assessor.leads_for(resource.form_answer.award_type).each do |assessor|
         mailer = Assessors::PrimaryCaseSummaryMailer
         mailer.notify(assessor.id, resource.form_answer.id).deliver_later!

@@ -12,7 +12,6 @@ class AssessorAssignmentService
     resource.assign_attributes(update_params)
     resource.editable = current_subject
     resource.assessed_at = DateTime.now unless assignment_request?
-    handle_with_form_answer_transition
     resource.save
   end
 
@@ -30,16 +29,6 @@ class AssessorAssignmentService
 
   def admin_or_lead?
     current_subject.is_a?(Admin) || current_subject.try(:lead?, form_answer)
-  end
-
-  def handle_with_form_answer_transition
-    if resource.moderated? && admin_or_lead?
-      # get the state from the overall verdict
-      # TODO: as we collect more information about next phases need to add
-      # more strict logic in states transitions + permissions as I can imagine
-      # that lead assessor is not permitted to change the state assigned by PM
-      form_answer.state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
-    end
   end
 
   def normalize_params

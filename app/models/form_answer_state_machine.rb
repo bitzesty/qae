@@ -61,8 +61,12 @@ class FormAnswerStateMachine
     [:assessment_in_progress, :not_submitted]
   end
 
-  def collection
-    (permitted_states_with_deadline_constraint - automatic_states)
+  def collection(subject)
+    if subject.is_a?(Admin)
+      STATES
+    else
+      (permitted_states_with_deadline_constraint - automatic_states) + Array(object.state.to_sym)
+    end
   end
 
   def perform_transition(state, subject = nil)
@@ -72,7 +76,10 @@ class FormAnswerStateMachine
       transitable_type: subject.class.to_s
     } if subject.present?
     meta ||= {}
-    transition_to state, meta if permitted_states_with_deadline_constraint.include?(state)
+    if permitted_states_with_deadline_constraint.include?(state) || subject.is_a?(Admin)
+      # Admin can change always and everything
+      transition_to state, meta
+    end
   end
 
   def submit(subject)
@@ -119,7 +126,7 @@ class FormAnswerStateMachine
       all_states = [
         :assessment_in_progress,
         :not_submitted,
-        :recomended,
+        :recommended,
         :reserved,
         :not_recommended,
         :awarded,

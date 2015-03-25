@@ -21,6 +21,6 @@ class FormAnswerStateTransition
   end
 
   def collection
-    form_answer.state_machine.collection
+    form_answer.state_machine.collection(subject)
   end
 end
