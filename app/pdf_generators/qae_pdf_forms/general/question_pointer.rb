@@ -194,19 +194,23 @@ class QaePdfForms::General::QuestionPointer
           render_years_table
         end
       when QAEFormBuilder::QueenAwardHolderQuestion
-        form_pdf.indent 7.mm do
-          form_pdf.font("Times-Roman") do
-            list_rows.each do |award|
-              form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
-                                   color: "999999"
+        if humanized_answer.present?
+          form_pdf.indent 7.mm do
+            form_pdf.font("Times-Roman") do
+              list_rows.each do |award|
+                form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
+                                     color: "999999"
+              end
             end
           end
         end
       when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
-        form_pdf.indent 7.mm do
-          list_rows.each do |subsidiary|
-            form_pdf.render_text "#{subsidiary[0]} <font name='Times-Roman'><color rgb='999999'>in #{subsidiary[1]} with #{subsidiary[2]} employees</color></font>",
-                                 inline_format: true
+        if humanized_answer.present?
+          form_pdf.indent 7.mm do
+            list_rows.each do |subsidiary|
+              form_pdf.render_text "#{subsidiary[0]} <font name='Times-Roman'><color rgb='999999'>in #{subsidiary[1]} with #{subsidiary[2]} employees</color></font>",
+                                   inline_format: true
+            end
           end
         end
       when QAEFormBuilder::SupportersQuestion
