@@ -1,0 +1,24 @@
+- state = FormAnswerStateTransition.new
+- state.form_answer = resource
+
+.well.section-applicant-status
+  / This is where you change the application status
+  h2
+    ' Status
+    small= resource.last_state_updated_by
+
+  .btn-group
+    button.btn.btn-link.dropdown-toggle.state-toggle type="button" data-toggle="dropdown" aria-expanded="false"
+      = @form_answer.progress_text_short
+      span.caret
+    ul.dropdown-menu role="menu"
+      - state.collection.each do |state|
+        li.checkbox role="presentation"
+          = link_to state.to_s.humanize, "#"
+    = simple_form_for([namespace_name, resource, state]) do |f|
+      = f.input :state,
+                as: :select,
+                include_blank: false,
+                label: false,
+                collection: state.collection
+      = f.submit :update_state

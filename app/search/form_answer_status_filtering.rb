@@ -22,7 +22,7 @@ class FormAnswerStatusFiltering
   OPTIONS = {
     application_in_progress: {
       label: "Application in progress",
-      states: [:application_in_progress]
+      states: [:application_in_progress, :not_submitted] #todo clarify
     },
     assessment_in_progress: {
       label: "Assessment in progress (not impl.)",

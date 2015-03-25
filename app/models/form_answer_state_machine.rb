@@ -57,37 +57,32 @@ class FormAnswerStateMachine
     end
   end
 
+  def permitted_states_with_current_state_constraint(state)
+    case state
+    when :not_submitted
+      []
+    else
+      STATES
+    end
+  end
+
+  def automatic_states
+    [:assessment_in_progress, :not_submitted]
+  end
+
+  def collection
+    (permitted_states_with_deadline_constraint - automatic_states) &
+      permitted_states_with_current_state_constraint(object.state.to_sym)
+  end
+
   def perform_transition(state, subject = nil)
-    # settings = Settings.for_year(model.award_year)
-    # deadlines = settings.deadlines.where(kind: ["submission_start", "submission_end"])
-    # start = deadlines.detect(&:submission_start?)
-    # finish = deadlines.detect(&:submission_end?)
-
-    # # states can not be set up before the deadline
-    # invalid_states = [
-    #   :assessment_in_progress,
-    #   :recommended,
-    #   :reserved,
-    #   :not_recommended,
-    #   :awarded,
-    #   :not_awarded
-    # ]
-    # return false if DateTime.now < start
-    # if DateTime.now < finish
-    #   return false if invalid_states.include?(state)
-    # end
-
-    # if DateTime.now > finish
-    #   invalid_states
-    # end
-
+    state = state.to_sym if STATES.map(&:to_s).include?(state)
     meta = {
       transitable_id: subject.id,
       transitable_type: subject.class.to_s
     } if subject.present?
     meta ||= {}
-
-    transition_to state, meta
+    transition_to state, meta if collection.include?(state)
   end
 
   def submit(subject)
@@ -112,5 +107,40 @@ class FormAnswerStateMachine
   after_transition do |model, transition|
     model.state = transition.to_state
     model.save
+  end
+
+  private
+
+  def permitted_states_with_deadline_constraint
+    year = object.award_year
+    settings = Settings.for_year(year - 1)
+    deadline = settings.deadlines.where(kind: "submission_end").first
+
+    # time restrictions
+    return [] if deadline.trigger_at.blank?
+
+    if DateTime.now < deadline.trigger_at
+      states = [
+        :application_in_progress,
+        :submitted,
+        :withdrawn,
+        :not_eligible
+      ]
+    end
+
+    if DateTime.now > deadline.trigger_at
+      states = [
+        :assessment_in_progress,
+        :not_submitted,
+        :recomended,
+        :reserved,
+        :not_recommended,
+        :awarded,
+        :not_awarded,
+        :withdrawn,
+        :not_eligible
+      ]
+    end
+    states
   end
 end

@@ -4,6 +4,10 @@ class FormAnswerTransition < ActiveRecord::Base
   belongs_to :form_answer, inverse_of: :form_answer_transitions
 
   def transitable
-    metadata["transitable_type"].constantize.find(metadata["transitable_id"])
+    t_type = metadata["transitable_type"]
+    t_id = metadata["transitable_id"]
+    if t_id.present? && t_type.present? && ["Admin", "Assessor"].include?(t_type)
+      t_type.constantize.find(t_id)
+    end
   end
 end
