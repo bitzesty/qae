@@ -46,6 +46,7 @@ class FormAnswer < ActiveRecord::Base
     has_one :promotion_eligibility, class_name: 'Eligibility::Promotion', dependent: :destroy
     has_one :audit_certificate, dependent: :destroy
     has_one :feedback, dependent: :destroy
+    has_one :press_summary, dependent: :destroy
     has_one :draft_note, as: :notable, dependent: :destroy
 
     has_many :form_answer_attachments, dependent: :destroy

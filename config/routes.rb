@@ -100,6 +100,13 @@ Rails.application.routes.draw do
           post :approve
         end
       end
+
+      resources :press_summaries, only: [:create, :update] do
+        member do
+          post :approve
+        end
+      end
+
       member { get(:review) }
       resources :flags, only: [] do
         collection { post :toggle }
@@ -127,6 +134,13 @@ Rails.application.routes.draw do
           post :approve
         end
       end
+
+      resources :press_summaries, only: [:create, :update] do
+        member do
+          post :approve
+        end
+      end
+
       resources :draft_notes, only: [:create, :update]
 
       resources :flags, only: [] do
