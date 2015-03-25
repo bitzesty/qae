@@ -57,22 +57,12 @@ class FormAnswerStateMachine
     end
   end
 
-  def permitted_states_with_current_state_constraint(state)
-    case state
-    when :not_submitted
-      []
-    else
-      STATES
-    end
-  end
-
   def automatic_states
     [:assessment_in_progress, :not_submitted]
   end
 
   def collection
-    (permitted_states_with_deadline_constraint - automatic_states) &
-      permitted_states_with_current_state_constraint(object.state.to_sym)
+    (permitted_states_with_deadline_constraint - automatic_states)
   end
 
   def perform_transition(state, subject = nil)
@@ -82,7 +72,7 @@ class FormAnswerStateMachine
       transitable_type: subject.class.to_s
     } if subject.present?
     meta ||= {}
-    transition_to state, meta if collection.include?(state)
+    transition_to state, meta if permitted_states_with_deadline_constraint.include?(state)
   end
 
   def submit(subject)
@@ -118,29 +108,37 @@ class FormAnswerStateMachine
 
     # time restrictions
     return [] if deadline.trigger_at.blank?
-
     if DateTime.now < deadline.trigger_at
-      states = [
+      [
         :application_in_progress,
         :submitted,
         :withdrawn,
         :not_eligible
       ]
-    end
-
-    if DateTime.now > deadline.trigger_at
-      states = [
+    else
+      all_states = [
         :assessment_in_progress,
         :not_submitted,
         :recomended,
         :reserved,
         :not_recommended,
         :awarded,
-        :not_awarded,
-        :withdrawn,
-        :not_eligible
+        :not_awarded
       ]
+      case object.state.to_sym
+      when :withdrawn
+        []
+      when :not_eligible
+        []
+      when :application_in_progress
+        [:not_submitted]
+      when :submitted
+        [:assessment_in_progress]
+      when :not_submitted
+        []
+      else
+        all_states
+      end
     end
-    states
   end
 end
