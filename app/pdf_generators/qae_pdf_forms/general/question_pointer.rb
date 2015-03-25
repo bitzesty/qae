@@ -127,6 +127,21 @@ class QaePdfForms::General::QuestionPointer
         question_answer(question, "block")
       end
     end
+
+    # Condition question text
+    # TODO if it has dependent questions
+    if false
+      form_pdf.indent 29.mm do
+        # TODO loop through all the options with dependencies
+        ["yes"].each do | option |
+          dependencies = ["A8.1", "A8.2", "B4"]
+          form_pdf.render_text "If #{option}, please answer the questions #{dependencies.to_sentence}",
+                               color: "999999",
+                               style: :italic,
+                               size: 10
+        end
+      end
+    end
   end
 
   def question_block_type(question)
@@ -406,7 +421,7 @@ class QaePdfForms::General::QuestionPointer
   def question_option_box(title)
     form_pdf.move_down 5.mm
 
-    # This adds a text line so that we can be sure that the box and question text stay together between pages
+    # This adds some text so that we can be sure that the box and question text stay together between pages
     form_pdf.text "Test", color: "ffffff"
     form_pdf.move_up 4.5.mm
 
