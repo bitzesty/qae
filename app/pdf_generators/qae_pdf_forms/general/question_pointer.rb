@@ -98,7 +98,7 @@ class QaePdfForms::General::QuestionPointer
           end
         else
           form_pdf.indent 22.mm do
-            if question_block_type(question) == "inline"
+            if question_block_type(question) == "inline" && humanized_answer.present?
               form_pdf.text "#{question.escaped_title}: <font name='Times-Roman'><color rgb='999999'>#{question_answer(question, "inline")}</color></font>",
                             inline_format: true
             else
@@ -123,7 +123,7 @@ class QaePdfForms::General::QuestionPointer
         end
       end
 
-      if question.classes != "regular-question" || question_block_type(question) == "block"
+      if question.classes != "regular-question" || question_block_type(question) == "block" || humanized_answer.blank?
         question_answer(question, "block")
       end
     end
@@ -162,28 +162,40 @@ class QaePdfForms::General::QuestionPointer
           render_attachments
         end
       when QAEFormBuilder::OptionsQuestion
-        title = humanized_answer.present? ? question_option_title : FormPdf::UNDEFINED_TITLE
-        if display == "block"
-          form_pdf.indent 7.mm do
-            form_pdf.font("Times-Roman") do
-              form_pdf.render_text title,
-                                   color: "999999"
+        if humanized_answer.present?
+          title = question_option_title
+          if display == "block"
+            form_pdf.indent 7.mm do
+              form_pdf.font("Times-Roman") do
+                form_pdf.render_text title,
+                                     color: "999999"
+              end
             end
+          else
+            return title
           end
         else
-          return title
+          form_pdf.indent 7.mm do
+            question.options.each do | answer |
+              question_option_box answer.text
+            end
+          end
         end
       when QAEFormBuilder::ConfirmQuestion
-        title = humanized_answer.present? ? question_checked_value_title : FormPdf::UNDEFINED_TITLE
-        if display == "block"
-          form_pdf.indent 7.mm do
-            form_pdf.font("Times-Roman") do
-              form_pdf.render_text title,
-                                   color: "999999"
+        if humanized_answer.present?
+          title = question_checked_value_title
+          if display == "block"
+            form_pdf.indent 7.mm do
+              form_pdf.font("Times-Roman") do
+                form_pdf.render_text title,
+                                     color: "999999"
+              end
             end
+          else
+            return title
           end
         else
-          return title
+          question_option_box question.text
         end
       when QAEFormBuilder::ByYearsLabelQuestion
         form_pdf.indent 7.mm do
@@ -266,7 +278,7 @@ class QaePdfForms::General::QuestionPointer
       end
     else
       form_pdf.font("Times-Roman") do
-        form_pdf.render_text FormPdf::UNDEFINED_TITLE,
+        form_pdf.render_text "Nothing uploaded yet...",
                              color: "999999"
       end
     end
@@ -355,8 +367,13 @@ class QaePdfForms::General::QuestionPointer
 
     form_pdf.indent 7.mm do
       form_pdf.font("Times-Roman") do
-        form_pdf.render_text row.join(" "),
-                             color: "999999"
+        if row[0] == FormPdf::UNDEFINED_TITLE
+          form_pdf.render_text FormPdf::UNDEFINED_TITLE,
+                               color: "999999"
+        else
+          form_pdf.render_text row.join(" "),
+                               color: "999999"
+        end
       end
     end
   end
@@ -384,6 +401,25 @@ class QaePdfForms::General::QuestionPointer
     question.options.select do |option|
       option.value.to_s == humanized_answer.to_s
     end.first.text
+  end
+
+  def question_option_box(title)
+    form_pdf.move_down 5.mm
+
+    # This adds a text line so that we can be sure that the box and question text stay together between pages
+    form_pdf.text "Test", color: "ffffff"
+    form_pdf.move_up 4.5.mm
+
+    form_pdf.bounding_box([0, form_pdf.cursor], :width => 3.mm, :height => 3.mm) do
+      form_pdf.stroke_color "333333"
+      form_pdf.stroke_bounds
+    end
+
+    form_pdf.move_up 3.mm
+
+    form_pdf.indent 6.mm do
+      form_pdf.text title
+    end
   end
 
   def question_checked_value_title
