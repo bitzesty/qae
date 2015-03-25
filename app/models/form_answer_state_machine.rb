@@ -35,7 +35,6 @@ class FormAnswerStateMachine
   end
 
   def self.trigger_deadlines
-    time = DateTime.now
     ends = Deadline.with_states_to_trigger.includes(:settings)
     relevant_states = [
       "submitted",
@@ -70,6 +69,7 @@ class FormAnswerStateMachine
     end
   end
 
+  # TODO: tests
   def perform_transition(state, subject = nil)
     state = state.to_sym if STATES.map(&:to_s).include?(state)
     meta = {

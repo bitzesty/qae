@@ -52,7 +52,6 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def company_or_nominee_name
-    return object.award_type
     object.company_or_nominee_name
   end
 

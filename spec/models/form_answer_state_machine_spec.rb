@@ -5,7 +5,7 @@ describe FormAnswerStateMachine do
   describe "#trigger_deadlines" do
     context "deadline expired" do
       let(:settings) { create(:settings, :expired_submission_deadlines) }
-      before { form_answer.update(award_year: settings.year+1) }
+      before { form_answer.update(award_year: settings.year + 1) }
 
       context "applications submitted" do
         before { form_answer.update(state: "submitted") }

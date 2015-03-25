@@ -4,6 +4,6 @@ class ChangeFormAnswersStateDefaultValue < ActiveRecord::Migration
   end
 
   def down
-    change_column :form_answers, :state, :string, default: 'in_progress1', null: false
+    change_column :form_answers, :state, :string, default: "in_progress1", null: false
   end
 end
