@@ -41,8 +41,9 @@ class FormAnswerStateMachine
       "submitted",
       "application_in_progress"
     ]
+
     ends.each do |deadline|
-      year = deadline.settings.year + 1 # TODO: seems to be right - clarify
+      year = deadline.settings.year + 1 # TODO: seems to be right - clarify !!
       form_answers = FormAnswer.where(award_year: year).where(state: relevant_states)
 
       form_answers.each do |fa|
@@ -65,7 +66,7 @@ class FormAnswerStateMachine
     if subject.is_a?(Admin)
       STATES
     else
-      (permitted_states_with_deadline_constraint - automatic_states) + Array(object.state.to_sym)
+      permitted_states_with_deadline_constraint - automatic_states
     end
   end
 
@@ -76,9 +77,14 @@ class FormAnswerStateMachine
       transitable_type: subject.class.to_s
     } if subject.present?
     meta ||= {}
+
     if permitted_states_with_deadline_constraint.include?(state) || subject.is_a?(Admin)
       # Admin can change always and everything
       transition_to state, meta
+      if state == :submitted
+        # what if app is not eligible but admin wants to set up it as submitted ?
+        object.update(submitted: true)
+      end
     end
   end
 
