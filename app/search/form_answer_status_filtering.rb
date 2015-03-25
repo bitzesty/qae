@@ -22,11 +22,11 @@ class FormAnswerStatusFiltering
   OPTIONS = {
     application_in_progress: {
       label: "Application in progress",
-      states: [:in_progress1]
+      states: [:application_in_progress]
     },
     assessment_in_progress: {
       label: "Assessment in progress (not impl.)",
-      states: [:assessment_in_progress2]
+      states: [:assessment_in_progress]
     },
     recommended: {
       label: "Recommended (not impl.)",

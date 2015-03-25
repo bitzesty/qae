@@ -12,7 +12,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20150325160755) do
-
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
@@ -120,8 +119,9 @@ ActiveRecord::Schema.define(version: 20150325160755) do
     t.string   "kind"
     t.datetime "trigger_at"
     t.integer  "settings_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.datetime "states_triggered_at"
   end
 
   add_index "deadlines", ["settings_id"], name: "index_deadlines_on_settings_id", using: :btree
@@ -209,7 +209,7 @@ ActiveRecord::Schema.define(version: 20150325160755) do
     t.string   "urn"
     t.boolean  "submitted",                default: false
     t.float    "fill_progress"
-    t.string   "state",                    default: "in_progress1", null: false
+    t.string   "state",                    default: "application_in_progress", null: false
     t.string   "company_or_nominee_name"
     t.integer  "award_year"
     t.string   "nominee_full_name"
