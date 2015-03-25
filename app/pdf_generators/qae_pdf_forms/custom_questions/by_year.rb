@@ -16,7 +16,7 @@ module QaePdfForms::CustomQuestions::ByYear
       rows[i].unshift(i + 1)
     end
 
-    rows.each_with_index do |row, index|
+    rows.each do |row|
       form_pdf.default_bottom_margin
 
       financial_year_text = "#{YEAR_LABELS_TABLE_HEADERS[0]} #{row[0]}"

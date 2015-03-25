@@ -35,7 +35,21 @@ class QaePdfForms::General::QuestionPointer
       sub_answers.any? ? complex_question : question_block
     end
 
-    if question.delegate_obj.class.to_s != "QAEFormBuilder::HeaderQuestion" || question.classes != "regular-question" || question.classes == "application-notice help-notice"
+    question_bottom_space = false
+
+    if question.delegate_obj.class.to_s != "QAEFormBuilder::HeaderQuestion"
+      question_bottom_space = true
+    end
+
+    if question.classes != "regular-question"
+      question_bottom_space = true
+    end
+
+    if question.classes == "application-notice help-notice"
+      question_bottom_space = true
+    end
+
+    if question_bottom_space
       form_pdf.move_down 5.mm
     end
   end
@@ -99,7 +113,7 @@ class QaePdfForms::General::QuestionPointer
         else
           form_pdf.indent 22.mm do
             if question_block_type(question) == "inline" && humanized_answer.present?
-              form_pdf.text "#{question.escaped_title}: <font name='Times-Roman'><color rgb='999999'>#{question_answer(question, "inline")}</color></font>",
+              form_pdf.text "#{question.escaped_title}: <font name='Times-Roman'><color rgb='999999'>#{question_answer(question, 'inline')}</color></font>",
                             inline_format: true
             else
               form_pdf.text "#{question.escaped_title}:"
@@ -125,7 +139,21 @@ class QaePdfForms::General::QuestionPointer
         end
       end
 
-      if question.classes != "regular-question" || question_block_type(question) == "block" || humanized_answer.blank?
+      block_question = false
+
+      if question.classes != "regular-question"
+        block_question = true
+      end
+
+      if question_block_type(question) == "block"
+        block_question = true
+      end
+
+      if humanized_answer.blank?
+        block_question = true
+      end
+
+      if block_question
         question_answer(question, "block")
       end
     end
@@ -372,7 +400,7 @@ class QaePdfForms::General::QuestionPointer
 
   def render_single_row_list(headers, row)
     form_pdf.indent 7.mm do
-      headers.each_with_index do |col, index|
+      headers.each_with_index do |_col, index|
         form_pdf.default_bottom_margin
         form_pdf.text "#{headers[index]}: <font name='Times-Roman'><color rgb='999999'>#{row[index]}</color></font>",
                       inline_format: true

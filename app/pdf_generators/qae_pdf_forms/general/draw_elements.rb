@@ -45,10 +45,10 @@ module QaePdfForms::General::DrawElements
     indent (ops[:description_left_margin] || 0) do
       font("Times-Roman") do
         formatted_text [{
-                         text: filename,
-                         link: url,
-                         styles: [:underline]
-                       }]
+                          text: filename,
+                          link: url,
+                          styles: [:underline]
+                        }]
 
         move_down 3.mm
 
@@ -87,7 +87,7 @@ module QaePdfForms::General::DrawElements
   def render_award_information
     text_box form_answer.decorate.award_application_title.upcase,
              header_text_properties.merge(at: [32.mm, 130.mm + DEFAULT_OFFSET],
-                                               style: :bold)
+                                          style: :bold)
   end
 
   def render_user_information
@@ -97,7 +97,7 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_intro_text
-    bounding_box([0, cursor], :width => 190.mm, :height => 40.mm) do
+    bounding_box([0, cursor], width: 190.mm, height: 40.mm) do
       stroke_color "999999"
       stroke_bounds
 
@@ -112,9 +112,9 @@ module QaePdfForms::General::DrawElements
       )
 
       text_box intro_text,
-            at: [35.mm, cursor - 3.mm],
-            width: 145.mm,
-            inline_format: true
+               at: [35.mm, cursor - 3.mm],
+               width: 145.mm,
+               inline_format: true
     end
   end
 
