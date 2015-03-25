@@ -90,19 +90,21 @@ module QaePdfForms::CustomQuestions::Lists
   end
 
   def list_rows
-    humanized_answer.map do |item|
-      prepared_item = JSON.parse(item)
+    if humanized_answer.present?
+      humanized_answer.map do |item|
+        prepared_item = JSON.parse(item)
 
-      case question.delegate_obj
-      when QAEFormBuilder::AwardHolderQuestion
-        award_holder_query_conditions(prepared_item)
-      when QAEFormBuilder::QueenAwardHolderQuestion
-        queen_award_holder_query_conditions(prepared_item)
-      when QAEFormBuilder::PositionDetailsQuestion
-        position_details_query_conditions(prepared_item)
-      when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
-        subsidiaries_associates_plants_query_conditions(prepared_item)
-      end
-    end.compact
+        case question.delegate_obj
+        when QAEFormBuilder::AwardHolderQuestion
+          award_holder_query_conditions(prepared_item)
+        when QAEFormBuilder::QueenAwardHolderQuestion
+          queen_award_holder_query_conditions(prepared_item)
+        when QAEFormBuilder::PositionDetailsQuestion
+          position_details_query_conditions(prepared_item)
+        when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
+          subsidiaries_associates_plants_query_conditions(prepared_item)
+        end
+      end.compact
+    end
   end
 end
