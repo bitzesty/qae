@@ -14,7 +14,7 @@ Dir.chdir APP_ROOT do
 
   unless File.exist?("config/database.yml")
   puts "\n== Copying sample files =="
-    system "cp config/database.yml.sample config/database.yml"
+    system "cp config/database.yml.example config/database.yml"
   end
 
   puts "\n== Preparing database =="
