@@ -142,7 +142,7 @@ class QaePdfForms::General::QuestionPointer
     end
 
     # Condition question text
-    # TODO if it has dependent questions
+    # TODO if it has dependent questions and if it hasn't been answered
     if false
       unless form_pdf.form_answer.urn.present?
         form_pdf.indent 29.mm do
