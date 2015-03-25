@@ -125,7 +125,7 @@ class QaePdfForms::General::QuestionPointer
               inline_question_text = question.escaped_title
               inline_question_text += ": "
               inline_question_text += ANSWER_FONT_START
-              inline_question_text += question_answer(question, 'inline')
+              inline_question_text += question_answer(question, "inline")
               inline_question_text += ANSWER_FONT_END
 
               form_pdf.text inline_question_text,
