@@ -17,12 +17,12 @@ class QaePdfForms::General::QuestionPointer
               :filled_answers,
               :step_questions
 
-  PREVIOUS_AWARDS = {"innovation_2" => "Innovation (2 years)",
-                     "innovation_5" => "Innovation (5 years)",
-                     "international_trade_3" => "International Trade (3 years)",
-                     "international_trade_6" => "International Trade (6 years)",
-                     "sustainable_development_2" => "Sustainable Development (2 years)",
-                     "sustainable_development_5" => "Sustainable Development (5 years)" }
+  PREVIOUS_AWARDS = { "innovation_2" => "Innovation (2 years)",
+                      "innovation_5" => "Innovation (5 years)",
+                      "international_trade_3" => "International Trade (3 years)",
+                      "international_trade_6" => "International Trade (6 years)",
+                      "sustainable_development_2" => "Sustainable Development (2 years)",
+                      "sustainable_development_5" => "Sustainable Development (5 years)" }
 
   ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='999999'>"
   ANSWER_FONT_END = "</font></color>"
@@ -119,12 +119,7 @@ class QaePdfForms::General::QuestionPointer
       end
     else
       if question.escaped_title.present?
-        unless question.classes == "regular-question"
-          form_pdf.indent 11.mm do
-            form_pdf.render_text "#{question.escaped_title}",
-                                 style: :bold
-          end
-        else
+        if question.classes == "regular-question"
           form_pdf.indent 22.mm do
             if question_block_type(question) == "inline" && humanized_answer.present?
               form_pdf.text "#{question.escaped_title}: #{ANSWER_FONT_START}#{question_answer(question, 'inline')}#{ANSWER_FONT_END}",
@@ -133,6 +128,11 @@ class QaePdfForms::General::QuestionPointer
               form_pdf.text "#{question.escaped_title}:"
             end
           end
+        else
+          form_pdf.indent 11.mm do
+            form_pdf.render_text "#{question.escaped_title}",
+                                 style: :bold
+          end
         end
       end
     end
@@ -140,15 +140,15 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.indent 22.mm do
       if question.context.present?
         unless form_pdf.form_answer.urn.present?
-          unless question.classes == "application-notice help-notice"
-            form_pdf.render_text question.escaped_context
-          else
+          if question.classes == "application-notice help-notice"
             form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
                            at: [-10.mm, form_pdf.cursor - 3.5.mm],
                            width: 6.5.mm,
                            height: 6.5.mm
             form_pdf.render_text question.escaped_context,
                                  style: :bold
+          else
+            form_pdf.render_text question.escaped_context
           end
         end
       end
@@ -178,7 +178,7 @@ class QaePdfForms::General::QuestionPointer
       unless form_pdf.form_answer.urn.present?
         form_pdf.indent 29.mm do
           # TODO loop through all the options with dependencies
-          ["yes"].each do | option |
+          ["yes"].each do |option|
             dependencies = ["A8.1", "A8.2", "B4"]
             dependencies_text = "If "
             dependencies_text += option
@@ -241,7 +241,7 @@ class QaePdfForms::General::QuestionPointer
           end
         else
           form_pdf.indent 7.mm do
-            question.options.each do | answer |
+            question.options.each do |answer|
               question_option_box answer.text
             end
           end
