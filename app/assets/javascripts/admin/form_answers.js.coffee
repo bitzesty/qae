@@ -6,6 +6,15 @@ ready = ->
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
   bindRags("#section-case-summary .edit_assessor_assignment")
 
+  $(".section-applicant-status").on "click", "a", (e) ->
+    e.preventDefault()
+    state = $(this).data("state")
+    form = $("#new_form_answer_state_transition")
+    form.find("option[value='#{state}']").prop("selected", true)
+    $(".section-applicant-status .dropdown-toggle").text($(this).data("label"))
+    form.submit()
+  $("#new_form_answer_state_transition").on "ajax:success", (e, data, status, xhr) ->
+    $(".section-applicant-status .dropdown-menu").replaceWith(data)
 
   $(".section-applicant-users .edit_assessor_assignment select").select2()
   $("#new_assessor_assignment_collection select").select2()

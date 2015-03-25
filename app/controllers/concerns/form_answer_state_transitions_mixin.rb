@@ -10,10 +10,13 @@ module FormAnswerStateTransitionsMixin
 
     respond_to do |format|
       format.html do
-        redirect_to [namespace_name, form_answer]
+        if request.xhr?
+          render partial: "admin/form_answers/states_list",
+                 locals: { collection: @form_answer_state_transition.collection }
+        else
+          redirect_to [namespace_name, form_answer]
+        end
       end
-
-      format.json
     end
   end
 

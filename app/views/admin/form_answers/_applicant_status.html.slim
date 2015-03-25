@@ -8,21 +8,18 @@
     ' Status
     small= resource.last_state_updated_by
 
-  - if policy(:form_answer_state_transition).create?
+  - if policy(state).create? && state.collection.present?
     .btn-group
       button.btn.btn-link.dropdown-toggle.state-toggle type="button" data-toggle="dropdown" aria-expanded="false"
         = @form_answer.state.humanize
       span.caret
-      ul.dropdown-menu role="menu"
-        - state.collection.each do |state|
-          li.checkbox role="presentation"
-            = link_to state.to_s.humanize, "#"
-      = simple_form_for([namespace_name, resource, state], html: { class: "if-js-hide" }) do |f|
+      = render("admin/form_answers/states_list", collection: state.collection)
+      = simple_form_for([namespace_name, resource, state], html: { class: "if-js-hide", "data-type" => "html" }, remote: true) do |f|
         = f.input :state,
                   as: :select,
                   include_blank: false,
                   label: false,
-                  collection: state.collection
+                  collection: FormAnswerStateMachine::STATES
         = f.submit :update_state
   - else
 

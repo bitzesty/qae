@@ -142,7 +142,7 @@ class FormAnswerStateMachine
       when :submitted
         [:assessment_in_progress]
       when :not_submitted
-        []
+        [:not_eligible]
       else
         all_states
       end
