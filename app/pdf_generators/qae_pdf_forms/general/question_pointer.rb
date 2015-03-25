@@ -94,14 +94,14 @@ class QaePdfForms::General::QuestionPointer
                            style: :bold,
                            width: 20.mm,
                            at: [11.mm, form_pdf.cursor - 5.mm]
-      if question.title.present?
+      if question.escaped_title.present?
         form_pdf.indent 22.mm do
           form_pdf.render_text question.escaped_title,
                                style: :bold
         end
       end
     else
-      if question.title.present?
+      if question.escaped_title.present?
         unless question.classes == "regular-question"
           form_pdf.indent 11.mm do
             form_pdf.render_text "#{question.escaped_title}",
@@ -323,9 +323,15 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def complex_question
-    form_pdf.indent 11.mm do
-      form_pdf.render_text question.escaped_title,
-                           style: :bold
+    if question.escaped_title.present?
+      form_pdf.indent 11.mm do
+        form_pdf.render_text question.escaped_title,
+                             style: :bold
+      end
+    end
+
+    if question.delegate_obj.class.to_s == "QAEFormBuilder::HeadOfBusinessQuestion"
+      form_pdf.move_up 5.mm
     end
 
     form_pdf.indent 22.mm do
