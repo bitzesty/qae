@@ -41,10 +41,6 @@ module FeedbackMixin
     @form_answer = form_answers_scope.find(params[:form_answer_id]).decorate
   end
 
-  def form_answers_scope
-    FormAnswer
-  end
-
   def feedback_params
     params.require(:feedback).permit(FeedbackForm.fields)
   end

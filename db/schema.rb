@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325133040) do
+ActiveRecord::Schema.define(version: 20150325160755) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -256,6 +256,17 @@ ActiveRecord::Schema.define(version: 20150325133040) do
 
   add_index "palace_invites", ["form_answer_id"], name: "index_palace_invites_on_form_answer_id", using: :btree
 
+  create_table "press_summaries", force: :cascade do |t|
+    t.integer  "form_answer_id",                 null: false
+    t.text     "body"
+    t.text     "comment"
+    t.boolean  "approved",       default: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+  end
+
+  add_index "press_summaries", ["form_answer_id"], name: "index_press_summaries_on_form_answer_id", using: :btree
+
   create_table "settings", force: :cascade do |t|
     t.integer  "year"
     t.datetime "created_at", null: false
@@ -362,6 +373,7 @@ ActiveRecord::Schema.define(version: 20150325133040) do
   add_foreign_key "feedbacks", "form_answers"
   add_foreign_key "palace_attendees", "palace_invites"
   add_foreign_key "palace_invites", "form_answers"
+  add_foreign_key "press_summaries", "form_answers"
   add_foreign_key "support_letter_attachments", "form_answers"
   add_foreign_key "support_letter_attachments", "support_letters"
   add_foreign_key "support_letter_attachments", "users"
