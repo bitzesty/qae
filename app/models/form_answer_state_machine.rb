@@ -84,6 +84,9 @@ class FormAnswerStateMachine
 
   def submit(subject)
     perform_transition(:submitted, subject)
+    # TODO: tech debt - we store the submitted state in 2 places
+    # in state machine and in `form_answers.submitted`
+    object.update(submitted: true)
   end
 
   def withdraw(subject)
