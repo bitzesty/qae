@@ -18,7 +18,7 @@ class Notifiers::EmailNotificationService
   end
 
   # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit winners_press_release_comments_request unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
+  %w(reminder_to_submit ep_reminder_support_letters winners_reminder_to_submit winners_press_release_comments_request unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
     define_method method do
       nil
     end
@@ -39,6 +39,18 @@ class Notifiers::EmailNotificationService
   def shortlisted_audit_certificate_reminder
     FormAnswer.shortlisted_with_no_certificate.each do |form_answer|
       Notifiers::Shortlist::AuditCertificateRequest.new(form_answer).run
+    end
+  end
+
+  def winners_notification
+    FormAnswer.winners.each do |form_answer|
+      email = if form_answer.promotion?
+        form_answer.document["nominee_email"]
+      else
+        form_answer.document["head_email"]
+      end
+
+      Notifiers::Winners::BuckinghamPalaceInvite.perform_async(email)
     end
   end
 end

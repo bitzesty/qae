@@ -77,6 +77,8 @@ Rails.application.routes.draw do
 
   resource :support_letter, only: [:show, :update]
 
+  resources :palace_invites, only: [:edit, :update]
+
   namespace :users do
     resources :form_answers, only: [:show] do
       resource :audit_certificate, only: [:show, :create, :destroy]
