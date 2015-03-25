@@ -111,15 +111,17 @@ class QaePdfForms::General::QuestionPointer
 
     form_pdf.indent 22.mm do
       if question.context.present?
-        unless question.classes == "application-notice help-notice"
-          form_pdf.render_text question.escaped_context
-        else
-          form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
-                         at: [-10.mm, form_pdf.cursor - 3.5.mm],
-                         width: 6.5.mm,
-                         height: 6.5.mm
-          form_pdf.render_text question.escaped_context,
-                               style: :bold
+        unless form_pdf.form_answer.urn.present?
+          unless question.classes == "application-notice help-notice"
+            form_pdf.render_text question.escaped_context
+          else
+            form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
+                           at: [-10.mm, form_pdf.cursor - 3.5.mm],
+                           width: 6.5.mm,
+                           height: 6.5.mm
+            form_pdf.render_text question.escaped_context,
+                                 style: :bold
+          end
         end
       end
 
@@ -131,14 +133,16 @@ class QaePdfForms::General::QuestionPointer
     # Condition question text
     # TODO if it has dependent questions
     if false
-      form_pdf.indent 29.mm do
-        # TODO loop through all the options with dependencies
-        ["yes"].each do | option |
-          dependencies = ["A8.1", "A8.2", "B4"]
-          form_pdf.render_text "If #{option}, please answer the questions #{dependencies.to_sentence}",
-                               color: "999999",
-                               style: :italic,
-                               size: 10
+      unless form_pdf.form_answer.urn.present?
+        form_pdf.indent 29.mm do
+          # TODO loop through all the options with dependencies
+          ["yes"].each do | option |
+            dependencies = ["A8.1", "A8.2", "B4"]
+            form_pdf.render_text "If #{option}, please answer the questions #{dependencies.to_sentence}",
+                                 color: "999999",
+                                 style: :italic,
+                                 size: 10
+          end
         end
       end
     end
@@ -248,22 +252,17 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.move_down 5.mm
 
         if question.words_max.present?
-          form_pdf.text "Word limit: #{question.words_max}"
+          unless form_pdf.form_answer.urn.present?
+            form_pdf.text "Word limit: #{question.words_max}"
 
-          form_pdf.move_down 2.5.mm
-
-          form_pdf.indent 7.mm do
-            form_pdf.font("Times-Roman") do
-              form_pdf.text title,
-                                   color: "999999"
-            end
+            form_pdf.move_down 2.5.mm
           end
-        else
-          form_pdf.indent 7.mm do
-            form_pdf.font("Times-Roman") do
-              form_pdf.text title,
-                                   color: "999999"
-            end
+        end
+
+        form_pdf.indent 7.mm do
+          form_pdf.font("Times-Roman") do
+            form_pdf.text title,
+                                 color: "999999"
           end
         end
       when *LIST_TYPES

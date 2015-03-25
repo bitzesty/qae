@@ -66,9 +66,11 @@ module QaePdfForms::General::DrawElements
 
     move_down 45.mm
 
-    render_intro_text
+    unless form_answer.urn.present?
+      render_intro_text
 
-    move_down 15.mm
+      move_down 15.mm
+    end
   end
 
   def render_logo
