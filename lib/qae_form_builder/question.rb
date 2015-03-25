@@ -105,14 +105,21 @@ class QAEFormBuilder
     end
 
     def escaped_title
-      title = if delegate_obj.title.present?
-        delegate_obj.title
-      else
-        delegate_obj.context
-      end
+      if delegate_obj.title.present?
+        title = delegate_obj.title
 
-      title = Nokogiri::HTML.parse(title).text
-      "#{delegate_obj.ref} #{title}".strip
+        title = Nokogiri::HTML.parse(title).text
+        title.strip
+      end
+    end
+
+    def escaped_context
+      if delegate_obj.context.present?
+        context = delegate_obj.context
+
+        context = Nokogiri::HTML.parse(context).text
+        context.strip
+      end
     end
   end
 

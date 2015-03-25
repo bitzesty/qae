@@ -25,11 +25,11 @@ shared_context "pdf file checks" do
   end
 
   let(:award_application_title) do
-    form_answer.decorate.award_application_title
+    form_answer.decorate.award_application_title.upcase
   end
 
   let(:user_general_info) do
-    user.decorate.general_info
+    user.decorate.general_info_print
   end
 
   let(:form_urn) do
@@ -50,14 +50,7 @@ shared_context "pdf file checks" do
 
     it "should include steps headers" do
       steps.each do |step|
-        title = step.complex_title
-        if award_type == :trade
-          # For Trade form PDF::Inspector::Text
-          # returns  "Step 2 of 6: Description of Goods or Services, Markets and", "Marketing"
-          # instead of  "Step 2 of 6: Description of Goods or Services, Markets and Marketing"
-          # as "Marketing" in pdf is located in new line
-          title = title.gsub(' Marketing', '')
-        end
+        title = "#{step.title.upcase}:"
 
         expect(pdf_content).to include(title)
       end

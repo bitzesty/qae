@@ -68,7 +68,7 @@ html.no-js
                       = "#{year} - #{year + 1}"
                       span.caret
                     ul.dropdown-menu
-                      - Settings::AVAILABLE_YEARS.each do | start_year |
+                      - Settings::AVAILABLE_YEARS.each do |start_year|
                         li
                           = link_to "Award Year #{start_year} - #{start_year + 1}", admin_settings_url(year: start_year)
 

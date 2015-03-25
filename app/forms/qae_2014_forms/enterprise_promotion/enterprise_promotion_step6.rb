@@ -18,11 +18,8 @@ class QAE2014Forms
           option "other", "Other"
         end
 
-        text :user_info_title_other, "" do
-          classes "sub-question"
-          context %(
-            <p class='question_label_with_5px_margins'>Please specify</p>
-                    )
+        text :user_info_title_other, "Please specify" do
+          classes "regular-question"
           conditional :user_info_title, "other"
         end
 
