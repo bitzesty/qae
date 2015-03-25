@@ -150,7 +150,6 @@ Rails.application.routes.draw do
       end
 
       member do
-        post :withdraw
         patch :update_financials
         get :review
       end

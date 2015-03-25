@@ -14,7 +14,7 @@
         = @form_answer.state.humanize
       span.caret
       = render("admin/form_answers/states_list", collection: state.collection)
-      = simple_form_for([namespace_name, resource, state], html: { class: "if-js-hide", "data-type" => "html" }, remote: true) do |f|
+      = simple_form_for([namespace_name, resource, state], html: { class: "if-js-hide", "data-type" => "html" }, remote: true, authenticity_token: true) do |f|
         = f.input :state,
                   as: :select,
                   include_blank: false,

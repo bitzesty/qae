@@ -159,8 +159,8 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
-  def trigger_eligibility_transition
-    # TODO: implement
+  def trigger_eligibility_form_change
+    # TODO
   end
 
   private

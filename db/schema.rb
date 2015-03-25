@@ -204,7 +204,6 @@ ActiveRecord::Schema.define(version: 20150325160755) do
     t.datetime "updated_at"
     t.hstore   "document"
     t.string   "award_type"
-    t.boolean  "withdrawn",                default: false
     t.integer  "account_id"
     t.string   "urn"
     t.boolean  "submitted",                default: false

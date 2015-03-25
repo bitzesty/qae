@@ -57,13 +57,13 @@ class FormAnswerStatusFiltering
     not_eligible: {
       label: "Not eligible",
       states: [
-        :not_eligible1
+        :not_eligible
       ]
     },
     withdrawn: {
       label: "Withdrawn",
       states: [
-        :withdrawn1
+        :withdrawn
       ]
     }
   }

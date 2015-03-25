@@ -1,5 +1,5 @@
 class Admin::FormAnswersController < Admin::BaseController
-  before_filter :load_resource, only: [:withdraw, :review, :show, :update, :update_financials]
+  before_filter :load_resource, only: [:review, :show, :update, :update_financials]
 
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
@@ -31,12 +31,6 @@ class Admin::FormAnswersController < Admin::BaseController
 
       format.html { redirect_to admin_form_answer_path(@form_answer) }
     end
-  end
-
-  def withdraw
-    authorize @form_answer, :withdraw?
-    @form_answer.state_machine.withdraw(current_subject)
-    redirect_to action: :show
   end
 
   def update_financials

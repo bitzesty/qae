@@ -144,7 +144,7 @@ class Eligibility < ActiveRecord::Base
     end
   end
 
-  def trigger_eligibility_transition
+  def trigger_eligibility_form_change
     form_answer.trigger_eligibility_transition
   end
 end
