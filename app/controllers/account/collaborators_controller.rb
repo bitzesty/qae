@@ -2,6 +2,8 @@ class Account::CollaboratorsController < Account::BaseController
   
   before_action :require_to_be_not_current_user!, only: [:destroy]
 
+  before_action :set_form_answer
+
   expose(:account) do
     current_user.account
   end
@@ -30,14 +32,19 @@ class Account::CollaboratorsController < Account::BaseController
 
   def create
     self.add_collaborator_interactor = AddCollaborator.new(
-      current_user, 
-      account, 
+      current_user,
+      account,
       create_params).run
     self.collaborator = add_collaborator_interactor.collaborator
 
     if add_collaborator_interactor.success?
-      redirect_to account_collaborators_path, 
-                  notice: "#{collaborator.email} successfully added to Collaborators!"
+      if params.has_key? :form_id
+        redirect_to account_collaborators_path(form_id: params[:form_id]),
+                    notice: "#{collaborator.email} successfully added to Collaborators!"
+      else
+        redirect_to account_collaborators_path,
+                    notice: "#{collaborator.email} successfully added to Collaborators!"
+      end
     else
       render :new
     end
@@ -48,8 +55,19 @@ class Account::CollaboratorsController < Account::BaseController
     collaborator.role = nil
     collaborator.save(validate: false)
 
-    redirect_to account_collaborators_path, 
-                notice: "#{collaborator.email} successfully removed from Collaborators!"
+    if params.has_key? :form_id
+      redirect_to account_collaborators_path(form_id: params[:form_id]),
+                  notice: "#{collaborator.email} successfully removed from Collaborators!"
+    else
+      redirect_to account_collaborators_path,
+                  notice: "#{collaborator.email} successfully removed from Collaborators!"
+    end
+  end
+
+  def set_form_answer
+    if params.has_key? :form_id
+      @form_answer = current_account.form_answers.find(params[:form_id])
+    end
   end
 
   private
@@ -61,7 +79,8 @@ class Account::CollaboratorsController < Account::BaseController
       :last_name,
       :phone_number,
       :email,
-      :role
+      :role,
+      :form_id
     )
   end
 

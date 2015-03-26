@@ -32,7 +32,7 @@ header.page-header.group.page-header-over-sidebar
                       li = collaborator.full_name
               li
                 ' You can
-                = link_to account_collaborators_path
+                = link_to account_collaborators_path(form_id: @form_answer.id)
                   - if @collaborators.any?
                     ' add more collaborators
                   - else

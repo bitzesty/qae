@@ -31,7 +31,7 @@ header.page-header.group.page-header-over-sidebar
 
             = render "list"
 
-            = link_to new_account_collaborator_path, class: "button button-add"
+            = link_to new_account_collaborator_path(form_id: @form_answer), class: "button button-add"
               - if collaborators.any?
                 ' + Add another collaborator
               - else
@@ -45,11 +45,13 @@ header.page-header.group.page-header-over-sidebar
                       span class="pagination-label"
                         ' Back
 
-                  - unless current_user.completed_registration
-                    li.submit
-                      = f.submit "Continue to applications", class: "button"
-                  - else
-                    li.submit
-                      = f.submit "Save and continue", class: "button"
+                  li.submit
+                    - unless current_user.completed_registration
+                        = f.submit "Continue to applications", class: "button"
+                    - else
+                      - if params.has_key? :form_id
+                        = link_to "Save and return", [:award_info, @form_answer.award_type, form_id: @form_answer], class: "button"
+                      - else
+                        = f.submit "Save and continue", class: "button"
 
   = render "accounts/steps_progress_bar"

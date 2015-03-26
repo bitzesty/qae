@@ -1,6 +1,10 @@
+- if params.has_key? :form_id
+  - form_path = account_collaborators_path(form_id: params[:form_id])
+- else
+  - form_path = account_collaborators_path
 = simple_form_for collaborator,
                   as: :collaborator,
-                  url: account_collaborators_path,
+                  url: form_path,
                   builder: SimpleForm::AccountFormBuilder,
                   html: {class: 'qae-form', method: :post} do |f|
 
