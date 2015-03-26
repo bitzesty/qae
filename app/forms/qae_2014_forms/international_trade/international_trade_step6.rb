@@ -9,6 +9,7 @@ class QAE2014Forms
         dropdown :head_of_bussines_title, "Title" do
           required
           classes "regular-question"
+          option "", "Select"
           option "prof", "Prof"
           option "dr", "Dr"
           option "mr", "Mr"
