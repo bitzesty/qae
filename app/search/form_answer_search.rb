@@ -30,6 +30,17 @@ class FormAnswerSearch < Search
     scoped_results.where(state: filter_klass.internal_states(value))
   end
 
+  def filter_by_sub_status(scoped_results, value)
+    out = scoped_results
+    value.each do |v|
+      case v
+      when "missing_sic_code"
+        out = out.where("sic_code IS NULL")
+      end
+    end
+    out
+  end
+
   private
 
   def filter_klass

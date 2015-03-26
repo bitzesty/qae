@@ -13,7 +13,7 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def update?
-    admin?
+    admin? || subject.lead?(record)
   end
 
   def update_financials?
