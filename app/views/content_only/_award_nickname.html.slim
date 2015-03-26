@@ -39,16 +39,16 @@
   fieldset.question-block
     label
       h2
-        ' Please choose a nickname for this
+        ' Please choose a reference for this
         - if award_type == "promotion"
           ' nomination:
         - else
           ' application:
       p
         - if award_type == "promotion"
-          ' This is for your own use. It will appear alongside this nomination on your application dashboard. Once chosen, the nickname is permanent.
+          ' This is for your own use. It will appear alongside this nomination on your application listing. Once chosen, the reference is permanent.
         - else
-          ' This is for use by you and your collaborators. It will appear alongside this nomination on your application dashboard. Once chosen, the nickname is permanent.
+          ' This is for use by you and your collaborators. It will appear alongside this application on your application listing. Once chosen, your reference is permanent.
 
       .question-group
         label
