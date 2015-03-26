@@ -10,8 +10,14 @@ class Assessor::FormAnswersController < Assessor::BaseController
 
   def index
     authorize :form_answer, :index?
-    params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
+    # params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
 
+    params[:search] ||= {
+      sort: "company_or_nominee_name",
+      search_filter: {
+        status: FormAnswerStatus::AssessorFilter::OPTIONS.invert.values
+      }
+    }
     scope = current_assessor.applications_scope
 
     if params[:search][:query].blank? && current_subject.categories_as_lead.size > 1

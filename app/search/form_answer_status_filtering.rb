@@ -1,4 +1,7 @@
 class FormAnswerStatusFiltering
+  # TODO: move to dir
+  extend FormAnswerStatus::FilteringHelper
+
   SUB_OPTIONS = {
     missing_audit_certificate: {
       label: "Missing Audit Certificate (not impl.)"
@@ -16,6 +19,9 @@ class FormAnswerStatusFiltering
       properties: {
         checked: "checked"
       }
+    },
+    missing_rsvp_details: {
+      label: "Missing RSVP Details"
     }
   }
 
@@ -68,32 +74,11 @@ class FormAnswerStatusFiltering
     }
   }
 
-  def self.collection
-    OPTIONS.map do |k, v|
-      [v[:label], k]
-    end
+  def self.options
+    OPTIONS
   end
 
-  def self.sub_collection
-    SUB_OPTIONS.map do |k, v|
-      [v[:label], k]
-    end
-  end
-
-  def self.internal_states(filtering_values)
-    filtering_values = Array(filtering_values)
-    filtering_values.flat_map do |val|
-      if supported_filter_attrs.include?(val)
-        OPTIONS[val.to_sym][:states]
-      end
-    end.compact
-  end
-
-  def self.supported_filter_attrs
-    OPTIONS.keys.map(&:to_s)
-  end
-
-  def self.all
-    collection.map{|s| s.last.to_s} + sub_collection.map{|s| s.last.to_s}
+  def self.sub_options
+    SUB_OPTIONS
   end
 end

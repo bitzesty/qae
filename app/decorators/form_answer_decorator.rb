@@ -52,6 +52,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def company_or_nominee_name
+    return award_type if Rails.env.development?
     object.company_or_nominee_name
   end
 

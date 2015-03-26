@@ -1,4 +1,6 @@
 class FormAnswerSearch < Search
+  attr_reader :subject
+
   DEFAULT_SEARCH = {
     sort: 'company_or_nominee_name',
     search_filter: {
@@ -31,7 +33,11 @@ class FormAnswerSearch < Search
   private
 
   def filter_klass
-    FormAnswerStatusFiltering
+    if subject.is_a?(Admin)
+      FormAnswerStatusFiltering
+    else
+      FormAnswerStatus::AssessorFilter
+    end
   end
 
   def sort_order(desc = false)
