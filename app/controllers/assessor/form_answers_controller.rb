@@ -69,6 +69,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
   end
 
   def current_award_type
+    # TODO: tests, refactor
     lead_categories = current_subject.categories_as_lead
     return nil if lead_categories.blank?
     # only lead can see the tabs to display separated categories

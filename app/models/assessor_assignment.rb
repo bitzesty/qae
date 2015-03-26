@@ -165,6 +165,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def notify_assessor_assignment
+    # I would like to be in builder class probably
     if primary? || secondary?
       assessor_changed = assessor_id_changed?
     end

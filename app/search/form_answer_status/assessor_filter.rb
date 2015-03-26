@@ -50,7 +50,7 @@ class FormAnswerStatus::AssessorFilter
       label: "Assessors not assigned"
     },
     missing_audit_certificate: {
-      label: "Missing Audit Certificate (not impl)"
+      label: "Missing Audit Certificate"
     },
     missing_feedback: {
       label: "Missing Feedback (not imple)"

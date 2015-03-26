@@ -38,6 +38,11 @@ class FormAnswerSearch < Search
         out = out.where("sic_code IS NULL")
       when "assessors_not_assigned"
         out = out.where(primary_assessor_not_assigned: true, secondary_assessor_not_assigned: true)
+      when "missing_audit_certificate"
+        # TODO: test
+        out = out.joins(
+          "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id"
+        ).where("audit_certificates.id IS NULL")
       end
     end
     out
