@@ -86,7 +86,7 @@ So that they can collaborate form answers
           it "can't add person without email" do
             within("#new_collaborator") do
               expect {
-                click_on "Add"
+                click_on "Save collaborator"
               }.to_not change {
                 account.reload.users.count
               }
@@ -100,9 +100,10 @@ So that they can collaborate form answers
           it "can't add person with invalid email" do
             within("#new_collaborator") do
               fill_in "Email", with: "12345678"
+              choose("Contributor")
 
               expect {
-                click_on "Add"
+                click_on "Save collaborator"
               }.to_not change {
                 account.reload.users.count
               }
@@ -122,9 +123,10 @@ So that they can collaborate form answers
             it "can't add" do
               within("#new_collaborator") do
                 fill_in "Email", with: user_associated_with_another_account.email
+                choose("Admin and contributor")
 
                 expect {
-                  click_on "Add"
+                  click_on "Save collaborator"
                 }.to_not change {
                   account.reload.users.count
                 }
@@ -138,9 +140,10 @@ So that they can collaborate form answers
             it "can't add" do
               within("#new_collaborator") do
                 fill_in "Email", with: account_admin.email
+                choose("Admin and contributor")
 
                 expect {
-                  click_on "Add"
+                  click_on "Save collaborator"
                 }.to_not change {
                   account.reload.users.count
                 }
@@ -165,9 +168,10 @@ So that they can collaborate form answers
             it "should add existing user to collaborators" do
               within("#new_collaborator") do
                 fill_in "Email", with: user_without_account.email
+                choose("Admin and contributor")
 
                 expect {
-                  click_on "Add"
+                  click_on "Save collaborator"
                 }.to change {
                   account.reload.users.count
                 }.by(1)
@@ -187,10 +191,10 @@ So that they can collaborate form answers
             it "should create new user record with regular role" do
               within("#new_collaborator") do
                 fill_in "Email", with: new_user_email
-                select("Contributor", from: "Role")
+                choose("Contributor")
 
                 expect {
-                  click_on "Add"
+                  click_on "Save collaborator"
                 }.to change {
                   account.reload.users.count
                 }.by(1)
