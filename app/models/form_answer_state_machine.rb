@@ -19,7 +19,6 @@ class FormAnswerStateMachine
   state :submitted
   state :withdrawn
   state :not_eligible
-  state :not_eligibile
   state :not_submitted
   state :assessment_in_progress
   state :recommended
