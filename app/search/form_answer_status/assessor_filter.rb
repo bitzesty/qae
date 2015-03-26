@@ -1,4 +1,6 @@
 class FormAnswerStatus::AssessorFilter
+  # TODO: clarify if we need to extract separated filter for primary/secondary, as they should
+  # see for example 'assessors not assigned option'
   extend FormAnswerStatus::FilteringHelper
 
   OPTIONS = {
@@ -45,7 +47,7 @@ class FormAnswerStatus::AssessorFilter
       label: "Missing SIC code"
     },
     assessors_not_assigned: {
-      label: "Assessors not assigned (not imple)"
+      label: "Assessors not assigned"
     },
     missing_audit_certificate: {
       label: "Missing Audit Certificate (not impl)"

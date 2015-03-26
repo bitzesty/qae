@@ -36,6 +36,8 @@ class FormAnswerSearch < Search
       case v
       when "missing_sic_code"
         out = out.where("sic_code IS NULL")
+      when "assessors_not_assigned"
+        out = out.where(primary_assessor_not_assigned: true, secondary_assessor_not_assigned: true)
       end
     end
     out

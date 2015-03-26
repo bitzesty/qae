@@ -151,6 +151,40 @@ describe AssessorAssignment do
       expect(subject.errors.values.join).to match("Can not be present for this")
     end
   end
+
+  context "assessor change" do
+    let(:form) { create(:form_answer, :trade) }
+    context "for assigning the primary/secondary assessor per application" do
+      it "changes the state of flag on application" do
+        primary = form.assessor_assignments.primary
+        secondary = form.assessor_assignments.secondary
+
+        expect {
+          primary.update_attributes(assessor_id: 1)
+        }.to change {
+          form.reload.primary_assessor_not_assigned
+        }.from(true).to(false)
+
+        expect {
+          secondary.update_attributes(assessor_id: 2)
+        }.to change {
+          form.reload.secondary_assessor_not_assigned
+        }.from(true).to(false)
+
+        expect {
+          secondary.update_attributes(assessor: nil)
+        }.to change {
+          form.reload.secondary_assessor_not_assigned
+        }.from(false).to(true)
+
+        expect {
+          primary.update_attributes(assessor: nil)
+        }.to change {
+          form.reload.primary_assessor_not_assigned
+        }.from(false).to(true)
+      end
+    end
+  end
 end
 
 def build_assignment_with(award_type, meth)
