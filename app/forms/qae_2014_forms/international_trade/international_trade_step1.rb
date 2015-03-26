@@ -90,9 +90,9 @@ class QAE2014Forms
         options :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
           classes "sub-question"
 
-          conditional :queen_award_holder, :yes
-
-          yes_no
+          option "yes", "Yes"
+          option "no", "No"
+          option "first", "This is our first ever entry"
         end
 
         text :previous_business_name, "Name used previously" do
@@ -216,12 +216,11 @@ class QAE2014Forms
           ref "A 14"
           required
           yes_no
-          help "What is an export agent?", %(
-            <p>An export agent undertakes exportation on behalf of another company in exchange for commission.</p>
-                    )
-          help "What is an export merchant?", %{
-            <p>An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).</p>
-          }
+          context %(
+            <p>
+              An export agent exports goods/services on behalf of another company in exchange for commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).
+            </p>
+          )
         end
 
         options :export_unit, "Are you an export unit?" do
@@ -236,7 +235,7 @@ class QAE2014Forms
         upload :org_chart, "Upload an organisational chart." do
           ref "A 16"
           context %(
-            <p>It must be one file of less than 5MB, in either MS Word Document, PDF or JPG formats.</p>
+            <p>You can submit files in all common formats, as long as they're less than 5mb.</p>
                     )
         end
       end

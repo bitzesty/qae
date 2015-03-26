@@ -29,7 +29,7 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
     - for help in question.hint
       div.hidden-hint
         span.hidden-link
-          = help.title
+          = help.title.html_safe
         span.hidden-content
           == help.text
 

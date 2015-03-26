@@ -40,7 +40,7 @@ class QAE2014Forms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, 'Did your year-end date change during your <span class="js-entry-period-subtext">3 or 6</span> year entry period?' do
+        options :financial_year_date_changed, "Did your year-end date change during your (3 or 6 year) entry period?" do
           classes "sub-question js-financial-year-change"
           required
           yes_no
@@ -101,8 +101,10 @@ class QAE2014Forms
         options :do_you_want_to_calculate_overseas_and_so_on, "If your organisation is in the financial (or related) services sector and is cyclical in nature, you can calculate overseas sales and total sales as rolling averages. Do you want to do this?" do
           ref "C 5"
           context %(
-            <p>Entries for Outstanding Achievement must submit three three-year rolling averages, whilst Continuous Achievement requires six six-year rolling averages.</p>
-                    )
+            <p>
+              Entries for Outstanding Achievement must submit three three-year rolling averages, whilst Continuous Achievement requires six three-year rolling averages. You should calculate these yourself and enter the resulting figures.
+            </p>
+          )
           conditional :trade_commercial_success, :true
           yes_no
         end
@@ -128,17 +130,30 @@ class QAE2014Forms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %{
-            <p>Include figures for sales of goods/services to non-UK residents or their buying agents. Include royalties, license fees and other related services. Include sales to, and by, your overseas subsidiaries (though for what they buy from you to sell on, only include their markup).</p>
-            <p>The goods/services must have been provided and the customer invoiced to be included - omit unfulfilled orders.</p>
-            <p>Income from services in connection to imports into the UK (other than freight) should not be included. Sales to UK branches/subsidiaries of foreign companies, or sales for use in the UK, should not be included. However, services performed in the UK but invoiced to a non-UK resident can be included eg. tourism.</p><p>Include commission earned as export agents for UK goods or services.</p>
+            <p>
+              Direct overseas sales are the result of an organisation making a commitment to market overseas on its own behalf.
+            </p>
+            <p>
+              To be included, the goods/services must have been provided and the customer invoiced - omit unfulfilled orders.
+            </p>
+          }
+          hint "See the full list of income to be included in 'direct overseas sales'.", %{
+            <p>
+              Include figures for sales of goods/services to non-UK residents or their buying agents. Include royalties, license fees, provision of know-how and other related services to non-UK residents. Include sales to, and by, your overseas subsidiaries (though for what they buy from you to sell on, only include their markup). 
+            </p>
+            <p>
+              Income from services in connection to imports into the UK (other than freight) should not be included. Ship-owners may include freight paid in the UK by a non-resident through an agent. Sales to UK branches/subsidiaries of foreign companies, or sales for use in the UK, should not be included. However, services performed in the UK but invoiced to a non-UK resident can be included eg. tourism.
+            </p>
+            <p>
+              Include commission earned as export agents for UK goods or services.
+            </p>
             <p>You should also include:</p>
             <ul class="list-alpha">
               <li>
                 dividends remitted to the UK from direct investments in overseas branches, subsidiaries and associates in the same general line of business as the entrant, provided no earnings from such overseas branches, subsidiaries and associates have already been included elsewhere
               </li>
               <li>
-                dividends remitted to the UK from direct investment in associates which are not in the same
-                 general line of business
+                dividends remitted to the UK from direct investment in associates which are not in the same general line of business
               </li>
               <li>
                 interest on lending abroad remitted to the UK
@@ -166,22 +181,10 @@ class QAE2014Forms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %{
-            <p>Direct overseas sales are the result of an organisation making a commitment to market overseas on its own behalf. Indirect overseas sales are where, for example:</p>
-            <ul>
-              <li>
-                A home country agency is employed (ie an exporting company from the organisation’s own country - which handles exporting on its behalf) to get its product into an overseas market
-              </li>
-              <li>
-                “Piggybacking” whereby the organisation’s product uses the existing distribution and logistics of another business
-              </li>
-              <li>
-                Use of Export Management Houses (EMHs) that act as a bolt on export department for the organisation
-              </li>
-            </ul>
             <p>
-              Indirect overseas sales are not eligible, except where:
+              Indirect sales are where you make export sales through a partner or affiliate, rather than undertaking the trade yourself. Indirect overseas sales <strong>are not eligible</strong>, except where:
             </p>
-            <ul class="list-alpha">
+            <ul>
               <li>
                 several companies co-operate in a formally constituted consortium to fulfil major contracts overseas; or
               </li>
@@ -190,6 +193,19 @@ class QAE2014Forms
               </li>
               <li>
                 an indirect exporter making a major contribution to an exported product (eg marine engine in a ship) can show that they have undertaken the selling effort, direct to the overseas customer, so that their component or equipment is included in the finished exported product.
+              </li>
+            </ul>
+          }
+          hint "See examples of indirect sales that <strong>are not valid</strong>.", %{
+            <ul class="list-alpha">
+              <li>
+                When a home country agency is employed (ie an exporting company from the organisation’s own country - which handles exporting on its behalf) to get its product into an overseas market
+              </li>
+              <li>
+                “Piggybacking” whereby the organisation’s product uses the existing distribution and logistics of another business
+              </li>
+              <li>
+                Use of Export Management Houses (EMHs) that act as a bolt on export department for the organisation
               </li>
             </ul>
             <br>
@@ -242,7 +258,7 @@ class QAE2014Forms
           conditional :trade_commercial_success, :true
         end
 
-        by_years :total_imported_cost, "Total cost of the products/services/components imported for resale overseas" do
+        by_years :total_imported_cost, "Total cost of these imports" do
           classes "sub-question"
           required
           type :money
@@ -256,13 +272,13 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        options :company_estimated_figures, "Are any of these figures estimated?" do
+        options :company_estimated_figures, "Are any of the figures used on this page estimates?" do
           ref "C 7"
           yes_no
           conditional :trade_commercial_success, :true
         end
 
-        textarea :company_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
+        textarea :company_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
           rows 5
           words_max 400
