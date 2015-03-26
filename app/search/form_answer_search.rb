@@ -5,7 +5,7 @@ class FormAnswerSearch < Search
     sort: 'company_or_nominee_name',
     search_filter: {
       award_type: FormAnswerDecorator::SELECT_BOX_LABELS.invert.values,
-      status: FormAnswerStatusFiltering.all
+      status: FormAnswerStatus::AdminFilter.all
     }
   }
 
@@ -34,7 +34,7 @@ class FormAnswerSearch < Search
 
   def filter_klass
     if subject.is_a?(Admin)
-      FormAnswerStatusFiltering
+      FormAnswerStatus::AdminFilter
     else
       FormAnswerStatus::AssessorFilter
     end

@@ -1,5 +1,4 @@
-class FormAnswerStatusFiltering
-  # TODO: move to dir
+class FormAnswerStatus::AdminFilter
   extend FormAnswerStatus::FilteringHelper
 
   SUB_OPTIONS = {
