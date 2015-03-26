@@ -1,0 +1,57 @@
+div
+  header.group.page-header.page-header-wider
+    div
+      h1 Press Comment
+
+  .article-container.article-container-wider
+    article.group role="article"
+      .inner
+        p Please check that all of this press comment is factually accurate:
+
+        br
+
+        .application-notice.info-notice
+          p = @press_summary.body
+
+        br
+
+        = simple_form_for @press_summary, url: users_form_answer_press_summary_path(form_answer), html: { class: "qae-form" } do |f|
+          fieldset.question-block.sub-question.js-press-comment-correct
+            label
+              h2 Do you have any comments on your entry?
+            ul.errors-container
+            .question-group
+              = f.input :correct, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+              span.clear
+
+          br
+
+          fieldset.question-block.regular-question.js-press-comment-feeback
+            h2
+              label Please note where and how the press comment is factually incorrect.
+            .question-group
+              = f.input :comment, as: :text, input_html: { class: "js-char-count", rows: "5", data: { word_max: "300" } }
+              .clear
+
+          br
+
+          fieldset.question-block.sub-question
+            label
+              h2 Contact details for press enquiries
+            .question-group
+              = f.input :first_name, input_html: { class: "medium" }
+            .question-group
+              = f.input :last_name, input_html: { class: "medium" }
+            .question-group
+              = f.input :email, input_html: { class: "medium" }
+            .question-group
+              = f.input :phone_number, input_html: { class: "medium" }, label: "Telephone"
+
+          footer
+            nav.pagination aria-label="Pagination" role="navigation"
+              ul.group
+                li.previous.previous-alternate
+                  = link_to dashboard_path
+                    span.pagination-label Back to Dashboard
+                li.submit
+                  = f.submit "Confirm Press Comment", class: "button", rel: "next"

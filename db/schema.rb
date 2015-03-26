@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325160755) do
+ActiveRecord::Schema.define(version: 20150326105117) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
@@ -256,12 +257,18 @@ ActiveRecord::Schema.define(version: 20150325160755) do
   add_index "palace_invites", ["form_answer_id"], name: "index_palace_invites_on_form_answer_id", using: :btree
 
   create_table "press_summaries", force: :cascade do |t|
-    t.integer  "form_answer_id",                 null: false
+    t.integer  "form_answer_id",                   null: false
     t.text     "body"
     t.text     "comment"
-    t.boolean  "approved",       default: false
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.boolean  "approved",         default: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "phone_number"
+    t.boolean  "correct",          default: false
+    t.boolean  "reviewed_by_user", default: false
   end
 
   add_index "press_summaries", ["form_answer_id"], name: "index_press_summaries_on_form_answer_id", using: :btree

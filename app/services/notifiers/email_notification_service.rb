@@ -18,7 +18,7 @@ class Notifiers::EmailNotificationService
   end
 
   # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_reminder_to_submit winners_press_release_comments_request unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
+  %w(reminder_to_submit ep_reminder_support_letters winners_reminder_to_submit unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
     define_method method do
       nil
     end
@@ -51,6 +51,16 @@ class Notifiers::EmailNotificationService
       end
 
       Notifiers::Winners::BuckinghamPalaceInvite.perform_async(email)
+    end
+  end
+
+  def winners_press_release_comments_request
+    FormAnswer.winners.includes(:press_summary).each do |form_answer|
+      ps = form_answer.press_summary
+
+      if ps && ps.approved? && !ps.reviewed_by_user?
+        Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
+      end
     end
   end
 end

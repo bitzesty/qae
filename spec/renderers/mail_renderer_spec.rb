@@ -23,4 +23,13 @@ describe MailRenderer do
       expect(rendered).to match("Jon Doe")
     end
   end
+
+  describe "#winners_press_release_comments_request" do
+    it "renders e-mail" do
+      rendered = described_class.new.winners_press_release_comments_request
+      expect(rendered).to match("Jon Doe")
+      link = "http://queens-awards-enterprise.service.gov.uk/users/form_answers/0/press_summary"
+      expect(rendered).to match(link)
+    end
+  end
 end

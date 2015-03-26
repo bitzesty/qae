@@ -582,11 +582,11 @@ jQuery ->
     e.preventDefault()
     $(".page-dashboard").toggleClass("dashboard-post")
 
-  if $(".js-press-comment-correct input:checked").val() == "no"
+  if $(".js-press-comment-correct input:checked").val() == "true"
     $(".js-press-comment-feeback").addClass("section-confirmed")
   $(".js-press-comment-correct input").change ->
     $(".js-press-comment-feeback").removeClass("section-confirmed")
-    if $(".js-press-comment-correct input:checked").val() == "no"
+    if $(".js-press-comment-correct input:checked").val() == "true"
       $(".js-press-comment-feeback").addClass("section-confirmed")
 
 
