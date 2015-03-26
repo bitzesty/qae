@@ -413,6 +413,10 @@ input[type="file"] {
     }
   }
 
+  .span-financial {
+    margin-bottom: $gutter-half;
+  }
+
   .question-group + .hidden-hint {
     margin-top: -0.5em;
   }
