@@ -50,7 +50,7 @@ class QAE2014Forms
               A Lifetime Achievement Award is a special Enterprise Promotion award
               that is given for outstanding, consistent and effective promotion
               of business enterprise skills and attitudes
-              <span class="text-underline">over at least ten years</span>.
+              <strong>over at least ten years</strong>.
               All those nominated for Lifetime Achievement are still considered for the standard award.
             </p>
           )

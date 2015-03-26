@@ -125,8 +125,13 @@ class QAE2014Forms
           ref "A 8"
           required
           context %(
-            <p><span class='text-underline'>Excluding</span> suppliers and consultants.</p>
-                    )
+            <p>
+              <strong>
+                Excluding
+              </strong>
+              suppliers and consultants.
+            </p>
+          )
           yes_no
         end
 

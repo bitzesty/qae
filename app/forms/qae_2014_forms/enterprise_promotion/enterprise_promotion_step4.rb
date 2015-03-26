@@ -29,8 +29,10 @@ class QAE2014Forms
             <p>
               Supporters are much more likely to submit letters promptly if you follow up our initial email by phoning them yourself.
             </p>
-            <p class="text-underline">
-              If you have supporters who would rather write a hard copy letter, please see question D2.
+            <p>
+              <strong>
+                If you have supporters who would rather write a hard copy letter, please see question D2.
+              </strong>
             </p>
 
             <br>
