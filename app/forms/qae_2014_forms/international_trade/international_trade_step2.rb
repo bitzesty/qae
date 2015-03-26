@@ -17,9 +17,10 @@ class QAE2014Forms
           words_max 500
         end
 
-        options :trade_goods_amount, "How many types of goods/services make up your international trade?" do
+        dropdown :trade_goods_amount, "How many types of goods/services make up your international trade?" do
           ref "B 2"
           required
+          option "", "Select"
           option "1", "1"
           option "2", "2"
           option "3", "3"
