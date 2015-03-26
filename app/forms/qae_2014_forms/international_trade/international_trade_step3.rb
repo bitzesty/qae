@@ -128,9 +128,9 @@ class QAE2014Forms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %{
-            <p>Include figures for sales of goods/services to non-UK residents or their buying agents. Include royalties, license fees and other related services. Include sales to, and by, your overseas subsidiaries (though for what they buy fmor you to sell on, only include their markup).</p>
+            <p>Include figures for sales of goods/services to non-UK residents or their buying agents. Include royalties, license fees and other related services. Include sales to, and by, your overseas subsidiaries (though for what they buy from you to sell on, only include their markup).</p>
             <p>The goods/services must have been provided and the customer invoiced to be included - omit unfulfilled orders.</p>
-            <p>Income from services in connection to imports into the UK (other than freight) should not be included. Sales to UK branches/subsidiaries of foreign companies, or sales for use in the UK, should not be included. However, services performed in the UK but invoiced to a non-UK resident can be included eg. tourism.</p><p>Include comission earned as export agents for UK goods or services.</p>
+            <p>Income from services in connection to imports into the UK (other than freight) should not be included. Sales to UK branches/subsidiaries of foreign companies, or sales for use in the UK, should not be included. However, services performed in the UK but invoiced to a non-UK resident can be included eg. tourism.</p><p>Include commission earned as export agents for UK goods or services.</p>
             <p>You should also include:</p>
             <ul class="list-alpha">
               <li>
