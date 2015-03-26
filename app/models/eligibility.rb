@@ -3,7 +3,7 @@ class Eligibility < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :form_answer
-  after_update :trigger_eligibility_transition, if: :answers_changed?
+  after_update :trigger_eligibility_form_change, if: :answers_changed?
 
   attr_accessor :current_step
 
@@ -145,6 +145,6 @@ class Eligibility < ActiveRecord::Base
   end
 
   def trigger_eligibility_form_change
-    form_answer.trigger_eligibility_transition
+    form_answer.trigger_eligibility_form_change
   end
 end
