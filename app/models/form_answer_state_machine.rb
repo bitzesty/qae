@@ -109,6 +109,16 @@ class FormAnswerStateMachine
     perform_transition(new_state, subject)
   end
 
+  def trigger_eligibility_change
+    eligible = object.eligible?
+    # called by the eligibility form updates, made by User
+    if !eligible && object.state.to_sym == :application_in_progress
+      perform_transition :not_eligible
+    elsif eligible && object.state.to_sym == :not_eligible
+      perform_transition :application_in_progress
+    end
+  end
+
   # store the state directly in model attribute
   after_transition do |model, transition|
     model.state = transition.to_state
