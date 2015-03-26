@@ -17,6 +17,21 @@ header.page-header.group.page-header-over-sidebar
             .application-notice.help-notice.big-notice
               p Your nominee is eligible for an Enterprise Promotion Award.
 
+            h2 Help and resources
+            ul
+              li
+                ' For planning purposes you can
+                = link_to "download a PDF of the entire application form", users_form_answer_path(@form_answer, format: :pdf)
+                ' . However, the application has to be filled out online.
+              li
+                ' You can
+                = link_to "add a collaborator", account_collaborators_path
+                '  to help you fill out the application. But be aware that they will be able to see and edit
+                strong all
+                '  of your applications.
+
+            br
+
             h2 What you will need:
             h3 Section A: Nominee
             p Basic information about your nominee and the organisation they work for.
@@ -30,18 +45,6 @@ header.page-header.group.page-header-over-sidebar
             h3 Section D: Letters of Support
             p A selection of candidates who could write letters of support to aid your nomination.
 
-            br
-            ul
-              li
-                ' For planning purposes you can
-                = link_to "download a PDF of the entire nomination form", users_form_answer_path(@form_answer, format: :pdf)
-                ' . However, the nomination has to be filled out online.
-              li
-                ' You can
-                = link_to "add a collaborator", account_collaborators_path
-                '  to help you fill out the nomination. But be aware that
-                span.text-underline they will be able to see and edit all of your applications
-                ' .
             br
 
             h2 Nomination guidance:
