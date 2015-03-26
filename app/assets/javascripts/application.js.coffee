@@ -301,7 +301,7 @@ jQuery ->
 
       if link
         div = $("<div>")
-        label = $("<label>").text('Website link')
+        label = $("<label>").text('Website address')
         input = $("<input class=\"medium\" type=\"text\">").
           prop('name', "#{form_name}[#{name}][][link]")
         label.append(input)

@@ -25,8 +25,8 @@ class QAE2014Forms
              "Corporate Responsibility",
              &QAE2014Forms.development_step4
 
-        step "Add Links/Documents",
-             "Add Links/Documents",
+        step "Add Website Address/Documents",
+             "Add Website Address/Documents",
              &QAE2014Forms.development_step5
 
         step "Authorisation",

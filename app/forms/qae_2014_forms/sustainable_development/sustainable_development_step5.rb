@@ -2,7 +2,7 @@ class QAE2014Forms
   class << self
     def development_step5
       @development_step5 ||= proc do
-        upload :innovation_materials, "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or links here." do
+        upload :innovation_materials, "If there is additional material you feel would help us to assess your entry then you can add up to 4 files or website addresses here." do
           ref "E 1"
           context %(
             <p>We can't guarantee these will be reviewed, so include any vital information within the form.</p>
