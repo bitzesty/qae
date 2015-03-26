@@ -1,0 +1,12 @@
+p
+  ' Hi
+  = @user.full_name
+  ',
+
+p
+  ' Your press comment is ready, please comment it
+p
+  = link_to "Review Press Comment", users_form_answer_press_summary_url(@form_answer)
+
+p
+  | Best Regards, Administration Team

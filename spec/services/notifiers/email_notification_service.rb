@@ -82,4 +82,29 @@ describe Notifiers::EmailNotificationService do
       expect(current_notification.reload).to be_sent
     end
   end
+
+  context "winners_press_release_comments_request" do
+    let(:kind) { "winners_press_release_comments_request" }
+    let(:user) { create(:user) }
+
+    let(:form_answer) do
+      create(:form_answer, :submitted)
+    end
+
+    let(:press_summary) do
+      create :press_summary, form_answer: form_answer, approved: true
+    end
+
+    it "triggers current notification" do
+      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
+      press_summary
+      mailer = double(deliver_later!: true)
+      expect(Users::WinnersPressRelease).to receive(:notify).with(form_answer.id) { mailer }
+      expect(FormAnswer).to receive(:winners) { FormAnswer.where(id: form_answer.id) }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
 end

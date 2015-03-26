@@ -10,7 +10,7 @@ class MailRenderer
   end
 
   # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit winners_press_release_comments_request unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
+  %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
     define_method method do
       "<b>TODO</b>".html_safe
     end
@@ -21,7 +21,7 @@ class MailRenderer
 
     assigns[:form_owner] = dummy_user("Jon", "Doe")
     assigns[:recipient] = dummy_user("Jane", "Doe")
-    assigns[:form_answer] = FormAnswer.new(id: 0, user: assigns[:user], award_type: "promotion").decorate
+    assigns[:form_answer] = form_answer
     assigns[:award_title] = assigns[:form_answer].award_application_title
 
     render(assigns, "users/audit_certificate_request_mailer/notify")
@@ -46,6 +46,13 @@ class MailRenderer
     render(assigns, "users/buckingham_palace_invite_mailer/invite")
   end
 
+  def winners_press_release_comments_request
+    assigns = {}
+    assigns[:user] = dummy_user("Jon", "Doe")
+    assigns[:form_answer] = form_answer
+    render(assigns, "users/winners_press_release/notify")
+  end
+
   private
 
   def render(assigns, template)
@@ -55,5 +62,9 @@ class MailRenderer
 
   def dummy_user(first_name, last_name)
     User.new(first_name: first_name, last_name: last_name).decorate
+  end
+
+  def form_answer
+    FormAnswer.new(id: 0, award_type: "promotion").decorate
   end
 end
