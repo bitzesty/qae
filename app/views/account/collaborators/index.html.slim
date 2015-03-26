@@ -31,7 +31,11 @@ header.page-header.group.page-header-over-sidebar
 
             = render "list"
 
-            = link_to "+ Add a collaborator", new_account_collaborator_path, class: "button button-add"
+            = link_to new_account_collaborator_path, class: "button button-add"
+              - if collaborators.any?
+                ' + Add another collaborator
+              - else
+                ' + Add a collaborator
 
             footer
               nav.pagination role="navigation" aria-label="Pagination"
