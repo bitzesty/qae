@@ -23,6 +23,8 @@ class Account::CollaboratorsController < Account::BaseController
   end
 
   def new
+    @active_step = 4
+
     self.collaborator = User.new
   end
 
