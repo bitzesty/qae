@@ -68,7 +68,7 @@ class QAE2014Forms
           ref "C 4"
           required
           option :entire_business, "It’s integral to the whole business"
-          option :single_product_or_service, "it affects a single product/service"
+          option :single_product_or_service, "It affects a single product/service"
         end
 
         header :company_financials, "Company Financials" do
