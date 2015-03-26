@@ -50,7 +50,7 @@ shared_context "pdf file checks" do
 
     it "should include steps headers" do
       steps.each do |step|
-        title = step.complex_title
+        title = step.title
         if award_type == :trade
           # For Trade form PDF::Inspector::Text
           # returns  "Step 2 of 6: Description of Goods or Services, Markets and", "Marketing"

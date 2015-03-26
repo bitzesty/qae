@@ -12,7 +12,7 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
           - if question.ref
             span class="steps step-#{question.ref.to_s.parameterize}"
               span.visuallyhidden
-                = "Step #{question.ref.to_s}"
+                = question.ref.to_s
               span.todo
                 = question.ref.to_s
 

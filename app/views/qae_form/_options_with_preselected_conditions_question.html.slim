@@ -5,7 +5,7 @@
     - if question.ref
       span class="steps step-#{question.ref.to_s.parameterize}"
         span.visuallyhidden
-          = "Step #{question.ref.to_s}"
+          = question.ref.to_s
         span.todo
           = question.ref.to_s
     .js-option-by-preselected-condition data-preselected-condition='default' class=("display_none" if condition.present?)
