@@ -38,7 +38,15 @@
         ' Administrative rights
       p
         ' A ‘Contributor’ can only write and edit your applications/nominations. Whilst an ‘Admin and Contributor’ is also able to add new collaborators.
-      = f.input :role, collection: [["Admin and contributer", "account_admin"], ["Contributer", "regular"]], required: true, include_blank: false, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+      = f.input :role,
+                collection: [["Contributor", "regular"],
+                             ["Admin and contributor", "account_admin"]],
+                as: :radio_buttons,
+                required: true,
+                include_blank: false,
+                input_html: { autocomplete: "off"},
+                label_html: { class: "visuallyhidden" },
+                item_wrapper_class: "selectable"
 
   footer
     nav.pagination role="navigation" aria-label="Pagination"
