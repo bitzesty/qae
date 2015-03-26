@@ -22,7 +22,12 @@
         li You will be given more detailed instructions after the eligibility questionnaire.
 
     li
-      p Submit your nomination
+      p
+        ' Submit your
+        - if award_type == "promotion"
+          ' nomination
+        - else
+          ' application
       ul
         / TODO pull in deadline
         li The deadline for submissions is 23:59 on the last working day of September.
@@ -46,9 +51,9 @@
           ' application:
       p
         - if award_type == "promotion"
-          ' This is for your own use. It will appear alongside this nomination on your application listing. Once chosen, the reference is permanent.
+          ' This is for your own use. It will appear on the Applications page. Once chosen, the reference is permanent.
         - else
-          ' This is for use by you and your collaborators. It will appear alongside this application on your application listing. Once chosen, your reference is permanent.
+          ' This is for use by you and your collaborators. It will appear on the Applications page. Once chosen, your reference is permanent.
 
       .question-group
         label
