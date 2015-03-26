@@ -17,18 +17,30 @@ header.page-header.group.page-header-over-sidebar
             .application-notice.help-notice.big-notice
               p You are eligible to begin your application for an International Trade Award.
 
-            h2 Help and resources
+            h2 Before you begin:
             ul
               li
                 ' For planning purposes you can
-                = link_to "download a PDF of the entire application form", users_form_answer_path(@form_answer, format: :pdf)
-                ' . However, the application has to be filled out online.
+                = link_to "download a blank PDF of the entire application form", users_form_answer_path(@form_answer, format: :pdf)
+                ' . However, all applications must be completed online.
+
+              - if @collaborators.any?
+                li
+                  ' You have already added these people as collaborators:
+                  ul
+                    - @collaborators.each do |collaborator|
+                      li = collaborator.full_name
               li
                 ' You can
-                = link_to "add a collaborator", account_collaborators_path
-                '  to help you fill out the application. But be aware that they will be able to see and edit
-                strong all
-                '  of your applications.
+                = link_to account_collaborators_path
+                  - if @collaborators.any?
+                    ' add more collaborators
+                  - else
+                    ' add a collaborator
+                '  to help you fill out this application. But be aware that
+                strong they are able to see and edit all of your applications
+                ' .
+
             br
 
             h2 What you will need:
@@ -51,6 +63,7 @@ header.page-header.group.page-header-over-sidebar
               li All questions are mandatory unless stated otherwise.
               li It can take up to 50 man-hours to complete the entry form, so you aren’t expected to complete it in one sitting.
               li You can skip questions and return to them later.
+              li Question numbers aren’t always consecutive, as we show and hide different questions depending on your answers.
               li Your answers are saved automatically as you go.
 
             br
