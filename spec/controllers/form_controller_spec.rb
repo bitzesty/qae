@@ -19,7 +19,7 @@ describe FormController do
     notifier = double
     expect(notifier).to receive(:run)
     expect(Notifiers::Submission::SuccessNotifier).to receive(:new).with(form_answer) { notifier }
-    expect_any_instance_of(FormAnswer).to receive(:eligible?).twice { true }
+    expect_any_instance_of(FormAnswer).to receive(:eligible?).at_least(:once).and_return(true)
 
     post :submit_form, id: form_answer.id, form: {}
   end

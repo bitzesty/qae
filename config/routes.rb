@@ -92,6 +92,7 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
     resources :form_answers do
+      resources :form_answer_state_transitions, only: [:create]
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]
       resources :feedbacks, only: [:create, :update] do
@@ -126,6 +127,7 @@ Rails.application.routes.draw do
     resources :admins
     resources :reports, only: [:show]
     resources :form_answers do
+      resources :form_answer_state_transitions, only: [:create]
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]
       resources :feedbacks, only: [:create, :update] do
@@ -148,7 +150,6 @@ Rails.application.routes.draw do
       end
 
       member do
-        post :withdraw
         patch :update_financials
         get :review
       end

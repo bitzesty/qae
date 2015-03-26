@@ -3,10 +3,6 @@ class FormAnswerPolicy < ApplicationPolicy
     admin? || assessor?
   end
 
-  def withdraw?
-    admin?
-  end
-
   def review?
     return true if admin?
     subject.lead_or_assigned?(record)

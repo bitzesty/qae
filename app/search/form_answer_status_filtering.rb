@@ -22,52 +22,48 @@ class FormAnswerStatusFiltering
   OPTIONS = {
     application_in_progress: {
       label: "Application in progress",
-      states: [:in_progress1]
+      states: [:application_in_progress]
+    },
+    applications_not_submitted: {
+      label: "Applications not submitted",
+      states: [:not_submitted]
+    },
+    submitted: {
+      label: "Application submitted",
+      states: [:submitted]
     },
     assessment_in_progress: {
-      label: "Assessment in progress (not impl.)",
-      states: [:assessment_in_progress2]
+      label: "Assessment in progress",
+      states: [:assessment_in_progress]
     },
     recommended: {
-      label: "Recommended (not impl.)",
+      label: "Recommended",
       states: [
-        :recommended3,
-        :recommended4,
-        :recommended5
+        :recommended
       ]
     },
     reserve: {
-      label: "Reserve (not impl.)",
+      label: "Reserved",
       states: [
-        :reserved3,
-        :reserved4,
-        :reserved5
+        :reserved
       ]
     },
     not_recommended: {
-      label: "Not recomended (not impl.)",
+      label: "Not recomended",
       states: [
-        :not_recommended3,
-        :not_recommended4,
-        :not_recommended5
+        :not_recommended
       ]
     },
     not_eligible: {
-      label: "Not Eligible (not impl.)",
+      label: "Not eligible",
       states: [
-        :not_eligible1,
-        :not_eligible2,
-        :not_eligible6
+        :not_eligible
       ]
     },
     withdrawn: {
       label: "Withdrawn",
       states: [
-        :withdrawn1,
-        :withdrawn2,
-        :withdrawn3,
-        :withdrawn4,
-        :withdrawn5
+        :withdrawn
       ]
     }
   }
