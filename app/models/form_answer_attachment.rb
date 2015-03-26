@@ -1,6 +1,8 @@
+require 'virus_scanner'
 class FormAnswerAttachment < ActiveRecord::Base
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
+  after_save :virus_scan
 
   mount_uploader :file, FormAnswerAttachmentUploader
 
