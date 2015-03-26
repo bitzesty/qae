@@ -145,6 +145,10 @@ class QAEFormBuilder
       @q.hint << QuestionHelp.new(title, text)
     end
 
+    def form_hint text
+      @q.form_hint = text
+    end
+
     def conditional key, value
       @q.conditions << QuestionCondition.new(key, value)
     end
@@ -183,6 +187,7 @@ class QAEFormBuilder
                   :required,
                   :help,
                   :hint,
+                  :form_hint,
                   :ref,
                   :conditions,
                   :header,

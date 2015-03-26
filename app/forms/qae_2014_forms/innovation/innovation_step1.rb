@@ -206,9 +206,10 @@ class QAE2014Forms
           style "small"
         end
 
-        text :website_url, "Website URL" do
+        text :website_url, "Website Address" do
           required
           ref "A 12"
+          form_hint "e.g. www.example.com"
         end
 
         business_sector_dropdown :business_sector, "Business Sector" do

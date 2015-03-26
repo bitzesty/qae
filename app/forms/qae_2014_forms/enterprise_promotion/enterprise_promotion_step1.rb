@@ -109,9 +109,10 @@ class QAE2014Forms
           ])
         end
 
-        text :website_url, "Website URL" do
+        text :website_url, "Website Address" do
           classes "regular-question"
           type :url
+          form_hint "e.g. www.example.com"
         end
 
         text :nominee_position, "Nominee's position at the organisation" do
