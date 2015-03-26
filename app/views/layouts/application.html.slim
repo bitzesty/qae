@@ -81,10 +81,11 @@
           - if !user_signed_in?
             li = link_to "Home", "https://www.gov.uk/"
 
-          li = link_to "Queen's Awards for Enterprise", root_path
-
           - if user_signed_in? && current_user.completed_registration
-            li = link_to "Applications", dashboard_path
+            - if content_for? :breadcrumbs
+              = yield :breadcrumbs
+            - else
+              li = link_to "Applications", dashboard_path
 
   #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?}"
