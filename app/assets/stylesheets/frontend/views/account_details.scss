@@ -1,3 +1,17 @@
 .page-account article .inner h2:first-child {
   margin-top: 0;
 }
+
+.add-collaborator-box {
+  padding: $gutter-half;
+  padding-top: 18px;
+  background: $grey-4;
+
+  .first-h3 {
+    margin-top: 0;
+  }
+
+  .button {
+    margin-top: $gutter*1.5;
+  }
+}

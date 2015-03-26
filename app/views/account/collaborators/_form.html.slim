@@ -3,58 +3,51 @@
                   url: account_collaborators_path,
                   builder: SimpleForm::AccountFormBuilder,
                   html: {class: 'qae-form', method: :post} do |f|
-  .field-with-errors
-    - if add_collaborator_interactor.errors.present?
-      - add_collaborator_interactor.errors.each do |error|
-        span.error
-          = error
-    - if collaborator.errors[:base].present?
-      - collaborator.errors[:base].each do |error|
-        span.error
-          = error
 
-  fieldset
-    h3
-      ' Collaborator's full name
-    = f.input :title, input_html: { class: 'big small', autocomplete: "off"}
-    = f.input :first_name, input_html: { class: 'big medium', autocomplete: "off"}
-    = f.input :last_name, input_html: { class: 'big medium', autocomplete: "off"}
+  .add-collaborator-box
+    .field-with-errors
+      - if add_collaborator_interactor.errors.present?
+        - add_collaborator_interactor.errors.each do |error|
+          span.error
+            = error
+      - if collaborator.errors[:base].present?
+        - collaborator.errors[:base].each do |error|
+          span.error
+            = error
 
-  fieldset
-    label
-      h3
-        ' Telephone number
-      = f.input :phone_number, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+    fieldset
+      h3.first-h3
+        ' Collaborator's full name
+      = f.input :title, input_html: { class: 'big small', autocomplete: "off"}
+      = f.input :first_name, input_html: { class: 'big medium', autocomplete: "off"}
+      = f.input :last_name, input_html: { class: 'big medium', autocomplete: "off"}
 
-  fieldset
-    label
-      h3
-        ' Email
-      = f.input :email, required: true, input_html: { class: 'big medium', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+    fieldset
+      label
+        h3
+          ' Telephone number
+        = f.input :phone_number, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
 
-  fieldset
-    label
-      h3
-        ' Administrative rights
-      p
-        ' A ‘Contributor’ can only write and edit your applications/nominations. Whilst an ‘Admin and Contributor’ is also able to add new collaborators.
-      = f.input :role,
-                collection: [["Contributor", "regular"],
-                             ["Admin and contributor", "account_admin"]],
-                as: :radio_buttons,
-                required: true,
-                include_blank: false,
-                input_html: { autocomplete: "off"},
-                label_html: { class: "visuallyhidden" },
-                item_wrapper_class: "selectable"
+    fieldset
+      label
+        h3
+          ' Email
+        = f.input :email, required: true, input_html: { class: 'big medium', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
 
-  footer
-    nav.pagination role="navigation" aria-label="Pagination"
-      ul.group
-        li.previous.previous-alternate
-          = link_to account_collaborators_path, rel: "prev", title: "Navigate back" do
-            span class="pagination-label"
-              ' Back
+    fieldset
+      label
+        h3
+          ' Administrative rights
+        p
+          ' A ‘Contributor’ can only write and edit your applications/nominations. Whilst an ‘Admin and Contributor’ is also able to add new collaborators.
+        = f.input :role,
+                  collection: [["Contributor", "regular"],
+                               ["Admin and contributor", "account_admin"]],
+                  as: :radio_buttons,
+                  required: true,
+                  include_blank: false,
+                  input_html: { autocomplete: "off"},
+                  label_html: { class: "visuallyhidden" },
+                  item_wrapper_class: "selectable"
 
-        li.submit
-          = f.submit "Save collaborator", class: "button button-alt"
+    = f.submit "Save collaborator", class: "button button-alt"
