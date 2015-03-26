@@ -10,11 +10,12 @@ class QAE2014Forms
         end
 
         header :business_division_header, "" do
+          classes "application-notice help-notice"
           context %(
-            <div class="application-notice help-notice">
-              <p>Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.</p>
-            </div>
-                    )
+            <p>
+              Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.
+            </p>
+          )
           conditional :applying_for, "division branch subsidiary"
         end
 
@@ -30,7 +31,9 @@ class QAE2014Forms
           required
           ref "A 3"
           context %{
-            <p>A principal invoices its customers (or their buying agents) and is the body to receive those payments. We recommend that you apply as a principal.</p>
+            <p>
+              We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
+            </p>
           }
           yes_no
         end
@@ -121,26 +124,58 @@ class QAE2014Forms
           words_max 300
         end
 
-        options :innovation_any_contributors, "Did any external organisation or individual contribute to your innovation?" do
+        options :innovation_any_contributors, "Did any external organisation(s) or individual(s) contribute to your innovation?" do
           ref "A 8"
           required
-          context %(
-            <p>
-              <strong>
-                Excluding
-              </strong>
-              suppliers and consultants.
-            </p>
-          )
+          # context %(
+          #   <p>
+          #     <strong>
+          #       Excluding
+          #     </strong>
+          #     suppliers and consultants.
+          #   </p>
+          # )
           yes_no
         end
 
-        options :innovation_joint_contributors, "Is this application part of a joint entry with the contributing organisation(s)?" do
+        options :innovation_contributors_aware, "Are they aware that you're applying for this award?" do
+          classes "sub-question"
+          required
+          conditional :innovation_any_contributors, :yes
+          conditional :innovation_joint_contributors, :no
+          option :yes, "Yes, they are aware"
+          option :no, "No, they aren't aware"
+          option :some, "Some are aware"
+        end
+
+        header :innovation_contributors_aware_header_no, "" do
+          classes "application-notice help-notice"
+          context %(
+            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
+                    )
+          conditional :innovation_any_contributors, :yes
+          conditional :innovation_contributors_aware, :no
+          conditional :innovation_joint_contributors, :no
+        end
+
+        header :innovation_contributors_aware_header_some, "" do
+          classes "application-notice help-notice"
+          context %(
+            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
+                    )
+          conditional :innovation_any_contributors, :yes
+          conditional :innovation_contributors_aware, :some
+          conditional :innovation_joint_contributors, :no
+        end
+
+        options :innovation_joint_contributors, "Is this application part of a joint entry with any of the contributing organisation(s)?" do
           classes "sub-question"
           required
           context %(
-            <p>If you two or more organisations made a significant contribution to the innovation, and achieved commercial success, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.</p>
-                    )
+            <p>
+              If you two or more organisations made a significant contribution to the product/service/management approach (eg. the business marketing a product, providing a service, or using a technology is different from the unit which developed it) and they both achieved commercial success, then you can make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
+            </p>
+          )
           conditional :innovation_any_contributors, :yes
           yes_no
         end
@@ -152,34 +187,6 @@ class QAE2014Forms
           conditional :innovation_joint_contributors, :yes
           rows 5
           words_max 500
-        end
-
-        options :innovation_contributors_aware, "Are they at least aware that you are applying for this award?" do
-          classes "sub-question"
-          required
-          conditional :innovation_any_contributors, :yes
-          conditional :innovation_joint_contributors, :no
-          option :yes, "Yes, they are aware"
-          option :no, "No, they aren't aware"
-          option :some, "Some are aware"
-        end
-
-        header :innovation_contributors_aware_header_no, "" do
-          context %(
-            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
-                    )
-          conditional :innovation_any_contributors, :yes
-          conditional :innovation_contributors_aware, :no
-          conditional :innovation_joint_contributors, :no
-        end
-
-        header :innovation_contributors_aware_header_some, "" do
-          context %(
-            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
-                    )
-          conditional :innovation_any_contributors, :yes
-          conditional :innovation_contributors_aware, :some
-          conditional :innovation_joint_contributors, :no
         end
 
         options :innovation_under_license, "Is your innovation under license from another organisation?" do
@@ -260,7 +267,9 @@ class QAE2014Forms
           classes "sub-question"
           conditional :applying_for, "organisation"
           context %(
-            <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control. </p>
+            <p>
+              A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.
+            </p>
                     )
           yes_no
         end
@@ -272,7 +281,7 @@ class QAE2014Forms
           yes_no
         end
 
-        upload :org_chart, "Upload an organisational chart (optional)." do
+        upload :org_chart, "Upload an organisational chart." do
           ref "A 15"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb.</p>

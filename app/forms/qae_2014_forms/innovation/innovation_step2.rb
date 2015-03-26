@@ -56,10 +56,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim.
-              <strong>
-                You will have the opportunity to include the financial benefits to your organisation in the next section.
-              <strong>
+              e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim. <strong>You will have the opportunity to include more details of the financial benefits to your organisation in the next section</strong>.
             </p>
           )
           rows 5
