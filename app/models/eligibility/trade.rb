@@ -23,7 +23,7 @@ class Eligibility::Trade < Eligibility
             label: "Have you had substantial growth in overseas earnings over the last three years?",
             accept: :true,
             boolean: true,
-            hint: "Substantial growth' should be relative to your business size and sector.",
+            hint: "Substantial growth should be relative to your business size and sector.",
             if: proc { !skipped? }
 
   property :current_holder_of_qae_for_trade,
