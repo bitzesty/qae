@@ -1,3 +1,5 @@
+$black-true: #000;
+
 // Sub question style
 .sub-question h2 {
   @include bold-19;
@@ -739,9 +741,8 @@ input[type="file"] {
   }
 }
 
+.pagination .button.button-alt,
 .button-alt {
-  @include core-16;
-  padding: (12px $gutter-half $gutter-one-third $gutter-half);
   border-color: $black;
 
   &,
@@ -773,6 +774,11 @@ input[type="file"] {
     border-color: $panel-colour;
     cursor: default;
   }
+}
+
+.button-alt {
+  @include core-16;
+  padding: (12px $gutter-half $gutter-one-third $gutter-half);
 }
 
 .js-default-reached .js-remove-link {
@@ -866,6 +872,15 @@ input[type="file"] {
     /* IE6 adds its own side padding so requires no extra */
     @include ie(6) {
       padding: 0.45em 0.5em 0.62em 0.5em;
+    }
+
+    &.button-alt {
+      border: 1px solid $black-true;
+      box-shadow: 0 2px 0 $black-true;
+
+      &:active {
+        box-shadow: 0 0 0 $black-true;
+      }
     }
   }
 }
