@@ -24,9 +24,22 @@ $(function() {
     var hiddenDiv = $('body > .hiddendiv');
     content = textInput.val();
 
-    content = content.replace(/\n/g, '<br>');
     hiddenDiv.width($(".step-article.step-current").width());
-    hiddenDiv.html(content + '<br class="lbr">');
+
+    // content = content.replace(/\n/g, "<br>");
+    var content_split = content.split("\n");
+    var tagsToReplace = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;'
+    };
+    for (n=0; n<content_split.length; n++) {
+      content_split[n] = content_split[n].replace(/[&<>]/g, function(tag) {
+        return tagsToReplace[tag] || tag;
+      })
+    }
+    var content_join = content_split.join("<br>");
+    hiddenDiv.html(content_join + "<br class='lbr'>");
     var hiddenHeight = hiddenDiv.height()*1.06;
 
     if (hiddenHeight >= textInput.attr("data-height")) {
