@@ -12,8 +12,6 @@ class Assessor::FormAnswersController < Assessor::BaseController
 
   def index
     authorize :form_answer, :index?
-    # params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
-
     params[:search] ||= {
       sort: "company_or_nominee_name",
       search_filter: {

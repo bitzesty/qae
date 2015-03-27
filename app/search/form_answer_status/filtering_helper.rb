@@ -26,6 +26,6 @@ module FormAnswerStatus::FilteringHelper
   end
 
   def all
-    collection.map{|s| s.last.to_s} + sub_collection.map{|s| s.last.to_s}
+    collection.map { |s| s.last.to_s } + sub_collection.map { |s| s.last.to_s }
   end
 end
