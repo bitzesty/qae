@@ -1,0 +1,34 @@
+.eligibility-failed
+  p
+    ' Indirect sales (ie. those made through an export agency/Export Management House, or by using the existing distribution and logistics of another business)
+    strong
+      ' are not
+    ' valid for these awards, with these exceptions:
+
+  ul.list-alpha
+    li
+      p several companies co-operating in a formally constituted consortium to fulfil major contracts overseas
+    li
+      p the provider of goods or services of UK origin entering into a joint venture partnership with a UK exporter
+    li
+      p an indirect exporter making a major contribution to an exported product (eg marine engine in a ship) that can show that they have undertaken the selling effort, direct to the overseas customer, so that their component or equipment is included in the finished exported product.
+br
+
+h2
+  = f.label :organisation_fulfill_above_exceptions,
+            label: @eligibility.class.label(:organisation_fulfill_above_exceptions)
+
+.question-body
+  = f.input :organisation_fulfill_above_exceptions, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+
+  span.clear
+
+  #trade-org-fulfilled-info.visuallyhidden
+    br
+    .application-notice.help-notice
+      p
+        ' As you are applying under the exceptions for indirect sales, please submit your application by
+        strong = submission_deadline.decorate.formatted_trigger_time
+        ' .
+
+span.clear

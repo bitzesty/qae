@@ -385,6 +385,15 @@ jQuery ->
       else
         $("#innovative-amount-info").addClass("visuallyhidden")
 
+  # Show trade org fulfilled info when checked yes
+  if $(".question-organisation-fulfill-above-exceptions").size() > 0
+    $(".question-organisation-fulfill-above-exceptions input[type='radio']").bind "propertychange change click keyup input paste", () ->
+      radio_val = $(".question-organisation-fulfill-above-exceptions input[type='radio']:checked").val()
+      if radio_val == "yes"
+        $("#trade-org-fulfilled-info").removeClass("visuallyhidden")
+      else
+        $("#trade-org-fulfilled-info").addClass("visuallyhidden")
+
   # Show trade epxiry info if it isn't 2015
   if $(".trade-expiry-input").size() > 0
     $(".trade-expiry-input").bind "change", () ->

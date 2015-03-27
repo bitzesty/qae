@@ -25,8 +25,8 @@ header.page-header.group.page-header-over-sidebar
           - if step && step.to_s != "wicked_finish"
             = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
               .current-question.qae-form#current-question
-                .question
-                  label for="eligibility_#{step.to_s}"
+                .question class="question-#{step.to_s.gsub!(/_/, '-')}"
+                  label.eligibilty-label for="eligibility_#{step.to_s}"
                     h2
                       = @eligibility.class.label(step)
                   - if @eligibility.is_a?(Eligibility::Basic)
