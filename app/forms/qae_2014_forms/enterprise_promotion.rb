@@ -29,8 +29,8 @@ class QAE2014Forms
              "Add Website Address/Documents",
              &QAE2014Forms.promotion_step5
 
-        step "Authorisation & Submit",
-             "Authorisation & Submit",
+        step "Authorise & Submit",
+             "Authorise & Submit",
              &QAE2014Forms.promotion_step6
       end
     end
