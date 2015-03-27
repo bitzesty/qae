@@ -76,7 +76,7 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
 
-        textarea :development_excluded_explanation, "In question A13.3 you said you are applying on behalf of a group but are excluding some member(s)'s financial figures. Please explain why." do
+        textarea :development_excluded_explanation, "In question A14.1 you said you are applying on behalf of a group but are excluding some member(s)'s financial figures. Please explain why." do
           ref "C 5"
           required
           rows 5
@@ -155,7 +155,7 @@ class QAE2014Forms
           drop_condition_parent
         end
 
-        options :company_estimated_figures, "Are any of these figures estimated?" do
+        options :company_estimated_figures, "Are any of the figures used on this page estimated?" do
           classes "sub-question"
           required
           yes_no
@@ -283,7 +283,7 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
 
-        options :product_estimated_figures, "Are any of these figures estimated?" do
+        options :product_estimated_figures, "Are any of the figures used in this section estimates?" do
           ref "C 8"
           required
           yes_no
@@ -318,7 +318,7 @@ class QAE2014Forms
           words_max 300
         end
 
-        textarea :investments_details, "Please enter details of all investments in your product/service/management approach. <span class='text-underline'>Include all investments made both during and prior to your entry period.</span> Also include the year(s) in which they were made." do
+        textarea :investments_details, "Please enter details of all investments in your product/service/management approach. <strong>Include all investments made both during and prior to your entry period.</strong> Also include the year(s) in which they were made." do
           ref "C 11"
           required
           rows 5
