@@ -92,6 +92,7 @@ br
                               input type="checkbox"
                               span.label-contents
                                 = option[:label]
+                        li.divider
                         = f.simple_fields_for [:filters, @search.filters] do |g|
                           = g.input :sub_status, collection: FormAnswerStatus::AssessorFilter.sub_options, label: false, input_html: { multiple: true, class: "if-js-hide" }
                         - FormAnswerStatus::AssessorFilter.sub_options.each do |k, option|

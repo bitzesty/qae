@@ -2,25 +2,31 @@ class FormAnswerStatus::AdminFilter
   extend FormAnswerStatus::FilteringHelper
 
   SUB_OPTIONS = {
+    missing_sic_code: {
+      label: "Missing SIC code"
+    },
+    assessors_not_assigned: {
+      label: "Assessors not assigned"
+    },
     missing_audit_certificate: {
-      label: "Missing Audit Certificate (not impl.)"
+      label: "Missing Audit Certificate"
     },
     missing_corp_responsibility: {
       label: "Missing Corp Responsibility (not impl.)"
     },
 
     missing_feedback: {
-      label: "Missing Feedback (not impl.)"
+      label: "Missing Feedback"
     },
 
     missing_press_summary: {
-      label: "Missing Press Summary (not impl.)",
+      label: "Missing Press Summary",
       properties: {
         checked: "checked"
       }
     },
     missing_rsvp_details: {
-      label: "Missing RSVP Details"
+      label: "Missing RSVP Details (not impl.)"
     }
   }
 

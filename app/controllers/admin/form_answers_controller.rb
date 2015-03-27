@@ -9,7 +9,7 @@ class Admin::FormAnswersController < Admin::BaseController
 
     @search = FormAnswerSearch.new(FormAnswer.all, current_admin).search(params[:search])
 
-    @form_answers = @search.results.page(params[:page]).includes(:comments)
+    @form_answers = @search.results.uniq.page(params[:page]).includes(:comments)
   end
 
   def show

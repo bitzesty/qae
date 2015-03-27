@@ -1,6 +1,4 @@
 class FormAnswerStatus::AssessorFilter
-  # TODO: clarify if we need to extract separated filter for primary/secondary, as they should
-  # see for example 'assessors not assigned option'
   extend FormAnswerStatus::FilteringHelper
 
   OPTIONS = {
