@@ -155,7 +155,7 @@ class QAE2014Forms
           drop_condition_parent
         end
 
-        options :company_estimated_figures, "Are any of the figures used on this page estimated?" do
+        options :company_estimated_figures, "Are any of the figures used on this page estimates?" do
           classes "sub-question"
           required
           yes_no
