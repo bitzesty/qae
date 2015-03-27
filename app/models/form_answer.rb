@@ -100,7 +100,6 @@ class FormAnswer < ActiveRecord::Base
     before_save :set_award_year, unless: :award_year?
     before_save :set_urn
     before_save :set_progress
-    before_save :build_supporters
     before_save :assign_searching_attributes
 
     before_create :set_account
@@ -163,27 +162,6 @@ class FormAnswer < ActiveRecord::Base
 
   def nominee_full_name_from_document
     "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
-  end
-
-  def build_supporters
-    if promotion? && submitted?
-      if document['supporters'].present?
-        document_supporters = JSON.parse(document['supporters'].presence || '[]').map { |answer| JSON.parse(answer) }
-        document_supporters.each do |supporter|
-          next if !supporter["email"] || supporters.find_by_email(supporter['email'])
-
-          supporter = supporters.build(email: supporter['email'])
-        end
-
-        supporters.each do |saved_supporter|
-          if document_supporters.none? { |s| s['email'] == saved_supporter.email }
-            saved_supporter.mark_for_destruction
-          end
-        end
-      elsif supporters.any?
-        supporters.each(&:mark_for_destruction)
-      end
-    end
   end
 
   def check_eligibility
