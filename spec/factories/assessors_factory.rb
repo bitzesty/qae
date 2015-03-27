@@ -29,6 +29,15 @@ FactoryGirl.define do
       trade_role nil
     end
 
+    trait :lead_for_innovation do
+      innovation_role "lead"
+    end
+
+    trait :lead_for_development_promotion do
+      development_role "lead"
+      promotion_role "lead"
+    end
+
     trait :regular_for_all do
       trade_role "regular"
       innovation_role "regular"
