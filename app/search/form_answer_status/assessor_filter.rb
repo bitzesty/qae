@@ -53,10 +53,10 @@ class FormAnswerStatus::AssessorFilter
       label: "Missing Audit Certificate"
     },
     missing_feedback: {
-      label: "Missing Feedback (not imple)"
+      label: "Missing Feedback"
     },
     missing_press_summary: {
-      label: "Missing Press Summary (not impl)"
+      label: "Missing Press Summary"
     }
   }
 
