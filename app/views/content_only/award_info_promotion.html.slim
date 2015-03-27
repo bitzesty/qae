@@ -72,7 +72,10 @@ header.page-header.group.page-header-over-sidebar
 
             p#get-started.get-started.group
               = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
-                ' Start nomination
+                ' Continue
                 / TODO if application is started
                 / ' Continue application
+                / - else
+                / ' Start nomination
+
   = render "steps_progress_bar", cant_access_future: true
