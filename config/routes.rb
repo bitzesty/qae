@@ -85,7 +85,10 @@ Rails.application.routes.draw do
       resource :support_letter_attachments, only: [:create]
       resource :supporters, only: [:create]
       resource :support_letters, only: [:create]
-      resource :press_summary, only: [:show, :update]
+      resource :press_summary, only: [:show, :update] do
+        get :acceptance
+        post :update_acceptance
+      end
     end
   end
 

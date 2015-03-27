@@ -1,0 +1,30 @@
+div
+  header.group.page-header.page-header-wider
+    div
+      h1 Award Acceptance
+
+  .article-container.article-container-wider
+    article.group role="article"
+      .inner
+        p Lorem ipsum
+
+        br
+
+        = simple_form_for form_answer, url: update_acceptance_users_form_answer_press_summary_path(form_answer, token: params[:token]), html: { class: "qae-form", method: :post } do |f|
+          fieldset.question-block.sub-question
+            label
+              h2 Do you accept the award nomination?
+            ul.errors-container
+            .question-group
+              = f.input :accepted, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+              span.clear
+
+
+          footer
+            nav.pagination aria-label="Pagination" role="navigation"
+              ul.group
+                li.previous.previous-alternate
+                  = link_to dashboard_path
+                    span.pagination-label Back to Dashboard
+                li.submit
+                  = f.submit "Continue", class: "button", rel: "next"

@@ -15,7 +15,7 @@ div
 
         br
 
-        = simple_form_for @press_summary, url: users_form_answer_press_summary_path(form_answer), html: { class: "qae-form" } do |f|
+        = simple_form_for @press_summary, url: users_form_answer_press_summary_path(form_answer, token: params[:token]), html: { class: "qae-form" } do |f|
           fieldset.question-block.sub-question.js-press-comment-correct
             label
               h2 Do you have any comments on your entry?

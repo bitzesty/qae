@@ -14,7 +14,7 @@ describe Users::WinnersPressRelease do
                                                    document: { company_name: "Bitzesty" }
     end
 
-    let(:press_release) { create :press_release, form_answer: form_answer }
+    let(:press_release) { create :press_summary, form_answer: form_answer }
 
     let(:mail) do
       Users::WinnersPressRelease.notify(form_answer.id)
@@ -22,6 +22,7 @@ describe Users::WinnersPressRelease do
 
     before do
       allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
+      press_release
     end
 
     it "renders the headers" do
@@ -31,9 +32,10 @@ describe Users::WinnersPressRelease do
     end
 
     it "renders the body" do
+      url = users_form_answer_press_summary_url(form_answer, token: press_release.token)
       expect(mail.body.encoded).to match(user.decorate.full_name)
       expect(mail.body.encoded).to have_link("Review Press Comment",
-                                             href: users_form_answer_press_summary_url(form_answer))
+                                             href: url)
     end
   end
 end
