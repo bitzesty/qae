@@ -490,57 +490,15 @@ header.page-header aside .inner {
     }
   }
 
-  .dropdown-toggle {
-    display: block;
-
-    &.dropdown-active {
-      color: $black;
-    }
+  .text-black {
+    color: $black;
   }
 
-  .caret {
-    display: inline-block;
-    width: 0;
-    height: 0;
-    margin-right: 7px;
-    border-top: 7px solid;
-    border-right: 6px solid transparent;
-    border-left: 6px solid transparent;
-    vertical-align: middle;
-  }
-
-  .dropdown-menu {
-    display: none;
+  ul {
     margin-top: 10px;
 
     li {
       margin-left: 35px;
-    }
-  }
-
-  .open {
-    .caret {
-      border-top: none;
-      border-bottom: 7px solid;
-    }
-
-    .dropdown-menu {
-      display: block;
-    }
-  }
-
-  .no-js & {
-    .dropdown-toggle {
-      display: none;
-      margin-top: -10px;
-    }
-
-    .dropdown-menu {
-      display: block;
-
-      li {
-        margin-left: 0;
-      }
     }
   }
 
