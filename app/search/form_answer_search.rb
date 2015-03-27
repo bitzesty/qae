@@ -1,9 +1,11 @@
 class FormAnswerSearch < Search
+  attr_reader :subject
+
   DEFAULT_SEARCH = {
     sort: 'company_or_nominee_name',
     search_filter: {
       award_type: FormAnswerDecorator::SELECT_BOX_LABELS.invert.values,
-      status: FormAnswerStatusFiltering.all
+      status: FormAnswerStatus::AdminFilter.all
     }
   }
 
@@ -28,10 +30,40 @@ class FormAnswerSearch < Search
     scoped_results.where(state: filter_klass.internal_states(value))
   end
 
+  def filter_by_sub_status(scoped_results, value)
+    out = scoped_results
+    value.each do |v|
+      case v
+      when "missing_sic_code"
+        out = out.where("sic_code IS NULL")
+      when "assessors_not_assigned"
+        out = out.where(primary_assessor_not_assigned: true, secondary_assessor_not_assigned: true)
+      when "missing_audit_certificate"
+        # TODO: test
+        out = out.joins(
+          "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id"
+        ).where("audit_certificates.id IS NULL")
+      when "missing_feedback"
+        out = out.joins(
+          "LEFT OUTER JOIN feedbacks on feedbacks.form_answer_id=form_answers.id"
+        ).where("feedbacks.approved = false OR feedbacks.id IS NULL")
+      when "missing_press_summary"
+        out = out.joins(
+          "LEFT OUTER JOIN press_summaries on press_summaries.form_answer_id = form_answers.id"
+        ).where("press_summaries.id IS NULL OR press_summaries.approved = false")
+      end
+    end
+    out
+  end
+
   private
 
   def filter_klass
-    FormAnswerStatusFiltering
+    if subject.is_a?(Admin)
+      FormAnswerStatus::AdminFilter
+    else
+      FormAnswerStatus::AssessorFilter
+    end
   end
 
   def sort_order(desc = false)

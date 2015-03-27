@@ -1,4 +1,6 @@
 class Assessor::FormAnswersController < Assessor::BaseController
+  include FormAnswerMixin
+
   helper_method :resource,
                 :primary_assessment,
                 :secondary_assessment,
@@ -10,8 +12,12 @@ class Assessor::FormAnswersController < Assessor::BaseController
 
   def index
     authorize :form_answer, :index?
-    params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
-
+    params[:search] ||= {
+      sort: "company_or_nominee_name",
+      search_filter: {
+        status: FormAnswerStatus::AssessorFilter::OPTIONS.invert.values
+      }
+    }
     scope = current_assessor.applications_scope
 
     if params[:search][:query].blank? && current_subject.categories_as_lead.size > 1
@@ -19,7 +25,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
     end
 
     @search = FormAnswerSearch.new(scope, current_assessor).search(params[:search])
-    @form_answers = @search.results.page(params[:page]).includes(:comments)
+    @form_answers = @search.results.uniq.page(params[:page]).includes(:comments)
   end
 
   def show
@@ -61,6 +67,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
   end
 
   def current_award_type
+    # TODO: tests, refactor
     lead_categories = current_subject.categories_as_lead
     return nil if lead_categories.blank?
     # only lead can see the tabs to display separated categories

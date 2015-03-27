@@ -36,6 +36,8 @@ class AssessorAssignment < ActiveRecord::Base
     belongs_to :editable, polymorphic: true
   end
 
+  around_save :notify_assessor_assignment
+
   store_accessor :document, *AppraisalForm.all
 
   # TODO: consider pre-creating the assessment records after the FormAnswer creation
@@ -160,5 +162,19 @@ class AssessorAssignment < ActiveRecord::Base
 
   def assessor_assignment_to_category
     # TODO: check if assessor is regular or lead per form category
+  end
+
+  def notify_assessor_assignment
+    # I would like to be in builder class probably
+    if primary? || secondary?
+      assessor_changed = assessor_id_changed?
+    end
+
+    yield
+
+    if assessor_changed
+      attribute = (primary? ? :primary_assessor_not_assigned : :secondary_assessor_not_assigned)
+      form_answer.update(attribute => assessor_id.blank?)
+    end
   end
 end

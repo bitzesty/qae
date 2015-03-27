@@ -1,4 +1,6 @@
 class Admin::FormAnswersController < Admin::BaseController
+  include FormAnswerMixin
+
   before_filter :load_resource, only: [:review, :show, :update, :update_financials]
 
   def index
@@ -7,30 +9,11 @@ class Admin::FormAnswersController < Admin::BaseController
 
     @search = FormAnswerSearch.new(FormAnswer.all, current_admin).search(params[:search])
 
-    @form_answers = @search.results.page(params[:page]).includes(:comments)
+    @form_answers = @search.results.uniq.page(params[:page]).includes(:comments)
   end
 
   def show
     authorize @form_answer, :show?
-  end
-
-  def update
-    authorize @form_answer, :update?
-
-    @form_answer.update(update_params)
-    respond_to do |format|
-      format.json do
-        @form_answer = @form_answer.decorate
-        render json: {
-          form_answer: {
-            sic_codes: @form_answer.all_average_growths,
-            legend: @form_answer.average_growth_legend
-          }
-        }
-      end
-
-      format.html { redirect_to admin_form_answer_path(@form_answer) }
-    end
   end
 
   def update_financials
@@ -76,10 +59,6 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def load_resource
     @form_answer = FormAnswer.find(params[:id]).decorate
-  end
-
-  def update_params
-    params.require(:form_answer).permit(:sic_code)
   end
 
   def primary_assessment

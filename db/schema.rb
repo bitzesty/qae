@@ -11,8 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326105117) do
-
+ActiveRecord::Schema.define(version: 20150326221536) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
@@ -207,19 +206,21 @@ ActiveRecord::Schema.define(version: 20150326105117) do
     t.string   "award_type"
     t.integer  "account_id"
     t.string   "urn"
-    t.boolean  "submitted",                default: false
+    t.boolean  "submitted",                       default: false
     t.float    "fill_progress"
-    t.string   "state",                    default: "application_in_progress", null: false
+    t.string   "state",                           default: "application_in_progress", null: false
     t.string   "company_or_nominee_name"
     t.integer  "award_year"
     t.string   "nominee_full_name"
     t.string   "user_full_name"
     t.string   "award_type_full_name"
     t.string   "sic_code"
-    t.hstore   "financial_data"
     t.string   "nickname"
-    t.boolean  "admin_importance_flag",    default: false
-    t.boolean  "assessor_importance_flag", default: false
+    t.hstore   "financial_data"
+    t.boolean  "admin_importance_flag",           default: false
+    t.boolean  "assessor_importance_flag",        default: false
+    t.boolean  "primary_assessor_not_assigned",   default: true
+    t.boolean  "secondary_assessor_not_assigned", default: true
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
