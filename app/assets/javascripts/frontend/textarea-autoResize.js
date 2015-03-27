@@ -18,41 +18,33 @@ $(function() {
       });
       $("body").addClass("text-resized");
     }
-  }
+  };
 
   resizeTextarea = function (textInput) {
-    var hiddenDiv = $('body > .hiddendiv');
     content = textInput.val();
 
-    hiddenDiv.width($(".step-article.step-current").width());
+    var box_width = $(".step-article.step-current").width();
 
-    // content = content.replace(/\n/g, "<br>");
-    var content_split = content.split("\n");
-    var tagsToReplace = {
-      '&': '&amp;',
-      '<': '&lt;',
-      '>': '&gt;'
-    };
-    for (n=0; n<content_split.length; n++) {
-      content_split[n] = content_split[n].replace(/[&<>]/g, function(tag) {
-        return tagsToReplace[tag] || tag;
-      })
-    }
-    var content_join = content_split.join("<br>");
-    hiddenDiv.html(content_join + "<br class='lbr'>");
-    var hiddenHeight = hiddenDiv.height()*1.06;
+    var char_count = content.toString().length;
+
+    var new_line_count = content.split("\n").length;
+
+    var text_width = char_count * 20;
+
+    var line_height = Math.ceil(text_width/box_width) + new_line_count;
+
+    var hiddenHeight = line_height*20;
 
     if (hiddenHeight >= textInput.attr("data-height")) {
       // resize when there's more text than the text container
       textInput.height(hiddenHeight+1);
-    } else if (content == "") {
+    } else if (content === "") {
       // resize when no text
       textInput.height(textInput.attr("data-height"));
     }
-  }
+  };
 
-  resetResizeTextarea()
-  $('body').append("<div class='hiddendiv common'></div>");
+  resetResizeTextarea();
 
   txt.each(function() {
     resizeTextarea($(this));
@@ -68,6 +60,6 @@ $(function() {
     // resize the text container with the textarea resize handle
     var textarea = $(this);
     textarea.css("height", textarea.height());
-    textarea.attr("data-height", textarea.height())
+    textarea.attr("data-height", textarea.height());
   });
 });
