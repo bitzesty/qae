@@ -15,8 +15,7 @@ class QAE2014Forms
               You may link to videos, websites or other media you feel relevant.
             </p>
             <p>
-              We won't consider business plans, annual accounts or company policy documents.
-              Additional materials should not be used as a substitute for completing sections of the form.
+              We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.
             </p>
           ) # TODO!
           max_attachments 4

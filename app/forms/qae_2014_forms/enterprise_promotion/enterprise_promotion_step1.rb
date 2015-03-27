@@ -37,6 +37,7 @@ class QAE2014Forms
 
         text :former_name, "Former name, or any other name known by" do
           classes "sub-question former-name"
+          form_hint "e.g. maiden name"
         end
 
         address :nominee_personal_address, "Personal address" do
@@ -108,6 +109,7 @@ class QAE2014Forms
             { postcode: "Postcode" },
             { region: "Region" }
           ])
+          form_hint "ie. their place of employment."
         end
 
         text :website_url, "Website Address" do
