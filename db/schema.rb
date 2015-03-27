@@ -93,7 +93,7 @@ ActiveRecord::Schema.define(version: 20150326221536) do
   add_index "assessors", ["reset_password_token"], name: "index_assessors_on_reset_password_token", unique: true, using: :btree
 
   create_table "audit_certificates", force: :cascade do |t|
-    t.integer  "form_answer_id", null: false
+    t.integer  "form_answer_id"
     t.string   "attachment"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
@@ -216,8 +216,8 @@ ActiveRecord::Schema.define(version: 20150326221536) do
     t.string   "user_full_name"
     t.string   "award_type_full_name"
     t.string   "sic_code"
-    t.hstore   "financial_data"
     t.string   "nickname"
+    t.hstore   "financial_data"
     t.boolean  "admin_importance_flag",           default: false
     t.boolean  "assessor_importance_flag",        default: false
     t.boolean  "accepted",                        default: false
