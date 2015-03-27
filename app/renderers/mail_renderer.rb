@@ -49,6 +49,7 @@ class MailRenderer
   def winners_press_release_comments_request
     assigns = {}
     assigns[:user] = dummy_user("Jon", "Doe")
+    assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
     render(assigns, "users/winners_press_release/notify")
   end

@@ -12,6 +12,7 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20150326221536) do
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "hstore"
@@ -215,10 +216,11 @@ ActiveRecord::Schema.define(version: 20150326221536) do
     t.string   "user_full_name"
     t.string   "award_type_full_name"
     t.string   "sic_code"
-    t.string   "nickname"
     t.hstore   "financial_data"
+    t.string   "nickname"
     t.boolean  "admin_importance_flag",           default: false
     t.boolean  "assessor_importance_flag",        default: false
+    t.boolean  "accepted",                        default: false
     t.boolean  "primary_assessor_not_assigned",   default: true
     t.boolean  "secondary_assessor_not_assigned", default: true
   end
@@ -270,6 +272,7 @@ ActiveRecord::Schema.define(version: 20150326221536) do
     t.string   "phone_number"
     t.boolean  "correct",          default: false
     t.boolean  "reviewed_by_user", default: false
+    t.string   "token"
   end
 
   add_index "press_summaries", ["form_answer_id"], name: "index_press_summaries_on_form_answer_id", using: :btree
