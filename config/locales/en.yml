@@ -72,6 +72,12 @@ en:
           total_turnover: Total sales accepted (£)
           net_profit: Net profit (£)
           total_net_assets: Total Net assets (£)
+          units_sold: No. of units, contracts, quantity sold
+          sales:  Sales value (£)
+          sales_exports: Exports (£)
+          sales_royalties: Royalties/Licences (£)
+          avg_unit_price: Avg. selling price (£)
+          avg_unit_cost_self: Unit costs (£)
   errors:
     messages:
       wrong_size: "is the wrong size (should be %{file_size})"
