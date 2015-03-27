@@ -11,7 +11,7 @@ class Users::PressSummariesController < Users::BaseController
   def update
     @press_summary.reviewed_by_user = true
 
-    if @press_summary.update_attributes(press_summary_params)
+    if @press_summary.update(press_summary_params)
       flash.notice = "Press Comment successfully updated"
       redirect_to action: :show, token: params[:token]
     else
@@ -21,10 +21,10 @@ class Users::PressSummariesController < Users::BaseController
 
   def update_acceptance
     if params[:form_answer][:accepted] == "true"
-      form_answer.update_column(:accepted, true)
+      form_answer.update(accepted: true)
       redirect_to action: :show, token: params[:token]
     else
-      form_answer.update_column(:accepted, false)
+      form_answer.update(accepted: false)
       redirect_to root_url
     end
   end
