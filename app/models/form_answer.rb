@@ -170,7 +170,7 @@ class FormAnswer < ActiveRecord::Base
       if document['supporters'].present?
         document_supporters = JSON.parse(document['supporters'].presence || '[]').map { |answer| JSON.parse(answer) }
         document_supporters.each do |supporter|
-          next if supporters.find_by_email(supporter['email'])
+          next if !supporter["email"] || supporters.find_by_email(supporter['email'])
 
           supporter = supporters.build(email: supporter['email'])
         end
