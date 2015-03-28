@@ -44,33 +44,6 @@ html.no-js
                           class: 'navbar-brand'
 
               .navbar-collapse.collapse#nav-main-collapse
-                ul.nav.navbar-nav role="navigation"
-                  li class=('active' if controller_name == 'dashboard')
-                    = link_to "Dashboard", admin_dashboard_index_path
-
-                  - if policy(:form_answer).index?
-                    li class=('active' if controller_name == 'form_answers')
-                      = link_to "Applications", admin_form_answers_path
-
-                  - if policy(:user).index?
-                    li class=('active' if %w[users admins assessors].include?(controller_name))
-                      = link_to "Users", admin_users_path
-
-                  / TODO Settings page
-                  li class=('active' if controller_name == 'settings')
-                    = link_to "Settings", admin_settings_path
-
-                  / TODO Award year select
-                  li.dropdown
-                    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
-                      ' Award Year
-                      - year = params[:year] ? params[:year].to_i : Date.current.year
-                      = "#{year} - #{year + 1}"
-                      span.caret
-                    ul.dropdown-menu
-                      - Settings::AVAILABLE_YEARS.each do | start_year |
-                        li
-                          = link_to "Award Year #{start_year} - #{start_year + 1}", admin_settings_url(year: start_year)
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown
@@ -78,8 +51,6 @@ html.no-js
                       ' My account
                       span.caret
                     ul.dropdown-menu
-                      li
-                        = link_to "Enable 2FA", admin_enable_authy_path
                       li
                         = link_to "Log out",
                                   destroy_admin_session_path,
@@ -92,10 +63,6 @@ html.no-js
               .alert-container
                 .alert.alert-success
                   == notice
-            - unless alert.blank?
-              .alert-container
-                .alert.alert-danger
-                  == alert
             - unless flash[:error].blank?
               .alert-container
                 .alert.alert-danger
@@ -106,4 +73,4 @@ html.no-js
     footer#site-footer
       .footer-container
 
-    = javascript_include_tag 'application-admin'
+    = javascript_include_tag 'twofactor'

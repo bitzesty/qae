@@ -3,7 +3,12 @@ Rails.application.routes.draw do
     registrations: "users/registrations"
   }
   devise_for :admins, controllers: {
-    confirmations: "devise/confirmations"
+    confirmations: "devise/confirmations",
+    devise_authy: 'admin/devise_authy'
+  }, path_names: {
+    verify_authy: "/verify-token",
+    enable_authy: "/enable-two-factor",
+    verify_authy_installation: "/verify-installation"
   }
 
   devise_for :assessors
