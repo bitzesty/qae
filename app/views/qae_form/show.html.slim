@@ -2,7 +2,7 @@
   li = link_to "Applications", dashboard_path
   li = @form.title
 
-form.qae-form.award-form data-autosave-url=autosave_url(@form_answer) action=submit_form_url(@form_answer) method="POST" data-attachments-url=attachments_url(@form_answer)
+form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=save_form_url(@form_answer, next_step: next_step(@form, params[:step])) method="POST" data-attachments-url=attachments_url(@form_answer) novalidate=true
   input name="authenticity_token" type="hidden" value=form_authenticity_token
 
   header.page-header.group.page-header-over-sidebar
@@ -39,11 +39,12 @@ form.qae-form.award-form data-autosave-url=autosave_url(@form_answer) action=sub
               ' Form
             ul
               - for step in @form.steps do
-                li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
-                  = link_to result_form_award_eligibility_url(form_id: @form_answer.id, anchor: step.title.html_safe.parameterize)
-                    span.step-number
-                      ' #{step_letters[step.index]}.
-                    = step.short_title.html_safe
+               li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!params[:step] && step.index == 0) || params[:step] == step.title.parameterize)
+                  = link_to edit_form_path(@form_answer.id, step: step.title.parameterize), class: "js-step-link js-step-condition", data: { step: "step-#{step.title.parameterize}" } do
+                    span
+                      span.step-number
+                        ' #{step_letters[step.index]}.
+                      = step.short_title.html_safe
 
         li.divider
         li.step-past

@@ -25,6 +25,10 @@ jQuery ->
   validate = ->
     window.FormValidation.validate()
 
+  $(".save-quit-link").on "click", (e) ->
+    e.stopPropagation()
+    window.location.replace $(e.currentTarget).data("url")
+
   $(document).on "submit", ".qae-form", (e) ->
     $("body").addClass("tried-submitting")
     if not validate()
@@ -206,6 +210,7 @@ jQuery ->
       resetResizeTextarea()
     else
       window.location.hash = $(".js-step-condition.step-current").attr("data-step").substr(5)
+
   $(document).on "click", ".js-step-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("step-current")

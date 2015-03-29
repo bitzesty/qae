@@ -5,11 +5,9 @@ class FormController < ApplicationController
   before_action :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form, :new_enterprise_promotion_form]
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy,
-    :submit_form,
-    :submit_confirm,
-    :autosave
+    :submit_confirm
   ]
-  before_action :require_to_be_account_admin!, only: [:submit_form, :submit_confirm]
+  before_action :require_to_be_account_admin!, only: :submit_confirm
   before_action :check_trade_count_limit, only: :new_international_trade_form
 
   expose(:support_letter_attachments) do
@@ -91,29 +89,46 @@ class FormController < ApplicationController
     end
   end
 
-  def submit_form
-    doc = params[:form]
-    @form_answer.document = serialize_doc(doc)
+  def save
+    @form_answer.document = serialize_doc(params[:form])
 
-    @form_answer.submitted = true
-    submitted_was_changed = @form_answer.submitted_changed?
+    redirected = params[:next_action] == "redirect"
+    submitted = params[:submit] == "true" && !redirected
 
-    if @form_answer.save && submitted_was_changed
-      @form_answer.state_machine.submit(current_user)
-      Notifiers::Submission::SuccessNotifier.new(@form_answer).run
+    if submitted
+      @form_answer.submitted = true
     end
 
-    redirect_to submit_confirm_url(@form_answer)
+    submitted_was_changed = @form_answer.submitted_changed?
+
+    if @form_answer.save
+      if submitted_was_changed
+        @form_answer.state_machine.submit(current_user)
+        Notifiers::Submission::SuccessNotifier.new(@form_answer).run
+      end
+    end
+
+    respond_to do |format|
+      format.html do
+        if redirected
+          redirect_to dashboard_url
+        else
+          if submitted
+            redirect_to submit_confirm_url(@form_answer)
+          else
+            redirect_to edit_form_url(@form_answer.id, step: params[:next_step])
+          end
+        end
+      end
+
+      format.js do
+        render json: {progress: @form_answer.fill_progress}
+      end
+    end
   end
 
   def submit_confirm
     render template: "qae_form/confirm"
-  end
-
-  def autosave
-    @form_answer.document = serialize_doc(params[:form])
-    @form_answer.save!
-    render json: {progress: @form_answer.fill_progress}
   end
 
   def add_attachment

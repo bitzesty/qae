@@ -14,4 +14,15 @@ module FormHelper
     # show tabs if lead is assigned to more than one category
     current_subject.categories_as_lead.size > 1
   end
+
+  def next_step(form, step)
+    return unless step
+
+    steps = form.steps
+    steps.map! { |s| s.title.parameterize }
+
+    index = steps.index(step)
+
+    steps[index + 1]
+  end
 end

@@ -21,7 +21,7 @@ describe FormController do
     expect(Notifiers::Submission::SuccessNotifier).to receive(:new).with(form_answer) { notifier }
     expect_any_instance_of(FormAnswer).to receive(:eligible?).at_least(:once).and_return(true)
 
-    post :submit_form, id: form_answer.id, form: {}
+    post :save, id: form_answer.id, form: {}, submit: "true"
   end
 
   describe '#new_international_trade_form' do
