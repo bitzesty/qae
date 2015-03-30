@@ -199,4 +199,8 @@ Devise.setup do |config|
   #   manager.intercept_401 = false
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
+
+  # ==> Devise Authy Authentication Extension
+  # How long should the user's device be remembered for.
+  # config.authy_remember_device = 1.month
 end

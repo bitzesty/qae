@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.0'
 
 # User authentication & authorization
 gem 'devise', '~> 3.4'
+gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 
 # Pagenation
