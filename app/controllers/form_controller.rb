@@ -122,7 +122,7 @@ class FormController < ApplicationController
       end
 
       format.js do
-        render json: {progress: @form_answer.fill_progress}
+        render json: { progress: @form_answer.fill_progress }
       end
     end
   end
