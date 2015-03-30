@@ -99,6 +99,7 @@ Rails.application.routes.draw do
       resources :form_answer_state_transitions, only: [:create]
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]
+      resources :review_audit_certificates, only: [:create]
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit
@@ -130,6 +131,7 @@ Rails.application.routes.draw do
     resources :assessors
     resources :admins
     resources :reports, only: [:show]
+    resources :review_audit_certificates, only: [:create]
     resources :form_answers do
       resources :form_answer_state_transitions, only: [:create]
       resources :comments

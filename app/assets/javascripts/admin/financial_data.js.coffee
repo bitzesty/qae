@@ -1,6 +1,6 @@
 jQuery ->
-  if ($ "#financial-summary form").length
-    form = ($ "#financial-summary form")
+  if ($ "#financial-summary form:not(#new_review_audit_certificate)").length
+    form = ($ "#financial-summary form:not(#new_review_audit_certificate)")
     timer = null
     benchmarksTable = ($ "#financial-benchmarks")
     overallBenchmarksTable = ($ "#overall-financial-benchmarks")

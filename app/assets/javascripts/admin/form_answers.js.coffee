@@ -6,6 +6,18 @@ ready = ->
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
   bindRags("#section-case-summary .edit_assessor_assignment")
 
+  $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
+    $(this).find(".form-group").removeClass("form-edit")
+    $(this).find(".form-edit-link").remove()
+    area = $(".audit-cert-description textarea")
+    unless area.val()
+      $(this).find(".form-value").html($("<p>No change necessary</p>"))
+    else
+      div = "<div><label>Changes made</label><p class='control-label'>#{area.val()}</p></div>"
+      $(this).find(".form-value").html(div)
+  $("#new_review_audit_certificate").on "click", ".save-review-audit", (e) ->
+    e.preventDefault()
+    $("#new_review_audit_certificate").submit()
   $(".section-applicant-status").on "click", "a", (e) ->
     e.preventDefault()
     state = $(this).data("state")
@@ -93,19 +105,12 @@ ready = ->
     if area.length
       formGroup.find(".form-value p").text(area.val())
       $(formGroup).closest("form").submit()
-
-  # Show the audit certificates `changes made` textarea
-  # TODO temp
-  $("[name='radio-audit-cert']").on "change", ->
-    $(".audit-cert-changed-val p").text($(".audit-cert-description textarea").val())
-
-    if $("#radio-audit-cert2:checked").size() > 0
-      $(this).closest(".panel-body").addClass("audit-cert-changes-made")
-      $(this).closest(".panel-body").removeClass("audit-cert-no-change")
+  $("#new_review_audit_certificate input[type='radio']").on "change", ->
+    area = $(".audit-cert-description")
+    if $(this).val() == "confirmed_changes"
+      area.show()
     else
-      $(this).closest(".panel-body").removeClass("audit-cert-changes-made")
-      $(this).closest(".panel-body").addClass("audit-cert-no-change")
-
+      area.hide()
   $(document).on "submit", "#new_assessor_assignment_collection", (e) ->
     form = $(this)
     ids = ""
