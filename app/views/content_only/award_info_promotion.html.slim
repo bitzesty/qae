@@ -29,7 +29,11 @@ header.page-header.group.page-header-over-sidebar
                   ' You have already added these people as collaborators:
                   ul
                     - @collaborators.each do |collaborator|
-                      li = collaborator.full_name
+                      li
+                        - if collaborator.first_name.present?
+                          = collaborator.full_name
+                        - else
+                          ' Anonymous
               li
                 ' You can
                 = link_to account_collaborators_path(form_id: @form_answer.id)
