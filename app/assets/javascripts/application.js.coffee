@@ -10,6 +10,8 @@
 #= require govuk_toolkit
 #= require mobile
 #= require browser-check
+#= require vendor/zxcvbn
+#= require vendor/jquery-debounce
 #= require_tree .
 
 jQuery ->

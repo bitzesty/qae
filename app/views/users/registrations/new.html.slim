@@ -22,20 +22,44 @@
                 .question-body
                   = f.input :email, required: true, autofocus: true, label: false, input_html: {autocomplete: "off", class: "medium"}
 
-          .form-inputs-group
-            .form-inputs
-              .question
-                label
-                  h2 Password
-                  .question-body
-                    = f.input :password, required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
+          #password-change-panel
+            .form-inputs-group
+              #password-control-group
+                .form-inputs
+                  .question
+                    label
+                      h2 Password
+                      .question-body
+                        = f.input :password, required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
+                        span#password-result-span.input-group-addon
+                          i#password-result.glyphicon.glyphicon-ok
 
-            .form-inputs
-              .question
-                label
-                  h2 Password confirmation
-                  .question-body
-                    = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
+              .guidance-panel
+                #password-guidance.application-notice.help-notice
+                  .alert.alert-warning
+                    p.text-underline Your new passphrase
+                    p#password-too-short
+                      ' Must be
+                      strong at least 10 characters
+                    p#parts-of-email Shouldn’t include part or all of your email address
+                    p#password-entropy
+                      ' Must be
+                      strong more complex
+                      ' . Consider using whole sentences (with spaces), lyrics or phrases to make your passphrase more memorable
+
+              #password-confirmation-control-group
+                .form-inputs
+                  .question
+                    label
+                      h2 Password confirmation
+                      .question-body
+                        = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
+                        span#password-confirmation-result-span.input-group-addon
+                          i#password-confirmation-result.glyphicon.glyphicon-ok
+
+              #password-confirmation-guidance.application-notice.help-notice
+                .alert.alert-warning
+                  p#password-confirmation-match The confirmation must match the password
 
           .form-inputs
             .question

@@ -3,7 +3,7 @@
 #= require bootstrap-sprockets
 #= require jquery.fileupload
 #= require select2.full.min
-#= require ./frontend/password_strength
+#= require ./frontend/password-strength-indicator
 #= require_tree ./admin
 #= require search
 #= require jquery-ui
