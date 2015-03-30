@@ -12,7 +12,7 @@
   cursor: pointer;
 
   &.step-errors a {
-    color: $error-colour;
+    color: $error-colour !important;
   }
 
   &.step-current a {
