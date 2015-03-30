@@ -34,7 +34,7 @@
                         span#password-result-span.input-group-addon
                           i#password-result.glyphicon.glyphicon-ok
 
-              .guidance-panel
+              .guidance-panel.if-no-js-hide
                 #password-guidance.application-notice.help-notice
                   .alert.alert-warning
                     p.text-underline Your new passphrase
@@ -57,9 +57,10 @@
                         span#password-confirmation-result-span.input-group-addon
                           i#password-confirmation-result.glyphicon.glyphicon-ok
 
-              #password-confirmation-guidance.application-notice.help-notice
-                .alert.alert-warning
-                  p#password-confirmation-match The confirmation must match the password
+              .if-no-js-hide
+                #password-confirmation-guidance.application-notice.help-notice
+                  .alert.alert-warning
+                    p#password-confirmation-match The confirmation must match the password
 
           .form-inputs
             .question
