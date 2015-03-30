@@ -15,7 +15,7 @@ step "I sign in as user" do
 
   fill_in 'user_email', with: @user.email
   fill_in 'user_password', with: "my98ssdkjv9823kds=2"
-  click_button 'Log in'
+  click_button 'Sign in'
 end
 
 step "I am account admin user" do

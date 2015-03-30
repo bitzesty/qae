@@ -74,7 +74,7 @@ class AddCollaborator
   end
 
   def set_generated_password
-    @generated_password = SecureRandom.hex(6)
+    @generated_password = SecureRandom.urlsafe_base64(14)
   end
 
   def success?

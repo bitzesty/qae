@@ -4,11 +4,16 @@
   header.page-header.group
     div
       h1
-        | Log in
+        | Sign in
 
   .article-container.group
     article.group role="article"
       .inner
+        p
+          ' Sign in or
+          = link_to 'create an account', new_user_registration_path
+          '  to get started.
+
         = simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
 
           .form-inputs
@@ -29,6 +34,6 @@
                 = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
           .form-actions
-            = f.button :submit, "Log in", class: "button large"
+            = f.button :submit, "Sign in", class: "button large"
 
         = render "users/shared/links"

@@ -9,9 +9,13 @@
   .article-container.group
     article.group role="article"
       .inner
-        .application-notice.help-notice
+        .application-notice.info-notice
           p
             ' If you are a marketing company applying on behalf of a client, your client should sign up for an account first, then add you as a collaborator.
+          p
+            ' If you already have an account please
+            = link_to "sign in", new_user_session_path
+            '.
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           /= f.error_notification
 
@@ -28,14 +32,18 @@
                   .question
                     h2 = f.label :password
                     .question-body
-                      = f.input :password, required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
+                      = f.input :password,
+                                required: true,
+                                label: false,
+                                hint: ("#{@minimum_password_length} characters minimum" if @validatable),
+                                input_html: { class: "password-strength-meter js-disable-copy js-disable-paste", "data-min-password-length" => "10" }
                       span#password-result-span.input-group-addon
                         i#password-result.glyphicon.glyphicon-ok
 
               .guidance-panel.if-no-js-hide
                 #password-guidance.application-notice.help-notice
                   .alert.alert-warning
-                    p.text-underline Your new passphrase
+                    p.text-underline Your password
                     p#password-too-short
                       ' Must be
                       strong at least 10 characters
@@ -68,6 +76,3 @@
             = f.button :submit, "Sign up", class: "button large"
 
         /= render "users/shared/links"
-        p
-          ' or
-          = link_to "Log in", new_user_session_path
