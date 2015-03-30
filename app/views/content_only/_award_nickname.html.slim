@@ -29,8 +29,10 @@
         - else
           ' application
       ul
-        / TODO pull in deadline
-        li The deadline for submissions is 23:59 on the last working day of September.
+        li
+          ' The deadline for submissions is
+          = submission_deadline.decorate.formatted_trigger_time
+          ' .
         li
           ' You can still edit submitted
           - if award_type == "promotion"

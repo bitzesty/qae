@@ -60,7 +60,10 @@ header.page-header.group.page-header-over-sidebar
 
             h2 Nomination guidance:
             ul
-              li The deadline for submissions is 23:59 on the last working day of September.
+              li
+                ' The deadline for submissions is
+                = submission_deadline.decorate.formatted_trigger_time
+                ' .
               li Submitted information is only shared with those involved in the assessment process.
               li Try to take full advantage of the word limits. However, the quality of your answer is more important than its length.
               li All questions are mandatory unless stated otherwise. But you can skip questions and return to them later.
