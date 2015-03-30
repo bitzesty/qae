@@ -99,14 +99,12 @@ class QAE2014Forms
           classes "regular-question"
           required
           conditional :business_name_changed, :yes
-          conditional :queen_award_holder, :yes
         end
 
         textarea :previous_business_ref_num, "Reference number(s) used previously" do
           classes "regular-question"
           required
           conditional :business_name_changed, :yes
-          conditional :queen_award_holder, :yes
           rows 5
           words_max 100
         end
