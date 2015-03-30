@@ -2,15 +2,19 @@ require 'rails_helper'
 
 describe FormController do
   let(:user) { create :user, role: "account_admin" }
+  let(:account) { user.account }
   let(:form_answer) do
     FactoryGirl.create :form_answer, :innovation,
                                      user: user,
+                                     account: account,
                                      document: { company_name: "Bitzesty" }
   end
 
   let!(:settings) { create :settings, :submission_deadlines }
 
   before do
+    create :basic_eligibility, account: account
+
     sign_in user
     described_class.skip_before_action :check_basic_eligibility, :check_award_eligibility, :check_account_completion
   end
