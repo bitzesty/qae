@@ -73,6 +73,8 @@ br
                 th.filter
                   = f.simple_fields_for [:filters, @search.filters] do |h|
                     = h.input :status, collection: FormAnswerStatus::AssessorFilter.options, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+                  = f.simple_fields_for [:filters, @search.filters] do |g|
+                    = g.input :sub_status, collection: FormAnswerStatus::AssessorFilter.sub_options, label: false, input_html: { multiple: true, class: "if-js-hide" }
                   / TODO do category filter dropdown
                   .dropdown.if-no-js-hide
                     button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
@@ -93,14 +95,15 @@ br
                               span.label-contents
                                 = option[:label]
                         li.divider
-                        = f.simple_fields_for [:filters, @search.filters] do |g|
-                          = g.input :sub_status, collection: FormAnswerStatus::AssessorFilter.sub_options, label: false, input_html: { multiple: true, class: "if-js-hide" }
                         - FormAnswerStatus::AssessorFilter.sub_options.each do |k, option|
                           li.checkbox role="presentation"
                             label data-value=k
                               input type="checkbox"
                               span.label-contents
                                 = option[:label]
+                  = f.submit "Filter", class: "if-js-hide"
+                  label.if-js-hide Ctrl + left click for multi select
+
 
                   th
                     ' Primary Assessor
