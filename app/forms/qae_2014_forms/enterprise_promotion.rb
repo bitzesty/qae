@@ -25,12 +25,12 @@ class QAE2014Forms
              "Letters of Support",
              &QAE2014Forms.promotion_step4
 
-        step "Add Links/Documents",
-             "Add Links/Documents",
+        step "Add Website Address/Documents",
+             "Add Website Address/Documents",
              &QAE2014Forms.promotion_step5
 
-        step "Authorisation",
-             "Authorisation",
+        step "Authorise & Submit",
+             "Authorise & Submit",
              &QAE2014Forms.promotion_step6
       end
     end

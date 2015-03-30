@@ -2,7 +2,7 @@ class QAE2014Forms
   class << self
     def trade_step4
       @trade_step4 ||= proc do
-        options :corp_responsibility_form, "You may complete the full corporate responsibility form now, or make a declaration now and complete the form in the event of you being shortlisted." do
+        options :corp_responsibility_form, "The full corporate responsibility form is only required for applications that are shortlisted. You can complete it now, or make a declaration now and complete the full version if your application gets shortlisted." do
           ref "D 1"
           required
           context %(
@@ -27,7 +27,7 @@ class QAE2014Forms
               If you can give quantitative evidence of your initiatives/improvement/success, then do so.
               </p>
             <p>
-              If you have too many initiatives, just outline the ones you think are most relevant/important you think are most relevant/important.
+              If you have too many initiatives, just outline the ones you think are most relevant/important.
             </p>
           )
           conditional :corp_responsibility_form, :complete_now
@@ -38,9 +38,16 @@ class QAE2014Forms
           required
           conditional :corp_responsibility_form, :complete_now
           context %(
-            <p>What activities do you undertake to foster good relations with local communities? Outline how you evaluate and report on their impact.</p>
-            <p>If you have operations in the third world or developing countries, are these conducted with proper regard for the current and future welfare of the people employed there?</p>
-                    )
+            <p>
+              How does your business try to ensure a beneficial impact of all your practices and activites on society?
+            </p>
+            <p>
+              What activities do you undertake to foster good relations with local communities? Outline how you evaluate and report on their impact.
+            </p>
+            <p>
+              If you have operations in the third world or developing countries, are these conducted with proper regard for the current and future welfare of the people employed there?
+            </p>
+          )
           rows 5
           words_max 500
         end
@@ -50,8 +57,15 @@ class QAE2014Forms
           required
           conditional :corp_responsibility_form, :complete_now
           context %(
-            <p>Description of any environmental considerations within your business e.g. energy efficiency strategies, recycling policies, emissions reduction policies.</p>
-            <p>If, and how, you undertake environmental impact assessments of major projects.</p>
+            <p>
+              Describe any environmental considerations within your business e.g. energy efficiency strategies, recycling policies, emissions reduction policies.
+            </p>
+            <p>
+              State if and how you undertake environmental impact assessments of major projects.
+            </p>
+            <p>
+              Are environmental considerations and efficient use of resources built into your business/products/services?
+            </p>
                     )
           rows 5
           words_max 500
@@ -62,9 +76,13 @@ class QAE2014Forms
           required
           conditional :corp_responsibility_form, :complete_now
           context %(
-            <p>An outline of your selection criteria, if any, with regard to potential suppliers'/partners'/contractors' economic, social and environmental performance.</p>
-            <p>Do you encourage best practice or require them to meet your own standards? To what extent are you succeeding?</p>
-                    )
+            <p>
+              Outline your selection criteria, if any, with regard to potential suppliers'/partners'/contractors' economic, social and environmental performance.
+            </p>
+            <p>
+              Do you encourage best practice or require them to meet your own standards? To what extent are you succeeding?
+            </p>
+          )
           rows 5
           words_max 500
         end
@@ -74,10 +92,16 @@ class QAE2014Forms
           required
           conditional :corp_responsibility_form, :complete_now
           context %(
-            <p>Do you have a code of conduct and/or employee policies e.g. health and safety, training, staff welfare, whistleblowing and equal opportunities?</p>
-            <p>Outline any special employment conditions that you offer e.g. flexible working, extended maternity pay.</p>
-            <p>How you keep your employees engaged e.g. communication, assessments, incentives, opportunities for career development.</p>
-                    )
+            <p>
+              Do you have a code of conduct and/or employee policies? e.g. health and safety, training, staff welfare, whistleblowing and equal opportunities
+            </p>
+            <p>
+              Do you offer any special employment conditions? e.g. flexible working, extended maternity pay
+            </p>
+            <p>
+              How do you keep your employees engaged? e.g. communication, assessments, incentives, opportunities for career development
+            </p>
+          )
           rows 5
           words_max 500
         end
@@ -87,10 +111,16 @@ class QAE2014Forms
           required
           conditional :corp_responsibility_form, :complete_now
           context %(
-            <p>What proportion of your sales consist of repeat purchases?</p>
-            <p>How do you measure customer satisfaction, and what have been the results?</p>
-            <p>The criteria by which you select clients and how you ensure they are appropriate for your services.</p>
-                    )
+            <p>
+              What proportion of your sales consist of repeat purchases?
+            </p>
+            <p>
+              How do you measure customer satisfaction, and what have been the results?
+            </p>
+            <p>
+              By what criteria do you select clients and ensure they are appropriate for your services?
+            </p>
+          )
           rows 5
           words_max 500
         end

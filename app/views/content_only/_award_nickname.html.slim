@@ -22,10 +22,17 @@
         li You will be given more detailed instructions after the eligibility questionnaire.
 
     li
-      p Submit your nomination
+      p
+        ' Submit your
+        - if award_type == "promotion"
+          ' nomination
+        - else
+          ' application
       ul
-        / TODO pull in deadline
-        li The deadline for submissions is 23:59 on the last working day of September.
+        li
+          ' The deadline for submissions is
+          = submission_deadline.decorate.formatted_trigger_time
+          ' .
         li
           ' You can still edit submitted
           - if award_type == "promotion"
@@ -39,16 +46,16 @@
   fieldset.question-block
     label
       h2
-        ' Please choose a nickname for this
+        ' Please choose a reference for this
         - if award_type == "promotion"
           ' nomination:
         - else
           ' application:
       p
         - if award_type == "promotion"
-          ' This is for your own use. It will appear alongside this nomination on your application dashboard. Once chosen, the nickname is permanent.
+          ' This is for your own use. It will appear on the Applications page. Once chosen, the reference is permanent.
         - else
-          ' This is for use by you and your collaborators. It will appear alongside this nomination on your application dashboard. Once chosen, the nickname is permanent.
+          ' This is for use by you and your collaborators. It will appear on the Applications page. Once chosen, your reference is permanent.
 
       .question-group
         label

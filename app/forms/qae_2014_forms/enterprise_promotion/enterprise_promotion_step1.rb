@@ -9,6 +9,7 @@ class QAE2014Forms
         dropdown :nominee_title, "Title" do
           required
           classes "regular-question"
+          option "", "Select"
           option "prof", "Prof"
           option "dr", "Dr"
           option "mr", "Mr"
@@ -36,6 +37,7 @@ class QAE2014Forms
 
         text :former_name, "Former name, or any other name known by" do
           classes "sub-question former-name"
+          form_hint "e.g. maiden name"
         end
 
         address :nominee_personal_address, "Personal address" do
@@ -107,11 +109,13 @@ class QAE2014Forms
             { postcode: "Postcode" },
             { region: "Region" }
           ])
+          form_hint "ie. their place of employment."
         end
 
-        text :website_url, "Website URL" do
+        text :website_url, "Website Address" do
           classes "regular-question"
           type :url
+          form_hint "e.g. www.example.com"
         end
 
         text :nominee_position, "Nominee's position at the organisation" do

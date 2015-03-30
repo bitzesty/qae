@@ -25,12 +25,12 @@ class QAE2014Forms
              "Corporate Responsibility",
              &QAE2014Forms.trade_step4
 
-        step "Add Links/Documents",
-             "Add Links/Documents",
+        step "Add Website Address/Documents",
+             "Add Website Address/Documents",
              &QAE2014Forms.trade_step5
 
-        step "Authorisation",
-             "Authorisation",
+        step "Authorise & Submit",
+             "Authorise & Submit",
              &QAE2014Forms.trade_step6
       end
     end

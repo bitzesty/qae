@@ -4,8 +4,10 @@ class QAE2014Forms
     def trade_step2
       @trade_step2 ||= proc do
         context %(
-          <p>Please try to avoid using technical jargon in this section. </p>
-                )
+          <p>
+            Please try to avoid using technical jargon in this section.
+          </p>
+        )
 
         textarea :trade_desc_whole, "Describe your business as a whole" do
           ref "B 1"
@@ -17,9 +19,15 @@ class QAE2014Forms
           words_max 500
         end
 
-        options :trade_goods_amount, "How many types of goods/services make up your international trade?" do
+        dropdown :trade_goods_amount, "How many types of goods/services make up your international trade?" do
           ref "B 2"
           required
+          context %(
+            <p>
+              If you have more than 5, please try to group them into fewer types of goods/services.
+            </p>
+          )
+          option "", "Select"
           option "1", "1"
           option "2", "2"
           option "3", "3"
@@ -31,8 +39,10 @@ class QAE2014Forms
           classes "sub-question"
           required
           context %(
-            <p>If relevant, give details of material used or end use. e.g. 'design and manufacture of bespoke steel windows and doors'.</p>
-                    )
+            <p>
+              If relevant, give details of material used or end use. e.g. 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
+            </p>
+          )
           rows 2
           words_max 15
           min 0
@@ -64,7 +74,7 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :top_overseas_sales, "State the percentage of total overseas sales made to each of your top 5 overseas markets (ie. individual countries) during the final year of your entry." do
+        textarea :top_overseas_sales, "What percentage of total overseas sales was made to each of your top 5 overseas markets (ie. individual countries) during the final year of your entry?" do
           classes "sub-question"
           required
           rows 5

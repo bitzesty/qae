@@ -26,7 +26,7 @@ class QAE2014Forms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, 'Did your year-end date change during your <span class="js-entry-period-subtext">2 or 5</span> year entry period?' do
+        options :financial_year_date_changed, "Did your year-end date change during your 2 or 5 year entry period?" do
           classes "sub-question js-financial-year-change"
           required
           yes_no
@@ -68,7 +68,7 @@ class QAE2014Forms
           ref "C 4"
           required
           option :entire_business, "It’s integral to the whole business"
-          option :single_product_or_service, "it affects a single product/service"
+          option :single_product_or_service, "It affects a single product/service"
         end
 
         header :company_financials, "Company Financials" do
@@ -79,7 +79,7 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_excluded_explanation, "In question A14.3 you said you are applying on behalf of a group but are excluding some members. Please explain why the financial figures of any member(s) of your group are excluded." do
+        textarea :innovation_excluded_explanation, "In question A14.3 you said you are applying on behalf of a group but are excluding some member(s)'s financial figures. Please explain why." do
           ref "C 5"
           rows 5
           words_max 150
@@ -171,7 +171,7 @@ class QAE2014Forms
         textarea :company_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
           rows 5
-          words_max 200
+          words_max 400
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           conditional :company_estimated_figures, :yes
@@ -180,8 +180,10 @@ class QAE2014Forms
         header :product_financials, "Product/Service Financials" do
           ref "C 7"
           context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete these questions.
+            </p>
+          )
           conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -249,7 +251,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        textarea :drops_in_sales, "Explain any drop in the sales of your innovative product/service" do
+        textarea :drops_in_sales, "Explain any drop in sales or number of units sold" do
           classes "sub-question js-conditional-drop-question"
           rows 5
           words_max 300
@@ -263,6 +265,11 @@ class QAE2014Forms
           classes "sub-question"
           required
 
+          context %(
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete this question.
+            </p>
+          )
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
@@ -287,6 +294,11 @@ class QAE2014Forms
           classes "sub-question"
           required
 
+          context %(
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete this question.
+            </p>
+          )
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
@@ -307,19 +319,7 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :financial_comments, "Additional comments (optional)" do
-          classes "sub-question"
-          rows 5
-          context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
-          words_max 100
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-        end
-
-        options :product_estimated_figures, "Are any of these figures estimated?" do
+        options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
           ref "C 8"
           yes_no
           conditional :innovation_part_of, :single_product_or_service
@@ -336,6 +336,15 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
+        textarea :financial_comments, "Additional comments (optional)" do
+          classes "sub-question"
+          rows 5
+          words_max 100
+          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+        end
+
         textarea :innovation_performance, "Describe how, when, and to what extent the innovation improved the commercial performance of your business." do
           ref "C 9"
           required
@@ -346,7 +355,7 @@ class QAE2014Forms
           words_max 300
         end
 
-        textarea :investments_details, "Please enter details of all your investments in the innovation. <em>Include all investments made both during and prior to your entry period.</em> Also include the year(s) in which they were made." do
+        textarea :investments_details, "Please enter details of all your investments in the innovation. *Include all investments made both during and prior to your entry period.* Also include the year(s) in which they were made." do
           ref "C 10"
           required
           rows 5

@@ -24,9 +24,9 @@ class UserDecorator < ApplicationDecorator
   def role_name
     case object.role.to_s.humanize
     when "Account admin"
-      "Admin and contributer"
+      "Admin and contributor"
     when "Regular"
-      "Contributer"
+      "Contributor"
     else
       object.role.to_s.humanize
     end

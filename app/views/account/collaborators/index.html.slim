@@ -1,5 +1,8 @@
 - provide(:page_content_class, "multi-page page-account")
 
+- content_for :breadcrumbs do
+  li = link_to "Account details", correspondent_details_account_path
+
 header.page-header.group.page-header-over-sidebar
   div
     h1
@@ -28,7 +31,11 @@ header.page-header.group.page-header-over-sidebar
 
             = render "list"
 
-            = link_to "+ Add a collaborator", new_account_collaborator_path, class: "button button-add"
+            = link_to new_account_collaborator_path(form_id: @form_answer), class: "button button-add"
+              - if collaborators.any?
+                ' + Add another collaborator
+              - else
+                ' + Add a collaborator
 
             footer
               nav.pagination role="navigation" aria-label="Pagination"
@@ -36,13 +43,15 @@ header.page-header.group.page-header-over-sidebar
                   li.previous.previous-alternate
                     = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
                       span class="pagination-label"
-                        ' Previous section
+                        ' Back
 
-                  - unless current_user.completed_registration
-                    li.submit
-                      = f.submit "Continue to applications", class: "button"
-                  - else
-                    li.submit
-                      = f.submit "Save and continue", class: "button"
+                  li.submit
+                    - unless current_user.completed_registration
+                        = f.submit "Continue to applications", class: "button"
+                    - else
+                      - if params.has_key? :form_id
+                        = link_to "Save and return", [:award_info, @form_answer.award_type, form_id: @form_answer], class: "button"
+                      - else
+                        = f.submit "Save and continue", class: "button"
 
   = render "accounts/steps_progress_bar"

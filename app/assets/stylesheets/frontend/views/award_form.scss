@@ -11,11 +11,11 @@
 .js-step-link {
   cursor: pointer;
 
-  &.step-errors {
+  &.step-errors a {
     color: $error-colour;
   }
 
-  &.step-current {
+  &.step-current a {
     cursor: default;
     color: $black;
   }
@@ -110,11 +110,6 @@
 
 .form-submit .form-download p {
   @include core-24;
-}
-
-// Make the financial years 5 column slightly bigger to accomodate text
-.question-block .span-2-4 {
-  padding-right: 0;
 }
 
 // Read-only view

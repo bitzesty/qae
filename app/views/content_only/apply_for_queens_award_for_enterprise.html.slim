@@ -31,15 +31,18 @@
           ' The application process
         ol
           li
-            ' Create an account
+            - if user_signed_in?
+              = link_to "Create an account", dashboard_path
+            - else
+              = link_to "Create an account", new_user_registration_path
           li
-            ' Complete the basic eligibility check
+            ' Confirm your email address
           li
             ' Enter your account details
           li
             ' Check your eligibility for the award(s) you want to apply for
           li
-            ' Complete and submit your application(s).
+            ' Complete and submit your application(s)
 
         br
 
@@ -47,13 +50,11 @@
           ' Before you start
 
         .application-notice.help-notice
-          p We recommend that you create an account and complete both of the eligibility checks (basic and award-specific) before you start collecting any detailed information about your organisation.
+          p We recommend that you create an account and complete the eligibility questionnaire before you start collecting any detailed information about your organisation. This is to ensure that your organisation is eligible before you begin the application form.
 
           p.text-underline This will take around fifteen minutes.
 
         br
-
-        p This is to ensure that your organisation is eligible before you begin what can be a lengthy process of filling in the application form.
 
         p All your answers will be saved automatically.
 

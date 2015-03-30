@@ -10,14 +10,13 @@ class QAE2014Forms
         end
 
         header :business_division_header, "" do
+          classes "application-notice help-notice"
           context %(
-            <div class="application-notice help-notice">
-              <p>
-                Where the form refers to your organisation,
-                please enter the details of your division, branch or subsidiary.
-              </p>
-            </div>
-                    )
+            <p>
+              Where the form refers to your organisation,
+              please enter the details of your division, branch or subsidiary.
+            </p>
+          )
           conditional :applying_for, "division branch subsidiary"
         end
 
@@ -34,8 +33,7 @@ class QAE2014Forms
           ref "A 3"
           context %{
             <p>
-              We recommend that you apply as a principal.
-              A principal invoices its customers (or their buying agents) and is the body to receive those payments.
+              We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
             </p>
           }
           yes_no
@@ -54,8 +52,7 @@ class QAE2014Forms
           ref "A 4"
           context %(
             <p>
-              If you don't have a Company/Charity Registration Number please enter 'N/A'.
-              If you're an unregistered subsidiary, please enter your parent company's number.
+              If you don't have a Company/Charity Registration Number please enter 'N/A'. If you're an unregistered subsidiary, please enter your parent company's number.
             </p>
                     )
           style "small"
@@ -149,7 +146,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              <underline>Excluding</underline> suppliers and consultants.
+              <strong>Excluding</strong> suppliers and consultants.
             </p>
                     )
           yes_no
@@ -165,24 +162,22 @@ class QAE2014Forms
         end
 
         header :external_organization_or_individual_info_header_no, "" do
+          classes "application-notice help-notice"
           context %(
-            <div class="application-notice help-notice">
-              <p>
-                We recommend that you notify all the contributors to your product/service/management approach of this entry.
-              </p>
-            </div>
-                    )
+            <p>
+              We recommend that you notify all the contributors to your product/service/management approach of this entry.
+            </p>
+          )
           conditional :external_are_aware_about_award, "no"
         end
 
         header :external_organization_or_individual_info_header_some, "" do
+          classes "application-notice help-notice"
           context %(
-            <div class="application-notice help-notice">
-              <p>
-                We recommend that you notify all the contributors to your product/service/management approach of this entry.
-              </p>
-            </div>
-                    )
+            <p>
+              We recommend that you notify all the contributors to your product/service/management approach of this entry.
+            </p>
+          )
           conditional :external_are_aware_about_award, "some"
         end
 
@@ -191,9 +186,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              If you two or more organisations made a significant contribution to the product/service/management approach,
-              and achieved commercial success, then you should make a joint entry.
-              Each organisation should submit separate, cross-referenced, entry forms.
+              If you two or more organisations made a significant contribution to the product/service/management approach, and achieved commercial success, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
             </p>
                     )
           yes_no
@@ -217,9 +210,10 @@ class QAE2014Forms
           style "small"
         end
 
-        text :website_url, "Website URL" do
+        text :website_url, "Website Address" do
           required
           ref "A 11"
+          form_hint "e.g. www.example.com"
         end
 
         business_sector_dropdown :business_sector, "Business Sector" do
@@ -274,8 +268,10 @@ class QAE2014Forms
           classes "sub-question"
           conditional :applying_for, "organisation"
           context %(
-            <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
-                    )
+            <p>
+              A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.
+            </p>
+          )
           yes_no
         end
 
@@ -286,7 +282,7 @@ class QAE2014Forms
           yes_no
         end
 
-        upload :org_chart, "Upload an organisational chart (optional)." do
+        upload :org_chart, "Upload an organisational chart." do
           ref "A 14"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb.</p>

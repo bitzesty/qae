@@ -1,5 +1,8 @@
 - provide(:page_content_class, "multi-page page-account")
 
+- content_for :breadcrumbs do
+  li = link_to "Account details", correspondent_details_account_path
+
 header.page-header.group.page-header-over-sidebar
   div
     h1
@@ -10,14 +13,11 @@ header.page-header.group.page-header-over-sidebar
     header.page-header.group
       div
         h2
-          ' Collaborators
+          ' Add new collaborator
 
     .article-container
       article.group role="article"
         .inner
-          h2
-            ' Add new collaborator
-
           = render "form"
 
   = render "accounts/steps_progress_bar"

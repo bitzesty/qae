@@ -39,6 +39,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'devise', '~> 3.4'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
+gem 'devise_zxcvbn'
 
 # Pagenation
 gem 'kaminari', '~> 0.16'

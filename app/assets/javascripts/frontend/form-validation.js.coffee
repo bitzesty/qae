@@ -75,20 +75,20 @@ window.FormValidation =
     if question.find(".question-group .question-group").length
       for subquestion in question.find(".question-group .question-group")
         if not @validateSingleQuestion($(subquestion))
-          @log_this(question, "validateRequiredQuestion", "This field is required.")
-          @addErrorMessage($(subquestion), "This field is required.")
+          @log_this(question, "validateRequiredQuestion", "This field is required")
+          @addErrorMessage($(subquestion), "This field is required")
     else
       if not @validateSingleQuestion(question)
-        @log_this(question, "validateRequiredQuestion", "This field is required.")
-        @addErrorMessage(question, "This field is required.")
+        @log_this(question, "validateRequiredQuestion", "This field is required")
+        @addErrorMessage(question, "This field is required")
 
   validateMatchQuestion: (question) ->
     q = question.find(".match")
     match_name = q.data("match")
 
     if q.val() isnt $("input[name='#{match_name}']").val()
-      @log_this(question, "validateMatchQuestion", "Emails don't match.")
-      @addErrorMessage(question, "Emails don't match.")
+      @log_this(question, "validateMatchQuestion", "Emails don't match")
+      @addErrorMessage(question, "Emails don't match")
 
   validateMaxDate: (question) ->
     val = question.find("input[type='text']").val()
@@ -144,8 +144,8 @@ window.FormValidation =
       return
 
     if diffStart < 0 or diffEnd > 0
-      @log_this(question, "validateBetweenDate", "Date should be between #{expDateStart} and #{expDateEnd}.")
-      @addErrorMessage(question, "Date should be between #{expDateStart} and #{expDateEnd}.")
+      @log_this(question, "validateBetweenDate", "Date should be between #{expDateStart} and #{expDateEnd}")
+      @addErrorMessage(question, "Date should be between #{expDateStart} and #{expDateEnd}")
 
   validateNumber: (question) ->
     val = question.find("input")
@@ -156,6 +156,33 @@ window.FormValidation =
     if not val.val().toString().match(@numberRegex) && val.val().toString().toLowerCase().trim() != "n/a"
       @log_this(question, "validateNumber", "Not a valid number")
       @addErrorMessage(question, "Not a valid number")
+
+  validateEmployeeMin: (question) ->
+    for subquestion in question.find("input")
+      shown_question = true
+      for conditional in $(subquestion).parents('.js-conditional-question')
+        if !$(conditional).hasClass('show-question')
+          shown_question = false
+
+      if shown_question
+        subq = $(subquestion)
+        if not subq.val() and question.hasClass("question-required")
+          @log_this(question, "validateEmployeeMin", "This field is required")
+          @appendMessage(subq.closest("label"), "This field is required")
+          @addErrorClass(question)
+          continue
+        else if not subq.val()
+          continue
+
+        if not subq.val().toString().match(@numberRegex)
+          @log_this(question, "validateEmployeeMin", "Not a valid number")
+          @appendMessage(subq.closest("label"), "Not a valid number")
+          @addErrorClass(question)
+        else
+          if parseInt(subq.val()) < 2
+            @log_this(question, "validateEmployeeMin", "Minimum of 2 employees")
+            @appendMessage(subq.closest("label"), "Minimum of 2 employees")
+            @addErrorClass(question)
 
   validateTotalOverseas: (question) ->
     questions = $(".question-block[data-answer='overseas_sales-total-overseas-sales'] .show-question .currency-input")
@@ -178,8 +205,8 @@ window.FormValidation =
 
     if total_doesnt_match
       question_block = $(".question-block[data-answer='overseas_sales-total-overseas-sales']")
-      @log_this(question, "validateTotalOverseas", "These values should equal the sum of direct and indirect overseas sales.")
-      @appendMessage(question_block, "These values should equal the sum of direct and indirect overseas sales.")
+      @log_this(question, "validateTotalOverseas", "These values should equal the sum of direct and indirect overseas sales")
+      @appendMessage(question_block, "These values should equal the sum of direct and indirect overseas sales")
       @addErrorClass(question_block)
       return
 
@@ -193,16 +220,16 @@ window.FormValidation =
       if shown_question
         subq = $(subquestion)
         if not subq.val() and question.hasClass("question-required")
-          @log_this(question, "validateMoneyByYears", "This field is required.")
-          @appendMessage(subq.closest("label"), "This field is required.")
+          @log_this(question, "validateMoneyByYears", "This field is required")
+          @appendMessage(subq.closest("label"), "This field is required")
           @addErrorClass(question)
           continue
         else if not subq.val()
           continue
 
         if not subq.val().toString().match(@numberRegex)
-          @log_this(question, "validateMoneyByYears", "Not a valid currency value.")
-          @appendMessage(subq.closest("label"), "Not a valid currency value.")
+          @log_this(question, "validateMoneyByYears", "Not a valid currency value")
+          @appendMessage(subq.closest("label"), "Not a valid currency value")
           @addErrorClass(question)
 
   validateDateByYears: (question) ->
@@ -217,7 +244,7 @@ window.FormValidation =
 
       if (not day or not month or not year)
         #if question.hasClass("question-required") && errors_container.length < 1
-        #  @appendMessage(q_parent, "This field is required.")
+        #  @appendMessage(q_parent, "This field is required")
         #  @addErrorClass(question)
       else
         complex_date_string = day + "/" + month + "/" + year
@@ -235,8 +262,8 @@ window.FormValidation =
           expDateEnd = dates[1]
 
           if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
-            @log_this(question, "validateDateByYears", "Date should be between #{expDateStart} and #{expDateEnd}.")
-            @appendMessage(q_parent, "Date should be between #{expDateStart} and #{expDateEnd}.")
+            @log_this(question, "validateDateByYears", "Date should be between #{expDateStart} and #{expDateEnd}")
+            @appendMessage(q_parent, "Date should be between #{expDateStart} and #{expDateEnd}")
             @addErrorClass(question)
 
   validateDateStartEnd: (question) ->
@@ -334,6 +361,11 @@ window.FormValidation =
          question.find(".show-question").length > 0
         # console.log "validateTotalOverseas"
         @validateTotalOverseas(question)
+
+      if question.attr("data-answer") == "employees-enter-the-number-of-people-employed-by-your-organisation-in-each-year-of-your-entry" &&
+         question.find(".show-question").length > 0
+        # console.log "validateEmployeeMin"
+        @validateEmployeeMin(question)
 
       if question.find(".validate-date-start-end").size() > 0
         # console.log "validateDateStartEnd"

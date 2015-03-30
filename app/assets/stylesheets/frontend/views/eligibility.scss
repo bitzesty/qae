@@ -40,8 +40,8 @@ article .current-question li {
 
 // Error
 .previous-answer-invalid td {
-  padding-top: 1em;
-  padding-bottom: 0.9em;
+  padding-top: 0.5em;
+  padding-bottom: 0.4em;
   padding-left: 25px;
   background: image-url("icon-important-sm-red.png") no-repeat scroll left center;
   color: $error-colour;
@@ -50,7 +50,10 @@ article .current-question li {
     background-image: image-url("icon-important-sm-red-2x.png");
     background-size: 16px 16px;
   }
+}
 
+.previous-answer-invalid:last-child td {
+  border-bottom: solid 1px $grey-2;
 }
 
 .eligibility-failed {
@@ -76,4 +79,8 @@ article .current-question li {
   input {
     margin-left: 0;
   }
+}
+
+.question-organisation-fulfill-above-exceptions .eligibilty-label {
+  display: none;
 }

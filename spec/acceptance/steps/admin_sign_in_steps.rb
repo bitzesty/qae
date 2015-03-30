@@ -1,11 +1,11 @@
 step "Admin user exists" do
-  @admin = FactoryGirl.create(:admin, password: 'password123')
+  @admin = FactoryGirl.create(:admin, password: "my98ssdkjv9823kds=2")
 end
 
 step "I sign in as admin" do
   visit '/admins/sign_in'
   fill_in 'admin_email', with: @admin.email
-  fill_in 'admin_password', with: 'password123'
+  fill_in 'admin_password', with: "my98ssdkjv9823kds=2"
   click_button 'Log in'
 end
 

@@ -1,3 +1,7 @@
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li = @form.title
+
 form.qae-form.award-form data-autosave-url=autosave_url(@form_answer) action=submit_form_url(@form_answer) method="POST" data-attachments-url=attachments_url(@form_answer)
   input name="authenticity_token" type="hidden" value=form_authenticity_token
 
@@ -30,15 +34,13 @@ form.qae-form.award-form data-autosave-url=autosave_url(@form_answer) action=sub
 
         - step_letters = ["A", "B", "C", "D", "E", "F"]
         li.js-step-condition
-          span.open
-            = link_to "#", class: "dropdown-toggle dropdown-active" do
-              span.step-number
-                b.caret
-                ' Form
-            ul.dropdown-menu
+          span
+            span.step-number.text-black
+              ' Form
+            ul
               - for step in @form.steps do
                 li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
-                  span
+                  = link_to result_form_award_eligibility_url(form_id: @form_answer.id, anchor: step.title.html_safe.parameterize)
                     span.step-number
                       ' #{step_letters[step.index]}.
                     = step.short_title.html_safe

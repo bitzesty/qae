@@ -1,3 +1,5 @@
+$black-true: #000;
+
 // Sub question style
 .sub-question h2 {
   @include bold-19;
@@ -166,7 +168,6 @@ textarea {
 
   .span-1 &,
   .span-2 &,
-  .span-2-4 &,
   .span-3 &,
   .span-4 &,
   .span-5 &,
@@ -192,7 +193,6 @@ textarea {
   &,
   .span-1,
   .span-2,
-  .span-2-4,
   .span-3,
   .span-4,
   .span-5,
@@ -235,7 +235,6 @@ textarea {
 
   .span-1,
   .span-2,
-  .span-2-4,
   .span-3,
   .span-4,
   .span-5,
@@ -262,15 +261,6 @@ textarea {
 textarea {
   width: 100%;
   resize: vertical;
-}
-// Textarea autoResizer line height to match textareas
-.hiddendiv {
-  @include core-16($line-height: (20 / 16));
-  position: fixed;
-  top: -100000px;
-  left: -100000px;
-  z-index: -1;
-  visibility: hidden;
 }
 
 // Fix file input vertical alignment
@@ -395,7 +385,6 @@ input[type="file"] {
 
   .span-1 label,
   .span-2 label,
-  .span-2-4 label,
   .span-3 label,
   .span-4 label,
   .span-5 label,
@@ -409,6 +398,10 @@ input[type="file"] {
     @media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
       display: block;
     }
+  }
+
+  .span-financial {
+    margin-bottom: $gutter-half;
   }
 
   .question-group + .hidden-hint {
@@ -444,6 +437,10 @@ input[type="file"] {
 
 // Large buttons
 .button {
+  &:visited {
+    color: $white !important;
+  }
+
   &.large {
     @include core-24($line-height: (16 / 24));
     padding: 0.45em 0.5em 0.45em 0.5em;
@@ -693,6 +690,10 @@ input[type="file"] {
     box-shadow: none;
   }
 
+  &:visited {
+    color: $black !important;
+  }
+
   &:hover {
     border-color: $black;
   }
@@ -739,9 +740,8 @@ input[type="file"] {
   }
 }
 
+.pagination .button.button-alt,
 .button-alt {
-  @include core-16;
-  padding: (12px $gutter-half $gutter-one-third $gutter-half);
   border-color: $black;
 
   &,
@@ -775,6 +775,11 @@ input[type="file"] {
   }
 }
 
+.button-alt {
+  @include core-16;
+  padding: (12px $gutter-half $gutter-one-third $gutter-half);
+}
+
 .js-default-reached .js-remove-link {
   display: none !important;
 }
@@ -782,13 +787,17 @@ input[type="file"] {
 // Styles and positions submit button in pagination
 .pagination {
   li.previous-alternate {
-    a {
-      margin: $gutter 0 0.5em 0;
-      padding: 0;
+    width: 120px;
 
-      &:before {
-        display: none;
-      }
+    @media (max-width: 740px) {
+      width: 100%;
+    }
+
+    a {
+      margin: 25px 0;
+      margin-bottom: 0;
+      padding: 0;
+      padding-left: 2.2em;
 
       &:hover {
         background: none;
@@ -799,7 +808,38 @@ input[type="file"] {
       }
 
       .pagination-label {
-        @include core-19;
+        @include core-24;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  // Save and quit link next to form submit
+  li.save-quit-link {
+    width: 42%;
+    float: right;
+
+    @media (max-width: 740px) {
+      width: 100%;
+      margin-top: 1em;
+      float: none;
+    }
+
+    a {
+      margin: 25px 0;
+      margin-bottom: 0;
+      padding: 0;
+
+      &:hover {
+        background: none;
+
+        .pagination-label {
+          text-decoration: none;
+        }
+      }
+
+      .pagination-label {
+        @include core-24;
         text-decoration: underline;
       }
     }
@@ -807,8 +847,13 @@ input[type="file"] {
 
   li.submit {
     float: right;
-    width: 51%;
+    width: 36%;
     margin-top: 1em;
+
+    @media (max-width: 740px) {
+      width: 100%;
+      float: none;
+    }
 
     a,
     button {
@@ -827,19 +872,18 @@ input[type="file"] {
     @include ie(6) {
       padding: 0.45em 0.5em 0.62em 0.5em;
     }
+
+    &.button-alt {
+      border: 1px solid $black-true;
+      box-shadow: 0 2px 0 $black-true;
+
+      &:active {
+        box-shadow: 0 0 0 $black-true;
+      }
+    }
   }
 }
 
-// Save and quit link next to form submit
-.save-quit-link {
-  @include core-24;
-  display: inline-block;
-  margin: 0.2em 0;
-
-  @media (max-width: 640px) {
-    margin: 1em 0;
-  }
-}
 .form-submit .pull-right {
   float: right;
 

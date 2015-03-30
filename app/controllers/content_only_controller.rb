@@ -22,6 +22,14 @@ class ContentOnlyController < ApplicationController
                   :award_info_promotion
                 ]
 
+  before_action :get_collaborators,
+                only: [
+                  :award_info_innovation,
+                  :award_info_trade,
+                  :award_info_development,
+                  :award_info_promotion
+                ]
+
   before_action :landing_page,
                 only: [
                   :home,
@@ -54,6 +62,10 @@ class ContentOnlyController < ApplicationController
     @form = @form_answer.award_form.decorate(
       answers: HashWithIndifferentAccess.new(@form_answer.document)
     )
+  end
+
+  def get_collaborators
+    @collaborators = current_user.account.collaborators_without(current_user)
   end
 
   def landing_page

@@ -13,6 +13,24 @@ class QAE2014Forms
 
             <p>
               <strong>
+                Who should I choose to write letters of support?
+              </strong>
+            </p>
+
+            <p>
+              Letters of support should be from those with first-hand knowledge of the nominee’s contribution to enterprise promotion and the impact their work has had on others. This could be colleagues, collaborators, or those who have benefitted from their work. You, the nominator, may not write a letter of support.
+            </p>
+            <p>
+              At least one letter should be from a large organisation (eg. employer, nonprofit, college, local authority) able to provide an assessment of the extent to which the nominee’s contribution sets them aside from their peers.
+            </p>
+            <p>
+              When selecting supporters, you should cover a variety of the nominee's activities, and a variety of perspectives on those activities, where possible.
+            </p>
+
+            <br>
+
+            <p>
+              <strong>
                 How does the letters of support system work?
               </strong>
             </p>
@@ -29,26 +47,10 @@ class QAE2014Forms
             <p>
               Supporters are much more likely to submit letters promptly if you follow up our initial email by phoning them yourself.
             </p>
-            <p class="text-underline">
-              If you have supporters who would rather write a hard copy letter, please see question D2.
-            </p>
-
-            <br>
-
             <p>
               <strong>
-                Who should I choose to write letters of support?
+                If you have supporters who would rather write a hard copy letter, please see question D2.
               </strong>
-            </p>
-
-            <p>
-              Letters of support should be from those with first-hand knowledge of the nominee’s contribution to enterprise promotion and the impact their work has had on others. This could be colleagues, collaborators, or those who have benefitted from their work. You, the nominator, may not write a letter of support.
-            </p>
-            <p>
-              At least one letter should be from a large organisation (eg. employer, nonprofit, college, local authority) able to provide an assessment of the extent to which the nominee’s contribution sets them aside from their peers.
-            </p>
-            <p>
-              When selecting supporters, you should cover a variety of the nominee's activities, and a variety of perspectives on those activities, where possible.
             </p>
 
             <br>
@@ -93,7 +95,7 @@ class QAE2014Forms
           default 1
         end
 
-        options :manually_upload, "Would you like to manually upload any of your letters of support" do
+        options :manually_upload, "Would you like to manually upload any of your letters of support?" do
           ref "D 2"
           required
           yes_no
@@ -107,7 +109,13 @@ class QAE2014Forms
         supporters :supporter_letters_list, "Manual upload" do
           context %(
             <p>
-              You should first confirm that your chosen supporter(s) are willing and able to write a letter of support for your nominee, then send them the letter of support guidelines below.
+              Here you can manually upload letters of support up to 5mb in size. This is for any of your supporters who would rather write a hard copy letter and send it to you directly.
+            </p>
+          )
+
+          hint "I want to manually upload my letters of support.", %(
+            <p>
+              You should first confirm that your chosen supporter(s) are willing and able to write a letter of support for your nominee, then <strong>send them the letter of support guidelines below</strong>.
             </p>
             <p>
               Make sure they submit the letter to you well before the nomination deadline.
@@ -117,9 +125,6 @@ class QAE2014Forms
             </p>
             <p>
               If you haven't already, please see the guidance at the top of this page for information on choosing supporters.
-            </p>
-            <p>
-              Here you can manually upload letters of support up to 5mb in size.
             </p>
           )
 
@@ -133,12 +138,14 @@ class QAE2014Forms
             <p>
               Ideally, we are looking for evidence that demonstrates the clear impact of the nominee’s activities in enterprise promotion:
             </p>
-            <p>
-              - Qualitative and quantitative evidence of the impact resulting from the nominee’s services to a particular field, area, group, community, location or society as a whole. Financials are not expected, but some quantifiable data is e.g. a number of schools visited, length of time involved or number of enterprises helped to set up and percentage of those that are still trading.
-            </p>
-            <p>
-              - A personal perspective from those who have benefited from, or had direct experience of, the success of the nominee’s work, including the impact it has had on them or their business.
-            </p>
+            <ul>
+              <li>
+                Qualitative and quantitative evidence of the impact resulting from the nominee’s services to a particular field, area, group, community, location or society as a whole. Financials are not expected, but some quantifiable data is e.g. a number of schools visited, length of time involved or number of enterprises helped to set up and percentage of those that are still trading.
+              </li>
+              <li>
+                A personal perspective from those who have benefited from, or had direct experience of, the success of the nominee’s work, including the impact it has had on them or their business.
+              </li>
+            </ul>
             <p>
               If you are writing on behalf of an organisation, you should be able to provide an assessment of the extent to which the nominee’s activities set them apart from their peers.
             </p>

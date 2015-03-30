@@ -15,11 +15,11 @@ $grey-dark: #555;
   }
 
   .hint {
+    display: block;
+    margin-top: 5px;
     clear: left;
     color: #555;
-    display: block;
     font-size: 14px;
-    font-style: italic;
   }
 }
 

@@ -11,7 +11,7 @@ class QAE2014Forms
           required
           option "product service", "A product/service"
           option "management approach", "A management approach"
-          option "both", "Both the above"
+          option "both", "Both of the above"
         end
 
         textarea :development_desc_short, "Briefly describe your product/service/management approach" do
@@ -48,17 +48,19 @@ class QAE2014Forms
           ref "B 5"
         end
 
-        textarea :environmental_contribution, "Explain how your approach contributes to environmental dimensions of sustainable development." do
+        textarea :environmental_contribution, "Explain how it contributes to environmental dimensions of sustainable development." do
           required
           classes "sub-question"
           context %(
-            <p>'Environmental dimensions' means respecting the limits of the planet’s environment, resources and biodiversity e.g. resource efficiency, waste reduction and biological diversity/productivity.</p>
-                    )
+            <p>
+              Environmental dimensions' means respecting the limits of the planet’s environment, resources and biodiversity e.g. resource efficiency, waste reduction and biological diversity/productivity.
+            </p>
+          )
           rows 5
           words_max 750
         end
 
-        textarea :social_contribution, "Explain how your approach contributes to social dimensions of sustainable development." do
+        textarea :social_contribution, "Explain how it contributes to social dimensions of sustainable development." do
           classes "sub-question"
           required
           context %(
@@ -68,7 +70,7 @@ class QAE2014Forms
           words_max 750
         end
 
-        textarea :economic_contribution, "Explain how your approach contributes to economic dimensions of sustainable development." do
+        textarea :economic_contribution, "Explain how it contributes to economic dimensions of sustainable development." do
           classes "sub-question"
           required
           context %{
@@ -78,7 +80,7 @@ class QAE2014Forms
           words_max 750
         end
 
-        textarea :leadership_contribution, "Explain how your approach contributes to leadership dimensions of sustainable development." do
+        textarea :leadership_contribution, "Explain how it contributes to leadership dimensions of sustainable development." do
           classes "sub-question"
           required
           context %(

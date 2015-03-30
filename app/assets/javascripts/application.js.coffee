@@ -10,6 +10,8 @@
 #= require govuk_toolkit
 #= require mobile
 #= require browser-check
+#= require vendor/zxcvbn
+#= require vendor/jquery-debounce
 #= require_tree .
 
 jQuery ->
@@ -301,7 +303,7 @@ jQuery ->
 
       if link
         div = $("<div>")
-        label = $("<label>").text('Website link')
+        label = $("<label>").text('Website address')
         input = $("<input class=\"medium\" type=\"text\">").
           prop('name', "#{form_name}[#{name}][][link]")
         label.append(input)
@@ -379,11 +381,21 @@ jQuery ->
 
   # Show innovation amount info when the amount is greater than 1 on innovation eligibility
   if $(".innovative_amount_input").size() > 0
-    $(".innovative_amount_input").bind "propertychange change click keyup input paste", () ->
+    $(".innovative_amount_input").bind "propertychange change click keyup input paste", ->
       if $(this).val() > 1
         $("#innovative-amount-info").removeClass("visuallyhidden")
       else
         $("#innovative-amount-info").addClass("visuallyhidden")
+
+  # Show trade org fulfilled info when checked yes
+  trade_org_q = ".question-organisation-fulfill-above-exceptions"
+  if $(trade_org_q).size() > 0
+    $("#{trade_org_q} input[type='radio']").bind "propertychange change click keyup input paste", ->
+      radio_val = $("#{trade_org_q} input[type='radio']:checked").val()
+      if radio_val == "yes"
+        $("#trade-org-fulfilled-info").removeClass("visuallyhidden")
+      else
+        $("#trade-org-fulfilled-info").addClass("visuallyhidden")
 
   # Show trade epxiry info if it isn't 2015
   if $(".trade-expiry-input").size() > 0
@@ -517,26 +529,26 @@ jQuery ->
     replaceEntryPeriodText()
 
   # Auto tab on date input entry
-  $(".date-input input").on 'keyup', (e) ->
-    this_label = $(this).closest("label")
-    new_input = ""
-    # if it isn't the year input accept 2 numbers (48-57) or moving right (39)
-    if this_label.index() != $(this).closest(".date-input").find("label:last-child").index()
-      if (e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105) || e.keyCode == 39
-        if $(this).val().length == 2
-          # focus on the next input
-          new_input = this_label.next().find("input")
-    # if it isn't the day input you can go backwards by backspacing (8) or moving left (37)
-    if this_label.index() != $(this).closest(".date-input").find("label:first-child").index()
-      if e.keyCode == 8 || e.keyCode == 37
-        if $(this).val().length == 0
-          # focus on the next input
-          new_input = this_label.prev().find("input")
-    if new_input != ""
-      new_input_text = new_input.val()
-      new_input.val("")
-      new_input.focus()
-      new_input.val(new_input_text)
+  #$(".date-input input").on 'keyup', (e) ->
+  #  this_label = $(this).closest("label")
+  #  new_input = ""
+  #  # if it isn't the year input accept 2 numbers (48-57) or moving right (39)
+  #  if this_label.index() != $(this).closest(".date-input").find("label:last-child").index()
+  #    if (e.which >= 48 && e.which <= 57) || (e.which >= 96 && e.which <= 105) || e.keyCode == 39
+  #      if $(this).val().length == 2
+  #        # focus on the next input
+  #        new_input = this_label.next().find("input")
+  #  # if it isn't the day input you can go backwards by backspacing (8) or moving left (37)
+  #  if this_label.index() != $(this).closest(".date-input").find("label:first-child").index()
+  #    if e.keyCode == 8 || e.keyCode == 37
+  #      if $(this).val().length == 0
+  #        # focus on the next input
+  #        new_input = this_label.prev().find("input")
+  #  if new_input != ""
+  #    new_input_text = new_input.val()
+  #    new_input.val("")
+  #    new_input.focus()
+  #    new_input.val(new_input_text)
 
   # only accept numbers(48-47), backspace(8), tab(9), cursor keys left(37) and right(39) and enter for submitting
   $(".date-input input").on 'keypress keydown keyup', (e) ->

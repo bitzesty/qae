@@ -2,6 +2,9 @@ require 'rails_helper'
 
 RSpec.describe Eligibility::Trade, :type => :model do
   let(:account) { FactoryGirl.create(:account) }
+  before do
+    create :basic_eligibility, account: account
+  end
 
   context 'answers storage' do
     it 'saves and reads answers' do
@@ -30,7 +33,8 @@ RSpec.describe Eligibility::Trade, :type => :model do
 
     it 'is eligible when all questions are answered correctly' do
       eligibility.sales_above_100_000_pounds = 'yes'
-      eligibility.any_dips_over_the_last_three_years = 'no'
+      eligibility.direct_overseas_100_000_pounds = 'yes'
+      eligibility.any_dips_over_the_last_three_years = false
       eligibility.growth_over_the_last_three_years = true
       eligibility.current_holder_of_qae_for_trade = false
 
@@ -51,7 +55,7 @@ RSpec.describe Eligibility::Trade, :type => :model do
     let(:eligibility) { Eligibility::Trade.new(account: account) }
 
     it 'returns all questions for new eligibility' do
-      expect(eligibility.questions).to eq([:sales_above_100_000_pounds, :any_dips_over_the_last_three_years, :growth_over_the_last_three_years, :current_holder_of_qae_for_trade, :qae_for_trade_expiery_date])
+      expect(eligibility.questions).to eq([:sales_above_100_000_pounds, :direct_overseas_100_000_pounds, :organisation_fulfill_above_exceptions, :any_dips_over_the_last_three_years, :growth_over_the_last_three_years])
     end
 
     it 'does not return QAE expiery date if account is not a QAE holder' do

@@ -8,7 +8,8 @@ class Assessor < ActiveRecord::Base
   # to specific category (award type), they act per specific form answer.
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
+         :zxcvbnable
 
   validates :first_name, :last_name, presence: true
   has_many :form_answer_attachments, as: :attachable

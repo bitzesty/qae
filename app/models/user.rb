@@ -9,7 +9,8 @@ class User < ActiveRecord::Base
   end
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
+         :zxcvbnable
 
   attr_accessor :agreed_with_privacy_policy
   attr_accessor :current_password

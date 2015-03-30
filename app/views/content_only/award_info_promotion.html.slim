@@ -1,3 +1,8 @@
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li
+    span Enterprise Promotion Award Nomination
+
 header.page-header.group.page-header-over-sidebar
   div
     h1
@@ -11,6 +16,36 @@ header.page-header.group.page-header-over-sidebar
           .inner
             .application-notice.help-notice.big-notice
               p Your nominee is eligible for an Enterprise Promotion Award.
+
+            h2 Before you begin:
+            ul
+              li
+                ' For planning purposes you can
+                = link_to "download a blank PDF of the entire nomination form", users_form_answer_path(@form_answer, format: :pdf)
+                ' . However, all nominations must be completed online.
+
+              - if @collaborators.any?
+                li
+                  ' You have already added these people as collaborators:
+                  ul
+                    - @collaborators.each do |collaborator|
+                      li
+                        - if collaborator.first_name.present?
+                          = collaborator.full_name
+                        - else
+                          ' Anonymous
+              li
+                ' You can
+                = link_to account_collaborators_path(form_id: @form_answer.id)
+                  - if @collaborators.any?
+                    ' add more collaborators
+                  - else
+                    ' add a collaborator
+                '  to help you fill out this nomination. But be aware that
+                strong they are able to see and edit all of your nominations
+                ' .
+
+            br
 
             h2 What you will need:
             h3 Section A: Nominee
@@ -26,33 +61,28 @@ header.page-header.group.page-header-over-sidebar
             p A selection of candidates who could write letters of support to aid your nomination.
 
             br
-            ul
-              li
-                ' For planning purposes you can
-                = link_to "download a PDF of the entire nomination form", users_form_answer_path(@form_answer, format: :pdf)
-                ' . However, the nomination has to be filled out online.
-              li
-                ' You can
-                = link_to "add a collaborator", account_collaborators_path
-                '  to help you fill out the nomination. But be aware that
-                span.text-underline they will be able to see and edit all of your applications
-                ' .
-            br
 
             h2 Nomination guidance:
             ul
-              li The deadline for submissions is 23:59 on the last working day of September.
+              li
+                ' The deadline for submissions is
+                = submission_deadline.decorate.formatted_trigger_time
+                ' .
               li Submitted information is only shared with those involved in the assessment process.
               li Try to take full advantage of the word limits. However, the quality of your answer is more important than its length.
               li All questions are mandatory unless stated otherwise. But you can skip questions and return to them later.
               li You don’t need to complete the form in one sitting.
+              li Question numbers aren’t always consecutive, as we show and hide different questions depending on your answers.
               li Your answers are saved automatically as you go.
 
             br
 
             p#get-started.get-started.group
               = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
-                ' Start nomination
+                ' Continue
                 / TODO if application is started
                 / ' Continue application
+                / - else
+                / ' Start nomination
+
   = render "steps_progress_bar", cant_access_future: true

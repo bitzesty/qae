@@ -9,6 +9,7 @@ class QAE2014Forms
         dropdown :head_of_bussines_title, "Title" do
           required
           classes "regular-question"
+          option "", "Select"
           option "prof", "Prof"
           option "dr", "Dr"
           option "mr", "Mr"
@@ -49,35 +50,34 @@ class QAE2014Forms
 
         confirm :agree_to_be_contacted, "Confirmation of contact" do
           ref "F 3"
-          text "I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info)."
-        end
-
-        confirm :agree_to_be_contacted_by_department, "Confirmation of contact by Department of Business, Innovation and Skills" do
-          ref "F 4"
-          text "I am happy to be contacted by the Department of Business, Innovation and Skills."
+          text %{
+            I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).
+            <br>
+            <br>
+            I am happy to be contacted by the Department of Business, Innovation and Skills.
+          }
         end
 
         confirm :entry_confirmation, "Confirmation of entry" do
-          ref "F 5"
+          ref "F 4"
           required
           text %(
             By ticking this box, I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
             <br>
             <br>
-            I am not aware of any matter which might cast doubt upon the worthiness of this business unit to receive a Queen’s Award. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety.
-                    )
+            I am not aware of any matter which might cast doubt upon the worthiness of this business unit to receive a Queen’s Award. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety. 
+          )
         end
 
         submit "Submit application" do
           notice %(
-            <p>If you’ve answered all the questions, you can submit your application now. You will be able to edit it any time before 23:59 on the last working day of September.</p>
+            <p>
+              If you have answered all the questions, you can submit your application now. You will be able to edit it any time before 23:59 on the last working day of September.
+            </p>
             <p>
               If you are not ready to submit yet, you can save your application and come back later.
             </p>
-            <p>
-              You can still edit your submitted application at any time before 23:59 on the last working day of September.
-            </p>
-                    )
+          )
           style "large"
         end
       end

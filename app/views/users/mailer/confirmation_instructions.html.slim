@@ -1,8 +1,16 @@
 p
-  | Welcome 
+  ' Welcome
   = @email
-  | !
+  ' !
+p You have signed up for a Queens' Awards for Enterprise account.
+
 p
-  | You can confirm your account email through the link below:
-p
-  = link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token)
+  ' You can
+  = link_to "confirm your email account here", confirmation_url(@resource, confirmation_token: @token)
+  ' .
+
+p If you've not signed up for an account with us, you can ignore this email.
+
+p Thank you,
+
+p The Queen's Awards Office

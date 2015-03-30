@@ -1,10 +1,16 @@
+- if @form_answer.award_type == "promotion"
+  - page_title = Enterprise Promotion Award Nomination
+- else
+  - page_title =  "#{@form_answer.decorate.award_type.split.map(&:capitalize)*' '} Award Application"
+
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li
+    span = page_title
+
 header.page-header.group.page-header-over-sidebar
   div
-    h1
-      - if @form_answer.award_type == "promotion"
-        ' Enterprise Promotion Award Nomination
-      - else
-        = "#{@form_answer.decorate.award_type.split.map(&:capitalize)*' '} Award Application"
+    h1 = page_title
 
 .steps-progress-container
   .steps-progress-content
@@ -19,8 +25,8 @@ header.page-header.group.page-header-over-sidebar
           - if step && step.to_s != "wicked_finish"
             = simple_form_for @eligibility, as: :eligibility, url: wizard_path(step, form_id: @form_answer.id, skipped: params[:skipped]), method: :put do |f|
               .current-question.qae-form#current-question
-                .question
-                  label for="eligibility_#{step.to_s}"
+                .question class="question-#{step.to_s.gsub!(/_/, '-')}"
+                  label.eligibilty-label for="eligibility_#{step.to_s}"
                     h2
                       = @eligibility.class.label(step)
                   - if @eligibility.is_a?(Eligibility::Basic)
@@ -34,6 +40,12 @@ header.page-header.group.page-header-over-sidebar
             .previous-answers
               - if @form_answer.eligible?
                 p Before you start your application, please check your eligibility answers are correct.
+
+                - if (!step || step.to_s == "wicked_finish")
+                  br
+                  = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
+                  br
+
               - else
                 .eligibility-failed
                   p
@@ -59,12 +71,7 @@ header.page-header.group.page-header-over-sidebar
         = render "previous_answers"
 
         - if (!step || step.to_s == "wicked_finish")
-          - if @form_answer.eligible?
-            .inner.step.current
-              .previous-answers
-                .text-right
-                  = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
-          - else
+          - unless @form_answer.eligible?
             footer
               nav.pagination role="navigation" aria-label="Pagination"
                 ul.group
@@ -72,7 +79,5 @@ header.page-header.group.page-header-over-sidebar
                     = link_to dashboard_path, rel: "prev", title: "Navigate to previous part" do
                       span.pagination-label
                         ' Back
-                      span.pagination-part-title
-                        ' Dashboard
 
   = render "steps_progress_bar", cant_access_future: true, previous_questions: step

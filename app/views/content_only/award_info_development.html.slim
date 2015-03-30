@@ -1,3 +1,8 @@
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li
+    span Sustainable Development Award Application
+
 header.page-header.group.page-header-over-sidebar
   div
     h1
@@ -12,6 +17,36 @@ header.page-header.group.page-header-over-sidebar
             .application-notice.help-notice.big-notice
               p You are eligible to begin your application for a Sustainable Development Award.
 
+            h2 Before you begin:
+            ul
+              li
+                ' For planning purposes you can
+                = link_to "download a blank PDF of the entire application form", users_form_answer_path(@form_answer, format: :pdf)
+                ' . However, all applications must be completed online.
+
+              - if @collaborators.any?
+                li
+                  ' You have already added these people as collaborators:
+                  ul
+                    - @collaborators.each do |collaborator|
+                      li
+                        - if collaborator.first_name.present?
+                          = collaborator.full_name
+                        - else
+                          ' Anonymous
+              li
+                ' You can
+                = link_to account_collaborators_path(form_id: @form_answer.id)
+                  - if @collaborators.any?
+                    ' add more collaborators
+                  - else
+                    ' add a collaborator
+                '  to help you fill out this application. But be aware that
+                strong they are able to see and edit all of your applications
+                ' .
+
+            br
+
             h2 What you will need:
             h3 Section A: Company Info
             p Basic information about your organisation and its structure.
@@ -23,34 +58,29 @@ header.page-header.group.page-header-over-sidebar
             p Detailed financial information.
 
             br
-            ul
-              li
-                ' For planning purposes you can
-                = link_to "download a PDF of the entire application form", users_form_answer_path(@form_answer, format: :pdf)
-                ' . However, the application has to be filled out online.
-              li
-                ' You can
-                = link_to "add a collaborator", account_collaborators_path
-                '  to help you fill out the application. But be aware that
-                span.text-underline they will be able to see and edit all of your applications
-                ' .
 
             h2 Application guidance:
             ul
-              li The deadline for submissions is 23:59 on the last working day of September.
+              li
+                ' The deadline for submissions is
+                = submission_deadline.decorate.formatted_trigger_time
+                ' .
               li Your information is only shared with those involved in the assessment process.
               li Try to take full advantage of the word limits. However, the quality of your answer is more important than its length.
               li All questions are mandatory unless stated otherwise.
               li It can take up to 50 man-hours to complete the entry form, so you aren’t expected to complete it in one sitting.
               li You can skip questions and return to them later.
+              li Question numbers aren’t always consecutive, as we show and hide different questions depending on your answers.
               li Your answers are saved automatically as you go.
 
             br
 
             p#get-started.get-started.group
               = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
-                ' Start application
+                ' Continue
                 / TODO if application is started
                 / ' Continue application
+                / - else
+                / ' Start application
 
   = render "steps_progress_bar", cant_access_future: true
