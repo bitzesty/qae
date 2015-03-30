@@ -19,7 +19,7 @@ describe Users::CollaborationMailer do
       end
 
       let(:new_user) { true }
-      let(:generated_password) { "strongpass" }
+      let(:generated_password) { "my98ssdkjv9823kds=2" }
       let(:confirmation_token) { "12345678" }
 
       let(:mail) {

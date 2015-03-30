@@ -70,13 +70,14 @@ $ cap staging deploy
 $ cap production deploy
 ```
 
-#### Running of custom rake task on server
-dev / demo servers:
-```
-$ cap dev cap_rake:invoke task="db:migrate" OLD_SERVERS=true
+#### For running custom rake tasks you can use:
+
+```ruby
+  cap env deploy:invoke[namespace:task_name]
 ```
 
-AWS servers (staging/ production):
-```
-$ cap dev cap_rake:invoke task="db:migrate"
-```
+For example:
+
+```ruby
+  cap dev deploy:invoke[db:migrate] OLD_SERVERS=true
+  cap staging deploy:invoke[db:migrate]

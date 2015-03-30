@@ -1,20 +1,20 @@
 step "a user exists" do
-  @user = FactoryGirl.create(:user, password: 'password123')
+  @user = FactoryGirl.create(:user, password: "my98ssdkjv9823kds=2")
 end
 
 step "an account user exists" do
-  FactoryGirl.create(:user, password: 'password123', role: 'regular', account: @user.account)
+  FactoryGirl.create(:user, password: "my98ssdkjv9823kds=2", role: 'regular', account: @user.account)
 end
 
 step "Account admin user exists" do
-  @user = FactoryGirl.create(:user, password: 'password123', role: 'account_admin')
+  @user = FactoryGirl.create(:user, password: "my98ssdkjv9823kds=2", role: 'account_admin')
 end
 
 step "I sign in as user" do
   visit '/users/sign_in'
 
   fill_in 'user_email', with: @user.email
-  fill_in 'user_password', with: 'password123'
+  fill_in 'user_password', with: "my98ssdkjv9823kds=2"
   click_button 'Log in'
 end
 
