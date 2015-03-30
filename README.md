@@ -69,3 +69,14 @@ $ cap staging deploy
 ```
 $ cap production deploy
 ```
+
+#### Running of custom rake task on server
+dev / demo servers:
+```
+$ cap dev cap_rake:invoke task="db:migrate" OLD_SERVERS=true
+```
+
+AWS servers (staging/ production):
+```
+$ cap dev cap_rake:invoke task="db:migrate"
+```
