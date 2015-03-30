@@ -447,6 +447,10 @@ header.page-header aside .inner {
       color: $grey-1;
     }
 
+    a:visited {
+      color: $grey-1 !important;
+    }
+
     > a,
     > span {
       display: block;
@@ -463,6 +467,10 @@ header.page-header aside .inner {
       a {
         color: $govuk-blue;
       }
+
+      a:visited {
+        color: $govuk-blue !important;
+      }
     }
 
     &.step-current {
@@ -471,6 +479,10 @@ header.page-header aside .inner {
       &,
       a {
         color: $black;
+      }
+
+      a:visited {
+        color: $black !important;
       }
 
       > a,
