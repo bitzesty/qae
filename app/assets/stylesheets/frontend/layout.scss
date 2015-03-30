@@ -261,8 +261,8 @@ header.page-header div {
 }
 
 // Alpha tag next to title
-.alpha-tag {
-  @include phase-tag(alpha);
+.beta-tag {
+  @include phase-tag(beta);
   margin-left: 4px;
 
   @media (min-width: 641px) {
