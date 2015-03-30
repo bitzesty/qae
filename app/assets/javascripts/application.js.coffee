@@ -388,9 +388,10 @@ jQuery ->
         $("#innovative-amount-info").addClass("visuallyhidden")
 
   # Show trade org fulfilled info when checked yes
-  if $(".question-organisation-fulfill-above-exceptions").size() > 0
-    $(".question-organisation-fulfill-above-exceptions input[type='radio']").bind "propertychange change click keyup input paste", () ->
-      radio_val = $(".question-organisation-fulfill-above-exceptions input[type='radio']:checked").val()
+  trade_org_q = ".question-organisation-fulfill-above-exceptions"
+  if $(trade_org_q).size() > 0
+    $("#{trade_org_q} input[type='radio']").bind "propertychange change click keyup input paste", () ->
+      radio_val = $("#{trade_org_q} input[type='radio']:checked").val()
       if radio_val == "yes"
         $("#trade-org-fulfilled-info").removeClass("visuallyhidden")
       else
