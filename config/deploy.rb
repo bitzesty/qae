@@ -57,15 +57,16 @@ namespace :deploy do
 
   after "deploy:updated",  "whenever:update_crontab"
   after "deploy:reverted", "whenever:update_crontab"
-end
 
-# Invoke any rake task via capistrano
-# Examples:
-#   cap staging cap_rake:invoke task="school:regenerate_letters school_id=1"
-namespace :cap_rake do
-  desc "Invoke rake task"
-  task :invoke, roles: :backend do
-    run "cd #{current_path} && bundle exec rake #{ENV['task']} RAILS_ENV=#{rails_env}"
+  desc 'Invoke a rake command on the remote server'
+  task :invoke, [:command] => 'deploy:set_rails_env' do |task, args|
+    on primary(:app) do
+      within current_path do
+        with rails_env: fetch(:rails_env) do
+          rake args[:command]
+        end
+      end
+    end
   end
 end
 
