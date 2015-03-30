@@ -26,10 +26,6 @@ class FormAnswerStatus::AssessorFilter
       label: "Not Eligible",
       states: [:not_eligible]
     },
-    withdrawn: {
-      label: "Withdrawn",
-      states: [:withdrawn]
-    },
     submitted: {
       label: "Submitted",
       states: [:submitted]
