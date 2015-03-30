@@ -40,6 +40,12 @@ header.page-header.group.page-header-over-sidebar
             .previous-answers
               - if @form_answer.eligible?
                 p Before you start your application, please check your eligibility answers are correct.
+
+                - if (!step || step.to_s == "wicked_finish")
+                  br
+                  = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
+                  br
+
               - else
                 .eligibility-failed
                   p
@@ -65,12 +71,7 @@ header.page-header.group.page-header-over-sidebar
         = render "previous_answers"
 
         - if (!step || step.to_s == "wicked_finish")
-          - if @form_answer.eligible?
-            .inner.step.current
-              .previous-answers
-                .text-right
-                  = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
-          - else
+          - unless @form_answer.eligible?
             footer
               nav.pagination role="navigation" aria-label="Pagination"
                 ul.group
