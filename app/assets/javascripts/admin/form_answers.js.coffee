@@ -141,9 +141,10 @@ changeRagStatus = ->
     rag_status.find(".rag-text").text($(this).find(".rag-text").text())
 
 editFormAnswerAutoUpdate = ->
-  $("#form_answer_sic_code").on "change", ->
-    that = $(this)
-    form = that.parents("form")
+  $(".sic-code .form-save-link").on "click", (e) ->
+    e.preventDefault()
+    that = $("#form_answer_sic_code")
+    form = $(".edit_form_answer")
     $.ajax
       action: form.attr("action")
       data: form.serialize()

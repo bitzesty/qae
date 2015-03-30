@@ -69,7 +69,9 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def progress_text
-    "#{progress_text_short}...#{fill_progress_in_percents}"
+    out = progress_text_short
+    out += "...#{fill_progress_in_percents}" unless object.submitted?
+    out
   end
 
   def average_growth_for(year)

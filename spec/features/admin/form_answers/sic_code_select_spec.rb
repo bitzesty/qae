@@ -15,7 +15,12 @@ describe "SIC Code selection", "
 
   it "sets up the sic code per form" do
     find("#form_answer_sic_code").find(:xpath, "option[2]").select_option
-    click_button "update_application"
+    expect {
+      click_button "update_application"
+    }.to change {
+      form_answer.reload.sic_code
+    }.from(nil).to("1623")
+
     expect(page).to have_css("p", text: selected)
   end
 end
