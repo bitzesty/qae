@@ -96,7 +96,7 @@ Devise.setup do |config|
 
   # ==> Configuration for :validatable
   # Range for password length. Default is 6..128.
-  config.password_length = 8..128
+  config.password_length = 10..128
 
   # Regex to use to validate the email address
   # config.email_regexp = /\A([\w\.%\+\-]+)@([\w\-]+\.)+([\w]{2,})\z/i
@@ -203,6 +203,7 @@ Devise.setup do |config|
   # ==> Devise Authy Authentication Extension
   # How long should the user's device be remembered for.
   # config.authy_remember_device = 1.month
+  
   # default devise_zxcvbn minimum password score
   config.min_password_score = 4
 end
