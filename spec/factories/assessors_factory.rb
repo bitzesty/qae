@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :assessor do
     first_name "John"
     last_name "Doe"
-    password { "strongpass" }
+    password { "my98strong pass12 31415926" }
     email
     confirmed_at { Time.zone.now }
 

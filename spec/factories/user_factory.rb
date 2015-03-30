@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :user do
     first_name "John"
     last_name "Doe"
-    password { 'strongpass' }
+    password { "my98strong pass12 31415926" }
     email
     role { 'regular' }
     agreed_with_privacy_policy { '1' }
