@@ -3,7 +3,7 @@ footer
     ul.group
       - if step.previous
         li.previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"
-          = link_to "#", rel: "prev", title: "Navigate to previous part" do
+          = link_to edit_form_url(step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part" do
             span.pagination-label
               | Back
             /span class="pagination-part-title"
@@ -13,23 +13,18 @@ footer
           = link_to [:award_info, @form_answer.award_type, form_id: @form_answer.id], rel: "prev", title: "Navigate to previous part" do
             span.pagination-label
               | Back
-            /span class="pagination-part-title"
-              = Eligibility
 
       - if step.next
         li.submit.js-next-link.js-step-link data-step="step-#{step.next.title.parameterize}"
-          = link_to "#", rel: "next", title: "Navigate to next part", class: "button" do
-            | Save and continue
-            /span class="pagination-part-title"
-              = step.next.title
+          = button_tag rel: "next", title: "Navigate to next part", class: "button" do
+            ' Save and continue
       - else
         - if step.submit
           li.submit.qae-form
-            button type="submit" class="button #{step.submit.style.presence}" *possible_read_only_ops(true)
-              = step.submit.text
+            button type="submit" name="submit" value="true" class="button #{step.submit.style.presence}" *possible_read_only_ops(true)
+              span.pagination-label
+                = step.submit.text
 
       - unless admin_in_read_only_mode?
         li.save-quit-link
-          = link_to dashboard_path, rel: "prev", title: "Save and navigate back to applications list" do
-            span.pagination-label
-              | Save and come back later
+          = button_tag "Save and come back later", class: "save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
