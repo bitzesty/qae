@@ -14,44 +14,45 @@
 
     #financial-summary.section-financial-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="financial-summary-heading"
       .panel-body
-        = simple_form_for([namespace_name, ReviewAuditCertificate.new(form_answer_id: resource.id)], remote: true, authenticity_token: true) do |f|
-          = f.input :form_answer_id, as: :hidden
+        - if resource.audit_certificate.present?
+          = simple_form_for([namespace_name, ReviewAuditCertificate.new(form_answer_id: resource.id)], remote: true, authenticity_token: true) do |f|
+            = f.input :form_answer_id, as: :hidden
 
-          .form-group
-            label.form-label Audit Certificate
-            p = link_to "View Audit Certificate", "#", target: "_blank"
-            .form-value
-              - unless resource.audit_certificate.try(:reviewed?)
-                p.audit-cert-nil-val Not confirmed yet.
-              - else
-                - if resource.audit_certificate.try(:no_changes_necessary?)
-                  p No change necessary
-                - elsif resource.audit_certificate.try(:confirmed_changes?)
-                  .audit-cert-changed-val
-                    label.control-label Changes made
-                    p= resource.audit_certificate.changes_description
+            .form-group
+              label.form-label Audit Certificate
+              p = link_to "View Audit Certificate", "#", target: "_blank"
+              .form-value
+                - unless resource.audit_certificate.try(:reviewed?)
+                  p.audit-cert-nil-val Not confirmed yet.
+                - else
+                  - if resource.audit_certificate.try(:no_changes_necessary?)
+                    p No change necessary
+                  - elsif resource.audit_certificate.try(:confirmed_changes?)
+                    .audit
+                      label.control-label Changes made
+                      p= resource.audit_certificate.changes_description
 
-            .input.form-group.form-fields
-              .radio
-                label
-                  input type="radio" name="review_audit_certificate[status]" id="radio-audit-cert1" value="no_changes_necessary"
-                  ' No change necessary
-              .radio
-                label
-                  input type="radio" name="review_audit_certificate[status]" id="radio-audit-cert2" value="confirmed_changes"
-                  ' Confirmed changes
-              = f.submit "Save", class: "if-js-hide"
-
-            .audit-cert-description
               .input.form-group.form-fields
-                = f.input :changes_description, as: :text, input_html: { rows: 5, class: "form-control" }, label: false
-                .clear
-            - if !resource.audit_certificate.try(:reviewed?)
-              = link_to "#", class: "form-edit-link pull-right"
-                span.glyphicon.glyphicon-pencil
-                ' Edit
-              = link_to "Save", "#", class: "btn btn-primary save-review-audit pull-right"
+                .radio
+                  label
+                    input type="radio" name="review_audit_certificate[status]" id="radio-audit-cert1" value="no_changes_necessary"
+                    ' No change necessary
+                .radio
+                  label
+                    input type="radio" name="review_audit_certificate[status]" id="radio-audit-cert2" value="confirmed_changes"
+                    ' Confirmed changes
+                = f.submit "Save", class: "if-js-hide"
 
-            .clear
+              .audit-cert-description
+                .input.form-group.form-fields
+                  = f.input :changes_description, as: :text, input_html: { rows: 5, class: "form-control" }, label: false
+                  .clear
+              - if !resource.audit_certificate.try(:reviewed?)
+                = link_to "#", class: "form-edit-link pull-right edit-review-audit"
+                  span.glyphicon.glyphicon-pencil
+                  ' Edit
+                = link_to "Save", "#", class: "btn btn-primary save-review-audit pull-right", style: "display: none"
+
+              .clear
 
         = render 'admin/form_answers/financial_summary/list', financial_pointer: financial_pointer

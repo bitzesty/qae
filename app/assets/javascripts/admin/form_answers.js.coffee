@@ -9,6 +9,7 @@ ready = ->
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".form-group").removeClass("form-edit")
     $(this).find(".form-edit-link").remove()
+    $(".save-review-audit").remove()
     area = $(".audit-cert-description textarea")
     unless area.val()
       $(this).find(".form-value").html($("<p>No change necessary</p>"))
@@ -18,6 +19,8 @@ ready = ->
   $("#new_review_audit_certificate").on "click", ".save-review-audit", (e) ->
     e.preventDefault()
     $("#new_review_audit_certificate").submit()
+  $(".edit-review-audit").on "click", (e) ->
+    $(".save-review-audit").show()
   $(".section-applicant-status").on "click", "a", (e) ->
     e.preventDefault()
     state = $(this).data("state")
