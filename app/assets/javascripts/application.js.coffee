@@ -381,7 +381,7 @@ jQuery ->
 
   # Show innovation amount info when the amount is greater than 1 on innovation eligibility
   if $(".innovative_amount_input").size() > 0
-    $(".innovative_amount_input").bind "propertychange change click keyup input paste", () ->
+    $(".innovative_amount_input").bind "propertychange change click keyup input paste", ->
       if $(this).val() > 1
         $("#innovative-amount-info").removeClass("visuallyhidden")
       else
@@ -390,7 +390,7 @@ jQuery ->
   # Show trade org fulfilled info when checked yes
   trade_org_q = ".question-organisation-fulfill-above-exceptions"
   if $(trade_org_q).size() > 0
-    $("#{trade_org_q} input[type='radio']").bind "propertychange change click keyup input paste", () ->
+    $("#{trade_org_q} input[type='radio']").bind "propertychange change click keyup input paste", ->
       radio_val = $("#{trade_org_q} input[type='radio']:checked").val()
       if radio_val == "yes"
         $("#trade-org-fulfilled-info").removeClass("visuallyhidden")
