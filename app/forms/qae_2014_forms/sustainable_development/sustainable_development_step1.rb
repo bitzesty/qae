@@ -211,7 +211,6 @@ class QAE2014Forms
         end
 
         text :website_url, "Website Address" do
-          required
           ref "A 11"
           form_hint "e.g. www.example.com"
         end
