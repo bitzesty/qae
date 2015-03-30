@@ -1,9 +1,5 @@
 header.page-header.group
   div
-    - if params.has_key? :current_step
-      - current_step = params[:current_step]
-    - else
-      - current_step = form.steps.first.title.html_safe.parameterize
     - for step in form.steps do
-      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.title.html_safe.parameterize == current_step)
+      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
         = step.title

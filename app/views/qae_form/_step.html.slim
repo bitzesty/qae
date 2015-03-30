@@ -1,8 +1,4 @@
-- if params.has_key? :current_step
-  - current_step = params[:current_step]
-- else
-  - current_step = form.steps.first.title.html_safe.parameterize
-.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.title.html_safe.parameterize == current_step)
+.article-container.article-container-wider.step-article.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if step.index == 0)
   article.group role="article"
     .inner
       - if step.context
