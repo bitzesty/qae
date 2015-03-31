@@ -25,9 +25,8 @@ jQuery ->
   validate = ->
     window.FormValidation.validate()
 
-  $(".save-quit-link").on "click", (e) ->
-    e.stopPropagation()
-    window.location.replace $(e.currentTarget).data("url")
+  $(".js-hidden").hide()
+  $(".js-displayed").show()
 
   $(document).on "submit", ".qae-form", (e) ->
     $("body").addClass("tried-submitting")

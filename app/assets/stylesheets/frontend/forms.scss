@@ -819,7 +819,7 @@ input[type="file"] {
       float: none;
     }
 
-    button {
+    button, a {
       @include core-24;
       margin: 25px 0;
       margin-bottom: 0;
@@ -1133,4 +1133,8 @@ input[type="file"] {
     color: #494949;
   }
 
+}
+
+.js-displayed {
+  display: none;
 }

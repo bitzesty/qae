@@ -27,4 +27,5 @@ footer
 
       - unless admin_in_read_only_mode?
         li.save-quit-link
-          = button_tag "Save and come back later", class: "save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
+          = button_tag "Save and come back later", class: "save-quit-link btn js-hidden", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
+          = link_to "Save and come back later", dashboard_url, class: "js-displayed"
