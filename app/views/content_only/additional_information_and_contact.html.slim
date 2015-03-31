@@ -47,12 +47,20 @@
           br
 
           h2 Contact
+          p = link_to "info@queensawards.org.uk", "mailto:info@queensawards.org.uk"
           p
             strong Queen’s Awards Helpline
             br
             ' Telephone: 020 7215 6880
             br
+            ' Monday to Friday, 9am to 5pm
+            br
             = link_to "Find out about call charges", "https://www.gov.uk/call-charges", target: "_blank"
+
+          h2 If you can't use the online services
+          p
+            ' If you are unable to complete your application online - whether due to geographic location, disability or computer literacy - you can seek help through our assisted digital service. Please call the Queen’s Awards Helpline on 020 7215 6880.
+            = link_to "Find out more about call charges.", "https://www.gov.uk/call-charges", target: "_blank"
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
