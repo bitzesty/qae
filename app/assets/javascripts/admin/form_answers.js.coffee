@@ -6,14 +6,8 @@ ready = ->
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
   bindRags("#section-case-summary .edit_assessor_assignment")
 
-  $(".previous-wins").on "click", ".remove-link", (e) ->
-    e.preventDefault()
-    parent = $(this).closest(".well")
-    parent.find("input[type='checkbox']").prop("checked", "checked")
-    parent.closest("form").submit()
-  $(".previous-wins").on "click", ".form-save-link", (e) ->
-    e.preventDefault()
-    $(this).closest("form").submit()
+  handleCompanyDetailsForm()
+
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".form-group").removeClass("form-edit")
     $(this).find(".form-edit-link").remove()
@@ -182,5 +176,53 @@ bindRags =(klass) ->
       if $(this).val() == ragClicked
         $(this).parents("select").val(ragClicked)
     $(klass).submit()
+
+
+handleCompanyDetailsForm =->
+  if $('.duplicatable-nested-form').length
+
+    nestedForm = $('.duplicatable-nested-form').last().clone()
+
+    $(".destroy_duplicate_nested_form:first").remove()
+
+    $('.destroy_duplicate_nested_form').on 'click', (e) ->
+      $(this).closest('.duplicatable-nested-form').slideUp().remove()
+
+    $(document).on "click", ".add-previous-winning", (e) ->
+      e.preventDefault()
+
+      lastNestedForm = $('.duplicatable-nested-form').last()
+      newNestedForm  = $(nestedForm).clone()
+      formsOnPage    = $('.duplicatable-nested-form').length
+      console.log(formsOnPage)
+      $(newNestedForm).find('label').each ->
+        oldLabel = $(this).attr 'for'
+        newLabel = oldLabel.replace(new RegExp(/_[0-9]+_/), "_#{formsOnPage}_")
+        $(this).attr 'for', newLabel
+
+      $(newNestedForm).find('select, input').each ->
+        oldId = $(this).attr 'id'
+        if oldId
+          newId = oldId.replace(new RegExp(/_[0-9]+_/), "_#{formsOnPage}_")
+          $(this).attr 'id', newId
+
+        oldName = $(this).attr 'name'
+        if oldName
+          newName = oldName.replace(new RegExp(/\[[0-9]+\]/), "[#{formsOnPage}]")
+          $(this).attr 'name', newName
+      newNestedForm.find(".duplicatable-nested-form").removeClass("if-js-hide")
+      $( newNestedForm ).insertAfter( lastNestedForm )
+
+  $(document).on "ajax:success", ".company-details-forms form", (e, data, status, xhr) ->
+    $(this).closest(".form-group").replaceWith($(data))
+    $(".company-details-forms .form-group[data-section='#{section}']").replaceWith($(data))
+  $(".company-details-forms").on "click", ".remove-link", (e) ->
+    e.preventDefault()
+    parent = $(this).closest(".duplicatable-nested-form")
+    parent.find("input[type='checkbox']").prop("checked", "checked")
+    parent.hide()
+  $(".previous-wins").on "click", ".form-save-link", (e) ->
+    e.preventDefault()
+    $(this).closest("form").submit()
 
 $(document).ready(ready)

@@ -1,5 +1,6 @@
-.form-group.previous-wins
-  = simple_form_for [:admin, @form_answer], remote: true, authenticity_token: true do |f|
+.form-group
+  = simple_form_for [:admin, @form_answer], remote: true, authenticity_token: true, html: { "data-type" => "html" } do |f|
+    = hidden_field_tag :section, "previous_wins"
     label.form-label Previous winnings
 
     .form-value
@@ -12,10 +13,10 @@
         - else
           -
     - f.object.previous_wins.build
-    = f.simple_fields_for :previous_wins, f.object.previous_wins do |p|
-      - klass = p.object.new_record? && f.object.previous_wins.detect{|a| !a.new_record?} ? "if-js-hide" : ""
-      .input.form-group.form-fields class=klass
-        ul.list-add
+    .input.form-group.form-fields
+      = f.simple_fields_for :previous_wins, f.object.previous_wins do |p|
+        - klass = p.object.new_record? && f.object.previous_wins.detect{|a| !a.new_record?} ? "if-js-hide" : ""
+        ul.list-add.duplicatable-nested-form
           li.well
             .pull-right
               = link_to "Remove", "#", class: "if-no-js-hide remove-link"
@@ -37,12 +38,12 @@
                           label: false,
                           collection: PreviousWin::YEARS
 
-        = link_to "+ Add another winnings", "#", class: "btn btn-default if-no-js-hide"
+      = link_to "+ Add another winnings", "#", class: "btn btn-default if-no-js-hide add-previous-winning"
       .clear
+      = f.submit "Save", class: "btn btn-primary pull-right"
+
 
     = link_to "#", class: "form-edit-link pull-right"
       span.glyphicon.glyphicon-pencil
       ' Edit
-    / = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
-    = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
     .clear

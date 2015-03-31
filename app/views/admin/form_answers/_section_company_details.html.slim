@@ -6,28 +6,12 @@
         small
           ' Logged in: 28/09/15 - 08:03
   #section-company-details.section-company-details.panel-collapse.collapse role="tabpanel" aria-labelledby="company-details-heading"
-    .panel-body
-      .form-group
-        label.form-label Company name
-        .form-value
-          p = @form_answer.company_name
-        .input.form-group
-          input.form-control type="text"
-        .clear
-
-        = link_to "#", class: "form-edit-link pull-right"
-          span.glyphicon.glyphicon-pencil
-          ' Edit
-        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-        .clear
-
+    .panel-body.company-details-forms
+      = render "admin/form_answers/company_details/company_name"
       br
       = render "admin/form_answers/company_details/address_form"
-
       br
-
       = render "admin/form_answers/company_details/previous_wins_form"
-
       br
       = render "admin/form_answers/company_details/sic_form"
 

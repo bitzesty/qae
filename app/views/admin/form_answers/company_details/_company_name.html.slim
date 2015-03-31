@@ -1,0 +1,13 @@
+.form-group
+  label.form-label Company name
+  .form-value
+    p = @form_answer.company_name
+  .input.form-group
+    input.form-control type="text"
+  .clear
+
+  = link_to "#", class: "form-edit-link pull-right"
+    span.glyphicon.glyphicon-pencil
+    ' Edit
+  = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+  .clear
