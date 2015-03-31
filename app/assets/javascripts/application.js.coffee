@@ -25,9 +25,6 @@ jQuery ->
   validate = ->
     window.FormValidation.validate()
 
-  $(".js-hidden").hide()
-  $(".js-displayed").show()
-
   $(document).on "submit", ".qae-form", (e) ->
     $("body").addClass("tried-submitting")
     if not validate()
