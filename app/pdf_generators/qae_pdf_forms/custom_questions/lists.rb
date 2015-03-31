@@ -3,7 +3,8 @@ module QaePdfForms::CustomQuestions::Lists
     QAEFormBuilder::AwardHolderQuestion,
     QAEFormBuilder::QueenAwardHolderQuestion,
     QAEFormBuilder::PositionDetailsQuestion,
-    QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
+    QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion,
+    QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
   ]
   AWARD_HOLDER_LIST_HEADERS = [
     "Award/Honour title",
@@ -25,11 +26,17 @@ module QaePdfForms::CustomQuestions::Lists
     "Ongoing",
     "Details"
   ]
+  TRADE_GOODS_AND_SERVICES_HEADERS = [
+    "Good/Service",
+    "% of your total overseas trade"
+  ]
 
   def render_list
     if humanized_answer.present?
+      Rails.logger.info "[humanized_answer] #{humanized_answer}"
       render_multirows_table(list_headers, list_rows)
     else
+      Rails.logger.info "[humanized_answer] UNDEFINED_TITLE"
       form_pdf.render_text(FormPdf::UNDEFINED_TITLE, style: :italic)
     end
   end
@@ -44,6 +51,8 @@ module QaePdfForms::CustomQuestions::Lists
       POSITION_LIST_HEADERS
     when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
       SUBSIDIARIES_ASSOCIATES_PLANTS_HEADERS
+    when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+      TRADE_GOODS_AND_SERVICES_HEADERS
     else
       raise "[#{self.class.name}] Unrecognized list type!"
     end
@@ -89,6 +98,15 @@ module QaePdfForms::CustomQuestions::Lists
     end
   end
 
+  def trade_goods_conditions(prepared_item)
+    if prepared_item["desc_short"].present?
+      [
+        prepared_item["desc_short"],
+        prepared_item["total_overseas_trade"].present? ? prepared_item["total_overseas_trade"] : FormPdf::UNDEFINED_TITLE
+      ]
+    end
+  end
+
   def list_rows
     if humanized_answer.present?
       humanized_answer.map do |item|
@@ -103,6 +121,8 @@ module QaePdfForms::CustomQuestions::Lists
           position_details_query_conditions(prepared_item)
         when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
           subsidiaries_associates_plants_query_conditions(prepared_item)
+        when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+          trade_goods_conditions(prepared_item)
         end
       end.compact
     end
