@@ -18,7 +18,8 @@
 
           ol.steps
             li
-              p Create an account
+              p
+                = link_to "Create an account", apply_for_queens_award_for_enterprise_path
             li
               p Confirm your email address
             li
@@ -49,15 +50,6 @@
           p All the information submitted in your application will be treated in strict confidence.
 
           p The Queen’s Awards for Enterprise are free to enter.
-
-          br
-
-          .application-notice.info-notice
-            p
-              = link_to "Sign up to check eligibility and apply", apply_for_queens_award_for_enterprise_path, rel: 'external'
-              '. Or if you have already begun your application then
-              = link_to "Sign in continue", new_user_session_path, rel: "external"
-              ' .
 
         footer
           nav.pagination role="navigation" aria-label="Pagination"
