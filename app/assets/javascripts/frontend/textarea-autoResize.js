@@ -6,38 +6,32 @@ $(function() {
 
   resetResizeTextarea = function () {
     if (!$("body").hasClass("text-resized")) {
-      $('textarea').each(function() {
+      $("textarea").each(function() {
         // default/initial heights for all textareas so
         // that resizing doesn't get shorter than this
         var textarea = $(this);
-        textarea.css('height', "auto");
-        textarea.css('min-height', "");
-        textarea.removeAttr('min-height');
-        textarea.css('min-height', textarea.attr("rows")+"em");
-        textarea.attr("data-height", parseInt(textarea.css('min-height')));
+        textarea.css("height", "auto");
+        textarea.css("min-height", "");
+        textarea.removeAttr("min-height");
+        textarea.css("min-height", textarea.attr("rows")*20+"px");
+        textarea.attr("data-height", textarea.attr("rows")*20);
       });
       $("body").addClass("text-resized");
     }
   };
 
   resizeTextarea = function (textInput) {
-    content = textInput.val();
-
+    var content = textInput.val();
     var box_width = $(".step-article.step-current").width();
-
     var char_count = content.toString().length;
-
     var new_line_count = content.split("\n").length;
-
-    var text_width = char_count * 20;
-
+    var text_width = char_count * 8;
     var line_height = Math.ceil(text_width/box_width) + new_line_count;
+    var newHeight = line_height*20;
 
-    var hiddenHeight = line_height*20;
-
-    if (hiddenHeight >= textInput.attr("data-height")) {
+    if (newHeight >= textInput.attr("data-height")) {
       // resize when there's more text than the text container
-      textInput.height(hiddenHeight+1);
+      textInput.height(newHeight);
     } else if (content === "") {
       // resize when no text
       textInput.height(textInput.attr("data-height"));
@@ -50,16 +44,15 @@ $(function() {
     resizeTextarea($(this));
   });
 
-  txt.on('keyup', function (e) {
+  txt.on("keyup", function (e) {
     if (e.keyCode != 9) {
       resizeTextarea($(this));
     }
   });
 
-  txt.on('mouseup', function () {
+  txt.on("mouseup", function () {
     // resize the text container with the textarea resize handle
     var textarea = $(this);
     textarea.css("height", textarea.height());
-    textarea.attr("data-height", textarea.height());
   });
 });
