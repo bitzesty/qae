@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  resource :healthcheck, only: :show
+
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
+
   devise_for :admins, controllers: {
     confirmations: "devise/confirmations",
     devise_authy: "admin/devise_authy"
