@@ -6,6 +6,14 @@ ready = ->
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
   bindRags("#section-case-summary .edit_assessor_assignment")
 
+  $(".previous-wins").on "click", ".remove-link", (e) ->
+    e.preventDefault()
+    parent = $(this).closest(".well")
+    parent.find("input[type='checkbox']").prop("checked", "checked")
+    parent.closest("form").submit()
+  $(".previous-wins").on "click", ".form-save-link", (e) ->
+    e.preventDefault()
+    $(this).closest("form").submit()
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".form-group").removeClass("form-edit")
     $(this).find(".form-edit-link").remove()

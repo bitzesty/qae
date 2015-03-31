@@ -7,7 +7,7 @@
           ' Logged in: 28/09/15 - 08:03
   #section-company-details.section-company-details.panel-collapse.collapse role="tabpanel" aria-labelledby="company-details-heading"
     .panel-body
-      = simple_form_for [:admin, @form_answer] do |f|
+      = simple_form_for [:admin, @form_answer], remote: true, authenticity_token: true do |f|
         .form-group
           label.form-label Company name
           .form-value
@@ -76,36 +76,51 @@
         br
 
         / TODO placeholder, no JS attached either
-        .form-group
+        .form-group.previous-wins
           label.form-label Previous winnings
-          .form-value
-            p -
-          .input.form-group.form-fields
-            ul.list-add
-              li.well
-                .pull-right
-                  = link_to "Remove"
-                .row
-                  .col-sm-5
-                    select.form-control
-                      option Innovation (2 years)
-                      option Innovation (5 years)
-                      option International Trade (3 years)
-                      option International Trade (6 years)
-                      option Sustainable Development (2 years)
-                      option Sustainable Development (5 years)
-                  .col-sm-2
-                    select.form-control
-                      - ((Date.today.year - 6)...Date.today.year).each do |year|
-                        option = year
 
-            = link_to "+ Add another winnings", "#", class: "btn btn-default"
-          .clear
+          .form-value
+            p
+              - if f.object.previous_wins.present?
+                ul
+                - PreviousWinDecorator.decorate_collection(f.object.previous_wins).each do |win|
+                  li
+                    span= win.description
+              - else
+                -
+          - f.object.previous_wins.build
+          = f.simple_fields_for :previous_wins, f.object.previous_wins do |p|
+            - klass = p.object.new_record? && f.object.previous_wins.detect{|a| !a.new_record?} ? "if-js-hide" : ""
+            .input.form-group.form-fields class=klass
+              ul.list-add
+                li.well
+                  .pull-right
+                    = link_to "Remove", "#", class: "if-no-js-hide remove-link"
+                    .remove-section.if-js-hide
+                      =p.input "_destroy",
+                                as: :boolean,
+                                label: "remove"
+                  .row
+                    .col-sm-5
+                      = p.input :category,
+                                as: :select,
+                                input_html: { class: "form-control" },
+                                label: false,
+                                collection: PreviousWin::CATEGORIES
+                    .col-sm-2
+                      = p.input :year,
+                                as: :select,
+                                input_html: { class: "form-control" },
+                                label: false,
+                                collection: PreviousWin::YEARS
+
+              = link_to "+ Add another winnings", "#", class: "btn btn-default if-no-js-hide"
+            .clear
 
           = link_to "#", class: "form-edit-link pull-right"
             span.glyphicon.glyphicon-pencil
             ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
           .clear
 
         br
@@ -124,19 +139,19 @@
                       input_html: { class: "form-control select2" },
                       as: :select,
                       collection: SICCode.collection,
-                      include_blank: true,
+                      include_blank: false,
                       label: false
           .clear
 
           = link_to "#", class: "form-edit-link pull-right"
             span.glyphicon.glyphicon-pencil
             ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
           .clear
 
         br
 
-        = f.submit :update_application, class: "if-js-hide"
+        = f.submit "Update details", class: "if-js-hide btn btn-primary"
         .form-group
           label.form-label User accounts
           ul.list-unstyled.list-actions
