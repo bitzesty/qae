@@ -2,18 +2,20 @@
   label.form-label Address
   .form-value
     p
-      ' company_address_first
+      = @form_answer.address_first_line
       br
-      ' company_address_second
+      = @form_answer.address_second_line
       br
-      ' company_city
+      = @form_answer.company_city
       br
-      ' company_country
+      = @form_answer.company_country
       br
-      ' company_postcode
+      = @form_answer.company_postcode
+      br
+      = @form_answer.company_region
 
     p
-      ' company_phone_number
+      = @form_answer.company_phone
 
   .input.form-group.form-fields
     .row
