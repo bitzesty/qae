@@ -12,12 +12,15 @@
             br
             ul.errors-container
             .date-input
-              label for=question.input_name(suffix: "#{y}of#{c.years}day")
-                ' Day
-              input.js-trigger-autosave.tiny.js-fy-day type="text" name=question.input_name(suffix: "#{y}of#{c.years}day") value=question.input_value(suffix: "#{y}of#{c.years}day") id=question.input_name(suffix: "#{y}of#{c.years}day") maxlength=2 autocomplete="off" *possible_read_only_ops
-              label for=question.input_name(suffix: "#{y}of#{c.years}month")
-                ' Month
+              span.date-input-field
+                label for=question.input_name(suffix: "#{y}of#{c.years}day")
+                  ' Day
+                input.js-trigger-autosave.tiny.js-fy-day type="text" name=question.input_name(suffix: "#{y}of#{c.years}day") value=question.input_value(suffix: "#{y}of#{c.years}day") id=question.input_name(suffix: "#{y}of#{c.years}day") maxlength=2 autocomplete="off" *possible_read_only_ops
+              span.date-input-field
+                label for=question.input_name(suffix: "#{y}of#{c.years}month")
+                  ' Month
                 input.js-trigger-autosave.tiny.js-fy-month type="text" name=question.input_name(suffix: "#{y}of#{c.years}month") value=question.input_value(suffix: "#{y}of#{c.years}month") id=question.input_name(suffix: "#{y}of#{c.years}month") maxlength=2 autocomplete="off" *possible_read_only_ops
-              label for=question.input_name(suffix: "#{y}of#{c.years}year")
-                ' Year
+              span.date-input-field
+                label for=question.input_name(suffix: "#{y}of#{c.years}year")
+                  ' Year
                 input.js-trigger-autosave.small.js-fy-year type="text" name=question.input_name(suffix: "#{y}of#{c.years}year") value=question.input_value(suffix: "#{y}of#{c.years}year") id=question.input_name(suffix: "#{y}of#{c.years}year") maxlength=4 autocomplete="off" *possible_read_only_ops

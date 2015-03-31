@@ -10,10 +10,10 @@ li.js-add-example
         label
           ' Start Date
         .date-input.validate-date-start
-          label.small
+          label.small.date-input-field
             ' Month
             input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][start_month]" value=position['start_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
-          label.small
+          label.small.date-input-field
             ' Year
             input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][start_year]" value=position['start_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
     span.row
@@ -21,10 +21,10 @@ li.js-add-example
         label
           ' End Date
         .date-input.validate-date-end
-          label.small
+          label.small.date-input-field
             ' Month
             input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" *(possible_read_only_ops.merge(ongoing_opts))
-          label.small
+          label.small.date-input-field
             ' Year
             input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *(possible_read_only_ops.merge(ongoing_opts))
       span.span-3.date-ongoing
