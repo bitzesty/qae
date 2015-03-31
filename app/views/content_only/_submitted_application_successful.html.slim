@@ -2,12 +2,6 @@ p
   ' Congratulations! Your application for the
   = award.decorate.award_type
   '  Award was successful.
-p
-  = link_to "Visit Winners’ Resources", award_winners_section_path
-  '  to download media for websites and advertisements.
-
-.application-notice.help-notice
-  p You are not allowed to announce your success until after April 21st.
 
 br
 
@@ -47,3 +41,15 @@ p
     '  up until
     = application_deadline "buckingham_palace_attendees_details"
     ' .
+
+
+br
+
+h3
+  ' Winner’ Resources
+p
+  = link_to "Visit Winners’ Resources", award_winners_section_path
+  '  to download media for websites and advertisements.
+
+.application-notice.help-notice
+  p You are not allowed to announce your success until after April 21st.
