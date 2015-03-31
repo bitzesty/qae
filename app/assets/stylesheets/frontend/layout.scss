@@ -385,6 +385,10 @@ header.page-header aside .inner {
 .steps-progress-container {
   position: relative;
 
+  &.min-height-800 {
+    min-height: 800px;
+  }
+
   .steps-progress-bar {
     margin-top: 0.5em;
   }

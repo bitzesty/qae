@@ -10,7 +10,7 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
       h1
         = @form.title
 
-  .steps-progress-container
+  .steps-progress-container.min-height-800
     .steps-progress-content
       = render partial: 'qae_form/form_header', object: @form, as: 'form'
 
