@@ -820,21 +820,15 @@ input[type="file"] {
     }
 
     button {
+      @include core-24;
       margin: 25px 0;
       margin-bottom: 0;
       padding: 0;
+      text-decoration: underline;
 
       &:hover {
         background: none;
-
-        .pagination-label {
-          text-decoration: none;
-        }
-      }
-
-      .pagination-label {
-        @include core-24;
-        text-decoration: underline;
+        text-decoration: none;
       }
     }
   }
