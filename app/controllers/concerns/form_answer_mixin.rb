@@ -13,7 +13,6 @@ module FormAnswerMixin
         }
       end
 
-      # format.html { redirect_to [namespace_name, resource] }
       format.html do
         if request.xhr?
           render partial: "admin/form_answers/company_details/#{params[:section]}_form", layout: false

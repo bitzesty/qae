@@ -139,6 +139,8 @@ Rails.application.routes.draw do
     resources :admins
     resources :reports, only: [:show]
     resources :review_audit_certificates, only: [:create]
+    resources :company_details, only: [:update]
+
     resources :form_answers do
       resources :form_answer_state_transitions, only: [:create]
       resources :comments
@@ -161,7 +163,6 @@ Rails.application.routes.draw do
       resources :flags, only: [] do
         collection { post :toggle }
       end
-
       member do
         patch :update_financials
         get :review

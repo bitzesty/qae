@@ -172,4 +172,9 @@ class FormAnswerDecorator < ApplicationDecorator
     document["principal_address_region"] ||
       document["organization_address_region"]
   end
+
+  def submitted_and_after_the_deadline?
+    return true if Rails.env.development?
+    object.submitted? && object.after_submission_deadline?
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150331061542) do
+ActiveRecord::Schema.define(version: 20150331180118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20150331061542) do
   add_index "assessors", ["reset_password_token"], name: "index_assessors_on_reset_password_token", unique: true, using: :btree
 
   create_table "audit_certificates", force: :cascade do |t|
-    t.integer  "form_answer_id"
+    t.integer  "form_answer_id",      null: false
     t.string   "attachment"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -126,8 +126,14 @@ ActiveRecord::Schema.define(version: 20150331061542) do
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
 
   create_table "company_details", force: :cascade do |t|
-    t.hstore   "previous_winnings"
-    t.integer  "form_answer_id",    null: false
+    t.string   "address_building"
+    t.string   "address_street"
+    t.string   "address_city"
+    t.string   "address_country"
+    t.string   "address_postcode"
+    t.string   "telephone"
+    t.string   "region"
+    t.integer  "form_answer_id",   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -238,9 +244,9 @@ ActiveRecord::Schema.define(version: 20150331061542) do
     t.hstore   "financial_data"
     t.boolean  "admin_importance_flag",           default: false
     t.boolean  "assessor_importance_flag",        default: false
-    t.boolean  "accepted",                        default: false
     t.boolean  "primary_assessor_not_assigned",   default: true
     t.boolean  "secondary_assessor_not_assigned", default: true
+    t.boolean  "accepted",                        default: false
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

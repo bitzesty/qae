@@ -1,3 +1,5 @@
+require "countries"
+
 module FormAnswerHelper
   def application_flags(fa)
     comments = fa.comments
@@ -42,5 +44,9 @@ module FormAnswerHelper
   def sic_code(form_answer)
     code = form_answer.sic_code
     code || "-"
+  end
+
+  def country_collection
+    ([["United Kingdom", "GB"], ["United States", "US"]] + Country.all).uniq
   end
 end

@@ -180,11 +180,8 @@ bindRags =(klass) ->
 
 handleCompanyDetailsForm =->
   if $('.duplicatable-nested-form').length
-
     nestedForm = $('.duplicatable-nested-form').last().clone()
-
     $(".destroy_duplicate_nested_form:first").remove()
-
     $('.destroy_duplicate_nested_form').on 'click', (e) ->
       $(this).closest('.duplicatable-nested-form').slideUp().remove()
 
@@ -215,7 +212,6 @@ handleCompanyDetailsForm =->
 
   $(document).on "ajax:success", ".company-details-forms form", (e, data, status, xhr) ->
     $(this).closest(".form-group").replaceWith($(data))
-    $(".company-details-forms .form-group[data-section='#{section}']").replaceWith($(data))
   $(".company-details-forms").on "click", ".remove-link", (e) ->
     e.preventDefault()
     parent = $(this).closest(".duplicatable-nested-form")

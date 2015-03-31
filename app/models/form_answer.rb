@@ -48,6 +48,7 @@ class FormAnswer < ActiveRecord::Base
     has_one :feedback, dependent: :destroy
     has_one :press_summary, dependent: :destroy
     has_one :draft_note, as: :notable, dependent: :destroy
+    has_one :company_detail, dependent: :destroy
 
     has_many :form_answer_attachments, dependent: :destroy
     has_many :support_letter_attachments, dependent: :destroy
@@ -162,6 +163,11 @@ class FormAnswer < ActiveRecord::Base
     when "innovation"
       document["innovation_performance_years"]
     end
+  end
+
+  def after_submission_deadline?
+    # TODO: clarify how it should work !
+    true
   end
 
   private
