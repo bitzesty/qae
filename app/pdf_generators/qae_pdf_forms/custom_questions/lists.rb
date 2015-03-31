@@ -7,7 +7,6 @@ module QaePdfForms::CustomQuestions::Lists
   ]
   AWARD_HOLDER_LIST_HEADERS = [
     "Award/Honour title",
-    "Year",
     "Details"
   ]
   QUEENS_AWARD_HOLDER_LIST_HEADERS = [
@@ -63,7 +62,6 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["title"].present?
       [
         prepared_item["title"],
-        prepared_item["year"],
         prepared_item["details"]
       ]
     end
