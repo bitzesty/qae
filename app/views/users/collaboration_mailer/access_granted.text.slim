@@ -2,7 +2,7 @@
 
 
 = @user_who_added.full_name
-| added you to collaborators with 
+| added you to collaborators with
 = "'#{@collaborator.role.humanize}'"
 | role.
 
@@ -14,10 +14,9 @@
 
   | You need to confirm your email at first to access account:
   = link_to 'Confirm', confirmation_url(@collaborator, confirmation_token: @devise_confirmation_token)
-  | You also can reset your password after confirmation at:
+  | Please reset your password after confirmation at:
   = link_to 'Password Settings', password_settings_account_url
 - else
   = link_to 'View', dashboard_url
 
 | Best Regards, Administration Team
-

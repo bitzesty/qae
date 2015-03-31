@@ -5,7 +5,7 @@
     div
       h1
         = resource.model_name
-        '  - Log in
+        '  - Sign in
 
   .article-container.group
     article.group role="article"
@@ -30,6 +30,6 @@
                 = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
           .form-actions
-            = f.button :submit, "Log in", class: "button large"
+            = f.button :submit, "Sign in", class: "button large"
 
         = render "admins/shared/links"

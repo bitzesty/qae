@@ -23,7 +23,11 @@
               .question
                 h2 Password
                 .question-body
-                  = f.input :password, required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
+                  = f.input :password,
+                            required: true,
+                            label: false,
+                            hint: ("#{@minimum_password_length} characters minimum" if @validatable),
+                            input_html: { class: "password-strength-meter js-disable-copy js-disable-paste", "data-min-password-length" => "10" }
 
             .form-inputs
               .question
@@ -37,4 +41,4 @@
         /= render "users/shared/links"
         p
           ' or
-          = link_to "Log in", new_admin_session_path
+          = link_to "Sign in", new_admin_session_path

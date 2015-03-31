@@ -59,6 +59,6 @@ header.page-header.group.page-header-wider
           = link_to "Applications", dashboard_path
           '  or
           - if current_admin
-            = link_to "Log out", destroy_admin_session_path, method: :delete
+            = link_to "Sign out", destroy_admin_session_path, method: :delete
           - else
-            = link_to "Log out", destroy_user_session_path, method: :delete
+            = link_to "Sign out", destroy_user_session_path, method: :delete
