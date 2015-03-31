@@ -5,6 +5,9 @@ gem 'rails', '~> 4.2.0'
 # Security HTTP Headers
 gem 'secure_headers'
 
+# SSL redirect
+gem 'rack-ssl-enforcer'
+
 # PostgreSQL
 gem 'pg', '~> 0.17'
 
