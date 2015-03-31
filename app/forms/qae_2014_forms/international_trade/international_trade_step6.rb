@@ -75,7 +75,6 @@ class QAE2014Forms
               If you are not ready to submit yet, you can save your application and come back later.
             </p>
           )
-          style "large"
         end
       end
     end
