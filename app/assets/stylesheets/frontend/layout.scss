@@ -292,7 +292,8 @@ header.page-header div {
   position: relative;
   z-index: 999;
 }
-#global-header .header-proposition #proposition-menu .user-account-links {
+
+.js #global-header .header-proposition #proposition-menu .user-account-links {
   display: block;
 
   @media (min-width: 990px) {
@@ -366,6 +367,10 @@ header.page-header div {
       }
     }
   }
+}
+
+.no-js .user-account-links .dropdown-toggle {
+  display: none;
 }
 
 // Fixes conflict with using aside as page navigations on other pages inside the header
