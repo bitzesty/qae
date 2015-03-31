@@ -1,6 +1,9 @@
 class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
   include QaePdfForms::CustomQuestions::Lists
+  include PdfAuditCertificates::General::FinancialTable
+
+  NOT_CURRENCY_QUESTION_KEYS = %w(employees)
 
   attr_reader :form_pdf,
               :step,
@@ -8,7 +11,11 @@ class QaePdfForms::General::QuestionPointer
               :key,
               :answer,
               :humanized_answer,
-              :sub_answers
+              :sub_answers,
+              :financial_pointer,
+              :audit_data,
+              :filled_answers,
+              :step_questions
 
   def initialize(ops = {})
     ops.each do |k, v|
@@ -19,6 +26,10 @@ class QaePdfForms::General::QuestionPointer
     @answer = answer_by_key
     @humanized_answer = form_pdf.answer_based_on_type(key, answer) if answer.present?
     @sub_answers = fetch_sub_answers
+    @financial_pointer = form_pdf.financial_pointer
+    @audit_data = financial_pointer.data
+    @filled_answers = form_pdf.filled_answers
+    @step_questions = step.step_questions
   end
 
   def render!
@@ -182,5 +193,33 @@ class QaePdfForms::General::QuestionPointer
 
   def to_month(value)
     Date::MONTHNAMES[value.to_i]
+  end
+
+  def get_audit_data(key)
+    res = audit_data.detect do |d|
+      d.keys.first.to_s == key.to_s
+    end
+
+    res.present? ? res[key.to_sym] : financial_empty_values
+  end
+
+  def financial_data(question_key, question_data)
+    question_data.map do |entry|
+      if entry.is_a?(Array)
+        entry.join("/")
+      else
+        data_by_type(question_key, entry)
+      end
+    end
+  end
+
+  def data_by_type(question_key, entry)
+    if entry[:value].present?
+      if NOT_CURRENCY_QUESTION_KEYS.include?(question_key)
+        entry[:value]
+      else
+        "£#{entry[:value]}" if entry[:value] != "-"
+      end
+    end
   end
 end
