@@ -18,12 +18,9 @@ class QAE2014Forms
           option "other", "Other"
         end
 
-        text :nominee_title_other, "" do
+        text :nominee_title_other, "Please specify" do
           required
-          classes "sub-question"
-          context %(
-            <p class='question_label_with_5px_margins'>Please specify</p>
-                    )
+          classes "regular-question"
           conditional :nominee_title, "other"
         end
 

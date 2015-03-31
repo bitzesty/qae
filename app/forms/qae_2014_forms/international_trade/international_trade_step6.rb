@@ -18,11 +18,8 @@ class QAE2014Forms
           option "other", "Other"
         end
 
-        text :head_of_bussines_title_other, "" do
-          classes "sub-question"
-          context %(
-            <p class='question_label_with_5px_margins'>Please specify</p>
-                    )
+        text :head_of_bussines_title_other, "Please specify" do
+          classes "regular-question"
           conditional :head_of_bussines_title, "other"
         end
 

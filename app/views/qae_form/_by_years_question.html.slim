@@ -4,7 +4,7 @@
       .row
         - (1..c.years).each do |y|
           div class="span-financial span-4"
-            label
+            label for=question.input_name(suffix: "#{y}of#{c.years}")
               span.js-year-end.show-default data-year="#{y}of#{c.years}"
                 span.js-year-default
                   ' Financial year
@@ -12,9 +12,9 @@
                   - if y == c.years
                     '  (Current)
                 span.js-year-text
-              br
-              ul.errors-container
-              span class="#{'currency-input' if question.type == :money}"
-                - if question.type == :money
-                  span.currency-unit £
-                input.small.js-trigger-autosave type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
+            br
+            ul.errors-container
+            span class="#{'currency-input' if question.type == :money}"
+              - if question.type == :money
+                span.currency-unit £
+              input.small.js-trigger-autosave type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=question.input_value(suffix: "#{y}of#{c.years}") id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops

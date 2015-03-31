@@ -27,23 +27,18 @@
       = f.input :last_name, input_html: { class: 'big medium', autocomplete: "off"}
 
     fieldset
-      label
-        h3
-          ' Telephone number
-        = f.input :phone_number, input_html: { class: 'big small', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+      h3 = f.label :phone_number, label: "Telephone number"
+      = f.input :phone_number, input_html: { class: 'big small', autocomplete: "off"}, label: false
 
     fieldset
-      label
-        h3
-          ' Email
-        = f.input :email, required: true, input_html: { class: 'big medium', autocomplete: "off"}, label_html: { class: 'visuallyhidden' }
+      h3 = f.label :email
+      = f.input :email, required: true, input_html: { class: 'big medium', autocomplete: "off"}, label: false
 
     fieldset
-      label
-        h3
-          ' Administrative rights
-        p
-          ' A ‘Contributor’ can only write and edit your applications/nominations. Whilst an ‘Admin and Contributor’ is also able to add new collaborators.
+      h3
+        ' Administrative rights
+      p
+        ' A ‘Contributor’ can only write and edit your applications/nominations. Whilst an ‘Admin and Contributor’ is also able to add new collaborators.
       = f.input :role,
                 collection: [["Contributor", "regular"],
                              ["Admin and contributor", "account_admin"]],

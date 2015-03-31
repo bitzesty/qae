@@ -17,22 +17,20 @@
 
           .form-inputs
             .question
-              label
-                h2 Email
-                .question-body
-                  = f.input :email, required: true, autofocus: true, label: false, input_html: {autocomplete: "off", class: "medium"}
+              h2 = f.label :email
+              .question-body
+                = f.input :email, required: true, autofocus: true, label: false, input_html: {autocomplete: "off", class: "medium"}
 
           #password-change-panel
             .form-inputs-group
               #password-control-group
                 .form-inputs
                   .question
-                    label
-                      h2 Password
-                      .question-body
-                        = f.input :password, required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
-                        span#password-result-span.input-group-addon
-                          i#password-result.glyphicon.glyphicon-ok
+                    h2 = f.label :password
+                    .question-body
+                      = f.input :password, required: true, label: false, hint: ("#{@minimum_password_length} characters minimum" if @validatable), input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
+                      span#password-result-span.input-group-addon
+                        i#password-result.glyphicon.glyphicon-ok
 
               .guidance-panel.if-no-js-hide
                 #password-guidance.application-notice.help-notice
@@ -50,12 +48,11 @@
               #password-confirmation-control-group
                 .form-inputs
                   .question
-                    label
-                      h2 Password confirmation
-                      .question-body
-                        = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
-                        span#password-confirmation-result-span.input-group-addon
-                          i#password-confirmation-result.glyphicon.glyphicon-ok
+                    h2 = f.label :password_confirmation, label: "Password confirmation"
+                    .question-body
+                      = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
+                      span#password-confirmation-result-span.input-group-addon
+                        i#password-confirmation-result.glyphicon.glyphicon-ok
 
               .if-no-js-hide
                 #password-confirmation-guidance.application-notice.help-notice
