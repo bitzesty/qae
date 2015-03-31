@@ -53,9 +53,9 @@
                       = link_to "Collaborators", account_collaborators_path
                   li
                     - if current_admin
-                      = link_to "Log out", destroy_admin_session_path, method: :delete
+                      = link_to "Sign out", destroy_admin_session_path, method: :delete
                     - else
-                      = link_to "Log out", destroy_user_session_path, method: :delete
+                      = link_to "Sign out", destroy_user_session_path, method: :delete
 
 - content_for :inside_header do
   - if landing_page?
