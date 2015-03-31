@@ -102,17 +102,18 @@ module QaePdfForms::CustomQuestions::ByYear
   end
 
   def latest_year_label(with_month_check = true)
-    month = if with_month_check
-              to_month(form_pdf.filled_answers["financial_year_date_month"])
-            else
-              form_pdf.filled_answers["financial_year_date_month"]
-    end
+    day = form_pdf.filled_answers["financial_year_date_day"].to_s
 
-    [
-      "0" + form_pdf.filled_answers["financial_year_date_day"],
-      month,
-      Date.today.year
-    ]
+    month = if with_month_check
+      to_month(form_pdf.filled_answers["financial_year_date_month"])
+    else
+      form_pdf.filled_answers["financial_year_date_month"]
+    end.to_s
+
+    day = "0" + day if day.size == 1
+    month = "0" + month if month.size == 1
+
+    [day, month, Date.today.year ]
   end
 
   def decorated_label(label)
