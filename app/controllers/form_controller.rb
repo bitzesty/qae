@@ -80,7 +80,10 @@ class FormController < ApplicationController
         current_account.basic_eligibility.current_holder? ? "yes" : "no"
       end
 
-      @form_answer.document = @form_answer.document.merge(queen_award_holder: queen_award_holder)
+      if @form_answer.document["queen_award_holder"].blank?
+        @form_answer.document = @form_answer.document.merge(queen_award_holder: queen_award_holder)
+      end
+
       @form_answer.save!
       @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
       render template: "qae_form/show"
