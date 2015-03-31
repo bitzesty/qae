@@ -18,32 +18,32 @@ header.page-header.group.page-header-over-sidebar
               p Your nominee is eligible for an Enterprise Promotion Award.
 
             h2 Before you begin:
-            ul
-              li
-                ' For planning purposes you can
-                = link_to "download a blank PDF of the entire nomination form", users_form_answer_path(@form_answer, format: :pdf)
-                ' . However, all nominations must be completed online.
+            p
+              ' For planning purposes you can
+              = link_to "download a blank PDF of the entire nomination form", users_form_answer_path(@form_answer, format: :pdf)
+              ' . However, all nominations must be completed online.
 
-              - if @collaborators.any?
-                li
-                  ' You have already added these people as collaborators:
-                  ul
-                    - @collaborators.each do |collaborator|
-                      li
-                        - if collaborator.first_name.present?
-                          = collaborator.full_name
-                        - else
-                          ' Anonymous
-              li
-                ' You can
-                = link_to account_collaborators_path(form_id: @form_answer.id)
-                  - if @collaborators.any?
-                    | add more collaborators
-                  - else
-                    | add a collaborator
-                '  to help you fill out this nomination. But be aware that
-                strong they are able to see and edit all of your nominations
-                ' .
+            - if @collaborators.any?
+              br
+              p
+                ' You have already added these people as collaborators:
+              ul
+                - @collaborators.each do |collaborator|
+                  li
+                    - if collaborator.first_name.present?
+                      = collaborator.full_name
+                    - else
+                      ' Anonymous
+            p
+              ' You can
+              = link_to account_collaborators_path(form_id: @form_answer.id)
+                - if @collaborators.any?
+                  | add more collaborators
+                - else
+                  | add a collaborator
+              '  to help you fill out this nomination. But be aware that
+              strong they are able to see and edit all of your nominations
+              ' .
 
             br
 
