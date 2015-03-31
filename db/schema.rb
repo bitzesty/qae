@@ -252,7 +252,6 @@ ActiveRecord::Schema.define(version: 20150410091747) do
     t.hstore   "financial_data"
     t.boolean  "admin_importance_flag",           default: false
     t.boolean  "assessor_importance_flag",        default: false
-    t.boolean  "accepted",                        default: false
     t.boolean  "primary_assessor_not_assigned",   default: true
     t.boolean  "secondary_assessor_not_assigned", default: true
     t.datetime "company_details_updated_at"
