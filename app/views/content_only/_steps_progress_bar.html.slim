@@ -17,3 +17,11 @@
         ul
           - @form.steps.each_with_index do |step, index|
             = step_link_to step.short_title.html_safe, result_form_award_eligibility_url(form_id: @form_answer.id, anchor: step.title.html_safe.parameterize), index: index + 3, active: 2, index_name: "#{step_letters[index]}.", cant_access_future: false
+    li.divider
+    li.sidebar-helpline
+      ' Need help? Ring us on
+      br
+      ' 020 7215 6880
+      span.helpline-space
+      ' Alternatively, email us at
+      = link_to "info@queensawards.org.uk", "mailto:info@queensawards.org.uk"

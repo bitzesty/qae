@@ -404,9 +404,6 @@ header.page-header aside .inner {
   margin-top: 2.5em;
   margin-left: 32px;
   padding: 0;
-  border: 1px solid $border-colour;
-  border-right: none;
-  border-left: none;
 
   @media (max-width: 990px) {
     position: static;
@@ -518,6 +515,29 @@ header.page-header aside .inner {
   .page-header & {
     margin-top: 16px;
     margin-bottom: $gutter;
+  }
+
+  .step-download {
+    margin-top: 15px;
+    margin-bottom: 10px;
+  }
+
+  .sidebar-helpline {
+    @include core-16;
+    padding: 25px 0;
+    color: $black;
+
+    a {
+      padding: 0;
+      border: none;
+      color: $govuk-blue !important;
+    }
+
+    .helpline-space {
+      margin-top: 10px;
+      padding: 0;
+      border: none;
+    }
   }
 }
 
