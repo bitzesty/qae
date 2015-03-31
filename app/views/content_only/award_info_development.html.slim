@@ -38,9 +38,9 @@ header.page-header.group.page-header-over-sidebar
                 ' You can
                 = link_to account_collaborators_path(form_id: @form_answer.id)
                   - if @collaborators.any?
-                    ' add more collaborators
+                    | add more collaborators
                   - else
-                    ' add a collaborator
+                    | add a collaborator
                 '  to help you fill out this application. But be aware that
                 strong they are able to see and edit all of your applications
                 ' .

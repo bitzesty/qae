@@ -12,8 +12,8 @@ li.js-add-example
           ' Year
           input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][year]" type="text" value=award['year']
 
-  label
+  label for="form[#{question.key}][#{index}][details]"
     span.label-char-count-reposition
         ' Details
-    textarea.award-textarea.js-char-count rows="2" name="form[#{question.key}][#{index}][details]" data-word-max=question.details_words_max *possible_read_only_ops
-      = award['details']
+  textarea.award-textarea.js-char-count rows="2" name="form[#{question.key}][#{index}][details]" id="form[#{question.key}][#{index}][details]" data-word-max=question.details_words_max *possible_read_only_ops
+    = award['details']

@@ -333,8 +333,9 @@ jQuery ->
 
       if needs_description
         desc_div = $("<div>")
-        label = ($("<label class=\"small\">").text('Description (optional)'))
-        label.append($("<textarea class=\"js-char-count\" rows=\"2\" maxlength=\"600\" data-word-max=\"100\">").attr("name", "#{form_name}[#{name}][][description]"))
+        unique_name = "#{form_name}[#{name}][][description]"
+        label = ($("<label>").text("Description").attr("for", unique_name))
+        label.append($("<textarea class='js-char-count' rows='2' maxlength='600' data-word-max='100'>").attr("name", unique_name).attr("id", unique_name))
         desc_div.append(label)
         new_el.append(desc_div)
 

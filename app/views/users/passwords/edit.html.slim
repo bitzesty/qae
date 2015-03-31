@@ -17,17 +17,15 @@
           .form-inputs-group
             .form-inputs
               .question
-                label
-                  h2 New Password
-                  .question-body
-                    = f.input :password, required: true, label: false, autofocus: true, input_html: { class: 'password-strength-meter' }
+                h2 = f.label :password, label: "New Password"
+                .question-body
+                  = f.input :password, required: true, label: false, autofocus: true, input_html: { class: 'password-strength-meter' }
 
             .form-inputs
               .question
-                label
-                  h2 Confirm your new password
-                  .question-body
-                    = f.input :password_confirmation, label: false, required: true
+                h2 = f.label :password, label: "Confirm your new password"
+                .question-body
+                  = f.input :password_confirmation, label: false, required: true
 
           .form-actions
             = f.button :submit, "Change my password", class: "button large"

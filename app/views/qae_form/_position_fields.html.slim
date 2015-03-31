@@ -34,7 +34,7 @@ li.js-add-example
           input.js-trigger-autosave type="checkbox" name="form[position_details][#{index}][ongoing]" checked=('checked' if position['ongoing'] == '1') value='1'
           ' Ongoing
 
-  label
+  label for="form[position_details][0][details]"
     span.label-char-count-reposition
       ' Details
-    textarea.position-textarea.js-char-count rows="2" name="form[position_details][0][details]" data-word-max=question.details_words_max
+  textarea.position-textarea.js-char-count rows="2" name="form[position_details][0][details]" id="form[position_details][0][details]" data-word-max=question.details_words_max

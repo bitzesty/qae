@@ -17,20 +17,19 @@ div
 
         = simple_form_for @press_summary, url: users_form_answer_press_summary_path(form_answer, token: params[:token]), html: { class: "qae-form" } do |f|
           fieldset.question-block.sub-question.js-press-comment-correct
-            label
-              h2 Do you have any comments on your entry?
+            h2 = f.label :correct, label: "Do you have any comments on your entry?"
             ul.errors-container
             .question-group
-              = f.input :correct, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+              = f.input :correct, as: :radio_buttons, item_wrapper_class: 'selectable', label: false
               span.clear
 
           br
 
           fieldset.question-block.regular-question.js-press-comment-feeback
             h2
-              label Please note where and how the press comment is factually incorrect.
+              = f.label :comment, label: "Please note where and how the press comment is factually incorrect."
             .question-group
-              = f.input :comment, as: :text, input_html: { class: "js-char-count", rows: "5", data: { word_max: "300" } }
+              = f.input :comment, as: :text, input_html: { class: "js-char-count", rows: "5", data: { word_max: "300" } }, label: false
               .clear
 
           br
