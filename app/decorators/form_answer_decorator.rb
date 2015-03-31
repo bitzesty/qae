@@ -138,4 +138,38 @@ class FormAnswerDecorator < ApplicationDecorator
       "Updated by #{transition.transitable.decorate.full_name} - #{time}"
     end
   end
+
+  def address_first_line
+    document["principal_address_building"].presence ||
+      document["organization_address_building"]
+  end
+
+  def address_second_line
+    document["principal_address_street"] ||
+      document["organization_address_street"]
+  end
+
+  def company_city
+    document["principal_address_city"] ||
+      document["organization_address_city"]
+  end
+
+  def company_country
+    document["principal_address_country"] ||
+      document["organization_address_country"]
+  end
+
+  def company_postcode
+    document["principal_address_postcode"] ||
+      document["organization_address_postcode"]
+  end
+
+  def company_phone
+    document["org_telephone"]
+  end
+
+  def company_region
+    document["principal_address_region"] ||
+      document["organization_address_region"]
+  end
 end
