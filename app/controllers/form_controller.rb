@@ -24,12 +24,7 @@ class FormController < ApplicationController
       award_type: "innovation",
       nickname: nickname,
       document: {
-        company_name: current_user.company_name,
-        principal_address_building: current_user.company_address_first,
-        principal_address_street: current_user.company_address_second,
-        principal_address_city: current_user.company_city,
-        principal_address__country: current_user.company_country,
-        principal_address_postcode: current_user.company_postcode
+        company_name: current_user.company_name
     })
     redirect_to edit_form_url(form_answer)
   end
@@ -39,8 +34,10 @@ class FormController < ApplicationController
       user: current_user,
       account: current_user.account,
       award_type: "trade",
-      nickname: nickname
-    )
+      nickname: nickname,
+      document: {
+        company_name: current_user.company_name
+    })
 
     redirect_to edit_form_url(form_answer)
   end
@@ -50,8 +47,10 @@ class FormController < ApplicationController
       user: current_user,
       account: current_user.account,
       award_type: "development",
-      nickname: nickname
-    )
+      nickname: nickname,
+      document: {
+        company_name: current_user.company_name
+    })
 
     redirect_to edit_form_url(form_answer)
   end
