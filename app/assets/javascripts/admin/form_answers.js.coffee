@@ -148,6 +148,7 @@ changeRagStatus = ->
 editFormAnswerAutoUpdate = ->
   $(".sic-code .form-save-link").on "click", (e) ->
     e.preventDefault()
+    e.stopPropagation()
     that = $("#form_answer_sic_code")
     form = $(".edit_form_answer")
     $.ajax
