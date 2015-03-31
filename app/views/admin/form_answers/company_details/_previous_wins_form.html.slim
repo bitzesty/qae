@@ -1,0 +1,48 @@
+.form-group.previous-wins
+  = simple_form_for [:admin, @form_answer], remote: true, authenticity_token: true do |f|
+    label.form-label Previous winnings
+
+    .form-value
+      p
+        - if f.object.previous_wins.present?
+          ul
+          - PreviousWinDecorator.decorate_collection(f.object.previous_wins).each do |win|
+            li
+              span= win.description
+        - else
+          -
+    - f.object.previous_wins.build
+    = f.simple_fields_for :previous_wins, f.object.previous_wins do |p|
+      - klass = p.object.new_record? && f.object.previous_wins.detect{|a| !a.new_record?} ? "if-js-hide" : ""
+      .input.form-group.form-fields class=klass
+        ul.list-add
+          li.well
+            .pull-right
+              = link_to "Remove", "#", class: "if-no-js-hide remove-link"
+              .remove-section.if-js-hide
+                =p.input "_destroy",
+                          as: :boolean,
+                          label: "remove"
+            .row
+              .col-sm-5
+                = p.input :category,
+                          as: :select,
+                          input_html: { class: "form-control" },
+                          label: false,
+                          collection: PreviousWin::CATEGORIES
+              .col-sm-2
+                = p.input :year,
+                          as: :select,
+                          input_html: { class: "form-control" },
+                          label: false,
+                          collection: PreviousWin::YEARS
+
+        = link_to "+ Add another winnings", "#", class: "btn btn-default if-no-js-hide"
+      .clear
+
+    = link_to "#", class: "form-edit-link pull-right"
+      span.glyphicon.glyphicon-pencil
+      ' Edit
+    / = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
+    = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
+    .clear

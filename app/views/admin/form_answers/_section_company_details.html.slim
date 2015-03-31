@@ -7,151 +7,30 @@
           ' Logged in: 28/09/15 - 08:03
   #section-company-details.section-company-details.panel-collapse.collapse role="tabpanel" aria-labelledby="company-details-heading"
     .panel-body
-      = simple_form_for [:admin, @form_answer], remote: true, authenticity_token: true do |f|
-        .form-group
-          label.form-label Company name
-          .form-value
-            p = @form_answer.company_name
-          .input.form-group
-            input.form-control type="text"
-          .clear
+      .form-group
+        label.form-label Company name
+        .form-value
+          p = @form_answer.company_name
+        .input.form-group
+          input.form-control type="text"
+        .clear
 
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-          .clear
+        = link_to "#", class: "form-edit-link pull-right"
+          span.glyphicon.glyphicon-pencil
+          ' Edit
+        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+        .clear
 
-        br
+      br
+      = render "admin/form_answers/company_details/address_form"
 
-        .form-group
-          label.form-label Address
-          .form-value
-            p
-              = @form_answer.address_first_line
-              br
-              = @form_answer.address_second_line
-              br
-              = @form_answer.company_city
-              br
-              = @form_answer.company_country
-              br
-              = @form_answer.company_postcode
-              br
-              = @form_answer.company_region
+      br
 
-            p
-              = @form_answer.company_phone
+      = render "admin/form_answers/company_details/previous_wins_form"
 
-          .input.form-group.form-fields
-            .row
-              .col-md-8
-                label Building and street
-                input.form-control type="text"
-                input.form-control type="text"
-            .row
-              .col-md-6
-                label Town or city
-                input.form-control type="text"
-            .row
-              .col-md-6
-                label Country
-                input.form-control type="text"
-            .row
-              .col-md-3
-                label Postcode
-                input.form-control type="text"
-            .row
-              .col-md-3
-                label Telephone number
-                input.form-control type="text"
-          .clear
+      br
+      = render "admin/form_answers/company_details/sic_form"
 
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-          .clear
-
-        br
-
-        / TODO placeholder, no JS attached either
-        .form-group.previous-wins
-          label.form-label Previous winnings
-
-          .form-value
-            p
-              - if f.object.previous_wins.present?
-                ul
-                - PreviousWinDecorator.decorate_collection(f.object.previous_wins).each do |win|
-                  li
-                    span= win.description
-              - else
-                -
-          - f.object.previous_wins.build
-          = f.simple_fields_for :previous_wins, f.object.previous_wins do |p|
-            - klass = p.object.new_record? && f.object.previous_wins.detect{|a| !a.new_record?} ? "if-js-hide" : ""
-            .input.form-group.form-fields class=klass
-              ul.list-add
-                li.well
-                  .pull-right
-                    = link_to "Remove", "#", class: "if-no-js-hide remove-link"
-                    .remove-section.if-js-hide
-                      =p.input "_destroy",
-                                as: :boolean,
-                                label: "remove"
-                  .row
-                    .col-sm-5
-                      = p.input :category,
-                                as: :select,
-                                input_html: { class: "form-control" },
-                                label: false,
-                                collection: PreviousWin::CATEGORIES
-                    .col-sm-2
-                      = p.input :year,
-                                as: :select,
-                                input_html: { class: "form-control" },
-                                label: false,
-                                collection: PreviousWin::YEARS
-
-              = link_to "+ Add another winnings", "#", class: "btn btn-default if-no-js-hide"
-            .clear
-
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
-          .clear
-
-        br
-
-        .form-group.sic-code
-          label.form-label SIC Code
-          .form-value
-            p
-              - if @form_answer.sic_code.present?
-                = @form_answer.sic_code_name
-              - else
-                ' -
-          .form-fields
-            = f.input :sic_code,
-                      wrapper_html: { class: "form-group" },
-                      input_html: { class: "form-control select2" },
-                      as: :select,
-                      collection: SICCode.collection,
-                      include_blank: false,
-                      label: false
-          .clear
-
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
-          .clear
-
-        br
-
-        = f.submit "Update details", class: "if-js-hide btn btn-primary"
         .form-group
           label.form-label User accounts
           ul.list-unstyled.list-actions

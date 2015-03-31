@@ -1,0 +1,46 @@
+.form-group
+  label.form-label Address
+  .form-value
+    p
+      ' company_address_first
+      br
+      ' company_address_second
+      br
+      ' company_city
+      br
+      ' company_country
+      br
+      ' company_postcode
+
+    p
+      ' company_phone_number
+
+  .input.form-group.form-fields
+    .row
+      .col-md-8
+        label Building and street
+        input.form-control type="text"
+        input.form-control type="text"
+    .row
+      .col-md-6
+        label Town or city
+        input.form-control type="text"
+    .row
+      .col-md-6
+        label Country
+        input.form-control type="text"
+    .row
+      .col-md-3
+        label Postcode
+        input.form-control type="text"
+    .row
+      .col-md-3
+        label Telephone number
+        input.form-control type="text"
+  .clear
+
+  = link_to "#", class: "form-edit-link pull-right"
+    span.glyphicon.glyphicon-pencil
+    ' Edit
+  = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+  .clear
