@@ -13,13 +13,13 @@ describe "Admin sets up previous winnings" do
     let!(:form_answer) { create(:form_answer) }
 
     it "adds previous winning" do
-      within ".previous-wins" do
+      within ".previous-wins-form" do
         first("option[value='innovation2']").select_option
         first("option[value='2014']").select_option
+        find("input[type='submit']").click
       end
-      click_button "Update details"
-      within ".previous-wins" do
-        expect(page).to have_selector(".form-fields", count: 2)
+      within ".previous-wins-form" do
+        expect(page).to have_selector(".well", count: 2)
       end
     end
   end
@@ -27,14 +27,13 @@ describe "Admin sets up previous winnings" do
   context "deletion" do
     let!(:form_answer) { create(:previous_win).form_answer }
     it "deletes previous winning" do
-      within ".previous-wins" do
-        expect(page).to have_selector(".form-fields", count: 2)
+      within ".previous-wins-form" do
+        expect(page).to have_selector(".list-add", count: 2)
         first("input[type='checkbox']").set(true)
+        click_button "Save"
       end
-      click_button "Update details"
-
-      within ".previous-wins" do
-        expect(page).to have_selector(".form-fields", count: 1)
+      within ".previous-wins-form" do
+        expect(page).to have_selector(".well", count: 1)
       end
     end
   end

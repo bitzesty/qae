@@ -1,7 +1,6 @@
 module FormAnswerMixin
   def update
     authorize resource, :update?
-
     resource.update(update_params)
     respond_to do |format|
       format.json do
