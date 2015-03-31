@@ -65,12 +65,14 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def progress_text_short
-    "#{object.state.humanize[0..-2]}"
+    out = object.state.humanize
+    out = out[0..-2] if object.state == "application_in_progress"
+    out
   end
 
   def progress_text
     out = progress_text_short
-    out += "...#{fill_progress_in_percents}" unless object.submitted?
+    out += "...#{fill_progress_in_percents}" if object.state == "application_in_progress"
     out
   end
 
