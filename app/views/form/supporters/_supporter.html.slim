@@ -1,0 +1,26 @@
+li
+  = button_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
+
+  span.row
+    span.span-6
+      label
+        ' First Name
+        span = supporter.first_name
+
+  span.row
+    span.span-6
+      label
+        ' Last Name
+        span = supporter.last_name
+
+  span.row
+    span.span-6
+      label
+        ' Relationship to Nominee
+        span = supporter.relationship_to_nominee
+
+  span.row
+    span.span-6
+      label
+        ' Email address
+        span = supporter.email

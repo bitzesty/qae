@@ -18,6 +18,7 @@ footer
         li.submit.js-next-link.js-step-link data-step="step-#{step.next.title.parameterize}"
           = button_tag rel: "next", title: "Navigate to next part", class: "button" do
             ' Save and continue
+
       - else
         - if step.submit
           li.submit.qae-form
@@ -27,6 +28,6 @@ footer
       - unless admin_in_read_only_mode?
         li.save-quit-link
           span.if-js-hide
-            = button_tag "Save and come back later", class: "save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
+            = button_tag "Save and come back later", class: "save-quit-link btn js-displayed", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
           span.if-no-js-hide
             = link_to "Save and come back later", dashboard_url

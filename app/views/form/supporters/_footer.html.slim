@@ -1,0 +1,24 @@
+footer
+  nav.pagination class="#{'pagination-alternative' unless step.next}" role="navigation" aria-label="Pagination"
+    ul.group
+      - if step.previous
+        li.previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"
+          = link_to edit_form_url(id: @form_answer.id, step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part" do
+            span.pagination-label
+              | Back
+            /span class="pagination-part-title"
+              = step.previous.title
+      - else
+        li.previous.previous-alternate
+          = link_to [:award_info, @form_answer.award_type, form_id: @form_answer.id], rel: "prev", title: "Navigate to previous part" do
+            span.pagination-label
+              | Back
+
+      - if step.next
+        li.submit.js-next-link.js-step-link data-step="step-#{step.next.title.parameterize}"
+          = link_to edit_form_url(id: @form_answer.id, step: step.next.title.parameterize), rel: "next", title: "Navigate to next part", class: "button" do
+            ' Save and continue
+
+      - unless admin_in_read_only_mode?
+        li.save-quit-link
+          = link_to "Save and come back later", dashboard_path, class: "save-quit-link"

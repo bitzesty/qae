@@ -1,0 +1,28 @@
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li = @form.title
+
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      = @form.title
+
+.steps-progress-container
+  .steps-progress-content
+    = render 'qae_form/form_header', form: @form, current_step: "letters-of-support"
+
+    .article-container.article-container-wider.step-article.step-current
+      h2 New support letter
+
+      = simple_form_for [:form, @form_answer, @support_letter], html: { class: 'qae-form' } do |f|
+        = f.input :first_name
+        = f.input :last_name
+        = f.input :relationship_to_nominee
+
+        - f.object.support_letter_attachment || f.object.build_support_letter_attachment
+        = f.simple_fields_for f.object.support_letter_attachment do |ff|
+          = ff.input :attachment, as: :file
+
+        = f.submit "Submit letter of support", class: "btn"
+
+    = render "qae_form/steps_progress_bar", current_step: "letters-of-support"
