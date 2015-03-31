@@ -27,6 +27,10 @@
     margin-left: 0;
     padding: $gutter-one-sixth 0 $gutter-one-third;
 
+    &.no-border {
+      border-bottom: none;
+    }
+
     h2,
     h3 {
       @include bold-19;

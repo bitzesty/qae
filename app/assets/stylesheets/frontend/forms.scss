@@ -780,6 +780,10 @@ input[type="file"] {
 
 // Styles and positions submit button in pagination
 .pagination {
+  &.no-border {
+    border: none;
+  }
+
   li.previous-alternate {
     width: 120px;
 

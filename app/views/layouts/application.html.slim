@@ -99,6 +99,13 @@
       main#content.group class="#{yield :page_content_class}" role="main"
         = yield
 
+        - unless landing_page?
+          p.footer-helpline
+            ' Need help? Ring us on
+            strong 020 7215 6880
+            ' . Alternatively, email us at
+            = link_to "info@queensawards.org.uk", "mailto:info@queensawards.org.uk"
+
 - content_for :footer_support_links do
   h2.visuallyhidden Support links
   ul

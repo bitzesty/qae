@@ -1,5 +1,5 @@
 footer
-  nav.pagination class="#{'pagination-alternative' unless step.next}" role="navigation" aria-label="Pagination"
+  nav.pagination.no-border class="#{'pagination-alternative' unless step.next}" role="navigation" aria-label="Pagination"
     ul.group
       - if step.previous
         li.previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"

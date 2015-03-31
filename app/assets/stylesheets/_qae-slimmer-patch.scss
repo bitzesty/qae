@@ -1,9 +1,11 @@
 #QAE {
-  margin-bottom: $gutter*2;
-
   &.admin-mode {
     margin-bottom: 0;
     padding-bottom: $gutter*2;
+  }
+
+  .page-landing {
+    margin-bottom: $gutter*2;
   }
 }
 
