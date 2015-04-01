@@ -183,7 +183,6 @@ bindRags =(klass) ->
         select = $(this).parents("select")
         select.val(ragClicked)
         section = select.data("updated-section")
-        console.log(section)
         if section
           input = form.find("input[name='updated_section']")
           if input.length
