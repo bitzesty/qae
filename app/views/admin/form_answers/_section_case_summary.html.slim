@@ -22,7 +22,8 @@
         = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
           locals: { f: f}
         = render_section(resource, f)
-        = f.submit :add, class: "if-js-hide"
+        = hidden_field_tag :updated_section
+        = f.submit "Save changes", class: "if-js-hide btn btn-primary"
 
       .clear
       br

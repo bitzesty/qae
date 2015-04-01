@@ -105,14 +105,21 @@ ready = ->
     e.stopPropagation()
 
   $(document).on "click", ".form-save-link", (e) ->
+    link = $(this)
     e.preventDefault()
-    formGroup = $(this).closest(".form-group")
+    formGroup = link.closest(".form-group")
+    form = formGroup.closest("form")
     area = formGroup.find("textarea:visible")
     formGroup.removeClass("form-edit")
 
     if area.length
       formGroup.find(".form-value p").text(area.val())
-      $(formGroup).closest("form").submit()
+      updatedSection = link.data("updated-section")
+      if updatedSection
+        input = form.find("input[name='updated_section']")
+        if input.length
+          input.val(updatedSection)
+      form.submit()
   $("#new_review_audit_certificate input[type='radio']").on "change", ->
     area = $(".audit-cert-description")
     if $(this).val() == "confirmed_changes"
@@ -176,10 +183,17 @@ bindRags =(klass) ->
     ragClicked = $(this).closest("li").attr("class")
     ragClicked = ragClicked.replace("rag-", "")
     ragSection = $(this).parents(".form-group")
+    form       = $(klass)
     ragSection.find("option").each ->
       if $(this).val() == ragClicked
-        $(this).parents("select").val(ragClicked)
-    $(klass).submit()
+        select = $(this).parents("select")
+        select.val(ragClicked)
+        section = select.data("updated-section")
+        if section
+          input = form.find("input[name='updated_section']")
+          if input.length
+            input.val(section)
+    form.submit()
 
 
 handleCompanyDetailsForm = ->

@@ -1,5 +1,7 @@
 class AssessorAssignmentService
   attr_reader :params, :current_subject, :resource
+  DESC_REGEX = /_desc$/
+  RATE_REGEX = /_rate$/
 
   def initialize(params, current_subject)
     @params = params
@@ -32,7 +34,23 @@ class AssessorAssignmentService
   end
 
   def normalize_params
-    params[:assessor_assignment].delete_if { |k, v| v.blank? && k != "assessor_id" }
+    p = params[:assessor_assignment]
+    p.delete_if { |k, v| v.blank? && k != "assessor_id" }
+    if updated_section.present?
+      # Because every text field has separated submit form button
+      # but there is only single huge form for all of the descriptions
+      # it's needed to updated only description marked explicitly by the admin
+      # to achieve data other description fields should be removed from params
+      if updated_section =~ DESC_REGEX
+        p.delete_if { |k, _| k =~ DESC_REGEX && k != updated_section }
+      elsif updated_section =~ RATE_REGEX
+        p.delete_if { |k, _| k != updated_section && (k =~ DESC_REGEX || k =~ RATE_REGEX) }
+      end
+    end
+  end
+
+  def updated_section
+    params[:updated_section]
   end
 
   def assignment_request?

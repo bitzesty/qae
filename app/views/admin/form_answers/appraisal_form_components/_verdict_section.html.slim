@@ -7,7 +7,7 @@
             as: :select,
             label: false,
             collection: options,
-            input_html: { class: "if-js-hide" }
+            input_html: { class: "if-js-hide", "data-updated-section"  => section.desc}
 
   label.form-label
     = section.label
@@ -42,5 +42,5 @@
     = link_to "#", class: "form-edit-link pull-right"
       span.glyphicon.glyphicon-pencil
       ' Edit
-    = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+    = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide", "data-updated-section" => section.desc
     .clear

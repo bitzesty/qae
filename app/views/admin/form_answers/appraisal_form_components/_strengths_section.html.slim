@@ -7,7 +7,7 @@
     as: :select,
     label: false,
     collection: options,
-    input_html: { class: "if-js-hide" }
+    input_html: { class: "if-js-hide", "data-updated-section" => section.rate }
 
   label.form-label
     = section.label
