@@ -9,7 +9,7 @@
   #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse role="tabpanel" aria-labelledby="appraisal-form-secondary-heading"
     .panel-body
       = simple_form_for([namespace_name, secondary_assessment], remote: true, html: { "data-type" => "json"}) do |f|
-        = f.hidden_field :form_answer_id
+        = hidden_field_tag :updated_section
         = render_section(resource, f)
         = f.submit :add, class: "if-js-hide"
       .clear

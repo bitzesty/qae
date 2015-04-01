@@ -28,6 +28,14 @@ shared_context "successful appraisal form edition" do
       assert_description_change(secondary, secondary_header)
       assert_description_change(moderated, moderated_header)
     end
+
+    context "multiple descriptions change" do
+      it "updates the form in separation" do
+        assert_multiple_description_change(primary, primary_header)
+        assert_multiple_description_change(secondary, secondary_header)
+        assert_multiple_description_change(moderated, moderated_header)
+      end
+    end
   end
 
   describe "Overall verdict change" do
@@ -109,6 +117,31 @@ def assert_description_change(section_id, header_id)
     expect(page).to have_selector("textarea", text: text)
   end
   visit show_path
+end
+
+def assert_multiple_description_change(section_id, header_id)
+  text = "should NOT be saved"
+  text2 = "should be saved"
+
+  find("#{header_id} .panel-title a").click
+  within section_id do
+    first(".form-edit-link").click
+    fill_in("assessor_assignment_level_of_innovation_desc", with: text)
+    all(".form-edit-link").last.click
+    fill_in("assessor_assignment_verdict_desc", with: text2)
+    all(".form-save-link").last.click
+  end
+
+  sleep(0.5)
+  visit show_path
+  find("#{header_id} .panel-title a").click
+
+  within section_id do
+    expect(page).to have_selector(".form-value p", text: text2, count: 1)
+    expect(page).to have_selector(".form-value p", text: text, count: 0)
+    all(".form-edit-link").last.click
+    expect(page).to have_selector("textarea", text: text2)
+  end
 end
 
 def assert_verdict_change(section_id, header_id)
