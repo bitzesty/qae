@@ -6,137 +6,15 @@
         small
           ' Logged in: 28/09/15 - 08:03
   #section-company-details.section-company-details.panel-collapse.collapse role="tabpanel" aria-labelledby="company-details-heading"
-    .panel-body
-      = simple_form_for [:admin, @form_answer] do |f|
-        .form-group
-          label.form-label Company name
-          .form-value
-            p = @form_answer.company_name
-          .input.form-group
-            input.form-control type="text"
-          .clear
+    .panel-body.company-details-forms
+      = render "admin/form_answers/company_details/company_name_form"
+      br
+      = render "admin/form_answers/company_details/address_form"
+      br
+      = render "admin/form_answers/company_details/previous_wins_form"
+      br
+      = render "admin/form_answers/company_details/sic_form"
 
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-          .clear
-
-        br
-
-        .form-group
-          label.form-label Address
-          .form-value
-            p
-              = @form_answer.address_first_line
-              br
-              = @form_answer.address_second_line
-              br
-              = @form_answer.company_city
-              br
-              = @form_answer.company_country
-              br
-              = @form_answer.company_postcode
-              br
-              = @form_answer.company_region
-
-            p
-              = @form_answer.company_phone
-
-          .input.form-group.form-fields
-            .row
-              .col-md-8
-                label Building and street
-                input.form-control type="text"
-                input.form-control type="text"
-            .row
-              .col-md-6
-                label Town or city
-                input.form-control type="text"
-            .row
-              .col-md-6
-                label Country
-                input.form-control type="text"
-            .row
-              .col-md-3
-                label Postcode
-                input.form-control type="text"
-            .row
-              .col-md-3
-                label Telephone number
-                input.form-control type="text"
-          .clear
-
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-          .clear
-
-        br
-
-        / TODO placeholder, no JS attached either
-        .form-group
-          label.form-label Previous winnings
-          .form-value
-            p -
-          .input.form-group.form-fields
-            ul.list-add
-              li.well
-                .pull-right
-                  = link_to "Remove"
-                .row
-                  .col-sm-5
-                    select.form-control
-                      option Innovation (2 years)
-                      option Innovation (5 years)
-                      option International Trade (3 years)
-                      option International Trade (6 years)
-                      option Sustainable Development (2 years)
-                      option Sustainable Development (5 years)
-                  .col-sm-2
-                    select.form-control
-                      - ((Date.today.year - 6)...Date.today.year).each do |year|
-                        option = year
-
-            = link_to "+ Add another winnings", "#", class: "btn btn-default"
-          .clear
-
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-          .clear
-
-        br
-
-        .form-group.sic-code
-          label.form-label SIC Code
-          .form-value
-            p
-              - if @form_answer.sic_code.present?
-                = @form_answer.sic_code_name
-              - else
-                ' -
-          .form-fields
-            = f.input :sic_code,
-                      wrapper_html: { class: "form-group" },
-                      input_html: { class: "form-control select2" },
-                      as: :select,
-                      collection: SICCode.collection,
-                      include_blank: true,
-                      label: false
-          .clear
-
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-          .clear
-
-        br
-
-        = f.submit :update_application, class: "if-js-hide"
         .form-group
           label.form-label User accounts
           ul.list-unstyled.list-actions

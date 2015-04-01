@@ -52,7 +52,6 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def company_or_nominee_name
-    return award_type if Rails.env.development?
     object.company_or_nominee_name
   end
 
@@ -139,36 +138,36 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
-  def address_first_line
+  def address_building
     document["principal_address_building"].presence ||
       document["organization_address_building"]
   end
 
-  def address_second_line
+  def address_street
     document["principal_address_street"] ||
       document["organization_address_street"]
   end
 
-  def company_city
+  def address_city
     document["principal_address_city"] ||
       document["organization_address_city"]
   end
 
-  def company_country
+  def address_country
     document["principal_address_country"] ||
       document["organization_address_country"]
   end
 
-  def company_postcode
+  def address_postcode
     document["principal_address_postcode"] ||
       document["organization_address_postcode"]
   end
 
-  def company_phone
+  def telephone
     document["org_telephone"]
   end
 
-  def company_region
+  def region
     document["principal_address_region"] ||
       document["organization_address_region"]
   end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150327190410) do
+ActiveRecord::Schema.define(version: 20150331180118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 20150327190410) do
   add_index "assessors", ["reset_password_token"], name: "index_assessors_on_reset_password_token", unique: true, using: :btree
 
   create_table "audit_certificates", force: :cascade do |t|
-    t.integer  "form_answer_id"
+    t.integer  "form_answer_id",      null: false
     t.string   "attachment"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
@@ -124,6 +124,21 @@ ActiveRecord::Schema.define(version: 20150327190410) do
 
   add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
   add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
+
+  create_table "company_details", force: :cascade do |t|
+    t.string   "address_building"
+    t.string   "address_street"
+    t.string   "address_city"
+    t.string   "address_country"
+    t.string   "address_postcode"
+    t.string   "telephone"
+    t.string   "region"
+    t.integer  "form_answer_id",   null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "company_details", ["form_answer_id"], name: "index_company_details_on_form_answer_id", unique: true, using: :btree
 
   create_table "deadlines", force: :cascade do |t|
     t.string   "kind"
@@ -285,6 +300,14 @@ ActiveRecord::Schema.define(version: 20150327190410) do
   end
 
   add_index "press_summaries", ["form_answer_id"], name: "index_press_summaries_on_form_answer_id", using: :btree
+
+  create_table "previous_wins", force: :cascade do |t|
+    t.integer  "form_answer_id", null: false
+    t.string   "category"
+    t.integer  "year"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "settings", force: :cascade do |t|
     t.integer  "year"

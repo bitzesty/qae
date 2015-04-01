@@ -1,7 +1,6 @@
 module FormAnswerMixin
   def update
     authorize resource, :update?
-
     resource.update(update_params)
     respond_to do |format|
       format.json do
@@ -13,13 +12,23 @@ module FormAnswerMixin
         }
       end
 
-      format.html { redirect_to [namespace_name, resource] }
+      format.html do
+        if request.xhr?
+          render partial: "admin/form_answers/company_details/#{params[:section]}_form", layout: false
+        else
+          redirect_to [namespace_name, resource]
+        end
+      end
     end
   end
 
   private
 
   def update_params
-    params.require(:form_answer).permit(:sic_code)
+    params.require(:form_answer).permit(
+      :sic_code,
+      :company_or_nominee_name,
+      previous_wins_attributes: [:id, :year, :category, :_destroy]
+    )
   end
 end

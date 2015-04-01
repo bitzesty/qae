@@ -48,6 +48,7 @@ class FormAnswer < ActiveRecord::Base
     has_one :feedback, dependent: :destroy
     has_one :press_summary, dependent: :destroy
     has_one :draft_note, as: :notable, dependent: :destroy
+    has_one :company_detail, dependent: :destroy
 
     has_many :form_answer_attachments, dependent: :destroy
     has_many :support_letter_attachments, dependent: :destroy
@@ -57,7 +58,7 @@ class FormAnswer < ActiveRecord::Base
     has_many :comments, as: :commentable, dependent: :destroy
     has_many :form_answer_transitions
     has_many :assessor_assignments, dependent: :destroy
-
+    has_many :previous_wins, dependent: :destroy
     has_many :assessors, through: :assessor_assignments do
       def primary
         where(assessor_assignments:
@@ -119,6 +120,12 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
+  accepts_nested_attributes_for :previous_wins,
+                                allow_destroy: true,
+                                reject_if: proc { |attrs|
+                                  attrs[:year].blank? && attrs[:category].blank?
+                                }
+
   def award_form
     QAE2014Forms.public_send(award_type) if award_type.present?
   end
@@ -158,6 +165,11 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
+  def submitted_and_after_the_deadline?
+    # TODO: clarify how it should work !
+    true
+  end
+
   private
 
   def nominee_full_name_from_document
@@ -192,7 +204,9 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def assign_searching_attributes
-    self.company_or_nominee_name = company_or_nominee_from_document
+    unless submitted_and_after_the_deadline?
+      self.company_or_nominee_name = company_or_nominee_from_document
+    end
     self.nominee_full_name = nominee_full_name_from_document
     self.award_type_full_name = AWARD_TYPE_FULL_NAMES[award_type]
   end
