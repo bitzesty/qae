@@ -36,7 +36,6 @@ class QaePdfForms::General::QuestionPointer
 
     @key = question.key
     @answer = answer_by_key
-    Rails.logger.info "[key] #{key} [answer] #{answer}"
     @humanized_answer = form_pdf.answer_based_on_type(key, answer) if answer.present?
     @sub_answers = fetch_sub_answers
     @financial_pointer = form_pdf.financial_pointer
@@ -335,7 +334,6 @@ class QaePdfForms::General::QuestionPointer
           end
         end
       when *LIST_TYPES
-        Rails.logger.info "[question] #{question.key} #{question.class}"
         form_pdf.indent 7.mm do
           render_list
         end

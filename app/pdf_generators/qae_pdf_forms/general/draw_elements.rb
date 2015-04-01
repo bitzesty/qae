@@ -28,10 +28,10 @@ module QaePdfForms::General::DrawElements
   end
 
   def path_to_attachment_file(attachment_file, link=false)
-    file = attachment_path(attachment_file, link)
+    file = attachment_icon(attachment_file)
 
     if ENV["AWS_ACCESS_KEY_ID"]
-      open(attachment_file.url)
+      open(file)
     else
       file
     end
@@ -39,11 +39,8 @@ module QaePdfForms::General::DrawElements
 
   def draw_link_with_file_attachment(attachment, description)
     default_bottom_margin
-    file = open(attachment.file.url)
 
-    Rails.logger.info "[file] #{file}"
-
-    image file,
+    image path_to_attachment_file(attachment.file),
           fit: [35, 35],
           align: :left
 
@@ -68,8 +65,6 @@ module QaePdfForms::General::DrawElements
   end
 
   def base_link_sceleton(url, filename, description=nil, ops = {})
-    Rails.logger.info "[url] #{url}, filename: #{filename}"
-
     indent (ops[:description_left_margin] || 0) do
       font("Times-Roman") do
         formatted_text [{
