@@ -107,12 +107,14 @@ module QaePdfForms::General::DrawElements
   end
 
   def current_host
-    default_url_options = ActionMailer::Base.default_url_options
+    unless ENV["AWS_ACCESS_KEY_ID"]
+      default_url_options = ActionMailer::Base.default_url_options
 
-    host = default_url_options[:host]
-    port = default_url_options[:port]
+      host = default_url_options[:host]
+      port = default_url_options[:port]
 
-    "http://#{host}#{port ? ':' + port.to_s : ''}"
+      "http://#{host}#{port ? ':' + port.to_s : ''}"
+    end
   end
 
   def default_bottom_margin
