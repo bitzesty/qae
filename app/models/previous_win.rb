@@ -8,17 +8,10 @@ class PreviousWin < ActiveRecord::Base
     "Sustainable Development (5 years)" => "development5"
   }
 
-  YEARS = [
-    2014,
-    2015,
-    2016,
-    2017
-  ]
   validates :form_answer_id, presence: true
   validates :category, inclusion: {
     in: CATEGORIES.values
   }, allow_blank: true
 
-  validates :year, inclusion: { in: YEARS }, allow_blank: true
   belongs_to :form_answer
 end
