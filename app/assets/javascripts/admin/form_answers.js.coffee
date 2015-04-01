@@ -177,9 +177,17 @@ bindRags =(klass) ->
     ragClicked = $(this).closest("li").attr("class")
     ragClicked = ragClicked.replace("rag-", "")
     ragSection = $(this).parents(".form-group")
+    form       = $(klass)
     ragSection.find("option").each ->
       if $(this).val() == ragClicked
-        $(this).parents("select").val(ragClicked)
-    $(klass).submit()
+        select = $(this).parents("select")
+        select.val(ragClicked)
+        section = select.data("updated-section")
+        console.log(section)
+        if section
+          input = form.find("input[name='updated_section']")
+          if input.length
+            input.val(section)
+    form.submit()
 
 $(document).ready(ready)
