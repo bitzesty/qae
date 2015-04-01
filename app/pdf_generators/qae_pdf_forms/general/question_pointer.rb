@@ -287,12 +287,7 @@ class QaePdfForms::General::QuestionPointer
           end
         end
 
-        form_pdf.indent 7.mm do
-          form_pdf.font("Times-Roman") do
-            form_pdf.text title,
-                          color: "999999"
-          end
-        end
+        form_pdf.render_standart_answer_block(title)
       when *LIST_TYPES
         form_pdf.indent 7.mm do
           render_list
@@ -401,17 +396,8 @@ class QaePdfForms::General::QuestionPointer
     row = sub_answers.map { |a| a[1] }
     row[1] = to_month(row[1]) if row[1].present?
 
-    form_pdf.indent 7.mm do
-      form_pdf.font("Times-Roman") do
-        if row[0] == FormPdf::UNDEFINED_TITLE
-          form_pdf.render_text FormPdf::UNDEFINED_TITLE,
-                               color: "999999"
-        else
-          form_pdf.render_text row.join(" "),
-                               color: "999999"
-        end
-      end
-    end
+    title = (row[0] == FormPdf::UNDEFINED_TITLE ? FormPdf::UNDEFINED_TITLE : row.join(" "))
+    form_pdf.render_standart_answer_block(title)
   end
 
   def render_sub_questions(items)

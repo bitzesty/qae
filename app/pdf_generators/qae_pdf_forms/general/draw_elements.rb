@@ -145,13 +145,17 @@ module QaePdfForms::General::DrawElements
 
   def render_answer_by_display(title, display)
     if display == "block"
-      indent 7.mm do
-        font("Times-Roman") do
-          render_text title, color: "999999"
-        end
-      end
+      render_standart_answer_block(title)
     else
       title
+    end
+  end
+
+  def render_standart_answer_block(title)
+    indent 7.mm do
+      font("Times-Roman") do
+        render_text title, color: "999999"
+      end
     end
   end
 
