@@ -27,6 +27,7 @@ module FormAnswerMixin
   def update_params
     params.require(:form_answer).permit(
       :sic_code,
+      :company_or_nominee_name,
       previous_wins_attributes: [:id, :year, :category, :_destroy]
     )
   end

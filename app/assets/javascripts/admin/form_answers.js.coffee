@@ -101,6 +101,9 @@ ready = ->
     $(this).find(".feedbackHolder").html("Assessment Submitted")
     $(this).find("input:submit").remove()
 
+  $(".company-name-form").on "click", ".form-save-link", (e) ->
+    e.stopPropagation()
+
   $(document).on "click", ".form-save-link", (e) ->
     e.preventDefault()
     formGroup = $(this).closest(".form-group")

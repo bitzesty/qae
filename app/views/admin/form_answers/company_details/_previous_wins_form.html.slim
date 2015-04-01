@@ -1,5 +1,5 @@
 .form-group.previous-wins-form
-  = simple_form_for [:admin, @form_answer], remote: true, authenticity_token: true, html: { "data-type" => "html" } do |f|
+  = simple_form_for [namespace_name, @form_answer], remote: true, authenticity_token: true, html: { "data-type" => "html" } do |f|
     = hidden_field_tag :section, "previous_wins"
     label.form-label Previous winnings
 
