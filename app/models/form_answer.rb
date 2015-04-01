@@ -166,8 +166,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def submitted_and_after_the_deadline?
-    # TODO: clarify how it should work !
-    true
+    submitted? && Settings.after_current_submission_deadline?
   end
 
   private

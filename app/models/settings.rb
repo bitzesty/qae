@@ -16,6 +16,10 @@ class Settings < ActiveRecord::Base
     for_year(Date.current.year)
   end
 
+  def self.after_current_submission_deadline?
+    DateTime.now > current.deadlines.submission_end.first.trigger_at
+  end
+
   private
 
   def create_deadlines
