@@ -6,12 +6,15 @@ module QaePdfForms::CustomQuestions::ByYear
   IN_PROGRESS = "in progress..."
 
   def render_years_labels_table
-    rows = financial_table_changed_dates_headers.map { |a| a.split("/") }
+    rows = financial_year_changed_dates_entries
+    # TODO: rows = financial_table_changed_dates_headers.map { |a| a.split("/") }
 
     rows.map do |e|
       e[1] = to_month(e[1])
     end
 
+    # TODO: remove rows.push(latest_year_label)
+    rows.push(latest_year_label)
     active_fields.length.times do |i|
       rows[i].unshift(i + 1)
     end
@@ -45,7 +48,7 @@ module QaePdfForms::CustomQuestions::ByYear
       entry.present? ? entry : IN_PROGRESS
     end
 
-    # render_single_row_table(financial_table_headers, rows)
+    # TODO: render_single_row_table(financial_table_headers, rows)
     render_single_row_list(financial_years_decorated_headers, rows)
   end
 
