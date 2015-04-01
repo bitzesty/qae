@@ -297,9 +297,22 @@ jQuery ->
       # TODO
 
     upload_started = (e, data) ->
-      button.addClass('visuallyhidden') #TODO: show progressbar
+      # Show `Uploading...`
+      button.addClass("visuallyhidden")
+      new_el = $("<li class='js-uploading'>")
+      div = $("<div>")
+      label = $("<label>").text("Uploading...")
+      div.append(label)
+      new_el.append(div)
+      list.append(new_el)
+      list.removeClass("visuallyhidden")
 
     upload_done = (e, data, link) ->
+      # Remove `Uploading...`
+      list.find(".js-uploading").remove()
+      list.addClass("visuallyhidden")
+
+      # Show new upload
       new_el = $("<li>")
 
       if link
