@@ -143,6 +143,18 @@ module QaePdfForms::General::DrawElements
     end
   end
 
+  def render_answer_by_display(title, display)
+    if display == "block"
+      indent 7.mm do
+        font("Times-Roman") do
+          render_text title, color: "999999"
+        end
+      end
+    else
+      title
+    end
+  end
+
   def render_text(title, ops = {})
     default_bottom_margin
     text title, ops

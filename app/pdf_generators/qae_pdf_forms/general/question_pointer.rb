@@ -219,17 +219,7 @@ class QaePdfForms::General::QuestionPointer
         end
       when QAEFormBuilder::OptionsQuestion
         if humanized_answer.present?
-          title = question_option_title
-          if display == "block"
-            form_pdf.indent 7.mm do
-              form_pdf.font("Times-Roman") do
-                form_pdf.render_text title,
-                                     color: "999999"
-              end
-            end
-          else
-            return title
-          end
+          form_pdf.render_answer_by_display(question_option_title, display)
         else
           form_pdf.indent 7.mm do
             question.options.each do |answer|
@@ -239,17 +229,7 @@ class QaePdfForms::General::QuestionPointer
         end
       when QAEFormBuilder::ConfirmQuestion
         if humanized_answer.present?
-          title = question_checked_value_title
-          if display == "block"
-            form_pdf.indent 7.mm do
-              form_pdf.font("Times-Roman") do
-                form_pdf.render_text title,
-                                     color: "999999"
-              end
-            end
-          else
-            return title
-          end
+          form_pdf.render_answer_by_display(question_checked_value_title, display)
         else
           question_option_box question.text
         end
@@ -319,16 +299,7 @@ class QaePdfForms::General::QuestionPointer
         end
       else
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
-        if display == "block"
-          form_pdf.indent 7.mm do
-            form_pdf.font("Times-Roman") do
-              form_pdf.render_text title,
-                                   color: "999999"
-            end
-          end
-        else
-          return title
-        end
+        form_pdf.render_answer_by_display(title, display)
       end
     end
   end
@@ -339,10 +310,7 @@ class QaePdfForms::General::QuestionPointer
         attachment_by_type(k, v)
       end
     else
-      form_pdf.font("Times-Roman") do
-        form_pdf.render_text "Nothing uploaded yet...",
-                             color: "999999"
-      end
+      form_pdf.render_nothing_uploaded_message
     end
   end
 
