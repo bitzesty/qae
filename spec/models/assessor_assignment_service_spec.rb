@@ -95,6 +95,27 @@ describe AssessorAssignmentService do
       end
     end
 
+    context "updated section is commercial_rate" do
+      let(:params) do
+        {
+          assessor_assignment: {
+            commercial_success_rate: "negative",
+            another_rate: "negative",
+            strategy_desc: "asd",
+            created_at: "text"
+          },
+          updated_section: "commercial_success_rate",
+          id: primary.id
+        }.with_indifferent_access
+      end
+
+      it "removes the not relevant _rate and _desc" do
+        subject.save
+        expect(subject.update_params).to eq(
+          "commercial_success_rate" => "negative", "created_at" => "text")
+      end
+    end
+
     context "updated section is in invalid attr" do
       let(:params) do
         {

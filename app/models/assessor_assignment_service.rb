@@ -1,6 +1,7 @@
 class AssessorAssignmentService
   attr_reader :params, :current_subject, :resource
   DESC_REGEX = /_desc$/
+  RATE_REGEX = /_rate$/
 
   def initialize(params, current_subject)
     @params = params
@@ -40,13 +41,16 @@ class AssessorAssignmentService
       # but there is only single huge form for all of the descriptions
       # it's needed to updated only description marked explicitly by the admin
       # to achieve data other description fields should be removed from params
-      p.delete_if { |k, _| k =~ DESC_REGEX && k != updated_section }
+      if updated_section =~ DESC_REGEX
+        p.delete_if { |k, _| k =~ DESC_REGEX && k != updated_section }
+      elsif updated_section =~ RATE_REGEX
+        p.delete_if { |k, _| k != updated_section && (k =~ DESC_REGEX || k =~ RATE_REGEX) }
+      end
     end
   end
 
   def updated_section
-    out = params[:updated_section]
-    out if out =~ DESC_REGEX
+    params[:updated_section]
   end
 
   def assignment_request?
