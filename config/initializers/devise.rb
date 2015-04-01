@@ -203,7 +203,7 @@ Devise.setup do |config|
   # ==> Devise Authy Authentication Extension
   # How long should the user's device be remembered for.
   # config.authy_remember_device = 1.month
-  
+
   # default devise_zxcvbn minimum password score
-  config.min_password_score = 4
+  config.min_password_score = 3
 end
