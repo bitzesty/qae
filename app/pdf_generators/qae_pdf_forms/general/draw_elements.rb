@@ -8,36 +8,49 @@ module QaePdfForms::General::DrawElements
   ALERT_ICON = "icon-important-print.png"
   ALERT_BIG_ICON = "icon-important-big-print.png"
 
-  def attachment_icon(attachment)
-    case attachment.file.file.extension.to_s
+  def attachment_path(attachment_file, link=false)
+    if ENV["AWS_ACCESS_KEY_ID"]
+      attachment_file.url
+    elsif link
+      "#{current_host}#{attachment_file.url}"
+    else
+      "#{Rails.root}/public#{attachment_file.url}"
+    end
+  end
+
+  def attachment_icon(attachment_file)
+    case attachment_file.file.extension.to_s
     when *FormAnswerAttachmentUploader::POSSIBLE_IMG_EXTENSIONS
-      if ENV["AWS_ACCESS_KEY_ID"]
-        attachment.file.url
-      else
-        "#{Rails.root}/public#{attachment.file.url}"
-      end
+      attachment_path(attachment_file)
     else
       "#{IMAGES_PATH}#{ATTACHMENT_ICON}"
     end
   end
 
+  def path_to_attachment_file(attachment_file, link=false)
+    file = attachment_path(attachment_file, link)
+
+    if ENV["AWS_ACCESS_KEY_ID"]
+      open(attachment_file.url)
+    else
+      file
+    end
+  end
+
   def draw_link_with_file_attachment(attachment, description)
     default_bottom_margin
+    file = open(attachment.file.url)
 
-    path_to_file = if ENV["AWS_ACCESS_KEY_ID"]
-      open(attachment_icon(attachment))
-    else
-      attachment_icon(attachment)
-    end
+    Rails.logger.info "[file] #{file}"
 
-    image path_to_file,
+    image file,
           fit: [35, 35],
           align: :left
 
     move_up 17
 
     base_link_sceleton(
-      path_to_file,
+      attachment_path(attachment.file, true),
       attachment.original_filename.truncate(60),
       description ? description : nil,
       description_left_margin: 55)
@@ -54,7 +67,9 @@ module QaePdfForms::General::DrawElements
       {})
   end
 
-  def base_link_sceleton(url, filename, description, ops = {})
+  def base_link_sceleton(url, filename, description=nil, ops = {})
+    Rails.logger.info "[url] #{url}, filename: #{filename}"
+
     indent (ops[:description_left_margin] || 0) do
       font("Times-Roman") do
         formatted_text [{
@@ -65,8 +80,10 @@ module QaePdfForms::General::DrawElements
 
         move_down 3.mm
 
-        text description,
-             color: "999999"
+        if description.present?
+          text description,
+               color: "999999"
+        end
       end
     end
   end
@@ -140,6 +157,12 @@ module QaePdfForms::General::DrawElements
     default_bottom_margin
     table table_lines, row_colors: %w(F0F0F0 FFFFFF),
                        cell_style: { size: 10, font_style: :bold }
+  end
+
+  def render_nothing_uploaded_message
+    font("Times-Roman") do
+      render_text "Nothing uploaded yet...", color: "999999"
+    end
   end
 
   def current_host

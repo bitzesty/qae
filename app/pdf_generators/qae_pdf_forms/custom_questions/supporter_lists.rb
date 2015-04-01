@@ -9,10 +9,7 @@ module QaePdfForms::CustomQuestions::SupporterLists
     if entries.present?
       render_supporters_list(entries)
     else
-      form_pdf.font("Times-Roman") do
-        form_pdf.render_text "Nothing uploaded yet...",
-                             color: "999999"
-      end
+      form_pdf.render_nothing_uploaded_message
     end
   end
 
@@ -39,5 +36,24 @@ module QaePdfForms::CustomQuestions::SupporterLists
       form_pdf.text option_value
       form_pdf.move_down 2.5.mm
     end
+
+    if entry.is_a?(SupportLetter)
+      render_support_letter(entry)
+    end
+  end
+
+  def render_support_letter(entry)
+    form_pdf.text "Letter of Support: ", style: :bold
+
+    if entry.support_letter_attachment.present?
+      form_pdf.base_link_sceleton(
+        form_pdf.attachment_path(entry.support_letter_attachment.attachment, true),
+        entry.support_letter_attachment.original_filename.truncate(60)
+      )
+    else
+      form_pdf.render_nothing_uploaded_message
+    end
+
+    form_pdf.move_down 2.5.mm
   end
 end
