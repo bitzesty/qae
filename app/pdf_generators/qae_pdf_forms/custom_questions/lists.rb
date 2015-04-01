@@ -33,10 +33,12 @@ module QaePdfForms::CustomQuestions::Lists
 
   def render_list
     if humanized_answer.present?
-      Rails.logger.info "[humanized_answer] #{humanized_answer}"
       render_multirows_table(list_headers, list_rows)
+
+      if list_rows.blank?
+        form_pdf.render_text(FormPdf::UNDEFINED_TITLE, style: :italic)
+      end
     else
-      Rails.logger.info "[humanized_answer] UNDEFINED_TITLE"
       form_pdf.render_text(FormPdf::UNDEFINED_TITLE, style: :italic)
     end
   end
@@ -80,12 +82,19 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["name"].present?
       [
         prepared_item["name"],
-        "#{prepared_item['start_month']}/#{prepared_item['start_year']}",
-        "#{prepared_item['end_month']}/#{prepared_item['end_year']}",
+        position_date(prepared_item['start_month'], prepared_item['start_year']),
+        position_date(prepared_item['end_month'], prepared_item['end_year']),
         prepared_item["ongoing"].to_s == "1" ? "yes" : "no",
         prepared_item["details"].present? ? prepared_item["details"] : FormPdf::UNDEFINED_TITLE
       ]
     end
+  end
+
+  def position_date(month, year)
+    [
+      month || '-',
+      year || '-'
+    ].join("/")
   end
 
   def subsidiaries_associates_plants_query_conditions(prepared_item)

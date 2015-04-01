@@ -30,7 +30,7 @@ module QaePdfForms::General::DrawElements
       attachment_icon(attachment)
     end
 
-    image path_to_file,,
+    image path_to_file,
           fit: [35, 35],
           align: :left
 
