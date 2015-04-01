@@ -29,6 +29,19 @@ class QaePdfForms::General::QuestionPointer
   ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='999999'>"
   ANSWER_FONT_END = "</font></color>"
 
+  BLOCK_QUESTIONS = [
+    QAEFormBuilder::AwardHolderQuestion,
+    QAEFormBuilder::QueenAwardHolderQuestion,
+    QAEFormBuilder::PositionDetailsQuestion,
+    QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion,
+    QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion,
+    QAEFormBuilder::UploadQuestion,
+    QAEFormBuilder::ByYearsLabelQuestion,
+    QAEFormBuilder::ByYearsQuestion,
+    QAEFormBuilder::SupportersQuestion,
+    QAEFormBuilder::TextareaQuestion
+  ]
+
   def initialize(ops = {})
     ops.each do |k, v|
       instance_variable_set("@#{k}", v)
@@ -157,21 +170,9 @@ class QaePdfForms::General::QuestionPointer
         end
       end
 
-      block_question = false
-
-      if question.classes != "regular-question"
-        block_question = true
-      end
-
-      if question_block_type(question) == "block"
-        block_question = true
-      end
-
-      if humanized_answer.blank?
-        block_question = true
-      end
-
-      if block_question
+      if question.classes != "regular-question" ||
+         question_block_type(question) == "block" ||
+         humanized_answer.blank?
         question_answer(question, "block")
       end
     end
@@ -201,24 +202,10 @@ class QaePdfForms::General::QuestionPointer
   def question_block_type(question)
     unless FormPdf::JUST_NOTES.include?(question.delegate_obj.class.to_s)
       case question.delegate_obj
-      when QAEFormBuilder::UploadQuestion
-        return "block"
-      when QAEFormBuilder::OptionsQuestion
-        return "inline"
-      when QAEFormBuilder::ConfirmQuestion
-        return "inline"
-      when QAEFormBuilder::ByYearsLabelQuestion
-        return "block"
-      when QAEFormBuilder::ByYearsQuestion
-        return "block"
-      when QAEFormBuilder::SupportersQuestion
-        return "block"
-      when QAEFormBuilder::TextareaQuestion
-        return "block"
-      when *LIST_TYPES
-        return "block"
+      when *BLOCK_QUESTIONS
+        "block"
       else
-        return "inline"
+        "inline"
       end
     end
   end
