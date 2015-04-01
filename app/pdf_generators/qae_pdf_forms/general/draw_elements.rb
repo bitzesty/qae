@@ -9,7 +9,11 @@ module QaePdfForms::General::DrawElements
   def attachment_icon(attachment)
     case attachment.file.file.extension.to_s
     when *FormAnswerAttachmentUploader::POSSIBLE_IMG_EXTENSIONS
-      "#{Rails.root}/public#{attachment.file.url}"
+      if ENV["AWS_ACCESS_KEY_ID"]
+        attachment.file.url
+      else
+        "#{Rails.root}/public#{attachment.file.url}"
+      end
     else
       "#{IMAGES_PATH}#{ATTACHMENT_ICON}"
     end
@@ -21,8 +25,14 @@ module QaePdfForms::General::DrawElements
           fit: [35, 35], align: :left
     move_up 20
 
+    path_to_file = if ENV["AWS_ACCESS_KEY_ID"]
+      attachment.file.url
+    else
+      "#{current_host}#{attachment.file.url}"
+    end
+
     base_link_sceleton(
-      "#{current_host}#{attachment.file.url}",
+      path_to_file,
       description ? description : attachment.file.file.filename,
       DOWNLOAD_ICON,
       description_left_margin: 100)
@@ -107,14 +117,12 @@ module QaePdfForms::General::DrawElements
   end
 
   def current_host
-    unless ENV["AWS_ACCESS_KEY_ID"]
-      default_url_options = ActionMailer::Base.default_url_options
+    default_url_options = ActionMailer::Base.default_url_options
 
-      host = default_url_options[:host]
-      port = default_url_options[:port]
+    host = default_url_options[:host]
+    port = default_url_options[:port]
 
-      "http://#{host}#{port ? ':' + port.to_s : ''}"
-    end
+    "http://#{host}#{port ? ':' + port.to_s : ''}"
   end
 
   def default_bottom_margin
