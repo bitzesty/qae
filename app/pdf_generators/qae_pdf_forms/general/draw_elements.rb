@@ -154,6 +154,16 @@ module QaePdfForms::General::DrawElements
                        cell_style: { size: 10, font_style: :bold }
   end
 
+  def render_header(title)
+    text title, style: :bold,
+                size: 16,
+                align: :left
+    stroke_color = "999999"
+    move_down 4.mm
+    stroke_horizontal_line 0, 192.mm
+    default_bottom_margin
+  end
+
   def render_nothing_uploaded_message
     font("Times-Roman") do
       render_text "Nothing uploaded yet...", color: "999999"

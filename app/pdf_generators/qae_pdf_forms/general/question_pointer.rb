@@ -52,21 +52,14 @@ class QaePdfForms::General::QuestionPointer
       sub_answers.any? ? complex_question : question_block
     end
 
-    question_bottom_space = false
+    render_bottom_space
+  end
 
-    if question.delegate_obj.class.to_s != "QAEFormBuilder::HeaderQuestion"
-      question_bottom_space = true
-    end
+  def render_bottom_space
+    if question.delegate_obj.class.to_s != "QAEFormBuilder::HeaderQuestion" ||
+       question.classes != "regular-question" ||
+       question.classes == "application-notice help-notice"
 
-    if question.classes != "regular-question"
-      question_bottom_space = true
-    end
-
-    if question.classes == "application-notice help-notice"
-      question_bottom_space = true
-    end
-
-    if question_bottom_space
       form_pdf.move_down 5.mm
     end
   end
