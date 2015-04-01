@@ -216,21 +216,30 @@
   }
 
   .dropdown-toggle {
-    display: block;
-    width: 100%;
-    padding-right: 0;
+    display: inline-block;
+    padding-top: 0;
+    padding-right: 20px;
     padding-left: 0;
     float: none;
     color: $black;
     font-size: 20px;
     text-align: left;
     text-decoration: none;
+    background-image: image-url("icon-arrow-admin-dropdown-down.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 12px 9px;
 
-    .caret {
-      margin-left: 5px;
-      border-top-width: 7px;
-      border-right-width: 6px;
-      border-left-width: 6px;
+    @include is-retina {
+      background-image: image-url("icon-arrow-admin-dropdown-down@2.png");
+    }
+  }
+
+  .open .dropdown-toggle {
+    background-image: image-url("icon-arrow-admin-dropdown-up.png");
+
+    @include is-retina {
+      background-image: image-url("icon-arrow-admin-dropdown-up@2.png");
     }
   }
 
