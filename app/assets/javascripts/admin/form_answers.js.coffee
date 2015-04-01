@@ -182,7 +182,7 @@ bindRags =(klass) ->
     $(klass).submit()
 
 
-handleCompanyDetailsForm =->
+handleCompanyDetailsForm = ->
   if $('.duplicatable-nested-form').length
     nestedForm = $('.duplicatable-nested-form').last().clone()
     $(".destroy_duplicate_nested_form:first").remove()
