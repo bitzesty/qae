@@ -1,11 +1,13 @@
 class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
   include QaePdfForms::CustomQuestions::Lists
+  include QaePdfForms::CustomQuestions::SupporterLists
   include PdfAuditCertificates::General::FinancialTable
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
 
   attr_reader :form_pdf,
+              :form_answer,
               :step,
               :question,
               :key,
@@ -41,6 +43,7 @@ class QaePdfForms::General::QuestionPointer
     @audit_data = financial_pointer.data
     @filled_answers = form_pdf.filled_answers
     @step_questions = step.step_questions
+    @form_answer = form_pdf.form_answer
   end
 
   def render!
@@ -147,15 +150,17 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.indent 22.mm do
       if question.context.present?
         unless form_pdf.form_answer.urn.present?
+          context = question.escaped_context(true)
+
           if question.classes == "application-notice help-notice"
             form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
                            at: [-10.mm, form_pdf.cursor - 3.5.mm],
                            width: 6.5.mm,
                            height: 6.5.mm
-            form_pdf.render_text question.escaped_context,
+            form_pdf.render_text context,
                                  style: :bold
           else
-            form_pdf.render_text question.escaped_context
+            form_pdf.render_text context
           end
         end
       end
@@ -215,7 +220,7 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::ByYearsQuestion
         return "block"
       when QAEFormBuilder::SupportersQuestion
-        # TODO: NEED TO CONFIRM
+        return "block"
       when QAEFormBuilder::TextareaQuestion
         return "block"
       when *LIST_TYPES
@@ -307,7 +312,9 @@ class QaePdfForms::General::QuestionPointer
           end
         end
       when QAEFormBuilder::SupportersQuestion
-        # TODO: NEED TO CONFIRM
+        form_pdf.indent 7.mm do
+          render_supporters
+        end
       when QAEFormBuilder::TextareaQuestion
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
 

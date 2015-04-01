@@ -16,5 +16,10 @@ class SupportLetter < ActiveRecord::Base
     validates :attachment, presence: true, if: "self.manual?"
   end
 
+  begin :scopes
+    scope :manual, -> { where(manual: true) }
+    scope :not_manual, -> { where(manual: false) }
+  end
+
   attr_accessor :attachment
 end

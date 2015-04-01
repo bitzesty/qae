@@ -56,6 +56,15 @@ class QAE2014Forms
             <br>
           )
 
+          pdf_context %(
+            <p>
+              As nominator you have sole responsibility for sourcing at least 2 letters of support. Nominations with less than 2 letters will not be accepted. We recommend asking 3-5 supporters to ensure you meet the minimum requirements, as some people might not reply.
+            </p>
+            <p>
+              If you have supporters who would rather write a hard copy letter, please see question D2.
+            </p>
+          )
+
           hint "See the guidance we will provide to your chosen supporters.", %(
             <p>
               <strong>
