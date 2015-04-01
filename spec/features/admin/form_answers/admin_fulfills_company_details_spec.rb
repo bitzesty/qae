@@ -22,7 +22,6 @@ describe "Admin fulfills the company details" do
   end
 
   it "fulfills the company name" do
-    pending "fix eligibility validation"
     name = "namenana123"
     within ".company-name-form" do
       find(".form_answer_company_or_nominee_name input").set(name)

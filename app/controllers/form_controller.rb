@@ -103,7 +103,7 @@ class FormController < ApplicationController
 
     submitted_was_changed = @form_answer.submitted_changed?
 
-    if @form_answer.save
+    if @form_answer.eligible? && @form_answer.save
       if submitted_was_changed
         @form_answer.state_machine.submit(current_user)
         Notifiers::Submission::SuccessNotifier.new(@form_answer).run

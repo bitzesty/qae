@@ -6,9 +6,10 @@ describe "SIC Code selection", "
   I want to set up the SIC Code per application." do
 
   let!(:admin) { create(:admin) }
-  let!(:form_answer) { create(:form_answer) }
+  let!(:form_answer) { create(:form_answer, submitted: true) }
   let(:selected) { "1623 - Manufacture of other builders' carpentry and joinery" }
   before do
+    Settings.current_submission_deadline.update(trigger_at: DateTime.now - 1.day)
     login_admin admin
     visit admin_form_answer_path(form_answer)
   end
