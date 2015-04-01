@@ -1,3 +1,5 @@
+require 'open-uri'
+
 module QaePdfForms::General::DrawElements
   DEFAULT_OFFSET = 110.mm
   LOGO_ICON = "logo.png"
@@ -21,7 +23,14 @@ module QaePdfForms::General::DrawElements
 
   def draw_link_with_file_attachment(attachment, description)
     default_bottom_margin
-    image attachment_icon(attachment),
+
+    path_to_file = if ENV["AWS_ACCESS_KEY_ID"]
+      open(attachment_icon(attachment))
+    else
+      attachment_icon(attachment)
+    end
+
+    image path_to_file,
           fit: [35, 35], align: :left
     move_up 20
 
@@ -33,7 +42,7 @@ module QaePdfForms::General::DrawElements
 
     base_link_sceleton(
       path_to_file,
-      description ? description : attachment.file.file.filename,
+      description ? description : attachment.original_filename,
       DOWNLOAD_ICON,
       description_left_margin: 100)
   end
