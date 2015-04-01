@@ -1,16 +1,21 @@
-.form-group
-  = simple_form_for [namespace_name, @form_answer], remote: true, authenticity_token: true, html: { "data-type" => "html", class: "company-name-form"} do |f|
-    = hidden_field_tag :section, "company_name"
+- if @form_answer.submitted_and_after_the_deadline?
+  .form-group
+    = simple_form_for [namespace_name, @form_answer], remote: true, authenticity_token: true, html: { "data-type" => "html", class: "company-name-form"} do |f|
+      = hidden_field_tag :section, "company_name"
+      label.form-label Company name
+      .form-value
+        p = @form_answer.company_name
+      .input.form-group
+        = f.input :company_or_nominee_name, as: :string, label: false, input_html: { class: "form-control" }
+
+      .clear
+      = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
+      - unless @form_answer.submitted_and_after_the_deadline?
+        = link_to "#", class: "form-edit-link pull-right"
+          span.glyphicon.glyphicon-pencil
+          ' Edit
+      .clear
+- else
+  .form-group
     label.form-label Company name
-    .form-value
-      p = @form_answer.company_name
-    .input.form-group
-      = f.input :company_or_nominee_name, as: :string, label: false, input_html: { class: "form-control" }
-
-    .clear
-    = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
-
-    = link_to "#", class: "form-edit-link pull-right"
-      span.glyphicon.glyphicon-pencil
-      ' Edit
-    .clear
+    p = @form_answer.company_name
