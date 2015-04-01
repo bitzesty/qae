@@ -12,7 +12,7 @@
       = simple_form_for([namespace_name, primary_assessment], remote: true, authenticity_token: true, html: { "data-type" => "json"}) do |f|
         = hidden_field_tag :updated_section
         = render_section(resource, f)
-        = f.submit :add, class: "if-js-hide"
+        = f.submit "Save changes", class: "if-js-hide btn btn-primary"
       .clear
       br
       = render("admin/form_answers/appraisal_form_components/submit_appraisal_form", assessment: primary_assessment)
