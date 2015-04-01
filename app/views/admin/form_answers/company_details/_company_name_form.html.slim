@@ -10,10 +10,9 @@
 
       .clear
       = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
-      - unless @form_answer.submitted_and_after_the_deadline?
-        = link_to "#", class: "form-edit-link pull-right"
-          span.glyphicon.glyphicon-pencil
-          ' Edit
+      = link_to "#", class: "form-edit-link pull-right"
+        span.glyphicon.glyphicon-pencil
+        ' Edit
       .clear
 - else
   .form-group
