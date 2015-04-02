@@ -7,19 +7,27 @@
       - else
         - obj = CompanyDetail.for(@form_answer)
 
+      - if obj.address_building.present?
         = obj.address_building
         br
+      - if obj.address_street.present?
         = obj.address_street
         br
+      - if obj.address_city.present?
         = obj.address_city
         br
+      - if obj.address_country.present?
         = Country.find_country_by_alpha2(obj.address_country).try(:name)
         br
+      - if obj.address_postcode.present?
         = obj.address_postcode
         br
+      - if obj.telephone.present?
         = obj.telephone
         br
+      - if obj.region.present?
         = obj.region
+        br
 
   - if resource.submitted_and_after_the_deadline?
     = simple_form_for([namespace_name, CompanyDetail.for(resource)], remote: true, authenticity_token: true) do |f|
