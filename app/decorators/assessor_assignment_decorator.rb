@@ -9,7 +9,7 @@ class AssessorAssignmentDecorator < ApplicationDecorator
         name = "Anonymous"
       end
 
-      "Updated by #{name} - #{l object.assessed_at.in_time_zone("London"), format: :date_at_time}"
+      "Updated by #{name} - #{l object.assessed_at, format: :date_at_time}"
     end
   end
 end
