@@ -63,7 +63,7 @@ module FormattedTime::DateTimeFor
           def #{date}
             value = #{attr}
             if value
-              value = value
+              value = value.in_time_zone(Time.zone)
               value.to_date
             end
           end
@@ -71,7 +71,7 @@ module FormattedTime::DateTimeFor
           def #{time}
             value = #{attr}
             if value
-              value = value
+              value = value.in_time_zone(Time.zone)
 
               value.to_i - value.beginning_of_day.to_i
             end
