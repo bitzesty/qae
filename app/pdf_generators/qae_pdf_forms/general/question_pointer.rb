@@ -232,7 +232,8 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_option_branching_info(child_condition)
-    option_name = child_condition[0].split("_")
+    option_name = child_condition[0].to_s
+                                    .split("_")
                                     .join(" ")
                                     .capitalize
 
