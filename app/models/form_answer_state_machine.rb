@@ -34,17 +34,12 @@ class FormAnswerStateMachine
   end
 
   def self.trigger_deadlines
-    ends = Deadline.with_states_to_trigger.includes(:settings)
     relevant_states = [
       "submitted",
       "application_in_progress"
     ]
-
-    ends.each do |deadline|
-      year = deadline.settings.year + 1 # TODO: seems to be right - clarify !!
-      form_answers = FormAnswer.where(award_year: year).where(state: relevant_states)
-
-      form_answers.each do |fa|
+    if Settings.after_current_submission_deadline?
+      FormAnswer.where(state: relevant_states).find_each do |fa|
         if fa.state == "submitted"
           fa.state_machine.perform_transition("assessment_in_progress")
         end
@@ -127,13 +122,7 @@ class FormAnswerStateMachine
   private
 
   def permitted_states_with_deadline_constraint
-    year = object.award_year
-    settings = Settings.for_year(year - 1)
-    deadline = settings.deadlines.where(kind: "submission_end").first
-
-    # time restrictions
-    return [] if deadline.trigger_at.blank?
-    if DateTime.now < deadline.trigger_at
+    unless Settings.after_current_submission_deadline?
       [
         :application_in_progress,
         :submitted,

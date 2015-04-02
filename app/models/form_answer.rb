@@ -96,8 +96,6 @@ class FormAnswer < ActiveRecord::Base
   end
 
   begin :callbacks
-    before_validation :check_eligibility, if: :submitted?
-
     before_save :set_award_year, unless: :award_year?
     before_save :set_urn
     before_save :set_progress
@@ -166,18 +164,13 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def submitted_and_after_the_deadline?
-    # TODO: clarify how it should work !
-    true
+    submitted? && Settings.after_current_submission_deadline?
   end
 
   private
 
   def nominee_full_name_from_document
     "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
-  end
-
-  def check_eligibility
-    errors.add(:base, "Sorry, you are not eligible") unless eligible?
   end
 
   def set_urn
