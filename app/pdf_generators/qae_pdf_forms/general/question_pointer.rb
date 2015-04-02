@@ -2,7 +2,7 @@ class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
   include QaePdfForms::CustomQuestions::Lists
   include QaePdfForms::CustomQuestions::SupporterLists
-  include PdfAuditCertificates::General::FinancialTable
+  include FinancialTable
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
 

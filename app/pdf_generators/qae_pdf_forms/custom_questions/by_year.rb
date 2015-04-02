@@ -4,6 +4,12 @@ module QaePdfForms::CustomQuestions::ByYear
     "Financial year", "Day", "Month", "Year"
   ]
   IN_PROGRESS = "in progress..."
+  FINANCIAL_YEAR_PREFIX = "Financial year"
+  YEAR_ENDING_IN_PREFIX = "Year ending in"
+  AS_AT_DATE_PREFIX = "As at"
+  AS_AT_DATE_PREFIX_QUESTION_KEYS = [
+    :total_net_assets
+  ]
 
   def render_years_labels_table
     rows = financial_year_changed_dates_entries
@@ -43,21 +49,52 @@ module QaePdfForms::CustomQuestions::ByYear
   end
 
   def render_years_table
+    Rails.logger.info "[active_fields] #{active_fields}"
+
     rows = active_fields.map do |field|
       entry = year_entry(field)
       entry.present? ? entry : IN_PROGRESS
     end
 
-    # TODO: render_single_row_table(financial_table_headers, rows)
-    render_single_row_list(financial_years_decorated_headers, rows)
+    Rails.logger.info "[rows] #{rows.inspect}"
+
+    Rails.logger.info "[year_headers] #{year_headers.inspect}"
+
+    render_single_row_list(year_headers, rows)
   end
 
-  def financial_years_decorated_headers
-    headers = financial_year_changed_dates_entries.map do |entry|
-      decorated_label(entry)
+  def year_headers
+    if financial_year_changed_dates_value
+      financial_dates_changed_year_headers
+    else
+      financial_dates_not_changed_year_headers
+    end
+  end
+
+  def financial_dates_changed_year_headers
+    res = []
+    size = financial_table_headers.size
+
+    financial_table_headers.each_with_index do |item, placement|
+      header_item = "#{FINANCIAL_YEAR_PREFIX} #{placement + 1}"
+      header_item += " (Current)" if (size == (placement + 1))
+
+      res << header_item
     end
 
-    headers.push(decorated_label(latest_year_label(false)))
+    res
+  end
+
+  def financial_dates_not_changed_year_headers
+    prefix = if AS_AT_DATE_PREFIX_QUESTION_KEYS.include?(question.key)
+      AS_AT_DATE_PREFIX
+    else
+      YEAR_ENDING_IN_PREFIX
+    end
+
+    financial_table_headers.map do |i|
+      "#{prefix} #{i}"
+    end
   end
 
   def financial_year_changed_dates_entries
@@ -117,9 +154,5 @@ module QaePdfForms::CustomQuestions::ByYear
     month = "0" + month if month.size == 1
 
     [day, month, Date.today.year ]
-  end
-
-  def decorated_label(label)
-    "Year ending in " + label.join("/")
   end
 end
