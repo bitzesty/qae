@@ -1,23 +1,12 @@
 module QaePdfForms::CustomQuestions::Lists
   LIST_TYPES = [
     QAEFormBuilder::AwardHolderQuestion,
-    QAEFormBuilder::QueenAwardHolderQuestion,
     QAEFormBuilder::PositionDetailsQuestion,
-    QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion,
     QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
   ]
   AWARD_HOLDER_LIST_HEADERS = [
     "Award/Honour title",
     "Details"
-  ]
-  QUEENS_AWARD_HOLDER_LIST_HEADERS = [
-    "Category",
-    "Year Awarded"
-  ]
-  SUBSIDIARIES_ASSOCIATES_PLANTS_HEADERS = [
-    "Name",
-    "Location",
-    "Employees"
   ]
   POSITION_LIST_HEADERS = [
     "Name",
@@ -47,12 +36,8 @@ module QaePdfForms::CustomQuestions::Lists
     case question.delegate_obj
     when QAEFormBuilder::AwardHolderQuestion
       AWARD_HOLDER_LIST_HEADERS
-    when QAEFormBuilder::QueenAwardHolderQuestion
-      QUEENS_AWARD_HOLDER_LIST_HEADERS
     when QAEFormBuilder::PositionDetailsQuestion
       POSITION_LIST_HEADERS
-    when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
-      SUBSIDIARIES_ASSOCIATES_PLANTS_HEADERS
     when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
       TRADE_GOODS_AND_SERVICES_HEADERS
     else
