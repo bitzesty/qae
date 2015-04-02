@@ -1,8 +1,5 @@
 module QaePdfForms::CustomQuestions::ByYear
   YEAR_LABELS = %w(day month year)
-  YEAR_LABELS_TABLE_HEADERS = [
-    "Financial year", "Day", "Month", "Year"
-  ]
   IN_PROGRESS = "in progress..."
   FINANCIAL_YEAR_PREFIX = "Financial year"
   YEAR_ENDING_IN_PREFIX = "Year ending in"
@@ -10,55 +7,32 @@ module QaePdfForms::CustomQuestions::ByYear
   AS_AT_DATE_PREFIX_QUESTION_KEYS = [
     :total_net_assets
   ]
+  ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='999999'>"
+  ANSWER_FONT_END = "</font></color>"
 
   def render_years_labels_table
-    rows = financial_year_changed_dates_entries
-    # TODO: rows = financial_table_changed_dates_headers.map { |a| a.split("/") }
+    rows = financial_table_changed_dates_headers.map do |a|
+      a.split("/")
+    end
 
     rows.map do |e|
       e[1] = to_month(e[1])
     end
-
-    # TODO: remove rows.push(latest_year_label)
     rows.push(latest_year_label)
-    active_fields.length.times do |i|
-      rows[i].unshift(i + 1)
-    end
 
-    rows.each do |row|
+    year_headers.each_with_index do |header_item, placement|
       form_pdf.default_bottom_margin
-
-      financial_year_text = "#{YEAR_LABELS_TABLE_HEADERS[0]} #{row[0]}"
-      if row == rows.last
-        financial_year_text += " (Current)"
-      end
-
-      financial_date_text = ""
-      (1...row.count).each do |col|
-        financial_date_text += "#{row[col]} "
-      end
-
-      financial_date_compiled_text = "#{financial_year_text}: "
-      financial_date_compiled_text += "<font name='Times-Roman'><color rgb='999999'>"
-      financial_date_compiled_text += financial_date_text
-      financial_date_compiled_text += "</color></font>"
-
-      form_pdf.text financial_date_compiled_text,
+      title = "#{header_item}: #{ANSWER_FONT_START}#{rows[placement].join(" ")}#{ANSWER_FONT_END}"
+      form_pdf.text title,
                     inline_format: true
     end
   end
 
   def render_years_table
-    Rails.logger.info "[active_fields] #{active_fields}"
-
     rows = active_fields.map do |field|
       entry = year_entry(field)
       entry.present? ? entry : IN_PROGRESS
     end
-
-    Rails.logger.info "[rows] #{rows.inspect}"
-
-    Rails.logger.info "[year_headers] #{year_headers.inspect}"
 
     render_single_row_list(year_headers, rows)
   end
@@ -97,40 +71,8 @@ module QaePdfForms::CustomQuestions::ByYear
     end
   end
 
-  def financial_year_changed_dates_entries
-    if financial_year_changed_dates_question.present?
-      financial_year_changed_dates_question.active_fields[0..-2].map do |field|
-        YEAR_LABELS.map do |year_label|
-          fetch_year_label(field, year_label, :financial_year_changed_dates, false)
-        end
-      end
-    else
-      []
-    end
-  end
-
-  def financial_year_changed_dates_question
-    step.filtered_questions.detect do |q|
-      q.key == :financial_year_changed_dates
-    end
-  end
-
   def active_fields
     question.decorate(answers: form_pdf.filled_answers).active_fields
-  end
-
-  def fetch_year_label(field, year_label, q_key = nil, with_month_check = true)
-    entry = year_entry(field, year_label, q_key)
-
-    if entry.present?
-      if with_month_check && year_label == "month"
-        to_month(entry)
-      else
-        entry
-      end
-    else
-      "-"
-    end
   end
 
   def year_entry(field, year_label = nil, q_key = nil)
