@@ -5,13 +5,18 @@
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-assessment" href="#section-draft-notes" aria-expanded="true" aria-controls="section-draft-notes"
         ' Draft Notes
-        small= @form_answer.draft_note.decorate.try(:last_updated_by)
+        - if @form_answer.draft_note.decorate.try(:last_updated_by).present?
+          small= @form_answer.draft_note.decorate.try(:last_updated_by)
   #section-draft-notes.section-draft-notes.panel-collapse.collapse role="tabpanel" aria-labelledby="draft-notes-heading"
     .panel-body
       = simple_form_for([namespace_name, @form_answer, @form_answer.draft_note], remote: true, authenticity_token: true, html: { "data-type" => "json" }) do |f|
         .form-group
           .form-value
-            p= f.object.content
+            p
+              - if f.object.content.present?
+                = f.object.content
+              - else
+                ' -
           = f.input :content,
                     wrapper_html: { class: "form-group" },
                     input_html: { class: "form-control", rows: 10 },
