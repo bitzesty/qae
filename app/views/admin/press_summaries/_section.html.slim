@@ -4,7 +4,7 @@
   .form-group
     label.form-label Body
     .form-value.no-js-update
-      p = press_summary.body.presence || content_tag(:i, "No press_summary has been added yet")
+      p = press_summary.body.presence || content_tag(:i, "No press summary has been added yet")
     .input.form-group
       = f.input :body, as: :text, input_html: { class: 'form-control', rows: 4 }, label: false
     .clear
@@ -15,14 +15,19 @@
         ' Edit
       = f.submit "Save", class: "btn btn-primary form-save-button pull-right"
       .clear
-    .form-group
-      label.form-label
-        ' Comments by Applicant
-      p
-        - if press_summary.comment.present?
-          = press_summary.comment
-        - else
-          ' No comment by applicant
+
+    - if press_summary.body.present?
+      - if press_summary.approved?
+        .form-group
+          label.form-label
+            ' Comments by Applicant
+          p
+            - if press_summary.comment.present?
+              = press_summary.comment
+            - else
+              ' No comment by applicant
+      - else
+        p.p-empty Applicant hasn't confirmed the press summary
 
 - if press_summary.persisted? && policy(press_summary).approve?
   br
