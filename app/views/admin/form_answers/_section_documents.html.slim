@@ -3,7 +3,7 @@
     h2
       ' Application & Supporting Docs
     / TODO uploaded docs by applicant (Can't delete)
-    ul.list-unstyled.list-actions
+    ul.list-unstyled.list-actions.todo-placeholder
       li
         = link_to "#"
           span.glyphicon.glyphicon-file
@@ -17,7 +17,7 @@
     / TODO Auto generated Docs
     h2
       ' Post Shortlisting Docs
-    ul.list-unstyled.list-actions
+    ul.list-unstyled.list-actions.todo-placeholder
       li
         = link_to "View/print Audit Certificate"
       li
@@ -28,12 +28,13 @@
 
   / TODO Only appears for EP but for now we need to think more on it
   /.sidebar-section
-    h2
+    h2.todo-placeholder
       ' EP ?
 
   .sidebar-section
     h2
       ' Other Docs
+    p.todo-note TODO: Need to test/fix the interaction
     .document-list
       - unless @form_answer.form_answer_attachments.any?
         p.p-empty No documents have been attached to this case.

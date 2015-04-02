@@ -5,9 +5,10 @@
       .well
         h2
           ' Reports
+        p.todo-note TODO: All the download links point to the same place
         ul.list-unstyled.list-actions
           - ["Case Status", "All Entries", "Press Book List"].each do |report|
-            li
+            li class="#{'todo-placeholder' unless report == 'All Entries'}"
               = link_to "#"
                 span.action-title
                   span.glyphicon.glyphicon-file
@@ -35,7 +36,7 @@
           ' Resources
         ul.list-unstyled.list-actions
           - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|
-            li
+            li.todo-placeholder
               = link_to "#"
                 span.action-title
                   span.glyphicon.glyphicon-file
@@ -56,7 +57,7 @@
         #stage-one-application.panel-collapse.collapse.in role="tabpanel" aria-labelledby="stage-one-application-heading"
           .panel-body
             / TODO Stage 1 - Application
-            .table-overflow-container
+            .table-overflow-container.todo-placeholder
               table.table.table-striped
                 colgroup
                   col width="200"
@@ -81,7 +82,7 @@
 
             br
 
-            .table-overflow-container
+            .table-overflow-container.todo-placeholder
               table.table.table-striped
                 colgroup
                   col width="200"
@@ -128,7 +129,7 @@
 
             br
 
-            .table-overflow-container
+            .table-overflow-container.todo-placeholder
               table.table.table-striped
                 colgroup
                   col width="200"
@@ -172,7 +173,7 @@
         #stage-two-assessment.panel-collapse.collapse role="tabpanel" aria-labelledby="stage-two-assessment-header"
           .panel-body
             / TODO Stage 2 - Application
-            .table-overflow-container
+            .table-overflow-container.todo-placeholder
               table.table.table-striped
                 colgroup
                   col width="200"
@@ -215,7 +216,7 @@
 
             br
 
-            .table-overflow-container
+            .table-overflow-container.todo-placeholder
               table.table.table-striped
                 colgroup
                   col width="200"

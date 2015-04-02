@@ -5,7 +5,7 @@
         h2
           span.glyphicon.glyphicon-file
           ' Resources
-        ul.list-unstyled.list-actions
+        ul.list-unstyled.list-actions.todo-placeholder
           - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|
             li
               = link_to "#"
@@ -18,7 +18,7 @@
                   span.visible-lg.visible-md
                     ' Download
 
-  .col-md-8
+  .col-md-8.todo-placeholder
     .panel-group#dashboard-details role="tablist" aria-multiselectable="true"
       .panel.panel-default
         .panel-heading#stage-one-application-heading role="tab"
