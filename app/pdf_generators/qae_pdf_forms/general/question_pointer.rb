@@ -56,12 +56,26 @@ class QaePdfForms::General::QuestionPointer
     @filled_answers = form_pdf.filled_answers
     @step_questions = step.step_questions
     @form_answer = form_pdf.form_answer
+
+    if key.to_s == "queen_award_holder"
+      Rails.logger.info "[key] #{key} --------------------------------------------------- "
+      Rails.logger.info "- > [answer] #{answer} "
+      Rails.logger.info "- > [humanized_answer] #{humanized_answer} "
+      Rails.logger.info "- > [ref] #{question.ref} "
+    end
   end
 
   def render!
     if humanized_answer.present?
+      if key.to_s == "queen_award_holder"
+        Rails.logger.info "- > question_block "
+      end
       question_block
     else
+      if key.to_s == "queen_award_holder"
+        Rails.logger.info "- > sub_answers [#{sub_answers}]"
+      end
+
       sub_answers.any? ? complex_question : question_block
     end
 
@@ -73,7 +87,7 @@ class QaePdfForms::General::QuestionPointer
        question.classes != "regular-question" ||
        question.classes == "application-notice help-notice"
 
-      form_pdf.move_down 5.mm
+      form_pdf.default_bottom_margin
     end
   end
 
@@ -100,6 +114,94 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def question_block
+    render_validation_block
+
+    if question.ref.present?
+      render_question_with_ref
+    else
+      render_question_without_ref
+    end
+
+    render_context_and_answer_blocks
+    render_branching_questions_info
+  end
+
+  def render_context_and_answer_blocks
+    form_pdf.indent 22.mm do
+      render_question_context
+
+      if question.classes != "regular-question" ||
+         question_block_type(question) == "block" ||
+         humanized_answer.blank?
+        question_answer(question, "block")
+      end
+    end
+  end
+
+  def render_question_with_ref
+    form_pdf.text_box "#{question.ref.delete(' ')}.",
+                      style: :bold,
+                      width: 20.mm,
+                      at: [11.mm, form_pdf.cursor - 5.mm]
+
+    if question.escaped_title.present?
+      form_pdf.indent 22.mm do
+        form_pdf.render_text question.escaped_title,
+                             style: :bold
+      end
+    end
+  end
+
+  def render_question_without_ref
+    if key.to_s == "queen_award_holder"
+      Rails.logger.info "- > question_block [question without ref]"
+    end
+
+    if question.escaped_title.present?
+      if question.classes == "regular-question"
+        form_pdf.indent 22.mm do
+          if question_block_type(question) == "inline" && humanized_answer.present?
+            inline_question_text = question.escaped_title
+            inline_question_text += ": "
+            inline_question_text += ANSWER_FONT_START
+            inline_question_text += question_answer(question, "inline")
+            inline_question_text += ANSWER_FONT_END
+
+            form_pdf.text inline_question_text,
+                          inline_format: true
+          else
+            form_pdf.text "#{question.escaped_title}:"
+          end
+        end
+      else
+        form_pdf.indent 11.mm do
+          form_pdf.render_text "#{question.escaped_title}",
+                               style: :bold
+        end
+      end
+    end
+  end
+
+  def render_question_context
+    if question.context.present?
+      unless form_pdf.form_answer.urn.present?
+        context = question.escaped_context(true)
+
+        if question.classes == "application-notice help-notice"
+          form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
+                         at: [-10.mm, form_pdf.cursor - 3.5.mm],
+                         width: 6.5.mm,
+                         height: 6.5.mm
+          form_pdf.render_text context,
+                               style: :bold
+        else
+          form_pdf.render_text context
+        end
+      end
+    end
+  end
+
+  def render_validation_block
     # Valid/pending icon
     # TODO If it has validation
     if false
@@ -114,69 +216,9 @@ class QaePdfForms::General::QuestionPointer
                      at: [0, form_pdf.cursor - 4.mm],
                      width: 7.mm
     end
+  end
 
-    if question.ref.present?
-      form_pdf.text_box "#{question.ref.gsub(/\s+/, '')}.",
-                        style: :bold,
-                        width: 20.mm,
-                        at: [11.mm, form_pdf.cursor - 5.mm]
-      if question.escaped_title.present?
-        form_pdf.indent 22.mm do
-          form_pdf.render_text question.escaped_title,
-                               style: :bold
-        end
-      end
-    else
-      if question.escaped_title.present?
-        if question.classes == "regular-question"
-          form_pdf.indent 22.mm do
-            if question_block_type(question) == "inline" && humanized_answer.present?
-              inline_question_text = question.escaped_title
-              inline_question_text += ": "
-              inline_question_text += ANSWER_FONT_START
-              inline_question_text += question_answer(question, "inline")
-              inline_question_text += ANSWER_FONT_END
-
-              form_pdf.text inline_question_text,
-                            inline_format: true
-            else
-              form_pdf.text "#{question.escaped_title}:"
-            end
-          end
-        else
-          form_pdf.indent 11.mm do
-            form_pdf.render_text "#{question.escaped_title}",
-                                 style: :bold
-          end
-        end
-      end
-    end
-
-    form_pdf.indent 22.mm do
-      if question.context.present?
-        unless form_pdf.form_answer.urn.present?
-          context = question.escaped_context(true)
-
-          if question.classes == "application-notice help-notice"
-            form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
-                           at: [-10.mm, form_pdf.cursor - 3.5.mm],
-                           width: 6.5.mm,
-                           height: 6.5.mm
-            form_pdf.render_text context,
-                                 style: :bold
-          else
-            form_pdf.render_text context
-          end
-        end
-      end
-
-      if question.classes != "regular-question" ||
-         question_block_type(question) == "block" ||
-         humanized_answer.blank?
-        question_answer(question, "block")
-      end
-    end
-
+  def render_branching_questions_info
     # Condition question text
     # TODO if it has dependent questions and if it hasn't been answered
     if false
@@ -277,7 +319,7 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::TextareaQuestion
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
 
-        form_pdf.move_down 5.mm
+        form_pdf.default_bottom_margin
 
         if question.words_max.present?
           unless form_pdf.form_answer.urn.present?
@@ -426,7 +468,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def question_option_box(title)
-    form_pdf.move_down 5.mm
+    form_pdf.default_bottom_margin
 
     # This adds some text so that we can be sure that the box and question text stay together between pages
     form_pdf.text "Test", color: "ffffff"
