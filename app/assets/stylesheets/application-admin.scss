@@ -27,12 +27,9 @@ $button-colour: #00823b;
 
 
 // HIGHLIGHT PLACEHOLDER BITS
-.todo-note {
-  background: #ffff00;
-  color: #333;
-  font-weight: bold;
-}
-
 .todo-placeholder {
   outline: 4px solid #ffff00 !important;
+}
+.todo-unconfirmed {
+  outline: 4px solid #66ff66 !important;
 }

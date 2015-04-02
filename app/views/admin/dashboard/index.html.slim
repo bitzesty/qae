@@ -5,9 +5,8 @@
       .well
         h2
           ' Reports
-        p.todo-note TODO: All the download links point to the same place
         ul.list-unstyled.list-actions
-          - ["Case Status", "All Entries", "Press Book List"].each do |report|
+          - ["Innovation Case Status", "Intl Trade Case Status", "Sus Dev Case Status", "QAEP Case Status", "All Entries", "Press Book List"].each do |report|
             li class="#{'todo-placeholder' unless report == 'All Entries'}"
               = link_to "#"
                 span.action-title
@@ -36,7 +35,7 @@
           ' Resources
         ul.list-unstyled.list-actions
           - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|
-            li.todo-placeholder
+            li.todo-unconfirmed
               = link_to "#"
                 span.action-title
                   span.glyphicon.glyphicon-file
@@ -66,9 +65,7 @@
                     th &nbsp;
                     th Last 24h
                     th Last 7 days
-                    th Total so far
-                    th Total last year
-                    th Trend
+                    th Total
                 tbody
                   - ["Registered Users", "Applicants not eligible", "Applications not started", "Applications in progress", "Applications submitted"].each do |status|
                     tr
@@ -77,8 +74,6 @@
                       td 3
                       td
                         strong 81
-                      td 193
-                      td -23%
 
             br
 
@@ -98,7 +93,7 @@
                     th.table-total
                       strong TOTAL
                 tbody
-                  - ["International Trade", "Innovation", "Sustainable development", "QAEP"].each do |award|
+                  - ["International Trade", "Innovation", "Sustainable development"].each do |award|
                     tr
                       th = award
                       td 51
@@ -113,19 +108,29 @@
                     th
                       strong TOTAL
                     td
-                      strong 204
+                      strong 153
                     td
-                      strong 124
+                      strong 93
                     td
-                      strong 280
+                      strong 210
                     td
-                      strong 64
+                      strong 43
                     td
-                      strong 48
+                      strong 36
                     td
-                      strong 556
+                      strong 834
                     td
-                      strong 1,832
+                      strong 1,374
+                  tr
+                    th QAEP
+                    td 51
+                    td 31
+                    td 70
+                    td 16
+                    td 12
+                    td 278
+                    td.table-total
+                      strong 458
 
             br
 
@@ -138,34 +143,32 @@
                     th Applications Submitted
                     th Last 24h
                     th Last 7 days
-                    th Total so far
-                    th Total last year
-                    th Trend
+                    th Total
                 tbody
-                  - ["International Trade", "Innovation", "Sustainable development", "QAEP"].each do |award|
+                  - ["International Trade", "Innovation", "Sustainable development"].each do |award|
                     tr
                       th = award
                       td 1
                       td 3
                       td
                         strong 81
-                      td 193
-                      td -23%
                   tr.table-total
                     th
                       strong TOTAL
                     td
-                      strong 1
-                    td
                       strong 3
                     td
+                      strong 9
+                    td
+                      strong 243
+                  tr
+                    th QAEP
+                    td 1
+                    td 3
+                    td
                       strong 81
-                    td
-                      strong 193
-                    td
-                      strong -23%
 
-      .panel.panel-default
+      /.panel.panel-default
         .panel-heading role="tab" id="stage-two-assessment-header"
           h4.panel-title
             a.collapsed data-toggle="collapse" data-parent="#dashboard-details" href="#stage-two-assessment" aria-expanded="false" aria-controls="stage-two-assessment"
