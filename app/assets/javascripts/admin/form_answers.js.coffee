@@ -54,11 +54,13 @@ ready = ->
   $("#new_form_answer_attachment").fileupload
     autoUpload: false,
     add: (e, data) ->
+      $(".attachment-title").val(data.files[0].name)
       $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
       $("#new_form_answer_attachment .btn-submit").unbind("click").on "click", (e) ->
         e.preventDefault()
         data.submit()
     success: (result, textStatus, jqXHR) ->
+      $(".document-list .p-empty").addClass("visuallyhidden")
       $(".document-list ul").append(result)
       form = $("#new_form_answer_attachment")
       form.closest(".sidebar-section").removeClass("show-attachment-form")
@@ -88,9 +90,7 @@ ready = ->
       type: 'DELETE'
     form.parents('.form_answer_attachment').remove()
     if $('.form_answer_attachment').length == 0
-      noDoc = $("<p class='p-empty'></p>")
-      noDoc.text('No documents have been attached to this case.')
-      $('.document-list').prepend(noDoc)
+      $(".document-list .p-empty").removeClass("visuallyhidden")
 
   $(document).on "click", ".form-edit-link", (e) ->
     e.preventDefault()

@@ -34,10 +34,9 @@
   .sidebar-section
     h2
       ' Other Docs
-    p.todo-note TODO: Need to test/fix the interaction
     .document-list
-      - unless @form_answer.form_answer_attachments.any?
-        p.p-empty No documents have been attached to this case.
+      p.p-empty class="#{'visuallyhidden' if @form_answer.form_answer_attachments.any?}"
+        ' No documents have been attached to this case.
       ul.list-unstyled.list-actions
         - if @form_answer.form_answer_attachments.any?
           = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.visible_for(current_subject))
@@ -49,13 +48,13 @@
         h3 Attach Document
 
         ul.list-unstyled
-        .if-js-hide.attachment-link
+        p
+        .attachment-link.if-js-hide
           = form.file_field :file
-
 
         .form-group
           label.form-label Document title
-          = form.text_field :title, class: "form-control"
+          = form.text_field :title, class: "form-control attachment-title"
           - if current_subject.is_a?(Admin)
             / Only admin can see/set this
             .checkbox
