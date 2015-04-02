@@ -29,7 +29,7 @@
     label.if-js-hide Flag
     = f.check_box :flagged, class: "flag-comment-checkbox if-js-hide"
     .comment-action
-      = l comment.created_at, format: :date_at_time
+      = l comment.created_at.in_time_zone("London"), format: :date_at_time
       span.divider •
       = link_to "#flag-comment", class: "link-flag-comment"
         span.unflagged-visible

@@ -8,7 +8,7 @@
           - if @form_answer.financial_summary_updated_by
             small
               ' Updated by
-              = @form_answer.financial_summary_updated_by
+              = @form_answer.financial_summary_updated_by.in_time_zone("London")
               ' -
               = l @form_answer.financial_summary_updated_at.to_datetime, format: :date_at_time
 
