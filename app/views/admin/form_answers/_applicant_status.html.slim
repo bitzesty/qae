@@ -21,6 +21,5 @@
                   collection: FormAnswerStateMachine::STATES
         = f.submit :update_state
   - else
-
-    .btn-group style= "font-size: 20px;"
+    p.p-lg
       = @form_answer.state.humanize
