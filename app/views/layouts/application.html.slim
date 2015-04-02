@@ -88,7 +88,7 @@
               li = link_to "Applications", dashboard_path
 
   #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
-    #QAE class="#{'admin-mode' if admin_in_read_only_mode?}"
+    #QAE class="#{'admin-mode' if admin_in_read_only_mode?} #{'layout-dev' if Rails.env.development?}"
       - if [:alert, :notice].any? { |kind| flash[kind].presence }
         .flash
           .flash-inner
