@@ -1,7 +1,7 @@
 unless Admin.exists?
   admin_args = {
     email: "admin@example.com",
-    password: "admin123",
+    password: "^#ur9EkLm@1W",
     first_name: "First name",
     last_name: "Last name"
   }
@@ -13,7 +13,7 @@ end
 unless Assessor.exists?
   assessor_args = {
     email: "assessor@example.com",
-    password: "assessor123",
+    password: "^#ur9EkLm@1W",
     first_name: "First name",
     last_name: "Last name"
   }
@@ -38,7 +38,7 @@ awards.each do |award|
     assessor_args.merge!(role_args)
 
     a = Assessor.where(assessor_args).first_or_initialize
-    a.password = "assessor123"
+    a.password = "^#ur9EkLm@1W"
     a.save!
     a.tap(&:confirm!) unless a.confirmed?
   end
