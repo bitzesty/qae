@@ -56,8 +56,13 @@ $gutter-one-sixth: $gutter/6;
 
 
 // HIGHLIGHT PLACEHOLDER BITS
+.todo-note {
+  display: none;
+}
+
 .layout-dev {
   .todo-note {
+    display: block;
     background: #ffff00;
     color: #333;
     font-weight: bold;
