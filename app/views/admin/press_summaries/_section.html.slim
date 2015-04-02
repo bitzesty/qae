@@ -18,7 +18,13 @@
     .form-group
       label.form-label
         ' Comments by Applicant
-      p = press_summary.comment
+      p
+        - if press_summary.comment.present?
+          = press_summary.comment
+        - else
+          ' No comment by applicant
 
 - if press_summary.persisted? && policy(press_summary).approve?
+  br
+  br
   = button_to "Approve Press Summary", polymorphic_url([:approve, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true
