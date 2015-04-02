@@ -1,6 +1,11 @@
 class QAEFormBuilder
 
   class ByTradeGoodsAndServicesLabelQuestionDecorator < QuestionDecorator
+    def trade_goods_and_services
+      @trade_goods_and_services ||= JSON.parse(answers[delegate_obj.key.to_s] || '[]').map do |answer|
+        JSON.parse(answer)
+      end
+    end
   end
 
   class ByTradeGoodsAndServicesLabelQuestionBuilder < QuestionBuilder

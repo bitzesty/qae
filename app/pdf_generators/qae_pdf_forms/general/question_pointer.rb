@@ -56,26 +56,12 @@ class QaePdfForms::General::QuestionPointer
     @filled_answers = form_pdf.filled_answers
     @step_questions = step.step_questions
     @form_answer = form_pdf.form_answer
-
-    if key.to_s == "queen_award_holder"
-      Rails.logger.info "[key] #{key} --------------------------------------------------- "
-      Rails.logger.info "- > [answer] #{answer} "
-      Rails.logger.info "- > [humanized_answer] #{humanized_answer} "
-      Rails.logger.info "- > [ref] #{question.ref} "
-    end
   end
 
   def render!
     if humanized_answer.present?
-      if key.to_s == "queen_award_holder"
-        Rails.logger.info "- > question_block "
-      end
       question_block
     else
-      if key.to_s == "queen_award_holder"
-        Rails.logger.info "- > sub_answers [#{sub_answers}]"
-      end
-
       sub_answers.any? ? complex_question : question_block
     end
 
@@ -153,10 +139,6 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_question_without_ref
-    if key.to_s == "queen_award_holder"
-      Rails.logger.info "- > question_block [question without ref]"
-    end
-
     if question.escaped_title.present?
       if question.classes == "regular-question"
         form_pdf.indent 22.mm do
