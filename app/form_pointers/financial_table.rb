@@ -1,4 +1,4 @@
-module PdfAuditCertificates::General::FinancialTable
+module FinancialTable
   def financial_table_headers
     if financial_year_changed_dates_value.present?
       financial_table_changed_dates_headers

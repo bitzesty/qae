@@ -21,19 +21,12 @@ class QaePdfForms::General::StepPointer
 
   def render!
     form_pdf.start_new_page if step.index.to_i != 0
-    render_header
+    form_pdf.render_header("#{step.title.upcase}:")
 
     filtered_questions.each do |question|
       QaePdfForms::General::QuestionPointer.new(form_pdf: form_pdf,
                                                 step: self,
                                                 question: question.decorate).render!
     end
-  end
-
-  def render_header
-    form_pdf.text step.title, style: :bold,
-                              size: 18,
-                              align: :left
-    form_pdf.default_bottom_margin
   end
 end

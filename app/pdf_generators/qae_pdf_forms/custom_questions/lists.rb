@@ -1,22 +1,12 @@
 module QaePdfForms::CustomQuestions::Lists
   LIST_TYPES = [
     QAEFormBuilder::AwardHolderQuestion,
-    QAEFormBuilder::QueenAwardHolderQuestion,
     QAEFormBuilder::PositionDetailsQuestion,
-    QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
+    QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
   ]
   AWARD_HOLDER_LIST_HEADERS = [
     "Award/Honour title",
     "Details"
-  ]
-  QUEENS_AWARD_HOLDER_LIST_HEADERS = [
-    "Category",
-    "Year Awarded"
-  ]
-  SUBSIDIARIES_ASSOCIATES_PLANTS_HEADERS = [
-    "Name",
-    "Location",
-    "Employees"
   ]
   POSITION_LIST_HEADERS = [
     "Name",
@@ -25,10 +15,18 @@ module QaePdfForms::CustomQuestions::Lists
     "Ongoing",
     "Details"
   ]
+  TRADE_GOODS_AND_SERVICES_HEADERS = [
+    "Good/Service",
+    "% of your total overseas trade"
+  ]
 
   def render_list
     if humanized_answer.present?
       render_multirows_table(list_headers, list_rows)
+
+      if list_rows.blank?
+        form_pdf.render_text(FormPdf::UNDEFINED_TITLE, style: :italic)
+      end
     else
       form_pdf.render_text(FormPdf::UNDEFINED_TITLE, style: :italic)
     end
@@ -38,12 +36,10 @@ module QaePdfForms::CustomQuestions::Lists
     case question.delegate_obj
     when QAEFormBuilder::AwardHolderQuestion
       AWARD_HOLDER_LIST_HEADERS
-    when QAEFormBuilder::QueenAwardHolderQuestion
-      QUEENS_AWARD_HOLDER_LIST_HEADERS
     when QAEFormBuilder::PositionDetailsQuestion
       POSITION_LIST_HEADERS
-    when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
-      SUBSIDIARIES_ASSOCIATES_PLANTS_HEADERS
+    when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+      TRADE_GOODS_AND_SERVICES_HEADERS
     else
       raise "[#{self.class.name}] Unrecognized list type!"
     end
@@ -71,12 +67,19 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["name"].present?
       [
         prepared_item["name"],
-        "#{prepared_item['start_month']}/#{prepared_item['start_year']}",
-        "#{prepared_item['end_month']}/#{prepared_item['end_year']}",
+        position_date(prepared_item['start_month'], prepared_item['start_year']),
+        position_date(prepared_item['end_month'], prepared_item['end_year']),
         prepared_item["ongoing"].to_s == "1" ? "yes" : "no",
         prepared_item["details"].present? ? prepared_item["details"] : FormPdf::UNDEFINED_TITLE
       ]
     end
+  end
+
+  def position_date(month, year)
+    [
+      month || '-',
+      year || '-'
+    ].join("/")
   end
 
   def subsidiaries_associates_plants_query_conditions(prepared_item)
@@ -89,20 +92,33 @@ module QaePdfForms::CustomQuestions::Lists
     end
   end
 
-  def list_rows
-    humanized_answer.map do |item|
-      prepared_item = JSON.parse(item)
+  def trade_goods_conditions(prepared_item)
+    if prepared_item["desc_short"].present?
+      [
+        prepared_item["desc_short"],
+        prepared_item["total_overseas_trade"].present? ? prepared_item["total_overseas_trade"] : FormPdf::UNDEFINED_TITLE
+      ]
+    end
+  end
 
-      case question.delegate_obj
-      when QAEFormBuilder::AwardHolderQuestion
-        award_holder_query_conditions(prepared_item)
-      when QAEFormBuilder::QueenAwardHolderQuestion
-        queen_award_holder_query_conditions(prepared_item)
-      when QAEFormBuilder::PositionDetailsQuestion
-        position_details_query_conditions(prepared_item)
-      when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
-        subsidiaries_associates_plants_query_conditions(prepared_item)
-      end
-    end.compact
+  def list_rows
+    if humanized_answer.present?
+      humanized_answer.map do |item|
+        prepared_item = JSON.parse(item)
+
+        case question.delegate_obj
+        when QAEFormBuilder::AwardHolderQuestion
+          award_holder_query_conditions(prepared_item)
+        when QAEFormBuilder::QueenAwardHolderQuestion
+          queen_award_holder_query_conditions(prepared_item)
+        when QAEFormBuilder::PositionDetailsQuestion
+          position_details_query_conditions(prepared_item)
+        when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
+          subsidiaries_associates_plants_query_conditions(prepared_item)
+        when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+          trade_goods_conditions(prepared_item)
+        end
+      end.compact
+    end
   end
 end

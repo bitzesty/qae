@@ -105,14 +105,19 @@ class QAEFormBuilder
     end
 
     def escaped_title
-      title = if delegate_obj.title.present?
-        delegate_obj.title
-      else
-        delegate_obj.context
-      end
+      if delegate_obj.title.present?
+        title = delegate_obj.title
 
-      title = Nokogiri::HTML.parse(title).text
-      "#{delegate_obj.ref} #{title}".strip
+        title = Nokogiri::HTML.parse(title).text
+        title.strip
+      end
+    end
+
+    def escaped_context(pdf=false)
+      content = pdf ? delegate_obj.pdf_context : delegate_obj.context
+      if content.present?
+        Nokogiri::HTML.parse(content).text.strip
+      end
     end
   end
 
@@ -125,12 +130,20 @@ class QAEFormBuilder
       @q.context = text
     end
 
+    def pdf_context text
+      @q.pdf_context = text
+    end
+
     def classes text
       @q.classes = text
     end
 
     def ref id
       @q.ref = id
+    end
+
+    def sub_ref id
+      @q.sub_ref = id
     end
 
     def required
@@ -150,7 +163,7 @@ class QAEFormBuilder
     end
 
     def conditional key, value
-      @q.conditions << QuestionCondition.new(key, value)
+      @q.conditions << QuestionCondition.new(@q.key, key, value)
     end
 
     def drop_conditional key
@@ -174,7 +187,7 @@ class QAEFormBuilder
     end
   end
 
-  QuestionCondition = Struct.new(:question_key, :question_value)
+  QuestionCondition = Struct.new(:parent_question_key, :question_key, :question_value)
 
   QuestionHelp = Struct.new(:title, :text)
 
@@ -183,12 +196,14 @@ class QAEFormBuilder
                   :key,
                   :title,
                   :context,
+                  :pdf_context,
                   :opts,
                   :required,
                   :help,
                   :hint,
                   :form_hint,
                   :ref,
+                  :sub_ref,
                   :conditions,
                   :header,
                   :header_context,

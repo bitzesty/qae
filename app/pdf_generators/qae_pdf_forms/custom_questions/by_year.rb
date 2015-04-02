@@ -1,22 +1,31 @@
 module QaePdfForms::CustomQuestions::ByYear
   YEAR_LABELS = %w(day month year)
-  YEAR_LABELS_TABLE_HEADERS = [
-    "Financial year", "Day", "Month", "Year"
-  ]
   IN_PROGRESS = "in progress..."
+  FINANCIAL_YEAR_PREFIX = "Financial year"
+  YEAR_ENDING_IN_PREFIX = "Year ending in"
+  AS_AT_DATE_PREFIX = "As at"
+  AS_AT_DATE_PREFIX_QUESTION_KEYS = [
+    :total_net_assets
+  ]
+  ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='999999'>"
+  ANSWER_FONT_END = "</font></color>"
 
   def render_years_labels_table
-    rows = financial_table_changed_dates_headers.map { |a| a.split("/") }
+    rows = financial_table_changed_dates_headers.map do |a|
+      a.split("/")
+    end
 
     rows.map do |e|
       e[1] = to_month(e[1])
     end
+    rows.push(latest_year_label)
 
-    active_fields.length.times do |i|
-      rows[i].unshift(i + 1)
+    year_headers.each_with_index do |header_item, placement|
+      form_pdf.default_bottom_margin
+      title = "#{header_item}: #{ANSWER_FONT_START}#{rows[placement].join(" ")}#{ANSWER_FONT_END}"
+      form_pdf.text title,
+                    inline_format: true
     end
-
-    render_multirows_table(YEAR_LABELS_TABLE_HEADERS, rows)
   end
 
   def render_years_table
@@ -25,31 +34,45 @@ module QaePdfForms::CustomQuestions::ByYear
       entry.present? ? entry : IN_PROGRESS
     end
 
-    render_single_row_table(financial_table_headers, rows)
+    render_single_row_list(year_headers, rows)
   end
 
-  def financial_year_changed_dates_question
-    step.filtered_questions.detect do |q|
-      q.key == :financial_year_changed_dates
+  def year_headers
+    if financial_year_changed_dates_value
+      financial_dates_changed_year_headers
+    else
+      financial_dates_not_changed_year_headers
+    end
+  end
+
+  def financial_dates_changed_year_headers
+    res = []
+    size = financial_table_headers.size
+
+    financial_table_headers.each_with_index do |item, placement|
+      header_item = "#{FINANCIAL_YEAR_PREFIX} #{placement + 1}"
+      header_item += " (Current)" if (size == (placement + 1))
+
+      res << header_item
+    end
+
+    res
+  end
+
+  def financial_dates_not_changed_year_headers
+    prefix = if AS_AT_DATE_PREFIX_QUESTION_KEYS.include?(question.key)
+      AS_AT_DATE_PREFIX
+    else
+      YEAR_ENDING_IN_PREFIX
+    end
+
+    financial_table_headers.map do |i|
+      "#{prefix} #{i}"
     end
   end
 
   def active_fields
     question.decorate(answers: form_pdf.filled_answers).active_fields
-  end
-
-  def fetch_year_label(field, year_label, q_key = nil, with_month_check = true)
-    entry = year_entry(field, year_label, q_key)
-
-    if entry.present?
-      if with_month_check && year_label == "month"
-        to_month(entry)
-      else
-        entry
-      end
-    else
-      "-"
-    end
   end
 
   def year_entry(field, year_label = nil, q_key = nil)
@@ -61,20 +84,17 @@ module QaePdfForms::CustomQuestions::ByYear
   end
 
   def latest_year_label(with_month_check = true)
+    day = form_pdf.filled_answers["financial_year_date_day"].to_s
+
     month = if with_month_check
-              to_month(form_pdf.filled_answers["financial_year_date_month"])
-            else
-              form_pdf.filled_answers["financial_year_date_month"]
-    end
+      to_month(form_pdf.filled_answers["financial_year_date_month"])
+    else
+      form_pdf.filled_answers["financial_year_date_month"]
+    end.to_s
 
-    [
-      "0" + form_pdf.filled_answers["financial_year_date_day"],
-      month,
-      Date.today.year
-    ]
-  end
+    day = "0" + day if day.size == 1
+    month = "0" + month if month.size == 1
 
-  def decorated_label(label)
-    "Year ending in " + label.join("/")
+    [day, month, Date.today.year ]
   end
 end

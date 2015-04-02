@@ -1,13 +1,17 @@
 .js-by-trade-goods-and-services-amount
-  - (1..5).each do |placement|
+  input name="#{question.input_name}[array]" value="true" type="hidden"
+
+  - (1..5).each_with_index do |placement, index|
+    - item = question.trade_goods_and_services[index]
+
     .js-conditional-question data-question=question.step.form[:trade_goods_amount].parameterized_title data-value=placement data-type="in_clause_collection"
       h2
         label for=question.input_name(suffix: "desc_short_#{placement}")
           = "Good/Service #{placement}"
       ul.errors-container
       .question-group
-        textarea.js-trigger-autosave.js-char-count rows=question.rows data-word-max=question.words_max name=question.input_name(suffix: "desc_short_#{placement}") id=question.input_name(suffix: "desc_short_#{placement}") *possible_read_only_ops
-          = question.input_value(suffix: "desc_short_#{placement}")
+        textarea.js-trigger-autosave.js-char-count rows=question.rows data-word-max=question.words_max name="#{question.input_name}[#{index}][desc_short]" id=question.input_name(suffix: "desc_short_#{placement}") *possible_read_only_ops
+          = item.present? ? item['desc_short'] : ''
         .clear
 
       .question-group
@@ -15,5 +19,5 @@
           label for=question.input_name(suffix: "total_overseas_trade_#{placement}")
             ' % of your total overseas trade
         ul.errors-container
-        input.js-trigger-autosave type="text" min=question.min max=question.max name=question.input_name(suffix: "total_overseas_trade_#{placement}") value=question.input_value(suffix: "total_overseas_trade_#{placement}") autocomplete="off" id=question.input_name(suffix: "total_overseas_trade_#{placement}") *possible_read_only_ops
+        input.js-trigger-autosave type="text" min=question.min max=question.max name="#{question.input_name}[#{index}][total_overseas_trade]" value=(item.present? ? item['total_overseas_trade'] : '') autocomplete="off" id=question.input_name(suffix: "total_overseas_trade_#{placement}") *possible_read_only_ops
         .clear

@@ -5,6 +5,14 @@ class UserDecorator < ApplicationDecorator
     "#{object.company_name}: #{full_name}"
   end
 
+  def general_info_print
+    if object.company_name.present?
+      "<b>#{object.company_name.upcase}:</b> #{full_name.upcase}"
+    else
+      full_name.upcase
+    end
+  end
+
   def confirmation_status
     " (Pending)" unless object.confirmed?
   end

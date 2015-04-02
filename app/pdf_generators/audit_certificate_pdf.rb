@@ -2,7 +2,7 @@ require "prawn/measurement_extensions"
 
 class AuditCertificatePdf < Prawn::Document
   include PdfAuditCertificates::General::SharedElements
-  include PdfAuditCertificates::General::FinancialTable
+  include FinancialTable
   include FormAnswersBasePointer
 
   attr_reader :audit_data,
