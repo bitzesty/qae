@@ -17,15 +17,18 @@
       .clear
 
     - if press_summary.body.present?
-      - if press_summary.approved?
-        .form-group
-          label.form-label
-            ' Comments by Applicant
-          p
-            - if press_summary.comment.present?
-              = press_summary.comment
-            - else
-              ' No comment by applicant
+      - if press_summary.approved.present?
+        - if press_summary.approved
+          p.p-empty Applicant has confirmed the press summary
+        - else
+          .form-group
+            label.form-label
+              ' Comments by Applicant
+            p
+              - if press_summary.comment.present?
+                = press_summary.comment
+              - else
+                ' No comment by applicant
       - else
         p.p-empty Applicant hasn't confirmed the press summary
 
