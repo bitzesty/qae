@@ -285,32 +285,11 @@ class QaePdfForms::General::QuestionPointer
         end
       when QAEFormBuilder::QueenAwardHolderQuestion
         if humanized_answer.present?
-          form_pdf.indent 7.mm do
-            form_pdf.font("Times-Roman") do
-              list_rows.each do |award|
-                form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
-                                     color: "999999"
-              end
-            end
-          end
+          render_queen_award_holder
         end
       when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
         if humanized_answer.present?
-          form_pdf.indent 7.mm do
-            list_rows.each do |subsidiary|
-              subsidiary_text = subsidiary[0]
-              subsidiary_text += ANSWER_FONT_START
-              subsidiary_text += " in "
-              subsidiary_text += subsidiary[1]
-              subsidiary_text += " with "
-              subsidiary_text += subsidiary[2]
-              subsidiary_text += " employees"
-              subsidiary_text += ANSWER_FONT_END
-
-              form_pdf.render_text subsidiary_text,
-                                   inline_format: true
-            end
-          end
+          render_subsidiaries_plants
         end
       when QAEFormBuilder::SupportersQuestion
         form_pdf.indent 7.mm do
@@ -320,14 +299,7 @@ class QaePdfForms::General::QuestionPointer
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
 
         form_pdf.default_bottom_margin
-
-        if question.words_max.present?
-          unless form_pdf.form_answer.urn.present?
-            form_pdf.text "Word limit: #{question.words_max}"
-
-            form_pdf.move_down 2.5.mm
-          end
-        end
+        render_word_limit
 
         form_pdf.render_standart_answer_block(title)
       when *LIST_TYPES
@@ -338,6 +310,42 @@ class QaePdfForms::General::QuestionPointer
         title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
         form_pdf.render_answer_by_display(title, display)
       end
+    end
+  end
+
+  def render_queen_award_holder
+    form_pdf.indent 7.mm do
+      form_pdf.font("Times-Roman") do
+        list_rows.each do |award|
+          form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
+                               color: "999999"
+        end
+      end
+    end
+  end
+
+  def render_subsidiaries_plants
+    form_pdf.indent 7.mm do
+      list_rows.each do |subsidiary|
+        subsidiary_text = subsidiary[0]
+        subsidiary_text += ANSWER_FONT_START
+        subsidiary_text += " in "
+        subsidiary_text += subsidiary[1]
+        subsidiary_text += " with "
+        subsidiary_text += subsidiary[2]
+        subsidiary_text += " employees"
+        subsidiary_text += ANSWER_FONT_END
+
+        form_pdf.render_text subsidiary_text,
+                             inline_format: true
+      end
+    end
+  end
+
+  def render_word_limit
+    if question.words_max.present? && form_pdf.form_answer.urn.blank?
+      form_pdf.text "Word limit: #{question.words_max}"
+      form_pdf.move_down 2.5.mm
     end
   end
 
