@@ -17,7 +17,9 @@ class QaePdfForms::General::QuestionPointer
               :financial_pointer,
               :audit_data,
               :filled_answers,
-              :step_questions
+              :step_questions,
+              :questions_with_references,
+              :children_conditions
 
   PREVIOUS_AWARDS = { "innovation_2" => "Innovation (2 years)",
                       "innovation_5" => "Innovation (5 years)",
@@ -56,6 +58,27 @@ class QaePdfForms::General::QuestionPointer
     @filled_answers = form_pdf.filled_answers
     @step_questions = step.step_questions
     @form_answer = form_pdf.form_answer
+
+    set_questions_with_references
+    set_children_conditions
+  end
+
+  def set_questions_with_references
+    @questions_with_references = form_pdf.all_questions.select do |q|
+      !q.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion) &&
+      (q.ref.present? || q.sub_ref.present?)
+    end
+  end
+
+  def set_children_conditions
+    @children_conditions = questions_with_references.map do |q|
+      q.conditions.select do |c|
+        c.question_key == key
+      end
+    end.reject { |c| c.blank? }
+       .flatten
+       .reject { |q| q.question_value == :true }
+       .group_by { |a| a.question_value }
   end
 
   def render!
@@ -109,7 +132,7 @@ class QaePdfForms::General::QuestionPointer
     end
 
     render_context_and_answer_blocks
-    render_branching_questions_info
+    render_info_about_branching_questions
   end
 
   def render_context_and_answer_blocks
@@ -165,20 +188,18 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_question_context
-    if question.context.present?
-      unless form_pdf.form_answer.urn.present?
-        context = question.escaped_context(true)
+    if question.context.present? && form_pdf.form_answer.urn.blank?
+      context = question.escaped_context(true)
 
-        if question.classes == "application-notice help-notice"
-          form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
-                         at: [-10.mm, form_pdf.cursor - 3.5.mm],
-                         width: 6.5.mm,
-                         height: 6.5.mm
-          form_pdf.render_text context,
-                               style: :bold
-        else
-          form_pdf.render_text context
-        end
+      if question.classes == "application-notice help-notice"
+        form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
+                       at: [-10.mm, form_pdf.cursor - 3.5.mm],
+                       width: 6.5.mm,
+                       height: 6.5.mm
+        form_pdf.render_text context,
+                             style: :bold
+      else
+        form_pdf.render_text context
       end
     end
   end
@@ -200,27 +221,35 @@ class QaePdfForms::General::QuestionPointer
     end
   end
 
-  def render_branching_questions_info
-    # Condition question text
-    # TODO if it has dependent questions and if it hasn't been answered
-    if false
-      unless form_pdf.form_answer.urn.present?
-        form_pdf.indent 29.mm do
-          # TODO loop through all the options with dependencies
-          ["yes"].each do |option|
-            dependencies = ["A8.1", "A8.2", "B4"]
-            dependencies_text = "If "
-            dependencies_text += option
-            dependencies_text += ", please answer the questions "
-            dependencies_text += dependencies.to_sentence
-            form_pdf.render_text dependencies_text,
-                                 color: "999999",
-                                 style: :italic,
-                                 size: 10
-          end
+  def render_info_about_branching_questions
+    if children_conditions.present? && form_pdf.form_answer.urn.blank?
+      form_pdf.indent 29.mm do
+        children_conditions.each do |child_condition|
+          render_option_branching_info(child_condition)
         end
       end
     end
+  end
+
+  def render_option_branching_info(child_condition)
+    option_name = child_condition[0].split("_")
+                                    .join(" ")
+                                    .capitalize
+
+    dependencies = child_condition[1].map do |c|
+      parent_q = questions_with_references.detect do |q|
+        q.key == c.parent_question_key
+      end
+
+      res = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
+      res.delete(' ')
+    end
+
+    text = "If #{option_name}, please answer the questions #{dependencies.to_sentence}"
+    form_pdf.render_text text,
+                         color: "999999",
+                         style: :italic,
+                         size: 10
   end
 
   def question_block_type(question)

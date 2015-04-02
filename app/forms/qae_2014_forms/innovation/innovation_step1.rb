@@ -235,16 +235,19 @@ class QAE2014Forms
         end
 
         text :parent_company, "Name of immediate parent company" do
+          sub_ref "A 14.1"
           classes "sub-question"
           conditional :applying_for, "division branch subsidiary"
         end
 
         country :parent_company_country, "Country of immediate parent company" do
+          sub_ref "A 14.2"
           classes "regular-question"
           conditional :applying_for, "division branch subsidiary"
         end
 
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
+          sub_ref "A 14.3"
           classes "sub-question"
           conditional :applying_for, "division branch subsidiary"
           yes_no

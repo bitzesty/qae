@@ -142,6 +142,10 @@ class QAEFormBuilder
       @q.ref = id
     end
 
+    def sub_ref id
+      @q.sub_ref = id
+    end
+
     def required
       @q.required = true
     end
@@ -159,7 +163,7 @@ class QAEFormBuilder
     end
 
     def conditional key, value
-      @q.conditions << QuestionCondition.new(key, value)
+      @q.conditions << QuestionCondition.new(@q.key, key, value)
     end
 
     def drop_conditional key
@@ -183,7 +187,7 @@ class QAEFormBuilder
     end
   end
 
-  QuestionCondition = Struct.new(:question_key, :question_value)
+  QuestionCondition = Struct.new(:parent_question_key, :question_key, :question_value)
 
   QuestionHelp = Struct.new(:title, :text)
 
@@ -199,6 +203,7 @@ class QAEFormBuilder
                   :hint,
                   :form_hint,
                   :ref,
+                  :sub_ref,
                   :conditions,
                   :header,
                   :header_context,
