@@ -30,7 +30,7 @@ describe FormAnswerSearch do
   it "filters by corp_responsibility missing" do
     admin = create(:admin)
     create(:form_answer)
-    form2 = create(:form_answer, document: {"corp_responsibility_form" => "declare_now"})
+    form2 = create(:form_answer, document: { "corp_responsibility_form" => "declare_now" })
     scope = FormAnswer.all
     expect(FormAnswer.count).to eq(2)
     res = described_class.new(scope, admin).filter_by_sub_status(scope, ["missing_corp_responsibility"])
