@@ -114,7 +114,12 @@ class QAEFormBuilder
     end
 
     def escaped_context(pdf=false)
-      content = pdf ? delegate_obj.pdf_context : delegate_obj.context
+      content = if pdf && delegate_obj.pdf_context.present?
+        delegate_obj.pdf_context
+      else
+        delegate_obj.context
+      end
+
       if content.present?
         Nokogiri::HTML.parse(content).text.strip
       end
