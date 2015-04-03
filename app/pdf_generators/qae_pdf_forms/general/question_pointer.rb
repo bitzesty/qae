@@ -475,7 +475,6 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def sub_question_block_without_title(sub_answer)
-    sub_answer.present? ? sub_answer : FormPdf::UNDEFINED_TITLE
     form_pdf.font("Times-Roman") do
       form_pdf.render_text sub_answer,
                            color: "999999"
