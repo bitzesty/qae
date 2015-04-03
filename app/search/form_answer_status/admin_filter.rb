@@ -12,7 +12,7 @@ class FormAnswerStatus::AdminFilter
       label: "Missing Audit Certificate"
     },
     missing_corp_responsibility: {
-      label: "Missing Corp Responsibility (not impl.)"
+      label: "Missing Corp Responsibility"
     },
 
     missing_feedback: {
@@ -26,7 +26,7 @@ class FormAnswerStatus::AdminFilter
       }
     },
     missing_rsvp_details: {
-      label: "Missing RSVP Details (not impl.)"
+      label: "Missing RSVP Details"
     }
   }
 

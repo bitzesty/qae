@@ -244,9 +244,9 @@ ActiveRecord::Schema.define(version: 20150331180118) do
     t.hstore   "financial_data"
     t.boolean  "admin_importance_flag",           default: false
     t.boolean  "assessor_importance_flag",        default: false
-    t.boolean  "accepted",                        default: false
     t.boolean  "primary_assessor_not_assigned",   default: true
     t.boolean  "secondary_assessor_not_assigned", default: true
+    t.boolean  "accepted",                        default: false
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
