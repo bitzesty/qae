@@ -1,0 +1,2 @@
+class PalaceAttendeePolicy < ApplicationPolicy
+end

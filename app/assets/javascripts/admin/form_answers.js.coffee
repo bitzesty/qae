@@ -7,6 +7,7 @@ ready = ->
   bindRags("#section-case-summary .edit_assessor_assignment")
 
   handleCompanyDetailsForm()
+  handleWinnersForm()
 
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".form-group").removeClass("form-edit")
@@ -195,6 +196,42 @@ bindRags =(klass) ->
             input.val(section)
     form.submit()
 
+handleWinnersForm = ->
+  removeAttendeeForm = ".remove-palace-attendee-form"
+  addAttendeeForm    = ".palace-attendee-form"
+  attendeeFormHolder = ".list-attendees"
+
+  $(document).on "ajax:success", attendeeFormHolder, (e, data, status, xhr) ->
+    $(this).closest(attendeeFormHolder).replaceWith(data)
+
+  $(document).on "click", ".remove-palace-attendee", (e) ->
+    e.preventDefault()
+    $(this).closest("form").submit()
+
+  $(document).on "ajax:success", removeAttendeeForm, (e, data, status, xhr) ->
+    limit      = $(".attendees-forms").data("attendees-limit")
+    visibleLen = $(".attendees-forms .list-attendees:visible").length
+
+    $(this).closest(attendeeFormHolder).remove()
+
+    if visibleLen < limit
+      button = $(".add-another-attendee")
+
+      button.show()
+      $(".attendees-forms").append(button)
+
+  $(document).on "click", ".add-another-attendee", (e) ->
+    e.preventDefault()
+
+    form = $(this).closest(".form-group")
+    newForm = form.find(".blank-form").clone().removeClass("hidden").removeClass("blank-form")
+
+    form.append(newForm)
+    form.append($(this))
+
+    limit = $(".attendees-forms").data("attendees-limit")
+    visibleLen = $(".attendees-forms .list-attendees:visible").length
+    $(this).hide() if visibleLen >= limit
 
 handleCompanyDetailsForm = ->
   if $('.duplicatable-nested-form').length
@@ -227,7 +264,6 @@ handleCompanyDetailsForm = ->
           $(this).attr 'name', newName
       newNestedForm.find(".duplicatable-nested-form").removeClass("if-js-hide")
       $( newNestedForm ).insertAfter( lastNestedForm )
-
   $(document).on "ajax:success", ".company-details-forms form", (e, data, status, xhr) ->
     $(this).closest(".form-group").replaceWith($(data))
   $(".company-details-forms").on "click", ".remove-link", (e) ->
