@@ -124,15 +124,17 @@ class QaePdfForms::General::QuestionPointer
 
   def question_block
     render_validation_block
+    render_question_title_with_ref_or_not
+    render_context_and_answer_blocks
+    render_info_about_branching_questions
+  end
 
-    if question.ref.present?
+  def render_question_title_with_ref_or_not
+    if question.delegate_obj.ref.present?
       render_question_with_ref
     else
       render_question_without_ref
     end
-
-    render_context_and_answer_blocks
-    render_info_about_branching_questions
   end
 
   def render_context_and_answer_blocks
@@ -222,7 +224,10 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_info_about_branching_questions
-    if children_conditions.present? && form_pdf.form_answer.urn.blank?
+    if answer.blank? &&
+      children_conditions.present? &&
+      form_pdf.form_answer.urn.blank?
+
       form_pdf.indent 29.mm do
         children_conditions.each do |child_condition|
           render_option_branching_info(child_condition)
@@ -385,12 +390,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def complex_question
-    if question.escaped_title.present?
-      form_pdf.indent 11.mm do
-        form_pdf.render_text question.escaped_title,
-                             style: :bold
-      end
-    end
+    render_question_title_with_ref_or_not
 
     if question.delegate_obj.class.to_s == "QAEFormBuilder::HeadOfBusinessQuestion"
       form_pdf.move_up 5.mm
@@ -502,7 +502,7 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.move_up 3.mm
 
     form_pdf.indent 6.mm do
-      form_pdf.text title
+      form_pdf.text Nokogiri::HTML.parse(title).text
     end
   end
 

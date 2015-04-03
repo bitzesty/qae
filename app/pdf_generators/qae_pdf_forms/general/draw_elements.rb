@@ -152,6 +152,8 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_standart_answer_block(title)
+    title = title.present? ? title : FormPdf::UNDEFINED_TITLE
+
     indent 7.mm do
       font("Times-Roman") do
         render_text title, color: "999999"
