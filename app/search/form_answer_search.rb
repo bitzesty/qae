@@ -51,6 +51,12 @@ class FormAnswerSearch < Search
         out = out.joins(
           "LEFT OUTER JOIN press_summaries on press_summaries.form_answer_id = form_answers.id"
         ).where("press_summaries.id IS NULL OR press_summaries.approved = false")
+      when "missing_rsvp_details"
+        out = out.joins(
+          "LEFT OUTER JOIN palace_invites on palace_invites.form_answer_id = form_answers.id"
+        ).joins(
+          "LEFT OUTER JOIN palace_attendees ON palace_attendees.palace_invite_id = palace_invites.id"
+        ).where("palace_invites.id IS NULL OR palace_attendees.id IS NULL")
       end
     end
     out
