@@ -321,6 +321,17 @@ ActiveRecord::Schema.define(version: 20150410091747) do
     t.datetime "updated_at"
   end
 
+  create_table "scans", force: :cascade do |t|
+    t.string   "uuid"
+    t.string   "filename"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "form_answer_attachment_id"
+    t.integer  "support_letter_attachment_id"
+    t.integer  "audit_certificate_id"
+  end
+
   create_table "settings", force: :cascade do |t|
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

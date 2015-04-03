@@ -3,6 +3,7 @@ class FormAnswerAttachment < ActiveRecord::Base
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
   after_save :virus_scan
+  has_one :scan, class_name: Scan
 
   mount_uploader :file, FormAnswerAttachmentUploader
 
@@ -25,5 +26,10 @@ class FormAnswerAttachment < ActiveRecord::Base
 
   def uploaded_not_by_user?
     attachable_type != "User"
+  end
+
+  def virus_scan
+    scan = ::VirusScanner::File.scan_url(self.file.url)
+    Scan.create(filename: self.file.current_path, uuid: scan["id"], form_answer_attachment_id: self.id)
   end
 end
