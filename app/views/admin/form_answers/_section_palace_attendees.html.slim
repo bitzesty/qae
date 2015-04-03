@@ -30,15 +30,16 @@
                       br
                       = pa.postcode
                     p= pa.phone_number
+                    p= pa.post_nominals
 
-                    - unless @form_answer.award_type.parameterize == "promotion"
+                    - unless @form_answer.promotion?
                       br
                       label Product or brief description
                       p= pa.product_description
 
-                    br
-                    label Additional Information e.g. Wheelchair user
-                    p= pa.additional_info
+                      br
+                      label Additional Information e.g. Wheelchair user
+                      p= pa.additional_info
 
 
           .input.form-group.form-fields.attendees-forms data-attendees-limit=palace_invite.attendees_limit
