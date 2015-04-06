@@ -8,7 +8,7 @@
             = secondary_assessment.last_editor_info
   #section-appraisal-form-secondary.section-appraisal-form.section-appraisal-form-secondary.panel-collapse.collapse role="tabpanel" aria-labelledby="appraisal-form-secondary-heading"
     .panel-body
-      = simple_form_for([namespace_name, secondary_assessment], remote: true, html: { "data-type" => "json"}) do |f|
+      = simple_form_for([namespace_name, secondary_assessment], remote: true, authenticity_token: true, html: { "data-type" => "json"}) do |f|
         = hidden_field_tag :updated_section
         = render_section(resource, f)
         = f.submit "Save changes", class: "if-js-hide btn btn-primary"
