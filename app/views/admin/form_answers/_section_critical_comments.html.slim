@@ -6,7 +6,7 @@
   #section-critical-comments.section-critical-comments.panel-collapse.collapse role="tabpanel" aria-labelledby="critical-comments-heading"
     .panel-body
       .comments-container.comment-assessor
-        = form_tag [:toggle, namespace_name, @form_answer, :flags], remote: true, class: "critical-flag" do
+        = form_tag [:toggle, namespace_name, @form_answer, :flags], remote: true, authenticity_token: true, class: "critical-flag" do
           - checked = "checked" if @form_answer.assessor_importance_flag?
           = check_box nil, :assessor_importance_flag, { class: "flag-comment-checkbox if-js-hide", checked: checked}, 1, 0
 
