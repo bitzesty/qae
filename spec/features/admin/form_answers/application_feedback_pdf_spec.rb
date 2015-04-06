@@ -15,32 +15,22 @@ So that I can print and review application's feedback
   end
 
   describe "International Trade Award" do
-    let!(:form_answer) do
-      create :form_answer, :trade,
-                           :submitted,
-                           user: user
-    end
-
+    let(:award_type) { :trade }
     include_context "admin application feedback pdf download"
   end
 
   describe "Innovation Award" do
-    let!(:form_answer) do
-      create :form_answer, :innovation,
-                           :submitted,
-                           user: user
-    end
-
+    let(:award_type) { :innovation }
     include_context "admin application feedback pdf download"
   end
 
   describe "Sustainable Development Award" do
-    let!(:form_answer) do
-      create :form_answer, :development,
-                           :submitted,
-                           user: user
-    end
+    let(:award_type) { :development }
+    include_context "admin application feedback pdf download"
+  end
 
+  describe "Enterprise Promotion Award" do
+    let(:award_type) { :promotion }
     include_context "admin application feedback pdf download"
   end
 end

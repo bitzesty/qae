@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 shared_context "admin application feedback pdf download" do
+  let!(:form_answer) do
+    create :form_answer, award_type,
+                         :submitted,
+                         user: user
+  end
+
   let(:feedback_content) do
     res = {}
 
