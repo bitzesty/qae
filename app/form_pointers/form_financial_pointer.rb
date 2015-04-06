@@ -32,11 +32,15 @@ class FormFinancialPointer
   end
 
   def data
-    @data ||= target_financial_questions.map do |question|
-      FinancialYearPointer.new(
-        question: question,
-        financial_pointer: self
-      ).data
+    @data ||= begin
+      fetched = target_financial_questions.map do |question|
+        FinancialYearPointer.new(
+          question: question,
+          financial_pointer: self
+        ).data
+      end
+
+      fetched + [UkSalesCalculator.new(fetched).data]
     end
   end
 
@@ -53,6 +57,20 @@ class FormFinancialPointer
         0
       else
         (exports[year][:value].to_f / exports[year - 1][:value].to_f * 100 - 100).round(2)
+      end
+    else
+      "-"
+    end
+  end
+
+  def growth_in_total_turnover(year)
+    turnover = data_values(:total_turnover)
+
+    if turnover && turnover[year] && turnover[year - 1] && year != 0
+      if turnover[year - 1][:value].to_f.zero?
+        0
+      else
+        (turnover[year][:value].to_f / turnover[year - 1][:value].to_f * 100 - 100).round(2)
       end
     else
       "-"

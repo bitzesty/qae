@@ -1,0 +1,6 @@
+tr class=row.keys.first
+  td = t(".#{row.keys.first}")
+
+  - row.values.flatten.each do |field|
+    td.value
+      span.form-value = field
