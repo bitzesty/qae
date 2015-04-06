@@ -140,7 +140,9 @@ Rails.application.routes.draw do
     resources :users
     resources :assessors
     resources :admins
-    resources :reports, only: [:show]
+    resources :reports, only: [:show] do
+      get :download_feedbacks_pdf, on: :collection
+    end
     resources :review_audit_certificates, only: [:create]
     resources :company_details, only: [:update]
     resources :palace_attendees, only: [:create, :update, :destroy]

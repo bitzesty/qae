@@ -14,7 +14,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def feedbacks_pdf_generator
-    "FeedbackPdfs::Awards2014::#{object.award_type.capitalize}::Base".constantize.new(object)
+    "FeedbackPdfs::Awards2014::#{object.award_type.capitalize}::Base".constantize.new("singular", object)
   end
 
   def pdf_audit_certificate_generator

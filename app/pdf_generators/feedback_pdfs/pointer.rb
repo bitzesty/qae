@@ -1,6 +1,6 @@
 require "prawn/measurement_extensions"
 
-class FeedbacksPdf < Prawn::Document
+class FeedbackPdfs::Pointer
   include FeedbackPdfs::General::DrawElements
   include FeedbackPdfs::General::DataPointer
 
@@ -9,23 +9,21 @@ class FeedbacksPdf < Prawn::Document
   attr_reader :user,
               :form_answer,
               :award_form,
-              :feedback_data
+              :feedback_data,
+              :pdf_doc
 
-  def initialize(form_answer)
-    super(page_size: "A4", page_layout: :landscape)
-
+  def initialize(pdf_doc, form_answer)
+    @pdf_doc = pdf_doc
     @form_answer = form_answer
     @user = form_answer.user
     @award_form = form_answer.award_form.decorate
     @feedback_data = form_answer.feedback.document
 
-    generate!
+    render_data
   end
 
-  def generate!
+  def render_data
     main_header
     render_data!
-
-    # TODO
   end
 end

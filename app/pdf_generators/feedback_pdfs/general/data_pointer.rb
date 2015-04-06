@@ -26,10 +26,6 @@ module FeedbackPdfs::General::DataPointer
 
   def render_data!
     table_items = feedback_entries
-    # table_items.unshift(feedback_table_headers)
-
-    Rails.logger.info "[table_items] #{table_items.inspect}"
-    move_down 30.mm
     render_headers(feedback_table_headers)
     render_table(table_items)
   end

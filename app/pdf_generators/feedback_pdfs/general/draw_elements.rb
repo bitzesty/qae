@@ -14,58 +14,59 @@ module FeedbackPdfs::General::DrawElements
   end
 
   def render_logo
-    image "#{IMAGES_PATH}#{LOGO_ICON}",
-          at: [0, 137.5.mm + DEFAULT_OFFSET],
-          width: 25.mm
+    pdf_doc.image "#{IMAGES_PATH}#{LOGO_ICON}",
+                  at: [0, 137.5.mm + DEFAULT_OFFSET],
+                  width: 25.mm
   end
 
   def render_urn
-    text_box "QA Ref: #{form_answer.urn}",
-             header_text_properties.merge(at: [32.mm, 137.mm + DEFAULT_OFFSET])
+    pdf_doc.text_box "QA Ref: #{form_answer.urn}",
+                     header_text_properties.merge(at: [32.mm, 137.mm + DEFAULT_OFFSET])
   end
 
   def render_applicant
-    text_box "Applicant: #{user.decorate.applicant_info_print}",
-             header_text_properties.merge(at: [32.mm, 129.5.mm + DEFAULT_OFFSET])
+    pdf_doc.text_box "Applicant: #{user.decorate.applicant_info_print}",
+                     header_text_properties.merge(at: [32.mm, 129.5.mm + DEFAULT_OFFSET])
   end
 
   def render_sub_category
-    text_box "Sub-category: #{sub_category}",
-             header_text_properties.merge(at: [32.mm, 122.mm + DEFAULT_OFFSET])
+    pdf_doc.text_box "Sub-category: #{sub_category}",
+                     header_text_properties.merge(at: [32.mm, 122.mm + DEFAULT_OFFSET])
   end
 
   def render_award_general_information
-    text_box "#{AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year}",
-             header_text_properties.merge(at: [163.mm, 137.mm + DEFAULT_OFFSET])
+    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year}",
+                     header_text_properties.merge(at: [163.mm, 137.mm + DEFAULT_OFFSET])
   end
 
   def render_award_title
-    text_box form_answer.award_type.capitalize,
-             header_text_properties.merge(at: [163.mm, 129.5.mm + DEFAULT_OFFSET])
+    pdf_doc.text_box form_answer.award_type.capitalize,
+                     header_text_properties.merge(at: [163.mm, 129.5.mm + DEFAULT_OFFSET])
   end
 
   def render_headers(table_lines)
-    table table_lines, row_colors: %w(F0F0F0),
-                       cell_style: { size: 12, font_style: :bold },
-                       column_widths: {
-                         0 => 100,
-                         1 => 100,
-                         2 => 567
-                       }
+    pdf_doc.move_down 30.mm
+    pdf_doc.table table_lines, row_colors: %w(F0F0F0),
+                               cell_style: { size: 12, font_style: :bold },
+                               column_widths: {
+                                 0 => 100,
+                                 1 => 100,
+                                 2 => 567
+                               }
   end
 
   def render_table(table_lines)
-    table table_lines, row_colors: %w(FFFFFF),
-                       cell_style: { size: 12 },
-                       column_widths: {
-                         0 => 100,
-                         1 => 100,
-                         2 => 567
-                       }
+    pdf_doc.table table_lines, row_colors: %w(FFFFFF),
+                               cell_style: { size: 12 },
+                               column_widths: {
+                                 0 => 100,
+                                 1 => 100,
+                                 2 => 567
+                               }
   end
 
   def default_bottom_margin
-    move_down 5.mm
+    pdf_doc.move_down 5.mm
   end
 
   def header_text_properties
