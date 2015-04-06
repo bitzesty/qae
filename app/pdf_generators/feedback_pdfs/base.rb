@@ -17,13 +17,14 @@ class FeedbackPdfs::Base < Prawn::Document
     if mode == "singular"
       render_item(form_answer)
     else
-      feedbacks.each do |feedback|
+      feedbacks.each_with_index do |feedback, index|
+        start_new_page if index.to_i != 0
         render_item(feedback.form_answer)
       end
     end
   end
 
   def render_item(form_answer)
-    FeedbackPdfs::Pointer.new(self, form_answer).render_data
+    FeedbackPdfs::Pointer.new(self, form_answer)
   end
 end

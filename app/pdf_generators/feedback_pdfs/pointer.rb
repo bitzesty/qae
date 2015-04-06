@@ -19,10 +19,10 @@ class FeedbackPdfs::Pointer
     @award_form = form_answer.award_form.decorate
     @feedback_data = form_answer.feedback.document
 
-    render_data
+    generate!
   end
 
-  def render_data
+  def generate!
     main_header
     render_data!
   end

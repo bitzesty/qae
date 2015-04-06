@@ -1,6 +1,6 @@
 class Admin::ReportsController < Admin::BaseController
   expose(:pdf_data) do
-    FeedbacksPdf.new("all")
+    FeedbackPdfs::Base.new("all")
   end
 
   def show
