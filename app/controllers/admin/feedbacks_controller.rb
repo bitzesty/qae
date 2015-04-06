@@ -6,7 +6,7 @@ class Admin::FeedbacksController < Admin::BaseController
   end
 
   def download_pdf
-    authorize @feedback, :download_pdf?
+    authorize @form_answer, :download_feedback_pdf?
 
     respond_to do |format|
       format.pdf do

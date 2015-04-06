@@ -22,8 +22,9 @@
         = link_to "View/print Audit Certificate"
       li
         = link_to "View/print Case Summary"
-      li
-        = link_to "View/print an application's feedbacks", download_pdf_admin_form_answer_feedbacks_path(@form_answer, format: :pdf)
+      - if policy(resource).download_feedback_pdf?
+        li
+          = link_to "View/print an application's feedbacks", download_pdf_admin_form_answer_feedbacks_path(@form_answer, format: :pdf)
 
   / TODO Only appears for EP but for now we need to think more on it
   /.sidebar-section
