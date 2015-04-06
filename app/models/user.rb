@@ -68,18 +68,27 @@ class User < ActiveRecord::Base
   enumerize :qae_info_source, in: %w(govuk competitor business_event national_press business_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other)
   enumerize :role, in: POSSIBLE_ROLES, predicates: true
 
-  pg_search_scope :basic_search,
-                  against: [
-                    :email,
-                    :first_name,
-                    :last_name,
-                    :company_name
-                  ],
-                  using: {
-                    tsearch: {
-                      prefix: true
+  begin :searching
+    pg_search_scope :basic_search,
+                    against: [
+                      :email,
+                      :first_name,
+                      :last_name,
+                      :company_name
+                    ],
+                    using: {
+                      tsearch: {
+                        prefix: true
+                      }
                     }
-                  }
+    # TODO: take into consideration forcing NULL for all attributes.
+    nilify_blanks only: [
+      :title,
+      :first_name,
+      :last_name,
+      :company_name
+    ]
+  end
 
   def set_step (step)
     @current_step = step

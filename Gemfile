@@ -92,6 +92,7 @@ gem 'active_hash'
 # CronJob Sceduler
 gem 'whenever'
 gem "virtus"
+gem "nilify_blanks"
 
 group :assets do
   gem 'uglifier', '>= 1.3.0'

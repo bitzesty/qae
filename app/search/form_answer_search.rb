@@ -58,7 +58,8 @@ class FormAnswerSearch < Search
           "LEFT OUTER JOIN palace_attendees ON palace_attendees.palace_invite_id = palace_invites.id"
         ).where("palace_invites.id IS NULL OR palace_attendees.id IS NULL")
       when "missing_corp_responsibility"
-        out = out.where("document @> '\"corp_responsibility_form\"=>\"declare_now\"'::hstore")
+        q = "form_answers.document @> '\"corp_responsibility_form\"=>\"declare_now\"'::hstore"
+        out = out.where(q)
       end
     end
     out
