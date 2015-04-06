@@ -19,10 +19,10 @@
 
   .row
     .col-sm-2
-      / TODO Telephone
-      .form-group
-        label.control-label Telephone (optional)
-        input.form-control type="text"
+      label.control-label Telephone (optional)
+      = f.input :telephone_number,
+                input_html: { class: "form-control" },
+                label: false
 
   .row
     .col-sm-3
