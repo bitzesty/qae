@@ -49,6 +49,7 @@ class FormAnswer < ActiveRecord::Base
     has_one :press_summary, dependent: :destroy
     has_one :draft_note, as: :notable, dependent: :destroy
     has_one :company_detail, dependent: :destroy
+    has_one :palace_invite, dependent: :destroy
 
     has_many :form_answer_attachments, dependent: :destroy
     has_many :support_letter_attachments, dependent: :destroy

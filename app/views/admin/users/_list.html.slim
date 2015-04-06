@@ -32,41 +32,6 @@
                         input type="checkbox"
                         span.label-contents
                           = role[0]
-            th.filter
-              / TODO do category filter dropdown
-              .dropdown.if-no-js-hide
-                button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
-                  ' Category:
-                  span.text-filter
-                    ' All
-                  span.caret
-                ul.dropdown-menu role="menu"
-                  li.checkbox role="presentation"
-                    label
-                      input type="checkbox"
-                      span.label-contents
-                        em Select all
-                  li.divider
-                  li.checkbox role="presentation"
-                    label
-                      input type="checkbox"
-                      span.label-contents
-                        ' Innovation
-                  li.checkbox role="presentation"
-                    label
-                      input type="checkbox"
-                      span.label-contents
-                        ' International Trade
-                  li.checkbox role="presentation"
-                    label
-                      input type="checkbox"
-                      span.label-contents
-                        ' Sustainable Development
-                  li.checkbox role="presentation"
-                    label
-                      input type="checkbox"
-                      span.label-contents
-                        ' QAEP
             th.sortable
               = sort_link f, 'Signed in at', @search, :last_sign_in_at
         tbody
@@ -84,8 +49,6 @@
                 td = mail_to user.email, user.email, {class: "ellipsis"}
                 td = user.company
                 td = user.role
-                td
-                  i Not implemented
                 td
                   small.text-muted
                     span.visible-lg

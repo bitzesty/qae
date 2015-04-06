@@ -1,112 +1,67 @@
-.panel.panel-default
-  .panel-heading#palace-attendees-heading role="tab"
-    h4.panel-title
-      a data-toggle="collapse" data-parent="#panel-winners" href="#section-palace-attendees" aria-expanded="true" aria-controls="section-palace-attendees"
-        ' Palace Attendees
-  #section-palace-attendees.section-palace-attendees.panel-collapse.collapse role="tabpanel" aria-labelledby="palace-attendees-heading"
-    .panel-body
-      .form-group
-        .form-value
-          /p.p-empty No attendees confirmed.
-          ul.list-unstyled
-            li.well
-              p
-                strong Mr Mark Spencer
-                br
-                small.text-muted Management Director
-              p
-                ' 14 Barne Road
-                br
-                ' London
-                br
-                ' NW1 4DO
-              p 07744 923 232
+- if @form_answer.palace_invite.present?
+  - palace_invite = @form_answer.palace_invite
+  .panel.panel-default
+    .panel-heading#palace-attendees-heading role="tab"
+      h4.panel-title
+        a data-toggle="collapse" data-parent="#panel-winners" href="#section-palace-attendees" aria-expanded="true" aria-controls="section-palace-attendees"
+          ' Palace Attendees
+    #section-palace-attendees.section-palace-attendees.panel-collapse.collapse role="tabpanel" aria-labelledby="palace-attendees-heading"
+      .panel-body
+        .form-group
+          .form-value
+            - unless palace_invite.palace_attendees.exists?
+              p.p-empty No attendees confirmed.
+            - else
+              ul.list-unstyled
+                - palace_invite.palace_attendees.each do |pa|
+                  li.well
+                    p
+                      strong= "#{pa.title} #{pa.first_name} #{pa.last_name}"
+                      br
+                      small.text-muted= pa.job_name
+                    p
+                      = pa.address_1
+                      br
+                      = pa.address_2
+                      br
+                      = pa.address_3
+                      br
+                      = pa.address_4
+                      br
+                      = pa.postcode
+                    p= pa.phone_number
+                    p= pa.post_nominals
 
-              - unless @form_answer.award_type.parameterize == "promotion"
-                br
-                label Product or brief description
-                p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum finibus nisi ut fermentum.
+                    - unless @form_answer.promotion?
+                      br
+                      label Product or brief description
+                      p= pa.product_description
 
-              br
-              label Additional Information e.g. Wheelchair user
-              p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vestibulum finibus nisi ut fermentum.
-
-        .input.form-group.form-fields
-          / ### Business Award winner
-          / Each winning business sends two representatives. If a business is successful in more than one business category they are allowed to send two reps for each winning category. The invitation is sent to the head of the winning unit.
-
-          / ### EP winner
-          / Each QAEP recipient is allowed just one person to go with them and that person is their nominator.
-          / The invitation is sent to the winning QAEP recipient only, not the nominator.
-
-          ul.list-add.list-attendees
-            li.well
-              .pull-right
-                = link_to "Remove"
-
-              .row
-                .col-md-2
-                  label Title
-                  input.form-control type="text"
-              .row
-                .col-md-5
-                  label First Name
-                  input.form-control type="text"
-              .row
-                .col-md-5
-                  label Surname
-                  input.form-control type="text"
-              .row
-                .col-md-8
-                  label Job Title / Position
-                  input.form-control type="text"
-              .row
-                .col-md-8
-                  label Decorations / Post Nominals
-                  input.form-control type="text"
-              .row
-                .col-md-8
-                  label Address 1
-                  input.form-control type="text"
-                  p.help-block First line on envelope
-              .row
-                .col-md-8
-                  label Address 2
-                  input.form-control type="text"
-              .row
-                .col-md-8
-                  label Address 3
-                  input.form-control type="text"
-              .row
-                .col-md-8
-                  label Address 4
-                  input.form-control type="text"
-              .row
-                .col-md-2
-                  label Postcode
-                  input.form-control type="text"
-              .row
-                .col-md-3
-                  label Telephone number
-                  input.form-control type="text"
-                  p.help-block If known
-              - unless @form_answer.award_type.parameterize == "promotion"
-                .row
-                  .col-md-12
-                    label Product or brief description
-                    textarea.form-control rows="2"
-                    p.help-block Max 20 words
-              .row
-                .col-md-12
-                  label Additional Information e.g. Wheelchair user
-                  textarea.form-control rows="2"
+                      br
+                      label Additional Information e.g. Wheelchair user
+                      p= pa.additional_info
 
 
-          = link_to "+ Add another attendee", "#", class: "btn btn-default"
-        .clear
+          .input.form-group.form-fields.attendees-forms data-attendees-limit=palace_invite.attendees_limit
+            / ### Business Award winner
+            / Each winning business sends two representatives. If a business is successful in more than one business category they are allowed to send two reps for each winning category. The invitation is sent to the head of the winning unit.
 
-        = link_to "#", class: "form-edit-link pull-right"
-          span.glyphicon.glyphicon-pencil
-          ' Edit
-        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
-        .clear
+            / ### EP winner
+            / Each QAEP recipient is allowed just one person to go with them and that person is their nominator.
+            / The invitation is sent to the winning QAEP recipient only, not the nominator.
+            - palace_invite.prebuild_if_necessary.palace_attendees.each_with_index do |palace_attendee, index|
+
+              = render "admin/form_answers/winners_components/palace_attendee_form",
+                        palace_attendee: palace_attendee,
+                        index: index
+            .blank-form.hidden
+              = render "admin/form_answers/winners_components/palace_attendee_form",
+                        palace_attendee: palace_invite.palace_attendees.build
+
+            = link_to "+ Add another attendee", "#", class: "btn btn-default add-another-attendee if-no-js-hide #{'hidden' if palace_invite.palace_attendees.count > palace_invite.attendees_limit}"
+          .clear
+
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
