@@ -14,15 +14,18 @@ class FormAnswerSearch < Search
     super(scope)
   end
 
+  # admin comments with flags + global flag per application
   def sort_by_flag(scoped_results, desc = false)
     section = (@subject.is_a?(Admin) ? "admin" : "critical")
     section = Comment.sections[section]
-    # admin comments with flags + global flag per application
-    q = "form_answers.*, (COUNT(comments.id) + (CASE WHEN form_answers.admin_importance_flag THEN 1 ELSE 0 END)) AS flags_count"
-    scoped_results.select(q).
-      joins("LEFT OUTER JOIN comments on comments.commentable_id=form_answers.id").
-      group("form_answers.id").
-      where("(comments.section =? AND comments.commentable_type=? AND flagged =?)
+
+    q = "form_answers.*,
+      (COUNT(comments.id) +
+      (CASE WHEN form_answers.admin_importance_flag THEN 1 ELSE 0 END)) AS flags_count"
+    scoped_results.select(q)
+      .joins("LEFT OUTER JOIN comments on comments.commentable_id=form_answers.id")
+      .group("form_answers.id")
+      .where("(comments.section =? AND comments.commentable_type=? AND flagged =?)
         OR comments.section IS NULL", section, "FormAnswer", true)
       .order("flags_count #{sort_order(desc)}")
   end
