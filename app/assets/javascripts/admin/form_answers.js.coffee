@@ -102,9 +102,6 @@ ready = ->
     $(this).find(".feedbackHolder").html("Assessment Submitted")
     $(this).find("input:submit").remove()
 
-  $(".company-name-form").on "click", ".form-save-link", (e) ->
-    e.stopPropagation()
-
   $(document).on "click", ".form-save-link", (e) ->
     link = $(this)
     e.preventDefault()
@@ -246,7 +243,7 @@ handleCompanyDetailsForm = ->
       lastNestedForm = $('.duplicatable-nested-form').last()
       newNestedForm  = $(nestedForm).clone()
       formsOnPage    = $('.duplicatable-nested-form').length
-      console.log(formsOnPage)
+
       $(newNestedForm).find('label').each ->
         oldLabel = $(this).attr 'for'
         newLabel = oldLabel.replace(new RegExp(/_[0-9]+_/), "_#{formsOnPage}_")
@@ -264,13 +261,16 @@ handleCompanyDetailsForm = ->
           $(this).attr 'name', newName
       newNestedForm.find(".duplicatable-nested-form").removeClass("if-js-hide")
       $( newNestedForm ).insertAfter( lastNestedForm )
+
   $(document).on "ajax:success", ".company-details-forms form", (e, data, status, xhr) ->
     $(this).closest(".form-group").replaceWith($(data))
+
   $(".company-details-forms").on "click", ".remove-link", (e) ->
     e.preventDefault()
     parent = $(this).closest(".duplicatable-nested-form")
     parent.find("input[type='checkbox']").prop("checked", "checked")
     parent.hide()
+
   $(".previous-wins").on "click", ".form-save-link", (e) ->
     e.preventDefault()
     $(this).closest("form").submit()
