@@ -45,7 +45,18 @@ class FormFinancialPointer
   end
 
   def period_length
-    @period_length ||= data.first ? data.first.values.flatten.size : 0
+    @period_length ||= begin
+      if obj = data.first
+        case obj
+        when Hash
+          obj.values.flatten.length
+        when Array
+          obj.length
+        end
+      else
+        0
+      end
+    end
   end
 
   def growth_overseas_earnings(year)

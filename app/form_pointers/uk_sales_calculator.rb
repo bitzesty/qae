@@ -10,7 +10,7 @@ class UkSalesCalculator
     exports ||= data_values(:overseas_sales)
     total_turnover = data_values(:total_turnover)
 
-    return [] if exports.none? || total_turnover.none?
+    return [] if !exports || !total_turnover || exports.none? || total_turnover.none?
 
     calculated = []
 
