@@ -1,4 +1,4 @@
-module PdfAuditCertificates::Awards2014::Trade
+module PdfAuditCertificates::Awards2016::Trade
   class Base < AuditCertificatePdf
     # HERE YOU CAN OVERRIDE STANDART METHODS
     def render_options_list

@@ -22,5 +22,9 @@ FactoryGirl.define do
     trait :promotion do
       award_type "promotion"
     end
+
+    trait :submitted do
+      submitted true
+    end
   end
 end

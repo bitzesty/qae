@@ -31,4 +31,8 @@ class FormAnswerPolicy < ApplicationPolicy
   def toggle_assessor_flag?
     admin? || subject.lead_or_assigned?(record)
   end
+
+  def download_feedback_pdf?
+    admin? && record.submitted? && record.feedback.present?
+  end
 end

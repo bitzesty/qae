@@ -13,6 +13,10 @@ class UserDecorator < ApplicationDecorator
     end
   end
 
+  def applicant_info_print
+    object.company_name || full_name
+  end
+
   def confirmation_status
     " (Pending)" unless object.confirmed?
   end

@@ -1,4 +1,4 @@
-module PdfAuditCertificates::Awards2014::Promotion
+module PdfAuditCertificates::Awards2016::Promotion
   class Base < AuditCertificatePdf
     # HERE YOU CAN OVERRIDE STANDART METHODS
     def render_content

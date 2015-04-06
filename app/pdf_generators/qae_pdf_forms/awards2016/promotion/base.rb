@@ -1,4 +1,4 @@
-module QaePdfForms::Awards2014::Development
+module QaePdfForms::Awards2016::Promotion
   class Base < FormPdf
     # HERE YOU CAN OVERRIDE STANDART METHODS
   end

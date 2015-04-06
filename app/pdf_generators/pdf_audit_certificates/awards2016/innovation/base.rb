@@ -1,4 +1,4 @@
-module PdfAuditCertificates::Awards2014::Innovation
+module PdfAuditCertificates::Awards2016::Innovation
   class Base < AuditCertificatePdf
     # HERE YOU CAN OVERRIDE STANDART METHODS
     def render_options_list

@@ -10,11 +10,15 @@ class FormAnswerDecorator < ApplicationDecorator
                  }
 
   def pdf_generator
-    "QaePdfForms::Awards2014::#{object.award_type.capitalize}::Base".constantize.new(object)
+    "QaePdfForms::Awards2016::#{object.award_type.capitalize}::Base".constantize.new(object)
+  end
+
+  def feedbacks_pdf_generator
+    "FeedbackPdfs::Awards2016::#{object.award_type.capitalize}::Base".constantize.new("singular", object)
   end
 
   def pdf_audit_certificate_generator
-    "PdfAuditCertificates::Awards2014::#{object.award_type.capitalize}::Base".constantize.
+    "PdfAuditCertificates::Awards2016::#{object.award_type.capitalize}::Base".constantize.
                                                                              new(object)
   end
 
