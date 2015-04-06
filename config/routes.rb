@@ -154,6 +154,8 @@ Rails.application.routes.draw do
           post :submit
           post :approve
         end
+
+        get :download_pdf, on: :collection
       end
 
       resources :press_summaries, only: [:create, :update] do

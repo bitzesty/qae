@@ -34,6 +34,10 @@ class FeedbackPolicy < ApplicationPolicy
     end
   end
 
+  def download_pdf?
+    admin?
+  end
+
   private
 
   def form_answer

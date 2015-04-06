@@ -13,6 +13,10 @@ class FormAnswerDecorator < ApplicationDecorator
     "QaePdfForms::Awards2014::#{object.award_type.capitalize}::Base".constantize.new(object)
   end
 
+  def feedbacks_pdf_generator
+    "FeedbackPdfs::Awards2014::#{object.award_type.capitalize}::Base".constantize.new(object)
+  end
+
   def pdf_audit_certificate_generator
     "PdfAuditCertificates::Awards2014::#{object.award_type.capitalize}::Base".constantize.
                                                                              new(object)
