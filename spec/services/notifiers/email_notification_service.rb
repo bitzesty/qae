@@ -107,4 +107,26 @@ describe Notifiers::EmailNotificationService do
       expect(current_notification.reload).to be_sent
     end
   end
+
+  context "all_unsuccessfull_feedback" do
+    let(:kind) { "all_unsuccessfull_feedback" }
+
+    let(:form_answer) do
+      create(:form_answer, :submitted)
+    end
+
+    before do
+      form_answer.update_column(:state, "not_awarded")
+    end
+
+    it "triggers current notification" do
+      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
+      mailer = double(deliver_later!: true)
+      expect(Users::UnsuccessfullFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
 end

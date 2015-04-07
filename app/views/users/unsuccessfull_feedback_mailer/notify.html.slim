@@ -1,0 +1,17 @@
+p
+  ' Hi
+  = @user.full_name
+  ',
+
+p
+  ' Sorry, application for #{@award_title}
+  | for
+  br
+  = @user.general_info
+  br
+  | was unsuccessfull.
+  br
+  ' For more information visit
+  = link_to "your dashboard", dashboard_url
+p
+  | Best Regards, Administration Team

@@ -10,7 +10,7 @@ class MailRenderer
   end
 
   # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
+  %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit unsuccessfull_notification).each do |method|
     define_method method do
       "<b>TODO</b>".html_safe
     end
@@ -52,6 +52,13 @@ class MailRenderer
     assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
     render(assigns, "users/winners_press_release/notify")
+  end
+
+  def all_unsuccessfull_feedback
+    assigns = {}
+    assigns[:user] = dummy_user("Jon", "Doe")
+    assigns[:form_answer] = form_answer
+    render(assigns, "users/unsuccessfull_feedback_mailer/notify")
   end
 
   private

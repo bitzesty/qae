@@ -42,6 +42,12 @@ class Notifiers::EmailNotificationService
     end
   end
 
+  def all_unsuccessfull_feedback
+    FormAnswer.unsuccessfull.each do |form_answer|
+      Users::UnsuccessfullFeedbackMailer.notify(form_answer.id).deliver_later!
+    end
+  end
+
   def winners_notification
     FormAnswer.winners.each do |form_answer|
       email = if form_answer.promotion?
@@ -62,5 +68,11 @@ class Notifiers::EmailNotificationService
         Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
       end
     end
+  end
+
+  private
+
+  def current_award_year
+    # TODO: discuss a way to detect award year to use it in scopes here
   end
 end
