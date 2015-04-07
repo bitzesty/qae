@@ -83,6 +83,7 @@ en:
           sales_royalties: Royalties/Licences (£)
           avg_unit_price: Avg. selling price (£)
           avg_unit_cost_self: Unit costs (£)
+        uk_sales_row:
           uk_sales: UK sales (£)
   errors:
     messages:

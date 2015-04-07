@@ -23,7 +23,7 @@ jQuery ->
         i = 0
         exportsGrowth.each (i, td) ->
           if i != 0 && values[i - 1] != NaN && values[i - 1] != 0
-            growth = Math.round( values[i] / values[i - 1] * 100 - 100)
+            growth = ( values[i] / values[i - 1] * 100 - 100).toFixed(2)
             ($ td).text(growth)
 
     updateExportsPercentage = (exports, turnover) ->
@@ -36,7 +36,7 @@ jQuery ->
       if exportsValues.length && turnoverValues.length
         exportsPercentage.each (i, td) ->
           if exportsValues[i] != NaN && turnoverValues[i] && turnoverValues[i] != NaN && exportsValues[i]
-            growth = Math.round(exportsValues[i] / turnoverValues[i] * 100)
+            growth = (exportsValues[i] / turnoverValues[i] * 100).toFixed(2)
             ($ td).text(growth)
 
     updateOverallGrowth = (turnover) ->
@@ -45,10 +45,24 @@ jQuery ->
 
       if i = turnoverValues.length
         growth = turnoverValues[i - 1] - turnoverValues[0]
-        growthInPercents = Math.round(turnoverValues[i - 1] / turnoverValues[0] * 100 - 100)
+        growthInPercents = (turnoverValues[i - 1] / turnoverValues[0] * 100 - 100).toFixed(2)
+        growthInPercents = (turnoverValues[i] / turnoverValues[0] * 100 - 100).toFixed(2)
 
         ($ 'tr.overall-growth td.value', overallBenchmarksTable).text(growth)
         ($ 'tr.overall-growth-in-percents td.value', overallBenchmarksTable).text(growthInPercents)
+
+    updateTurnoverGrowth = (turnover) ->
+      turnoverValues = turnover.map (i, td) ->
+        parseInt(($ 'input', ($ td)).val())
+
+      turnoverGrowth = ($ 'tr.turnover-growth td.value', benchmarksTable)
+
+      if turnoverValues.length
+        i = 0
+        turnoverGrowth.each (i, td) ->
+          if i != 0 && turnoverValues[i - 1] != NaN && turnoverValues[i - 1] != 0
+            growth = ( turnoverValues[i] / turnoverValues[i - 1] * 100 - 100).toFixed(2)
+            ($ td).text(growth)
 
     updateBenchmarks = ->
       exports = ($ 'tr.exports > td.value', financialTable)
@@ -57,6 +71,7 @@ jQuery ->
       updateExportsGrowth(exports)
       updateExportsPercentage(exports, turnover)
       updateOverallGrowth(turnover)
+      updateTurnoverGrowth(turnover)
 
     saveFinancials = ->
       timer = null
