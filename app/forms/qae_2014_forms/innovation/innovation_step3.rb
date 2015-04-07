@@ -29,12 +29,14 @@ class QAE2014Forms
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
           classes "sub-question js-financial-year-change"
+          sub_ref "C 2.1"
           required
           yes_no
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
+          sub_ref "C 2.2"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
@@ -46,6 +48,7 @@ class QAE2014Forms
 
         textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
+          sub_ref "C 2.3"
           rows 5
           words_max 100
           conditional :financial_year_date_changed, :yes
@@ -112,6 +115,7 @@ class QAE2014Forms
 
         by_years :exports, "Of which exports" do
           classes "sub-question"
+          sub_ref "C 6.1"
           required
           context %(<p>Please enter '0' if you had none.</p>)
 
@@ -127,6 +131,7 @@ class QAE2014Forms
 
         by_years :net_profit, "Net profit after tax but before dividends" do
           classes "sub-question"
+          sub_ref "C 6.2"
           required
 
           type :money
@@ -141,6 +146,7 @@ class QAE2014Forms
 
         by_years :total_net_assets, "Total net assets" do
           classes "sub-question total-net-assets"
+          sub_ref "C 6.3"
           required
           context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
 
@@ -156,11 +162,31 @@ class QAE2014Forms
 
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
+          sub_ref "C 6.4"
           rows 5
           words_max 200
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_condition_parent
+        end
+
+        options :company_estimated_figures, "Are any of these figures estimated?" do
+          classes "sub-question"
+          sub_ref "C 6.5"
+          yes_no
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          conditional :innovation_part_of, :entire_business
+        end
+
+        textarea :company_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
+          classes "sub-question"
+          sub_ref "C 6.6"
+          rows 5
+          words_max 400
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          conditional :company_estimated_figures, :yes
         end
 
         header :product_financials, "Product/Service Financials" do
@@ -177,6 +203,7 @@ class QAE2014Forms
 
         by_years :units_sold, "Number of innovative units/contracts sold" do
           classes "sub-question"
+          sub_ref "C 7.1"
           required
 
           type :number
@@ -192,6 +219,7 @@ class QAE2014Forms
 
         by_years :sales, "Sales of your innovative product/service" do
           classes "sub-question"
+          sub_ref "C 7.2"
           required
 
           type :money
@@ -207,6 +235,7 @@ class QAE2014Forms
 
         by_years :sales_exports, "Of which exports" do
           classes "sub-question"
+          sub_ref "C 7.3"
           context %(<p>Please enter '0' if you had none.</p>)
           required
 
@@ -223,6 +252,7 @@ class QAE2014Forms
 
         by_years :sales_royalties, "Of which royalties or licenses" do
           classes "sub-question"
+          sub_ref "C 7.4"
           context %(<p>Please enter '0' if you had none.</p>)
           required
 
@@ -239,6 +269,7 @@ class QAE2014Forms
 
         textarea :drops_in_sales, "Explain any drop in sales or number of units sold" do
           classes "sub-question js-conditional-drop-question"
+          sub_ref "C 7.5"
           rows 5
           words_max 300
           conditional :innovation_part_of, :single_product_or_service
@@ -249,6 +280,7 @@ class QAE2014Forms
 
         by_years :avg_unit_price, "Average unit selling price/contract value" do
           classes "sub-question"
+          sub_ref "C 7.6"
           required
 
           context %(
@@ -268,6 +300,7 @@ class QAE2014Forms
 
         textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods." do
           classes "sub-question"
+          sub_ref "C 7.7"
           required
           rows 5
           words_max 300
@@ -278,6 +311,7 @@ class QAE2014Forms
 
         by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract" do
           classes "sub-question"
+          sub_ref "C 7.8"
           required
 
           context %(
@@ -297,6 +331,7 @@ class QAE2014Forms
 
         textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods." do
           classes "sub-question"
+          sub_ref "C 7.9"
           required
           rows 5
           words_max 300
@@ -314,6 +349,7 @@ class QAE2014Forms
 
         textarea :product_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
+          sub_ref "C 8.1"
           rows 5
           words_max 200
           conditional :product_estimated_figures, :yes
@@ -323,6 +359,7 @@ class QAE2014Forms
 
         textarea :financial_comments, "Additional comments (optional)" do
           classes "sub-question"
+          sub_ref "C 8.2"
           rows 5
           words_max 100
           conditional :innovation_part_of, :single_product_or_service

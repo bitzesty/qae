@@ -40,6 +40,7 @@ class QAE2014Forms
 
         textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
           classes "sub-question"
+          sub_ref "A 3.1"
           required
           conditional :principal_business, :no
           words_max 200
@@ -72,6 +73,7 @@ class QAE2014Forms
 
         queen_award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
           classes "sub-question"
+          sub_ref "A 6.1"
 
           conditional :queen_award_holder, :yes
 
@@ -91,6 +93,7 @@ class QAE2014Forms
 
         options :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
           classes "sub-question"
+          sub_ref "A 6.2"
 
           conditional :queen_award_holder, :yes
 
@@ -99,12 +102,14 @@ class QAE2014Forms
 
         text :previous_business_name, "Name used previously" do
           classes "regular-question"
+          sub_ref "A 6.3"
           required
           conditional :business_name_changed, :yes
         end
 
         textarea :previous_business_ref_num, "Reference number(s) used previously" do
           classes "regular-question"
+          sub_ref "A 6.4"
           required
           conditional :business_name_changed, :yes
           rows 5
@@ -119,6 +124,7 @@ class QAE2014Forms
 
         textarea :other_awards_desc, "Please describe them" do
           classes "sub-question"
+          sub_ref "A 7.1"
           required
           context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
           conditional :other_awards_won, :yes
@@ -142,6 +148,7 @@ class QAE2014Forms
 
         options :innovation_contributors_aware, "Are they aware that you're applying for this award?" do
           classes "sub-question"
+          sub_ref "A 8.1"
           required
           conditional :innovation_any_contributors, :yes
           conditional :innovation_joint_contributors, :no
@@ -161,7 +168,7 @@ class QAE2014Forms
         end
 
         header :innovation_contributors_aware_header_some, "" do
-          classes "application-notice help-notice"
+          classes "application-notice help-notice if-no-js-hide"
           context %(
             <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
                     )
@@ -172,6 +179,7 @@ class QAE2014Forms
 
         options :innovation_joint_contributors, "Is this application part of a joint entry with any of the contributing organisation(s)?" do
           classes "sub-question"
+          sub_ref "A 8.2"
           required
           context %(
             <p>
@@ -184,6 +192,7 @@ class QAE2014Forms
 
         textarea :innovation_contributors, "Please enter their name(s)" do
           classes "sub-question"
+          sub_ref "A 8.3"
           required
           conditional :innovation_any_contributors, :yes
           conditional :innovation_joint_contributors, :yes
@@ -198,6 +207,7 @@ class QAE2014Forms
 
         textarea :innovation_license_terms, "Briefly describe the licensing arrangement." do
           classes "sub-question"
+          sub_ref "A 9.1"
           required
           conditional :innovation_under_license, :yes
           rows 5
@@ -227,6 +237,7 @@ class QAE2014Forms
 
         text :business_sector_other, "Please specify" do
           classes "regular-question"
+          sub_ref "A 13.1"
           required
           conditional :business_sector, :other
         end
@@ -257,12 +268,14 @@ class QAE2014Forms
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
           classes "regular-question"
+          sub_ref "A 14.4"
           conditional :parent_ultimate_control, :no
           conditional :applying_for, "division branch subsidiary"
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
+          sub_ref "A 14.5"
           conditional :parent_ultimate_control, :no
           conditional :applying_for, "division branch subsidiary"
         end
@@ -270,6 +283,7 @@ class QAE2014Forms
         options :parent_group_entry, "Are you a parent company making a group entry?" do
           classes "sub-question"
           conditional :applying_for, :true
+          sub_ref "A 14.6"
           context %(
             <p>
               A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.
@@ -281,6 +295,7 @@ class QAE2014Forms
         options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
           classes "sub-question"
           conditional :applying_for, :true
+          sub_ref "A 14.7"
           conditional :parent_group_entry, "yes"
           yes_no
         end

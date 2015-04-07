@@ -18,6 +18,7 @@ class QAE2014Forms
 
         textarea :innovation_desc_long, "Summarise your innovative product/service/initiative" do
           classes "sub-question"
+          sub_ref "B 1.1"
           required
           context %{
             <p>Describe the product/service/initiative itself. Explain any aspect(s) you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Also explain how it fits within the overall business i.e. is it your sole product?</p>
@@ -78,6 +79,7 @@ class QAE2014Forms
 
         textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
+          sub_ref "B 7.1"
           required
           conditional :innovations_grant_funding, :yes
           rows 5
@@ -94,6 +96,7 @@ class QAE2014Forms
 
         textarea :innovation_additional_comments, "Additional comments (optional)" do
           classes "sub-question"
+          sub_ref "B 8.1"
           rows 5
           words_max 200
           context %(

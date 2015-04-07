@@ -21,6 +21,7 @@ class QAE2014Forms
         text :nominee_title_other, "Please specify" do
           required
           classes "regular-question"
+          sub_ref "A 1.1"
           conditional :nominee_title, "other"
         end
 
@@ -62,6 +63,7 @@ class QAE2014Forms
 
         text :nominee_nationality_other, "Please specify" do
           required
+          sub_ref "A 1.2"
           classes "sub-question"
           conditional :nominee_nationality, "other"
         end
@@ -75,6 +77,7 @@ class QAE2014Forms
 
         award_holder :awards, "List them below" do
           classes "sub-question"
+          sub_ref "A 2.1"
           award_years_present true
           details_words_max 50
 
@@ -90,6 +93,7 @@ class QAE2014Forms
         award_holder :nomination_awards, "List them below" do
           classes "sub-question"
           details_words_max 50
+          sub_ref "A 2.2"
 
           conditional :nominated_for_award, :yes
         end

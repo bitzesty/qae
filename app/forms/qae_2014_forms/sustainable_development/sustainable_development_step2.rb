@@ -260,6 +260,7 @@ class QAE2014Forms
 
         textarea :licensing_agreement, "Briefly describe the licensing arrangement." do
           classes "sub-question"
+          sub_ref "B 8.1"
           required
           rows 5
           words_max 100
@@ -274,6 +275,7 @@ class QAE2014Forms
 
         textarea :grant_details, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
+          sub_ref "B 9.1"
           required
           rows 5
           words_max 300
@@ -296,6 +298,7 @@ class QAE2014Forms
 
         number :product_age, "For how many years has it been released by you?" do
           classes "regular-question inline-input-question"
+          sub_ref "B 10.1"
           required
           max 100
           unit " years"

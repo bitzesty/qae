@@ -49,6 +49,7 @@ class QAE2014Forms
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
+          sub_ref "C 2.1"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
@@ -60,6 +61,7 @@ class QAE2014Forms
 
         textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
+          sub_ref "C 2.2"
           required
           rows 5
           words_max 100
@@ -128,6 +130,7 @@ class QAE2014Forms
 
         by_years :overseas_sales_direct, "of which direct" do
           classes "sub-question"
+          sub_ref "C 6.1"
           required
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -179,6 +182,7 @@ class QAE2014Forms
 
         by_years :overseas_sales_indirect, "of which indirect" do
           classes "sub-question"
+          sub_ref "C 6.2"
           required
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -219,6 +223,7 @@ class QAE2014Forms
 
         by_years :total_turnover, "Total turnover (home plus overseas)" do
           classes "sub-question"
+          sub_ref "C 6.3"
           type :money
           required
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -232,6 +237,7 @@ class QAE2014Forms
 
         by_years :net_profit, "Net profit after tax but before dividends" do
           classes "sub-question"
+          sub_ref "C 6.4"
           required
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -245,6 +251,7 @@ class QAE2014Forms
 
         textarea :drops_in_turnover, "Explain any drops in turnover or net profit, and any losses made." do
           classes "sub-question js-conditional-drop-question"
+          sub_ref "C 6.5"
           rows 5
           words_max 500
           conditional :trade_commercial_success, :true
@@ -253,6 +260,7 @@ class QAE2014Forms
 
         options :resale_overseas, "Do you purchase your products/services (or any of their components) from overseas for resale overseas?" do
           classes "sub-question"
+          sub_ref "C 6.7"
           required
           yes_no
           context %(
@@ -263,6 +271,7 @@ class QAE2014Forms
 
         by_years :total_imported_cost, "Total cost of these imports" do
           classes "sub-question"
+          sub_ref "C 6.8"
           required
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -283,6 +292,7 @@ class QAE2014Forms
 
         textarea :company_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
+          sub_ref "C 7.1"
           rows 5
           words_max 400
           conditional :trade_commercial_success, :true
@@ -297,6 +307,7 @@ class QAE2014Forms
 
         by_years :overseas_yearly_percentage, "Indicate the yearly percentage of your goods produced overseas." do
           classes "sub-question"
+          sub_ref "C 8.1"
           required
           type :percent
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -307,6 +318,7 @@ class QAE2014Forms
 
         textarea :manufacture_model_benefits, "Describe the benefits of this business model to the UK." do
           classes "sub-question"
+          sub_ref "C 8.2"
           rows 5
           words_max 400
           conditional :manufacture_overseas, "yes"
@@ -320,6 +332,7 @@ class QAE2014Forms
 
         textarea :operate_model_benefits, "Describe the benefits of this business model to the UK." do
           classes "sub-question"
+          sub_ref "C 9.1"
           required
           rows 5
           words_max 500
@@ -334,6 +347,7 @@ class QAE2014Forms
 
         textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
+          sub_ref "C 10.1"
           required
           rows 5
           words_max 300
