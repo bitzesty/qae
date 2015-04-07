@@ -1,7 +1,10 @@
 module FormAnswerMixin
   def update
     authorize resource, :update?
-    resource.update(update_params)
+    resource.assign_attributes(update_params)
+    resource.company_details_updated_at = DateTime.now
+    resource.save
+
     respond_to do |format|
       format.json do
         render json: {

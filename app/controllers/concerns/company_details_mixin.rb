@@ -4,7 +4,10 @@ module CompanyDetailsMixin
     authorize @company_detail, :update?
 
     @company_detail.update(update_params)
+
     @form_answer = @company_detail.form_answer.decorate
+    @form_answer.company_details_updated_at = DateTime.now
+    @form_answer.save
 
     respond_to do |format|
       format.html do

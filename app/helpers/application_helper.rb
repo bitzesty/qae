@@ -59,4 +59,8 @@ module ApplicationHelper
   def application_deadline(kind)
     Settings.current.deadlines.where(kind: kind).first.decorate.formatted_trigger_time
   end
+
+  def format_date(date)
+    date.strftime("%e %b %Y at %H:%M")
+  end
 end
