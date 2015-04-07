@@ -124,6 +124,42 @@ class QAEFormBuilder
         Nokogiri::HTML.parse(content).text.strip
       end
     end
+
+    # Detects children conditions, grouped by option
+    # We us it for detecting conditional hints for Form and in PDF
+    def children_conditions(questions_with_references)
+      questions_with_references.map do |q|
+        q.conditions.select do |c|
+          c.question_key == key
+        end
+      end.reject { |c| c.blank? }
+         .flatten
+         .reject { |q| q.question_value == :true }
+         .group_by { |a| a.question_value }
+    end
+
+    def can_have_conditional_hints?
+      delegate_obj.is_a?(QAEFormBuilder::OptionsQuestion) ||
+      delegate_obj.is_a?(QAEFormBuilder::OptionsWithPreselectedConditionsQuestion)
+    end
+
+    def conditional_hint(child_condition, questions_with_references)
+      option_name = child_condition[0].to_s
+                                      .split("_")
+                                      .join(" ")
+                                      .capitalize
+
+      dependencies = child_condition[1].map do |c|
+        parent_q = questions_with_references.detect do |q|
+          q.key == c.parent_question_key
+        end
+
+        res = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
+        res.delete(' ')
+      end
+
+      "If #{option_name}, please answer the questions #{dependencies.to_sentence}"
+    end
   end
 
   class QuestionBuilder

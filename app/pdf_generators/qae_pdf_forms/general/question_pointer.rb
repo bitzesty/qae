@@ -71,14 +71,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def set_children_conditions
-    @children_conditions = questions_with_references.map do |q|
-      q.conditions.select do |c|
-        c.question_key == key
-      end
-    end.reject { |c| c.blank? }
-       .flatten
-       .reject { |q| q.question_value == :true }
-       .group_by { |a| a.question_value }
+    @children_conditions = question.children_conditions(questions_with_references)
   end
 
   def render!
@@ -126,7 +119,10 @@ class QaePdfForms::General::QuestionPointer
     render_validation_block
     render_question_title_with_ref_or_not
     render_context_and_answer_blocks
-    render_info_about_branching_questions
+
+    if question.can_have_conditional_hints?
+      render_info_about_branching_questions
+    end
   end
 
   def render_question_title_with_ref_or_not
@@ -238,21 +234,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_option_branching_info(child_condition)
-    option_name = child_condition[0].to_s
-                                    .split("_")
-                                    .join(" ")
-                                    .capitalize
-
-    dependencies = child_condition[1].map do |c|
-      parent_q = questions_with_references.detect do |q|
-        q.key == c.parent_question_key
-      end
-
-      res = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
-      res.delete(' ')
-    end
-
-    text = "If #{option_name}, please answer the questions #{dependencies.to_sentence}"
+    text = question.conditional_hint(child_condition, questions_with_references)
     form_pdf.render_text text,
                          color: "999999",
                          style: :italic,

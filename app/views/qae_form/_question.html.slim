@@ -48,6 +48,7 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
       span.hint = question.form_hint
       .clear
 
-      / TODO Conditional hints
-      /span.conditional-hint
-        ' If {option_name}, please answer the questions {dependencies.to_sentence}
+      / Conditional hints
+      - if question.can_have_conditional_hints?
+        = render "qae_form/conditional_hints/list", question: question
+

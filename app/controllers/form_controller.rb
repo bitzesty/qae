@@ -20,6 +20,17 @@ class FormController < ApplicationController
     end
   end
 
+  expose(:all_form_questions) do
+    @form_answer.award_form.steps.map(&:questions).flatten
+  end
+
+  expose(:questions_with_references) do
+    all_form_questions.select do |q|
+      !q.is_a?(QAEFormBuilder::HeaderQuestion) &&
+      (q.ref.present? || q.sub_ref.present?)
+    end
+  end
+
   def new_innovation_form
     form_answer = FormAnswer.create!(
       user: current_user,
