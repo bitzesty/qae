@@ -24,7 +24,7 @@ describe 'Form answer attachments management', %q{
 
   context "with existing attachment" do
     before do
-      form_answer.form_answer_attachments.create
+      form_answer.form_answer_attachments.create(attachable: admin)
       visit admin_form_answer_path(form_answer)
     end
 
