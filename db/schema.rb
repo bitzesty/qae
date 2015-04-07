@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407132835) do
+ActiveRecord::Schema.define(version: 20150407134028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -247,9 +247,9 @@ ActiveRecord::Schema.define(version: 20150407132835) do
     t.hstore   "financial_data"
     t.boolean  "admin_importance_flag",           default: false
     t.boolean  "assessor_importance_flag",        default: false
-    t.boolean  "accepted",                        default: false
     t.boolean  "primary_assessor_not_assigned",   default: true
     t.boolean  "secondary_assessor_not_assigned", default: true
+    t.boolean  "accepted",                        default: false
     t.datetime "company_details_updated_at"
   end
 
@@ -301,6 +301,8 @@ ActiveRecord::Schema.define(version: 20150407132835) do
     t.boolean  "correct",          default: false
     t.boolean  "reviewed_by_user", default: false
     t.string   "token"
+    t.string   "authorable_type"
+    t.integer  "authorable_id"
   end
 
   add_index "press_summaries", ["form_answer_id"], name: "index_press_summaries_on_form_answer_id", using: :btree
