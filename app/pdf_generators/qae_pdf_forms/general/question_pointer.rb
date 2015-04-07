@@ -130,7 +130,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_question_title_with_ref_or_not
-    if question.delegate_obj.ref.present?
+    if question.delegate_obj.ref.present? || question.delegate_obj.sub_ref.present?
       render_question_with_ref
     else
       render_question_without_ref
@@ -150,7 +150,8 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_question_with_ref
-    form_pdf.text_box "#{question.ref.delete(' ')}.",
+    ref = question.ref || question.sub_ref
+    form_pdf.text_box "#{ref.delete(' ')}.",
                       style: :bold,
                       width: 20.mm,
                       at: [11.mm, form_pdf.cursor - 5.mm]
