@@ -50,4 +50,18 @@ module FormAnswerHelper
   def country_collection
     ([["United Kingdom", "GB"], ["United States", "US"]] + Country.all).uniq
   end
+
+  def feedback_updated_by(form_answer)
+    feedback = form_answer.feedback
+    if feedback && feedback.authorable.present?
+      "Updated by: #{feedback.authorable.decorate.full_name} - #{format_date(feedback.updated_at)}"
+    end
+  end
+
+  def press_summary_updated_by(form_answer)
+    ps = form_answer.press_summary
+    if ps.present? && ps.authorable.present?
+      "Updated by #{ps.authorable.decorate.full_name} - #{format_date(ps.updated_at)}"
+    end
+  end
 end

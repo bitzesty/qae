@@ -3,9 +3,8 @@
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-winners" href="#section-press-summary" aria-expanded="true" aria-controls="section-press-summary"
         ' Press Summary
-        - if @form_answer.press_summary.present? && @form_answer.press_summary.authorable.present?
-          small
-            = "Updated by #{@form_answer.press_summary.authorable.decorate.full_name} - #{format_date(@form_answer.press_summary.updated_at)}"
+        small
+          = press_summary_updated_by(@form_answer)
   #section-press-summary.section-press-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="press-summary-heading"
     .panel-body
       = render "admin/press_summaries/section", form_answer: @form_answer
