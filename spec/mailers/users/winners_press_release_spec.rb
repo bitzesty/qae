@@ -14,15 +14,10 @@ describe Users::WinnersPressRelease do
                                                    document: { company_name: "Bitzesty" }
     end
 
-    let(:press_release) { create :press_summary, form_answer: form_answer }
+    let!(:press_release) { create :press_summary, form_answer: form_answer }
 
     let(:mail) do
       Users::WinnersPressRelease.notify(form_answer.id)
-    end
-
-    before do
-      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
-      press_release
     end
 
     it "renders the headers" do

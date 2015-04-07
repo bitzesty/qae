@@ -14,7 +14,6 @@ describe Users::AuditCertificateRequestMailer do
   }
 
   before do
-    allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
     form_answer
   end
 

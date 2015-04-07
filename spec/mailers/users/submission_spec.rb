@@ -12,7 +12,6 @@ describe Users::SubmissionMailer do
   let(:subject) { "submission successfully created!" }
 
   before do
-    allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
     form_answer
   end
 

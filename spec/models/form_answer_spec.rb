@@ -26,9 +26,8 @@ RSpec.describe FormAnswer, type: :model do
       %w(urn_seq_trade urn_seq_innovation urn_seq_development urn_seq_promotion).each do |seq|
         FormAnswer.connection.execute("ALTER SEQUENCE #{seq} RESTART")
       end
-
-      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
     end
+
     let!(:form_answer) { FactoryGirl.create(:form_answer, submitted: true) }
     let(:award_year) { (Date.today.year + 1).to_s[2..-1] }
 

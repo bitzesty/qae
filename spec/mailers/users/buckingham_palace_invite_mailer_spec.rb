@@ -3,10 +3,6 @@ require "rails_helper"
 describe Users::BuckinghamPalaceInviteMailer do
   let(:palace_invite) { create :palace_invite, email: "palace@example.com" }
 
-  before do
-    allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
-  end
-
   describe "#notify" do
     let(:mail) { Users::BuckinghamPalaceInviteMailer.invite(palace_invite.id) }
 

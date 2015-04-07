@@ -18,8 +18,6 @@ describe Notifiers::EmailNotificationService do
     let(:form_answer) { create(:form_answer, :submitted) }
 
     it "triggers current notification" do
-      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
-
       service = double
       expect(service).to receive(:run)
       expect(Notifiers::Shortlist::AuditCertificateRequest).to receive(:new)
@@ -68,7 +66,6 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       form_answer = create(:form_answer, :submitted, document: { head_email: "head@email.com" })
-      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
 
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
         .with("head@email.com")
@@ -105,7 +102,6 @@ describe Notifiers::EmailNotificationService do
     end
 
     it "triggers current notification" do
-      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
       press_summary
       mailer = double(deliver_later!: true)
       expect(Users::WinnersPressRelease).to receive(:notify).with(form_answer.id) { mailer }
@@ -129,7 +125,6 @@ describe Notifiers::EmailNotificationService do
     end
 
     it "triggers current notification" do
-      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
       mailer = double(deliver_later!: true)
       expect(Users::UnsuccessfullFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
 

@@ -37,7 +37,6 @@ shared_context "pdf file checks" do
   end
 
   before do
-    allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
     form_answer
   end
 
