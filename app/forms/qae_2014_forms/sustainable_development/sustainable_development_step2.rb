@@ -18,7 +18,7 @@ class QAE2014Forms
           ref "B 2"
           required
           context %(
-            <p>eg. Arts Company:  “Sustainable print marketing for arts and tourism”; Energy Company:  “Management and delivery of commercial and domestic projects to tackle fuel poverty, energy efficiency and carbon reduction”.</p>
+            <p>e.g. Arts Company:  “Sustainable print marketing for arts and tourism”; Energy Company:  “Management and delivery of commercial and domestic projects to tackle fuel poverty, energy efficiency and carbon reduction”.</p>
                     )
           rows 2
           words_max 15
@@ -136,7 +136,7 @@ class QAE2014Forms
             <p>
               'Economic dimensions' means building a fair, sustainable economy which provides prosperity and opportunity for all
               <a href="#hidden-hint-0" class="hidden-link-for">
-                e.g. productivity, socially useful activity (eg. assisting the long term unemployed into work), supporting local economies. Or considering sustainability when making financial and purchasing decisions.
+                e.g. productivity, socially useful activity, supporting local economies, considering sustainability when making financial and purchasing decisions.
               </a>
             </p>
           )

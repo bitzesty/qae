@@ -148,7 +148,7 @@ class QAE2014Forms
               Include figures for sales of goods/services to non-UK residents or their buying agents. Include royalties, license fees, provision of know-how and other related services to non-UK residents. Include sales to, and by, your overseas subsidiaries (though for what they buy from you to sell on, only include their markup).
             </p>
             <p>
-              Income from services in connection to imports into the UK (other than freight) should not be included. Ship-owners may include freight paid in the UK by a non-resident through an agent. Sales to UK branches/subsidiaries of foreign companies, or sales for use in the UK, should not be included. However, services performed in the UK but invoiced to a non-UK resident can be included eg. tourism.
+              Income from services in connection to imports into the UK (other than freight) should not be included. Ship-owners may include freight paid in the UK by a non-resident through an agent. Sales to UK branches/subsidiaries of foreign companies, or sales for use in the UK, should not be included. However, services performed in the UK but invoiced to a non-UK resident can be included e.g. tourism.
             </p>
             <p>
               Include commission earned as export agents for UK goods or services.
