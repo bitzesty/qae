@@ -47,10 +47,10 @@ div
               = f.input :phone_number, input_html: { class: "medium" }, label: "Telephone"
 
           footer
-            nav.pagination aria-label="Pagination" role="navigation"
+            nav.pagination.no-border aria-label="Pagination" role="navigation"
               ul.group
                 li.previous.previous-alternate
                   = link_to dashboard_path
-                    span.pagination-label Back to Dashboard
+                    span.pagination-label Back
                 li.submit
                   = f.submit "Confirm Press Comment", class: "button", rel: "next"
