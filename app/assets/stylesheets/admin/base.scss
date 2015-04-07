@@ -1023,12 +1023,18 @@ table .ellipsis {
   > .panel-heading {
     background-color: $grey-panel-dark;
 
-    > .panel-title a {
-      background-image: image-url("icon-arrow-collapse-down-white.png");
-      color: $white-true;
+    > .panel-title {
+      a,
+      small {
+        color: $white-true;
+      }
 
-      @include is-retina {
-        background-image: image-url("icon-arrow-collapse-down-white@2.png");
+      a {
+        background-image: image-url("icon-arrow-collapse-down-white.png");
+
+        @include is-retina {
+          background-image: image-url("icon-arrow-collapse-down-white@2.png");
+        }
       }
     }
 

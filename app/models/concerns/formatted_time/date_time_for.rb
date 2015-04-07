@@ -63,7 +63,7 @@ module FormattedTime::DateTimeFor
           def #{date}
             value = #{attr}
             if value
-              value = value.utc
+              value = value.in_time_zone(Time.zone)
               value.to_date
             end
           end
@@ -71,7 +71,7 @@ module FormattedTime::DateTimeFor
           def #{time}
             value = #{attr}
             if value
-              value = value.utc
+              value = value.in_time_zone(Time.zone)
 
               value.to_i - value.beginning_of_day.to_i
             end
@@ -83,7 +83,7 @@ module FormattedTime::DateTimeFor
             end
 
             if value
-              zone = ActiveSupport::TimeZone["UTC"]
+              zone = Time.zone
               self.#{attr} = zone.local(value.year, value.month, value.day)
 
               self.#{attr} += seconds if #{attr} && seconds
@@ -94,7 +94,7 @@ module FormattedTime::DateTimeFor
 
           def #{time}=(value)
             time = if #{date}
-              ActiveSupport::TimeZone["UTC"].local(#{date}.year, #{date}.month, #{date}.day)
+              Time.zone.local(#{date}.year, #{date}.month, #{date}.day)
             else
               nil
             end

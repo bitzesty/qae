@@ -4,6 +4,9 @@
   - FeedbackForm.fields_for_award_type(form_answer.object.award_type).each do |feedback_field, feedback_field_value|
     = render "admin/feedbacks/feedback_fields", feedback_field: feedback_field, feedback_field_value: feedback_field_value, feedback: feedback, f: f
 
+br
+br
+
 - if feedback.persisted?
   - if policy(feedback).submit?
     = button_to "Submit feedback", polymorphic_url([:submit, namespace_name, form_answer, feedback]), class: "btn btn-default btn-block", remote: true

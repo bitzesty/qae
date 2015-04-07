@@ -23,3 +23,31 @@ $button-colour: #00823b;
 @import "admin/page-users";
 @import "admin/page-settings";
 @import "admin/date-time-picker";
+
+
+
+// HIGHLIGHT PLACEHOLDER BITS
+$todo-yellow: #ffff00;
+$todo-green: #66ff66;
+$todo-black: #333;
+
+.todo-note {
+  display: none;
+}
+
+.layout-dev {
+  .todo-note {
+    display: block;
+    background: $todo-yellow;
+    color: $todo-black;
+    font-weight: bold;
+  }
+
+  .todo-placeholder {
+    outline: 4px solid $todo-yellow !important;
+  }
+
+  .todo-unconfirmed {
+    outline: 4px solid $todo-green !important;
+  }
+}

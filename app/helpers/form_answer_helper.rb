@@ -38,7 +38,7 @@ module FormAnswerHelper
 
   def average_growth_for(form_answer, year)
     growth = form_answer.average_growth_for(year)
-    growth || content_tag(:span, "-", class: "centered")
+    growth || "-"
   end
 
   def sic_code(form_answer)
