@@ -37,6 +37,22 @@ describe FormAnswerStateMachine do
         :led_application_withdrawn).and_return(double(deliver_later!: true))
 
       form_answer.state_machine.perform_transition(:withdrawn, lead)
+      expect(form_answer.reload.state).to eq("withdrawn")
+    end
+  end
+
+  describe "#perform_transition" do
+    context "after the deadline" do
+      let!(:settings) { create(:settings, :expired_submission_deadlines) }
+      context "as Assessor" do
+        let(:lead) { create(:assessor, :lead_for_all) }
+        it "can change state only to allowed" do
+          form_answer.state_machine.perform_transition(:submitted, lead)
+          expect(form_answer.reload.state).to_not eq("submitted")
+          form_answer.state_machine.perform_transition(:not_submitted, lead)
+          expect(form_answer.reload.state).to eq("not_submitted")
+        end
+      end
     end
   end
 end
