@@ -39,6 +39,19 @@ jQuery ->
             growth = (exportsValues[i] / turnoverValues[i] * 100).toFixed(2)
             ($ td).text(growth)
 
+    updateUKSales = (exports, turnover) ->
+      uk_sales = ($ 'tr.uk-sales td.value', financialTable)
+      exportsValues = exports.map (i, td) ->
+        parseInt(($ 'input', ($ td)).val())
+      turnoverValues = turnover.map (i, td) ->
+        parseInt(($ 'input', ($ td)).val())
+
+      if exportsValues.length && turnoverValues.length
+        uk_sales.each (i, td) ->
+          if exportsValues[i] != NaN && turnoverValues[i] && turnoverValues[i] != NaN && exportsValues[i]
+            sales = (turnoverValues[i] - exportsValues[i]).toFixed(2)
+            ($ td).text(sales)
+
     updateOverallGrowth = (turnover) ->
       turnoverValues = turnover.map (i, td) ->
         parseInt(($ 'input', ($ td)).val())
@@ -72,6 +85,7 @@ jQuery ->
       updateExportsPercentage(exports, turnover)
       updateOverallGrowth(turnover)
       updateTurnoverGrowth(turnover)
+      updateUKSales(exports, turnover)
 
     saveFinancials = ->
       timer = null
