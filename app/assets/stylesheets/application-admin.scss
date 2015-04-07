@@ -27,6 +27,10 @@ $button-colour: #00823b;
 
 
 // HIGHLIGHT PLACEHOLDER BITS
+$todo-yellow: #ffff00;
+$todo-green: #66ff66;
+$todo-black: #333;
+
 .todo-note {
   display: none;
 }
@@ -34,16 +38,16 @@ $button-colour: #00823b;
 .layout-dev {
   .todo-note {
     display: block;
-    background: #ffff00;
-    color: #333;
+    background: $todo-yellow;
+    color: $todo-black;
     font-weight: bold;
   }
 
   .todo-placeholder {
-    outline: 4px solid #ffff00 !important;
+    outline: 4px solid $todo-yellow !important;
   }
 
   .todo-unconfirmed {
-    outline: 4px solid #66ff66 !important;
+    outline: 4px solid $todo-green !important;
   }
 }

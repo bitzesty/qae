@@ -246,10 +246,10 @@
   p {
     margin-bottom: 5px;
     font-size: 15px;
-  }
 
-  p.p-lg {
-    font-size: 20px;
+    &.p-lg {
+      font-size: 20px;
+    }
   }
 }
 
