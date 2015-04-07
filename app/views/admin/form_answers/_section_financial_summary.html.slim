@@ -16,7 +16,7 @@
       .panel-body
         - if resource.audit_certificate.present?
           - review_audit_certificate = ReviewAuditCertificate.new(form_answer_id: resource.id)
-          - if policy(review_audit_certificate).create?
+          - if policy(review_audit_certificate).create? && !resource.audit_certificate.try(:reviewed?)
             = simple_form_for([namespace_name, review_audit_certificate], remote: true, authenticity_token: true) do |f|
               = f.input :form_answer_id, as: :hidden
 
