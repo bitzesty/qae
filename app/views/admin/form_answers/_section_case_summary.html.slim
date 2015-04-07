@@ -1,10 +1,16 @@
+- if current_subject.is_a?(Admin) || current_subject.lead?(resource)
+  - assessment = lead_case_summary_assessment
+- elsif current_subject.primary?(resource)
+  - assessment = primary_case_summary_assessment
+
 .panel.panel-default
   .panel-heading#case-summary-heading role="tab"
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-assessment" href="#section-case-summary" aria-expanded="true" aria-controls="section-case-summary"
         ' Case Summary
-        small.todo-placeholder
-          ' Updated by Anonymous - 02/04/2015 at 11:52
+        small
+          - if assessment.editable.present?
+            = "Updated by #{assessment.editable.decorate.full_name} - #{format_date(assessment.updated_at)}"
   #section-case-summary.section-case-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="case-summary-heading"
     .panel-body
       .alert.alert-glyphicon.alert-info
@@ -15,10 +21,6 @@
       / Only show if Moderated Appraisal is submitted
       / For Primary Assessor
       / It becomes read-only for primary assessor after submission
-      - if current_subject.is_a?(Admin) || current_subject.lead?(resource)
-        - assessment = lead_case_summary_assessment
-      - elsif current_subject.primary?(resource)
-        - assessment = primary_case_summary_assessment
 
       = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true) do |f|
         = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
