@@ -26,5 +26,16 @@ FactoryGirl.define do
     trait :submitted do
       submitted true
     end
+
+    trait :with_audit_certificate do
+      document do
+        file = "#{Rails.root}/spec/fixtures/form_answer_document_with_review_audit_certificate_criteria.json"
+        JSON.parse(File.open(file).read)
+      end
+      audit_certificate
+      award_type "development"
+      state "submitted"
+      submitted true
+    end
   end
 end
