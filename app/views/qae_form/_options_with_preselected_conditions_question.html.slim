@@ -2,12 +2,16 @@
 
 .js-options-with-parent-dependency data-depends-on=question.depends_on
   h2
-    - if question.ref
-      span class="steps step-#{question.ref.to_s.parameterize}"
+    - if question.ref || question.sub_ref
+      - if question.ref
+        - ref = question.ref
+      - else
+        - ref = question.sub_ref
+      span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref}"
         span.visuallyhidden
-          = question.ref.to_s
+          = ref.to_s
         span.todo
-          = question.ref.to_s
+          = ref.to_s
     .js-option-by-preselected-condition data-preselected-condition='default' class=("display_none" if condition.present?)
       = question.main_header
     - question.placeholder_preselected_conditions.each do |c|

@@ -9,12 +9,16 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
     - if question.title != ""
       label for="q_#{question.key}"
         h2
-          - if question.ref
-            span class="steps step-#{question.ref.to_s.parameterize}"
+          - if question.ref || question.sub_ref
+            - if question.ref
+              - ref = question.ref
+            - else
+              - ref = question.sub_ref
+            span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref}"
               span.visuallyhidden
-                = question.ref.to_s
+                = ref.to_s
               span.todo
-                = question.ref.to_s
+                = ref.to_s
 
           == question.title
 
@@ -46,3 +50,7 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
       = render partial: "qae_form/#{question.delegate_obj.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
       span.hint = question.form_hint
       .clear
+
+      / TODO Conditional hints
+      /span.conditional-hint
+        ' If {option_name}, please answer the questions {dependencies.to_sentence}

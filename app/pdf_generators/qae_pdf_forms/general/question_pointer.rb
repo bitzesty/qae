@@ -138,7 +138,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_context_and_answer_blocks
-    form_pdf.indent 22.mm do
+    form_pdf.indent 25.mm do
       render_question_context
 
       if question.classes != "regular-question" ||
@@ -157,7 +157,7 @@ class QaePdfForms::General::QuestionPointer
                       at: [11.mm, form_pdf.cursor - 5.mm]
 
     if question.escaped_title.present?
-      form_pdf.indent 22.mm do
+      form_pdf.indent 25.mm do
         form_pdf.render_text question.escaped_title,
                              style: :bold
       end
@@ -167,7 +167,7 @@ class QaePdfForms::General::QuestionPointer
   def render_question_without_ref
     if question.escaped_title.present?
       if question.classes == "regular-question"
-        form_pdf.indent 22.mm do
+        form_pdf.indent 25.mm do
           if question_block_type(question) == "inline" && humanized_answer.present?
             inline_question_text = question.escaped_title
             inline_question_text += ": "
@@ -229,7 +229,7 @@ class QaePdfForms::General::QuestionPointer
       children_conditions.present? &&
       form_pdf.form_answer.urn.blank?
 
-      form_pdf.indent 29.mm do
+      form_pdf.indent 32.mm do
         children_conditions.each do |child_condition|
           render_option_branching_info(child_condition)
         end
@@ -298,9 +298,7 @@ class QaePdfForms::General::QuestionPointer
           render_years_labels_table
         end
       when QAEFormBuilder::ByYearsQuestion
-        form_pdf.indent 7.mm do
-          render_years_table
-        end
+        render_years_table
       when QAEFormBuilder::QueenAwardHolderQuestion
         if humanized_answer.present?
           render_queen_award_holder
@@ -397,7 +395,7 @@ class QaePdfForms::General::QuestionPointer
       form_pdf.move_up 5.mm
     end
 
-    form_pdf.indent 22.mm do
+    form_pdf.indent 25.mm do
       if sub_answers.length > 1
         sub_answers_by_type
       else
