@@ -35,4 +35,20 @@ class FormAnswerPolicy < ApplicationPolicy
   def download_feedback_pdf?
     admin? && record.submitted? && record.feedback.present?
   end
+
+  def download_case_summary_pdf?
+    admin? # TODO: need to confirm
+  end
+
+  def download_audit_certificate_pdf?
+    (admin? || subject.lead_or_assigned?(record)) &&
+    record.audit_certificate.present? &&
+    record.audit_certificate.attachment.present?
+  end
+
+  def has_access_to_post_shortlisting_docs?
+    download_feedback_pdf? ||
+    download_case_summary_pdf? ||
+    download_audit_certificate_pdf?
+  end
 end

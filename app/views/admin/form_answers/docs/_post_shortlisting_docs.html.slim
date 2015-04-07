@@ -1,0 +1,12 @@
+- url_namespace = admin_signed_in? ? :admin : :assessor
+ul.list-unstyled.list-actions
+  - if policy(resource).download_audit_certificate_pdf?
+    li
+      = link_to "View/print Audit Certificate", [url_namespace, @form_answer, @form_answer.audit_certificate], target: "_blank"
+
+  - if policy(resource).download_case_summary_pdf?
+    li
+      = link_to "View/print Case Summary", "#"
+  - if policy(resource).download_feedback_pdf?
+    li
+      = link_to "View/print an application's feedbacks", download_pdf_admin_form_answer_feedbacks_path(@form_answer, format: :pdf)
