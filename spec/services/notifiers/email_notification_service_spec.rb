@@ -68,7 +68,7 @@ describe Notifiers::EmailNotificationService do
       form_answer = create(:form_answer, :submitted, document: { head_email: "head@email.com" })
 
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
-        .with("head@email.com")
+        .with("head@email.com", form_answer)
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
@@ -80,7 +80,7 @@ describe Notifiers::EmailNotificationService do
       form_answer = create(:form_answer, :promotion, :submitted, document: { nominee_email: "nominee@email.com" })
 
       expect(Notifiers::Winners::PromotionBuckinghamPalaceInvite).to receive(:perform_async)
-        .with("nominee@email.com")
+        .with("nominee@email.com", form_answer)
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
@@ -113,8 +113,8 @@ describe Notifiers::EmailNotificationService do
     end
   end
 
-  context "all_unsuccessfull_feedback" do
-    let(:kind) { "all_unsuccessfull_feedback" }
+  context "all_unsuccessful_feedback" do
+    let(:kind) { "all_unsuccessful_feedback" }
 
     let(:form_answer) do
       create(:form_answer, :submitted)
@@ -126,7 +126,7 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
-      expect(Users::UnsuccessfullFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
+      expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
 
       described_class.run
 

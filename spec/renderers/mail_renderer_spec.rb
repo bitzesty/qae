@@ -33,9 +33,9 @@ describe MailRenderer do
     end
   end
 
-  describe "#all_unsuccessfull_feedback" do
+  describe "#all_unsuccessful_feedback" do
     it "renders e-mail" do
-      rendered = described_class.new.all_unsuccessfull_feedback
+      rendered = described_class.new.all_unsuccessful_feedback
       expect(rendered).to match("Jon Doe")
     end
   end

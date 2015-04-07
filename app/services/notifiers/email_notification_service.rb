@@ -18,7 +18,7 @@ class Notifiers::EmailNotificationService
   end
 
   # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_reminder_to_submit unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
+  %w(reminder_to_submit ep_reminder_support_letters winners_reminder_to_submit unsuccessful_notification).each do |method|
     define_method method do
       nil
     end
@@ -42,9 +42,9 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  def all_unsuccessfull_feedback
-    FormAnswer.unsuccessfull.each do |form_answer|
-      Users::UnsuccessfullFeedbackMailer.notify(form_answer.id).deliver_later!
+  def all_unsuccessful_feedback
+    FormAnswer.unsuccessful.each do |form_answer|
+      Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
     end
   end
 
@@ -53,9 +53,9 @@ class Notifiers::EmailNotificationService
       document = form_answer.document
 
       if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"])
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"], form_answer)
       else
-        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"])
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"], form_answer)
       end
     end
   end
