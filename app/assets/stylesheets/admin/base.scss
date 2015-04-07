@@ -157,6 +157,10 @@ table .ellipsis {
     display: block;
     margin-bottom: 5px;
     color: $error-colour;
+
+    @include screen-md-min {
+      min-width: 22em;
+    }
   }
 
   .form-control {
