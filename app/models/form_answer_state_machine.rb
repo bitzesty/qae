@@ -63,7 +63,6 @@ class FormAnswerStateMachine
     end
   end
 
-  # TODO: tests
   def perform_transition(state, subject = nil)
     state = state.to_sym if STATES.map(&:to_s).include?(state)
     meta = {
