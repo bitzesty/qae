@@ -12,6 +12,5 @@ class PalaceAttendee < ActiveRecord::Base
             :address_3,
             :address_4,
             :postcode,
-            :phone_number,
             presence: true
 end
