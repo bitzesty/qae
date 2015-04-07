@@ -1,3 +1,7 @@
+/ Trade: %growth overseas, %sales exported, sector advantage, overall growth (abs and %)
+/ Innovation: %growth in total turnover, overall growth (abs and %)
+/ Sus. dev.:  %growth in total turnover, overall growth (abs and %)
+
 .form-group.table-overflow-container
   table.table.table-striped#financial-benchmarks
     colgroup
@@ -11,19 +15,27 @@
           th = "Year #{i + 1}"
 
     tbody
-      tr.exports-growth
-        th % Growth overseas earnings
+      - if @form_answer.trade?
+        tr.exports-growth
+          th % Growth overseas earnings
 
-        - financial_pointer.period_length.times do |i|
-          td.value = financial_pointer.growth_overseas_earnings(i)
-      tr.exports-percentage
-        th % Sales exported
-        - financial_pointer.period_length.times do |i|
-          td.value = financial_pointer.sales_exported(i)
-      tr.sector-average-growth
-        th % Sector average growth
-        - financial_pointer.period_length.times do |i|
-          td = average_growth_for(@form_answer, i + 1)
+          - financial_pointer.period_length.times do |i|
+            td.value = financial_pointer.growth_overseas_earnings(i)
+        tr.exports-percentage
+          th % Sales exported
+          - financial_pointer.period_length.times do |i|
+            td.value = financial_pointer.sales_exported(i)
+        tr.sector-average-growth
+          th % Sector average growth
+          - financial_pointer.period_length.times do |i|
+            td = average_growth_for(@form_answer, i + 1)
+      - else
+        tr.exports-growth
+          th % Growth in total turnover
+
+          - financial_pointer.period_length.times do |i|
+            td.value = financial_pointer.growth_in_total_turnover(i)
+
   label.avg-growth-legend = @form_answer.average_growth_legend([1,2,3])
 
 .form-group.table-overflow-container
