@@ -121,9 +121,9 @@ ready = ->
   $("#new_review_audit_certificate input[type='radio']").on "change", ->
     area = $(".audit-cert-description")
     if $(this).val() == "confirmed_changes"
-      area.show()
+      area.removeClass("if-js-hide")
     else
-      area.hide()
+      area.addClass("if-js-hide")
   $(document).on "submit", "#new_assessor_assignment_collection", (e) ->
     form = $(this)
     ids = ""

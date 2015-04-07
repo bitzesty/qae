@@ -28,7 +28,7 @@ I want to be able to view, create and destroy the comments per application.
     end
 
     expect{
-      find(".link-delete-comment-confirm").click
+      first(".link-delete-comment-confirm").click
     }.to change{Comment.count}.by(-1)
   end
 

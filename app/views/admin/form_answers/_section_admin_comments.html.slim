@@ -10,7 +10,7 @@
           - checked = "checked" if @form_answer.admin_importance_flag?
           = check_box nil, :admin_importance_flag, { class: "flag-comment-checkbox if-js-hide", checked: checked}, 1, 0
 
-          = submit_tag :update, class: "if-js-hide"
+          = submit_tag "Flag", class: "if-js-hide btn btn-default"
         = form_for([:admin, @form_answer, Comment.new(commentable: @form_answer, section: "admin")]) do |f|
           = render('admin/comments/form', f: f, section_flagged: @form_answer.admin_importance_flag?)
         .comment-insert

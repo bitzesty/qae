@@ -21,6 +21,6 @@
           = link_to "#", class: "form-edit-link pull-right"
             span.glyphicon.glyphicon-pencil
             ' Edit
-          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right"
+          = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
+          = f.submit "Save", class: "btn btn-primary form-save-link pull-right if-js-hide"
           .clear
-        = f.submit "Add Draft Note", class: "if-js-hide"
