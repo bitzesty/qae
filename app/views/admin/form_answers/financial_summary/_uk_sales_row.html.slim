@@ -1,6 +1,6 @@
-tr class=row.keys.first
+tr.uk-sales
   td = t(".#{row.keys.first}")
 
   - row.values.flatten.each do |field|
     td.value
-      span.form-value = field
+      = field
