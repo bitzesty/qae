@@ -2,16 +2,7 @@
   .sidebar-section
     h2
       ' Application & Supporting Docs
-    / TODO uploaded docs by applicant (Can't delete)
-    ul.list-unstyled.list-actions.todo-placeholder
-      li
-        = link_to "#"
-          span.glyphicon.glyphicon-file
-          ' company-application.pdf
-      li
-        = link_to "#"
-          span.glyphicon.glyphicon-file
-          ' company-compliance-outline.pdf
+    = render "admin/form_answers/docs/application_and_supporting_docs"
 
   .sidebar-section
     / TODO Auto generated Docs
@@ -38,8 +29,8 @@
       p.p-empty class="#{'visuallyhidden' if @form_answer.form_answer_attachments.any?}"
         ' No documents have been attached to this case.
       ul.list-unstyled.list-actions
-        - if @form_answer.form_answer_attachments.any?
-          = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.visible_for(current_subject))
+        - if @form_answer.form_answer_attachments.uploaded_not_by_user.any?
+          = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.uploaded_not_by_user.visible_for(current_subject))
       br
 
     = form_for [namespace_name, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|

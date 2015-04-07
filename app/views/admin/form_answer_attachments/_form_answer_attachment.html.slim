@@ -5,7 +5,7 @@ li.form_answer_attachment
     span.action-title
       span.glyphicon.glyphicon-file
       = form_answer_attachment.decorate.display_name
-  - if policy(form_answer_attachment).destroy?
+  - if form_answer_attachment.uploaded_not_by_user? && policy(form_answer_attachment).destroy?
     small.pull-right
       = form_for(form_answer_attachment, url: admin_form_answer_form_answer_attachment_path(form_answer_attachment.form_answer, form_answer_attachment), html: {method: :delete, style: 'display:inline-block;'}) do |f|
         = f.submit 'Remove', class: 'if-js-hide'

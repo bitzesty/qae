@@ -110,6 +110,7 @@ Rails.application.routes.draw do
       resources :form_answer_state_transitions, only: [:create]
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]
+      resources :support_letters, only: [:show]
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit
@@ -151,6 +152,7 @@ Rails.application.routes.draw do
       resources :form_answer_state_transitions, only: [:create]
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]
+      resources :support_letters, only: [:show]
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit

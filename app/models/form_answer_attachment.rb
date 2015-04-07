@@ -4,6 +4,9 @@ class FormAnswerAttachment < ActiveRecord::Base
 
   mount_uploader :file, FormAnswerAttachmentUploader
 
+  scope :uploaded_by_user, -> { where attachable_type: "User" }
+  scope :uploaded_not_by_user, -> { where.not(attachable_type: "User") }
+
   def filename
     read_attribute(:file)
   end
@@ -16,5 +19,9 @@ class FormAnswerAttachment < ActiveRecord::Base
     out = all
     out = all.where(restricted_to_admin: false) unless subject.is_a?(Admin)
     out
+  end
+
+  def uploaded_not_by_user?
+    attachable_type != "User"
   end
 end
