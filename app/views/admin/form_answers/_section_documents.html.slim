@@ -4,18 +4,11 @@
       ' Application & Supporting Docs
     = render "admin/form_answers/docs/application_and_supporting_docs"
 
-  .sidebar-section
-    / TODO Auto generated Docs
-    h2
-      ' Post Shortlisting Docs
-    ul.list-unstyled.list-actions.todo-placeholder
-      li
-        = link_to "View/print Audit Certificate"
-      li
-        = link_to "View/print Case Summary"
-      - if policy(resource).download_feedback_pdf?
-        li
-          = link_to "View/print an application's feedbacks", download_pdf_admin_form_answer_feedbacks_path(@form_answer, format: :pdf)
+  - if policy(resource).has_access_to_post_shortlisting_docs?
+    .sidebar-section
+      h2
+        ' Post Shortlisting Docs
+      = render "admin/form_answers/docs/post_shortlisting_docs"
 
   / TODO Only appears for EP but for now we need to think more on it
   /.sidebar-section
