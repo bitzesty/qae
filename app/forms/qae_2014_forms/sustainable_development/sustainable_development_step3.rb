@@ -2,7 +2,7 @@ class QAE2014Forms
   class << self
     def development_step3
       @development_step3 ||= proc do
-        options :development_performance_years, "How would you describe your achievements in sustainable development, and their contribution to your organisation's commercial performance?" do
+        options :development_performance_years, "How would you describe the impact of your sustainable development on your organisation's financial performance (i.e. turnover and profit)?" do
           ref "C 1"
           required
           option "2 to 4", "Outstanding achievement over 2 years"
@@ -242,25 +242,6 @@ class QAE2014Forms
           drop_condition_parent
         end
 
-        by_years :avg_unit_price, "Average unit selling price/contract value" do
-          required
-          type :money
-          label "..."
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
-        end
-
-        textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods." do
-          classes "sub-question"
-          required
-          rows 5
-          words_max 200
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
-        end
-
         by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract" do
           required
           type :money
@@ -283,7 +264,7 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
 
-        options :product_estimated_figures, "Are any of the figures used in this section estimates?" do
+        options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
           ref "C 8"
           required
           yes_no
@@ -318,18 +299,25 @@ class QAE2014Forms
           words_max 300
         end
 
-        textarea :investments_details, "Please enter details of all investments in your product/service/management approach. <strong>Include all investments made both during and prior to your entry period.</strong> Also include the year(s) in which they were made." do
+        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach." do
           ref "C 11"
           required
+          context %(
+            <p>
+              Include all investments and reinvestments made both during and prior to your entry period. Also include the year(s) in which they were made.
+            </p>
+                    )
           rows 5
           words_max 500
         end
 
-        textarea :roi_details, "How long did it take the investment indicated above to be repaid out of profits? When and how was this repayment achieved?" do
+        textarea :roi_details, "How long did it take you to break even? When and how was this achieved?" do
           ref "C 12"
           required
           context %(
-            <p>When calculating expenditure paid for out of profits, please include capital costs where appropriate.</p>
+            <p>
+              Breaking even' is when you reach a point where profits are equal to all costs (capital and operating).
+            </p>
                     )
           rows 5
           words_max 500

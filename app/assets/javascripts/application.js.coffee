@@ -46,6 +46,12 @@ jQuery ->
     e.preventDefault()
     $(this).closest(".hidden-hint").toggleClass("show-hint")
 
+  $(document).on "click", ".hidden-link-for", (e) ->
+    e.preventDefault()
+    link_href = $(this).attr("href").substr(1)
+    hidden_link = $(this).closest(".question-block").find("."+link_href)
+    hidden_link.toggleClass("show-hint")
+
   # Remove validation error after changing the value
   $(".question-block input, .question-block select, .question-block textarea").change () ->
     if $("body").hasClass("tried-submitting")

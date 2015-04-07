@@ -53,7 +53,39 @@ class QAE2014Forms
           classes "sub-question"
           context %(
             <p>
-              Environmental dimensions' means respecting the limits of the planet’s environment, resources and biodiversity e.g. resource efficiency, waste reduction and biological diversity/productivity.
+              Environmental dimensions' means respecting the limits of the planet’s environment, resources and biodiversity
+              <a href="#hidden-hint-0" class="hidden-link-for">
+                e.g. resources, efficiency, waste reduction and biological diversity/productivity.
+              </a>
+            </p>
+          )
+          hint "", %(
+            <h3>
+              Resources
+            </h3>
+            <p>
+              e.g. reducing use of fossil fuels, metals, aggregates and minerals, increasing use of renewable and recycled materials, generating or using renewable energy.
+            </p>
+
+            <h3>
+              Efficiency
+            </h3>
+            <p>
+              e.g. using materials (including water) and energy efficiently.
+            </p>
+
+            <h3>
+              Wastes, emissions and pollution
+            </h3>
+            <p>
+              e.g. reducing waste, reducing omissions of greenhouse gasesm ozone-depleters, toxic and radioactive substances, and persitent synthetics.
+            </p>
+
+            <h3>
+              Biological diversity and productivity
+            </h3>
+            <p>
+              e.g. protesting and enhancing native species and habitats, increasing use of sustainably managed sources.
             </p>
           )
           rows 5
@@ -64,8 +96,35 @@ class QAE2014Forms
           classes "sub-question"
           required
           context %(
-            <p>'Social dimensions' means towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities e.g. health and safety, lifelong learning, and building strong communities.</p>
-                    )
+            <p>
+              'Social dimensions' means towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities
+              <a href="#hidden-hint-0" class="hidden-link-for">
+                e.g. health and safety, lifelong learning, and building strong communities.
+              </a>
+            </p>
+          )
+          hint "", %(
+            <h3>
+              Health, safety and support
+            </h3>
+            <p>
+              e.g. promoting health and safety in (global) supply chains, promoting skills support and activities to encourage healthy living, promoting access to work and services for people with special needs, contributing to local environment and infrastructure to improve safety and provide opportunities to be healthy.
+            </p>
+
+            <h3>
+              Social skills, participation and life-long learning
+            </h3>
+            <p>
+              e.g. encouraging people to be involved in sharing views and ideas and making decisions, promoting participation and employee development, increasing opportunities to learn critical skills, helping people to continue learning in their work and personal lives.
+            </p>
+
+            <h3>
+              Building strong communities
+            </h3>
+            <p>
+              e.g working in partnership with local communities, supporting community activity and volunteering, helping to reduce prejudice and promote understanding, sharing resources with community, voluntary, educational or charitable groups.
+            </p>
+          )
           rows 5
           words_max 750
         end
@@ -73,9 +132,29 @@ class QAE2014Forms
         textarea :economic_contribution, "Explain how it contributes to economic dimensions of sustainable development." do
           classes "sub-question"
           required
-          context %{
-            <p>'Economic dimensions' means building a fair, sustainable economy which provides prosperity and opportunity for all e.g. productivity, socially useful activity (eg. assisting the long term unemployed into work), supporting local economies.</p>
-          }
+          context %(
+            <p>
+              'Economic dimensions' means building a fair, sustainable economy which provides prosperity and opportunity for all
+              <a href="#hidden-hint-0" class="hidden-link-for">
+                e.g. productivity, socially useful activity (eg. assisting the long term unemployed into work), supporting local economies. Or considering sustainability when making financial and purchasing decisions.
+              </a>
+            </p>
+          )
+          hint "", %(
+            <h3>
+              Work, productive and socially useful activity
+            </h3>
+            <p>
+              e.g. creating jobs, helping people (long-term unemployed, disabled) who might otherwise be without work to contribute to society, and realise their potential.
+            </p>
+
+            <h3>
+              Finance and sustainable economy
+            </h3>
+            <p>
+              e.g. contributing to prosperity of wider local, regional and national economy, considering environmental and social impact when considering internal financial management systems and financial services bought, using purchase power to support local economy and organisations which are contributing to sustainable development.
+            </p>
+          )
           rows 5
           words_max 750
         end
@@ -84,8 +163,73 @@ class QAE2014Forms
           classes "sub-question"
           required
           context %(
-            <p>'Leadership dimensions' means actively promoting effective, participative systems of governance in all levels of society e.g. promotion of sustainable development, increasing access to information, management innovation, ethical conduct.</p>
-                    )
+            <p>
+              'Leadership dimensions' means actively promoting effective, participative systems of governance in all levels of society 
+              <a href="#hidden-hint-0" class="hidden-link-for">
+                e.g. promotion of sustainable development, increasing access to information, management innovation, ethical conduct.
+              </a>
+            </p>
+          )
+          hint "", %(
+            <h3>
+              Trust, access to formation, good governance and stakeholder relations
+            </h3>
+            <p>
+              e.g. improving flow of information to stakeholders, consulting with stakeholders to inform decisions, conducting ethical business and actively opposing corruption and unfair practices.
+            </p>
+
+            <h3>
+              Promotion of sustainable development
+            </h3>
+            <p>
+              e.g. using indicators, targets, policies and management processes that integrate business practices with sustainable development. Promoting sustainable development:
+            </p>
+            <ul>
+              <li>
+                to employees
+              </li>
+              <li>
+                through the supply chain
+              </li>
+              <li>
+                within the business sector
+              </li>
+              <li>
+                to local communities and to other stakeholders
+              </li>
+              <li>
+                in internional operations
+              </li>
+            </ul>
+
+            <h3>
+              Taking part in:
+            </h3>
+            <ul>
+              <li>
+                demonstration and pilot projects
+              </li>
+              <li>
+                accredited and verified schemes
+              </li>
+              <li>
+                benchmarking
+              </li>
+              <li>
+                business sector initiatives
+              </li>
+              <li>
+                local initiatives
+              </li>
+            </ul>
+
+            <h3>
+              Management innovation
+            </h3>
+            <p>
+              e.g. including sustainable development in organisation's missions and values, having process to address dilemmas and constraints on action in place, developing innovative ways to engage employees, local communities and stakeholders in sustainable development, developing ways to enhance the organisation's reputation by engaging with sustainable development, developing reawrds for employees with good environmental and social performance.
+            </p>
+          )
           rows 5
           words_max 750
         end
@@ -144,13 +288,13 @@ class QAE2014Forms
           style "small inline"
         end
 
-        options :you_released_product, "Was the product/service/management approach released by you?" do
+        options :you_released_product, "Was the product/service/management approach originally released by you?" do
           classes "sub-question"
           required
           yes_no
         end
 
-        number :product_age, "How many years have you had it in the marketplace?" do
+        number :product_age, "For how many years has it been released by you?" do
           classes "regular-question inline-input-question"
           required
           max 100

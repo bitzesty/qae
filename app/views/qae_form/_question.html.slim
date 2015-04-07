@@ -26,10 +26,11 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash
     - for help in question.help
       == help.text
 
-    - for help in question.hint
-      div.hidden-hint
-        span.hidden-link
-          = help.title.html_safe
+    - question.hint.each_with_index do |help, index|
+      div.hidden-hint class="hidden-hint-#{index}"
+        - if help.title.present?
+          span.hidden-link
+            = help.title.html_safe
         span.hidden-content
           == help.text
 
