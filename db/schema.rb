@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150407134028) do
+ActiveRecord::Schema.define(version: 20150407172016) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,26 +26,26 @@ ActiveRecord::Schema.define(version: 20150407134028) do
   add_index "accounts", ["owner_id"], name: "index_accounts_on_owner_id", using: :btree
 
   create_table "admins", force: :cascade do |t|
-    t.string   "email",                   default: "",    null: false
-    t.string   "encrypted_password",      default: "",    null: false
-    t.string   "reset_password_token"
+    t.string   "email",                   limit: 255, default: "",    null: false
+    t.string   "encrypted_password",      limit: 255, default: "",    null: false
+    t.string   "reset_password_token",    limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",           default: 0,     null: false
+    t.integer  "sign_in_count",                       default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "confirmation_token"
+    t.string   "confirmation_token",      limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "authy_id"
     t.datetime "last_sign_in_with_authy"
-    t.boolean  "authy_enabled",           default: false
+    t.boolean  "authy_enabled",                       default: false
   end
 
   add_index "admins", ["authy_id"], name: "index_admins_on_authy_id", using: :btree
@@ -112,19 +112,16 @@ ActiveRecord::Schema.define(version: 20150407134028) do
   add_index "audit_certificates", ["form_answer_id"], name: "index_audit_certificates_on_form_answer_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
-    t.integer  "commentable_id",                   null: false
-    t.string   "commentable_type",                 null: false
-    t.text     "body",                             null: false
+    t.integer  "commentable_id",                               null: false
+    t.string   "commentable_type", limit: 255,                 null: false
+    t.text     "body",                                         null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "authorable_type",                  null: false
-    t.integer  "authorable_id",                    null: false
-    t.integer  "section",                          null: false
-    t.boolean  "flagged",          default: false
+    t.string   "authorable_type",                              null: false
+    t.integer  "authorable_id",                                null: false
+    t.integer  "section",                                      null: false
+    t.boolean  "flagged",                      default: false
   end
-
-  add_index "comments", ["commentable_id"], name: "index_comments_on_commentable_id", using: :btree
-  add_index "comments", ["commentable_type"], name: "index_comments_on_commentable_type", using: :btree
 
   create_table "company_details", force: :cascade do |t|
     t.string   "address_building"
@@ -169,7 +166,7 @@ ActiveRecord::Schema.define(version: 20150407134028) do
     t.boolean  "passed"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "type"
+    t.string   "type",           limit: 255
     t.integer  "form_answer_id"
   end
 
@@ -215,10 +212,10 @@ ActiveRecord::Schema.define(version: 20150407134028) do
   add_index "form_answer_attachments", ["form_answer_id"], name: "index_form_answer_attachments_on_form_answer_id", using: :btree
 
   create_table "form_answer_transitions", force: :cascade do |t|
-    t.string   "to_state",                      null: false
-    t.text     "metadata",       default: "{}"
-    t.integer  "sort_key",                      null: false
-    t.integer  "form_answer_id",                null: false
+    t.string   "to_state",       limit: 255,                null: false
+    t.text     "metadata",                   default: "{}"
+    t.integer  "sort_key",                                  null: false
+    t.integer  "form_answer_id",                            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -231,12 +228,12 @@ ActiveRecord::Schema.define(version: 20150407134028) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.hstore   "document"
-    t.string   "award_type"
+    t.string   "award_type",                      limit: 255
     t.integer  "account_id"
-    t.string   "urn"
-    t.boolean  "submitted",                       default: false
+    t.string   "urn",                             limit: 255
+    t.boolean  "submitted",                                   default: false
     t.float    "fill_progress"
-    t.string   "state",                           default: "application_in_progress", null: false
+    t.string   "state",                                       default: "application_in_progress", null: false
     t.string   "company_or_nominee_name"
     t.integer  "award_year"
     t.string   "nominee_full_name"
@@ -245,11 +242,11 @@ ActiveRecord::Schema.define(version: 20150407134028) do
     t.string   "sic_code"
     t.string   "nickname"
     t.hstore   "financial_data"
-    t.boolean  "admin_importance_flag",           default: false
-    t.boolean  "assessor_importance_flag",        default: false
-    t.boolean  "primary_assessor_not_assigned",   default: true
-    t.boolean  "secondary_assessor_not_assigned", default: true
-    t.boolean  "accepted",                        default: false
+    t.boolean  "admin_importance_flag",                       default: false
+    t.boolean  "assessor_importance_flag",                    default: false
+    t.boolean  "accepted",                                    default: false
+    t.boolean  "primary_assessor_not_assigned",               default: true
+    t.boolean  "secondary_assessor_not_assigned",             default: true
     t.datetime "company_details_updated_at"
   end
 
@@ -298,7 +295,7 @@ ActiveRecord::Schema.define(version: 20150407134028) do
     t.string   "last_name"
     t.string   "email"
     t.string   "phone_number"
-    t.boolean  "correct",          default: false
+    t.boolean  "correct"
     t.boolean  "reviewed_by_user", default: false
     t.string   "token"
     t.string   "authorable_type"
@@ -361,8 +358,8 @@ ActiveRecord::Schema.define(version: 20150407134028) do
 
   create_table "supporters", force: :cascade do |t|
     t.integer  "form_answer_id"
-    t.string   "email"
-    t.string   "access_key"
+    t.string   "email",                   limit: 255
+    t.string   "access_key",              limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -371,46 +368,45 @@ ActiveRecord::Schema.define(version: 20150407134028) do
     t.string   "relationship_to_nominee"
   end
 
-  add_index "supporters", ["access_key"], name: "index_supporters_on_access_key", using: :btree
   add_index "supporters", ["form_answer_id"], name: "index_supporters_on_form_answer_id", using: :btree
   add_index "supporters", ["user_id"], name: "index_supporters_on_user_id", using: :btree
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                           default: "",    null: false
-    t.string   "encrypted_password",                              default: "",    null: false
-    t.string   "reset_password_token"
+    t.string   "email",                                           limit: 255, default: "",    null: false
+    t.string   "encrypted_password",                              limit: 255, default: "",    null: false
+    t.string   "reset_password_token",                            limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                                   default: 0,     null: false
+    t.integer  "sign_in_count",                                               default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.inet     "current_sign_in_ip"
     t.inet     "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "title"
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "job_title"
-    t.string   "phone_number"
-    t.string   "company_name"
-    t.string   "company_address_first"
-    t.string   "company_address_second"
-    t.string   "company_city"
-    t.string   "company_country"
-    t.string   "company_postcode"
-    t.string   "company_phone_number"
-    t.string   "prefered_method_of_contact"
-    t.boolean  "subscribed_to_emails",                            default: false
-    t.string   "qae_info_source"
-    t.string   "qae_info_source_other"
+    t.string   "title",                                           limit: 255
+    t.string   "first_name",                                      limit: 255
+    t.string   "last_name",                                       limit: 255
+    t.string   "job_title",                                       limit: 255
+    t.string   "phone_number",                                    limit: 255
+    t.string   "company_name",                                    limit: 255
+    t.string   "company_address_first",                           limit: 255
+    t.string   "company_address_second",                          limit: 255
+    t.string   "company_city",                                    limit: 255
+    t.string   "company_country",                                 limit: 255
+    t.string   "company_postcode",                                limit: 255
+    t.string   "company_phone_number",                            limit: 255
+    t.string   "prefered_method_of_contact",                      limit: 255
+    t.boolean  "subscribed_to_emails",                                        default: false
+    t.string   "qae_info_source",                                 limit: 255
+    t.string   "qae_info_source_other",                           limit: 255
     t.integer  "account_id"
-    t.string   "role"
-    t.boolean  "completed_registration",                          default: false
-    t.string   "confirmation_token"
+    t.string   "role",                                            limit: 255
+    t.boolean  "completed_registration",                                      default: false
+    t.string   "confirmation_token",                              limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.boolean  "agree_being_contacted_by_department_of_business", default: false
+    t.boolean  "agree_being_contacted_by_department_of_business",             default: false
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
