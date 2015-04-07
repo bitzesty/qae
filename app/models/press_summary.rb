@@ -7,6 +7,8 @@ class PressSummary < ActiveRecord::Base
   before_validation :set_token, on: :create
   after_save :notify_applicant
 
+  belongs_to :authorable, polymorphic: true
+
   private
 
   def set_token

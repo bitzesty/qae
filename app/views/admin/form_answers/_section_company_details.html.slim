@@ -3,8 +3,9 @@
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-application-info" href="#section-company-details" aria-expanded="true" aria-controls="section-company-details"
         ' Company Details
-        small.todo-placeholder
-          ' Logged in: 28/09/15 - 08:03
+        small
+          - if resource.company_details_updated_at
+            = "Logged in: " + format_date(resource.company_details_updated_at)
   #section-company-details.section-company-details.panel-collapse.collapse role="tabpanel" aria-labelledby="company-details-heading"
     .panel-body.company-details-forms
       = render "admin/form_answers/company_details/company_name_form"

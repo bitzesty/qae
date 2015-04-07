@@ -10,6 +10,7 @@ module PressSummaryMixin
     @press_summary = @form_answer.build_press_summary(press_summary_params)
     authorize @press_summary, :create?
 
+    @press_summary.authorable = current_subject
     @press_summary.save
 
     render_create
@@ -18,7 +19,9 @@ module PressSummaryMixin
   def update
     authorize @press_summary, :update?
 
-    @press_summary.update_attributes(press_summary_params)
+    @press_summary.assign_attributes(press_summary_params)
+    @press_summary.authorable = current_subject
+    @press_summary.save
 
     render_create
   end

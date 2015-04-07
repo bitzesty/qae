@@ -9,7 +9,7 @@ module FeedbackMixin
   def create
     @feedback = @form_answer.build_feedback(feedback_params)
     authorize @feedback, :create?
-
+    @feedback.authorable = current_subject
     @feedback.save
 
     render_create
@@ -18,7 +18,9 @@ module FeedbackMixin
   def update
     authorize @feedback, :update?
 
-    @feedback.update_attributes(feedback_params)
+    @feedback.assign_attributes(feedback_params)
+    @feedback.authorable = current_subject
+    @feedback.save
 
     render_create
   end
