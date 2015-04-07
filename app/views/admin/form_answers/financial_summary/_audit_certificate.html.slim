@@ -10,3 +10,13 @@ p = link_to "View Audit Certificate", "#", target: "_blank"
       .audit
         label.control-label Changes made
         p= resource.audit_certificate.changes_description
+.if-js-hide
+  - unless resource.audit_certificate.try(:reviewed?)
+    p.audit-cert-nil-val Not confirmed yet.
+  - else
+    - if resource.audit_certificate.try(:no_changes_necessary?)
+      p No change necessary
+    - elsif resource.audit_certificate.try(:confirmed_changes?)
+      .audit
+        label.control-label Changes made
+        p= resource.audit_certificate.changes_description
