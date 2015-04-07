@@ -1,5 +1,6 @@
+- url_namespace = admin_signed_in? ? :admin : :assessor
 li.form_answer_attachment
-  = link_to [:admin, form_answer_attachment.form_answer, form_answer_attachment],
+  = link_to [url_namespace, form_answer_attachment.form_answer, form_answer_attachment],
             target: "_blank",
             class: "ellipsis"
     span.action-title
