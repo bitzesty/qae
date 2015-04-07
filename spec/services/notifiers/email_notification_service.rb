@@ -65,16 +65,25 @@ describe Notifiers::EmailNotificationService do
 
   context "winners_notifier" do
     let(:kind) { "winners_notification" }
-    let(:user) { create(:user) }
-    let(:form_answer) do
-      create(:form_answer, :submitted, document: { head_email: "head@email.com" })
-    end
 
     it "triggers current notification" do
+      form_answer = create(:form_answer, :submitted, document: { head_email: "head@email.com" })
       allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
 
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
         .with("head@email.com")
+      expect(FormAnswer).to receive(:winners) { [form_answer] }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+
+    it "triggers current notification" do
+      form_answer = create(:form_answer, :promotion, :submitted, document: { nominee_email: "nominee@email.com" })
+
+      expect(Notifiers::Winners::PromotionBuckinghamPalaceInvite).to receive(:perform_async)
+        .with("nominee@email.com")
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run

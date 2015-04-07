@@ -50,13 +50,13 @@ class Notifiers::EmailNotificationService
 
   def winners_notification
     FormAnswer.winners.each do |form_answer|
-      email = if form_answer.promotion?
-        form_answer.document["nominee_email"]
-      else
-        form_answer.document["head_email"]
-      end
+      document = form_answer.document
 
-      Notifiers::Winners::BuckinghamPalaceInvite.perform_async(email)
+      if form_answer.promotion?
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"])
+      else
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"])
+      end
     end
   end
 
