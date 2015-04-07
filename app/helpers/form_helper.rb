@@ -10,11 +10,6 @@ module FormHelper
     ops
   end
 
-  def show_award_tabs_for_assessor?
-    # show tabs if lead is assigned to more than one category
-    current_subject.categories_as_lead.size > 1
-  end
-
   def next_step(form, step)
     return unless step
 
