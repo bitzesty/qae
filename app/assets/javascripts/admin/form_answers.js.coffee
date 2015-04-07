@@ -204,12 +204,14 @@ handleWinnersForm = ->
   $(document).on "click", ".remove-palace-attendee", (e) ->
     e.preventDefault()
     $(this).closest("form").submit()
+    $(this).closest(".form-group").find(".empty-message").removeClass("visuallyhidden")
 
   $(document).on "ajax:success", removeAttendeeForm, (e, data, status, xhr) ->
     limit      = $(".attendees-forms").data("attendees-limit")
     visibleLen = $(".attendees-forms .list-attendees:visible").length
 
     $(this).closest(attendeeFormHolder).remove()
+    $(".attendees-forms").closest(".form-group").find(".empty-message").removeClass("visuallyhidden")
 
     if visibleLen < limit
       button = $(".add-another-attendee")

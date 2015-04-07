@@ -67,4 +67,5 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
             label Additional Information e.g. Wheelchair user
             = f.input :additional_info, as: :text, input_html: { class: "form-control", rows: 2 }, label: false
       .row
-        = f.submit "Save", class: "btn btn-primary  pull-right"
+        .col-md-12
+          = f.submit "Save", class: "btn btn-primary  pull-right"

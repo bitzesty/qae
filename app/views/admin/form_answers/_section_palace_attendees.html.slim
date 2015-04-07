@@ -9,12 +9,21 @@
       .panel-body
         .form-group
           .form-value
-            - unless palace_invite.palace_attendees.exists?
+            .empty-message class="#{'visuallyhidden' if palace_invite.palace_attendees.exists?}"
               p.p-empty No attendees confirmed.
-            - else
+
+              = link_to "#", class: "form-edit-link pull-right"
+                span.glyphicon.glyphicon-pencil
+                ' Edit
+              .clear
+            - if palace_invite.palace_attendees.exists?
               ul.list-unstyled
                 - palace_invite.palace_attendees.each do |pa|
                   li.well
+                    = link_to "#", class: "form-edit-link pull-right"
+                      span.glyphicon.glyphicon-pencil
+                      ' Edit
+
                     p
                       strong= "#{pa.title} #{pa.first_name} #{pa.last_name}"
                       br
@@ -34,10 +43,18 @@
                     - unless @form_answer.promotion?
                       br
                       label Product or brief description
-                      p= pa.product_description
+                      p
+                        - if pa.product_description.present?
+                          = pa.product_description
+                        - else
+                          ' -
                       br
                       label Additional Information e.g. Wheelchair user
-                      p= pa.additional_info
+                      p
+                        - if pa.additional_info.present?
+                          = pa.additional_info
+                        - else
+                          ' -
 
 
           .input.form-group.form-fields.attendees-forms data-attendees-limit=palace_invite.attendees_limit
@@ -57,9 +74,4 @@
                         palace_attendee: palace_invite.palace_attendees.build
 
             = link_to "+ Add another attendee", "#", class: "btn btn-default add-another-attendee if-no-js-hide #{'hidden' if palace_invite.palace_attendees.count > palace_invite.attendees_limit}"
-          .clear
-
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
           .clear
