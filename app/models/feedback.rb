@@ -4,4 +4,5 @@ class Feedback < ActiveRecord::Base
   store_accessor :document, FeedbackForm.fields
 
   scope :submitted, -> { where submitted: true }
+  belongs_to :authorable, polymorphic: true
 end

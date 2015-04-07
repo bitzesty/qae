@@ -34,8 +34,9 @@
           h4.panel-title
             a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-feedback" aria-expanded="true" aria-controls="section-feedback"
               ' Feedback
-              small.todo-placeholder
-                ' Updated by Anonymous - 02/04/2015 at 11:52
+              small
+                - if @form_answer.feedback && @form_answer.feedback.authorable.present?
+                  = "Updated by: #{@form_answer.feedback.authorable.decorate.full_name} - #{format_date(@form_answer.feedback.updated_at)}"
         #section-feedback.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="feedback-heading"
           .panel-body
             = render "admin/feedbacks/section", form_answer: @form_answer
