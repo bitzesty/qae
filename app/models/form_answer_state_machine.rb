@@ -74,10 +74,13 @@ class FormAnswerStateMachine
 
     if permitted_states_with_deadline_constraint.include?(state) || subject.is_a?(Admin)
       # Admin can change always and everything
-      transition_to state, meta
-      if state == :submitted
-        # what if app is not eligible but admin wants to set up it as submitted ?
-        object.update(submitted: true)
+      if transition_to state, meta
+        if state == :submitted
+          object.update(submitted: true)
+        end
+        if state == :withdrawn
+          WithdrawNotifier.new(object).notify
+        end
       end
     end
   end
@@ -87,10 +90,6 @@ class FormAnswerStateMachine
     # TODO: tech debt - we store the submitted state in 2 places
     # in state machine and in `form_answers.submitted`
     object.update(submitted: true)
-  end
-
-  def withdraw(subject)
-    perform_transition(:withdrawn, subject)
   end
 
   def assign_lead_verdict(verdict, subject)

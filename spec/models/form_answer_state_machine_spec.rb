@@ -29,4 +29,14 @@ describe FormAnswerStateMachine do
       end
     end
   end
+
+  describe "application_in_progress -> withdrawn" do
+    let(:lead) { create(:assessor, :lead_for_all) }
+    it "sends notification for the Lead Assessor" do
+      expect(Assessors::GeneralMailer).to receive(
+        :led_application_withdrawn).and_return(double(deliver_later!: true))
+
+      form_answer.state_machine.perform_transition(:withdrawn, lead)
+    end
+  end
 end
