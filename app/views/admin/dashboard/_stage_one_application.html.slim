@@ -1,7 +1,7 @@
 #stage-one-application.panel-collapse.collapse.in role="tabpanel" aria-labelledby="stage-one-application-heading"
   .panel-body
     / TODO Stage 1 - Application
-    .table-overflow-container.todo-placeholder
+    .table-overflow-container
       table.table.table-striped
         colgroup
           col width="200"
@@ -12,13 +12,12 @@
             th Last 7 days
             th Total
         tbody
-          - ["Registered Users", "Applicants not eligible", "Applications not started", "Applications in progress", "Applications submitted"].each do |status|
+          - applications = @statistics.applications_table.each do |_, app|
             tr
-              th = status
-              td 1
-              td 3
-              td
-                strong 81
+              th= app[:name]
+              - app[:counters].each do |count|
+                td
+                  strong= count
 
     br
 
