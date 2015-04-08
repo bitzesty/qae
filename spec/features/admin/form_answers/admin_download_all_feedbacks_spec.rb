@@ -9,45 +9,43 @@ So that I can print and review application feedbacks
 
   let!(:admin) { create(:admin) }
 
-  let!(:form_answer) do
-    create :form_answer, :innovation,
-                         :submitted
-  end
-
-  let(:feedback_content) do
-    res = {}
-
-    FeedbackForm.fields_for_award_type(form_answer.award_type).each do |key, value|
-      res["#{key}_strength"] = "#{key} strength"
-      res["#{key}_weakness"] = "#{key} weakness"
-    end
-
-    res
-  end
-
-  let!(:feedback) do
-    create :feedback, form_answer: form_answer,
-                      document: feedback_content,
-                      submitted: true
-  end
-
-  let(:pdf_filename) do
-    "application_feedbacks"
-  end
-
   before do
     login_admin(admin)
   end
 
-  describe "Download PDF" do
+  describe "Dashboard / Feedbacks section displaying" do
     before do
-      visit download_feedbacks_pdf_admin_reports_path(format: :pdf)
+      visit admin_dashboard_index_path
     end
 
-    it "should generate pdf" do
-      expect(page.status_code).to eq(200)
-      expect(page.response_headers["Content-Disposition"]).to be_eql "attachment; filename=\"#{pdf_filename}\""
-      expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
+    it "should be links to download feedbacks" do
+      FormAnswer::AWARD_TYPE_FULL_NAMES.each do |award_type, value|
+        expect(page).to have_link('Download',
+          href: download_feedbacks_pdf_admin_reports_path(
+            category: award_type, format: :pdf
+          )
+        )
+      end
     end
+  end
+
+  describe "International Trade Award" do
+    let(:award_type) { :trade }
+    include_context "admin all feedbacks pdf generation"
+  end
+
+  describe "Innovation Award" do
+    let(:award_type) { :innovation }
+    include_context "admin all feedbacks pdf generation"
+  end
+
+  describe "Sustainable Development Award" do
+    let(:award_type) { :development }
+    include_context "admin all feedbacks pdf generation"
+  end
+
+  describe "Enterprise Promotion Award" do
+    let(:award_type) { :promotion }
+    include_context "admin all feedbacks pdf generation"
   end
 end

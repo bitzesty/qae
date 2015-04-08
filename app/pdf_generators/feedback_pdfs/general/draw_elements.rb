@@ -8,7 +8,7 @@ module FeedbackPdfs::General::DrawElements
     render_logo
     render_urn
     render_applicant
-    render_sub_category
+    render_sub_category unless form_answer.promotion?
     render_award_general_information
     render_award_title
   end
@@ -63,6 +63,16 @@ module FeedbackPdfs::General::DrawElements
                                  1 => 100,
                                  2 => 567
                                }
+  end
+
+  def render_not_found_block
+    render_logo
+    render_not_found_message
+  end
+
+  def render_not_found_message
+    pdf_doc.text_box "No feedbacks found by selected category!",
+                     header_text_properties.merge(at: [32.mm, 137.mm + DEFAULT_OFFSET])
   end
 
   def default_bottom_margin

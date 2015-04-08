@@ -15,6 +15,7 @@ class QAE2014Forms
             "2 to 4" => "2",
             "5 plus" => "5"
           })
+          sub_category_question
         end
 
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
