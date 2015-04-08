@@ -28,9 +28,9 @@ So that I can check, complete it and then upload it to application
     end
 
     it "should render page" do
-      expect_to_see form_answer.decorate.application_name
+      expect_to_see "Audit Certificate"
       expect(page).to have_link(
-        "download and complete this audit certificate",
+        "this audit certificate",
         href: users_form_answer_audit_certificate_url(form_answer, format: :pdf)
       )
     end
