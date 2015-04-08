@@ -59,11 +59,13 @@
         p All your answers will be saved automatically.
 
         .application-notice.info-notice
-          p Submission period opens 21st April.
+          p
+            ' Submission period opens
+            = application_deadline(:submission_start)
 
           p
             ' Submission period closes at
-            strong 23:59 on the last working day of September.
+            = application_deadline(:submission_end)
 
         br
 
