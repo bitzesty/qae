@@ -16,7 +16,7 @@ class QAE2014Forms
                                                                                      answer_key: "international_trade_6",
                                                                                      question_value: "6 plus",
                                                                                      placeholder_text: %{
-              As you currently hold a Queen's Award for Continuous Achievement in International Trade (3 years), you can only apply for the Outstanding Achievement Award (6 years).
+              As you currently hold a Queen's Award for Outstanding Achievement in International Trade (3 years), you can only apply for the Continuous Achievement Award (6 years).
             }
           placeholder_preselected_condition :queen_award_holder_details,             question_suffix: :category,
                                                                                      parent_question_answer_key: "international_trade_6",
@@ -29,6 +29,7 @@ class QAE2014Forms
             "3 to 5" => "3",
             "6 plus" => "6"
           })
+          sub_category_question
         end
 
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
@@ -139,7 +140,7 @@ class QAE2014Forms
           }
           hint "See the full list of income to be included in 'direct overseas sales'.", %{
             <p>
-              Include figures for sales of goods/services to non-UK residents or their buying agents. Include royalties, license fees, provision of know-how and other related services to non-UK residents. Include sales to, and by, your overseas subsidiaries (though for what they buy from you to sell on, only include their markup). 
+              Include figures for sales of goods/services to non-UK residents or their buying agents. Include royalties, license fees, provision of know-how and other related services to non-UK residents. Include sales to, and by, your overseas subsidiaries (though for what they buy from you to sell on, only include their markup).
             </p>
             <p>
               Income from services in connection to imports into the UK (other than freight) should not be included. Ship-owners may include freight paid in the UK by a non-resident through an agent. Sales to UK branches/subsidiaries of foreign companies, or sales for use in the UK, should not be included. However, services performed in the UK but invoiced to a non-UK resident can be included eg. tourism.
