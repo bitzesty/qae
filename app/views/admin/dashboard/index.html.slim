@@ -93,44 +93,24 @@
                     th.table-total
                       strong TOTAL
                 tbody
-                  - ["International Trade", "Innovation", "Sustainable development"].each do |award|
+                  - completions = @statistics.applications_completion
+                  - FormAnswer::AWARD_TYPE_FULL_NAMES.each do |slug, name|
                     tr
-                      th = award
-                      td 51
-                      td 31
-                      td 70
-                      td 16
-                      td 12
-                      td 278
-                      td.table-total
-                        strong 458
+                      th = name
+                      - ar_size = completions[slug].size
+                      - completions[slug].each_with_index do |count, index|
+                        - if index + 1 == ar_size
+                          td.table-total
+                            strong= count
+                        - else
+                          td= count
+
                   tr.table-total
                     th
                       strong TOTAL
-                    td
-                      strong 153
-                    td
-                      strong 93
-                    td
-                      strong 210
-                    td
-                      strong 43
-                    td
-                      strong 36
-                    td
-                      strong 834
-                    td
-                      strong 1,374
-                  tr
-                    th QAEP
-                    td 51
-                    td 31
-                    td 70
-                    td 16
-                    td 12
-                    td 278
-                    td.table-total
-                      strong 458
+                    - completions["total"].each do |count|
+                      td
+                        strong= count
 
             br
 
