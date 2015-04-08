@@ -109,6 +109,7 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
   gem 'codeclimate-test-reporter', group: :test, require: nil
+  gem "timecop"
 end
 
 group :development do

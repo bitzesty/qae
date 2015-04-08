@@ -1,7 +1,4 @@
 class FormAnswerStatistics::Picker
-  def inititialize
-  end
-
   def registered_users
     out = {}
     out[:last_24h] = User.where(created_at: (Time.now - 24.hours)..Time.now).count
@@ -10,59 +7,49 @@ class FormAnswerStatistics::Picker
     out
   end
 
-  def applications_submitted
-    out = {
-      last_24h: "to clarify",
-      last_7_days: "to clarify"
-    }
-
-    out[:total_so_far] = FormAnswer.submitted.count
-    out
-  end
-
-  def applications_in_progress
-    out = {
-      last_24h: "to clarify",
-      last_7_days: "to clarify"
-    }
-    out[:total_so_far] = FormAnswer.where(state: "in_progress1").count
-    out
-  end
-
-  def applications_not_started
-    out = {
-      last_24h: "to clarify",
-      last_7_days: "to clarify"
-    }
-    out[:total_so_far] = "to clarify"
-    out
-  end
-
-  def applications_submitted
-    out = {
-      trend: "Not impl.",
-      total_last_year: "Not impl."
-    }
-  end
-
-  # 2nd table
-  def applications_completion
-    # TODO: scope with year
+  def applications_completions
+    # TODO: SCOPE WITH YEAR
     out = {}
     klass::POSSIBLE_AWARDS.each do |aw|
       scope = klass.where(award_type: aw)
       out[aw] = collect_completion_ranges(scope)
     end
+    out["total"] = collect_completion_ranges(klass.where.not(state: "not_eligible").where(submitted: false))
+    out
+  end
 
-    out["total"] = collect_completion_ranges(klass.all)
+  def applications_submissions
+    out = {}
+    klass::POSSIBLE_AWARDS.each do |aw|
+      scope = klass.where(award_type: aw)
+      out[aw] = collect_submission_ranges(scope)
+    end
 
+    out["total"] = collect_submission_ranges(klass.all)
     out
   end
 
   private
 
+  def submissions_query(scope, time_range)
+    out = scope.joins(:form_answer_transitions)
+    out = out.where("form_answer_transitions.to_state = ?", "submitted")
+    out = out.where("form_answer_transitions.created_at > ?", time_range) if time_range
+    out.uniq.count
+  end
+
+  def collect_submission_ranges(scope)
+    temp = []
+    temp << submissions_query(scope, DateTime.now - 1.day)
+    temp << submissions_query(scope, DateTime.now - 7.days)
+    temp << submissions_query(scope, nil)
+    temp
+  end
+
   def collect_completion_ranges(scope)
     out = []
+    out << scope.where(state: "not_eligible").count
+    scope = scope.where.not(state: "not_eligible").where(submitted: false)
     out << scope.where(fill_progress: 0).count
     range2 = scope.where("fill_progress > ? AND fill_progress < ?", 0, 0.25)
     out << range2.count
