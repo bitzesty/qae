@@ -9,4 +9,10 @@ module TriggerAtDecorator
 
     h.content_tag(:strong, trigger_on) + " at #{trigger_at}".html_safe
   end
+
+  def formatted_trigger_time_short
+    return PLACEHOLDER unless object.trigger_at
+
+    object.trigger_at.strftime("%d/%m/%Y")
+  end
 end

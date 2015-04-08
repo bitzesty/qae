@@ -161,6 +161,21 @@
 .dashboard-post-submission {
   display: none;
 
+  h2 {
+    @include heading-36;
+  }
+
+  h3 {
+    @include heading-24;
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin-top: 0;
+    font-weight: 700;
+  }
+
   h2,
   h3 {
     small,
@@ -200,4 +215,107 @@
 
 .palace-attendees-list h2 {
   margin-top: 0;
+}
+
+.container-split {
+  clear: both;
+
+  &.award-list {
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid $grey-2;
+  }
+}
+
+.content-left {
+  max-width: 27%;
+  float: left;
+
+  @media (max-width: 870px) {
+    max-width: none;
+    float: none;
+  }
+}
+
+.content-right {
+  display: block;
+  margin-left: 30%;
+
+  @media (max-width: 870px) {
+    margin-left: 0;
+  }
+
+  > p:first-child {
+    margin-top: 0;
+  }
+
+  &.content-offset-24 {
+    padding-top: 0.7em;
+
+    @media (max-width: 870px) {
+      padding-top: 0;
+    }
+  }
+
+  &.content-offset-36 {
+    padding-top: 1.25em;
+
+    @media (max-width: 870px) {
+      padding-top: 0;
+    }
+  }
+}
+
+$status-red: #9c1111;
+$status-green: #3b816f;
+
+.label-status {
+  padding: 0 3px;
+  border: 2px solid transparent;
+  border-radius: 3px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+
+  &.label-status-red {
+    border-color: $status-red;
+    color: $status-red;
+  }
+
+  &.label-status-green {
+    border-color: $status-green;
+    color: $status-green;
+  }
+}
+
+.post-dashboard-actions {
+  padding-left: 0;
+  list-style: none;
+
+  li {
+    position: relative;
+    margin-left: 0;
+    padding-left: 0;
+    clear: right;
+  }
+
+  .award-info {
+    @media (max-width: 1000px) {
+      display: block;
+    }
+  }
+
+  .pull-right {
+    float: right;
+  }
+
+  .label-status {
+    position: absolute;
+    top: 2px;
+    right: 200px;
+
+    @media (max-width: 1000px) {
+      position: static;
+    }
+  }
 }

@@ -1,30 +1,31 @@
 - provide(:page_content_class, "multi-page page-account")
 
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li
+    span Audit Certificate
+
 header.page-header.group class=('page-header-wider')
   div
-    h1
-      = form_answer.decorate.application_name
-    h2
-      = form_answer.decorate.award_type
-      '  Award
-    aside
+    h1 Audit Certificate
 .article-container
   article.group role="article"
     .inner
       p
-        ' Your application for the
-        = form_answer.decorate.award_type
-        '  Award was shortlisted.
-
-      h2 Audit Certificate
-      p
-        ' Please
-        = link_to "download and complete this audit certificate",
+        ' Please download and complete
+        = link_to "this audit certificate",
                   users_form_answer_audit_certificate_url(form_answer, format: :pdf),
                   target: "_blank"
-        ' . Afterwards, upload the completed form.
+        ' . You can then upload your completed certificate below.
 
-      h2
-        ' Upload completed Audit Certificate
+      br
+
       = render "users/audit_certificates/upload_block", award: form_answer
+
+      footer
+        nav.pagination.no-border aria-label="Pagination" role="navigation"
+          ul.group
+            li.previous.previous-alternate
+              = link_to dashboard_path
+                span.pagination-label Back
 

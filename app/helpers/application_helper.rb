@@ -60,6 +60,10 @@ module ApplicationHelper
     Settings.current.deadlines.where(kind: kind).first.decorate.formatted_trigger_time
   end
 
+  def application_deadline_short(kind)
+    Settings.current.deadlines.where(kind: kind).first.decorate.formatted_trigger_time_short
+  end
+
   def format_date(date)
     date.strftime("%e %b %Y at %H:%M")
   end

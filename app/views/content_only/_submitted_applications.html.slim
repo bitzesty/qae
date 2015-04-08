@@ -3,27 +3,149 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
   .application-notice.help-notice
     p You did not submit any applications.
 - else
-  - award_applications.each do |award|
-    h2
-      = award.decorate.application_name
-      .pull-right
-        = link_to edit_form_path(award.id)
-          ' View
-          - if award.award_type == "promotion"
-            ' nomination
+  / if shortlisted
+  - if award_applications.any?
+    .container-split
+      .content-left
+        h2 Shortlisted
+      .content-right.content-offset-36
+        p
+          ' Congratulations! Your
+          - if award_applications.count == 1
+            ' application was
           - else
-            ' application
-      small
-        = award.decorate.award_type
-        '  Award
+            ' applications were
+          '  shortlisted.
+      .clear
+    - award_applications.each do |award|
+      .container-split.award-list
+        .content-left
+          h3
+            = award.decorate.application_name
+            small
+              = award.decorate.award_type
+              '  Award
+        .content-right.content-offset-24
+          / Nominators don't get any options after submision
+          - unless award.award_type == "promotion"
+            p Please review the actions to the below to complete your shortlisted application.
+            ul.post-dashboard-actions
+              li
+                = link_to "Declaration of Corporate Responsibility", declaration_of_corporate_responsibility_path
+                span.award-info
+                  span.pull-right.todo-placeholder
+                    ' Due by 30/03/2016
+                  span.label-status.label-status-red.todo-placeholder
+                    ' Incomplete
+              li
+                = link_to "Audit Certificate", users_form_answer_audit_certificate_url(award)
+                span.award-info
+                  span.pull-right
+                    ' Due by
+                    = application_deadline_short(:audit_certificates)
+                  - if award.audit_certificate.present?
+                    span.label-status.label-status-green
+                      ' Complete
+                  - else
+                    span.label-status.label-status-red
+                      ' Incomplete
+    br
+    br
 
-    / Nominators don't get any options after submision
-    - unless award.award_type == "promotion"
-      / if unsuccessful
-        = render "submitted_application_unsuccessful", award: award
+  / if winner
+  - if award_applications.any?
+    .container-split
+      .content-left
+        h2 Successful
+      .content-right.content-offset-36
+        p
+          ' Congratulations! Your
+          - if award_applications.count == 1
+            ' application was
+          - else
+            ' applications were
+          ' successful.
+        p
+          strong
+            ' You are not allowed to announce success until after
+            span.todo-placeholder
+              ' April 21st.
+      .clear
+    - award_applications.each do |award|
+      .container-split.award-list
+        .content-left
+          h3
+            = award.decorate.application_name
+            small
+              = award.decorate.award_type
+              '  Award
+        .content-right.content-offset-24
+          / Nominators don't get any options after submision
+          - unless award.award_type == "promotion"
+            p Please review the actions to the below to complete your successful application.
+            ul.post-dashboard-actions
+              - if award.press_summary.present?
+                li
+                  = link_to "Press Comment", users_form_answer_press_summary_url(award, token: award.press_summary.token)
+                  span.award-info
+                    span.pull-right
+                      ' Due by
+                      = application_deadline_short(:press_release_comments)
+                    - if award.press_summary.reviewed_by_user
+                      span.label-status.label-status-green
+                        ' Complete
+                    - else
+                      span.label-status.label-status-red
+                        ' Incomplete
+              li
+                = link_to "Buckingham Palace Attendees", buckingham_palace_attendance_path
+                span.award-info
+                  span.pull-right
+                    ' Due by
+                    = application_deadline_short(:buckingham_palace_attendees_details)
+                  span.label-status.label-status-red.todo-placeholder
+                    ' Incomplete
+        .clear
+    br
+    .container-split
+      .content-right
+        p
+          = link_to "Visit Winners’ Resources", award_winners_section_path
+          '  to download media for websites and advertisements.
+      .clear
+    br
+    br
 
-      / if shortlisted
-        = render "submitted_application_shortlisted", award: award
-
-      / if winner
-      = render "submitted_application_successful", award: award
+  / if unsuccessful
+  - if award_applications.any?
+    .container-split
+      .content-left
+        h2 Unsuccessful
+      .content-right.content-offset-36
+        p
+          ' Your
+          - if award_applications.count == 1
+            ' application was
+          - else
+            ' applications were
+          ' unsuccessful.
+      .clear
+    - award_applications.each do |award|
+      .container-split.award-list
+        .content-left
+          h3
+            = award.decorate.application_name
+            small
+              = award.decorate.award_type
+              '  Award
+        .content-right.content-offset-24
+          / Nominators don't get any options after submision
+          - unless award.award_type == "promotion"
+            h4 Feedback
+            p
+              ' Please
+              = link_to "download and read the feedback document", "#", class: "todo-placeholder"
+              '  so you can better understand our decision. We hope it will help you to improve your future applications.
+        .clear
+    br
+    br

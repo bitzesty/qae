@@ -133,6 +133,17 @@ header.page-header div {
   }
 }
 
+// Full width content
+.article-container.article-container-widest {
+  width: auto;
+  max-width: none;
+  margin-right: 1.5em;
+
+  @media (max-width: 640px) {
+    margin-right: 0;
+  }
+}
+
 .related-positioning {
   // Positions the sidebar when the is no header text
   &.related-positioning-no-header .related {

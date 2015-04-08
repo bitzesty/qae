@@ -1,3 +1,8 @@
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li
+    span Declaration of Corporate Responsibility
+
 form.todo-placeholder
   div
     header.group.page-header.page-header-wider
@@ -93,11 +98,12 @@ form.todo-placeholder
           .application-notice.info-notice
             p
               ' You may still edit your submitted Declaration of Corporate Responsibility up until the deadline on
-              = application_deadline "audit_certificates"
+              span.todo-placeholder
+                = application_deadline "audit_certificates"
               ' .
 
           footer
-            nav.pagination aria-label="Pagination" role="navigation"
+            nav.pagination.no-border aria-label="Pagination" role="navigation"
               ul.group
                 li.previous.previous-alternate
                   = link_to dashboard_path
