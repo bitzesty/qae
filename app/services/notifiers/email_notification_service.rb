@@ -53,9 +53,11 @@ class Notifiers::EmailNotificationService
       document = form_answer.document
 
       if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"], form_answer)
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],
+                                                                          form_answer)
       else
-        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"], form_answer)
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
+                                                                 form_answer)
       end
     end
   end

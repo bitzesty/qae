@@ -65,7 +65,8 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "winners_notification" }
 
     it "triggers current notification" do
-      form_answer = create(:form_answer, :submitted, document: { head_email: "head@email.com" })
+      form_answer = create(:form_answer, :submitted, document:
+                           { head_email: "head@email.com" })
 
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
         .with("head@email.com", form_answer)
@@ -77,7 +78,8 @@ describe Notifiers::EmailNotificationService do
     end
 
     it "triggers current notification" do
-      form_answer = create(:form_answer, :promotion, :submitted, document: { nominee_email: "nominee@email.com" })
+      form_answer = create(:form_answer, :promotion, :submitted,
+                           document: { nominee_email: "nominee@email.com" })
 
       expect(Notifiers::Winners::PromotionBuckinghamPalaceInvite).to receive(:perform_async)
         .with("nominee@email.com", form_answer)
