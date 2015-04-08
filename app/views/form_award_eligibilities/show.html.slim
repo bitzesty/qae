@@ -3,11 +3,6 @@
 - else
   - page_title =  "#{@form_answer.decorate.award_type.split.map(&:capitalize)*' '} Award Application"
 
-- content_for :breadcrumbs do
-  li = link_to "Applications", dashboard_path
-  li
-    span = page_title
-
 header.page-header.group.page-header-over-sidebar
   div
     h1 = page_title

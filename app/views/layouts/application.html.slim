@@ -36,26 +36,20 @@
         nav#proposition-menu
           a#proposition-name href="/"
             ' Queen's Awards for Enterprise
-            span.beta-tag BETA
           - if current_admin || current_user
-            ul#proposition-links.user-account-links
-              li.dropdown
-                = link_to "#", class: "dropdown-toggle" do
-                  ' My account
-                  span.caret
-                ul.dropdown-menu
-                  - if current_admin || current_user.completed_registration
-                    li
-                      = link_to "Applications", dashboard_path
-                    li
-                      = link_to "Account details", correspondent_details_account_path
-                    li
-                      = link_to "Collaborators", account_collaborators_path
-                  li
-                    - if current_admin
-                      = link_to "Sign out", destroy_admin_session_path, method: :delete
-                    - else
-                      = link_to "Sign out", destroy_user_session_path, method: :delete
+            ul#proposition-links
+              - if current_admin || current_user.completed_registration
+                li
+                  = link_to "Applications", dashboard_path
+                li
+                  = link_to "Account details", correspondent_details_account_path
+                li
+                  = link_to "Collaborators", account_collaborators_path
+              li
+                - if current_admin
+                  = link_to "Sign out", destroy_admin_session_path, method: :delete
+                - else
+                  = link_to "Sign out", destroy_user_session_path, method: :delete
 
 - content_for :inside_header do
   - if landing_page?
@@ -74,19 +68,7 @@
         li = link_to "Home", "https://www.gov.uk/"
         li = link_to "Business and self-employed", "https://www.gov.uk/browse/business"
         li = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company"
-  - else
-    - unless admin_in_read_only_mode?
-      #global-breadcrumb.header-context
-        ol.group role="navigation"
-          - if !user_signed_in?
-            li = link_to "Home", "https://www.gov.uk/"
-
-          - if user_signed_in? && current_user.completed_registration
-            - if content_for? :breadcrumbs
-              = yield :breadcrumbs
-            - else
-              li = link_to "Applications", dashboard_path
-
+  
   #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?} #{'layout-dev' if Rails.env.development?}"
       - if [:alert, :notice].any? { |kind| flash[kind].presence }
