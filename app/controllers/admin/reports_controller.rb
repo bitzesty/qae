@@ -1,8 +1,15 @@
 class Admin::ReportsController < Admin::BaseController
-  before_action :check_category, only: [:download_feedbacks_pdf]
+  before_action :check_category, only: [
+    :download_feedbacks_pdf,
+    :download_case_summary_pdf
+  ]
 
   expose(:pdf_data) do
-    FeedbackPdfs::Base.new("all", nil, {category: params[:category]})
+    if action_name == "download_feedbacks_pdf"
+      FeedbackPdfs::Base.new("all", nil, {category: params[:category]})
+    else
+      CaseSummaryPdfs::Base.new("all", nil, {category: params[:category]})
+    end
   end
 
   def show
@@ -16,7 +23,21 @@ class Admin::ReportsController < Admin::BaseController
 
   def download_feedbacks_pdf
     authorize :report, :show?
+    render_pdf
+  end
 
+  def download_case_summary_pdf
+    authorize :report, :show?
+    render_pdf
+  end
+
+  private
+
+  def resource
+    @report ||= Reports::AdminReport.new(params[:id])
+  end
+
+  def render_pdf
     respond_to do |format|
       format.pdf do
         send_data pdf_data.render,
@@ -26,10 +47,12 @@ class Admin::ReportsController < Admin::BaseController
     end
   end
 
-  private
-
-  def resource
-    @report ||= Reports::AdminReport.new(params[:id])
+  def kind_of_data
+    if action_name == "download_feedbacks_pdf"
+      "feedbacks"
+    else
+      "case_summaries"
+    end
   end
 
   def check_category
@@ -41,7 +64,7 @@ class Admin::ReportsController < Admin::BaseController
   end
 
   def pdf_filename
-    "#{FormAnswer::AWARD_TYPE_FULL_NAMES[params[:category]]}_award_feedbacks_#{pdf_timestamp}.pdf"
+    "#{FormAnswer::AWARD_TYPE_FULL_NAMES[params[:category]]}_award_#{kind_of_data}_#{pdf_timestamp}.pdf"
   end
 
   def pdf_timestamp

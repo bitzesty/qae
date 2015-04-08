@@ -1,39 +1,11 @@
-require "prawn/measurement_extensions"
-
-class FeedbackPdfs::Pointer
+class FeedbackPdfs::Pointer < ReportPdfFormAnswerPointerBase
   include FeedbackPdfs::General::DrawElements
   include FeedbackPdfs::General::DataPointer
-  include FormAnswersBasePointer
 
-  UNDEFINED_VALUE = "Not filled yet..."
-
-  attr_reader :user,
-              :form_answer,
-              :award_form,
-              :all_questions,
-              :answers,
-              :filled_answers,
-              :feedback_data,
-              :pdf_doc
-
-  def initialize(pdf_doc, form_answer)
-    @pdf_doc = pdf_doc
-    @form_answer = form_answer
-    @user = form_answer.user
-
-    unless form_answer.promotion?
-      @answers = fetch_answers
-      @award_form = form_answer.award_form.decorate(answers: answers)
-      @all_questions = award_form.steps.map(&:questions).flatten
-      @filled_answers = fetch_filled_answers
-    end
-
-    @feedback_data = form_answer.feedback.document
-
-    generate!
-  end
+  attr_reader :data
 
   def generate!
+    @data = form_answer.feedback.document
     main_header
     render_data!
   end
