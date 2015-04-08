@@ -18,7 +18,7 @@ class Notifiers::EmailNotificationService
   end
 
   # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_reminder_to_submit unsuccessfull_notification all_unsuccessfull_feedback).each do |method|
+  %w(reminder_to_submit ep_reminder_support_letters winners_reminder_to_submit unsuccessful_notification).each do |method|
     define_method method do
       nil
     end
@@ -42,15 +42,23 @@ class Notifiers::EmailNotificationService
     end
   end
 
+  def all_unsuccessful_feedback
+    FormAnswer.unsuccessful.each do |form_answer|
+      Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+    end
+  end
+
   def winners_notification
     FormAnswer.winners.each do |form_answer|
-      email = if form_answer.promotion?
-        form_answer.document["nominee_email"]
-      else
-        form_answer.document["head_email"]
-      end
+      document = form_answer.document
 
-      Notifiers::Winners::BuckinghamPalaceInvite.perform_async(email)
+      if form_answer.promotion?
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],
+                                                                          form_answer)
+      else
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
+                                                                 form_answer)
+      end
     end
   end
 
@@ -62,5 +70,11 @@ class Notifiers::EmailNotificationService
         Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
       end
     end
+  end
+
+  private
+
+  def current_award_year
+    # TODO: discuss a way to detect award year to use it in scopes here
   end
 end

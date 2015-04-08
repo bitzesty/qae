@@ -18,8 +18,6 @@ describe Notifiers::EmailNotificationService do
     let(:form_answer) { create(:form_answer, :submitted) }
 
     it "triggers current notification" do
-      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
-
       service = double
       expect(service).to receive(:run)
       expect(Notifiers::Shortlist::AuditCertificateRequest).to receive(:new)
@@ -65,16 +63,26 @@ describe Notifiers::EmailNotificationService do
 
   context "winners_notifier" do
     let(:kind) { "winners_notification" }
-    let(:user) { create(:user) }
-    let(:form_answer) do
-      create(:form_answer, :submitted, document: { head_email: "head@email.com" })
+
+    it "triggers current notification" do
+      form_answer = create(:form_answer, :submitted, document:
+                           { head_email: "head@email.com" })
+
+      expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
+        .with("head@email.com", form_answer)
+      expect(FormAnswer).to receive(:winners) { [form_answer] }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
     end
 
     it "triggers current notification" do
-      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
+      form_answer = create(:form_answer, :promotion, :submitted,
+                           document: { nominee_email: "nominee@email.com" })
 
-      expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
-        .with("head@email.com")
+      expect(Notifiers::Winners::PromotionBuckinghamPalaceInvite).to receive(:perform_async)
+        .with("nominee@email.com", form_answer)
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
@@ -96,11 +104,31 @@ describe Notifiers::EmailNotificationService do
     end
 
     it "triggers current notification" do
-      allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
       press_summary
       mailer = double(deliver_later!: true)
       expect(Users::WinnersPressRelease).to receive(:notify).with(form_answer.id) { mailer }
       expect(FormAnswer).to receive(:winners) { FormAnswer.where(id: form_answer.id) }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "all_unsuccessful_feedback" do
+    let(:kind) { "all_unsuccessful_feedback" }
+
+    let(:form_answer) do
+      create(:form_answer, :submitted)
+    end
+
+    before do
+      form_answer.update_column(:state, "reserved")
+    end
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
 
       described_class.run
 

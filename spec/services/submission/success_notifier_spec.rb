@@ -6,15 +6,10 @@ describe Notifiers::Submission::SuccessNotifier do
   let!(:user) { create :user }
   let!(:collaborator) { create :user, account: user.account, role: "regular" }
 
-  let(:form_answer) do
+  let!(:form_answer) do
     FactoryGirl.create :form_answer, :submitted, :innovation,
                                                  user: user,
                                                  document: { company_name: "Bitzesty" }
-  end
-
-  before do
-    allow_any_instance_of(FormAnswer).to receive(:eligible?) { true }
-    form_answer
   end
 
   describe "#run" do
