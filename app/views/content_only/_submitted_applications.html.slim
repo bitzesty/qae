@@ -9,7 +9,13 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
       .content-left
         h2 Shortlisted
       .content-right.content-offset-36
-        p Congratulations! Your application was shortlisted.
+        p
+          ' Congratulations! Your
+          - if award_applications.count == 1
+            ' application was
+          - else
+            ' applications were
+          '  shortlisted.
       .clear
     - award_applications.each do |award|
       .container-split.award-list
@@ -50,7 +56,13 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
       .content-left
         h2 Successful
       .content-right.content-offset-36
-        p Congratulations! Your application was successful.
+        p
+          ' Congratulations! Your
+          - if award_applications.count == 1
+            ' application was
+          - else
+            ' applications were
+          ' successful.
         p
           strong
             ' You are not allowed to announce success until after
@@ -106,7 +118,13 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
       .content-left
         h2 Unsuccessful
       .content-right.content-offset-36
-        p Your application was unsuccessful.
+        p
+          ' Your
+          - if award_applications.count == 1
+            ' application was
+          - else
+            ' applications were
+          ' unsuccessful.
       .clear
     - award_applications.each do |award|
       .container-split.award-list
