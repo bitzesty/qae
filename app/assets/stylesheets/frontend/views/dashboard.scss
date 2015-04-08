@@ -161,6 +161,21 @@
 .dashboard-post-submission {
   display: none;
 
+  h2 {
+    @include heading-36;
+  }
+
+  h3 {
+    @include heading-24;
+  }
+
+  h2,
+  h3,
+  h4 {
+    margin-top: 0;
+    font-weight: 700;
+  }
+
   h2,
   h3 {
     small,
@@ -251,23 +266,6 @@
   }
 }
 
-.dashboard-post-submission {
-  h2 {
-    @include heading-36;
-  }
-
-  h3 {
-    @include heading-24;
-  }
-
-  h2,
-  h3,
-  h4 {
-    margin-top: 0;
-    font-weight: 700;
-  }
-}
-
 $status-red: #9c1111;
 $status-green: #3b816f;
 
@@ -313,8 +311,8 @@ $status-green: #3b816f;
 
   .label-status {
     position: absolute;
-    right: 200px;
     top: 2px;
+    right: 200px;
 
     @media (max-width: 1000px) {
       position: static;
