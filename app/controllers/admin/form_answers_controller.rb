@@ -7,7 +7,7 @@ class Admin::FormAnswersController < Admin::BaseController
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
     authorize :form_answer, :index?
 
-    @search = FormAnswerSearch.new(FormAnswer.all, current_admin).search(params[:search])
+    @search = FormAnswerSearch.new(@award_year.form_answers, current_admin).search(params[:search])
 
     @form_answers = @search.results.uniq.page(params[:page]).includes(:comments)
   end
@@ -58,7 +58,7 @@ class Admin::FormAnswersController < Admin::BaseController
   end
 
   def load_resource
-    @form_answer = FormAnswer.find(params[:id]).decorate
+    @form_answer = @award_year.form_answers.find(params[:id]).decorate
   end
 
   def primary_assessment

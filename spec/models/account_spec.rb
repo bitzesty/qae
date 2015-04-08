@@ -3,8 +3,8 @@ require "rails_helper"
 describe Account do
   let(:user) { FactoryGirl.build(:user) }
   let(:account) { user.account }
-  let(:current_year) { Date.today.year + 1 }
-  let(:previous_year) { current_year - 1 }
+  let(:current_year) { AwardYear.where(year: Date.today.year + 1).first_or_create }
+  let(:previous_year) { AwardYear.where(year: current_year).first_or_create }
 
   describe "#has_trade_award_in_this_year?" do
     let!(:innovation_award) { create(:form_answer, :innovation, user: user) }

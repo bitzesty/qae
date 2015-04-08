@@ -1,5 +1,4 @@
 class Admin::EmailNotificationsController < Admin::BaseController
-  before_action :load_settings
   before_action :load_email_notification, only: [:update, :destroy]
 
   def create

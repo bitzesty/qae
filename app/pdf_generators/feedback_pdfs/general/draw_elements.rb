@@ -35,7 +35,7 @@ module FeedbackPdfs::General::DrawElements
   end
 
   def render_award_general_information
-    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year}",
+    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year.year}",
                      header_text_properties.merge(at: [163.mm, 137.mm + DEFAULT_OFFSET])
   end
 
