@@ -2,7 +2,7 @@ class Admin::ReportsController < Admin::BaseController
   before_action :check_category, only: [:download_feedbacks_pdf]
 
   expose(:pdf_data) do
-    FeedbackPdfs::Base.new("all", {category: params[:category]})
+    FeedbackPdfs::Base.new("all", nil, {category: params[:category]})
   end
 
   def show

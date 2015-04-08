@@ -9,7 +9,7 @@ class FeedbackPdfs::Base < Prawn::Document
               :options,
               :pdf_doc
 
-  def initialize(mode, options={}, form_answer=nil)
+  def initialize(mode, form_answer=nil, options={})
     super(page_size: "A4", page_layout: :landscape)
 
     @pdf_doc = self
