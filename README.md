@@ -45,3 +45,39 @@ OSX users you might need to install pcre headers:
 ```
 brew install pcre
 ```
+
+### Deploy
+
+#### Dev
+
+```
+$ cap dev deploy OLD_SERVERS=true
+```
+
+#### Demo
+
+```
+$ cap demo deploy OLD_SERVERS=true
+```
+
+#### Staging
+```
+$ cap staging deploy
+```
+
+#### Production
+```
+$ cap production deploy
+```
+
+#### For running custom rake tasks you can use:
+
+```ruby
+  cap env deploy:invoke[namespace:task_name]
+```
+
+For example:
+
+```ruby
+  cap dev deploy:invoke[db:migrate] OLD_SERVERS=true
+  cap staging deploy:invoke[db:migrate]
