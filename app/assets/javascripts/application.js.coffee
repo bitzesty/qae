@@ -205,7 +205,10 @@ jQuery ->
         exports_selector = "[id='form["+exports_data+"_"+sales_year+"]']"
         sales_selector = ".js-sales-value[data-year='"+sales_year+"']"
         sales_value = parseInt($(turnover_selector).val()) - parseInt($(exports_selector).val())
-        $(sales_selector).text(sales_value)
+        if sales_value
+          $(sales_selector).text(sales_value)
+        else
+          $(sales_selector).text("-")
 
   updateTurnoverExportCalculation()
 
