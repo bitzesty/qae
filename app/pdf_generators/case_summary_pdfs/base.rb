@@ -17,7 +17,11 @@ class CaseSummaryPdfs::Base < ReportPdfBase
   end
 
   def set_case_summaries
-    # TODO @case_summaries
+    @case_summaries = AssessorAssignment.submitted
+                                        .lead_or_primary_case_summary
+                                        .includes(:form_answer)
+                                        .where("form_answers.award_type = ?", options[:category])
+                                        .order("form_answers.award_year")
   end
 
   def render_item(form_answer)

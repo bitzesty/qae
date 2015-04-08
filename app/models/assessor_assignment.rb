@@ -36,6 +36,11 @@ class AssessorAssignment < ActiveRecord::Base
     belongs_to :editable, polymorphic: true
   end
 
+  begin :scopes
+    scope :submitted, -> { where.not(submitted_at: nil) }
+    scope :lead_or_primary_case_summary, -> { where(position: [3, 4]) }
+  end
+
   around_save :notify_assessor_assignment
 
   store_accessor :document, *AppraisalForm.all
