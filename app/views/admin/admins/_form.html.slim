@@ -1,22 +1,22 @@
 = simple_form_for [:admin, resource], html: { class: 'qae-form' } do |f|
   .row
-    .col-sm-4
+    .col-md-4.col-sm-6
       = f.input :email,
                 wrapper_html: { class: 'form-group' },
                 input_html: { class: 'form-control' }
   .row
-    .col-sm-4
+    .col-md-4.col-sm-6
       = f.input :first_name,
                 wrapper_html: { class: 'form-group' },
                 input_html: { class: 'form-control' }
   .row
-    .col-sm-4
+    .col-md-4.col-sm-6
       = f.input :last_name,
                 wrapper_html: { class: 'form-group' },
                 input_html: { class: 'form-control' }
 
   .row
-    .col-sm-3
+    .col-md-3.col-sm-4
       = f.input :password,
                 wrapper_html: { class: 'form-group' },
                 input_html: { class: 'form-control' }
@@ -27,7 +27,7 @@
 
   br
   .row
-    .col-sm-4
+    .col-md-4.col-sm-6
       = link_to "Cancel",
                 admin_admins_path,
                 class: 'btn btn-default btn-md'

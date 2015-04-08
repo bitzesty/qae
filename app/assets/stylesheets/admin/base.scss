@@ -270,14 +270,15 @@ table .ellipsis {
 
     li {
       margin-bottom: 10px;
+      clear: both;
 
       &:last-child {
         margin-bottom: 0;
       }
 
       .action-title {
-        display: inline-block;
-        max-width: 180px;
+        display: block;
+        margin-right: 110px;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;

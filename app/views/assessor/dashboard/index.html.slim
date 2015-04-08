@@ -8,15 +8,15 @@
         ul.list-unstyled.list-actions.todo-placeholder
           - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|
             li
-              = link_to "#"
-                span.action-title
-                  span.glyphicon.glyphicon-file
-                  = resources
               small.pull-right
                 = link_to "#"
                   span.glyphicon.glyphicon-download-alt
                   span.visible-lg.visible-md
                     ' Download
+              = link_to "#", class: "action-title"
+                span.glyphicon.glyphicon-file
+                = resources
+        .clear
 
   .col-md-8.todo-placeholder
     .panel-group#dashboard-details role="tablist" aria-multiselectable="true"

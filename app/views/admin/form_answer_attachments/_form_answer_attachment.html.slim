@@ -1,11 +1,5 @@
 - url_namespace = admin_signed_in? ? :admin : :assessor
 li.form_answer_attachment
-  = link_to [url_namespace, form_answer_attachment.form_answer, form_answer_attachment],
-            target: "_blank",
-            class: "ellipsis"
-    span.action-title
-      span.glyphicon.glyphicon-file
-      = form_answer_attachment.decorate.display_name
   - if form_answer_attachment.uploaded_not_by_user? && policy(form_answer_attachment).destroy?
     small.pull-right
       = form_for(form_answer_attachment, url: admin_form_answer_form_answer_attachment_path(form_answer_attachment.form_answer, form_answer_attachment), html: {method: :delete, style: 'display:inline-block;'}) do |f|
@@ -15,3 +9,8 @@ li.form_answer_attachment
           span.glyphicon.glyphicon-remove
           span.visible-lg.visible-md
             ' Remove
+  = link_to [url_namespace, form_answer_attachment.form_answer, form_answer_attachment],
+            target: "_blank",
+            class: "action-title"
+    span.glyphicon.glyphicon-file
+    = form_answer_attachment.decorate.display_name

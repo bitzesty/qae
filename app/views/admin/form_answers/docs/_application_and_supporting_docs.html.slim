@@ -8,6 +8,7 @@
       - if @form_answer.support_letters.any?
         - @form_answer.support_letters.each do |support_letter|
           = render "admin/form_answer_attachments/support_letter", support_letter: support_letter
+    .clear
 
   - else
     p.p-empty

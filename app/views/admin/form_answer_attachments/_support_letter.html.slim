@@ -2,7 +2,6 @@
 li.form_answer_attachment
   = link_to [url_namespace, support_letter.form_answer, support_letter],
             target: "_blank",
-            class: "ellipsis"
-    span.action-title
-      span.glyphicon.glyphicon-file
-      = support_letter.support_letter_attachment.original_filename
+            class: "action-title"
+    span.glyphicon.glyphicon-file
+    = support_letter.support_letter_attachment.original_filename

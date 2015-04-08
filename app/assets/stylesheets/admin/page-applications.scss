@@ -264,12 +264,39 @@
     margin-bottom: 0;
     float: left;
     font-weight: normal;
+
+    @include screen-lg-max {
+      width: 40%;
+    }
+
+    @include screen-md-max {
+      width: 120px;
+    }
   }
 
   .form-value,
   .form-fields {
     width: 65%;
     float: right;
+
+    @include screen-lg-max {
+      width: 60%;
+    }
+
+    @include screen-md-max {
+      width: auto;
+      float: none;
+    }
+  }
+
+  .form-fields {
+    @include screen-md-max {
+      margin-left: 120px;
+    }
+  }
+
+  .select2-container {
+    width: 100% !important;
   }
 
   .edit-value {

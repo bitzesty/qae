@@ -8,15 +8,15 @@
         ul.list-unstyled.list-actions
           - ["Innovation Case Status", "Intl Trade Case Status", "Sus Dev Case Status", "QAEP Case Status", "All Entries", "Press Book List"].each do |report|
             li class="#{'todo-placeholder' unless report == 'All Entries'}"
-              = link_to "#"
-                span.action-title
-                  span.glyphicon.glyphicon-file
-                  = report
               .pull-right
                 =link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT, format: :csv)
                   span.glyphicon.glyphicon-download-alt
                   span.visible-lg.visible-md
                     ' Download
+              = link_to "#", class: "action-title"
+                span.glyphicon.glyphicon-file
+                = report
+        .clear
 
       - if policy(:report).show?
         = render "admin/feedbacks/pdf_reports"
@@ -28,15 +28,15 @@
         ul.list-unstyled.list-actions
           - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|
             li.todo-unconfirmed
-              = link_to "#"
-                span.action-title
-                  span.glyphicon.glyphicon-file
-                  = resources
               .pull-right
                 = link_to "#"
                   span.glyphicon.glyphicon-download-alt
                   span.visible-lg.visible-md
                     ' Download
+              = link_to "#", class: "action-title"
+                span.glyphicon.glyphicon-file
+                = resources
+        .clear
 
   .col-md-8
     .panel-group#dashboard-details-parent role="tablist" aria-multiselectable="true"

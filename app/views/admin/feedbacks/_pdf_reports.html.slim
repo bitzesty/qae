@@ -4,12 +4,12 @@
   ul.list-unstyled.list-actions
     - FormAnswer::AWARD_TYPE_FULL_NAMES.each do |key, value|
       li
-        = link_to "#"
-          span.action-title
-            span.glyphicon.glyphicon-file
-            = value
         .pull-right
           = link_to download_feedbacks_pdf_admin_reports_path(category: key, format: :pdf)
             span.glyphicon.glyphicon-download-alt
             span.visible-lg.visible-md
               ' Download
+        = link_to "#", class: "action-title"
+          span.glyphicon.glyphicon-file
+          = value
+  .clear

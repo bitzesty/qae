@@ -115,7 +115,7 @@ class AppraisalForm
     },
     sustainable_resource: {
       type: :strengths,
-      label: "Sustainable Resource Use: Select Key Strengths and Focuses:"
+      label: "Sustainable Resource Use:"
     },
     economic_sustainability: {
       type: :strengths,
