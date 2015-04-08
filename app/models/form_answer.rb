@@ -94,7 +94,7 @@ class FormAnswer < ActiveRecord::Base
     scope :for_year, -> (year) { where award_year: year }
     scope :shortlisted_with_no_certificate, -> { where("1 = 0") }
     scope :winners, -> { where("1 = 0") }
-    scope :unsuccessful, -> { where(state: %w(not_recommended not_awarded)) }
+    scope :unsuccessful, -> { where(state: %w(not_recommended reserved)) }
   end
 
   begin :callbacks

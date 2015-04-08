@@ -123,7 +123,7 @@ describe Notifiers::EmailNotificationService do
     end
 
     before do
-      form_answer.update_column(:state, "not_awarded")
+      form_answer.update_column(:state, "reserved")
     end
 
     it "triggers current notification" do
