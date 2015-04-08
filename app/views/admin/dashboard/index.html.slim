@@ -18,17 +18,9 @@
                   span.visible-lg.visible-md
                     ' Download
 
-          - if policy(:report).show?
-            li
-              = link_to "#"
-                span.action-title
-                  span.glyphicon.glyphicon-file
-                  | Application Feedbacks
-              .pull-right
-                =link_to download_feedbacks_pdf_admin_reports_path(format: :pdf)
-                  span.glyphicon.glyphicon-download-alt
-                  span.visible-lg.visible-md
-                    ' Download
+      - if policy(:report).show?
+        = render "admin/feedbacks/pdf_reports"
+
       / TODO resources
       .well
         h2

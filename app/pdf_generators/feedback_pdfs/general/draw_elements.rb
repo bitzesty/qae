@@ -65,6 +65,16 @@ module FeedbackPdfs::General::DrawElements
                                }
   end
 
+  def render_not_found_block
+    render_logo
+    render_not_found_message
+  end
+
+  def render_not_found_message
+    pdf_doc.text_box "No feedbacks found by selected category!",
+                     header_text_properties.merge(at: [32.mm, 137.mm + DEFAULT_OFFSET])
+  end
+
   def default_bottom_margin
     pdf_doc.move_down 5.mm
   end
