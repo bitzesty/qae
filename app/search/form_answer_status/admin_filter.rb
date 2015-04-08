@@ -76,6 +76,18 @@ class FormAnswerStatus::AdminFilter
       states: [
         :withdrawn
       ]
+    },
+    awarded: {
+      label: "Awarded",
+      states: [
+        :awarded
+      ]
+    },
+    not_awarded: {
+      label: "Not Awarded",
+      states: [
+        :not_awarded
+      ]
     }
   }
 

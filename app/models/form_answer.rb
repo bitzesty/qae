@@ -27,8 +27,8 @@ class FormAnswer < ActiveRecord::Base
   ]
 
   AWARD_TYPE_FULL_NAMES = {
-    "innovation" => "Innovation",
     "trade" => "International Trade",
+    "innovation" => "Innovation",
     "development" => "Sustainable Development",
     "promotion" => "Enterprise promotion"
   }
