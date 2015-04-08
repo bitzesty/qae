@@ -134,5 +134,22 @@ describe Notifiers::EmailNotificationService do
 
       expect(current_notification.reload).to be_sent
     end
+
+    it "triggers notification from the previous year awards" do
+      previous_award_year = AwardYear.create(year: Date.current.year)
+      notification = create(:email_notification,
+                            trigger_at: Time.now - 1.day,
+                            kind: kind,
+                            settings: previous_award_year.settings)
+
+      form_answer.update_attribute(:award_year, previous_award_year)
+
+      mailer = double(deliver_later!: true)
+      expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
+
+      described_class.run
+
+      expect(notification.reload).to be_sent
+    end
   end
 end

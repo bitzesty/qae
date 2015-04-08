@@ -43,8 +43,9 @@ class FeedbackPdfs::Base < Prawn::Document
   def set_feedbacks
     @feedbacks = Feedback.submitted
                          .includes(:form_answer)
+                         .joins(form_answer: :award_year)
                          .where("form_answers.award_type = ?", options[:category])
-                         .order("form_answers.award_year")
+                         .order("award_years.year")
   end
 
   def render_item(form_answer)

@@ -111,6 +111,12 @@ ActiveRecord::Schema.define(version: 20150409090140) do
 
   add_index "audit_certificates", ["form_answer_id"], name: "index_audit_certificates_on_form_answer_id", using: :btree
 
+  create_table "award_years", force: :cascade do |t|
+    t.integer  "year",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.integer  "commentable_id",                   null: false
     t.string   "commentable_type",                 null: false
@@ -238,7 +244,6 @@ ActiveRecord::Schema.define(version: 20150409090140) do
     t.float    "fill_progress"
     t.string   "state",                           default: "application_in_progress", null: false
     t.string   "company_or_nominee_name"
-    t.integer  "award_year"
     t.string   "nominee_full_name"
     t.string   "user_full_name"
     t.string   "award_type_full_name"
@@ -251,9 +256,11 @@ ActiveRecord::Schema.define(version: 20150409090140) do
     t.boolean  "primary_assessor_not_assigned",   default: true
     t.boolean  "secondary_assessor_not_assigned", default: true
     t.datetime "company_details_updated_at"
+    t.integer  "award_year_id",                                                       null: false
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
+  add_index "form_answers", ["award_year_id"], name: "index_form_answers_on_award_year_id", using: :btree
   add_index "form_answers", ["user_id"], name: "index_form_answers_on_user_id", using: :btree
 
   create_table "palace_attendees", force: :cascade do |t|
@@ -316,9 +323,9 @@ ActiveRecord::Schema.define(version: 20150409090140) do
   end
 
   create_table "settings", force: :cascade do |t|
-    t.integer  "year"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "award_year_id", null: false
   end
 
   create_table "support_letter_attachments", force: :cascade do |t|
