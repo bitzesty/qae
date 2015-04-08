@@ -6,9 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # TODO: IT'S TEMPRARY, REMOVE WHEN NOT NEEDED
-  # if Rails.env.staging? || Rails.env.production?
-  #   http_basic_authenticate_with name: ENV["AUTH_LOGIN"], password: ENV["AUTH_PASS"], expect: :index
-  # end
+  http_basic_authenticate_with name: ENV["AUTH_LOGIN"], password: ENV["AUTH_PASS"], if: :need_authentication?
 
   # TODO: remove back once go live
   # unless (Rails.env.test? || Rails.env.development?)
@@ -121,4 +119,9 @@ class ApplicationController < ActionController::Base
     @submission_deadline ||= settings.deadlines.where(kind: "submission_end").first
   end
   helper_method :submission_deadline
+
+  def need_authentication?
+    (Rails.env.staging? || Rails.env.production?) &&
+    controller_name != "healthchecks"
+  end
 end
