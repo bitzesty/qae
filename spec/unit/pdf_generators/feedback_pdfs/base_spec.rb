@@ -41,7 +41,7 @@ describe "FeedbackPdfs::Base" do
 
   describe "#set_feedbacks" do
     it "should be ordered in year and filtered by category" do
-      innovation_feedbacks = FeedbackPdfs::Base.new("all", {category: "innovation"})
+      innovation_feedbacks = FeedbackPdfs::Base.new("all", nil, {category: "innovation"})
                                                .set_feedbacks
                                                .map(&:id)
 
@@ -50,7 +50,7 @@ describe "FeedbackPdfs::Base" do
         form_answer_2015_innovation.feedback.id
       ])
 
-      trade_feedbacks = FeedbackPdfs::Base.new("all", {category: "trade"})
+      trade_feedbacks = FeedbackPdfs::Base.new("all", nil, {category: "trade"})
                                           .set_feedbacks
                                           .map(&:id)
 
