@@ -32,21 +32,23 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
             ul.post-dashboard-actions
               li
                 = link_to "Declaration of Corporate Responsibility", declaration_of_corporate_responsibility_path
-                span.pull-right.todo-placeholder
-                  ' Due by 30/03/2016
-                span.label-status.label-status-red.todo-placeholder
-                  ' Incomplete
+                span.award-info
+                  span.pull-right.todo-placeholder
+                    ' Due by 30/03/2016
+                  span.label-status.label-status-red.todo-placeholder
+                    ' Incomplete
               li
                 = link_to "Audit Certificate", users_form_answer_audit_certificate_url(award)
-                span.pull-right
-                  ' Due by
-                  = application_deadline_short(:audit_certificates)
-                - if award.audit_certificate.present?
-                  span.label-status.label-status-green
-                    ' Complete
-                - else
-                  span.label-status.label-status-red
-                    ' Incomplete
+                span.award-info
+                  span.pull-right
+                    ' Due by
+                    = application_deadline_short(:audit_certificates)
+                  - if award.audit_certificate.present?
+                    span.label-status.label-status-green
+                      ' Complete
+                  - else
+                    span.label-status.label-status-red
+                      ' Incomplete
     br
     br
 
@@ -85,22 +87,24 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
               - if award.press_summary.present?
                 li
                   = link_to "Press Comment", users_form_answer_press_summary_url(award, token: award.press_summary.token)
-                  span.pull-right
-                    ' Due by
-                    = application_deadline_short(:press_release_comments)
-                  - if award.press_summary.reviewed_by_user
-                    span.label-status.label-status-green
-                      ' Complete
-                  - else
-                    span.label-status.label-status-red
-                      ' Incomplete
+                  span.award-info
+                    span.pull-right
+                      ' Due by
+                      = application_deadline_short(:press_release_comments)
+                    - if award.press_summary.reviewed_by_user
+                      span.label-status.label-status-green
+                        ' Complete
+                    - else
+                      span.label-status.label-status-red
+                        ' Incomplete
               li
                 = link_to "Buckingham Palace Attendees", buckingham_palace_attendance_path
-                span.pull-right
-                  ' Due by
-                  = application_deadline_short(:buckingham_palace_attendees_details)
-                span.label-status.label-status-red.todo-placeholder
-                  ' Incomplete
+                span.award-info
+                  span.pull-right
+                    ' Due by
+                    = application_deadline_short(:buckingham_palace_attendees_details)
+                  span.label-status.label-status-red.todo-placeholder
+                    ' Incomplete
         .clear
     br
     .container-split

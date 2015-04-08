@@ -215,11 +215,20 @@
 .content-left {
   max-width: 27%;
   float: left;
+
+  @media (max-width: 870px) {
+    max-width: none;
+    float: none;
+  }
 }
 
 .content-right {
   display: block;
   margin-left: 30%;
+
+  @media (max-width: 870px) {
+    margin-left: 0;
+  }
 
   > p:first-child {
     margin-top: 0;
@@ -227,10 +236,18 @@
 
   &.content-offset-24 {
     padding-top: 0.7em;
+
+    @media (max-width: 870px) {
+      padding-top: 0;
+    }
   }
 
   &.content-offset-36 {
     padding-top: 1.25em;
+
+    @media (max-width: 870px) {
+      padding-top: 0;
+    }
   }
 }
 
@@ -279,8 +296,15 @@ $status-green: #3b816f;
 
   li {
     position: relative;
+    margin-left: 0;
     padding-left: 0;
     clear: right;
+  }
+
+  .award-info {
+    @media (max-width: 1000px) {
+      display: block;
+    }
   }
 
   .pull-right {
@@ -291,5 +315,9 @@ $status-green: #3b816f;
     position: absolute;
     right: 200px;
     top: 2px;
+
+    @media (max-width: 1000px) {
+      position: static;
+    }
   }
 }
