@@ -110,12 +110,7 @@
   h2.visuallyhidden Support links
   ul
     li = link_to "Help", "https://www.gov.uk/help"
-    li = link_to "Cookies", "https://www.gov.uk/help/cookies"
-    li = link_to "Contact", "https://www.gov.uk/contact"
-    li = link_to "Cymraeg", "https://www.gov.uk/cymraeg"
-    li
-      ' Built by the
-      = link_to "Government Digital Service", "https://www.gov.uk/government/organisations/government-digital-service"
+    li = link_to "Privacy Statement", privacy_path
 
 - content_for :body_end do
   = javascript_include_tag 'application'
