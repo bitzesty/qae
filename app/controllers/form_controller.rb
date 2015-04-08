@@ -7,6 +7,9 @@ class FormController < ApplicationController
     :new, :create, :update, :destroy,
     :submit_confirm
   ]
+  before_action :get_collaborators, only: [
+    :submit_confirm
+  ]
   before_action :require_to_be_account_admin!, only: :submit_confirm
   before_action :check_trade_count_limit, only: :new_international_trade_form
 
@@ -146,6 +149,10 @@ class FormController < ApplicationController
     @attachment.save!
 
     render json: @attachment, status: :created
+  end
+
+  def get_collaborators
+    @collaborators = current_user.account.collaborators_without(current_user)
   end
 
   private

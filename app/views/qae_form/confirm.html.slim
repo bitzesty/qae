@@ -1,7 +1,18 @@
+- if @form_answer.award_type == "promotion"
+  - page_title = "Enterprise Promotion Award Nomination"
+- else
+  - page_title =  "#{@form_answer.decorate.award_type.split.map(&:capitalize)*' '} Award Application"
+
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li
+    = link_to page_title, edit_form_path(@form_answer.id)
+  li
+    span Confirmation of submission
+
 header.page-header.group.page-header-wider
   div
-    h1
-      ' Confirmation of submission
+    h1 Confirmation of submission
 
 .inner-block
   .call-to-action
@@ -16,7 +27,9 @@ header.page-header.group.page-header-wider
         ' Your Unique Reference Number (URN) is #{@form_answer.urn}
     br
     p
-      ' You can still edit your submitted application up until 23:59 on the last working day of September.
+      ' You can still edit your submitted application up until
+      = application_deadline(:submission_end)
+      ' .
 
 .article-related-positioning-container
   .article-container
@@ -28,9 +41,11 @@ header.page-header.group.page-header-wider
 
         .application-notice.help-notice
           p
-            ' We will contact you and all your collaborators regarding your entry. We recommend that you
-            = link_to "add at least one collaborator", account_collaborators_path
-            ' &nbsp; in case you are unavailable.
+            ' We will contact you and all your collaborators regarding your entry.
+            - if @collaborators.none?
+              ' We recommend that you
+              = link_to "add at least one collaborator", account_collaborators_path
+              ' &nbsp; in case you are unavailable.
 
         h2
           ' What happens next
