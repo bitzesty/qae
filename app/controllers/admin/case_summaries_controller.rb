@@ -13,7 +13,7 @@ class Admin::CaseSummariesController < Admin::BaseController
     respond_to do |format|
       format.pdf do
         send_data pdf_data.render,
-                  filename: "application_case_summary_#{form_answer.decorate.pdf_filename}",
+                  filename: "application_case_summaries_#{form_answer.decorate.pdf_filename}",
                   type: "application/pdf"
       end
     end
