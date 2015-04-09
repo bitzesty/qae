@@ -20,19 +20,18 @@
   margin: 0;
 }
 
-#global-breadcrumb ol li {
-  background-image: url(https://assets.digital.cabinet-office.gov.uk/static/separator-73822610794bc3a64871f144d93d6526.png);
+main .phase-banner {
+  margin: 0 $gutter;
+
+  @media (max-width: 640px) {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: $gutter-half;
+    padding-left: $gutter-half;
+  }
 }
 
 article {
-  ul {
-    list-style-image: url(https://assets.digital.cabinet-office.gov.uk/static/bullet-disc-5px-4180cb91fb35028365a59ddfcfd36e34.gif);
-  }
-
-  .help-notice {
-    background: url(https://assets.digital.cabinet-office.gov.uk/static/icon-important-0976ff4a275422b183be917d4b3ef444.png) no-repeat scroll 0 0.5em;
-  }
-
   th,
   td {
     font-family: "ntatabularnumbers", "nta", Arial, sans-serif;
