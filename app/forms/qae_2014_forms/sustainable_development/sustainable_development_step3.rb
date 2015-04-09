@@ -3,6 +3,7 @@ class QAE2014Forms
     def development_step3
       @development_step3 ||= proc do
         options :development_performance_years, "How would you describe the impact of your sustainable development on your organisation's financial performance (i.e. turnover and profit)?" do
+          classes "js-entry-period"
           ref "C 1"
           required
           option "2 to 4", "Outstanding achievement over 2 years"
@@ -23,7 +24,7 @@ class QAE2014Forms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, 'Did your year-end date change during your <span class="js-entry-period-subtext">2 or 5</span> year entry period?' do
+        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           required
           yes_no
@@ -156,25 +157,6 @@ class QAE2014Forms
           drop_condition_parent
         end
 
-        options :company_estimated_figures, "Are any of the figures used on this page estimates?" do
-          classes "sub-question"
-          required
-          yes_no
-          conditional :development_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          conditional :entry_relates_to, :entire_business
-        end
-
-        textarea :company_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
-          required
-          rows 5
-          words_max 200
-          conditional :development_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          conditional :company_estimated_figures, :yes
-        end
-
         header :product_financials, "Product/Service Financials" do
           ref "C 7"
           context %(
@@ -269,8 +251,8 @@ class QAE2014Forms
           ref "C 8"
           required
           yes_no
-          conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
+          conditional :financial_year_date_changed, :true
         end
 
         textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
@@ -313,7 +295,8 @@ class QAE2014Forms
         end
 
         textarea :roi_details, "How long did it take you to break even? When and how was this achieved?" do
-          ref "C 12"
+          sub_ref "C 11.1"
+          classes "sub-question"
           required
           context %(
             <p>

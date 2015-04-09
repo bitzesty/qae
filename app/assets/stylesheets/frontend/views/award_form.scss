@@ -11,8 +11,19 @@
 .js-step-link {
   cursor: pointer;
 
-  &.step-errors a {
-    color: $error-colour !important;
+  &.step-errors {
+    background: image-url("icon-important-sm-red.png") no-repeat scroll 0 0.75em;
+    background-size: 16px 16px;
+
+    // Retina
+    @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+      background-image: image-url("icon-important-sm-red-2x.png");
+    }
+
+    a {
+      background: transparent;
+      color: $error-colour !important;
+    }
   }
 
   &.step-current a {

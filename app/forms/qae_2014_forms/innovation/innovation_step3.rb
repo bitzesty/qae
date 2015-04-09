@@ -27,7 +27,7 @@ class QAE2014Forms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your 2 or 5 year entry period?" do
+        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           required
           yes_no
@@ -159,23 +159,6 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_condition_parent
-        end
-
-        options :company_estimated_figures, "Are any of these figures estimated?" do
-          classes "sub-question"
-          yes_no
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          conditional :innovation_part_of, :entire_business
-        end
-
-        textarea :company_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
-          rows 5
-          words_max 400
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          conditional :company_estimated_figures, :yes
         end
 
         header :product_financials, "Product/Service Financials" do
@@ -323,7 +306,6 @@ class QAE2014Forms
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
           ref "C 8"
           yes_no
-          conditional :innovation_part_of, :single_product_or_service
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
