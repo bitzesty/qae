@@ -17,17 +17,17 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
 
   p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
     ' You need to
-    = link_to 'confirm your email', confirmation_url(@collaborator, confirmation_token: @devise_confirmation_token)
+    = link_to "confirm your email", confirmation_url(@collaborator, confirmation_token: @devise_confirmation_token)
     '  to access your account.
 
   p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-    = link_to "Log in", new_user_session_path
+    = link_to "Log in", new_user_session_url
     '  here and go to
-    = link_to 'Password Settings', password_settings_account_url, style: "white-space: nowrap"
+    = link_to "Password Settings", password_settings_account_url, style: "white-space: nowrap"
     ' to change your password.
 - else
   p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-    = link_to 'View', dashboard_url
+    = link_to "View", dashboard_url
 
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Thank you,

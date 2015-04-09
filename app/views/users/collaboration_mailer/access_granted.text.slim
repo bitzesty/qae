@@ -12,15 +12,15 @@
   = @generated_password
 
   ' You need to
-  = link_to 'confirm your email', confirmation_url(@collaborator, confirmation_token: @devise_confirmation_token)
+  = link_to "confirm your email", confirmation_url(@collaborator, confirmation_token: @devise_confirmation_token)
   '  to access your account.
 
-  = link_to "Log in", new_user_session_path
+  = link_to "Log in", new_user_session_url
   '  here and go to
-  = link_to 'Password Settings', password_settings_account_url, style: "white-space: nowrap"
+  = link_to "Password Settings", password_settings_account_url, style: "white-space: nowrap"
   ' to change your password.
 - else
-  = link_to 'View', dashboard_url
+  = link_to "View", dashboard_url
 
 ' Thank you,
 
