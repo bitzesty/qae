@@ -3,6 +3,7 @@ class QAE2014Forms
     def development_step3
       @development_step3 ||= proc do
         options :development_performance_years, "How would you describe the impact of your sustainable development on your organisation's financial performance (i.e. turnover and profit)?" do
+          classes "js-entry-period"
           ref "C 1"
           required
           option "2 to 4", "Outstanding achievement over 2 years"
@@ -23,7 +24,7 @@ class QAE2014Forms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, 'Did your year-end date change during your <span class="js-entry-period-subtext">2 or 5</span> year entry period?' do
+        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           required
           yes_no

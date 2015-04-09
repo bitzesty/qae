@@ -41,7 +41,7 @@ class QAE2014Forms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your (3 or 6 year) entry period?" do
+        options :financial_year_date_changed, "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> year) entry period?" do
           classes "sub-question js-financial-year-change"
           required
           yes_no
