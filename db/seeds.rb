@@ -3,11 +3,11 @@ unless Admin.exists?
     email: "admin@example.com",
     password: "^#ur9EkLm@1W",
     first_name: "First name",
-    last_name: "Last name"
+    last_name: "Last name",
+    confirmed_at: DateTime.now
   }
 
-  Admin.create!(admin_args).
-    tap(&:confirm!)
+  Admin.create!(admin_args)
 end
 
 unless Assessor.exists?
@@ -15,10 +15,11 @@ unless Assessor.exists?
     email: "assessor@example.com",
     password: "^#ur9EkLm@1W",
     first_name: "First name",
-    last_name: "Last name"
+    last_name: "Last name",
+    confirmed_at: DateTime.now
   }
 
-  Assessor.create!(assessor_args).tap(&:confirm!)
+  Assessor.create!(assessor_args)
 end
 
 roles = ["lead", "regular", "none"]
@@ -30,6 +31,7 @@ awards.each do |award|
       email: "#{role}-assessor-#{award}@example.com",
       first_name: "#{role}-assessor",
       last_name: "#{award}",
+      confirmed_at: DateTime.now
     }
     role_args = {
       "#{award}_role" => (role == "none" ? nil : role)
@@ -40,7 +42,6 @@ awards.each do |award|
     a = Assessor.where(assessor_args).first_or_initialize
     a.password = "^#ur9EkLm@1W"
     a.save!
-    a.tap(&:confirm!) unless a.confirmed?
   end
 end
 # unless User.exists?
