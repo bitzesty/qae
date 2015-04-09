@@ -17,3 +17,7 @@
     margin-right:10px;
   }
 }
+
+.phase-banner  {
+  @include phase-banner(beta);
+}

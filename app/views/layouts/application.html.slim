@@ -68,7 +68,7 @@
         li = link_to "Home", "https://www.gov.uk/"
         li = link_to "Business and self-employed", "https://www.gov.uk/browse/business"
         li = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company"
-  
+
   #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?} #{'layout-dev' if Rails.env.development?}"
       - if [:alert, :notice].any? { |kind| flash[kind].presence }
@@ -79,6 +79,15 @@
                 div class="#{kind}"
                   = flash[kind]
       main#content.group class="#{yield :page_content_class}" role="main"
+        .phase-banner
+          p
+            strong.phase-tag
+              ' BETA
+            span
+              ' This is a new service – your
+              = link_to "feedback","#"
+              '  will help us to improve it.
+
         = yield
 
         - unless landing_page?
