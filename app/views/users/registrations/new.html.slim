@@ -36,7 +36,7 @@
                                 required: true,
                                 label: false,
                                 hint: ("#{@minimum_password_length} characters minimum" if @validatable),
-                                input_html: { class: "password-strength-meter js-disable-copy js-disable-paste", "data-min-password-length" => "10" }
+                                input_html: { class: "password-strength-meter js-disable-copy", "data-min-password-length" => "10" }
                       span#password-result-span.input-group-addon
                         i#password-result.glyphicon.glyphicon-ok
 
@@ -58,7 +58,7 @@
                   .question
                     h2 = f.label :password_confirmation, label: "Password confirmation"
                     .question-body
-                      = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
+                      = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy" }
                       span#password-confirmation-result-span.input-group-addon
                         i#password-confirmation-result.glyphicon.glyphicon-ok
 

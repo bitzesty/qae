@@ -25,19 +25,19 @@ header.page-header.group
             .question
               h2 Password
               .question-body
-                = f.input :password, required: false, autocomplete: "off", label: false, hint: "Leave it blank if you don't want to change it", input_html: { class: 'password-strength-meter js-disable-copy js-disable-paste' }
+                = f.input :password, required: false, autocomplete: "off", label: false, hint: "Leave it blank if you don't want to change it", input_html: { class: 'password-strength-meter js-disable-copy' }
 
           .form-inputs
             .question
               h2 Password confirmation
               .question-body
-                = f.input :password_confirmation, required: false, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
+                = f.input :password_confirmation, required: false, label: false, input_html: { class: "js-disable-copy" }
 
           .form-inputs
             .question
               h2 Current password
               .question-body
-                = f.input :current_password, required: true, label: false, hint: "We need your current password to confirm your changes", input_html: { class: "js-disable-copy js-disable-paste" }
+                = f.input :current_password, required: true, label: false, hint: "We need your current password to confirm your changes", input_html: { class: "js-disable-copy" }
 
         .form-actions
           = f.button :submit, "Update", class: "button large"

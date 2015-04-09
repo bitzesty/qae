@@ -27,13 +27,13 @@
                             required: true,
                             label: false,
                             hint: ("#{@minimum_password_length} characters minimum" if @validatable),
-                            input_html: { class: "password-strength-meter js-disable-copy js-disable-paste", "data-min-password-length" => "10" }
+                            input_html: { class: "password-strength-meter js-disable-copy", "data-min-password-length" => "10" }
 
             .form-inputs
               .question
                 h2 Password confirmation
                 .question-body
-                  = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy js-disable-paste" }
+                  = f.input :password_confirmation, required: true, label: false, input_html: { class: "js-disable-copy" }
 
           .form-actions
             = f.button :submit, "Sign up", class: "button large"

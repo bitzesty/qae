@@ -520,13 +520,9 @@ jQuery ->
   $(".list-add").each ->
     questionAddDefaultReached($(this))
 
-  # Disable copy/pasting in confirmation fields
-  $('.js-disable-copy').bind "cut copy", (e) ->
+  # Disable copying in input fields
+  $('.js-disable-copy').bind "cut copy contextmenu", (e) ->
     e.preventDefault()
-  $('.js-disable-paste').bind "paste", (e) ->
-    e.preventDefault()
-  $('.js-disable-copy, .js-disable-paste').bind "contextmenu", (e) ->
-      e.preventDefault();
 
   # Change the entry period text dependion on entry period chosen
   # 2 or 5 years for Innovation and Sustainable development

@@ -23,7 +23,7 @@
                             required: true,
                             label: false,
                             autofocus: true,
-                            input_html: { class: "password-strength-meter js-disable-copy js-disable-paste", "data-min-password-length" => "10" }
+                            input_html: { class: "password-strength-meter js-disable-copy", "data-min-password-length" => "10" }
 
             .form-inputs
               .question
@@ -32,7 +32,7 @@
                   = f.input :password_confirmation,
                             label: false,
                             required: true,
-                            input_html: { class: "js-disable-copy js-disable-paste" }
+                            input_html: { class: "js-disable-copy" }
 
           .form-actions
             = f.button :submit, "Change my password", class: "button large"
