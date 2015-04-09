@@ -5,4 +5,11 @@ class Assessors::GeneralMailer < ApplicationMailer
     @subject = "TODO: copy"
     mail to: @assessor.email, subject: @subject
   end
+
+  def audit_certificate_uploaded(form_answer_id)
+    @form_answer = FormAnswer.find(form_answer)
+    @assessor = @form_answer.assessors.primary
+    @subject = "TODO: copy"
+    mail to: @assessor.email, subject: @subject
+  end
 end
