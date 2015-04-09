@@ -265,7 +265,7 @@ class QAE2014Forms
 
         options :parent_group_entry, "Are you a parent company making a group entry?" do
           classes "sub-question"
-          conditional :applying_for, "organisation"
+          conditional :applying_for, :true
           context %(
             <p>
               A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.
@@ -276,7 +276,7 @@ class QAE2014Forms
 
         options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
           classes "sub-question"
-          conditional :applying_for, "organisation"
+          conditional :applying_for, :true
           conditional :parent_group_entry, "yes"
           yes_no
         end
