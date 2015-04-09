@@ -1,9 +1,22 @@
 module PalaceAttendeesMixin
+  def new
+    invite = PalaceInvite.find(params[:palace_invite_id])
+    @enable_edition = true
+    @form_answer = invite.form_answer
+    authorize @form_answer, :update?
+    palace_attendee = invite.palace_attendees.build
+    render_attendee_form(palace_attendee, invite)
+  end
+
   def create
     authorize form_answer, :update?
-
-    palace_attendee = palace_invite.palace_attendees.create(create_params)
-    render_attendee_form(palace_attendee)
+    limit = palace_invite.attendees_limit
+    if palace_invite.palace_attendees.count < limit
+      palace_attendee = palace_invite.palace_attendees.create(create_params)
+      render_attendee_form(palace_attendee, palace_invite)
+    else
+      render nothing: true
+    end
   end
 
   def update
@@ -11,7 +24,7 @@ module PalaceAttendeesMixin
 
     palace_attendee = palace_invite.palace_attendees.find(params[:id])
     palace_attendee.update(create_params)
-    render_attendee_form(palace_attendee)
+    render_attendee_form(palace_attendee, palace_invite)
   end
 
   def destroy
@@ -26,15 +39,20 @@ module PalaceAttendeesMixin
 
   private
 
-  def render_attendee_form(palace_attendee)
+  def render_attendee_form(palace_attendee, invite)
     respond_to do |format|
       format.html do
         if request.xhr?
           render(
-            partial: "admin/form_answers/winners_components/palace_attendee_form",
-            locals: { palace_attendee: palace_attendee })
+            partial: "admin/form_answers/winners_components/palace_attendee",
+            locals: {
+              index: 0,
+              pa: palace_attendee,
+              palace_invite: invite
+            }
+          )
         else
-          redirect_to [namespace_name, form_answer]
+          redirect_to [namespace_name, invite.form_answer]
         end
       end
     end

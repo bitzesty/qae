@@ -103,7 +103,7 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
     resources :company_details, only: [:update]
-    resources :palace_attendees, only: [:create, :update, :destroy]
+    resources :palace_attendees, only: [:new, :create, :update, :destroy]
     resources :review_audit_certificates, only: [:create]
 
     resources :form_answers do
@@ -147,7 +147,7 @@ Rails.application.routes.draw do
     end
     resources :review_audit_certificates, only: [:create]
     resources :company_details, only: [:update]
-    resources :palace_attendees, only: [:create, :update, :destroy]
+    resources :palace_attendees, only: [:new, :create, :update, :destroy]
 
     resources :form_answers do
       resources :form_answer_state_transitions, only: [:create]

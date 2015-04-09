@@ -196,7 +196,7 @@ bindRags =(klass) ->
 handleWinnersForm = ->
   removeAttendeeForm = ".remove-palace-attendee-form"
   addAttendeeForm    = ".palace-attendee-form"
-  attendeeFormHolder = ".list-attendees"
+  attendeeFormHolder = ".palace-attendee-container"
 
   $(document).on "ajax:success", attendeeFormHolder, (e, data, status, xhr) ->
     $(this).closest(attendeeFormHolder).replaceWith(data)
@@ -204,31 +204,29 @@ handleWinnersForm = ->
   $(document).on "click", ".remove-palace-attendee", (e) ->
     e.preventDefault()
     $(this).closest("form").submit()
+    $(this).closest(".form-group").find(".empty-message").removeClass("visuallyhidden")
 
   $(document).on "ajax:success", removeAttendeeForm, (e, data, status, xhr) ->
-    limit      = $(".attendees-forms").data("attendees-limit")
-    visibleLen = $(".attendees-forms .list-attendees:visible").length
-
     $(this).closest(attendeeFormHolder).remove()
-
-    if visibleLen < limit
-      button = $(".add-another-attendee")
-
-      button.show()
-      $(".attendees-forms").append(button)
-
+    $(".attendees-forms").closest(".form-group").find(".empty-message").removeClass("visuallyhidden")
   $(document).on "click", ".add-another-attendee", (e) ->
     e.preventDefault()
+    that = $(this)
 
-    form = $(this).closest(".form-group")
-    newForm = form.find(".blank-form").clone().removeClass("hidden").removeClass("blank-form")
-
-    form.append(newForm)
-    form.append($(this))
-
-    limit = $(".attendees-forms").data("attendees-limit")
+    limit      = $(".attendees-forms").data("attendees-limit")
     visibleLen = $(".attendees-forms .list-attendees:visible").length
-    $(this).hide() if visibleLen >= limit
+    if visibleLen < limit
+      $.ajax
+        type: "GET",
+        url: that.attr("href")
+        success: (data) ->
+          $(".section-palace-attendees .panel-body").append(data)
+
+          limit = $(".attendees-forms").data("attendees-limit")
+          visibleLen = $(".attendees-forms .list-attendees:visible").length
+          that.hide() if visibleLen >= limit
+    else
+      alert("You can not add more attendees")
 
 handleCompanyDetailsForm = ->
   if $('.duplicatable-nested-form').length

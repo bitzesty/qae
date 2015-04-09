@@ -1,0 +1,62 @@
+.form-group.palace-attendee-container class=("form-edit" if pa.errors.present? || defined?(@enable_edition))
+  .form-value
+    .empty-message class="#{'visuallyhidden' if palace_invite.palace_attendees.exists?}"
+      p.p-empty No attendees confirmed.
+
+      = link_to "#", class: "form-edit-link pull-right"
+        span.glyphicon.glyphicon-pencil
+        ' Edit
+      .clear
+    - if palace_invite.palace_attendees.exists?
+      ul.list-unstyled
+        li.well
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+
+          p
+            strong= "#{pa.title} #{pa.first_name} #{pa.last_name}"
+            br
+            small.text-muted= pa.job_name
+          p
+            = pa.address_1
+            br
+            = pa.address_2
+            br
+            = pa.address_3
+            br
+            = pa.address_4
+            br
+            = pa.postcode
+          p= pa.phone_number
+          p= pa.post_nominals
+          - unless @form_answer.promotion?
+            br
+            label Product or brief description
+            p
+              - if pa.product_description.present?
+                = pa.product_description
+              - else
+                ' -
+            br
+            label Additional Information e.g. Wheelchair user
+            p
+              - if pa.additional_info.present?
+                = pa.additional_info
+              - else
+                ' -
+
+
+  .input.form-group.form-fields.attendees-forms data-attendees-limit=palace_invite.attendees_limit
+    / ### Business Award winner
+    / Each winning business sends two representatives. If a business is successful in more than one business category they are allowed to send two reps for each winning category. The invitation is sent to the head of the winning unit.
+
+    / ### EP winner
+    / Each QAEP recipient is allowed just one person to go with them and that person is their nominator.
+    / The invitation is sent to the winning QAEP recipient only, not the nominator.
+
+    = render "admin/form_answers/winners_components/palace_attendee_form",
+              palace_attendee: pa,
+              index: index
+    = link_to "+ Add another attendee", [:new, namespace_name, :palace_attendee, {palace_invite_id: palace_invite.id}], palace_invite_id: palace_invite.id, class: "btn btn-default add-another-attendee if-no-js-hide #{'hidden' if palace_invite.palace_attendees.count > palace_invite.attendees_limit}"
+  .clear
