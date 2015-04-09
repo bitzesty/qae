@@ -94,7 +94,8 @@ class FormAnswerStatistics::Picker
 
   def collect_completion_ranges(scope)
     out = []
-    out << scope.where(state: "not_eligible").count
+    not_e = scope.where(state: "not_eligible").count
+    out << not_e
     scope = scope.where.not(state: "not_eligible").where(submitted: false)
     out << scope.where(fill_progress: 0).count
     range2 = scope.where("fill_progress > ? AND fill_progress < ?", 0, 0.25)
@@ -107,7 +108,7 @@ class FormAnswerStatistics::Picker
     out << range5.count
     range6 = scope.where(fill_progress: 1)
     out << range6.count
-    out << scope.count
+    out << scope.count + not_e
     out
   end
 
