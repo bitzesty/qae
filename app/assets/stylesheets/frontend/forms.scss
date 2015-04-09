@@ -42,9 +42,16 @@ $black-true: #000;
   margin: 0;
   margin-bottom: 0.2em;
   padding: 0;
-  background: transparent;
+  padding-left: 25px;
+  background: image-url("icon-important-sm-red.png") no-repeat scroll 0 0.1em;
+  background-size: 16px 16px;
   border: none;
   color: $error-colour;
+
+  // Retina
+  @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+    background-image: image-url("icon-important-sm-red-2x.png");
+  }
 }
 
 .page-devise .boolean .error {
