@@ -41,5 +41,5 @@ Rails.application.configure do
   config.active_job.queue_adapter = :inline
 
   # configure the devise email layout
-  config.to_prepare do { Devise::Mailer.layout "mailer" }
+  config.to_prepare { Devise::Mailer.layout "mailer" }
 end

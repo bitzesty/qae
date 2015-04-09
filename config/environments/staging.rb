@@ -82,5 +82,5 @@ Rails.application.configure do
   # AWS SES mail settings are in config/initializers/aws_ses.rb
 
   # configure the devise email layout
-  config.to_prepare do { Devise::Mailer.layout "mailer" }
+  config.to_prepare { Devise::Mailer.layout "mailer" }
 end
