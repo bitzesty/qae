@@ -45,3 +45,8 @@ OSX users you might need to install pcre headers:
 ```
 brew install pcre
 ```
+
+## Users import
+```
+  rake users_import:import_from_csv FILEPATH="./spec/fixtures/users.csv"
+```
