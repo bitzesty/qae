@@ -60,7 +60,9 @@ class FormAnswer < ActiveRecord::Base
     has_many :form_answer_transitions
     has_many :assessor_assignments, dependent: :destroy
     has_many :lead_or_primary_assessor_assignments,
-             -> { where(position: [3, 4]).order(position: :desc) },
+             -> { where.not(submitted_at: nil)
+                       .where(position: [3, 4])
+                       .order(position: :desc) },
              class_name: "AssessorAssignment",
              foreign_key: :form_answer_id
     has_many :previous_wins, dependent: :destroy

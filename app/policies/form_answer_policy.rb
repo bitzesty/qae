@@ -37,7 +37,7 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def download_case_summary_pdf?
-    admin? # TODO: need to confirm
+    admin? && record.submitted? && record.lead_or_primary_assessor_assignments.any?
   end
 
   def download_audit_certificate_pdf?

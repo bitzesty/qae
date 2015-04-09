@@ -172,6 +172,7 @@ Rails.application.routes.draw do
           post :approve
         end
       end
+      resources :case_summaries, only: [:index]
 
       resources :draft_notes, only: [:create, :update]
 
