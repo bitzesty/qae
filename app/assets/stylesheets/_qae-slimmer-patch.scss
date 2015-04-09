@@ -20,6 +20,17 @@
   margin: 0;
 }
 
+main .phase-banner {
+  margin: 0 $gutter;
+
+  @media (max-width: 640px) {
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: $gutter-half;
+    padding-left: $gutter-half;
+  }
+}
+
 article {
   th,
   td {
