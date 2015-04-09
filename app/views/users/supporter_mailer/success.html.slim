@@ -1,35 +1,37 @@
-p
-  ' Dear,
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Dear
   =<> @supporter.full_name
-p
-  ' You’ve been chosen by
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' You've been chosen by
   =<> @user.full_name
   ' to write a letter of support in aid of the nomination of
   =<> @form_answer.application_name
   ' for a Queen’s Award for Enterprise Promotion.
 
-p
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' The Queen’s Award for Enterprise Promotion is a nomination-only award recognising individuals who have played an outstanding role in promoting the growth of enterprise and/or entrepreneurial skills and attitudes in others.
 
-p
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' If you feel like you are not in a position to write a letter of support, please email the nominator as soon as possible at
   =<> mail_to @user.email
-  ' so they can contact alternative supporters. You can also email them with any questions regarding the nomination.
+  '  so they can contact alternative supporters. You can also email them with any questions regarding the nomination.
 
-p
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   strong
     ' As this is an honorary award, all information relating to it should remain confidential - even from the nominee in question.
 
-p
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' To see guidance information, and support the nomination of
   =<> @form_answer.application_name
-  ' for this award, please
+  '  for this award, please
   = link_to "go to the support letter form page.", support_letter_url(access_key: @supporter.access_key), target: "_blank"
 
-p
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Thank you,
+  br
   br
   ' The Queen’s Awards Office
 
-p
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = link_to "More information on the The Queen’s Award for Enterprise Promotion.", "https://www.gov.uk/queens-awards-for-enterprise", target: "_blank"

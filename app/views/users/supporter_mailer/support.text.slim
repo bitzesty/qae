@@ -1,29 +1,29 @@
-| Dear
+' Dear
 = @supporter.full_name
 
-| You’ve been chosen by
+' You’ve been chosen by
 = @user.full_name
-| to write a letter of support in aid of the nomination of
+'  to write a letter of support in aid of the nomination of
 = @form_answer.application_name
-| for a Queen’s Award for Enterprise Promotion.
+'  for a Queen’s Award for Enterprise Promotion.
 
 
-| The Queen’s Award for Enterprise Promotion is a nomination-only award recognising individuals who have played an outstanding role in promoting the growth of enterprise and/or entrepreneurial skills and attitudes in others.
+' The Queen’s Award for Enterprise Promotion is a nomination-only award recognising individuals who have played an outstanding role in promoting the growth of enterprise and/or entrepreneurial skills and attitudes in others.
 
-| If you feel like you are not in a position to write a letter of support, please email the nominator as soon as possible at
+' If you feel like you are not in a position to write a letter of support, please email the nominator as soon as possible at
 = mail_to @user.email
-| so they can contact alternative supporters. You can also email them with any questions regarding the nomination.
+'  so they can contact alternative supporters. You can also email them with any questions regarding the nomination.
 
-| As this is an honorary award, all information relating to it should remain confidential - even from the nominee in question.
+' As this is an honorary award, all information relating to it should remain confidential - even from the nominee in question.
 
-| To see guidance information, and support the nomination of
+' To see guidance information, and support the nomination of
 = @form_answer.application_name
-| for this award, please
+'  for this award, please
 = link_to "go to the support letter form page", support_letter_url(access_key: @supporter.access_key)
-| .
+' .
 
 
-| Thank you,
-| The Queen’s Awards Office
+' Thank you,
+' The Queen’s Awards Office
 
 = link_to "More information on the The Queen’s Award for Enterprise Promotion.", root_url
