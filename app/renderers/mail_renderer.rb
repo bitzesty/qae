@@ -19,8 +19,8 @@ class MailRenderer
   def shortlisted_audit_certificate_reminder
     assigns = {}
 
-    assigns[:form_owner] = dummy_user("Jon", "Doe")
-    assigns[:recipient] = dummy_user("Jane", "Doe")
+    assigns[:form_owner] = dummy_user("Jon", "Doe", "John's Company")
+    assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     assigns[:award_title] = assigns[:form_answer].award_application_title
 
@@ -29,13 +29,13 @@ class MailRenderer
 
   def not_shortlisted_notifier
     assigns = {}
-    assigns[:user] = dummy_user("Jon", "Doe")
+    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     render(assigns, "users/notify_non_shortlisted_mailer/notify")
   end
 
   def shortlisted_notifier
     assigns = {}
-    assigns[:user] = dummy_user("Jon", "Doe")
+    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     render(assigns, "users/notify_shortlisted_mailer/notify")
   end
 
@@ -48,7 +48,7 @@ class MailRenderer
 
   def winners_press_release_comments_request
     assigns = {}
-    assigns[:user] = dummy_user("Jon", "Doe")
+    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
     render(assigns, "users/winners_press_release/notify")
@@ -56,8 +56,9 @@ class MailRenderer
 
   def all_unsuccessful_feedback
     assigns = {}
-    assigns[:user] = dummy_user("Jon", "Doe")
+    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:form_answer] = form_answer
+    assigns[:award_title] = assigns[:form_answer].award_application_title
     render(assigns, "users/unsuccessful_feedback_mailer/notify")
   end
 
@@ -68,8 +69,8 @@ class MailRenderer
     view.render(template: template)
   end
 
-  def dummy_user(first_name, last_name)
-    User.new(first_name: first_name, last_name: last_name).decorate
+  def dummy_user(first_name, last_name, company_name)
+    User.new(first_name: first_name, last_name: last_name, company_name: company_name).decorate
   end
 
   def form_answer
