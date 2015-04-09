@@ -41,7 +41,7 @@ describe FormAnswerStatistics::Picker do
       create(:form_answer, :trade).update_column(:fill_progress, 0.50)
       create(:form_answer, :trade).update_column(:fill_progress, 1)
       create(:form_answer, :trade, state: "not_eligible").update_column(:fill_progress, 0.99)
-      expect(subject.applications_completions["trade"]).to eq([1, 1, 0, 1, 1, 0, 1, 4])
+      expect(subject.applications_completions["trade"]).to eq([1, 1, 0, 1, 1, 0, 1, 5])
     end
   end
 end
