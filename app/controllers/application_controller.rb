@@ -101,7 +101,7 @@ class ApplicationController < ActionController::Base
   end
 
   def settings
-    @settings ||= Settings.current
+    @settings ||= AwardYear.current.settings
   end
 
   def submission_started?
@@ -123,5 +123,16 @@ class ApplicationController < ActionController::Base
   def need_authentication?
     (Rails.env.staging? || Rails.env.production?) &&
     controller_name != "healthchecks"
+  end
+
+  def load_award_year_and_settings
+    if params[:year] && AwardYear::AVAILABLE_YEARS.include?(params[:year].to_i)
+      @award_year = AwardYear.for_year(params[:year].to_i).first_or_create
+    else
+      @award_year = AwardYear.current
+    end
+
+    @settings = @award_year.settings
+    @deadlines = @settings.deadlines.to_a
   end
 end

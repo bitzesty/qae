@@ -3,22 +3,22 @@ require 'rails_helper'
 describe "FeedbackPdfs::Base" do
   let!(:form_answer_2014_innovation) do
     FactoryGirl.create :form_answer, :submitted, :innovation,
-                        award_year: 2014
+                        award_year: AwardYear.where(year: 2014).first_or_create
   end
 
   let!(:form_answer_2015_innovation) do
     FactoryGirl.create :form_answer, :submitted, :innovation,
-                        award_year: 2015
+                        award_year: AwardYear.where(year: 2015).first_or_create
   end
 
   let!(:form_answer_2014_trade) do
     FactoryGirl.create :form_answer, :submitted, :trade,
-                        award_year: 2014
+                        award_year: AwardYear.where(year: 2014).first_or_create
   end
 
   let!(:form_answer_2015_trade) do
     FactoryGirl.create :form_answer, :submitted, :trade,
-                        award_year: 2015
+                        award_year: AwardYear.where(year: 2015).first_or_create
   end
 
   before do

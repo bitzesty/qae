@@ -13,6 +13,6 @@ module AuditCertificateContext
   end
 
   def form_answer
-    @form_answer ||= FormAnswer.find(params[:form_answer_id])
+    @form_answer ||= @award_year.form_answers.find(params[:form_answer_id])
   end
 end

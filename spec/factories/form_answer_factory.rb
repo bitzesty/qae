@@ -2,6 +2,7 @@ FactoryGirl.define do
   factory :form_answer do
     award_type "trade"
     association :user, factory: :user
+    award_year_id { AwardYear.current.id }
 
     trait :submitted do
       submitted true

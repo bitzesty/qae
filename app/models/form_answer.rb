@@ -8,7 +8,6 @@ class FormAnswer < ActiveRecord::Base
                   against: [
                     :urn,
                     :award_type_full_name,
-                    :award_year,
                     :company_or_nominee_name,
                     :nominee_full_name,
                     :user_full_name
@@ -38,6 +37,7 @@ class FormAnswer < ActiveRecord::Base
   begin :associations
     belongs_to :user
     belongs_to :account
+    belongs_to :award_year
 
     has_one :form_basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
     has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
@@ -90,15 +90,15 @@ class FormAnswer < ActiveRecord::Base
   end
 
   begin :scopes
-    scope :for_award_type, -> (award_type) { where award_type: award_type }
-    scope :for_year, -> (year) { where award_year: year }
+    scope :for_award_type, -> (award_type) { where(award_type: award_type) }
+    scope :for_year, -> (year) { joins(:award_year).where(award_years: { year: year }) }
     scope :shortlisted_with_no_certificate, -> { where("1 = 0") }
     scope :winners, -> { where("1 = 0") }
     scope :unsuccessful, -> { where(state: %w(not_recommended reserved)) }
   end
 
   begin :callbacks
-    before_save :set_award_year, unless: :award_year?
+    before_save :set_award_year, unless: :award_year
     before_save :set_urn
     before_save :set_progress
     before_save :assign_searching_attributes
@@ -182,7 +182,10 @@ class FormAnswer < ActiveRecord::Base
 
     next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize("urn_seq_#{award_type}")})")
 
-    self.urn = "QA#{sprintf('%.4d', next_seq)}/#{award_year.to_s[2..-1]}#{award_type[0].capitalize}"
+    generated_urn = "QA#{sprintf('%.4d', next_seq)}/"
+    generated_urn += "#{award_year.year.to_s[2..-1]}#{award_type[0].capitalize}"
+
+    self.urn = generated_urn
   end
 
   def set_account
@@ -190,7 +193,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def set_award_year
-    self.award_year = Date.current.year + 1
+    self.award_year = AwardYear.current
   end
 
   def set_progress

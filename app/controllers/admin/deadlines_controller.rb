@@ -1,5 +1,4 @@
 class Admin::DeadlinesController < Admin::BaseController
-  before_action :load_settings
   before_action :load_deadline, only: [:update]
 
   def update

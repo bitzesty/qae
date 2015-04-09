@@ -20,6 +20,6 @@ class Admin::FeedbacksController < Admin::BaseController
   private
 
   def form_answers_scope
-    FormAnswer
+    @award_year.form_answers
   end
 end

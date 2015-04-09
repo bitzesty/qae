@@ -44,7 +44,7 @@ shared_context "admin feedback pdf file checks" do
   end
 
   let(:award_general_information) do
-    "#{FeedbackPdfs::General::DrawElements::AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year}"
+    "#{FeedbackPdfs::General::DrawElements::AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year.year}"
   end
 
   let(:award_title) do
