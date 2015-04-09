@@ -4,44 +4,35 @@ module SharedPdfHelpers::DrawElements
   LOGO_ICON = "logo-pdf.png"
   AWARD_GENERAL_INFO_PREFIX = "The Queen's Awards for Enterprise"
 
-  def main_header
-    render_logo
-    render_urn
-    render_applicant
-    render_sub_category unless form_answer.promotion?
-    render_award_general_information
-    render_award_title
-  end
-
-  def render_logo
+  def render_logo(x_coord, y_coord)
     pdf_doc.image "#{IMAGES_PATH}#{LOGO_ICON}",
-                  at: [0, 137.5.mm + DEFAULT_OFFSET],
+                  at: [x_coord, y_coord.mm + DEFAULT_OFFSET],
                   width: 25.mm
   end
 
-  def render_urn
+  def render_urn(x_coord, y_coord)
     pdf_doc.text_box "QA Ref: #{form_answer.urn}",
-                     header_text_properties.merge(at: [32.mm, 137.mm + DEFAULT_OFFSET])
+                     header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
-  def render_applicant
+  def render_applicant(x_coord, y_coord)
     pdf_doc.text_box "Applicant: #{user.decorate.applicant_info_print}",
-                     header_text_properties.merge(at: [32.mm, 129.5.mm + DEFAULT_OFFSET])
+                     header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
-  def render_sub_category
+  def render_sub_category(x_coord, y_coord)
     pdf_doc.text_box "Sub-category: #{sub_category}",
-                     header_text_properties.merge(at: [32.mm, 122.mm + DEFAULT_OFFSET])
+                     header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
-  def render_award_general_information
+  def render_award_general_information(x_coord, y_coord)
     pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year}",
-                     header_text_properties.merge(at: [163.mm, 137.mm + DEFAULT_OFFSET])
+                     header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
-  def render_award_title
+  def render_award_title(x_coord, y_coord)
     pdf_doc.text_box form_answer.award_type.capitalize,
-                     header_text_properties.merge(at: [163.mm, 129.5.mm + DEFAULT_OFFSET])
+                     header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
   def render_headers(table_lines)
@@ -55,24 +46,32 @@ module SharedPdfHelpers::DrawElements
                                }
   end
 
-  def render_table(table_lines)
+  def render_table(table_lines, column_widths)
     pdf_doc.table table_lines, row_colors: %w(FFFFFF),
                                cell_style: { size: 12 },
-                               column_widths: {
-                                 0 => 100,
-                                 1 => 100,
-                                 2 => 567
-                               }
+                               column_widths: column_widths
   end
 
   def render_not_found_block
-    render_logo
+    render_logo(695, 137.5)
     render_not_found_message
+    render_not_found_general_information
+    render_not_found_category
+  end
+
+  def render_not_found_general_information
+    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{Date.today.year}",
+                     header_text_properties.merge(at: [130.mm, 137.mm + DEFAULT_OFFSET])
   end
 
   def render_not_found_message
     pdf_doc.text_box "No #{missing_data_name} found by selected category!",
-                     header_text_properties.merge(at: [32.mm, 137.mm + DEFAULT_OFFSET])
+                     header_text_properties.merge(at: [0.mm, 137.mm + DEFAULT_OFFSET])
+  end
+
+  def render_not_found_category
+    pdf_doc.text_box options[:category].capitalize,
+                     header_text_properties.merge(at: [130.mm, 129.5.mm + DEFAULT_OFFSET])
   end
 
   def default_bottom_margin

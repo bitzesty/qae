@@ -5,7 +5,7 @@ class ReportPdfFormAnswerPointerBase
   include SharedPdfHelpers::DataHelpers
   include FormAnswersBasePointer
 
-  UNDEFINED_VALUE = "Not filled yet..."
+  UNDEFINED_VALUE = "..."
 
   attr_reader :user,
               :form_answer,

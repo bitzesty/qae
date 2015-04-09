@@ -5,7 +5,9 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
   attr_reader :data
 
   def generate!
-    #@data = form_answer. TODO
+    # fetch lead_case_summary or primary (if lead missing)
+    @data = form_answer.lead_or_primary_assessor_assignments.first.document
+
     main_header
     render_data!
   end

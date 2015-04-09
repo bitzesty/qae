@@ -1,27 +1,31 @@
 class CaseSummaryPdfs::Base < ReportPdfBase
 
-  attr_reader :case_summaries
+  attr_reader :form_answers
 
   def all_mode
-    set_case_summaries
+    set_form_answers
 
-    if case_summaries.present?
-      case_summaries.each_with_index do |feedback, index|
+    if form_answers.present?
+      form_answers.each_with_index do |form_answer, index|
         start_new_page if index.to_i != 0
-        render_item(feedback.form_answer)
+        render_item(form_answer)
       end
     else
-      @missing_data_name = "case_summaries"
+      @missing_data_name = "case summaries"
       render_not_found_block
     end
   end
 
-  def set_case_summaries
-    @case_summaries = AssessorAssignment.submitted
-                                        .lead_or_primary_case_summary
-                                        .includes(:form_answer)
-                                        .where("form_answers.award_type = ?", options[:category])
-                                        .order("form_answers.award_year")
+  def set_form_answers
+    @form_answers = FormAnswer.submitted
+                              .includes(:lead_or_primary_assessor_assignments)
+                              .for_award_type(options[:category])
+                              .joins(:assessor_assignments)
+                              .group("form_answers.id")
+                              .having("count(assessor_assignments) > 0")
+                              .where("assessor_assignments.submitted_at IS NOT NULL AND assessor_assignments.position IN (3,4)")
+                              .order("form_answers.award_year, form_answers.sic_code")
+                              .distinct("form_answers.id")
   end
 
   def render_item(form_answer)
