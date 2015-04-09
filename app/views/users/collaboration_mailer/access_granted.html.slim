@@ -1,33 +1,36 @@
-p
-  ' Hello,
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Dear
+  = @collaborator.full_name
 
-p
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = @user_who_added.full_name
-  |  added you to collaborators with
-  = "'#{@collaborator.role.humanize}'"
-  |  role.
+  '  has invited you to collaborate with them on a Queen's Award for Enterprise application.
 
 - if @new_user
-  p
-    | Your login:
-    br
+  p style="border-left: 10px #dee0e2 solid; padding: 14px 0 14px 14px; font-size: 19px; line-height: 1.315789474; margin: 0 0 19px 0;"
+    ' Your username:
     = @collaborator.email
-  p
-    | Your password:
     br
+    br
+    ' Your password:
     = @generated_password
 
-  p
-    | You need to confirm your email at first to access account:
-    br
-    = link_to 'Confirm', confirmation_url(@collaborator, confirmation_token: @devise_confirmation_token)
-  p
-    pre
-      | Please reset your password after confirmation at:
-      br
-      = link_to 'Password Settings', password_settings_account_url
-- else
-  = link_to 'View', dashboard_url
+  p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+    ' You need to
+    = link_to "confirm your email", confirmation_url(@collaborator, confirmation_token: @devise_confirmation_token)
+    '  to access your account.
 
-p
-  | Best Regards, Administration Team
+  p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+    = link_to "Log in", new_user_session_url
+    '  here and go to
+    = link_to "Password Settings", password_settings_account_url, style: "white-space: nowrap"
+    ' to change your password.
+- else
+  p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+    = link_to "View", dashboard_url
+
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
+  ' Thank you,
+  br
+  br
+  ' The Queen’s Awards Office

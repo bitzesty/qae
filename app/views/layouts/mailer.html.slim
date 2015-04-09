@@ -1,0 +1,26 @@
+html
+head
+  meta content="text/html;charset=utf-8" http-equiv="Content-Type"
+  meta content="utf-8" http-equiv="encoding"
+  / This disables auto detection of phone numbers in some clients. Remove if not needed.
+  / meta name="format-detection" content="telephone=no"
+  title = content_for?(:title) ? yield(:title) : "Queen's Awards for Enterprise"
+
+body style="font-family: Helvetica, Arial, sans-serif; font-size: 16px; margin: 0; color: #0b0c0c;"
+  table width="100%" cellpadding="0" cellspacing="0" border="0"
+    tr
+      td width="100%" height="53px" bgcolor="#0b0c0c"
+        table width="580" cellpadding="0" cellspacing="0" border="0" align="center"
+          tr
+            td width="100%" bgcolor="#0b0c0c" valign="middle"
+              / This asset should be hosted by the service
+              = image_tag "govuk_logotype_email.png", alt: "GOV.UK", border: "0"
+
+  table width="100%" cellpadding="0" cellspacing="0" border="0" bgcolor="#FFFFFF" style="margin-bottom: 19px;"
+    tr
+      td width="100%"
+        table width="580" cellpadding="0" cellspacing="0" border="0" align="center"
+          tr
+            td width="75%"
+              = yield
+          td width="25%" &nbsp;
