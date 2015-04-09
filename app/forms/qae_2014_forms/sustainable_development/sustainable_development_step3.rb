@@ -314,7 +314,8 @@ class QAE2014Forms
         end
 
         textarea :roi_details, "How long did it take you to break even? When and how was this achieved?" do
-          ref "C 12"
+          sub_ref "C 11.1"
+          classes "sub-question"
           required
           context %(
             <p>
