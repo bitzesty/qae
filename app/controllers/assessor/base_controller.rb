@@ -3,7 +3,7 @@ class Assessor::BaseController < ApplicationController
 
   layout "application-assessor"
 
-  before_action :authenticate_assessor!
+  before_action :authenticate_assessor!, :load_award_year_and_settings
   after_action :verify_authorized
 
   skip_before_action :authenticate_user!

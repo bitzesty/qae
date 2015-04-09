@@ -4,7 +4,7 @@ class Admin::BaseController < ApplicationController
 
   layout "application-admin"
 
-  before_action :authenticate_admin!
+  before_action :authenticate_admin!, :load_award_year_and_settings
   after_action :verify_authorized
 
   skip_before_action :authenticate_user!
@@ -29,15 +29,5 @@ class Admin::BaseController < ApplicationController
 
   def current_subject
     current_admin
-  end
-
-  def load_settings
-    if params[:year] && Settings::AVAILABLE_YEARS.include?(params[:year].to_i)
-      @settings = Settings.for_year(params[:year].to_i)
-    else
-      @settings = Settings.current
-    end
-
-    @deadlines = @settings.deadlines.to_a
   end
 end

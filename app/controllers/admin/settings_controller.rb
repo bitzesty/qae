@@ -1,5 +1,5 @@
 class Admin::SettingsController < Admin::BaseController
-  before_action :load_settings, :load_email_notifications, only: [:show]
+  before_action :load_email_notifications, only: [:show]
 
   def show
     authorize :settings, :show?

@@ -6,12 +6,13 @@ class Notifiers::EmailNotificationService
   end
 
   def initialize
-    @email_notifications = Settings.current.email_notifications.current
+    @email_notifications = AwardYear.current.settings.email_notifications.current.to_a
+    @email_notifications += AwardYear.closed.settings.email_notifications.current.to_a
   end
 
   def run
     email_notifications.each do |notification|
-      public_send(notification.kind)
+      public_send(notification.kind, notification.settings.award_year)
 
       notification.update_column(:sent, true)
     end
@@ -24,32 +25,32 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  def shortlisted_notifier
+  def shortlisted_notifier(award_year)
     User.shortlisted.each do |user|
       Users::NotifyShortlistedMailer.notify(user).deliver_later!
     end
   end
 
-  def not_shortlisted_notifier
+  def not_shortlisted_notifier(award_year)
     User.non_shortlisted.each do |user|
       Users::NotifyNonShortlistedMailer.notify(user).deliver_later!
     end
   end
 
-  def shortlisted_audit_certificate_reminder
-    FormAnswer.shortlisted_with_no_certificate.each do |form_answer|
+  def shortlisted_audit_certificate_reminder(award_year)
+    award_year.form_answers.shortlisted_with_no_certificate.each do |form_answer|
       Notifiers::Shortlist::AuditCertificateRequest.new(form_answer).run
     end
   end
 
-  def all_unsuccessful_feedback
-    FormAnswer.unsuccessful.each do |form_answer|
+  def all_unsuccessful_feedback(award_year)
+    award_year.form_answers.unsuccessful.each do |form_answer|
       Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
     end
   end
 
-  def winners_notification
-    FormAnswer.winners.each do |form_answer|
+  def winners_notification(award_year)
+    award_year.form_answers.winners.each do |form_answer|
       document = form_answer.document
 
       if form_answer.promotion?
@@ -62,19 +63,13 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  def winners_press_release_comments_request
-    FormAnswer.winners.includes(:press_summary).each do |form_answer|
+  def winners_press_release_comments_request(award_year)
+    award_year.form_answers.winners.includes(:press_summary).each do |form_answer|
       ps = form_answer.press_summary
 
       if ps && ps.approved? && !ps.reviewed_by_user?
         Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
       end
     end
-  end
-
-  private
-
-  def current_award_year
-    # TODO: discuss a way to detect award year to use it in scopes here
   end
 end
