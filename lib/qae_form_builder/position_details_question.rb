@@ -1,4 +1,7 @@
 class QAEFormBuilder
+  class PositionDetailsQuestionValidator < QuestionValidator
+  end
+
   class PositionDetailsQuestionBuilder < QuestionBuilder
     def details_words_max(value)
       @q.details_words_max = value

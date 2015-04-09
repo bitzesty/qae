@@ -1,4 +1,6 @@
 class QAEFormBuilder
+  class SubsidiariesAssociatesPlantsQuestionValidator < QuestionValidator
+  end
 
   class SubsidiariesAssociatesPlantsQuestionBuilder < QuestionBuilder
   end

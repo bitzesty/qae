@@ -1,4 +1,7 @@
 class QAEFormBuilder
+  class BusinessSectorDropdownQuestionValidator < QuestionValidator
+  end
+
   class BusinessSectorDropdownQuestionBuilder < DropdownQuestionBuilder
   end
 

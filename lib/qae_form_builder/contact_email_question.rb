@@ -1,10 +1,12 @@
 class QAEFormBuilder
+  class ContactEmailQuestionValidator < QuestionValidator
+  end
 
   class ContactEmailQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [
-        {primary: "Primary"}, 
-        {confirmation: "Confirmation"}
+        { primary: "Primary" },
+        { confirmation: "Confirmation" }
       ]
     end
   end
@@ -14,5 +16,4 @@ class QAEFormBuilder
 
   class ContactEmailQuestion < Question
   end
-
 end

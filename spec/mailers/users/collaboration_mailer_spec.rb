@@ -41,7 +41,6 @@ describe Users::CollaborationMailer do
       end
 
       it "renders the body" do
-        puts "[mail.body.encoded] #{mail.body.encoded}"
         expect(mail.body.encoded).to match(new_account_admin.email)
         expect(mail.body.encoded).to match(generated_password)
         expect(mail.body.encoded).to match("confirm your email")

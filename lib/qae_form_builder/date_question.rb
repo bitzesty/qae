@@ -1,11 +1,45 @@
 class QAEFormBuilder
+  class DateQuestionValidator < QuestionValidator
+    def errors
+      result = super
+
+      date_max = Date.parse(question.delegate_obj.date_max) rescue nil
+      date_min = Date.parse(question.delegate_obj.date_min) rescue nil
+
+      date = []
+      question.required_sub_fields.each do |sub_field|
+        date << question.input_value(suffix: sub_field.keys[0])
+      end
+
+      date = Date.parse(date.join("/")) rescue nil
+
+      if !date
+        if question.required?
+          result[question.hash_key] ||= ""
+          result[question.hash_key] << " Invalid date."
+        end
+      else
+        if date_min && date < date_min
+          result[question.hash_key] ||= ""
+          result[question.hash_key] << " Date should be greater than #{date_min.strftime('%d/%m/%Y')}."
+        end
+
+        if date_max && date > date_max
+          result[question.hash_key] ||= ""
+          result[question.hash_key] << " Date should be less than #{date_max.strftime('%d/%m/%Y')}."
+        end
+      end
+
+      result
+    end
+  end
 
   class DateQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [
-        {day: "Day"}, 
-        {month: "Month"},
-        {year: "Year"}
+        { day: "Day" },
+        { month: "Month" },
+        { year: "Year" }
       ]
     end
   end

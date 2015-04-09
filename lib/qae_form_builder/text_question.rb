@@ -1,4 +1,6 @@
 class QAEFormBuilder
+  class TextQuestionValidator < QuestionValidator
+  end
 
   class TextQuestionBuilder < QuestionBuilder
     def style style

@@ -1,4 +1,6 @@
 class QAEFormBuilder
+  class ConfirmQuestionValidator < QuestionValidator
+  end
 
   class ConfirmQuestionBuilder < QuestionBuilder
     def text text

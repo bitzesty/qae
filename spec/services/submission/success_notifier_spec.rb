@@ -8,8 +8,7 @@ describe Notifiers::Submission::SuccessNotifier do
 
   let!(:form_answer) do
     FactoryGirl.create :form_answer, :submitted, :innovation,
-                                                 user: user,
-                                                 document: { company_name: "Bitzesty" }
+                                                 user: user
   end
 
   describe "#run" do

@@ -1,4 +1,6 @@
 class QAEFormBuilder
+  class ByTradeGoodsAndServicesLabelQuestionValidator < QuestionValidator
+  end
 
   class ByTradeGoodsAndServicesLabelQuestionDecorator < QuestionDecorator
     def trade_goods_and_services

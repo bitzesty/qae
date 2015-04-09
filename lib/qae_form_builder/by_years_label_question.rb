@@ -1,4 +1,6 @@
 class QAEFormBuilder
+  class ByYearsLabelQuestionValidator < QuestionValidator
+  end
 
   class ByYearsLabelQuestionDecorator < QuestionDecorator
     def fieldset_classes
@@ -68,7 +70,7 @@ class QAEFormBuilder
     attr_accessor :type, :by_year_conditions, :label
     def after_create
       @by_year_conditions = []
-    end 
+    end
   end
 
 end

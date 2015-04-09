@@ -1,4 +1,6 @@
 class QAEFormBuilder
+  class TurnoverExportsCalculationQuestionValidator < QuestionValidator
+  end
 
   class TurnoverExportsCalculationQuestionDecorator < QuestionDecorator
     def format_label y
@@ -62,7 +64,7 @@ class QAEFormBuilder
                   :exports_question
     def after_create
       @by_year_conditions = []
-    end 
+    end
   end
 
 end

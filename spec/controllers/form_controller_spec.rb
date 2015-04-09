@@ -6,8 +6,7 @@ describe FormController do
   let(:form_answer) do
     FactoryGirl.create :form_answer, :innovation,
                                      user: user,
-                                     account: account,
-                                     document: { company_name: "Bitzesty" }
+                                     account: account
   end
 
   let!(:settings) { create :settings, :submission_deadlines }
@@ -25,7 +24,7 @@ describe FormController do
     expect(Notifiers::Submission::SuccessNotifier).to receive(:new).with(form_answer) { notifier }
     expect_any_instance_of(FormAnswer).to receive(:eligible?).at_least(:once).and_return(true)
 
-    post :save, id: form_answer.id, form: {}, submit: "true"
+    post :save, id: form_answer.id, form: form_answer.document, submit: "true"
   end
 
   describe '#new_international_trade_form' do
@@ -35,8 +34,7 @@ describe FormController do
 
     it 'denies to open trade form if it is not the first one' do
       FactoryGirl.create :form_answer, :trade,
-                                       user: user,
-                                       document: { company_name: "Bitzesty" }
+                                       user: user
       expect(get :new_international_trade_form).to redirect_to(dashboard_url)
     end
   end

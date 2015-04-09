@@ -4,8 +4,8 @@ shared_context "admin case summary pdf file checks" do
   let!(:user) { create :user }
 
   let!(:form_answer) do
-    create :form_answer, award_type,
-                         :submitted,
+    create :form_answer, :submitted,
+                         award_type,
                          user: user
   end
 

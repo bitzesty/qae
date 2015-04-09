@@ -4,6 +4,8 @@ class FormAnswer < ActiveRecord::Base
   include PgSearch
   extend Enumerize
 
+  attr_accessor :current_step, :validator_errors
+
   pg_search_scope :basic_search,
                   against: [
                     :urn,
@@ -94,6 +96,8 @@ class FormAnswer < ActiveRecord::Base
                            }
     validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
     validates :sic_code, format: { with: SICCode::REGEX }, allow_nil: true
+
+    validate :validate_answers
   end
 
   begin :scopes
@@ -219,6 +223,17 @@ class FormAnswer < ActiveRecord::Base
 
   def set_user_full_name
     self.user_full_name ||= user.full_name if user.present?
+  end
+
+  def validate_answers
+    if submitted && (current_step || submitted_changed?)
+      validator = FormAnswerValidator.new(self)
+
+      unless validator.valid?
+        errors.add(:base, "Answers invalid")
+        self.validator_errors = validator.errors
+      end
+    end
   end
 
   class AwardEligibilityBuilder

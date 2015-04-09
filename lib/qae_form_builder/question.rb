@@ -1,4 +1,42 @@
 class QAEFormBuilder
+  class QuestionValidator
+    # multifield questions that can not be simply validated
+    SKIP_PRESENCE_VALIDATION_QUESTIONS = [
+      "DateQuestion",
+      "AddressQuestion",
+      "InnovationFinancialYearDateQuestion",
+      "ByYearsQuestion",
+      "ByYearsLabelQuestion",
+      "UserInfoQuestion"
+    ]
+
+    attr_reader :question
+    def initialize(question)
+      @question = question
+    end
+
+    def errors
+      result = {}
+
+      return {} if skip_base_validation?
+
+      if question.required?
+        if !question.input_value.present?
+          result[question.hash_key] = "Can't be blank."
+        end
+      end
+
+      result
+    end
+
+    private
+
+    def skip_base_validation?
+      SKIP_PRESENCE_VALIDATION_QUESTIONS.any? do |klass|
+        question.delegate_obj.class.name.demodulize == klass
+      end
+    end
+  end
 
   class QuestionDecorator < QAEDecorator
     def input_name options = {}
@@ -72,6 +110,24 @@ class QAEFormBuilder
           q.has_drops?
         end
       end
+    end
+
+    def validate
+      errors = {}
+
+      if visible?
+        error = {}
+
+        question_class = delegate_obj.class.name.demodulize
+        validator_class = "QAEFormBuilder::#{question_class}Validator".constantize
+
+        validator = validator_class.new(self)
+        errors.merge!(validator.errors)
+
+        errors.merge!(error)
+      end
+
+      errors
     end
 
     def required?
@@ -279,8 +335,5 @@ class QAEFormBuilder
     def parameterized_title
       key.to_s + "-" + title.parameterize
     end
-
   end
-
 end
-

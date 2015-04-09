@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :assessor_assignment do
-    assessor
+    association :assessor
     form_answer
 
     trait :trade do
