@@ -16,8 +16,10 @@ class AwardYearsStructureCorrects < ActiveRecord::Migration
 
     # Populate Award Years.
     # Settings and Deadlines will be created automatically
-    AwardYear::AVAILABLE_YEARS.each do |year|
-      AwardYear.create!(year: year)
+    unless Rails.env.test?
+      AwardYear::AVAILABLE_YEARS.each do |year|
+        AwardYear.create!(year: year)
+      end
     end
 
     # # Add null: false and index for award_year_id for Settings
