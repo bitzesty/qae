@@ -8,7 +8,7 @@
           th.sortable
             = sort_link f, 'Email', @search, :email
           th.sortable
-            = sort_link f, 'Signed in at', @search, :last_sign_in_at
+            = sort_link f, 'Signed in on', @search, :last_sign_in_at
       tbody
         - if AssessorDecorator.decorate_collection(resources).none?
           tr

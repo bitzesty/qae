@@ -22,14 +22,14 @@ class FormAnswer < ActiveRecord::Base
     "trade", # International Trade Award
     "innovation", # Innovation Award
     "development", # Sustainable Development Award
-    "promotion" # Enterprise promotion Award
+    "promotion" # Enterprise Promotion Award
   ]
 
   AWARD_TYPE_FULL_NAMES = {
     "trade" => "International Trade",
     "innovation" => "Innovation",
     "development" => "Sustainable Development",
-    "promotion" => "Enterprise promotion"
+    "promotion" => "Enterprise Promotion"
   }
 
   enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true

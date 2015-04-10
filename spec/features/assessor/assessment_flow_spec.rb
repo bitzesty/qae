@@ -44,7 +44,7 @@ describe "Assessment flow", %(
       end
 
       all(".form-save-link").each(&:click)
-      click_button "Submit Appraisal"
+      click_button "Submit appraisal"
     end
 
     visit assessor_form_answer_path(form_answer)
@@ -56,7 +56,7 @@ describe "Assessment flow", %(
     within "#section-case-summary" do
       expect(page).to have_selector(".form-value p", text: text, count: 4)
       expect(page).to have_selector(".rag-text", text: "Green", count: 3)
-      expect(page).to have_selector("input[value='Confirm Case Summary']")
+      expect(page).to have_selector("input[value='Confirm case summary']")
       first(".btn-rag").click
       find(".dropdown-menu .rag-negative").click
       wait_for_ajax
@@ -67,7 +67,7 @@ describe "Assessment flow", %(
       visit assessor_form_answer_path(form_answer)
     end
     find("#case-summary-heading .panel-title a").click
-    expect(page).to_not have_selector("input[value='Confirm Case Summary']")
+    expect(page).to_not have_selector("input[value='Confirm case summary']")
     login_as(lead, scope: :assessor)
     visit assessor_form_answer_path(form_answer)
     find("#case-summary-heading .panel-title a").click
@@ -76,7 +76,7 @@ describe "Assessment flow", %(
       expect(page).to have_selector(".form-value p", text: text, count: 4)
       expect(page).to have_selector(".rag-text", text: "Green", count: 2)
       expect(page).to have_selector(".rag-text", text: "Red", count: 1)
-      expect(page).to have_selector("input[value='Confirm Case Summary']")
+      expect(page).to have_selector("input[value='Confirm case summary']")
     end
   end
 end

@@ -90,7 +90,7 @@ module CaseSummaryPdfs::General::DataPointer
   def application_background_table_items
     [
       [
-        "Application Background",
+        "Application background",
         data["application_background_section_desc"]
       ]
     ]
@@ -99,7 +99,7 @@ module CaseSummaryPdfs::General::DataPointer
   def case_summaries_table_headers
     [
       [
-        "Case Summary Comments",
+        "Case summary comments",
         "RAG"
       ]
     ]

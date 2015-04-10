@@ -33,7 +33,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
     context "promotion tab" do
       before do
         within ".nav-pills" do
-          find("a", text: "Enterprise promotion").click
+          find("a", text: "Enterprise Promotion").click
         end
       end
       it "filters by status" do

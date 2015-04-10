@@ -11,7 +11,7 @@ class Eligibility::Promotion < Eligibility
             boolean: true,
             label: "Does your nominee contribute to the promotion of business enterprise and/or entrepreneurial skills?",
             accept: :true,
-            hint: "Enterprise promotion' covers the encouragement or facilitation of the skills and attitudes found in an enterprise environment. This award is for entrepreneurs, business men and women, innovators and inventors who give their time, knowledge and experience to support other potential entrepreneurs."
+            hint: "'Enterprise promotion' covers the encouragement or facilitation of the skills and attitudes found in an enterprise environment. This award is for entrepreneurs, business men and women, innovators and inventors who give their time, knowledge and experience to support other potential entrepreneurs."
 
   property :contribution_is_outside_requirements_of_activity,
             boolean: true,

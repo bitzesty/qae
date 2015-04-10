@@ -6,8 +6,8 @@
         h2
           ' Reports
         ul.list-unstyled.list-actions
-          - ["Innovation Case Status", "Intl Trade Case Status", "Sus Dev Case Status", "QAEP Case Status", "All Entries", "Press Book List"].each do |report|
-            li class="#{'todo-placeholder' unless report == 'All Entries'}"
+          - ["Innovation case status", "Intl Trade case status", "Sus Dev case status", "QAEP case status", "All entries", "Press book list"].each do |report|
+            li class="#{'todo-placeholder' unless report == 'All entries'}"
               .pull-right
                 =link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT, format: :csv)
                   span.glyphicon.glyphicon-download-alt
@@ -46,7 +46,13 @@
           h4.panel-title
             a data-toggle="collapse" data-parent="#dashboard-details" href="#stage-one-application" aria-expanded="true" aria-controls="stage-one-application"
               ' Stage 1 - Application
-      = render "admin/dashboard/stage_one_application"
+        = render "admin/dashboard/stage_one_application"
+
+      /.panel.panel-default
+        .panel-heading role="tab" id="stage-two-assessment-header"
+          h4.panel-title
+            a.collapsed data-toggle="collapse" data-parent="#dashboard-details" href="#stage-two-assessment" aria-expanded="false" aria-controls="stage-two-assessment"
+              ' Stage 2 - Application
         #stage-two-assessment.panel-collapse.collapse role="tabpanel" aria-labelledby="stage-two-assessment-header"
           .panel-body
             / TODO Stage 2 - Application
@@ -65,7 +71,7 @@
                     th.table-total
                       strong TOTAL
                 tbody
-                  - ["International Trade", "Innovation", "Sustainable development", "QAEP"].each do |award|
+                  - ["International Trade", "Innovation", "Sustainable Development", "QAEP"].each do |award|
                     tr
                       th = award
                       td 0
@@ -107,7 +113,7 @@
                     th.table-total
                       strong TOTAL
                 tbody
-                  - ["International Trade", "Innovation", "Sustainable development", "QAEP"].each do |award|
+                  - ["International Trade", "Innovation", "Sustainable Development", "QAEP"].each do |award|
                     tr
                       th = award
                       td 0
