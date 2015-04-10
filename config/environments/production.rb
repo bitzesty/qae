@@ -45,7 +45,7 @@ Rails.application.configure do
   # config.to_prepare { Devise::SessionsController.force_ssl }
   # config.to_prepare { Devise::RegistrationsController.force_ssl }
   # config.to_prepare { Devise::PasswordsController.force_ssl }
-  # 
+  #
   # Set to :debug to see everything in the log.
   config.log_level = :info
 
@@ -65,7 +65,7 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: ENV["MAILER_HOST"] }
-
+  config.action_mailer.asset_host = ENV["MAILER_HOST"]
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
