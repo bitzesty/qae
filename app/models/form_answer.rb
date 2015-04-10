@@ -38,6 +38,7 @@ class FormAnswer < ActiveRecord::Base
     belongs_to :user
     belongs_to :account
     belongs_to :award_year
+    belongs_to :company_details_editable, polymorphic: true
 
     has_one :form_basic_eligibility, class_name: 'Eligibility::Basic', dependent: :destroy
     has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
