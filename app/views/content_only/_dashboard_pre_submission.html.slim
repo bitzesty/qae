@@ -31,8 +31,6 @@
             li.no-border
               h3
                 ' Enterprise Promotion Award
-              small
-                /' Unclear eligibility
               .pull-right
                 = link_to "New nomination", apply_enterprise_promotion_award_path
 
@@ -44,28 +42,3 @@
             p
               ' Submission deadline
               em = submission_deadline.decorate.formatted_trigger_time
-
-        /.inner.group.related-section
-          h2#parent-section
-            ' Submitted award applications
-
-          nav role="navigation" aria-labelledby="parent-section"
-            ul
-              li
-                ' 2014 - Innovation
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-              li
-                ' 2014 - International Trade
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-              li
-                ' 2013 - Innovation
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-              li
-                ' 2013 - International Trade
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-              li
-                ' 2012 - Substainability Development
-                = link_to "Download PDF", "http://www.example.com", class: "inline-link"
-
-        /.inner.group
-          = link_to "Return to top ↑", "#content", class: "return-to-top"
