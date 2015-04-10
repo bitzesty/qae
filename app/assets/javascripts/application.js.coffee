@@ -418,9 +418,10 @@ jQuery ->
       else
         $("#trade-org-fulfilled-info").addClass("visuallyhidden")
 
-  # Show trade epxiry info if it isn't 2015
+  # Show trade expiry info if it isn't 2015
   if $(".trade-expiry-input").size() > 0
     $(".trade-expiry-input").bind "change", () ->
+      # TODO: Hardcoded date
       if $(this).val().toString() != "2015"
         $("#trade-expiry-info").removeClass("visuallyhidden")
       else

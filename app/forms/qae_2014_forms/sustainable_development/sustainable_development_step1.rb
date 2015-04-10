@@ -58,12 +58,13 @@ class QAE2014Forms
           style "small"
         end
 
+        # TODO: Hardcoded date
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
           context %(
             <p>
-              Organisations that began trading after 01/10/2012 aren't eligible for this award.
+              Organisations that began trading after <span class='todo-placeholder'>01/10/2012</span> aren't eligible for this award.
             </p>
                     )
           date_max "01/10/2012"
@@ -72,7 +73,8 @@ class QAE2014Forms
         header :business_awards_header, "Business awards" do
         end
 
-        options :queen_award_holder, "Are you a current Queen's Award holder (2010-2014)?" do
+        # TODO: Hardcoded date
+        options :queen_award_holder, "Are you a current Queen's Award holder <span class='todo-placeholder'>(2010-2014)</span>?" do
           required
           ref "A 6"
           yes_no
