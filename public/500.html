@@ -9,7 +9,6 @@
       #global-header .header-wrapper:after,
       #global-header .header-wrapper .header-global:after,
       #global-header .header-wrapper .header-global .header-logo:after,
-      #global-header-bar:after,
       #footer .footer-wrapper:after,
       #footer .footer-meta:after,
       .smart-answer .article-container:after {
@@ -338,60 +337,90 @@
         text-decoration: underline;
       }
 
-      .beta-tag {
-        display: -moz-inline-stack;
-        display: inline-block;
-        margin: 0 8px 0 0;
-        margin-left: 4px;
-        padding: 2px 5px 0;
-        color: #fff;
-        font-family: "nta", Arial, sans-serif;
-        font-size: 16px;
-        font-weight: 700;
-        letter-spacing: 1px;
-        line-height: 1.25;
-        text-decoration: none;
-        text-transform: uppercase;
-        vertical-align: top;
+      .phase-banner {
+        padding: 10px 0 8px 0;
+        border-bottom: 1px solid #bfc1c3;
       }
 
       @media (min-width: 641px) {
-        .beta-tag {
-          position: relative;
-          top: -3px;
-          margin-left: 8px;
-          vertical-align: baseline;
+        .phase-banner {
+          padding-bottom: 10px;
         }
       }
 
+      main .phase-banner {
+        margin: 0 30px;
+      }
+
       @media (max-width: 640px) {
-        .beta-tag {
+        main .phase-banner {
+          margin-right: 0;
+          margin-left: 0;
+          padding-right: 15px;
+          padding-left: 15px;
+        }
+      }
+
+      .phase-banner p {
+        margin: 0;
+        color: #000;
+        font-family: "nta", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.25;
+        font-weight: 400;
+        text-transform: none;
+      }
+
+      @media (max-width: 640px) {
+        .phase-banner p {
           font-size: 14px;
           line-height: 1.14285714;
         }
       }
 
-      #global-header-bar {
-        width: auto;
-        max-width: 1020px;
-        margin: 0 auto;
-      }
-
-      #global-header-bar .inner-block {
-        padding-right: 15px;
-        padding-left: 15px;
+      .phase-banner .phase-tag {
+        display: -moz-inline-stack;
+        display: inline-block;
+        vertical-align: top;
+        margin: 0 8px 0 0;
+        padding: 2px 5px 0;
+        font-family: "nta", Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.25;
+        font-weight: 700;
+        text-transform: none;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #f47738;
       }
 
       @media (min-width: 641px) {
-        #global-header-bar .inner-block {
-          padding-right: 30px;
-          padding-left: 30px;
+        .phase-banner .phase-tag {
+          vertical-align: baseline;
         }
       }
 
-      #global-header-bar .header-bar {
-        height: 10px;
-        background-color: #005ea5;
+      @media (max-width: 640px) {
+        .phase-banner .phase-tag {
+          font-size: 14px;
+          line-height: 1.14285714;
+        }
+      }
+
+      .phase-banner span {
+        display: -moz-inline-stack;
+        display: inline-block;
+        width: 75%;
+        vertical-align: top;
+      }
+
+      @media (min-width: 641px) {
+        .phase-banner span {
+          width: auto;
+          vertical-align: baseline;
+        }
       }
 
       #footer {
@@ -740,16 +769,23 @@
         }
       }
 
-      /* Page error styles */
-      #wrapper.page-error {
-        margin-top: 30px;
+      .footer-helpline {
+        margin: 1.5em;
+        margin-bottom: 0;
+        padding: 1.5em 0;
+        border-top: 1px solid #bfc1c3;
       }
 
+      /* Page error styles */
       @media (max-width: 640px) {
         #wrapper.page-error {
           margin-top: 0;
           margin-bottom: 30px;
         }
+      }
+
+      #wrapper.page-error .phase-banner {
+        margin-bottom: 30px;
       }
 
       .page-error ul {
@@ -791,6 +827,11 @@
     <div class="guide smart-answer answer page-error" id="wrapper">
       <div id="QAE">
         <main class="group" id="content" role="main">
+          <div class="phase-banner">
+            <p>
+              <strong class="phase-tag">BETA </strong><span>This is a new service – your <a href="#">feedback</a> will help us to improve it. </span>
+            </p>
+          </div>
           <div>
             <header class="group page-header page-header-wider">
               <div>
@@ -807,6 +848,9 @@
               </article>
             </div>
           </div>
+          <p class="footer-helpline">
+            Need help? Ring us on <strong>020 7215 6880</strong>. Alternatively, email us at <a href="mailto:info@queensawards.org.uk">info@queensawards.org.uk</a>
+          </p>
         </main>
       </div>
     </div>
