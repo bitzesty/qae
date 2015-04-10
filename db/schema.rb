@@ -252,7 +252,6 @@ ActiveRecord::Schema.define(version: 20150410131705) do
     t.hstore   "financial_data"
     t.boolean  "admin_importance_flag",           default: false
     t.boolean  "assessor_importance_flag",        default: false
-    t.boolean  "accepted",                        default: false
     t.boolean  "primary_assessor_not_assigned",   default: true
     t.boolean  "secondary_assessor_not_assigned", default: true
     t.datetime "company_details_updated_at"
@@ -322,6 +321,17 @@ ActiveRecord::Schema.define(version: 20150410131705) do
     t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "scans", force: :cascade do |t|
+    t.string   "uuid"
+    t.string   "filename"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "form_answer_attachment_id"
+    t.integer  "support_letter_attachment_id"
+    t.integer  "audit_certificate_id"
   end
 
   create_table "settings", force: :cascade do |t|

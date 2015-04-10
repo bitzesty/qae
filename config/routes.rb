@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   devise_for :assessors
 
+  mount VsRails::Engine => "/virus-check"
+
   get "/apply-for-queens-award-for-enterprise"          => "content_only#apply_for_queens_award_for_enterprise",          as: "apply-for-queens-award-for-enterprise"
 
   get "/sign_up_complete"                               => "content_only#sign_up_complete",                               as: "sign_up_complete"
