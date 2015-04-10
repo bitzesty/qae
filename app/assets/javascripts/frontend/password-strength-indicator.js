@@ -88,7 +88,7 @@ $(function() {
       password_confirmation_field: $passwordConfirmationField,
       password_confirmation_guidance: $('#password-confirmation-guidance'),
 
-      strong_passphrase_boundary: 4,
+      strong_passphrase_boundary: 3,
       min_password_length: $passwordField.data('min-password-length'),
 
       update_indicator: function(guidance, strengthScore) {
