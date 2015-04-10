@@ -19,8 +19,8 @@ describe Users::CollaborationMailer do
       end
 
       let(:new_user) { true }
-      let(:generated_password) { "my98ssdkjv9823kds=2" }
-      let(:confirmation_token) { "12345678" }
+      let(:generated_password) { "test_password" }
+      let(:confirmation_token) { "1234567824355" }
 
       let(:mail) {
         Users::CollaborationMailer.access_granted(
@@ -41,10 +41,11 @@ describe Users::CollaborationMailer do
       end
 
       it "renders the body" do
-        # expect(mail.body.encoded).to match(new_account_admin.role.humanize)
+        puts "[mail.body.encoded] #{mail.body.encoded}"
         expect(mail.body.encoded).to match(new_account_admin.email)
         expect(mail.body.encoded).to match(generated_password)
-        expect(mail.body.encoded).to have_link("Confirm", href: user_confirmation_url(confirmation_token: confirmation_token))
+        expect(mail.body.encoded).to match("confirm your email")
+        expect(mail.body.encoded).to match(confirmation_token)
       end
     end
 
@@ -75,8 +76,7 @@ describe Users::CollaborationMailer do
       end
 
       it "renders the body" do
-        # expect(mail.body.encoded).to match(new_account_admin.role.humanize)
-        expect(mail.body.encoded).to have_link("View", href: dashboard_url)
+        expect(mail.body.encoded).to match(dashboard_url)
       end
     end
   end
