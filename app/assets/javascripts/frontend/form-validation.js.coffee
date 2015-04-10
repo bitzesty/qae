@@ -24,6 +24,8 @@ window.FormValidation =
     page = container.closest(".step-article")
     if !page.hasClass("step-errors")
       $(".steps-progress-bar .js-step-link[data-step=#{page.attr('data-step')}]").addClass("step-errors")
+      # uncheck confirmation of entry
+      $(".question-block[data-answer='entry_confirmation-confirmation-of-entry'] input[type='checkbox']").prop("checked", false)
     @validates = false
 
   isTextishQuestion: (question) ->
