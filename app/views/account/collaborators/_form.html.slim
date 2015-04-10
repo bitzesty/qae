@@ -9,15 +9,16 @@
                   html: {class: 'qae-form', method: :post} do |f|
 
   .add-collaborator-box
-    .field-with-errors
-      - if add_collaborator_interactor.errors.present?
-        - add_collaborator_interactor.errors.each do |error|
-          span.error
-            = error
-      - if collaborator.errors[:base].present?
-        - collaborator.errors[:base].each do |error|
-          span.error
-            = error
+    - if add_collaborator_interactor.errors.present? or collaborator.errors[:base].present?
+      .field-with-errors
+        - if add_collaborator_interactor.errors.present?
+          - add_collaborator_interactor.errors.each do |error|
+            span.error
+              = error
+        - if collaborator.errors[:base].present?
+          - collaborator.errors[:base].each do |error|
+            span.error
+              = error
 
     fieldset
       h3.first-h3

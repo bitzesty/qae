@@ -33,6 +33,7 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
               li
                 = link_to "Declaration of Corporate Responsibility", declaration_of_corporate_responsibility_path
                 span.award-info
+                  / TODO: Hardcoded date
                   span.pull-right.todo-placeholder
                     ' Due by 30/03/2016
                   = link_to declaration_of_corporate_responsibility_path
@@ -68,10 +69,7 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
             ' applications were
           ' successful.
         p
-          strong
-            ' You are not allowed to announce success until after
-            span.todo-placeholder
-              ' April 21st.
+          strong You are not allowed to announce success until after April 21st.
       .clear
     - award_applications.each do |award|
       .container-split.award-list

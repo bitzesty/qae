@@ -15,10 +15,16 @@
           h1 5. Timeline
 
           h3 April
-          p Application period opens on 21st April.
+          p
+            ' Application period opens on
+            = application_deadline(:submission_start)
+            ' .
 
           h3 September
-          p Submission period closes.
+          p
+            ' Submission period closes on
+            = application_deadline(:submission_end)
+            ' .
 
           h3 October &amp; November
           p Each entry is judged on its own merits against the relevant award criteria as well as against other entrants in same sector.

@@ -1,11 +1,11 @@
 fieldset
-  = f.input :subscribed_to_emails, label: "I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).", label_html: { class: "selectable" }
+  = f.input :subscribed_to_emails, label: "I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).", label_html: { class: "selectable" }, wrapper_class: "selectable-group"
 
-  = f.input :agree_being_contacted_by_department_of_business, label: "I am happy to be contacted by the Department of Business, Innovation and Skills.", label_html: { class: "selectable" }
+  = f.input :agree_being_contacted_by_department_of_business, label: "I am happy to be contacted by the Department of Business, Innovation and Skills.", label_html: { class: "selectable" }, wrapper_class: "selectable-group"
 
 /fieldset
   h3
     ' How you would prefer us to contact you regarding your application?
-  = f.input :prefered_method_of_contact, as: :radio_buttons, item_wrapper_class: 'selectable', label: false
+  = f.input :prefered_method_of_contact, as: :radio_buttons, item_wrapper_class: "selectable", label: false
   .clear
   br
