@@ -28,6 +28,7 @@ class Users::AuditCertificatesController < Users::BaseController
     self.audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
     if audit_certificate.save
+      Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
       render json: audit_certificate,
              status: :created
     else
