@@ -46,13 +46,16 @@ class QAE2014Forms
           text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
         end
 
-        confirm :confirmation_of_contact, "Confirmation of contact" do
+        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
           ref "F 3"
-          required
           text %{
             I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).
-            <br>
-            <br>
+          }
+        end
+
+        confirm :agree_being_contacted_by_department_of_business, "" do
+          sub_ref "F 3.1"
+          text %{
             I am happy to be contacted by the Department of Business, Innovation and Skills.
           }
         end

@@ -49,23 +49,18 @@ class QAE2014Forms
           required
         end
 
-        header :confirmation_of_contact_header, "Confirmation of contact" do
+        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
           ref "F 2"
-        end
-
-        confirm :agree_being_contacted_about_issues_not_related_to_application, "" do
           text "I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info)."
         end
 
         confirm :agree_being_contacted_by_department_of_business, "" do
+          sub_ref "F 2.1"
           text "I am happy to be contacted by the Department of Business, Innovation and Skills."
         end
 
-        header :confirmation_of_entry_header, "Confirmation of entry" do
+        confirm :entry_confirmation, "Confirmation of entry" do
           ref "F 3"
-        end
-
-        confirm :entry_confirmation, "" do
           required
           text %(
             By ticking this box, I submit a nomination for consideration for the Queen’s Award for Enterprise Promotion 2015. I certify that all the particulars given, and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld.
