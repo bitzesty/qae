@@ -7,6 +7,7 @@ module CompanyDetailsMixin
 
     @form_answer = @company_detail.form_answer.decorate
     @form_answer.company_details_updated_at = DateTime.now
+    @form_answer.company_details_editable = current_subject
     @form_answer.save
 
     respond_to do |format|

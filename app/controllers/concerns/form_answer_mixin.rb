@@ -3,6 +3,8 @@ module FormAnswerMixin
     authorize resource, :update?
     resource.assign_attributes(update_params)
     resource.company_details_updated_at = DateTime.now
+    resource.company_details_editable = current_subject
+
     resource.save
 
     respond_to do |format|

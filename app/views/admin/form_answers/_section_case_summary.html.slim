@@ -8,8 +8,8 @@
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-assessment" href="#section-case-summary" aria-expanded="true" aria-controls="section-case-summary"
         ' Case Summary
-        small
-          - if assessment.editable.present?
+        - if assessment.editable.present?
+          small
             = "Updated by #{assessment.editable.decorate.full_name} - #{format_date(assessment.updated_at)}"
   #section-case-summary.section-case-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="case-summary-heading"
     .panel-body
