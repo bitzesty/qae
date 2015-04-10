@@ -8,10 +8,11 @@
   var PasswordStrengthIndicator = function(options) {
     var instance = this;
 
-    $.each([options["password_field"], options["password_confirmation_field"]], function(i, password_field) {
+    $.each([options["password_field"], options["password_confirmation_field"], options["email_field"]], function(i, password_field) {
       var update = function() {
         var password = $(options["password_field"]).val(),
             passwordConfirmation = $(options["password_confirmation_field"]).val();
+        options["weak_words"] = $(options["email_field"]).val().split(/\W+/);
         instance.updateIndicator(password, passwordConfirmation, options);
       };
       $(password_field).debounce("keyup", update, 50);
@@ -22,7 +23,6 @@
 
   PasswordStrengthIndicator.prototype.updateIndicator = function(password, passwordConfirmation, options) {
     var guidance = [];
-
     var result = zxcvbn(password, options["weak_words"]);
     if (password.length > 0) {
       if (options["min_password_length"] && password.length < parseInt(options["min_password_length"])) {
@@ -80,6 +80,7 @@ $(function() {
 
     var $passwordField = $(this);
     var $passwordConfirmationField = $("form #password-confirmation-control-group input[type=password]");
+    var $emailField = $("form #email-control-group input[type=email]");
     $passwordField.parent().parent().append('<input type="hidden" id="password-strength-score" name="password-strength-score" value=""/>');
 
     new GOVUK.passwordStrengthIndicator({
@@ -87,6 +88,7 @@ $(function() {
       password_strength_guidance: $('#password-guidance'),
       password_confirmation_field: $passwordConfirmationField,
       password_confirmation_guidance: $('#password-confirmation-guidance'),
+      email_field: $emailField,
 
       strong_passphrase_boundary: 3,
       min_password_length: $passwordField.data('min-password-length'),
