@@ -11,7 +11,7 @@
       .inner
         .application-notice.info-notice
           p
-            ' If you are a marketing company applying on behalf of a client, your client should sign up for an account first, then add you as a collaborator.
+            ' If you are a marketing company applying on behalf of a client, your client should create an account first, then add you as a collaborator.
           p
             ' If you already have an account please
             = link_to "sign in", new_user_session_path
@@ -19,7 +19,7 @@
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
           /= f.error_notification
 
-          .form-inputs
+          .form-inputs#email-control-group
             .question
               h2 = f.label :email
               .question-body
@@ -73,6 +73,6 @@
                 = f.input :agreed_with_privacy_policy, as: :boolean, label: "I have read and accept the #{link_to 'terms and conditions of the privacy statement', privacy_path, target: '_blank'}".html_safe
 
           .form-actions
-            = f.button :submit, "Sign up", class: "button large"
+            = f.button :submit, "Create account", class: "button large"
 
         /= render "users/shared/links"

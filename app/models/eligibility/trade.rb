@@ -46,6 +46,7 @@ class Eligibility::Trade < Eligibility
             accept: :all,
             if: proc { account.basic_eligibility.current_holder? }
 
+  # TODO: Hardcoded date
   property :qae_for_trade_expiery_date,
             values: %w(2015 2016 2017 2018 2019),
             accept: :not_nil_if_current_holder_of_qae_for_trade,

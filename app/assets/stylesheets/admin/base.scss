@@ -208,6 +208,41 @@ table .ellipsis {
   }
 }
 
+// Fix boolean inputs
+.boolean {
+  &.input,
+  &.selectable-group {
+    position: relative;
+  }
+
+  &.control-label {
+    padding-left: 20px;
+  }
+
+  .checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &.field-with-errors .checkbox {
+    top: 0.5em;
+    left: 20px;
+  }
+
+  &.selectable-group {
+    .selectable {
+      padding-left: 40px;
+    }
+
+    .checkbox {
+      top: 15px;
+      left: 15px;
+      margin-top: 0;
+    }
+  }
+}
+
 .hint {
   display: block;
   margin-top: 10px;
