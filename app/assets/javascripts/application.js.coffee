@@ -188,6 +188,30 @@ jQuery ->
   $(".js-financial-year-latest").closest(".question-block").next().find("input").change () ->
     updateYearEnd()
 
+  # Calculates the UK Sales for Sus Dev form
+  # UK sales = turnover - exports
+  updateTurnoverExportCalculation = ->
+    $(".js-sales-value").each ->
+      sales_year = $(this).data("year")
+      turnover_data = $(this).data("turnover")
+      exports_data = $(this).data("exports")
+      turnover_selector = "[id='form["+turnover_data+"_"+sales_year+"]']"
+      exports_selector = "[id='form["+exports_data+"_"+sales_year+"]']"
+      $("#{turnover_selector}, #{exports_selector}").each ->
+        $(this).attr("data-year", sales_year)
+      $(document).on "change", "#{turnover_selector}, #{exports_selector}", ->
+        sales_year = $(this).data("year")
+        turnover_selector = "[id='form["+turnover_data+"_"+sales_year+"]']"
+        exports_selector = "[id='form["+exports_data+"_"+sales_year+"]']"
+        sales_selector = ".js-sales-value[data-year='"+sales_year+"']"
+        sales_value = parseInt($(turnover_selector).val()) - parseInt($(exports_selector).val())
+        if sales_value
+          $(sales_selector).text(sales_value)
+        else
+          $(sales_selector).text("-")
+
+  updateTurnoverExportCalculation()
+
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
     $("body").removeClass("show-error-page")
