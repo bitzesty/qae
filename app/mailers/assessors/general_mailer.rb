@@ -7,9 +7,11 @@ class Assessors::GeneralMailer < ApplicationMailer
   end
 
   def audit_certificate_uploaded(form_answer_id)
-    @form_answer = FormAnswer.find(form_answer)
+    @form_answer = FormAnswer.find(form_answer_id)
     @assessor = @form_answer.assessors.primary
-    @subject = "TODO: copy"
-    mail to: @assessor.email, subject: @subject
+    if @assessor.present?
+      @subject = "TODO: copy"
+      mail to: @assessor.email, subject: @subject
+    end
   end
 end
