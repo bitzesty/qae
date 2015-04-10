@@ -24,6 +24,6 @@ class AwardYear < ActiveRecord::Base
   private
 
   def create_settings
-    self.settings = Settings.new unless settings
+    self.settings = Settings.create!(award_year: self) unless settings
   end
 end

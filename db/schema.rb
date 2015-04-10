@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150409090140) do
+ActiveRecord::Schema.define(version: 20150410091747) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -327,6 +327,8 @@ ActiveRecord::Schema.define(version: 20150409090140) do
     t.datetime "updated_at",    null: false
     t.integer  "award_year_id", null: false
   end
+
+  add_index "settings", ["award_year_id"], name: "index_settings_on_award_year_id", using: :btree
 
   create_table "support_letter_attachments", force: :cascade do |t|
     t.integer  "user_id",           null: false
