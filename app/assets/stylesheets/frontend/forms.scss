@@ -19,43 +19,54 @@ $black-true: #000;
   display: none !important;
 }
 
-// Error styling
-.errors-container {
-  margin: 0;
-  margin-bottom: 0.2em;
-  padding: 0;
-  list-style: none;
-
-  &.char-spacing {
-    padding-right: 160px;
-  }
-}
-
-.field-with-errors .error,
-.smart-answer article .error,
-.question-has-errors .errors-container li,
-.supporters-list .errors-container li,
-.audit_certificate_upload_form .errors-container li {
-  @include core-19;
-  clear: both;
-  display: block;
-  margin: 0;
-  margin-bottom: 0.2em;
-  padding: 0;
-  padding-left: 25px;
-  background: image-url("icon-important-sm-red.png") no-repeat scroll 0 0.1em;
-  background-size: 16px 16px;
-  border: none;
-  color: $error-colour;
-
-  // Retina
-  @media only screen and (-webkit-min-device-pixel-ratio: 2), not all, not all, not all, only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
-    background-image: image-url("icon-important-sm-red-2x.png");
-  }
-}
-
 .page-devise .boolean .error {
   margin-left: 0;
+}
+
+// Fix boolean inputs
+.boolean {
+  &.input,
+  &.selectable-group {
+    position: relative;
+  }
+
+  &.control-label {
+    padding-left: $gutter-two-thirds;
+  }
+
+  .checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  &.field-with-errors .checkbox {
+    top: 0.5em;
+    left: $gutter-two-thirds;
+  }
+
+  &.selectable-group {
+    .selectable {
+      padding-left: 40px;
+    }
+
+    .checkbox {
+      left: 15px;
+      top: 15px;
+    }
+  }
+}
+
+h2 > .boolean.control-label {
+  padding-left: 0;
+}
+
+.input:after {
+  content: "\0020";
+  display: block;
+  height: 0;
+  clear: both;
+  overflow: hidden;
 }
 
 // Expanded the standard input style to include other types
@@ -888,6 +899,55 @@ input[type="file"] {
 
   @media (max-width: 640px) {
     float: none;
+  }
+}
+
+// Error styling
+.errors-container {
+  margin: 0;
+  margin-bottom: 0.2em;
+  padding: 0;
+  list-style: none;
+
+  &.char-spacing {
+    padding-right: 160px;
+  }
+}
+
+.field-with-errors .error,
+.smart-answer article .error,
+.question-has-errors .errors-container li,
+.supporters-list .errors-container li,
+.audit_certificate_upload_form .errors-container li {
+  @include core-19;
+  clear: both;
+  display: block;
+  margin: 0;
+  margin-bottom: 0.2em;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: $red;
+}
+
+.question-has-errors,
+.field-with-errors {
+  margin-bottom: 2.45em;
+  padding-top: $gutter-one-third;
+  padding-bottom: $gutter-half;
+  padding-left: $gutter-two-thirds;
+  border-left: 3px solid $red;
+
+  h2 {
+    margin-top: 0;
+  }
+
+  input,
+  select,
+  textarea,
+  .date-input,
+  .question-group {
+    margin-bottom: 0;
   }
 }
 
