@@ -51,8 +51,8 @@ $black-true: #000;
     }
 
     .checkbox {
-      left: 15px;
       top: 15px;
+      left: 15px;
     }
   }
 }
@@ -62,10 +62,10 @@ h2 > .boolean.control-label {
 }
 
 .input:after {
-  content: "\0020";
   display: block;
   height: 0;
   clear: both;
+  content: "\0020";
   overflow: hidden;
 }
 
@@ -918,13 +918,13 @@ input[type="file"] {
 .smart-answer article .error,
 .question-has-errors .errors-container li,
 .supporters-list .errors-container li,
-.audit_certificate_upload_form .errors-container li {
+.audit-certificate-upload-form .errors-container li {
   @include core-19;
-  clear: both;
   display: block;
   margin: 0;
   margin-bottom: 0.2em;
   padding: 0;
+  clear: both;
   border: none;
   background: transparent;
   color: $red;
