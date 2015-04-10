@@ -418,11 +418,15 @@ jQuery ->
       else
         $("#trade-org-fulfilled-info").addClass("visuallyhidden")
 
-  # Show trade expiry info if it isn't 2015
+  # Show trade expiry info if it isn't 2015 (earliest year)
   if $(".trade-expiry-input").size() > 0
     $(".trade-expiry-input").bind "change", () ->
-      # TODO: Hardcoded date
-      if $(this).val().toString() != "2015"
+      lowest_year = "9999"
+      $(".trade-expiry-input option").each ->
+        if $(this).attr("value") != ""
+          if parseInt(lowest_year) > parseInt($(this).attr("value"))
+            lowest_year = $(this).attr("value")
+      if $(this).val().toString() != lowest_year
         $("#trade-expiry-info").removeClass("visuallyhidden")
       else
         $("#trade-expiry-info").addClass("visuallyhidden")
