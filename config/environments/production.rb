@@ -39,13 +39,14 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = true
+  config.force_ssl = ENV["FORCE_SSL"]
 
   # COOKIE_DOMAIN: Should be the following for staging or production
   # www.staging.queens-awards-enterprise.service.gov.uk
   # www.queens-awards-enterprise.service.gov.uk
   config.session_store :cookie_store,
                        key: "_qae_session",
+                       secure: ""
                        domain: ENV["COOKIE_DOMAIN"]
   #
   # config.to_prepare { Devise::SessionsController.force_ssl }
