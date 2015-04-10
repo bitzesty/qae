@@ -70,8 +70,8 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
         p
           strong
             ' You are not allowed to announce success until after
-            span.todo-placeholder
-              ' April 21st.
+            = application_deadline(:submission_start)
+            ' .
       .clear
     - award_applications.each do |award|
       .container-split.award-list
