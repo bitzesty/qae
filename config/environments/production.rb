@@ -46,7 +46,6 @@ Rails.application.configure do
   # www.queens-awards-enterprise.service.gov.uk
   config.session_store :cookie_store,
                        key: "_qae_session",
-                       secure: ""
                        domain: ENV["COOKIE_DOMAIN"]
   #
   # config.to_prepare { Devise::SessionsController.force_ssl }
