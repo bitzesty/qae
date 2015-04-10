@@ -8,7 +8,7 @@ describe Users::BuckinghamPalaceInviteMailer do
 
     it "renders the headers" do
       expect(mail.to).to eq([palace_invite.email])
-      expect(mail.from).to eq(["info@queensawards.org.uk"])
+      expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
     end
 
     it "renders the body" do
