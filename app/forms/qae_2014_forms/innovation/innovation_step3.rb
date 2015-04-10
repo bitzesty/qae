@@ -63,6 +63,8 @@ class QAE2014Forms
           by_year_condition :innovation_performance_years, "5 plus", 5
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
+
+          employees_question
         end
 
         options :innovation_part_of, "How does your innovation fit within the overall business?" do

@@ -78,6 +78,8 @@ class QAE2014Forms
           by_year_condition :trade_commercial_success, "6 plus", 6
           conditional :trade_commercial_success, :true
           conditional :financial_year_date_changed, :true
+
+          employees_question
         end
 
         header :company_financials, "Company Financials" do

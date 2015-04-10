@@ -20,7 +20,8 @@ module CaseSummaryPdfs::General::DataPointer
 
   def employees_question
     all_questions.detect do |q|
-      q.key == :employees
+      q.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion) &&
+      q.employees_question.present?
     end
   end
 
@@ -38,7 +39,7 @@ module CaseSummaryPdfs::General::DataPointer
 
   def employees_year_entry(field)
     entry = filled_answers.detect do |k, _v|
-      k == "employees_#{field}"
+      k == "#{employees_question.key}_#{field}"
     end
 
     entry[1] if entry.present?
@@ -58,19 +59,29 @@ module CaseSummaryPdfs::General::DataPointer
     form_answer.sic_code || undefined_value
   end
 
+  def current_awards_question
+    all_questions.detect do |q|
+      q.delegate_obj.is_a?(QAEFormBuilder::QueenAwardHolderQuestion)
+    end
+  end
+
   def current_awards
-    answer = filled_answers["queen_award_holder_details"]
+    if current_awards_question.present?
+      answer = filled_answers[current_awards_question.key.to_s]
 
-    if answer.present?
-      res = JSON.parse(answer).map do |item|
-        prepared_item = JSON.parse(item)
+      if answer.present?
+        res = JSON.parse(answer).map do |item|
+          prepared_item = JSON.parse(item)
 
-        if prepared_item["category"].present? && prepared_item["year"].present?
-          "#{prepared_item["year"]} - #{PREVIOUS_AWARDS[prepared_item["category"].to_s]}"
-        end
-      end.compact
+          if prepared_item["category"].present? && prepared_item["year"].present?
+            "#{prepared_item["year"]} - #{PREVIOUS_AWARDS[prepared_item["category"].to_s]}"
+          end
+        end.compact
 
-      res.present? ? res.join(", ") : undefined_value
+        res.present? ? res.join(", ") : undefined_value
+      else
+        undefined_value
+      end
     else
       undefined_value
     end
