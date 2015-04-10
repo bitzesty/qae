@@ -38,6 +38,7 @@ class QAE2014Forms
 
         textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
           classes "sub-question"
+          sub_ref "A 3.1"
           required
           conditional :principal_business, :no
           words_max 200
@@ -70,6 +71,7 @@ class QAE2014Forms
 
         queen_award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
           classes "sub-question"
+          sub_ref "A 6.1"
 
           conditional :queen_award_holder, :yes
 
@@ -100,12 +102,14 @@ class QAE2014Forms
 
         text :previous_business_name, "Name used previously" do
           classes "regular-question"
+          sub_ref "A 6.2"
           required
           conditional :business_name_changed, :yes
         end
 
         textarea :previous_business_ref_num, "Reference number(s) used previously" do
           classes "regular-question"
+          sub_ref "A 6.3"
           required
           conditional :business_name_changed, :yes
           rows 5
@@ -120,6 +124,7 @@ class QAE2014Forms
 
         textarea :other_awards_desc, "Please describe them" do
           classes "sub-question"
+          sub_ref "A 7.1"
           required
           context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
           conditional :other_awards_won, :yes
@@ -150,6 +155,7 @@ class QAE2014Forms
 
         text :business_sector_other, "Please specify" do
           classes "regular-question"
+          sub_ref "A 11.1"
           required
           conditional :business_sector, :other
         end
@@ -161,28 +167,33 @@ class QAE2014Forms
 
         text :parent_company, "Name of immediate parent company" do
           classes "sub-question"
+          sub_ref "A 12.1"
           conditional :applying_for, "division branch subsidiary"
         end
 
         country :parent_company_country, "Country of immediate parent company" do
           classes "regular-question"
+          sub_ref "A 12.2"
           conditional :applying_for, "division branch subsidiary"
         end
 
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
           classes "sub-question"
+          sub_ref "A 12.3"
           conditional :applying_for, "division branch subsidiary"
           yes_no
         end
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
           classes "regular-question"
+          sub_ref "A 12.4"
           conditional :parent_ultimate_control, :no
           conditional :applying_for, "division branch subsidiary"
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
+          sub_ref "A 12.5"
           conditional :parent_ultimate_control, :no
           conditional :applying_for, "division branch subsidiary"
         end
@@ -190,6 +201,7 @@ class QAE2014Forms
         options :parent_group_entry, "Are you a parent company making a group entry?" do
           classes "sub-question"
           conditional :applying_for, :true
+          sub_ref "A 12.6"
           context %(
             <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
                     )
@@ -199,6 +211,7 @@ class QAE2014Forms
         options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
           classes "sub-question"
           conditional :applying_for, :true
+          sub_ref "A 12.7"
           conditional :parent_group_entry, "yes"
           yes_no
         end
@@ -211,6 +224,7 @@ class QAE2014Forms
 
         subsidiaries_associates_plants :trading_figures_add, "" do
           required
+          sub_ref "A 13.1"
           conditional :trading_figures, :yes
         end
 

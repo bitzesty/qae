@@ -21,7 +21,7 @@ class QAE2014Forms
               Letters of support should be from those with first-hand knowledge of the nominee’s contribution to enterprise promotion and the impact their work has had on others. This could be colleagues, collaborators, or those who have benefitted from their work. You, the nominator, may not write a letter of support.
             </p>
             <p>
-              At least one letter should be from a large organisation (eg. employer, nonprofit, college, local authority) able to provide an assessment of the extent to which the nominee’s contribution sets them aside from their peers.
+              At least one letter should be from a large organisation (e.g. employer, nonprofit, college, local authority) able to provide an assessment of the extent to which the nominee’s contribution sets them aside from their peers.
             </p>
             <p>
               When selecting supporters, you should cover a variety of the nominee's activities, and a variety of perspectives on those activities, where possible.

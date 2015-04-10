@@ -126,6 +126,7 @@ class QAE2014Forms
         end
 
         confirm :declaration_of_corporate_responsibility, "" do
+          sub_ref "D 1.1"
           required
           text "I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise."
           conditional :corp_responsibility_form, :declare_now

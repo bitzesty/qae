@@ -37,6 +37,7 @@ class QAE2014Forms
 
         by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Briefly describe each type of good/service you trade." do
           classes "sub-question"
+          sub_ref "B 2.1"
           required
           context %(
             <p>

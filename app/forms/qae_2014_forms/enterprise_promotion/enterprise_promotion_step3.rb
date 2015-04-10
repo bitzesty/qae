@@ -48,6 +48,7 @@ class QAE2014Forms
         end
 
         textarea :reasons_to_nominate_for_lifetime_achievemnt_award, "Explain why they deserve this award." do
+          sub_ref "C 3.1"
           conditional :nominee_active_in_сurrent_enterprise_promotion_role, :yes
           words_max 300
           rows 5
