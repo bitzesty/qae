@@ -35,4 +35,4 @@
 - if press_summary.persisted? && policy(press_summary).approve?
   br
   br
-  = button_to "Approve Press Summary", polymorphic_url([:approve, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true
+  = button_to "Approve press summary", polymorphic_url([:approve, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true

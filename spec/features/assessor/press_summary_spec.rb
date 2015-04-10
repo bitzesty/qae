@@ -32,9 +32,9 @@ describe "Assessor press_summary management", js: true do
 
       visit assessor_form_answer_path(form_answer)
       find("#press-summary-heading a").click
-      click_button "Approve Press Summary"
+      click_button "Approve press summary"
 
-      expect(page).to have_no_selector(".btn-block", text: "Approve Press Summary")
+      expect(page).to have_no_selector(".btn-block", text: "Approve press summary")
     end
   end
 end

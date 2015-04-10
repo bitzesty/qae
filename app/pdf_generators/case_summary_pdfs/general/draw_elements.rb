@@ -21,7 +21,7 @@ module CaseSummaryPdfs::General::DrawElements
   end
 
   def render_sic_code
-    pdf_doc.text_box "SIC Code: #{sic_code}",
+    pdf_doc.text_box "SIC code: #{sic_code}",
             header_text_properties.merge(at: [0.mm, 114.5.mm + default_offset])
   end
 

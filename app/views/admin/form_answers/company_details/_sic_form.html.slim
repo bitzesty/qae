@@ -2,7 +2,7 @@
   .form-group.sic-code
     = simple_form_for [namespace_name, @form_answer], remote: true, authenticity_token: true do |f|
 
-      label.form-label SIC Code
+      label.form-label SIC code
       .form-value
         p
           - if @form_answer.sic_code.present?
@@ -26,7 +26,7 @@
       .clear
 - else
   .form-group
-    label.form-label SIC Code
+    label.form-label SIC code
     p
     - if @form_answer.sic_code.present?
       = @form_answer.sic_code_name

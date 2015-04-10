@@ -13,7 +13,7 @@ class FormAnswerStatistics::Picker
     registered_users << User.where(created_at: (Time.now - 24.hours)..Time.now).count
     registered_users << User.where(created_at: (Time.now - 7.days)..Time.now).count
     registered_users << User.count
-    out[:registered_users] = { name: "Registered Users", counters: registered_users }
+    out[:registered_users] = { name: "Registered users", counters: registered_users }
 
 
     not_eligible = []
@@ -30,7 +30,7 @@ class FormAnswerStatistics::Picker
 
     submitted = collect_submission_ranges(klass.all)
     out[:applications_submitted] = {
-      name: "Applications Submitted",
+      name: "Applications submitted",
       counters: submitted
     }
     out

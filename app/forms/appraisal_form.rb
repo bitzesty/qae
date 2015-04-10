@@ -21,12 +21,12 @@ class AppraisalForm
   TRADE = {
     overseas_earnings_growth: {
       type: :rag,
-      label: "Overseas Earnings Growth:"
+      label: "Overseas earnings growth:"
 
     },
     commercial_success: {
       type: :rag,
-      label: "Commercial Success:"
+      label: "Commercial success:"
     },
     strategy: {
       type: :rag,
@@ -34,26 +34,26 @@ class AppraisalForm
     },
     verdict: {
       type: :verdict,
-      label: "Overall Verdict:"
+      label: "Overall verdict:"
     }
   }
 
   INNOVATION = {
     level_of_innovation: {
       type: :rag,
-      label: "Level of Innovation:"
+      label: "Level of innovation:"
     },
     extent_of_value_added: {
       type: :rag,
-      label: "Extent of Value Added:"
+      label: "Extent of value added:"
     },
     impact_of_innovation: {
       type: :rag,
-      label: "Impact of Innovation:"
+      label: "Impact of innovation:"
     },
     verdict: {
       type: :verdict,
-      label: "Overall Verdict:"
+      label: "Overall verdict:"
     }
   }
 
@@ -64,26 +64,26 @@ class AppraisalForm
     },
     impact_achievement: {
       type: :rag,
-      label: "Impact/Achievement:"
+      label: "Impact/achievement:"
     },
     level_of_support: {
       type: :rag,
-      label: "Level of Support:"
+      label: "Level of support:"
     },
     verdict: {
       type: :verdict,
-      label: "Overall Verdict:"
+      label: "Overall verdict:"
     }
   }
 
   DEVELOPMENT = {
     product_service_contribution: {
       type: :rag,
-      label: "Product/Service Contribution:"
+      label: "Product/service contribution:"
     },
     commercial_success: {
       type: :rag,
-      label: "Commercial Success:"
+      label: "Commercial success:"
     },
     strategy: {
       type: :rag,
@@ -103,39 +103,39 @@ class AppraisalForm
     },
     leadership_management: {
       type: :rag,
-      label: "Leadership & Management:"
+      label: "Leadership & management:"
     },
     environment_protection: {
       type: :strengths,
-      label: "Environment Protection and Management:"
+      label: "Environment protection and management:"
     },
     benefiting_the_wilder_community: {
       type: :strengths,
-      label: "Benefiting the Wider Community:"
+      label: "Benefiting the wider community:"
     },
     sustainable_resource: {
       type: :strengths,
-      label: "Sustainable Resource Use:"
+      label: "Sustainable resource use:"
     },
     economic_sustainability: {
       type: :strengths,
-      label: "Economic Sustainability:"
+      label: "Economic sustainability:"
     },
     supporting_employees: {
       type: :strengths,
-      label: "Supporting Employees:"
+      label: "Supporting employees:"
     },
     internal_leadership: {
       type: :strengths,
-      label: "Internal Leadership & Management:"
+      label: "Internal leadership & management:"
     },
     industry_sector: {
       type: :strengths,
-      label: "Industry/Sector Leadership:"
+      label: "Industry/sector leadership:"
     },
     verdict: {
       type: :verdict,
-      label: "Overall Verdict:"
+      label: "Overall verdict:"
     }
   }
 
