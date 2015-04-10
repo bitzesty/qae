@@ -26,7 +26,7 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_award_general_information(x_coord, y_coord)
-    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year}",
+    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year.year}",
                      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 

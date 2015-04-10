@@ -12,7 +12,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_certificate_info
-    title = "THE QUEEN’S AWARDS FOR ENTERPRISE #{form_answer.award_year}: AUDITOR’S CERTIFICATE"
+    title = "THE QUEEN’S AWARDS FOR ENTERPRISE #{form_answer.award_year.year}: AUDITOR’S CERTIFICATE"
     render_text_box(title, 147)
   end
 

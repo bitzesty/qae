@@ -47,7 +47,7 @@ shared_context "admin case summary pdf file checks" do
   end
 
   let(:award_general_information) do
-    "#{SharedPdfHelpers::DrawElements::AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year}"
+    "#{SharedPdfHelpers::DrawElements::AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year.year}"
   end
 
   let(:award_title) do
