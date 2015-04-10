@@ -1,15 +1,15 @@
 .well
   h2
-    ' Feedbacks
+    ' Case Summaries
   ul.list-unstyled.list-actions
     - FormAnswer::AWARD_TYPE_FULL_NAMES.each do |key, value|
       li
         .pull-right
-          = link_to download_feedbacks_pdf_admin_reports_path(category: key, format: :pdf)
+          = link_to download_case_summary_pdf_admin_reports_path(category: key, format: :pdf)
             span.glyphicon.glyphicon-download-alt
             span.visible-lg.visible-md
               ' Download
-        = link_to download_feedbacks_pdf_admin_reports_path(category: key, format: :pdf), class: "action-title"
+        = link_to download_case_summary_pdf_admin_reports_path(category: key, format: :pdf), class: "action-title"
           span.glyphicon.glyphicon-file
           = value
   .clear

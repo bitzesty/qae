@@ -1,10 +1,10 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-describe "Admin: Download an application's feedback PDF", %q{
+describe "Admin: Download an application's case summaries PDF", %q{
 As an Admin
-I want to Print/download an application's feedback as a pdf
-So that I can print and review application's feedback
+I want to Print/download an application's case summaries as a pdf
+So that I can print and review application's case summaries
 } do
 
   let!(:admin) { create(:admin) }
@@ -16,21 +16,21 @@ So that I can print and review application's feedback
 
   describe "International Trade Award" do
     let(:award_type) { :trade }
-    include_context "admin application feedback pdf download"
+    include_context "admin application case summaries pdf download"
   end
 
   describe "Innovation Award" do
     let(:award_type) { :innovation }
-    include_context "admin application feedback pdf download"
+    include_context "admin application case summaries pdf download"
   end
 
   describe "Sustainable Development Award" do
     let(:award_type) { :development }
-    include_context "admin application feedback pdf download"
+    include_context "admin application case summaries pdf download"
   end
 
   describe "Enterprise Promotion Award" do
     let(:award_type) { :promotion }
-    include_context "admin application feedback pdf download"
+    include_context "admin application case summaries pdf download"
   end
 end

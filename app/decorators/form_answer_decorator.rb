@@ -18,6 +18,11 @@ class FormAnswerDecorator < ApplicationDecorator
                                                                      .new("singular", object, {})
   end
 
+  def case_summaries_pdf_generator
+    "CaseSummaryPdfs::Awards2016::#{object.award_type.capitalize}::Base".constantize
+                                                                        .new("singular", object, {})
+  end
+
   def pdf_audit_certificate_generator
     "PdfAuditCertificates::Awards2016::#{object.award_type.capitalize}::Base".constantize.
                                                                              new(object)

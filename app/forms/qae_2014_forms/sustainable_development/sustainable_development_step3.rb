@@ -61,6 +61,8 @@ class QAE2014Forms
           by_year_condition :development_performance_years, "5 plus", 5
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
+
+          employees_question
         end
         # TODO: Min 2 - if less than 2 block - present 'you are not eligible' message
 

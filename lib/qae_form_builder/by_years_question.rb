@@ -51,6 +51,10 @@ class QAEFormBuilder
     def by_year_condition k, v, num, options = {}
       @q.by_year_conditions << ByYearsCondition.new(k, v, num, options)
     end
+
+    def employees_question
+      @q.employees_question = true
+    end
   end
 
   class ByYearsCondition
@@ -65,10 +69,10 @@ class QAEFormBuilder
   end
 
   class ByYearsQuestion < Question
-    attr_accessor :type, :by_year_conditions, :label
+    attr_accessor :type, :by_year_conditions, :label, :employees_question
     def after_create
       @by_year_conditions = []
-    end 
+    end
   end
 
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-shared_context "admin feedback pdf file checks" do
+shared_context "admin case summary pdf file checks" do
   let!(:user) { create :user }
 
   let!(:form_answer) do
@@ -9,25 +9,28 @@ shared_context "admin feedback pdf file checks" do
                          user: user
   end
 
-  let(:feedback_content) do
+  let!(:assessor_assignment) do
+    create :assessor_assignment, form_answer: form_answer,
+                                 submitted_at: Date.today,
+                                 assessor: nil,
+                                 position: "primary_case_summary",
+                                 document: assessor_assignment_document
+  end
+
+  let(:assessor_assignment_document) do
     res = {}
 
-    FeedbackForm.fields_for_award_type(form_answer.award_type).each_with_index do |block, index|
+    AppraisalForm.struct(form_answer).each_with_index do |block, index|
       key = block[0]
-      res["#{key}_strength"] = "#{index}_strength"
-      res["#{key}_weakness"] = "#{index}_weakness"
+      res["#{key}_desc"] = "#{index}_desc"
+      res["#{key}_rate"] = "positive"
     end
 
     res
   end
 
-  let!(:feedback) do
-    create :feedback, form_answer: form_answer,
-                      document: feedback_content
-  end
-
   let(:pdf_generator) do
-    form_answer.decorate.feedbacks_pdf_generator
+    form_answer.decorate.case_summaries_pdf_generator
   end
 
   let(:pdf_content) do
@@ -59,10 +62,9 @@ shared_context "admin feedback pdf file checks" do
       expect(pdf_content).to include(award_title)
     end
 
-    it "should contain feedback data" do
-      FeedbackForm.fields_for_award_type(form_answer.award_type).each do |key, value|
-        expect(pdf_content).to include(feedback.document["#{key}_strength"])
-        expect(pdf_content).to include(feedback.document["#{key}_weakness"])
+    it "should contain case summary data" do
+      AppraisalForm.struct(form_answer).each do |key, value|
+        expect(pdf_content).to include(assessor_assignment.document["#{key}_desc"])
       end
     end
   end
