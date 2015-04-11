@@ -41,9 +41,7 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = ENV["FORCE_SSL"].to_s == "true" ? true : false
 
-  # COOKIE_DOMAIN: Should be the following for staging or production
-  # www.staging.queens-awards-enterprise.service.gov.uk
-  # www.queens-awards-enterprise.service.gov.uk
+  # COOKIE_DOMAIN:
   config.session_store :cookie_store,
                        key: "_qae_session",
                        domain: ENV["COOKIE_DOMAIN"]
