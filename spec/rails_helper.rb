@@ -1,4 +1,6 @@
 ENV["RAILS_ENV"] ||= 'test'
+ENV["VIRUS_SCANNER_API_URL"] ||= "http://virus.scanner"
+ENV["VIRUS_SCANNER_API_KEY"] ||= "random_api_key"
 require "codeclimate-test-reporter"
 
 CodeClimate::TestReporter.configure do |config|
@@ -13,6 +15,7 @@ require 'capybara/rspec'
 require 'database_cleaner'
 require 'shoulda/matchers'
 require "capybara-screenshot/rspec"
+require "webmock/rspec"
 
 Capybara.javascript_driver = :webkit
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
@@ -21,6 +24,7 @@ ActiveRecord::Migration.check_pending!
 ActiveRecord::Migration.maintain_test_schema!
 Qae::Application.load_tasks
 Capybara::Screenshot.webkit_options = { width: 1024, height: 768 }
+WebMock.disable_net_connect!(allow_localhost: true)
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
@@ -43,6 +47,8 @@ RSpec.configure do |config|
       DatabaseCleaner.strategy = :truncation
     end
     DatabaseCleaner.start
+    stub_request(:post, /virus.scanner/).
+      to_return(status: 200, body: { id: "de401fdf-08b0-44a8-810b-20794c5c98c7" }.to_json)
   end
 
   config.after do
