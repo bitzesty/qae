@@ -41,11 +41,6 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = ENV["FORCE_SSL"].to_s == "true" ? true : false
 
-  # COOKIE_DOMAIN:
-  config.session_store :cookie_store,
-                       key: "_qae_session_production",
-                       domain: ENV["COOKIE_DOMAIN"]
-  #
   # config.to_prepare { Devise::SessionsController.force_ssl }
   # config.to_prepare { Devise::RegistrationsController.force_ssl }
   # config.to_prepare { Devise::PasswordsController.force_ssl }
