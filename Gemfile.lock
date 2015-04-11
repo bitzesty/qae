@@ -8,6 +8,14 @@ GIT
       sass (>= 3.2.0)
 
 GIT
+  remote: git://github.com/bitzesty/vs-rails.git
+  revision: 31ede7e924335dd12e90e93442fb9ec5f1c5d7a5
+  branch: master
+  specs:
+    vs_rails (0.0.3)
+      rails (~> 4.2.0)
+
+GIT
   remote: git://github.com/getsentry/raven-ruby.git
   revision: 7b8bc07b588ef3baf3fe59fdb166b5678ef778bf
   specs:
@@ -163,6 +171,8 @@ GEM
       currencies (~> 0.4.2)
     country_select (2.1.0)
       countries (~> 0.9, >= 0.9.3)
+    crack (0.4.2)
+      safe_yaml (~> 1.0.0)
     currencies (0.4.2)
     daemon_controller (1.2.0)
     database_cleaner (1.3.0)
@@ -211,6 +221,8 @@ GEM
       railties (>= 3.0.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    faraday_middleware (0.9.1)
+      faraday (>= 0.7.4, < 0.10)
     fission (0.5.0)
       CFPropertyList (~> 2.2)
     fog (1.28.0)
@@ -465,6 +477,7 @@ GEM
       ruby-progressbar (~> 1.4)
     ruby-progressbar (1.7.1)
     ruby-rc4 (0.1.5)
+    safe_yaml (1.0.4)
     sass (3.4.9)
     secure_headers (2.0.0)
     shoulda-matchers (2.7.0)
@@ -525,8 +538,14 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
+    virus-scanner (0.0.3)
+      faraday
+      faraday_middleware
     warden (1.2.3)
       rack (>= 1.0)
+    webmock (1.21.0)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
     whenever (0.9.2)
       activesupport (>= 2.3.4)
       chronic (>= 0.6.3)
@@ -611,5 +630,8 @@ DEPENDENCIES
   turnip
   uglifier (>= 1.3.0)
   virtus
+  virus-scanner
+  vs_rails!
+  webmock
   whenever
   wicked (~> 1.1)

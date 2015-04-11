@@ -72,6 +72,8 @@ gem 'carrierwave'
 gem 'jquery.fileupload-rails'
 gem "fog"
 gem "fog-aws"
+gem "virus-scanner"
+gem "vs_rails", github: "bitzesty/vs-rails", branch: "master"
 
 # Background jobs
 gem "shoryuken", github: "phstc/shoryuken", branch: "master"
@@ -110,6 +112,7 @@ group :test do
   gem 'pdf-inspector', require: 'pdf/inspector'
   gem 'codeclimate-test-reporter', group: :test, require: nil
   gem "timecop"
+  gem "webmock"
 end
 
 group :development do
