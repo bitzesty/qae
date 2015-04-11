@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150410131705) do
+ActiveRecord::Schema.define(version: 20150411113558) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -322,6 +322,17 @@ ActiveRecord::Schema.define(version: 20150410131705) do
     t.integer  "year"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "scans", force: :cascade do |t|
+    t.string   "uuid"
+    t.string   "filename"
+    t.string   "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "form_answer_attachment_id"
+    t.integer  "support_letter_attachment_id"
+    t.integer  "audit_certificate_id"
   end
 
   create_table "settings", force: :cascade do |t|
