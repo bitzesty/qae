@@ -9,7 +9,7 @@ li.form_answer_attachment
           span.glyphicon.glyphicon-remove
           span.visible-lg.visible-md
             ' Remove
-  - unless form_answer_attachment.scan.result == "clean"
+  - unless form_answer_attachment.scan.status == "clean"
     = link_to [url_namespace, form_answer_attachment.form_answer, form_answer_attachment],
               target: "_blank",
               class: "action-title"
