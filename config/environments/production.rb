@@ -43,7 +43,7 @@ Rails.application.configure do
 
   # COOKIE_DOMAIN:
   config.session_store :cookie_store,
-                       key: "_qae_session",
+                       key: "_qae_session_production",
                        domain: ENV["COOKIE_DOMAIN"]
   #
   # config.to_prepare { Devise::SessionsController.force_ssl }

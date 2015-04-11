@@ -4,5 +4,5 @@
 # in related environment config files:
 # config/environments/*.rb
 if Rails.env.development? || Rails.env.test?
-  Rails.application.config.session_store :cookie_store, key: '_qae_session'
+  Rails.application.config.session_store :cookie_store, key: "_qae_session_#{Rails.env}"
 end

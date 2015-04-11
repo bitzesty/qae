@@ -43,7 +43,7 @@ Rails.application.configure do
 
   # COOKIE_DOMAIN
   config.session_store :cookie_store,
-                       key: "_qae_session",
+                       key: "_qae_session_staging",
                        domain: ENV["COOKIE_DOMAIN"]
   # Set to :debug to see everything in the log.
   config.log_level = :info
