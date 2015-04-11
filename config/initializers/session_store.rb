@@ -4,5 +4,10 @@
 # in related environment config files:
 # config/environments/*.rb
 if Rails.env.development? || Rails.env.test?
-  Rails.application.config.session_store :cookie_store, key: '_qae_session'
+  Rails.application.config.session_store :cookie_store, key: "_qae_session_#{Rails.env}"
+else
+  # TODO: uncomment domain in line below
+  # once you manage HTTPs warning on provided domain
+  Rails.application.config.session_store :cookie_store, key: "_qae_session_#{Rails.env}"#,
+                                                        #domain: ENV["COOKIE_DOMAIN"]
 end

@@ -41,10 +41,6 @@ Rails.application.configure do
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = ENV["FORCE_SSL"].to_s == "true" ? true : false
 
-  # COOKIE_DOMAIN
-  config.session_store :cookie_store,
-                       key: "_qae_session",
-                       domain: ENV["COOKIE_DOMAIN"]
   # Set to :debug to see everything in the log.
   config.log_level = :info
 
