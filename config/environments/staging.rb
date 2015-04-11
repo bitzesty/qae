@@ -54,13 +54,13 @@ Rails.application.configure do
   # Cache settings set in config/initializers/redis.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  # config.action_controller.asset_host = "http://assets.example.com"
+  config.action_controller.asset_host = ENV["ASSET_HOST"]
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
   config.action_mailer.default_url_options = { host: ENV["MAILER_HOST"] }
-  config.action_mailer.asset_host = ENV["ASSET_HOST"]
+  config.action_mailer.asset_host = ENV["MAILER_HOST"]
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).
