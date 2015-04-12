@@ -213,6 +213,14 @@ window.FormValidation =
       return
 
   validateMoneyByYears: (question) ->
+    input_cells_counter = 0
+
+    # Checking if question has min value for first year
+    financial_conditional_block = question.find(".js-financial-conditional").first()
+    first_year_min_value = financial_conditional_block.data("first-year-min-value")
+    if typeof(first_year_min_value) != typeof(undefined)
+      first_year_min_validation = true
+
     for subquestion in question.find("input")
       shown_question = true
       for conditional in $(subquestion).parents('.js-conditional-question')
@@ -220,6 +228,8 @@ window.FormValidation =
           shown_question = false
 
       if shown_question
+        input_cells_counter += 1
+
         subq = $(subquestion)
         if not subq.val() and question.hasClass("question-required")
           @log_this(question, "validateMoneyByYears", "This field is required")
@@ -229,10 +239,22 @@ window.FormValidation =
         else if not subq.val()
           continue
 
-        if not subq.val().toString().match(@numberRegex)
+        value = subq.val().toString()
+        err_container = subq.closest(".span-financial")
+
+        if not value.match(@numberRegex)
           @log_this(question, "validateMoneyByYears", "Not a valid currency value")
-          @appendMessage(subq.closest("label"), "Not a valid currency value")
+          @appendMessage(err_container, "Not a valid currency value")
           @addErrorClass(question)
+        else
+          # if value is valid currency and it's first cell and
+          # and question has min value for first year value
+          # and value less than min value
+          if input_cells_counter == 1 && first_year_min_validation && (value < first_year_min_value)
+            message = financial_conditional_block.data("first-year-min-validation-message")
+            @log_this(question, "validateMoneyByYears", message)
+            @appendMessage(err_container, message)
+            @addErrorClass(question)
 
   validateDateByYears: (question) ->
     for subquestion_block in question.find(".js-fy-entry-container.show-question .date-input")

@@ -133,6 +133,7 @@ class QAE2014Forms
           sub_ref "C 6.1"
           required
           type :money
+          first_year_min_value "100000", "Cannot be less than £100,000"
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %{
