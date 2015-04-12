@@ -279,7 +279,7 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.indent 7.mm do
           render_years_labels_table
         end
-      when QAEFormBuilder::ByYearsQuestion
+      when QAEFormBuilder::ByYearsQuestion, QAEFormBuilder::TurnoverExportsCalculationQuestion
         render_years_table
       when QAEFormBuilder::QueenAwardHolderQuestion
         if humanized_answer.present?

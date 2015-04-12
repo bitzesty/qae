@@ -129,6 +129,18 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
+        # UK sales = turnover - exports
+        turnover_exports_calculation :uk_sales, "UK Sales" do
+          label ->(y) { "Financial year #{y}" }
+          by_year_condition :innovation_performance_years, "2 to 4", 2
+          by_year_condition :innovation_performance_years, "5 plus", 5
+
+          conditional :innovation_performance_years, :true
+          conditional :financial_year_date_changed, :true
+          turnover :total_turnover
+          exports :exports
+        end
+
         by_years :net_profit, "Net profit after tax but before dividends" do
           classes "sub-question"
           sub_ref "C 6.2"
