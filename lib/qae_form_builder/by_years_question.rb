@@ -55,6 +55,11 @@ class QAEFormBuilder
     def employees_question
       @q.employees_question = true
     end
+
+    def first_year_min_value(min_value, validation_message)
+      @q.first_year_min_value = min_value
+      @q.first_year_validation_message = validation_message
+    end
   end
 
   class ByYearsCondition
@@ -69,7 +74,13 @@ class QAEFormBuilder
   end
 
   class ByYearsQuestion < Question
-    attr_accessor :type, :by_year_conditions, :label, :employees_question
+    attr_accessor :type,
+                  :by_year_conditions,
+                  :label,
+                  :employees_question,
+                  :first_year_min_value,
+                  :first_year_validation_message
+
     def after_create
       @by_year_conditions = []
     end
