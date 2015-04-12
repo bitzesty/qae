@@ -9,6 +9,9 @@ module QaePdfForms::CustomQuestions::ByYear
   ]
   ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='999999'>"
   ANSWER_FONT_END = "</font></color>"
+  CALCULATED_FINANCIAL_DATA = [
+    :uk_sales
+  ]
 
   def render_years_labels_table
     rows = financial_table_changed_dates_headers.map do |a|
@@ -29,9 +32,13 @@ module QaePdfForms::CustomQuestions::ByYear
   end
 
   def render_years_table
-    rows = active_fields.map do |field|
-      entry = year_entry(field)
-      entry.present? ? entry : IN_PROGRESS
+    rows = if CALCULATED_FINANCIAL_DATA.include?(question.key)
+      get_audit_data(question.key)
+    else
+      active_fields.map do |field|
+        entry = year_entry(field)
+        entry.present? ? entry : IN_PROGRESS
+      end
     end
 
     render_single_row_list(year_headers, rows)
