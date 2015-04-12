@@ -34,13 +34,14 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_financial_table
     rows = [financial_table_headers.unshift("")]
+
     table_headers.map do |label|
       question_key = label["id"]
 
       rows << financial_data(
         question_key,
-        get_audit_data(question_key)).unshift(label["label"]
-      )
+        get_audit_data(question_key)
+      ).unshift(label["label"])
     end
 
     table rows, table_default_ops
@@ -65,8 +66,10 @@ module PdfAuditCertificates::General::SharedElements
     question_data.map do |entry|
       if entry.is_a?(Array)
         entry.join("/")
-      else
+      elsif entry.is_a?(Hash)
         data_by_type(question_key, entry)
+      else # CALCULATED_DATA
+        "£#{entry.to_s}"
       end
     end
   end
