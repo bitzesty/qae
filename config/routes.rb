@@ -90,8 +90,8 @@ Rails.application.routes.draw do
     resources :form_answers, only: [:show] do
       resource :audit_certificate, only: [:show, :create, :destroy]
       resource :support_letter_attachments, only: :create
-      resource :supporters, only: :create
-      resource :support_letters, only: :create
+      resource :supporters, only: [:create, :new, :destroy, :index]
+      resource :support_letters, only: [:create, :new, :destroy]
       resource :press_summary, only: [:show, :update] do
         get :acceptance
         post :update_acceptance
