@@ -30,10 +30,6 @@
     cursor: default;
     color: $black;
   }
-
-  &.js-displayed {
-    display: none;
-  }
 }
 
 // Show/hide the error step after submitting the form with errors
