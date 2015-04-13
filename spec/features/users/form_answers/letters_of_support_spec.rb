@@ -12,7 +12,6 @@ describe "Letters of Support" do
   end
 
   it "should be able to create supporter" do
-    save_and_open_page
     click_link "+ Add another supporter"
     fill_in "First name", with: "Jack"
     fill_in "Last name", with: "Lee"
