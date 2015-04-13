@@ -17,7 +17,7 @@ class AuditCertificatePdf < Prawn::Document
 
     @form_answer = form_answer.decorate
     @award_type = form_answer.award_type.downcase
-    @financial_pointer = FormFinancialPointer.new(form_answer)
+    @financial_pointer = FormFinancialPointer.new(@form_answer)
     @audit_data = financial_pointer.data
     @step_questions = financial_pointer.financial_step.questions
     @filled_answers = financial_pointer.filled_answers
