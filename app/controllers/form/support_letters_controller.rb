@@ -3,10 +3,10 @@ class Form::SupportLettersController < Form::BaseController
 
   def create
     @support_letter = @form_answer.support_letters.new(
-      support_letter_params.merge({
+      support_letter_params.merge(
         user_id: current_user.id,
         manual: true
-      })
+      )
     )
 
     attachment = SupportLetterAttachment.new(attachment_params)
