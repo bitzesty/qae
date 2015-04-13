@@ -8,7 +8,8 @@ class FormFinancialPointer
               :answers,
               :filled_answers,
               :financial_step,
-              :target_financial_questions
+              :target_financial_questions,
+              :options
 
   TARGET_FINANCIAL_DATA_QUESTION_TYPES = [
     QAEFormBuilder::ByYearsLabelQuestion,
@@ -17,8 +18,13 @@ class FormFinancialPointer
   YEAR_LABELS = %w(day month year)
   IN_PROGRESS = "-"
 
-  def initialize(form_answer)
+  TRADE_AUTOEXCLUDED_QUESTION_KEYS = [
+    :overseas_sales_indirect
+  ]
+
+  def initialize(form_answer, options={})
     @form_answer = form_answer
+    @options = options
     @answers = fetch_answers
     @award_form = form_answer.award_form.decorate(answers: answers)
 
@@ -124,7 +130,21 @@ class FormFinancialPointer
     financial_step.questions.select do |question|
       !FormPdf::HIDDEN_QUESTIONS.include?(question.key.to_s) &&
       TARGET_FINANCIAL_DATA_QUESTION_TYPES.include?(question.delegate_obj.class) &&
-      award_form[question.key].visible?
+      award_form[question.key].visible? &&
+      !excluded_by_ignored_questions_list?(question)
+    end
+  end
+
+  def excluded_by_ignored_questions_list?(question)
+    (options[:exclude_ignored_questions].present? &&
+     excluded_question_keys.present? &&
+     excluded_question_keys.include?(question.key))
+  end
+
+  def excluded_question_keys
+    case form_answer.object.award_type
+    when "trade"
+      TRADE_AUTOEXCLUDED_QUESTION_KEYS
     end
   end
 
