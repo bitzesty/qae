@@ -1,6 +1,6 @@
 - url_namespace = admin_signed_in? ? :admin : :assessor
 li.form_answer_attachment
-  - unless support_letter.support_letter.attachment.scan.status == "clean"
+  - unless support_letter.support_letter.attachment.scan.clean?
     = link_to [url_namespace, support_letter.form_answer, support_letter],
               target: "_blank",
               class: "action-title"

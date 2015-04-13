@@ -44,7 +44,7 @@ class FormAnswerPolicy < ApplicationPolicy
     (admin? || subject.lead_or_assigned?(record)) &&
     record.audit_certificate.present? &&
     record.audit_certificate.attachment.present? &&
-    record.audit_certificate.attachment.scan.clean?
+    record.audit_certificate.scan.clean?
   end
 
   def has_access_to_post_shortlisting_docs?
