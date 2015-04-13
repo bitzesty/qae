@@ -25,6 +25,7 @@ FactoryGirl.define do
     end
 
     trait :submitted do
+      # TOREFACTOR: should be state = submitted and submitted = true
       submitted true
     end
 

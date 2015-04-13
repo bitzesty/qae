@@ -21,6 +21,13 @@ class AwardYear < ActiveRecord::Base
     where(year: year)
   end
 
+  def user_creation_range
+    # Assumes that:
+    # 1. User is created in the same calendar year as the submission period is open
+    # 2. Submissions period can't cover 2 calendar years
+    (DateTime.new(year - 1)..DateTime.new(year - 1, 12).end_of_month)
+  end
+
   private
 
   def create_settings
