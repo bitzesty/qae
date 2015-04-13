@@ -59,7 +59,10 @@ class AssessmentSubmissionService
     if resource.primary_case_summary?
       Assessor.leads_for(resource.form_answer.award_type).each do |assessor|
         mailer = Assessors::PrimaryCaseSummaryMailer
-        mailer.notify(assessor.id, resource.form_answer.id).deliver_later!
+        changes_author = resource.form_answer.assessors.primary
+        if changes_author.present?
+          mailer.notify(assessor.id, resource.form_answer.id, changes_author.id).deliver_later!
+        end
       end
     end
   end
