@@ -1,6 +1,7 @@
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ' Dear
   = @collaborator.full_name
+  ' ,
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   = @user_who_added.full_name
@@ -24,7 +25,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
     = link_to "Log in", new_user_session_url
     '  here and go to
     = link_to "Password Settings", password_settings_account_url, style: "white-space: nowrap"
-    ' to change your password.
+    '  to change your password.
 - else
   p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
     = link_to "View", dashboard_url
