@@ -6,13 +6,14 @@
         h2
           ' Reports
         ul.list-unstyled.list-actions
-          li.todo-placeholder
+          li
             .pull-right
-              =link_to "#"
+              = link_to admin_report_path("registered-users", format: :csv)
+
                 span.glyphicon.glyphicon-download-alt
                 span.visible-lg.visible-md
                   ' Download
-            = link_to "#", class: "action-title"
+            = link_to admin_report_path("registered-users", format: :csv)
               span.glyphicon.glyphicon-file
               ' Registered users entry
 
@@ -26,13 +27,13 @@
               span.glyphicon.glyphicon-file
               ' Cases status
 
-          li
+          li.todo-placeholder
             .pull-right
-              = link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT, format: :csv)
+              = link_to admin_report_path("registered-users", format: :csv)
                 span.glyphicon.glyphicon-download-alt
                 span.visible-lg.visible-md
                   ' Download
-            = link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT, format: :csv), class: "action-title"
+            = link_to admin_report_path("registered-users", format: :csv), class: "action-title"
               span.glyphicon.glyphicon-file
               ' Entries report
 

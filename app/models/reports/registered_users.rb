@@ -1,13 +1,10 @@
 require "csv"
 
-class Reports::AdminReportBuilder
+class Reports::RegisteredUsers
   MAPPING = [
     {
       label: "URN",
       method: :urn
-    },
-    {
-      label: "ApplicantName"
     },
     {
       label: "RegisteredUserId",
@@ -32,33 +29,6 @@ class Reports::AdminReportBuilder
     {
       label: "RegisteredUserCompany",
       method: :company_name
-    },
-    {
-      label: "RegisteredUserAddressLine1",
-      method: :address_line1
-    },
-    {
-      label: "RegisteredUserAddressLine2",
-      method: :address_line2
-    },
-    {
-      label: "RegisteredUserAddressLine3",
-      method: :address_line3
-    },
-    {
-      label: "RegisteredUserPostcode",
-      method: :postcode
-    },
-    {
-      label: "RegisteredUserTelephone1",
-      method: :telephone1
-    },
-    {
-      label: "RegisteredUserTelephone2",
-      method: :telephone2
-    },
-    {
-      label: "RegisteredUserMobile"
     },
     {
       label: "FormType",
@@ -109,10 +79,12 @@ class Reports::AdminReportBuilder
       method: :business_sector_other
     },
     {
-      label: "Region"
+      label: "Region",
+      method: :business_region
     },
     {
-      label: "Employees"
+      label: "Employees",
+      method: :employees
     },
     {
       label: "QAOPermission",
@@ -128,8 +100,8 @@ class Reports::AdminReportBuilder
     }
   ]
 
-  def initialize
-    @scope = ::FormAnswer.all.includes(:user)
+  def initialize(year)
+    @scope = ::FormAnswer.where(award_year_id: year.id).includes(:user)
   end
 
   def build

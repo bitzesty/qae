@@ -1,11 +1,11 @@
 class Reports::AdminReport
-  ADMIN_REPORT = "admin_report"
-
-  def initialize(id)
+  def initialize(id, year)
     @id = id
+    @year = year
   end
 
   def build
-    Reports::AdminReportBuilder.new.build if @id == ADMIN_REPORT
+    # TODO: implement next reports (structures in /reports dir)
+    Reports::RegisteredUsers.new(@year).build if @id == "registered-users"
   end
 end
