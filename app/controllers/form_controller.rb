@@ -107,6 +107,7 @@ class FormController < ApplicationController
 
   def save
     @form_answer.document = serialize_doc(params[:form])
+    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
 
     redirected = params[:next_action] == "redirect"
     submitted = params[:submit] == "true" && !redirected
@@ -132,6 +133,7 @@ class FormController < ApplicationController
           if submitted
             redirect_to submit_confirm_url(@form_answer)
           else
+            params[:next_step] ||= @form.steps[1].title.parameterize
             redirect_to edit_form_url(@form_answer.id, step: params[:next_step])
           end
         end
