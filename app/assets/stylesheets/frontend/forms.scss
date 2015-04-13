@@ -652,8 +652,16 @@ input[type="file"] {
     background: $grey-4;
   }
 
-  label input {
+  label input,
+  .form-control {
     margin-bottom: 1em;
+  }
+
+  .field-with-errors {
+    label input,
+    .form-control {
+      margin-bottom: 0;
+    }
   }
 
   .hint {
@@ -679,6 +687,7 @@ input[type="file"] {
     }
   }
 }
+
 .button-alt,
 .button-add {
   @include core-19;
