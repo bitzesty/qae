@@ -25,7 +25,7 @@ header.page-header.group.page-header-over-sidebar
               span.hidden-content
                 == help.text
 
-          .question-block 
+          .question-block
             label
               h2
                 span class="steps step-d-1"
@@ -43,9 +43,9 @@ header.page-header.group.page-header-over-sidebar
           br
           br
 
-          - letters_intro_question =  @step.questions.detect { |q| q.key =  :supporter_letters_list }
+          - letters_intro_question =  @step.questions.select { |q| q.key =  :supporter_letters_list }.last
 
-          .question-block 
+          .question-block
             label
               h2
                 span class="steps step-d-2"

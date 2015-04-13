@@ -1,6 +1,5 @@
 li.view-only
-  - if @form_answer.support_letters.count > 1
-    = button_to "Remove", form_form_answer_support_letter_path(@form_answer, support_letter), method: :delete, class: "remove-link #{'read_only' if admin_in_read_only_mode?}"
+  = button_to "Remove", form_form_answer_support_letter_path(@form_answer, support_letter), method: :delete, class: "remove-link #{'read_only' if admin_in_read_only_mode?}"
 
   span.row
     span.span-6
