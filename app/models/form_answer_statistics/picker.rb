@@ -1,34 +1,49 @@
 class FormAnswerStatistics::Picker
+  attr_reader :year
+
+  def initialize(year)
+    @year = year
+  end
+
   def registered_users
     out = {}
-    out[:last_24h] = User.where(created_at: (Time.now - 24.hours)..Time.now).count
-    out[:last_7_days] = User.where(created_at: (Time.now - 7.days)..Time.now).count
-    out[:total_so_far] = User.count
+
+    c = count_with_year(User.where(created_at: (Time.now - 24.hours)..Time.now))
+    out[:last_24h] = c
+
+    c = count_with_year(User.where(created_at: (Time.now - 7.days)..Time.now))
+    out[:last_7_days] = c
+
+    out[:total_so_far] = User.where(created_at: year.user_creation_range).count
     out
   end
 
   def applications_table
     out = {}
     registered_users = []
-    registered_users << User.where(created_at: (Time.now - 24.hours)..Time.now).count
-    registered_users << User.where(created_at: (Time.now - 7.days)..Time.now).count
-    registered_users << User.count
+    c = count_with_year(User.where(created_at: (Time.now - 24.hours)..Time.now))
+    registered_users << c
+
+    c = count_with_year(User.where(created_at: (Time.now - 7.days)..Time.now))
+    registered_users << c
+
+    registered_users << User.where(created_at: year.user_creation_range).count
     out[:registered_users] = { name: "Registered users", counters: registered_users }
 
 
-    not_eligible = []
-    not_eligible << not_eligible(DateTime.now - 1.day)
-    not_eligible << not_eligible(DateTime.now - 7.days)
-    not_eligible << klass.where(state: "not_eligible").count
-    out[:applications_not_eligible] = { name: "Applications not eligible", counters: not_eligible }
+    n_eligible = []
+    n_eligible << count_with_year(not_eligible(DateTime.now - 1.day))
+    n_eligible << count_with_year(not_eligible(DateTime.now - 7.days))
+    n_eligible << fa_year_scope.where(state: "not_eligible").count
+    out[:applications_not_eligible] = { name: "Applications not eligible", counters: n_eligible }
 
     in_progress = []
-    in_progress << application_in_progress(Time.now - 1.days)
-    in_progress << application_in_progress(Time.now - 7.days)
-    in_progress << klass.where(state: "application_in_progress").count
+    in_progress << count_with_year(application_in_progress(Time.now - 1.days))
+    in_progress << count_with_year(application_in_progress(Time.now - 7.days))
+    in_progress << fa_year_scope.where(state: "application_in_progress").count
     out[:applications_in_progress] = { name: "Applications in progress", counters: in_progress }
 
-    submitted = collect_submission_ranges(klass.all)
+    submitted = collect_submission_ranges(fa_year_scope)
     out[:applications_submitted] = {
       name: "Applications submitted",
       counters: submitted
@@ -37,43 +52,62 @@ class FormAnswerStatistics::Picker
   end
 
   def applications_completions
-    # TODO: SCOPE WITH YEAR
     out = {}
     klass::POSSIBLE_AWARDS.each do |aw|
-      scope = klass.where(award_type: aw)
+      scope = fa_year_scope.where(award_type: aw)
       out[aw] = collect_completion_ranges(scope)
     end
-    out["total"] = collect_completion_ranges(klass.where.not(state: "not_eligible").where(submitted: false))
+    out["total"] = collect_completion_ranges(fa_year_scope.where.not(state: "not_eligible").where(submitted: false))
     out
   end
 
   def applications_submissions
     out = {}
     klass::POSSIBLE_AWARDS.each do |aw|
-      scope = klass.where(award_type: aw)
+      scope = fa_year_scope.where(award_type: aw)
       out[aw] = collect_submission_ranges(scope)
     end
 
-    out["total"] = collect_submission_ranges(klass.all)
+    out["total"] = collect_submission_ranges(fa_year_scope)
     out
   end
 
   private
 
+  def fa_year_scope(scope = nil)
+    scope ||= klass
+    scope.where(award_year_id: year.id)
+  end
+
+  def count_with_year(scope)
+    if current_awarding_year?
+      scope.count
+    else
+      "-"
+    end
+  end
+
+  def current_awarding_year?
+    year.year == AwardYear.current.year
+  end
+
   def application_in_progress(time_range)
-    klass.joins(:form_answer_transitions)
+    # application_in_progress it's initial state so need to check created_at as no
+    # transitions records yet
+    fa_year_scope.joins("LEFT OUTER JOIN form_answer_transitions on form_answers.id = form_answer_transitions.form_answer_id")
       .where(state: "application_in_progress")
-      .where("form_answer_transitions.to_state = ? AND
-        form_answer_transitions.created_at > ?", "application_in_progress", time_range)
-      .uniq.count
+      .where("(form_answer_transitions.to_state = ? AND
+        form_answer_transitions.created_at > ?) OR (form_answers.created_at > ?)",
+        "application_in_progress", time_range, time_range)
+      .uniq
   end
 
   def not_eligible(time_range)
-    klass.joins(:form_answer_transitions)
+    fa_year_scope.joins(:form_answer_transitions)
       .where(state: "not_eligible")
       .where("form_answer_transitions.to_state = ? AND
         form_answer_transitions.created_at > ?", "not_eligible", time_range)
-      .uniq.count
+      .uniq
   end
 
   def submissions_query(scope, time_range)
@@ -81,14 +115,14 @@ class FormAnswerStatistics::Picker
     out = out.where("form_answers.state = ?", "submitted")
     out = out.where("form_answer_transitions.to_state = ?", "submitted")
     out = out.where("form_answer_transitions.created_at > ?", time_range) if time_range
-    out.uniq.count
+    out.uniq
   end
 
   def collect_submission_ranges(scope)
     temp = []
-    temp << submissions_query(scope, DateTime.now - 1.day)
-    temp << submissions_query(scope, DateTime.now - 7.days)
-    temp << submissions_query(scope, nil)
+    temp << count_with_year(submissions_query(scope, DateTime.now - 1.day))
+    temp << count_with_year(submissions_query(scope, DateTime.now - 7.days))
+    temp << submissions_query(fa_year_scope(scope), nil).count
     temp
   end
 
