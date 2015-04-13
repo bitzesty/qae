@@ -34,7 +34,7 @@ class FormPdf < Prawn::Document
     @all_questions = steps.map(&:questions).flatten
     @form_answer_attachments = form_answer.form_answer_attachments
     @filled_answers = fetch_filled_answers
-    @financial_pointer = FormFinancialPointer.new(form_answer)
+    @financial_pointer = FormFinancialPointer.new(@form_answer.decorate)
 
     generate!
   end
