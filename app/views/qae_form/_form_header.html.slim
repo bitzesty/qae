@@ -1,5 +1,5 @@
 header.page-header.group
   div
     - for step in form.steps do
-      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!params[:step] && step.index == 0) || params[:step] == step.title.parameterize)
+      h2.step-header.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!current_step && step.index == 0) || current_step == step.title.parameterize)
         = step.title

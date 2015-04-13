@@ -87,6 +87,11 @@ class FormController < ApplicationController
 
   def edit_form
     if @form_answer.eligible?
+      if params[:step] == "letters-of-support"
+        redirect_to form_form_answer_supporters_path(@form_answer)
+        return
+      end
+
       queen_award_holder = if @form_answer.promotion?
         @form_answer.eligibility.nominee_is_qae_ep_award_holder? ? "yes" : "no"
       else

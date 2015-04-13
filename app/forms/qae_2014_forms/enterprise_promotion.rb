@@ -23,6 +23,7 @@ class QAE2014Forms
 
         step "Letters of Support",
              "Letters of Support",
+             { id: :letters_of_support_step },
              &QAE2014Forms.promotion_step4
 
         step "Add Website Address/Documents",

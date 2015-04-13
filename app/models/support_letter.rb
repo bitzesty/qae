@@ -4,7 +4,7 @@ class SupportLetter < ActiveRecord::Base
     belongs_to :form_answer
     belongs_to :user
 
-    has_one :support_letter_attachment
+    has_one :support_letter_attachment, autosave: true, dependent: :destroy
   end
 
   begin :validations
@@ -13,7 +13,8 @@ class SupportLetter < ActiveRecord::Base
               :user,
               :form_answer,
               :relationship_to_nominee, presence: true
-    validates :attachment, presence: true, if: "self.manual?"
+    validates :attachment, presence: true, if: proc { manual? && !support_letter_attachment }
+    validates :support_letter_attachment, presence: true, if: proc { manual? }
   end
 
   begin :scopes

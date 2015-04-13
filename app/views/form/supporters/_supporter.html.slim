@@ -1,0 +1,35 @@
+li.view-only
+  - if @form_answer.support_letters.count > 1
+    = button_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
+
+  span.row
+    span.span-6
+      label
+        ' First Name
+        span.view-value
+          = supporter.first_name
+
+  span.row
+    span.span-6
+      label
+        ' Last Name
+        span.view-value
+          = supporter.last_name
+
+  span.row
+    span.span-6
+      label
+        ' Relationship to Nominee
+        span.view-value
+          = supporter.relationship_to_nominee
+
+  span.row
+    span.span-6
+      label
+        ' Email address
+        span.view-value
+          = supporter.email
+
+  .application-notice.help-notice
+    p
+      ' Support request sent

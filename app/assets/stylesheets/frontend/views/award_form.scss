@@ -133,13 +133,21 @@
 }
 
 .support-letter-attachment-filename,
-label > .visible-read-only {
+label > .visible-read-only,
+.view-value {
   margin-bottom: 10px;
   font-weight: normal;
 }
 
 .support-letter-attachment-filename {
   display: block;
+}
+
+.view-only,
+.read-only {
+  label {
+    font-weight: bold;
+  }
 }
 
 .read-only {
@@ -155,6 +163,23 @@ label > .visible-read-only {
 
   label {
     font-weight: bold;
+  }
+}
+
+.view-value {
+  display: block;
+}
+
+.view-only .remove-link {
+  @include core-16;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: $govuk-blue;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
   }
 }
 

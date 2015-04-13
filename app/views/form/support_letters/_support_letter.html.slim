@@ -1,0 +1,36 @@
+li.view-only
+  = button_to "Remove", form_form_answer_support_letter_path(@form_answer, support_letter), method: :delete, class: "remove-link #{'read_only' if admin_in_read_only_mode?}"
+
+  span.row
+    span.span-6
+      label
+        ' First Name
+        span.view-value
+          = support_letter.first_name
+
+  span.row
+    span.span-6
+      label
+        ' Last Name
+        span.view-value
+          = support_letter.last_name
+
+  span.row
+    span.span-6
+      label
+        ' Relationship to Nominee
+        span.view-value
+          = support_letter.relationship_to_nominee
+
+  span.row
+    span.span-12
+      label
+        ' Letter of Support
+        span.support-letter-attachment-filename
+          - if support_letter.support_letter_attachment
+            - file = support_letter.support_letter_attachment.attachment
+            = link_to File.basename(file.path), file.url, target: "_blank"
+
+  .application-notice.help-notice
+    p
+      ' Letter of support uploaded
