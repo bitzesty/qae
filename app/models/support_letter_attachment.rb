@@ -2,7 +2,7 @@ require 'virus_scanner'
 class SupportLetterAttachment < ActiveRecord::Base
   mount_uploader :attachment, FormAnswerAttachmentUploader
   has_one :scan, class_name: Scan
-  after_save :virus_scan
+  after_save :virus_scan unless ENV["DISABLE_VIRUS_SCANNER"] == "true"
 
   begin :associations
     belongs_to :user

@@ -3,7 +3,7 @@ class FormAnswerAttachment < ActiveRecord::Base
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
   has_one :scan, class_name: Scan
-  after_save :virus_scan
+  after_save :virus_scan unless ENV["DISABLE_VIRUS_SCANNER"] == "true"
 
   mount_uploader :file, FormAnswerAttachmentUploader
 
