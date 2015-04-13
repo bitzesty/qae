@@ -22,6 +22,11 @@ class FormFinancialPointer
     :overseas_sales_indirect
   ]
 
+  UK_SALES_EXCLUDED_FORM_TYPES = [
+    :trade,
+    :promotion
+  ]
+
   def initialize(form_answer, options={})
     @form_answer = form_answer
     @options = options
@@ -46,7 +51,11 @@ class FormFinancialPointer
         ).data
       end
 
-      fetched + [UkSalesCalculator.new(fetched).data]
+      unless UK_SALES_EXCLUDED_FORM_TYPES.include?(form_answer.object.award_type.to_sym)
+        fetched += [UkSalesCalculator.new(fetched).data]
+      end
+
+      fetched
     end
   end
 
