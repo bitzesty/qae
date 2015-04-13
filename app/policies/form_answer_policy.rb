@@ -43,7 +43,8 @@ class FormAnswerPolicy < ApplicationPolicy
   def download_audit_certificate_pdf?
     (admin? || subject.lead_or_assigned?(record)) &&
     record.audit_certificate.present? &&
-    record.audit_certificate.attachment.present?
+    record.audit_certificate.attachment.present? &&
+    record.audit_certificate.scan.clean?
   end
 
   def has_access_to_post_shortlisting_docs?

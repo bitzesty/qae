@@ -1,5 +1,8 @@
+require 'virus_scanner'
 class AuditCertificate < ActiveRecord::Base
   mount_uploader :attachment, AuditCertificateUploader
+  has_one :scan, class_name: Scan
+  after_save :virus_scan unless ENV["DISABLE_VIRUS_SCANNER"] == "true"
 
   begin :associations
     belongs_to :form_answer
@@ -27,5 +30,10 @@ class AuditCertificate < ActiveRecord::Base
 
   def reviewed?
     reviewed_at.present?
+  end
+
+  def virus_scan
+    scan = ::VirusScanner::File.scan_url(self.attachment.url)
+    Scan.create(filename: self.attachment.current_path, uuid: scan["id"], audit_certificate_id: self.id)
   end
 end
