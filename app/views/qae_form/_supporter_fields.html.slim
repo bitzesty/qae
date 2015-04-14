@@ -31,7 +31,7 @@ li.js-add-example class=(persisted ? 'read-only' : '')
           ul.errors-container
           ' Letter of Support
           input class="js-trigger-autosave js-support-letter-attachment medium" name="form[#{question.key}][#{index}][letter_of_support]" type='file'
-          - if supporter['letter_of_support']
+          - if supporter['letter_of_support'].present?
             = render "support_letters/attachment", question: question,
                                                    index: index,
                                                    attachment_id: supporter['letter_of_support']
