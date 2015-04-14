@@ -23,9 +23,7 @@ RSpec.describe FormAnswer, type: :model do
 
   context "URN" do
     before do
-      %w(urn_seq_trade urn_seq_innovation urn_seq_development urn_seq_promotion).each do |seq|
-        FormAnswer.connection.execute("ALTER SEQUENCE #{seq} RESTART")
-      end
+      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq RESTART")
     end
 
     let!(:form_answer) { FactoryGirl.create(:form_answer, :trade, :submitted) }
@@ -38,6 +36,18 @@ RSpec.describe FormAnswer, type: :model do
     it "increments URN" do
       other_form_answer = FactoryGirl.create(:form_answer, :trade, :submitted)
       expect(other_form_answer.urn).to eq("QA0002/#{award_year}T")
+    end
+
+    it "increments global counter, shared for all categories" do
+      form1 = create(:form_answer, :trade, submitted: true)
+      form2 = create(:form_answer, :innovation, submitted: true)
+      form3 = create(:form_answer, :promotion, submitted: true)
+      form4 = create(:form_answer, :development, submitted: true)
+
+      expect(form1.urn).to eq("QA0002/#{award_year}T")
+      expect(form2.urn).to eq("QA0003/#{award_year}I")
+      expect(form3.urn).to eq("QA0004/#{award_year}P")
+      expect(form4.urn).to eq("QA0005/#{award_year}D")
     end
   end
 
