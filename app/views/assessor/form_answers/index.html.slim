@@ -104,11 +104,12 @@ br
                   = f.submit "Filter", class: "if-js-hide"
                   label.if-js-hide Ctrl + left click for multi select
 
+                  th.sortable
+                    = sort_link f, "Primary Assessor", @search, :primary_assessor_name, disabled: @search.query?
 
-                  th
-                    ' Primary Assessor
-                  th
-                    ' Secondary Assessor
+                  th.sortable
+                    = sort_link f, "Secondary Assessor", @search, :secondary_assessor_name, disabled: @search.query?
+
                 th &nbsp;
                 th.sortable
                   = sort_link f, "Flag", @search, :flag, disabled: @search.query?
