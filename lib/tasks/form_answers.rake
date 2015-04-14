@@ -21,4 +21,12 @@ namespace :form_answers do
       f.save
     end
   end
+
+  # For single use only
+  desc "Rebuilds the urns for all apps"
+  task rebuild_urn: :environment do
+    FormAnswer.connection.execute("ALTER SEQUENCE urn_seq RESTART")
+    FormAnswer.update_all(urn: nil)
+    FormAnswer.find_each(&:save!)
+  end
 end
