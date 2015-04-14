@@ -47,7 +47,7 @@ RSpec.describe FormAnswer, type: :model do
 
       expect(form1.urn).to eq("QA0002/#{award_year}T")
       expect(form2.urn).to eq("QA0003/#{award_year}I")
-      expect(form3.urn).to eq("QA0001/#{award_year}P")
+      expect(form3.urn).to eq("QA0001/#{award_year}EP")
       expect(form4.urn).to eq("QA0004/#{award_year}D")
     end
   end
