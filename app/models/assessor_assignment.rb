@@ -178,8 +178,8 @@ class AssessorAssignment < ActiveRecord::Base
     yield
 
     if assessor_changed
-      attribute = (primary? ? :primary_assessor_not_assigned : :secondary_assessor_not_assigned)
-      form_answer.update(attribute => assessor_id.blank?)
+      attribute = (primary? ? :primary_assessor_id : :secondary_assessor_id)
+      form_answer.update(attribute => assessor_id)
     end
   end
 end

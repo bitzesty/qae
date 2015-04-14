@@ -162,26 +162,26 @@ describe AssessorAssignment do
         expect {
           primary.update_attributes(assessor_id: 1)
         }.to change {
-          form.reload.primary_assessor_not_assigned
-        }.from(true).to(false)
+          form.reload.primary_assessor_id
+        }.from(nil).to(1)
 
         expect {
           secondary.update_attributes(assessor_id: 2)
         }.to change {
-          form.reload.secondary_assessor_not_assigned
-        }.from(true).to(false)
+          form.reload.secondary_assessor_id
+        }.from(nil).to(2)
 
         expect {
           secondary.update_attributes(assessor: nil)
         }.to change {
-          form.reload.secondary_assessor_not_assigned
-        }.from(false).to(true)
+          form.reload.secondary_assessor_id
+        }.from(2).to(nil)
 
         expect {
           primary.update_attributes(assessor: nil)
         }.to change {
-          form.reload.primary_assessor_not_assigned
-        }.from(false).to(true)
+          form.reload.primary_assessor_id
+        }.from(1).to(nil)
       end
     end
   end

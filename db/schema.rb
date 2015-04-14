@@ -240,9 +240,9 @@ ActiveRecord::Schema.define(version: 20150414103754) do
     t.string   "award_type"
     t.integer  "account_id"
     t.string   "urn"
-    t.boolean  "submitted",                       default: false
+    t.boolean  "submitted",                     default: false
     t.float    "fill_progress"
-    t.string   "state",                           default: "application_in_progress", null: false
+    t.string   "state",                         default: "application_in_progress", null: false
     t.string   "company_or_nominee_name"
     t.string   "nominee_full_name"
     t.string   "user_full_name"
@@ -250,15 +250,15 @@ ActiveRecord::Schema.define(version: 20150414103754) do
     t.string   "sic_code"
     t.string   "nickname"
     t.hstore   "financial_data"
-    t.boolean  "admin_importance_flag",           default: false
-    t.boolean  "assessor_importance_flag",        default: false
-    t.boolean  "accepted",                        default: false
-    t.boolean  "primary_assessor_not_assigned",   default: true
-    t.boolean  "secondary_assessor_not_assigned", default: true
+    t.boolean  "admin_importance_flag",         default: false
+    t.boolean  "assessor_importance_flag",      default: false
+    t.boolean  "accepted",                      default: false
     t.datetime "company_details_updated_at"
-    t.integer  "award_year_id",                                                       null: false
+    t.integer  "award_year_id",                                                     null: false
     t.integer  "company_details_editable_id"
     t.string   "company_details_editable_type"
+    t.integer  "primary_assessor_id"
+    t.integer  "secondary_assessor_id"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
