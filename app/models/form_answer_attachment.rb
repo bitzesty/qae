@@ -1,9 +1,9 @@
-require 'virus_scanner'
+require "virus_scanner"
 class FormAnswerAttachment < ActiveRecord::Base
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
   has_one :scan, class_name: Scan
-  after_save :virus_scan unless ENV["DISABLE_VIRUS_SCANNER"] == "true"
+  after_save :virus_scan
 
   mount_uploader :file, FormAnswerAttachmentUploader
 
@@ -29,7 +29,21 @@ class FormAnswerAttachment < ActiveRecord::Base
   end
 
   def virus_scan
-    scan = ::VirusScanner::File.scan_url(self.file.url)
-    Scan.create(filename: self.file.current_path, uuid: scan["id"], form_answer_attachment_id: self.id)
+    if ENV["DISABLE_VIRUS_SCANNER"] == "true"
+      Scan.create(
+        filename: file.current_path,
+        uuid: SecureRandom.uuid,
+        audit_certificate_id: id,
+        status: "clean"
+      )
+    else
+      response = ::VirusScanner::File.scan_url(file.url)
+      Scan.create(
+        filename: file.current_path,
+        uuid: response["id"],
+        status: response["status"],
+        audit_certificate_id: id
+      )
+    end
   end
 end
