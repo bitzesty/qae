@@ -34,6 +34,21 @@ span {
   }
 }
 
+select,
+select.form-control {
+  padding-right: 20px;
+  background-image: image-url("icon-arrow-select.jpg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 13px 14px;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  @include is-retina {
+    background-image: image-url("icon-arrow-select@2.jpg");
+  }
+}
+
 .no-js .collapse {
   display: block;
   visibility: visible;
