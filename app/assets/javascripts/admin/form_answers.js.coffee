@@ -273,4 +273,8 @@ handleCompanyDetailsForm = ->
     e.preventDefault()
     $(this).closest("form").submit()
 
+  $(".show-sidebar").on "click", ".form-cancel-link", (e) ->
+    e.preventDefault()
+    $(this).closest(".form-group").removeClass("form-edit")
+
 $(document).ready(ready)

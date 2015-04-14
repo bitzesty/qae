@@ -17,6 +17,12 @@
       label
         span.icon-role 1
         ' Primary:
+      .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
+        - if resource.assessors.primary.present?
+          = link_to "#", class: "ellipsis"
+            = resource.assessors.primary.try(:full_name)
+        - else
+          span.p-empty Not assigned
       - if policy(resource).assign_assessor?
         = form_for([namespace_name, resource.assessor_assignments.primary], remote: true, html: { "data-type" => "json"}, authenticity_token: true) do |form|
           .form-fields
@@ -24,20 +30,23 @@
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
             ' Edit
-          = form.submit :add, class: "btn btn-primary form-save-button"
+          .clear
+          .form-actions.text-right
+            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
+            = form.submit :add, class: "btn btn-primary form-save-button"
           .errors-holder
-      .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
-        - if resource.assessors.primary.present?
-          = link_to "#", class: "ellipsis"
-            = resource.assessors.primary.try(:full_name)
-        - else
-          span.p-empty Not assigned
       .clear
 
     li.form-group
       label
         span.icon-role 2
         span.assessor-label Secondary:
+      .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
+        - if resource.assessors.secondary.present?
+          = link_to "#", class: "ellipsis"
+            = resource.assessors.secondary.try(:full_name)
+        - else
+          span.p-empty Not assigned
       - if policy(resource).assign_assessor?
         = form_for([namespace_name, resource.assessor_assignments.secondary], remote: true, html: { "data-type" => "json"}, authenticity_token: true) do |form|
           .form-fields
@@ -45,12 +54,9 @@
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
             ' Edit
-          = form.submit :add, class: "btn btn-primary form-save-button"
+          .clear
+          .form-actions.text-right
+            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
+            = form.submit :add, class: "btn btn-primary form-save-button"
           .errors-holder
-      .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
-        - if resource.assessors.secondary.present?
-          = link_to "#", class: "ellipsis"
-            = resource.assessors.secondary.try(:full_name)
-        - else
-          span.p-empty Not assigned
       .clear

@@ -200,6 +200,10 @@ table .ellipsis {
 .form-actions {
   margin-top: 30px;
 
+  .show-sidebar & {
+    margin-top: 0;
+  }
+
   .btn {
     margin-right: 15px;
   }
