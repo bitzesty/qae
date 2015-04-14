@@ -37,6 +37,7 @@ class QAE2014Forms
 
         text :head_email, "Email address" do
           classes "sub-question"
+          style "large"
           required
         end
 

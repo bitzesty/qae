@@ -38,7 +38,7 @@
                            [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
                            { include_blank: true },
                            class: "form-control"
-          = f.text_field :form_answer_ids, class: "if-js-hide"
+          = f.text_field :form_answer_ids, class: "if-js-hide visuallyhidden"
 
         = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
         = f.submit "Assign", class: "btn btn-primary"
@@ -62,7 +62,9 @@ br
           thead
             tr
               - unless @search.query?
-                th = check_box_tag :check_all
+                th
+                  span.if-no-js-hide
+                    = check_box_tag :check_all
               th.sortable
                 = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
               th.sortable

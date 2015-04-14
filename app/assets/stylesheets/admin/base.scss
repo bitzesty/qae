@@ -34,6 +34,34 @@ span {
   }
 }
 
+select,
+select.form-control {
+  padding-right: 20px;
+  background-image: image-url("icon-arrow-select.jpg");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: 13px 14px;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  @include is-retina {
+    background-image: image-url("icon-arrow-select@2.jpg");
+  }
+}
+
+h1,
+h2,
+h3,
+h4 {
+  label {
+    margin-bottom: 0;
+  }
+
+  .boolean.control-label {
+    padding-left: 0;
+  }
+}
+
 .no-js .collapse {
   display: block;
   visibility: visible;
@@ -104,8 +132,11 @@ table .ellipsis {
 }
 
 .table-overflow-container {
-  @include screen-sm-max {
-    overflow-x: auto;
+  overflow-x: auto;
+
+  .table {
+    width: 99.5%;
+    margin-left: 1px;
   }
 }
 
@@ -140,11 +171,13 @@ table .ellipsis {
   clear: both;
 }
 
-.question-group {
-  h3 {
-    font-size: 18px;
+.question-group h3 {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5;
+
+  label {
     font-weight: bold;
-    line-height: 1.5;
   }
 }
 
@@ -185,8 +218,16 @@ table .ellipsis {
 .form-actions {
   margin-top: 30px;
 
+  .show-sidebar & {
+    margin-top: 0;
+  }
+
   .btn {
     margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 

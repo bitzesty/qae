@@ -70,7 +70,7 @@ html.no-js
                     ul.dropdown-menu
                       - AwardYear::AVAILABLE_YEARS.each do |start_year|
                         li
-                          = link_to "Award Year #{start_year - 1} - #{start_year}", admin_settings_url(year: start_year)
+                          = link_to "Award year #{start_year - 1} - #{start_year}", admin_settings_url(year: start_year)
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown

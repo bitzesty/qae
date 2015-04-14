@@ -13,7 +13,7 @@ header.page-header.group
           .question
             h2 Email
             .question-body
-              = f.input :email, required: true, autofocus: true, label: false, input_html: {autocomplete: "off", class: "medium"}
+              = f.input :email, required: true, autofocus: true, label: false, input_html: {autocomplete: "off", class: "large"}
 
         - if devise_mapping.confirmable? && resource.pending_reconfirmation?
           p
@@ -25,19 +25,19 @@ header.page-header.group
             .question
               h2 Password
               .question-body
-                = f.input :password, required: false, autocomplete: "off", label: false, hint: "Leave it blank if you don't want to change it", input_html: { class: 'password-strength-meter js-disable-copy' }
+                = f.input :password, required: false, autocomplete: "off", label: false, hint: "Leave it blank if you don't want to change it", input_html: { class: "password-strength-meter js-disable-copy medium" }
 
           .form-inputs
             .question
               h2 Password confirmation
               .question-body
-                = f.input :password_confirmation, required: false, label: false, input_html: { class: "js-disable-copy" }
+                = f.input :password_confirmation, required: false, label: false, input_html: { class: "js-disable-copy medium" }
 
           .form-inputs
             .question
               h2 Current password
               .question-body
-                = f.input :current_password, required: true, label: false, hint: "We need your current password to confirm your changes", input_html: { class: "js-disable-copy" }
+                = f.input :current_password, required: true, label: false, hint: "We need your current password to confirm your changes", input_html: { class: "js-disable-copy medium" }
 
         .form-actions
           = f.button :submit, "Update", class: "button large"

@@ -131,6 +131,10 @@ ready = ->
       ids += ($(@).val() + ",")
     $("#assessor_assignment_collection_form_answer_ids").val(ids)
 
+  $("#check_all").on "change", ->
+    select_all_value = $(this).prop("checked")
+    $(this).closest("table").find(".form-answer-check").prop("checked", select_all_value)
+
   # Show/hide the bulk assign assessors form
   $(".bulk-assign-assessors-link").on "click", (e) ->
     e.preventDefault()
@@ -272,5 +276,9 @@ handleCompanyDetailsForm = ->
   $(".previous-wins").on "click", ".form-save-link", (e) ->
     e.preventDefault()
     $(this).closest("form").submit()
+
+  $(".show-sidebar").on "click", ".form-cancel-link", (e) ->
+    e.preventDefault()
+    $(this).closest(".form-group").removeClass("form-edit")
 
 $(document).ready(ready)

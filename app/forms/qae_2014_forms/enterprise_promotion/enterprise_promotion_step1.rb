@@ -115,6 +115,7 @@ class QAE2014Forms
 
         text :website_url, "Website Address" do
           classes "regular-question"
+          style "large"
           form_hint "e.g. www.example.com"
         end
 

@@ -126,9 +126,11 @@
       min-width: 100px;
     }
 
+    .form-cancel-link,
     .form-save-button,
     .form-save-link {
       display: none;
+      float: none;
     }
 
     .form-edit {
@@ -137,8 +139,9 @@
       .form-fields,
       .form-control,
       .form-save-button,
-      .form-save-link {
-        display: block;
+      .form-save-link,
+      .form-cancel-link {
+        display: inline-block;
       }
 
       .form-value,

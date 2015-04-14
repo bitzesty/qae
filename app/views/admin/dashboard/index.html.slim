@@ -6,38 +6,50 @@
         h2
           ' Reports
         ul.list-unstyled.list-actions
-          - ["Innovation case status", "Intl Trade case status", "Sus Dev case status", "QAEP case status", "All entries", "Press book list"].each do |report|
-            li class="#{'todo-placeholder' unless report == 'All entries'}"
-              .pull-right
-                =link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT, format: :csv)
-                  span.glyphicon.glyphicon-download-alt
-                  span.visible-lg.visible-md
-                    ' Download
-              = link_to "#", class: "action-title"
-                span.glyphicon.glyphicon-file
-                = report
+          li.todo-placeholder
+            .pull-right
+              =link_to "#"
+                span.glyphicon.glyphicon-download-alt
+                span.visible-lg.visible-md
+                  ' Download
+            = link_to "#", class: "action-title"
+              span.glyphicon.glyphicon-file
+              ' Registered users entry
+
+          li.todo-placeholder
+            .pull-right
+              =link_to "#"
+                span.glyphicon.glyphicon-download-alt
+                span.visible-lg.visible-md
+                  ' Download
+            = link_to "#", class: "action-title"
+              span.glyphicon.glyphicon-file
+              ' Cases status
+
+          li
+            .pull-right
+              = link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT, format: :csv)
+                span.glyphicon.glyphicon-download-alt
+                span.visible-lg.visible-md
+                  ' Download
+            = link_to admin_report_path(Reports::AdminReport::ADMIN_REPORT, format: :csv), class: "action-title"
+              span.glyphicon.glyphicon-file
+              ' Entries report
+
+          li.todo-placeholder
+            .pull-right
+              =link_to "#"
+                span.glyphicon.glyphicon-download-alt
+                span.visible-lg.visible-md
+                  ' Download
+            = link_to "#", class: "action-title"
+              span.glyphicon.glyphicon-file
+              ' Press book list
         .clear
 
       - if policy(:report).show?
         = render "admin/feedbacks/pdf_reports"
         = render "admin/reports/case_summaries"
-
-      / TODO resources
-      .well
-        h2
-          ' Resources
-        ul.list-unstyled.list-actions
-          - ["sample-application-form.pdf", "audit-certification-template.pdf", "lorem-ipsum-document.pdf"].each do |resources|
-            li.todo-unconfirmed
-              .pull-right
-                = link_to "#"
-                  span.glyphicon.glyphicon-download-alt
-                  span.visible-lg.visible-md
-                    ' Download
-              = link_to "#", class: "action-title"
-                span.glyphicon.glyphicon-file
-                = resources
-        .clear
 
   .col-md-8
     .panel-group#dashboard-details-parent role="tablist" aria-multiselectable="true"

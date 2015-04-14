@@ -12,10 +12,19 @@
       var update = function() {
         var password = $(options["password_field"]).val(),
             passwordConfirmation = $(options["password_confirmation_field"]).val();
-        options["weak_words"] = $(options["email_field"]).val().split(/\W+/);
+
+        if (typeof options["email_field"] === "object") {
+          options["weak_words"] = options["email_field"].val().split(/\W+/);
+        } else {
+         options["weak_words"] = options["email_field"].split(/\W+/);
+        }
+
         instance.updateIndicator(password, passwordConfirmation, options);
       };
-      $(password_field).debounce("keyup", update, 50);
+
+      if ($(password_field).is("input")) {
+        $(password_field).debounce("keyup", update, 50);
+      }
     });
 
     $(options["password_strength_guidance"]).attr("aria-live", "polite").attr("aria-atomic", "true");
@@ -35,7 +44,9 @@
         return (password.indexOf(weak_word) >= 0);
       });
       if (isPasswordNotStrongEnough && aWeakWordFoundInPassword) {
-        guidance.push('parts-of-email');
+        if (options["weak_words"].join("") !== "") {
+          guidance.push("parts-of-email");
+        }
       }
 
       if (isPasswordNotStrongEnough) {
@@ -80,8 +91,13 @@ $(function() {
 
     var $passwordField = $(this);
     var $passwordConfirmationField = $("form #password-confirmation-control-group input[type=password]");
-    var $emailField = $("form #email-control-group input[type=email]");
-    $passwordField.parent().parent().append('<input type="hidden" id="password-strength-score" name="password-strength-score" value=""/>');
+    var $emailField = "";
+    if ($("form #email-control-group input[type=email]").size() > 0) {
+      $emailField = $("form #email-control-group input[type=email]");
+    } else if ($("[data-email-field]").size() > 0) {
+      $emailField = $("[data-email-field]").attr("data-email-field").split(/\W+/).join(" ");
+    }
+    $passwordField.parent().parent().prepend('<input type="hidden" id="password-strength-score" name="password-strength-score" value=""/>');
 
     new GOVUK.passwordStrengthIndicator({
       password_field: $passwordField,
