@@ -33,7 +33,11 @@ class AuditCertificate < ActiveRecord::Base
   end
 
   def virus_scan
-    scan = ::VirusScanner::File.scan_url(self.attachment.url)
-    Scan.create(filename: self.attachment.current_path, uuid: scan["id"], audit_certificate_id: self.id)
+    if ENV["DISABLE_VIRUS_SCANNER"] == "false"
+      scan = ::VirusScanner::File.scan_url(self.attachment.url)
+      Scan.create(filename: self.attachment.current_path, uuid: scan["id"], audit_certificate_id: self.id)
+    else
+      Scan.create(filename: self.attachment.current_path, uuid: SecureRandom.uuid, audit_certificate_id: self.id, status: "clean")
+    end
   end
 end

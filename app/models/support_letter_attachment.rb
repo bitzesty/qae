@@ -2,7 +2,7 @@ require 'virus_scanner'
 class SupportLetterAttachment < ActiveRecord::Base
   mount_uploader :attachment, FormAnswerAttachmentUploader
   has_one :scan, class_name: Scan
-  after_save :virus_scan unless ENV["DISABLE_VIRUS_SCANNER"] == "true"
+  after_save :virus_scan
 
   begin :associations
     belongs_to :user
@@ -19,7 +19,11 @@ class SupportLetterAttachment < ActiveRecord::Base
   end
 
   def virus_scan
-    scan = ::VirusScanner::File.scan_url(self.attachment.url)
-    Scan.create(filename: self.attachment.current_path, uuid: scan["id"], support_letter_attachment_id: self.id)
+    if ENV["DISABLE_VIRUS_SCANNER"] == "false"
+      scan = ::VirusScanner::File.scan_url(self.attachment.url)
+      Scan.create(filename: self.attachment.current_path, uuid: scan["id"], support_letter_attachment_id: self.id)
+    else
+      Scan.create(filename: self.attachment.current_path, uuid: SecureRandom.uuid, support_letter_attachment_id: self.id, status: "clean")
+    end
   end
 end
