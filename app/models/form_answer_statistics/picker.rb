@@ -57,7 +57,10 @@ class FormAnswerStatistics::Picker
       scope = fa_year_scope.where(award_type: aw)
       out[aw] = collect_completion_ranges(scope)
     end
-    out["total"] = collect_completion_ranges(fa_year_scope.where.not(state: "not_eligible").where(submitted: false))
+    out["total"] = collect_completion_ranges(fa_year_scope.where
+      .not(state: "not_eligible")
+      .where.not(award_type: "promotion")
+      .where(submitted: false))
     out
   end
 
@@ -68,7 +71,7 @@ class FormAnswerStatistics::Picker
       out[aw] = collect_submission_ranges(scope)
     end
 
-    out["total"] = collect_submission_ranges(fa_year_scope)
+    out["total"] = collect_submission_ranges(fa_year_scope.where.not(award_type: "promotion"))
     out
   end
 
