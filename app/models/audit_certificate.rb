@@ -41,10 +41,11 @@ class AuditCertificate < ActiveRecord::Base
         status: "clean"
       )
     else
-      scan = ::VirusScanner::File.scan_url(attachment.url)
+      response = ::VirusScanner::File.scan_url(attachment.url)
       Scan.create(
         filename: attachment.current_path,
-        uuid: scan["id"],
+        uuid: response["id"],
+        status: response["status"],
         audit_certificate_id: id
       )
     end
