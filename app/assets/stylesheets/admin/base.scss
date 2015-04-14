@@ -41,8 +41,8 @@ select.form-control {
   background-repeat: no-repeat;
   background-position: right center;
   background-size: 13px 14px;
-  -webkit-appearance: none;
   -moz-appearance: none;
+  -webkit-appearance: none;
 
   @include is-retina {
     background-image: image-url("icon-arrow-select@2.jpg");

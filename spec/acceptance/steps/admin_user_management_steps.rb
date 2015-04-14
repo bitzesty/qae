@@ -7,7 +7,7 @@ step "I create new user" do
   click_link 'New user'
 
   fill_in 'Email', with: 'user@example.com'
-  select 'Regular', from: "Account type"
+  select "Regular", from: "Account type"
   fill_in 'Password', with: "my98ssdkjv9823kds=2"
   fill_in 'Password confirmation', with: "my98ssdkjv9823kds=2"
 
