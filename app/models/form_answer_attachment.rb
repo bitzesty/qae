@@ -31,7 +31,7 @@ class FormAnswerAttachment < ActiveRecord::Base
   def virus_scan
     if ENV["DISABLE_VIRUS_SCANNER"] == "true"
       Scan.create(
-        filename: attachment.current_path,
+        filename: file.current_path,
         uuid: SecureRandom.uuid,
         audit_certificate_id: id,
         status: "clean"
@@ -39,7 +39,7 @@ class FormAnswerAttachment < ActiveRecord::Base
     else
       response = ::VirusScanner::File.scan_url(attachment.url)
       Scan.create(
-        filename: attachment.current_path,
+        filename: file.current_path,
         uuid: response["id"],
         status: response["status"],
         audit_certificate_id: id
