@@ -46,5 +46,4 @@ class FormAnswerAttachment < ActiveRecord::Base
       )
     end
   end
-
 end
