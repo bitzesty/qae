@@ -37,7 +37,7 @@ class FormAnswerAttachment < ActiveRecord::Base
         status: "clean"
       )
     else
-      response = ::VirusScanner::File.scan_url(attachment.url)
+      response = ::VirusScanner::File.scan_url(file.url)
       Scan.create(
         filename: file.current_path,
         uuid: response["id"],
