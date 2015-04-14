@@ -1,10 +1,7 @@
 - if question.input_value.blank?
   - children_conditions = question.children_conditions(questions_with_references)
   - if children_conditions.present?
-    / TODO: replace it span with span.conditional-hint below
-    / span.conditional-hint
-    span
-      ul
-        - children_conditions.each do |child_condition|
-          li
-            = question.conditional_hint(child_condition, questions_with_references)
+    ul.conditional-hint
+      - children_conditions.each do |child_condition|
+        li
+          = question.conditional_hint(child_condition, questions_with_references)

@@ -1225,11 +1225,24 @@ input[type="file"] {
 }
 
 .conditional-hint {
-  @include core-16;
   display: block;
   margin-top: 15px;
+  margin-bottom: 0;
+  padding-left: 0;
   color: $grey-1;
   font-style: italic;
+  list-style: none;
+
+  &,
+  li {
+    @include core-16;
+  }
+
+  li {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    padding-left: 0;
+  }
 }
 
 .js .conditional-hint {
