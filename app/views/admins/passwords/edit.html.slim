@@ -20,7 +20,7 @@
                   .question
                     h2 New Password
                     .question-body
-                      = f.input :password, required: true, label: false, autofocus: true, input_html: { class: "password-strength-meter" }
+                      = f.input :password, required: true, label: false, autofocus: true, input_html: { class: "password-strength-meter js-disable-copy medium" }
 
               .guidance-panel.if-no-js-hide
                 #password-guidance.application-notice.help-notice
@@ -37,7 +37,7 @@
                   .question
                     h2 Confirm your new password
                     .question-body
-                      = f.input :password_confirmation, label: false, required: true
+                      = f.input :password_confirmation, label: false, required: true, input_html: { class: "js-disable-copy medium" }
 
               .if-no-js-hide
                 #password-confirmation-guidance.application-notice.help-notice

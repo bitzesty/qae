@@ -24,7 +24,7 @@
                                 required: true,
                                 label: false,
                                 autofocus: true,
-                                input_html: { class: "password-strength-meter js-disable-copy", "data-min-password-length" => "10" }
+                                input_html: { class: "password-strength-meter js-disable-copy medium", "data-min-password-length" => "10" }
 
               .guidance-panel.if-no-js-hide
                 #password-guidance.application-notice.help-notice
@@ -44,7 +44,7 @@
                       = f.input :password_confirmation,
                                 label: false,
                                 required: true,
-                                input_html: { class: "js-disable-copy" }
+                                input_html: { class: "js-disable-copy medium" }
 
               .if-no-js-hide
                 #password-confirmation-guidance.application-notice.help-notice
