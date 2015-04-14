@@ -8,12 +8,13 @@ class Users::SupportLettersController < Users::BaseController
     form_answer.support_letters.new(
       support_letter_params.merge({
         user_id: current_user.id,
-        manual: true
+        manual: true,
+        support_letter_attachment: attachment
       })
     )
   end
   expose(:attachment) do
-    SupportLetterAttachment.find(support_letter_params[:attachment])
+    SupportLetterAttachment.find_by_id(support_letter_params[:attachment])
   end
 
   def create
