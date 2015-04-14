@@ -3,8 +3,7 @@
 .article-related-positioning-container
   header.page-header.group
     div
-      h1
-        | Change your password
+      h1 Change your password
 
   .article-container.group
     article.group role="article"
@@ -14,18 +13,36 @@
           = f.input :reset_password_token, as: :hidden
           = f.full_error :reset_password_token
 
-          .form-inputs-group
-            .form-inputs
-              .question
-                h2 New Password
-                .question-body
-                  = f.input :password, required: true, label: false, autofocus: true, input_html: { class: 'password-strength-meter' }
+          #password-change-panel data-email-field="#{current_user.email}"
+            .form-inputs-group
+              #password-control-group
+                .form-inputs
+                  .question
+                    h2 New Password
+                    .question-body
+                      = f.input :password, required: true, label: false, autofocus: true, input_html: { class: "password-strength-meter" }
 
-            .form-inputs
-              .question
-                h2 Confirm your new password
-                .question-body
-                  = f.input :password_confirmation, label: false, required: true
+              .guidance-panel.if-no-js-hide
+                #password-guidance.application-notice.help-notice
+                  .alert.alert-warning
+                    p.text-underline Please improve your password
+                    p#password-too-short
+                      ' It must be at least 10 characters.
+                    p#parts-of-email It shouldn’t include part or all of your email address.
+                    p#password-entropy
+                      ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.
+
+              #password-confirmation-control-group
+                .form-inputs
+                  .question
+                    h2 Confirm your new password
+                    .question-body
+                      = f.input :password_confirmation, label: false, required: true
+
+              .if-no-js-hide
+                #password-confirmation-guidance.application-notice.help-notice
+                  .alert.alert-warning
+                    p#password-confirmation-match The confirmation must match the password
 
           .form-actions
             = f.button :submit, "Change my password", class: "button large"

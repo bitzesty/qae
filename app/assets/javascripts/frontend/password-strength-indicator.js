@@ -12,10 +12,15 @@
       var update = function() {
         var password = $(options["password_field"]).val(),
             passwordConfirmation = $(options["password_confirmation_field"]).val();
-        options["weak_words"] = $(options["email_field"]).val().split(/\W+/);
+        options["weak_words"] = options["email_field"].split(/\W+/);
         instance.updateIndicator(password, passwordConfirmation, options);
       };
-      $(password_field).debounce("keyup", update, 50);
+
+      console.log($(password_field));
+      if ($(password_field).is("input")) {
+        $(password_field).debounce("keyup", update, 50);
+      }
+      console.log("---");
     });
 
     $(options["password_strength_guidance"]).attr("aria-live", "polite").attr("aria-atomic", "true");
@@ -80,7 +85,13 @@ $(function() {
 
     var $passwordField = $(this);
     var $passwordConfirmationField = $("form #password-confirmation-control-group input[type=password]");
-    var $emailField = $("form #email-control-group input[type=email]");
+    if ($("form #email-control-group input[type=email]").size() > 0) {
+      var $emailField = $("form #email-control-group input[type=email]").val();
+    } else if ($("[data-email-field]").size() > 0) {
+      var $emailField = $("[data-email-field]").attr("data-email-field").split(/\W+/).join(" ");
+    } else {
+      var $emailField = "";
+    }
     $passwordField.parent().parent().append('<input type="hidden" id="password-strength-score" name="password-strength-score" value=""/>');
 
     new GOVUK.passwordStrengthIndicator({
