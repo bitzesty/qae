@@ -91,12 +91,11 @@ $(function() {
 
     var $passwordField = $(this);
     var $passwordConfirmationField = $("form #password-confirmation-control-group input[type=password]");
+    var $emailField = "";
     if ($("form #email-control-group input[type=email]").size() > 0) {
-      var $emailField = $("form #email-control-group input[type=email]");
+      $emailField = $("form #email-control-group input[type=email]");
     } else if ($("[data-email-field]").size() > 0) {
-      var $emailField = $("[data-email-field]").attr("data-email-field").split(/\W+/).join(" ");
-    } else {
-      var $emailField = "";
+      $emailField = $("[data-email-field]").attr("data-email-field").split(/\W+/).join(" ");
     }
     $passwordField.parent().parent().prepend('<input type="hidden" id="password-strength-score" name="password-strength-score" value=""/>');
 
