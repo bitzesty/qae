@@ -56,14 +56,10 @@ class FormAnswerStateMachine
   end
 
   def collection(subject)
-    if subject.is_a?(Admin)
-      STATES
-    else
-      permitted_states_with_deadline_constraint - automatic_states
-    end
+    permitted_states_with_deadline_constraint# - automatic_states
   end
 
-  def perform_transition(state, subject = nil)
+  def perform_transition(state, subject = nil, validate = true)
     state = state.to_sym if STATES.map(&:to_s).include?(state)
     meta = {
       transitable_id: subject.id,
@@ -71,7 +67,7 @@ class FormAnswerStateMachine
     } if subject.present?
     meta ||= {}
 
-    if permitted_states_with_deadline_constraint.include?(state) || subject.is_a?(Admin)
+    if permitted_states_with_deadline_constraint.include?(state) || !validate
       # Admin can change always and everything
       if transition_to state, meta
         if state == :submitted
@@ -120,14 +116,7 @@ class FormAnswerStateMachine
   private
 
   def permitted_states_with_deadline_constraint
-    unless Settings.after_current_submission_deadline?
-      [
-        :application_in_progress,
-        :submitted,
-        :withdrawn,
-        :not_eligible
-      ]
-    else
+    if Settings.after_current_submission_deadline?
       all_states = [
         :assessment_in_progress,
         :not_submitted,
@@ -135,7 +124,8 @@ class FormAnswerStateMachine
         :reserved,
         :not_recommended,
         :awarded,
-        :not_awarded
+        :not_awarded,
+        :withdrawn
       ]
       case object.state.to_sym
       when :withdrawn
@@ -147,10 +137,12 @@ class FormAnswerStateMachine
       when :submitted
         [:assessment_in_progress]
       when :not_submitted
-        [:not_eligible]
+        []
       else
         all_states
       end
+    else
+      []
     end
   end
 end
