@@ -44,8 +44,8 @@
         return (password.indexOf(weak_word) >= 0);
       });
       if (isPasswordNotStrongEnough && aWeakWordFoundInPassword) {
-        if (options["weak_words"].join("") != "") {
-          guidance.push('parts-of-email');
+        if (options["weak_words"].join("") !== "") {
+          guidance.push("parts-of-email");
         }
       }
 
