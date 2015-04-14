@@ -49,7 +49,15 @@ en:
         user:
           attributes:
             password:
-              weak_password: Your new passphrase must be more complex.
+              weak_password: Your new password must be more complex.
+        admin:
+          attributes:
+            password:
+              weak_password: Your new password must be more complex.
+        assessor:
+          attributes:
+            password:
+              weak_password: Your new password must be more complex.
 
   time:
     formats:
