@@ -7,6 +7,8 @@
 #= require_tree ./admin
 #= require search
 #= require jquery-ui
+#= require vendor/zxcvbn
+#= require vendor/jquery-debounce
 
 $(document).ready(() ->
   $("html").removeClass("no-js").addClass("js")

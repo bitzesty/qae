@@ -13,7 +13,7 @@
                 wrapper_html: { class: 'form-group' },
                 input_html: { class: 'form-control' },
                 label: false
-  .row.question-group
+  .row.question-group#email-control-group
     .col-md-4.col-sm-6
       h3 = f.label :email, class: "form-label"
       = f.input :email,
@@ -21,19 +21,44 @@
                 input_html: { class: 'form-control' },
                 label: false
 
-  .row.question-group
+  .row.question-group#password-change-panel
     .col-md-4.col-sm-6
-      h3 = f.label :password, class: "form-label"
-      = f.input :password,
-                wrapper_html: { class: 'form-group' },
-                input_html: { class: 'form-control' },
-                label: false
+      #password-control-group
+        h3 = f.label :password, class: "form-label"
+        .input-group
+          = f.input :password,
+                    wrapper_html: { class: 'form-group' },
+                    input_html: { class: 'form-control' },
+                    label: false
+          span#password-result-span.input-group-addon
+            i#password-result.glyphicon.glyphicon-ok
 
-      h3 = f.label :password_confirmation, label: "Retype password", class: "form-label"
-      = f.input :password_confirmation,
-                wrapper_html: { class: 'form-group' },
-                input_html: { class: 'form-control' },
-                label: false
+      .guidance-panel.if-no-js-hide
+        #password-guidance
+          br
+          .alert.alert-warning
+            p.text-underline Please improve your password
+            p#password-too-short
+              ' It must be at least 10 characters.
+            p#parts-of-email It shouldn’t include part or all of your email address.
+            p#password-entropy
+              ' It must be more complex. Consider using whole sentences (with spaces), lyrics or phrases to make it more memorable.
+
+      #password-confirmation-control-group
+        h3 = f.label :password_confirmation, label: "Retype password", class: "form-label"
+        .input-group
+          = f.input :password_confirmation,
+                    wrapper_html: { class: 'form-group' },
+                    input_html: { class: 'form-control' },
+                    label: false
+          span#password-confirmation-result-span.input-group-addon
+            i#password-confirmation-result.glyphicon.glyphicon-ok
+
+      .if-no-js-hide
+        #password-confirmation-guidance
+          br
+          .alert.alert-warning
+            p#password-confirmation-match The confirmation must match the password
 
   br
   .row
