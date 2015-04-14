@@ -192,8 +192,8 @@ class FormAnswer < ActiveRecord::Base
     return unless submitted
     return unless award_type
 
-    sequence_attr = "urn_seq_promotion" if promotion?
-    sequence_attr ||= "urn_seq"
+    sequence_attr = "urn_seq_promotion_#{award_year.year}" if promotion?
+    sequence_attr ||= "urn_seq_#{award_year.year}"
 
     next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize(sequence_attr)})")
 

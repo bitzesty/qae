@@ -23,8 +23,8 @@ RSpec.describe FormAnswer, type: :model do
 
   context "URN" do
     before do
-      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq RESTART")
-      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_promotion RESTART")
+      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_#{Date.today.year + 1} RESTART")
+      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_promotion_#{Date.today.year + 1} RESTART")
     end
 
     let!(:form_answer) { FactoryGirl.create(:form_answer, :trade, :submitted) }
