@@ -63,3 +63,9 @@ brew install pcre
 ```
   rake users_import:import_from_csv FILEPATH="./spec/fixtures/users.csv"
 ```
+
+## Deployment
+```
+cap demo deploy OLD_SERVERS=true
+cap dev deploy OLD_SERVERS=true
+```
