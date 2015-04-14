@@ -1,6 +1,8 @@
 require_relative 'multi_question_decorator'
 
 class QAEFormBuilder
+  class QueenAwardHolderQuestionValidator < QuestionValidator
+  end
 
   QueenAwardHolderCategory = Struct.new(:value, :text)
 

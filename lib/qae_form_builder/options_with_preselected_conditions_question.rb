@@ -1,9 +1,12 @@
 class QAEFormBuilder
+  class OptionsWithPreselectedConditionsQuestionValidator < OptionsQuestionValidator
+  end
+
   class PlaceholderPreselectedCondition
-    attr_accessor :question_key, 
-                  :question_suffix, 
-                  :parent_question_answer_key, 
-                  :answer_key, 
+    attr_accessor :question_key,
+                  :question_suffix,
+                  :parent_question_answer_key,
+                  :answer_key,
                   :question_value,
                   :placeholder_text
 
@@ -16,9 +19,9 @@ class QAEFormBuilder
   end
 
   class OptionsWithPreselectedConditionsQuestion < OptionsQuestion
-    attr_accessor :main_header, 
-                  :placeholder_preselected_conditions, 
-                  :options, 
+    attr_accessor :main_header,
+                  :placeholder_preselected_conditions,
+                  :options,
                   :question_key
 
     def after_create

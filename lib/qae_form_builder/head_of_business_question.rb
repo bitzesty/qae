@@ -1,4 +1,7 @@
 class QAEFormBuilder
+  class HeadOfBusinessQuestionValidator < QuestionValidator
+  end
+
   class HeadOfBusinessQuestionDecorator < QuestionDecorator
     def required_sub_fields
       [

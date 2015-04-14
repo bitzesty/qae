@@ -1,4 +1,7 @@
 class QAEFormBuilder
+  class AwardHolderQuestionValidator < QuestionValidator
+  end
+
   class AwardHolderQuestionBuilder < QuestionBuilder
     def award_years_present(value)
       @q.award_years_present = value

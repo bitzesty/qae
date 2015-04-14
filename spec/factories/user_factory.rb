@@ -35,6 +35,5 @@ FactoryGirl.define do
         create(:innovation_eligibility, account: user.account)
       end
     end
-
   end
 end

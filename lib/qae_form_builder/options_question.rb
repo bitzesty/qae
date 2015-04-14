@@ -1,9 +1,10 @@
 class QAEFormBuilder
+  class OptionsQuestionValidator < QuestionValidator
+  end
 
   QuestionAnswerOption = Struct.new(:value, :text)
 
   class OptionsQuestionBuilder < QuestionBuilder
-
     def option value, text
       @q.options << QuestionAnswerOption.new(value, text)
     end
@@ -21,7 +22,6 @@ class QAEFormBuilder
     def sub_category_question
       @q.sub_category_question = true
     end
-
   end
 
   class OptionsQuestion < Question

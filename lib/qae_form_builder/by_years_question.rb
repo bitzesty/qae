@@ -1,4 +1,6 @@
 class QAEFormBuilder
+  class ByYearsQuestionValidator < QuestionValidator
+  end
 
   class ByYearsQuestionDecorator < QuestionDecorator
     def fieldset_classes

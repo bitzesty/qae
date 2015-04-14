@@ -1,4 +1,4 @@
-form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=save_form_url(@form_answer, next_step: next_step(@form, params[:step])) method="POST" data-attachments-url=attachments_url(@form_answer) novalidate=true
+form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=save_form_url(@form_answer, next_step: next_step(@form, params[:step]), current_step: params[:step]) method="POST" data-attachments-url=attachments_url(@form_answer) novalidate=true
   input name="authenticity_token" type="hidden" value=form_authenticity_token
 
   header.page-header.group.page-header-over-sidebar

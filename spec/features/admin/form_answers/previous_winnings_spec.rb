@@ -13,7 +13,7 @@ describe "Admin sets up previous winnings" do
   end
 
   context "addition" do
-    let!(:form_answer) { create(:form_answer) }
+    let!(:form_answer) { create(:form_answer, :trade) }
 
     it "adds previous winning" do
       within ".previous-wins-form" do

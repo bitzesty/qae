@@ -1,4 +1,7 @@
 class QAEFormBuilder
+  class SupportersQuestionValidator < QuestionValidator
+  end
+
   class SupportersQuestionBuilder < QuestionBuilder
     def limit(value)
       @q.limit = value

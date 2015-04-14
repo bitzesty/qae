@@ -15,7 +15,7 @@ describe Notifiers::EmailNotificationService do
 
   context "shortlisted_audit_certificate_reminder" do
     let(:kind) { "shortlisted_audit_certificate_reminder" }
-    let(:form_answer) { create(:form_answer, :submitted) }
+    let(:form_answer) { create(:form_answer, :trade, :submitted) }
 
     it "triggers current notification" do
       service = double
@@ -65,8 +65,9 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "winners_notification" }
 
     it "triggers current notification" do
-      form_answer = create(:form_answer, :submitted, document:
-                           { head_email: "head@email.com" })
+      form_answer = create(:form_answer, :trade, :submitted)
+      form_answer.document = form_answer.document.merge(head_email: "head@email.com")
+      form_answer.save!
 
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
         .with("head@email.com", form_answer)
@@ -78,8 +79,9 @@ describe Notifiers::EmailNotificationService do
     end
 
     it "triggers current notification" do
-      form_answer = create(:form_answer, :promotion, :submitted,
-                           document: { nominee_email: "nominee@email.com" })
+      form_answer = create(:form_answer, :promotion, :submitted)
+      form_answer.document = form_answer.document.merge(nominee_email: "nominee@email.com")
+      form_answer.save!
 
       expect(Notifiers::Winners::PromotionBuckinghamPalaceInvite).to receive(:perform_async)
         .with("nominee@email.com", form_answer)
@@ -96,7 +98,7 @@ describe Notifiers::EmailNotificationService do
     let(:user) { create(:user) }
 
     let(:form_answer) do
-      create(:form_answer, :submitted)
+      create(:form_answer, :trade, :submitted)
     end
 
     let(:press_summary) do
@@ -119,7 +121,7 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "all_unsuccessful_feedback" }
 
     let(:form_answer) do
-      create(:form_answer, :submitted)
+      create(:form_answer, :trade, :submitted)
     end
 
     before do

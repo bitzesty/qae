@@ -102,7 +102,7 @@ class FormController < ApplicationController
         @form_answer.document = @form_answer.document.merge(queen_award_holder: queen_award_holder)
       end
 
-      @form_answer.save!
+      @form_answer.save
       @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
       render template: "qae_form/show"
     else
@@ -117,34 +117,57 @@ class FormController < ApplicationController
     redirected = params[:next_action] == "redirect"
     submitted = params[:submit] == "true" && !redirected
 
-    if submitted
-      @form_answer.submitted = true
-    end
-
-    submitted_was_changed = @form_answer.submitted_changed?
-
-    if @form_answer.eligible? && @form_answer.save
-      if submitted_was_changed
-        @form_answer.state_machine.submit(current_user)
-        Notifiers::Submission::SuccessNotifier.new(@form_answer).run
-      end
-    end
-
     respond_to do |format|
       format.html do
+        redirected = params[:next_action] == "redirect"
+
+        if submitted
+          @form_answer.submitted = true
+        end
+
+        submitted_was_changed = @form_answer.submitted_changed?
+        @form_answer.current_step = params[:current_step] || @form.steps.first.title.parameterize
+
+        if @form_answer.eligible? && (saved = @form_answer.save)
+          if submitted_was_changed
+            @form_answer.state_machine.submit(current_user)
+            Notifiers::Submission::SuccessNotifier.new(@form_answer).run
+          end
+        end
+
         if redirected
           redirect_to dashboard_url
         else
-          if submitted
+          if submitted && saved
             redirect_to submit_confirm_url(@form_answer)
           else
-            params[:next_step] ||= @form.steps[1].title.parameterize
-            redirect_to edit_form_url(@form_answer.id, step: params[:next_step])
+            # maybe we should think about rendering step with error
+            # rather than the first one
+            if saved
+              params[:next_step] ||= @form.steps[1].title.parameterize
+              redirect_to edit_form_url(@form_answer, step: params[:next_step])
+            else
+              params[:step] = @form.steps.first.title.parameterize
+              render template: "qae_form/show"
+            end
           end
         end
       end
 
       format.js do
+        if submitted
+          @form_answer.submitted = true
+        end
+
+        submitted_was_changed = @form_answer.submitted_changed?
+
+        if @form_answer.eligible? && @form_answer.save
+          if submitted_was_changed
+            @form_answer.state_machine.submit(current_user)
+            Notifiers::Submission::SuccessNotifier.new(@form_answer).run
+          end
+        end
+
         render json: { progress: @form_answer.fill_progress }
       end
     end

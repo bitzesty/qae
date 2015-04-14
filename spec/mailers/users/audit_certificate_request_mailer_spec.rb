@@ -3,11 +3,9 @@ require "rails_helper"
 describe Users::AuditCertificateRequestMailer do
   let!(:user) { create :user }
   let(:form_answer) do
-    create :form_answer, :submitted, :innovation,
-                                                 user: user,
-                                                 document: { company_name: "Bitzesty" }
-
+    create :form_answer, :submitted, :innovation, user: user
   end
+
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) {
     "[Queen's Awards] #{award_title} request to complete an audit certificate!"

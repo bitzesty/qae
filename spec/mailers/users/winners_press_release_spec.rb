@@ -10,8 +10,7 @@ describe Users::WinnersPressRelease do
   describe "#notify" do
     let(:form_answer) do
       FactoryGirl.create :form_answer, :submitted, :innovation,
-                                                   user: user,
-                                                   document: { company_name: "Bitzesty" }
+                                                   user: user
     end
 
     let!(:press_release) { create :press_summary, form_answer: form_answer }

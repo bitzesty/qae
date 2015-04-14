@@ -1,4 +1,6 @@
 class QAEFormBuilder
+  class UploadQuestionValidator < QuestionValidator
+  end
 
   class UploadQuestionBuilder < QuestionBuilder
     def max_attachments num

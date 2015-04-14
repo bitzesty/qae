@@ -1,4 +1,6 @@
 class QAEFormBuilder
+  class CountryQuestionValidator < QuestionValidator
+  end
 
   class CountryQuestionDecorator < QuestionDecorator
     def required_sub_fields

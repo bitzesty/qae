@@ -28,7 +28,7 @@ RSpec.describe FormAnswer, type: :model do
       end
     end
 
-    let!(:form_answer) { FactoryGirl.create(:form_answer, submitted: true) }
+    let!(:form_answer) { FactoryGirl.create(:form_answer, :trade, :submitted) }
     let(:award_year) { (Date.today.year + 1).to_s[2..-1] }
 
     it "creates form with URN" do
@@ -36,7 +36,7 @@ RSpec.describe FormAnswer, type: :model do
     end
 
     it "increments URN" do
-      other_form_answer = FactoryGirl.create(:form_answer, submitted: true)
+      other_form_answer = FactoryGirl.create(:form_answer, :trade, :submitted)
       expect(other_form_answer.urn).to eq("QA0002/#{award_year}T")
     end
   end

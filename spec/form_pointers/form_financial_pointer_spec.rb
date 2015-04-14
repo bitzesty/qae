@@ -121,7 +121,7 @@ describe FormFinancialPointer do
     ]
   end
 
-  let(:form_answer) { create :form_answer, :submitted }
+  let(:form_answer) { create :form_answer, :trade, :submitted }
 
   it "benchmarks trade data" do
     pointer = FormFinancialPointer.new(form_answer)
