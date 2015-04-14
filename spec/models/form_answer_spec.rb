@@ -24,6 +24,7 @@ RSpec.describe FormAnswer, type: :model do
   context "URN" do
     before do
       FormAnswer.connection.execute("ALTER SEQUENCE urn_seq RESTART")
+      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_promotion RESTART")
     end
 
     let!(:form_answer) { FactoryGirl.create(:form_answer, submitted: true) }
@@ -46,8 +47,8 @@ RSpec.describe FormAnswer, type: :model do
 
       expect(form1.urn).to eq("QA0002/#{award_year}T")
       expect(form2.urn).to eq("QA0003/#{award_year}I")
-      expect(form3.urn).to eq("QA0004/#{award_year}P")
-      expect(form4.urn).to eq("QA0005/#{award_year}D")
+      expect(form3.urn).to eq("QA0001/#{award_year}P")
+      expect(form4.urn).to eq("QA0004/#{award_year}D")
     end
   end
 
