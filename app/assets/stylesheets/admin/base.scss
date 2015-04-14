@@ -119,8 +119,11 @@ table .ellipsis {
 }
 
 .table-overflow-container {
-  @include screen-sm-max {
-    overflow-x: auto;
+  overflow-x: auto;
+
+  .table {
+    width: 99.5%;
+    margin-left: 1px;
   }
 }
 
