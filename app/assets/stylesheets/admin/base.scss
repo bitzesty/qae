@@ -49,6 +49,19 @@ select.form-control {
   }
 }
 
+h1,
+h2,
+h3,
+h4 {
+  label {
+    margin-bottom: 0;
+  }
+
+  .boolean.control-label {
+    padding-left: 0;
+  }
+}
+
 .no-js .collapse {
   display: block;
   visibility: visible;
@@ -158,11 +171,13 @@ table .ellipsis {
   clear: both;
 }
 
-.question-group {
-  h3 {
-    font-size: 18px;
+.question-group h3 {
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 1.5;
+
+  label {
     font-weight: bold;
-    line-height: 1.5;
   }
 }
 
@@ -209,6 +224,10 @@ table .ellipsis {
 
   .btn {
     margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0;
+    }
   }
 }
 

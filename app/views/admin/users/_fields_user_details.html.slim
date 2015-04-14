@@ -6,48 +6,49 @@ fieldset.question-group
                 wrapper_html: { class: "form-group" },
                 input_html: { class: "form-control" }
   .row
-    .col-md-4.col-sm-5
+    .col-lg-2.col-md-3.col-sm-4
       = f.input :first_name,
                 wrapper_html: { class: "form-group" },
                 input_html: { class: "form-control" }
   .row
-    .col-md-4.col-sm-5
+    .col-lg-2.col-md-3.col-sm-4
       = f.input :last_name,
                 wrapper_html: { class: "form-group" },
                 input_html: { class: "form-control" }
 
 fieldset.question-group
-  h3 Job title
+  h3
+    = f.label :job_title
   .row
     .col-md-4.col-sm-5
       = f.input :job_title,
                 wrapper_html: { class: "form-group" },
                 input_html: { class: "form-control" },
-                label_html: { class: "visuallyhidden" }
+                label: false
 
 fieldset.question-group
-  h3 Telephone number
+  h3 = f.label :phone_number, label: "Telephone number"
   .row
     .col-md-2.col-sm-3
       = f.input :phone_number,
                 wrapper_html: { class: "form-group" },
                 input_html: { class: "form-control" },
-                label_html: { class: "visuallyhidden" }
+                label: false
 
 fieldset.question-group
-  h3 Email
+  h3 = f.label :email
   .row
     .col-md-4.col-sm-5
       = f.input :email,
                 wrapper_html: { class: "form-group" },
                 input_html: { class: "form-control" },
-                label_html: { class: "visuallyhidden" }
+                label: false
 
 fieldset.question-group
-  h3 Account type
+  h3 = f.label :role, label: "Account type"
   .row
     .col-md-2.col-sm-3
       = f.input :role,
                 wrapper_html: { class: "form-group" },
                 input_html: { class: "form-control" },
-                label_html: { class: "visuallyhidden" }
+                label: false

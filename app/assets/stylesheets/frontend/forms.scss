@@ -126,11 +126,11 @@ textarea {
   // Alternate width sizes for inputs based on
   // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/names
   &.tiny {
-    min-width: 2em;
-    max-width: 2em;
+    min-width: 2.5em;
+    max-width: 2.5em;
 
     @include ie-lte(7) {
-      width: 2em;
+      width: 2.5em;
     }
 
     @media (max-width: 640px) {
