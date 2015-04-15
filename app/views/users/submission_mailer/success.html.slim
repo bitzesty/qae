@@ -4,19 +4,21 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ' ,
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Application for
-  = @form_answer.award_application_title
-  '  for
-  = @form_owner.general_info
-  '  has been successfully submitted.
-
-p style="border-left: 10px #dee0e2 solid; padding: 14px 0 14px 14px; font-size: 19px; line-height: 1.315789474; margin: 0 0 19px 0;"
-  strong Unique Reference Number (URN):
-  br
+  ' Thank you for submitting your
+  - if @form_answer.award_type
+    ' nomination
+  - else
+    ' application
+  ' for The Queen’s Award for Enterprise Promotion 
+  = Date.today.year
+  ' . Your unique reference is
   = @form_answer.urn
 
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' If you have any queries about the nomination process you can call us on 020 7215 6880 or email us.
+
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  ' Thank you,
+  ' Kind regards,
   br
   br
   ' The Queen’s Awards Office
