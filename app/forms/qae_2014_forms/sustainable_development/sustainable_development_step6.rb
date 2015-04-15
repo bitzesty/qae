@@ -30,9 +30,9 @@ class QAE2014Forms
         text :head_job_title, "Job title / Role in the organisation" do
           classes "sub-question"
           required
-          context %(
-            <p>e.g. CEO, Managing Director, Founder, Head of your organisational unit</p>
-                    )
+          form_hint %(
+            e.g. CEO, Managing Director, Founder, Head of your organisational unit
+          )
         end
 
         text :head_email, "Email address" do

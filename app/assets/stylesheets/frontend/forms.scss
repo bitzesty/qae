@@ -15,6 +15,16 @@ $black-true: #000;
   margin: 0;
 }
 
+// Question Context style
+.question-context {
+  color: $grey-1;
+}
+
+ul.question-context,
+.question-context ul {
+  list-style-image: image-url("bullet-disc-5px-grey.gif");
+}
+
 .no-js .regular-question h2 {
   margin-bottom: 0.5em;
 }

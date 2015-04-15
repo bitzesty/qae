@@ -38,7 +38,7 @@
     fieldset
       h3
         ' Administrative rights
-      p
+      p.question-context
         ' A ‘Contributor’ can only write and edit your applications/nominations. Whilst an ‘Admin and Contributor’ is also able to add new collaborators.
       = f.input :role,
                 collection: [["Contributor", "regular"],

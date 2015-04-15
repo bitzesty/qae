@@ -1,5 +1,5 @@
 .question-body
-  p.hint
+  p.question-context
     = @eligibility.class.hint(step)
   - collection = @eligibility.class.sales_above_100_000_pounds.options
   - collection.reject! { |opts| opts.last == 'skip' } if controller_name == 'form_award_eligibilities'

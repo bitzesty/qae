@@ -126,7 +126,8 @@ $is-ie: false !default;
     }
   }
 
-  .hint {
+  .hint,
+  .question-context {
     @include core-16;
     display: block;
   }

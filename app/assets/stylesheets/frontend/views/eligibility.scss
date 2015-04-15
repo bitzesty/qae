@@ -79,6 +79,10 @@ article .current-question li {
   input {
     margin-left: 0;
   }
+
+  .question-context {
+    @include core-19;
+  }
 }
 
 .question-organisation-fulfill-above-exceptions .eligibilty-label {
