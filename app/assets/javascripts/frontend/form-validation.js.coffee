@@ -27,10 +27,9 @@ window.FormValidation =
       $(".steps-progress-bar .js-step-link[data-step=#{page.attr('data-step')}]").addClass("step-errors")
       $(".js-review-sections").empty()
       $(".steps-progress-bar .step-errors a").each ->
-        section_html = "<li>"
-        section_html += $(this).parent().html().replace("step-errors", "").replace("step-current", "")
-        section_html += "</li>"
-        $(".js-review-sections").append(section_html)
+        step_link = $(this).parent().html()
+        step_link = step_link.replace("step-errors", "").replace("step-current", "")
+        $(".js-review-sections").append("<li>#{step_link}</li>")
 
       # uncheck confirmation of entry
       $(".question-block[data-answer='entry_confirmation-confirmation-of-entry'] input[type='checkbox']").prop("checked", false)
