@@ -105,6 +105,7 @@ class QAE2014Forms
           sub_ref "A 6.3"
           required
           conditional :business_name_changed, :yes
+          conditional :queen_award_holder, :yes
         end
 
         textarea :previous_business_ref_num, "Reference number(s) used previously" do
@@ -112,6 +113,7 @@ class QAE2014Forms
           sub_ref "A 6.4"
           required
           conditional :business_name_changed, :yes
+          conditional :queen_award_holder, :yes
           rows 5
           words_max 100
         end
