@@ -23,4 +23,16 @@ class Form::MaterialsBaseController < Form::BaseController
   expose(:next_document_position) do
     existing_materials.keys.map(&:to_i).max.to_i + 1
   end
+
+  before_action :check_materials_limit, only: [:create]
+
+  private
+
+    def check_materials_limit
+      if existing_materials.count >= 4
+        redirect_to form_form_answer_form_attachments_url,
+                    alert: "You can add up to 4 files or website addresses as maximum!"
+        return
+      end
+    end
 end

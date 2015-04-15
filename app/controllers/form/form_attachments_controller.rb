@@ -27,13 +27,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
 
   expose(:add_attachment_result_doc) do
     result_materials = existing_materials
-    Rails.logger.info "[result_materials 1] #{result_materials}"
-
-    Rails.logger.info "[next_document_position] #{next_document_position}"
-    Rails.logger.info "[created_attachment_ops] #{created_attachment_ops}"
     result_materials[next_document_position.to_s] = created_attachment_ops
-
-    Rails.logger.info "[result_materials 2] #{result_materials}"
 
     @form_answer.document.merge(
       innovation_materials: result_materials.to_json
@@ -41,13 +35,11 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
   end
 
   expose(:remove_attachment_result_doc) do
-    result_materials = existing_materials.reject! do |k, v|
-      v["file"] == form_answer_attachment.id.to_s
+    result_materials = existing_materials
+    result_materials.delete_if do |k, v|
+      v["file"] == params[:id].to_s
     end
-
     result_materials = result_materials.present? ? result_materials.to_json : ""
-
-    Rails.logger.info "[result_materials remove] #{result_materials}"
 
     @form_answer.document.merge(
       innovation_materials: result_materials
@@ -61,7 +53,6 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
   end
 
   def create
-    Rails.logger.info "[attachment_params] #{attachment_params}"
     self.form_answer_attachment = current_user.form_answer_attachments.new(
       attachment_params.merge({
         form_answer_id: @form_answer.id,
@@ -76,7 +67,6 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
 
       redirect_to form_form_answer_form_attachments_url
     else
-      Rails.logger.info "[form_answer_attachment] #{form_answer_attachment.errors.full_messages}"
       render :new
     end
   end
