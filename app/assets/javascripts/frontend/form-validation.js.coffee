@@ -23,7 +23,15 @@ window.FormValidation =
     container.addClass("question-has-errors")
     page = container.closest(".step-article")
     if !page.hasClass("step-errors")
+      # highlight the error sections in sidebar and in error message
       $(".steps-progress-bar .js-step-link[data-step=#{page.attr('data-step')}]").addClass("step-errors")
+      $(".js-review-sections").empty()
+      $(".steps-progress-bar .step-errors a").each ->
+        section_html = "<li>"
+        section_html += $(this).parent().html().replace("step-errors", "").replace("step-current", "")
+        section_html += "</li>"
+        $(".js-review-sections").append(section_html)
+
       # uncheck confirmation of entry
       $(".question-block[data-answer='entry_confirmation-confirmation-of-entry'] input[type='checkbox']").prop("checked", false)
     @validates = false

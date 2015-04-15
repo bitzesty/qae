@@ -196,3 +196,11 @@ label > .visible-read-only,
     margin-bottom: 0;
   }
 }
+
+.js-review-sections {
+  list-style-image: image-url("bullet-disc-5px-red.gif");
+
+  a {
+    color: $error-colour;
+  }
+}
