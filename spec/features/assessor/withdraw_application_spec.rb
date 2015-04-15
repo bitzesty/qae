@@ -4,8 +4,12 @@ include Warden::Test::Helpers
 describe "Assessor withdraws the application", js: true do
   let!(:assessor) { create(:assessor, :lead_for_all) }
   let!(:form_answer) { create(:form_answer) }
+
   before do
+    setting = Settings.current_submission_deadline
+    setting.update(trigger_at: DateTime.now - 1.hour)
     login_as(assessor, scope: :assessor)
+    form_answer.state_machine.perform_transition(:assessment_in_progress, nil, false)
   end
 
   describe "application withdrawn" do

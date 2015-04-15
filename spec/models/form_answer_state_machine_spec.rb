@@ -7,6 +7,17 @@ describe FormAnswerStateMachine do
     context "deadline expired" do
       let!(:settings) { create(:settings, :expired_submission_deadlines) }
 
+      describe "assessment_in_progress -> withdrawn" do
+        let(:lead) { create(:assessor, :lead_for_all) }
+        it "sends notification for the Lead Assessor" do
+          expect(Assessors::GeneralMailer).to receive(
+            :led_application_withdrawn).and_return(double(deliver_later!: true))
+          form_answer.update_column(:state, "assessment_in_progress")
+          form_answer.state_machine.perform_transition(:withdrawn, lead)
+          expect(form_answer.reload.state).to eq("withdrawn")
+        end
+      end
+
       context "applications submitted" do
         before { form_answer.update(state: "submitted") }
         it "automatically changes state to `assessment_in_progress`" do
@@ -27,17 +38,6 @@ describe FormAnswerStateMachine do
           }.from("application_in_progress").to("not_submitted")
         end
       end
-    end
-  end
-
-  describe "application_in_progress -> withdrawn" do
-    let(:lead) { create(:assessor, :lead_for_all) }
-    it "sends notification for the Lead Assessor" do
-      expect(Assessors::GeneralMailer).to receive(
-        :led_application_withdrawn).and_return(double(deliver_later!: true))
-
-      form_answer.state_machine.perform_transition(:withdrawn, lead)
-      expect(form_answer.reload.state).to eq("withdrawn")
     end
   end
 

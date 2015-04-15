@@ -13,11 +13,11 @@ describe FormAnswerStatistics::Picker do
 
         Timecop.freeze(Date.today - 2.years) do
           fa = create(:form_answer)
-          fa.state_machine.perform_transition(:submitted)
+          fa.state_machine.perform_transition(:submitted, nil, false)
         end
 
         fa1 = create(:form_answer, :trade)
-        fa1.state_machine.perform_transition(:not_eligible)
+        fa1.state_machine.perform_transition(:not_eligible, nil, false)
         Timecop.freeze(Date.today - 1.month) do
           create(:user)
         end
@@ -33,16 +33,16 @@ describe FormAnswerStatistics::Picker do
       it "calculates proper stats" do
         create(:form_answer, :trade)
         fa1 = create(:form_answer, :trade)
-        fa1.state_machine.perform_transition(:submitted)
+        fa1.state_machine.perform_transition(:submitted, nil, false)
 
         Timecop.freeze(Date.today - 3.days) do
           fa2 = create(:form_answer, :trade)
-          fa2.state_machine.perform_transition(:submitted)
+          fa2.state_machine.perform_transition(:submitted, nil, false)
         end
 
         Timecop.freeze(Date.today - 8.days) do
           fa3 = create(:form_answer, :trade)
-          fa3.state_machine.perform_transition(:submitted)
+          fa3.state_machine.perform_transition(:submitted, nil, false)
         end
 
         expect(subject.applications_submissions["trade"]).to eq([1, 2, 3])
@@ -52,8 +52,8 @@ describe FormAnswerStatistics::Picker do
         it "counts the submitted records only once" do
           Timecop.freeze(Date.today - 4.days) do
             fa1 = create(:form_answer, :trade)
-            fa1.state_machine.perform_transition(:submitted)
-            fa1.state_machine.perform_transition(:submitted)
+            fa1.state_machine.perform_transition(:submitted, nil, false)
+            fa1.state_machine.perform_transition(:submitted, nil, false)
           end
           expect(subject.applications_submissions["trade"]).to eq([0, 1, 1])
         end
@@ -74,18 +74,18 @@ describe FormAnswerStatistics::Picker do
     describe "#applications_table" do
       it "calculates the proper stats" do
         fa1 = create(:form_answer)
-        fa1.state_machine.perform_transition(:not_eligible)
+        fa1.state_machine.perform_transition(:not_eligible, nil, false)
 
         create(:form_answer)
         fa2 = create(:form_answer)
-        fa2.state_machine.perform_transition(:submitted)
+        fa2.state_machine.perform_transition(:submitted, nil, false)
 
         Timecop.freeze(Date.today + 13.months) do
           2.times do
             fa1 = create(:form_answer)
-            fa1.state_machine.perform_transition(:not_eligible)
+            fa1.state_machine.perform_transition(:not_eligible, nil, false)
             fa2 = create(:form_answer)
-            fa2.state_machine.perform_transition(:submitted)
+            fa2.state_machine.perform_transition(:submitted, nil, false)
             create(:form_answer) # application_in_progress
           end
         end
@@ -100,13 +100,13 @@ describe FormAnswerStatistics::Picker do
       it "calculates the proper stats" do
         create(:form_answer, :trade)
         fa1 = create(:form_answer, :trade)
-        fa1.state_machine.perform_transition(:submitted)
+        fa1.state_machine.perform_transition(:submitted, nil, false)
 
         Timecop.freeze(Date.today + 13.months) do
           fa2 = create(:form_answer, :trade)
-          fa2.state_machine.perform_transition(:submitted)
+          fa2.state_machine.perform_transition(:submitted, nil, false)
           fa3 = create(:form_answer, :trade)
-          fa3.state_machine.perform_transition(:submitted)
+          fa3.state_machine.perform_transition(:submitted, nil, false)
         end
         expect(subject.applications_submissions["trade"]).to eq(["-", "-", 2])
       end
