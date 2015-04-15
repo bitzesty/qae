@@ -53,7 +53,7 @@ class QAE2014Forms
 
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
           ref "F 2"
-          text "I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info)."
+          text "I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info)."
         end
 
         confirm :agree_being_contacted_by_department_of_business, "" do
