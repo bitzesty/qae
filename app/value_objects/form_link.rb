@@ -1,7 +1,7 @@
 class FormLink
   include ActiveModel::Model
 
-  attr_reader :link, :description, :position
+  attr_reader :link, :description
 
   validates :link, :description, presence: true
   validates :link, length: { maximum: 500 }

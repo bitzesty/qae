@@ -82,7 +82,6 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
   end
 
   def destroy
-    remove_attachment_result_doc
     @form_answer.document = remove_attachment_result_doc
 
     if @form_answer.save
@@ -97,7 +96,6 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     def attachment_params
       params.require(:form_answer_attachment).permit(
         :file,
-        :position,
         :description
       )
     end

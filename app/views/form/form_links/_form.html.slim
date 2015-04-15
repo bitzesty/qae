@@ -1,7 +1,5 @@
 li
   = simple_form_for form_link, url: form_form_answer_form_links_url(@form_answer), html: { class: 'qae-form' } do |f|
-    = f.input :position, as: :hidden,
-                         input_html: { value: next_document_position }
 
     div
       = f.input :link,

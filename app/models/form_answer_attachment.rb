@@ -11,7 +11,7 @@ class FormAnswerAttachment < ActiveRecord::Base
   scope :uploaded_not_by_user, -> { where.not(attachable_type: "User") }
 
   # Used for NON JS implementation - begin
-  attr_accessor :non_js_creation, :description, :position
+  attr_accessor :non_js_creation, :description
   # Should be 100 words maximum
   validates :description, presence: true,
                           length: {
