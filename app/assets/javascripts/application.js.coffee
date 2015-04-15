@@ -284,13 +284,18 @@ jQuery ->
   updateUploadListVisiblity = (list, button, max) ->
     list_elements = list.find("li")
     count = list_elements.length
+    wrapper = button.closest('div.js-upload-wrapper')
+    dropzone = wrapper.find(".js-file-drop-zone")
+
     if count > 0
       list.removeClass("visuallyhidden")
 
     if !max || count < max
       button.removeClass("visuallyhidden")
+      dropzone.removeClass("visuallyhidden").removeClass("drop-hover")
     else
       button.addClass("visuallyhidden")
+      dropzone.addClass("visuallyhidden").removeClass("drop-hover")
 
   reindexUploadListInputs = (list) ->
     idx = 0
@@ -309,13 +314,54 @@ jQuery ->
     remove_link = $("<a>").addClass("remove-link").prop("href", "#").text("Remove")
     div.append(remove_link)
 
+  isEventSupported = (eventName, element) ->
+    TAGNAMES = {
+                "select": "input",
+                "change": "input",
+                "submit": "form",
+                "reset": "form",
+                "error": "img",
+                "load": "img",
+                "abort": "img"
+              }
+    element = element || document.createElement(TAGNAMES[eventName] || "div")
+    eventName = "on" + eventName
+    isSupported = eventName in element
+
+    if !isSupported
+      if !element.setAttribute
+        element = document.createElement("div")
+      if element.setAttribute && element.removeAttribute
+        element.setAttribute(eventName, "")
+        isSupported = typeof element[eventName] == "function"
+
+        if typeof element[eventName] != "undefined"
+          element[eventName] = undefined
+        element.removeAttribute(eventName)
+
+    element = null
+    return isSupported
+
+  isMobile = ->
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+
+  if isEventSupported('dragstart') && isEventSupported('drop') && !isMobile()
+    $(".js-file-drop-zone").addClass("file-drop-supported")
+
+  $(".js-file-drop-zone").on "dragenter dragover", ->
+    $(this).addClass("drop-hover")
+
+  $(".js-file-drop-zone").on "dragleave drop", ->
+    $(this).removeClass("drop-hover")
+
   $('.js-file-upload').each (idx, el) ->
     form = $(el).closest('form')
     attachments_url = form.data 'attachments-url'
     $el = $(el)
 
     wrapper = $el.closest('div.js-upload-wrapper')
-    button = wrapper.find('.button-add')
+    button = wrapper.find(".button-add")
+    dropzone = wrapper.find(".js-file-drop-zone")
     list = wrapper.find('.js-uploaded-list')
 
     max = wrapper.data('max-attachments')
@@ -331,6 +377,7 @@ jQuery ->
     upload_started = (e, data) ->
       # Show `Uploading...`
       button.addClass("visuallyhidden")
+      dropzone.addClass("visuallyhidden")
       new_el = $("<li class='js-uploading'>")
       div = $("<div>")
       label = $("<label>").text("Uploading...")
