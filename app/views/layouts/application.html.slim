@@ -29,6 +29,13 @@
   - unless landing_page?
     ' with-proposition
 
+- content_for :cookie_message do
+  .outer-block
+    .inner-block
+      p
+        ' GOV.UK uses cookies to make the site simpler.
+        = link_to "Find out more about cookies", cookies_path
+
 - content_for :proposition_header do
   - unless landing_page?
     .header-proposition
