@@ -90,6 +90,22 @@ class Reports::FormAnswer
     end
   end
 
+  def business_region
+    if business_form?
+      doc "principal_address_region"
+    else
+      doc "nominee_personal_address_region"
+    end
+  end
+
+  def employees
+    unless trade?
+      doc("employees_5of5").presence || doc("employees_2of2")
+    else
+      doc("employees_6of6").presence || doc("employees_3of3")
+    end
+  end
+
   def qao_permission
     obj.user.subscribed_to_emails
   end
@@ -129,6 +145,10 @@ class Reports::FormAnswer
 
   def business_form?
     obj.trade? || obj.innovation? || obj.development?
+  end
+
+  def trade?
+    obj.trade?
   end
 
   def promotion?

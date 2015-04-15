@@ -34,7 +34,7 @@ class Admin::ReportsController < Admin::BaseController
   private
 
   def resource
-    @report ||= Reports::AdminReport.new(params[:id])
+    @report ||= Reports::AdminReport.new(params[:id], @award_year)
   end
 
   def render_pdf
