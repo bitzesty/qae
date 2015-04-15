@@ -2,9 +2,9 @@ li
   div
     = link_to attrs["link"], attrs["link"],
                              target: "_blank"
-    = link_to "Remove", form_form_answer_form_links_url(@form_answer, position: position),
-                        class: "remove-link",
-                        method: :delete
+    = button_to "Remove", form_form_answer_form_links_url(@form_answer, position: position),
+                          method: :delete,
+                          class: "non-js-remove-link", form_class: "non-js-button-to"
   div
     .row
       .span-12

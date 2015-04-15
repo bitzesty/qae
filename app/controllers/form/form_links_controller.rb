@@ -12,15 +12,20 @@ class Form::FormLinksController < Form::MaterialsBaseController
 
   def create
     Rails.logger.info "[link_params] #{link_params}"
-    # self.form_link = FormLink.new(link_params)
-    # form_link.valid?
+    self.form_link = FormLink.new(link_params)
 
-    render :index
+    if form_link.valid?
+      # save to form_answer
+      redirect_to form_form_answer_form_attachments_url
+    else
+      render :new
+    end
   end
 
   def destroy
 
-    render :index
+
+    redirect_to form_form_answer_form_attachments_url
   end
 
   private

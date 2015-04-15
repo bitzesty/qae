@@ -9,7 +9,8 @@ class FormLink
   # Should be 100 words maximum
   validates :description, length: {
     maximum: 100,
-    tokenizer: lambda { |str| str.split }
+    tokenizer: -> (str) { str.split },
+    message: "is too long (maximum is 100 words)"
   }
 
   def initialize(attrs={})

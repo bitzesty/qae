@@ -1,11 +1,5 @@
 li
   div
-    - if form_answer_attachment.persisted?
-      = link_to form_answer_attachment.original_filename,
-                form_answer_attachment.file.url,
-                target: "_blank"
-      = link_to "Remove", form_form_answer_form_attachments_and_link_url(@form_answer, form_answer_attachment), class: "remove-link", method: :delete
-  div
     = simple_form_for form_answer_attachment,
                       url: form_form_answer_form_attachments_url(@form_answer),
                       html: { class: 'qae-form' } do |f|
@@ -14,9 +8,7 @@ li
 
       .row
         .span-6
-          = f.input :file,
-                    as: :file,
-                    input_html: { class: "form-control" }
+          = f.input :file, as: :file, input_html: { class: "form-control" }
       = f.label :description
       .char-count.char-max-shift
         .char-text-limit

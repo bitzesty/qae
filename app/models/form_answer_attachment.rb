@@ -11,17 +11,20 @@ class FormAnswerAttachment < ActiveRecord::Base
   scope :uploaded_not_by_user, -> { where.not(attachable_type: "User") }
 
   # Used for NON JS implementation - begin
-  attr_accessor :description, :position
+  attr_accessor :non_js_creation, :description, :position
   # Should be 100 words maximum
-  validates :description, length: {
-    maximum: 100,
-    tokenizer: lambda { |str| str.split }
-  }
+  validates :description, presence: true,
+                          length: {
+                            maximum: 100,
+                            tokenizer: -> (str) { str.split },
+                            message: "is too long (maximum is 100 words)"
+                          },
+                          on: :create,
+                          if: "self.non_js_creation.present?"
   # Used for NON JS implementation - end
 
   begin :validations
-    validates :form_answer_id, uniqueness: true,
-                               presence: true
+    validates :form_answer_id, presence: true
     validates :file, presence: true,
                      file_size: {
                        maximum: 25.megabytes.to_i
