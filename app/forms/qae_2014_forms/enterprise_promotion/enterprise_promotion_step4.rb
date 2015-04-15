@@ -34,7 +34,7 @@ class QAE2014Forms
 
           hint "How does the letters of support system work?", %(
             <p>
-              First, you should enter details of your chosen supporters below. We will then email them a link to a web form, where they can enter their letter of support.
+              First, you should enter details of your chosen supporters below. We will then email them a link to a web form, where they can enter their letter of support and click on the ‘Send support request’ button
             </p>
             <p>
               They will be given instructions as to what to include in their letter.
@@ -64,7 +64,7 @@ class QAE2014Forms
               Letters of support should be about 500 words in length, making it clear why a nomination is being supported and NOT simply saying “I wish to support the nomination of …”.
             </p>
             <p>
-              The Queen’s Award for Enterprise Promotion recognises those who have gone above and beyond their duties promoting enterprise and entrepreneurial skills, so your letter should focus mainly on the nominee’s achievements outside of the requirements of their paid job, using your first hand knowledge of these where possible.
+              The Queen’s Award for Enterprise Promotion recognises individuals who go beyond the limits of their day-to-day role to foster an entrepreneurial spirit and promote enterprise within others, so your letter should focus mainly on the nominee’s achievements outside of the requirements of their paid job, using your first hand knowledge of these where possible.
             </p>
             <p>
               Ideally, we are looking for evidence that demonstrates the clear impact of the nominee’s activities in enterprise promotion:
