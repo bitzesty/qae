@@ -8,7 +8,12 @@ header.page-header.group.page-header-wider
       ' Thank you,
     br
     p
-      ' Your application for the Queen’s Award for Enterprise: #{@form_answer.decorate.award_type} Award was submitted. We have sent you an email confirming your submission.
+      ' Your
+      - if @form_answer.award_type == "promotion"
+        ' nomination for The Queen’s Award for Enterprise Promotion Award
+      - else
+        ' application for The Queen’s Award for Enterprise: #{@form_answer.decorate.award_type} Award
+      ' was submitted. We have sent you an email confirming your submission.
     br
     p
       strong
@@ -37,23 +42,48 @@ header.page-header.group.page-header-wider
 
         h2
           ' What happens next
-        h3 December
+        - if @form_answer.award_type == "promotion"
+          h3 October/November
 
-        p We will contact you to let you know if you’ve been shortlisted.
+          p Independent assessment of all nominations received and a shortlist is drawn up. The Queen’s Awards Office undertakes due diligence checks of the shortlisted candidates.
 
-        p Shortlisted organisations are expected to:
-        ul
-          li complete the full Declaration of Corporate Responsibility (if not done so yet).
-          li provide an external accountant’s certificate by mid-January (please note audited accounts are not required)
+          h3 January
 
-        h3 March
-        p All unsuccessful applicants will receive feedback on their applications (including where the entry failed to meet the standards required, and how it could be improved).
+          p Shortlisted candidates considered by the Enterprise Promotion Assessment Committee.
 
-        h3 April
-        p The winners are announced publicly.
+          h3 March
 
-        h3 July
-        p Winning organisations are invited to a Buckingham Palace reception.
+          ul
+            li The final shortlist is reviewed by the Prime Minister, and approved by HM The Queen.
+            li Successful nominees are notified.
+
+          h3 April
+
+          ul
+            li Nominators of both successful and unsuccessful nominees informed.
+            li 21st – Winners are announced publicly
+
+          h3 July
+          p All winning recipients and their nominators invited to a Royal reception at Buckingham Palace.
+
+        - else
+          h3 December
+
+          p We will contact you to let you know if you’ve been shortlisted.
+
+          p Shortlisted organisations are expected to:
+          ul
+            li complete the full Declaration of Corporate Responsibility (if not done so yet).
+            li provide an external accountant’s certificate by mid-January (please note audited accounts are not required)
+
+          h3 March
+          p All unsuccessful applicants will receive feedback on their applications (including where the entry failed to meet the standards required, and how it could be improved).
+
+          h3 April
+          p The winners are announced publicly.
+
+          h3 July
+          p Winning organisations are invited to a Buckingham Palace reception.
 
         br
 
