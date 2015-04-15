@@ -2,7 +2,7 @@ li
   div
     = link_to attrs["link"], attrs["link"],
                              target: "_blank"
-    = button_to "Remove", form_form_answer_form_links_url(@form_answer, position: position),
+    = button_to "Remove", form_form_answer_form_links_url(@form_answer, link: attrs["link"]),
                           method: :delete,
                           class: "non-js-remove-link", form_class: "non-js-button-to"
   div

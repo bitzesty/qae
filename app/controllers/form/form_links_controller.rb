@@ -16,13 +16,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
 
   expose(:add_link_result_doc) do
     result_materials = existing_materials
-    Rails.logger.info "[result_materials 1] #{result_materials}"
-
-    Rails.logger.info "[next_document_position] #{next_document_position}"
-    Rails.logger.info "[created_link_ops] #{created_link_ops}"
     result_materials[next_document_position.to_s] = created_link_ops
-
-    Rails.logger.info "[result_materials 2] #{result_materials}"
 
     @form_answer.document.merge(
       innovation_materials: result_materials.to_json
@@ -30,13 +24,11 @@ class Form::FormLinksController < Form::MaterialsBaseController
   end
 
   expose(:remove_link_result_doc) do
-    result_materials = existing_materials.reject! do |k, v|
-      v["file"] == form_link.link
+    result_materials = existing_materials
+    result_materials.delete_if do |k, v|
+      v["link"] == params[:link]
     end
-
     result_materials = result_materials.present? ? result_materials.to_json : ""
-
-    Rails.logger.info "[result_materials remove] #{result_materials}"
 
     @form_answer.document.merge(
       innovation_materials: result_materials
@@ -47,7 +39,6 @@ class Form::FormLinksController < Form::MaterialsBaseController
   end
 
   def create
-    Rails.logger.info "[link_params] #{link_params}"
     self.form_link = FormLink.new(link_params)
 
     if form_link.valid?
