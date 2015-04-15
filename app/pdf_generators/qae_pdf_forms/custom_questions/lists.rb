@@ -5,7 +5,7 @@ module QaePdfForms::CustomQuestions::Lists
     QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
   ]
   AWARD_HOLDER_LIST_HEADERS = [
-    "Award/Honour title",
+    "Award/personal honour title",
     "Details"
   ]
   POSITION_LIST_HEADERS = [

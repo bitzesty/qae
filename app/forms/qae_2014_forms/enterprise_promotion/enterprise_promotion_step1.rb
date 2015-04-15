@@ -68,7 +68,7 @@ class QAE2014Forms
           conditional :nominee_nationality, "other"
         end
 
-        options :award_holder, "Does the nominee currently hold any Awards/Honours?" do
+        options :award_holder, "Does the nominee currently hold any awards/personal honours?" do
           required
           ref "A 2"
           yes_no
@@ -84,7 +84,7 @@ class QAE2014Forms
           conditional :award_holder, :yes
         end
 
-        options :nominated_for_award, "Is the nominee currently being nominated for another award/honor?" do
+        options :nominated_for_award, "Is the nominee currently being nominated for another award/personal honour?" do
           required
           yes_no
           option "unknown", "I don't know"
