@@ -99,6 +99,16 @@ class Reports::FormAnswer
   end
 
   def employees
+    # "trade_commercial_success"=>"6 plus", - 6 years trade
+    # "trade_commercial_success"=>"3 to 5"
+
+
+    # "innovation_performance_years"=>"2 to 4" - 2 years
+    # "innovation_performance_years"=>"5 plus" - 5 years
+
+    # "development_performance_years"=>"2 to 4"
+
+
     unless trade?
       doc("employees_5of5").presence || doc("employees_2of2")
     else
