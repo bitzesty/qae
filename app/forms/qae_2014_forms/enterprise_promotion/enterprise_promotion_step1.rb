@@ -38,10 +38,6 @@ class QAE2014Forms
           required
         end
 
-        date :nominee_date_of_birth, "Date of birth" do
-          required
-        end
-
         options :nominee_nationality, "Nationality" do
           required
           option "british", "British"
