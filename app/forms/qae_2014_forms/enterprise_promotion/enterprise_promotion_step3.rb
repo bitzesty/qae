@@ -23,7 +23,7 @@ class QAE2014Forms
               What has their impact been? How wide is their influence? What are their achievements? Include details of the length of time involved and quantitative evidence that demonstrate the clear impact of the nominee’s activities.
             </p>
             <p>
-              Include when your nominee's activities have taken place within challenging circumstances or disadvantaged/deprived communities, or where young people or under-represented groups have benefited.
+              Include where your nominee's activities have taken place within challenging circumstances or disadvantaged/deprived communities, or where young people or under-represented groups have benefited.
             </p>
                     )
           rows 5
