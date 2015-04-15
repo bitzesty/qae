@@ -29,6 +29,13 @@
   - unless landing_page?
     ' with-proposition
 
+- content_for :cookie_message do
+  .outer-block
+    .inner-block
+      p
+        ' GOV.UK uses cookies to make the site simpler.
+        = link_to "Find out more about cookies", cookies_path
+
 - content_for :proposition_header do
   - unless landing_page?
     .header-proposition
@@ -89,8 +96,11 @@
           #global-breadcrumb.header-context
             ol.group role="navigation" aria-label="breadcrumbs"
               li = link_to "Home", "https://www.gov.uk/"
-              li = link_to "Business and self-employed", "https://www.gov.uk/browse/business"
-              li = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company"
+              - if action_name == "cookies" or action_name == "privacy"
+                li = link_to "Help", "https://www.gov.uk/help/"
+              - else
+                li = link_to "Business and self-employed", "https://www.gov.uk/browse/business"
+                li = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company"
 
         = yield
 
