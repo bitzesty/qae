@@ -1,9 +1,14 @@
 li
   div
-    a href="/uploads/form_answer_attachment/file/22/support_letters_bug.png" target="_blank"  support_letters_bug.png
-    a.remove-link href="#"  Remove
+    - if form_answer_attachment.persisted?
+      = link_to form_answer_attachment.original_filename,
+                form_answer_attachment.file.url,
+                target: "_blank"
+      = link_to "Remove", form_form_answer_form_attachments_and_link_url(@form_answer, form_answer_attachment), class: "remove-link", method: :delete
   div
-    = simple_form_for @form_answer_attachment, url: form_form_answer_form_attachments_and_links_url(@form_answer), html: { class: 'qae-form' } do |f|
+    = simple_form_for form_answer_attachment, url: form_form_answer_form_attachments_and_links_url(@form_answer), html: { class: 'qae-form' } do |f|
+      = f.input :position, as: :hidden, input_html: { value: position }
+
       .row
         .span-6
           = f.input :file,
@@ -15,10 +20,14 @@ li
         .char-text-limit
           | Word limit:
           span.total-count 100
-        = f.input :description, as: :text, rows: 2, label: false
+        = f.input :description, input_html: { value: description },
+                                as: :text,
+                                rows: 2,
+                                label: false
         .char-text
           | Word count:
-          span.current-count 2
+          span.current-count
+            = text_words_count(description)
           | /
           span.total-count 100
       .row

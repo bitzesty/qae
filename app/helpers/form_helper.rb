@@ -20,4 +20,8 @@ module FormHelper
 
     steps[index + 1]
   end
+
+  def text_words_count(text)
+    text.to_s.split.count
+  end
 end

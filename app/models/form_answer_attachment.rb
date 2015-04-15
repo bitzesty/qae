@@ -10,7 +10,14 @@ class FormAnswerAttachment < ActiveRecord::Base
   scope :uploaded_by_user, -> { where attachable_type: "User" }
   scope :uploaded_not_by_user, -> { where.not(attachable_type: "User") }
 
-  attr_accessor :description # used for NON JS implementation
+  # Used for NON JS implementation - begin
+  attr_accessor :description, :position
+  # Should be 100 words maximum
+  validates :description, length: {
+    maximum: 100,
+    tokenizer: lambda { |str| str.split }
+  }
+  # Used for NON JS implementation - end
 
   def filename
     read_attribute(:file)

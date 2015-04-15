@@ -15,12 +15,32 @@ header.page-header.group.page-header-over-sidebar
       article.group role="article"
         .inner
           fieldset.question-block
-            h2 Add Document
+            p = @existing_materials.inspect
+
+            h2 Add Document or Website Link
 
             ul.list-add
+              - @existing_materials.each do |position, attrs|
+                - if attrs["link"].present?
+
+                  = render "form/form_attachments_and_links/link_form",
+                           description: attrs["description"],
+                           position: position
+
+                - else
+
+                  - attachment = @form_answer_attachments.find_by_id(attrs["file"])
+
+                  - if attachment.present?
+                    = render "form/form_attachments_and_links/attachment_form", form_answer_attachment: attachment,
+                      position: position,
+                      description: attrs["description"]
+
               - if @existing_materials.count < 4
-                = render "form/form_attachments_and_links/attachment_form"
-                = render "form/form_attachments_and_links/website_link_form"
+
+                = render "form/form_attachments_and_links/attachment_form", form_answer_attachment: @form_answer_attachment, position: @next_document_position, description: nil
+
+                = render "form/form_attachments_and_links/link_form", position: @next_document_position, description: nil
 
           footer
             nav.pagination.no-border aria-label="Pagination" role="navigation"

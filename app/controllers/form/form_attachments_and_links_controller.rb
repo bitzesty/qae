@@ -8,10 +8,15 @@ class Form::FormAttachmentsAndLinksController < Form::BaseController
     @form_answer_attachment = current_user.form_answer_attachments.new(
       form_answer: @form_answer
     )
+    @form_answer_attachments = @form_answer.form_answer_attachments
     @existing_materials = JSON.parse(@form_answer.document["innovation_materials"])
+    @next_document_position = @existing_materials.count
   end
 
   def create
+  end
+
+  def update
   end
 
   def destroy

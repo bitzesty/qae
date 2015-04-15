@@ -1,11 +1,16 @@
 class FormLink
   include ActiveModel::Model
 
-  attr_reader :link, :description
+  attr_reader :link, :description, :position
 
   validates :link, :description, presence: true
   validates :link, length: { maximum: 500 }
-  validates :description, length: { maximum: 5000 }
+
+  # Should be 100 words maximum
+  validates :description, length: {
+    maximum: 100,
+    tokenizer: lambda { |str| str.split }
+  }
 
   def initialize(attrs={})
     attrs.each do |key, value|

@@ -1,5 +1,7 @@
 li
   = simple_form_for @form_link, url: form_form_answer_form_attachments_and_links_url(@form_answer), html: { class: 'qae-form' } do |f|
+    = f.input :position, as: :hidden, input_html: { value: position }
+
     div
       a.remove-link href="#"  Remove
       = f.input :link,
@@ -15,7 +17,8 @@ li
         = f.input :description, as: :text, rows: 2, label: false
         .char-text
           | Word count:
-          span.current-count 2
+          span.current-count
+            = text_words_count(description)
           | /
           span.total-count 100
       .row
