@@ -24,6 +24,7 @@ header.page-header.group.page-header-over-sidebar
                 - if attrs["link"].present?
 
                   = render "form/form_attachments_and_links/link_form",
+                           link: attrs["link"],
                            description: attrs["description"],
                            position: position
 
@@ -38,9 +39,15 @@ header.page-header.group.page-header-over-sidebar
 
               - if @existing_materials.count < 4
 
-                = render "form/form_attachments_and_links/attachment_form", form_answer_attachment: @form_answer_attachment, position: @next_document_position, description: nil
+                = render "form/form_attachments_and_links/attachment_form",
+                         form_answer_attachment: @form_answer_attachment,
+                         description: nil,
+                         position: @next_document_position
 
-                = render "form/form_attachments_and_links/link_form", position: @next_document_position, description: nil
+                = render "form/form_attachments_and_links/link_form",
+                         link: nil,
+                         description: nil,
+                         position: @next_document_position
 
           footer
             nav.pagination.no-border aria-label="Pagination" role="navigation"

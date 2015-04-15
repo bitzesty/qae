@@ -1,11 +1,12 @@
 li
   = simple_form_for @form_link, url: form_form_answer_form_attachments_and_links_url(@form_answer), html: { class: 'qae-form' } do |f|
     = f.input :position, as: :hidden, input_html: { value: position }
+    = hidden_field_tag :document_type, value: "link"
 
     div
       a.remove-link href="#"  Remove
       = f.input :link,
-          input_html: { class: "form-control medium" },
+          input_html: { value: link, class: "form-control medium" },
           label: "Website address"
     div
       label
@@ -14,7 +15,10 @@ li
         .char-text-limit
           | Word limit:
           span.total-count 100
-        = f.input :description, as: :text, rows: 2, label: false
+        = f.input :description, input_html: { value: description },
+                                as: :text,
+                                rows: 2,
+                                label: false
         .char-text
           | Word count:
           span.current-count

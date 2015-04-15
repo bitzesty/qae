@@ -10,10 +10,11 @@ class Form::FormAttachmentsAndLinksController < Form::BaseController
     )
     @form_answer_attachments = @form_answer.form_answer_attachments
     @existing_materials = JSON.parse(@form_answer.document["innovation_materials"])
-    @next_document_position = @existing_materials.count
+    @next_document_position = @existing_materials.keys.map(&:to_i).max + 1
   end
 
   def create
+    Rails.logger.info "[params] #{params.inspect}"
   end
 
   def update
