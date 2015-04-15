@@ -306,7 +306,7 @@ class QAE2014Forms
         upload :org_chart, "Upload an organisational chart." do
           ref "A 15"
           context %(
-            <p>You can submit files in all common formats, as long as they're less than 5mb.</p>
+            <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
                     )
           max_attachments 1
         end

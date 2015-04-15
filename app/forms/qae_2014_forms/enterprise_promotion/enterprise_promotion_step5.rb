@@ -9,7 +9,7 @@ class QAE2014Forms
               We can't guarantee these will be reviewed, so include any vital information within the form.
             </p>
             <p>
-              You can upload files in all common formats, as long as they're less than 5mb.
+              You can upload files in all common formats, as long as they're less than 5mb each.
             </p>
             <p>
               You may link to videos, websites or other media you feel relevant.

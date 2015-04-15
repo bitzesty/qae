@@ -107,7 +107,7 @@ class QAE2014Forms
         supporters :supporter_letters_list, "Manual upload" do
           context %(
             <p>
-              Here you can manually upload letters of support up to 5mb in size. This is for any of your supporters who would rather write a hard copy letter and send it to you directly.
+              Here you can manually upload letters of support each up to 5mb in size. This is for any of your supporters who would rather write a hard copy letter and send it to you directly.
             </p>
           )
 
