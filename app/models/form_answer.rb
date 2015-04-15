@@ -192,13 +192,19 @@ class FormAnswer < ActiveRecord::Base
     return unless submitted
     return unless award_type
 
-    sequence_attr = "urn_seq_promotion" if promotion?
-    sequence_attr ||= "urn_seq"
+    sequence_attr = "urn_seq_promotion_#{award_year.year}" if promotion?
+    sequence_attr ||= "urn_seq_#{award_year.year}"
 
     next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize(sequence_attr)})")
 
     generated_urn = "QA#{sprintf('%.4d', next_seq)}/"
-    generated_urn += "#{award_year.year.to_s[2..-1]}#{award_type[0].capitalize}"
+    suffix = {
+      "promotion" => "EP",
+      "development" => "D",
+      "innovation" => "I",
+      "trade" => "T"
+    }[award_type]
+    generated_urn += "#{award_year.year.to_s[2..-1]}#{suffix}"
 
     self.urn = generated_urn
   end
