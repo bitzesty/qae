@@ -698,7 +698,6 @@ input[type="file"] {
   }
 }
 
-.button-alt,
 .button-add {
   @include core-19;
   position: relative;
@@ -773,46 +772,6 @@ input[type="file"] {
       cursor: default;
     }
   }
-}
-
-.pagination .button.button-alt,
-.button-alt {
-  border-color: $black;
-
-  &,
-  &:link,
-  &:hover,
-  &:focus,
-  &:visited,
-  &.disabled,
-  &.disabled:hover,
-  &[disabled],
-  &[disabled]:hover,
-  &[disabled="disabled"],
-  &[disabled="disabled"]:hover {
-    background: $black;
-    color: $white;
-  }
-
-  &:hover {
-    background: $white;
-    color: $black;
-  }
-
-  &.disabled,
-  &.disabled:hover,
-  &[disabled],
-  &[disabled]:hover,
-  &[disabled="disabled"],
-  &[disabled="disabled"]:hover {
-    border-color: $panel-colour;
-    cursor: default;
-  }
-}
-
-.button-alt {
-  @include core-16;
-  padding: (12px $gutter-half $gutter-one-third $gutter-half);
 }
 
 .js-default-reached .js-remove-link {
@@ -904,15 +863,6 @@ input[type="file"] {
     /* IE6 adds its own side padding so requires no extra */
     @include ie(6) {
       padding: 0.45em 0.5em 0.62em 0.5em;
-    }
-
-    &.button-alt {
-      border: 1px solid $black-true;
-      box-shadow: 0 2px 0 $black-true;
-
-      &:active {
-        box-shadow: 0 0 0 $black-true;
-      }
     }
   }
 }

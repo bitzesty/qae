@@ -44,7 +44,7 @@ li.js-add-example class=(persisted ? 'read-only' : '')
           span.visible-read-only = supporter['email']
   span.row
     span.span-12
-      a.button.button-alt.js-save-collection class=(persisted ? "visuallyhidden" : "") data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
+      a.button.js-save-collection class=(persisted ? "visuallyhidden" : "") data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
         - if question.list_type == :manuall_upload
           | Submit letter of support
         - else
