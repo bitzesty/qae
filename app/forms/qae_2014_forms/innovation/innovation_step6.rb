@@ -6,23 +6,10 @@ class QAE2014Forms
           ref "F 1"
         end
 
-        dropdown :head_of_bussines_title, "Title" do
+        text :head_of_bussines_title, "Title" do
           required
           classes "regular-question"
-          option "", "Select"
-          option "prof", "Prof"
-          option "dr", "Dr"
-          option "mr", "Mr"
-          option "ms", "Ms"
-          option "mrs", "Mrs"
-          option "miss", "Miss"
-          option "other", "Other"
-        end
-
-        text :head_of_bussines_title_other, "Please specify" do
-          classes "regular-question"
-          sub_ref "F 1.1"
-          conditional :head_of_bussines_title, "other"
+          style "tiny"
         end
 
         head_of_business :head_of_business, "" do

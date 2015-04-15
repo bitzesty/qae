@@ -7,23 +7,10 @@ class QAE2014Forms
           ref "F 1"
         end
 
-        dropdown :user_info_title, "Title" do
+        text :user_info_title, "Title" do
           required
           classes "regular-question"
-          option "", "Select"
-          option "prof", "Prof"
-          option "dr", "Dr"
-          option "mr", "Mr"
-          option "ms", "Ms"
-          option "mrs", "Mrs"
-          option "miss", "Miss"
-          option "other", "Other"
-        end
-
-        text :user_info_title_other, "Please specify" do
-          sub_ref "F 1.1"
-          classes "regular-question"
-          conditional :user_info_title, "other"
+          style "tiny"
         end
 
         user_info :user_info, "" do
