@@ -87,6 +87,11 @@
     margin-right: 0;
   }
 
+  &.page-header-large h1 {
+    @include heading-48;
+    font-weight: 600;
+  }
+
   // Styles the sub header for `page-header`
   h2 {
     @include core-27;

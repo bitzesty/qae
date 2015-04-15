@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   get "/sign_up_complete"                               => "content_only#sign_up_complete",                               as: "sign_up_complete"
 
   get "/privacy"                                        => "content_only#privacy",                                        as: "privacy"
+  get "/cookies"                                        => "content_only#cookies",                                        as: "cookies"
 
   get "/awards_for_organisations"                       => "content_only#awards_for_organisations",                       as: "awards_for_organisations"
   get "/enterprise_promotion_awards"                    => "content_only#enterprise_promotion_awards",                    as: "enterprise_promotion_awards"

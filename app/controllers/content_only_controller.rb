@@ -9,6 +9,7 @@ class ContentOnlyController < ApplicationController
                   :timeline,
                   :additional_information_and_contact,
                   :privacy,
+                  :cookies,
                   :apply_for_queens_award_for_enterprise,
                   :sign_up_complete,
                   :submitted_nomination_successful
@@ -39,7 +40,9 @@ class ContentOnlyController < ApplicationController
                   :timeline,
                   :additional_information_and_contact,
                   :apply_for_queens_award_for_enterprise,
-                  :sign_up_complete
+                  :sign_up_complete,
+                  :privacy,
+                  :cookies
                 ]
 
   expose(:form_answer) {

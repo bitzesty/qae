@@ -96,8 +96,11 @@
           #global-breadcrumb.header-context
             ol.group role="navigation" aria-label="breadcrumbs"
               li = link_to "Home", "https://www.gov.uk/"
-              li = link_to "Business and self-employed", "https://www.gov.uk/browse/business"
-              li = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company"
+              - if action_name == "cookies" or action_name == "privacy"
+                li = link_to "Help", "https://www.gov.uk/help/"
+              - else
+                li = link_to "Business and self-employed", "https://www.gov.uk/browse/business"
+                li = link_to "Running a limited company", "https://www.gov.uk/browse/business/limited-company"
 
         = yield
 
