@@ -315,7 +315,15 @@ jQuery ->
     div.append(remove_link)
 
   isEventSupported = (eventName, element) ->
-    TAGNAMES = {'select': 'input', 'change': 'input', 'submit': 'form', 'reset': 'form', 'error': 'img', 'load': 'img', 'abort': 'img'}
+    TAGNAMES = {
+                 'select': 'input',
+                 'change': 'input',
+                 'submit': 'form',
+                 'reset': 'form',
+                 'error': 'img',
+                 'load': 'img',
+                 'abort': 'img'
+               }
     element = element || document.createElement(TAGNAMES[eventName] || 'div')
     eventName = 'on' + eventName
     isSupported = eventName in element
