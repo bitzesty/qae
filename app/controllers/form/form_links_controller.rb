@@ -45,7 +45,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
       @form_answer.document = add_link_result_doc
       @form_answer.save
 
-      redirect_to form_form_answer_form_attachments_url
+      redirect_to form_form_answer_form_attachments_url(@form_answer)
     else
       render :new
     end
@@ -55,7 +55,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
     @form_answer.document = remove_link_result_doc
     @form_answer.save
 
-    redirect_to form_form_answer_form_attachments_url
+    redirect_to form_form_answer_form_attachments_url(@form_answer)
   end
 
   private

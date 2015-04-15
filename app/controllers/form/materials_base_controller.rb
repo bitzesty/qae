@@ -30,7 +30,7 @@ class Form::MaterialsBaseController < Form::BaseController
 
     def check_materials_limit
       if existing_materials.count >= 4
-        redirect_to form_form_answer_form_attachments_url,
+        redirect_to form_form_answer_form_attachments_url(@form_answer),
                     alert: "You can add up to 4 files or website addresses as maximum!"
         return
       end

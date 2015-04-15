@@ -65,7 +65,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
       @form_answer.document = add_attachment_result_doc
       @form_answer.save
 
-      redirect_to form_form_answer_form_attachments_url
+      redirect_to form_form_answer_form_attachments_url(@form_answer)
     else
       render :new
     end
@@ -78,7 +78,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
       form_answer_attachment.destroy
     end
 
-    redirect_to form_form_answer_form_attachments_url
+    redirect_to form_form_answer_form_attachments_url(@form_answer)
   end
 
   private
