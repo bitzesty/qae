@@ -1,23 +1,11 @@
-class Form::FormAttachmentsController < Form::BaseController
+class Form::FormAttachmentsController < Form::MaterialsBaseController
 
   # This controller handles saving of attachments
   # This section is used in case if JS disabled
 
-  expose(:step) do
-    @form.steps.detect { |s| s.opts[:id] == :add_website_address_documents_step }
-  end
-
   expose(:form_answer_attachments) do
     current_user.form_answer_attachments
                 .where(form_answer_id: @form_answer.id)
-  end
-
-  expose(:existing_materials) do
-    JSON.parse(@form_answer.document["innovation_materials"])
-  end
-
-  expose(:next_document_position) do
-    existing_materials.keys.map(&:to_i).max + 1
   end
 
   expose(:form_answer_attachment) do

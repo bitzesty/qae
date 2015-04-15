@@ -23,12 +23,6 @@ li
           | Word limit:
           span.total-count 100
         = f.input :description, as: :text, rows: 2, label: false
-        .char-text
-          | Word count:
-          span.current-count
-            = text_words_count(f.object.description)
-          | /
-          span.total-count 100
       .row
         .span-12
           = f.submit "Save attachment", class: "button button-alt"
