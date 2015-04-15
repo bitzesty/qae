@@ -10,6 +10,8 @@ class FormAnswerAttachment < ActiveRecord::Base
   scope :uploaded_by_user, -> { where attachable_type: "User" }
   scope :uploaded_not_by_user, -> { where.not(attachable_type: "User") }
 
+  attr_accessor :description # used for NON JS implementation
+
   def filename
     read_attribute(:file)
   end

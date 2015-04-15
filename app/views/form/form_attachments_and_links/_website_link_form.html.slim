@@ -1,0 +1,23 @@
+li
+  = simple_form_for @form_link, url: form_form_answer_form_attachments_and_links_url(@form_answer), html: { class: 'qae-form' } do |f|
+    div
+      a.remove-link href="#"  Remove
+      = f.input :link,
+          input_html: { class: "form-control medium" },
+          label: "Website address"
+    div
+      label
+        span.label-char-count-reposition Description
+      .char-count.char-max-shift
+        .char-text-limit
+          | Word limit:
+          span.total-count 100
+        = f.input :description, as: :text, rows: 2, label: false
+        .char-text
+          | Word count:
+          span.current-count 2
+          | /
+          span.total-count 100
+      .row
+        .span-12
+          = f.submit "Save link", class: "button button-alt"
