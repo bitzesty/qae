@@ -2,9 +2,10 @@ wrapper = $("#email_notification_" + "<%= @email_notification.kind %>");
 
 <% if @email_notification.valid? %>
   $("ul.notifications", wrapper).append('<%= escape_javascript(render "admin/settings/notification", notification: @email_notification.decorate) %>');
-  $(".notification-edit-form, .notification-form", wrapper).hide();
-  $(".timepicker", wrapper).timePicker()
-  $(".datepicker", wrapper).datepicker()
+  $(".notification-edit-form, .notification-form", wrapper).addClass("hidden");
+
+  $(".timepicker", wrapper).val(null);
+  $(".datepicker", wrapper).val(null);
 <% else %>
   $(".notification-form input", wrapper).closest(".input").addClass("field-with-errors");
 <% end %>
