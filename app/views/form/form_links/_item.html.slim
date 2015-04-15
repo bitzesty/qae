@@ -1,0 +1,12 @@
+li
+  div
+    = link_to attrs["link"], attrs["link"],
+                             target: "_blank"
+    = link_to "Remove", form_form_answer_form_links_url(@form_answer, position: position),
+                        class: "remove-link",
+                        method: :delete
+  div
+    .row
+      .span-12
+        p
+          = attrs["description"]

@@ -1,7 +1,6 @@
 li
-  = simple_form_for form_link, url: form_form_answer_form_attachments_and_links_url(@form_answer), html: { class: 'qae-form' } do |f|
+  = simple_form_for form_link, url: form_form_answer_form_links_url(@form_answer), html: { class: 'qae-form' } do |f|
     = f.input :position, as: :hidden, input_html: { value: position }
-    = hidden_field_tag :document_type, "link"
 
     div
       a.remove-link href="#"  Remove

@@ -6,29 +6,27 @@ li
                 target: "_blank"
       = link_to "Remove", form_form_answer_form_attachments_and_link_url(@form_answer, form_answer_attachment), class: "remove-link", method: :delete
   div
-    = simple_form_for form_answer_attachment, url: form_form_answer_form_attachments_and_links_url(@form_answer), html: { class: 'qae-form' } do |f|
-      = f.input :position, as: :hidden, input_html: { value: position }
-      = hidden_field_tag :document_type, "attachment"
+    = simple_form_for form_answer_attachment,
+                      url: form_form_answer_form_attachments_url(@form_answer),
+                      html: { class: 'qae-form' } do |f|
+      = f.input :position, as: :hidden,
+                           input_html: { value: next_document_position }
 
       .row
         .span-6
           = f.input :file,
                     as: :file,
                     input_html: { class: "form-control" }
-      label
-        span.label-char-count-reposition Description
+      = f.label :description
       .char-count.char-max-shift
         .char-text-limit
           | Word limit:
           span.total-count 100
-        = f.input :description, input_html: { value: description },
-                                as: :text,
-                                rows: 2,
-                                label: false
+        = f.input :description, as: :text, rows: 2, label: false
         .char-text
           | Word count:
           span.current-count
-            = text_words_count(description)
+            = text_words_count(f.object.description)
           | /
           span.total-count 100
       .row
