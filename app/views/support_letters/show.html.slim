@@ -8,4 +8,11 @@
   .article-container
     article.group role="article"
       .inner
-        = render "support_letters/form"
+        dl
+          dt Full name
+          dd = support_letter.first_name + " "+ support_letter.first_name
+          dt Relationship to nominee
+          dd = support_letter.relationship_to_nominee
+
+          dt Support letter
+          dd = support_letter.body

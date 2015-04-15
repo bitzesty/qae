@@ -14,6 +14,7 @@ class SupportLetter < ActiveRecord::Base
               :form_answer,
               :relationship_to_nominee, presence: true
     validates :attachment, presence: true, if: proc { manual? && !support_letter_attachment }
+    validates :body, presence: true, unless: :manual?
     validates :support_letter_attachment, presence: true, if: proc { manual? }
   end
 

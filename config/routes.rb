@@ -83,7 +83,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :support_letter, only: [:show, :update]
+  resource :support_letter, only: [:new, :show, :create]
 
   resources :palace_invites, only: [:edit, :update]
 
