@@ -23,6 +23,14 @@ class QAE2014Forms
 
         address :personal_address, "Your personal address" do
           required
+          sub_fields([
+            { building: "Building" },
+            { street: "Street" },
+            { city: "Town or city" },
+            { county: "County" },
+            { postcode: "Postcode" },
+            { region: "Region" }
+          ])
         end
 
         text :personal_phone, "Telephone number" do

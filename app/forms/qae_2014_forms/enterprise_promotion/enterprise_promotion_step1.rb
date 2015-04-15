@@ -27,6 +27,14 @@ class QAE2014Forms
 
         address :nominee_personal_address, "Personal address" do
           required
+          sub_fields([
+            { building: "Building" },
+            { street: "Street" },
+            { city: "Town or city" },
+            { county: "County" },
+            { postcode: "Postcode" },
+            { region: "Region" }
+          ])
         end
 
         text :nominee_phone, "Telephone number" do
@@ -89,7 +97,7 @@ class QAE2014Forms
             { building: "Building" },
             { street: "Street" },
             { city: "Town or city" },
-            { country: "Country" },
+            { county: "County" },
             { postcode: "Postcode" },
             { region: "Region" }
           ])
