@@ -3,18 +3,47 @@ class Form::FormAttachmentsAndLinksController < Form::BaseController
   # This controller handles saving of attachments and website links
   # This section is used in case if JS disabled
 
-  def index
-    @form_link = FormLink.new
-    @form_answer_attachment = current_user.form_answer_attachments.new(
+  expose(:form_answer_attachments) do
+    @form_answer.form_answer_attachments
+  end
+
+  expose(:existing_materials) do
+    JSON.parse(@form_answer.document["innovation_materials"])
+  end
+
+  expose(:next_document_position) do
+    existing_materials.keys.map(&:to_i).max + 1
+  end
+
+  expose(:new_form_link) do
+    FormLink.new
+  end
+
+  expose(:new_form_answer_attachment) do
+    current_user.form_answer_attachments.new(
       form_answer: @form_answer
     )
-    @form_answer_attachments = @form_answer.form_answer_attachments
-    @existing_materials = JSON.parse(@form_answer.document["innovation_materials"])
-    @next_document_position = @existing_materials.keys.map(&:to_i).max + 1
+  end
+
+  def index
   end
 
   def create
-    Rails.logger.info "[params] #{params.inspect}"
+    if params[:document_type] == "attachment"
+      @form_answer_attachment = current_user.form_answer_attachments.new(
+        attachment_params.merge({
+          form_answer: @form_answer
+        })
+      )
+      if @form_answer_attachment.save
+
+      end
+    else
+      @form_link = FormLink.new(link_params)
+      @form_link.valid?
+    end
+
+    render :index
   end
 
   def update
@@ -26,7 +55,9 @@ class Form::FormAttachmentsAndLinksController < Form::BaseController
   private
 
     def attachment_params
-      params.require(:attachment).permit(
+      params.require(:form_answer_attachment).permit(
+        :file,
+        :position,
         :description
       )
     end
@@ -34,6 +65,7 @@ class Form::FormAttachmentsAndLinksController < Form::BaseController
     def link_params
       params.require(:form_link).permit(
         :link,
+        :position,
         :description
       )
     end

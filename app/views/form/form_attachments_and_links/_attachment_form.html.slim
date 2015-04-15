@@ -8,7 +8,7 @@ li
   div
     = simple_form_for form_answer_attachment, url: form_form_answer_form_attachments_and_links_url(@form_answer), html: { class: 'qae-form' } do |f|
       = f.input :position, as: :hidden, input_html: { value: position }
-      = hidden_field_tag :document_type, value: "attachment"
+      = hidden_field_tag :document_type, "attachment"
 
       .row
         .span-6

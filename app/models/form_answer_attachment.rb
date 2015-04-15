@@ -19,6 +19,15 @@ class FormAnswerAttachment < ActiveRecord::Base
   }
   # Used for NON JS implementation - end
 
+  begin :validations
+    validates :form_answer_id, uniqueness: true,
+                               presence: true
+    validates :file, presence: true,
+                     file_size: {
+                       maximum: 25.megabytes.to_i
+                     }
+  end
+
   def filename
     read_attribute(:file)
   end
