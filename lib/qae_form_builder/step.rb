@@ -36,7 +36,7 @@ class QAEFormBuilder
     private
 
     def count_questions meth
-      questions.map{|q| q.send(meth) ? 1 : 0}.reduce(:+)
+      questions.map { |q| q.send(meth) ? 1 : 0 }.reduce(:+)
     end
 
   end
