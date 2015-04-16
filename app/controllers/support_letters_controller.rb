@@ -18,7 +18,8 @@ class SupportLettersController < ApplicationController
 
   def create
     if support_letter.update(support_letter_params)
-      redirect_to support_letter_path(access_key: supporter.access_key), notice: "Support letter was successfully created"
+      redirect_to support_letter_path(access_key: supporter.access_key),
+                  notice: "Support letter was successfully created"
     else
       render :new
     end
@@ -29,7 +30,8 @@ class SupportLettersController < ApplicationController
   def load_letter_and_check_access_key
     if supporter
       if supporter.support_letter && supporter.support_letter.persisted? && action_name != "show"
-        redirect_to support_letter_path(access_key: supporter.access_key), notice: "Support Letter has been submitted already!"
+        redirect_to support_letter_path(access_key: supporter.access_key),
+                    notice: "Support Letter has been submitted already!"
         return
       end
     else

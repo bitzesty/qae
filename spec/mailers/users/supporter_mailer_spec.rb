@@ -5,7 +5,7 @@ describe Users::SupporterMailer do
   let(:supporter) { create(:supporter) }
   let(:mail) { Users::SupporterMailer.success(supporter.id, user.id) }
 
- before do
+  before do
     form_answer = supporter.form_answer
     form_answer.document = {
       nominee_info_first_name: "Jon",
