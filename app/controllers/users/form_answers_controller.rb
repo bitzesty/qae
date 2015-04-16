@@ -4,6 +4,9 @@ class Users::FormAnswersController < Users::BaseController
                 form_answers.
                 find(params[:id])
   }
+  before_action do
+    allow_assessor_access!(form_answer)
+  end
 
   def show
     respond_to do |format|
