@@ -75,7 +75,7 @@ class QAE2014Forms
         end
 
         # TODO: Hardcoded date
-        options :queen_award_holder, "Are you a current Queen's Award holder <span class='todo-placeholder'>(2010-2014)</span>?" do
+        options :queen_award_holder, "Are you a current Queen's Award holder (2011-2015)?" do
           required
           ref "A 6"
           yes_no
