@@ -86,7 +86,7 @@ module QaePdfForms::General::DrawElements
   def main_header
     render_logo
     render_award_information
-    render_user_information
+    render_company_name
     render_urn if form_answer.urn.present?
 
     move_down 45.mm
@@ -109,16 +109,16 @@ module QaePdfForms::General::DrawElements
              header_text_properties.merge(at: [32.mm, 137.5.mm + DEFAULT_OFFSET])
   end
 
+  def render_company_name
+    text_box "<b>#{form_answer.decorate.company_name.try(:upcase)}",
+             header_text_properties.merge(at: [32.mm, 122.mm + DEFAULT_OFFSET],
+                                          inline_format: true)
+  end
+
   def render_award_information
     text_box form_answer.decorate.award_application_title.upcase,
              header_text_properties.merge(at: [32.mm, 130.mm + DEFAULT_OFFSET],
                                           style: :bold)
-  end
-
-  def render_user_information
-    text_box user.decorate.general_info_print,
-             header_text_properties.merge(at: [32.mm, 122.mm + DEFAULT_OFFSET],
-                                          inline_format: true)
   end
 
   def render_intro_text

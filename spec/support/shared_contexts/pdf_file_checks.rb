@@ -28,8 +28,8 @@ shared_context "pdf file checks" do
     form_answer.decorate.award_application_title.upcase
   end
 
-  let(:user_general_info) do
-    user.decorate.general_info_print
+  let(:company_name) do
+    form_answer.decorate.company_name
   end
 
   let(:form_urn) do
@@ -43,7 +43,7 @@ shared_context "pdf file checks" do
   describe "PDF generation" do
     it "should include main header information" do
       expect(pdf_content).to include(award_application_title)
-      expect(pdf_content).to include(user_general_info)
+      expect(pdf_content).to include(company_name)
       expect(pdf_content).to include(form_urn)
     end
 

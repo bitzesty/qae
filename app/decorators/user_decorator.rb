@@ -6,7 +6,11 @@ class UserDecorator < ApplicationDecorator
   end
 
   def general_info_print
-    "<b>#{object.company_name.upcase}"
+    if object.company_name.present?
+      "<b>#{object.company_name.upcase}:</b> #{full_name.upcase}"
+    else
+      full_name.upcase
+    end
   end
 
   def applicant_info_print
