@@ -1,6 +1,7 @@
 class Account::CollaboratorsController < Account::BaseController
-  
+
   before_action :require_to_be_not_current_user!, only: [:destroy]
+  before_action :restrict_access_if_admin_in_read_only_mode!
 
   before_action :set_form_answer
 
@@ -15,8 +16,8 @@ class Account::CollaboratorsController < Account::BaseController
   end
   expose(:add_collaborator_interactor) do
     AddCollaborator.new(
-        current_user, 
-        account, 
+        current_user,
+        account,
         {})
   end
 
