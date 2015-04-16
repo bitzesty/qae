@@ -1,0 +1,11 @@
+li
+  div
+    = simple_form_for form_answer_attachment,
+                      url: form_form_answer_organisational_charts_url(@form_answer.id),
+                      html: { class: 'qae-form' } do |f|
+      = f.input :form_answer_id, as: :hidden, input_html: { value: @form_answer.id }
+      .row
+        .span-6
+          = f.input :file, as: :file, input_html: { class: "form-control" }
+        .span-12
+          = f.submit "Save", class: "button button-alt"

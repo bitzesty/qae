@@ -107,6 +107,9 @@ Rails.application.routes.draw do
       resources :support_letters, only: [:new, :create, :destroy]
       resources :form_attachments, only: [:index, :new, :create, :destroy]
       resource :form_links, only: [:new, :create, :destroy]
+      resources :organisational_charts, only: [:new, :create, :destroy] do
+        get :confirm_deletion
+      end
     end
   end
   # NON JS implementation - end

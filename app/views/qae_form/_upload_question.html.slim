@@ -1,5 +1,5 @@
 .js-upload-wrapper data-max-attachments=question.max_attachments data-form-name=question.form_name data-name=question.key data-description=(question.description ? '1' : nil)
-  ul.js-uploaded-list.list-add.visuallyhidden
+  ul.js-uploaded-list.list-add
     - (question.input_value(json: true) || {}).to_a.sort_by{|o| o.first.to_i}.each do |(idx, el)|
       li
         div
@@ -12,8 +12,16 @@
             - else
               = attachments[el['file'].to_i].original_filename
             input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
-            a.remove-link href="#" *possible_read_only_ops
-              | Remove
+
+            - if question.key == :org_chart
+              = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "remove-link if-js-hide"
+
+              a.remove-link.if-no-js-hide href="#" *possible_read_only_ops
+                | Remove
+            - else
+              a.remove-link href="#" *possible_read_only_ops
+                | Remove
+
           - else
             a.remove-link href="#" *possible_read_only_ops
               | Remove
@@ -33,11 +41,17 @@
     .js-file-drop-zone
       ' Drag and drop a file here
 
-  span.button.button-add *possible_read_only_ops
-    span
-      | + Upload
-    input.fileinput-button.js-file-upload type="file" name="form[file]" id="q_#{question.key}" *possible_read_only_ops
-  - if question.links
-    | &nbsp;
-    a.button.button-add.js-file-upload data-add-link="1" href="#" *possible_read_only_ops
-      | + Add website address
+  .if-no-js-hide
+    span.button.button-add *possible_read_only_ops
+      span
+        | + Upload
+      input.fileinput-button.js-file-upload type="file" name="form[file]" id="q_#{question.key}" *possible_read_only_ops
+    - if question.links
+      | &nbsp;
+      a.button.button-add.js-file-upload data-add-link="1" href="#" *possible_read_only_ops
+        | + Add website address
+
+  - if question.key == :org_chart && JSON.parse(@form_answer.document["org_chart"] || {}.to_json).blank?
+    .if-js-hide
+      = link_to "+ Upload", new_form_form_answer_organisational_chart_url(@form_answer.id),
+                            class: "button button-add"

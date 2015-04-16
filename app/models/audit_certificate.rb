@@ -14,7 +14,7 @@ class AuditCertificate < ActiveRecord::Base
                                presence: true
     validates :attachment, presence: true,
                            file_size: {
-                             maximum: 25.megabytes.to_i
+                             maximum: 5.megabytes.to_i
                            }
     validates :reviewable_type,
               :reviewable_id,
