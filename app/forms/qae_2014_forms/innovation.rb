@@ -27,6 +27,7 @@ class QAE2014Forms
 
         step "Add Website Address/Documents",
              "Add Website Address/Documents",
+             { id: :add_website_address_documents_step },
              &QAE2014Forms.innovation_step5
 
         step "Authorise & Submit",

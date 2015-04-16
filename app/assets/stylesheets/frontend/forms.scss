@@ -1279,3 +1279,22 @@ input[type="file"] {
     border-color: $light-blue;
   }
 }
+
+// Used for button_to delete links for NON JS cases - begin
+.non-js-button-to {
+  width: 80px;
+  float: right;
+
+  .non-js-remove-link {
+    border-width: 0px;
+    font-size: 18px;
+    text-decoration: underline;
+    color: #005ea5;
+    line-height: 1.25;
+    font-weight: 400;
+    text-transform: none;
+    font-family: "nta", Arial, sans-serif;
+    cursor: pointer;
+  }
+}
+// Used for button_to delete links for NON JS cases - end

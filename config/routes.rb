@@ -100,12 +100,16 @@ Rails.application.routes.draw do
     end
   end
 
+  # NON JS implementation - begin
   namespace :form do
     resources :form_answers do
       resources :supporters, only: [:new, :create, :index]
       resources :support_letters, only: [:new, :create, :destroy]
+      resources :form_attachments, only: [:index, :new, :create, :destroy]
+      resource :form_links, only: [:new, :create, :destroy]
     end
   end
+  # NON JS implementation - end
 
   namespace :assessor do
     root to: "dashboard#index"

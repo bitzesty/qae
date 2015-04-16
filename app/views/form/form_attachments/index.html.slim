@@ -1,0 +1,54 @@
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li = @form.title
+
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      = @form.title
+
+.steps-progress-container
+  .steps-progress-content
+    = render 'qae_form/form_header', form: @form, current_step: "add-website-address-documents"
+
+    .article-container.article-container-wider.step-article.step-current
+      article.group role="article"
+        .inner
+          - question = step.questions.detect { |q| q.key =  :innovation_materials }
+
+          .question-block
+            label
+              h2
+                span class="steps step-d-1"
+                  span.visuallyhidden
+                    = question.ref
+                  span.todo
+                    = question.ref
+                = question.title
+
+          == question.context
+
+          - for help in question.hint
+            div.hidden-hint
+              span.hidden-link
+                = help.title.html_safe
+              span.hidden-content
+                == help.text
+
+          ul.list-add
+            - existing_materials.each do |position, attrs|
+
+              - if attrs["link"].present?
+                = render "form/form_links/item", position: position, attrs: attrs
+              - else
+                = render "form/form_attachments/item", attrs: attrs
+
+          - if existing_materials.count < 4
+            = link_to "+ Upload", new_form_form_answer_form_attachment_path(@form_answer),
+                                  class: "button button-add"
+            = link_to "+ Add website address", new_form_form_answer_form_links_path(@form_answer),
+                                               class: "button button-add"
+
+    = render "qae_form/steps_progress_bar", current_step: "add-website-address-documents"
+
+    = render "form/supporters/footer", step: step
