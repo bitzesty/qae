@@ -116,7 +116,7 @@ class QAE2014Forms
           words_max 100
         end
 
-        options :other_awards_won, "Have you won any other business awards in the past?" do
+        options :other_awards_won, "Have you won any other business or enterprise awards in the past?" do
           ref "A 7"
           required
           yes_no
