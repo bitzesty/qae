@@ -28,10 +28,10 @@ class Form::FormLinksController < Form::MaterialsBaseController
     result_materials.delete_if do |k, v|
       v["link"] == params[:link]
     end
-    result_materials = result_materials.present? ? result_materials.to_json : ""
+    result_materials = result_materials.present? ? result_materials : {}
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials.to_json
     )
   end
 

@@ -12,7 +12,6 @@ class Form::MaterialsBaseController < Form::BaseController
   end
 
   expose(:existing_materials) do
-    Rails.logger.info "[innovation_materials_doc] #{innovation_materials_doc}"
     if innovation_materials_doc.present?
       JSON.parse(innovation_materials_doc)
     else

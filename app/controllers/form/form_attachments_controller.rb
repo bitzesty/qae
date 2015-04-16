@@ -4,8 +4,7 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
   # This section is used in case if JS disabled
 
   expose(:form_answer_attachments) do
-    current_user.form_answer_attachments
-                .where(form_answer_id: @form_answer.id)
+    @form_answer.form_answer_attachments
   end
 
   expose(:form_answer_attachment) do
@@ -39,10 +38,10 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
     result_materials.delete_if do |k, v|
       v["file"] == params[:id].to_s
     end
-    result_materials = result_materials.present? ? result_materials.to_json : ""
+    result_materials = result_materials.present? ? result_materials : {}
 
     @form_answer.document.merge(
-      innovation_materials: result_materials
+      innovation_materials: result_materials.to_json
     )
   end
 
@@ -72,8 +71,9 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
   end
 
   def destroy
-    @form_answer.document = remove_attachment_result_doc
+    self.form_answer_attachment = form_answer_attachments.find(params[:id])
 
+    @form_answer.document = remove_attachment_result_doc
     if @form_answer.save
       form_answer_attachment.destroy
     end

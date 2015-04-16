@@ -14,7 +14,8 @@
             input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
 
             - if question.key == :org_chart
-              = link_to "Remove", root_url, class: "remove-link if-js-hide"
+              = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "remove-link if-js-hide"
+
               a.remove-link.if-no-js-hide href="#" *possible_read_only_ops
                 | Remove
             - else
@@ -50,7 +51,7 @@
       a.button.button-add.js-file-upload data-add-link="1" href="#" *possible_read_only_ops
         | + Add website address
 
-  - if question.key == :org_chart && @form_answer.document["org_chart"].blank?
+  - if question.key == :org_chart && JSON.parse(@form_answer.document["org_chart"] || {}.to_json).blank?
     .if-js-hide
-      = link_to "+ Upload", root_url,
+      = link_to "+ Upload", new_form_form_answer_organisational_chart_url(@form_answer.id),
                             class: "button button-add"
