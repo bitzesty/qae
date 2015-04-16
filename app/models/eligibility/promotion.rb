@@ -31,6 +31,7 @@ class Eligibility::Promotion < Eligibility
   property :contributed_to_enterprise_promotion_within_uk,
             boolean: true,
             label: "Has their contribution to enterprise promotion been within the UK (including the Channel Islands and the Isle of Man)?",
+            hint: "Foreign nationals are eligible for the award as long as their contribution was within the UK."
             accept: :true
 
   property :nominee_is_qae_ep_award_holder,
