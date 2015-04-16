@@ -244,7 +244,7 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover or net profit, and any losses made." do
+        textarea :drops_in_turnover, "Explain any drops in total turnover or net profit, and any losses made." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 6.5"
           rows 5
