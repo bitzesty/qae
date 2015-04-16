@@ -15,9 +15,11 @@
 = @form_answer.urn
 
 ' You can view and download your submissions (and edit up until
-= application_deadline(:submission_end)
+/ TODO: Hardcoded Date
+= "April 21"
+/ = application_deadline(:submission_end)
 ' ) by
-= link_to "signing in to applications page", dashboard_page
+= link_to "signing in to applications page", dashboard_path
 ' .
 
 ' To find out more on what happens next visit
