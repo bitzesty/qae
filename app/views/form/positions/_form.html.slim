@@ -1,0 +1,61 @@
+li
+  = simple_form_for position, url: form_form_answer_positions_url(@form_answer), html: { class: 'qae-form' } do |f|
+
+    = f.input :name,
+              input_html: { class: "medium" },
+              label: "Position/Role"
+
+    .validate-date-start-end
+      span.row
+        span.span-3
+          label
+            ' Start Date
+          .date-input.validate-date-start
+            label.small.date-input-field
+              ' Month
+              = f.input_field :start_month, class: "tiny"
+            label.small.date-input-field
+              ' Year
+              = f.input_field :start_year, class: "tiny"
+
+      - if f.object.errors[:start_month].present? || f.object.errors[:start_year].present?
+        span.row
+          span.span-6
+            - if f.object.errors[:start_month].present?
+              span.error
+                = "Start month #{f.object.errors[:start_month].first}"
+            - if f.object.errors[:start_year].present?
+              span.error
+                = "End month #{f.object.errors[:start_year].first}"
+        br
+      span.row
+        span.span-3
+          label
+            ' End Date
+          .date-input.validate-date-end
+            label.small.date-input-field
+              ' Month
+              = f.input_field :end_month, class: "tiny"
+            label.small.date-input-field
+              ' Year
+              = f.input_field :end_year, class: "tiny"
+        span.span-3.date-ongoing
+          br
+          = f.input :ongoing, as: :boolean,
+                    input_html: { class: "" },
+                    label_html: { class: 'small' },
+                    label: "Ongoing"
+
+    = f.label :details
+    .char-count.char-max-shift
+      .char-text-limit
+        | Word limit:
+        span.total-count 100
+      = f.input :details, as: :text,
+                          rows: 2,
+                          label: false
+    div
+      .row
+        .span-12
+          = f.submit "Save role", class: "button button-alt"
+

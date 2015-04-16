@@ -93,6 +93,9 @@ class FormController < ApplicationController
       elsif params[:step] == "add-website-address-documents"
         redirect_to form_form_answer_form_attachments_url(@form_answer)
         return
+      elsif params[:step] == "nominee-background"
+        redirect_to form_form_answer_positions_url(@form_answer)
+        return
       end
 
       queen_award_holder = if @form_answer.promotion?

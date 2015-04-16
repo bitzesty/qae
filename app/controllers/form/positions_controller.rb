@@ -13,7 +13,9 @@ class Form::PositionsController < Form::BaseController
 
   expose(:existing_position_details) do
     if position_details_doc.present?
-      JSON.parse(position_details_doc)
+      JSON.parse(position_details_doc).map do |el|
+        JSON.parse(el)
+      end
     else
       {}
     end
@@ -69,8 +71,8 @@ class Form::PositionsController < Form::BaseController
     self.position = Position.new(position_params)
 
     if position.valid?
-      @form_answer.document = add_position_result_doc
-      @form_answer.save
+      # @form_answer.document = add_position_result_doc
+      # @form_answer.save
 
       redirect_to form_form_answer_positions_url(@form_answer)
     else

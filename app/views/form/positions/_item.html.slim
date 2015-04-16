@@ -1,0 +1,23 @@
+= attrs.inspect
+li
+  div
+    = button_to "Remove", form_form_answer_positions_url(@form_answer, name: attrs["name"], start_month: attrs["start_month"], start_year: attrs["start_year"]),
+                          method: :delete,
+                          class: "non-js-remove-link", form_class: "non-js-button-to"
+  div
+    .row
+      .span-12
+        p
+          = attrs["name"]
+        p
+          = attrs["start_month"]
+        p
+          = attrs["start_year"]
+        p
+          = attrs["end_month"]
+        p
+          = attrs["end_year"]
+        p
+          = attrs["ongoing"]
+        p
+          = attrs["details"]
