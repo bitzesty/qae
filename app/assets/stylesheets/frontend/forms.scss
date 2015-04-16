@@ -1230,7 +1230,7 @@ input[type="file"] {
   }
 }
 
-// Used for button_to delete links for NON JS cases - begin
+// Used for NON JS cases - begin
 .non-js-button-to {
   width: 80px;
   float: right;
@@ -1251,5 +1251,13 @@ input[type="file"] {
 .non-js-audit-certificate-submit {
   float:right
 }
-// Used for button_to delete links for NON JS cases - end
+
+.view_as_disabled {
+  input, textarea {
+    opacity: 1;
+    color: black;
+  }
+}
+
+// Used or NON JS cases - end
 
