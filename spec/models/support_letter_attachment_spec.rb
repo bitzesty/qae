@@ -25,7 +25,7 @@ RSpec.describe SupportLetterAttachment, type: :model do
       let(:file_with_wrong_extension) do
         Rack::Test::UploadedFile.new(
           File.join(
-            Rails.root,"spec","support","file_samples","simple_txt_sample.txt"
+            Rails.root,"spec","support","file_samples","simple_txt_sample.log"
           )
         )
       end
@@ -63,7 +63,7 @@ RSpec.describe SupportLetterAttachment, type: :model do
       it "should allow to upload files with allowed extensions" do
         expect(attachment_with_wrong_extension_file.valid?).to be_falsey
         expect(attachment_with_wrong_extension_file.errors.full_messages).to include(
-          "Attachment You are not allowed to upload \"txt\" files, allowed types: jpg, jpeg, gif, png, doc, docx, pdf, odt"
+          "Attachment You are not allowed to upload \"log\" files, allowed types: jpg, jpeg, gif, png, chm, csv, diff, doc, docx, dot, dxf, eps, gml, ics, kml, odp, ods, odt, pdf, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip"
         )
       end
 
