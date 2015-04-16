@@ -31,17 +31,33 @@ class Users::AuditCertificatesController < Users::BaseController
       if form_answer.assessors.primary.present?
         Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
       end
-      render json: audit_certificate,
-             status: :created
+
+      if request.xhr?
+        render json: audit_certificate,
+               status: :created
+      else
+        redirect_to users_form_answer_audit_certificate_url(form_answer),
+                    notice: "Audit Certificate successfully uploaded!"
+      end
     else
-      render json: humanized_errors,
-             status: :unprocessable_entity
+      if request.xhr?
+        render json: humanized_errors,
+               status: :unprocessable_entity
+      else
+        render :show
+      end
     end
   end
 
   def destroy
     audit_certificate.destroy
-    render nothing: true
+
+    if request.xhr?
+      render nothing: true
+    else
+      redirect_to users_form_answer_audit_certificate_url(form_answer),
+                  notice: "Audit Certificate deleted!"
+    end
   end
 
   private

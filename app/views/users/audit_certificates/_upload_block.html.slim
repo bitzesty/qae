@@ -6,7 +6,24 @@
         = link_to "Uploaded Audit Certificate",
                   (cert_exists ? award.audit_certificate.attachment_url : ""),
                   target: "_blank", class: "js-audit-certificate-title"
-        = link_to "Remove", users_form_answer_audit_certificate_url(award),
-                            remote: true, method: :delete, class: "js-remove-audit-certificate-link"
 
-  = render "users/audit_certificates/form", form_answer: award, audit_certificate: award.audit_certificate, cert_exists: cert_exists
+        / JS Remove Link
+        = link_to "Remove", users_form_answer_audit_certificate_url(award),
+                            remote: true,
+                            method: :delete,
+                            class: "js-remove-audit-certificate-link if-no-js-hide"
+
+        / Non JS Remove Link
+        = button_to "Remove", users_form_answer_audit_certificate_url(award),
+                              method: :delete,
+                              class: "non-js-remove-link if-js-hide",
+                              form_class: "non-js-button-to"
+
+  / JS Upload Form
+  .if-no-js-hide
+    = render "users/audit_certificates/form", form_answer: award, audit_certificate: award.audit_certificate, cert_exists: cert_exists
+
+  / Non JS Upload Form
+  - unless cert_exists
+    .if-js-hide
+      = render "users/audit_certificates/non_js_form"
