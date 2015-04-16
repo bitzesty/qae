@@ -2,8 +2,7 @@ require "virus_scanner"
 class FormAnswerAttachment < ActiveRecord::Base
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
-  # not ideal name of the FK..
-  has_one :scan, class_name: Scan, foreign_key: :audit_certificate_id
+  has_one :scan, class_name: Scan
   after_save :virus_scan
 
   mount_uploader :file, FormAnswerAttachmentUploader
@@ -55,7 +54,7 @@ class FormAnswerAttachment < ActiveRecord::Base
       Scan.create(
         filename: file.current_path,
         uuid: SecureRandom.uuid,
-        audit_certificate_id: id,
+        form_answer_attachment_id: id,
         status: "clean"
       )
     else
@@ -64,7 +63,7 @@ class FormAnswerAttachment < ActiveRecord::Base
         filename: file.current_path,
         uuid: response["id"],
         status: response["status"],
-        audit_certificate_id: id
+        form_answer_attachment_id: id
       )
     end
   end
