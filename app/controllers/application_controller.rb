@@ -31,16 +31,35 @@ class ApplicationController < ActionController::Base
   end
 
   def admin_in_read_only_mode?
-    @admin_in_read_only_mode ||= admin_signed_in? &&
+    @admin_in_read_only_mode ||= (admin_signed_in? || assessor_signed_in?) &&
                                  session["warden.user.user.key"] &&
                                  session[:admin_in_read_only_mode]
+
   end
   helper_method :admin_in_read_only_mode?
 
   def restrict_access_if_admin_in_read_only_mode!
     if admin_in_read_only_mode?
-      redirect_to root_url, alert: "You have no permissions!"
+      redirect_to :back, alert: "You have no permissions!"
       return
+    end
+  end
+
+  def allow_assessor_access!(fa)
+    if admin_in_read_only_mode?
+      if assessor_signed_in? && !admin_signed_in?
+        if fa.present?
+          if current_assessor.lead_or_assigned?(fa)
+            return true
+          end
+        end
+        if request.referer
+          redirect_to :back, alert: "You have no permissions!"
+        else
+          render text: "You have no permissions!"
+        end
+        return false
+      end
     end
   end
 

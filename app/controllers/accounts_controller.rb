@@ -1,13 +1,6 @@
 class AccountsController < ApplicationController
   before_action :authenticate_user!
-  before_action :restrict_access_if_admin_in_read_only_mode!, only: [
-    :new, :create, :update, :destroy,
-    :update_correspondent_details,
-    :update_company_details,
-    :update_contact_settings,
-    :update_password_settings,
-    :complete_registration
-  ]
+  before_action :restrict_access_if_admin_in_read_only_mode!
 
   def correspondent_details
     @active_step = 1
