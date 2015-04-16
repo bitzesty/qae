@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'open-uri'
 
 module QaePdfForms::General::DrawElements
@@ -116,7 +117,7 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_award_information
-    text_box "Queen’s Award for Enterprise Promotion #{Date.today.year}".upcase,
+    text_box "Queen’s Award for Enterprise Promotion #{AwardYear.current.year}".upcase,
              header_text_properties.merge(at: [32.mm, 130.mm + DEFAULT_OFFSET],
                                           style: :bold)
   end
