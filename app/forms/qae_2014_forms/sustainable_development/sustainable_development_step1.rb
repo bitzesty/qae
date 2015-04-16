@@ -59,16 +59,15 @@ class QAE2014Forms
           style "small"
         end
 
-        # TODO: Hardcoded date
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
           context %(
             <p>
-              Organisations that began trading after 01/10/2012 aren't eligible for this award.
+              Organisations that began trading after #{AwardYear.start_trading_moment} aren't eligible for this award.
             </p>
                     )
-          date_max "01/10/2012"
+          date_max AwardYear.start_trading_moment
         end
 
         header :business_awards_header, "Business awards" do

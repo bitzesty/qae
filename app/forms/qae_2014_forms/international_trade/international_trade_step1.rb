@@ -54,12 +54,11 @@ class QAE2014Forms
           style "small"
         end
 
-        # TODO: Hardcoded date
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context "<p>Organisations that began trading after 01/10/2012 aren't eligible for this award.</p>"
-          date_max "01/10/2012"
+          context "<p>Organisations that began trading after #{AwardYear.start_trading_moment} aren't eligible for this award.</p>"
+          date_max AwardYear.start_trading_moment
         end
 
         options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do

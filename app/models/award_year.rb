@@ -32,6 +32,10 @@ class AwardYear < ActiveRecord::Base
     "#{Date.current.year - 4}-#{Date.current.year}"
   end
 
+  def self.start_trading_moment
+    Date.new(Date.current.year - 3, 10, 1).strftime("%d/%m/%Y")
+  end
+
   private
 
   def create_settings
