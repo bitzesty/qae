@@ -15,6 +15,7 @@ class QAE2014Forms
 
         step "Nominee Background",
              "Nominee Background",
+             { id: :position_details_step },
              &QAE2014Forms.promotion_step2
 
         step "Recommendation",
