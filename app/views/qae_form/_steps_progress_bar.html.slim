@@ -21,12 +21,7 @@
           - for step in @form.steps do
            li.js-step-link.js-step-condition data-step="step-#{step.title.parameterize}" class=('step-current' if (!current_step && step.index == 0) || current_step == step.title.parameterize)
              - if step.opts[:id] == :letters_of_support_step
-               = link_to edit_form_path(@form_answer.id, step: step.title.parameterize), class: "js-step-link js-step-condition if-no-js-hide", data: { step: "step-#{step.title.parameterize}" } do
-                 span
-                   span.step-number
-                     ' #{step_letters[step.index]}.
-                   = step.short_title.html_safe
-               = link_to form_form_answer_supporters_path(@form_answer), class: "js-step-link js-step-condition if-js-hide", data: { step: "step-#{step.title.parameterize}" } do
+               = link_to form_form_answer_supporters_path(@form_answer), class: "js-step-link js-step-condition", data: { step: "step-#{step.title.parameterize}" } do
                  span
                    span.step-number
                      ' #{step_letters[step.index]}.

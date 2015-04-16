@@ -11,7 +11,7 @@
         = button_to "Delete support letter", users_form_answer_support_letter_path(form_answer, @support_letter), method: :delete, confirm: "Are you sure?"
         dl
           dt Full name
-          dd = @support_letter.first_name + " "+ @support_letter.first_name
+          dd = @support_letter.full_name
           dt Relationship to nominee
           dd = @support_letter.relationship_to_nominee
 

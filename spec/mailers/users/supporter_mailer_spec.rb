@@ -23,7 +23,7 @@ describe Users::SupporterMailer do
   it "contains link to the support letter form and nominee's name" do
     expect(mail.html_part.decoded).to have_link(
       "go to the support letter form page.",
-      href: support_letter_url(access_key: supporter.access_key)
+      href: new_support_letter_url(access_key: supporter.access_key)
     )
 
     expect(mail.body.encoded).to match("Jon Snow")

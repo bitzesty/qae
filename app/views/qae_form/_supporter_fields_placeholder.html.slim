@@ -1,0 +1,55 @@
+li.js-add-example.hidden
+  = link_to "Remove", "#", class: "remove-suppoter remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
+
+  input.js-support-entry-id type="hidden" name="form[#{question.key}][{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]" disabled=true
+  .js-system-tag data-new-hidden-input-name="form[#{question.key}][{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]"
+  span.row
+    span.span-6
+      label
+        ul.errors-container
+        ' First Name
+        input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][first_name]" type="text" disabled=true
+        span.visible-read-only
+  span.row
+    span.span-6
+      label
+        ul.errors-container
+        ' Surname
+        input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][last_name]" type="text" disabled=true
+        span.visible-read-only
+  span.row
+    span.span-6
+      label
+        ul.errors-container
+        ' Relationship to Nominee
+        input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][relationship_to_nominee]" type="text" disabled=true
+        span.visible-read-only
+  span.row
+    - if question.list_type == :manuall_upload
+      span.span-12
+        label
+          ul.errors-container
+          ' Letter of Support
+          input class="js-trigger-autosave js-support-letter-attachment medium" name="form[#{question.key}][{index}][letter_of_support]" type='file' disabled=true
+    - else
+      span.span-6
+        label
+          ul.errors-container
+          ' Email address
+          input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][email]" type="text" disabled=true
+          span.visible-read-only
+  span.row
+    span.span-12
+      a.button.button-alt.js-save-collection data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
+        - if question.list_type == :manuall_upload
+          | Submit letter of support
+        - else
+          | Send support request
+
+  .visible-read-only
+    .application-notice.help-notice
+      p
+        - if question.list_type == :manuall_upload
+          ' Letter of support uploaded
+        - else
+          ' Support request sent

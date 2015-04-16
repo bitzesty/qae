@@ -22,6 +22,12 @@ class Users::SupportersController < Users::BaseController
     end
   end
 
+  def destroy
+    @supporter = form_answer.supporters.find(params[:id])
+    @supporter.destroy
+    render nothing: true
+  end
+
   private
 
     def supporter_params

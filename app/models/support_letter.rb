@@ -24,4 +24,8 @@ class SupportLetter < ActiveRecord::Base
   end
 
   attr_accessor :attachment
+
+  def full_name
+    [first_name, last_name].join(' ')
+  end
 end
