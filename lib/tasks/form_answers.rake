@@ -30,4 +30,14 @@ namespace :form_answers do
     FormAnswer.update_all(urn: nil)
     FormAnswer.find_each(&:save!)
   end
+
+  desc "Adds the county/remove country to all form answers"
+  task refresh_attributes: :environment do
+    FormAnswer.find_each do |f|
+      next if f.promotion?
+      f.document.delete("principal_address_country")
+      f.document["principal_address_county"] = "Buckinghamshire" if f.submitted?
+      f.save(validate: false)
+    end
+  end
 end

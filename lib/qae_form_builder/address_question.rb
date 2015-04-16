@@ -46,7 +46,7 @@ class QAEFormBuilder
           { building: "Building" },
           { street: "Street" },
           { city: "Town or city" },
-          { county: "County" },
+          { country: "Country" },
           { postcode: "Postcode" },
           { region: "Region" }
         ]
