@@ -9,7 +9,7 @@ class QAE2014Forms
               We can't guarantee these will be reviewed, so include any vital information within the form.
             </p>
             <p>
-              You can upload files in all common formats, as long as they're less than 5mb.
+              You can upload files in all common formats, as long as they're less than 5mb each.
             </p>
             <p>
               You may link to videos, websites or other media you feel relevant.
@@ -17,7 +17,15 @@ class QAE2014Forms
             <p>
               We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.
             </p>
-          ) # TODO!
+          )
+          hint "What are the allowed file formats?", %(
+            <p>
+              You can upload any of the following file formats:
+            </p>
+            <p>
+              chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip
+            </p>
+          )
           max_attachments 4
           links
           description

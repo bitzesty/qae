@@ -40,9 +40,9 @@ class Eligibility::Promotion < Eligibility
 
   property :nominee_has_honours,
             boolean: true,
-            label: "Does your nominee hold any honours?",
+            label: "Does your nominee hold any personal honours?",
             accept: :not_nil,
-            hint: "Honours' refers to honours awarded by the Queen e.g. MBE, OBE, Knighthood"
+            hint: "'Personal honours' refers to personal honours awarded by the Queen e.g. MBE, OBE, Knighthood"
 
   property :honour_was_ep,
             boolean: true,
@@ -52,14 +52,14 @@ class Eligibility::Promotion < Eligibility
 
   property :nominee_was_put_forward_for_honours_this_year,
             boolean: true,
-            label: "Is your nominee being put forward for honours this year?",
+            label: "Is your nominee being put forward for personal honours this year?",
             accept: :not_nil,
-            hint: "Honours' refers to honours awarded by the Queen e.g. MBE, OBE, Knighthood",
+            hint: "'Personal honours' refers to personal honours awarded by the Queen e.g. MBE, OBE, Knighthood",
             if: proc { nominee_has_honours.nil? || !nominee_has_honours? }
 
   property :nomination_for_honours_based_on_their_contribution_to_ep,
             boolean: true,
-            label: "Is their nomination for honours based on their contribution to enterprise promotion?",
+            label: "Is their nomination for personal honours based on their contribution to enterprise promotion?",
             accept: :false,
             if: proc { nominee_was_put_forward_for_honours_this_year.nil? || nominee_was_put_forward_for_honours_this_year? }
 

@@ -6,22 +6,10 @@ class QAE2014Forms
           ref "F 1"
         end
 
-        dropdown :head_of_bussines_title, "Title" do
+        text :head_of_bussines_title, "Title" do
           required
           classes "regular-question"
-          option "", "Select"
-          option "prof", "Prof"
-          option "dr", "Dr"
-          option "mr", "Mr"
-          option "mrs", "Mrs"
-          option "miss", "Miss"
-          option "other", "Other"
-        end
-
-        text :head_of_bussines_title_other, "Please specify" do
-          classes "regular-question"
-          sub_ref "F 1.1"
-          conditional :head_of_bussines_title, "other"
+          style "tiny"
         end
 
         head_of_business :head_of_business, "" do
@@ -31,7 +19,7 @@ class QAE2014Forms
           classes "sub-question"
           required
           form_hint %(
-            e.g. CEO, Managing Director, Founder, Head of your organisational unit
+            e.g. CEO, Managing Director, Founder
           )
         end
 
@@ -51,7 +39,7 @@ class QAE2014Forms
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
           ref "F 3"
           text %{
-            I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).
+            I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).
           }
         end
 
@@ -66,10 +54,10 @@ class QAE2014Forms
           ref "F 4"
           required
           text %(
-            By ticking this box, I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
+            By ticking this box, I submit an entry for consideration for The Queen’s Awards for Enterprise 2016. I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
             <br>
             <br>
-            I am not aware of any matter which might cast doubt upon the worthiness of this business unit to receive a Queen’s Award. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety.
+            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety.
           )
         end
 

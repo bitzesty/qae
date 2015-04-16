@@ -190,9 +190,12 @@ class FormController < ApplicationController
 
     @attachment = FormAnswerAttachment.new(attachment_params)
     @attachment.attachable = current_user
-    @attachment.save!
 
-    render json: @attachment, status: :created
+    if @attachment.save
+      render json: @attachment, status: :created
+    else
+      render json: @attachment.errors, status: 500
+    end
   end
 
   def get_collaborators

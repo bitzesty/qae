@@ -37,6 +37,8 @@
             textarea.js-char-count rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)
               = question.input_value(suffix: 'description', index: idx)
 
+  ul.errors-container
+
   .if-no-js-hide
     .js-file-drop-zone
       ' Drag and drop a file here

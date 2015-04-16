@@ -6,23 +6,10 @@ class QAE2014Forms
           ref "A 1"
         end
 
-        dropdown :nominee_title, "Title" do
+        text :nominee_title, "Title" do
           required
           classes "regular-question"
-          option "", "Select"
-          option "prof", "Prof"
-          option "dr", "Dr"
-          option "mr", "Mr"
-          option "mrs", "Mrs"
-          option "miss", "Miss"
-          option "other", "Other"
-        end
-
-        text :nominee_title_other, "Please specify" do
-          required
-          classes "regular-question"
-          sub_ref "A 1.1"
-          conditional :nominee_title, "other"
+          style "tiny"
         end
 
         user_info :nominee_info, "" do
@@ -63,12 +50,12 @@ class QAE2014Forms
 
         text :nominee_nationality_other, "Please specify" do
           required
-          sub_ref "A 1.2"
+          sub_ref "A 1.1"
           classes "sub-question"
           conditional :nominee_nationality, "other"
         end
 
-        options :award_holder, "Does the nominee currently hold any Awards/Honours?" do
+        options :award_holder, "Does the nominee currently hold any awards/personal honours?" do
           required
           ref "A 2"
           yes_no
@@ -84,7 +71,7 @@ class QAE2014Forms
           conditional :award_holder, :yes
         end
 
-        options :nominated_for_award, "Is the nominee currently being nominated for another award/honor?" do
+        options :nominated_for_award, "Is the nominee currently being nominated for another award/personal honour?" do
           required
           yes_no
           option "unknown", "I don't know"

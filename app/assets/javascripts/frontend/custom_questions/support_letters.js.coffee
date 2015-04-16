@@ -23,6 +23,7 @@ window.SupportLetters =
                                                                           prop('value', data.result['id'])
 
       parent.find(".errors-container").html("")
+      parent.find(".errors-container").closest("label").removeClass("question-has-errors")
       parent.append(file_title)
       parent.append(hidden_input)
       SupportLetters.autosave()
@@ -31,6 +32,7 @@ window.SupportLetters =
       SupportLetters.clean_up_system_tags(parent)
       error_message = data.jqXHR.responseText
       parent.find(".errors-container").html("<li>" + error_message + "</li>")
+      parent.closest("label").addClass("question-has-errors")
 
     $el.fileupload(
       url: $el.closest(".list-add").data 'attachments-url'
@@ -99,6 +101,7 @@ window.SupportLetters =
             success: (response) ->
               parent.find(".js-support-entry-id").prop('value', response)
               parent.find(".errors-container").html("")
+              parent.find(".errors-container").closest("label").addClass("question-has-errors")
               parent.addClass("read-only")
               parent.find("input[type='text']").each ->
                 show_el = $(this).closest("label").find(".visible-read-only")
@@ -109,6 +112,7 @@ window.SupportLetters =
               return
             error: (response) ->
               parent.find(".errors-container").html("")
+              parent.find(".errors-container").closest("label").removeClass("question-has-errors")
               error_message = response.responseText
               $.each $.parseJSON(response.responseText), (question_key, error_message) ->
                 key_selector = ".js-support-letter-" + question_key.replace(/_/g, "-")
@@ -116,6 +120,7 @@ window.SupportLetters =
                                               closest("label").
                                               find(".errors-container")
                 field_error_container.html("<li>" + error_message[0] + "</li>")
+                field_error_container.closest("label").addClass("question-has-errors")
               button.removeClass("visuallyhidden")
 
               return

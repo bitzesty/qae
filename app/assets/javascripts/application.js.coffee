@@ -62,6 +62,9 @@ jQuery ->
         if $(this).closest(".question-block").find(".errors-container li").size() > 0
           $(this).closest(".question-block").find(".errors-container").empty()
       $(this).closest(".question-has-errors").removeClass("question-has-errors")
+  $(".supporters-list input").change ->
+    $(this).closest("label").find(".errors-container").empty()
+    $(this).closest(".question-has-errors").removeClass("question-has-errors")
 
   # Conditional questions that appear depending on answers
   $(".js-conditional-question, .js-conditional-drop-question").addClass("conditional-question")
@@ -384,11 +387,27 @@ jQuery ->
       new_el.append(div)
       list.append(new_el)
       list.removeClass("visuallyhidden")
+      wrapper.removeClass("question-has-errors")
+      wrapper.find(".errors-container").empty()
+
+    failed = (e, data) ->
+      error_json = data.jqXHR.responseJSON
+      error_key = Object.keys(error_json)[0]
+      error_message = data.jqXHR.responseJSON[error_key]
+      wrapper.addClass("question-has-errors")
+      wrapper.find(".errors-container").html("<li>" + error_message + "</li>")
+      # Remove `Uploading...`
+      list.find(".js-uploading").remove()
+      list.removeClass("visuallyhidden")
+      button.removeClass("visuallyhidden")
+      dropzone.removeClass("visuallyhidden").removeClass("drop-hover")
 
     upload_done = (e, data, link) ->
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.addClass("visuallyhidden")
+      wrapper.removeClass("question-has-errors")
+      wrapper.find(".errors-container").empty()
 
       # Show new upload
       new_el = $("<li>")
@@ -447,6 +466,7 @@ jQuery ->
         done: upload_done
         progressall: progress_all
         send: upload_started
+        fail: failed
       )
 
   $(document).on "click", ".js-upload-wrapper .remove-link", (e) ->

@@ -116,7 +116,7 @@ class QAE2014Forms
           words_max 100
         end
 
-        options :other_awards_won, "Have you won any other business awards in the past?" do
+        options :other_awards_won, "Have you won any other business or enterprise awards in the past?" do
           ref "A 7"
           required
           yes_no
@@ -252,8 +252,16 @@ class QAE2014Forms
         upload :org_chart, "Upload an organisational chart." do
           ref "A 16"
           context %(
-            <p>You can submit files in all common formats, as long as they're less than 5mb.</p>
+            <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
                     )
+          hint "What are the allowed file formats?", %(
+            <p>
+              You can upload any of the following file formats:
+            </p>
+            <p>
+              chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip
+            </p>
+          )
         end
       end
     end

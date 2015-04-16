@@ -25,7 +25,7 @@ shared_context "pdf file checks" do
   end
 
   let(:award_application_title) do
-    form_answer.decorate.award_application_title.upcase
+    "Queen’s Award for Enterprise Promotion #{Date.today.year}".upcase
   end
 
   let(:user_general_info) do

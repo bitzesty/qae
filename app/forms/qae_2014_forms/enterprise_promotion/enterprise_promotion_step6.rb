@@ -7,22 +7,10 @@ class QAE2014Forms
           ref "F 1"
         end
 
-        dropdown :user_info_title, "Title" do
+        text :user_info_title, "Title" do
           required
           classes "regular-question"
-          option "", "Select"
-          option "prof", "Prof"
-          option "dr", "Dr"
-          option "mr", "Mr"
-          option "mrs", "Mrs"
-          option "miss", "Miss"
-          option "other", "Other"
-        end
-
-        text :user_info_title_other, "Please specify" do
-          sub_ref "F 1.1"
-          classes "regular-question"
-          conditional :user_info_title, "other"
+          style "tiny"
         end
 
         user_info :user_info, "" do
@@ -52,7 +40,7 @@ class QAE2014Forms
 
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
           ref "F 2"
-          text "I am happy to be contacted about Queen's Award for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info)."
+          text "I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info)."
         end
 
         confirm :agree_being_contacted_by_department_of_business, "" do
@@ -64,7 +52,7 @@ class QAE2014Forms
           ref "F 3"
           required
           text %(
-            By ticking this box, I submit a nomination for consideration for the Queen’s Award for Enterprise Promotion 2015. I certify that all the particulars given, and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld.
+            By ticking this box, I submit a nomination for consideration for The Queen’s Award for Enterprise Promotion 2016. I certify that all the particulars given, and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld.
             <br><br>
             I am not aware of any matter which might cast doubt upon the worthiness of this individual to receive a Queen’s Award. I consent to all necessary enquiries being made by the Queen’s Awards Office in relation to this nomination. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any individual which might be granted a Queen’s Award to ensure the highest standards of propriety. I undertake to notify the Queen’s Awards Office of any changes to the information provided, including any changes to the nominee’s personal details.
           )
