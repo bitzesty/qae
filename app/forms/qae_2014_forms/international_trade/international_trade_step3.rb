@@ -9,8 +9,8 @@ class QAE2014Forms
           classes "js-entry-period"
           ref "C 1"
           required
-          option "3 to 5", "Outstanding growth over the last 3 years"
-          option "6 plus", "Continuous growth over the last 6 years"
+          option "3 to 5", "Outstanding growth in the last 3 years"
+          option "6 plus", "Continuous growth in the last 6 years"
           placeholder_preselected_condition :queen_award_holder_details,
                                             question_suffix: :category,
                                             parent_question_answer_key: "international_trade_6",
