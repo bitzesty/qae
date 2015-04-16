@@ -58,7 +58,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def award_application_title
-    "#{award_type} Award #{Date.today.year}"
+    "#{award_type} Award #{AwardYear.current.year}"
   end
 
   def company_or_nominee_name
