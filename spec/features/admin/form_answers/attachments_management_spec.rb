@@ -24,7 +24,14 @@ describe 'Form answer attachments management', %q{
 
   context "with existing attachment" do
     before do
-      form_answer.form_answer_attachments.create(attachable: admin)
+      form_answer.form_answer_attachments.create!(
+        file: Rack::Test::UploadedFile.new(
+          File.join(
+            Rails.root,'spec','support','file_samples','photo_with_size_less_than_5MB.jpg'
+          )
+        ),
+        attachable: admin
+      )
       Scan.create(uuid: '1234-456-789-abcdf', filename: 'grumpy_cat.jpg', status: 'clean', form_answer_attachment_id: form_answer.form_answer_attachments.last.id)
       visit admin_form_answer_path(form_answer)
     end
