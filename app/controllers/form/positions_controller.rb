@@ -43,7 +43,8 @@ class Form::PositionsController < Form::BaseController
 
   expose(:add_position_result_doc) do
     result_position_details = existing_position_details
-    result_position_details[next_document_position.to_s] = created_position_ops
+    result_position_details.push(created_position_ops)
+    result_position_details = result_position_details.map(&:to_json)
 
     @form_answer.document.merge(
       position_details: result_position_details.to_json
@@ -52,12 +53,13 @@ class Form::PositionsController < Form::BaseController
 
   expose(:remove_position_result_doc) do
     result_position_details = existing_position_details
-    result_position_details.delete_if do |k, v|
-      v["name"] == params[:name] &&
-      v["start_month"] == params[:start_month] &&
-      v["start_year"] == params[:start_year]
+    result_position_details.delete_if do |el|
+      el["name"] == params[:name] &&
+      el["start_month"] == params[:start_month] &&
+      el["start_year"] == params[:start_year]
     end
-    result_position_details = result_position_details.present? ? result_position_details : {}
+    result_position_details = result_position_details.present? ? result_position_details : []
+    result_position_details = result_position_details.map(&:to_json)
 
     @form_answer.document.merge(
       position_details: result_position_details.to_json
@@ -71,8 +73,8 @@ class Form::PositionsController < Form::BaseController
     self.position = Position.new(position_params)
 
     if position.valid?
-      # @form_answer.document = add_position_result_doc
-      # @form_answer.save
+      @form_answer.document = add_position_result_doc
+      @form_answer.save
 
       redirect_to form_form_answer_positions_url(@form_answer)
     else
