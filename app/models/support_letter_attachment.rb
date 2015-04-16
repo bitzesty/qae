@@ -1,7 +1,7 @@
 require "virus_scanner"
 class SupportLetterAttachment < ActiveRecord::Base
   mount_uploader :attachment, FormAnswerAttachmentUploader
-  has_one :scan, class_name: Scan, foreign_key: :audit_certificate_id
+  has_one :scan, class_name: Scan
   after_save :virus_scan
 
   begin :associations
@@ -23,7 +23,7 @@ class SupportLetterAttachment < ActiveRecord::Base
       Scan.create(
         filename: attachment.current_path,
         uuid: SecureRandom.uuid,
-        audit_certificate_id: id,
+        support_letter_attachment_id: id,
         status: "clean"
       )
     else
@@ -32,7 +32,7 @@ class SupportLetterAttachment < ActiveRecord::Base
         filename: attachment.current_path,
         uuid: response["id"],
         status: response["status"],
-        audit_certificate_id: id
+        support_letter_attachment_id: id
       )
     end
   end
