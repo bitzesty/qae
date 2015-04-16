@@ -1,5 +1,5 @@
 class AuditCertificateUploader < FileUploader
   def extension_white_list
-    %w(doc docx pdf odt jpg jpeg gif png pptx)
+    %w(chm csv diff doc docx dot dxf eps gif gml ics jpg kml odp ods odt pdf png ppt pptx ps rdf rtf sch txt wsdl xls xlsm xlsx xlt xml xsd xslt zip)
   end
 end
