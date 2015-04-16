@@ -62,7 +62,7 @@ jQuery ->
         if $(this).closest(".question-block").find(".errors-container li").size() > 0
           $(this).closest(".question-block").find(".errors-container").empty()
       $(this).closest(".question-has-errors").removeClass("question-has-errors")
-  $(".supporters-list input").change () ->
+  $(".supporters-list input").change ->
     $(this).closest("label").find(".errors-container").empty()
     $(this).closest(".question-has-errors").removeClass("question-has-errors")
 
