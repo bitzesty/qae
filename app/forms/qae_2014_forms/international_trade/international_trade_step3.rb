@@ -9,8 +9,8 @@ class QAE2014Forms
           classes "js-entry-period"
           ref "C 1"
           required
-          option "3 to 5", "Outstanding growth over the last 3 years"
-          option "6 plus", "Continuous growth over the last 6 years"
+          option "3 to 5", "Outstanding growth in the last 3 years"
+          option "6 plus", "Continuous growth in the last 6 years"
           placeholder_preselected_condition :queen_award_holder_details,
                                             question_suffix: :category,
                                             parent_question_answer_key: "international_trade_6",
@@ -80,8 +80,13 @@ class QAE2014Forms
 
         header :company_financials, "Company Financials" do
           context %(
-            <p>These figures should be for your entire organisation. If you haven't reached your latest year-end, please use estimates to complete this section.</p>
-                    )
+            <p>
+              A parent company making a group entry should include the trading figures of all UK members of the group.
+            </p>
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete this section.
+            </p>
+          )
           conditional :trade_commercial_success, :true
           conditional :financial_year_date_changed, :true
         end

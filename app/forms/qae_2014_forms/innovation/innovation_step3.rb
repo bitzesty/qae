@@ -9,8 +9,8 @@ class QAE2014Forms
           context %{
             <p>Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).</p>
           }
-          option "2 to 4", "Outstanding performance improvements over the last 2 years"
-          option "5 plus", "Steady performance improvements over the last 5 years"
+          option "2 to 4", "Outstanding performance improvements in the last 2 years"
+          option "5 plus", "Steady performance improvements in the last 5 years"
           financial_date_selector({
             "2 to 4" => "2",
             "5 plus" => "5"
@@ -79,8 +79,13 @@ class QAE2014Forms
 
         header :company_financials, "Company Financials" do
           context %(
-            <p>These figures should be for your entire organisation. If you haven't reached your latest year-end, please use estimates to complete this section.</p>
-                    )
+            <p>
+              A parent company making a group entry should include the trading figures of all UK members of the group.
+            </p>
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete this section.
+            </p>
+          )
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end

@@ -1,11 +1,10 @@
 .question-body
   p.question-context
+    ' For this question a 'dip' is any annual drop in overseas sales.
+  p.question-context
     ' There are two types of entry in International Trade in which you must show either:
   ul.question-context
     li Steep year on year growth (without dips) in overseas sales in the last 3 years
     li Substantial year on year growth (without dips) in overseas sales in the last 6 years
-
-  - collection = @eligibility.class.sales_above_100_000_pounds.options
-  - collection.reject! { |opts| opts.last == 'skip' } if controller_name == 'form_award_eligibilities'
-  = f.input :sales_above_100_000_pounds, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }, collection: collection
+  = f.input :any_dips_over_the_last_three_years, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
 span.clear

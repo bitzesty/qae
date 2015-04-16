@@ -16,7 +16,7 @@ class Eligibility::Development < Eligibility
 
   property :development_contributed_to_commercial_success,
             boolean: true,
-            label: "Has your sustainable development had a positive impact on your commercial success over the last two years?",
+            label: "Has your sustainable development had a positive impact on your commercial success in the last two years?",
             accept: :true,
             hint: "e.g. increased profitability/turnover, created new markets, improved market share.",
             if: proc { !skipped? }

@@ -5,7 +5,7 @@ class QAE2014Forms
         options :applying_for, "Are you applying on behalf of your:" do
           ref "A 1"
           required
-          option "organisation", "Whole organisation"
+          option "organisation", "Whole organisation (with ultimate control)"
           option "division branch subsidiary", "A division, branch or subsidiary"
         end
 

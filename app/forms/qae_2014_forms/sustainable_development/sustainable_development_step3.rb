@@ -77,8 +77,13 @@ class QAE2014Forms
 
         header :company_financials, "Company Financials" do
           context %(
-            <p>These figures should be for your entire organisation. If you haven't reached your latest year-end, please use estimates to complete this section.</p>
-                    )
+            <p>
+              A parent company making a group entry should include the trading figures of all UK members of the group.
+            </p>
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete this section.
+            </p>
+          )
           conditional :development_performance_years, :true
         end
 
