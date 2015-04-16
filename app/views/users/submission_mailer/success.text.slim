@@ -3,16 +3,35 @@
 ' ,
 
 ' Thank you for submitting your
-- if @form_answer.award_type
+- if @form_answer.award_type == "promotion"
   ' nomination
 - else
   ' application
-' for The Queen’s Award for Enterprise Promotion 
+' for The Queen’s Award for Enterprise 
 = Date.today.year
-' . Your unique reference is
+' .
+
+' Your Unique Reference Number (URN) is
 = @form_answer.urn
 
-' If you have any queries about the nomination process you can call us on 020 7215 6880 or email us.
+' You can view and download your submissions (and edit up until
+= application_deadline(:submission_end)
+' ) by
+= link_to "signing in to applications page", dashboard_page
+' .
+
+' To find out more on what happens next visit
+= link_to "The Queen's Awards for Enterprise timeline information page", timeline_path
+' .
+
+' If you have any further queries about the
+- if @form_answer.award_type == "promotion"
+  ' nomination
+- else
+  ' application
+' process you can call us on 020 7215 6880 or email us
+= link_to "info@queensawards.org.uk", "mailto:info@queensawards.org.uk"
+' .
 
 ' Kind regards,
 
