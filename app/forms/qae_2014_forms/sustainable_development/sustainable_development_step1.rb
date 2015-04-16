@@ -65,7 +65,7 @@ class QAE2014Forms
           ref "A 5"
           context %(
             <p>
-              Organisations that began trading after <span class='todo-placeholder'>01/10/2012</span> aren't eligible for this award.
+              Organisations that began trading after 01/10/2012 aren't eligible for this award.
             </p>
                     )
           date_max "01/10/2012"
