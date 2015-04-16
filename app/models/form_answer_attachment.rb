@@ -27,7 +27,7 @@ class FormAnswerAttachment < ActiveRecord::Base
     validates :form_answer_id, presence: true
     validates :file, presence: true,
                      file_size: {
-                       maximum: 25.megabytes.to_i
+                       maximum: 5.megabytes.to_i
                      }
   end
 
