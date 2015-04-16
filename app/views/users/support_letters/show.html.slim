@@ -1,0 +1,19 @@
+.page-support-letter
+  header.page-header.group
+    div
+      h1
+        ' Support letter for:
+        = form_answer.nominee_full_name
+
+  .article-container
+    article.group role="article"
+      .inner
+        = button_to "Delete support letter", users_form_answer_support_letter_path(form_answer, @support_letter), method: :delete, confirm: "Are you sure?"
+        dl
+          dt Full name
+          dd = @support_letter.first_name + " "+ @support_letter.first_name
+          dt Relationship to nominee
+          dd = @support_letter.relationship_to_nominee
+
+          dt Support letter
+          dd = @support_letter.body
