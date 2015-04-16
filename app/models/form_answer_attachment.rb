@@ -2,7 +2,8 @@ require "virus_scanner"
 class FormAnswerAttachment < ActiveRecord::Base
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
-  has_one :scan, class_name: Scan
+  # not ideal name of the FK..
+  has_one :scan, class_name: Scan, foreign_key: :audit_certificate_id
   after_save :virus_scan
 
   mount_uploader :file, FormAnswerAttachmentUploader

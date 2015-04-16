@@ -1,7 +1,7 @@
 require "virus_scanner"
 class SupportLetterAttachment < ActiveRecord::Base
   mount_uploader :attachment, FormAnswerAttachmentUploader
-  has_one :scan, class_name: Scan
+  has_one :scan, class_name: Scan, foreign_key: :audit_certificate_id
   after_save :virus_scan
 
   begin :associations

@@ -1,7 +1,7 @@
 require "virus_scanner"
 class AuditCertificate < ActiveRecord::Base
   mount_uploader :attachment, AuditCertificateUploader
-  has_one :scan, class_name: Scan
+  has_one :scan, class_name: Scan, foreign_key: :audit_certificate_id
   after_save :virus_scan
 
   begin :associations
