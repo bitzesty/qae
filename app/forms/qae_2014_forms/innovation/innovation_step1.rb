@@ -219,6 +219,14 @@ class QAE2014Forms
         address :principal_address, "Principal address of your organisation" do
           required
           ref "A 10"
+          sub_fields([
+            { building: "Building" },
+            { street: "Street" },
+            { city: "Town or city" },
+            { county: "County" },
+            { postcode: "Postcode" },
+            { region: "Region" }
+          ])
         end
 
         text :org_telephone, "Main telephone number" do
