@@ -177,7 +177,7 @@ window.FormValidation =
         subq = $(subquestion)
         if not subq.val() and question.hasClass("question-required")
           @log_this(question, "validateEmployeeMin", "This field is required")
-          @appendMessage(subq.closest("label"), "This field is required")
+          @appendMessage(subq.closest(".span-financial"), "This field is required")
           @addErrorClass(question)
           continue
         else if not subq.val()
@@ -185,12 +185,20 @@ window.FormValidation =
 
         if not subq.val().toString().match(@numberRegex)
           @log_this(question, "validateEmployeeMin", "Not a valid number")
-          @appendMessage(subq.closest("label"), "Not a valid number")
+          @appendMessage(subq.closest(".span-financial"), "Not a valid number")
           @addErrorClass(question)
         else
-          if parseInt(subq.val()) < 2
-            @log_this(question, "validateEmployeeMin", "Minimum of 2 employees")
-            @appendMessage(subq.closest("label"), "Minimum of 2 employees")
+          subq_list = subq.closest(".row").find(".span-financial")
+          subq_index = subq_list.index(subq.closest(".span-financial"))
+
+          if subq_index == subq_list.size() - 1
+            employee_limit = 2
+          else
+            employee_limit = 1
+
+          if parseInt(subq.val()) < employee_limit
+            @log_this(question, "validateEmployeeMin", "Minimum of #{employee_limit} employees")
+            @appendMessage(subq.closest(".span-financial"), "Minimum of #{employee_limit} employees")
             @addErrorClass(question)
 
   validateTotalOverseas: (question) ->
