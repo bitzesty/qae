@@ -7,6 +7,9 @@ class FormAwardEligibilitiesController < ApplicationController
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy
   ]
+  before_action do
+    allow_assessor_access!(@form_answer)
+  end
 
   def show
     #    if award eligibility is not passed

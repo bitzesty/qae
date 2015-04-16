@@ -12,6 +12,9 @@ class FormController < ApplicationController
   ]
   before_action :require_to_be_account_admin!, only: :submit_confirm
   before_action :check_trade_count_limit, only: :new_international_trade_form
+  before_action do
+    allow_assessor_access!(@form_answer)
+  end
 
   expose(:support_letter_attachments) do
     @form_answer.support_letter_attachments.inject({}) do |r, attachment|

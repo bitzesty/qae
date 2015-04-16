@@ -44,6 +44,8 @@ class ContentOnlyController < ApplicationController
                   :privacy,
                   :cookies
                 ]
+  before_action :restrict_access_if_admin_in_read_only_mode!,
+                only: [:dashboard]
 
   expose(:form_answer) {
     current_user.form_answers.find(params[:id])
