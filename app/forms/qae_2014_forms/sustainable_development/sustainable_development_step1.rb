@@ -74,8 +74,7 @@ class QAE2014Forms
         header :business_awards_header, "Business awards" do
         end
 
-        # TODO: Hardcoded date
-        options :queen_award_holder, "Are you a current Queen's Award holder (2011-2015)?" do
+        options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
           required
           ref "A 6"
           yes_no
