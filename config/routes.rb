@@ -97,8 +97,6 @@ Rails.application.routes.draw do
         get :acceptance
         post :update_acceptance
       end
-
-      resources :form_attachments_and_links, only: [:index, :create, :destroy] # NON JS
     end
   end
 
