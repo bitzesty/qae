@@ -17,7 +17,7 @@
 
 - unless @search.query?
 - if current_subject.categories_as_lead.include?(current_award_type)
-  .well.bulk-assign-assessors-form
+  .well.bulk-assign-assessors-form.if-no-js-hide
     h3 Bulk Assign Assessors
     = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
       = flash[:error]
