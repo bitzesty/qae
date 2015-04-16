@@ -19,7 +19,7 @@ class QAE2014Forms
           classes "sub-question"
           required
           form_hint %(
-            e.g. CEO, Managing Director, Founder, Head of your organisational unit
+            e.g. CEO, Managing Director, Founder
           )
         end
 
