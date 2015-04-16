@@ -48,7 +48,7 @@ class QAE2014Forms
           rows 5
         end
 
-        number :registration_number, "Company/Charity Registration Number" do
+        text :registration_number, "Company/Charity Registration Number" do
           required
           ref "A 4"
           context %(
@@ -59,23 +59,21 @@ class QAE2014Forms
           style "small"
         end
 
-        # TODO: Hardcoded date
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
           context %(
             <p>
-              Organisations that began trading after <span class='todo-placeholder'>01/10/2012</span> aren't eligible for this award.
+              Organisations that began trading after #{AwardYear.start_trading_moment} aren't eligible for this award.
             </p>
                     )
-          date_max "01/10/2012"
+          date_max AwardYear.start_trading_moment
         end
 
         header :business_awards_header, "Business awards" do
         end
 
-        # TODO: Hardcoded date
-        options :queen_award_holder, "Are you a current Queen's Award holder <span class='todo-placeholder'>(2010-2014)</span>?" do
+        options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
           required
           ref "A 6"
           yes_no
@@ -215,6 +213,14 @@ class QAE2014Forms
         address :principal_address, "Principal address of your organisation" do
           required
           ref "A 9"
+          sub_fields([
+            { building: "Building" },
+            { street: "Street" },
+            { city: "Town or city" },
+            { county: "County" },
+            { postcode: "Postcode" },
+            { region: "Region" }
+          ])
         end
 
         text :org_telephone, "Main telephone number" do

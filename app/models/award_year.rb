@@ -28,6 +28,14 @@ class AwardYear < ActiveRecord::Base
     (DateTime.new(year - 1)..DateTime.new(year - 1, 12).end_of_month)
   end
 
+  def self.award_holder_range
+    "#{Date.current.year - 4}-#{Date.current.year}"
+  end
+
+  def self.start_trading_moment
+    Date.new(Date.current.year - 3, 10, 1).strftime("%d/%m/%Y")
+  end
+
   private
 
   def create_settings

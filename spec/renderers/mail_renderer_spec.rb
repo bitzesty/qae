@@ -6,7 +6,7 @@ describe MailRenderer do
       rendered = described_class.new.shortlisted_audit_certificate_reminder
       expect(rendered).to match("Jon Doe")
       expect(rendered).to match("Jane Doe")
-      expect(rendered).to match("Enterprise Promotion Award 2015")
+      expect(rendered).to match("Enterprise Promotion Award 2016")
     end
   end
 
