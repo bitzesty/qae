@@ -48,7 +48,7 @@ class QAE2014Forms
           rows 5
         end
 
-        number :registration_number, "Company/Charity Registration Number" do
+        text :registration_number, "Company/Charity Registration Number" do
           required
           ref "A 4"
           context %(
