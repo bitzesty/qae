@@ -1,0 +1,31 @@
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li = @form.title
+
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      = @form.title
+
+.steps-progress-container
+  .steps-progress-content
+    = render 'qae_form/form_header', form: @form, current_step: "company-information"
+
+    .article-container.article-container-wider.step-article.step-current
+      article.group role="article"
+        .inner
+          fieldset.question-block
+            h2
+              | Add another award
+
+            ul.list-add
+              = render "form/current_queens_awards/form"
+
+          footer
+            nav.pagination.no-border aria-label="Pagination" role="navigation"
+              ul.group
+                li.previous.previous-alternate
+                  = link_to edit_form_url(id: params[:form_answer_id], step: "company-information", anchor: "non_js_queens-awards-list-question"), rel: "prev", title: "Navigate to previous part" do
+                    span.pagination-label Back
+
+    = render "qae_form/steps_progress_bar", current_step: "company-information"

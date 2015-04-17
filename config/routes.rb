@@ -120,6 +120,9 @@ Rails.application.routes.draw do
       resource :positions, only: [:new, :create, :destroy] do
         get :index, on: :collection
       end
+      resource :current_queens_awards, only: [:new, :create, :destroy] do
+        get :confirm_deletion
+      end
     end
   end
   # NON JS implementation - end
