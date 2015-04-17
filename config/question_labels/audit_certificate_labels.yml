@@ -28,8 +28,6 @@
   labels:
     - id: "employees"
       label: "State the number of full-time employees (or part-time equivalent) employed in the UK by the entrant at the end of each 12 month period or as an average for each year"
-    - id: "overseas_sales_direct"
-      label: "Direct Overseas sales"
     - id: "total_turnover"
       label: "Total Turnover (home plus overseas)"
     - id: "net_profit"

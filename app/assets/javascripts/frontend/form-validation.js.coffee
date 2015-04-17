@@ -201,32 +201,6 @@ window.FormValidation =
             @appendMessage(subq.closest(".span-financial"), "Minimum of #{employee_limit} employees")
             @addErrorClass(question)
 
-  validateTotalOverseas: (question) ->
-    questions = $(".question-block[data-answer='overseas_sales-total-overseas-sales'] .show-question .currency-input")
-    direct = $(".question-block[data-answer='overseas_sales_direct-of-which-direct'] .show-question .currency-input")
-    indirect = $(".question-block[data-answer='overseas_sales_indirect-of-which-indirect'] .show-question .currency-input")
-
-    $(".question-block[data-answer='overseas_sales-total-overseas-sales']").removeClass("question-has-errors")
-
-    total_doesnt_match = false
-
-    for q,i in questions
-      $(q).find(".errors-container").empty()
-
-      val = parseFloat($(q).find("input").val() or 0)
-      dir = parseFloat($(direct[i]).find("input").val() or 0)
-      ind = parseFloat($(indirect[i]).find("input").val() or 0)
-
-      if (dir + ind) != val
-        total_doesnt_match = true
-
-    if total_doesnt_match
-      question_block = $(".question-block[data-answer='overseas_sales-total-overseas-sales']")
-      @log_this(question, "validateTotalOverseas", "These values should equal the sum of direct and indirect overseas sales")
-      @appendMessage(question_block, "These values should equal the sum of direct and indirect overseas sales")
-      @addErrorClass(question_block)
-      return
-
   validateMoneyByYears: (question) ->
     input_cells_counter = 0
 
@@ -395,11 +369,6 @@ window.FormValidation =
       if question.hasClass("question-date-between")
         # console.log "validateBetweenDate"
         @validateBetweenDate(question)
-
-      if question.attr("data-answer") == 'overseas_sales-total-overseas-sales' &&
-         question.find(".show-question").length > 0
-        # console.log "validateTotalOverseas"
-        @validateTotalOverseas(question)
 
       if question.attr("data-answer") == "employees-enter-the-number-of-people-employed-by-your-organisation-in-each-year-of-your-entry" &&
          question.find(".show-question").length > 0
