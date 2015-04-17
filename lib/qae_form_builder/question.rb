@@ -196,7 +196,7 @@ class QAEFormBuilder
 
     def can_have_conditional_hints?
       delegate_obj.is_a?(QAEFormBuilder::OptionsQuestion) ||
-      delegate_obj.is_a?(QAEFormBuilder::OptionsWithPreselectedConditionsQuestion)
+      delegate_obj.is_a?(QAEFormBuilder::TradeCommercialSuccessQuestion)
     end
 
     def conditional_hint(child_condition, questions_with_references)
