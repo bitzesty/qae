@@ -10,7 +10,7 @@ $.fn.charcount = function() {
   this.wrap("<div class='char-count'></div>");
   this.after("<div class='char-text'>Word count: <span class='current-count'>0</span></div>");
 
-  // Includes charact limit if there is one
+  // Includes character limit if there is one
   this.each(function(){
     var maxlength = parseInt($(this).attr('data-word-max'));
     if (maxlength) {
@@ -23,6 +23,10 @@ $.fn.charcount = function() {
       if (maxlengthlimit < 5) {
         maxlengthlimit = 5;
       }
+      // Strict limit with no extra words
+      if ($(this).closest(".word-max-strict").size() > 0) {
+        maxlengthlimit = 0;
+      }
       $(this).attr("data-word-max-limit", (maxlengthlimit));
     }
   });
@@ -33,7 +37,16 @@ $.fn.charcount = function() {
     textInput.closest(".char-count").find(".char-text .current-count").text(counter.words);
 
     // If character count is over the limit then show error
-    if (counter.words > textInput.attr('data-word-max')) {
+    character_over = function() {
+      var last_letter = textInput.val()[textInput.val().length - 1];
+
+      if (counter.words > textInput.attr('data-word-max')) {
+        return true;
+      } else if (counter.words == textInput.attr('data-word-max') && last_letter == " ") {
+        return true;
+      }
+    }
+    if (character_over()) {
       textInput.closest(".char-count").addClass("char-over");
 
       // hard limit to word count using maxlength
