@@ -4,4 +4,4 @@ set :branch, ENV["BRANCH"] || 'master'
 
 set :shoryuken_default_hooks,  false
 
-server '162.13.46.66', user: 'qae', roles: %w{web app}
+server '162.13.46.66', user: 'qae', roles: %w{web app db}
