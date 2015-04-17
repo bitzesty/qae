@@ -72,7 +72,7 @@ gem 'carrierwave'
 gem 'jquery.fileupload-rails'
 gem "fog"
 gem "fog-aws"
-gem "vs_rails", "~> 0.0.5"
+gem "vs_rails", "~> 0.0.6"
 
 # Background jobs
 gem "shoryuken", github: "phstc/shoryuken", branch: "master"
