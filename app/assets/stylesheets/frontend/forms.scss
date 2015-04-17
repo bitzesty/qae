@@ -18,6 +18,10 @@ $black-true: #000;
 // Question Context style
 .question-context {
   color: $grey-1;
+
+  .application-notice & {
+    color: $black;
+  }
 }
 
 ul.question-context,
