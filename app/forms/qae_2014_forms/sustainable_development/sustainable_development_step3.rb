@@ -93,7 +93,6 @@ class QAE2014Forms
           rows 5
           words_max 150
           conditional :development_performance_years, :true
-          conditional :pareent_group_excluding, "yes"
         end
 
         by_years :total_turnover, "Total turnover" do

@@ -97,8 +97,6 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           conditional :applying_for, "organisation"
-          conditional :parent_group_entry, "yes"
-          conditional :pareent_group_excluding, "yes"
         end
 
         by_years :total_turnover, "Total turnover" do

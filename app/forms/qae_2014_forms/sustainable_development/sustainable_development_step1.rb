@@ -284,26 +284,6 @@ class QAE2014Forms
           conditional :applying_for, "division branch subsidiary"
         end
 
-        options :parent_group_entry, "Are you a parent company making a group entry?" do
-          classes "sub-question"
-          conditional :applying_for, :true
-          sub_ref "A 13.6"
-          context %(
-            <p>
-              A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.
-            </p>
-          )
-          yes_no
-        end
-
-        options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
-          classes "sub-question"
-          conditional :applying_for, :true
-          sub_ref "A 13.7"
-          conditional :parent_group_entry, "yes"
-          yes_no
-        end
-
         upload :org_chart, "Upload an organisational chart." do
           ref "A 14"
           context %(
