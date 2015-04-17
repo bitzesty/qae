@@ -512,7 +512,7 @@ jQuery ->
 
   # Show trade awarded info if it isn't 2010 (lowest year)
   if $(".trade-awarded-input").size() > 0
-    $(".trade-awarded-input").bind "change", () ->
+    $(".trade-awarded-input").bind "change", ->
       lowest_year = "9999"
       $(".trade-awarded-input option").each ->
         if $(this).attr("value") != ""
