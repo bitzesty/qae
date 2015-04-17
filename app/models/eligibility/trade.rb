@@ -30,13 +30,12 @@ class Eligibility::Trade < Eligibility
             label: "Are you a current holder of a Queen's Award for International Trade?",
             boolean: true,
             accept: :all,
-            if: proc { account.basic_eligibility.current_holder == "yes" }
+            if: proc { account.basic_eligibility.current_holder == "yes" || (form_answer && form_answer.form_basic_eligibility.current_holder == "yes") }
 
-  # TODO: Hardcoded date
   property :qae_for_trade_award_year,
-           values: %w(2015 2014 2013 2012 2011 before_2011),
+           values: (AwardYear.current.year - 5..AwardYear.current.year - 1).to_a.reverse + ["before_#{AwardYear.current.year - 5}"],
            accept: :not_nil_if_current_holder_of_qae_for_trade,
            label: "In which year did you receive the award?",
-           if: proc { account.basic_eligibility.current_holder == "yes" && (current_holder_of_qae_for_trade.nil? || current_holder_of_qae_for_trade?) },
+           if: proc { account.basic_eligibility.current_holder == "yes" || current_holder_of_qae_for_trade? },
            allow_nil: true
 end
