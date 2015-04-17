@@ -552,7 +552,7 @@ jQuery ->
         # Are there add limits
         add_limit_attr = question.find(".list-add").attr("data-add-limit")
 
-        li_size = question.find(".list-add > li").size()
+        li_size = question.find(".list-add > li:visible").size()
 
         if ((typeof(add_limit_attr) != typeof(undefined)) && add_limit_attr != false)
 
@@ -564,8 +564,10 @@ jQuery ->
 
         if can_add
           add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\d+)\]/g, "$1#{li_size}]")
-          question.find(".list-add").append("<li class='js-add-example js-list-item'>#{add_eg}</li>")
+          add_eg = add_eg.replace(/((\w+|_)\[(\w+|_)\]\[)(\{index\})\]/g, "$1#{li_size}]")
 
+          question.find(".list-add").append("<li class='js-add-example js-list-item'>#{add_eg}</li>")
+          question.find(".list-add").find("li:last-child input").prop("disabled", false)
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)
             clearFormElements(question.find(".list-add li.js-list-item:last"))
@@ -600,6 +602,7 @@ jQuery ->
         $(this).closest("li").remove()
 
       questionAddDefaultReached(parent_ul)
+      autosave()
 
   questionAddDefaultReached = (ul) ->
     if ul.size() > 0

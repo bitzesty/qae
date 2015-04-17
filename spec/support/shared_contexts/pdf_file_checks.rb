@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 require 'rails_helper'
 
 shared_context "pdf file checks" do
@@ -25,7 +26,7 @@ shared_context "pdf file checks" do
   end
 
   let(:award_application_title) do
-    "Queen’s Award for Enterprise Promotion #{Date.today.year}".upcase
+    "Queen’s Award for Enterprise Promotion #{AwardYear.current.year}".upcase
   end
 
   let(:company_name) do

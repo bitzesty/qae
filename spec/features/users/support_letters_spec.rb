@@ -6,7 +6,7 @@ I want to be able to fill and submit support letter
 So that I can support my nominator
 } do
   let!(:user) { create(:user) }
-  let!(:form_answer) { create(:form_answer, user: user) }
+  let!(:form_answer) { create(:form_answer, :promotion, user: user) }
   let!(:supporter) do
     create :supporter, form_answer: form_answer,
                        user: user
@@ -18,15 +18,15 @@ So that I can support my nominator
 
   describe "Show" do
     it "should reject supporter with wrong access key" do
-      visit support_letter_url(access_key: "foobar")
+      visit new_support_letter_url(access_key: "foobar")
       expect(page.status_code).to eq(404)
     end
 
     it "should allow to access to letter with proper access_key" do
-      visit support_letter_url(access_key: supporter.access_key)
+      visit new_support_letter_url(access_key: supporter.access_key)
 
       expect(page.status_code).to eq(200)
-      expect_to_see supporter.form_answer.user.decorate.general_info
+      expect_to_see supporter.form_answer.nominee_full_name
     end
 
     describe "Already submitted letter" do
@@ -38,19 +38,19 @@ So that I can support my nominator
 
       before do
         support_letter
-        visit support_letter_url(access_key: supporter.access_key)
+        visit new_support_letter_url(access_key: supporter.access_key)
       end
 
       it "should not allow to update already submitted letter" do
-        expect_to_see "Support Letter already submitted!"
-        expect(current_path).to be_eql root_path
+        expect_to_see "Support Letter has been submitted already!"
+        expect_to_see support_letter.body
       end
     end
   end
 
   describe "Submission" do
     before do
-      visit support_letter_url(access_key: supporter.access_key)
+      visit new_support_letter_url(access_key: supporter.access_key)
     end
 
     describe "validations" do
@@ -74,6 +74,7 @@ So that I can support my nominator
       fill_in "First name", with: "Test"
       fill_in "Surname", with: "Test"
       fill_in "support_letter_relationship_to_nominee", with: "Friend"
+      fill_in "support_letter_body", with: "Letter"
 
       expect do
         click_on "Save"

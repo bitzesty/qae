@@ -4,21 +4,24 @@ class SupportLettersController < ApplicationController
   expose(:supporter) do
     Supporter.find_by_access_key(params[:access_key])
   end
+
   expose(:support_letter) do
-    supporter.build_support_letter(
-      first_name: supporter.first_name,
-      last_name: supporter.last_name,
-      relationship_to_nominee: supporter.relationship_to_nominee,
-      form_answer: supporter.form_answer,
-      user: supporter.user
-    )
+    supporter.support_letter ||
+      supporter.build_support_letter(
+        first_name: supporter.first_name,
+        last_name: supporter.last_name,
+        relationship_to_nominee: supporter.relationship_to_nominee,
+        form_answer: supporter.form_answer,
+        user: supporter.user
+      )
   end
 
-  def update
+  def create
     if support_letter.update(support_letter_params)
-      redirect_to root_url, notice: "Support letter was successfully created"
+      redirect_to support_letter_path(access_key: supporter.access_key),
+                  notice: "Support letter was successfully created"
     else
-      render :show
+      render :new
     end
   end
 
@@ -26,8 +29,9 @@ class SupportLettersController < ApplicationController
 
   def load_letter_and_check_access_key
     if supporter
-      if supporter.support_letter.present?
-        redirect_to root_url, notice: "Support Letter already submitted!"
+      if supporter.support_letter && supporter.support_letter.persisted? && action_name != "show"
+        redirect_to support_letter_path(access_key: supporter.access_key),
+                    notice: "Support Letter has been submitted already!"
         return
       end
     else
