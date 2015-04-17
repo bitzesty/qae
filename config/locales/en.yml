@@ -36,6 +36,18 @@ en:
     eligibility/trade:
       sales_above_100_000_pounds:
         skip: "Skip International Trade eligibility"
+      qae_for_trade_award_year:
+        before_2010: Prior to 2010
+        before_2011: Prior to 2011
+        before_2012: Prior to 2012
+        before_2013: Prior to 2013
+        before_2014: Prior to 2014
+        before_2015: Prior to 2015
+        before_2016: Prior to 2016
+        before_2017: Prior to 2017
+        before_2018: Prior to 2018
+        before_2019: Prior to 2019
+        before_2020: Prior to 2020
     eligibility/promotion:
       nominee_is_qae_ep_award_holder:
         i_dont_know: "I don't know"

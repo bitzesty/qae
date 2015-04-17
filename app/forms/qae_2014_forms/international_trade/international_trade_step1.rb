@@ -83,6 +83,9 @@ class QAE2014Forms
           year 2012
           year 2013
           year 2014
+
+          children_options_depends_on :category
+          dependable_values [:international_trade]
         end
 
         options :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
