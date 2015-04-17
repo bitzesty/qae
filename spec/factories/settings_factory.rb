@@ -1,6 +1,9 @@
 FactoryGirl.define do
   factory :settings do
-    award_year { AwardYear.new(year: Date.current.year + 1) }
+    to_create do |instance|
+      instance.award_year = AwardYear.current
+      instance.save(validate: false)
+    end
   end
 
   trait :submission_deadlines do
