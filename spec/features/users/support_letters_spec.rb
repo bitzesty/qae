@@ -61,7 +61,7 @@ So that I can support my nominator
         fill_in "support_letter_relationship_to_nominee", with: ""
 
         expect do
-          click_on "Save"
+          click_on "Submit"
         end.not_to change {
           SupportLetter.count
         }
@@ -77,7 +77,7 @@ So that I can support my nominator
       fill_in "support_letter_body", with: "Letter"
 
       expect do
-        click_on "Save"
+        click_on "Submit"
       end.to change {
         SupportLetter.count
       }.by(1)
