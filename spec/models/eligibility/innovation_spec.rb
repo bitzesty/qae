@@ -52,7 +52,12 @@ RSpec.describe Eligibility::Innovation, :type => :model do
     let(:eligibility) { Eligibility::Innovation.new(account: account) }
 
     it 'returns all questions for new eligibility' do
-      expect(eligibility.questions).to eq([:innovative_product, :number_of_innovative_products, :was_on_market_for_two_years, :had_impact_on_commercial_performace_over_two_years])
+      expect(eligibility.questions).to eq([
+                                           :innovative_product,
+                                           :number_of_innovative_products,
+                                           :was_on_market_for_two_years,
+                                           :had_impact_on_commercial_performace_over_two_years
+                                          ])
     end
 
     it 'does not return number of innovative products if account does not have them' do
