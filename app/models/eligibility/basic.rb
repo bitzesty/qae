@@ -29,9 +29,9 @@ class Eligibility::Basic < Eligibility
             accept: :true
 
   property :current_holder,
-            values: %w[yes no i_dont_know],
-            label: "Are you a current Queen's Award holder in any category?",
-            accept: :not_nil
+           values: %w[yes no i_dont_know],
+           label: "Are you a current Queen's Award holder in any category?",
+           accept: :not_nil
 
   def eligible?
     current_step_index = questions.index(current_step) || questions.size - 1

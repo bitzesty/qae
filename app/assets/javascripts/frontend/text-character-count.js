@@ -12,7 +12,7 @@ $.fn.charcount = function() {
 
   // Includes character limit if there is one
   this.each(function(){
-    var maxlength = parseInt($(this).attr('data-word-max'));
+    var maxlength = parseInt($(this).attr("data-word-max"));
     if (maxlength) {
       $(this).before("<div class='char-text-limit'>Word limit: <span class='total-count'>" +maxlength+ "</span></div>");
       $(this).closest(".char-count").addClass("char-max-shift");
@@ -37,16 +37,17 @@ $.fn.charcount = function() {
     textInput.closest(".char-count").find(".char-text .current-count").text(counter.words);
 
     // If character count is over the limit then show error
-    character_over = function() {
-      var last_letter = textInput.val()[textInput.val().length - 1];
+    var characterOver = function(textInput) {
+      var lastLetter = textInput.val()[textInput.val().length - 1];
 
-      if (counter.words > textInput.attr('data-word-max')) {
+      if (counter.words > textInput.attr("data-word-max")) {
         return true;
-      } else if (counter.words == textInput.attr('data-word-max') && last_letter == " ") {
+      } else if (counter.words == textInput.attr("data-word-max") && lastLetter == " ") {
         return true;
       }
-    }
-    if (character_over()) {
+    };
+
+    if (characterOver(textInput)) {
       textInput.closest(".char-count").addClass("char-over");
 
       // hard limit to word count using maxlength
@@ -65,7 +66,7 @@ $.fn.charcount = function() {
   // Maxlength for pasting text
   this.bind("paste", function(e){
     e.preventDefault();
-    var paste_this = ((e.originalEvent || e).clipboardData.getData('text/plain'))
+    var paste_this = ((e.originalEvent || e).clipboardData.getData("text/plain"))
 
     for (c = 0; c<paste_this.length; c++) {
       if (((typeof($(this).attr("maxlength")) !== typeof(undefined)) && $(this).attr("maxlength") !== false) == false || $(this).val().length <= $(this).attr("maxlength")) {
@@ -102,5 +103,5 @@ $(function() {
 $.fn.removeCharcountElements = function() {
   // Removes the character count elements
   $(this).unwrap();
-  $('.char-text, .char-text-limit', $(this).closest('li')).remove();
+  $(".char-text, .char-text-limit", $(this).closest("li")).remove();
 }

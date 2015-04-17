@@ -154,7 +154,7 @@ jQuery ->
       if !fy_latest_day || !fy_latest_month || !fy_latest_year
         $(".js-year-end").addClass("show-default")
       else
-        $(".js-year-end").each () ->
+        $(".js-year-end").each ->
           year = parseInt(fy_latest_year) + parseInt($(this).attr("data-year").substr(0, 1)) - parseInt($(this).attr("data-year").substr(-1, 1))
           pre_text = "Year ending in"
           if $(this).closest(".question-block").hasClass("total-net-assets")
@@ -162,9 +162,9 @@ jQuery ->
           $(this).find(".js-year-text").text("#{pre_text} #{fy_latest_day}/#{fy_latest_month}/#{year}")
     else
       # Year has changed, use what they've inputted
-      $(".js-financial-conditional > .js-conditional-question").each () ->
+      $(".js-financial-conditional > .js-conditional-question").each ->
         all_years_value = true
-        $(this).find(".js-year-end").each () ->
+        $(this).find(".js-year-end").each ->
           fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".date-input")
           fy_day = fy_input.find(".js-fy-day").val()
           fy_month = fy_input.find(".js-fy-month").val()
@@ -174,7 +174,7 @@ jQuery ->
         if !all_years_value
           $(this).find(".js-year-end").addClass("show-default")
         else
-          $(this).find(".js-year-end").each () ->
+          $(this).find(".js-year-end").each ->
             fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".date-input")
             fy_day = fy_input.find(".js-fy-day").val()
             fy_month = fy_input.find(".js-fy-month").val()
