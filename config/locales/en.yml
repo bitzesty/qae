@@ -80,8 +80,6 @@ en:
           employees: Number of UK employees
           exports: Overseas sales accepted (£)
           overseas_sales: Overseas Sales (£)
-          overseas_sales_direct: Overseas sales direct (£)
-          overseas_sales_indirect: Overseas sales indirect (£)
           total_turnover: Total sales accepted (£)
           net_profit: Net profit (£)
           total_net_assets: Total net assets (£)

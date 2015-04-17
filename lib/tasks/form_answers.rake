@@ -40,4 +40,35 @@ namespace :form_answers do
       f.save(validate: false)
     end
   end
+
+  desc "Removes the deprecated answers from forms"
+  task remove_overseas_sales: :environment do
+    FormAnswer.where(award_type: "trade").find_each do |f|
+      attributes = [
+        "overseas_sales_direct_1of3",
+        "overseas_sales_direct_1of6",
+        "overseas_sales_direct_2of3",
+        "overseas_sales_direct_3of3",
+        "overseas_sales_direct_2of6",
+        "overseas_sales_direct_3of6",
+        "overseas_sales_direct_4of6",
+        "overseas_sales_direct_5of6",
+        "overseas_sales_direct_6of6",
+        "overseas_sales_indirect_1of3",
+        "overseas_sales_indirect_2of3",
+        "overseas_sales_indirect_3of3",
+        "overseas_sales_indirect_1of6",
+        "overseas_sales_indirect_2of6",
+        "overseas_sales_indirect_3of6",
+        "overseas_sales_indirect_4of6",
+        "overseas_sales_indirect_5of6",
+        "overseas_sales_indirect_6of6"
+
+      ]
+      attributes.each do |a|
+        f.document.delete(a)
+      end
+      f.save(validate: false)
+    end
+  end
 end

@@ -24,26 +24,6 @@ describe FormFinancialPointer do
                         ]
       },
       {
-        overseas_sales_direct: [
-                                 { value: "20", name: "overseas_sales_direct_1of6" },
-                                 { value: "30", name: "overseas_sales_direct_2of6" },
-                                 { value: "40", name: "overseas_sales_direct_3of6" },
-                                 { value: "50", name: "overseas_sales_direct_4of6" },
-                                 { value: "60", name: "overseas_sales_direct_5of6" },
-                                 { value: "70", name: "overseas_sales_direct_6of6" }
-                               ]
-      },
-      {
-        overseas_sales_indirect: [
-                                   { value: "10", name: "overseas_sales_indirect_1of6" },
-                                   { value: "10", name: "overseas_sales_indirect_2of6" },
-                                   { value: "10", name: "overseas_sales_indirect_3of6" },
-                                   { value: "10", name: "overseas_sales_indirect_4of6" },
-                                   { value: "10", name: "overseas_sales_indirect_5of6" },
-                                   { value: "10", name: "overseas_sales_indirect_6of6" }
-                                 ]
-      },
-      {
         total_turnover: [
                           { value: "100", name: "total_turnover_1of6" },
                           { value: "120", name: "total_turnover_2of6" },

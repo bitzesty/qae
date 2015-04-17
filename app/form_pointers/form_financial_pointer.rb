@@ -19,7 +19,6 @@ class FormFinancialPointer
   IN_PROGRESS = "-"
 
   TRADE_AUTOEXCLUDED_QUESTION_KEYS = [
-    :overseas_sales_indirect
   ]
 
   UK_SALES_EXCLUDED_FORM_TYPES = [
