@@ -1,9 +1,6 @@
 require 'raven'
 
-logger = ::Logger.new(STDOUT)
-logger.level = ::Logger::WARN
-
 Raven.configure do |config|
-  config.environments = %w[production]
-  config.logger = logger
+  config.silence_ready = true
+  config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
 end
