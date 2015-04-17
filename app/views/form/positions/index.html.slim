@@ -1,0 +1,48 @@
+- content_for :breadcrumbs do
+  li = link_to "Applications", dashboard_path
+  li = @form.title
+
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      = @form.title
+
+.steps-progress-container
+  .steps-progress-content
+    = render 'qae_form/form_header', form: @form, current_step: "nominee-background"
+
+    .article-container.article-container-wider.step-article.step-current
+      article.group role="article"
+        .inner
+          - question = step.questions.detect { |q| q.key =  :position_details }
+
+          .question-block
+            label
+              h2
+                span class="steps step-d-1"
+                  span.visuallyhidden
+                    = question.ref
+                  span.todo
+                    = question.ref
+                = question.title
+
+          == question.context
+
+          - for help in question.hint
+            div.hidden-hint
+              span.hidden-link
+                = help.title.html_safe
+              span.hidden-content
+                == help.text
+
+          ul.list-add
+            - existing_position_details.each do |attrs|
+              = render "form/positions/item", attrs: attrs
+
+
+          = link_to "+ Add another role", new_form_form_answer_positions_path(@form_answer),
+                                          class: "button button-add"
+
+    = render "qae_form/steps_progress_bar", current_step: "nominee-background"
+
+    = render "form/supporters/footer", step: step

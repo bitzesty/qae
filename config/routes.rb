@@ -110,6 +110,9 @@ Rails.application.routes.draw do
       resources :organisational_charts, only: [:new, :create, :destroy] do
         get :confirm_deletion
       end
+      resource :positions, only: [:new, :create, :destroy] do
+        get :index, on: :collection
+      end
     end
   end
   # NON JS implementation - end

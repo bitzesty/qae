@@ -1,4 +1,7 @@
 class FormLink
+  # This class used for handling saving / removing of Form website links
+  # when JS is disabled
+
   include ActiveModel::Model
 
   attr_reader :link, :description
