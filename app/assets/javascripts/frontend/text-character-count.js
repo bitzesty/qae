@@ -66,11 +66,11 @@ $.fn.charcount = function() {
   // Maxlength for pasting text
   this.bind("paste", function(e){
     e.preventDefault();
-    var paste_this = ((e.originalEvent || e).clipboardData.getData("text/plain"))
+    var pasteThis = ((e.originalEvent || e).clipboardData.getData("text/plain"));
 
-    for (c = 0; c<paste_this.length; c++) {
+    for (c = 0; c<pasteThis.length; c++) {
       if (((typeof($(this).attr("maxlength")) !== typeof(undefined)) && $(this).attr("maxlength") !== false) == false || $(this).val().length <= $(this).attr("maxlength")) {
-        $(this).val($(this).val() + paste_this[c]);
+        $(this).val($(this).val() + pasteThis[c]);
         Countable.once(this, counting);
       }
     }
