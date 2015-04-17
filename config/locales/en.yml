@@ -36,6 +36,8 @@ en:
     eligibility/trade:
       sales_above_100_000_pounds:
         skip: "Skip International Trade eligibility"
+      qae_for_trade_award_year:
+        before_2010: Prior to 2010
     eligibility/promotion:
       nominee_is_qae_ep_award_holder:
         i_dont_know: "I don't know"

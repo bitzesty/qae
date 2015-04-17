@@ -27,7 +27,7 @@ FactoryGirl.define do
         sales_above_100_000_pounds: "yes",
         any_dips_over_the_last_three_years: true,
         current_holder_of_qae_for_trade: false,
-        qae_for_trade_expiery_date: "2019"
+        qae_for_trade_award_year: "2015"
       }}.call
     end
 

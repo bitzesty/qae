@@ -61,7 +61,7 @@ RSpec.describe Eligibility::Trade, :type => :model do
 
     it 'does not return QAE expiery date if account is not a QAE holder' do
       eligibility.current_holder_of_qae_for_trade = false
-      expect(eligibility.questions).not_to include(:qae_for_trade_expiery_date)
+      expect(eligibility.questions).not_to include(:qae_for_trade_award_year)
     end
   end
 end

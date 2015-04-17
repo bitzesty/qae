@@ -510,18 +510,18 @@ jQuery ->
       else
         $("#trade-org-fulfilled-info").addClass("visuallyhidden")
 
-  # Show trade expiry info if it isn't 2015 (earliest year)
-  if $(".trade-expiry-input").size() > 0
-    $(".trade-expiry-input").bind "change", () ->
+  # Show trade awarded info if it isn't 2010 (lowest year)
+  if $(".trade-awarded-input").size() > 0
+    $(".trade-awarded-input").bind "change", () ->
       lowest_year = "9999"
-      $(".trade-expiry-input option").each ->
+      $(".trade-awarded-input option").each ->
         if $(this).attr("value") != ""
           if parseInt(lowest_year) > parseInt($(this).attr("value"))
             lowest_year = $(this).attr("value")
-      if $(this).val().toString() != lowest_year
-        $("#trade-expiry-info").removeClass("visuallyhidden")
+      if $(this).val().indexOf(lowest_year) == -1
+        $("#trade-awarded-info").removeClass("visuallyhidden")
       else
-        $("#trade-expiry-info").addClass("visuallyhidden")
+        $("#trade-awarded-info").addClass("visuallyhidden")
 
   # Show the eligibility failure contact message
   if $("#basic-eligibility-failure-submit").size() > 0
