@@ -149,7 +149,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              <strong>Excluding</strong> suppliers and consultants.
+              <strong>Excluding</strong> paid suppliers and consultants.
             </p>
                     )
           yes_no
