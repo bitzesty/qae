@@ -32,7 +32,7 @@ $.fn.charcount = function() {
   });
 
   var counting = function(counter) {
-    textInput = $(this);
+    var textInput = $(this);
 
     textInput.closest(".char-count").find(".char-text .current-count").text(counter.words);
 
@@ -68,7 +68,7 @@ $.fn.charcount = function() {
     e.preventDefault();
     var pasteThis = ((e.originalEvent || e).clipboardData.getData("text/plain"));
 
-    for (c = 0; c<pasteThis.length; c++) {
+    for (var c = 0; c<pasteThis.length; c++) {
       if (((typeof($(this).attr("maxlength")) !== typeof(undefined)) && $(this).attr("maxlength") !== false) == false || $(this).val().length <= $(this).attr("maxlength")) {
         $(this).val($(this).val() + pasteThis[c]);
         Countable.once(this, counting);
