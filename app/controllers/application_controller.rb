@@ -39,7 +39,11 @@ class ApplicationController < ActionController::Base
 
   def restrict_access_if_admin_in_read_only_mode!
     if admin_in_read_only_mode?
-      redirect_to :back, alert: "You have no permissions!"
+      if request.referer
+        redirect_to :back, alert: "You have no permissions!"
+      else
+        render text: "You have no permissions!"
+      end
       return
     end
   end

@@ -43,7 +43,7 @@ I want to be able to view, create and destroy the comments per application.
 
   describe "adding flags", js: true do
     context "Admin comments" do
-      it "adds flag to created comment" do
+      it "adds flag to created comment", skip_travis: true do
         first("#admin-comments-heading a").click
         within admin_comments do
           populate_comment_form
@@ -60,7 +60,7 @@ I want to be able to view, create and destroy the comments per application.
       end
     end
     context "Critical comments" do
-      it "adds flag to created comment" do
+      it "adds flag to created comment", skip_travis: true do
         first("#critical-comments-heading a").click
         within critical_comments do
           populate_comment_form
