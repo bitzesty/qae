@@ -35,7 +35,7 @@ class Eligibility::Promotion < Eligibility
             accept: :true
 
   property :nominee_is_qae_ep_award_holder,
-            boolean: true,
+            values: %w[yes no i_dont_know],
             label: "Does your nominee currently hold a Queen's Award for Enterprise Promotion?",
             accept: :not_nil
 

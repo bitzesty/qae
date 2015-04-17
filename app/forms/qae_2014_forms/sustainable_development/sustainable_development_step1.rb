@@ -77,6 +77,7 @@ class QAE2014Forms
           required
           ref "A 6"
           yes_no
+          option "i_dont_know", "I don't know"
         end
 
         queen_award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
@@ -85,21 +86,15 @@ class QAE2014Forms
 
           conditional :queen_award_holder, :yes
 
-          category :innovation_2, "Innovation (2 years)"
-          category :innovation_5, "Innovation (5 years)"
-          category :international_trade_3, "International Trade (3 years)"
-          category :international_trade_6, "International Trade (6 years)"
-          category :sustainable_development_2, "Sustainable Development (2 years)"
-          category :sustainable_development_5, "Sustainable Development (5 years)"
+          category :innovation, "Innovation"
+          category :international_trade, "International Trade"
+          category :sustainable_development, "Sustainable Development"
 
           year 2010
           year 2011
           year 2012
           year 2013
           year 2014
-
-          children_options_depends_on :category
-          dependable_values [:international_trade_3, :international_trade_6]
         end
 
         options :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
@@ -287,26 +282,6 @@ class QAE2014Forms
           sub_ref "A 13.5"
           conditional :parent_ultimate_control, :no
           conditional :applying_for, "division branch subsidiary"
-        end
-
-        options :parent_group_entry, "Are you a parent company making a group entry?" do
-          classes "sub-question"
-          conditional :applying_for, :true
-          sub_ref "A 13.6"
-          context %(
-            <p>
-              A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.
-            </p>
-          )
-          yes_no
-        end
-
-        options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
-          classes "sub-question"
-          conditional :applying_for, :true
-          sub_ref "A 13.7"
-          conditional :parent_group_entry, "yes"
-          yes_no
         end
 
         upload :org_chart, "Upload an organisational chart." do

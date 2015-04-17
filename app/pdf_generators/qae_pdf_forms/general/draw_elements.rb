@@ -117,7 +117,12 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_award_information
-    text_box "Queen’s Award for Enterprise Promotion #{AwardYear.current.year}".upcase,
+    if form_answer.promotion?
+      award_title = "Queen’s Award for Enterprise Promotion #{AwardYear.current.year}"
+    else
+      award_title = form_answer.decorate.award_application_title
+    end
+    text_box award_title.upcase,
              header_text_properties.merge(at: [32.mm, 130.mm + DEFAULT_OFFSET],
                                           style: :bold)
   end

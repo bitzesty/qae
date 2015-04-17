@@ -9,6 +9,7 @@ class QAE2014Forms
         textarea :innovation_desc_short, "Briefly describe your innovative product/service/initiative" do
           ref "B 1"
           required
+          classes "word-max-strict"
           context %(
             <p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>
                     )
@@ -52,34 +53,46 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :innovation_befits_details, "How does the innovation benefit your customers and your business?" do
+        textarea :innovation_befits_details_business, "How does the innovation benefit your business?" do
           ref "B 5"
           required
           context %(
             <p>
-              e.g. increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You can also include testimonials to support your claim. <strong>You will have the opportunity to include more details of the financial benefits to your organisation in the next section</strong>.
+              e.g. increased efficiency, reduction in costs, design / production / marketing / distribution improvements, better after-sales support, reduced downtime or increased reliability. <strong>You will have the opportunity to include more details of the financial benefits to your organisation in the Commercial Performance section of the form</strong>.
             </p>
           )
           rows 5
-          words_max 800
+          words_max 500
+        end
+
+        textarea :innovation_befits_details_customers, "Does the innovation benefit your customers and, if so, how?" do
+          ref "B 6"
+          required
+          context %(
+            <p>
+              e.g. increased efficiency, reduction in costs, design / production / marketing / distribution improvements, better after-sales support, reduced downtime or increased reliability. <strong>Please quantify if possible</strong>. You can also include testimonials to support your claim.
+            </p>
+          )
+          rows 5
+          words_max 500
         end
 
         textarea :innovation_competitors, "Describe any products/services/initiatives made by others that compete with your innovation, and explain how your innovation differs." do
-          ref "B 6"
+          ref "B 7"
           required
           rows 5
           words_max 300
         end
 
         options :innovations_grant_funding, "Have you received any grant funding to support your innovation?" do
-          ref "B 7"
+          ref "B 8"
           required
           yes_no
         end
 
         textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
-          sub_ref "B 7.1"
+          sub_ref "B 8.1"
           required
           conditional :innovations_grant_funding, :yes
           rows 5
@@ -88,7 +101,7 @@ class QAE2014Forms
 
         number :innovation_years, "How long have you had your innovation on the market?" do
           required
-          ref "B 8"
+          ref "B 9"
           max 100
           unit " years"
           style "small inline"
@@ -96,7 +109,7 @@ class QAE2014Forms
 
         textarea :innovation_additional_comments, "Additional comments (optional)" do
           classes "sub-question"
-          sub_ref "B 8.1"
+          sub_ref "B 9.1"
           rows 5
           words_max 200
           context %(

@@ -12,22 +12,6 @@ class Eligibility::Trade < Eligibility
             accept: :true,
             acts_like_boolean: true
 
-  # REMOVE
-  # property :direct_overseas_100_000_pounds,
-  #           boolean: true,
-  #           values: %w[yes no],
-  #           label: "Was at least £100,000 of this direct overseas sales?",
-  #           accept: :not_nil,
-  #           hint: "Direct overseas sales are as a result of an organisation making a commitment to market overseas on its own behalf - and not through an intermediary."
-
-  # property :organisation_fulfill_above_exceptions,
-  #           values: %w[yes no],
-  #           label: "Do your organisation fulfill any of the exceptions above?",
-  #           accept: :true,
-  #           acts_like_boolean: true,
-  #           if: proc { !direct_overseas_100_000_pounds? }
-  # REMOVE
-
   property :any_dips_over_the_last_three_years,
             label: "Have you had any dips in your overseas sales over the period of your entry (i.e. in the last 3 or 6 years)?",
             accept: :false,
@@ -46,13 +30,13 @@ class Eligibility::Trade < Eligibility
             label: "Are you a current holder of a Queen's Award for International Trade?",
             boolean: true,
             accept: :all,
-            if: proc { account.basic_eligibility.current_holder? }
+            if: proc { account.basic_eligibility.current_holder == "yes" }
 
   # TODO: Hardcoded date
   property :qae_for_trade_expiery_date,
             values: %w(2015 2016 2017 2018 2019),
             accept: :not_nil_if_current_holder_of_qae_for_trade,
             label: 'When does your current award expire?',
-            if: proc { account.basic_eligibility.current_holder? && (current_holder_of_qae_for_trade.nil? || current_holder_of_qae_for_trade?) },
+            if: proc { account.basic_eligibility.current_holder == "yes" && (current_holder_of_qae_for_trade.nil? || current_holder_of_qae_for_trade?) },
             allow_nil: true
 end

@@ -11,14 +11,7 @@ class QAE2014Forms
           required
           option "3 to 5", "Outstanding growth in the last 3 years"
           option "6 plus", "Continuous growth in the last 6 years"
-          placeholder_preselected_condition :queen_award_holder_details,
-                                            question_suffix: :category,
-                                            parent_question_answer_key: "international_trade_6",
-                                            answer_key: "international_trade_3",
-                                            question_value: "3 to 5",
-                                            placeholder_text: %{
-              As you currently hold a Queen's Award for Continuous Achievement in International Trade (6 years), you can only apply for the Outstanding Achievement Award (3 years).
-            }
+
           financial_date_selector({
             "3 to 5" => "3",
             "6 plus" => "6"
@@ -91,7 +84,7 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_excluded_explanation, "In question A12.3 you said you are applying on behalf of a group but are excluding some member(s)'s financial figures. Please explain why." do
+        textarea :trade_excluded_explanation, "In question A12.6 you said you are applying on behalf of a group but are excluding some member(s)'s financial figures. Please explain why." do
           ref "C 4"
           rows 5
           words_max 150

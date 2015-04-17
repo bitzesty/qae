@@ -1,10 +1,7 @@
 module CaseSummaryPdfs::General::DataPointer
-  PREVIOUS_AWARDS = { "innovation_2" => "Innovation (2)",
-                      "innovation_5" => "Innovation (5)",
-                      "international_trade_3" => "International Trade (3)",
-                      "international_trade_6" => "International Trade (6)",
-                      "sustainable_development_2" => "Sustainable Development (2)",
-                      "sustainable_development_5" => "Sustainable Development (5)" }
+  PREVIOUS_AWARDS = { "innovation" => "Innovation",
+                      "international_trade" => "International Trade",
+                      "sustainable_development" => "Sustainable Development" }
 
   POSSIBLE_RAGS = {
     negative: "Red",

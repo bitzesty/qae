@@ -21,12 +21,9 @@ class QaePdfForms::General::QuestionPointer
               :questions_with_references,
               :children_conditions
 
-  PREVIOUS_AWARDS = { "innovation_2" => "Innovation (2 years)",
-                      "innovation_5" => "Innovation (5 years)",
-                      "international_trade_3" => "International Trade (3 years)",
-                      "international_trade_6" => "International Trade (6 years)",
-                      "sustainable_development_2" => "Sustainable Development (2 years)",
-                      "sustainable_development_5" => "Sustainable Development (5 years)" }
+  PREVIOUS_AWARDS = { "innovation" => "Innovation",
+                      "international_trade" => "International Trade",
+                      "sustainable_development" => "Sustainable Development" }
 
   ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='999999'>"
   ANSWER_FONT_END = "</font></color>"
