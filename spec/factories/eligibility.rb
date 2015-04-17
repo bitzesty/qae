@@ -37,7 +37,6 @@ FactoryGirl.define do
         innovative_product: 'yes',
         was_on_market_for_two_years: true,
         number_of_innovative_products: 1,
-        innovation_recouped_investments: true,
         had_impact_on_commercial_performace_over_two_years: true
       }}.call
     end
