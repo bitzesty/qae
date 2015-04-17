@@ -28,8 +28,7 @@ class QAE2014Forms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" },
-            { region: "Region" }
+            { postcode: "Postcode" }
           ])
         end
 
