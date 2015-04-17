@@ -8,7 +8,7 @@ FactoryGirl.define do
     end
 
     trait :basic do
-      type 'Eligibility::Basic'
+      type "Eligibility::Basic"
       current_step :current_holder
       answers Proc.new {{
         kind: "application",
@@ -22,19 +22,19 @@ FactoryGirl.define do
     end
 
     trait :trade do
-      type 'Eligibility::Trade'
+      type "Eligibility::Trade"
       answers Proc.new {{
-        sales_above_100_000_pounds: 'yes',
+        sales_above_100_000_pounds: "yes",
         any_dips_over_the_last_three_years: true,
         current_holder_of_qae_for_trade: false,
-        qae_for_trade_expiery_date: '2019'
+        qae_for_trade_expiery_date: "2019"
       }}.call
     end
 
     trait :innovation do
-      type 'Eligibility::Innovation'
+      type "Eligibility::Innovation"
       answers Proc.new {{
-        innovative_product: 'yes',
+        innovative_product: "yes",
         was_on_market_for_two_years: true,
         number_of_innovative_products: 1,
         had_impact_on_commercial_performace_over_two_years: true
@@ -42,9 +42,9 @@ FactoryGirl.define do
     end
 
     trait :development do
-      type 'Eligibility::Development'
+      type "Eligibility::Development"
       answers Proc.new {{
-        sustainable_development: 'yes'
+        sustainable_development: "yes"
       }}.call
     end
 
