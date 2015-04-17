@@ -22,13 +22,6 @@ class Eligibility::Innovation < Eligibility
             accept: :true,
             if: proc { !skipped? }
 
-  property :innovation_recouped_investments,
-            boolean: true,
-            label: "Have you recovered all investments made in the innovation?",
-            accept: :true,
-            hint: 'This includes any initial invesments you made, as well as those made subsequently.',
-            if: proc { !skipped? }
-
   property :had_impact_on_commercial_performace_over_two_years,
             boolean: true,
             label: "Has the innovation had a positive impact on your commercial success (i.e. turnover and/or profitability) over at least the last two years?",
