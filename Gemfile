@@ -72,8 +72,7 @@ gem 'carrierwave'
 gem 'jquery.fileupload-rails'
 gem "fog"
 gem "fog-aws"
-gem "virus-scanner"
-gem "vs_rails", github: "bitzesty/vs-rails", branch: "master"
+gem "vs_rails", "~> 0.0.5"
 
 # Background jobs
 gem "shoryuken", github: "phstc/shoryuken", branch: "master"
