@@ -74,6 +74,8 @@ class MailRenderer
   end
 
   def form_answer
-    FormAnswer.new(id: 0, award_type: "promotion").decorate
+    f = FormAnswer.new(id: 0, award_type: "promotion").decorate
+    f.award_year = AwardYear.current
+    f
   end
 end

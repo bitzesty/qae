@@ -56,14 +56,14 @@ class QAE2014Forms
             By ticking this box, I submit an entry for consideration for The Queen’s Awards for Enterprise #{AwardYear.current.year}. I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen’s Awards Office of any changes to the information I have provided in this entry form.
             <br>
             <br>
-            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety. 
+            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen’s Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen’s Award to ensure the highest standards of propriety.
           )
         end
 
         submit "Submit application" do
           notice %(
             <p>
-              If you have answered all the questions, you can submit your application now. You will be able to edit it any time before <span class='todo-placeholder'>23:59 on the last working day of September</span>.
+              If you have answered all the questions, you can submit your application now. You will be able to edit it any time before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}.
             </p>
             <p>
               If you are not ready to submit yet, you can save your application and come back later.

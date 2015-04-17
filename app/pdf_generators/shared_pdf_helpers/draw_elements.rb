@@ -60,7 +60,7 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_not_found_general_information
-    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{Date.today.year}",
+    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{AwardYear.current.year}",
                      header_text_properties.merge(at: [130.mm, 137.mm + DEFAULT_OFFSET])
   end
 

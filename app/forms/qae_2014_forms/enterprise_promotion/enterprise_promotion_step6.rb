@@ -72,7 +72,7 @@ class QAE2014Forms
               If you've answered all the questions you can now submit your nomination.
             </p>
             <p>
-              You can still edit your submitted nomination at any time before <span class='todo-placeholder'>23:59 on the last working day of September</span>.
+              You can still edit your submitted nomination at any time before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}.
             </p>
             <p>
               If you aren't ready to submit yet then you can save your nomination and come back later.

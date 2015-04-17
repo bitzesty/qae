@@ -64,7 +64,7 @@ class QAE2014Forms
         submit "Submit application" do
           notice %(
             <p>
-              If you have answered all the questions, you can submit your application now. You will be able to edit it any time before <span class='todo-placeholder'>23:59 on the last working day of September</span>.
+              If you have answered all the questions, you can submit your application now. You will be able to edit it any time before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}.
             </p>
             <p>
               If you are not ready to submit yet, you can save your application and come back later.

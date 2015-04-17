@@ -59,8 +59,8 @@ class QAE2014Forms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context "<p>Organisations that began trading after #{AwardYear.start_trading_moment} aren't eligible for this award.</p>"
-          date_max AwardYear.start_trading_moment
+          context "<p>Organisations that began trading after #{AwardYear.start_trading_moment('innovation')} aren't eligible for this award.</p>"
+          date_max AwardYear.start_trading_moment("innovation")
         end
 
         options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
@@ -80,11 +80,9 @@ class QAE2014Forms
           category :international_trade_3, "International Trade"
           category :sustainable_development_2, "Sustainable Development"
 
-          year 2010
-          year 2011
-          year 2012
-          year 2013
-          year 2014
+          ((AwardYear.current.year - 5)..(AwardYear.current.year - 1)).each do |y|
+            year y
+          end
         end
 
         options :business_name_changed, "Have you changed the name of your organisation since your last entry?" do

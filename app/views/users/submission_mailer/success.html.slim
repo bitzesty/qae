@@ -10,7 +10,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   - else
     ' application
   ' for The Queen’s Award for Enterprise
-  = Date.today.year
+  = AwardYear.current.year
   ' .
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
@@ -20,9 +20,8 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' You can view and download your submissions (and edit up until
-  / TODO: Hardcoded Date
   = "April 21"
-  / = application_deadline(:submission_end)
+  = application_deadline(:submission_end)
   ' ) by
   = link_to "signing in to applications page", dashboard_url
   ' .
