@@ -37,6 +37,6 @@ class Eligibility::Trade < Eligibility
             values: %w(2015 2014 2013 2012 2011 2010 before_2010),
             accept: :not_nil_if_current_holder_of_qae_for_trade,
             label: "In which year did you receive the award?",
-            if: proc { account.basic_eligibility.current_holder? && (current_holder_of_qae_for_trade.nil? || current_holder_of_qae_for_trade?) },
+            if: proc { account.basic_eligibility.current_holder == "yes" && (current_holder_of_qae_for_trade.nil? || current_holder_of_qae_for_trade?) },
             allow_nil: true
 end
