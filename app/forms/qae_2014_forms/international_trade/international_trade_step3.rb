@@ -84,7 +84,7 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_excluded_explanation, "In question A12.3 you said you are applying on behalf of a group but are excluding some member(s)'s financial figures. Please explain why." do
+        textarea :trade_excluded_explanation, "In question A12.6 you said you are applying on behalf of a group but are excluding some member(s)'s financial figures. Please explain why." do
           ref "C 4"
           rows 5
           words_max 150
