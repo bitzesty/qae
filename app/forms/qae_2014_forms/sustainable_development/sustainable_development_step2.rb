@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class QAE2014Forms
   class << self
     def development_step2
@@ -164,7 +165,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              'Leadership dimensions' means actively promoting effective, participative systems of governance in all levels of society 
+              'Leadership dimensions' means actively promoting effective, participative systems of governance in all levels of society
               <a href="#hidden-hint-0" class="hidden-link-for">
                 e.g. promotion of sustainable development, increasing access to information, management innovation, ethical conduct.
               </a>
@@ -288,22 +289,6 @@ class QAE2014Forms
           max 100
           unit " years"
           style "small inline"
-        end
-
-        options :you_released_product, "Was the product/service/management approach originally released by you?" do
-          classes "sub-question"
-          required
-          yes_no
-        end
-
-        number :product_age, "For how many years has it been released by you?" do
-          classes "regular-question inline-input-question"
-          sub_ref "B 10.1"
-          required
-          max 100
-          unit " years"
-          style "small inline"
-          conditional :you_released_product, :no
         end
 
         textarea :development_additional_comments, "Additional comments (optional)" do
