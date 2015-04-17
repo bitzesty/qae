@@ -39,25 +39,30 @@ $.fn.charcount = function() {
     // If character count is over the limit then show error
     var characterOver = function(textInput) {
       var lastLetter = textInput.val()[textInput.val().length - 1];
+      var maxWordCount = parseInt(textInput.attr("data-word-max"));
+      var maxWordCountLimit = parseInt(textInput.attr("data-word-max-limit"));
+      var maxWordCountTotal = maxWordCount + maxWordCountLimit;
 
-      if (counter.words > textInput.attr("data-word-max")) {
+      textInput.closest(".char-count").removeClass("char-over");
+      if (counter.words > maxWordCount) {
+        textInput.closest(".char-count").addClass("char-over");
+      }
+
+      if (counter.words > maxWordCountTotal) {
         return true;
-      } else if (counter.words == textInput.attr("data-word-max") && lastLetter == " ") {
+      } else if (counter.words == maxWordCountTotal && lastLetter == " ") {
         return true;
       }
     };
 
     if (characterOver(textInput)) {
-      textInput.closest(".char-count").addClass("char-over");
-
       // hard limit to word count using maxlength
       if (((typeof(textInput.attr("maxlength")) !== typeof(undefined)) && textInput.attr("maxlength") !== false) == false) {
         // Set through typing
-        var char_limit = textInput.val().length + (textInput.attr("data-word-max-limit")*6);
+        var char_limit = textInput.val().length;
         textInput.attr("maxlength", char_limit);
       }
     } else {
-      textInput.closest(".char-count").removeClass("char-over");
 
       textInput.removeAttr("maxlength");
     }
