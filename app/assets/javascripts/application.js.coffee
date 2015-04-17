@@ -165,20 +165,20 @@ jQuery ->
       $(".js-financial-conditional > .js-conditional-question").each () ->
         all_years_value = true
         $(this).find(".js-year-end").each () ->
-          fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest("label").find(".date-input")
+          fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".date-input")
           fy_day = fy_input.find(".js-fy-day").val()
           fy_month = fy_input.find(".js-fy-month").val()
           fy_year = fy_input.find(".js-fy-year").val()
           if !fy_day || !fy_month || !fy_year
             all_years_value = false
-        $(this).find(".js-year-end").each () ->
-          fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest("label").find(".date-input")
-          fy_day = fy_input.find(".js-fy-day").val()
-          fy_month = fy_input.find(".js-fy-month").val()
-          fy_year = fy_input.find(".js-fy-year").val()
-          if !all_years_value
-            $(this).addClass("show-default")
-          else
+        if !all_years_value
+          $(this).find(".js-year-end").addClass("show-default")
+        else
+          $(this).find(".js-year-end").each () ->
+            fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".date-input")
+            fy_day = fy_input.find(".js-fy-day").val()
+            fy_month = fy_input.find(".js-fy-month").val()
+            fy_year = fy_input.find(".js-fy-year").val()
             pre_text = "Year ending in"
             if $(this).closest(".question-block").hasClass("total-net-assets")
               pre_text = "As at"
