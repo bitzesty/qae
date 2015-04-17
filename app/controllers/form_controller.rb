@@ -102,9 +102,17 @@ class FormController < ApplicationController
       end
 
       queen_award_holder = if @form_answer.promotion?
-        @form_answer.eligibility.nominee_is_qae_ep_award_holder? ? "yes" : "no"
+        if @form_answer.eligibility.nominee_is_qae_ep_award_holder.present?
+          @form_answer.eligibility.nominee_is_qae_ep_award_holder
+        else
+          "no"
+        end
       else
-        current_account.basic_eligibility.current_holder? ? "yes" : "no"
+        if current_account.basic_eligibility.current_holder.present?
+          current_account.basic_eligibility.current_holder
+        else
+          "no"
+        end
       end
 
       if @form_answer.document["queen_award_holder"].blank?

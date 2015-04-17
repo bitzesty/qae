@@ -25,6 +25,8 @@ en:
         product_business: Product business
         service_business: Service business
         either_business: Mixed business
+      current_holder:
+        i_dont_know: "I don't know"
     eligibility/innovation:
       innovative_product:
         skip: "Skip Innovation eligibility"
@@ -34,6 +36,9 @@ en:
     eligibility/trade:
       sales_above_100_000_pounds:
         skip: "Skip International Trade eligibility"
+    eligibility/promotion:
+      nominee_is_qae_ep_award_holder:
+        i_dont_know: "I don't know"
 
   activerecord:
     errors:

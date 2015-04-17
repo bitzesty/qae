@@ -17,7 +17,7 @@ FactoryGirl.define do
         organization_kind: "business",
         industry: "product_business",
         self_contained_enterprise: true,
-        current_holder: false
+        current_holder: "no"
       }}.call
     end
 

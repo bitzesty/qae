@@ -67,6 +67,7 @@ class QAE2014Forms
           required
           ref "A 6"
           yes_no
+          option "i_dont_know", "I don't know"
         end
 
         queen_award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
@@ -75,12 +76,9 @@ class QAE2014Forms
 
           conditional :queen_award_holder, :yes
 
-          category :innovation_2, "Innovation (2 years)"
-          category :innovation_5, "Innovation (5 years)"
-          category :international_trade_3, "International Trade (3 years)"
-          category :international_trade_6, "International Trade (6 years)"
-          category :sustainable_development_2, "Sustainable Development (2 years)"
-          category :sustainable_development_5, "Sustainable Development (5 years)"
+          category :innovation_2, "Innovation"
+          category :international_trade_3, "International Trade"
+          category :sustainable_development_2, "Sustainable Development"
 
           year 2010
           year 2011

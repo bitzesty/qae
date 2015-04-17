@@ -78,7 +78,7 @@ class QAE2014Forms
         options :nominated_for_award, "Is the nominee currently being nominated for another award/personal honour?" do
           required
           yes_no
-          option "unknown", "I don't know"
+          option "i_dont_know", "I don't know"
         end
 
         award_holder :nomination_awards, "List them below" do

@@ -46,13 +46,13 @@ class Eligibility::Trade < Eligibility
             label: "Are you a current holder of a Queen's Award for International Trade?",
             boolean: true,
             accept: :all,
-            if: proc { account.basic_eligibility.current_holder? }
+            if: proc { account.basic_eligibility.current_holder == "yes" }
 
   # TODO: Hardcoded date
   property :qae_for_trade_expiery_date,
             values: %w(2015 2016 2017 2018 2019),
             accept: :not_nil_if_current_holder_of_qae_for_trade,
             label: 'When does your current award expire?',
-            if: proc { account.basic_eligibility.current_holder? && (current_holder_of_qae_for_trade.nil? || current_holder_of_qae_for_trade?) },
+            if: proc { account.basic_eligibility.current_holder == "yes" && (current_holder_of_qae_for_trade.nil? || current_holder_of_qae_for_trade?) },
             allow_nil: true
 end

@@ -29,7 +29,7 @@ class Eligibility::Basic < Eligibility
             accept: :true
 
   property :current_holder,
-            boolean: true,
+            values: %w[yes no i_dont_know],
             label: "Are you a current Queen's Award holder in any category?",
             accept: :not_nil
 
