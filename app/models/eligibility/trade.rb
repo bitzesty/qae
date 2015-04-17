@@ -12,22 +12,6 @@ class Eligibility::Trade < Eligibility
             accept: :true,
             acts_like_boolean: true
 
-  # REMOVE
-  # property :direct_overseas_100_000_pounds,
-  #           boolean: true,
-  #           values: %w[yes no],
-  #           label: "Was at least £100,000 of this direct overseas sales?",
-  #           accept: :not_nil,
-  #           hint: "Direct overseas sales are as a result of an organisation making a commitment to market overseas on its own behalf - and not through an intermediary."
-
-  # property :organisation_fulfill_above_exceptions,
-  #           values: %w[yes no],
-  #           label: "Do your organisation fulfill any of the exceptions above?",
-  #           accept: :true,
-  #           acts_like_boolean: true,
-  #           if: proc { !direct_overseas_100_000_pounds? }
-  # REMOVE
-
   property :any_dips_over_the_last_three_years,
             label: "Have you had any dips in your overseas sales over the period of your entry (i.e. in the last 3 or 6 years)?",
             accept: :false,

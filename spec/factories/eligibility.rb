@@ -44,8 +44,7 @@ FactoryGirl.define do
     trait :development do
       type 'Eligibility::Development'
       answers Proc.new {{
-        sustainable_development: 'yes',
-        development_contributed_to_commercial_success: true
+        sustainable_development: 'yes'
       }}.call
     end
 
