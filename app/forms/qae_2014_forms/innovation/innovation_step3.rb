@@ -134,6 +134,7 @@ class QAE2014Forms
 
         # UK sales = turnover - exports
         turnover_exports_calculation :uk_sales, "UK Sales" do
+          classes "sub-question"
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
