@@ -392,10 +392,14 @@ jQuery ->
 
     failed = (e, data) ->
       error_json = data.jqXHR.responseJSON
-      error_key = Object.keys(error_json)[0]
-      error_message = data.jqXHR.responseJSON[error_key]
-      wrapper.addClass("question-has-errors")
-      wrapper.find(".errors-container").html("<li>" + error_message + "</li>")
+      if error_json
+        error_key = Object.keys(error_json)[0]
+        error_message = data.jqXHR.responseJSON[error_key]
+      else
+        error_message = data.jqXHR.responseText
+      if error_message
+        wrapper.addClass("question-has-errors")
+        wrapper.find(".errors-container").html("<li>" + error_message + "</li>")
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.removeClass("visuallyhidden")
