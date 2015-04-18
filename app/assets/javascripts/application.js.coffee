@@ -614,7 +614,7 @@ jQuery ->
 
       if hasAttrDefault
         ul.removeClass("js-default-reached")
-        if ul.find("li").size() <= attr
+        if ul.find("li").not(".hidden").size() <= attr
           ul.addClass("js-default-reached")
 
   $(".list-add").each ->
