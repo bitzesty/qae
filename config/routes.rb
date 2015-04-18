@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  mount VsRails::Engine, at: "/virus"
+
   resource :healthcheck, only: :show
 
   devise_for :users, controllers: {
