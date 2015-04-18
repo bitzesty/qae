@@ -6,36 +6,36 @@ li.js-add-example.hidden
   span.row
     span.span-6
       label
-        ul.errors-container
         ' First Name
+        ul.errors-container
         input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][first_name]" type="text" disabled=true
         span.visible-read-only
   span.row
     span.span-6
       label
-        ul.errors-container
         ' Surname
+        ul.errors-container
         input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][last_name]" type="text" disabled=true
         span.visible-read-only
   span.row
     span.span-6
       label
-        ul.errors-container
         ' Relationship to Nominee
+        ul.errors-container
         input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][relationship_to_nominee]" type="text" disabled=true
         span.visible-read-only
   span.row
     - if question.list_type == :manuall_upload
       span.span-12
         label
-          ul.errors-container
           ' Letter of Support
+          ul.errors-container
           input class="js-trigger-autosave js-support-letter-attachment medium" name="form[#{question.key}][{index}][letter_of_support]" type='file' disabled=true
     - else
       span.span-6
         label
-          ul.errors-container
           ' Email address
+          ul.errors-container
           input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][email]" type="text" disabled=true
           span.visible-read-only
   span.row

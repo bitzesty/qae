@@ -162,6 +162,9 @@ label > .visible-read-only,
   }
 
   label {
+    margin-bottom: 0;
+    padding-left: 0;
+    border-left: none;
     font-weight: bold;
   }
 }
