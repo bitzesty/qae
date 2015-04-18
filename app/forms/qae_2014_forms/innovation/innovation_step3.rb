@@ -55,6 +55,7 @@ class QAE2014Forms
         end
 
         by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+          classes "question-employee-min"
           ref "C 3"
           required
           context %(
