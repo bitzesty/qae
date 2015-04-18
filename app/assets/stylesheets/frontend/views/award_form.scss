@@ -152,7 +152,8 @@ label > .visible-read-only,
 
 .read-only {
   input,
-  .button {
+  .button,
+  .remove-link {
     display: none;
   }
 
