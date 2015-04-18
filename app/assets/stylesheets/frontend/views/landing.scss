@@ -18,6 +18,10 @@
   .page-header div {
     margin-right: 22.5em;
     padding-right: 0;
+
+    @media (max-width: 640px) {
+      margin-right: 0;
+    }
   }
 
   .article-container {
