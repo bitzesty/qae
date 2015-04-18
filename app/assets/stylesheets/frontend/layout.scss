@@ -121,7 +121,8 @@ header.page-header div {
   padding-bottom: 1em;
 
   h1 {
-    font-size: 36px;
+    @include heading-36;
+    font-weight: bold;
   }
 }
 
@@ -585,6 +586,10 @@ header.page-header aside .inner {
   p {
     margin-top: 0;
     font-size: 24px;
+
+    @media (max-width: 640px) {
+      font-size: 20px;
+    }
   }
 }
 
