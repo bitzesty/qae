@@ -7,7 +7,7 @@ class Assessor < ActiveRecord::Base
   # regular - assigned by lead, as primary/secondary from set of all assessors assigned
   # to specific category (award type), they act per specific form answer.
 
-  devise :database_authenticatable, :registerable,
+  devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
          :zxcvbnable
 
