@@ -908,6 +908,7 @@ input[type="file"] {
 
 .question-has-errors,
 .field-with-errors {
+  display: block;
   margin-bottom: 2.45em;
   // padding-top: $gutter-one-third;
   // padding-bottom: $gutter-half;
