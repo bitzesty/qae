@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  mount VsRails::Engine, at: "/virus"
+  namespace :vs_rails do
+    resources :scans, only: [] do
+      post :callback, on: :collection
+    end
+  end
 
   resource :healthcheck, only: :show
 
