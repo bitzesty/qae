@@ -4,7 +4,7 @@ class Settings < ActiveRecord::Base
   has_many :deadlines, dependent: :destroy
   has_many :email_notifications, dependent: :destroy
 
-  belongs_to :award_year, inverse_of: :settings, autosave: true
+  belongs_to :award_year, inverse_of: :settings
 
   validates :award_year, presence: true, uniqueness: true
 

@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 class QAE2014Forms
   class << self
     def trade_step3
       @trade_step3 ||= proc do
-        options_with_preselected_conditions :trade_commercial_success, "" do
+        trade_commercial_success :trade_commercial_success, "" do
           main_header %(
             How would you describe your organisation's growth and commercial success (i.e. turnover and profit) in international trade?
                     )
@@ -12,9 +13,7 @@ class QAE2014Forms
           option "3 to 5", "Outstanding growth in the last 3 years"
           option "6 plus", "Continuous growth in the last 6 years"
           placeholder_preselected_condition :queen_award_holder_details,
-                                            question_suffix: :category,
-                                            parent_question_answer_key: "international_trade",
-                                            answer_key: "international_trade",
+                                            question_suffix: :year,
                                             question_value: "3 to 5",
                                             placeholder_text: %{
               As you currently hold a Queen's Award for Continuous Achievement in International Trade (6 years), you can only apply for the Outstanding Achievement Award (3 years).
