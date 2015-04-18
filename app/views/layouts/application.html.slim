@@ -40,8 +40,9 @@
   - unless landing_page?
     .header-proposition
       .content
-        span.if-no-js-hide
-          = link_to "Menu", "#proposition-links", class: "js-header-toggle menu"
+        - if current_admin || current_user
+          span.if-no-js-hide
+            = link_to "Menu", "#proposition-links", class: "js-header-toggle menu"
         nav#proposition-menu
           a#proposition-name href="/"
             ' Queen's Awards for Enterprise
