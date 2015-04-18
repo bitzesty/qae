@@ -118,7 +118,7 @@ module QaePdfForms::General::DrawElements
 
   def render_award_information
     if form_answer.promotion?
-      award_title = "Queen’s Award for Enterprise Promotion #{AwardYear.current.year}"
+      award_title = "Queen’s Award for Enterprise Promotion #{form_answer.award_year.year}"
     else
       award_title = form_answer.decorate.award_application_title
     end

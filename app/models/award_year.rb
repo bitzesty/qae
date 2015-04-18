@@ -29,11 +29,16 @@ class AwardYear < ActiveRecord::Base
   end
 
   def self.award_holder_range
-    "#{Date.current.year - 4}-#{Date.current.year}"
+    "#{AwardYear.current.year - 5}-#{AwardYear.current.year - 1}"
   end
 
-  def self.start_trading_moment
-    Date.new(Date.current.year - 3, 10, 1).strftime("%d/%m/%Y")
+  def self.start_trading_moment(kind)
+    if ["trade"].include?(kind)
+      i = 4
+    else
+      i = 3
+    end
+    Date.new(AwardYear.current.year - i, 10, 1).strftime("%d/%m/%Y")
   end
 
   private

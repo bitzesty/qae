@@ -57,8 +57,8 @@ class QAE2014Forms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context "<p>Organisations that began trading after #{AwardYear.start_trading_moment} aren't eligible for this award.</p>"
-          date_max AwardYear.start_trading_moment
+          context "<p>Organisations that began trading after #{AwardYear.start_trading_moment('trade')} aren't eligible for this award.</p>"
+          date_max AwardYear.start_trading_moment("trade")
         end
 
         options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
@@ -78,11 +78,9 @@ class QAE2014Forms
           category :international_trade, "International Trade"
           category :sustainable_development, "Sustainable Development"
 
-          year 2010
-          year 2011
-          year 2012
-          year 2013
-          year 2014
+          ((AwardYear.current.year - 5)..(AwardYear.current.year - 1)).each do |y|
+            year y
+          end
 
           children_options_depends_on :category
           dependable_values [:international_trade]
