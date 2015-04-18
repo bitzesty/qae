@@ -188,7 +188,7 @@ class QAE2014Forms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
                     )
           conditional :trade_commercial_success, :true
           conditional :resale_overseas, "yes"
