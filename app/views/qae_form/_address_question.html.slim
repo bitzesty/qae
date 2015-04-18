@@ -29,10 +29,10 @@
     .question-group.question-required
       label
         ' Region
-        = select_tag("#{question.key}_region", options_for_select(question.regions, question.input_value(suffix: 'region')), possible_read_only_ops.merge({name: question.input_name(suffix: 'region'), class: 'js-trigger-autosave required', include_blank: true}))
         ul.errors-container
           - if @form_answer.validator_errors
             li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+        = select_tag("#{question.key}_region", options_for_select(question.regions, question.input_value(suffix: 'region')), possible_read_only_ops.merge({name: question.input_name(suffix: 'region'), class: 'js-trigger-autosave required', include_blank: true}))
 
   - else
     .question-group
