@@ -309,9 +309,13 @@ input[type="file"] {
   margin-top: 0.2em;
 }
 
-.question-block h2 em {
-  font-style: normal;
-  text-decoration: underline;
+.question-block h2 {
+  margin-bottom: 0.6em;
+
+  em {
+    font-style: normal;
+    text-decoration: underline;
+  }
 }
 
 // Styling for forms that exist outside of smart-answers
@@ -946,6 +950,11 @@ input[type="file"] {
   font-weight: bold;
   line-height: 26px;
   text-align: center;
+
+  @media (max-width: 640px) {
+    position: relative;
+    top: -0.5em;
+  }
 }
 
 .regular-question,
@@ -953,6 +962,11 @@ input[type="file"] {
   .steps {
     position: relative;
     top: -0.25em;
+
+    @media (max-width: 640px) {
+      position: relative;
+      top: -0.5em;
+    }
   }
 }
 
