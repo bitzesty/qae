@@ -52,6 +52,7 @@ class QAE2014Forms
         end
 
         by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+          classes "question-employee-min"
           ref "C 3"
           required
           context %(
@@ -151,7 +152,7 @@ class QAE2014Forms
           classes "sub-question total-net-assets"
           sub_ref "C 5.3"
           required
-          context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
+          context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>}
 
           type :money
           label ->(y) { "As at the end of year #{y}" }

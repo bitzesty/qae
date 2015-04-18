@@ -59,7 +59,6 @@ ul.question-context,
   }
 
   &.field-with-errors .checkbox {
-    top: 0.5em;
     left: $gutter-two-thirds;
   }
 
@@ -310,9 +309,13 @@ input[type="file"] {
   margin-top: 0.2em;
 }
 
-.question-block h2 em {
-  font-style: normal;
-  text-decoration: underline;
+.question-block h2 {
+  margin-bottom: 0.6em;
+
+  em {
+    font-style: normal;
+    text-decoration: underline;
+  }
 }
 
 // Styling for forms that exist outside of smart-answers
@@ -843,7 +846,6 @@ input[type="file"] {
 
   li.submit {
     float: right;
-    width: 36%;
     margin-top: 1em;
 
     @media (max-width: 740px) {
@@ -869,6 +871,10 @@ input[type="file"] {
       padding: 0.45em 0.5em 0.62em 0.5em;
     }
   }
+}
+
+.step-article .pagination li.submit {
+  width: 36%;
 }
 
 .form-submit .pull-right {
@@ -909,6 +915,7 @@ input[type="file"] {
 
 .question-has-errors,
 .field-with-errors {
+  display: block;
   margin-bottom: 2.45em;
   // padding-top: $gutter-one-third;
   // padding-bottom: $gutter-half;
@@ -946,6 +953,11 @@ input[type="file"] {
   font-weight: bold;
   line-height: 26px;
   text-align: center;
+
+  @media (max-width: 640px) {
+    position: relative;
+    top: -0.5em;
+  }
 }
 
 .regular-question,
@@ -953,6 +965,11 @@ input[type="file"] {
   .steps {
     position: relative;
     top: -0.25em;
+
+    @media (max-width: 640px) {
+      position: relative;
+      top: -0.5em;
+    }
   }
 }
 

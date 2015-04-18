@@ -152,7 +152,8 @@ label > .visible-read-only,
 
 .read-only {
   input,
-  .button {
+  .button,
+  .remove-link {
     display: none;
   }
 
@@ -162,6 +163,9 @@ label > .visible-read-only,
   }
 
   label {
+    margin-bottom: 0;
+    padding-left: 0;
+    border-left: none;
     font-weight: bold;
   }
 }
@@ -202,5 +206,42 @@ label > .visible-read-only,
 
   a {
     color: $error-colour;
+  }
+}
+
+@media only screen and (max-width : 800px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
+  .nominee-end-date-row {
+    &.row {
+      display: block;
+      margin-right: -15px;
+      margin-left: -15px;
+
+      &:after,
+      &:before {
+        display: table;
+        content: " ";
+      }
+
+      &:after {
+        clear: both;
+      }
+    }
+
+    .span-3 {
+      position: relative;
+      width: 60%;
+      max-width: 200px;
+      min-height: 1px;
+      padding-right: 15px;
+      padding-left: 15px;
+      float: left;
+         -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+
+      &.date-ongoing {
+        width: 40%;
+      }
+    }
   }
 }
