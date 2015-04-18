@@ -178,25 +178,6 @@ class QAE2014Forms
           drop_condition_parent
         end
 
-        options :company_estimated_figures, "Are any of these figures estimated?" do
-          classes "sub-question"
-          sub_ref "C 5.5"
-          yes_no
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          conditional :innovation_part_of, :entire_business
-        end
-
-        textarea :company_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
-          sub_ref "C 5.6"
-          rows 5
-          words_max 400
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          conditional :company_estimated_figures, :yes
-        end
-
         header :product_financials, "Product/Service Financials" do
           ref "C 6"
           context %(
