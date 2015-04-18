@@ -204,3 +204,40 @@ label > .visible-read-only,
     color: $error-colour;
   }
 }
+
+@media only screen and (max-width : 800px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
+  .nominee-end-date-row {
+    &.row {
+      display: block;
+      margin-right: -15px;
+      margin-left: -15px;
+
+      &:after,
+      &:before {
+        display: table;
+        content: " ";
+      }
+
+      &:after {
+        clear: both;
+      }
+    }
+
+    .span-3 {
+      float: left;
+      position: relative;
+      width: 60%;
+      max-width: 200px;
+      min-height: 1px;
+      padding-right: 15px;
+      padding-left: 15px;
+      -webkit-box-sizing: border-box;
+         -moz-box-sizing: border-box;
+              box-sizing: border-box;
+
+      &.date-ongoing {
+        width: 40%;
+      }
+    }
+  }
+}
