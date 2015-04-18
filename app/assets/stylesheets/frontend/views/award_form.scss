@@ -228,15 +228,15 @@ label > .visible-read-only,
     }
 
     .span-3 {
-      float: left;
       position: relative;
       width: 60%;
       max-width: 200px;
       min-height: 1px;
       padding-right: 15px;
       padding-left: 15px;
-      -webkit-box-sizing: border-box;
+      float: left;
          -moz-box-sizing: border-box;
+      -webkit-box-sizing: border-box;
               box-sizing: border-box;
 
       &.date-ongoing {
