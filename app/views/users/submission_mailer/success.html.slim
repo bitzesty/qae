@@ -5,7 +5,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' Thank you for submitting your
-  - if @form_answer.award_type == "promotion"
+  - if @form_answer.promotion?
     ' nomination
   - else
     ' application
@@ -32,7 +32,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' If you have any further queries about the
-  - if @form_answer.award_type == "promotion"
+  - if @form_answer.promotion?
     ' nomination
   - else
     ' application
