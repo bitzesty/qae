@@ -42,6 +42,8 @@ set :ssh_options, {
 
 set :keep_releases, 5
 
+set :shoryuken_log, -> { File.join(shared_path, 'log', 'shoryuken.log') }
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
