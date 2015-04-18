@@ -40,13 +40,13 @@
   - unless landing_page?
     .header-proposition
       .content
-        - if current_admin || current_user
+        - if current_admin || current_user || current_assessor
           span.if-no-js-hide
             = link_to "Menu", "#proposition-links", class: "js-header-toggle menu"
         nav#proposition-menu
           a#proposition-name href="/"
             ' Queen's Awards for Enterprise
-          - if current_admin || current_user
+          - if current_admin || current_user || current_assessor
             ul#proposition-links
               - if current_admin || current_user.completed_registration
                 li
