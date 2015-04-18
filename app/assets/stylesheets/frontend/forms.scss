@@ -846,7 +846,6 @@ input[type="file"] {
 
   li.submit {
     float: right;
-    width: 36%;
     margin-top: 1em;
 
     @media (max-width: 740px) {
@@ -872,6 +871,10 @@ input[type="file"] {
       padding: 0.45em 0.5em 0.62em 0.5em;
     }
   }
+}
+
+.step-article .pagination li.submit {
+  width: 36%;
 }
 
 .form-submit .pull-right {
