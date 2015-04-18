@@ -9,8 +9,24 @@ class AwardYear < ActiveRecord::Base
   AVAILABLE_YEARS = [2016, 2017, 2018, 2019]
 
   # +1 here is to match URN number of assosiated forms
+  def self.mock_current_year?
+    Rails.env.test?
+  end
+
   def self.current
-    for_year(Date.current.year + 1).first_or_create
+    return where(year: 2016).first_or_create if mock_current_year?
+
+    now = DateTime.now
+    deadline = AwardYear.where(year: now.year + 1).first_or_create.settings.deadlines.submission_start.try(:trigger_at)
+
+    deadline ||= Date.new(now.year, 4, 21)
+    if now >= deadline.to_datetime
+      y = now.year + 1
+    else
+      y = now.year
+    end
+
+    where(year: y).first_or_create
   end
 
   def self.closed

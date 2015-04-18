@@ -23,12 +23,15 @@ RSpec.describe FormAnswer, type: :model do
 
   context "URN" do
     before do
-      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_#{Date.today.year + 1} RESTART")
-      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_promotion_#{Date.today.year + 1} RESTART")
+      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_#{AwardYear.current.year} RESTART")
+      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_promotion_#{AwardYear.current.year} RESTART")
     end
 
-    let!(:form_answer) { FactoryGirl.create(:form_answer, :trade, :submitted) }
-    let(:award_year) { (Date.today.year + 1).to_s[2..-1] }
+    let!(:form_answer) do
+      create(:form_answer, :trade, :submitted)
+    end
+
+    let(:award_year) { AwardYear.current.year.to_s[2..-1] }
 
     it "creates form with URN" do
       expect(form_answer.urn).to eq("QA0001/#{award_year}T")
