@@ -370,7 +370,7 @@ window.FormValidation =
         # console.log "validateBetweenDate"
         @validateBetweenDate(question)
 
-      if question.attr("data-answer") == "employees-enter-the-number-of-people-employed-by-your-organisation-in-each-year-of-your-entry" &&
+      if question.hasClass("question-employee-min") &&
          question.find(".show-question").length > 0
         # console.log "validateEmployeeMin"
         @validateEmployeeMin(question)

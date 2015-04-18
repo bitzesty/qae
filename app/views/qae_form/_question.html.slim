@@ -22,7 +22,7 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
           /- unless question.required
             '  (optional)
 
-    span.question-context
+    span.question-context.question-debug
       - if question.context
         == question.context
       - for help in question.help

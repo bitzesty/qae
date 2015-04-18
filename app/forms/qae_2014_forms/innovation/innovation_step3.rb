@@ -55,6 +55,7 @@ class QAE2014Forms
         end
 
         by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+          classes "question-employee-min"
           ref "C 3"
           required
           context %(
@@ -155,7 +156,7 @@ class QAE2014Forms
           classes "sub-question total-net-assets"
           sub_ref "C 5.3"
           required
-          context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).}
+          context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>}
 
           type :money
           label ->(y) { "As at the end of year #{y}" }
@@ -175,25 +176,6 @@ class QAE2014Forms
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_condition_parent
-        end
-
-        options :company_estimated_figures, "Are any of these figures estimated?" do
-          classes "sub-question"
-          sub_ref "C 5.5"
-          yes_no
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          conditional :innovation_part_of, :entire_business
-        end
-
-        textarea :company_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
-          sub_ref "C 5.6"
-          rows 5
-          words_max 400
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          conditional :company_estimated_figures, :yes
         end
 
         header :product_financials, "Product/Service Financials" do
