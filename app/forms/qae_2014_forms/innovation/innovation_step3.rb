@@ -86,6 +86,9 @@ class QAE2014Forms
             <p>
               If you haven't reached your latest year-end, please use estimates to complete this section.
             </p>
+            <p>
+              You must enter actual financial figures in £ sterling (ignoring pennies).
+            </p>
           )
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
