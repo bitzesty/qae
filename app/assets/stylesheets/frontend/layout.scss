@@ -73,6 +73,11 @@
 
   &.page-header-wider div {
     width: 100%;
+
+    .lte-ie7 & {
+      width: auto !important;
+      margin-right: 0 !important;
+    }
   }
   // Slightly wider
   &.page-header-wider-minor div {
