@@ -6,7 +6,7 @@ class QAEFormBuilder
       if question.required?
         question.required_sub_fields.each do |sub_field|
           suffix = sub_field.keys[0]
-          if !question.input_value(suffix: suffix).present?
+          if !question.input_value(suffix: suffix).present? && !sub_field[:ignore_validation]
             result[question.hash_key(suffix: suffix)] ||= ""
             result[question.hash_key(suffix: suffix)] << " Can't be blank."
           end
@@ -44,7 +44,7 @@ class QAEFormBuilder
       else
         [
           { building: "Building" },
-          { street: "Street" },
+          { street: "Street", ignore_validation: true },
           { city: "Town or city" },
           { country: "Country" },
           { postcode: "Postcode" },
