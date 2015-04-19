@@ -44,7 +44,8 @@ describe FormController do
     let!(:form_answer) do
       FactoryGirl.create :form_answer, award_type: "trade",
                                        user: user,
-                                       account: account
+                                       account: account,
+                                       award_year: AwardYear.current
     end
 
     context "adds award info to the form" do
