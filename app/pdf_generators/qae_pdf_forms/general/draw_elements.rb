@@ -21,7 +21,7 @@ module QaePdfForms::General::DrawElements
 
   def attachment_icon(attachment_file)
     case attachment_file.file.extension.to_s
-    when *FormAnswerAttachmentUploader::POSSIBLE_IMG_EXTENSIONS
+    when *FileUploader::POSSIBLE_IMG_EXTENSIONS
       attachment_path(attachment_file)
     else
       "#{IMAGES_PATH}#{ATTACHMENT_ICON}"
