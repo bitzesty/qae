@@ -10,6 +10,8 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   - else
     ' application
   ' for The Queen’s Award for Enterprise
+  - if @form_answer.promotion?
+    ' Promotion
   = AwardYear.current.year
   ' .
 
