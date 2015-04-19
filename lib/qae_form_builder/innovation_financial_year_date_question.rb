@@ -8,6 +8,8 @@ class QAEFormBuilder
         date << question.input_value(suffix: sub_field.keys[0])
       end
 
+      date << Date.today.year.to_s
+
       date = Date.parse(date.join("/")) rescue nil
 
       if !date && question.required?
