@@ -669,6 +669,12 @@ input[type="file"] {
     padding: $gutter-half;
     padding-top: 18px;
     background: $grey-4;
+
+    .lte-ie7 & {
+      display: inline;
+      width: 100%;
+      float: left;
+    }
   }
 
   h3:first-child {
