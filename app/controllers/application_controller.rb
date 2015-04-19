@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # TODO: IT'S TEMPRARY, REMOVE WHEN NOT NEEDED
-  http_basic_authenticate_with name: ENV["AUTH_LOGIN"], password: ENV["AUTH_PASS"], if: :need_authentication?
+  # http_basic_authenticate_with name: ENV["AUTH_LOGIN"], password: ENV["AUTH_PASS"], if: :need_authentication?
 
   # TODO: remove back once go live
   # unless (Rails.env.test? || Rails.env.development?)
