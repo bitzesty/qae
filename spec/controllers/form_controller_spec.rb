@@ -81,12 +81,12 @@ describe FormController do
 
       it "ingonres award if it is 5 or more years old" do
         trade_el = form_answer.trade_eligibility
-        trade_el.update!({
+        trade_el.update!(
           sales_above_100_000_pounds: "yes",
           any_dips_over_the_last_three_years: true,
           current_holder_of_qae_for_trade: true,
           qae_for_trade_award_year: "before_2011"
-        })
+        )
 
         get :edit_form, id: form_answer.id
 
@@ -105,7 +105,6 @@ describe FormController do
 
         expect(form_answer.reload.document["queen_award_holder_details"]).to be_nil
         expect(form_answer.document["queen_award_holder"]).to eq("no")
-
       end
     end
   end
