@@ -27,6 +27,12 @@
     margin-left: 0;
     padding: $gutter-one-sixth 0 $gutter-one-third;
 
+    .lte-ie7 & {
+      display: inline;
+      width: 100%;
+      float: left;
+    }
+
     &.no-border {
       border-bottom: none;
     }
