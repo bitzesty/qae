@@ -669,6 +669,10 @@ input[type="file"] {
     background: $grey-4;
   }
 
+  h3:first-child {
+    margin-top: 0;
+  }
+
   label input,
   .form-control {
     margin-bottom: 1em;
@@ -689,9 +693,18 @@ input[type="file"] {
     margin-right: $gutter-one-third;
   }
 
-  .remove-link, .js-remove-audit-certificate-link {
+  .remove-link,
+  .js-remove-audit-certificate-link {
     @include core-16;
     float: right;
+    border: none;
+    background: transparent;
+    color: $govuk-blue;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
 
     &.read-only,
     &.disabled,

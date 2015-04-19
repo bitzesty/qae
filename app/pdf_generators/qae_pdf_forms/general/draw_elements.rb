@@ -86,11 +86,14 @@ module QaePdfForms::General::DrawElements
 
   def main_header
     render_logo
-    render_award_information
-    render_company_name
+    move_down 15.mm
+    indent 32.mm do
+      render_award_information
+      render_company_name
+    end
     render_urn if form_answer.urn.present?
 
-    move_down 45.mm
+    move_down 15.mm
 
     unless form_answer.urn.present?
       render_intro_text
@@ -110,21 +113,19 @@ module QaePdfForms::General::DrawElements
              header_text_properties.merge(at: [32.mm, 137.5.mm + DEFAULT_OFFSET])
   end
 
-  def render_company_name
-    text_box "<b>#{form_answer.decorate.company_name.try(:upcase)}",
-             header_text_properties.merge(at: [32.mm, 122.mm + DEFAULT_OFFSET],
-                                          inline_format: true)
-  end
-
   def render_award_information
     if form_answer.promotion?
       award_title = "Queen’s Award for Enterprise Promotion #{form_answer.award_year.year}"
     else
-      award_title = form_answer.decorate.award_application_title
+      award_title = form_answer.decorate.award_application_title_print
     end
-    text_box award_title.upcase,
-             header_text_properties.merge(at: [32.mm, 130.mm + DEFAULT_OFFSET],
-                                          style: :bold)
+    text award_title.upcase,
+         header_text_properties.merge(style: :bold)
+  end
+
+  def render_company_name
+    text "<b>#{form_answer.decorate.company_name.try(:upcase)}</b>",
+         header_text_properties.merge(inline_format: true)
   end
 
   def render_intro_text

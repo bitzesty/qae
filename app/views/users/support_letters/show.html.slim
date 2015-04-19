@@ -8,12 +8,19 @@
   .article-container
     article.group role="article"
       .inner
-        = button_to "Delete support letter", users_form_answer_support_letter_path(form_answer, @support_letter), method: :delete, confirm: "Are you sure?"
-        dl
-          dt Full name
-          dd = @support_letter.full_name
-          dt Relationship to nominee
-          dd = @support_letter.relationship_to_nominee
+        ul.list-add
+          li
+            = button_to "Delete support letter",
+                        users_form_answer_support_letter_path(form_answer, @support_letter),
+                        method: :delete,
+                        confirm: "Are you sure?",
+                        class: "remove-link"
+            span
+              h3 Full name
+              p = @support_letter.full_name
 
-          dt Support letter
-          dd = @support_letter.body
+              h3 Relationship to nominee
+              p = @support_letter.relationship_to_nominee
+
+              h3 Support letter
+              p = @support_letter.body

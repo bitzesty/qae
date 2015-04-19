@@ -61,6 +61,10 @@ class FormAnswerDecorator < ApplicationDecorator
     "#{award_type} Award #{object.award_year.try(:year)}"
   end
 
+  def award_application_title_print
+    "The Queen’s Awards for Enterprise: #{award_type} #{object.award_year.try(:year)}"
+  end
+
   def company_or_nominee_name
     object.company_or_nominee_name
   end

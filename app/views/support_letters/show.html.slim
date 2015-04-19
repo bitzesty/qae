@@ -8,11 +8,13 @@
   .article-container
     article.group role="article"
       .inner
-        dl
-          dt Full name
-          dd = support_letter.full_name
-          dt Relationship to nominee
-          dd = support_letter.relationship_to_nominee
+        ul.list-add
+          li
+            h3 Full name
+            p = support_letter.full_name
 
-          dt Support letter
-          dd = support_letter.body
+            h3 Relationship to nominee
+            p = support_letter.relationship_to_nominee
+
+            h3 Support letter
+            p = support_letter.body
