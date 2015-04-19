@@ -200,7 +200,7 @@ class FormAnswer < ActiveRecord::Base
     generated_urn = "QA#{sprintf('%.4d', next_seq)}/"
     suffix = {
       "promotion" => "EP",
-      "development" => "D",
+      "development" => "S",
       "innovation" => "I",
       "trade" => "T"
     }[award_type]
