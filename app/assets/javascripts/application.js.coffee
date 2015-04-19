@@ -432,7 +432,10 @@ jQuery ->
         if has_filename
           filename = wrapper.data('filename')
         else
-          filename = data.result['original_filename']
+          if data.result['original_filename']
+            filename = data.result['original_filename']
+          else
+            filename = "File uploaded"
         div = $("<div>").text(filename)
 
         hidden_input = $("<input>").
