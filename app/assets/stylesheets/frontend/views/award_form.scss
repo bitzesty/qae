@@ -150,12 +150,19 @@ label > .visible-read-only,
   }
 }
 
+.supporters-list > .read-only {
+  .remove-link {
+    display: inline;
+  }
+}
+
 .read-only {
   input,
   .button,
   .remove-link {
     display: none;
   }
+
 
   .support-letter-attachment-filename,
   .visible-read-only {
