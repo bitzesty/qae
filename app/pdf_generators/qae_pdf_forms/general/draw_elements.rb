@@ -120,12 +120,12 @@ module QaePdfForms::General::DrawElements
       award_title = form_answer.decorate.award_application_title_print
     end
     text award_title.upcase,
-             header_text_properties.merge(style: :bold)
+         header_text_properties.merge(style: :bold)
   end
 
   def render_company_name
     text "<b>#{form_answer.decorate.company_name.try(:upcase)}</b>",
-        header_text_properties.merge(inline_format: true)
+         header_text_properties.merge(inline_format: true)
   end
 
   def render_intro_text
