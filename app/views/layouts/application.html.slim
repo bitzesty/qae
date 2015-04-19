@@ -48,7 +48,7 @@
             ' Queen's Awards for Enterprise
           - if current_admin || current_user || current_assessor
             ul#proposition-links
-              - if current_admin || current_user.completed_registration
+              - if current_admin || current_user.try(:completed_registration)
                 li
                   = link_to "Applications", dashboard_path
                 li

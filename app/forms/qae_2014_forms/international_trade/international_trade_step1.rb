@@ -131,7 +131,7 @@ class QAE2014Forms
           ref "A 8"
           sub_fields([
             { building: "Building" },
-            { street: "Street" },
+            { street: "Street", ignore_validation: true },
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
