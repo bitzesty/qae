@@ -875,6 +875,10 @@ input[type="file"] {
       float: none;
     }
 
+    .lte-ie7 & {
+      max-width: 100%;
+    }
+
     a,
     button {
       width: auto;
