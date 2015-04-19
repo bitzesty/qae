@@ -50,10 +50,6 @@ li.js-add-example class=(persisted ? 'read-only' : '')
           ul.errors-container
           input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
           span.visible-read-only = supporter['email']
-  - if persisted && (s = @form_answer.supporters.find_by_id(supporter["supporter_id"])) && s.support_letter.present? && question.list_type != :manuall_upload
-    span.row
-      span.span-12
-        = link_to "Letter of support", users_form_answer_support_letter_path(@form_answer, s.support_letter), target: "_blank"
   span.row
     span.span-12
       a.button.js-save-collection class=(persisted ? "visuallyhidden" : "") data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
@@ -61,11 +57,16 @@ li.js-add-example class=(persisted ? 'read-only' : '')
           | Submit letter of support
         - else
           | Send support request
-
-  .visible-read-only
-    .application-notice.help-notice
-      p
-        - if question.list_type == :manuall_upload
-          ' Letter of support uploaded
-        - else
-          ' Support request sent
+  - if persisted && (s = @form_answer.supporters.find_by_id(supporter["supporter_id"])) && s.support_letter.present? && question.list_type != :manuall_upload
+    .visible-read-only
+      .application-notice.help-notice
+        p Letter of support received
+        p = link_to "View letter of support", users_form_answer_support_letter_path(@form_answer, s.support_letter), target: "_blank"
+  - else
+    .visible-read-only
+      .application-notice.help-notice
+        p
+          - if question.list_type == :manuall_upload
+            ' Letter of support uploaded
+          - else
+            ' Support request sent
