@@ -34,7 +34,7 @@ class QAE2014Forms
 
           hint "How does the letters of support system work?", %(
             <p>
-              First, you should enter details of your chosen supporters below. We will then email them a link to a web form, where they can enter their letter of support and click on the ‘Send support request’ button
+              First, you should enter details of your chosen supporters below. We will then email them a link to a web form, where they can enter their letter of support and click on the ‘Send support request’ button.
             </p>
             <p>
               They will be given instructions as to what to include in their letter.
