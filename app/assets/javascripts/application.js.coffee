@@ -453,6 +453,7 @@ jQuery ->
         new_el.append(desc_div)
 
       list.append(new_el)
+      new_el.find("textarea").val("")
       new_el.find('.js-char-count').charcount()
       list.removeClass('visuallyhidden')
       updateUploadListVisiblity(list, button, max)
