@@ -63,7 +63,7 @@ class FormFinancialPointer
       if obj = data.first
         case obj
         when Hash
-          obj.values.flatten.length
+          obj.values.flatten(1).length
         when Array
           obj.length
         end
