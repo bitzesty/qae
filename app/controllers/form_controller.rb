@@ -108,7 +108,24 @@ class FormController < ApplicationController
       end
 
       if @form_answer.document["queen_award_holder"].blank?
-        @form_answer.document = @form_answer.document.merge(queen_award_holder: queen_award_holder)
+        eligibility_holder = @form_answer.trade_eligibility.current_holder_of_qae_for_trade?
+        holder = if @form_answer.trade?
+          eligibility_holder ? "yes" : "no"
+        else
+          queen_award_holder
+        end
+
+        @form_answer.document = @form_answer.document.merge(queen_award_holder: holder)
+
+        if holder == "yes" && @form_answer.trade?
+          year = @form_answer.trade_eligibility.qae_for_trade_award_year
+          if year.to_i < AwardYear.current.year - 5 || !eligibility_holder
+            @form_answer.document = @form_answer.document.merge(queen_award_holder: "no")
+          else
+            details = [{ category: "international_trade", year: year.to_s }.to_json].to_json
+            @form_answer.document = @form_answer.document.merge(queen_award_holder_details: details)
+          end
+        end
       end
 
       @form_answer.save
