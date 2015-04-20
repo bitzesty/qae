@@ -5,7 +5,7 @@ class QAE2014Forms
       @trade_step3 ||= proc do
         trade_commercial_success :trade_commercial_success, "" do
           main_header %(
-            How would you describe your organisation's growth and commercial success (i.e. turnover and profit) in international trade?
+            How would you describe your organisation's growth and commercial success in international trade?
                     )
           classes "js-entry-period"
           ref "C 1"

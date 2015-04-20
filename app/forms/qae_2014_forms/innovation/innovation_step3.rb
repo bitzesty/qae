@@ -2,7 +2,7 @@ class QAE2014Forms
   class << self
     def innovation_step3
       @innovation_step3 ||= proc do
-        options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance (i.e. turnover and profit)?" do
+        options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
