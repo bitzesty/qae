@@ -22,8 +22,6 @@ html.no-js
     = yield :section_meta_tags
     = csrf_meta_tags
 
-    link href='http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900' rel='stylesheet' type='text/css'
-
     = yield(:head) if content_for?(:head)
 
   body#admin-layout class="admin-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class} #{'layout-dev' if Rails.env.development?}"
