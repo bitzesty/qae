@@ -654,6 +654,10 @@ input[type="file"] {
 
 .smart-answer .inner.step.current {
   margin-right: 0;
+
+  @media (max-width: 800px) {
+    padding-left: 2em;
+  }
 }
 
 // Styling the add form field list and button
