@@ -905,6 +905,10 @@ input[type="file"] {
 
 .step-article .pagination li.submit {
   width: 36%;
+
+  @media (max-width: 640px) {
+    width: auto;
+  }
 }
 
 .form-submit .pull-right {
