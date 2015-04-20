@@ -1,12 +1,15 @@
 module FormAnswersBasePointer
   HIDDEN_QUESTIONS = [
-    "agree_to_be_contacted",
-    "contact_email_confirmation",
-    "entry_confirmation",
-    "confirmation_of_entry_header",
-    "confirmation_of_contact_header",
-    "agree_being_contacted_about_issues_not_related_to_application",
-    "agree_being_contacted_by_department_of_business"
+    # For  now need to display them too
+    # but can be switched back in future
+    #
+    # "agree_to_be_contacted",
+    # "contact_email_confirmation",
+    # "entry_confirmation",
+    # "confirmation_of_entry_header",
+    # "confirmation_of_contact_header",
+    # "agree_being_contacted_about_issues_not_related_to_application",
+    # "agree_being_contacted_by_department_of_business"
   ]
 
   def fetch_answers
