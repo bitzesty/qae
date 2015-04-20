@@ -339,6 +339,10 @@ input[type="file"] {
 
   select {
     @include core-16;
+
+    @media (max-width: 640px) {
+      max-width: 240px;
+    }
   }
 
   label {
