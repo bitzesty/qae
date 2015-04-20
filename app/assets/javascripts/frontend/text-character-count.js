@@ -3,7 +3,9 @@ $.fn.charcount = function() {
   var prevElement = this.closest(".question-group").prev();
   prevElement.addClass("char-spacing");
   if (prevElement.hasClass("errors-container")) {
-    prevElement.prev().append("<span class='char-space'></div>");
+    if (prevElement.prev().find(".char-space").size() <= 0) {
+      prevElement.prev().append("<span class='char-space'></div>");
+    }
   }
 
   // Creates the character count elements
