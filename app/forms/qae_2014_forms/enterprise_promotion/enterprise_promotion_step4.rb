@@ -88,6 +88,7 @@ class QAE2014Forms
         end
 
         supporters :supporters, "Support Requests" do
+          classes "question-support-requests"
           ref "D 1"
           limit 10
           default 1
@@ -161,6 +162,7 @@ class QAE2014Forms
             </p>
           )
 
+          classes "question-support-uploads"
           limit 4
           default 1
           list_type :manuall_upload
