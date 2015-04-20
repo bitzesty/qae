@@ -1,7 +1,8 @@
 require "rails_helper"
 
 describe FormAnswerStateMachine do
-  let(:form_answer) { create(:form_answer, :innovation) }
+  let!(:award_year) { AwardYear.current }
+  let(:form_answer) { create(:form_answer, :innovation, award_year: award_year) }
 
   describe "#trigger_deadlines" do
     context "deadline expired" do
