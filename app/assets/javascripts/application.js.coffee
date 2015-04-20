@@ -210,7 +210,7 @@ jQuery ->
         if sales_value
           $(sales_selector).text(sales_value)
         else
-          $(sales_selector).text("-")
+          $(sales_selector).text("0")
 
   updateTurnoverExportCalculation()
 
