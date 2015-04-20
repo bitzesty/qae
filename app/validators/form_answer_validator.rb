@@ -6,7 +6,7 @@ class FormAnswerValidator
 
     answers = HashWithIndifferentAccess.new(form_answer.document)
     @award_form = form_answer.award_form.decorate(answers: answers)
-    @step = form_answer.current_step
+    @current_step = form_answer.current_step
 
     @errors = {}
   end
@@ -17,6 +17,7 @@ class FormAnswerValidator
       # we should validate current step
       # else if form was submitted just now
       # we should validate entire form
+
       if step.title.parameterize == current_step || form_answer.submitted_changed?
         step.questions.each do |q|
           if (errors = q.validate).any?
