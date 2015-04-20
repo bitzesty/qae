@@ -168,8 +168,6 @@ class FormController < ApplicationController
           if submitted && saved
             redirect_to submit_confirm_url(@form_answer)
           else
-            # maybe we should think about rendering step with error
-            # rather than the first one
             if saved
               params[:next_step] ||= @form.steps[1].title.parameterize
               redirect_to edit_form_url(@form_answer, step: params[:next_step])
