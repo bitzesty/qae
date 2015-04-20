@@ -72,7 +72,8 @@ class Form::SupportLettersController < Form::BaseController
 
     letters << new_letter
 
-    @form_answer.document = @form_answer.document.merge(supporter_letters_list: letters.to_json, manually_upload: "yes")
+    @form_answer.document = @form_answer.document.merge(supporter_letters_list: letters.to_json,
+                                                        manually_upload: "yes")
   end
 
   def remove_support_letter_from_document!
