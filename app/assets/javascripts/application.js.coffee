@@ -606,6 +606,13 @@ jQuery ->
              .find(".js-button-add")
              .removeClass("visuallyhidden")
 
+      if $(this).hasClass("remove-supporter")
+
+        url = $(this).attr("href")
+        $.ajax
+          url: url
+          type: 'DELETE'
+
       if $(this).data("remove-association")
         $(this).closest("li").addClass("visuallyhidden")
         $("input.remove", $(this).closest("li")).val("1")

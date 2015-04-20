@@ -1,5 +1,5 @@
 li.js-add-example.hidden
-  = link_to "Remove", "#", class: "remove-suppoter remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
+  = link_to "Remove", "#", class: "remove-supporter remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
 
   input.js-support-entry-id type="hidden" name="form[#{question.key}][{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]" disabled=true
   .js-system-tag data-new-hidden-input-name="form[#{question.key}][{index}][#{question.list_type == :manuall_upload ? "support_letter_id" : "supporter_id"}]"
