@@ -76,9 +76,9 @@ class QAE2014Forms
 
           conditional :queen_award_holder, :yes
 
-          category :innovation_2, "Innovation"
-          category :international_trade_3, "International Trade"
-          category :sustainable_development_2, "Sustainable Development"
+          category :innovation, "Innovation"
+          category :international_trade, "International Trade"
+          category :sustainable_development, "Sustainable Development"
 
           ((AwardYear.current.year - 5)..(AwardYear.current.year - 1)).each do |y|
             year y
