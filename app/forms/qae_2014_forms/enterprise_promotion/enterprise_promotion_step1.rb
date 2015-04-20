@@ -100,7 +100,6 @@ class QAE2014Forms
             { county: "County" },
             { postcode: "Postcode" }
           ])
-          form_hint "ie. their place of employment."
         end
 
         text :website_url, "Website Address" do
