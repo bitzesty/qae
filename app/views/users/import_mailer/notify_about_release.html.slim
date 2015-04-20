@@ -1,0 +1,31 @@
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Dear
+  - if @user.full_name.present?
+    = @user.full_name
+  - else
+    = @user.email
+  ' ,
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' Firstly, we'd like to thank you for your past interest in The Queen's Awards for Enterprise.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' Over the last few months we've been building a new online application system for the awards, which we hope will provide you with a better user experience, and make submitting your application(s) in the 2016 award cycle easier than ever.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' As a user from the old Queen's Awards system, we've automatically migrated your account to the new system. However, due to security reasons we've not included any passwords in this transfer.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' To complete your migration onto the new and improved system, you should choose a
+  = link_to "new password here", edit_password_url(@user, reset_password_token: @token)
+  ' .
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' We hope that you like the new system as much as we do. If you have any feedback, please don't hesitate to send us an email at info@queensawards.org.uk.
+
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
+  ' Thank you,
+
+  ' Linda Stephens
+  ' Secretary, The Queen's Awards for Enterprise
+  '     https://www.queens-awards-enterprise.service.gov.uk/

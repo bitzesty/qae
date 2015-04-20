@@ -13,20 +13,29 @@ class UsersImport::Builder
     not_saved = []
     @csv.each do |user|
       u = User.where(email: user["RegisteredUserEmail"]).first_or_initialize
-      u.imported = true
-      map.each do |csv_h, db_h|
-        u.send("#{db_h}=", user[csv_h])
-      end
-      u.role = "regular"
-      u = assign_password(u)
-      u.agreed_with_privacy_policy = "1"
-      u.skip_confirmation!
-      if u.save
-        u.update_column(:created_at, user["UserCreationDate"])
-        saved << u
-      else
-        # probably shouldn't happen
-        not_saved << u
+      if u.new_record?
+        u.imported = true
+        map.each do |csv_h, db_h|
+          u.send("#{db_h}=", user[csv_h])
+        end
+        u.role = "regular"
+        u = assign_password(u)
+        u.agreed_with_privacy_policy = "1"
+        u.skip_confirmation!
+        if u.save
+          u.update_column(:created_at, user["UserCreationDate"])
+          saved << u
+
+          raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
+          u.reset_password_token = hashed_token
+          u.reset_password_sent_at = Time.now.utc
+          if u.save
+            Users::ImportMailer.notify_about_release(u.id, raw_token).deliver_later!
+          end
+        else
+          # probably shouldn't happen
+          not_saved << u
+        end
       end
     end
     { saved: saved, not_saved: not_saved }
