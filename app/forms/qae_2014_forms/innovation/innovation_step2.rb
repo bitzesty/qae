@@ -9,11 +9,11 @@ class QAE2014Forms
         textarea :innovation_desc_short, "Briefly describe your innovative product/service/initiative" do
           ref "B 1"
           required
-          classes "word-max-strict"
           context %(
             <p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>
                     )
           rows 2
+          classes "word-max-strict"
           words_max 15
         end
 

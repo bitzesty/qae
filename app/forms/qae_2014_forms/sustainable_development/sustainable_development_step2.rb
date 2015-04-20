@@ -16,6 +16,7 @@ class QAE2014Forms
         end
 
         textarea :development_desc_short, "Briefly describe your product/service/management approach" do
+          classes "word-max-strict"
           ref "B 2"
           required
           context %(
