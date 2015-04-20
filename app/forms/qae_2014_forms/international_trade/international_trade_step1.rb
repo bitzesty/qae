@@ -66,6 +66,7 @@ class QAE2014Forms
           ref "A 6"
           yes_no
           option "i_dont_know", "I don't know"
+          classes "queen-award-holder"
         end
 
         queen_award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
@@ -86,7 +87,7 @@ class QAE2014Forms
           dependable_values [:international_trade]
         end
 
-        options :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
+        options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
           classes "sub-question"
 
           option "yes", "Yes"
@@ -131,7 +132,7 @@ class QAE2014Forms
           ref "A 8"
           sub_fields([
             { building: "Building" },
-            { street: "Street", ignore_validation: true },
+            { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },

@@ -29,7 +29,7 @@ class QAE2014Forms
           required
           sub_fields([
             { building: "Building" },
-            { street: "Street", ignore_validation: true },
+            { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" },
@@ -95,7 +95,7 @@ class QAE2014Forms
           sub_fields([
             { name: "Name" },
             { building: "Building" },
-            { street: "Street", ignore_validation: true },
+            { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
             { postcode: "Postcode" }
