@@ -42,5 +42,5 @@
           - if @form_answer.validator_errors
             li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
         - klass = "#{sub_field_title.parameterize == 'postcode' ? 'small' : 'medium'}"
-        - klass << " required" if QAEFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key)
+        - klass <<(QAEFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
         input.js-trigger-autosave class=klass type="text" name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops

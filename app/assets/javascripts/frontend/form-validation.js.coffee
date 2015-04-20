@@ -57,17 +57,20 @@ window.FormValidation =
     date.diff(expected, "days")
 
   validateSingleQuestion: (question) ->
-    if @isTextishQuestion(question)
-      return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").val().toString().length
+    if question.find("input").hasClass("not-required")
+      return true
+    else
+      if @isTextishQuestion(question)
+        return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").val().toString().length
 
-    if @isSelectQuestion(question)
-      return question.find("select").val()
+      if @isSelectQuestion(question)
+        return question.find("select").val()
 
-    if @isOptionsQuestion(question)
-      return question.find("input[type='radio']").filter(":checked").length
+      if @isOptionsQuestion(question)
+        return question.find("input[type='radio']").filter(":checked").length
 
-    if @isCheckboxQuestion(question)
-      return question.find("input[type='checkbox']").filter(":checked").length
+      if @isCheckboxQuestion(question)
+        return question.find("input[type='checkbox']").filter(":checked").length
 
   validateRequiredQuestion: (question) ->
     # if it's a conditional question, but condition was not satisfied
