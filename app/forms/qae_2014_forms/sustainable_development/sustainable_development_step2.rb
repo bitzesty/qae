@@ -55,7 +55,7 @@ class QAE2014Forms
           classes "sub-question"
           context %(
             <p>
-              'Environmental dimensions' means respecting the limits of the planet’s environment, resources and biodiversity
+              'Environmental dimensions' means respecting the limits of the planet's environment, resources and biodiversity
               <a href="#hidden-hint-0" class="hidden-link-for">
                 e.g. resources, efficiency, waste reduction and biological diversity/productivity.
               </a>

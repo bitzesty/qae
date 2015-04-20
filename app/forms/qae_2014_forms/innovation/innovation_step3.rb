@@ -74,7 +74,7 @@ class QAE2014Forms
         options :innovation_part_of, "How does your innovation fit within the overall business?" do
           ref "C 4"
           required
-          option :entire_business, "It’s integral to the whole business"
+          option :entire_business, "It's integral to the whole business"
           option :single_product_or_service, "It affects a single product/service"
         end
 

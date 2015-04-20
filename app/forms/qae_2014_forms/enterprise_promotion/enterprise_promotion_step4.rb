@@ -22,10 +22,10 @@ class QAE2014Forms
 
           hint "Who should I choose to write letters of support?", %(
             <p>
-              Letters of support should be from those with first-hand knowledge of the nominee’s contribution to enterprise promotion and the impact their work has had on others. This could be colleagues, collaborators, or those who have benefitted from their work. You, the nominator, may not write a letter of support.
+              Letters of support should be from those with first-hand knowledge of the nominee's contribution to enterprise promotion and the impact their work has had on others. This could be colleagues, collaborators, or those who have benefitted from their work. You, the nominator, may not write a letter of support.
             </p>
             <p>
-              At least one letter should be from a large organisation (eg. employer, nonprofit, college, local authority) able to provide an assessment of the extent to which the nominee’s contribution sets them aside from their peers.
+              At least one letter should be from a large organisation (eg. employer, nonprofit, college, local authority) able to provide an assessment of the extent to which the nominee's contribution sets them aside from their peers.
             </p>
             <p>
               When selecting supporters, you should cover a variety of the nominee's activities, and a variety of perspectives on those activities, where possible.
@@ -34,7 +34,7 @@ class QAE2014Forms
 
           hint "How does the letters of support system work?", %(
             <p>
-              First, you should enter details of your chosen supporters below and click on the ‘Send support request’ button. We will then email them a link to a web form, where they can enter their letter of support.
+              First, you should enter details of your chosen supporters below and click on the 'Send support request' button. We will then email them a link to a web form, where they can enter their letter of support.
             </p>
             <p>
               They will be given instructions as to what to include in their letter.
@@ -64,25 +64,25 @@ class QAE2014Forms
               Letters of support should be about 500 words in length, making it clear why a nomination is being supported and NOT simply saying “I wish to support the nomination of …”.
             </p>
             <p>
-              The Queen’s Award for Enterprise Promotion recognises individuals who go beyond the limits of their day-to-day role to foster an entrepreneurial spirit and promote enterprise within others, so your letter should focus mainly on the nominee’s achievements outside of the requirements of their paid job, using your first hand knowledge of these where possible.
+              The Queen's Award for Enterprise Promotion recognises individuals who go beyond the limits of their day-to-day role to foster an entrepreneurial spirit and promote enterprise within others, so your letter should focus mainly on the nominee's achievements outside of the requirements of their paid job, using your first hand knowledge of these where possible.
             </p>
             <p>
-              Ideally, we are looking for evidence that demonstrates the clear impact of the nominee’s activities in enterprise promotion:
+              Ideally, we are looking for evidence that demonstrates the clear impact of the nominee's activities in enterprise promotion:
             </p>
             <ul>
               <li>
                 <p>
-                  Qualitative and quantitative evidence of the impact resulting from the nominee’s services to a particular field, area, group, community, location or society as a whole. Financials are not expected, but some quantifiable data is e.g. a number of schools visited, length of time involved or number of enterprises helped to set up and percentage of those still trading.
+                  Qualitative and quantitative evidence of the impact resulting from the nominee's services to a particular field, area, group, community, location or society as a whole. Financials are not expected, but some quantifiable data is e.g. a number of schools visited, length of time involved or number of enterprises helped to set up and percentage of those still trading.
                 </p>
               </li>
               <li>
                 <p>
-                  A personal perspective from those who have benefited from, or had direct experience of, the success of the nominee’s work, including the impact it has had on them or their business.
+                  A personal perspective from those who have benefited from, or had direct experience of, the success of the nominee's work, including the impact it has had on them or their business.
                 </p>
               </li>
             </ul>
             <p>
-              If you are writing on behalf of an organisation, you should be able to provide an assessment of the extent to which the nominee’s activities set them apart from their peers."
+              If you are writing on behalf of an organisation, you should be able to provide an assessment of the extent to which the nominee's activities set them apart from their peers."
             </p>
           )
         end
@@ -131,21 +131,21 @@ class QAE2014Forms
               Letters of support should be around 500 words, making it clear why a nomination is being supported and NOT simply saying “I wish to support the nomination of ….”.
             </p>
             <p>
-              The Queen’s Award for Enterprise Promotion recognises individuals who go beyond the limits of their day-to-day role to foster an entrepreneurial spirit and promote enterprise within others, so your letter should focus mainly on the nominee’s achievements outside of the requirements of their paid job, using your first hand knowledge of these where possible.
+              The Queen's Award for Enterprise Promotion recognises individuals who go beyond the limits of their day-to-day role to foster an entrepreneurial spirit and promote enterprise within others, so your letter should focus mainly on the nominee's achievements outside of the requirements of their paid job, using your first hand knowledge of these where possible.
             </p>
             <p>
-              Ideally, we are looking for evidence that demonstrates the clear impact of the nominee’s activities in enterprise promotion:
+              Ideally, we are looking for evidence that demonstrates the clear impact of the nominee's activities in enterprise promotion:
             </p>
             <ul>
               <li>
-                Qualitative and quantitative evidence of the impact resulting from the nominee’s services to a particular field, area, group, community, location or society as a whole. Financials are not expected, but some quantifiable data is e.g. a number of schools visited, length of time involved or number of enterprises helped to set up and percentage of those that are still trading.
+                Qualitative and quantitative evidence of the impact resulting from the nominee's services to a particular field, area, group, community, location or society as a whole. Financials are not expected, but some quantifiable data is e.g. a number of schools visited, length of time involved or number of enterprises helped to set up and percentage of those that are still trading.
               </li>
               <li>
-                A personal perspective from those who have benefited from, or had direct experience of, the success of the nominee’s work, including the impact it has had on them or their business.
+                A personal perspective from those who have benefited from, or had direct experience of, the success of the nominee's work, including the impact it has had on them or their business.
               </li>
             </ul>
             <p>
-              If you are writing on behalf of an organisation, you should be able to provide an assessment of the extent to which the nominee’s activities set them apart from their peers.
+              If you are writing on behalf of an organisation, you should be able to provide an assessment of the extent to which the nominee's activities set them apart from their peers.
             </p>
             <p>
               All letters of support should include the contact details of the writer, and their relationship to the nominee.

@@ -33,7 +33,7 @@
     - id: "net_profit"
       label: "Net Profit (i.e. after tax, before dividends)"
     - id: "total_imported_cost"
-      label: "If ‘Yes’ please state your 'Overseas sales' net of the cost of the imported products/services."
+      label: "If 'Yes' please state your 'Overseas sales' net of the cost of the imported products/services."
 - id: "development"
   name: "Sustainable Development Award"
   labels:
@@ -60,7 +60,7 @@
     - id: "avg_unit_cost_self"
       label: "(if applicable) Unit costs"
     - id: ""
-      label: "Provide the cost savings, if known, to your business or your customers’ business after introduction of the new product or service"
+      label: "Provide the cost savings, if known, to your business or your customers' business after introduction of the new product or service"
 
 
 

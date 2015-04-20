@@ -7,7 +7,7 @@ $(function() {
   "use strict";
   function browserWarning() {
     var container = $('<div id="global-browser-prompt"></div>'),
-        text = $('<p><a href="/help/browsers">Upgrade your web browser</a> (the software you use to access the internet), it’s out of date</p>'),
+        text = $("<p><a href='/help/browsers'>Upgrade your web browser</a> (the software you use to access the internet), it's out of date</p>"),
         closeLink = $('<a href="#" class="dismiss" title="Dismiss this message">Close</a>');
 
     return container.append(text.append(closeLink));

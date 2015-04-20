@@ -15,12 +15,12 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :benefits_from_nominee_service, "Describe the benefits of your nominee’s services to a particular field, group, community or society as a whole." do
+        textarea :benefits_from_nominee_service, "Describe the benefits of your nominee's services to a particular field, group, community or society as a whole." do
           ref "C 2"
           required
           context %(
             <p>
-              What has their impact been? How wide is their influence? What are their achievements? Include details of the length of time involved and quantitative evidence that demonstrate the clear impact of the nominee’s activities.
+              What has their impact been? How wide is their influence? What are their achievements? Include details of the length of time involved and quantitative evidence that demonstrate the clear impact of the nominee's activities.
             </p>
             <p>
               Include where your nominee's activities have taken place within challenging circumstances or disadvantaged/deprived communities, or where young people or under-represented groups have benefited.
