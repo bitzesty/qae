@@ -1292,6 +1292,11 @@ input[type="file"] {
   &.drop-hover {
     border-color: $light-blue;
   }
+
+  // IE9 and lower doesn't support drag and drop files
+  .lte-ie9 & {
+    display: none !important;
+  }
 }
 
 // Used for NON JS cases - begin

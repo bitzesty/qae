@@ -317,7 +317,7 @@ jQuery ->
     div.append(remove_link)
 
   isEventSupported = (eventName, element) ->
-    if $("html").hasClass "lte-ie8"
+    if $("html").hasClass "lte-ie9"
       return false
     else
       TAGNAMES = {
