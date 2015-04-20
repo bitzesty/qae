@@ -1,13 +1,14 @@
 require 'rails_helper'
 
 describe FormController do
+  let!(:award_year) { AwardYear.current }
   let(:user) { create :user, role: "account_admin" }
   let(:account) { user.account }
   let(:form_answer) do
     FactoryGirl.create :form_answer, :innovation,
                                      user: user,
                                      account: account,
-                                     award_year: AwardYear.current
+                                     award_year: award_year
   end
 
   let!(:settings) { create :settings, :submission_deadlines }
@@ -45,7 +46,7 @@ describe FormController do
       FactoryGirl.create :form_answer, award_type: "trade",
                                        user: user,
                                        account: account,
-                                       award_year: AwardYear.current
+                                       award_year: award_year
     end
 
     context "adds award info to the form" do
