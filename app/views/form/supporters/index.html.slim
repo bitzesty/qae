@@ -43,7 +43,7 @@ header.page-header.group.page-header-over-sidebar
           br
           br
 
-          - letters_intro_question =  @step.questions.select { |q| q.key =  :supporter_letters_list }.last
+          - letters_intro_question =  @step.questions.detect { |q| q.key == :supporter_letters_list }
 
           .question-block
             label
