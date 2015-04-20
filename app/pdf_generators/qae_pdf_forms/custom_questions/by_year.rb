@@ -33,7 +33,7 @@ module QaePdfForms::CustomQuestions::ByYear
 
   def render_years_table
     rows = if CALCULATED_FINANCIAL_DATA.include?(question.key)
-      get_audit_data(question.key)
+      get_audit_data(question.key).map(&:to_i).map(&:to_s)
     else
       active_fields.map do |field|
         entry = year_entry(field)
