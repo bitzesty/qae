@@ -13,6 +13,7 @@ require "qae_form_builder/dropdown_question"
 require "qae_form_builder/business_sector_dropdown_question"
 require "qae_form_builder/date_question"
 require "qae_form_builder/upload_question"
+require "qae_form_builder/options_business_name_changed_question"
 
 require "qae_form_builder/subsidiaries_associates_plants_question"
 require "qae_form_builder/award_holder_question"

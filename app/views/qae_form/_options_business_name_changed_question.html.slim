@@ -1,0 +1,11 @@
+- for answer in question.options do
+  - klass = ""
+  - if answer.value == "first"
+    - klass = "business-name-changed-first-option"
+
+    - if @form_answer.document["queen_award_holder"] == "yes"
+      - klass << " hidden"
+
+  label.selectable class=klass
+    input.js-trigger-autosave type="radio" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s) *possible_read_only_ops
+    = answer.text
