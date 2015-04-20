@@ -250,6 +250,8 @@ textarea {
   }
 
   .date-input {
+    white-space: nowrap;
+
     input[type="text"] {
       min-width: 0 !important;
       max-width: none !important;

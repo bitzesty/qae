@@ -246,6 +246,7 @@ window.FormValidation =
             @addErrorClass(question)
 
   validateDateByYears: (question) ->
+
     for subquestion_block in question.find(".js-fy-entry-container.show-question .date-input")
       subq = $(subquestion_block)
       q_parent = subq.closest(".js-fy-entries")
@@ -256,9 +257,9 @@ window.FormValidation =
       year = subq.find("input.js-fy-year").val()
 
       if (not day or not month or not year)
-        #if question.hasClass("question-required") && errors_container.length < 1
-        #  @appendMessage(q_parent, "This field is required")
-        #  @addErrorClass(question)
+        if question.hasClass("question-required") && errors_container.length < 1
+          @appendMessage(q_parent, "This field is required")
+          @addErrorClass(question)
       else
         complex_date_string = day + "/" + month + "/" + year
         date = @toDate(complex_date_string)
@@ -350,7 +351,8 @@ window.FormValidation =
         # console.log "validateMoneyByYears"
         @validateMoneyByYears(question)
 
-      if question.hasClass("question-date-by-years")
+      if question.hasClass("question-date-by-years") &&
+         question.find(".show-question").length == (question.find(".js-conditional-question").length - 1)
         # console.log "validateDateByYears"
         @validateDateByYears(question)
 
