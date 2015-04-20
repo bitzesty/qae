@@ -52,7 +52,7 @@ class QAE2014Forms
 
         confirm :agree_being_contacted_by_department_of_business, "" do
           sub_ref "F 2.1"
-          text "I am happy to be contacted by the Department of Business, Innovation and Skills."
+          text "I am happy to be contacted by the Department for Business, Innovation and Skills."
         end
 
         confirm :entry_confirmation, "Confirmation of entry" do
