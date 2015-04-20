@@ -15,7 +15,7 @@
           li = @form_answer.validator_errors[question.hash_key(suffix: "street")]
 
       input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'building') value=question.input_value(suffix: 'building') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops
-      input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
+      input.large.js-trigger-autosave type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
   - when :country
     .question-group
       label
@@ -41,5 +41,6 @@
         ul.errors-container
           - if @form_answer.validator_errors
             li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
-
-        input.js-trigger-autosave.required class="#{sub_field_title.parameterize == 'postcode' ? 'small' : 'medium'}" type="text" name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops
+        - klass = "#{sub_field_title.parameterize == 'postcode' ? 'small' : 'medium'}"
+        - klass << " required" if QAEFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key)
+        input.js-trigger-autosave class=klass type="text" name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops
