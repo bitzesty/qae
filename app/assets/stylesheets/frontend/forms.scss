@@ -734,6 +734,7 @@ input[type="file"] {
   @include core-19;
   position: relative;
   margin-right: $gutter-half;
+  margin-bottom: $gutter-one-third;
   padding: (18px $gutter $gutter-half $gutter);
   border: 1px solid $panel-colour;
   cursor: pointer;
