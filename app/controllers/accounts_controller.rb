@@ -107,7 +107,7 @@ class AccountsController < ApplicationController
       :subscribed_to_emails,
       :agree_being_contacted_by_department_of_business,
       :qae_info_source_other,
-      { qae_info_source: [] }
+      :qae_info_source
     )
   end
 
