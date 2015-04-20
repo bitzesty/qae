@@ -12,6 +12,8 @@ class FormAnswerValidator
   end
 
   def valid?
+    form_answer.steps_with_errors = []
+
     award_form.steps.each do |step|
       # if form was submitted before
       # we should validate current step
@@ -22,6 +24,7 @@ class FormAnswerValidator
         step.questions.each do |q|
           if (errors = q.validate).any?
             @errors.merge!(errors)
+            form_answer.steps_with_errors << step.title.parameterize
           end
         end
       end
