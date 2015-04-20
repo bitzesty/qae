@@ -86,12 +86,12 @@ module QaePdfForms::General::DrawElements
 
   def main_header
     render_logo
-    move_down 15.mm
+    move_down 8.mm
     indent 32.mm do
+      render_urn if form_answer.urn.present?
       render_award_information
       render_company_name
     end
-    render_urn if form_answer.urn.present?
 
     move_down 15.mm
 
@@ -109,8 +109,8 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_urn
-    text_box form_answer.urn,
-             header_text_properties.merge(at: [32.mm, 137.5.mm + DEFAULT_OFFSET])
+    text form_answer.urn,
+         header_text_properties
   end
 
   def render_award_information
