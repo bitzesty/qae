@@ -16,7 +16,10 @@ window.SupportLetters =
     upload_done = (e, data, link) ->
       SupportLetters.clean_up_system_tags(parent)
 
-      filename = data.result['original_filename']
+      if data.result['original_filename']
+        filename = data.result['original_filename']
+      else
+        filename = "File uploaded"
       file_title = $("<span class='support-letter-attachment-filename'>" + filename + "</span>")
       hidden_input = $("<input class='js-support-letter-attachment-id'>").prop('type', 'hidden').
                                                                           prop('name', $el.attr("name")).

@@ -317,32 +317,35 @@ jQuery ->
     div.append(remove_link)
 
   isEventSupported = (eventName, element) ->
-    TAGNAMES = {
-                "select": "input",
-                "change": "input",
-                "submit": "form",
-                "reset": "form",
-                "error": "img",
-                "load": "img",
-                "abort": "img"
-              }
-    element = element || document.createElement(TAGNAMES[eventName] || "div")
-    eventName = "on" + eventName
-    isSupported = eventName in element
+    if $("html").hasClass "lte-ie8"
+      return false
+    else
+      TAGNAMES = {
+                  "select": "input",
+                  "change": "input",
+                  "submit": "form",
+                  "reset": "form",
+                  "error": "img",
+                  "load": "img",
+                  "abort": "img"
+                }
+      element = element || document.createElement(TAGNAMES[eventName] || "div")
+      eventName = "on" + eventName
+      isSupported = eventName in element
 
-    if !isSupported
-      if !element.setAttribute
-        element = document.createElement("div")
-      if element.setAttribute && element.removeAttribute
-        element.setAttribute(eventName, "")
-        isSupported = typeof element[eventName] == "function"
+      if !isSupported
+        if !element.setAttribute
+          element = document.createElement("div")
+        if element.setAttribute && element.removeAttribute
+          element.setAttribute(eventName, "")
+          isSupported = typeof element[eventName] == "function"
 
-        if typeof element[eventName] != "undefined"
-          element[eventName] = undefined
-        element.removeAttribute(eventName)
+          if typeof element[eventName] != "undefined"
+            element[eventName] = undefined
+          element.removeAttribute(eventName)
 
-    element = null
-    return isSupported
+      element = null
+      return isSupported
 
   isMobile = ->
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
@@ -429,7 +432,10 @@ jQuery ->
         if has_filename
           filename = wrapper.data('filename')
         else
-          filename = data.result['original_filename']
+          if data.result['original_filename']
+            filename = data.result['original_filename']
+          else
+            filename = "File uploaded"
         div = $("<div>").text(filename)
 
         hidden_input = $("<input>").
@@ -450,6 +456,7 @@ jQuery ->
         new_el.append(desc_div)
 
       list.append(new_el)
+      new_el.find("textarea").val("")
       new_el.find('.js-char-count').charcount()
       list.removeClass('visuallyhidden')
       updateUploadListVisiblity(list, button, max)

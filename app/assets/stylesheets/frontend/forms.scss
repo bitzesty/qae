@@ -108,7 +108,9 @@ input[type="file"] {
   right: 0;
   margin: 0;
   cursor: pointer;
-  font-size: 200px;
+  font-size: 200px !important;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)" !important;
+  filter: alpha(opacity=0) !important;
   opacity: 0 !important;
   direction: ltr;
 }
@@ -667,6 +669,12 @@ input[type="file"] {
     padding: $gutter-half;
     padding-top: 18px;
     background: $grey-4;
+
+    .lte-ie7 & {
+      display: inline;
+      width: 100%;
+      float: left;
+    }
   }
 
   h3:first-child {
@@ -725,6 +733,7 @@ input[type="file"] {
   padding: (18px $gutter $gutter-half $gutter);
   border: 1px solid $panel-colour;
   cursor: pointer;
+  overflow: hidden;
 
   &,
   &:link,
@@ -864,6 +873,10 @@ input[type="file"] {
     @media (max-width: 740px) {
       width: 100%;
       float: none;
+    }
+
+    .lte-ie7 & {
+      max-width: 100%;
     }
 
     a,
