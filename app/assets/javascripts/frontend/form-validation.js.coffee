@@ -319,6 +319,14 @@ window.FormValidation =
       @addErrorMessage(question, error_message)
       return
 
+  validateSupportLetters: (question) ->
+    letters_received = $(".js-support-letter-received").size()
+    letters_uploaded = $(".js-support-letter-uploaded").size()
+    if letters_received + letters_uploaded < 2
+      @log_this(question, "validateSupportLetters", "You need to receive or upload at least 2 letters of support")
+      @appendMessage(question, "You need to receive or upload at least 2 letters of support")
+      @addErrorClass(question)
+
   # It's for easy debug of validation errors
   # As it really tricky to find out the validation which blocks form
   # and do not display any error massage on form
@@ -387,6 +395,15 @@ window.FormValidation =
       if question.hasClass("js-conditional-drop-block-answer")
         # console.log "validateDropBlockCondition"
         @validateDropBlockCondition(question)
+
+      if question.hasClass("js-conditional-drop-block-answer")
+        # console.log "validateDropBlockCondition"
+        @validateDropBlockCondition(question)
+
+      if question.hasClass("question-support-requests") ||
+         question.hasClass("question-support-uploads")
+        # console.log "validateSupportLetters"
+        @validateSupportLetters(question)
 
       #console.log @validates
 
