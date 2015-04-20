@@ -929,6 +929,10 @@ input[type="file"] {
 
   &.char-spacing {
     padding-right: 160px;
+
+    @media (max-width: 640px) {
+      margin-bottom: $gutter;
+    }
   }
 }
 
