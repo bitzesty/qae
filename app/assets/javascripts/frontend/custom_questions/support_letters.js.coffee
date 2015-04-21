@@ -106,8 +106,7 @@ window.SupportLetters =
               parent.find(".errors-container").html("")
               parent.find(".errors-container").closest("label").addClass("question-has-errors")
               parent.addClass("read-only")
-              if attachment_id
-                parent.addClass("js-support-letter-uploaded")
+              parent.addClass("js-support-letter-received")
               parent.find("input[type='text']").each ->
                 show_el = $(this).closest("label").find(".visible-read-only")
                 show_el.text($(this).val())

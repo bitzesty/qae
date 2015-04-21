@@ -321,10 +321,9 @@ window.FormValidation =
 
   validateSupportLetters: (question) ->
     letters_received = $(".js-support-letter-received").size()
-    letters_uploaded = $(".js-support-letter-uploaded").size()
-    if letters_received + letters_uploaded < 2
-      @log_this(question, "validateSupportLetters", "You need to receive or upload at least 2 letters of support")
-      @appendMessage(question, "You need to receive or upload at least 2 letters of support")
+    if letters_received < 2
+      @log_this(question, "validateSupportLetters", "You need to request or upload at least 2 letters of support")
+      @appendMessage(question, "You need to request or upload at least 2 letters of support")
       @addErrorClass(question)
 
   # It's for easy debug of validation errors
