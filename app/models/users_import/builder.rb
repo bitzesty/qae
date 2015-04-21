@@ -12,25 +12,31 @@ class UsersImport::Builder
     saved = []
     not_saved = []
     @csv.each do |user|
-      u = User.where(email: user["RegisteredUserEmail"]).first_or_initialize
-      if u.new_record?
+      email = user["RegisteredUserEmail"].downcase if user["RegisteredUserEmail"].present?
+      u = User.where(email: email).first_or_initialize
+      if u.new_record? && email.present?
+        p "saving: #{email}"
+
         u.imported = true
         map.each do |csv_h, db_h|
           u.send("#{db_h}=", user[csv_h])
         end
-        u.role = "regular"
+        u.role = "account_admin"
         u = assign_password(u)
         u.agreed_with_privacy_policy = "1"
         u.skip_confirmation!
         if u.save
-          u.update_column(:created_at, Date.strptime(user["UserCreationDate"], "%d/%m/%y")) if user["UserCreationDate"].present?
+          u.update_column(:created_at, Date.strptime(user["UserCreationDate"], "%m/%d/%Y")) if user["UserCreationDate"].present?
           saved << u
         else
-          # probably shouldn't happen
+          p "not saved: #{email}: #{u.errors.inspect}"
           not_saved << u
         end
+      else
+        p "Email already exists: #{email}"
       end
     end
+    p "Imported: #{saved.count}; not_saved: #{not_saved.map(&:email)}"
     { saved: saved, not_saved: not_saved }
   end
 
@@ -40,6 +46,7 @@ class UsersImport::Builder
       user.reset_password_token = hashed_token
       user.reset_password_sent_at = Time.now.utc
       if user.save
+        sleep(0.2)
         Users::ImportMailer.notify_about_release(user.id, raw_token).deliver_later!
       end
     end

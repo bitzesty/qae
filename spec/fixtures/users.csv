@@ -1,4 +1,4 @@
 URN,ApplicantName,RegisteredUserTitle,RegisteredUserFirstname,RegisteredUserSurname,RegisteredUserEmail,RegisteredUserCompany,RegisteredUserAddressLine1,RegisteredUserAddressLine2,RegisteredUserAddressLine3,RegisteredUserPostcode,RegisteredUserTelephone1,RegisteredUserTelephone2,RegisteredUserMobile,FormType,Created,UserCreationDate
-QA0006/14EP,Mr  ,Mr,First name1,Last name1,user1+import@example.com,company1,Somewhere,in ,London,AB1 1AA,1231231231,555666777,234324237,Enterprise Promotion,21/04/14,21/04/14
-QA0008/10T,Mr  ,Mr,First name2,Last name2,user2+import@example.com,company2,Somewhere2,in2,London2,AB1 AA,3213213213,776668859,324325423,International Trade,19/04/14,05/04/14
-QA1112/105,
+QA0006/14EP,Mr  ,Mr,First name1,Last name1,user1+import@example.com,company1,Somewhere,in ,London,AB1 1AA,1231231231,555666777,234324237,Enterprise Promotion,21/04/14,3/21/2014
+QA0008/10T,Mr  ,Mr,First name2,Last name2,leszek.andrukanis+importdemo@bitzesty.com,company2,Somewhere2,in2,London2,AB1 AA,3213213213,776668859,324325423,International Trade,19/04/14,3/29/2014
+QA1112/105,,,,,,,,,,,,,,,,
