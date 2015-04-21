@@ -112,10 +112,11 @@ $is-ie: false !default;
           }
         }
         .section {
-          border-top: 1px solid $border-colour;
           td {
-            padding: 0.5em 1em 0.3em inherit;
             width: 40%;
+            padding: 0.5em 1em 0.3em inherit;
+            border-top: 1px solid $border-colour;
+
             &.link-right {
               width: 10%;
               padding-right: 0;
