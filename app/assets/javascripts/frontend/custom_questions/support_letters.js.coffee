@@ -39,7 +39,9 @@ window.SupportLetters =
 
     $el.fileupload(
       url: $el.closest(".list-add").data 'attachments-url'
-      formData: () -> {}
+      formData: [
+        { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
+      ]
       done: upload_done
       fail: failed
     )

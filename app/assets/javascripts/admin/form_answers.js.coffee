@@ -52,7 +52,10 @@ ready = ->
 
     form.find(".errors-holder").text(errors)
   $("#new_form_answer_attachment").fileupload
-    autoUpload: false,
+    autoUpload: false
+    formData: [
+      { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
+    ]
     add: (e, data) ->
       $(".attachment-title").val(data.files[0].name)
       $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")

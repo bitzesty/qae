@@ -475,7 +475,9 @@ jQuery ->
     else
       $el.fileupload(
         url: attachments_url
-        formData: () -> {}
+        formData: [
+          { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
+        ]
         done: upload_done
         progressall: progress_all
         send: upload_started
