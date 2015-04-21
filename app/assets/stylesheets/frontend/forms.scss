@@ -416,6 +416,10 @@ input[type="file"] {
     margin-right: 1ex;
     padding: initial;
     vertical-align: middle;
+
+    .lte-ie7 & {
+      margin: 0;
+    }
   }
 
   input[type="file"] {
