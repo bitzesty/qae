@@ -3,6 +3,7 @@
                   url: users_form_answer_audit_certificate_path(form_answer),
                   html: {class: "qae-form audit-certificate-upload-form #{"visuallyhidden" if cert_exists}", method: :post} do |f|
   .errors-container
+  .clear
   span.button.button-add
     span + Upload Audit Certificate
     = f.input :attachment,

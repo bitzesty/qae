@@ -16,6 +16,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
       label
         ' First Name
         ul.errors-container
+        .clear
         input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter["first_name"]
         span.visible-read-only = supporter["first_name"]
   span.row
@@ -23,6 +24,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
       label
         ' Surname
         ul.errors-container
+        .clear
         input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter["last_name"]
         span.visible-read-only = supporter["last_name"]
   span.row
@@ -30,6 +32,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
       label
         ' Relationship to Nominee
         ul.errors-container
+        .clear
         input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter["relationship_to_nominee"]
         span.visible-read-only = supporter["relationship_to_nominee"]
   span.row
@@ -38,6 +41,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
         label
           ' Letter of Support
           ul.errors-container
+          .clear
           input class="js-trigger-autosave js-support-letter-attachment medium" name="form[#{question.key}][#{index}][letter_of_support]" type='file'
           - if supporter['letter_of_support'].present?
             = render "support_letters/attachment", question: question,
@@ -48,6 +52,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
         label
           ' Email address
           ul.errors-container
+          .clear
           input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
           span.visible-read-only = supporter['email']
   span.row

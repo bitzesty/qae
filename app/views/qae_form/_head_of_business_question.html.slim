@@ -2,16 +2,19 @@
   label
     ' First name
     ul.errors-container
+    .clear
     input.js-trigger-autosave.medium type="text" name=question.input_name(suffix: 'first_name') value=question.input_value(suffix: 'first_name') autocomplete="off" *possible_read_only_ops
 .question-group.question-block.question-required
   label
     ' Last name
     ul.errors-container
+    .clear
     input.js-trigger-autosave.medium type="text" name=question.input_name(suffix: 'last_name') value=question.input_value(suffix: 'last_name') autocomplete="off" *possible_read_only_ops
 .question-group
   label
     ' Personal Honours (optional)
     ul.errors-container
+    .clear
     input.js-trigger-autosave.medium.js-ignore-substitution type="text" name=question.input_name(suffix: 'honours') value=question.input_value(suffix: 'honours') autocomplete="off" *possible_read_only_ops
   span.hint
     ' e.g. OBE. Not including educational qualifications or Institutional Memberships.

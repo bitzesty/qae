@@ -1014,6 +1014,16 @@ input[type="file"] {
   color: $red;
 }
 
+.question-has-errors .errors-container li,
+.supporters-list .errors-container li,
+.audit-certificate-upload-form .errors-container li {
+  .lte-ie7 & {
+    display: inline;
+    width: 100%;
+    float: left;
+  }
+}
+
 .question-has-errors,
 .field-with-errors {
   display: block;

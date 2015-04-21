@@ -9,6 +9,7 @@
         label for=question.input_name(suffix: "desc_short_#{placement}")
           = "Good/Service #{placement}"
       ul.errors-container
+      .clear
       .question-group
         textarea.js-trigger-autosave.js-char-count rows=question.rows data-word-max=question.words_max name="#{question.input_name}[#{index}][desc_short]" id=question.input_name(suffix: "desc_short_#{placement}") *possible_read_only_ops
           = item.present? ? item['desc_short'] : ''
@@ -19,5 +20,6 @@
           label for=question.input_name(suffix: "total_overseas_trade_#{placement}")
             ' % of your total overseas trade
         ul.errors-container
+        .clear
         input.js-trigger-autosave.tiny type="text" min=question.min max=question.max name="#{question.input_name}[#{index}][total_overseas_trade]" value=(item.present? ? item['total_overseas_trade'] : '') autocomplete="off" id=question.input_name(suffix: "total_overseas_trade_#{placement}") *possible_read_only_ops
         .clear
