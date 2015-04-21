@@ -845,6 +845,13 @@ input[type="file"] {
     }
   }
 
+  li.submit:hover,
+  li.save-quit-link:hover {
+    .lte-ie7 & {
+      background-color: transparent;
+    }
+  }
+
   li a:hover,
   li a:active {
     .lte-ie7 & {
