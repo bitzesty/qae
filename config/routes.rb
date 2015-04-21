@@ -24,18 +24,17 @@ Rails.application.routes.draw do
 
   devise_for :assessors
 
-  get "/apply-for-queens-award-for-enterprise"          => "content_only#apply_for_queens_award_for_enterprise",          as: "apply-for-queens-award-for-enterprise"
+  get "/awards_for_organisations"                       => redirect("https://www.gov.uk/queens-awards-for-enterprise/business-awards")
+  get "/enterprise_promotion_awards"                    => redirect("https://www.gov.uk/queens-awards-for-enterprise/enterprise-promotion-award")
+  get "/how_to_apply"                                   => redirect("https://www.gov.uk/queens-awards-for-enterprise/how-to-apply")
+  get "/timeline"                                       => redirect("https://www.gov.uk/queens-awards-for-enterprise/timeline")
+  get "/additional_information_and_contact"             => redirect("https://www.gov.uk/queens-awards-for-enterprise/how-to-apply")
+  get "/apply-for-queens-award-for-enterprise"          => redirect("https://www.gov.uk/apply-queens-award-enterprise")
 
   get "/sign_up_complete"                               => "content_only#sign_up_complete",                               as: "sign_up_complete"
-
   get "/privacy"                                        => "content_only#privacy",                                        as: "privacy"
   get "/cookies"                                        => "content_only#cookies",                                        as: "cookies"
 
-  get "/awards_for_organisations"                       => "content_only#awards_for_organisations",                       as: "awards_for_organisations"
-  get "/enterprise_promotion_awards"                    => "content_only#enterprise_promotion_awards",                    as: "enterprise_promotion_awards"
-  get "/how_to_apply"                                   => "content_only#how_to_apply",                                   as: "how_to_apply"
-  get "/timeline"                                       => "content_only#timeline",                                       as: "timeline"
-  get "/additional_information_and_contact"             => "content_only#additional_information_and_contact",             as: "additional_information_and_contact"
 
   get  "/new_innovation_form"                           => "form#new_innovation_form",                                    as: "new_innovation_form"
   get  "/new_international_trade_form"                  => "form#new_international_trade_form",                           as: "new_international_trade_form"
@@ -68,7 +67,7 @@ Rails.application.routes.draw do
   get "/buckingham_palace_attendance"                   => "content_only#buckingham_palace_attendance",                   as: "buckingham_palace_attendance"
   get "/submitted_nomination_successful"                => "content_only#submitted_nomination_successful",                as: "submitted_nomination_successful"
 
-  root to: "content_only#home"
+  root to: redirect("https://www.gov.uk/apply-queens-award-enterprise ")
 
   resource :account, only: :show do
     collection do
