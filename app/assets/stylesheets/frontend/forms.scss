@@ -685,6 +685,12 @@ input[type="file"] {
       width: 100%;
       float: left;
     }
+
+    &.hidden {
+      .lte-ie7 & {
+        display: none;
+      }
+    }
   }
 
   h3:first-child {
