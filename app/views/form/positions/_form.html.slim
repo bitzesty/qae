@@ -17,7 +17,7 @@ li
             label.small.date-input-field
               ' Year
               = f.input_field :start_year, class: "tiny"
-
+      span.clear
       - if f.object.errors[:start_month].present? || f.object.errors[:start_year].present?
         span.row
           span.span-6
@@ -27,6 +27,7 @@ li
             - if f.object.errors[:start_year].present?
               span.error
                 = "End month #{f.object.errors[:start_year].first}"
+        span.clear
         br
       span.row.nominee-end-date-row
         span.span-3
@@ -45,6 +46,7 @@ li
                     input_html: { class: "" },
                     label_html: { class: 'small' },
                     label: "Ongoing"
+      span.clear
 
     = f.label :details
     .char-count.char-max-shift
@@ -58,4 +60,5 @@ li
       .row
         .span-12
           = f.submit "Save role", class: "button button-alt"
+      .clear
 

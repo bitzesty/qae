@@ -7,21 +7,21 @@ li.view-only
         ' First Name
         span.view-value
           = support_letter.first_name
-
+  span.clear
   span.row
     span.span-6
       label
         ' Last Name
         span.view-value
           = support_letter.last_name
-
+  span.clear
   span.row
     span.span-6
       label
         ' Relationship to Nominee
         span.view-value
           = support_letter.relationship_to_nominee
-
+  span.clear
   span.row
     span.span-12
       label
@@ -31,6 +31,7 @@ li.view-only
             - file = support_letter.support_letter_attachment
             = render "shared/attachment_with_virus_check_status", item: file,
                                                                   mount_name: :attachment
+  span.clear
 
   .application-notice.help-notice
     p

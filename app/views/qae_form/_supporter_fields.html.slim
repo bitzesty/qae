@@ -19,6 +19,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
         .clear
         input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter["first_name"]
         span.visible-read-only = supporter["first_name"]
+  span.clear
   span.row
     span.span-6
       label
@@ -27,6 +28,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
         .clear
         input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter["last_name"]
         span.visible-read-only = supporter["last_name"]
+  span.clear
   span.row
     span.span-6
       label
@@ -35,6 +37,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
         .clear
         input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter["relationship_to_nominee"]
         span.visible-read-only = supporter["relationship_to_nominee"]
+  span.clear
   span.row
     - if question.list_type == :manuall_upload
       span.span-12
@@ -55,6 +58,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
           .clear
           input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
           span.visible-read-only = supporter['email']
+  span.clear
   span.row
     span.span-12
       a.button.js-save-collection class=(persisted ? "visuallyhidden" : "") data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
@@ -62,6 +66,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
           | Submit letter of support
         - else
           | Send support request
+  span.clear
   - if persisted && (s = @form_answer.supporters.find_by_id(supporter["supporter_id"])) && s.support_letter.present? && question.list_type != :manuall_upload
     .visible-read-only
       .application-notice.help-notice

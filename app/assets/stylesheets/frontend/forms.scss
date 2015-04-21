@@ -217,6 +217,12 @@ textarea {
          -moz-box-sizing: border-box;
               box-sizing: border-box;
     }
+
+    .lte-ie7 & {
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+    }
   }
 }
 
@@ -441,6 +447,10 @@ input[type="file"] {
   .span-11 label,
   .span-12 label {
     @media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
+      display: block;
+    }
+
+    .lte-ie7 {
       display: block;
     }
   }

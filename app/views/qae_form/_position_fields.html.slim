@@ -16,6 +16,7 @@ li.js-add-example
           label.small.date-input-field
             ' Year
             input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][start_year]" value=position['start_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
+    span.clear
     span.row.nominee-end-date-row
       span.span-3
         label
@@ -33,6 +34,7 @@ li.js-add-example
           input.js-trigger-autosave type="hidden" name="form[position_details][#{index}][ongoing]" value='0'
           input.js-trigger-autosave type="checkbox" name="form[position_details][#{index}][ongoing]" checked=('checked' if position['ongoing'] == '1') value='1'
           ' Ongoing
+    span.clear
 
   label for="form[position_details][#{index}][details]"
     span.label-char-count-reposition
