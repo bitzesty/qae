@@ -391,6 +391,10 @@ table .ellipsis {
       filter: alpha(opacity=0);
       opacity: 0;
 
+      .lte-ie7 & {
+        left: auto !important;
+      }
+
       .ie & {
         position: relative;
         opacity: 1;

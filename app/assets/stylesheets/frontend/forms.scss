@@ -817,6 +817,10 @@ input[type="file"] {
     &[disabled] {
       cursor: default;
     }
+
+    .lte-ie7 & {
+      left: auto !important;
+    }
   }
 }
 
