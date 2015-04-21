@@ -1,41 +1,36 @@
 .js-upload-wrapper data-max-attachments=question.max_attachments data-form-name=question.form_name data-name=question.key data-description=(question.description ? '1' : nil)
   ul.js-uploaded-list.list-add
     - (question.input_value(json: true) || {}).to_a.sort_by{|o| o.first.to_i}.each do |(idx, el)|
-      li
-        div
-          - if el['file']
-            - if attachments[el['file'].to_i].present? && attachments[el['file'].to_i].file && attachments[el['file'].to_i].scan && attachments[el['file'].to_i].scan.clean?
-              = link_to attachments[el['file'].to_i].original_filename, attachments[el['file'].to_i].file.to_s, target: "_blank"
-            - elsif attachments[el['file'].to_i].scan && !attachments[el['file'].to_i].scan.clean?
-              = attachments[el['file'].to_i].original_filename
-              |  has been blocked (virus detected), please remove.
-            - else
-              = attachments[el['file'].to_i].original_filename
-            input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
+      - if el['file'].present? || el['link'].present?
+        li
+          div
+            - if el['file'].present?
+              = render "form/form_attachments/file", el: el, attachments: attachments
+              input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
 
-            - if question.key == :org_chart
-              = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "remove-link if-js-hide"
+              - if question.key == :org_chart
+                = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "remove-link if-js-hide"
 
-              a.remove-link.if-no-js-hide href="#" *possible_read_only_ops
-                | Remove
-            - else
+                a.remove-link.if-no-js-hide href="#" *possible_read_only_ops
+                  | Remove
+              - else
+                a.remove-link href="#" *possible_read_only_ops
+                  | Remove
+
+            - elsif el['link'].present?
               a.remove-link href="#" *possible_read_only_ops
                 | Remove
-
-          - else
-            a.remove-link href="#" *possible_read_only_ops
-              | Remove
-            label
-              ' Website address
-              input.large type="text" name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)
-        - if question.description
-          div
-            label for=question.input_name(suffix: 'description', index: idx)
-              span.label-char-count-reposition
-                ' Description
-              / (optional)
-            textarea.js-char-count rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)
-              = question.input_value(suffix: 'description', index: idx)
+              label
+                ' Website address
+                input.large type="text" name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)
+          - if question.description
+            div
+              label for=question.input_name(suffix: 'description', index: idx)
+                span.label-char-count-reposition
+                  ' Description
+                / (optional)
+              textarea.js-char-count rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)
+                = question.input_value(suffix: 'description', index: idx)
 
   ul.errors-container
 
