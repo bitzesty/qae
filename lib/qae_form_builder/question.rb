@@ -7,7 +7,9 @@ class QAEFormBuilder
       "InnovationFinancialYearDateQuestion",
       "ByYearsQuestion",
       "ByYearsLabelQuestion",
-      "UserInfoQuestion"
+      "UserInfoQuestion",
+      "AwardHolderQuestion",
+      "SupportersQuestion"
     ]
 
     attr_reader :question
@@ -34,6 +36,14 @@ class QAEFormBuilder
     def skip_base_validation?
       SKIP_PRESENCE_VALIDATION_QUESTIONS.any? do |klass|
         question.delegate_obj.class.name.demodulize == klass
+      end
+    end
+
+    def limit_with_buffer(limit)
+      if limit > 15
+        limit_with_buffer = (limit + limit * 0.1).to_i + 1
+      else
+        limit
       end
     end
   end

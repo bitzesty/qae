@@ -10,8 +10,12 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
 
   .steps-progress-container.min-height-800
     .steps-progress-content
-      = render 'qae_form/form_header', form: @form, current_step: params[:step]
+      - if @form_answer.promotion? && @form_answer.validator_errors && @form_answer.validator_errors["supporters"].present?
+        .letters-of-support-error
+          ' You need to provide at least 2 letters of support to submit the form
+          = link_to "Add more letters of support", form_form_answer_supporters_path(@form_answer)
 
+      = render 'qae_form/form_header', form: @form, current_step: params[:step]
       = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form, answers: (HashWithIndifferentAccess.new(@form_answer.document || {})), attachments: HashWithIndifferentAccess.new(@attachments)}
 
       = render "qae_form/step_error"

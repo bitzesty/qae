@@ -174,6 +174,7 @@ class FormController < ApplicationController
             else
               params[:step] = @form_answer.steps_with_errors.try(:first)
               params[:step] ||= @form.steps.first.title.parameterize
+
               render template: "qae_form/show"
             end
           end
