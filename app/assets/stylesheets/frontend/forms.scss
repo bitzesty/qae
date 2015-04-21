@@ -742,6 +742,11 @@ input[type="file"] {
   }
 }
 
+.lte-ie7 .js-uploaded-list .js-file-uploaded .remove-link {
+  position: relative;
+  margin-top: -1.5em;
+}
+
 .button-add {
   @include core-19;
   position: relative;

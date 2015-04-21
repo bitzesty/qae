@@ -429,6 +429,8 @@ jQuery ->
         div.append(label)
         new_el.append(div)
       else
+        new_el.addClass("js-file-uploaded")
+
         if has_filename
           filename = wrapper.data('filename')
         else
