@@ -15,6 +15,9 @@ class Form::SupportLettersController < Form::BaseController
     @support_letter.support_letter_attachment = attachment
 
     if @support_letter.save
+      add_support_letter_to_document!
+      @form_answer.save
+
       redirect_to form_form_answer_supporters_path(@form_answer)
     else
       render :new
@@ -26,7 +29,11 @@ class Form::SupportLettersController < Form::BaseController
   end
 
   def destroy
-    @support_letter.destroy
+    if @support_letter.destroy
+      remove_support_letter_from_document!
+      @form_answer.save
+    end
+
     redirect_to form_form_answer_supporters_path(@form_answer)
   end
 
@@ -50,5 +57,40 @@ class Form::SupportLettersController < Form::BaseController
 
   def load_letter
     @support_letter = @form_answer.support_letters.find(params[:id])
+  end
+
+  def add_support_letter_to_document!
+    letters = support_letters_doc
+
+    new_letter = {
+      support_letter_id: @support_letter.id,
+      first_name: @support_letter.first_name,
+      last_name: @support_letter.last_name,
+      relationship_to_nominee: @support_letter.relationship_to_nominee,
+      letter_of_support: @support_letter.support_letter_attachment.id
+    }.to_json
+
+    letters << new_letter
+
+    @form_answer.document = @form_answer.document.merge(supporter_letters_list: letters.to_json,
+                                                        manually_upload: "yes")
+  end
+
+  def remove_support_letter_from_document!
+    letters = support_letters_doc
+
+    letters.delete_if do |sup|
+      JSON.parse(sup)["support_letter_id"] == @support_letter.id
+    end
+
+    @form_answer.document = @form_answer.document.merge(supporter_letters_list: letters.to_json)
+  end
+
+  def support_letters_doc
+    if @form_answer.document["supporter_letters_list"].present?
+      JSON.parse(@form_answer.document["supporters"])
+    else
+      []
+    end
   end
 end

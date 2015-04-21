@@ -4,6 +4,9 @@ class Form::SupportersController < Form::BaseController
     @supporter.user = current_user
 
     if @supporter.save
+      add_supporter_to_document!
+      @form_answer.save
+
       redirect_to form_form_answer_supporters_path(@form_answer)
     else
       render :new
@@ -19,13 +22,51 @@ class Form::SupportersController < Form::BaseController
   end
 
   def destroy
-    @form_answer.supporters.find(params[:id])
-    @form_answer.destroy
+    @supporter = @form_answer.supporters.find(params[:id])
+
+    if @supporter.destroy
+      remove_supporter_from_document!
+      @form_answer.save
+    end
 
     redirect_to form_form_answer_supporters_path(@form_answer)
   end
 
   private
+
+  def add_supporter_to_document!
+    supporters = supporters_doc
+
+    new_supporter = {
+      supporter_id: @supporter.id,
+      first_name: @supporter.first_name,
+      last_name: @supporter.last_name,
+      relationship_to_nominee: @supporter.relationship_to_nominee,
+      email: @supporter.email
+    }.to_json
+
+    supporters << new_supporter
+
+    @form_answer.document = @form_answer.document.merge(supporters: supporters.to_json)
+  end
+
+  def remove_supporter_from_document!
+    supporters = supporters_doc
+
+    supporters.delete_if do |sup|
+      JSON.parse(sup)["supporter_id"] == @supporter.id
+    end
+
+    @form_answer.document = @form_answer.document.merge(supporters: supporters.to_json)
+  end
+
+  def supporters_doc
+    if @form_answer.document["supporters"].present?
+      JSON.parse(@form_answer.document["supporters"])
+    else
+      []
+    end
+  end
 
   def supporter_params
     params.require(:supporter).permit(
