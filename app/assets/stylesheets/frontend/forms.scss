@@ -361,6 +361,10 @@ input[type="file"] {
     &.selectable {
       @include core-16;
 
+      .lte-ie7 & {
+        width: 85%;
+      }
+
       &.selectable-confirm {
         @include core-19;
         margin: 0.5em 0 0 0;
@@ -389,6 +393,10 @@ input[type="file"] {
 
   span.selectable {
     padding: 0;
+
+    .lte-ie7 & {
+      width: 85%;
+    }
 
     label {
       display: block;
