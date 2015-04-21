@@ -824,17 +824,48 @@ input[type="file"] {
     border: none;
   }
 
+  li:hover {
+    .lte-ie7 & {
+      background-color: $grey-4;
+    }
+  }
+
+  li a:hover,
+  li a:active {
+    .lte-ie7 & {
+      background-color: transparent;
+    }
+  }
+
+  li.previous {
+    .lte-ie7 & {
+      background-image: image-url("icon-arrow-pagination-left.png");
+      background-repeat: no-repeat;
+      background-position: left 8px;
+    }
+  }
+
+  li.next {
+    .lte-ie7 & {
+      background-image: image-url("icon-arrow-pagination-right.png");
+      background-repeat: no-repeat;
+      background-position: right 8px;
+    }
+  }
+
   li.previous-alternate {
     width: 120px;
+    margin-top: 13px;
 
     @media (max-width: 740px) {
       width: 100%;
     }
 
+    .lte-ie7 & {
+      background-position: -10px 8px;
+    }
+
     a {
-      margin: 25px 0;
-      margin-bottom: 0;
-      padding: 0;
       padding-left: 2.2em;
 
       &:hover {
@@ -856,11 +887,17 @@ input[type="file"] {
   li.save-quit-link {
     width: 42%;
     float: right;
+    text-align: right;
 
     @media (max-width: 740px) {
       width: 100%;
       margin-top: 1em;
       float: none;
+    }
+
+    .lte-ie7 & {
+      width: 45%;
+      margin-right: 10px;
     }
 
     button, a {
@@ -893,6 +930,7 @@ input[type="file"] {
     a,
     button {
       width: auto;
+      height: auto;
       margin: 0.2em 0 0.5em 0;
     }
   }
@@ -910,11 +948,23 @@ input[type="file"] {
   }
 }
 
-.step-article .pagination li.submit {
-  width: 36%;
+.step-article .pagination {
+  li.submit {
+    width: 36%;
 
-  @media (max-width: 640px) {
-    width: auto;
+    @media (max-width: 640px) {
+      width: auto;
+    }
+
+    .lte-ie7 & {
+      width: 35%;
+    }
+  }
+
+  li.previous-alternate {
+    .lte-ie7 & {
+      width: 100px;
+    }
   }
 }
 
