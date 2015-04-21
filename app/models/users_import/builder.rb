@@ -23,7 +23,7 @@ class UsersImport::Builder
         u.agreed_with_privacy_policy = "1"
         u.skip_confirmation!
         if u.save
-          u.update_column(:created_at, user["UserCreationDate"])
+          u.update_column(:created_at, Date.strptime(user["UserCreationDate"], "%d/%m/%y")) if user["UserCreationDate"].present?
           saved << u
         else
           # probably shouldn't happen
