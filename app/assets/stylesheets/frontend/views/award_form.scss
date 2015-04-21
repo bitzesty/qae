@@ -159,10 +159,10 @@ label > .visible-read-only,
 .read-only {
   input,
   .button,
-  .remove-link {
+  .remove-link,
+  .errors-container {
     display: none;
   }
-
 
   .support-letter-attachment-filename,
   .visible-read-only {
