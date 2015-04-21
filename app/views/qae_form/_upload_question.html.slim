@@ -4,7 +4,7 @@
       li
         div
           - if el['file']
-            - if attachments[el['file'].to_i].file && attachments[el['file'].to_i].scan && attachments[el['file'].to_i].scan.clean?
+            - if attachments[el['file'].to_i].present? && attachments[el['file'].to_i].file && attachments[el['file'].to_i].scan && attachments[el['file'].to_i].scan.clean?
               = link_to attachments[el['file'].to_i].original_filename, attachments[el['file'].to_i].file.to_s, target: "_blank"
             - elsif attachments[el['file'].to_i].scan && !attachments[el['file'].to_i].scan.clean?
               = attachments[el['file'].to_i].original_filename
