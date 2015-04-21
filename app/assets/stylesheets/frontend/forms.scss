@@ -957,18 +957,6 @@ input[type="file"] {
         text-decoration: none;
       }
     }
-
-    .if-js-hide {
-      .lte-ie7 & {
-        display: none !important;
-      }
-    }
-
-    .if-no-js-hide {
-      .lte-ie7 & {
-        display: block !important;
-      }
-    }
   }
 
   li.submit {

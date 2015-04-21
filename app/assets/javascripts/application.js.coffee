@@ -26,15 +26,14 @@ jQuery ->
     window.FormValidation.validate()
 
   $(document).on "submit", ".qae-form", (e) ->
-    if !$("html").hasClass("lte-ie7")
-      $("body").addClass("tried-submitting")
-      if not validate()
-        $("body").addClass("show-error-page")
-        $(".steps-progress-bar .step-current").removeClass("step-current")
-        $("html, body").animate(
-          scrollTop: 0
-        , 0)
-        return false
+    $("body").addClass("tried-submitting")
+    if not validate()
+      $("body").addClass("show-error-page")
+      $(".steps-progress-bar .step-current").removeClass("step-current")
+      $("html, body").animate(
+        scrollTop: 0
+      , 0)
+      return false
 
   # Hidden hints as seen on
   # https://www.gov.uk/service-manual/user-centred-design/resources/patterns/help-text
@@ -243,21 +242,20 @@ jQuery ->
       window.location.hash = $(".js-step-condition.step-current").attr("data-step").substr(5)
 
   $(document).on "click", ".js-step-link", (e) ->
-    if !$("html").hasClass("lte-ie7")
-      e.preventDefault()
-      if !$(this).hasClass("step-current")
-        current = $(this).attr("data-step")
-        if $(this).hasClass "js-next-link"
-          if $("body").hasClass("tried-submitting")
-            validate()
-          autosave()
-        showAwardStep(current)
-        # Scroll to top
-        $("html, body").animate(
-          scrollTop: 0
-        , 0)
-        # Resize textareas that were previously hidden
-        resetResizeTextarea()
+    e.preventDefault()
+    if !$(this).hasClass("step-current")
+      current = $(this).attr("data-step")
+      if $(this).hasClass "js-next-link"
+        if $("body").hasClass("tried-submitting")
+          validate()
+        autosave()
+      showAwardStep(current)
+      # Scroll to top
+      $("html, body").animate(
+        scrollTop: 0
+      , 0)
+      # Resize textareas that were previously hidden
+      resetResizeTextarea()
 
   autosave = () ->
     window.autosave_timer = null
