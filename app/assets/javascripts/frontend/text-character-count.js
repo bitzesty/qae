@@ -1,4 +1,9 @@
 $.fn.charcount = function() {
+  // Fixes label offset
+  if ($(this).prev().is("label")) {
+    $(this).prev().addClass("char-count-label");
+  }
+
   // Adds class to parent so that we can position the question and input closer
   var prevElement = this.closest(".question-group").prev();
   prevElement.addClass("char-spacing");
