@@ -6,6 +6,9 @@ $.fn.charcount = function() {
 
   // Adds class to parent so that we can position the question and input closer
   var prevElement = this.closest(".question-group").prev();
+  if (prevElement.hasClass("clear")) {
+    prevElement = prevElement.prev();
+  }
   prevElement.addClass("char-spacing");
   if (prevElement.hasClass("errors-container")) {
     if (prevElement.prev().find(".char-space").size() <= 0) {

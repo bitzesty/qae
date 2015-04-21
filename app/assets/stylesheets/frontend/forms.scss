@@ -626,10 +626,10 @@ input[type="file"] {
 
 .char-count {
   position: relative;
-}
 
-.char-max-shift {
-  margin-top: -1.7em;
+  &.char-max-shift {
+    margin-top: -1.7em;
+  }
 }
 
 .char-text-limit {
@@ -1044,6 +1044,10 @@ input[type="file"] {
     padding-right: 160px;
 
     @media (max-width: 640px) {
+      margin-bottom: $gutter;
+    }
+
+    .lte-ie7 & {
       margin-bottom: $gutter;
     }
   }
