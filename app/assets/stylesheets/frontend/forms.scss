@@ -481,6 +481,11 @@ input[type="file"] {
     .currency-unit {
       position: absolute;
       line-height: 2;
+
+      .lte-ie7 & {
+        top: 0;
+        left: 0;
+      }
     }
 
     input {
