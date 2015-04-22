@@ -22,15 +22,21 @@ describe "Letters of Support" do
     expect(page).to have_content("supp@example.com")
   end
 
-  it "should be able to upload support letter" do
-    click_link "+ Add another support letter"
+  describe "Support Letters" do
+    before do
+      allow_any_instance_of(Scan).to receive(:status).and_return("clean")
+    end
 
-    fill_in "First name", with: "Jack"
-    fill_in "Last name", with: "Lee"
-    fill_in "Relationship to nominee", with: "Brother"
-    attach_file "Attachment", Rails.root.join("spec/fixtures/cat.jpg")
-    click_button "Submit letter of support"
+    it "should be able to upload support letter" do
+      click_link "+ Add another support letter"
 
-    expect(page).to have_link("cat.jpg")
+      fill_in "First name", with: "Jack"
+      fill_in "Last name", with: "Lee"
+      fill_in "Relationship to nominee", with: "Brother"
+      attach_file "Attachment", Rails.root.join("spec/fixtures/cat.jpg")
+      click_button "Submit letter of support"
+
+      expect(page).to have_link("cat.jpg")
+    end
   end
 end
