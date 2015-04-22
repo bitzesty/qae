@@ -89,7 +89,7 @@ class Form::SupportLettersController < Form::BaseController
 
   def support_letters_doc
     if @form_answer.document["supporter_letters_list"].present?
-      JSON.parse(@form_answer.document["supporters"])
+      JSON.parse(@form_answer.document["supporter_letters_list"])
     else
       []
     end
