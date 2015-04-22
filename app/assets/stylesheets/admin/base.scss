@@ -47,6 +47,11 @@ select.form-control {
   @include is-retina {
     background-image: image-url("icon-arrow-select@2.jpg");
   }
+
+  .lte-ie9 & {
+    padding: 0;
+    background-image: none;
+  }
 }
 
 h1,
