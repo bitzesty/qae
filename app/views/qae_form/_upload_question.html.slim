@@ -3,7 +3,7 @@
     - (question.input_value(json: true) || {}).to_a.sort_by{|o| o.first.to_i}.each do |(idx, el)|
 
       - if el['file'].present? || el['link'].present?
-        li
+        li class="#{'js-file-uploaded' if el['file'].present?}"
           div
             - if el['file'].present?
               = render "form/form_attachments/file", el: el, attachments: attachments
