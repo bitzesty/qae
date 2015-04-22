@@ -19,10 +19,13 @@ class MailRenderer
   def shortlisted_audit_certificate_reminder
     assigns = {}
 
-    assigns[:form_owner] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
-    assigns[:award_title] = assigns[:form_answer].award_application_title
+    assigns[:deadline] = if Settings.current_submission_deadline.trigger_at
+      Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
+    else
+      "21/09/#{Date.current.year}"
+    end
 
     render(assigns, "users/audit_certificate_request_mailer/notify")
   end

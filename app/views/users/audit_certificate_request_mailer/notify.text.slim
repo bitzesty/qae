@@ -1,13 +1,17 @@
-' Hi
+' Dear
 = @recipient.full_name
 ' ,
 
-' Application for
-= @form_answer.award_application_title
-'  for
-= @form_owner.general_info
-' . You need to download, check and complete an audit certificate!
+' We're emailing to remind you that you have until
+=> @deadline
+' to
+= link_to "upload your completed Audit Certificate here.", users_form_answer_audit_certificate_url(@form_answer)
 
-= link_to "Review Audit Certificate", users_form_answer_audit_certificate_url(@form_answer)
+' If you don't submit your Audit Certificate before the deadline, we will not have sufficient information to assess your application and it will most likely be withdrawn.
 
-' Best Regards, Administration Team
+' You can
+= link_to "download a blank copy of the Audit Certificate here.", "#"
+
+' Thank you,
+
+' The Queen's Awards Office

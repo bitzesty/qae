@@ -1,11 +1,10 @@
 class Users::AuditCertificateRequestMailer < ApplicationMailer
   def notify(user_id, form_answer_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
-    @form_owner = @form_answer.user.decorate
     @recipient = User.find(user_id).decorate
-    @award_title = @form_answer.decorate.award_application_title
+    @deadline = Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
 
-    @subject = "[Queen's Awards] #{@award_title} request to complete an audit certificate!"
+    @subject = "Queen's Awards for Enterprise: Reminder to submit your Audit Certificate"
     mail to: @recipient.email, subject: @subject
   end
 end

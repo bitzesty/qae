@@ -6,9 +6,13 @@ describe Users::AuditCertificateRequestMailer do
     create :form_answer, :submitted, :innovation, user: user
   end
 
+  let!(:settings) { create :settings, :submission_deadlines }
+
+  let(:deadline) { Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y") }
+
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) {
-    "[Queen's Awards] #{award_title} request to complete an audit certificate!"
+    "Queen's Awards for Enterprise: Reminder to submit your Audit Certificate"
   }
 
   before do
@@ -25,9 +29,9 @@ describe Users::AuditCertificateRequestMailer do
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to match(user.decorate.full_name)
-      expect(mail.body.encoded).to match(award_title)
-      expect(mail.body.encoded).to have_link("Review Audit Certificate", href: users_form_answer_audit_certificate_url(form_answer))
+      expect(mail.html_part.decoded).to match(user.decorate.full_name)
+      expect(mail.html_part.decoded).to have_link("upload your completed Audit Certificate here.", href: users_form_answer_audit_certificate_url(form_answer))
+      expect(mail.html_part.decoded).to match(deadline)
     end
   end
 end
