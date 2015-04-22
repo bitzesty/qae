@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap-sprockets
+#= require jquery.iframe-transport
 #= require jquery.fileupload
 #= require select2.full.min
 #= require ./frontend/password-strength-indicator

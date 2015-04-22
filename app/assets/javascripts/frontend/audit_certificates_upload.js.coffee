@@ -31,7 +31,9 @@ window.AuditCertificatesUpload =
       form.removeClass('visuallyhidden')
 
     $el.fileupload(
-      url: form.attr("action")
+      url: form.attr("action") + ".json"
+      forceIframeTransport: true
+      dataType: 'json'
       formData: [
         { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
       ]
