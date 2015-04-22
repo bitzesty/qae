@@ -381,7 +381,6 @@ jQuery ->
       # TODO
 
     upload_started = (e, data) ->
-      console.log "STARTED"
       # Show `Uploading...`
       button.addClass("visuallyhidden")
       dropzone.addClass("visuallyhidden")
@@ -412,7 +411,6 @@ jQuery ->
       dropzone.removeClass("visuallyhidden").removeClass("drop-hover")
 
     upload_done = (e, data, link) ->
-      console.log "DONE"
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.addClass("visuallyhidden")
@@ -451,7 +449,6 @@ jQuery ->
         div.append(hidden_input)
         appendLinkDocumentRemoveLink(div)
         new_el.append(div)
-        console.log(hidden_input)
 
       if needs_description
         desc_div = $("<div>")
@@ -468,21 +465,12 @@ jQuery ->
       updateUploadListVisiblity(list, button, max)
       reindexUploadListInputs(list)
 
-    file_always = (e, data) ->
-      console.log "data.result: "
-      console.log data.result
-      console.log "data.textStatus: "
-      console.log data.textStatus
-      console.log "data.jqXHR: "
-      console.log data.jqXHR
-
     updateUploadListVisiblity(list, button, max)
 
     if is_link
       $el.click (e) ->
         e.preventDefault()
         if !$(this).hasClass("read-only")
-          console.log("upload_done(null, null, true)")
           upload_done(null, null, true)
         false
     else
@@ -497,7 +485,6 @@ jQuery ->
         progressall: progress_all
         send: upload_started
         fail: failed
-        always: file_always
       )
 
   $(document).on "click", ".js-upload-wrapper .remove-link", (e) ->
