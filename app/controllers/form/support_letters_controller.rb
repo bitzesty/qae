@@ -12,6 +12,7 @@ class Form::SupportLettersController < Form::BaseController
     attachment = SupportLetterAttachment.new(attachment_params)
     attachment.user = current_user
     attachment.form_answer = @form_answer
+    attachment.original_filename = attachment_params[:attachment].try(:original_filename)
     @support_letter.support_letter_attachment = attachment
 
     if @support_letter.save
