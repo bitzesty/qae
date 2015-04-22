@@ -98,6 +98,15 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}".strip
   end
 
+  def reset_password_period_valid?
+    release_date = Date.new(2015, 4, 21)
+    if imported? && reset_password_sent_at.present? && reset_password_sent_at.to_date == release_date
+      true
+    else
+      super
+    end
+  end
+
   private
 
   def first_step?
