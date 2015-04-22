@@ -69,7 +69,7 @@ gem 'sentry-raven', github: 'getsentry/raven-ruby'
 
 # Uploads
 gem 'carrierwave'
-gem 'jquery.fileupload-rails'
+gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
 gem "fog"
 gem "fog-aws"
 gem "vs_rails", "~> 0.0.6"
@@ -129,7 +129,6 @@ group :development do
   gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
-  gem 'rack-mini-profiler', require: false
   gem 'passenger'
   gem 'better_errors'
   gem 'binding_of_caller'
