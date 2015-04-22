@@ -1,0 +1,17 @@
+- if item.send(mount_name)
+  - if item.scan.present?
+    - if item.scan.clean?
+      = link_to item.try(:original_filename),
+                item.send(mount_name).url,
+                target: "_blank"
+    - elsif item.scan.status == "scanning"
+      = item.try(:original_filename)
+      |  (scanning on viruses)
+    - elsif item.scan.status == "infected"
+      = item.try(:original_filename)
+      |  has been blocked (virus detected), please remove.
+    - else
+      = item.try(:original_filename)
+      |  didn't pass virus scanner check, please remove
+- else
+  = item.try(:original_filename)

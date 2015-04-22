@@ -28,8 +28,9 @@ li.view-only
         ' Letter of Support
         span.support-letter-attachment-filename
           - if support_letter.support_letter_attachment
-            - file = support_letter.support_letter_attachment.attachment
-            = link_to File.basename(file.path), file.url, target: "_blank"
+            - file = support_letter.support_letter_attachment
+            = render "shared/attachment_with_virus_check_status", item: file,
+                                                                  mount_name: :attachment
 
   .application-notice.help-notice
     p
