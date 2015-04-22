@@ -32,7 +32,9 @@ class FormPdf < Prawn::Document
     @award_form = form_answer.award_form.decorate(answers: answers)
     @steps = award_form.steps
     @all_questions = steps.map(&:questions).flatten
-    @form_answer_attachments = form_answer.form_answer_attachments
+    @form_answer_attachments = form_answer.form_answer_attachments.select do |a|
+      a.scan.present? && a.scan.clean?
+    end
     @filled_answers = fetch_filled_answers
     @financial_pointer = FormFinancialPointer.new(@form_answer.decorate)
 

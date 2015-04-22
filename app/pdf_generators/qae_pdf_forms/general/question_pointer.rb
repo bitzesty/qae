@@ -356,8 +356,13 @@ class QaePdfForms::General::QuestionPointer
 
   def attachment_by_type(_k, v)
     if v.keys.include?("file")
-      attachment = form_pdf.form_answer_attachments.find(v["file"])
-      form_pdf.draw_link_with_file_attachment(attachment, v["description"])
+      attachment = form_pdf.form_answer_attachments.detect do |a|
+        a.id.to_s == v["file"]
+      end
+
+      if attachment.present?
+        form_pdf.draw_link_with_file_attachment(attachment, v["description"])
+      end
     elsif v.keys.include?("link")
       if v["link"].present?
         form_pdf.draw_link(v)
