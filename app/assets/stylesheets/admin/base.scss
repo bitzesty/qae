@@ -370,27 +370,14 @@ table .ellipsis {
     position: relative;
     overflow: hidden;
 
-    .ie & {
-      padding: 0;
-      border: none;
-      background: transparent !important;
-      box-shadow: none !important;
-      overflow: visible;
-    }
-
-    .attachment-text {
-      .ie & {
-        display: none;
-      }
-    }
-
     input[type="file"] {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
-      left: 0;
+      left: auto;
       width: 100%;
+      font-size: 200px;
       cursor: pointer;
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
