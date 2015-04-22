@@ -3,18 +3,8 @@
 - if item.present?
   li
     div
-      - if item.scan.present?
-        - if item.scan.clean?
-          = link_to item.original_filename, item.file.url, target: "_blank"
-        - elsif item.scan.status == "scanning"
-          = item.original_filename
-          |  (scanning on viruses)
-        - elsif item.scan.status == "infected"
-          = item.original_filename
-          | has been blocked (virus detected), please remove.
-        - else
-          = item.original_filename
-          | didn't pass virus scanner check, please remove
+      = render "shared/attachment_with_virus_check_status", item: item,
+                                                            mount_name: :file
 
       = button_to "Remove", form_form_answer_form_attachment_url(@form_answer, item),
                             method: :delete,

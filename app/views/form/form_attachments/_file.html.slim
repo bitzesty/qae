@@ -1,14 +1,5 @@
 - att_record = attachments[el['file'].to_i]
 
 - if att_record.present? && att_record.file.present?
-  - if att_record.scan.present?
-    - if att_record.scan.clean?
-      = link_to attachments[el['file'].to_i].original_filename, attachments[el['file'].to_i].file.to_s, target: "_blank"
-    - elsif att_record.scan.status == "scanning"
-      = attachments[el['file'].to_i].original_filename
-      |  (scanning on viruses)
-    - elsif att_record.scan.status == "infected"
-      = attachments[el['file'].to_i].original_filename
-      |  has been blocked (virus detected), please remove.
-    - else
-      = attachments[el['file'].to_i].original_filename
+  = render "shared/attachment_with_virus_check_status", item: att_record,
+                                                        mount_name: :file
