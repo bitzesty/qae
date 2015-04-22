@@ -3,7 +3,6 @@ class FormAnswerAttachment < ActiveRecord::Base
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
   has_one :scan, class_name: Scan
-  after_save :virus_scan
 
   mount_uploader :file, FormAnswerAttachmentUploader
 
@@ -49,6 +48,11 @@ class FormAnswerAttachment < ActiveRecord::Base
     attachable_type != "User"
   end
 
+  def store_file!
+    super()
+    virus_scan
+  end
+
   def virus_scan
     if ENV["DISABLE_VIRUS_SCANNER"] == "true"
       Scan.create(
@@ -59,6 +63,7 @@ class FormAnswerAttachment < ActiveRecord::Base
       )
     else
       response = ::VirusScanner::File.scan_url(file.url)
+
       Scan.create(
         filename: file.current_path,
         uuid: response["id"],

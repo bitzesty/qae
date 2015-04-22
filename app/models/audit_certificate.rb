@@ -2,7 +2,6 @@ require "virus_scanner"
 class AuditCertificate < ActiveRecord::Base
   mount_uploader :attachment, AuditCertificateUploader
   has_one :scan, class_name: Scan
-  after_save :virus_scan
 
   begin :associations
     belongs_to :form_answer
@@ -30,6 +29,11 @@ class AuditCertificate < ActiveRecord::Base
 
   def reviewed?
     reviewed_at.present?
+  end
+
+  def store_attachment!
+    super()
+    virus_scan
   end
 
   def virus_scan

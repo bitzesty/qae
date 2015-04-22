@@ -2,7 +2,6 @@ require "virus_scanner"
 class SupportLetterAttachment < ActiveRecord::Base
   mount_uploader :attachment, FormAnswerAttachmentUploader
   has_one :scan, class_name: Scan
-  after_save :virus_scan
 
   begin :associations
     belongs_to :user
@@ -16,6 +15,11 @@ class SupportLetterAttachment < ActiveRecord::Base
                            file_size: {
                              maximum: 5.megabytes.to_i
                            }
+  end
+
+  def store_attachment!
+    super()
+    virus_scan
   end
 
   def virus_scan
