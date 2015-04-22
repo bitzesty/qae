@@ -800,3 +800,23 @@ article .help-notice ul {
     display: none;
   }
 }
+
+// IE6 browser warning banner
+.browser_warning {
+  display: none;
+  padding: 1.5em 5px;
+  background: #333;
+  color: $white;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: baseline;
+
+  .lte-ie6 & {
+    display: block;
+  }
+
+  a {
+    color: $white;
+  }
+}
