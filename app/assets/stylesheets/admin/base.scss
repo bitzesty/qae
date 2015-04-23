@@ -377,11 +377,11 @@ table .ellipsis {
       bottom: 0;
       left: auto;
       width: 100%;
-      font-size: 200px;
       cursor: pointer;
+      font-size: 200px;
+      opacity: 0;
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
-      opacity: 0;
 
       .lte-ie7 & {
         left: auto !important;
