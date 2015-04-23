@@ -16,8 +16,10 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
 
   def create
     if support_letter_attachment.save
+      # text/plain content type is needed for jquery.fileupload
       render json: support_letter_attachment,
-             status: :created
+             status: :created,
+             content_type: "text/plain"
     else
       render json: humanized_errors,
              status: :unprocessable_entity
