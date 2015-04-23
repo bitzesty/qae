@@ -487,6 +487,8 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.8.0)
     simplecov-html (0.8.0)
+    skylight (0.6.0)
+      activesupport (>= 3.0.0)
     slackistrano (0.1.0)
       capistrano (>= 3.0.1)
       json
@@ -623,6 +625,7 @@ DEPENDENCIES
   shoryuken!
   shoulda-matchers
   simple_form (~> 3.1)
+  skylight
   slackistrano
   slim-rails (~> 3.0.1)
   sprockets (= 2.12.3)

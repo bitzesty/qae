@@ -95,6 +95,9 @@ gem 'whenever'
 gem "virtus"
 gem "nilify_blanks"
 
+# Monitoring
+gem "skylight"
+
 # Lock sprockets
 # As 3.0.0 cause Capistrano error
 # DEBUG[0c9b1934] cp: cannot stat '/home/qae/application/releases/20150414085552/public/assets/manifest*': No such file or directory
