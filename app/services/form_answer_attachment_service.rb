@@ -19,7 +19,8 @@ class FormAnswerAttachmentService
       locals: {
         form_answer_attachment: resource,
         form_answer: form_answer
-      }
+      },
+      content_type: "text/plain"
     }
   end
 
