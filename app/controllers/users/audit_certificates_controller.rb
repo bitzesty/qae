@@ -27,24 +27,32 @@ class Users::AuditCertificatesController < Users::BaseController
   def create
     self.audit_certificate = form_answer.build_audit_certificate(audit_certificate_params)
 
-    if audit_certificate.save
+    if saved = audit_certificate.save
       if form_answer.assessors.primary.present?
         Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
       end
+    end
 
-      if request.xhr?
-        render json: audit_certificate,
-               status: :created
-      else
-        redirect_to users_form_answer_audit_certificate_url(form_answer),
-                    notice: "Audit Certificate successfully uploaded!"
+    respond_to do |format|
+      format.html do
+        if saved
+          redirect_to users_form_answer_audit_certificate_url(form_answer),
+                      notice: "Audit Certificate successfully uploaded!"
+        else
+          render :show
+        end
       end
-    else
-      if request.xhr?
-        render json: humanized_errors,
-               status: :unprocessable_entity
-      else
-        render :show
+
+      format.json do
+        if saved
+          render json: audit_certificate,
+                 status: :created,
+                 content_type: "text/plain"
+        else
+          render json: humanized_errors,
+                 status: :unprocessable_entity,
+                 content_type: "text/plain"
+        end
       end
     end
   end
@@ -62,26 +70,24 @@ class Users::AuditCertificatesController < Users::BaseController
 
   private
 
-    def audit_certificate_params
-      # This is fix of "missing 'audit_certificate' param"
-      # if no any file selected in file input
-      if params[:audit_certificate].blank?
-        params.merge!({
-          audit_certificate: {
-            attachment: ""
-          }
-        })
-      end
-
-      params.require(:audit_certificate).permit(
-        :attachment
-      )
+  def audit_certificate_params
+    # This is fix of "missing 'audit_certificate' param"
+    # if no any was selected in file input
+    if params[:audit_certificate].blank?
+      params.merge!({
+        audit_certificate: {
+          attachment: ""
+        }
+      })
     end
 
-    def humanized_errors
-      audit_certificate.errors.
-                       full_messages.
-                       reject { |m| m == "Attachment This field cannot be blank" }.
-                       join(", ")
-    end
+    params.require(:audit_certificate).permit(:attachment)
+  end
+
+  def humanized_errors
+    audit_certificate.errors
+                     .full_messages
+                     .reject { |m| m == "Attachment This field cannot be blank" }
+                     .join(", ")
+  end
 end
