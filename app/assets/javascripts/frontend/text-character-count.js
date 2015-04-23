@@ -22,7 +22,7 @@ $.fn.charcount = function() {
 
   // Includes character limit if there is one
   this.each(function(){
-    var maxlength = parseInt($(this).attr("data-word-max"));
+    var maxlength = parseInt($(this).attr("data-word-max"), 10);
     if (maxlength) {
       $(this).before("<div class='char-text-limit'>Word limit: <span class='total-count'>" +maxlength+ "</span></div>");
       $(this).closest(".char-count").addClass("char-max-shift");
@@ -44,8 +44,8 @@ $.fn.charcount = function() {
   // If character count is over the limit then show error
   var characterOver = function(counter, textInput) {
     var lastLetter = textInput.val()[textInput.val().length - 1];
-    var maxWordCount = parseInt(textInput.attr("data-word-max"));
-    var maxWordCountLimit = parseInt(textInput.attr("data-word-max-limit"));
+    var maxWordCount = parseInt(textInput.attr("data-word-max"), 10);
+    var maxWordCountLimit = parseInt(textInput.attr("data-word-max-limit"), 10);
     var maxWordCountTotal = maxWordCount + maxWordCountLimit;
 
     textInput.closest(".char-count").removeClass("char-over");
@@ -79,25 +79,26 @@ $.fn.charcount = function() {
 
   // Maxlength for pasting text
   this.bind("paste", function(e){
-    var original_text = $(this).val() + ((e.originalEvent || e).clipboardData.getData("text/plain"));
+    var originalText = $(this).val();
+    originalText += ((e.originalEvent || e).clipboardData.getData("text/plain"));
 
-    if (original_text.length > 0) {
+    if (originalText.length > 0) {
       e.preventDefault();
-      var char_test = $(this).after("<p class='char-count-test'></p>");
-      char_test.attr("data-word-max", $(this).attr("data-word-max"));
-      char_test.attr("data-word-max-limit", $(this).attr("data-word-max-limit"));
-      var last_char = 0;
+      var charTest = $(this).after("<p class='char-count-test'></p>");
+      charTest.attr("data-word-max", $(this).attr("data-word-max"));
+      charTest.attr("data-word-max-limit", $(this).attr("data-word-max-limit"));
+      var lastChar = 0;
       $(this).val("");
-      for (c = 0; c<original_text.length; c++) {
-        if (((typeof(char_test.attr("maxlength")) !== typeof(undefined)) && char_test.attr("maxlength") !== false) == false || c <= char_test.attr("maxlength")) {
-          char_test.text(original_text.substr(0, c + 1));
-          Countable.once(char_test[0], counting);
+      for (var c = 0; c<originalText.length; c++) {
+        if (((typeof(charTest.attr("maxlength")) !== typeof(undefined)) && charTest.attr("maxlength") !== false) === false || c <= charTest.attr("maxlength")) {
+          charTest.text(originalText.substr(0, c + 1));
+          Countable.once(charTest[0], counting);
         }
-        if (((typeof(char_test.attr("maxlength")) !== typeof(undefined)) && char_test.attr("maxlength") !== false) == false || c <= char_test.attr("maxlength")) {
-          last_char = c;
+        if (((typeof(charTest.attr("maxlength")) !== typeof(undefined)) && charTest.attr("maxlength") !== false) === false || c <= charTest.attr("maxlength")) {
+          lastChar = c;
         }
       }
-      $(this).val(original_text.substr(0, last_char + 1));
+      $(this).val(originalText.substr(0, lastChar + 1));
       Countable.once(this, counting);
       $(".char-count-test").remove();
     }
