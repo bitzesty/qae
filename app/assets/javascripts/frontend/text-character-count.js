@@ -79,28 +79,17 @@ $.fn.charcount = function() {
 
   // Maxlength for pasting text
   this.bind("paste", function(e){
-    var originalText = $(this).val();
-    originalText += ((e.originalEvent || e).clipboardData.getData("text/plain"));
+    var originalText = ((e.originalEvent || e).clipboardData.getData("text/plain"));
 
     if (originalText.length > 0) {
       e.preventDefault();
-      var charTest = $(this).after("<p class='char-count-test'></p>");
-      charTest.attr("data-word-max", $(this).attr("data-word-max"));
-      charTest.attr("data-word-max-limit", $(this).attr("data-word-max-limit"));
-      var lastChar = 0;
-      $(this).val("");
+
       for (var c = 0; c<originalText.length; c++) {
-        if (((typeof(charTest.attr("maxlength")) !== typeof(undefined)) && charTest.attr("maxlength") !== false) === false || c <= charTest.attr("maxlength")) {
-          charTest.text(originalText.substr(0, c + 1));
-          Countable.once(charTest[0], counting);
-        }
-        if (((typeof(charTest.attr("maxlength")) !== typeof(undefined)) && charTest.attr("maxlength") !== false) === false || c <= charTest.attr("maxlength")) {
-          lastChar = c;
+        if (((typeof($(this).attr("maxlength")) !== typeof(undefined)) && $(this).attr("maxlength") !== false) == false || $(this).val().length <= $(this).attr("maxlength")) {
+          $(this).val($(this).val() + originalText[c]);
+          Countable.once(this, counting);
         }
       }
-      $(this).val(originalText.substr(0, lastChar + 1));
-      Countable.once(this, counting);
-      $(".char-count-test").remove();
     }
   });
 
