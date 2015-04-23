@@ -65,6 +65,7 @@ ready = ->
     add: (e, data) ->
       $(".attachment-title").val(data.files[0].name)
       $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
+      $("#new_form_answer_attachment .btn-submit").focus().blur()
       $("#new_form_answer_attachment .btn-submit").unbind("click").on "click", (e) ->
         e.preventDefault()
         data.submit()
