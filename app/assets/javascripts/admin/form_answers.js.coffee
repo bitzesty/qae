@@ -1,4 +1,7 @@
 ready = ->
+  htmlDecode = (value) ->
+    $("<div/>").html(value).text()
+
   changeRagStatus()
   editFormAnswerAutoUpdate()
   bindRags("#section-appraisal-form-primary .edit_assessor_assignment")
@@ -53,8 +56,11 @@ ready = ->
     form.find(".errors-holder").text(errors)
   $("#new_form_answer_attachment").fileupload
     autoUpload: false
+    dataType: "html"
+    forceIframeTransport: true
     formData: [
-      { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
+      { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content")},
+      { name: "format", value: "js" }
     ]
     add: (e, data) ->
       $(".attachment-title").val(data.files[0].name)
@@ -64,7 +70,7 @@ ready = ->
         data.submit()
     success: (result, textStatus, jqXHR) ->
       $(".document-list .p-empty").addClass("visuallyhidden")
-      $(".document-list ul").append(result)
+      $(".document-list ul").append($($.parseHTML(result)).text())
       form = $("#new_form_answer_attachment")
       form.closest(".sidebar-section").removeClass("show-attachment-form")
       $("#form_answer_attachment_title").val(null)

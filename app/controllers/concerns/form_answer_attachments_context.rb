@@ -6,11 +6,11 @@ module FormAnswerAttachmentsContext
     if service.save
       respond_to do |format|
         format.html do
-          if request.xhr?
-            render service.for_js
-          else
-            redirect_to [namespace_name, form_answer]
-          end
+          redirect_to [namespace_name, form_answer]
+        end
+
+        format.js do
+          render service.for_js
         end
       end
     end
