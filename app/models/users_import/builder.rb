@@ -26,7 +26,12 @@ class UsersImport::Builder
           u.update_column(:created_at, user["UserCreationDate"])
           saved << u
 
-          u.send_reset_password_instructions
+          raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
+          u.reset_password_token = hashed_token
+          u.reset_password_sent_at = Time.now.utc
+          if u.save
+            Users::ImportMailer.notify_about_release(u.id, raw_token).deliver_later!
+          end
         else
           # probably shouldn't happen
           not_saved << u

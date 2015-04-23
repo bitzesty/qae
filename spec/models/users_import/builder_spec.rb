@@ -6,11 +6,12 @@ describe UsersImport::Builder do
   describe "#process" do
     it "imports the users" do
       subject.process
-      row = User.where(email: "user1@example.com").first
+      row = User.where(email: "user1+import@example.com").first
       expect(row.first_name).to eq("First name1")
       expect(row.last_name).to eq("Last name1")
       expect(row.mobile_number).to eq("234324237")
       expect(row.created_at).to eq(Date.new(2014, 8, 4))
+      expect(row.imported).to eq(true)
     end
   end
 end
