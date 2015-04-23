@@ -38,7 +38,8 @@ class QaePdfForms::General::QuestionPointer
     QAEFormBuilder::ByYearsLabelQuestion,
     QAEFormBuilder::ByYearsQuestion,
     QAEFormBuilder::SupportersQuestion,
-    QAEFormBuilder::TextareaQuestion
+    QAEFormBuilder::TextareaQuestion,
+    QAEFormBuilder::TextQuestion
   ]
 
   def initialize(ops = {})
@@ -240,8 +241,7 @@ class QaePdfForms::General::QuestionPointer
 
   def question_block_type(question)
     unless FormPdf::JUST_NOTES.include?(question.delegate_obj.class.to_s)
-      case question.delegate_obj
-      when *BLOCK_QUESTIONS
+      if BLOCK_QUESTIONS.include?(question.delegate_obj.class)
         "block"
       else
         "inline"
