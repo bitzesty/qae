@@ -10,4 +10,9 @@ namespace :users_import do
       p "not processed: #{out[:not_saved].map(&:email)}"
     end
   end
+
+  desc "Sends welcome mailing"
+  task send_welcome: :environment do
+    UsersImport::Builder.send_mailing
+  end
 end
