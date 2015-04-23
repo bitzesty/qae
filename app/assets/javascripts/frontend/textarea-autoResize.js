@@ -44,7 +44,7 @@ $(function() {
     resizeTextarea($(this));
   });
 
-  txt.on("keyup", function (e) {
+  txt.on("keyup paste", function (e) {
     if (e.keyCode != 9) {
       resizeTextarea($(this));
     }
