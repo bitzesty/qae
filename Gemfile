@@ -129,6 +129,7 @@ group :development do
   gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
+  gem 'rack-mini-profiler', require: false
   gem 'passenger'
   gem 'better_errors'
   gem 'binding_of_caller'
