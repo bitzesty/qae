@@ -155,7 +155,7 @@ class FormController < ApplicationController
         submitted_was_changed = @form_answer.submitted_changed?
         @form_answer.current_step = params[:current_step] || @form.steps.first.title.parameterize
 
-        if @form_answer.eligible? && (saved = @form_answer.save!)
+        if @form_answer.eligible? && (saved = @form_answer.save)
           if submitted_was_changed
             @form_answer.state_machine.submit(current_user)
             Notifiers::Submission::SuccessNotifier.new(@form_answer).run
