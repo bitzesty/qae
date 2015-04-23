@@ -41,31 +41,31 @@ $.fn.charcount = function() {
     }
   });
 
+  // If character count is over the limit then show error
+  var characterOver = function(counter, textInput) {
+    var lastLetter = textInput.val()[textInput.val().length - 1];
+    var maxWordCount = parseInt(textInput.attr("data-word-max"));
+    var maxWordCountLimit = parseInt(textInput.attr("data-word-max-limit"));
+    var maxWordCountTotal = maxWordCount + maxWordCountLimit;
+
+    textInput.closest(".char-count").removeClass("char-over");
+    if (counter.words > maxWordCount) {
+      textInput.closest(".char-count").addClass("char-over");
+    }
+
+    if (counter.words > maxWordCountTotal) {
+      return true;
+    } else if (counter.words == maxWordCountTotal && lastLetter == " ") {
+      return true;
+    }
+  };
+
   var counting = function(counter) {
     var textInput = $(this);
 
     textInput.closest(".char-count").find(".char-text .current-count").text(counter.words);
 
-    // If character count is over the limit then show error
-    var characterOver = function(textInput) {
-      var lastLetter = textInput.val()[textInput.val().length - 1];
-      var maxWordCount = parseInt(textInput.attr("data-word-max"));
-      var maxWordCountLimit = parseInt(textInput.attr("data-word-max-limit"));
-      var maxWordCountTotal = maxWordCount + maxWordCountLimit;
-
-      textInput.closest(".char-count").removeClass("char-over");
-      if (counter.words > maxWordCount) {
-        textInput.closest(".char-count").addClass("char-over");
-      }
-
-      if (counter.words > maxWordCountTotal) {
-        return true;
-      } else if (counter.words == maxWordCountTotal && lastLetter == " ") {
-        return true;
-      }
-    };
-
-    if (characterOver(textInput)) {
+    if (characterOver(counter, textInput)) {
       // hard limit to word count using maxlength
       if (((typeof(textInput.attr("maxlength")) !== typeof(undefined)) && textInput.attr("maxlength") !== false) == false) {
         // Set through typing
@@ -73,37 +73,39 @@ $.fn.charcount = function() {
         textInput.attr("maxlength", char_limit);
       }
     } else {
-
       textInput.removeAttr("maxlength");
     }
   }
 
   // Maxlength for pasting text
   this.bind("paste", function(e){
-    e.preventDefault();
-    var pasteThis = ((e.originalEvent || e).clipboardData.getData("text/plain"));
+    var original_text = $(this).val() + ((e.originalEvent || e).clipboardData.getData("text/plain"));
 
-    for (var c = 0; c<pasteThis.length; c++) {
-      if (((typeof($(this).attr("maxlength")) !== typeof(undefined)) && $(this).attr("maxlength") !== false) == false || $(this).val().length <= $(this).attr("maxlength")) {
-        $(this).val($(this).val() + pasteThis[c]);
-        Countable.once(this, counting);
+    if (original_text.length > 0) {
+      e.preventDefault();
+      var char_test = $(this).after("<p class='char-count-test'></p>");
+      char_test.attr("data-word-max", $(this).attr("data-word-max"));
+      char_test.attr("data-word-max-limit", $(this).attr("data-word-max-limit"));
+      var last_char = 0;
+      $(this).val("");
+      for (c = 0; c<original_text.length; c++) {
+        if (((typeof(char_test.attr("maxlength")) !== typeof(undefined)) && char_test.attr("maxlength") !== false) == false || c <= char_test.attr("maxlength")) {
+          char_test.text(original_text.substr(0, c + 1));
+          Countable.once(char_test[0], counting);
+        }
+        if (((typeof(char_test.attr("maxlength")) !== typeof(undefined)) && char_test.attr("maxlength") !== false) == false || c <= char_test.attr("maxlength")) {
+          last_char = c;
+        }
       }
+      $(this).val(original_text.substr(0, last_char + 1));
+      Countable.once(this, counting);
+      $(".char-count-test").remove();
     }
   });
 
   this.each(function() {
-    // Goes through each letter of inputs so that maxlength is triggered by Countable
-    var loaded_text = $(this).val();
-    $(this).val("");
-    for (c = 0; c<loaded_text.length; c++) {
-      if (((typeof($(this).attr("maxlength")) !== typeof(undefined)) && $(this).attr("maxlength") !== false) == false || $(this).val().length <= $(this).attr("maxlength")) {
-        $(this).val($(this).val() + loaded_text[c]);
-        Countable.once(this, counting);
-      }
-    }
-
     // Makes word count dynamic
-    Countable.live(this, counting)
+    Countable.live(this, counting);
   });
 
   return this;
