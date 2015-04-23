@@ -21,9 +21,7 @@ window.SupportLetters =
       else
         filename = "File uploaded"
       file_title = $("<span class='support-letter-attachment-filename'>" + filename + "</span>")
-      hidden_input = $("<input class='js-support-letter-attachment-id'>").prop('type', 'hidden').
-                                                                          prop('name', $el.attr("name")).
-                                                                          prop('value', data.result['id'])
+      hidden_input = $("<input class='js-support-letter-attachment-id' type='hidden' name='#{$el.attr("name")}' value='#{data.result['id']}' />")
 
       parent.find(".errors-container").html("")
       parent.find(".errors-container").closest("label").removeClass("question-has-errors")
