@@ -441,10 +441,7 @@ jQuery ->
             filename = "File uploaded"
         div = $("<div>").text(filename)
 
-        hidden_input = $("<input>").
-          prop('type', 'hidden').
-          prop('name', "#{form_name}[#{name}][][file]").
-          prop('value', data.result['id'])
+        hidden_input = $("<input type='hidden' name='#{form_name}[#{name}][][file]' value='#{data.result['id']}' />")
 
         div.append(hidden_input)
         appendLinkDocumentRemoveLink(div)
@@ -464,6 +461,7 @@ jQuery ->
       list.removeClass('visuallyhidden')
       updateUploadListVisiblity(list, button, max)
       reindexUploadListInputs(list)
+      triggerAutosave()
 
     updateUploadListVisiblity(list, button, max)
 
