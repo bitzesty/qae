@@ -74,11 +74,11 @@ class Users::AuditCertificatesController < Users::BaseController
     # This is fix of "missing 'audit_certificate' param"
     # if no any was selected in file input
     if params[:audit_certificate].blank?
-      params.merge!({
+      params.merge!(
         audit_certificate: {
           attachment: ""
         }
-      })
+      )
     end
 
     params.require(:audit_certificate).permit(:attachment)
