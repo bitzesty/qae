@@ -4,4 +4,5 @@
   label
     ' Confirm email address
     ul.errors-container
+    .clear
     input.js-trigger-autosave.medium.match.js-disable-copy type="text" name=question.input_name(suffix: 'confirmation') value=question.input_value(suffix: 'primary') data-match="#{question.key}_primary" autocomplete="off" *possible_read_only_ops

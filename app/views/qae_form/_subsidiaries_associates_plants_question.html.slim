@@ -18,6 +18,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
           label.small
             ' Number of UK Employees
             input.small type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary['employees']  autocomplete="off" *possible_read_only_ops
+      span.clear
   - if question.subsidiaries.none?
     li.js-add-example
       = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
@@ -35,6 +36,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
           label.small
             ' Number of UK Employees
             input.small type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
+      span.clear
 
 a.button.button-add.js-button-add href="#"
   | + Add subsidiary, associate or plant

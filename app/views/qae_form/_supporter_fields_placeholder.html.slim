@@ -8,36 +8,45 @@ li.js-add-example.hidden
       label
         ' First Name
         ul.errors-container
+        .clear
         input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][first_name]" type="text" disabled=true
         span.visible-read-only
+  span.clear
   span.row
     span.span-6
       label
         ' Surname
         ul.errors-container
+        .clear
         input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][last_name]" type="text" disabled=true
         span.visible-read-only
+  span.clear
   span.row
     span.span-6
       label
         ' Relationship to Nominee
         ul.errors-container
+        .clear
         input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][relationship_to_nominee]" type="text" disabled=true
         span.visible-read-only
+  span.clear
   span.row
     - if question.list_type == :manuall_upload
       span.span-12
         label
           ' Letter of Support
           ul.errors-container
+          .clear
           input class="js-trigger-autosave js-support-letter-attachment medium" name="form[#{question.key}][{index}][letter_of_support]" type='file' disabled=true
     - else
       span.span-6
         label
           ' Email address
           ul.errors-container
+          .clear
           input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][{index}][email]" type="text" disabled=true
           span.visible-read-only
+  span.clear
   span.row
     span.span-12
       a.button.button-alt.js-save-collection data-save-collection-url=(question.list_type == :manuall_upload ? users_form_answer_support_letters_url(@form_answer) : users_form_answer_supporters_url(@form_answer))
@@ -45,6 +54,7 @@ li.js-add-example.hidden
           | Submit letter of support
         - else
           | Send support request
+  span.clear
 
   .visible-read-only
     .application-notice.help-notice

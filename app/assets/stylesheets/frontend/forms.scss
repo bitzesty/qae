@@ -217,6 +217,12 @@ textarea {
          -moz-box-sizing: border-box;
               box-sizing: border-box;
     }
+
+    .lte-ie7 & {
+      width: 100%;
+      min-width: 0;
+      max-width: none;
+    }
   }
 }
 
@@ -355,6 +361,10 @@ input[type="file"] {
     &.selectable {
       @include core-16;
 
+      .lte-ie7 & {
+        width: 85%;
+      }
+
       &.selectable-confirm {
         @include core-19;
         margin: 0.5em 0 0 0;
@@ -383,6 +393,10 @@ input[type="file"] {
 
   span.selectable {
     padding: 0;
+
+    .lte-ie7 & {
+      width: 85%;
+    }
 
     label {
       display: block;
@@ -416,6 +430,10 @@ input[type="file"] {
     margin-right: 1ex;
     padding: initial;
     vertical-align: middle;
+
+    .lte-ie7 & {
+      margin: 0;
+    }
   }
 
   input[type="file"] {
@@ -437,6 +455,10 @@ input[type="file"] {
   .span-11 label,
   .span-12 label {
     @media only screen and (min-width : 801px), only screen and (min-device-height : 768px) and (max-device-height : 1024px) and (orientation : portrait) {
+      display: block;
+    }
+
+    .lte-ie7 {
       display: block;
     }
   }
@@ -467,6 +489,11 @@ input[type="file"] {
     .currency-unit {
       position: absolute;
       line-height: 2;
+
+      .lte-ie7 & {
+        top: 0;
+        left: 0;
+      }
     }
 
     input {
@@ -612,10 +639,10 @@ input[type="file"] {
 
 .char-count {
   position: relative;
-}
 
-.char-max-shift {
-  margin-top: -1.7em;
+  &.char-max-shift {
+    margin-top: -1.7em;
+  }
 }
 
 .char-text-limit {
@@ -685,6 +712,12 @@ input[type="file"] {
       width: 100%;
       float: left;
     }
+
+    &.hidden {
+      .lte-ie7 & {
+        display: none;
+      }
+    }
   }
 
   h3:first-child {
@@ -734,6 +767,11 @@ input[type="file"] {
       opacity: 0.5;
     }
   }
+}
+
+.lte-ie7 .js-uploaded-list .js-file-uploaded .remove-link {
+  position: relative;
+  margin-top: -1.5em;
 }
 
 .button-add {
@@ -811,6 +849,10 @@ input[type="file"] {
     &[disabled] {
       cursor: default;
     }
+
+    .lte-ie7 & {
+      left: auto !important;
+    }
   }
 }
 
@@ -824,17 +866,64 @@ input[type="file"] {
     border: none;
   }
 
+  li a:hover,
+  li a:active {
+    .lte-ie7 & {
+      background-color: transparent;
+    }
+  }
+
+  li.submit a {
+    &:hover,
+    &:active {
+      .lte-ie7 & {
+        background-color: $button-colour;
+      }
+    }
+  }
+
+  li:hover {
+    .lte-ie7 & {
+      background-color: $grey-4;
+    }
+  }
+
+  li.submit:hover,
+  li.save-quit-link:hover {
+    .lte-ie7 & {
+      background-color: transparent;
+    }
+  }
+
+  li.previous {
+    .lte-ie7 & {
+      background-image: image-url("icon-arrow-pagination-left.png");
+      background-repeat: no-repeat;
+      background-position: left 8px;
+    }
+  }
+
+  li.next {
+    .lte-ie7 & {
+      background-image: image-url("icon-arrow-pagination-right.png");
+      background-repeat: no-repeat;
+      background-position: right 8px;
+    }
+  }
+
   li.previous-alternate {
     width: 120px;
+    margin-top: 13px;
 
     @media (max-width: 740px) {
       width: 100%;
     }
 
+    .lte-ie7 & {
+      background-position: -10px 8px;
+    }
+
     a {
-      margin: 25px 0;
-      margin-bottom: 0;
-      padding: 0;
       padding-left: 2.2em;
 
       &:hover {
@@ -856,11 +945,17 @@ input[type="file"] {
   li.save-quit-link {
     width: 42%;
     float: right;
+    text-align: right;
 
     @media (max-width: 740px) {
       width: 100%;
       margin-top: 1em;
       float: none;
+    }
+
+    .lte-ie7 & {
+      width: 45%;
+      margin-right: 10px;
     }
 
     button, a {
@@ -893,6 +988,7 @@ input[type="file"] {
     a,
     button {
       width: auto;
+      height: auto;
       margin: 0.2em 0 0.5em 0;
     }
   }
@@ -910,11 +1006,23 @@ input[type="file"] {
   }
 }
 
-.step-article .pagination li.submit {
-  width: 36%;
+.page-award-form .pagination {
+  li.submit {
+    width: 36%;
 
-  @media (max-width: 640px) {
-    width: auto;
+    @media (max-width: 640px) {
+      width: auto;
+    }
+
+    .lte-ie7 & {
+      width: 35%;
+    }
+  }
+
+  li.previous-alternate {
+    .lte-ie7 & {
+      width: 100px;
+    }
   }
 }
 
@@ -939,6 +1047,10 @@ input[type="file"] {
     @media (max-width: 640px) {
       margin-bottom: $gutter;
     }
+
+    .lte-ie7 & {
+      margin-bottom: $gutter;
+    }
   }
 }
 
@@ -956,6 +1068,16 @@ input[type="file"] {
   border: none;
   background: transparent;
   color: $red;
+}
+
+.question-has-errors .errors-container li,
+.supporters-list .errors-container li,
+.audit-certificate-upload-form .errors-container li {
+  .lte-ie7 & {
+    display: inline;
+    width: 100%;
+    float: left;
+  }
 }
 
 .question-has-errors,
@@ -1308,6 +1430,7 @@ input[type="file"] {
 
   .non-js-remove-link {
     border-width: 0px;
+    background: transparent;
     font-size: 18px;
     text-decoration: underline;
     color: #005ea5;

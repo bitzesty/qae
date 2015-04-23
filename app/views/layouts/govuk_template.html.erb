@@ -1,6 +1,6 @@
 <%= yield :top_of_page %>
 <!DOCTYPE html>
-<!--[if lt IE 6]><html class="no-js lte-ie9 lte-ie8 lte-ie7 lte-ie6" lang="<%= content_for?(:html_lang) ? yield(:html_lang) : "en" %>"><![endif]-->
+<!--[if lte IE 6]><html class="no-js lte-ie9 lte-ie8 lte-ie7 lte-ie6" lang="<%= content_for?(:html_lang) ? yield(:html_lang) : "en" %>"><![endif]-->
 <!--[if IE 7]><html class="no-js lte-ie9 lte-ie8 lte-ie7" lang="<%= content_for?(:html_lang) ? yield(:html_lang) : "en" %>"><![endif]-->
 <!--[if IE 8]><html class="no-js lte-ie9 lte-ie8" lang="<%= content_for?(:html_lang) ? yield(:html_lang) : "en" %>"><![endif]-->
 <!--[if IE 9]><html class="no-js lte-ie9" lang="<%= content_for?(:html_lang) ? yield(:html_lang) : "en" %>"><![endif]-->
@@ -129,8 +129,9 @@
 
     <div id="global-app-error" class="app-error hidden"></div>
 
-    <script src="<%= asset_path "govuk-template.js" %>" type="text/javascript"></script>
-
-    <%= yield :body_end %>
+    <!--[if gt IE 6]><!-->
+      <script src="<%= asset_path "govuk-template.js" %>" type="text/javascript"></script>
+      <%= yield :body_end %>
+    <!--<![endif]-->
   </body>
 </html>

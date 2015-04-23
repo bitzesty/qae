@@ -38,8 +38,12 @@ window.SupportLetters =
       parent.closest("label").addClass("question-has-errors")
 
     $el.fileupload(
-      url: $el.closest(".list-add").data 'attachments-url'
-      formData: () -> {}
+      url: $el.closest(".list-add").data('attachments-url') + ".json"
+      forceIframeTransport: true
+      dataType: 'json'
+      formData: [
+        { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
+      ]
       done: upload_done
       fail: failed
     )

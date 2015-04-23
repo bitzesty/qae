@@ -39,6 +39,7 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
     ul.errors-container
       - if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key].present?
         li = @form_answer.validator_errors[question.hash_key]
+    .clear
 
     .question-group
       - if question.title != ""

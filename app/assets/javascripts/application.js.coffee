@@ -1,5 +1,6 @@
 #= require jquery
 #= require jquery_ujs
+#= require jquery.iframe-transport
 #= require jquery.fileupload
 #= require Countable
 #= require moment.min
@@ -429,6 +430,8 @@ jQuery ->
         div.append(label)
         new_el.append(div)
       else
+        new_el.addClass("js-file-uploaded")
+
         if has_filename
           filename = wrapper.data('filename')
         else
@@ -472,8 +475,12 @@ jQuery ->
         false
     else
       $el.fileupload(
-        url: attachments_url
-        formData: () -> {}
+        url: attachments_url + ".json"
+        forceIframeTransport: true
+        dataType: 'json'
+        formData: [
+          { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
+        ]
         done: upload_done
         progressall: progress_all
         send: upload_started

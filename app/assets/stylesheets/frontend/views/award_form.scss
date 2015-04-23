@@ -126,10 +126,10 @@
 // Read-only view
 .visible-read-only {
   display: none;
+}
 
-  .application-notice p {
-    margin: 0.75em 0;
-  }
+.application-notice p {
+  margin: 0.75em 0;
 }
 
 .support-letter-attachment-filename,
@@ -159,10 +159,10 @@ label > .visible-read-only,
 .read-only {
   input,
   .button,
-  .remove-link {
+  .remove-link,
+  .errors-container {
     display: none;
   }
-
 
   .support-letter-attachment-filename,
   .visible-read-only {

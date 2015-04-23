@@ -279,6 +279,81 @@ header.page-header div {
   }
 }
 
+.lte-ie7 {
+  .row {
+    display: block;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+
+  .span-1,
+  .span-2,
+  .span-3,
+  .span-4,
+  .span-5,
+  .span-6,
+  .span-7,
+  .span-8,
+  .span-9,
+  .span-10,
+  .span-11,
+  .span-12 {
+    float: left;
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .span-12 {
+    width: 100%;
+  }
+
+  .span-11 {
+    width: 91.66666667%;
+  }
+
+  .span-10 {
+    width: 83.33333333%;
+  }
+
+  .span-9 {
+    width: 75%;
+  }
+
+  .span-8 {
+    width: 66.66666667%;
+  }
+
+  .span-7 {
+    width: 58.33333333%;
+  }
+
+  .span-6 {
+    width: 50%;
+  }
+
+  .span-5 {
+    width: 41.66666667%;
+  }
+
+  .span-4 {
+    width: 33.33333333%;
+  }
+
+  .span-3 {
+    width: 25%;
+  }
+
+  .span-2 {
+    width: 16.66666667%;
+  }
+
+  .span-1 {
+    width: 8.33333333%;
+  }
+}
+
 // Alpha tag next to title
 .beta-tag {
   @include phase-tag(beta);
@@ -723,5 +798,25 @@ article .help-notice ul {
 
   .page-devise & {
     display: none;
+  }
+}
+
+// IE6 browser warning banner
+.browser_warning {
+  display: none;
+  padding: 1.5em 5px;
+  background: #333;
+  color: $white;
+  font-size: 16px;
+  line-height: 1.5;
+  text-align: center;
+  vertical-align: baseline;
+
+  .lte-ie6 & {
+    display: block;
+  }
+
+  a {
+    color: $white;
   }
 }

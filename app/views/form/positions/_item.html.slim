@@ -27,7 +27,7 @@ li.view_as_disabled
               = f.input_field :start_year, value: attrs["start_year"],
                                            class: "tiny",
                                            disabled: :disabled
-
+      span.clear
       span.row.nominee-end-date-row
         span.span-3
           label
@@ -50,7 +50,7 @@ li.view_as_disabled
                                   checked: attrs["ongoing"].to_s == "1" ? "checked" : ""},
                     label_html: { class: 'small' },
                     label: "Ongoing"
-
+      span.clear
     = f.label :details
     .char-count.char-max-shift
       .char-text-limit

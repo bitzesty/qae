@@ -6,6 +6,7 @@ li
       .row
         .span-6
           = f.input :file, as: :file, input_html: { class: "form-control" }
+      .clear
       = f.label :description
       .char-count.char-max-shift
         .char-text-limit
@@ -15,3 +16,4 @@ li
       .row
         .span-12
           = f.submit "Save attachment", class: "button button-alt"
+      .clear

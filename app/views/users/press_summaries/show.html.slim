@@ -19,6 +19,7 @@ div
           fieldset.question-block.sub-question.js-press-comment-correct
             h2 = f.label :correct, label: "Do you have any comments on your entry?"
             ul.errors-container
+            .clear
             .question-group
               = f.input :correct, as: :radio_buttons, item_wrapper_class: 'selectable', label: false
               span.clear

@@ -1,8 +1,9 @@
 .js-upload-wrapper data-max-attachments=question.max_attachments data-form-name=question.form_name data-name=question.key data-description=(question.description ? '1' : nil)
   ul.js-uploaded-list.list-add
     - (question.input_value(json: true) || {}).to_a.sort_by{|o| o.first.to_i}.each do |(idx, el)|
+
       - if el['file'].present? || el['link'].present?
-        li
+        li class="#{'js-file-uploaded' if el['file'].present?}"
           div
             - if el['file'].present?
               = render "form/form_attachments/file", el: el, attachments: attachments
@@ -33,6 +34,7 @@
                 = question.input_value(suffix: 'description', index: idx)
 
   ul.errors-container
+  .clear
 
   .if-no-js-hide
     .js-file-drop-zone
