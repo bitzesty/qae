@@ -47,6 +47,11 @@ select.form-control {
   @include is-retina {
     background-image: image-url("icon-arrow-select@2.jpg");
   }
+
+  .lte-ie9 & {
+    padding: 0;
+    background-image: none;
+  }
 }
 
 h1,
@@ -365,31 +370,18 @@ table .ellipsis {
     position: relative;
     overflow: hidden;
 
-    .ie & {
-      padding: 0;
-      border: none;
-      background: transparent !important;
-      box-shadow: none !important;
-      overflow: visible;
-    }
-
-    .attachment-text {
-      .ie & {
-        display: none;
-      }
-    }
-
     input[type="file"] {
       position: absolute;
       top: 0;
       right: 0;
       bottom: 0;
-      left: 0;
+      left: auto;
       width: 100%;
       cursor: pointer;
+      font-size: 200px;
+      opacity: 0;
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
-      opacity: 0;
 
       .lte-ie7 & {
         left: auto !important;
