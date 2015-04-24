@@ -37,7 +37,7 @@ span {
 select,
 select.form-control {
   padding-right: 20px;
-  background-image: image-url("icon-arrow-select.jpg");
+  background-image: image-url("icon-arrow-select.png");
   background-repeat: no-repeat;
   background-position: right center;
   background-size: 13px 14px;
@@ -45,7 +45,7 @@ select.form-control {
   -webkit-appearance: none;
 
   @include is-retina {
-    background-image: image-url("icon-arrow-select@2.jpg");
+    background-image: image-url("icon-arrow-select@2.png");
   }
 
   .lte-ie9 & {
