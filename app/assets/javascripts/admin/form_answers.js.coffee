@@ -74,33 +74,35 @@ ready = ->
       "form_answer_attachment[title]": $("#form_answer_attachment_title").val()
       "form_answer_attachment[restricted_to_admin]": $("#form_answer_attachment_restricted_to_admin").prop("checked")
 
-  $("#new_form_answer_attachment").fileupload
-    autoUpload: false
-    dataType: "html"
-    forceIframeTransport: true
-    add: (e, data) ->
-      $(".attachment-title").val(data.files[0].name)
-      $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
-      $("#new_form_answer_attachment .btn-submit").focus().blur()
-      $("#new_form_answer_attachment .btn-submit").unbind("click").on "click", (e) ->
-        e.preventDefault()
-        data.submit()
-    success: (result, textStatus, jqXHR) ->
-      result = $($.parseHTML(result))
-      $("#attachment-buffer").append(result.text())
+  do initializeFileUpload = ->
+    $("#new_form_answer_attachment").fileupload
+      autoUpload: false
+      dataType: "html"
+      forceIframeTransport: true
+      add: (e, data) ->
+        $(".attachment-title").val(data.files[0].name)
+        $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
+        $("#new_form_answer_attachment .btn-submit").focus().blur()
+        $("#new_form_answer_attachment .btn-submit").unbind("click").on "click", (e) ->
+          e.preventDefault()
+          data.submit()
+      success: (result, textStatus, jqXHR) ->
+        result = $($.parseHTML(result))
+        $("#attachment-buffer").append(result.text())
 
-      if $("#form-answer-attachment-valid", $("#attachment-buffer")).length
-        $("#application-attachment-form").html(result.text())
-        moveAttachDocumentButton()
-      else
-        $(".document-list .p-empty").addClass("visuallyhidden")
-        $(".document-list ul").append(result.text())
-        form = $("#new_form_answer_attachment")
-        form.closest(".sidebar-section").removeClass("show-attachment-form")
-        $("#form_answer_attachment_title").val(null)
-        $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
+        if $("#form-answer-attachment-valid", $("#attachment-buffer")).length
+          $("#application-attachment-form").html(result.text())
+          moveAttachDocumentButton()
+          initializeFileUpload()
+        else
+          $(".document-list .p-empty").addClass("visuallyhidden")
+          $(".document-list ul").append(result.text())
+          form = $("#new_form_answer_attachment")
+          form.closest(".sidebar-section").removeClass("show-attachment-form")
+          $("#form_answer_attachment_title").val(null)
+          $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
 
-      $("#attachment-buffer").empty()
+        $("#attachment-buffer").empty()
 
   moveAttachDocumentButton()
 
