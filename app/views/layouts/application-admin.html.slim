@@ -27,9 +27,9 @@ html.no-js
   body#admin-layout class="admin-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class} #{'layout-dev' if Rails.env.development?}"
     #site-wrapper
       #site-wrapper-margin
-        #site-header
-          nav.navbar role="navigation"
-            .container
+        #site-header.clearfix
+          nav.navbar.clearfix role="navigation"
+            .container.clearfix
               .navbar-header
                 button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#nav-main-collapse"
                   span.sr-only Toggle navigation
@@ -41,7 +41,7 @@ html.no-js
                           admin_root_path,
                           class: 'navbar-brand'
 
-              .navbar-collapse.collapse#nav-main-collapse
+              .navbar-collapse.collapse#nav-main-collapse.clearfix
                 ul.nav.navbar-nav role="navigation"
                   li class=('active' if controller_name == 'dashboard')
                     = link_to "Dashboard", admin_dashboard_index_path

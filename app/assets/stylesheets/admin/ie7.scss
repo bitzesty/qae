@@ -1,0 +1,79 @@
+.ie7 {
+  #site-header {
+    background: #1c1c1b;
+    clear: both;
+    height: 70px;
+    margin-bottom: 40px !important;
+
+    .navbar-brand {
+      width: 58px !important;
+      height: 67px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      text-indent: -9999px !important;
+      background: image-url("logo-admin.png") no-repeat center center !important;
+      background-size: 28px 37px !important;
+    }
+  }
+  .navbar-header {
+    float: left;
+  }
+  .navbar-toggle {
+    display: none !important;
+  }
+  .navbar-collapse {
+    display: block !important;
+    li {
+      float: left !important;
+
+      & > a {
+        display: block !important;
+        padding-top: 22px !important;
+        padding-bottom: 30px !important;
+        color: #fff !important;
+      }
+
+      &.open .dropdown-toggle {
+        background-color: #444 !important;
+      }
+
+      ul.dropdown-menu {
+        z-index: 99999999999999 !important;
+        a {
+          padding: 7px 10px !important;
+          color: #333 !important;
+        }
+      }
+    }
+
+    .nav {
+      float: left !important;
+      height: 90px;
+      position: relative;
+      top: -10px;
+
+      &.navbar-right {
+        float: right !important;
+      }
+    }
+
+    &.collapse {
+      display: block !important;
+      visibility: visible !important;
+    }
+  }
+  #main-container {
+    float: none;
+    clear: both;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+  .row {
+    width: 100% !important;
+    display: block;
+  }
+  .col-md-4 {
+    float: left;
+    width: 30%;
+  }
+}
