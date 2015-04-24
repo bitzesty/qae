@@ -207,6 +207,52 @@ table .ellipsis {
   }
 }
 
+.input-group {
+  display: block;
+
+  .form-group {
+    margin-right: 36px;
+  }
+
+  .form-control {
+    display: block;
+    float: none;
+
+    &,
+    &:first-child,
+    &:last-child {
+      border-radius: 4px;
+    }
+  }
+
+  .input-group-addon {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 40px;
+    height: 2.4em;
+    border-left: 1px solid #ccc;
+    z-index: 2;
+
+    .glyphicon {
+      line-height: 1.3;
+    }
+  }
+
+  .field-with-errors {
+    .error {
+      position: absolute;
+      top: -1.7em;
+      left: 0;
+    }
+
+    .form-control {
+      margin-top: 2.6em;
+    }
+  }
+}
+
 .select2-container {
   width: 100%;
 }
