@@ -97,6 +97,10 @@ class Form::CurrentQueensAwardsController < Form::BaseController
   end
 
   def confirm_deletion
+    self.current_queens_award = CurrentQueensAward.new(
+      categories,
+      years,
+      current_queens_award_params)
   end
 
   def destroy

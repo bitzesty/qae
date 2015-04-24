@@ -15,16 +15,16 @@ header.page-header.group.page-header-over-sidebar
       article.group role="article"
         .inner
           fieldset.question-block
-            h2 Deletion of organisational chart.
+            h2 Deletion of Award.
 
             ul.list-add
-              = render "form/organisational_charts/delete_form"
+              = render "form/current_queens_awards/delete_form"
 
           footer
             nav.pagination.no-border aria-label="Pagination" role="navigation"
               ul.group
                 li.previous.previous-alternate
-                  = link_to edit_form_url(id: params[:form_answer_id], step: "company-information"), rel: "prev", title: "Navigate to previous part" do
+                  = link_to edit_form_url(id: params[:form_answer_id], step: "company-information", anchor: "non_js_queens-awards-list-question"), rel: "prev", title: "Navigate to previous part" do
                     span.pagination-label Back
 
     = render "qae_form/steps_progress_bar", current_step: "company-information"
