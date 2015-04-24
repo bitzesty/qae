@@ -115,10 +115,10 @@ class Form::CurrentQueensAwardsController < Form::BaseController
 
   private
 
-    def current_queens_award_params
-      params.require(:current_queens_award).permit(
-        :category,
-        :year
-      )
-    end
+  def current_queens_award_params
+    params.require(:current_queens_award).permit(
+      :category,
+      :year
+    )
+  end
 end
