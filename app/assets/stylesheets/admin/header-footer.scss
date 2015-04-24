@@ -16,11 +16,24 @@
     font-size: 14px;
   }
 
+  .lte-ie8 & {
+    background: #1c1c1b;
+    clear: both;
+    height: 70px;
+    margin-bottom: 40px !important;
+  }
+
   .caret {
     margin-left: 5px;
     border-top-width: 7px;
     border-right-width: 6px;
     border-left-width: 6px;
+  }
+
+  .navbar-header {
+    .lte-ie8 & {
+      float: left;
+    }
   }
 
   .navbar-toggle {
@@ -29,6 +42,23 @@
 
     .icon-bar {
       background-color: $white-true;
+    }
+
+    .lte-ie8 & {
+      display: none !important;
+    }
+  }
+
+  .navbar-collapse {
+    .lte-ie8 & {
+      display: block !important;
+    }
+
+    &.collapse {
+      .lte-ie8 & {
+        display: block !important;
+        visibility: visible !important;
+      }
     }
   }
 
@@ -58,6 +88,16 @@
       @include is-retina {
         background-image: image-url("logo-admin@2.png");
       }
+
+      .lte-ie8 & {
+        width: 58px !important;
+        height: 67px !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+        text-indent: -9999px !important;
+        background: image-url("logo-admin.png") no-repeat center center !important;
+        background-size: 28px 37px !important;
+      }
     }
 
     .navbar-nav > li > a {
@@ -75,6 +115,21 @@
     }
   }
 
+  .nav {
+    .lte-ie8 & {
+      float: left !important;
+      height: 90px;
+      position: relative;
+      top: -10px;
+    }
+
+    .navbar-right {
+      .lte-ie8 & {
+        float: right !important;
+      }
+    }
+  }
+
   .nav > li {
     margin: 0 10px;
 
@@ -86,11 +141,22 @@
       margin: 0;
     }
 
+    .lte-ie8 & {
+      float: left !important;
+    }
+
     &:last-child {
       margin-right: 0;
     }
 
     > a {
+      .lte-ie8 & {
+        display: block !important;
+        padding-top: 22px !important;
+        padding-bottom: 30px !important;
+        color: #fff !important;
+      }
+
       &:hover,
       &:focus {
         background-color: #444;
@@ -128,12 +194,21 @@
       background: #333;
     }
 
+    .lte-ie8 & {
+      z-index: 99999 !important;
+    }
+
     > li > a {
       @include screen-sm-max {
         padding: 15px;
         padding-left: 35px;
         color: #fff;
         text-transform: uppercase;
+      }
+
+      .lte-ie8 & {
+        padding: 7px 10px !important;
+        color: #333 !important;
       }
 
       &:hover,
@@ -146,6 +221,12 @@
           background-color: transparent;
         }
       }
+    }
+  }
+
+  .open .dropdown-toggle {
+    .lte-ie8 & {
+      background-color: #444 !important;
     }
   }
 }

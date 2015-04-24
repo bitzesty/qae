@@ -51,3 +51,26 @@ body {
     margin-top: -$footer-height-sm;
   }
 }
+
+#main-container {
+  .lte-ie8 & {
+    float: none;
+    clear: both;
+    position: relative !important;
+    z-index: 1 !important;
+  }
+}
+
+.row {
+  .lte-ie8 & {
+    width: 100% !important;
+    display: block;
+  }
+}
+
+.col-md-4 {
+  .lte-ie8 & {
+    float: left;
+    width: 30%;
+  }
+}
