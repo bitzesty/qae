@@ -570,12 +570,9 @@ table .ellipsis {
 }
 
 .icon-view {
-  display: inline-block;
   width: 30px;
   height: 30px;
-  background-image: image-url("icon-computer.png");
-  background-repeat: no-repeat;
-  background-position: center center;
+  background: #fff image-url("icon-computer.png") no-repeat center center;
   background-size: 30px 26px;
   text-align: left;
   text-indent: -9999px;
@@ -598,19 +595,36 @@ table .ellipsis {
     background-size: 18px 14px;
     opacity: 1;
   }
+
+  .lte-ie8 & {
+    white-space:nowrap;
+    overflow: hidden !important;
+    background: transparent;
+    text-indent: 0px;
+    width: auto !important;
+    height: auto !important;
+
+  }
 }
 
 // Search
 .search-input {
-  position: relative;
+  position: relative !important;
 
-  [type="search"] {
+  #search_query {
+    position: relative;
+    z-index:100;
+  }
+
+  [type="search"], input.form-control {
     padding-right: 40px;
     font-size: 16px;
     font-style: italic;
+    position: relative;
+    z-index: 100;
   }
 
-  [type="submit"] {
+  [type="submit"], .search-submit {
     position: absolute;
     top: 0;
     right: 0;
@@ -625,10 +639,25 @@ table .ellipsis {
     background-position: center center;
     background-size: 15px 21px;
     text-align: left;
-    text-indent: -9999px;
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    color: transparent !important;
+    left: auto;
+    z-index: 9999999999999;
+    zoom: 1;
 
     @include is-retina {
       background-image: image-url("icon-search@2.png");
+    }
+  }
+
+  .lte-ie8 & {
+    width: 350px;
+    overflow: hidden;
+
+    .search_query {
+      width: 350px;
     }
   }
 }
