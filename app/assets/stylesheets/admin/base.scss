@@ -624,7 +624,7 @@ table .ellipsis {
     z-index: 100;
   }
 
-  [type="submit"], .search-submit {
+  [type="submit"] {
     position: absolute;
     top: 0;
     right: 0;
@@ -639,13 +639,12 @@ table .ellipsis {
     background-position: center center;
     background-size: 15px 21px;
     text-align: left;
-    text-indent: 100%;
+    text-indent: -9999px;
     white-space: nowrap;
     overflow: hidden;
     color: transparent !important;
     left: auto;
     z-index: 9999999999999;
-    zoom: 1;
 
     @include is-retina {
       background-image: image-url("icon-search@2.png");

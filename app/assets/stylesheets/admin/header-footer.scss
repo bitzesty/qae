@@ -60,6 +60,7 @@
   .navbar-collapse {
     .lte-ie8 & {
       display: block !important;
+      margin-left: 50px;
     }
 
     &.collapse {
@@ -76,7 +77,6 @@
     border-radius: 0;
     background: #1c1c1b;
 
-    .navbar-brand,
     .navbar-nav > li > a {
       color: $white-true;
       text-transform: uppercase;
@@ -138,10 +138,6 @@
         padding-top: 22px !important;
         padding-bottom: 30px !important;
         color: #fff !important;
-      }
-
-      .ie8 & {
-        padding-bottom: 29px !important;
       }
 
       &:hover,
@@ -225,7 +221,9 @@
     padding-bottom: 0;
     text-align: left;
     text-indent: -9999px;
-    background: image-url("logo-admin.png") no-repeat center center;
+    background-image: image-url("logo-admin.png");
+    background-repeat: no-repeat;
+    background-position: center center;
     background-size: 28px 37px;
 
     @include is-retina {
