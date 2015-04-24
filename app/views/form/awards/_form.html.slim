@@ -1,0 +1,31 @@
+- attrs = {}
+- attrs[:holder] = true if award.holder?
+
+li
+  = simple_form_for award, url: form_form_answer_awards_url(@form_answer.id, attrs),
+                                html: { class: 'qae-form' } do |f|
+
+    div
+      = f.input :title,
+          input_html: { class: "form-control medium" },
+          label: "Award/personal honour title"
+
+    - if award.holder?
+      div
+        = f.input :year,
+            input_html: { class: "form-control medium" },
+            label: "Year"
+    div
+      = f.label :details
+      .char-count.char-max-shift
+        .char-text-limit
+          | Word limit:
+          span.total-count
+            = question.details_words_max
+        = f.input :details, as: :text,
+                            rows: 2,
+                            label: false
+      .row
+        .span-12
+          = f.submit "Save", class: "button button-alt"
+      .clear

@@ -123,6 +123,9 @@ Rails.application.routes.draw do
       resource :current_queens_awards, only: [:new, :create, :destroy] do
         get :confirm_deletion
       end
+      resource :awards, only: [:new, :create, :destroy] do
+        get :confirm_deletion
+      end
     end
   end
   # NON JS implementation - end
