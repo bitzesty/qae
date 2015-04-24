@@ -10,7 +10,7 @@ describe UsersImport::Builder do
       expect(row.first_name).to eq("First name1")
       expect(row.last_name).to eq("Last name1")
       expect(row.mobile_number).to eq("234324237")
-      expect(row.created_at).to eq(Date.new(2014, 4, 21))
+      expect(row.created_at).to eq(Date.new(2014, 3, 21))
       expect(row.imported).to eq(true)
     end
   end
