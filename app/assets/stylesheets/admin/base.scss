@@ -400,7 +400,7 @@ table .ellipsis {
 
     li {
       margin-bottom: 10px;
-      clear: both;
+      @extend .clearfix;
 
       &:last-child {
         margin-bottom: 0;
@@ -412,6 +412,18 @@ table .ellipsis {
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
+        .lte-ie8 & {
+          float: left;
+        }
+      }
+
+      a {
+        span {
+          .lte-ie8 & {
+            display: inline !important;
+          }
+        }
       }
     }
   }

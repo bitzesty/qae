@@ -30,6 +30,14 @@
     border-left-width: 6px;
   }
 
+
+  .container {
+    .lte-ie8 & {
+      width: 90% !important;
+      margin: 0 auto;
+    }
+  }
+
   .navbar-header {
     .lte-ie8 & {
       float: left;
@@ -75,31 +83,6 @@
       background: transparent;
     }
 
-    .navbar-brand {
-      width: 58px;
-      height: 67px;
-      padding-top: 0;
-      padding-bottom: 0;
-      text-align: left;
-      text-indent: -9999px;
-      background: image-url("logo-admin.png") no-repeat center center;
-      background-size: 28px 37px;
-
-      @include is-retina {
-        background-image: image-url("logo-admin@2.png");
-      }
-
-      .lte-ie8 & {
-        width: 58px !important;
-        height: 67px !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-        text-indent: -9999px !important;
-        background: image-url("logo-admin.png") no-repeat center center !important;
-        background-size: 28px 37px !important;
-      }
-    }
-
     .navbar-nav > li > a {
       padding-top: 24px;
       padding-bottom: 23px;
@@ -123,7 +106,7 @@
       top: -10px;
     }
 
-    .navbar-right {
+    &.navbar-right {
       .lte-ie8 & {
         float: right !important;
       }
@@ -155,6 +138,10 @@
         padding-top: 22px !important;
         padding-bottom: 30px !important;
         color: #fff !important;
+      }
+
+      .ie8 & {
+        padding-bottom: 29px !important;
       }
 
       &:hover,
@@ -227,6 +214,33 @@
   .open .dropdown-toggle {
     .lte-ie8 & {
       background-color: #444 !important;
+    }
+  }
+  
+  // moving down here seems to make it work
+  .navbar-brand {
+    width: 58px;
+    height: 67px;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: left;
+    text-indent: -9999px;
+    background: image-url("logo-admin.png") no-repeat center center;
+    background-size: 28px 37px;
+
+    @include is-retina {
+      background-image: image-url("logo-admin@2.png");
+    }
+
+    .lte-ie8 & {
+      width: 58px !important;
+      height: 67px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      text-indent: -9999px !important;
+      background: image-url("logo-admin.png") no-repeat center center !important;
+      background-size: 28px 37px !important;
+      background: red;
     }
   }
 }
