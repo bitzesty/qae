@@ -20,6 +20,33 @@ class Reports::FormAnswer
     end
   end
 
+  def employees
+    meth = {
+      "trade" => {
+        "trade_commercial_success" => {
+          "3 to 5" => "employees_3of3",
+          "6 plus" => "employees_6of6"
+        }
+      },
+      "development" => {
+        "development_performance_years" => {
+          "2 to 4" => "employees_2of2",
+          "5 plus" => "employees_5of5"
+        }
+      },
+      "innovation" => {
+        "innovation_performance_years" => {
+          "2 to 4" => "employees_2of2",
+          "5 plus" => "employees_5of5"
+        }
+      }
+    }[obj.award_type]
+    if meth
+      b = doc meth.keys.first
+      doc meth.values.first[b]
+    end
+  end
+
   private
 
   def address_line1
@@ -98,24 +125,6 @@ class Reports::FormAnswer
     end
   end
 
-  def employees
-    # "trade_commercial_success"=>"6 plus", - 6 years trade
-    # "trade_commercial_success"=>"3 to 5"
-
-
-    # "innovation_performance_years"=>"2 to 4" - 2 years
-    # "innovation_performance_years"=>"5 plus" - 5 years
-
-    # "development_performance_years"=>"2 to 4"
-
-
-    unless trade?
-      doc("employees_5of5").presence || doc("employees_2of2")
-    else
-      doc("employees_6of6").presence || doc("employees_3of3")
-    end
-  end
-
   def qao_permission
     obj.user.subscribed_to_emails
   end
@@ -159,6 +168,10 @@ class Reports::FormAnswer
 
   def trade?
     obj.trade?
+  end
+
+  def development?
+    obj.development?
   end
 
   def promotion?
