@@ -1,4 +1,16 @@
-ul.list-add data-need-to-clear-example=true data-add-limit="10" data-default=1
+.if-js-hide
+  span.question-context.question-debug
+    p
+      | Warning:
+      br
+      | NON-JS version system use special "Awards" section.
+      br
+      | You need to save your form before you click on "Add Award/Personal honour" or "Remove" in this list.
+      br
+      | Otherwise, filled answers on this step of application will be lost.
+
+
+ul.list-add data-need-to-clear-example=true data-add-limit="10" data-default=1 id="non_js_#{question.key}-list-question"
   input name="form[#{question.key}][array]" value="true" type="hidden"
 
   - question.entities.each_with_index do |award, index|
@@ -7,5 +19,8 @@ ul.list-add data-need-to-clear-example=true data-add-limit="10" data-default=1
   - if question.entities.none?
     = render 'qae_form/award_fields', question: question, award: {}, index: 0
 
-a.button.button-add.js-button-add href="#"
+a.button.button-add.js-button-add.if-no-js-hide href="#"
   | + Add another Award/Personal honour
+
+= link_to "+ Add Award/Personal honour", new_form_form_answer_awards_url(@form_answer.id, question.award_years_present ? {holder: true} : {}),
+                                         class: "button button-add if-js-hide"
