@@ -1,0 +1,32 @@
+/ since fileupload can not return real status of the response
+/ we search for this input in success callback to determine
+/ whether file was saved or not
+.span
+  = hidden_field_tag "valid", "false", id: "form-answer-attachment-valid"
+= form_for [namespace_name, form_answer, form_answer_attachment], html: { multipart: true} do |form|
+  .well.js-attachment-form
+    h3 Attach document
+
+    - if form.object.errors.any?
+      = form.object.errors.full_messages.join(", ")
+
+    ul.list-unstyled
+    p
+    .attachment-link.if-js-hide
+      = form.file_field :file
+
+    .form-group
+      label.form-label Document title
+      = form.text_field :title, class: "form-control attachment-title"
+      - if current_subject.is_a?(Admin)
+        / Only admin can see/set this
+        .checkbox
+          label
+            = form.check_box :restricted_to_admin
+
+            ' Only admin can view this document
+
+
+    .form-actions.text-right
+      = link_to "Cancel", "#", class: "btn btn-default btn-cancel"
+      = form.submit "Attach", class: "btn btn-primary btn-submit"

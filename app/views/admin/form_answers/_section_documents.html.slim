@@ -26,29 +26,7 @@
           = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.uploaded_not_by_user.visible_for(current_subject))
       .clear
       br
+    #application-attachment-form
+      = render "admin/form_answer_attachments/form", form_answer: @form_answer, form_answer_attachment: @form_answer.form_answer_attachments.build
 
-    = form_for [namespace_name, @form_answer, @form_answer.form_answer_attachments.build], html: { multipart: true} do |form|
-
-      .well.js-attachment-form
-        h3 Attach document
-
-        ul.list-unstyled
-        p
-        .attachment-link.if-js-hide
-          = form.file_field :file
-
-        .form-group
-          label.form-label Document title
-          = form.text_field :title, class: "form-control attachment-title"
-          - if current_subject.is_a?(Admin)
-            / Only admin can see/set this
-            .checkbox
-              label
-                = form.check_box :restricted_to_admin
-
-                ' Only admin can view this document
-
-
-        .form-actions.text-right
-          = link_to "Cancel", "#", class: "btn btn-default btn-cancel"
-          = form.submit "Attach", class: "btn btn-primary btn-submit"
+#attachment-buffer

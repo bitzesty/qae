@@ -13,6 +13,10 @@ class FormAnswerAttachmentService
     resource.save
   end
 
+  def errors
+    resource.errors.full_messages.join(", ")
+  end
+
   def for_js
     {
       partial: "admin/form_answer_attachments/form_answer_attachment",
