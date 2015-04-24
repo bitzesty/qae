@@ -4,7 +4,7 @@ class Award
 
   include ActiveModel::Model
 
-  attr_reader :title, :year, :details, :holder
+  attr_reader :question, :title, :year, :details, :holder
 
   validates :title, :details, presence: true
 
@@ -12,14 +12,10 @@ class Award
   validates :year, length: { maximum: 4 },
                    presence: true, if: "self.holder?"
 
-  # Should be 100 words maximum
-  validates :details, length: {
-    maximum: 100,
-    tokenizer: -> (str) { str.split },
-    message: "is too long (maximum is 100 words)"
-  }
+  validates_with QuestionWordsValidator, field_name: :details
 
-  def initialize(holder=false, attrs={})
+  def initialize(question, holder=false, attrs={})
+    @question = question
     @holder = holder
 
     attrs.each do |key, value|

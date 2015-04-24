@@ -34,7 +34,7 @@ class Form::AwardsController < Form::BaseController
   end
 
   expose(:award) do
-    Award.new(params[:holder], {})
+    Award.new(question, params[:holder], {})
   end
 
   expose(:created_award_ops) do
@@ -85,7 +85,7 @@ class Form::AwardsController < Form::BaseController
   end
 
   def create
-    self.award = Award.new(params[:holder], award_params)
+    self.award = Award.new(question, params[:holder], award_params)
 
     if award.valid?
       @form_answer.document = add_award_result_doc
@@ -101,7 +101,7 @@ class Form::AwardsController < Form::BaseController
   end
 
   def confirm_deletion
-    self.award = Award.new(params[:holder], award_params)
+    self.award = Award.new(question, params[:holder], award_params)
   end
 
   def destroy

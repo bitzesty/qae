@@ -20,7 +20,8 @@ li
       .char-count.char-max-shift
         .char-text-limit
           | Word limit:
-          span.total-count 100
+          span.total-count
+            = question.details_words_max
         = f.input :details, as: :text,
                             rows: 2,
                             label: false
