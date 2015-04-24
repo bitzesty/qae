@@ -23,24 +23,26 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
 
       label
         span.visuallyhidden Category
-        select.inline.if-no-js-hide name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
-          option value=""
-            ' Category
-          - question.categories.each do |category|
-            option value=category.value selected=(category.value.to_s == award['category'])
-              = category.text
+        span.if-no-js-hide
+          select.inline name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+            option value=""
+              ' Category
+            - question.categories.each do |category|
+              option value=category.value selected=(category.value.to_s == award['category'])
+                = category.text
 
         span.inline.if-js-hide
           = award['category'].split("_").map(&:capitalize).join(" ")
 
       label
         span.visuallyhidden Year Awarded
-        select.inline.if-no-js-hide name="form[queen_award_holder_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
-          option value=""
-            ' Year Awarded
-          - question.years.each do |year|
-            option value=year selected=(award['year'] == year.to_s)
-              = year
+        span.if-no-js-hide
+          select.inline name="form[queen_award_holder_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+            option value=""
+              ' Year Awarded
+            - question.years.each do |year|
+              option value=year selected=(award['year'] == year.to_s)
+                = year
 
         span.inline.if-js-hide
           = award['year']
