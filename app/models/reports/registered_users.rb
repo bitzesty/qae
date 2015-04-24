@@ -1,6 +1,6 @@
-require "csv"
-
 class Reports::RegisteredUsers
+  include CSVHelper
+
   MAPPING = [
     {
       label: "URN",
@@ -104,23 +104,9 @@ class Reports::RegisteredUsers
     @scope = ::FormAnswer.where(award_year_id: year.id).includes(:user)
   end
 
-  def build
-    csv_string = CSV.generate do |csv|
-      csv << headers
-      @scope.each do |form_answer|
-        form_answer = Reports::FormAnswer.new(form_answer)
-        csv << MAPPING.map do |m|
-          form_answer.call_method(m[:method])
-        end
-      end
-    end
-
-    csv_string
-  end
-
   private
 
-  def headers
-    MAPPING.map { |m| m[:label] }
+  def mapping
+    MAPPING
   end
 end

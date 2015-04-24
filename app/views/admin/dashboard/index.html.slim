@@ -37,13 +37,13 @@
               span.glyphicon.glyphicon-file
               ' Entries report
 
-          li.todo-placeholder
+          li
             .pull-right
-              =link_to "#"
+              =link_to admin_report_path("press-book-list", format: :csv)
                 span.glyphicon.glyphicon-download-alt
                 span.visible-lg.visible-md
                   ' Download
-            = link_to "#", class: "action-title"
+            = link_to admin_report_path("press-book-list", class: "action-title", format: :csv)
               span.glyphicon.glyphicon-file
               ' Press book list
         .clear

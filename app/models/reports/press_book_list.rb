@@ -1,6 +1,6 @@
-require "csv"
-
 class Reports::PressBookList
+  include CSVHelper
+
   MAPPING = [
     {
       label: "URN",
@@ -38,7 +38,7 @@ class Reports::PressBookList
     },
     {
       label: "Region",
-      method: :region
+      method: :business_region
     },
     {
       label: "Employees",
@@ -54,19 +54,19 @@ class Reports::PressBookList
     },
     {
       label: "Address1",
-      method: :address1
+      method: :principal_address1
     },
     {
       label: "Address2",
-      method: :address2
+      method: :principal_address2
     },
     {
       label: "Address3",
-      method: :address3
+      method: :principal_address3
     },
     {
       label: "Postcode",
-      method: :postcode
+      method: :principal_postcode
     },
     {
       label: "UnitWebsite",
@@ -85,4 +85,14 @@ class Reports::PressBookList
       method: :qao_agreed_press_note
     }
   ]
+
+  def initialize(year)
+    @scope = ::FormAnswer.where(award_year_id: year.id).includes(:user)
+  end
+
+  private
+
+  def mapping
+    MAPPING
+  end
 end

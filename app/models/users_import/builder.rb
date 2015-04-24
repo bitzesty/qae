@@ -56,7 +56,7 @@ class UsersImport::Builder
 
   def map
     {
-      "RegisteredUserTitle" => :job_title,
+      "RegisteredUserTitle" => :title,
       "RegisteredUserCompany" => :company_name,
       "RegisteredUserSurname" => :last_name,
       "RegisteredUserFirstname" => :first_name,

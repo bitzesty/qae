@@ -49,6 +49,30 @@ class Reports::FormAnswer
 
   private
 
+  def principal_address1
+    if business_form?
+      doc "principal_address_building"
+    end
+  end
+
+  def principal_address2
+    if business_form?
+      doc "principal_address_street"
+    end
+  end
+
+  def principal_address3
+    if business_form?
+      doc "principal_address_city"
+    end
+  end
+
+  def principal_postcode
+    if business_form?
+      doc "principal_address_postcode"
+    end
+  end
+
   def address_line1
     obj.user.company_address_first
   end
@@ -101,6 +125,18 @@ class Reports::FormAnswer
     obj.user.email
   end
 
+  def head_full_name
+    if  business_form?
+      doc("head_of_business_first_name").to_s + doc("head_of_business_last_name").to_s
+    end
+  end
+
+  def head_position
+    if business_form?
+      doc("head_job_title")
+    end
+  end
+
   def company_name
     obj.user.company_name
   end
@@ -123,6 +159,9 @@ class Reports::FormAnswer
     else
       doc "nominee_personal_address_region"
     end
+  end
+
+  def unit_website
   end
 
   def qao_permission
