@@ -21,10 +21,6 @@ class Form::PositionsController < Form::BaseController
     end
   end
 
-  expose(:next_document_position) do
-    existing_position_details.keys.map(&:to_i).max.to_i + 1
-  end
-
   expose(:position) do
     Position.new
   end

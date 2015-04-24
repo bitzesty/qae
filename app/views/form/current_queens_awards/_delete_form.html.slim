@@ -1,0 +1,11 @@
+li
+  div
+    p
+      | Are you sure?
+    br
+    = simple_form_for current_queens_award,
+                      url: form_form_answer_current_queens_awards_url(@form_answer.id, category: current_queens_award.category, year: current_queens_award.year),
+                      html: { class: 'qae-form', method: :delete } do |f|
+      .row
+        .span-12
+          = f.submit "Delete", class: "button button-alt"
