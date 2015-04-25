@@ -21,26 +21,7 @@ class Reports::FormAnswer
   end
 
   def employees
-    meth = {
-      "trade" => {
-        "trade_commercial_success" => {
-          "3 to 5" => "employees_3of3",
-          "6 plus" => "employees_6of6"
-        }
-      },
-      "development" => {
-        "development_performance_years" => {
-          "2 to 4" => "employees_2of2",
-          "5 plus" => "employees_5of5"
-        }
-      },
-      "innovation" => {
-        "innovation_performance_years" => {
-          "2 to 4" => "employees_2of2",
-          "5 plus" => "employees_5of5"
-        }
-      }
-    }[obj.award_type]
+    meth = subcategory_suffix("employees")
     if meth
       b = doc meth.keys.first
       doc meth.values.first[b]
@@ -48,6 +29,37 @@ class Reports::FormAnswer
   end
 
   private
+
+  def final_year_total_sales
+    meth = subcategory_suffix("overseas_sales")
+    if meth
+      b = doc meth.keys.first
+      doc meth.values.first[b]
+    end
+  end
+
+  def subcategory_suffix(attr_name)
+    {
+      "trade" => {
+        "trade_commercial_success" => {
+          "3 to 5" => "#{attr_name}_3of3",
+          "6 plus" => "#{attr_name}_6of6"
+        }
+      },
+      "development" => {
+        "development_performance_years" => {
+          "2 to 4" => "#{attr_name}_2of2",
+          "5 plus" => "#{attr_name}_5of5"
+        }
+      },
+      "innovation" => {
+        "innovation_performance_years" => {
+          "2 to 4" => "#{attr_name}_2of2",
+          "5 plus" => "#{attr_name}_5of5"
+        }
+      }
+    }[obj.award_type]
+  end
 
   def subcategory_field_name
     {
@@ -234,6 +246,10 @@ class Reports::FormAnswer
     end
   end
 
+  def business_reg_no
+    doc "registration_number"
+  end
+
   def unit_website
     doc "website_url"
   end
@@ -270,9 +286,40 @@ class Reports::FormAnswer
     f_progress(award_form.steps[6])
   end
 
+  def personal_honours
+    if business_form?
+      doc "head_of_business_honours"
+    else
+      # TODO: clarify
+    end
+  end
+
   def f_progress(p)
     return "-" unless p
     ((p.progress || 0) * 100).round.to_s + "%"
+  end
+
+  def current_queens_award_holder
+    doc "queen_award_holder"
+  end
+
+  def date_started_trading
+    day = doc("started_trading_day")
+    month = doc("started_trading_month")
+    year = doc("started_trading_year")
+    "#{month}/#{day}/#{year}" if year && month && day
+  end
+
+  def nominee_first_name
+    doc "nominee_info_first_name"
+  end
+
+  def nominee_surname
+    doc "nominee_info_last_name"
+  end
+
+  def nominee_email
+    doc "nominee_email"
   end
 
   def business_form?

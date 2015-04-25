@@ -14,6 +14,8 @@ class Reports::AdminReport
       Reports::PressBookList.new(year).build
     when "cases-status"
       Reports::CasesStatusReport.new(year).build
+    when "entries-report"
+      Reports::AllEntries.new(year).build
     end
   end
 end

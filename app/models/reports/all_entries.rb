@@ -1,4 +1,6 @@
 class Reports::AllEntries
+  include CSVHelper
+
   MAPPING = [
     {
       label: "URN",
@@ -86,23 +88,23 @@ class Reports::AllEntries
     },
     {
       label: "CompanyRegNo",
-      method: business_reg_no
+      method: :business_reg_no
     },
     {
       label: "Address1",
-      method: address1
+      method: :principal_address1
     },
     {
       label: "Address2",
-      method: :address2
+      method: :principal_address2
     },
     {
       label: "Address3",
-      method: :address3
+      method: :principal_address3
     },
     {
       label: "Postcode",
-      method: :postcode
+      method: :principal_postcode
     },
     {
       label: "UnitWebsite",
@@ -138,11 +140,37 @@ class Reports::AllEntries
     },
     {
       label: "Region",
-      method: :region
+      method: :business_region
     },
     {
       label: "DateStartedTrading",
       method: :date_started_trading
+    },
+    {
+      label: "NomineeTitle",
+      method: :nominee_title
+    },
+    {
+      label: "NomineeFirstName",
+      method: :nominee_first_name
+    },
+    {
+      label: "NomineeSurname",
+      method: :nominee_surname
+    },
+    {
+      label: "NomineeEmail",
+      method: :nominee_email
     }
   ]
+
+  def initialize(year)
+    @scope = ::FormAnswer.where(award_year_id: year.id).includes(:user)
+  end
+
+  private
+
+  def mapping
+    MAPPING
+  end
 end

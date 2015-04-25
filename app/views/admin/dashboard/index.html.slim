@@ -1,7 +1,6 @@
 .row
   .col-md-4
     .show-sidebar
-      / TODO Reports
       .well
         h2
           ' Reports
@@ -27,13 +26,13 @@
               span.glyphicon.glyphicon-file
               ' Cases status
 
-          li.todo-placeholder
+          li
             .pull-right
-              = link_to admin_report_path("registered-users", format: :csv)
+              = link_to admin_report_path("entries-report", format: :csv)
                 span.glyphicon.glyphicon-download-alt
                 span.visible-lg.visible-md
                   ' Download
-            = link_to admin_report_path("registered-users", format: :csv), class: "action-title"
+            = link_to admin_report_path("entries-report", format: :csv), class: "action-title"
               span.glyphicon.glyphicon-file
               ' Entries report
 
