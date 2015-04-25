@@ -17,13 +17,13 @@
               span.glyphicon.glyphicon-file
               ' Registered users entry
 
-          li.todo-placeholder
+          li
             .pull-right
-              =link_to "#"
+              =link_to admin_report_path("cases-status", format: :csv)
                 span.glyphicon.glyphicon-download-alt
                 span.visible-lg.visible-md
                   ' Download
-            = link_to "#", class: "action-title"
+            = link_to admin_report_path("cases-status", format: :csv), class: "action-title"
               span.glyphicon.glyphicon-file
               ' Cases status
 

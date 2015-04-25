@@ -1,12 +1,13 @@
 class Reports::CasesStatusReport
+  include CSVHelper
+
   MAPPING = [
     {
       label: "URN",
       method: :urn
     },
     {
-      label: "Category",
-      method: :category
+      label: "Category"
     },
     {
       label: "CompanyOrNominee",
@@ -54,7 +55,7 @@ class Reports::CasesStatusReport
     },
     {
       label: "ACReceived",
-      method: :acreceived
+      method: :ac_received
     },
     {
       label: "ACChecked",
@@ -89,4 +90,14 @@ class Reports::CasesStatusReport
       method: :sub_category
     }
   ]
+
+  def initialize(year)
+    @scope = ::FormAnswer.where(award_year_id: year.id).includes(:user)
+  end
+
+  private
+
+  def mapping
+    MAPPING
+  end
 end

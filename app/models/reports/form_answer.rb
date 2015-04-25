@@ -49,6 +49,59 @@ class Reports::FormAnswer
 
   private
 
+  def subcategory_field_name
+    {
+      "trade" => "trade_commercial_success",
+      "development" => "development_performance_years",
+      "innovation" => "innovation_performance_years"
+    }[obj.award_type]
+  end
+
+  def sub_category
+    if trade?
+      {
+        "3 to 5" => "Outstanding growth in the last 3 years",
+        "6 plus" => "Continuous growth in the last 6 years"
+      }
+    elsif innovation?
+      {
+        "2 to 4" => "Outstanding performance improvements in the last 2 years",
+        "5 plus" => "Steady performance improvements in the last 5 years"
+      }
+    elsif development?
+      {
+        "2 to 4" => "Outstanding achievement over 2 years",
+        "5 plus" => "Continuous achievement over 5 years"
+      }
+    else
+      {}
+    end[doc(subcategory_field_name)]
+  end
+
+  def feedback_complete
+    bool(obj.feedback.present?)
+  end
+
+  def dcr_checked
+    bool(obj.document["corp_responsibility_form"].to_s == "declare_now")
+  end
+
+  def ac_received
+    bool obj.audit_certificate.present?
+  end
+
+  def ac_checked
+    bool obj.audit_certificate.try(:reviewed?)
+  end
+
+  def case_assigned
+    bool(obj.primary_assessor_id.present? && obj.secondary_assessor_id.present?)
+  end
+
+  def case_withdrawn
+    bool(obj.state == "withdrawn")
+  end
+
   def principal_address1
     if business_form?
       doc "principal_address_building"
@@ -121,6 +174,26 @@ class Reports::FormAnswer
     obj.user.last_name
   end
 
+  def first_assessor
+    obj.assessors.primary.try(:full_name)
+  end
+
+  def second_assessor
+    obj.assessors.secondary.try(:full_name)
+  end
+
+  def first_assessment_complete
+    bool(obj.assessor_assignments.primary.try(:submitted?))
+  end
+
+  def second_assessment_complete
+    bool(obj.assessor_assignments.secondary.try(:submitted?))
+  end
+
+  def case_summary_overall_grade
+    obj.assessor_assignments.lead_case_summary.try(:verdict_rate)
+  end
+
   def head_email
     obj.user.email
   end
@@ -162,6 +235,7 @@ class Reports::FormAnswer
   end
 
   def unit_website
+    doc "website_url"
   end
 
   def qao_permission
@@ -217,7 +291,15 @@ class Reports::FormAnswer
     obj.promotion?
   end
 
+  def innovation?
+    obj.innovation?
+  end
+
   def doc(key)
     obj.document[key]
+  end
+
+  def bool var
+    var ? "Yes" : "No"
   end
 end

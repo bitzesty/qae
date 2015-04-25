@@ -12,6 +12,8 @@ class Reports::AdminReport
       Reports::RegisteredUsers.new(year).build
     when "press-book-list"
       Reports::PressBookList.new(year).build
+    when "cases-status"
+      Reports::CasesStatusReport.new(year).build
     end
   end
 end
