@@ -28,6 +28,7 @@ gem 'govuk_template', '0.12.0'
 gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'
+gem "ruby-prof"
 
 # Rails 4 Responders
 gem 'responders', '~> 2.0'

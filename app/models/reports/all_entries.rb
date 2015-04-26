@@ -167,7 +167,28 @@ class Reports::AllEntries
   ]
 
   def initialize(year)
-    @scope = ::FormAnswer.where(award_year_id: year.id).includes(:user)
+    @year = year
+  end
+
+  def build
+    rows = []
+    ::FormAnswer.select(:id).where(award_year_id: @year.id).find_in_batches do |batch|
+      form_answers = FormAnswer.where(id: batch.map(&:id))
+                     .includes(:user,
+                               :assessor_assignments,
+                               :primary_assessor,
+                               :secondary_assessor
+                               )
+
+      form_answers.each do |fa|
+        f = Reports::FormAnswer.new(fa)
+        rows << mapping.map do |m|
+          f.call_method(m[:method])
+        end
+      end
+    end
+
+    as_csv(rows)
   end
 
   private

@@ -1,11 +1,18 @@
 # represents the FormAnswer object in report generation context
+# 1. issue - checking progress is not effective
 class Reports::FormAnswer
   attr_reader :obj, :award_form
 
   def initialize(form_answer)
     @obj = form_answer
-    answers = ActiveSupport::HashWithIndifferentAccess.new(obj.document || {})
-    @award_form = @obj.award_form.decorate(answers: answers)
+    # answers = ActiveSupport::HashWithIndifferentAccess.new(obj.document || {})
+    @moderated = @obj.assessor_assignments.detect { |a| a.position == 2 }
+    @primary = @obj.assessor_assignments.detect { |a| a.position == 0 }
+    @secondary = @obj.assessor_assignments.detect { |a| a.position == 1 }
+    @lead_case_summary = @obj.assessor_assignments.detect { |a| a.position == 4 }
+    @primary_assessor = @obj.primary_assessor
+    @secondary_assessor = @obj.secondary_assessor
+
   end
 
   def call_method(methodname)
@@ -203,7 +210,7 @@ class Reports::FormAnswer
   end
 
   def percentage_complete
-    obj.fill_progress_in_percents
+    # obj.fill_progress_in_percents
   end
 
   def qae_info_source
@@ -223,7 +230,7 @@ class Reports::FormAnswer
   end
 
   def mso_outcome_agreed
-    rag obj.assessor_assignments.moderated.try(:verdict_rate)
+    rag obj.assessor_assignments.detect { |f| f.position == 2 }.try(:verdict_rate)
   end
 
   def organisation_with_ultimate_control
@@ -235,8 +242,8 @@ class Reports::FormAnswer
   end
 
   def mso_grade_agreed
-    moderated = obj.assessor_assignments.moderated
-    rates = moderated.document.select { |k, _| k =~ /\w_rate/ }
+    return unless @moderated
+    rates = @moderated.document.select { |k, _| k =~ /\w_rate/ }
     rates.map do |_, rate|
       rag rate
     end.join(",")
@@ -259,23 +266,25 @@ class Reports::FormAnswer
   end
 
   def first_assessor
-    obj.assessors.primary.try(:full_name)
+    @primary_assessor.try(:full_name)
   end
 
   def second_assessor
-    obj.assessors.secondary.try(:full_name)
+    @secondary_assessor.try(:full_name)
   end
 
   def first_assessment_complete
-    bool(obj.assessor_assignments.primary.try(:submitted?))
+    # bool(obj.assessor_assignments.primary.try(:submitted?))
+    bool(@primary.try(:submitted?))
   end
 
   def second_assessment_complete
-    bool(obj.assessor_assignments.secondary.try(:submitted?))
+    bool(@secondary.try(:submitted?))
   end
 
   def case_summary_overall_grade
-    rag obj.assessor_assignments.lead_case_summary.try(:verdict_rate)
+    # rag obj.assessor_assignments.lead_case_summary.try(:verdict_rate)
+    rag(@lead_case_summary.try(:verdict_rate))
   end
 
   def head_email
@@ -358,29 +367,29 @@ class Reports::FormAnswer
     obj.user.created_at
   end
 
-  def section1
-    f_progress(award_form.steps[0])
-  end
+  # def section1
+  #   f_progress(award_form.steps[0])
+  # end
 
-  def section2
-    f_progress(award_form.steps[1])
-  end
+  # def section2
+  #   f_progress(award_form.steps[1])
+  # end
 
-  def section3
-    f_progress(award_form.steps[2])
-  end
+  # def section3
+  #   f_progress(award_form.steps[2])
+  # end
 
-  def section4
-    f_progress(award_form.steps[3])
-  end
+  # def section4
+  #   f_progress(award_form.steps[3])
+  # end
 
-  def section5
-    f_progress(award_form.steps[4])
-  end
+  # def section5
+  #   f_progress(award_form.steps[4])
+  # end
 
-  def section6
-    f_progress(award_form.steps[6])
-  end
+  # def section6
+  #   f_progress(award_form.steps[6])
+  # end
 
   def personal_honours
     if business_form?

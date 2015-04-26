@@ -53,7 +53,8 @@ class FormAnswer < ActiveRecord::Base
     has_one :draft_note, as: :notable, dependent: :destroy
     has_one :company_detail, dependent: :destroy
     has_one :palace_invite, dependent: :destroy
-
+    belongs_to :primary_assessor, class_name: "Assessor", foreign_key: :primary_assessor_id
+    belongs_to :secondary_assessor, class_name: "Assessor", foreign_key: :secondary_assessor_id
     has_many :form_answer_attachments, dependent: :destroy
     has_many :support_letter_attachments, dependent: :destroy
 

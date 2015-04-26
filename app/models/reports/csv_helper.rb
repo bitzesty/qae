@@ -15,6 +15,15 @@ module Reports::CSVHelper
     csv_string
   end
 
+  def as_csv(rows)
+    CSV.generate do |csv|
+      csv << headers
+      rows.each do |row|
+        csv << row
+      end
+    end
+  end
+
   private
 
   def headers

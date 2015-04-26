@@ -19,7 +19,7 @@ describe "Admin generates the CSV reports" do
     it "produces proper output" do
       expect(output.size).to eq(FormAnswer.count + 1)
       expect(output[1][7]).to eq("Test Company")
-      expect(output[1][8]).to eq("promotion")
+      expect(output[1][8]).to eq("trade")
     end
   end
 
@@ -36,7 +36,7 @@ describe "Admin generates the CSV reports" do
     let(:id) { "entries-report" }
     it "produces proper output" do
       expect(output.size).to eq(FormAnswer.count + 1)
-      expect(output[1][1]).to eq("Enterprise Promotion")
+      expect(output[1][1]).to eq("International Trade")
       expect(output[1][9]).to eq("Director")
     end
   end
