@@ -88,7 +88,7 @@ class Reports::PressBookList
   ]
 
   def initialize(year)
-    @scope = ::FormAnswer.all#.where(award_year_id: year.id, state: ["awarded", "recommended"]).includes(:user)
+    @scope = ::FormAnswer.where(award_year_id: year.id, state: ["awarded", "recommended"]).includes(:user)
   end
 
   private

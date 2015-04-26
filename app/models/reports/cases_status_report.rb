@@ -93,7 +93,7 @@ class Reports::CasesStatusReport
   ]
 
   def initialize(year)
-    @scope = ::FormAnswer.all#where(award_year_id: year.id, submitted: true).includes(:user)
+    @scope = ::FormAnswer.where(award_year_id: year.id, submitted: true).includes(:user)
   end
 
   private
