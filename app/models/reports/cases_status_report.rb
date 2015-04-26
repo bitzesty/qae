@@ -1,5 +1,5 @@
 class Reports::CasesStatusReport
-  include CSVHelper
+  include Reports::CSVHelper
 
   MAPPING = [
     {
@@ -7,7 +7,8 @@ class Reports::CasesStatusReport
       method: :urn
     },
     {
-      label: "Category"
+      label: "Category",
+      method: :category
     },
     {
       label: "CompanyOrNominee",
@@ -92,7 +93,7 @@ class Reports::CasesStatusReport
   ]
 
   def initialize(year)
-    @scope = ::FormAnswer.where(award_year_id: year.id).includes(:user)
+    @scope = ::FormAnswer.all#where(award_year_id: year.id, submitted: true).includes(:user)
   end
 
   private

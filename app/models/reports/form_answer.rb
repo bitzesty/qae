@@ -30,8 +30,16 @@ class Reports::FormAnswer
 
   private
 
-  def final_year_total_sales
+  def final_year_overseas_sales
     meth = subcategory_suffix("overseas_sales")
+    if meth
+      b = doc meth.keys.first
+      doc meth.values.first[b]
+    end
+  end
+
+  def final_year_total_sales
+    meth = subcategory_suffix("total_turnover")
     if meth
       b = doc meth.keys.first
       doc meth.values.first[b]
@@ -98,6 +106,30 @@ class Reports::FormAnswer
     bool(obj.document["corp_responsibility_form"].to_s == "declare_now")
   end
 
+  def contact_title
+    obj.user.title
+  end
+
+  def contact_first_name
+    obj.user.first_name
+  end
+
+  def contact_surname
+    obj.user.last_name
+  end
+
+  def contact_position
+    obj.user.job_title
+  end
+
+  def contact_email
+    obj.user.email
+  end
+
+  def contact_telephone
+    obj.user.phone_number
+  end
+
   def ac_received
     bool obj.audit_certificate.present?
   end
@@ -117,24 +149,32 @@ class Reports::FormAnswer
   def principal_address1
     if business_form?
       doc "principal_address_building"
+    else
+      doc "nominee_personal_address_building"
     end
   end
 
   def principal_address2
     if business_form?
       doc "principal_address_street"
+    else
+      doc "nominee_personal_address_street"
     end
   end
 
   def principal_address3
     if business_form?
       doc "principal_address_city"
+    else
+      doc "nominee_personal_address_city"
     end
   end
 
   def principal_postcode
     if business_form?
       doc "principal_address_postcode"
+    else
+      doc "nominee_personal_address_postcode"
     end
   end
 
@@ -174,6 +214,34 @@ class Reports::FormAnswer
     obj.user.qae_info_source_other
   end
 
+  def immediate_parent_country
+    doc("parent_company_country")
+  end
+
+  def organisation_with_ultimate_control
+    bool doc("parent_ultimate_control")
+  end
+
+  def mso_outcome_agreed
+    rag obj.assessor_assignments.moderated.try(:verdict_rate)
+  end
+
+  def organisation_with_ultimate_control
+    doc("parent_ultimate_control")
+  end
+
+  def organisation_with_ultimate_control_country
+    doc("ultimate_control_company_country")
+  end
+
+  def mso_grade_agreed
+    moderated = obj.assessor_assignments.moderated
+    rates = moderated.document.select { |k, _| k =~ /\w_rate/ }
+    rates.map do |_, rate|
+      rag rate
+    end.join(",")
+  end
+
   def title
     obj.user.title
   end
@@ -184,6 +252,10 @@ class Reports::FormAnswer
 
   def last_name
     obj.user.last_name
+  end
+
+  def immediate_parent
+    doc("parent_group_entry")
   end
 
   def first_assessor
@@ -203,11 +275,17 @@ class Reports::FormAnswer
   end
 
   def case_summary_overall_grade
-    obj.assessor_assignments.lead_case_summary.try(:verdict_rate)
+    rag obj.assessor_assignments.lead_case_summary.try(:verdict_rate)
   end
 
   def head_email
-    obj.user.email
+    if business_form?
+      doc "head_email"
+    end
+  end
+
+  def head_title
+    doc "head_of_business_title"
   end
 
   def head_full_name
@@ -219,6 +297,24 @@ class Reports::FormAnswer
   def head_position
     if business_form?
       doc("head_job_title")
+    end
+  end
+
+  def head_first_name
+    if business_form?
+      doc("head_of_business_first_name")
+    end
+  end
+
+  def head_surname
+    if business_form?
+      doc("head_of_business_last_name")
+    end
+  end
+
+  def head_title
+    if business_form?
+      doc("")
     end
   end
 
@@ -294,6 +390,24 @@ class Reports::FormAnswer
     end
   end
 
+  def product_service
+    service_json = doc "trade_goods_and_services_explanations"
+    if service_json
+      service_json.gsub!(/[\\]" | ["]/x, '\"' => '"', '"' => "")
+
+      begin
+        services = JSON.parse(service_json)
+      rescue JSON::ParseError
+        services = []
+      end
+
+      services.map do |service|
+        service["desc_short"]
+      end.select(&:present?).join(",")
+
+    end
+  end
+
   def f_progress(p)
     return "-" unless p
     ((p.progress || 0) * 100).round.to_s + "%"
@@ -322,6 +436,14 @@ class Reports::FormAnswer
     doc "nominee_email"
   end
 
+  def nominee_title
+    doc "nominee_title"
+  end
+
+  def category
+    obj.class::AWARD_TYPE_FULL_NAMES[obj.award_type]
+  end
+
   def business_form?
     obj.trade? || obj.innovation? || obj.development?
   end
@@ -348,5 +470,13 @@ class Reports::FormAnswer
 
   def bool var
     var ? "Yes" : "No"
+  end
+
+  def rag var
+    {
+      "negative" => "R",
+      "positive" => "G",
+      "average" => "A"
+    }[var]
   end
 end

@@ -1,5 +1,5 @@
 class Reports::PressBookList
-  include CSVHelper
+  include Reports::CSVHelper
 
   MAPPING = [
     {
@@ -7,7 +7,8 @@ class Reports::PressBookList
       method: :urn
     },
     {
-      label: "Category"
+      label: "Category",
+      method: :category
     },
     {
       label: "CompanyName",
@@ -87,7 +88,7 @@ class Reports::PressBookList
   ]
 
   def initialize(year)
-    @scope = ::FormAnswer.where(award_year_id: year.id).includes(:user)
+    @scope = ::FormAnswer.all#.where(award_year_id: year.id, state: ["awarded", "recommended"]).includes(:user)
   end
 
   private

@@ -1,10 +1,14 @@
 class Reports::RegisteredUsers
-  include CSVHelper
+  include Reports::CSVHelper
 
   MAPPING = [
     {
       label: "URN",
       method: :urn
+    },
+    {
+      label: "ApplicantName",
+      method: :company_or_nominee_name
     },
     {
       label: "RegisteredUserId",

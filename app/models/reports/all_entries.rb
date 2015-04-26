@@ -1,5 +1,5 @@
 class Reports::AllEntries
-  include CSVHelper
+  include Reports::CSVHelper
 
   MAPPING = [
     {
@@ -10,17 +10,19 @@ class Reports::AllEntries
       label: "Category",
       method: :category
     },
+
+    # Head of business attributes
     {
       label: "Title",
-      method: :title
+      method: :head_title
     },
     {
       label: "FirstName",
-      method: :first_name
+      method: :head_first_name
     },
     {
       label: "Surname",
-      method: :surname
+      method: :head_surname
     },
     {
       label: "PersonalHonours",
