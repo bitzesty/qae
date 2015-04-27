@@ -290,6 +290,11 @@
       width: auto;
       float: none;
     }
+
+    .lte-ie8 & {
+      width: 50% !important;
+      float: right !important;
+    }
   }
 
   .form-fields {
@@ -407,4 +412,10 @@
 
 .uploaded-file .btn-attachment {
   display: none;
+}
+
+.form_answer_attachment {
+  .lte-ie8 & {
+    clear:both;
+  }
 }

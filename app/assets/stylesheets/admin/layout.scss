@@ -33,6 +33,7 @@ body {
 #site-wrapper-margin {
   margin: 0 auto;
   padding-bottom: $footer-height;
+  position: relative;
 
   @include screen-sm-max {
     padding-bottom: $footer-height-sm;
@@ -52,13 +53,11 @@ body {
   }
 }
 
-#main-container {
-  .lte-ie8 & {
-    float: none;
-    clear: both;
-    position: relative !important;
-    z-index: -10 !important;
-  }
+.ie7 .dashboard-index-page #main-container {
+  float: none;
+  clear: both;
+  position: relative !important;
+  z-index: -10 !important;
 }
 
 .row {

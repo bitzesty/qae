@@ -1,5 +1,10 @@
 @import "mixins";
 
+html {
+  position: relative;
+  z-index: -100;
+}
+
 // Basic
 a {
   &:active,
@@ -432,6 +437,10 @@ table .ellipsis {
     position: relative;
     overflow: hidden;
 
+    .lte-ie8 & {
+      max-height: 25px;
+    }
+
     input[type="file"] {
       position: absolute;
       top: 0;
@@ -445,8 +454,9 @@ table .ellipsis {
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
 
-      .lte-ie7 & {
+      .ie7 & {
         left: auto !important;
+        height: 100%;
       }
     }
   }
@@ -572,11 +582,14 @@ table .ellipsis {
 .icon-view {
   width: 30px;
   height: 30px;
-  background: #fff image-url("icon-computer.png") no-repeat center center;
+  background-image: image-url("icon-computer.png");
+  background-repeat: no-repeat;
+  background-position: center center;
   background-size: 30px 26px;
   text-align: left;
   text-indent: -9999px;
   opacity: 0.3;
+  display: inline-block;
 
   @include is-retina {
     background-image: image-url("icon-computer@2.png");
@@ -603,7 +616,7 @@ table .ellipsis {
     text-indent: 0px;
     width: auto !important;
     height: auto !important;
-
+    display: inline !important;
   }
 }
 
@@ -611,9 +624,12 @@ table .ellipsis {
 .search-input {
   position: relative !important;
 
-  #search_query {
+  .search_query {
     position: relative;
-    z-index:100;
+
+    .ie7 & {
+      z-index:-10;
+    }
   }
 
   [type="search"], input.form-control {
@@ -621,7 +637,7 @@ table .ellipsis {
     font-size: 16px;
     font-style: italic;
     position: relative;
-    z-index: 100;
+    z-index: 1000000;
   }
 
   [type="submit"] {
