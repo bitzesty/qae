@@ -277,6 +277,14 @@
     }
   }
 
+  form {
+    margin-left: -10px;
+
+    .form-fields {
+      width: 100%;
+    }
+  }
+
   .form-value,
   .form-fields {
     width: 65%;
@@ -289,11 +297,6 @@
     @include screen-md-max {
       width: auto;
       float: none;
-    }
-
-    .lte-ie8 & {
-      width: 50% !important;
-      float: right !important;
     }
   }
 
@@ -309,10 +312,6 @@
 
   .edit-value {
     padding-right: 60px;
-  }
-
-  select {
-    width: 100%;
   }
 
   .form-edit-link {
