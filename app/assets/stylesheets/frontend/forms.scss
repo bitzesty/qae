@@ -1397,32 +1397,6 @@ input[type="file"] {
   display: none;
 }
 
-// Drag and drop uploading
-.js-file-drop-zone {
-  @include core-19;
-  display: none;
-  margin-bottom: $gutter;
-  padding-top: 2.5em;
-  padding-bottom: 3em;
-  border: 3px dashed transparent;
-  background: $panel-colour;
-  font-weight: 600;
-  text-align: center;
-
-  &.file-drop-supported {
-    display: block;
-  }
-
-  &.drop-hover {
-    border-color: $light-blue;
-  }
-
-  // IE9 and lower doesn't support drag and drop files
-  .lte-ie9 & {
-    display: none !important;
-  }
-}
-
 // Used for NON JS cases - begin
 .non-js-button-to {
   width: 80px;

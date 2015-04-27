@@ -314,49 +314,6 @@ jQuery ->
     remove_link = $("<a>").addClass("remove-link").prop("href", "#").text("Remove")
     div.append(remove_link)
 
-  isEventSupported = (eventName, element) ->
-    if $("html").hasClass "lte-ie9"
-      return false
-    else
-      TAGNAMES = {
-                  "select": "input",
-                  "change": "input",
-                  "submit": "form",
-                  "reset": "form",
-                  "error": "img",
-                  "load": "img",
-                  "abort": "img"
-                }
-      element = element || document.createElement(TAGNAMES[eventName] || "div")
-      eventName = "on" + eventName
-      isSupported = eventName in element
-
-      if !isSupported
-        if !element.setAttribute
-          element = document.createElement("div")
-        if element.setAttribute && element.removeAttribute
-          element.setAttribute(eventName, "")
-          isSupported = typeof element[eventName] == "function"
-
-          if typeof element[eventName] != "undefined"
-            element[eventName] = undefined
-          element.removeAttribute(eventName)
-
-      element = null
-      return isSupported
-
-  isMobile = ->
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
-
-  if isEventSupported('dragstart') && isEventSupported('drop') && !isMobile()
-    $(".js-file-drop-zone").addClass("file-drop-supported")
-
-  $(".js-file-drop-zone").on "dragenter dragover", ->
-    $(this).addClass("drop-hover")
-
-  $(".js-file-drop-zone").on "dragleave drop", ->
-    $(this).removeClass("drop-hover")
-
   $('.js-file-upload').each (idx, el) ->
     form = $(el).closest('form')
     attachments_url = form.data 'attachments-url'
