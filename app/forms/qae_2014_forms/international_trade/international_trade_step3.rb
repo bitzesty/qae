@@ -16,7 +16,7 @@ class QAE2014Forms
                                             question_suffix: :year,
                                             question_value: "3 to 5",
                                             placeholder_text: %{
-              As you currently hold a Queen's Award for Continuous Achievement in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
+              As you currently hold a Queen's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
             }
 
           financial_date_selector({
