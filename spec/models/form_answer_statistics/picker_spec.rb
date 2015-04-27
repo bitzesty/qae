@@ -73,7 +73,7 @@ describe FormAnswerStatistics::Picker do
 
     describe "#applications_table" do
       it "calculates the proper stats" do
-        pending
+        pending "Fix because of changes with current year implementation"
         fa1 = create(:form_answer)
         fa1.state_machine.perform_transition(:not_eligible, nil, false)
 
@@ -98,7 +98,7 @@ describe FormAnswerStatistics::Picker do
 
     describe "#applications_submissions" do
       it "calculates the proper stats" do
-        pending
+        pending "Fix because of changes with current year implementation"
         create(:form_answer, :trade)
         fa1 = create(:form_answer, :trade)
         fa1.state_machine.perform_transition(:submitted, nil, false)
@@ -115,7 +115,7 @@ describe FormAnswerStatistics::Picker do
 
     describe "#applications_completions" do
       it "calculates proper stats" do
-        pending
+        pending "Fix because of changes with current year implementation"
         expect(subject.applications_completions["trade"]).to eq([0, 0, 0, 0, 0, 0, 0, 0])
         Timecop.freeze(Date.today + 13.months) do
           populate_application_completions

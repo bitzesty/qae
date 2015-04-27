@@ -16,7 +16,11 @@ class AwardYear < ActiveRecord::Base
   def self.current
     return where(year: 2016).first_or_create if mock_current_year?
     now = DateTime.now
-    deadline = AwardYear.where(year: now.year + 1).first_or_create.settings.deadlines.submission_start.try(:trigger_at)
+    deadline = AwardYear.where(year: now.year + 1)
+                        .first_or_create
+                        .settings.deadlines
+                        .submission_start
+                        .try(:trigger_at)
 
     deadline ||= Date.new(now.year, 4, 21)
     if now >= deadline.to_datetime
