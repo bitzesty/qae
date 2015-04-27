@@ -1,0 +1,11 @@
+li
+  div
+    p
+      | Are you sure?
+    br
+    = simple_form_for subsidiary,
+                      url: form_form_answer_subsidiaries_url(@form_answer.id, name: subsidiary.name, location: subsidiary.location),
+                      html: { class: 'qae-form', method: :delete } do |f|
+      .row
+        .span-12
+          = f.submit "Delete", class: "button button-alt"

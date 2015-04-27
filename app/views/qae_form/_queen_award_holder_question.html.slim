@@ -1,16 +1,7 @@
 - children_depends_on = question.children_options_depends_on
 - dependable_values = question.dependable_values
 
-.if-js-hide
-  span.question-context.question-debug
-    p
-      | Warning:
-      br
-      | NON-JS version system use special "Current Queens Awards" section.
-      br
-      | You need to save your form before you click on "Add award" or "Remove" in this list.
-      br
-      | Otherwise, filled answers on this step of application will be lost.
+= render "shared/non_js_dynamic_list_redirect_warning", add_message: "Add award"
 
 ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 id="non_js_queens-awards-list-question"
   input name="form[queen_award_holder_details][array]" value="true" type="hidden"
@@ -50,7 +41,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
                 = year
 
         span.inline.if-js-hide
-          = award['year']
+          =< award['year']
 
   - if question.entities.none?
     li.js-add-example.if-no-js-hide
