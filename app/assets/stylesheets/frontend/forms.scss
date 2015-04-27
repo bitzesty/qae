@@ -226,6 +226,17 @@ textarea {
   }
 }
 
+.js-uploaded-list,
+.js-file-uploaded,
+.js-file-uploaded > div,
+.char-count,
+textarea {
+  .lte-ie7 & {
+    position: relative;
+    zoom: 100%;
+  }
+}
+
 .qae-form {
   &,
   .span-1,
