@@ -9,3 +9,6 @@ li.form_answer_attachment
     - else
       span.glyphicon.glyphicon-file
       = "Not passed virus scanner check (#{support_letter.support_letter_attachment.original_filename})"
+  - else
+     = link_to "Support letter from #{support_letter.full_name}", [url_namespace, support_letter.form_answer, support_letter],
+               target: "_blank", class: "action-title"

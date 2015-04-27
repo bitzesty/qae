@@ -1,9 +1,13 @@
 module SupportLettersContext
   def show
     authorize resource, :show?
-    send_data support_letter_attachment.attachment.read,
-              filename: support_letter_attachment.original_filename,
-              disposition: "inline"
+
+    if support_letter_attachment.present?
+      send_data support_letter_attachment.attachment.read,
+                filename: support_letter_attachment.original_filename,
+                disposition: "inline"
+      return
+    end
   end
 
   private
