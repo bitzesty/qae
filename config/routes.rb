@@ -117,7 +117,7 @@ Rails.application.routes.draw do
       resources :organisational_charts, only: [:new, :create, :destroy] do
         get :confirm_deletion
       end
-      resource :positions, only: [:new, :create, :destroy] do
+      resource :positions, only: [:new, :create, :edit, :update, :destroy] do
         get :index, on: :collection
       end
       resource :current_queens_awards, only: [:new, :create, :destroy] do
