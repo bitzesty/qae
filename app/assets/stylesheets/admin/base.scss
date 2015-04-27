@@ -1343,13 +1343,13 @@ table .ellipsis {
   @include is-retina {
     background-image: image-url("icon-edit@2.png");
   }
-}
 
-.list-actions .glyphicon-pencil {
-  background-image: image-url("icon-edit-black.png");
+  .list-actions & {
+    background-image: image-url("icon-edit-black.png");
 
-  @include is-retina {
-    background-image: image-url("icon-edit-black@2.png");
+    @include is-retina {
+      background-image: image-url("icon-edit-black@2.png");
+    }
   }
 }
 
@@ -1417,22 +1417,18 @@ table .ellipsis {
   @include is-retina {
     background-image: image-url("icon-valid@2.png");
   }
-}
 
-#password-result-span,
-#password-confirmation-result-span {
-  .glyphicon-ok {
+  #password-result-span &,
+  #password-confirmation-result-span & {
     opacity: 0.25;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
     filter: alpha(opacity=25);
   }
-}
 
-.js .good-password #password-result-span,
-.js .good-password #password-confirmation-result-span.confirmation-matching {
-  .glyphicon-ok {
+  .js .good-password #password-result-span &,
+  .js .good-password #password-confirmation-result-span.confirmation-matching & {
     opacity: 1;
-    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
     filter: alpha(opacity=100);
   }
 }
