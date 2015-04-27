@@ -175,6 +175,13 @@ table .ellipsis {
   }
 }
 
+.table.table-striped tbody {
+  .lte-ie8 & {
+    border: 2px solid #000;
+    border-collapse: initial !important;
+  }
+}
+
 .visuallyhidden {
   position: absolute !important;
   top: -9999px !important;
