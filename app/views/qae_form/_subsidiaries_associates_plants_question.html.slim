@@ -1,4 +1,4 @@
-= render "shared/non_js_dynamic_list_redirect_warning"
+= render "shared/non_js_dynamic_list_redirect_warning", add_message: "Add subsidiary, associate or plant"
 
 ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1 id="non_js_#{question.key}-list-question"
   input name="#{question.input_name}[array]" value="true" type="hidden"

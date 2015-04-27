@@ -1,4 +1,4 @@
-= render "shared/non_js_dynamic_list_redirect_warning"
+= render "shared/non_js_dynamic_list_redirect_warning", add_message: "Add Award/Personal honour"
 
 ul.list-add data-need-to-clear-example=true data-add-limit="10" data-default=1 id="non_js_#{question.key}-list-question"
   input name="form[#{question.key}][array]" value="true" type="hidden"
