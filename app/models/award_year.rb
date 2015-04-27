@@ -56,6 +56,15 @@ class AwardYear < ActiveRecord::Base
     Date.new(AwardYear.current.year - i, 10, 1).strftime("%d/%m/%Y")
   end
 
+  def self.admin_switch
+    output = {}
+    year0 = 2016
+    (year0..(current.year + 3)).each do |year|
+      output[year] = "Award year #{year - 1}-#{year} "
+    end
+    output
+  end
+
   private
 
   def create_settings
