@@ -1,0 +1,18 @@
+li
+  div
+    = simple_form_for subsidiary,
+                      url: form_form_answer_subsidiaries_url(@form_answer.id),
+                      html: { class: 'qae-form' } do |f|
+      .row
+        .span-6
+          = f.input :name,
+                    input_html: { class: "medium" }
+        .span-6
+          = f.input :location,
+                    input_html: { class: "medium" }
+        .span-6
+          = f.input :employees,
+                    input_html: { class: "medium" },
+                    label: "Number of UK Employees"
+        .span-12
+          = f.submit "Save", class: "button button-alt"

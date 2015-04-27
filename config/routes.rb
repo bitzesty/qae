@@ -126,6 +126,9 @@ Rails.application.routes.draw do
       resource :awards, only: [:new, :create, :destroy] do
         get :confirm_deletion
       end
+      resource :subsidiaries, only: [:new, :create, :destroy] do
+        get :confirm_deletion
+      end
     end
   end
   # NON JS implementation - end
