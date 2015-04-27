@@ -42,8 +42,12 @@ header.page-header.group.page-header-over-sidebar
               = render "form/positions/item", attrs: attrs
 
 
-          = link_to "+ Add another role", new_form_form_answer_positions_path(@form_answer),
-                                          class: "button button-add"
+          = link_to new_form_form_answer_positions_path(@form_answer),
+                    class: "button button-add"
+            - if existing_position_details.any?
+              ' + Add another role
+            - else
+              ' + Add role
 
     = render "qae_form/steps_progress_bar", current_step: "nominee-background"
 

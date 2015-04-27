@@ -78,6 +78,12 @@ class Form::PositionsController < Form::BaseController
     end
   end
 
+  def edit
+  end
+
+  def update
+  end
+
   def destroy
     @form_answer.document = remove_position_result_doc
     @form_answer.save
