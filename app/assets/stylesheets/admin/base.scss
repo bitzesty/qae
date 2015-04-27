@@ -432,11 +432,9 @@ table .ellipsis {
         }
       }
 
-      a {
-        span {
-          .lte-ie8 & {
-            display: inline !important;
-          }
+      a span {
+        .lte-ie8 & {
+          display: inline !important;
         }
       }
     }
@@ -637,16 +635,17 @@ table .ellipsis {
     position: relative;
 
     .ie7 & {
-      z-index:-10;
+      z-index:1;
     }
   }
 
-  [type="search"], input.form-control {
+  [type="search"],
+  input.form-control {
     padding-right: 40px;
     font-size: 16px;
     font-style: italic;
     position: relative;
-    z-index: 1000000;
+    z-index: 10;
   }
 
   [type="submit"] {
@@ -669,7 +668,7 @@ table .ellipsis {
     overflow: hidden;
     color: transparent !important;
     left: auto;
-    z-index: 9999999999999;
+    z-index: 1000;
 
     @include is-retina {
       background-image: image-url("icon-search@2.png");
