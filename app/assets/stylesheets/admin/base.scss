@@ -419,6 +419,8 @@ table .ellipsis {
         text-overflow: ellipsis;
 
         .lte-ie8 & {
+          max-width: 200px;
+          margin-right: 0;
           float: left;
         }
       }
