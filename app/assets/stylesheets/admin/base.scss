@@ -101,6 +101,13 @@ table .ellipsis {
   }
 }
 
+.btn-block {
+  .lte-ie7 & {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
 .alert {
   padding-top: 10px;
   padding-bottom: 10px;
