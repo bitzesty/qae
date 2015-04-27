@@ -1,0 +1,9 @@
+header.page-header
+  h1
+    = "Support letter from #{@support_letter.full_name} for #{@support_letter.form_answer.urn}"
+
+dl
+  - %w(first_name last_name organization_name phone relationship_to_nominee address_first address_second city country postcode body).each do |attr|
+    - if (answer = @support_letter.public_send(attr)).present?
+      dt = SupportLetter.human_attribute_name(attr)
+      dd = answer
