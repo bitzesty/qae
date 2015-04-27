@@ -9,10 +9,14 @@ class QAEFormBuilder
       "ByYearsLabelQuestion",
       "UserInfoQuestion",
       "AwardHolderQuestion",
-      "SupportersQuestion"
+      "SupportersQuestion",
+      "AwardHolderQuestion",
+      "SubsidiariesAssociatesPlantsQuestion",
+      "ByTradeGoodsAndServicesLabelQuestion"
     ]
 
     attr_reader :question
+
     def initialize(question)
       @question = question
     end

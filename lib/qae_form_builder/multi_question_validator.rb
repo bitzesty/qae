@@ -2,9 +2,9 @@ class QAEFormBuilder::MultiQuestionValidator < QAEFormBuilder::QuestionValidator
   def errors
     result = super
 
-    question.entities.each_with_index do |award, index|
+    question.entities.each_with_index do |entity, index|
       question.required_sub_fields_list.each do |attr|
-        if !award[attr].present?
+        if !entity[attr].present?
           result[question.key] ||= {}
           result[question.key][index] ||= ""
           result[question.key][index] << " #{attr.humanize.capitalize} can't be blank."

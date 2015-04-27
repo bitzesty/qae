@@ -1,5 +1,30 @@
 class QAEFormBuilder
   class ByTradeGoodsAndServicesLabelQuestionValidator < QuestionValidator
+    HUMANIZED_ATTRS = {
+      "desc_short" => "Description"
+    }
+
+    def errors
+      result = super
+
+      question.trade_goods_and_services.each_with_index do |entity, index|
+        if index + 1 <= question.answers["trade_goods_amount"].to_i
+          question.required_sub_fields_list.each do |attr|
+            if !entity[attr].present?
+              result[question.key] ||= {}
+              result[question.key][index] ||= ""
+              result[question.key][index] << " #{humanize(attr)} can't be blank."
+            end
+          end
+        end
+      end
+
+      result
+    end
+
+    def humanize(attr)
+      HUMANIZED_ATTRS[attr].presence || attr.humanize.capitalize
+    end
   end
 
   class ByTradeGoodsAndServicesLabelQuestionDecorator < QuestionDecorator
@@ -7,6 +32,10 @@ class QAEFormBuilder
       @trade_goods_and_services ||= JSON.parse(answers[delegate_obj.key.to_s] || '[]').map do |answer|
         JSON.parse(answer)
       end
+    end
+
+    def required_sub_fields_list
+      %w(desc_short total_overseas_trade)
     end
   end
 
