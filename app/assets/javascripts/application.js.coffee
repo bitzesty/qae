@@ -277,6 +277,7 @@ jQuery ->
   $(document).on "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave
   $(document).on "keyup", "textarea.js-trigger-autosave", triggerAutosave
+  $(document).on "click", ".remove-link", triggerAutosave
 
   # Fade out alerts after 10sec
   $(".flash").delay(10000).fadeOut()
