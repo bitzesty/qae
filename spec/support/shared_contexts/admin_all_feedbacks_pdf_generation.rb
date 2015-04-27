@@ -2,8 +2,9 @@ require 'rails_helper'
 
 shared_context "admin all feedbacks pdf generation" do
   let!(:form_answer) do
-    create :form_answer, award_type,
-                         :submitted
+    create :form_answer,
+           award_type,
+           :submitted
   end
 
   let!(:feedback) do

@@ -16,10 +16,4 @@ class Admin::FeedbacksController < Admin::BaseController
       end
     end
   end
-
-  private
-
-  def form_answers_scope
-    @award_year.form_answers
-  end
 end

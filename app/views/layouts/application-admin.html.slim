@@ -56,19 +56,18 @@ html.no-js
 
                   / TODO Settings page
                   li class=('active' if controller_name == 'settings')
-                    = link_to "Settings", admin_settings_path
+                    = link_to "Settings", admin_settings_path(year: AwardYear.current.year)
 
-                  / TODO Award year select
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' Award Year
-                      - year = params[:year] ? params[:year].to_i : Date.current.year
-                      = "#{year} - #{year + 1}"
+                      - year = params[:year] ? params[:year].to_i : AwardYear.current.year
+                      = "#{year - 1} - #{year}"
                       span.caret
                     ul.dropdown-menu
-                      - AwardYear::AVAILABLE_YEARS.each do |start_year|
+                      - AwardYear.admin_switch.each do |year, label|
                         li
-                          = link_to "Award year #{start_year - 1} - #{start_year}", admin_settings_url(year: start_year)
+                          = link_to label, url_for(params.merge(year: year))
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown

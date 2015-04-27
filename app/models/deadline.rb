@@ -17,6 +17,10 @@ class Deadline < ActiveRecord::Base
     where(kind: "submission_end")
   end
 
+  def self.submission_start
+    where(kind: "submission_start").first
+  end
+
   def passed?
     trigger_at && trigger_at < Time.zone.now
   end

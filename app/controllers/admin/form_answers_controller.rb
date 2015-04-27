@@ -58,7 +58,7 @@ class Admin::FormAnswersController < Admin::BaseController
   end
 
   def load_resource
-    @form_answer = @award_year.form_answers.find(params[:id]).decorate
+    @form_answer = FormAnswer.find(params[:id]).decorate
   end
 
   def primary_assessment
