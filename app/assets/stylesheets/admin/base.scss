@@ -1302,7 +1302,10 @@ table .ellipsis {
   }
 }
 
+
+.page-header-nav .btn-link.pull-left,
 .search-form h2 .btn-link {
-  margin-right: 15px;
+  margin-right: 30px;
+  padding-right: 0;
   padding-left: 0;
 }
