@@ -6,7 +6,7 @@ class FormAnswerTransition < ActiveRecord::Base
   def transitable
     t_type = metadata["transitable_type"]
     t_id = metadata["transitable_id"]
-    if t_id.present? && t_type.present? && ["Admin", "Assessor"].include?(t_type)
+    if t_id.present? && t_type.present? && ["Admin", "Assessor", "User"].include?(t_type)
       t_type.constantize.find(t_id)
     end
   end

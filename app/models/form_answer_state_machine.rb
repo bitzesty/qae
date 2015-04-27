@@ -61,11 +61,7 @@ class FormAnswerStateMachine
 
   def perform_transition(state, subject = nil, validate = true)
     state = state.to_sym if STATES.map(&:to_s).include?(state)
-    meta = {
-      transitable_id: subject.id,
-      transitable_type: subject.class.to_s
-    } if subject.present?
-    meta ||= {}
+    meta = get_metadata(subject)
 
     if permitted_states_with_deadline_constraint.include?(state) || !validate
       # Admin can change always and everything
@@ -81,9 +77,10 @@ class FormAnswerStateMachine
   end
 
   def submit(subject)
-    perform_transition(:submitted, subject)
     # TODO: tech debt - we store the submitted state in 2 places
     # in state machine and in `form_answers.submitted`
+    meta = get_metadata(subject)
+    transition_to :submitted, meta
     object.update(submitted: true)
   end
 
@@ -114,6 +111,15 @@ class FormAnswerStateMachine
   end
 
   private
+
+  def get_metadata(subject)
+    meta = {
+      transitable_id: subject.id,
+      transitable_type: subject.class.to_s
+    } if subject.present?
+    meta ||= {}
+    meta
+  end
 
   def permitted_states_with_deadline_constraint
     if Settings.after_current_submission_deadline?

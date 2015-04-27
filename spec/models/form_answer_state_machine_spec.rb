@@ -4,6 +4,25 @@ describe FormAnswerStateMachine do
   let!(:award_year) { AwardYear.current }
   let(:form_answer) { create(:form_answer, :innovation, award_year: award_year) }
 
+  describe "#submit" do
+    context "before the submission deadline" do
+      before do
+        allow(Settings).to receive(:after_submission_deadline?).and_return(false)
+      end
+
+      it "changes state/flag for application to submitted" do
+        form_answer.state_machine.submit(form_answer.user)
+        expect(form_answer).to be_submitted
+        expect(form_answer.state).to eq("submitted")
+      end
+
+      it "sets up the transitions record with metadata" do
+        form_answer.state_machine.submit(form_answer.user)
+        expect(form_answer.form_answer_transitions.last.transitable).to eq(form_answer.user)
+      end
+    end
+  end
+
   describe "#trigger_deadlines" do
     context "deadline expired" do
       let!(:settings) { create(:settings, :expired_submission_deadlines) }
