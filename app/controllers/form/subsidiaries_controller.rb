@@ -29,7 +29,7 @@ class Form::SubsidiariesController < Form::BaseController
         JSON.parse(el)
       end
     else
-      {}
+      []
     end
   end
 

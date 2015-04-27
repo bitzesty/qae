@@ -17,7 +17,7 @@ class Form::PositionsController < Form::BaseController
         JSON.parse(el)
       end
     else
-      {}
+      []
     end
   end
 

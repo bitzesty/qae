@@ -29,7 +29,7 @@ class Form::AwardsController < Form::BaseController
         JSON.parse(el)
       end
     else
-      {}
+      []
     end
   end
 
