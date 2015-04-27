@@ -1397,17 +1397,6 @@ table .ellipsis {
   }
 }
 
-.glyphicon-remove {
-  width: 11px;
-  height: 11px;
-  background-image: image-url("icon-invalid.png");
-  background-size: 11px 11px;
-
-  @include is-retina {
-    background-image: image-url("icon-invalid@2.png");
-  }
-}
-
 .glyphicon-ok {
   width: 15px;
   height: 12px;
@@ -1442,12 +1431,12 @@ table .ellipsis {
   @include is-retina {
     background-image: image-url("icon-invalid@2.png");
   }
-}
 
-.text-danger .glyphicon-remove {
-  background-image: image-url("icon-remove.png");
+  .text-danger & {
+    background-image: image-url("icon-remove.png");
 
-  @include is-retina {
-    background-image: image-url("icon-remove@2.png");
+    @include is-retina {
+      background-image: image-url("icon-remove@2.png");
+    }
   }
 }
