@@ -71,4 +71,22 @@ namespace :form_answers do
       f.save(validate: false)
     end
   end
+
+  desc "Populate the form progresses"
+  # Remove after use - it assumes that progress set up before save
+  task populate_form_answer_progresses: :environment do
+    output = {
+      saved: [],
+      not_saved: []
+    }
+    FormAnswer.find_each do |f|
+      if f.save
+        output[:saved] << f.id
+      else
+        output[:not_saved] << f.id
+      end
+    end
+
+    p "Saved: #{output[:saved].size}; not saved: #{output[:not_saved].inspect}"
+  end
 end

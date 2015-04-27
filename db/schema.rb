@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150417153811) do
+ActiveRecord::Schema.define(version: 20150427100604) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -219,6 +219,13 @@ ActiveRecord::Schema.define(version: 20150417153811) do
   end
 
   add_index "form_answer_attachments", ["form_answer_id"], name: "index_form_answer_attachments_on_form_answer_id", using: :btree
+
+  create_table "form_answer_progresses", force: :cascade do |t|
+    t.hstore  "sections"
+    t.integer "form_answer_id", null: false
+  end
+
+  add_index "form_answer_progresses", ["form_answer_id"], name: "index_form_answer_progresses_on_form_answer_id", unique: true, using: :btree
 
   create_table "form_answer_transitions", force: :cascade do |t|
     t.string   "to_state",                      null: false

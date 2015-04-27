@@ -1,13 +1,14 @@
-require "csv"
+class Reports::RegisteredUsers
+  include Reports::CSVHelper
 
-class Reports::AdminReportBuilder
   MAPPING = [
     {
       label: "URN",
       method: :urn
     },
     {
-      label: "ApplicantName"
+      label: "ApplicantName",
+      method: :company_or_nominee_name
     },
     {
       label: "RegisteredUserId",
@@ -15,50 +16,23 @@ class Reports::AdminReportBuilder
     },
     {
       label: "RegisteredUserTitle",
-      method: :title
+      method: :contact_title
     },
     {
       label: "RegisteredUserFirstname",
-      method: :first_name
+      method: :contact_first_name
     },
     {
       label: "RegisteredUserSurname",
-      method: :last_name
+      method: :contact_surname
     },
     {
       label: "RegisteredUserEmail",
-      method: :head_email
+      method: :contact_email
     },
     {
       label: "RegisteredUserCompany",
       method: :company_name
-    },
-    {
-      label: "RegisteredUserAddressLine1",
-      method: :address_line1
-    },
-    {
-      label: "RegisteredUserAddressLine2",
-      method: :address_line2
-    },
-    {
-      label: "RegisteredUserAddressLine3",
-      method: :address_line3
-    },
-    {
-      label: "RegisteredUserPostcode",
-      method: :postcode
-    },
-    {
-      label: "RegisteredUserTelephone1",
-      method: :telephone1
-    },
-    {
-      label: "RegisteredUserTelephone2",
-      method: :telephone2
-    },
-    {
-      label: "RegisteredUserMobile"
     },
     {
       label: "FormType",
@@ -109,10 +83,12 @@ class Reports::AdminReportBuilder
       method: :business_sector_other
     },
     {
-      label: "Region"
+      label: "Region",
+      method: :business_region
     },
     {
-      label: "Employees"
+      label: "Employees",
+      method: :employees
     },
     {
       label: "QAOPermission",
@@ -128,27 +104,36 @@ class Reports::AdminReportBuilder
     }
   ]
 
-  def initialize
-    @scope = ::FormAnswer.all.includes(:user)
+  def initialize(year)
+    @year = year
   end
 
   def build
-    csv_string = CSV.generate do |csv|
-      csv << headers
-      @scope.each do |form_answer|
-        form_answer = Reports::FormAnswer.new(form_answer)
-        csv << MAPPING.map do |m|
-          form_answer.call_method(m[:method])
+    rows = []
+
+    scope = ::FormAnswer.select(:id).where(award_year_id: @year.id)
+    scope.find_in_batches do |batch|
+      form_answers = FormAnswer.where(id: batch.map(&:id))
+                     .includes(:user,
+                               :assessor_assignments,
+                               :primary_assessor,
+                               :secondary_assessor,
+                               :form_answer_progress
+                              )
+      form_answers.each do |fa|
+        f = Reports::FormAnswer.new(fa)
+        rows << mapping.map do |m|
+          f.call_method(m[:method])
         end
       end
     end
 
-    csv_string
+    as_csv(rows)
   end
 
   private
 
-  def headers
-    MAPPING.map { |m| m[:label] }
+  def mapping
+    MAPPING
   end
 end
