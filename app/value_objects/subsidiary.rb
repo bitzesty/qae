@@ -6,7 +6,8 @@ class Subsidiary
 
   attr_reader :name, :location, :employees
 
-  validates :name, :location, :employees, length: { maximum: 100 }
+  validates :name, :location, :employees, presence: true,
+                                          length: { maximum: 100 }
 
   def initialize(attrs={})
     attrs.each do |key, value|

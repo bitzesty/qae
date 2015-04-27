@@ -7,12 +7,15 @@ li
         .span-6
           = f.input :name,
                     input_html: { class: "medium" }
+      .row
         .span-6
           = f.input :location,
                     input_html: { class: "medium" }
+      .row
         .span-6
           = f.input :employees,
                     input_html: { class: "medium" },
                     label: "Number of UK Employees"
+      .row
         .span-12
           = f.submit "Save", class: "button button-alt"
