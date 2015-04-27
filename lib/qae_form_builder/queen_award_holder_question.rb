@@ -1,7 +1,5 @@
-require_relative 'multi_question_decorator'
-
 class QAEFormBuilder
-  class QueenAwardHolderQuestionValidator < QuestionValidator
+  class QueenAwardHolderQuestionValidator < MultiQuestionValidator
   end
 
   QueenAwardHolderCategory = Struct.new(:value, :text)
@@ -36,5 +34,8 @@ class QAEFormBuilder
   end
 
   class QueenAwardHolderQuestionDecorator < MultiQuestionDecorator
+    def required_sub_fields_list
+      %w(category year)
+    end
   end
 end
