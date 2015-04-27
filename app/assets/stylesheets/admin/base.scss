@@ -1184,7 +1184,7 @@ table .ellipsis {
       background-image: image-url("icon-grade-green.png");
 
       @include is-retina {
-        background-image: image-url("icon-grade-greenb@2.png");
+        background-image: image-url("icon-grade-green@2.png");
       }
     }
   }
@@ -1305,4 +1305,153 @@ table .ellipsis {
 .search-form h2 .btn-link {
   margin-right: 15px;
   padding-left: 0;
+}
+
+.glyphicon-paperclip,
+.glyphicon-file,
+.glyphicon-pencil,
+.glyphicon-info-sign,
+.glyphicon-download-alt,
+.glyphicon-ok,
+.glyphicon-remove,
+.glyphicon-user {
+  background-repeat: no-repeat;
+  background-position: center center;
+
+  &:before {
+    display: none;
+  }
+}
+
+.glyphicon-paperclip {
+  width: 16px;
+  height: 16px;
+  background-image: image-url("icon-attach.png");
+  background-size: 16px 16px;
+
+  @include is-retina {
+    background-image: image-url("icon-attach@2.png");
+  }
+}
+
+.glyphicon-pencil {
+  width: 15px;
+  height: 13px;
+  background-image: image-url("icon-edit.png");
+  background-size: 15px 13px;
+
+  @include is-retina {
+    background-image: image-url("icon-edit@2.png");
+  }
+}
+
+.list-actions .glyphicon-pencil {
+  background-image: image-url("icon-edit-black.png");
+
+  @include is-retina {
+    background-image: image-url("icon-edit-black@2.png");
+  }
+}
+
+.glyphicon-file {
+  width: 12px;
+  height: 16px;
+  background-image: image-url("icon-file.png");
+  background-size: 12px 16px;
+
+  @include is-retina {
+    background-image: image-url("icon-file@2.png");
+  }
+}
+
+.glyphicon-info-sign {
+  width: 15px;
+  height: 15px;
+  background-image: image-url("icon-info.png");
+  background-size: 15px 15px;
+
+  @include is-retina {
+    background-image: image-url("icon-info@2.png");
+  }
+}
+
+.glyphicon-download-alt {
+  width: 15px;
+  height: 16px;
+  background-image: image-url("icon-download.png");
+  background-size: 15px 16px;
+
+  @include is-retina {
+    background-image: image-url("icon-download@2.png");
+  }
+}
+
+.glyphicon-user {
+  width: 14px;
+  height: 14px;
+  background-image: image-url("icon-user.png");
+  background-size: 14px 14px;
+
+  @include is-retina {
+    background-image: image-url("icon-user@2.png");
+  }
+}
+
+.glyphicon-remove {
+  width: 11px;
+  height: 11px;
+  background-image: image-url("icon-invalid.png");
+  background-size: 11px 11px;
+
+  @include is-retina {
+    background-image: image-url("icon-invalid@2.png");
+  }
+}
+
+.glyphicon-ok {
+  width: 15px;
+  height: 12px;
+  background-image: image-url("icon-valid.png");
+  background-size: 15px 12px;
+
+  @include is-retina {
+    background-image: image-url("icon-valid@2.png");
+  }
+}
+
+#password-result-span,
+#password-confirmation-result-span {
+  .glyphicon-ok {
+    opacity: 0.25;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=25)";
+    filter: alpha(opacity=25);
+  }
+}
+
+.js .good-password #password-result-span,
+.js .good-password #password-confirmation-result-span.confirmation-matching {
+  .glyphicon-ok {
+    opacity: 1;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+    filter: alpha(opacity=100);
+  }
+}
+
+.glyphicon-remove {
+  width: 11px;
+  height: 11px;
+  background-image: image-url("icon-invalid.png");
+  background-size: 11px 11px;
+
+  @include is-retina {
+    background-image: image-url("icon-invalid@2.png");
+  }
+}
+
+.text-danger .glyphicon-remove {
+  background-image: image-url("icon-remove.png");
+
+  @include is-retina {
+    background-image: image-url("icon-remove@2.png");
+  }
 }
