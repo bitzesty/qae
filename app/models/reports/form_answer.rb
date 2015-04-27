@@ -24,29 +24,24 @@ class Reports::FormAnswer
   end
 
   def employees
-    meth = subcategory_suffix("employees")
-    if meth
-      b = doc meth.keys.first
-      doc meth.values.first[b]
-    end
+    collect_final_value_from_doc(subcategory_suffix("employees"))
   end
 
   private
 
-  def final_year_overseas_sales
-    meth = subcategory_suffix("overseas_sales")
+  def collect_final_value_from_doc(meth)
     if meth
       b = doc meth.keys.first
       doc meth.values.first[b]
     end
   end
 
+  def final_year_overseas_sales
+    collect_final_value_from_doc(subcategory_suffix("overseas_sales"))
+  end
+
   def final_year_total_sales
-    meth = subcategory_suffix("total_turnover")
-    if meth
-      b = doc meth.keys.first
-      doc meth.values.first[b]
-    end
+    collect_final_value_from_doc(subcategory_suffix("total_turnover"))
   end
 
   def subcategory_suffix(attr_name)

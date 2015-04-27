@@ -13,14 +13,14 @@ class FormAnswerProgress < ActiveRecord::Base
   def assign_sections(award_form)
     doc = {}
     (0..5).each do |i|
-      doc["section#{i + 1}"] = f_progress(award_form.steps[i])
+      doc["section#{i + 1}"] = as_percentage(award_form.steps[i])
     end
     self.sections = doc
   end
 
   private
 
-  def f_progress(p)
+  def as_percentage(p)
     return nil unless p
     ((p.progress || 0) * 100).round
   end
