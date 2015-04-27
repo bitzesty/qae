@@ -5,7 +5,7 @@ class FeedbackPdfs::Pointer < ReportPdfFormAnswerPointerBase
   attr_reader :data
 
   def generate!
-    @data = form_answer.feedback.document
+    @data = form_answer.feedback.document || {}
     main_header
     render_data!
   end

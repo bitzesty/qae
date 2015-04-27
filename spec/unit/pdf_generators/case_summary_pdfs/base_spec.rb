@@ -1,30 +1,16 @@
 require 'rails_helper'
 
 describe "CaseSummaryPdfs::Base" do
-  let(:next_year) {
-    AwardYear.where(year: (AwardYear.current.year + 1)).first_or_create
-  }
-
   let!(:form_answer_current_year_innovation) do
     FactoryGirl.create :form_answer, :submitted, :innovation
-  end
-
-  let!(:form_answer_next_year_innovation) do
-    FactoryGirl.create :form_answer, :submitted, :innovation,
-                        award_year_id: next_year
   end
 
   let!(:form_answer_current_year_trade) do
     FactoryGirl.create :form_answer, :submitted, :trade
   end
 
-  let!(:form_answer_next_year_trade) do
-    FactoryGirl.create :form_answer, :submitted, :trade,
-                        award_year_id: next_year
-  end
-
   before do
-    [:current_year, :next_year].each do |year|
+    [:current_year].each do |year|
       [:innovation, :trade].each do |award_type|
         form_answer = send("form_answer_#{year}_#{award_type}")
         create :assessor_assignment, form_answer: form_answer,
@@ -44,7 +30,6 @@ describe "CaseSummaryPdfs::Base" do
 
       expect(innovation_case_summaries).to match_array([
         form_answer_current_year_innovation.id,
-        form_answer_next_year_innovation.id
       ])
 
       trade_case_summaries = CaseSummaryPdfs::Base.new("all", nil, {category: "trade"})
@@ -53,7 +38,6 @@ describe "CaseSummaryPdfs::Base" do
 
       expect(trade_case_summaries).to match_array([
         form_answer_current_year_trade.id,
-        form_answer_next_year_trade.id
       ])
     end
   end

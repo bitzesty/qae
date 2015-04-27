@@ -40,7 +40,7 @@ module FeedbackMixin
   private
 
   def load_form_answer
-    @form_answer = form_answers_scope.find(params[:form_answer_id]).decorate
+    @form_answer = FormAnswer.find(params[:form_answer_id]).decorate
   end
 
   def feedback_params

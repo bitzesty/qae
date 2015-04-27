@@ -4,7 +4,6 @@ class FeedbackPdfs::Base < ReportPdfBase
 
   def all_mode
     set_feedbacks
-
     if feedbacks.present?
       feedbacks.each_with_index do |feedback, index|
         start_new_page if index.to_i != 0
@@ -21,7 +20,8 @@ class FeedbackPdfs::Base < ReportPdfBase
                          .includes(:form_answer)
                          .joins(form_answer: :award_year)
                          .where("form_answers.award_type = ?", options[:category])
-                         .order("award_years.year")
+                         .where("form_answers.award_year_id = ?", current_year.id)
+
   end
 
   def render_item(form_answer)

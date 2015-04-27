@@ -26,7 +26,7 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_award_general_information(x_coord, y_coord)
-    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{form_answer.award_year.year}",
+    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{current_year.year}",
                      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
@@ -60,7 +60,7 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_not_found_general_information
-    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{AwardYear.current.year}",
+    pdf_doc.text_box "#{AWARD_GENERAL_INFO_PREFIX} #{current_year.year}",
                      header_text_properties.merge(at: [130.mm, 137.mm + DEFAULT_OFFSET])
   end
 
@@ -86,5 +86,10 @@ module SharedPdfHelpers::DrawElements
       valign: :top,
       style: :bold
     }
+  end
+
+  def current_year
+    y = options[:award_year] if defined?(options) && options[:award_year].present?
+    y || AwardYear.current
   end
 end
