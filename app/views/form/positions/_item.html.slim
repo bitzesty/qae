@@ -9,13 +9,20 @@ li
 
     label
       strong Position/role
-    p =  attrs["name"]
+    p
+      - if attrs["name"].present?
+        = attrs["name"]
+      - else
+        ' -
     br
 
     label
       strong Start Date
     p
-      = "#{attrs['start_month']}/#{attrs['start_year']}"
+      - if attrs["start_month"].present? and attrs["start_year"].present?
+        = "#{attrs['start_month']}/#{attrs['start_year']}"
+      - else
+        ' -
     br
 
     label
@@ -24,13 +31,19 @@ li
       - if attrs["ongoing"].to_s == "1"
         ' Ongoing
       - else
-        = "#{attrs['end_month']}/#{attrs['end_year']}"
+        - if attrs["end_month"].present? and attrs["end_year"].present?
+          = "#{attrs['end_month']}/#{attrs['end_year']}"
+        - else
+          ' -
     br
 
     label
       strong Details
     p
-      = attrs["details"]
+      - if attrs["details"].present?
+        = attrs["details"]
+      - else
+        ' -
     br
 
   = link_to "Edit role", edit_form_form_answer_positions_path(@form_answer)
