@@ -60,6 +60,12 @@ body {
   z-index: -10 !important;
 }
 
+.container {
+  .lte-ie8 & {
+    max-width: 1170px;
+  }
+}
+
 .row {
   .lte-ie8 & {
     width: 100% !important;
