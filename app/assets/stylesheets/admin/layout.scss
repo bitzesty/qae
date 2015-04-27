@@ -53,16 +53,6 @@ body {
   }
 }
 
-.ie7 {
-  .dashboard-index-page #main-container,
-  .form_answers-show-page #main-container {
-    float: none;
-    clear: both;
-    position: relative !important;
-    z-index: -1 !important;
-  }
-}
-
 .container {
   .lte-ie8 & {
     max-width: 1170px;

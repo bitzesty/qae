@@ -3,6 +3,7 @@
 #site-header {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  *z-index: 1000;
 
   @include screen-lg-max {
     font-size: 14px;
@@ -76,6 +77,26 @@
     border: none;
     border-radius: 0;
     background: $black-header;
+    
+    .lte-ie8 & {
+      z-index: 100001 !important;
+      height: 81px !important;
+    }
+
+    .navbar-brand {
+      .lte-ie8 & {
+        margin-top: 3px !important;
+      }
+    }
+
+    .navbar-nav {
+      .lte-ie8 & {
+        z-index: 10001 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        top: 0 !important;
+      }
+    }
 
     .navbar-nav > li > a {
       color: $white-true;
@@ -101,7 +122,6 @@
   .nav {
     .lte-ie8 & {
       float: left !important;
-      height: 90px;
       position: relative;
       top: -10px;
     }
@@ -135,7 +155,7 @@
     > a {
       .lte-ie8 & {
         display: block !important;
-        padding-top: 22px !important;
+        padding-top: 30px !important;
         padding-bottom: 30px !important;
         color: $white-true !important;
       }
@@ -178,7 +198,7 @@
     }
 
     .lte-ie8 & {
-      z-index: 99999 !important;
+      z-index: 999999 !important;
     }
 
     > li > a {

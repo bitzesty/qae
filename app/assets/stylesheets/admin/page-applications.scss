@@ -263,7 +263,7 @@
   }
 
   label {
-    width: 35%;
+    width: 30%;
     margin-bottom: 0;
     float: left;
     font-weight: normal;
@@ -312,6 +312,12 @@
 
   .edit-value {
     padding-right: 60px;
+
+    .ie7 & {
+      padding-right: 0;
+      width: 45% !important;
+      padding-right: 20%;
+    }
   }
 
   .form-edit-link {
