@@ -10,7 +10,6 @@ class Reports::AllEntries
       label: "Category",
       method: :category
     },
-
     # Head of business attributes
     {
       label: "Title",
@@ -172,7 +171,8 @@ class Reports::AllEntries
 
   def build
     rows = []
-    ::FormAnswer.select(:id).where(award_year_id: @year.id).find_in_batches do |batch|
+    scope = ::FormAnswer.select(:id).where(award_year_id: @year.id)
+    scope.find_in_batches do |batch|
       form_answers = FormAnswer.where(id: batch.map(&:id))
                      .includes(:user,
                                :assessor_assignments,

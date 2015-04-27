@@ -7,7 +7,7 @@ class Reports::AdminReport
   end
 
   def build
-    out = case id
+    case id
     when "registered-users"
       Reports::RegisteredUsers.new(year).build
     when "press-book-list"

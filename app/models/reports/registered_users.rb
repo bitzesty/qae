@@ -16,19 +16,19 @@ class Reports::RegisteredUsers
     },
     {
       label: "RegisteredUserTitle",
-      method: :title
+      method: :contact_title
     },
     {
       label: "RegisteredUserFirstname",
-      method: :first_name
+      method: :contact_first_name
     },
     {
       label: "RegisteredUserSurname",
-      method: :last_name
+      method: :contact_surname
     },
     {
       label: "RegisteredUserEmail",
-      method: :head_email
+      method: :contact_email
     },
     {
       label: "RegisteredUserCompany",
@@ -111,7 +111,8 @@ class Reports::RegisteredUsers
   def build
     rows = []
 
-    ::FormAnswer.select(:id).where(award_year_id: @year.id).find_in_batches do |batch|
+    scope = ::FormAnswer.select(:id).where(award_year_id: @year.id)
+    scope.find_in_batches do |batch|
       form_answers = FormAnswer.where(id: batch.map(&:id))
                      .includes(:user,
                                :assessor_assignments,

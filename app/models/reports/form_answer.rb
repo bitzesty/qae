@@ -3,10 +3,10 @@ class Reports::FormAnswer
 
   def initialize(form_answer)
     @obj = form_answer
-    @moderated = @obj.assessor_assignments.detect { |a| a.position == 2 }
-    @primary = @obj.assessor_assignments.detect { |a| a.position == 0 }
-    @secondary = @obj.assessor_assignments.detect { |a| a.position == 1 }
-    @lead_case_summary = @obj.assessor_assignments.detect { |a| a.position == 4 }
+    @moderated = @obj.assessor_assignments.detect { |a| a.position == "moderated" }
+    @primary = @obj.assessor_assignments.detect { |a| a.position == "primary" }
+    @secondary = @obj.assessor_assignments.detect { |a| a.position == "secondary" }
+    @lead_case_summary = @obj.assessor_assignments.detect { |a| a.position == "lead_case_summary" }
     @primary_assessor = @obj.primary_assessor
     @secondary_assessor = @obj.secondary_assessor
   end
@@ -226,11 +226,7 @@ class Reports::FormAnswer
   end
 
   def mso_outcome_agreed
-    rag obj.assessor_assignments.detect { |f| f.position == 2 }.try(:verdict_rate)
-  end
-
-  def organisation_with_ultimate_control
-    doc("parent_ultimate_control")
+    rag @moderated.try(:verdict_rate)
   end
 
   def organisation_with_ultimate_control_country
@@ -243,18 +239,6 @@ class Reports::FormAnswer
     rates.map do |_, rate|
       rag rate
     end.join(",")
-  end
-
-  def title
-    obj.user.title
-  end
-
-  def first_name
-    obj.user.first_name
-  end
-
-  def last_name
-    obj.user.last_name
   end
 
   def immediate_parent
@@ -288,11 +272,11 @@ class Reports::FormAnswer
   end
 
   def head_title
-    doc "head_of_business_title"
+    doc("head_of_bussines_title")
   end
 
   def head_full_name
-    if  business_form?
+    if business_form?
       doc("head_of_business_first_name").to_s + doc("head_of_business_last_name").to_s
     end
   end
@@ -312,12 +296,6 @@ class Reports::FormAnswer
   def head_surname
     if business_form?
       doc("head_of_business_last_name")
-    end
-  end
-
-  def head_title
-    if business_form?
-      doc("")
     end
   end
 
@@ -354,7 +332,7 @@ class Reports::FormAnswer
   end
 
   def qao_permission
-    obj.user.subscribed_to_emails
+    bool obj.user.subscribed_to_emails
   end
 
   def user_creation_date
@@ -417,7 +395,9 @@ class Reports::FormAnswer
     day = doc("started_trading_day")
     month = doc("started_trading_month")
     year = doc("started_trading_year")
-    "#{month}/#{day}/#{year}" if year && month && day
+    if year && month && day
+      Date.new(year.to_i, month.to_i, day.to_i).strftime("%m/%d/%Y")
+    end
   end
 
   def nominee_first_name
@@ -464,11 +444,11 @@ class Reports::FormAnswer
     obj.document[key]
   end
 
-  def bool var
+  def bool(var)
     var ? "Yes" : "No"
   end
 
-  def rag var
+  def rag(var)
     {
       "negative" => "R",
       "positive" => "G",

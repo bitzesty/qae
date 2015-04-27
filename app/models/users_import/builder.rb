@@ -15,7 +15,7 @@ class UsersImport::Builder
       email = user["RegisteredUserEmail"].downcase if user["RegisteredUserEmail"].present?
       u = User.where(email: email).first_or_initialize
       if u.new_record? && email.present?
-        p "saving: #{email}"
+        log "saving: #{email}"
 
         u.imported = true
         map.each do |csv_h, db_h|
@@ -29,14 +29,14 @@ class UsersImport::Builder
           u.update_column(:created_at, Date.strptime(user["UserCreationDate"], "%m/%d/%Y")) if user["UserCreationDate"].present?
           saved << u
         else
-          p "not saved: #{email}: #{u.errors.inspect}"
+          log "not saved: #{email}: #{u.errors.inspect}"
           not_saved << u
         end
       else
-        p "Email already exists: #{email}"
+        log "Email already exists: #{email}"
       end
     end
-    p "Imported: #{saved.count}; not_saved: #{not_saved.map(&:email)}"
+    log "Imported: #{saved.count}; not_saved: #{not_saved.map(&:email)}"
     { saved: saved, not_saved: not_saved }
   end
 
@@ -53,6 +53,10 @@ class UsersImport::Builder
   end
 
   private
+
+  def log(msg)
+    puts msg unless Rails.env.test?
+  end
 
   def map
     {
