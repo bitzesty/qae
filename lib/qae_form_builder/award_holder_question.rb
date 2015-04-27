@@ -4,7 +4,7 @@ class QAEFormBuilder
       result = super
 
       question.entities.each_with_index do |award, index|
-        question.required_sub_fields.each do |attr|
+        question.required_sub_fields_list.each do |attr|
           if !award[attr].present?
             result[question.key] ||= {}
             result[question.key][index] ||= ""
@@ -42,7 +42,7 @@ class QAEFormBuilder
   end
 
   class AwardHolderQuestionDecorator < MultiQuestionDecorator
-    def required_sub_fields
+    def required_sub_fields_list
       if delegate_obj.award_years_present
         %w(title year details)
       else
