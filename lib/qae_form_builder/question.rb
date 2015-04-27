@@ -45,7 +45,7 @@ class QAEFormBuilder
 
     def limit_with_buffer(limit)
       if limit > 15
-        limit_with_buffer = (limit + limit * 0.1).to_i + 1
+        (limit + limit * 0.1).to_i + 1
       else
         limit
       end

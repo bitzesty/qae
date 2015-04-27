@@ -5,7 +5,6 @@ class QAEFormBuilder
 
       length = question.input_value && question.input_value.split(" ").length
 
-
       limit = question.delegate_obj.words_max
 
       if limit_with_buffer(limit) && length && length > limit_with_buffer(limit)
