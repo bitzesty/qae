@@ -110,9 +110,15 @@ class Reports::RegisteredUsers
 
   def build
     rows = []
+
     ::FormAnswer.select(:id).where(award_year_id: @year.id).find_in_batches do |batch|
       form_answers = FormAnswer.where(id: batch.map(&:id))
-                     .includes(:user, :assessor_assignments, :primary_assessor, :secondary_assessor)
+                     .includes(:user,
+                               :assessor_assignments,
+                               :primary_assessor,
+                               :secondary_assessor,
+                               :form_answer_progress
+                              )
       form_answers.each do |fa|
         f = Reports::FormAnswer.new(fa)
         rows << mapping.map do |m|

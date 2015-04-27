@@ -53,6 +53,8 @@ class FormAnswer < ActiveRecord::Base
     has_one :draft_note, as: :notable, dependent: :destroy
     has_one :company_detail, dependent: :destroy
     has_one :palace_invite, dependent: :destroy
+    has_one :form_answer_progress, dependent: :destroy
+
     belongs_to :primary_assessor, class_name: "Assessor", foreign_key: :primary_assessor_id
     belongs_to :secondary_assessor, class_name: "Assessor", foreign_key: :secondary_assessor_id
     has_many :form_answer_attachments, dependent: :destroy
@@ -221,6 +223,13 @@ class FormAnswer < ActiveRecord::Base
   def set_progress
     form = award_form.decorate(answers: HashWithIndifferentAccess.new(document || {}))
     self.fill_progress = form.progress
+
+    unless new_record?
+      progress = (form_answer_progress || build_form_answer_progress)
+      progress.assign_sections(form)
+      progress.save
+    end
+    true
   end
 
   def assign_searching_attributes

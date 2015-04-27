@@ -6,9 +6,7 @@ class Reports::AdminReport
     @year = year
   end
 
-require "ruby-prof"
   def build
-    RubyProf.start
     out = case id
     when "registered-users"
       Reports::RegisteredUsers.new(year).build
@@ -19,10 +17,5 @@ require "ruby-prof"
     when "entries-report"
       Reports::AllEntries.new(year).build
     end
-    result = RubyProf.stop
-
-    printer = RubyProf::FlatPrinter.new(result)
-    printer.print(STDOUT)
-    out
   end
 end
