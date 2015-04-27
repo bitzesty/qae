@@ -16,9 +16,6 @@
 #= require_tree .
 
 jQuery ->
-  triggerAutosave = (e) ->
-    window.autosave_timer ||= setTimeout( autosave, 15000 )
-
   # This is a very primitive way of testing.
   # Should be refactored once forms stabilize.
   #
