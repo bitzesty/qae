@@ -9,9 +9,9 @@ class FormLink
   validates :link, :description, presence: true
   validates :link, length: { maximum: 500 }
 
-  # Should be 100 words maximum
+  # Should be 100 words maximum (limit + 10%).to_i + 1)
   validates :description, length: {
-    maximum: 100,
+    maximum: 111,
     tokenizer: -> (str) { str.split },
     message: "is too long (maximum is 100 words)"
   }

@@ -11,10 +11,10 @@ class FormAnswerAttachment < ActiveRecord::Base
 
   # Used for NON JS implementation - begin
   attr_accessor :non_js_creation, :description
-  # Should be 100 words maximum
+  # Should be 100 words maximum (limit + 10%).to_i + 1)
   validates :description, presence: true,
                           length: {
-                            maximum: 100,
+                            maximum: 111,
                             tokenizer: -> (str) { str.split },
                             message: "is too long (maximum is 100 words)"
                           },
