@@ -1,14 +1,4 @@
-.if-js-hide
-  span.question-context.question-debug
-    p
-      | Warning:
-      br
-      | NON-JS version system use special "Awards" section.
-      br
-      | You need to save your form before you click on "Add Award/Personal honour" or "Remove" in this list.
-      br
-      | Otherwise, filled answers on this step of application will be lost.
-
+= render "shared/non_js_dynamic_list_redirect_warning"
 
 ul.list-add data-need-to-clear-example=true data-add-limit="10" data-default=1 id="non_js_#{question.key}-list-question"
   input name="form[#{question.key}][array]" value="true" type="hidden"

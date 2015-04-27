@@ -1,9 +1,15 @@
+= render "shared/non_js_dynamic_list_redirect_warning"
+
 ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1 id="non_js_#{question.key}-list-question"
   input name="#{question.input_name}[array]" value="true" type="hidden"
 
   - question.subsidiaries.each_with_index do |subsidiary, index|
     li.js-add-example
-      = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
+
+      = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide #{'read_only' if admin_in_read_only_mode?}"
+
+      = link_to "Remove", confirm_deletion_form_form_answer_subsidiaries_path(@form_answer.id, name: subsidiary['name'], location: subsidiary['location']), class: "remove-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
+
       .clear
       span.row
         ul.errors-container
@@ -25,7 +31,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
             input.small type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary['employees']  autocomplete="off" *possible_read_only_ops
       span.clear
   - if question.subsidiaries.none?
-    li.js-add-example
+    li.js-add-example.if-no-js-hide
       = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
       .clear
       span.row
@@ -43,5 +49,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
             input.small type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
       span.clear
 
-a.button.button-add.js-button-add href="#"
+a.button.button-add.js-button-add.if-no-js-hide href="#"
   | + Add subsidiary, associate or plant
+
+= link_to "+ Add subsidiary, associate or plant", new_form_form_answer_subsidiaries_url(@form_answer.id), class: "button button-add if-js-hide"
