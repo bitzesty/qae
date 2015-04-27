@@ -269,15 +269,14 @@ jQuery ->
     #TODO: indicators, error handlers?
 
   triggerAutosave = (e) ->
-    window.autosave_timer ||= setTimeout( autosave, 15000 )
+    window.autosave_timer ||= setTimeout( autosave, 1000 )
 
-  $(document).on "change", ".js-trigger-autosave", triggerAutosave
-  $(document).on "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave
-  $(document).on "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave
-  $(document).on "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave
-  $(document).on "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave
-  $(document).on "keyup", "textarea.js-trigger-autosave", triggerAutosave
-  $(document).on "click", ".remove-link", triggerAutosave
+  $(".js-trigger-autosave").debounce "change", triggerAutosave, 50
+  $("input[type='text'].js-trigger-autosave").debounce "keyup", triggerAutosave, 50
+  $("input[type='number'].js-trigger-autosave").debounce "keyup", triggerAutosave, 50
+  $("input[type='url'].js-trigger-autosave").debounce "keyup", triggerAutosave, 50
+  $("input[type='tel'].js-trigger-autosave").debounce "keyup", triggerAutosave, 50
+  $("textarea.js-trigger-autosave").debounce "click", triggerAutosave, 50
 
   # Fade out alerts after 10sec
   $(".flash").delay(10000).fadeOut()
