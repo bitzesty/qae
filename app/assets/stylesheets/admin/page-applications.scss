@@ -32,15 +32,15 @@
       &,
       &:focus {
         padding: 3px 10px;
-        border: 2px solid #aaa;
+        border: 2px solid $grey-tab;
         border-radius: 100px;
-        color: #aaa;
+        color: $grey-tab;
       }
 
       &:hover {
-        border: 2px solid #666;
+        border: 2px solid $grey-tab-hover;
         background: transparent;
-        color: #666;
+        color: $grey-tab-hover;
       }
     }
 

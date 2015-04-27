@@ -17,7 +17,7 @@
   }
 
   .lte-ie8 & {
-    background: #1c1c1b;
+    background: $black-header;
     clear: both;
     height: 70px;
     margin-bottom: 40px !important;
@@ -75,7 +75,7 @@
     margin-bottom: 40px;
     border: none;
     border-radius: 0;
-    background: #1c1c1b;
+    background: $black-header;
 
     .navbar-nav > li > a {
       color: $white-true;
@@ -137,12 +137,12 @@
         display: block !important;
         padding-top: 22px !important;
         padding-bottom: 30px !important;
-        color: #fff !important;
+        color: $white-true !important;
       }
 
       &:hover,
       &:focus {
-        background-color: #444;
+        background-color: $header-hover;
 
         @include is-ios {
           background-color: transparent;
@@ -165,7 +165,7 @@
       }
 
       @include screen-sm-max {
-        background: #333;
+        background: $black;
         font-weight: bold;
       }
     }
@@ -174,7 +174,7 @@
   .dropdown-menu {
     @include screen-sm-max {
       border-radius: 0;
-      background: #333;
+      background: $black;
     }
 
     .lte-ie8 & {
@@ -185,7 +185,7 @@
       @include screen-sm-max {
         padding: 15px;
         padding-left: 35px;
-        color: #fff;
+        color: $white-true;
         text-transform: uppercase;
       }
 
@@ -197,7 +197,7 @@
       &:hover,
       &:focus {
         @include screen-sm-max {
-          background: #444;
+          background: $header-hover;
         }
 
         @include is-ios {
@@ -209,7 +209,7 @@
 
   .open .dropdown-toggle {
     .lte-ie8 & {
-      background-color: #444 !important;
+      background-color: $header-hover !important;
     }
   }
   
