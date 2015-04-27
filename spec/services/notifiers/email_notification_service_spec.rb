@@ -79,7 +79,7 @@ describe Notifiers::EmailNotificationService do
     end
 
     it "triggers current notification" do
-      form_answer = create(:form_answer, :promotion, :submitted)
+      form_answer = build(:form_answer, :promotion, :submitted)
       form_answer.document = form_answer.document.merge(nominee_email: "nominee@email.com")
       form_answer.save!
 

@@ -9,6 +9,9 @@
         label for=question.input_name(suffix: "desc_short_#{placement}")
           = "Good/Service #{placement}"
       ul.errors-container
+      - errors = @form_answer.validator_errors
+      - if errors && errors[question.key] && errors[question.key][index]
+        li = errors[question.key][index]
       .clear
       .question-group
         textarea.js-trigger-autosave.js-char-count rows=question.rows data-word-max=question.words_max name="#{question.input_name}[#{index}][desc_short]" id=question.input_name(suffix: "desc_short_#{placement}") *possible_read_only_ops

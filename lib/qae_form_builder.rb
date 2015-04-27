@@ -3,6 +3,7 @@ require "qae_form_builder/qae_form"
 require "qae_form_builder/step"
 require "qae_form_builder/question"
 require "qae_form_builder/multi_question_decorator"
+require "qae_form_builder/multi_question_validator"
 
 require "qae_form_builder/header_question"
 require "qae_form_builder/text_question"

@@ -6,6 +6,11 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
       = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
       .clear
       span.row
+        ul.errors-container
+          - errors = @form_answer.validator_errors
+          - if errors && errors[question.key] && errors[question.key][index]
+            li = errors[question.key][index]
+
         span.span-4
           label.small
             ' Name

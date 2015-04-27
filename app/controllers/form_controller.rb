@@ -173,7 +173,11 @@ class FormController < ApplicationController
               redirect_to edit_form_url(@form_answer, step: params[:next_step])
             else
               params[:step] = @form_answer.steps_with_errors.try(:first)
-              params[:step] ||= @form.steps.first.title.parameterize
+              # avoid redirecting to supporters page
+              if !params[:step] || params[:step] == "letters-of-support"
+                params[:step] = @form.steps.first.title.parameterize
+              end
+
               render template: "qae_form/show"
             end
           end
