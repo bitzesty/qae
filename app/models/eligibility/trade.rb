@@ -20,10 +20,10 @@ class Eligibility::Trade < Eligibility
             if: proc { !skipped? }
 
   property :growth_over_the_last_three_years,
-            label: "Have you had significant growth in overseas earnings over the period of your entry (i.e. in the last 3 or 6years)?",
+            label: "Have you had significant growth in overseas earnings over the period of your entry (i.e. in the last 3 or 6 years)?",
             accept: :true,
             boolean: true,
-            hint: "Substantial growth should be relative to your business size and sector.",
+            hint: "Significant growth should be relative to your business size and sector.",
             if: proc { !skipped? }
 
   property :current_holder_of_qae_for_trade,
