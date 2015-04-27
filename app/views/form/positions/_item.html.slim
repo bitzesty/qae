@@ -46,4 +46,4 @@ li
         ' -
     br
 
-  = link_to "Edit role", edit_form_form_answer_positions_path(@form_answer)
+  = link_to "Edit role", edit_form_form_answer_positions_path(@form_answer, index: detect_index_of_position_details(attrs))

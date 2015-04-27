@@ -62,6 +62,16 @@ class Form::PositionsController < Form::BaseController
     )
   end
 
+  expose(:update_position_result_doc) do
+    result_position_details = existing_position_details
+    result_position_details[params[:index].to_i] = position_params
+    result_position_details = result_position_details.map(&:to_json)
+
+    @form_answer.document.merge(
+      position_details: result_position_details.to_json
+    )
+  end
+
   def new
   end
 
@@ -79,9 +89,20 @@ class Form::PositionsController < Form::BaseController
   end
 
   def edit
+    self.position = Position.new(existing_position_details[params[:index].to_i])
   end
 
   def update
+    self.position = Position.new(position_params)
+
+    if position.valid?
+      @form_answer.document = update_position_result_doc
+      @form_answer.save
+
+      redirect_to form_form_answer_positions_url(@form_answer)
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -93,15 +114,29 @@ class Form::PositionsController < Form::BaseController
 
   private
 
-    def position_params
-      params.require(:position).permit(
-        :name,
-        :details,
-        :ongoing,
-        :start_month,
-        :start_year,
-        :end_month,
-        :end_year
-      )
+  def position_params
+    params.require(:position).permit(
+      :name,
+      :details,
+      :ongoing,
+      :start_month,
+      :start_year,
+      :end_month,
+      :end_year
+    )
+  end
+
+  def detect_index_of_position_details(attrs)
+    result_position_details = existing_position_details
+
+    element = result_position_details.detect do |el|
+      el["name"] == attrs["name"] &&
+      el["start_month"] == attrs["start_month"] &&
+      el["start_year"] == attrs["start_year"]
     end
+
+    result_position_details.index(element)
+  end
+
+  helper_method :detect_index_of_position_details
 end

@@ -1,5 +1,6 @@
 li
-  = simple_form_for position, url: form_form_answer_positions_url(@form_answer), html: { class: 'qae-form' } do |f|
+  = simple_form_for position, url: form_form_answer_positions_url(@form_answer, index: params[:index]),
+                              html: { class: 'qae-form', method: (params[:index].present? ? :put : :post) } do |f|
 
     = f.input :name,
               input_html: { class: "medium" },
