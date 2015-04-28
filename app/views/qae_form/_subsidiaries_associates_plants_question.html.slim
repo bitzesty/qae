@@ -4,7 +4,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
   input name="#{question.input_name}[array]" value="true" type="hidden"
 
   - question.subsidiaries.each_with_index do |subsidiary, index|
-    li.js-add-example
+    li.js-add-example non-js-attribute=subsidiary['name']
 
       = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide #{'read_only' if admin_in_read_only_mode?}"
 
