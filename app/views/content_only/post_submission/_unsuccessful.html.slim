@@ -30,7 +30,7 @@
           - if award.feedback.try(:approved?)
             p
               ' Please
-              = link_to "download and read the feedback document", "#", class: "todo-placeholder"
+              = link_to "download and read the feedback document", users_form_answer_feedback_path(award.feedback, format: :pdf)
               '  so you can better understand our decision. We hope it will help you to improve your future applications.
           - else
             p You will be notified when your feedback is ready.
