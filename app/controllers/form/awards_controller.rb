@@ -1,83 +1,47 @@
-class Form::AwardsController < Form::BaseController
+class Form::AwardsController < Form::NonJsDynamicListsFormSectionController
 
   # This controller handles saving of Awards
   # This section is used in case if JS disabled
 
-  expose(:step) do
-    @form.steps.detect { |s| s.title == "Nominee" }
+  expose(:step_name) do
+    "Nominee"
   end
 
   expose(:input_name) do
     params[:holder].present? ? "awards" : "nomination_awards"
   end
 
-  expose(:anchor) do
-    "non_js_#{input_name}-list-question"
+  expose(:section_folder_name) do
+    "awards"
   end
 
-  expose(:question) do
-    step.questions.detect { |q| q.key == input_name.to_sym }
+  expose(:item_name) do
+    "Award/Personal honour"
   end
 
-  expose(:existing_awards_doc) do
-    @form_answer.document[input_name]
+  expose(:item_class) do
+    Award
   end
 
-  expose(:existing_awards) do
-    if existing_awards_doc.present?
-      JSON.parse(existing_awards_doc).map do |el|
-        JSON.parse(el)
-      end
-    else
-      []
-    end
+  expose(:item) do
+    item_class.new(question, params[:holder], {})
   end
 
-  expose(:award) do
-    Award.new(question, params[:holder], {})
-  end
-
-  expose(:created_award_ops) do
+  expose(:created_item_ops) do
     attrs = {
-      "title" => award_params[:title],
-      "details" => award_params[:details]
+      "title" => item_params[:title],
+      "details" => item_params[:details]
     }
 
-    attrs["year"] = award_params[:year] if params[:holder].present?
+    attrs["year"] = item_params[:year] if params[:holder].present?
     attrs
   end
 
-  expose(:add_award_result_doc) do
-    result_awards = existing_awards
-    result_awards.push(created_award_ops)
-    result_awards = result_awards.map(&:to_json)
-
-    @form_answer.document.merge(
-      input_name.to_sym => result_awards.to_json
-    )
-  end
-
-  expose(:remove_award_result_doc) do
-    result_awards = existing_awards
-    result_awards.delete_if do |el|
-      if params[:holder].present?
-        el["title"] == params[:title] &&
-        el["year"] == params[:year]
-      else
-        el["title"] == params[:title]
-      end
-    end
-
-    result_awards = if result_awards.present?
-      result_awards
-    else
-      []
-    end
-
-    result_awards = result_awards.map(&:to_json)
-
-    @form_answer.document.merge(
-      input_name.to_sym => result_awards.to_json
+  expose(:delete_item_url) do
+    form_form_answer_awards_url(
+      @form_answer.id,
+      award: created_item_ops,
+      holder: params[:holder]
     )
   end
 
@@ -85,15 +49,18 @@ class Form::AwardsController < Form::BaseController
   end
 
   def create
-    self.award = Award.new(question, params[:holder], award_params)
+    self.item = item_class.new(question,
+                               params[:holder],
+                               item_params)
 
-    if award.valid?
-      @form_answer.document = add_award_result_doc
+    if item.valid?
+      @form_answer.document = add_result_doc
       @form_answer.save
 
       redirect_to edit_form_url(
         id: @form_answer.id,
-        anchor: anchor
+        step: step.title.parameterize,
+        anchor: anchor,
       )
     else
       render :new
@@ -101,22 +68,59 @@ class Form::AwardsController < Form::BaseController
   end
 
   def confirm_deletion
-    self.award = Award.new(question, params[:holder], award_params)
+    self.item = item_class.new(question,
+                               params[:holder],
+                               item_params)
   end
 
   def destroy
-    @form_answer.document = remove_award_result_doc
+    @form_answer.document = remove_result_doc
     @form_answer.save
 
     redirect_to edit_form_url(
       id: @form_answer.id,
+      step: step.title.parameterize,
       anchor: anchor
     )
   end
 
+  def edit
+    self.item = item_class.new(question,
+                               params[:holder],
+                               item_params)
+  end
+
+  def update
+    self.item = item_class.new(question,
+                               params[:holder],
+                               item_params)
+
+    if item.valid?
+      @form_answer.document = update_result_doc
+      @form_answer.save
+
+      redirect_to edit_form_url(
+        id: @form_answer.id,
+        step: step.title.parameterize,
+        anchor: anchor
+      )
+    else
+      render :edit
+    end
+  end
+
+  def item_detect_condition(el, attrs=nil)
+    if params[:holder].present?
+      el["title"] == (attrs.present? ? attrs[:title] : ops_hash[:title]) &&
+      el["year"] == (attrs.present? ? attrs[:year] : ops_hash[:year])
+    else
+      el["title"] == (attrs.present? ? attrs[:title] : ops_hash[:title])
+    end
+  end
+
   private
 
-  def award_params
+  def item_params
     params.require(:award).permit(
       :title,
       :year,

@@ -4,7 +4,10 @@
 
 li.js-add-example class=(award.blank? ? "if-no-js-hide" : '')
   = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide #{'read_only' if admin_in_read_only_mode?}"
+
   = link_to "Remove", confirm_deletion_form_form_answer_awards_path(@form_answer.id, deletion_attrs), class: "remove-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
+
+  = link_to "Edit", edit_form_form_answer_awards_path(@form_answer, award: award, holder: question.award_years_present.present? ? true : nil), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
 
   span.row
     ul.errors-container

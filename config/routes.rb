@@ -120,14 +120,15 @@ Rails.application.routes.draw do
       resource :positions, only: [:new, :create, :edit, :update, :destroy] do
         get :index, on: :collection
       end
-      resource :current_queens_awards, only: [:new, :create, :destroy] do
-        get :confirm_deletion
-      end
-      resource :awards, only: [:new, :create, :destroy] do
-        get :confirm_deletion
-      end
-      resource :subsidiaries, only: [:new, :create, :destroy] do
-        get :confirm_deletion
+
+      [
+        :current_queens_awards,
+        :awards,
+        :subsidiaries
+      ].each do |resource_name|
+        resource resource_name, only: [:new, :create, :edit, :update, :destroy] do
+          get :confirm_deletion
+        end
       end
     end
   end

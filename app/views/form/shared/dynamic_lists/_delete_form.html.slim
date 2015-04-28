@@ -3,8 +3,8 @@ li
     p
       | Are you sure?
     br
-    = simple_form_for subsidiary,
-                      url: form_form_answer_subsidiaries_url(@form_answer.id, name: subsidiary.name, location: subsidiary.location),
+    = simple_form_for item,
+                      url: delete_item_url,
                       html: { class: 'qae-form', method: :delete } do |f|
       .row
         .span-12

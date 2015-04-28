@@ -11,13 +11,11 @@ header.page-header.group.page-header-over-sidebar
 
 .steps-progress-container
   .steps-progress-content
-    = render 'qae_form/form_header', form: @form, current_step: "nominee-background"
+    = render 'qae_form/form_header', form: @form, current_step: step.title.parameterize
 
     .article-container.article-container-wider.step-article.step-current
       article.group role="article"
         .inner
-          - question = step.questions.detect { |q| q.key =  :position_details }
-
           .question-block
             label
               h2
@@ -38,17 +36,17 @@ header.page-header.group.page-header-over-sidebar
                 == help.text
 
           ul.list-add
-            - existing_position_details.each do |attrs|
+            - existing_parsed_list_doc.each do |attrs|
               = render "form/positions/item", attrs: attrs
 
 
           = link_to new_form_form_answer_positions_path(@form_answer),
                     class: "button button-add"
-            - if existing_position_details.any?
+            - if existing_parsed_list_doc.any?
               ' + Add another role
             - else
               ' + Add role
 
-    = render "qae_form/steps_progress_bar", current_step: "nominee-background"
+    = render "qae_form/steps_progress_bar", current_step: step.title.parameterize
 
     = render "form/supporters/footer", step: step
