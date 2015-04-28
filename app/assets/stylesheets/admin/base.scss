@@ -263,12 +263,13 @@ table .ellipsis {
 
     .ie7 & {
       top: 1px !important;
-      padding-top: 16px !important;
-      padding-bottom: 8px !important;
+      padding-top: 7px !important;
+      padding-bottom: 0 !important;
     }
 
     .glyphicon {
       line-height: 1.3;
+      visibility: visible !important;
     }
   }
 
