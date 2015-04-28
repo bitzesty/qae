@@ -1097,6 +1097,13 @@ table .ellipsis {
   color: $white-true;
   text-align: center;
 
+  .lte-ie8 & {
+    background: $black;
+    opacity: 0.9;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter: alpha(opacity=90);
+  }
+
   .show-delete-comment & {
     display: block;
   }
