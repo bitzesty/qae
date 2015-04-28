@@ -91,6 +91,13 @@ table .ellipsis {
 .btn {
   border-radius: 0;
 
+  .glyphicon,
+  .btn-title {
+    .lte-ie7 & {
+      vertical-align: top;
+    }
+  }
+
   .glyphicon:first-child {
     margin-right: 5px;
   }
@@ -630,15 +637,17 @@ table .ellipsis {
     width: 20px;
     height: 16px;
     margin-right: 5px;
-    background-size: 18px 14px;
+    background-image: image-url("icon-computer-sm.png");
+    background-size: 18px 16px;
     opacity: 1;
+
+    @include is-retina {
+      background-image: image-url("icon-computer-sm@2.png");
+    }
   }
 
   .lte-ie8 & {
     display: inline !important;
-    width: auto !important;
-    height: auto !important;
-    background: transparent;
     text-indent: 0;
     white-space: nowrap;
     overflow: hidden !important;

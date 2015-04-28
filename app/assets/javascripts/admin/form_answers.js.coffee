@@ -80,7 +80,7 @@ ready = ->
   # Move the attach document button
   $(".attachment-link").removeClass("if-js-hide")
   $(".attachment-link").addClass("btn btn-default btn-block btn-attachment")
-  $(".attachment-link").prepend("Attach document")
+  $(".attachment-link").prepend("<span class='btn-title'>Attach document</span>")
   $(".attachment-link").prepend("<span class='glyphicon glyphicon-paperclip'></span>")
   $(".attachment-link").prependTo("#new_form_answer_attachment")
 
