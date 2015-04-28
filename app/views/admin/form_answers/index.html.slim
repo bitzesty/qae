@@ -9,113 +9,112 @@
         .form-group.search-input
           = text_field_tag :year, @award_year.year, class: "visuallyhidden"
           = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
-          = submit_tag :submit
+          = submit_tag :submit, class: 'search-submit'
 
   br
 
   .row
     .col-xs-12
-      .table-overflow-container
-        table.table.applications-table
-          thead
-            tr
-              th.sortable
-                = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
-              th.sortable
-                = sort_link f, "Reference", @search, :urn, disabled: @search.query?
-              - if @search.query?
-                th Award Type
-              - else
-                th.filter
-                  = f.simple_fields_for [:filters, @search.filters] do |f|
-                    = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
-                  .dropdown.if-no-js-hide
-                    button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
-                      ' Category:
-                      span.text-filter
-                        ' All
-                      span.caret
-                    ul.dropdown-menu role="menu"
+      table.table.applications-table
+        thead
+          tr
+            th.sortable
+              = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
+            th.sortable
+              = sort_link f, "Reference", @search, :urn, disabled: @search.query?
+            - if @search.query?
+              th Award Type
+            - else
+              th.filter
+                = f.simple_fields_for [:filters, @search.filters] do |f|
+                  = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+                .dropdown.if-no-js-hide
+                  button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                    ' Category:
+                    span.text-filter
+                      ' All
+                    span.caret
+                  ul.dropdown-menu role="menu"
+                    li.checkbox role="presentation"
+                      label data-value='select_all'
+                        input type="checkbox"
+                        span.label-contents
+                          em Select all
+                    li.divider
+                    - award_types_collection.each do |key,v|
                       li.checkbox role="presentation"
-                        label data-value='select_all'
+                        label data-value=v
                           input type="checkbox"
                           span.label-contents
-                            em Select all
-                      li.divider
-                      - award_types_collection.each do |key,v|
-                        li.checkbox role="presentation"
-                          label data-value=v
-                            input type="checkbox"
-                            span.label-contents
-                              = FormAnswerDecorator::AWARD_TITLES[key]
-                  = f.submit "Filter", class: "if-js-hide"
-                  label.if-js-hide Ctrl + left click for multi select
+                            = FormAnswerDecorator::AWARD_TITLES[key]
+                = f.submit "Filter", class: "if-js-hide"
+                label.if-js-hide Ctrl + left click for multi select
 
-              - if @search.query?
-                th Status
-              - else
-                th.filter
-                  = f.simple_fields_for [:filters, @search.filters] do |f|
-                    = f.input :status, collection: FormAnswerStatus::AdminFilter.collection, label: false, input_html: { multiple: true, class: 'if-js-hide'}
-                  = f.simple_fields_for [:filters, @search.filters] do |f|
-                    = f.input :sub_status, collection: FormAnswerStatus::AdminFilter.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
-                  .dropdown.if-no-js-hide
-                    button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
-                      ' Status:
-                      span.text-filter
-                        ' All
-                      span.caret
-                    ul.dropdown-menu role="menu"
+            - if @search.query?
+              th Status
+            - else
+              th.filter
+                = f.simple_fields_for [:filters, @search.filters] do |f|
+                  = f.input :status, collection: FormAnswerStatus::AdminFilter.collection, label: false, input_html: { multiple: true, class: 'if-js-hide'}
+                = f.simple_fields_for [:filters, @search.filters] do |f|
+                  = f.input :sub_status, collection: FormAnswerStatus::AdminFilter.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+                .dropdown.if-no-js-hide
+                  button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+                    ' Status:
+                    span.text-filter
+                      ' All
+                    span.caret
+                  ul.dropdown-menu role="menu"
+                    li.checkbox role="presentation"
+                      label data-value='select_all'
+                        input type="checkbox"
+                        span.label-contents
+                          em Select all
+                    - FormAnswerStatus::AdminFilter.collection.each do |state|
+                      li.checkbox role='presentation'
+                        label data-value=state[1]
+                          input type='checkbox'
+                          span.label-contents
+                            = state[0]
+                    li.divider
+                    - FormAnswerStatus::AdminFilter::SUB_OPTIONS.each do |key, val|
                       li.checkbox role="presentation"
-                        label data-value='select_all'
+                        label data-value=key
                           input type="checkbox"
                           span.label-contents
-                            em Select all
-                      - FormAnswerStatus::AdminFilter.collection.each do |state|
-                        li.checkbox role='presentation'
-                          label data-value=state[1]
-                            input type='checkbox'
-                            span.label-contents
-                              = state[0]
-                      li.divider
-                      - FormAnswerStatus::AdminFilter::SUB_OPTIONS.each do |key, val|
-                        li.checkbox role="presentation"
-                          label data-value=key
-                            input type="checkbox"
-                            span.label-contents
-                              em = val[:label]
-                  = f.submit "Filter", class: "if-js-hide"
-                  label.if-js-hide Ctrl + left click for multi select
-              th &nbsp;
-              th.sortable
-                = sort_link f, "Flag", @search, :flag, disabled: @search.query?
-              th &nbsp;
-          tbody
-            - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
-              tr
-                td.td-title
-                  = link_to [namespace_name, obj], class: "ellipsis"
-                    - unless obj.company_or_nominee_name.nil?
-                      = link_to obj.company_or_nominee_name, [:admin, obj]
-                    - else
-                      = link_to [namespace_name, obj] do
-                        em
-                          ' Not found
-                td
+                            em = val[:label]
+                = f.submit "Filter", class: "if-js-hide"
+                label.if-js-hide Ctrl + left click for multi select
+            th &nbsp;
+            th.sortable
+              = sort_link f, "Flag", @search, :flag, disabled: @search.query?
+            th &nbsp;
+        tbody
+          - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
+            tr
+              td.td-title
+                = link_to [namespace_name, obj], class: "ellipsis"
+                  - unless obj.company_or_nominee_name.nil?
+                    = link_to obj.company_or_nominee_name, [:admin, obj]
+                  - else
+                    = link_to [namespace_name, obj] do
+                      em
+                        ' Not found
+              td
+                = link_to [namespace_name, obj]
+                  - if obj.urn.present?
+                    = obj.urn
+                  - else
+                    span.urn-not-generated Not yet generated
+              td = obj.award_type_short_name
+              td = obj.progress_text
+              td
+                - app_comments = application_comments(obj.comments)
+                - if app_comments.present?
                   = link_to [namespace_name, obj]
-                    - if obj.urn.present?
-                      = obj.urn
-                    - else
-                      span.urn-not-generated Not yet generated
-                td = obj.award_type_short_name
-                td = obj.progress_text
-                td
-                  - app_comments = application_comments(obj.comments)
-                  - if app_comments.present?
-                    = link_to [namespace_name, obj]
-                      = app_comments
-                td = application_flags(obj)
-                td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"
+                    = app_comments
+              td = application_flags(obj)
+              td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"
 
   .row
     .col-xs-12.text-right

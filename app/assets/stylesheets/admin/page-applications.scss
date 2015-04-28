@@ -32,15 +32,15 @@
       &,
       &:focus {
         padding: 3px 10px;
-        border: 2px solid #aaa;
+        border: 2px solid $grey-tab;
         border-radius: 100px;
-        color: #aaa;
+        color: $grey-tab;
       }
 
       &:hover {
-        border: 2px solid #666;
+        border: 2px solid $grey-tab-hover;
         background: transparent;
-        color: #666;
+        color: $grey-tab-hover;
       }
     }
 
@@ -263,7 +263,7 @@
   }
 
   label {
-    width: 35%;
+    width: 30%;
     margin-bottom: 0;
     float: left;
     font-weight: normal;
@@ -274,6 +274,14 @@
 
     @include screen-md-max {
       width: 120px;
+    }
+  }
+
+  form {
+    margin-left: -10px;
+
+    .form-fields {
+      width: 100%;
     }
   }
 
@@ -304,10 +312,12 @@
 
   .edit-value {
     padding-right: 60px;
-  }
 
-  select {
-    width: 100%;
+    .ie7 & {
+      padding-right: 0;
+      width: 45% !important;
+      padding-right: 20%;
+    }
   }
 
   .form-edit-link {
@@ -407,4 +417,10 @@
 
 .uploaded-file .btn-attachment {
   display: none;
+}
+
+.form_answer_attachment {
+  .lte-ie8 & {
+    clear:both;
+  }
 }

@@ -3,6 +3,7 @@
 #site-header {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  *z-index: 1000;
 
   @include screen-lg-max {
     font-size: 14px;
@@ -16,11 +17,32 @@
     font-size: 14px;
   }
 
+  .lte-ie8 & {
+    background: $black-header;
+    clear: both;
+    height: 70px;
+    margin-bottom: 40px !important;
+  }
+
   .caret {
     margin-left: 5px;
     border-top-width: 7px;
     border-right-width: 6px;
     border-left-width: 6px;
+  }
+
+
+  .container {
+    .lte-ie8 & {
+      width: 90% !important;
+      margin: 0 auto;
+    }
+  }
+
+  .navbar-header {
+    .lte-ie8 & {
+      float: left;
+    }
   }
 
   .navbar-toggle {
@@ -30,34 +52,56 @@
     .icon-bar {
       background-color: $white-true;
     }
+
+    .lte-ie8 & {
+      display: none !important;
+    }
+  }
+
+  .navbar-collapse {
+    .lte-ie8 & {
+      display: block !important;
+      margin-left: 50px;
+    }
+
+    &.collapse {
+      .lte-ie8 & {
+        display: block !important;
+        visibility: visible !important;
+      }
+    }
   }
 
   .navbar {
     margin-bottom: 40px;
     border: none;
     border-radius: 0;
-    background: #1c1c1b;
+    background: $black-header;
+    
+    .lte-ie8 & {
+      height: 81px !important;
+      z-index: 100001 !important;
+    }
 
-    .navbar-brand,
+    .navbar-brand {
+      .lte-ie8 & {
+        margin-top: 3px !important;
+      }
+    }
+
+    .navbar-nav {
+      .lte-ie8 & {
+        z-index: 10001 !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+        top: 0 !important;
+      }
+    }
+
     .navbar-nav > li > a {
       color: $white-true;
       text-transform: uppercase;
       background: transparent;
-    }
-
-    .navbar-brand {
-      width: 58px;
-      height: 67px;
-      padding-top: 0;
-      padding-bottom: 0;
-      text-align: left;
-      text-indent: -9999px;
-      background: image-url("logo-admin.png") no-repeat center center;
-      background-size: 28px 37px;
-
-      @include is-retina {
-        background-image: image-url("logo-admin@2.png");
-      }
     }
 
     .navbar-nav > li > a {
@@ -75,6 +119,20 @@
     }
   }
 
+  .nav {
+    .lte-ie8 & {
+      float: left !important;
+      position: relative;
+      top: -10px;
+    }
+
+    &.navbar-right {
+      .lte-ie8 & {
+        float: right !important;
+      }
+    }
+  }
+
   .nav > li {
     margin: 0 10px;
 
@@ -86,14 +144,25 @@
       margin: 0;
     }
 
+    .lte-ie8 & {
+      float: left !important;
+    }
+
     &:last-child {
       margin-right: 0;
     }
 
     > a {
+      .lte-ie8 & {
+        display: block !important;
+        padding-top: 30px !important;
+        padding-bottom: 30px !important;
+        color: $white-true !important;
+      }
+
       &:hover,
       &:focus {
-        background-color: #444;
+        background-color: $header-hover;
 
         @include is-ios {
           background-color: transparent;
@@ -116,7 +185,7 @@
       }
 
       @include screen-sm-max {
-        background: #333;
+        background: $black;
         font-weight: bold;
       }
     }
@@ -125,27 +194,70 @@
   .dropdown-menu {
     @include screen-sm-max {
       border-radius: 0;
-      background: #333;
+      background: $black;
+    }
+
+    .lte-ie8 & {
+      z-index: 999999 !important;
     }
 
     > li > a {
       @include screen-sm-max {
         padding: 15px;
         padding-left: 35px;
-        color: #fff;
+        color: $white-true;
         text-transform: uppercase;
+      }
+
+      .lte-ie8 & {
+        padding: 7px 10px !important;
+        color: $black !important;
       }
 
       &:hover,
       &:focus {
         @include screen-sm-max {
-          background: #444;
+          background: $header-hover;
         }
 
         @include is-ios {
           background-color: transparent;
         }
       }
+    }
+  }
+
+  .open .dropdown-toggle {
+    .lte-ie8 & {
+      background-color: $header-hover !important;
+    }
+  }
+  
+  // moving down here seems to make it work
+  .navbar-brand {
+    width: 58px;
+    height: 67px;
+    padding-top: 0;
+    padding-bottom: 0;
+    text-align: left;
+    text-indent: -9999px;
+    background-image: image-url("logo-admin.png");
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 28px 37px;
+
+    @include is-retina {
+      background-image: image-url("logo-admin@2.png");
+    }
+
+    .lte-ie8 & {
+      width: 58px !important;
+      height: 67px !important;
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      text-indent: -9999px !important;
+      background: image-url("logo-admin.png") no-repeat center center !important;
+      background-size: 28px 37px !important;
     }
   }
 }
