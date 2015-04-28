@@ -60,4 +60,12 @@ describe MailRenderer do
       expect(rendered).to match("21/09/#{Date.current.year}")
     end
   end
+
+  describe "#unsuccessful_notification" do
+    it "renders e-mail" do
+      rendered = described_class.new.unsuccessful_notification
+      expect(rendered).to match("Jon Doe")
+      expect(rendered).to match("Massive Dynamic")
+    end
+  end
 end

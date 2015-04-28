@@ -188,4 +188,21 @@ describe Notifiers::EmailNotificationService do
       expect(current_notification.reload).to be_sent
     end
   end
+
+
+  context "unsuccessful_notification" do
+    let(:kind) { "unsuccessful_notification" }
+
+    let(:form_answer) { create(:form_answer, :trade, state: "not_awarded") }
+    let!(:certificate) { create(:audit_certificate,form_answer: form_answer) }
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(Users::ShortlistedUnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
 end

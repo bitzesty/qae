@@ -19,7 +19,7 @@ class Notifiers::EmailNotificationService
   end
 
   # this will be removed after all methods are implemented
-  %w(winners_reminder_to_submit unsuccessful_notification).each do |method|
+  %w(winners_reminder_to_submit).each do |method|
     define_method method do
       nil
     end
@@ -57,8 +57,17 @@ class Notifiers::EmailNotificationService
     end
   end
 
+  def unsuccessful_notification(award_year)
+    # initialy shortlisted but then did not win
+    award_year.form_answers.business.unsuccessful.each do |form_answer|
+      if form_answer.audit_certificate
+        Users::ShortlistedUnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+      end
+    end
+  end
+
   def all_unsuccessful_feedback(award_year)
-    award_year.form_answers.unsuccessful.each do |form_answer|
+    award_year.form_answers.business.unsuccessful.each do |form_answer|
       Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
     end
   end

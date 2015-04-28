@@ -10,10 +10,20 @@ class MailRenderer
   end
 
   # this will be removed after all methods are implemented
-  %w(ep_reminder_support_letters winners_notification winners_reminder_to_submit unsuccessful_notification).each do |method|
+  %w(winners_notification winners_reminder_to_submit).each do |method|
     define_method method do
       "<b>TODO</b>".html_safe
     end
+  end
+
+  def unsuccessful_notification
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:company_name] = "Massive Dynamic"
+
+    render(assigns, "users/shortlisted_unsuccessful_feedback_mailer/notify")
   end
 
   def ep_reminder_support_letters
@@ -112,7 +122,7 @@ class MailRenderer
   end
 
   def form_answer
-    f = FormAnswer.new(id: 0, award_type: "promotion").decorate
+    f = FormAnswer.new(id: 0, award_type: "innovation").decorate
     f.award_year = AwardYear.current
     f
   end
