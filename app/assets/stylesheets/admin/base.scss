@@ -1,10 +1,5 @@
 @import "mixins";
 
-html {
-  position: relative;
-  z-index: -100;
-}
-
 // Basic
 a {
   &:active,
@@ -162,6 +157,13 @@ table .ellipsis {
 }
 
 .table {
+  &.table-striped tbody {
+    .lte-ie8 & {
+      border: 2px solid $black-true;
+      border-collapse: initial !important;
+    }
+  }
+
   > thead > tr > th {
     border-color: $black;
     vertical-align: middle;
@@ -172,20 +174,13 @@ table .ellipsis {
     > th {
       background-color: $white-true;
     }
-  }
-}
 
-.table-striped > tbody > tr:nth-of-type(odd) {
-  > td,
-  > th {
-    background-color: $grey-lighter;
-  }
-}
-
-.table.table-striped tbody {
-  .lte-ie8 & {
-    border: 2px solid $black-true;
-    border-collapse: initial !important;
+    &:nth-of-type(odd) {
+      > td,
+      > th {
+        background-color: $grey-lighter;
+      }
+    }
   }
 }
 
@@ -625,13 +620,13 @@ table .ellipsis {
   }
 
   .lte-ie8 & {
-    white-space:nowrap;
-    overflow: hidden !important;
-    background: transparent;
-    text-indent: 0px;
+    display: inline !important;
     width: auto !important;
     height: auto !important;
-    display: inline !important;
+    background: transparent;
+    text-indent: 0;
+    white-space: nowrap;
+    overflow: hidden !important;
   }
 }
 
@@ -643,7 +638,7 @@ table .ellipsis {
     position: relative;
 
     .ie7 & {
-      z-index:1;
+      z-index: 1;
     }
   }
 
@@ -746,8 +741,8 @@ table .ellipsis {
         cursor: pointer;
 
         &:hover {
-          background-color: $pagination-background;
           border-color: $pagination-border;
+          background-color: $pagination-background;
         }
       }
     }
@@ -1417,7 +1412,7 @@ table .ellipsis {
     text-align: left;
 
     &:hover {
-      background-color:$grey-lightest;
+      background-color: $grey-lightest;
       color: $less-black;
       text-decoration: none;
     }
