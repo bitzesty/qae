@@ -19,6 +19,10 @@
   @include screen-sm-max {
     width: 100%;
   }
+
+  .lte-ie7 & {
+    width: 80px !important;
+  }
 }
 
 .timepicker {
@@ -34,6 +38,10 @@
     width: 100%;
     margin-top: 10px;
     margin-left: 0;
+  }
+
+  .lte-ie7 & {
+    width: 50px !important;
   }
 }
 
@@ -144,7 +152,7 @@ body .ui-datepicker {
   }
 
   .ui-datepicker-calendar {
-    .ie7 {
+    .lte-ie7 & {
       width: 200px !important;
     }
   }
