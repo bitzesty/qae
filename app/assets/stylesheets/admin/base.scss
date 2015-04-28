@@ -91,6 +91,7 @@ table .ellipsis {
 .btn {
   border-radius: 0;
 
+  .icon-view,
   .glyphicon,
   .btn-title {
     .lte-ie7 & {
@@ -638,6 +639,11 @@ table .ellipsis {
     background-image: image-url("icon-computer@2.png");
   }
 
+  .lte-ie8 & {
+    display: block !important;
+    overflow: hidden !important;
+  }
+
   &:hover {
     opacity: 1;
   }
@@ -655,13 +661,12 @@ table .ellipsis {
     @include is-retina {
       background-image: image-url("icon-computer-sm@2.png");
     }
-  }
 
-  .lte-ie8 & {
-    display: inline !important;
-    text-indent: 0;
-    white-space: nowrap;
-    overflow: hidden !important;
+    .lte-ie8 & {
+      display: inline !important;
+      text-indent: 0;
+      white-space: nowrap;
+    }
   }
 }
 
