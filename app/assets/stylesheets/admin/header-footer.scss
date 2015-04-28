@@ -79,8 +79,8 @@
     background: $black-header;
     
     .lte-ie8 & {
-      z-index: 100001 !important;
       height: 81px !important;
+      z-index: 100001 !important;
     }
 
     .navbar-brand {
