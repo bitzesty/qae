@@ -1347,6 +1347,12 @@ table .ellipsis {
     display: inline;
   }
 
+  &.open {
+    .lte-ie7 & {
+      z-index: 9999;
+    }
+  }
+
   .icon-rag {
     position: absolute;
     top: 50%;
@@ -1358,7 +1364,6 @@ table .ellipsis {
     text-align: left;
     text-indent: -9999px;
   }
-
 
   .rag-blank {
     &,
