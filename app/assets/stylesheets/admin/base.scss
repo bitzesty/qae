@@ -13,10 +13,18 @@ span {
     @include screen-lg-min {
       display: inline !important;
     }
+
+    .lte-ie8 & {
+      display: inline !important;
+    }
   }
 
   &.visible-md {
     @include screen-md-min {
+      display: inline !important;
+    }
+
+    .lte-ie8 & {
       display: inline !important;
     }
   }
@@ -470,7 +478,7 @@ table .ellipsis {
       }
 
       a span {
-        .lte-ie8 & {
+        .lte-ie7 & {
           display: inline !important;
         }
       }
@@ -643,7 +651,7 @@ table .ellipsis {
     background-image: image-url("icon-computer@2.png");
   }
 
-  .lte-ie8 & {
+  .lte-ie7 & {
     display: block !important;
     overflow: hidden !important;
   }
@@ -666,7 +674,7 @@ table .ellipsis {
       background-image: image-url("icon-computer-sm@2.png");
     }
 
-    .lte-ie8 & {
+    .lte-ie7 & {
       display: inline !important;
       text-indent: 0;
       white-space: nowrap;
