@@ -99,14 +99,11 @@
     }
 
     .navbar-nav > li > a {
+      padding-top: 24px;
+      padding-bottom: 23px;
       color: $white-true;
       text-transform: uppercase;
       background: transparent;
-    }
-
-    .navbar-nav > li > a {
-      padding-top: 24px;
-      padding-bottom: 23px;
 
       @include screen-md-max {
         padding-right: 10px;
@@ -155,8 +152,8 @@
     > a {
       .lte-ie8 & {
         display: block !important;
-        padding-top: 30px !important;
-        padding-bottom: 30px !important;
+        padding-top: 26px !important;
+        padding-bottom: 26px !important;
         color: $white-true !important;
       }
 
