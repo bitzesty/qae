@@ -1308,6 +1308,10 @@ table .ellipsis {
 
 // RAG dropdown
 .btn-rag {
+  .lte-ie7 & {
+    display: inline;
+  }
+
   .icon-rag {
     position: absolute;
     top: 50%;
