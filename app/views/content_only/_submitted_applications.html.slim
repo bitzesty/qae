@@ -18,16 +18,16 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
           '  shortlisted.
       .clear
     - award_applications.each do |award|
-      .container-split.award-list
-        .content-left
-          h3
-            = award.decorate.application_name
-            small
-              = award.decorate.award_type
-              '  Award
-        .content-right.content-offset-24
-          / Nominators don't get any options after submision
-          - unless award.award_type == "promotion"
+      - unless award.award_type == "promotion"
+        .container-split.award-list
+          .content-left
+            h3
+              = award.decorate.application_name
+              small
+                = award.decorate.award_type
+                '  Award
+          .content-right.content-offset-24
+            / Nominators don't get any options after submision
             p Please review the actions to the below to complete your shortlisted application.
             ul.post-dashboard-actions
               li
@@ -82,12 +82,14 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
               '  Award
         .content-right.content-offset-24
           / Nominators don't get any options after submision
-          - unless award.award_type == "promotion"
-            p Please review the actions to the below to complete your successful application.
-            ul.post-dashboard-actions
-              - if award.press_summary.present?
+          - if award.award_type == "promotion"
+            p Your nomination was successful.
+          - else
+            - if award.press_summary.present?
+              p Please review the actions to the below to complete your successful application.
+              ul.post-dashboard-actions
                 li
-                  = link_to "Press Comment", users_form_answer_press_summary_url(award, token: award.press_summary.token)
+                  = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token)
                   span.award-info
                     span.pull-right
                       ' Due by
@@ -99,15 +101,8 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
                       - else
                         span.label-status.label-status-red
                           ' Incomplete
-              li
-                = link_to "Buckingham Palace Attendees", buckingham_palace_attendance_path
-                span.award-info
-                  span.pull-right
-                    ' Due by
-                    = application_deadline_short(:buckingham_palace_attendees_details)
-                  = link_to buckingham_palace_attendance_path
-                    span.label-status.label-status-red.todo-placeholder
-                      ' Incomplete
+            - else
+              p You will be notified when your press book notes are ready.
         .clear
     br
     .container-split
@@ -143,12 +138,18 @@ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successfu
               '  Award
         .content-right.content-offset-24
           / Nominators don't get any options after submision
-          - unless award.award_type == "promotion"
+          - if award.award_type == "promotion"
+            p Unfortunately your nomination was unsuccessful.
+          - else
             h4 Feedback
-            p
-              ' Please
-              = link_to "download and read the feedback document", "#", class: "todo-placeholder"
-              '  so you can better understand our decision. We hope it will help you to improve your future applications.
+            / If feedback ready
+            - if true
+              p
+                ' Please
+                = link_to "download and read the feedback document", "#", class: "todo-placeholder"
+                '  so you can better understand our decision. We hope it will help you to improve your future applications.
+            - else
+              p You will be notified when your feedback is ready.
         .clear
     br
     br
