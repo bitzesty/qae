@@ -204,6 +204,14 @@ table .ellipsis {
   }
 }
 
+.form-control {
+  height: auto;
+
+  .lte-ie7 & {
+    width: 93%;
+  }
+}
+
 .form-group label {
   font-weight: normal;
 }
@@ -872,8 +880,10 @@ table .ellipsis {
 
 // Sidebar
   .show-sidebar {
+    position: relative;
     padding: 15px;
     background: $white-true;
+    zoom: 1;
 
     @include screen-md-max {
       margin-bottom: 30px;
@@ -964,6 +974,10 @@ table .ellipsis {
     .form-actions {
       .btn:last-child {
         margin-right: 0;
+      }
+
+      .form-cancel-link:last-child {
+        margin-right: 15px;
       }
     }
 
