@@ -678,8 +678,17 @@ table .ellipsis {
 .search-input {
   position: relative !important;
 
+  .lte-ie8 & {
+    width: 350px;
+    overflow: hidden;
+  }
+
   .search_query {
     position: relative;
+
+    .lte-ie8 & {
+      width: 350px;
+    }
 
     .lte-ie7 & {
       z-index: 1;
@@ -695,7 +704,7 @@ table .ellipsis {
     z-index: 10;
   }
 
-  [type="submit"] {
+  .search-submit {
     position: absolute;
     top: 0;
     right: 0;
@@ -709,7 +718,7 @@ table .ellipsis {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 15px 21px;
-    text-align: left;
+    text-align: left !important;
     text-indent: -9999px;
     white-space: nowrap;
     overflow: hidden;
@@ -720,14 +729,10 @@ table .ellipsis {
     @include is-retina {
       background-image: image-url("icon-search@2.png");
     }
-  }
 
-  .lte-ie8 & {
-    width: 350px;
-    overflow: hidden;
-
-    .search_query {
-      width: 350px;
+    .lte-ie7 & {
+      color: $white-true !important;
+      text-align: left !important;
     }
   }
 }
