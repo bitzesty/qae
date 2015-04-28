@@ -40,14 +40,20 @@ class Notifiers::EmailNotificationService
   end
 
   def shortlisted_notifier(award_year)
-    User.shortlisted.each do |user|
-      Users::NotifyShortlistedMailer.notify(user).deliver_later!
+    award_year.form_answers.business.shortlisted.each do |form_answer|
+      Users::NotifyShortlistedMailer.notify(form_answer.user_id).deliver_later!
     end
   end
 
+  def ep_shortlisted_notifier(award_year)
+  end
+
+  def ep_not_shortlisted_notifier(award_year)
+  end
+
   def not_shortlisted_notifier(award_year)
-    User.non_shortlisted.each do |user|
-      Users::NotifyNonShortlistedMailer.notify(user).deliver_later!
+    award_year.form_answers.not_shortlisted.each do |form_answer|
+      Users::NotifyNonShortlistedMailer.notify(form_answer.user_id).deliver_later!
     end
   end
 

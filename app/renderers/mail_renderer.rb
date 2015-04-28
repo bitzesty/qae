@@ -84,6 +84,18 @@ class MailRenderer
   def shortlisted_notifier
     assigns = {}
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:company_name] = "Massive Dynamic"
+
+    deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
+
+    assigns[:deadline] = if deadline.trigger_at
+      deadline.trigger_at.strftime("%d/%m/%Y")
+    else
+      "21/09/#{Date.current.year}"
+    end
+
+
     render(assigns, "users/notify_shortlisted_mailer/notify")
   end
 
