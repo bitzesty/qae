@@ -19,9 +19,16 @@ class Notifiers::EmailNotificationService
   end
 
   # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_reminder_to_submit unsuccessful_notification).each do |method|
+  %w(ep_reminder_support_letters winners_reminder_to_submit unsuccessful_notification).each do |method|
     define_method method do
       nil
+    end
+  end
+
+  def reminder_to_submit(award_year)
+    award_year.form_answers.business.where(submitted: false).each do |form_answer|
+      user = form_answer.user
+      Users::ReminderToSubmitMailer.notify(user.id, form_answer.id).deliver_later!
     end
   end
 

@@ -1,0 +1,24 @@
+' Dear
+= @user.full_name
+' ,
+
+' Don't forget you only have
+=> @days_before_submission
+' days to submit your application for a Queen's Award for Enterprise before the deadline on
+= @deadline
+' . So far, you've completed
+=> @form_answer.fill_progress_in_percents
+' of your application in
+= @form_answer.award_type
+' .
+
+' Being awarded a Queen's Award for Enterprise can enhance your worldwide profile and create new business opportunities. It can also help you attract and keep the best staff, gain an edge over your competitors and ultimately have a huge impact where it counts – your bottom line.
+
+' Over the last 50 years, hundreds have seen their businesses grow with this royal seal of approval – companies such as Dyson, Brompton Bicycle and Boots.
+
+= link_to "Continue and submit your application on The Queen's Awards for Enterprise website",
+edit_form_url(id: @form_answer.id)
+
+' Thank you,
+
+' The Queen's Awards Office

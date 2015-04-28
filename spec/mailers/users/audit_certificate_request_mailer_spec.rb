@@ -8,7 +8,11 @@ describe Users::AuditCertificateRequestMailer do
 
   let!(:settings) { create :settings, :submission_deadlines }
 
-  let(:deadline) { Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y") }
+  let!(:deadline) do
+    deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
+    deadline.update(trigger_at: Date.current)
+    deadline.trigger_at.strftime("%d/%m/%Y")
+  end
 
   let(:award_title) { form_answer.decorate.award_application_title }
   let(:subject) {

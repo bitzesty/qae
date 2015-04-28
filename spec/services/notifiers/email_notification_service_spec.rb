@@ -154,4 +154,21 @@ describe Notifiers::EmailNotificationService do
       expect(notification.reload).to be_sent
     end
   end
+
+  context "reminder_to_submit" do
+    let(:kind) { "reminder_to_submit" }
+
+    let(:form_answer) do
+      create(:form_answer, :trade)
+    end
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(Users::ReminderToSubmitMailer).to receive(:notify).with(form_answer.user.id, form_answer.id) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
 end

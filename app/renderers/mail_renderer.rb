@@ -10,10 +10,25 @@ class MailRenderer
   end
 
   # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit unsuccessful_notification).each do |method|
+  %w(ep_reminder_support_letters winners_notification winners_reminder_to_submit unsuccessful_notification).each do |method|
     define_method method do
       "<b>TODO</b>".html_safe
     end
+  end
+
+  def reminder_to_submit
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jane", "Doe", "Jane's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:days_before_submission] = "N"
+    assigns[:deadline] = if Settings.current_submission_deadline.trigger_at
+      Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
+    else
+      "21/09/#{Date.current.year}"
+    end
+
+    render(assigns, "users/reminder_to_submit_mailer/notify")
   end
 
   def shortlisted_audit_certificate_reminder
@@ -21,8 +36,11 @@ class MailRenderer
 
     assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
-    assigns[:deadline] = if Settings.current_submission_deadline.trigger_at
-      Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
+
+    deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
+
+    assigns[:deadline] = if deadline.trigger_at
+      deadline.trigger_at.strftime("%d/%m/%Y")
     else
       "21/09/#{Date.current.year}"
     end

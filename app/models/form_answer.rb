@@ -110,6 +110,7 @@ class FormAnswer < ActiveRecord::Base
     scope :winners, -> { where("1 = 0") }
     scope :unsuccessful, -> { where(state: %w(not_recommended reserved)) }
     scope :submitted, -> { where(submitted: true) }
+    scope :business, -> { where(award_type: %w(trade innovation development)) }
   end
 
   begin :callbacks

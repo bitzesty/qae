@@ -39,4 +39,13 @@ describe MailRenderer do
       expect(rendered).to match("Jon Doe")
     end
   end
+
+  describe "#reminder_to_submit" do
+    it "renders e-mail" do
+      link = "http://queens-awards-enterprise.service.gov.uk/form/0"
+      rendered = described_class.new.reminder_to_submit
+      expect(rendered).to match("Jane Doe")
+      expect(rendered).to match(link)
+    end
+  end
 end
