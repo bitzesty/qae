@@ -537,8 +537,18 @@ table .ellipsis {
     max-width: 1170px;
   }
 
+  .lte-ie7 & {
+    top: 90px;
+    text-align: center;
+  }
+
   .alert {
     margin: 0;
+
+    .lte-ie7 & {
+      max-width: 1170px;
+      text-align: left;
+    }
   }
 }
 
