@@ -46,7 +46,7 @@ So that I can fill form completelly even if Javascript is turned off
     login_as user
   end
 
-  describe "Innovation Award" do
+  describe "Current Queen's Awards interactions" do
     let(:new_award_category) { "sustainable_development" }
     let(:new_award_category_name) { "Sustainable Development" }
     let(:new_award_category_year) { Date.today.year.to_s }

@@ -48,9 +48,26 @@ FactoryGirl.define do
       }}.call
     end
 
+    trait :promotion do
+      type "Eligibility::Promotion"
+      answers Proc.new {{
+        nominee: 'someone_else',
+        nominee_contributes_to_promotion_of_business_enterprise: true,
+        contribution_is_outside_requirements_of_activity: true,
+        nominee_is_active: true,
+        nominee_was_active_for_two_years: true,
+        contributed_to_enterprise_promotion_within_uk: true,
+        nominee_is_qae_ep_award_holder: "no",
+        nominee_has_honours: false,
+        nominee_was_put_forward_for_honours_this_year: false,
+        able_to_get_two_letters_of_support: true
+      }}.call
+    end
+
     factory :basic_eligibility, class: "Eligibility::Basic", traits: [:basic]
     factory :innovation_eligibility, class: "Eligibility::Innovation", traits: [:innovation]
     factory :development_eligibility, class: "Eligibility::Development", traits: [:development]
     factory :trade_eligibility, class: "Eligibility::Trade", traits: [:trade]
+    factory :promotion_eligibility, class: "Eligibility::Promotion", traits: [:promotion]
   end
 end
