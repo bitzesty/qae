@@ -879,6 +879,12 @@ table .ellipsis {
     color: $grey;
     font-size: inherit;
 
+    .lte-ie7 & {
+      position: relative;
+      border-bottom: 1px solid $grey-light;
+      zoom: 1;
+    }
+
     .text-filter,
     .caret {
       color: $black;
@@ -899,6 +905,12 @@ table .ellipsis {
 
       &.divider {
         margin: 5px 0;
+
+        .lte-ie7 & {
+          width: 100%;
+          height: 1px;
+          background: $grey-light;
+        }
       }
     }
 
