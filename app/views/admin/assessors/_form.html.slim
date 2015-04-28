@@ -43,7 +43,7 @@
                       label: false
             span#password-result-span.input-group-addon
               i#password-result.glyphicon.glyphicon-ok
-
+      .clear
     .guidance-panel.if-no-js-hide
       #password-guidance
         br
@@ -66,6 +66,7 @@
                       label: false
             span#password-confirmation-result-span.input-group-addon
               i#password-confirmation-result.glyphicon.glyphicon-ok
+      .clear
 
     .if-no-js-hide
       #password-confirmation-guidance
@@ -127,7 +128,7 @@
     .col-md-4.col-sm-6
       = link_to "Cancel",
                 admin_assessors_path,
-                class: 'btn btn-default btn-md'
+                class: 'btn btn-default btn-md pull-left'
 
       .pull-right
         - if action_name == "edit" && policy(resource).destroy?

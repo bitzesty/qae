@@ -1,5 +1,6 @@
 .settings-page {
   .panel-body ul {
+    margin: 0;
     padding-left: 1.25em;
 
     li {
@@ -142,6 +143,10 @@
         background: none;
         padding: 0;
         border: none;
+
+        .lte-ie7 & {
+          font-size: 16px;
+        }
       }
     }
   }

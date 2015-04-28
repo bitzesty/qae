@@ -3,12 +3,13 @@
     .col-md-3.col-xs-8
       .form-group.search-input
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
-        = f.submit :submit
+        = submit_tag :submit, class: 'search-submit'
 
     .col-md-3.col-xs-4.pull-right.text-right
       = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-primary btn-md' do
         span.glyphicon.glyphicon-user
         = "New #{controller_name.singularize}"
+  .clear
 
   br
 

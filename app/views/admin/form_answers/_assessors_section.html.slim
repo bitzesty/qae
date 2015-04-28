@@ -9,7 +9,7 @@
       label
         span.icon-role L
         span.assessor-label Lead:
-      .form-value
+      .form-value.lead-assessor
         = resource.lead_assessors
       .clear
 
@@ -24,7 +24,7 @@
         - else
           span.p-empty Not assigned
       - if policy(resource).assign_assessor?
-        = form_for([namespace_name, resource.assessor_assignments.primary], remote: true, html: { "data-type" => "json", class: "pull-right"}, authenticity_token: true) do |form|
+        = form_for([namespace_name, resource.assessor_assignments.primary], remote: true, html: { "data-type" => "json"}, authenticity_token: true) do |form|
           .form-fields
             = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.full_name, a.id]}, { include_blank: true }
           = link_to "#", class: "form-edit-link"
@@ -32,7 +32,8 @@
             ' Edit
           .clear
           .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
+            span.if-no-js-hide
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
             = form.submit :add, class: "btn btn-primary form-save-button"
           .errors-holder
       .clear
@@ -48,7 +49,7 @@
         - else
           span.p-empty Not assigned
       - if policy(resource).assign_assessor?
-        = form_for([namespace_name, resource.assessor_assignments.secondary], remote: true, html: { "data-type" => "json", class: "pull-right"}, authenticity_token: true) do |form|
+        = form_for([namespace_name, resource.assessor_assignments.secondary], remote: true, html: { "data-type" => "json"}, authenticity_token: true) do |form|
           .form-fields
             = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.full_name, a.id]}, { include_blank: true }
           = link_to "#", class: "form-edit-link"
@@ -56,7 +57,8 @@
             ' Edit
           .clear
           .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
+            span.if-no-js-hide
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
             = form.submit :add, class: "btn btn-primary form-save-button"
           .errors-holder
       .clear

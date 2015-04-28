@@ -257,13 +257,19 @@
 }
 
 .section-applicant-users {
+  &,
+  .list-actions {
+    position: relative;
+    zoom: 1;
+  }
+
   li {
     position: relative;
     clear: both;
   }
 
   label {
-    width: 30%;
+    width: 32%;
     margin-bottom: 0;
     float: left;
     font-weight: normal;
@@ -277,16 +283,13 @@
     }
   }
 
-  form {
-    margin-left: -10px;
-
-    .form-fields {
-      width: 100%;
-    }
+  select {
+    width: 100%;
+    max-width: 100%;
   }
 
-  .form-value,
-  .form-fields {
+  form,
+  .form-value {
     width: 65%;
     float: right;
 
@@ -301,8 +304,19 @@
   }
 
   .form-fields {
+    width: 100%;
+
     @include screen-md-max {
+      width: auto;
       margin-left: 120px;
+    }
+  }
+
+  .js & {
+    .form-edit form .form-fields {
+      @include screen-md-max {
+        display: block;
+      }
     }
   }
 
@@ -313,7 +327,7 @@
   .edit-value {
     padding-right: 60px;
 
-    .ie7 & {
+    .lte-ie7 & {
       padding-right: 0;
       width: 45% !important;
       padding-right: 20%;
@@ -322,15 +336,26 @@
 
   .form-edit-link {
     position: absolute;
+    top: 0;
     right: 0;
     margin-top: 0;
     font-size: 14px;
+
+    .lte-ie7 & {
+      margin-top: -20px;
+    }
   }
 
   .form-save-button {
     margin-bottom: 10px;
     float: right;
     clear: both;
+  }
+
+  .no-js & {
+    .lead-assessor {
+      display: inline;
+    }
   }
 }
 
@@ -407,11 +432,16 @@
   }
 }
 
-.js-attachment-form .form-group {
-  margin-top: 15px;
+.js-attachment-form {
+  position: relative;
+  zoom: 1;
 
-  .form-control {
-    display: block;
+  .form-group {
+    margin-top: 15px;
+
+    .form-control {
+      display: block;
+    }
   }
 }
 

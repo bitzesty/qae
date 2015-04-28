@@ -13,10 +13,18 @@ span {
     @include screen-lg-min {
       display: inline !important;
     }
+
+    .lte-ie8 & {
+      display: inline !important;
+    }
   }
 
   &.visible-md {
     @include screen-md-min {
+      display: inline !important;
+    }
+
+    .lte-ie8 & {
       display: inline !important;
     }
   }
@@ -90,6 +98,14 @@ table .ellipsis {
 
 .btn {
   border-radius: 0;
+
+  .icon-view,
+  .glyphicon,
+  .btn-title {
+    .lte-ie7 & {
+      vertical-align: top;
+    }
+  }
 
   .glyphicon:first-child {
     margin-right: 5px;
@@ -204,8 +220,26 @@ table .ellipsis {
   }
 }
 
+.form-control {
+  height: auto;
+
+  .lte-ie7 & {
+    width: 93%;
+  }
+}
+
 .form-group label {
   font-weight: normal;
+}
+
+.form-group,
+.question-group,
+#password-confirmation-control-group {
+  .ie7 & {
+    display: block;
+    float: none;
+    clear: both;
+  }
 }
 
 .field-with-errors {
@@ -251,10 +285,18 @@ table .ellipsis {
     width: 40px;
     height: 2.4em;
     border-left: 1px solid $grey-light;
+    line-height: 1.5;
     z-index: 2;
+
+    .lte-ie7 & {
+      top: 1px !important;
+      padding: 0 !important;
+      padding-top: 6px !important;
+    }
 
     .glyphicon {
       line-height: 1.3;
+      visibility: visible !important;
     }
   }
 
@@ -436,7 +478,7 @@ table .ellipsis {
       }
 
       a span {
-        .lte-ie8 & {
+        .lte-ie7 & {
           display: inline !important;
         }
       }
@@ -464,7 +506,7 @@ table .ellipsis {
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
 
-      .ie7 & {
+      .lte-ie7 & {
         left: auto !important;
         height: 100%;
       }
@@ -495,8 +537,18 @@ table .ellipsis {
     max-width: 1170px;
   }
 
+  .lte-ie7 & {
+    top: 90px;
+    text-align: center;
+  }
+
   .alert {
     margin: 0;
+
+    .lte-ie7 & {
+      max-width: 1170px;
+      text-align: left;
+    }
   }
 }
 
@@ -511,6 +563,10 @@ table .ellipsis {
     text-indent: -9999px;
     background-repeat: no-repeat;
     background-position: center center;
+
+    .lte-ie7 & {
+      display: block;
+    }
   }
 
   .icon-comment {
@@ -605,6 +661,11 @@ table .ellipsis {
     background-image: image-url("icon-computer@2.png");
   }
 
+  .lte-ie7 & {
+    display: block !important;
+    overflow: hidden !important;
+  }
+
   &:hover {
     opacity: 1;
   }
@@ -615,18 +676,19 @@ table .ellipsis {
     width: 20px;
     height: 16px;
     margin-right: 5px;
-    background-size: 18px 14px;
+    background-image: image-url("icon-computer-sm.png");
+    background-size: 18px 16px;
     opacity: 1;
-  }
 
-  .lte-ie8 & {
-    display: inline !important;
-    width: auto !important;
-    height: auto !important;
-    background: transparent;
-    text-indent: 0;
-    white-space: nowrap;
-    overflow: hidden !important;
+    @include is-retina {
+      background-image: image-url("icon-computer-sm@2.png");
+    }
+
+    .lte-ie7 & {
+      display: inline !important;
+      text-indent: 0;
+      white-space: nowrap;
+    }
   }
 }
 
@@ -634,10 +696,19 @@ table .ellipsis {
 .search-input {
   position: relative !important;
 
+  .lte-ie8 & {
+    width: 350px;
+    overflow: hidden;
+  }
+
   .search_query {
     position: relative;
 
-    .ie7 & {
+    .lte-ie8 & {
+      width: 350px;
+    }
+
+    .lte-ie7 & {
       z-index: 1;
     }
   }
@@ -651,7 +722,7 @@ table .ellipsis {
     z-index: 10;
   }
 
-  [type="submit"] {
+  .search-submit {
     position: absolute;
     top: 0;
     right: 0;
@@ -665,7 +736,7 @@ table .ellipsis {
     background-repeat: no-repeat;
     background-position: center center;
     background-size: 15px 21px;
-    text-align: left;
+    text-align: left !important;
     text-indent: -9999px;
     white-space: nowrap;
     overflow: hidden;
@@ -676,14 +747,10 @@ table .ellipsis {
     @include is-retina {
       background-image: image-url("icon-search@2.png");
     }
-  }
 
-  .lte-ie8 & {
-    width: 350px;
-    overflow: hidden;
-
-    .search_query {
-      width: 350px;
+    .lte-ie7 & {
+      color: $white-true !important;
+      text-align: left !important;
     }
   }
 }
@@ -812,6 +879,12 @@ table .ellipsis {
     color: $grey;
     font-size: inherit;
 
+    .lte-ie7 & {
+      position: relative;
+      border-bottom: 1px solid $grey-light;
+      zoom: 1;
+    }
+
     .text-filter,
     .caret {
       color: $black;
@@ -832,6 +905,12 @@ table .ellipsis {
 
       &.divider {
         margin: 5px 0;
+
+        .lte-ie7 & {
+          width: 100%;
+          height: 1px;
+          background: $grey-light;
+        }
       }
     }
 
@@ -866,8 +945,10 @@ table .ellipsis {
 
 // Sidebar
   .show-sidebar {
+    position: relative;
     padding: 15px;
     background: $white-true;
+    zoom: 1;
 
     @include screen-md-max {
       margin-bottom: 30px;
@@ -958,6 +1039,10 @@ table .ellipsis {
     .form-actions {
       .btn:last-child {
         margin-right: 0;
+      }
+
+      .form-cancel-link:last-child {
+        margin-right: 15px;
       }
     }
 
@@ -1097,6 +1182,13 @@ table .ellipsis {
   color: $white-true;
   text-align: center;
 
+  .lte-ie8 & {
+    background: $black;
+    opacity: 0.9;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=90)";
+    filter: alpha(opacity=90);
+  }
+
   .show-delete-comment & {
     display: block;
   }
@@ -1105,6 +1197,7 @@ table .ellipsis {
     position: absolute;
     width: 100%;
     top: 50%;
+    left: 0;
     margin-top: -36px;
   }
 }
@@ -1170,12 +1263,16 @@ table .ellipsis {
     padding-left: 25px;
     background-image: image-url("icon-arrow-collapse-down.png");
     background-repeat: no-repeat;
-    background-position: left center;
+    background-position: 0 0.4em;
     background-size: 12px 8px;
     text-decoration: none;
 
     @include is-retina {
       background-image: image-url("icon-arrow-collapse-down@2.png");
+    }
+
+    .lte-ie7 & {
+      display: block;
     }
 
     .expanded & {
@@ -1203,6 +1300,10 @@ table .ellipsis {
       margin-top: 10px;
       padding-left: 25px;
       float: none !important;
+    }
+
+    .lte-ie7 & {
+      padding-left: 0;
     }
   }
 }
@@ -1242,6 +1343,16 @@ table .ellipsis {
 
 // RAG dropdown
 .btn-rag {
+  .lte-ie7 & {
+    display: inline;
+  }
+
+  &.open {
+    .lte-ie7 & {
+      z-index: 9999;
+    }
+  }
+
   .icon-rag {
     position: absolute;
     top: 50%;
@@ -1253,7 +1364,6 @@ table .ellipsis {
     text-align: left;
     text-indent: -9999px;
   }
-
 
   .rag-blank {
     &,
