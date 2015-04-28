@@ -1,0 +1,31 @@
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Dear
+  = @user.full_name
+  ' ,
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' Don't forget you only have
+  => @days_before_submission
+  ' days to submit your nomination of
+  = @nominee_name
+  ' for a Queen's Award for Enterprise Promotion before the deadline on
+  = @deadline
+  ' .
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' So far you have received
+  => @form_answer.support_letters.count
+  ' letters of support.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' If you've not received the minimum of 2 required to submit your application, please follow this up with your supporters.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  = link_to "Continue and submit your nomination on The Queen’s Awards for Enterprise website.",
+            edit_form_url(id: @form_answer.id)
+
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
+  ' Thank you,
+  br
+  br
+  ' The Queen's Awards Office

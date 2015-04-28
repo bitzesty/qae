@@ -44,8 +44,20 @@ describe MailRenderer do
     it "renders e-mail" do
       link = "http://queens-awards-enterprise.service.gov.uk/form/0"
       rendered = described_class.new.reminder_to_submit
+      expect(rendered).to match("Jon Doe")
+      expect(rendered).to match(link)
+      expect(rendered).to match("21/09/#{Date.current.year}")
+    end
+  end
+
+  describe "#ep_reminder_support_letters" do
+    it "renders e-mail" do
+      link = "http://queens-awards-enterprise.service.gov.uk/form/0"
+      rendered = described_class.new.ep_reminder_support_letters
+      expect(rendered).to match("Jon Doe")
       expect(rendered).to match("Jane Doe")
       expect(rendered).to match(link)
+      expect(rendered).to match("21/09/#{Date.current.year}")
     end
   end
 end

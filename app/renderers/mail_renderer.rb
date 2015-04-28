@@ -16,10 +16,27 @@ class MailRenderer
     end
   end
 
+  def ep_reminder_support_letters
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:days_before_submission] = "N"
+    assigns[:deadline] = if Settings.current_submission_deadline.trigger_at
+      Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
+    else
+      "21/09/#{Date.current.year}"
+    end
+
+    assigns[:nominee_name] = "Jane Doe"
+
+    render(assigns, "users/promotion_letters_of_support_reminder_mailer/notify")
+  end
+
   def reminder_to_submit
     assigns = {}
 
-    assigns[:user] = dummy_user("Jane", "Doe", "Jane's Company")
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     assigns[:days_before_submission] = "N"
     assigns[:deadline] = if Settings.current_submission_deadline.trigger_at

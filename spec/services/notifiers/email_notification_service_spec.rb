@@ -164,7 +164,24 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
-      expect(Users::ReminderToSubmitMailer).to receive(:notify).with(form_answer.user.id, form_answer.id) { mailer }
+      expect(Users::ReminderToSubmitMailer).to receive(:notify).with(form_answer.id) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "ep_reminder_support_letters" do
+    let(:kind) { "ep_reminder_support_letters" }
+
+    let(:form_answer) do
+      create(:form_answer, :promotion)
+    end
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(Users::PromotionLettersOfSupportReminderMailer).to receive(:notify).with(form_answer.id) { mailer }
 
       described_class.run
 
