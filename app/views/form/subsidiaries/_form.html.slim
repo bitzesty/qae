@@ -1,8 +1,8 @@
 li
   div
-    = simple_form_for subsidiary,
-                      url: form_form_answer_subsidiaries_url(@form_answer.id),
-                      html: { class: 'qae-form' } do |f|
+    = simple_form_for item,
+                      url: form_form_answer_subsidiaries_url(@form_answer.id, index: detect_index_of_element(name: item.name, location: item.location)),
+                      html: { class: 'qae-form', method: (action_name == "edit" ? :put : :post) } do |f|
       .row
         .span-6
           = f.input :name,

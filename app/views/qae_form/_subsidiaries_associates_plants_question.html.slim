@@ -10,6 +10,8 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
 
       = link_to "Remove", confirm_deletion_form_form_answer_subsidiaries_path(@form_answer.id, subsidiary: { name: subsidiary['name'], location: subsidiary['location'] }), class: "remove-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
 
+      = link_to "Edit", edit_form_form_answer_subsidiaries_path(@form_answer, subsidiary: subsidiary), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
+
       .clear
       span.row
         ul.errors-container

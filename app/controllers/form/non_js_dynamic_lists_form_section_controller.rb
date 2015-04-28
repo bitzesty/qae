@@ -27,6 +27,10 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
     ActiveSupport::HashWithIndifferentAccess.new(item_params)
   }
 
+  expose(:anchor) do
+    "non_js_#{input_name}-list-question"
+  end
+
   expose(:add_result_doc) do
     res = existing_parsed_list_doc
     res.push(created_item_ops)

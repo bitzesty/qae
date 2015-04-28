@@ -42,6 +42,16 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     }
   end
 
+  expose(:delete_item_url) do
+    form_form_answer_current_queens_awards_url(
+      @form_answer.id,
+      current_queens_award: {
+        category: item.category,
+        year: item.year
+      }
+    )
+  end
+
   def new
   end
 
@@ -56,7 +66,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
 
       redirect_to edit_form_url(
         id: @form_answer.id,
-        anchor: "non_js_#{input_name}-list-question"
+        anchor: anchor
       )
     else
       render :new
@@ -75,7 +85,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
 
     redirect_to edit_form_url(
       id: @form_answer.id,
-      anchor: "non_js_#{input_name}-list-question"
+      anchor: anchor
     )
   end
 
@@ -96,7 +106,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
 
       redirect_to edit_form_url(
         id: @form_answer.id,
-        anchor: "non_js_#{input_name}-list-question"
+        anchor: anchor
       )
     else
       render :edit

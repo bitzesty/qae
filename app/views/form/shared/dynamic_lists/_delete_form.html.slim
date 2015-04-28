@@ -4,7 +4,7 @@ li
       | Are you sure?
     br
     = simple_form_for item,
-                      url: form_form_answer_current_queens_awards_url(@form_answer.id, current_queens_award: { category: item.category, year: item.year }),
+                      url: delete_item_url,
                       html: { class: 'qae-form', method: :delete } do |f|
       .row
         .span-12
