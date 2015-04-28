@@ -5,9 +5,6 @@ header.page-header.group
     h1
       ' Applications
 
-  - if Rails.env.development?
-    = link_to "Switch view", "#", class: "button button-add js-switch-dashboard-view-btn"
-
 - if Settings.after_current_submission_deadline?
   .dashboard-post-submission
     = render "dashboard_post_submission"

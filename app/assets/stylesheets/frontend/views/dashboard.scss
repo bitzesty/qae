@@ -151,19 +151,6 @@
   position: relative;
 }
 
-.js-switch-dashboard-view-btn {
-  position: absolute;
-  top: 0;
-  right: 1.75em;
-  margin-right: 0;
-  padding: 10px;
-  font-size: 14px;
-
-  @media (max-width: 640px) {
-    right: 1em;
-  }
-}
-
 .dashboard-post-submission {
   h2 {
     @include heading-36;
