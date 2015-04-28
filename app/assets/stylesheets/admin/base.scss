@@ -266,12 +266,13 @@ table .ellipsis {
     width: 40px;
     height: 2.4em;
     border-left: 1px solid $grey-light;
+    line-height: 1.5;
     z-index: 2;
 
-    .ie7 & {
+    .lte-ie7 & {
       top: 1px !important;
-      padding-top: 7px !important;
-      padding-bottom: 0 !important;
+      padding: 0 !important;
+      padding-top: 6px !important;
     }
 
     .glyphicon {
@@ -486,7 +487,7 @@ table .ellipsis {
       -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
       filter: alpha(opacity=0);
 
-      .ie7 & {
+      .lte-ie7 & {
         left: auto !important;
         height: 100%;
       }
@@ -661,7 +662,7 @@ table .ellipsis {
   .search_query {
     position: relative;
 
-    .ie7 & {
+    .lte-ie7 & {
       z-index: 1;
     }
   }
