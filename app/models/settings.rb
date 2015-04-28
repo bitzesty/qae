@@ -19,7 +19,6 @@ class Settings < ActiveRecord::Base
   end
 
   def self.after_current_submission_deadline?
-    return true if Rails.env.development?
     deadline = current_submission_deadline.trigger_at
     DateTime.now >= deadline if deadline.present?
   end
@@ -27,6 +26,19 @@ class Settings < ActiveRecord::Base
   def self.after_shortlisting_stage?
     deadline = current.email_notifications.where(kind: "shortlisted_notifier").first
     DateTime.now >= deadline.trigger_at if deadline.present?
+  end
+
+  def self.winners_stage?
+    deadline = current.email_notifications.where(kind: "winners_notification").first
+    DateTime.now >= deadline.trigger_at if deadline.present?
+  end
+
+  def self.not_shortlisted_deadline
+    current.email_notifications.not_shortlisted.first.try(:trigger_at)
+  end
+
+  def self.not_awarded_deadline
+    current.email_notifications.not_awarded.first.try(:trigger_at)
   end
 
   private

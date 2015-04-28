@@ -1,0 +1,39 @@
+- award_applications = FormAnswerDecorator.decorate_collection(award_applications)
+- unsuccessful = unsuccessful_collection(award_applications)
+- if unsuccessful.present?
+  .container-split
+    .content-left
+      h2 Unsuccessful
+    .content-right.content-offset-36
+      p
+        ' Your
+        - if unsuccessful.length == 1
+          ' application was
+        - else
+          ' applications were
+        ' unsuccessful.
+    .clear
+  - unsuccessful.each do |award|
+    .container-split.award-list
+      .content-left
+        h3
+          = award.application_name
+          small
+            = award.award_type
+            '  Award
+      .content-right.content-offset-24
+        / Nominators don't get any options after submision
+        - if award.promotion?
+          p Unfortunately your nomination was unsuccessful.
+        - else
+          h4 Feedback
+          - if award.feedback.try(:approved?)
+            p
+              ' Please
+              = link_to "download and read the feedback document", "#", class: "todo-placeholder"
+              '  so you can better understand our decision. We hope it will help you to improve your future applications.
+          - else
+            p You will be notified when your feedback is ready.
+      .clear
+  br
+  br

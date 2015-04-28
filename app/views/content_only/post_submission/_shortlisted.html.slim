@@ -1,5 +1,4 @@
 - shortlisted = FormAnswerDecorator.decorate_collection(award_applications.select { |app| app.decorate.shortlisted? && !app.promotion? })
-
 - if shortlisted.any?
   .container-split
     .content-left
@@ -33,7 +32,7 @@
                 = application_deadline_short(:audit_certificates)
               = link_to declaration_of_corporate_responsibility_path
                 - if award.corp_responsibility_missing?
-                  span.label-status.label-status-red.todo-placeholder
+                  span.label-status.label-status-red
                     ' Incomplete
                 - else
                   span.label-status.label-status-green
