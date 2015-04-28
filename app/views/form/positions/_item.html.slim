@@ -1,6 +1,6 @@
 li
   div
-    = button_to "Remove", form_form_answer_positions_url(@form_answer, name: attrs["name"], start_month: attrs["start_month"], start_year: attrs["start_year"]),
+    = button_to "Remove", form_form_answer_positions_url(@form_answer, position: attrs),
                           method: :delete,
                           class: "non-js-remove-link",
                           form_class: "non-js-button-to"
@@ -46,4 +46,4 @@ li
         ' -
     br
 
-  = link_to "Edit role", edit_form_form_answer_positions_path(@form_answer, index: detect_index_of_position_details(attrs))
+  = link_to "Edit role", edit_form_form_answer_positions_url(@form_answer.id, position: attrs)
