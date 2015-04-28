@@ -7,13 +7,7 @@ I want to be able to add Current Queen's Awards I hold
 So that I can fill form completelly even if Javascript is turned off
 } do
 
-  let!(:user) do
-    FactoryGirl.create :user, :completed_profile
-  end
-
-  let!(:account) do
-    user.reload.account
-  end
+  include_context "non js form base"
 
   let(:innovation_award_year) do
     (Date.today - 2.years).year.to_s
@@ -45,10 +39,6 @@ So that I can fill form completelly even if Javascript is turned off
   let!(:innovation_eligibility) do
     FactoryGirl.create :innovation_eligibility, form_answer: form_answer,
                                                 account: account
- end
-
-  let!(:settings) do
-    Settings.first
   end
 
   before do
@@ -175,14 +165,5 @@ So that I can fill form completelly even if Javascript is turned off
 
   def item_entry(el)
     "#{el[:category]}_#{el[:year]}"
-  end
-
-  def prepare_setting_deadlines
-    start = settings.deadlines.where(kind: "submission_start").first
-    start.update_column(:trigger_at, Time.zone.now - 20.days)
-    finish = settings.deadlines.where(kind: "submission_end").first
-    finish.update_column(:trigger_at, Time.zone.now + 20.days)
-
-    settings.reload
   end
 end
