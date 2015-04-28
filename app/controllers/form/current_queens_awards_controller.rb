@@ -1,14 +1,22 @@
-class Form::CurrentQueensAwardsController < Form::BaseController
+class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionController
 
   # This controller handles saving of CurrentQueensAwards
   # This section is used in case if JS disabled
 
-  expose(:step) do
-    @form.steps.detect { |s| s.title == "Company Information" }
+  expose(:step_name) do
+    "Company Information"
   end
 
-  expose(:question) do
-    step.questions.detect { |q| q.key == :queen_award_holder_details }
+  expose(:input_name) do
+    "queen_award_holder_details"
+  end
+
+  expose(:section_folder_name) do
+    "current_queens_awards"
+  end
+
+  expose(:item_name) do
+    "Award"
   end
 
   expose(:categories) do
@@ -19,77 +27,36 @@ class Form::CurrentQueensAwardsController < Form::BaseController
     question.years
   end
 
-  expose(:existing_current_queens_awards_doc) do
-    @form_answer.document["queen_award_holder_details"]
+  expose(:item_class) do
+    CurrentQueensAward
   end
 
-  expose(:existing_current_queens_awards) do
-    if existing_current_queens_awards_doc.present?
-      JSON.parse(existing_current_queens_awards_doc).map do |el|
-        JSON.parse(el)
-      end
-    else
-      []
-    end
+  expose(:item) do
+    item_class.new(categories, years, {})
   end
 
-  expose(:current_queens_award) do
-    CurrentQueensAward.new(categories, years, {})
-  end
-
-  expose(:created_current_queens_award_ops) do
+  expose(:created_item_ops) do
     {
-      "category" => current_queens_award_params[:category],
-      "year" => current_queens_award_params[:year]
+      "category" => item_params[:category],
+      "year" => item_params[:year]
     }
-  end
-
-  expose(:add_current_queens_award_result_doc) do
-    result_current_queens_awards = existing_current_queens_awards
-    result_current_queens_awards.push(created_current_queens_award_ops)
-    result_current_queens_awards = result_current_queens_awards.map(&:to_json)
-
-    @form_answer.document.merge(
-      queen_award_holder_details: result_current_queens_awards.to_json
-    )
-  end
-
-  expose(:remove_current_queens_award_result_doc) do
-    result_current_queens_awards = existing_current_queens_awards
-    result_current_queens_awards.delete_if do |el|
-      el["category"] == params[:category] &&
-      el["year"] == params[:year]
-    end
-
-    result_current_queens_awards = if result_current_queens_awards.present?
-      result_current_queens_awards
-    else
-      []
-    end
-
-    result_current_queens_awards = result_current_queens_awards.map(&:to_json)
-
-    @form_answer.document.merge(
-      queen_award_holder_details: result_current_queens_awards.to_json
-    )
   end
 
   def new
   end
 
   def create
-    self.current_queens_award = CurrentQueensAward.new(
-      categories,
-      years,
-      current_queens_award_params)
+    self.item = item_class.new(categories,
+                               years,
+                               item_params)
 
-    if current_queens_award.valid?
-      @form_answer.document = add_current_queens_award_result_doc
+    if item.valid?
+      @form_answer.document = add_result_doc
       @form_answer.save
 
       redirect_to edit_form_url(
         id: @form_answer.id,
-        anchor: "non_js_queens-awards-list-question"
+        anchor: "non_js_#{input_name}-list-question"
       )
     else
       render :new
@@ -97,25 +64,53 @@ class Form::CurrentQueensAwardsController < Form::BaseController
   end
 
   def confirm_deletion
-    self.current_queens_award = CurrentQueensAward.new(
-      categories,
-      years,
-      current_queens_award_params)
+    self.item = item_class.new(categories,
+                               years,
+                               item_params)
   end
 
   def destroy
-    @form_answer.document = remove_current_queens_award_result_doc
+    @form_answer.document = remove_result_doc
     @form_answer.save
 
     redirect_to edit_form_url(
       id: @form_answer.id,
-      anchor: "non_js_queens-awards-list-question"
+      anchor: "non_js_#{input_name}-list-question"
     )
+  end
+
+  def edit
+    self.item = item_class.new(categories,
+                               years,
+                               item_params)
+  end
+
+  def update
+    self.item = item_class.new(categories,
+                               years,
+                               item_params)
+
+    if item.valid?
+      @form_answer.document = update_result_doc
+      @form_answer.save
+
+      redirect_to edit_form_url(
+        id: @form_answer.id,
+        anchor: "non_js_#{input_name}-list-question"
+      )
+    else
+      render :edit
+    end
+  end
+
+  def item_detect_condition(el, attrs=nil)
+    el["category"] == (attrs.present? ? attrs[:category] : ops_hash[:category]) &&
+    el["year"] == (attrs.present? ? attrs[:year] : ops_hash[:year])
   end
 
   private
 
-  def current_queens_award_params
+  def item_params
     params.require(:current_queens_award).permit(
       :category,
       :year

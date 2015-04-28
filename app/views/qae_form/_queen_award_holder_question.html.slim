@@ -3,7 +3,7 @@
 
 = render "shared/non_js_dynamic_list_redirect_warning", add_message: "Add award"
 
-ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 id="non_js_queens-awards-list-question"
+ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 id="non_js_#{question.key}-list-question"
   input name="form[queen_award_holder_details][array]" value="true" type="hidden"
 
   - question.entities.each_with_index do |award, index|
@@ -11,6 +11,8 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
       = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide #{'read_only' if admin_in_read_only_mode?}"
 
       = link_to "Remove", confirm_deletion_form_form_answer_current_queens_awards_path(@form_answer.id, current_queens_award: { category: award["category"], year: award["year"] }), class: "remove-link js-remove-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
+
+      = link_to "Edit", edit_form_form_answer_current_queens_awards_path(@form_answer, current_queens_award: award), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
 
       ul.errors-container
         - errors = @form_answer.validator_errors

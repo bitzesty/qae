@@ -1,8 +1,9 @@
 li
   div
-    = simple_form_for current_queens_award,
-                      url: form_form_answer_current_queens_awards_url(@form_answer.id),
-                      html: { class: 'qae-form' } do |f|
+    h2
+    = simple_form_for item,
+                      url: form_form_answer_current_queens_awards_url(@form_answer.id, index: detect_index_of_element(category: item.category, year: item.year)),
+                      html: { class: 'qae-form', method: (action_name == "edit" ? :put : :post) } do |f|
       .row
         .span-6
           = f.input :category, collection: categories.map { |c| [c.text, c.value] },
