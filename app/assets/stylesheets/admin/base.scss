@@ -545,6 +545,10 @@ table .ellipsis {
     text-indent: -9999px;
     background-repeat: no-repeat;
     background-position: center center;
+
+    .lte-ie7 & {
+      display: block;
+    }
   }
 
   .icon-comment {
