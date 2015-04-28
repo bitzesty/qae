@@ -68,7 +68,7 @@
     .col-md-4.col-sm-6
       = link_to "Cancel",
                 admin_admins_path,
-                class: 'btn btn-default btn-md'
+                class: 'btn btn-default btn-md pull-left'
 
       .pull-right
         - if action_name == "edit" && policy(resource).destroy?

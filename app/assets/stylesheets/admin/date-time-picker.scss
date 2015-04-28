@@ -143,6 +143,12 @@ body .ui-datepicker {
     text-align: center;
   }
 
+  .ui-datepicker-calendar {
+    .ie7 {
+      width: 200px !important;
+    }
+  }
+
   table {
     font-size: 1em;
   }
