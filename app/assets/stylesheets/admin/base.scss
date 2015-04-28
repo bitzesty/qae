@@ -253,6 +253,12 @@ table .ellipsis {
     border-left: 1px solid $grey-light;
     z-index: 2;
 
+    .ie7 & {
+      top: 1px !important;
+      padding-top: 16px !important;
+      padding-bottom: 8px !important;
+    }
+
     .glyphicon {
       line-height: 1.3;
     }
