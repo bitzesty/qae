@@ -107,6 +107,14 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
+  def shortlisted?
+    ["recommended", "reserved"].include? object.state
+  end
+
+  def corp_responsibility_missing?
+    object.document["impact_on_society"].blank?
+  end
+
   def average_growth_legend(years = [1, 2, 3])
     growths = years.map { |y| average_growth_for(y) }.uniq
     growths.map do |g|

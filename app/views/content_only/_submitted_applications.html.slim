@@ -1,60 +1,10 @@
-p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successful
+/ p.todo-note TODO: Whether an applicant is unsuccessful, shortlisted or successful
 - unless award_applications.any?
   .application-notice.help-notice
     p You did not submit any applications.
 - else
-  / if shortlisted
-  - if award_applications.any?
-    .container-split
-      .content-left
-        h2 Shortlisted
-      .content-right.content-offset-36
-        p
-          ' Congratulations! Your
-          - if award_applications.count == 1
-            ' application was
-          - else
-            ' applications were
-          '  shortlisted.
-      .clear
-    - award_applications.each do |award|
-      - unless award.award_type == "promotion"
-        .container-split.award-list
-          .content-left
-            h3
-              = award.decorate.application_name
-              small
-                = award.decorate.award_type
-                '  Award
-          .content-right.content-offset-24
-            / Nominators don't get any options after submision
-            p Please review the actions to the below to complete your shortlisted application.
-            ul.post-dashboard-actions
-              li
-                = link_to "Declaration of Corporate Responsibility", declaration_of_corporate_responsibility_path
-                span.award-info
-                  / TODO: Hardcoded date
-                  span.pull-right.todo-placeholder
-                    ' Due by 30/03/2016
-                  = link_to declaration_of_corporate_responsibility_path
-                    span.label-status.label-status-red.todo-placeholder
-                      ' Incomplete
-              li
-                = link_to "Audit Certificate", users_form_answer_audit_certificate_url(award)
-                span.award-info
-                  span.pull-right
-                    ' Due by
-                    = application_deadline_short(:audit_certificates)
-                  = link_to users_form_answer_audit_certificate_url(award)
-                    - if award.audit_certificate.present?
-                      span.label-status.label-status-green
-                        ' Complete
-                    - else
-                      span.label-status.label-status-red
-                        ' Incomplete
-        .clear
-    br
-    br
+  - if Settings.after_shortlisting_stage?
+    = render("content_only/post_submission/shortlisted", award_applications: award_applications)
 
   / if winner
   - if award_applications.any?

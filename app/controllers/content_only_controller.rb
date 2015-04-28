@@ -57,6 +57,7 @@ class ContentOnlyController < ApplicationController
     @user_award_forms_innovation = @user_award_forms.where(award_type: "innovation")
     @user_award_forms_development = @user_award_forms.where(award_type: "development")
     @user_award_forms_promotion = @user_award_forms.where(award_type: "promotion")
+
     @user_award_forms_submitted = current_user.account.form_answers
                                                       .where(submitted: true)
                                                       .order("award_type")

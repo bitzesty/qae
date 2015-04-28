@@ -685,9 +685,9 @@ jQuery ->
   SupportLetters.init()
   AuditCertificatesUpload.init()
 
-  $(".js-switch-dashboard-view-btn").on "click", (e) ->
-    e.preventDefault()
-    $(".page-dashboard").toggleClass("dashboard-post")
+  # $(".js-switch-dashboard-view-btn").on "click", (e) ->
+  #   e.preventDefault()
+  #   $(".page-dashboard").toggleClass("dashboard-post")
 
   if $(".js-press-comment-correct input:checked").val() == "true"
     $(".js-press-comment-feeback").addClass("section-confirmed")

@@ -8,7 +8,9 @@ header.page-header.group
   - if Rails.env.development?
     = link_to "Switch view", "#", class: "button button-add js-switch-dashboard-view-btn"
 
-.dashboard-pre-submission
-  = render "dashboard_pre_submission"
-.dashboard-post-submission
-  = render "dashboard_post_submission"
+- if Settings.after_current_submission_deadline?
+  .dashboard-post-submission
+    = render "dashboard_post_submission"
+- else
+  .dashboard-pre-submission
+    = render "dashboard_pre_submission"
