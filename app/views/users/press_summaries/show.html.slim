@@ -1,12 +1,12 @@
 div
   header.group.page-header.page-header-wider
     div
-      h1 Press Comment
+      h1 Press Book Notes
 
   .article-container.article-container-wider
     article.group role="article"
       .inner
-        p Please check that all of this press comment is factually accurate:
+        p Please check that the Press Book Notes are factually accurate:
 
         br
 
@@ -17,7 +17,7 @@ div
 
         = simple_form_for @press_summary, url: users_form_answer_press_summary_path(form_answer, token: params[:token]), html: { class: "qae-form" } do |f|
           fieldset.question-block.sub-question.js-press-comment-correct
-            h2 = f.label :correct, label: "Do you have any comments on your entry?"
+            h2 = f.label :correct, label: "Do you have any comments on the Press Book Notes?"
             ul.errors-container
             .clear
             .question-group
@@ -28,7 +28,7 @@ div
 
           fieldset.question-block.regular-question.js-press-comment-feeback
             h2
-              = f.label :comment, label: "Please note where and how the press comment is factually incorrect."
+              = f.label :comment, label: "Please note where and how the Press Book Notes are factually incorrect."
             .question-group
               = f.input :comment, as: :text, input_html: { class: "js-char-count", rows: "5", data: { word_max: "300" } }, label: false
               .clear
@@ -54,4 +54,4 @@ div
                   = link_to dashboard_path
                     span.pagination-label Back
                 li.submit
-                  = f.submit "Confirm Press Comment", class: "button", rel: "next"
+                  = f.submit "Confirm Press Book Notes", class: "button", rel: "next"

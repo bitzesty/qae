@@ -16,10 +16,10 @@ describe "Assessor press_summary management", js: true do
 
       within "#section-press-summary" do
         find("a.form-edit-link").click
-        fill_in "press_summary[body]", with: "Press Summary 101"
+        fill_in "press_summary[body]", with: "Press Book Notes 101"
         click_button "Save"
 
-        expect(page).to have_selector(".form-value", text: "Press Summary 101")
+        expect(page).to have_selector(".form-value", text: "Press Book Notes 101")
       end
     end
   end
@@ -32,9 +32,9 @@ describe "Assessor press_summary management", js: true do
 
       visit assessor_form_answer_path(form_answer)
       find("#press-summary-heading a").click
-      click_button "Approve press summary"
+      click_button "Approve Press Book Notes"
 
-      expect(page).to have_no_selector(".btn-block", text: "Approve press summary")
+      expect(page).to have_no_selector(".btn-block", text: "Approve Press Book Notes")
     end
   end
 end

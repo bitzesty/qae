@@ -27,7 +27,7 @@
         - if award.promotion?
           p Your nomination was successful.
         - else
-          - if award.press_summary.try(:approved?)
+          - if award.press_summary.body.present?
             p Please review the actions to the below to complete your successful application.
             ul.post-dashboard-actions
               li

@@ -4,7 +4,7 @@
   .form-group
     label.form-label Body
     .form-value.no-js-update
-      p = press_summary.body.presence || content_tag(:i, "No press summary has been added yet")
+      p = press_summary.body.presence || content_tag(:i, "No Press Book Notes has been added yet")
     .input.form-group
       = f.input :body, as: :text, input_html: { class: 'form-control', rows: 4 }, label: false
     .clear
@@ -17,10 +17,8 @@
       .clear
 
     - if press_summary.body.present?
-      - if press_summary.approved.present?
-        - if press_summary.approved
-          p.p-empty Applicant has confirmed the press summary
-        - else
+      - if press_summary.reviewed_by_user
+        - if press_summary.correct
           .form-group
             label.form-label
               ' Comments by Applicant
@@ -29,10 +27,12 @@
                 = press_summary.comment
               - else
                 ' No comment by applicant
+        - else
+          p.p-empty Applicant has confirmed the Press Book Notes
       - else
-        p.p-empty Applicant hasn't confirmed the press summary
+        p.p-empty Applicant hasn't confirmed the Press Book Notes
 
 - if press_summary.persisted? && policy(press_summary).approve?
   br
   br
-  = button_to "Approve press summary", polymorphic_url([:approve, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true
+  = button_to "Approve Press Book Notes", polymorphic_url([:approve, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true
