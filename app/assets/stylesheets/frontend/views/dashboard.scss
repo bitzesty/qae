@@ -195,12 +195,14 @@
   }
 }
 
-.js .js-press-comment-feeback,
-.js .js-accept-nomination-details {
-  display: none;
+.js & {
+  .js-press-comment-feeback,
+  .js-accept-nomination-details {
+    display: none;
 
-  &.section-confirmed {
-    display: block;
+    &.section-confirmed {
+      display: block;
+    }
   }
 }
 
