@@ -4,6 +4,8 @@ class FormAnswer < ActiveRecord::Base
   include PgSearch
   extend Enumerize
 
+  has_paper_trail
+
   attr_accessor :current_step, :validator_errors, :steps_with_errors
 
   pg_search_scope :basic_search,
