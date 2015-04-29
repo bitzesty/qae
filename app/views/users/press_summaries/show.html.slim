@@ -28,7 +28,7 @@ div
 
           fieldset.question-block.regular-question.js-press-comment-feeback
             h2
-              = f.label :comment, label: "Please note where and how the Press Book Notes are factually incorrect."
+              = f.label :comment, label: "<span class='if-js-hide'>If you do have comments, p</span><span class='if-no-js-hide'>P</span>lease note where and how the Press Book Notes are factually incorrect.".html_safe
             .question-group
               = f.input :comment, as: :text, input_html: { class: "js-char-count", rows: "5", data: { word_max: "300" } }, label: false
               .clear
