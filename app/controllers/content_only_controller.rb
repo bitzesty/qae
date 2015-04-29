@@ -63,6 +63,12 @@ class ContentOnlyController < ApplicationController
                                                       .order("award_type")
   end
 
+  def award_winners_section
+    @user_award_forms_submitted = current_user.account.form_answers
+                                                      .where(submitted: true)
+                                                      .order("award_type")
+  end
+
   def get_current_form
     @form_answer = current_account.form_answers.find(params[:form_id])
     @form = @form_answer.award_form.decorate(
