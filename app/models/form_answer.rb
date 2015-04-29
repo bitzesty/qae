@@ -106,8 +106,9 @@ class FormAnswer < ActiveRecord::Base
   begin :scopes
     scope :for_award_type, -> (award_type) { where(award_type: award_type) }
     scope :for_year, -> (year) { joins(:award_year).where(award_years: { year: year }) }
-    scope :shortlisted_with_no_certificate, -> { where("1 = 0") }
-    scope :winners, -> { where("1 = 0") }
+    scope :shortlisted, -> { where(state: %w(reserved recommended)) }
+    scope :not_shortlisted, -> { where(state: "not_recommended") }
+    scope :winners, -> { where(state: %(recomended awarded)) }
     scope :unsuccessful, -> { where(state: %w(not_recommended not_awarded reserved)) }
     scope :submitted, -> { where(submitted: true) }
     scope :business, -> { where(award_type: %w(trade innovation development)) }

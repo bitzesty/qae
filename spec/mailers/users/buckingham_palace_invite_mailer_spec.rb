@@ -3,8 +3,16 @@ require "rails_helper"
 describe Users::BuckinghamPalaceInviteMailer do
   let(:palace_invite) { create :palace_invite, email: "palace@example.com" }
 
+  let!(:settings) { create :settings, :submission_deadlines }
+
+  let!(:deadline) do
+    deadline = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first
+    deadline.update(trigger_at: Date.current)
+    deadline.trigger_at.strftime("%d/%m/%Y")
+  end
+
   describe "#notify" do
-    let(:mail) { Users::BuckinghamPalaceInviteMailer.invite(palace_invite.id) }
+    let(:mail) { Users::BuckinghamPalaceInviteMailer.invite(palace_invite.id, "Jon Snow") }
 
     it "renders the headers" do
       expect(mail.to).to eq([palace_invite.email])
@@ -12,8 +20,9 @@ describe Users::BuckinghamPalaceInviteMailer do
     end
 
     it "renders the body" do
-      expect(mail.body.encoded).to have_link("attendee details",
-                                             href: edit_palace_invite_url(id: palace_invite.token))
+      expect(mail.html_part.decoded).to have_link("the Winner's Dashboard.",
+                                             href: dashboard_url)
+      expect(mail.html_part.decoded).to match("Jon Snow")
     end
   end
 end

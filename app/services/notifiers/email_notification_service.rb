@@ -18,10 +18,16 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  # this will be removed after all methods are implemented
-  %w(winners_reminder_to_submit).each do |method|
-    define_method method do
-      nil
+  def winners_reminder_to_submit(award_year)
+    award_year.form_answers.winners.each do |form_answer|
+      if form_answer.promotion?
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],                                           form_answer.id)
+      else
+        head_of_business = "#{document["head_of_business_first_name"]} #{document["head_of_business_last_name"]}"
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
+                                                                 head_of_business,
+                                                                 form_answer.id)
+      end
     end
   end
 
@@ -41,25 +47,21 @@ class Notifiers::EmailNotificationService
 
   def shortlisted_notifier(award_year)
     award_year.form_answers.business.shortlisted.each do |form_answer|
-      Users::NotifyShortlistedMailer.notify(form_answer.user_id).deliver_later!
+      Users::NotifyShortlistedMailer.notify(form_answer.id).deliver_later!
     end
   end
 
-  def ep_shortlisted_notifier(award_year)
-  end
-
-  def ep_not_shortlisted_notifier(award_year)
-  end
-
   def not_shortlisted_notifier(award_year)
-    award_year.form_answers.not_shortlisted.each do |form_answer|
-      Users::NotifyNonShortlistedMailer.notify(form_answer.user_id).deliver_later!
+    award_year.form_answers.business.not_shortlisted.each do |form_answer|
+      Users::NotifyNonShortlistedMailer.notify(form_answer.id).deliver_later!
     end
   end
 
   def shortlisted_audit_certificate_reminder(award_year)
-    award_year.form_answers.shortlisted_with_no_certificate.each do |form_answer|
-      Notifiers::Shortlist::AuditCertificateRequest.new(form_answer).run
+    award_year.form_answers.shortlisted.each do |form_answer|
+      if !form_answer.audit_certificate
+        Notifiers::Shortlist::AuditCertificateRequest.new(form_answer).run
+      end
     end
   end
 
@@ -74,7 +76,11 @@ class Notifiers::EmailNotificationService
 
   def all_unsuccessful_feedback(award_year)
     award_year.form_answers.business.unsuccessful.each do |form_answer|
-      Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+      if form_answer.promotion?
+        Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
+      else
+        Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+      end
     end
   end
 
@@ -83,11 +89,12 @@ class Notifiers::EmailNotificationService
       document = form_answer.document
 
       if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],
-                                                                          form_answer)
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],                                           form_answer.id)
       else
+        head_of_business = "#{document["head_of_business_first_name"]} #{document["head_of_business_last_name"]}"
         Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
-                                                                 form_answer)
+                                                                 head_of_business,
+                                                                 form_answer.id)
       end
     end
   end

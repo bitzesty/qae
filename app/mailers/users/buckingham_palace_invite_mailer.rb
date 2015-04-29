@@ -1,10 +1,13 @@
 class Users::BuckinghamPalaceInviteMailer < ApplicationMailer
-  def invite(invite_id)
+  def invite(invite_id, name)
     invite = PalaceInvite.find(invite_id)
-    award = invite.form_answer.decorate.award_type
     @token = invite.token
+    @form_answer = invite.form_answer.decorate
+    @name = name
+    @deadline = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first
+    @deadline = @deadline.trigger_at.strftime("%d/%m/%Y")
 
-    subject = "[Queen's Awards] #{award} request to fill in attendee details"
+    subject = "Queen's Awards for Enterprise: Congratulations, you've won!"
     mail to: invite.email, subject: subject
   end
 end

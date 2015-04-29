@@ -6,7 +6,7 @@ describe Users::PromotionLettersOfSupportReminderMailer do
 
   let!(:settings) { create :settings, :submission_deadlines }
 
-  let(:deadline) do
+  let!(:deadline) do
     Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
   end
 
@@ -28,6 +28,7 @@ describe Users::PromotionLettersOfSupportReminderMailer do
       expect(mail.html_part.decoded).to match(edit_form_url(id: form_answer.id))
       expect(mail.html_part.decoded).to match(deadline)
       expect(mail.html_part.decoded).to match("Jovan Savovich")
+      expect(mail.html_part.decoded).to match(user.decorate.full_name)
     end
   end
 end

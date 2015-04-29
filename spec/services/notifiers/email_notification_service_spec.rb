@@ -23,7 +23,7 @@ describe Notifiers::EmailNotificationService do
       expect(Notifiers::Shortlist::AuditCertificateRequest).to receive(:new)
         .with(form_answer) { service }
 
-      expect(FormAnswer).to receive(:shortlisted_with_no_certificate) { [form_answer] }
+      expect(FormAnswer).to receive(:shortlisted) { [form_answer] }
 
       described_class.run
 
@@ -33,12 +33,11 @@ describe Notifiers::EmailNotificationService do
 
   context "not_shortlisted_notifier" do
     let(:kind) { "not_shortlisted_notifier" }
-    let(:user) { create(:user) }
+    let(:form_answer) { create(:form_answer, state: "not_recommended") }
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
-      expect(Users::NotifyNonShortlistedMailer).to receive(:notify).with(user) { mailer }
-      expect(User).to receive(:non_shortlisted) { [user] }
+      expect(Users::NotifyNonShortlistedMailer).to receive(:notify).with(form_answer.id) { mailer }
 
       described_class.run
 
@@ -48,12 +47,11 @@ describe Notifiers::EmailNotificationService do
 
   context "shortlisted_notifier" do
     let(:kind) { "shortlisted_notifier" }
-    let(:user) { create(:user) }
+    let(:form_answer) { create(:form_answer, state: "recommended") }
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
-      expect(Users::NotifyShortlistedMailer).to receive(:notify).with(user) { mailer }
-      expect(User).to receive(:shortlisted) { [user] }
+      expect(Users::NotifyShortlistedMailer).to receive(:notify).with(form_answer.id) { mailer }
 
       described_class.run
 
@@ -66,11 +64,13 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       form_answer = create(:form_answer, :trade, :submitted)
-      form_answer.document = form_answer.document.merge(head_email: "head@email.com")
+      form_answer.document = form_answer.document.merge(head_email: "head@email.com",
+                                                        head_of_business_first_name: "Jon",
+                                                        head_of_business_last_name: "Snow")
       form_answer.save!
 
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
-        .with("head@email.com", form_answer)
+        .with("head@email.com", "Jon Snow", form_answer.id)
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
@@ -84,7 +84,7 @@ describe Notifiers::EmailNotificationService do
       form_answer.save!
 
       expect(Notifiers::Winners::PromotionBuckinghamPalaceInvite).to receive(:perform_async)
-        .with("nominee@email.com", form_answer)
+        .with("nominee@email.com", form_answer.id)
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
@@ -188,7 +188,6 @@ describe Notifiers::EmailNotificationService do
       expect(current_notification.reload).to be_sent
     end
   end
-
 
   context "unsuccessful_notification" do
     let(:kind) { "unsuccessful_notification" }

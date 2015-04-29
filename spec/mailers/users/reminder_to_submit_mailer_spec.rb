@@ -4,10 +4,10 @@ describe Users::ReminderToSubmitMailer do
   let(:user) { create :user }
   let(:form_answer) { create :form_answer, user: user }
 
-  let!(:settings) { create :settings, :submission_deadlines }
-
-  let(:deadline) do
-    Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
+  let!(:deadline) do
+    d = Settings.current_submission_deadline
+    d.update(trigger_at: Time.current)
+    d.trigger_at.strftime("%d/%m/%Y")
   end
 
   describe "#notify" do

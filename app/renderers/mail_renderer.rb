@@ -103,6 +103,17 @@ class MailRenderer
     assigns = {}
 
     assigns[:token] = "secret"
+    assigns[:form_answer] = form_answer
+    assigns[:name] = "Jon Snow"
+
+    deadline = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first
+
+    assigns[:deadline] = if deadline.trigger_at
+      deadline.trigger_at.strftime("%d/%m/%Y")
+    else
+      "21/09/#{Date.current.year}"
+    end
+
     render(assigns, "users/buckingham_palace_invite_mailer/invite")
   end
 
@@ -111,6 +122,16 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
+
+
+    deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
+
+    assigns[:deadline] = if deadline.trigger_at
+      deadline.trigger_at.strftime("%d/%m/%Y")
+    else
+      "21/09/#{Date.current.year}"
+    end
+
     render(assigns, "users/winners_press_release/notify")
   end
 

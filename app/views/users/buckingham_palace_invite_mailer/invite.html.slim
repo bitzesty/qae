@@ -1,12 +1,26 @@
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' Hello,
+  ' Dear
+  = @name
+  ' ,
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' You've been invited to Buckingham Palace Evening Reception.
+  ' Congratulations, your application for a Queen's Award for Enterprise:
+  => @form_answer.award_type
+  ' was successful!
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Please fill in
-  = link_to "attendee details", edit_palace_invite_url(id: @token)
+  ' All winning organisations can send two representatives to the Queen's Awards for Enterprise Buckingham Palace reception. But you must enter their details online before
+  = @deadline
+  '.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' One of our assessors is currently in the process of writing a Press Book piece for your application. Once it's complete, we will notify you so you can check it over before
+  = @deadline
+  '.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' To complete both of these task, and access other winners' resources, go to
+  = link_to "the Winner's Dashboard.", dashboard_url
 
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Thank you,

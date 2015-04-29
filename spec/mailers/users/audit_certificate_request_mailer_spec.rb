@@ -6,8 +6,6 @@ describe Users::AuditCertificateRequestMailer do
     create :form_answer, :submitted, :innovation, user: user
   end
 
-  let!(:settings) { create :settings, :submission_deadlines }
-
   let!(:deadline) do
     deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
     deadline.update(trigger_at: Date.current)
