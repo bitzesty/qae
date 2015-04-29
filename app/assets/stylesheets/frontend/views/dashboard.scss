@@ -289,7 +289,12 @@ $status-green: #3b816f;
     position: relative;
     margin-left: 0;
     padding-left: 0;
-    clear: right;
+    clear: both;
+
+    .lte-ie7 & {
+      width: 100%;
+      float: left;
+    }
   }
 
   .award-info {
@@ -300,6 +305,10 @@ $status-green: #3b816f;
 
   .pull-right {
     float: right;
+
+    .lte-ie7 & {
+      margin-top: -1em;
+    }
   }
 
   .label-status {
@@ -310,5 +319,11 @@ $status-green: #3b816f;
     @media (max-width: 1000px) {
       position: static;
     }
+  }
+}
+
+.js-remove-audit-certificate-link {
+  .lte-ie7 & {
+    margin-top: -1em;
   }
 }
