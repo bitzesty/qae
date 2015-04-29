@@ -16,24 +16,22 @@ header.page-header.group.page-header-over-sidebar
     .article-container.article-container-wider.step-article.step-current
       article.group role="article"
         .inner
+          - position_details_header_question = step.questions.detect { |q| q.key =  :position_details_header }
+
           .question-block
             label
               h2
-                span class="steps step-d-1"
+                span class="steps step-#{position_details_header_question.ref.to_s.parameterize}"
                   span.visuallyhidden
-                    = question.ref
+                    = position_details_header_question.ref
                   span.todo
-                    = question.ref
-                = question.title
+                    = position_details_header_question.ref
+                = position_details_header_question.title
 
-          == question.context
+          span.question-context.question-debug
+            == position_details_header_question.context
 
-          - for help in question.hint
-            div.hidden-hint
-              span.hidden-link
-                = help.title.html_safe
-              span.hidden-content
-                == help.text
+          br
 
           ul.list-add
             - existing_parsed_list_doc.each do |attrs|
