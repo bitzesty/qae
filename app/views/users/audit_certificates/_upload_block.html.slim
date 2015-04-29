@@ -1,7 +1,7 @@
 - cert_exists = award.audit_certificate.present? && award.audit_certificate.persisted?
 .js-upload-wrapper data-max-attachments=1 data-form-name="audit-cert-form" data-name="audit-cert-name" data-filename="Uploaded Audit Certificate"
-  ul.js-uploaded-list.list-add class=("visuallyhidden" unless cert_exists)
-    li
+  ul.js-uploaded-list.list-add class=("hidden" unless cert_exists)
+    li.li-audit-upload
       div
         = render "users/audit_certificates/file", cert_exists: cert_exists,
                                                   award: award
