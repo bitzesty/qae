@@ -1,3 +1,5 @@
+= render "layouts/admin_award_year"
+
 = simple_form_for @search, url: admin_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   - if @search.query?
     h2.ellipsis
