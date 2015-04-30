@@ -1,0 +1,49 @@
+/ TODO: Please remove static page when implementing
+
+- provide(:page_wrapper_class, "page-feedback")
+
+header.page-header.group.page-header-wider
+  div
+    h1 Send Feedback
+
+.article-container.article-container-wider
+  article.group role="article"
+    .inner
+      ul.list-add
+        li
+          fieldset.question-block.sub-question
+            h2
+              label How would you rate your experience with this service?
+            .errors-container
+            .clear
+            .question-group
+              .input.optional.radio_buttons
+                .radio
+                  label
+                    input.radio_buttons type="radio" Very satisfied
+                .radio
+                  label
+                    input.radio_buttons type="radio" Satisfied
+                .radio
+                  label
+                    input.radio_buttons type="radio" Neither satisfied or dissatisfied
+                .radio
+                  label
+                    input.radio_buttons type="radio" Dissatisfied
+                .radio
+                  label
+                    input.radio_buttons type="radio" Very dissatisfied
+              span.clear
+          fieldset.question-block.sub-question
+            h2
+              label Please take a moment to tell us about your experience, what worked and what didn't
+            .errors-container
+            .clear
+            .question-group
+              .input.required.text
+                textarea.text.js-char-count rows="5" data-word-max="2000"
+              .clear
+
+          br
+
+          = link_to "Send Feedback", "#", class: "button large"

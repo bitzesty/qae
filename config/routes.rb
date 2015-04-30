@@ -35,6 +35,8 @@ Rails.application.routes.draw do
   get "/privacy"                                        => "content_only#privacy",                                        as: "privacy"
   get "/cookies"                                        => "content_only#cookies",                                        as: "cookies"
 
+  # TODO: Please remove static page when implementing
+  get "/feedback"                                       => "content_only#feedback",                                       as: "feedback"
 
   get  "/new_innovation_form"                           => "form#new_innovation_form",                                    as: "new_innovation_form"
   get  "/new_international_trade_form"                  => "form#new_international_trade_form",                           as: "new_international_trade_form"

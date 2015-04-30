@@ -91,9 +91,11 @@
             strong.phase-tag
               ' BETA
             span
-              ' This is a new service – your
-              = link_to "feedback", "mailto:info@queensawards.org.uk", class: "todo-placeholder"
-              '  will help us to improve it.
+              ' This is a new service
+              - if action_name != "feedback"
+                ' – your
+                = link_to "feedback", feedback_path, target: "_blank"
+                '  will help us to improve it.
 
         - if [:alert, :notice].any? { |kind| flash[kind].presence }
           .flash
