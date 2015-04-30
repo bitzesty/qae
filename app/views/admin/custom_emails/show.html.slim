@@ -1,0 +1,55 @@
+header.page-header
+  h1 Custom email
+
+form.simple_form.qae-form
+  .row.question-group.email-send-to
+    .col-lg-1.col-md-2.col-sm-2
+      h3
+        label.string.required.control-label.form-label
+          ' Send to
+    .col-lg-2.col-md-3.col-sm-3
+      .input.select.required.form-group
+        select.select.required.form-control
+          option value="myself" Myself
+          option value="qae-opt-in-group" QAE opt-in group
+          option value="bis-opt-in" BIS opt-in
+          option value="assessors" Assessors
+          option value="all-users" All users
+  .clear
+  p.help-block.email-send-to-help
+    span.help-qae-opt-in
+      ' Sends to those that have said they are happy to be contacted about the queen's awards.
+    span.help-bis-opt-in
+      ' Sends to those that have said they are happy to be contacted about wider BIS-related info.
+    span.help-all-users
+      ' Sends to every registered user (not assessors or admins) in the system.
+
+  .row.question-group.email-message
+    .col-md-8
+      h3
+        label.text.required.control-label.form-label
+          ' Message
+      .input.text.required.form-group
+        .form-control.email-container
+          .email-header
+            ' Dear User
+
+          textarea.text.required.form-control rows="10"
+
+          .email-footer
+            strong
+              ' Thank you,
+              br
+              br
+              ' The Queen's Awards Office
+  .clear
+
+  br
+
+  .row
+    .col-md-8
+      = link_to "Cancel", admin_dashboard_index_path, class: "btn btn-default btn-md pull-left"
+      .pull-right
+        a.btn.btn-primary.btn-md.email-send-link href="#" data-confirm-text="Are you sure you want to send this message?"
+          ' Send
+  .clear
