@@ -1,0 +1,56 @@
+- shortlisted = FormAnswerDecorator.decorate_collection(award_applications.select { |app| app.decorate.shortlisted? && !app.promotion? })
+- if shortlisted.any?
+  .container-split
+    .content-left
+      h2 Shortlisted
+    .content-right.content-offset-36
+      p
+        ' Congratulations! Your
+        - if shortlisted.length == 1
+          ' application was
+        - else
+          ' applications were
+        '  shortlisted.
+    .clear
+  - shortlisted.each do |award|
+    .container-split.award-list
+      .content-left
+        h3
+          = award.application_name.to_s
+          small
+            = award.award_type
+            '  Award
+      .content-right.content-offset-24
+        / Nominators don't get any options after submision
+        p Please review the actions below to complete your shortlisted application.
+        ul.post-dashboard-actions
+          li
+            = link_to "Declaration of Corporate Responsibility", declaration_of_corporate_responsibility_path
+            span.award-info
+              span.pull-right
+                ' Due by
+                = application_deadline_short(:audit_certificates)
+              = link_to declaration_of_corporate_responsibility_path
+                - if award.corp_responsibility_missing?
+                  span.label-status.label-status-red
+                    ' Incomplete
+                - else
+                  span.label-status.label-status-green
+                    ' Complete
+          li
+            = link_to "Audit Certificate", users_form_answer_audit_certificate_url(award)
+            span.award-info
+              span.pull-right
+                ' Due by
+                = application_deadline_short(:audit_certificates)
+              = link_to users_form_answer_audit_certificate_url(award)
+                - if award.audit_certificate.present?
+                  span.label-status.label-status-green
+                    ' Complete
+                - else
+                  span.label-status.label-status-red
+                    ' Incomplete
+        .clear
+      .clear
+  br
+  br

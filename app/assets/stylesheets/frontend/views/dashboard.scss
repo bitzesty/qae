@@ -151,22 +151,7 @@
   position: relative;
 }
 
-.js-switch-dashboard-view-btn {
-  position: absolute;
-  top: 0;
-  right: 1.75em;
-  margin-right: 0;
-  padding: 10px;
-  font-size: 14px;
-
-  @media (max-width: 640px) {
-    right: 1em;
-  }
-}
-
 .dashboard-post-submission {
-  display: none;
-
   h2 {
     @include heading-36;
   }
@@ -210,12 +195,14 @@
   }
 }
 
-.js-press-comment-feeback,
-.js-accept-nomination-details {
-  display: none;
+.js & {
+  .js-press-comment-feeback,
+  .js-accept-nomination-details {
+    display: none;
 
-  &.section-confirmed {
-    display: block;
+    &.section-confirmed {
+      display: block;
+    }
   }
 }
 
@@ -302,7 +289,12 @@ $status-green: #3b816f;
     position: relative;
     margin-left: 0;
     padding-left: 0;
-    clear: right;
+    clear: both;
+
+    .lte-ie7 & {
+      width: 100%;
+      float: left;
+    }
   }
 
   .award-info {
@@ -313,6 +305,10 @@ $status-green: #3b816f;
 
   .pull-right {
     float: right;
+
+    .lte-ie7 & {
+      margin-top: -1em;
+    }
   }
 
   .label-status {
@@ -323,5 +319,11 @@ $status-green: #3b816f;
     @media (max-width: 1000px) {
       position: static;
     }
+  }
+}
+
+.js-remove-audit-certificate-link {
+  .lte-ie7 & {
+    margin-top: -1em;
   }
 }

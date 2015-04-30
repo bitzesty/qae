@@ -12,7 +12,7 @@ class Users::PressSummariesController < Users::BaseController
     @press_summary.reviewed_by_user = true
 
     if @press_summary.update(press_summary_params)
-      flash.notice = "Press Comment successfully updated"
+      flash.notice = "Press Book Notes successfully updated"
       redirect_to action: :show, token: params[:token]
     else
       render :show
@@ -39,7 +39,7 @@ class Users::PressSummariesController < Users::BaseController
 
   def check_deadline
     if settings.deadlines.where(kind: "press_release_comments").first.passed?
-      flash.alert = "Sorry, you can not amend press release comments anymore"
+      flash.alert = "Sorry, you can not amend Press Book Notes comments anymore"
       redirect_to root_url
     end
   end

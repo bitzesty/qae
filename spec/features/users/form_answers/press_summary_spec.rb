@@ -22,9 +22,9 @@ describe "Press Summary" do
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Confirm Press Comment"
+      click_button "Confirm Press Book Notes"
 
-      expect(page).to have_content("Press Comment successfully updated")
+      expect(page).to have_content("Press Book Notes successfully updated")
     end
 
     it "should not allow to fill the form after the deadline" do
@@ -33,7 +33,7 @@ describe "Press Summary" do
 
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
 
-      expect(page).to have_content("Sorry, you can not amend press release comments anymore")
+      expect(page).to have_content("Sorry, you can not amend Press Book Notes comments anymore")
     end
   end
 
@@ -56,9 +56,9 @@ describe "Press Summary" do
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Confirm Press Comment"
+      click_button "Confirm Press Book Notes"
 
-      expect(page).to have_content("Press Comment successfully updated")
+      expect(page).to have_content("Press Book Notes successfully updated")
     end
 
     it "redirects to home page without acceptance" do
@@ -69,7 +69,7 @@ describe "Press Summary" do
       click_button "Continue"
 
       expect(page).to have_no_content(
-        "Please check that all of this press comment is factually accurate:"
+        "Please check that the Press Book Notes are factually accurate:"
       )
     end
   end

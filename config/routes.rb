@@ -105,6 +105,7 @@ Rails.application.routes.draw do
         post :update_acceptance
       end
     end
+    resources :form_answer_feedbacks, only: [:show]
   end
 
   # NON JS implementation - begin

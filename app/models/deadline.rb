@@ -6,7 +6,15 @@ class Deadline < ActiveRecord::Base
 
   belongs_to :settings
 
-  enumerize :kind, in: %w(submission_start submission_end buckingham_palace_attendees_details press_release_comments audit_certificates), predicates: true
+  AVAILABLE_DEADLINES = [
+    "submission_start",
+    "submission_end",
+    "buckingham_palace_attendees_details",
+    "press_release_comments",
+    "audit_certificates"
+  ]
+
+  enumerize :kind, in: AVAILABLE_DEADLINES, predicates: true
   validates :kind, presence: true
 
   def self.with_states_to_trigger(time = DateTime.now)

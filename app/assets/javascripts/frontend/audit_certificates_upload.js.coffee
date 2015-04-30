@@ -16,19 +16,35 @@ window.AuditCertificatesUpload =
       # TODO
 
     upload_started = (e, data) ->
-      form.addClass('visuallyhidden') #TODO: show progressbar
+      # Show `Uploading...`
+      form.addClass("hidden")
+      new_el = $("<li class='js-uploading'>")
+      div = $("<div>")
+      label = $("<label>").text("Uploading...")
+      div.append(label)
+      new_el.append(div)
+      list.append(new_el)
+      list.removeClass("hidden")
+      list.find(".li-audit-upload").addClass("hidden")
 
     upload_done = (e, data, link) ->
       file_url = data.result["attachment"]["url"]
-      list.removeClass('visuallyhidden')
+      list.removeClass("hidden")
       list.find(".js-audit-certificate-title").attr("href", file_url)
 
+      # Remove `Uploading...`
+      list.find(".js-uploading").remove()
+      list.find(".li-audit-upload").removeClass("hidden")
+
     failed = (e, data) ->
-      console.log("cool")
       error_message = data.jqXHR.responseText
+      console.log data
       parent.find(".errors-container").html("<li>" + error_message + "</li>")
-      list.addClass('visuallyhidden')
-      form.removeClass('visuallyhidden')
+      list.addClass("hidden")
+      form.removeClass("hidden")
+      # Remove `Uploading...`
+      list.find(".js-uploading").remove()
+      list.removeClass("hidden")
 
     $el.fileupload(
       url: form.attr("action") + ".json"
@@ -52,7 +68,7 @@ window.AuditCertificatesUpload =
       form = parent.find('form')
 
       parent.find(".errors-container").html("")
-      list.addClass('visuallyhidden')
-      form.removeClass('visuallyhidden')
+      list.addClass("hidden")
+      form.removeClass("hidden")
 
       false

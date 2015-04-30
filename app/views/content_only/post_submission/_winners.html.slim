@@ -1,0 +1,58 @@
+- winners = FormAnswerDecorator.decorate_collection(award_applications).select{ |app| app.awarded? }
+- if winners.present?
+  .container-split
+    .content-left
+      h2 Successful
+    .content-right.content-offset-36
+      p
+        ' Congratulations! Your
+        - if winners.length == 1
+          ' application was
+        - else
+          ' applications were
+        ' successful.
+      p
+        strong You are not allowed to announce success until after April 21st.
+    .clear
+  - winners.each do |award|
+    .container-split.award-list
+      .content-left
+        h3
+          = award.application_name
+          small
+            = award.award_type
+            '  Award
+      .content-right.content-offset-24
+        / Nominators don't get any options after submision
+        - if award.promotion?
+          p Your nomination was successful.
+        - else
+          - if award.press_summary.present? && award.press_summary.body.present?
+            p Please review the action below to complete your successful application.
+            ul.post-dashboard-actions
+              li
+                = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token)
+                span.award-info
+                  span.pull-right
+                    ' Due by
+                    = application_deadline_short(:press_release_comments)
+                  = link_to users_form_answer_press_summary_url(award, token: award.press_summary.token)
+                    - if award.press_summary.reviewed_by_user
+                      span.label-status.label-status-green
+                        ' Complete
+                    - else
+                      span.label-status.label-status-red
+                        ' Incomplete
+            .clear
+          - else
+            p You will be notified when your press book notes are ready.
+      .clear
+  br
+  .container-split
+    .content-right
+      p
+        = link_to "Visit Winners' Resources", award_winners_section_path
+        '  to download media for websites and advertisements.
+    .clear
+  br
+  br

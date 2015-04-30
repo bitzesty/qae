@@ -23,6 +23,24 @@ class Settings < ActiveRecord::Base
     DateTime.now >= deadline if deadline.present?
   end
 
+  def self.after_shortlisting_stage?
+    deadline = current.email_notifications.where(kind: "shortlisted_notifier").first
+    DateTime.now >= deadline.trigger_at if deadline.present?
+  end
+
+  def self.winners_stage?
+    deadline = current.email_notifications.where(kind: "winners_notification").first
+    DateTime.now >= deadline.trigger_at if deadline.present?
+  end
+
+  def self.not_shortlisted_deadline
+    current.email_notifications.not_shortlisted.first.try(:trigger_at)
+  end
+
+  def self.not_awarded_deadline
+    current.email_notifications.not_awarded.first.try(:trigger_at)
+  end
+
   private
 
   def create_deadlines

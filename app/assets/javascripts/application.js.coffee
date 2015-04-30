@@ -285,17 +285,14 @@ jQuery ->
     list_elements = list.find("li")
     count = list_elements.length
     wrapper = button.closest('div.js-upload-wrapper')
-    dropzone = wrapper.find(".js-file-drop-zone")
 
     if count > 0
       list.removeClass("visuallyhidden")
 
     if !max || count < max
       button.removeClass("visuallyhidden")
-      dropzone.removeClass("visuallyhidden").removeClass("drop-hover")
     else
       button.addClass("visuallyhidden")
-      dropzone.addClass("visuallyhidden").removeClass("drop-hover")
 
   reindexUploadListInputs = (list) ->
     idx = 0
@@ -321,7 +318,6 @@ jQuery ->
 
     wrapper = $el.closest('div.js-upload-wrapper')
     button = wrapper.find(".button-add")
-    dropzone = wrapper.find(".js-file-drop-zone")
     list = wrapper.find('.js-uploaded-list')
 
     max = wrapper.data('max-attachments')
@@ -337,7 +333,6 @@ jQuery ->
     upload_started = (e, data) ->
       # Show `Uploading...`
       button.addClass("visuallyhidden")
-      dropzone.addClass("visuallyhidden")
       new_el = $("<li class='js-uploading'>")
       div = $("<div>")
       label = $("<label>").text("Uploading...")
@@ -362,7 +357,6 @@ jQuery ->
       list.find(".js-uploading").remove()
       list.removeClass("visuallyhidden")
       button.removeClass("visuallyhidden")
-      dropzone.removeClass("visuallyhidden").removeClass("drop-hover")
 
     upload_done = (e, data, link) ->
       # Remove `Uploading...`
@@ -684,10 +678,6 @@ jQuery ->
   ongoingDateDuration()
   SupportLetters.init()
   AuditCertificatesUpload.init()
-
-  $(".js-switch-dashboard-view-btn").on "click", (e) ->
-    e.preventDefault()
-    $(".page-dashboard").toggleClass("dashboard-post")
 
   if $(".js-press-comment-correct input:checked").val() == "true"
     $(".js-press-comment-feeback").addClass("section-confirmed")
