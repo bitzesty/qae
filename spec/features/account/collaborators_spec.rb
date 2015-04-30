@@ -155,36 +155,6 @@ So that they can collaborate form answers
         end
 
         describe "Success Add to Collaborators" do
-          describe "Adding of existing user, which is not linked with any account" do
-            let!(:user_without_account) do
-              user = FactoryGirl.create :user, :completed_profile
-              user.account_id = nil
-              user.role = nil
-              user.save(validate: false)
-
-              user
-            end
-
-            it "should add existing user to collaborators" do
-              within("#new_collaborator") do
-                fill_in "Email", with: user_without_account.email
-                choose("Admin and contributor")
-
-                expect {
-                  click_on "Save collaborator"
-                }.to change {
-                  account.reload.users.count
-                }.by(1)
-              end
-
-              user_without_account.reload
-              expect(user_without_account.account_id).to be_eql account.id
-              expect(user_without_account.role).to be_eql "account_admin"
-
-              expect_to_see "#{user_without_account.email} successfully added to Collaborators!"
-            end
-          end
-
           describe "Adding of new user record" do
             let(:new_user_email) { "abcdyfg@example.com" }
 
@@ -234,8 +204,8 @@ So that they can collaborate form answers
           end
 
           collaborator.reload
-          expect(collaborator.account_id).to be_nil
-          expect(collaborator.role).to be_nil
+          expect(collaborator.account_id).not_to eq(account_admin.account.id)
+          expect(collaborator.role).to eq("account_admin")
 
           expect_to_see "#{collaborator.email} successfully removed from Collaborators!"
         end

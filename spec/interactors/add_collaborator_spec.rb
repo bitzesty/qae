@@ -56,48 +56,6 @@ describe "Interactors::AddCollaborator" do
     end
   end
 
-  describe "Add existing user to Collaborators" do
-    let!(:existing_user_without_account_association) do
-      user = FactoryGirl.create :user, :completed_profile,
-                                first_name: "Mike",
-                                role: "regular"
-      user.role = nil
-      user.account_id = nil
-      user.save(validate: false)
-
-      user
-    end
-
-    let(:existing_user_email) { existing_user_without_account_association.email }
-    let(:role) { "account_admin" }
-    let(:create_params) do
-      { email: existing_user_email, role: role }
-    end
-    let(:new_account_admin) do
-      account.reload.users.last
-    end
-
-    before do
-      clear_enqueued_jobs
-    end
-
-    it "should add existing user to collaborators and send welcome email" do
-      expect {
-        add_collaborator_interactor.run
-      }.to change {
-        account.reload.users.count
-      }.by(1)
-
-      expect(account.reload.users.count).to be_eql 2
-
-      expect(new_account_admin.email).to be_eql existing_user_email
-      expect(new_account_admin.account_id).to be_eql account.id
-      expect(new_account_admin.role).to be_eql role
-
-      expect(enqueued_jobs.size).to be_eql(1)
-    end
-  end
-
   describe "Attempt to add to Collaborators of existing user, which is belongs_to another Account" do
    let!(:existing_user_with_another_account_association) do
       FactoryGirl.create :user, :completed_profile,
@@ -124,7 +82,7 @@ describe "Interactors::AddCollaborator" do
 
       expect(account.reload.users.count).to be_eql 1
       expect(enqueued_jobs.size).to be_eql(0)
-      expect(add_collaborator_interactor.collaborator.errors[:base]).to be_eql ["User already associated with another account!"]
+      expect(add_collaborator_interactor.errors).to be_eql ["User already associated with another account!"]
     end
   end
 

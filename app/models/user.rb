@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
 
-  validates :role, presence: true
+  validates :role, :account, presence: true
 
   # First step validations
   validates :title, presence: true, if: :first_step?
@@ -37,8 +37,6 @@ class User < ActiveRecord::Base
     maximum: 20,
     message: "This is not a valid telephone number"
   }, allow_blank: true, if: :second_step?
-
-  validates_with UserAccountValidator, on: :update, if: "account_id_changed?"
 
   begin :associations
     has_many :form_answers, dependent: :destroy
@@ -64,7 +62,7 @@ class User < ActiveRecord::Base
     scope :non_shortlisted, -> { where("1 = 0") }
   end
 
-  before_create :create_account
+  before_validation :create_account, on: :create
   around_save :update_user_full_name
 
   enumerize :prefered_method_of_contact, in: %w(phone email)

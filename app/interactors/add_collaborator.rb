@@ -36,7 +36,9 @@ class AddCollaborator
 
       if user.present?
         if user.account_id == account.id
-          @errors = Array.wrap "This user already added to collaborators!"
+          @errors = ["This user already added to collaborators!"]
+        elsif user.account_id.present?
+          @errors = ["User already associated with another account!"]
         end
 
         user.role = params[:role]
