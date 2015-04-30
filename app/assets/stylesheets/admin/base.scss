@@ -1686,8 +1686,8 @@ table .ellipsis {
     top: 0;
     left: 0;
     margin-top: 0.35em;
-    text-transform: uppercase;
     font-weight: bold;
+    text-transform: uppercase;
   }
 
   .award-year-dropdown {
@@ -1706,8 +1706,8 @@ table .ellipsis {
       left: auto;
       padding-right: 10px;
       padding-left: 10px;
-      border-left: 1px solid #2e6da4;
-      background: #337ab7;
+      border-left: 1px solid $bootstrap-blue-line;
+      background: $bootstrap-blue;
 
       .caret {
         margin-top: 0.7em;
@@ -1720,21 +1720,21 @@ table .ellipsis {
   .btn:active,
   .open > .dropdown-toggle {
     .caret-container {
-      border-color: #204d74;
-      background-color: #286090;
+      border-color: $bootstrap-blue-line-dark;
+      background-color: $bootstrap-blue-dark;
     }
   }
 
   .btn:active .caret-container {
+    outline: 0;
     background-image: none;
     -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
             box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
-    outline: 0;
   }
 
   .dropdown-menu {
-    min-width: 100px;
     left: 0;
+    min-width: 100px;
     z-index: 2000;
 
     > li > a {
