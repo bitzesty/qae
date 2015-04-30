@@ -52,9 +52,9 @@ class Account::CollaboratorsController < Account::BaseController
   end
 
   def destroy
-    collaborator.account_id = nil
-    collaborator.role = nil
-    collaborator.save(validate: false)
+    collaborator.account_id = Account.create(owner: collaborator).id
+    collaborator.role = "account_admin"
+    collaborator.save!
 
     if params.has_key? :form_id
       redirect_to account_collaborators_path(form_id: params[:form_id]),
