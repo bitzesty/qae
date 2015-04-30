@@ -42,6 +42,9 @@ class User < ActiveRecord::Base
 
   begin :associations
     has_many :form_answers, dependent: :destroy
+    has_many :feedbacks, through: :form_answers,
+                         class_name: "Feedback",
+                         source: :feedback
     has_one :owned_account, foreign_key: :owner_id, class_name: 'Account'
 
     belongs_to :account

@@ -17,6 +17,6 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
   end
 
   def resource
-    @form_answer_feedback ||= Feedback.find(params[:id])
+    @form_answer_feedback ||= current_user.feedbacks.find(params[:id])
   end
 end
