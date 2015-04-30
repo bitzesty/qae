@@ -64,7 +64,7 @@ class AwardYear < ActiveRecord::Base
     output = {}
     year0 = 2016
     (year0..(current.year + 3)).each do |year|
-      output[year] = "Award year #{year - 1}-#{year} "
+      output[year] = "#{year - 1} - #{year}"
     end
     output
   end

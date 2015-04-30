@@ -1670,3 +1670,75 @@ table .ellipsis {
     }
   }
 }
+
+.award-year-row {
+  .lte-ie7 & {
+    position: relative;
+    z-index: 2;
+  }
+}
+
+.award-year-container {
+  position: relative;
+
+  .award-year-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin-top: 0.35em;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+
+  .award-year-dropdown {
+    max-width: 142px;
+    margin-left: 120px;
+  }
+
+  .btn {
+    text-align: left;
+
+    .caret-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: auto;
+      padding-right: 10px;
+      padding-left: 10px;
+      border-left: 1px solid #2e6da4;
+      background: #337ab7;
+
+      .caret {
+        margin-top: 0.7em;
+        color: $white-true;
+      }
+    }
+  }
+
+  .btn:hover,
+  .btn:active,
+  .open > .dropdown-toggle {
+    .caret-container {
+      border-color: #204d74;
+      background-color: #286090;
+    }
+  }
+
+  .btn:active .caret-container {
+    background-image: none;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+            box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    outline: 0;
+  }
+
+  .dropdown-menu {
+    min-width: 100px;
+    left: 0;
+    z-index: 2000;
+
+    > li > a {
+      padding-left: 12px;
+    }
+  }
+}

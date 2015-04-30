@@ -58,20 +58,8 @@ html.no-js
                     li class=('active' if %w[users admins assessors].include?(controller_name))
                       = link_to "Users", admin_users_path
 
-                  / TODO Settings page
                   li class=('active' if controller_name == 'settings')
                     = link_to "Settings", admin_settings_path(year: AwardYear.current.year)
-
-                  li.dropdown
-                    a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
-                      ' Award Year
-                      - year = params[:year] ? params[:year].to_i : AwardYear.current.year
-                      = "#{year - 1} - #{year}"
-                      span.caret
-                    ul.dropdown-menu
-                      - AwardYear.admin_switch.each do |year, label|
-                        li
-                          = link_to label, url_for(params.merge(year: year))
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown
