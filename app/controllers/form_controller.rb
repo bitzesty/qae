@@ -235,18 +235,78 @@ class FormController < ApplicationController
   def prepare_doc
     form_data = params[:form]
 
-    allowed_step_keys = @form_answer.award_form.steps.detect do |s|
+    allowed_questions = @form_answer.award_form.steps.detect do |s|
       s.title.parameterize == params[:current_step_id]
-    end.questions.map(&:key).map(&:to_s)
+    end.questions
+
+    Rails.logger.info "[allowed_questions] #{allowed_questions.map(&:key)}"
 
     allowed_params = {}
-    allowed_step_keys.each do |key|
-      allowed_params[key] = form_data[key]
+
+    allowed_questions.each do |q|
+      Rails.logger.info "[q] #{q.key}"
+      question = q.decorate
+      allowed_params[question.key] = form_data[question.key]
+
+      sub_question_keys = []
+      sub_fields = question.sub_fields rescue nil
+      required_sub_fields = question.required_sub_fields rescue nil
+      by_year_conditions = question.by_year_conditions rescue nil
+
+      Rails.logger.info "[sub_fields] #{sub_fields}"
+      Rails.logger.info "[required_sub_fields] #{required_sub_fields}"
+      Rails.logger.info "[by_year_conditions] #{by_year_conditions}"
+
+      if sub_fields.present?
+        res = sub_fields.map { |f| f.keys.first }
+        Rails.logger.info "[sub_fields] res #{res}"
+        sub_question_keys += res
+      end
+
+      if required_sub_fields.present?
+        res = required_sub_fields.map { |f| f.keys.first }
+        Rails.logger.info "[required_sub_fields] res #{res}"
+        sub_question_keys += res
+      end
+
+      if by_year_conditions.present?
+        res = question.by_year_conditions.map do |c|
+          (1..c.years).map do |y|
+            if q.is_a?(QAEFormBuilder::ByYearsLabelQuestion)
+              [:day, :month, :year].map do |i|
+                "#{y}of#{c.years}#{i}"
+              end
+            else
+              "#{y}of#{c.years}"
+            end
+          end
+        end.flatten
+        Rails.logger.info "[by_year_conditions] res #{res}"
+
+        sub_question_keys += res
+      end
+
+      sub_question_keys = sub_question_keys.flatten
+                                            .uniq
+                                            .map { |s| "#{question.key}_#{s}" }
+
+      Rails.logger.info "[sub_question_keys] #{sub_question_keys}"
+
+      sub_question_keys.each do |sub_question_key|
+        allowed_params[sub_question_key] = form_data[sub_question_key]
+      end
     end
 
-    allowed_params.reject! do |k, v|
-      !v.is_a?(Hash) && (v.nil? || v.strip.blank?)
+    Rails.logger.info "[allowed_params before] #{allowed_params}"
+
+    allowed_params = allowed_params.select do |k, v|
+      v.present?
     end
+
+    Rails.logger.info "[allowed_params after] #{allowed_params}"
+
+    Rails.logger.info "[form_data] #{form_data.keys.count}"
+    Rails.logger.info "[allowed_params] #{allowed_params.keys.count} #{allowed_params}"
 
     @form_answer.document.merge(serialize_doc(allowed_params))
   end
