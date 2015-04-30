@@ -138,7 +138,7 @@ class FormController < ApplicationController
   end
 
   def save
-    @form_answer.document = serialize_doc(params[:form])
+    @form_answer.document = prepare_doc
     @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
 
     redirected = params[:next_action] == "redirect"
@@ -231,6 +231,25 @@ class FormController < ApplicationController
   end
 
   private
+
+  def prepare_doc
+    form_data = params[:form]
+
+    allowed_step_keys = @form_answer.award_form.steps.detect do |s|
+      s.title.parameterize == params[:current_step_id]
+    end.questions.map(&:key).map(&:to_s)
+
+    allowed_params = {}
+    allowed_step_keys.each do |key|
+      allowed_params[key] = form_data[key]
+    end
+
+    allowed_params.reject! do |k, v|
+      !v.is_a?(Hash) && (v.nil? || v.strip.blank?)
+    end
+
+    @form_answer.document.merge(serialize_doc(allowed_params))
+  end
 
   ## TODO: maybe we switch to JSON instead of hstore
   def serialize_doc doc
