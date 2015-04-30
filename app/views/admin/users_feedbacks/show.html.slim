@@ -1,0 +1,55 @@
+- ratings = ["Very dissatisfied", "Dissatisfied", "Neither satisfied or dissatisfied", "Satisfied", "Very satisfied"]
+
+.row
+  .col-xs-12
+    .table-overflow-container
+      table.table.admin-table
+        colgroup
+          col width="100"
+          col width="100"
+          col width="400"
+        thead
+          tr
+            th.sortable
+              ' Date
+            th.sortable
+              ' Rating
+            th.sortable
+              ' Feedback
+        tbody
+          tr
+            td
+              ' 16/04/2015 11:30
+            td
+              - this_rating = "Neither satisfied or dissatisfied"
+              span.feedback-stars alt=this_rating title=this_rating
+                - (0..ratings.index(this_rating)).each do | start |
+                  span.glyphicon.glyphicon-star
+                - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
+                  span.glyphicon.glyphicon-star-empty
+            td
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          tr
+            td
+              ' 13/03/2015 11:30
+            td
+              - this_rating = "Dissatisfied"
+              span.feedback-stars alt=this_rating title=this_rating
+                - (0..ratings.index(this_rating)).each do | start |
+                  span.glyphicon.glyphicon-star
+                - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
+                  span.glyphicon.glyphicon-star-empty
+            td
+              ' Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          tr
+            td
+              ' 10/03/2015 13:40
+            td
+              - this_rating = "Very satisfied"
+              span.feedback-stars alt=this_rating title=this_rating
+                - (0..ratings.index(this_rating)).each do | start |
+                  span.glyphicon.glyphicon-star
+                - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
+                  span.glyphicon.glyphicon-star-empty
+            td
+              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
