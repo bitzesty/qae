@@ -32,12 +32,7 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     assigns[:days_before_submission] = "N"
-    assigns[:deadline] = if Settings.current_submission_deadline.trigger_at
-      Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
-    else
-      "21/09/#{Date.current.year}"
-    end
-
+    assigns[:deadline] = deadline("submission_end")
     assigns[:nominee_name] = "Jane Doe"
 
     render(assigns, "users/promotion_letters_of_support_reminder_mailer/notify")
@@ -49,11 +44,7 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     assigns[:days_before_submission] = "N"
-    assigns[:deadline] = if Settings.current_submission_deadline.trigger_at
-      Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
-    else
-      "21/09/#{Date.current.year}"
-    end
+    assigns[:deadline] = deadline("submission_end")
 
     render(assigns, "users/reminder_to_submit_mailer/notify")
   end
@@ -63,14 +54,7 @@ class MailRenderer
 
     assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
-
-    deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
-
-    assigns[:deadline] = if deadline.trigger_at
-      deadline.trigger_at.strftime("%d/%m/%Y")
-    else
-      "21/09/#{Date.current.year}"
-    end
+    assigns[:deadline] = deadline("audit_certificates")
 
     render(assigns, "users/audit_certificate_request_mailer/notify")
   end
@@ -86,15 +70,7 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
-
-    deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
-
-    assigns[:deadline] = if deadline.trigger_at
-      deadline.trigger_at.strftime("%d/%m/%Y")
-    else
-      "21/09/#{Date.current.year}"
-    end
-
+    assigns[:deadline] = deadline("audit_certificates")
 
     render(assigns, "users/notify_shortlisted_mailer/notify")
   end
@@ -105,14 +81,7 @@ class MailRenderer
     assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
     assigns[:name] = "Jon Snow"
-
-    deadline = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first
-
-    assigns[:deadline] = if deadline.trigger_at
-      deadline.trigger_at.strftime("%d/%m/%Y")
-    else
-      "21/09/#{Date.current.year}"
-    end
+    assigns[:deadline] = deadline("buckingham_palace_attendees_details")
 
     render(assigns, "users/buckingham_palace_invite_mailer/invite")
   end
@@ -122,15 +91,7 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
-
-
-    deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
-
-    assigns[:deadline] = if deadline.trigger_at
-      deadline.trigger_at.strftime("%d/%m/%Y")
-    else
-      "21/09/#{Date.current.year}"
-    end
+    assigns[:deadline] = deadline("press_release_comments")
 
     render(assigns, "users/winners_press_release/notify")
   end
@@ -158,5 +119,15 @@ class MailRenderer
     f = FormAnswer.new(id: 0, award_type: "innovation").decorate
     f.award_year = AwardYear.current
     f
+  end
+
+  def deadline(kind)
+    d = Settings.current.deadlines.where(kind: kind).first
+
+    if d.trigger_at
+      d.trigger_at.strftime("%d/%m/%Y")
+    else
+      "21/09/#{Date.current.year}"
+    end
   end
 end
