@@ -161,8 +161,6 @@ class PerformancePlatformService
     result
   end
 
-  private
-
   # "A base64 encoded concatenation of: _timestamp, period, channel, channel_type, (the dimensions of the data point)"
   def self.generate_transactions_id(data)
     string = ""
