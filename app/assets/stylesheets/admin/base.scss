@@ -1533,7 +1533,9 @@ table .ellipsis {
 .glyphicon-download-alt,
 .glyphicon-ok,
 .glyphicon-remove,
-.glyphicon-user {
+.glyphicon-user,
+.glyphicon-star,
+.glyphicon-star-empty {
   background-repeat: no-repeat;
   background-position: center center;
 
@@ -1729,5 +1731,28 @@ table .ellipsis {
     > li > a {
       padding-left: 12px;
     }
+  }
+}
+
+.glyphicon-star,
+.glyphicon-star-empty {
+  width: 16px;
+  height: 15px;
+  background-size: 16px 15px;
+}
+
+.glyphicon-star {
+  background-image: image-url("icon-star.png");
+
+  @include is-retina {
+    background-image: image-url("icon-star@2.png");
+  }
+}
+
+.glyphicon-star-empty {
+  background-image: image-url("icon-star-empty.png");
+
+  @include is-retina {
+    background-image: image-url("icon-star-empty@2.png");
   }
 }
