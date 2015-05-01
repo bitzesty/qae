@@ -13,6 +13,11 @@ class QAE2014Forms
         end
 
         head_of_business :head_of_business, "" do
+          sub_fields([
+            { first_name: "First name" },
+            { last_name: "Last name" },
+            { honours: "Personal Honours" }
+          ])
         end
 
         text :head_job_title, "Job title / Role in the organisation" do

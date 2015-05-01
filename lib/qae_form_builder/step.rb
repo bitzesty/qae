@@ -38,10 +38,11 @@ class QAEFormBuilder
 
       allowed_params = {}
 
-      questions.each do |q|
-        allowed_params[q.key] = form_data[q.key]
+      questions.each do |question|
+        Rails.logger.info "^^^^^^^^^^^[q.class] #{question.class}"
+        allowed_params[question.key] = form_data[question.key]
 
-        question_possible_sub_keys(q).each do |sub_question_key|
+        question_possible_sub_keys(question).each do |sub_question_key|
           allowed_params[sub_question_key] = form_data[sub_question_key]
         end
       end
@@ -60,10 +61,8 @@ class QAEFormBuilder
       allowed_params
     end
 
-    def question_possible_sub_keys(q)
-      Rails.logger.info "[q] #{q.key}"
-
-      question = q.decorate
+    def question_possible_sub_keys(question)
+      Rails.logger.info "[question] #{question.key}"
 
       sub_question_keys = []
       sub_fields = question.sub_fields rescue nil
@@ -89,7 +88,10 @@ class QAEFormBuilder
       if by_year_conditions.present?
         res = question.by_year_conditions.map do |c|
           (1..c.years).map do |y|
-            if q.is_a?(QAEFormBuilder::ByYearsLabelQuestion)
+            if question.key == :financial_year_changed_dates
+              Rails.logger.info "---------------[q.class] #{question.delegate_obj.class}"
+            end
+            if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsLabelQuestion)
               [:day, :month, :year].map do |i|
                 "#{y}of#{c.years}#{i}"
               end
