@@ -48,7 +48,7 @@ describe PerformancePlatformService do
       answer_1.update_column(:created_at, Time.current - 1.week)
       answer_1.update_column(:fill_progress, nil)
       answer_2 = create(:form_answer, :promotion)
-      answer_2.update_column(:created_at, Time.current - 5.days)
+      answer_2.update_column(:created_at, Time.current - 10.days)
       answer_2.update_column(:fill_progress, 83)
       answer_3 = create(:form_answer, :promotion)
       answer_3.update_column(:created_at, Time.current - 2.days)

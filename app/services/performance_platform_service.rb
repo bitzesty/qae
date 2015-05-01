@@ -113,28 +113,34 @@ class PerformancePlatformService
       POSSIBLE_RANGES.each do |stage|
         count = case stage
         when "0-percent"
-          form_answers_for_past_week
+          form_answers
             .where("fill_progress IS NULL OR fill_progress = 0")
+            .where(award_type: award_type)
             .count
         when "1-24-percent"
-          form_answers_for_past_week
+          form_answers
             .where("fill_progress > 0 AND fill_progress < 25")
+            .where(award_type: award_type)
             .count
         when "25-49-percent"
-          form_answers_for_past_week
+          form_answers
             .where("fill_progress >= 25 AND fill_progress < 50")
+            .where(award_type: award_type)
             .count
         when "50-74-percent"
-          form_answers_for_past_week
+          form_answers
             .where("fill_progress >= 50 AND fill_progress < 75")
+            .where(award_type: award_type)
             .count
         when "75-99-percent"
-          form_answers_for_past_week
+          form_answers
             .where("fill_progress >= 75 AND fill_progress < 100")
+            .where(award_type: award_type)
             .count
         when "100-percent"
-          form_answers_for_past_week
+          form_answers
             .where("fill_progress = 100 OR submitted = true")
+            .where(award_type: award_type)
             .count
         end
 
@@ -183,5 +189,9 @@ class PerformancePlatformService
     AwardYear.current.form_answers
       .where("created_at >= ?", (Time.current - 1.week).beginning_of_day)
       .where("created_at < ?", Time.current.beginning_of_day)
+  end
+
+  def self.form_answers
+    AwardYear.current.form_answers
   end
 end
