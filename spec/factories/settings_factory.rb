@@ -1,8 +1,13 @@
 FactoryGirl.define do
   factory :settings do
-    to_create do |instance|
-      instance.award_year = AwardYear.current
-      instance.save(validate: false)
+    skip_create
+
+    initialize_with do
+      begin
+        Settings.where(attributes).first_or_create
+      rescue ActiveRecord::RecordNotUnique
+        retry
+      end
     end
   end
 

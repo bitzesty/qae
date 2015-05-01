@@ -7,8 +7,10 @@ I want to be able to view, create and destroy the comments per application.
 ) do
   let!(:admin) { create(:admin) }
   let!(:form_answer) { create(:form_answer) }
+
   let(:admin_comments) { "#section-admin-comments" }
   let(:critical_comments) { "#section-critical-comments" }
+
   before do
     login_admin(admin)
     visit admin_form_answer_path(form_answer)

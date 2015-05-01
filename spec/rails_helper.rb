@@ -49,6 +49,8 @@ RSpec.configure do |config|
     DatabaseCleaner.start
     stub_request(:post, /virus.scanner/).
       to_return(status: 200, body: { id: "de401fdf-08b0-44a8-810b-20794c5c98c7" }.to_json)
+
+    AwardYear.current
   end
 
   config.after do
