@@ -75,17 +75,28 @@ window.FormValidation =
   validateRequiredQuestion: (question) ->
     # if it's a conditional question, but condition was not satisfied
     conditional = true
-    question.find(".js-conditional-question").each () ->
-      if !$(this).hasClass("show-question")
+
+    if question.find(".js-by-trade-goods-and-services-amount").size() > 0
+      # If it's the trade B1 question which has multiple siblings that have js-conditional-question
+      if question.find(".js-conditional-question.show-question .js-by-trade-goods-and-services-amount .js-conditional-question.show-question").size() == 0
         conditional = false
+    else
+      question.find(".js-conditional-question").each ->
+        if !$(this).hasClass("show-question")
+          conditional = false
 
     if !conditional
       return
 
     # This handles questions with multiple fields,
     # like name and address
-    if question.find(".question-group .question-group").length
-      for subquestion in question.find(".question-group .question-group")
+    if question.find(".js-by-trade-goods-and-services-amount").size() > 0
+      # If it's the trade B1 question which has multiple siblings that have js-conditional-question
+      subquestions = question.find(".js-by-trade-goods-and-services-amount .js-conditional-question.show-question .question-group")
+    else
+      subquestions = question.find(".question-group .question-group")
+    if subquestions.length
+      for subquestion in subquestions
         if not @validateSingleQuestion($(subquestion))
           @log_this(question, "validateRequiredQuestion", "This field is required")
           @addErrorMessage($(subquestion), "This field is required")
@@ -203,6 +214,20 @@ window.FormValidation =
             @log_this(question, "validateEmployeeMin", "Minimum of #{employee_limit} employees")
             @appendMessage(subq.closest(".span-financial"), "Minimum of #{employee_limit} employees")
             @addErrorClass(question)
+
+  validateCurrentAwards: (question) ->
+    for subquestion in question.find(".list-add li")
+      error_text = ""
+      $(subquestion).find("select, input, textarea").each ->
+        if !$(this).val()
+          field_name = $(this).data("dependable-option-siffix")
+          field_name = field_name[0].toUpperCase() + field_name.slice(1)
+          field_error = "#{field_name} can't be blank. "
+          error_text += field_error
+      if error_text
+        @log_this(question, "validateCurrentAwards", error_text)
+        @appendMessage($(subquestion), error_text)
+        @addErrorClass(question)
 
   validateMoneyByYears: (question) ->
     input_cells_counter = 0
@@ -330,9 +355,10 @@ window.FormValidation =
   # As it really tricky to find out the validation which blocks form
   # and do not display any error massage on form
   log_this: (question, validator, message) ->
-    step_title = $.trim($(".js-step-link.step-current").text())
+    step_data = question.closest(".js-step-condition").data("step")
+    step_title = $.trim($("a.js-step-link[data-step='#{step_data}']").text())
     q_ref = $.trim(question.find("h2 span.visuallyhidden").text())
-    q_title = $.trim(question.find("h2").text())
+    q_title = $.trim(question.find("h2").first().text())
 
     if typeof console != "undefined"
       console.log "-----------------------------"
@@ -386,6 +412,11 @@ window.FormValidation =
          question.find(".show-question").length > 0
         # console.log "validateEmployeeMin"
         @validateEmployeeMin(question)
+
+      if question.hasClass("question-current-awards") &&
+         question.find(".show-question").length > 0
+        # console.log "validateCurrentAwards"
+        @validateCurrentAwards(question)
 
       if question.find(".validate-date-start-end").size() > 0
         # console.log "validateDateStartEnd"

@@ -3,6 +3,11 @@
 - deletion_attrs[:holder] = true if question.award_years_present
 
 li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=award["title"]
+  ul.errors-container
+    - errors = @form_answer.validator_errors
+    - if errors && errors[question.key] && errors[question.key][index]
+      li = errors[question.key][index]
+
   = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide #{'read_only' if admin_in_read_only_mode?}"
 
   = link_to "Remove", confirm_deletion_form_form_answer_awards_path(@form_answer.id, deletion_attrs), class: "remove-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
@@ -10,24 +15,20 @@ li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=a
   = link_to "Edit", edit_form_form_answer_awards_path(@form_answer, award: award, holder: question.award_years_present.present? ? true : nil), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
 
   span.row
-    ul.errors-container
-      - errors = @form_answer.validator_errors
-      - if errors && errors[question.key] && errors[question.key][index]
-        li = errors[question.key][index]
     span.span-6
       label
         ' Award/personal honour title
-        input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][title]" type="text" value=award['title']
+        input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][title]" type="text" value=award['title'] data-dependable-option-siffix="title"
 
     - if question.award_years_present
       span.span-3
         label
           ' Year
-          input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][year]" type="text" value=award['year']
+          input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][year]" type="text" value=award['year'] data-dependable-option-siffix="year"
   span.clear
 
   label for="form[#{question.key}][#{index}][details]"
     span.label-char-count-reposition
         ' Details
-  textarea.award-textarea.js-char-count rows="2" name="form[#{question.key}][#{index}][details]" id="form[#{question.key}][#{index}][details]" data-word-max=question.details_words_max *possible_read_only_ops
+  textarea.award-textarea.js-char-count rows="2" name="form[#{question.key}][#{index}][details]" id="form[#{question.key}][#{index}][details]" data-word-max=question.details_words_max data-dependable-option-siffix="details" *possible_read_only_ops
     = award['details']
