@@ -6,6 +6,11 @@ module QaePdfForms::CustomQuestions::Lists
   ]
   AWARD_HOLDER_LIST_HEADERS = [
     "Award/personal honour title",
+    "Year",
+    "Details"
+  ]
+  NOMINATION_AWARD_LIST_HEADERS = [
+    "Award/personal honour title",
     "Details"
   ]
   POSITION_LIST_HEADERS = [
@@ -35,7 +40,11 @@ module QaePdfForms::CustomQuestions::Lists
   def list_headers
     case question.delegate_obj
     when QAEFormBuilder::AwardHolderQuestion
-      AWARD_HOLDER_LIST_HEADERS
+      if question.award_years_present
+        AWARD_HOLDER_LIST_HEADERS
+      else
+        NOMINATION_AWARD_LIST_HEADERS
+      end
     when QAEFormBuilder::PositionDetailsQuestion
       POSITION_LIST_HEADERS
     when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
@@ -56,10 +65,18 @@ module QaePdfForms::CustomQuestions::Lists
 
   def award_holder_query_conditions(prepared_item)
     if prepared_item["title"].present?
-      [
-        prepared_item["title"],
-        prepared_item["details"]
-      ]
+      if question.award_years_present
+        [
+          prepared_item["title"],
+          prepared_item["year"],
+          prepared_item["details"]
+        ]
+      else
+        [
+          prepared_item["title"],
+          prepared_item["details"]
+        ]
+      end
     end
   end
 
