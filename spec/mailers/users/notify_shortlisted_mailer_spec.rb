@@ -6,8 +6,6 @@ describe Users::NotifyShortlistedMailer do
     create :form_answer, :submitted, :innovation, user: user
   end
 
-  let!(:settings) { create :settings, :submission_deadlines }
-
   let!(:deadline) do
     deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
     deadline.update(trigger_at: Date.current)
@@ -15,9 +13,9 @@ describe Users::NotifyShortlistedMailer do
   end
 
   let(:award_title) { form_answer.decorate.award_application_title }
-  let(:subject) {
+  let(:subject) do
     "[Queen's Awards for Enterprise] Congratulations! You've been shortlisted!"
-  }
+  end
 
   before do
     form_answer

@@ -7,9 +7,9 @@ describe Users::NotifyNonShortlistedMailer do
   end
 
   let(:award_title) { form_answer.decorate.award_application_title }
-  let(:subject) {
+  let(:subject) do
     "Queen's Awards for Enterprise: Thank you for applying"
-  }
+  end
 
   describe "#notify" do
     let(:mail) { Users::NotifyNonShortlistedMailer.notify(form_answer.id) }
@@ -27,9 +27,10 @@ describe Users::NotifyNonShortlistedMailer do
 
   describe "#ep_notify" do
     let(:form_answer) { create :form_answer, :promotion, :submitted, user: user }
-    let(:subject) {
+    let(:subject) do
       "Queen's Awards for Enterprise Promotion: Thank you for your nomination"
-    }
+    end
+
     let(:mail) { Users::NotifyNonShortlistedMailer.ep_notify(form_answer.id) }
 
     it "renders the headers" do

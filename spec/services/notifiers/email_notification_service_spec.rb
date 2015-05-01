@@ -64,13 +64,11 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       form_answer = create(:form_answer, :trade, :submitted)
-      form_answer.document = form_answer.document.merge(head_email: "head@email.com",
-                                                        head_of_business_first_name: "Jon",
-                                                        head_of_business_last_name: "Snow")
+      form_answer.document = form_answer.document.merge(head_email: "head@email.com")
       form_answer.save!
 
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
-        .with("head@email.com", "Jon Snow", form_answer.id)
+        .with("head@email.com", form_answer.id)
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
@@ -193,7 +191,7 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "unsuccessful_notification" }
 
     let(:form_answer) { create(:form_answer, :trade, state: "not_awarded") }
-    let!(:certificate) { create(:audit_certificate,form_answer: form_answer) }
+    let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)

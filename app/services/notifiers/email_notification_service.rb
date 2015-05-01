@@ -21,18 +21,17 @@ class Notifiers::EmailNotificationService
   def winners_reminder_to_submit(award_year)
     award_year.form_answers.winners.each do |form_answer|
       if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],                                           form_answer.id)
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],
+                                                                          form_answer.id)
       else
-        head_of_business = "#{document["head_of_business_first_name"]} #{document["head_of_business_last_name"]}"
         Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
-                                                                 head_of_business,
                                                                  form_answer.id)
       end
     end
   end
 
   def ep_reminder_support_letters(award_year)
-    award_year.form_answers.where(award_type: "promotion").includes(:support_letters).each do |form_answer|
+    award_year.form_answers.promotion.includes(:support_letters).each do |form_answer|
       if form_answer.support_letters.count < 2
         Users::PromotionLettersOfSupportReminderMailer.notify(form_answer.id).deliver_later!
       end
@@ -93,11 +92,10 @@ class Notifiers::EmailNotificationService
       document = form_answer.document
 
       if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],                                           form_answer.id)
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],
+                                                                          form_answer.id)
       else
-        head_of_business = "#{document["head_of_business_first_name"]} #{document["head_of_business_last_name"]}"
         Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
-                                                                 head_of_business,
                                                                  form_answer.id)
       end
     end
