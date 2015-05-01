@@ -18,34 +18,60 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_reminder_to_submit unsuccessful_notification).each do |method|
-    define_method method do
-      nil
+  def ep_reminder_support_letters(award_year)
+    award_year.form_answers.promotion.includes(:support_letters).each do |form_answer|
+      if form_answer.support_letters.count < 2
+        Users::PromotionLettersOfSupportReminderMailer.notify(form_answer.id).deliver_later!
+      end
+    end
+  end
+
+  def reminder_to_submit(award_year)
+    award_year.form_answers.business.where(submitted: false).each do |form_answer|
+      Users::ReminderToSubmitMailer.notify(form_answer.id).deliver_later!
     end
   end
 
   def shortlisted_notifier(award_year)
-    User.shortlisted.each do |user|
-      Users::NotifyShortlistedMailer.notify(user).deliver_later!
+    award_year.form_answers.business.shortlisted.each do |form_answer|
+      Users::NotifyShortlistedMailer.notify(form_answer.id).deliver_later!
     end
   end
 
   def not_shortlisted_notifier(award_year)
-    User.non_shortlisted.each do |user|
-      Users::NotifyNonShortlistedMailer.notify(user).deliver_later!
+    award_year.form_answers.not_shortlisted.each do |form_answer|
+      if form_answer.promotion?
+        Users::NotifyNonShortlistedMailer.ep_notify(form_answer.id).deliver_later!
+      else
+        Users::NotifyNonShortlistedMailer.notify(form_answer.id).deliver_later!
+      end
     end
   end
 
   def shortlisted_audit_certificate_reminder(award_year)
-    award_year.form_answers.shortlisted_with_no_certificate.each do |form_answer|
-      Notifiers::Shortlist::AuditCertificateRequest.new(form_answer).run
+    award_year.form_answers.shortlisted.each do |form_answer|
+      if !form_answer.audit_certificate
+        Notifiers::Shortlist::AuditCertificateRequest.new(form_answer).run
+      end
+    end
+  end
+
+  def unsuccessful_notification(award_year)
+    # initialy shortlisted but then did not win
+    award_year.form_answers.business.unsuccessful.each do |form_answer|
+      if form_answer.audit_certificate
+        Users::ShortlistedUnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+      end
     end
   end
 
   def all_unsuccessful_feedback(award_year)
     award_year.form_answers.unsuccessful.each do |form_answer|
-      Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+      if form_answer.promotion?
+        Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
+      else
+        Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+      end
     end
   end
 
@@ -55,10 +81,10 @@ class Notifiers::EmailNotificationService
 
       if form_answer.promotion?
         Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],
-                                                                          form_answer)
+                                                                          form_answer.id)
       else
         Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
-                                                                 form_answer)
+                                                                 form_answer.id)
       end
     end
   end

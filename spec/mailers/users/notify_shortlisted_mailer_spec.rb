@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Users::AuditCertificateRequestMailer do
+describe Users::NotifyShortlistedMailer do
   let!(:user) { create :user }
   let(:form_answer) do
     create :form_answer, :submitted, :innovation, user: user
@@ -13,16 +13,16 @@ describe Users::AuditCertificateRequestMailer do
   end
 
   let(:award_title) { form_answer.decorate.award_application_title }
-  let(:subject) {
-    "Queen's Awards for Enterprise: Reminder to submit your Audit Certificate"
-  }
+  let(:subject) do
+    "[Queen's Awards for Enterprise] Congratulations! You've been shortlisted!"
+  end
 
   before do
     form_answer
   end
 
   describe "#notify" do
-    let(:mail) { Users::AuditCertificateRequestMailer.notify(user.id, form_answer.id) }
+    let(:mail) { Users::NotifyShortlistedMailer.notify(form_answer.id) }
 
     it "renders the headers" do
       expect(mail.subject).to eq(subject)
@@ -32,7 +32,7 @@ describe Users::AuditCertificateRequestMailer do
 
     it "renders the body" do
       expect(mail.html_part.decoded).to match(user.decorate.full_name)
-      expect(mail.html_part.decoded).to have_link("upload your completed Audit Certificate here.", href: users_form_answer_audit_certificate_url(form_answer))
+      expect(mail.html_part.decoded).to have_link("upload here.", href: users_form_answer_audit_certificate_url(form_answer))
       expect(mail.html_part.decoded).to match(deadline)
     end
   end

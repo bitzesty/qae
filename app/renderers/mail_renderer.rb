@@ -9,20 +9,45 @@ class MailRenderer
     end
   end
 
-  # this will be removed after all methods are implemented
-  %w(reminder_to_submit ep_reminder_support_letters winners_notification winners_reminder_to_submit unsuccessful_notification).each do |method|
-    define_method method do
-      "<b>TODO</b>".html_safe
-    end
+  def unsuccessful_notification
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:company_name] = "Massive Dynamic"
+
+    render(assigns, "users/shortlisted_unsuccessful_feedback_mailer/notify")
+  end
+
+  def ep_reminder_support_letters
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:days_before_submission] = "N"
+    assigns[:deadline] = deadline("submission_end")
+    assigns[:nominee_name] = "Jane Doe"
+
+    render(assigns, "users/promotion_letters_of_support_reminder_mailer/notify")
+  end
+
+  def reminder_to_submit
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:days_before_submission] = "N"
+    assigns[:deadline] = deadline("submission_end")
+
+    render(assigns, "users/reminder_to_submit_mailer/notify")
   end
 
   def shortlisted_audit_certificate_reminder
     assigns = {}
 
-    assigns[:form_owner] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
-    assigns[:award_title] = assigns[:form_answer].award_application_title
+    assigns[:deadline] = deadline("audit_certificates")
 
     render(assigns, "users/audit_certificate_request_mailer/notify")
   end
@@ -36,6 +61,10 @@ class MailRenderer
   def shortlisted_notifier
     assigns = {}
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
+    assigns[:form_answer] = form_answer
+    assigns[:company_name] = "Massive Dynamic"
+    assigns[:deadline] = deadline("audit_certificates")
+
     render(assigns, "users/notify_shortlisted_mailer/notify")
   end
 
@@ -43,6 +72,10 @@ class MailRenderer
     assigns = {}
 
     assigns[:token] = "secret"
+    assigns[:form_answer] = form_answer
+    assigns[:name] = "Jon Snow"
+    assigns[:deadline] = deadline("buckingham_palace_attendees_details")
+
     render(assigns, "users/buckingham_palace_invite_mailer/invite")
   end
 
@@ -51,6 +84,8 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
+    assigns[:deadline] = deadline("press_release_comments")
+
     render(assigns, "users/winners_press_release/notify")
   end
 
@@ -74,8 +109,18 @@ class MailRenderer
   end
 
   def form_answer
-    f = FormAnswer.new(id: 0, award_type: "promotion").decorate
+    f = FormAnswer.new(id: 0, award_type: "innovation").decorate
     f.award_year = AwardYear.current
     f
+  end
+
+  def deadline(kind)
+    d = Settings.current.deadlines.where(kind: kind).first
+
+    if d.trigger_at
+      d.trigger_at.strftime("%d/%m/%Y")
+    else
+      "21/09/#{Date.current.year}"
+    end
   end
 end

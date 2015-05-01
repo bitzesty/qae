@@ -10,7 +10,6 @@ class EmailNotification < ActiveRecord::Base
                          :reminder_to_submit,
                          :ep_reminder_support_letters,
                          :winners_notification,
-                         :winners_reminder_to_submit,
                          :winners_press_release_comments_request,
                          :unsuccessful_notification,
                          :all_unsuccessful_feedback,
@@ -21,7 +20,7 @@ class EmailNotification < ActiveRecord::Base
 
   validates :kind, :trigger_at, presence: true
 
-  scope :current, -> { where("trigger_at < ?", Time.now.utc).where(sent: false) }
+  scope :current, -> { where("trigger_at < ?", Time.now.utc).where("sent = 'f' OR sent IS NULL") }
 
   def self.not_shortlisted
     where(kind: "not_shortlisted_notifier")

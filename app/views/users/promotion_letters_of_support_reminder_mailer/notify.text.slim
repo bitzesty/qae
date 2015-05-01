@@ -1,0 +1,24 @@
+' Dear
+= @user.full_name
+' ,
+
+' Don't forget you only have
+=> @days_before_submission
+' days to submit your nomination of
+=> @nominee_name
+' for a Queen's Award for Enterprise Promotion before the deadline on
+= @deadline
+' .
+
+' So far you have received
+=> @form_answer.support_letters.count
+' letters of support.
+
+' If you've not received the minimum of 2 required to submit your application, please follow this up with your supporters.
+
+= link_to "Continue and submit your nomination on The Queen’s Awards for Enterprise website.",
+          edit_form_url(id: @form_answer.id)
+
+' Thank you,
+
+' The Queen's Awards Office

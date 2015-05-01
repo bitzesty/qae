@@ -7,6 +7,12 @@ describe Users::WinnersPressRelease do
                               role: "account_admin"
   end
 
+  let!(:deadline) do
+    deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
+    deadline.update!(trigger_at: Date.current)
+    deadline.trigger_at.strftime("%d/%m/%Y")
+  end
+
   describe "#notify" do
     let(:form_answer) do
       FactoryGirl.create :form_answer, :submitted, :innovation,
@@ -28,7 +34,7 @@ describe Users::WinnersPressRelease do
     it "renders the body" do
       url = users_form_answer_press_summary_url(form_answer, token: press_release.token)
       expect(mail.body.encoded).to match(user.decorate.full_name)
-      expect(mail.body.encoded).to have_link("Review Press Comment",
+      expect(mail.body.encoded).to have_link("Check your Press book piece.",
                                              href: url)
     end
   end

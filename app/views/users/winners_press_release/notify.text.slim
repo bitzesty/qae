@@ -1,0 +1,17 @@
+' Dear
+= @user.full_name
+' ,
+
+' Your Press Book piece has been written by an assessor, and is ready for you to check over.
+
+' Although you will not be able to edit the piece yourself, you can make comments that we will try to take into account.
+
+' The deadline for doing so is
+= @deadline
+' .
+
+= link_to "Check your Press book piece.", users_form_answer_press_summary_url(@form_answer, token: @token)
+
+' Thank you,
+
+' The Queen's Awards Office

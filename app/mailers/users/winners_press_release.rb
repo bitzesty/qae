@@ -9,6 +9,9 @@ class Users::WinnersPressRelease < ApplicationMailer
       @user.email
     end
 
+    @deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
+    @deadline = @deadline.trigger_at.strftime("%d/%m/%Y")
+
     @token = @form_answer.press_summary.token
     @subject = "[Queen's Awards for Enterprise] Press Comment"
 

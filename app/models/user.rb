@@ -56,10 +56,6 @@ class User < ActiveRecord::Base
       where.not(id: user.id)
     }
     scope :by_email, -> { order(:email) }
-
-    # Scopes need to be changed once we have shortlisted/non shortlisted applications
-    scope :shortlisted, -> { where("1 = 0") }
-    scope :non_shortlisted, -> { where("1 = 0") }
   end
 
   before_validation :create_account, on: :create

@@ -99,17 +99,19 @@ class FormAnswer < ActiveRecord::Base
                            }
     validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
     validates :sic_code, format: { with: SICCode::REGEX }, allow_nil: true
-
     validate :validate_answers
   end
 
   begin :scopes
     scope :for_award_type, -> (award_type) { where(award_type: award_type) }
     scope :for_year, -> (year) { joins(:award_year).where(award_years: { year: year }) }
-    scope :shortlisted_with_no_certificate, -> { where("1 = 0") }
-    scope :winners, -> { where("1 = 0") }
-    scope :unsuccessful, -> { where(state: %w(not_recommended reserved)) }
+    scope :shortlisted, -> { where(state: %w(reserved recommended)) }
+    scope :not_shortlisted, -> { where(state: "not_recommended") }
+    scope :winners, -> { where(state: %(recomended awarded)) }
+    scope :unsuccessful, -> { where(state: %w(not_recommended not_awarded reserved)) }
     scope :submitted, -> { where(submitted: true) }
+    scope :business, -> { where(award_type: %w(trade innovation development)) }
+    scope :promotion, -> { where(award_type: "promotion") }
   end
 
   begin :callbacks
@@ -159,6 +161,12 @@ class FormAnswer < ActiveRecord::Base
 
   def document
     super || {}
+  end
+
+  def head_of_business
+    head_of_business = document["head_of_business_first_name"].to_s
+    head_of_business += " "
+    head_of_business += document["head_of_business_last_name"].to_s
   end
 
   def company_or_nominee_from_document
