@@ -94,6 +94,8 @@ gem 'active_hash'
 gem 'whenever'
 gem "virtus"
 gem "nilify_blanks"
+# DB locking
+gem "with_advisory_lock"
 
 # Monitoring
 gem "skylight"
