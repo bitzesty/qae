@@ -281,9 +281,6 @@ jQuery ->
   $("input[type='tel'].js-trigger-autosave").debounce "keyup", triggerAutosave, 50
   $("textarea.js-trigger-autosave").debounce "click", triggerAutosave, 50
 
-  # Fade out alerts after 10sec
-  $(".flash").delay(10000).fadeOut()
-
   updateUploadListVisiblity = (list, button, max) ->
     list_elements = list.find("li")
     count = list_elements.length

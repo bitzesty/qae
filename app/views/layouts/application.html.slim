@@ -85,14 +85,6 @@
 
   #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?} #{'layout-dev' if Rails.env.development?}"
-      - if [:alert, :notice].any? { |kind| flash[kind].presence }
-        .flash
-          .flash-inner
-            - [:alert, :notice].each do |kind|
-              - if flash[kind]
-                div class="#{kind}"
-                  = flash[kind]
-
       main#content.group class="#{yield :page_content_class}" role="main"
         .phase-banner
           p
@@ -102,6 +94,14 @@
               ' This is a new service – your
               = link_to "feedback", "mailto:info@queensawards.org.uk", class: "todo-placeholder"
               '  will help us to improve it.
+
+        - if [:alert, :notice].any? { |kind| flash[kind].presence }
+          .flash
+            .flash-inner
+              - [:alert, :notice].each do |kind|
+                - if flash[kind]
+                  div class="#{kind}"
+                    = flash[kind]
 
         - if landing_page?
           #global-breadcrumb.header-context
