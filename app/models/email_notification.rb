@@ -10,7 +10,6 @@ class EmailNotification < ActiveRecord::Base
                          :reminder_to_submit,
                          :ep_reminder_support_letters,
                          :winners_notification,
-                         :winners_reminder_to_submit,
                          :winners_press_release_comments_request,
                          :unsuccessful_notification,
                          :all_unsuccessful_feedback,

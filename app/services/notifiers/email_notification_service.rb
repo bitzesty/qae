@@ -18,18 +18,6 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  def winners_reminder_to_submit(award_year)
-    award_year.form_answers.winners.each do |form_answer|
-      if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],
-                                                                          form_answer.id)
-      else
-        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
-                                                                 form_answer.id)
-      end
-    end
-  end
-
   def ep_reminder_support_letters(award_year)
     award_year.form_answers.promotion.includes(:support_letters).each do |form_answer|
       if form_answer.support_letters.count < 2

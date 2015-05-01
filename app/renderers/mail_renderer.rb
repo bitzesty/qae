@@ -9,10 +9,6 @@ class MailRenderer
     end
   end
 
-  def winners_reminder_to_submit
-    nil
-  end
-
   def unsuccessful_notification
     assigns = {}
 
