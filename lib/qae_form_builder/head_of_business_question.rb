@@ -12,9 +12,13 @@ class QAEFormBuilder
   end
 
   class HeadOfBusinessQuestionBuilder < QuestionBuilder
+    def sub_fields fields
+      @q.sub_fields = fields
+    end
   end
 
   class HeadOfBusinessQuestion < Question
+    attr_accessor :sub_fields
   end
 
 end

@@ -100,7 +100,11 @@ class QaePdfForms::General::QuestionPointer
   def fetch_sub_answers
     res = []
 
-    question.required_sub_fields.each do |sub_field|
+    required_sub_fields = question.required_sub_fields rescue []
+    sub_fields = question.sub_fields rescue []
+    merged_sub_fields = (required_sub_fields + sub_fields).flatten.uniq
+
+    merged_sub_fields.each do |sub_field|
       sub_field_key = sub_field.keys.first
       sub_answer = form_pdf.fetch_answer_by_key("#{key}_#{sub_field_key}")
 
@@ -139,6 +143,8 @@ class QaePdfForms::General::QuestionPointer
          question_block_type(question) == "block" ||
          humanized_answer.blank?
         question_answer(question, "block")
+      else
+        question_answer(question, "inline")
       end
     end
   end

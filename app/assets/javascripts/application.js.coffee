@@ -230,6 +230,8 @@ jQuery ->
       if this_index < current_index
         $(this).addClass("step-past")
 
+    $("#current_step_id").val(step.replace("step-", ""))
+
   if window.location.hash
     step = window.location.hash.substr(1)
     if $(".js-step-condition[data-step='step-#{step}']").size() > 0
@@ -238,6 +240,7 @@ jQuery ->
       resetResizeTextarea()
     else
       window.location.hash = $(".js-step-condition.step-current").attr("data-step").substr(5)
+      $("#current_step_id").val(step.replace("step-", ""))
 
   $(document).on "click", ".js-step-link", (e) ->
     e.preventDefault()

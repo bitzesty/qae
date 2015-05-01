@@ -151,11 +151,7 @@ module QaePdfForms::General::DrawElements
   end
 
   def render_answer_by_display(title, display)
-    if display == "block"
-      render_standart_answer_block(title)
-    else
-      title
-    end
+    render_standart_answer_block(title)
   end
 
   def render_standart_answer_block(title)

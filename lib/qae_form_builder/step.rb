@@ -33,6 +33,58 @@ class QAEFormBuilder
       count_questions :required_visible?
     end
 
+    def allowed_questions_params_list(form_data)
+      allowed_params = {}
+
+      questions.each do |question|
+        allowed_params[question.key] = form_data[question.key]
+
+        question_possible_sub_keys(question).each do |sub_question_key|
+          allowed_params[sub_question_key] = form_data[sub_question_key]
+        end
+      end
+
+      allowed_params = allowed_params.select do |k, v|
+        v.present?
+      end
+
+      allowed_params
+    end
+
+    def question_possible_sub_keys(question)
+      sub_question_keys = []
+
+      sub_fields = question.sub_fields rescue nil
+      required_sub_fields = question.required_sub_fields rescue nil
+      by_year_conditions = question.by_year_conditions rescue nil
+
+      if sub_fields.present?
+        sub_question_keys += sub_fields.map { |f| f.keys.first }
+      end
+
+      if required_sub_fields.present?
+        sub_question_keys += required_sub_fields.map { |f| f.keys.first }
+      end
+
+      if by_year_conditions.present?
+        sub_question_keys += question.by_year_conditions.map do |c|
+          (1..c.years).map do |y|
+            if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsLabelQuestion)
+              [:day, :month, :year].map do |i|
+                "#{y}of#{c.years}#{i}"
+              end
+            else
+              "#{y}of#{c.years}"
+            end
+          end
+        end.flatten
+      end
+
+      sub_question_keys.flatten
+                       .uniq
+                       .map { |s| "#{question.key}_#{s}" }
+    end
+
     private
 
     def count_questions meth

@@ -11,9 +11,14 @@ describe FormController do
                                      award_year: award_year
   end
 
-  let!(:settings) { create :settings, :submission_deadlines }
+  let!(:settings) { Settings.current }
 
   before do
+    start = settings.deadlines.where(kind: "submission_start").first
+    start.update_column(:trigger_at, Time.zone.now - 20.days)
+    finish = settings.deadlines.where(kind: "submission_end").first
+    finish.update_column(:trigger_at, Time.zone.now + 20.days)
+
     create :basic_eligibility, account: account
 
     sign_in user
@@ -26,7 +31,10 @@ describe FormController do
     expect(Notifiers::Submission::SuccessNotifier).to receive(:new).with(form_answer) { notifier }
     expect_any_instance_of(FormAnswer).to receive(:eligible?).at_least(:once).and_return(true)
 
-    post :save, id: form_answer.id, form: form_answer.document, submit: "true"
+    post :save, id: form_answer.id,
+                form: form_answer.document,
+                current_step_id: form_answer.award_form.steps.last.title.parameterize,
+                submit: "true"
   end
 
   describe '#new_international_trade_form' do
