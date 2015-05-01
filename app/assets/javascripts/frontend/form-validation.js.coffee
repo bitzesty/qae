@@ -215,6 +215,20 @@ window.FormValidation =
             @appendMessage(subq.closest(".span-financial"), "Minimum of #{employee_limit} employees")
             @addErrorClass(question)
 
+  validateCurrentAwards: (question) ->
+    for subquestion in question.find(".list-add li")
+      error_text = ""
+      $(subquestion).find("select, input, textarea").each ->
+        if !$(this).val()
+          field_name = $(this).data("dependable-option-siffix")
+          field_name = field_name[0].toUpperCase() + field_name.slice(1)
+          field_error = "#{field_name} can't be blank. "
+          error_text += field_error
+      if error_text
+        @log_this(question, "validateCurrentAwards", error_text)
+        @appendMessage($(subquestion), error_text)
+        @addErrorClass(question)
+
   validateMoneyByYears: (question) ->
     input_cells_counter = 0
 
@@ -398,6 +412,11 @@ window.FormValidation =
          question.find(".show-question").length > 0
         # console.log "validateEmployeeMin"
         @validateEmployeeMin(question)
+
+      if question.hasClass("question-current-awards") &&
+         question.find(".show-question").length > 0
+        # console.log "validateCurrentAwards"
+        @validateCurrentAwards(question)
 
       if question.find(".validate-date-start-end").size() > 0
         # console.log "validateDateStartEnd"

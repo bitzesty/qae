@@ -67,7 +67,7 @@ class QAE2014Forms
         end
 
         award_holder :awards, "List them below" do
-          classes "sub-question"
+          classes "sub-question question-current-awards"
           sub_ref "A 2.1"
           award_years_present true
           details_words_max 50
@@ -82,7 +82,7 @@ class QAE2014Forms
         end
 
         award_holder :nomination_awards, "List them below" do
-          classes "sub-question"
+          classes "sub-question question-current-awards"
           details_words_max 50
           sub_ref "A 2.2"
 
