@@ -29,6 +29,13 @@
     border-top-width: 7px;
     border-right-width: 6px;
     border-left-width: 6px;
+
+    @include screen-md-max {
+      margin-left: 3px;
+      border-top-width: 5px;
+      border-right-width: 4px;
+      border-left-width: 4px;
+    }
   }
 
 
@@ -83,12 +90,6 @@
       z-index: 100001 !important;
     }
 
-    .navbar-brand {
-      .lte-ie8 & {
-        margin-top: 3px !important;
-      }
-    }
-
     .navbar-nav {
       .lte-ie8 & {
         z-index: 10001 !important;
@@ -106,8 +107,8 @@
       background: transparent;
 
       @include screen-md-max {
-        padding-right: 10px;
-        padding-left: 10px;
+        padding-right: 8px;
+        padding-left: 8px;
       }
 
       @include screen-sm-max {
@@ -252,9 +253,15 @@
       background-image: image-url("logo-admin@2.png");
     }
 
+    @include screen-md-max {
+      width: 50px;
+      background-size: 20px 26px;
+    }
+
     .lte-ie8 & {
       width: 58px !important;
       height: 67px !important;
+      margin-top: 3px !important;
       padding-top: 0 !important;
       padding-bottom: 0 !important;
       text-indent: -9999px !important;
