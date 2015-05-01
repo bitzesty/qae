@@ -143,6 +143,8 @@ class QaePdfForms::General::QuestionPointer
          question_block_type(question) == "block" ||
          humanized_answer.blank?
         question_answer(question, "block")
+      else
+        question_answer(question, "inline")
       end
     end
   end
