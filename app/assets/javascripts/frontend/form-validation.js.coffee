@@ -75,17 +75,28 @@ window.FormValidation =
   validateRequiredQuestion: (question) ->
     # if it's a conditional question, but condition was not satisfied
     conditional = true
-    question.find(".js-conditional-question").each () ->
-      if !$(this).hasClass("show-question")
+
+    if question.find(".js-by-trade-goods-and-services-amount").size() > 0
+      # If it's the trade B1 question which has multiple siblings that have js-conditional-question
+      if question.find(".js-conditional-question.show-question .js-by-trade-goods-and-services-amount .js-conditional-question.show-question").size() == 0
         conditional = false
+    else
+      question.find(".js-conditional-question").each () ->
+        if !$(this).hasClass("show-question")
+          conditional = false
 
     if !conditional
       return
 
     # This handles questions with multiple fields,
     # like name and address
-    if question.find(".question-group .question-group").length
-      for subquestion in question.find(".question-group .question-group")
+    if question.find(".js-by-trade-goods-and-services-amount").size() > 0
+      # If it's the trade B1 question which has multiple siblings that have js-conditional-question
+      subquestions = question.find(".js-by-trade-goods-and-services-amount .js-conditional-question.show-question .question-group")
+    else
+      subquestions = question.find(".question-group .question-group")
+    if subquestions.length
+      for subquestion in subquestions
         if not @validateSingleQuestion($(subquestion))
           @log_this(question, "validateRequiredQuestion", "This field is required")
           @addErrorMessage($(subquestion), "This field is required")

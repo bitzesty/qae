@@ -5,15 +5,15 @@
     - item = question.trade_goods_and_services[index]
 
     .js-conditional-question data-question=question.step.form[:trade_goods_amount].parameterized_title data-value=placement data-type="in_clause_collection"
-      h2
-        label for=question.input_name(suffix: "desc_short_#{placement}")
-          = "Good/Service #{placement}"
-      ul.errors-container
-      - errors = @form_answer.validator_errors
-      - if errors && errors[question.key] && errors[question.key][index]
-        li = errors[question.key][index]
-      .clear
       .question-group
+        h2
+          label for=question.input_name(suffix: "desc_short_#{placement}")
+            = "Good/Service #{placement}"
+        ul.errors-container
+          - errors = @form_answer.validator_errors
+          - if errors && errors[question.key] && errors[question.key][index]
+            li = errors[question.key][index]
+        .clear
         textarea.js-trigger-autosave.js-char-count rows=question.rows data-word-max=question.words_max name="#{question.input_name}[#{index}][desc_short]" id=question.input_name(suffix: "desc_short_#{placement}") *possible_read_only_ops
           = item.present? ? item['desc_short'] : ''
         .clear
