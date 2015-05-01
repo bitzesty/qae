@@ -75,7 +75,7 @@ class Notifiers::EmailNotificationService
   end
 
   def all_unsuccessful_feedback(award_year)
-    award_year.form_answers.business.unsuccessful.each do |form_answer|
+    award_year.form_answers.unsuccessful.each do |form_answer|
       if form_answer.promotion?
         Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
       else

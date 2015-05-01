@@ -21,7 +21,7 @@ class EmailNotification < ActiveRecord::Base
 
   validates :kind, :trigger_at, presence: true
 
-  scope :current, -> { where("trigger_at < ?", Time.now.utc).where(sent: false) }
+  scope :current, -> { where("trigger_at < ?", Time.now.utc).where("sent = 'f' OR sent IS NULL") }
 
   def self.not_shortlisted
     where(kind: "not_shortlisted_notifier")

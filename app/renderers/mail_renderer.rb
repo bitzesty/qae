@@ -9,11 +9,8 @@ class MailRenderer
     end
   end
 
-  # this will be removed after all methods are implemented
-  %w(winners_notification winners_reminder_to_submit).each do |method|
-    define_method method do
-      "<b>TODO</b>".html_safe
-    end
+  def winners_reminder_to_submit
+    nil
   end
 
   def unsuccessful_notification
