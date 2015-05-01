@@ -3,7 +3,7 @@
 .row
   .col-xs-12
     .table-overflow-container
-      table.table.admin-table
+      table.table.feedback-table
         colgroup
           col width="100"
           col width="100"
@@ -28,7 +28,8 @@
                 - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
                   span.glyphicon.glyphicon-star-empty
             td
-              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              .feedback-description
+                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           tr
             td
               ' 13/03/2015 11:30
@@ -40,7 +41,8 @@
                 - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
                   span.glyphicon.glyphicon-star-empty
             td
-              ' Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              .feedback-description
+                ' Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
           tr
             td
               ' 10/03/2015 13:40
@@ -52,4 +54,18 @@
                 - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
                   span.glyphicon.glyphicon-star-empty
             td
-              ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+              .feedback-description
+                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          tr
+            td
+              ' 09/03/2015 13:40
+            td
+              - this_rating = "Satisfied"
+              span.feedback-stars alt=this_rating title=this_rating
+                - (0..ratings.index(this_rating)).each do | start |
+                  span.glyphicon.glyphicon-star
+                - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
+                  span.glyphicon.glyphicon-star-empty
+            td
+              .feedback-description
+                ' Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
