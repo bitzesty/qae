@@ -330,9 +330,10 @@ window.FormValidation =
   # As it really tricky to find out the validation which blocks form
   # and do not display any error massage on form
   log_this: (question, validator, message) ->
-    step_title = $.trim($(".js-step-link.step-current").text())
+    step_data = question.closest(".js-step-condition").data("step")
+    step_title = $.trim($("a.js-step-link[data-step='#{step_data}']").text())
     q_ref = $.trim(question.find("h2 span.visuallyhidden").text())
-    q_title = $.trim(question.find("h2").text())
+    q_title = $.trim(question.find("h2").first().text())
 
     if typeof console != "undefined"
       console.log "-----------------------------"
