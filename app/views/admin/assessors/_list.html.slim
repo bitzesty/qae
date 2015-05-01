@@ -9,6 +9,8 @@
             = sort_link f, 'Email', @search, :email
           th.sortable
             = sort_link f, 'Signed in on', @search, :last_sign_in_at
+          th.sortable
+            = sort_link f, "Confirmed on", @search, :confirmed_at
       tbody
         - if AssessorDecorator.decorate_collection(resources).none?
           tr
@@ -28,3 +30,10 @@
                     = assessor.formatted_last_sign_in_at_long
                   span.hidden-lg
                     = assessor.formatted_last_sign_in_at_short
+              td
+                - if assessor.confirmed_at.present?
+                  small.text-muted
+                    = l assessor.confirmed_at, format: :date_at_time
+                - else
+                  small.text-danger
+                    ' Not confirmed

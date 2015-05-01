@@ -34,6 +34,8 @@
                           = role[0]
             th.sortable
               = sort_link f, 'Signed in on', @search, :last_sign_in_at
+            th.sortable
+              = sort_link f, "Confirmed on", @search, :confirmed_at
         tbody
           - if UserDecorator.decorate_collection(resources).none?
             tr
@@ -55,3 +57,10 @@
                       = user.formatted_last_sign_in_at_long
                     span.hidden-lg
                       = user.formatted_last_sign_in_at_short
+                td
+                  - if user.confirmed_at.present?
+                    small.text-muted
+                      = l user.confirmed_at, format: :date_at_time
+                  - else
+                    small.text-danger
+                      ' Not confirmed
