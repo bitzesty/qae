@@ -1,7 +1,7 @@
 jQuery ->
   # Truncate the feedback
   $(".feedback-description").each ->
-    full_text = $(this).text().trim()
+    full_text = $.trim($(this).text())
     if full_text.length >= 200
       short_text = full_text.substr(0, 200)
       short_text_div = "<div class='excerpt-text'>#{short_text}...</div>"
