@@ -44,7 +44,7 @@ describe PerformancePlatformService do
 
   describe ".fetch_applications_report" do
     it "collects the data" do
-      answer_1 = create(:form_answer, :promotion)
+      answer_1 = create(:form_answer, :trade)
       answer_1.update_column(:created_at, Time.current - 1.week)
       answer_1.update_column(:fill_progress, nil)
       answer_2 = create(:form_answer, :promotion)
