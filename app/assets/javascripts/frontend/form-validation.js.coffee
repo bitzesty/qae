@@ -81,7 +81,7 @@ window.FormValidation =
       if question.find(".js-conditional-question.show-question .js-by-trade-goods-and-services-amount .js-conditional-question.show-question").size() == 0
         conditional = false
     else
-      question.find(".js-conditional-question").each () ->
+      question.find(".js-conditional-question").each ->
         if !$(this).hasClass("show-question")
           conditional = false
 
