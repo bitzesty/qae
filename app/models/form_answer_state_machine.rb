@@ -34,6 +34,8 @@ class FormAnswerStateMachine
   end
 
   def self.trigger_deadlines
+    Rails.logger.info "[trigger_deadlines] -------------------- started"
+
     relevant_states = [
       "submitted",
       "application_in_progress"
