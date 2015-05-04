@@ -11,6 +11,8 @@ class Notifiers::EmailNotificationService
   end
 
   def run
+    Rails.logger.info "[EmailNotificationService] started -----------------"
+
     email_notifications.each do |notification|
       public_send(notification.kind, notification.settings.award_year)
 
