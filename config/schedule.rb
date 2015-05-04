@@ -10,9 +10,9 @@ set :output, File.expand_path("#{File.dirname __FILE__}/../log/cron_log.log")
 # Do not run jobs with the same offset
 
 every :day, at: "12:30am" do
-  runner "CronJobRun.run('deadlines', 0, 5) { FormAnswerStateMachine.trigger_deadlines }"
+  runner "CronJobRun.run('deadlines') { FormAnswerStateMachine.trigger_deadlines }"
 end
 
 every :hour do
-  runner "CronJobRun.run('email_notification', 0, 5) { Notifiers::EmailNotificationService.run }"
+  runner "CronJobRun.run('email_notification') { Notifiers::EmailNotificationService.run }"
 end
