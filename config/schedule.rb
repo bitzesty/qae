@@ -16,3 +16,7 @@ end
 every :hour do
   runner "CronJobRun.run('email_notification') { Notifiers::EmailNotificationService.run }"
 end
+
+every :sunday, at: "12pm" do
+  runner "PerformancePlatformService.run"
+end
