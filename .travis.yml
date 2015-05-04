@@ -12,7 +12,7 @@ before_script:
 script:
  - RAILS_ENV=test bundle exec rake db:create
  - RAILS_ENV=test bundle exec rake db:migrate
- - RAILS_ENV=test bundle exec xvfb-run rspec
+ - RAILS_ENV=test bundle exec xvfb-run rspec --tag "~skip_travis"
 notifications:
   email: false
   slack: bitzesty:h8zc1e4BesNXl5LynftJ7Z7M
