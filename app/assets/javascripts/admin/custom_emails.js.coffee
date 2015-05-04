@@ -7,11 +7,11 @@ jQuery ->
     email_help.removeClass("show-all-users")
 
     switch select.val()
-      when "qae-opt-in-group"
+      when "qae_opt_in_group"
         email_help.addClass("show-qae-opt-in")
-      when "bis-opt-in"
+      when "bis_opt_in"
         email_help.addClass("show-bis-opt-in")
-      when "all-users"
+      when "all_users"
         email_help.addClass("show-all-users")
 
     # Change the send confirm warning
@@ -28,8 +28,10 @@ jQuery ->
     # To update the old confirm warning, we have to replace the send button
     new_email_link = email_link.clone().appendTo(email_link.parent())
     email_link.remove()
-    new_email_link.on "click", ->
-      confirm $(this).data("confirm-text")
+    new_email_link.on "click", (e) ->
+      e.preventDefault()
+      if confirm $(this).data("confirm-text")
+        $("#new_custom_email_form").submit()
 
   $(".email-send-to select").on "change", ->
     emailRecipientChanged($(this))

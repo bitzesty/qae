@@ -26,6 +26,7 @@ gem 'bootstrap-sass', '>= 3.3.3'
 gem 'govuk_frontend_toolkit', github: 'alphagov/govuk_frontend_toolkit_gem',
                               submodules: true
 gem 'govuk_template', '0.12.0'
+gem 'rails_autolink'
 
 # Decorators & Exposing named methods
 gem 'draper'
