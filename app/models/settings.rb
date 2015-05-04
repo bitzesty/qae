@@ -6,7 +6,7 @@ class Settings < ActiveRecord::Base
 
   belongs_to :award_year, inverse_of: :settings
 
-  validates :award_year, presence: true, uniqueness: true
+  validates :award_year, presence: true
 
   after_create :create_deadlines
 

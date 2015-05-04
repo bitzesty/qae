@@ -1,5 +1,5 @@
 class AwardYear < ActiveRecord::Base
-  validates :year, presence: true, uniqueness: true
+  validates :year, presence: true
 
   has_many :form_answers
   has_one :settings, inverse_of: :award_year, autosave: true
@@ -30,6 +30,8 @@ class AwardYear < ActiveRecord::Base
     end
 
     where(year: y).first_or_create
+  rescue ActiveRecord::RecordNotUnique
+    retry
   end
 
   def self.closed
@@ -69,9 +71,9 @@ class AwardYear < ActiveRecord::Base
     output
   end
 
-  private
-
-  def create_settings
-    self.settings = Settings.create!(award_year: self) unless settings
+  def settings
+    @settings ||= Settings.where(award_year: self).first_or_create
+  rescue ActiveRecord::RecordNotUnique
+    retry
   end
 end

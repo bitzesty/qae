@@ -2,6 +2,7 @@ require "rails_helper"
 
 describe AwardYear do
   before { allow(described_class).to receive(:mock_current_year?).and_return(false) }
+
   describe ".current" do
     context "default submission beginning (21 of April 2015)" do
       context "20 of April 2015" do
@@ -43,7 +44,7 @@ describe AwardYear do
 
     context "submission beginning period is 28 of Feb 2015" do
       before do
-        y = AwardYear.create(year: 2016)
+        y = create_award_year(2016)
         d = y.settings.deadlines.submission_start
         d.update_column(:trigger_at, Date.new(2015, 2, 28))
       end
@@ -83,11 +84,11 @@ describe AwardYear do
 
     context "submission begining period is 18 of July 2015, next submission begining 14 of Feb 2016" do
       before do
-        y = AwardYear.create(year: 2016)
+        y = create_award_year(2016)
         d = y.settings.deadlines.submission_start
         d.update_column(:trigger_at, Date.new(2015, 6, 18))
 
-        y = AwardYear.create(year: 2017)
+        y = create_award_year(2017)
         d = y.settings.deadlines.submission_start
         d.update_column(:trigger_at, Date.new(2016, 2, 14))
       end
@@ -141,4 +142,10 @@ end
 
 def clean_settings
   AwardYear.all.each(&:destroy)
+end
+
+def create_award_year(year)
+  AwardYear.where(year: year).first_or_create
+rescue ActiveRecord::RecordNotUnique
+  retry
 end
