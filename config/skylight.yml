@@ -4,3 +4,5 @@ authentication: <%= ENV['SKYLIGHT_AUTHENTICATION'] %>
 
 ignored_endpoints:
   - HealthchecksController#show
+
+alert_log_file: "log/skylight.log"

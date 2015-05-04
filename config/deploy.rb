@@ -32,7 +32,7 @@ set :rbenv_ruby, '2.1.5'
 set :rbenv_roles, :all
 
 set :linked_files, %w(config/database.yml config/secrets.yml .env)
-set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
 
 set :whenever_identifier, ->{ "#{fetch(:application)}_#{fetch(:stage)}" }
 
