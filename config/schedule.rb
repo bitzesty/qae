@@ -23,7 +23,3 @@ when 'production'
     runner "CronJob.run('performance') { PerformancePlatformService.run }"
   end
 end
-
-every :sunday, at: "12pm" do
-  runner "PerformancePlatformService.run"
-end
