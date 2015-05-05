@@ -390,8 +390,9 @@ class Reports::FormAnswer
     day = doc("started_trading_day")
     month = doc("started_trading_month")
     year = doc("started_trading_year")
+
     if year && month && day
-      Date.new(year.to_i, month.to_i, day.to_i).strftime("%m/%d/%Y")
+      Date.new(year.to_i, month.to_i, day.to_i).strftime("%m/%d/%Y") rescue nil
     end
   end
 
