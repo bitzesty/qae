@@ -4,7 +4,9 @@ cache: bundler
 rvm:
   - 2.1.5
 addons:
-  postgresql: 9.3
+  postgresql: "9.3"
+  code_climate:
+    repo_token: 53c81623b42b63f7570f50659684eba55db9da0895ec5c35691765219a621143
 before_script:
   - /bin/cp $TRAVIS_BUILD_DIR/config/database.yml.example $TRAVIS_BUILD_DIR/config/database.yml
   - /bin/cp $TRAVIS_BUILD_DIR/.env.example $TRAVIS_BUILD_DIR/.env
@@ -16,6 +18,3 @@ script:
 notifications:
   email: false
   slack: bitzesty:h8zc1e4BesNXl5LynftJ7Z7M
-addons:
-  code_climate:
-    repo_token: 53c81623b42b63f7570f50659684eba55db9da0895ec5c35691765219a621143

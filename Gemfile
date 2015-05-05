@@ -11,6 +11,9 @@ gem 'rack-ssl-enforcer'
 # PostgreSQL
 gem 'pg', '~> 0.17'
 
+# Track Changes
+gem 'paper_trail', github: 'airblade/paper_trail'
+
 # Envrioment variables
 gem 'dotenv-rails', '~> 1.0'
 

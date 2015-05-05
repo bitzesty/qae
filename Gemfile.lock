@@ -1,4 +1,13 @@
 GIT
+  remote: git://github.com/airblade/paper_trail.git
+  revision: a8b5d7de2d81b79faa1ceb4ebed78cab52e6acf7
+  specs:
+    paper_trail (4.0.0.beta3)
+      activerecord (>= 3.0, < 6.0)
+      activesupport (>= 3.0, < 6.0)
+      request_store (~> 1.1.0)
+
+GIT
   remote: git://github.com/alphagov/govuk_frontend_toolkit_gem.git
   revision: 1468967b5ce5dfab3371969e65d8aa28327e4802
   submodules: true
@@ -605,6 +614,7 @@ DEPENDENCIES
   letter_opener
   nilify_blanks
   nokogiri (~> 1.6.0)
+  paper_trail!
   passenger
   pdf-inspector
   pg (~> 0.17)
