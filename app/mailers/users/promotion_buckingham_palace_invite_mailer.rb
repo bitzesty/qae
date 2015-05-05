@@ -1,4 +1,4 @@
-class Users::PromotionBuckinghamPalaceInviteMailer < ApplicationMailer
+class Users::PromotionBuckinghamPalaceInviteMailer < AccountMailer
   def notify(invite_id)
     invite = PalaceInvite.find(invite_id)
     @form_answer = invite.form_answer.decorate

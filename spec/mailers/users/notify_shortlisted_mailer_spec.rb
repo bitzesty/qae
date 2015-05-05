@@ -2,6 +2,8 @@ require "rails_helper"
 
 describe Users::NotifyShortlistedMailer do
   let!(:user) { create :user }
+  let!(:collaborator) { create :user, account: user.account, role: "regular" }
+
   let(:form_answer) do
     create :form_answer, :submitted, :innovation, user: user
   end
@@ -27,6 +29,7 @@ describe Users::NotifyShortlistedMailer do
     it "renders the headers" do
       expect(mail.subject).to eq(subject)
       expect(mail.to).to eq([user.email])
+      expect(mail.bcc).to eq(user.account.collaborators_without(user).map(&:email))
       expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
     end
 

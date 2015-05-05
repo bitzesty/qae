@@ -1,6 +1,6 @@
-class Users::NotifyNonShortlistedMailer < ApplicationMailer
+class Users::NotifyNonShortlistedMailer < AccountMailer
   def notify(form_answer_id)
-    form_answer = FormAnswer.find(form_answer_id).decorate
+    @form_answer = FormAnswer.find(form_answer_id).decorate
     @user = form_answer.user.decorate
     @subject = "Queen's Awards for Enterprise: Thank you for applying"
 
