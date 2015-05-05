@@ -371,7 +371,7 @@ class Reports::FormAnswer
 
       begin
         services = JSON.parse(service_json)
-      rescue JSON::ParseError
+      rescue JSON::ParserError
         services = []
       end
 
