@@ -134,6 +134,9 @@ window.SupportLetters =
   autosave: () ->
     url = $('form.qae-form').data('autosave-url')
     if url
+      # Setting current_step_id to form as we updating only current section form_data (not whole form)
+      $("#current_step_id").val($(".js-step-condition.step-current").attr("data-step"))
+
       form_data = $('form.qae-form').serialize()
       $.ajax({
         url: url

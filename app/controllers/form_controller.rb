@@ -234,7 +234,7 @@ class FormController < ApplicationController
 
   def updating_step
     @form_answer.award_form.steps.detect do |s|
-      s.title.parameterize == params[:current_step_id]
+      s.title.parameterize == params[:current_step_id].gsub("step-", "")
     end.decorate
   end
 

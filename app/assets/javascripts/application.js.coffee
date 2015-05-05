@@ -230,7 +230,8 @@ jQuery ->
       if this_index < current_index
         $(this).addClass("step-past")
 
-    $("#current_step_id").val(step.replace("step-", ""))
+    # Setting current_step_id to form as we updating only current section form_data (not whole form)
+    $("#current_step_id").val(step)
 
   if window.location.hash
     step = window.location.hash.substr(1)
@@ -240,7 +241,9 @@ jQuery ->
       resetResizeTextarea()
     else
       window.location.hash = $(".js-step-condition.step-current").attr("data-step").substr(5)
-      $("#current_step_id").val(step.replace("step-", ""))
+
+      # Setting current_step_id to form as we updating only current section form_data (not whole form)
+      $("#current_step_id").val(step)
 
   $(document).on "click", ".js-step-link", (e) ->
     e.preventDefault()
@@ -262,6 +265,9 @@ jQuery ->
     window.autosave_timer = null
     url = $('form.qae-form').data('autosave-url')
     if url
+      # Setting current_step_id to form as we updating only current section form_data (not whole form)
+      $("#current_step_id").val($(".js-step-condition.step-current").attr("data-step"))
+
       form_data = $('form.qae-form').serialize()
       $.ajax({
         url: url
