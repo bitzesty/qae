@@ -8,6 +8,7 @@ addons:
   code_climate:
     repo_token: 53c81623b42b63f7570f50659684eba55db9da0895ec5c35691765219a621143
 before_script:
+  - psql -c "select version();" -U postgres
   - /bin/cp $TRAVIS_BUILD_DIR/config/database.yml.example $TRAVIS_BUILD_DIR/config/database.yml
   - /bin/cp $TRAVIS_BUILD_DIR/.env.example $TRAVIS_BUILD_DIR/.env
   - /bin/cp $TRAVIS_BUILD_DIR/config/secrets.yml.example $TRAVIS_BUILD_DIR/config/secrets.yml
