@@ -127,6 +127,9 @@
   ul
     li = link_to "Help", "https://www.gov.uk/help"
     li = link_to "Privacy Statement", privacy_path
+    li
+      ' Built by
+      = link_to "The Queen's Awards Office", "http://blogs.bis.gov.uk/queensawards/"
 
 - content_for :body_end do
   = javascript_include_tag 'application'
