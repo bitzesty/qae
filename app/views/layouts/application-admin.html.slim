@@ -65,7 +65,7 @@ html.no-js
                     = link_to "Custom email", admin_custom_email_path(year: AwardYear.current.year)
 
                   li class=("active" if controller_name == "users_feedbacks")
-                    = link_to "Feedback", admin_users_feedback_path(year: AwardYear.current.year)
+                    = link_to "Feedback", admin_users_feedback_path
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown
