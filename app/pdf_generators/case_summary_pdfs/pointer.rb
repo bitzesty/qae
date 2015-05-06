@@ -25,7 +25,7 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
   end
 
   def fetch_financial_data
-    @financial_pointer = FormFinancialPointer.new(form_answer, {exclude_ignored_questions: true})
+    @financial_pointer = FormFinancialPointer.new(form_answer.decorate, {exclude_ignored_questions: true})
     @financial_data = financial_pointer.data
 
     @year_rows = financial_pointer.years_list
@@ -40,7 +40,7 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
     set_financial_benchmarks
   end
 
-  def fetch_financial_metrics
+  def fetch_financial_metrics_by_years
     data_rows = []
 
     @financial_data.each_with_index do |row, index|

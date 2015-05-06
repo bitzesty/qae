@@ -174,14 +174,36 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_financial_table
+    render_financial_section_header
     render_financials
 
     pdf_doc.move_down 10.mm
     render_financial_benchmarks
   end
 
-  def render_financials
+  def render_financial_section_header
+    pdf_doc.text "Financial Summary", header_text_properties
+    pdf_doc.move_down 5.mm
+  end
 
+  def render_financials
+    rows = [
+      year_rows,
+      date_rows
+    ]
+
+    financial_metrics_by_years.map do |row|
+      rows << row
+    end
+
+    pdf_doc.table(rows,
+      cell_style: { size: 12 },
+      column_widths: {
+        0 => 100,
+        1 => 567,
+        2 => 100
+      }
+    )
   end
 
   def render_financial_benchmarks
