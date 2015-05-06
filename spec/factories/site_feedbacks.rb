@@ -1,7 +1,6 @@
 FactoryGirl.define do
   factory :site_feedback do
     rating 1
-comment "MyText"
+    comment "feedback"
   end
-
 end
