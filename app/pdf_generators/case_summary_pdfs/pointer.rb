@@ -2,6 +2,8 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
   include CaseSummaryPdfs::General::DrawElements
   include CaseSummaryPdfs::General::DataPointer
 
+  LOCALE_PREFIX = "admin.form_answers.financial_summary"
+
   attr_reader :data,
               :financial_pointer,
               :financial_data,
@@ -28,13 +30,13 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
     @financial_pointer = FormFinancialPointer.new(form_answer.decorate, {exclude_ignored_questions: true})
     @financial_data = financial_pointer.data
 
-    @year_rows = financial_pointer.years_list
+    @year_rows = financial_pointer.years_list.unshift("")
 
     @date_rows = if @financial_data.first[:financial_year_changed_dates].present?
       financial_pointer.financial_year_changed_dates
     else
       financial_pointer.financial_year_dates
-    end
+    end.unshift(I18n.t("#{LOCALE_PREFIX}.years_row.financial_year_changed_dates"))
 
     @financial_metrics_by_years = fetch_financial_metrics_by_years
     set_financial_benchmarks
@@ -48,8 +50,12 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
 
       data_rows << if row[:uk_sales]
         row.values.flatten
+           .map { |field| field.to_i.to_s }
+           .unshift(I18n.t("#{LOCALE_PREFIX}.uk_sales_row.#{row.keys.first}"))
       else
-        row.values.flatten.map { |field| field[:value] }
+        row.values.flatten
+           .map { |field| field[:value] }
+           .unshift(I18n.t("#{LOCALE_PREFIX}.row.#{row.keys.first}"))
       end
     end
 

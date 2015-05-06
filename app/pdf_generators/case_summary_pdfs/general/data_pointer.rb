@@ -175,9 +175,8 @@ module CaseSummaryPdfs::General::DataPointer
 
   def render_financial_table
     render_financial_section_header
+    render_financial_table_header
     render_financials
-
-    pdf_doc.move_down 10.mm
     render_financial_benchmarks
   end
 
@@ -186,11 +185,14 @@ module CaseSummaryPdfs::General::DataPointer
     pdf_doc.move_down 5.mm
   end
 
+  def render_financial_table_header
+    pdf_doc.table [year_rows], row_colors: %w(FFFFFF),
+                  cell_style: { size: 12, font_style: :bold },
+                  column_widths: column_widths
+  end
+
   def render_financials
-    rows = [
-      year_rows,
-      date_rows
-    ]
+    rows = [date_rows]
 
     financial_metrics_by_years.map do |row|
       rows << row
@@ -198,15 +200,52 @@ module CaseSummaryPdfs::General::DataPointer
 
     pdf_doc.table(rows,
       cell_style: { size: 12 },
-      column_widths: {
-        0 => 100,
-        1 => 567,
-        2 => 100
-      }
+      column_widths: column_widths
     )
   end
 
+  def column_widths
+    first_row_width = case financial_pointer.period_length
+    when 2
+      first_row_width = 527
+    when 3
+      first_row_width = 527
+    when 5
+      first_row_width = 367
+    end
+
+    res = { 0 => first_row_width }
+
+    financial_pointer.period_length.times do |i|
+      res[i + 1] = 80
+    end
+
+    res
+  end
+
+  def benchmarks_column_widths
+    first_row_width = case financial_pointer.period_length
+    when 2
+      {
+        0 => 527,
+        1 => 240
+      }
+    when 3
+      {
+        0 => 527,
+        1 => 240
+      }
+    when 5
+      {
+        0 => 367,
+        1 => 400
+      }
+    end
+  end
+
   def render_financial_benchmarks
+    pdf_doc.move_down 10.mm
+    render_financial_table_header
     render_base_growth_table
 
     pdf_doc.move_down 10.mm
@@ -214,10 +253,39 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_base_growth_table
+    rows = if @form_answer.trade?
+      [
+        financial_pointer.growth_overseas_earnings_list.unshift("% Growth overseas earnings"),
+        financial_pointer.sales_exported_list.unshift("% Sales exported"),
+        financial_pointer.average_growth_for_list.unshift("% Sector average growth")
+      ]
+    else
+      [
+        financial_pointer.growth_in_total_turnover_list.unshift("% Growth in total turnover")
+      ]
+    end
 
+    pdf_doc.table(rows,
+      cell_style: { size: 12 },
+      column_widths: column_widths
+    )
   end
 
   def render_overall_growth_table
+    rows = [
+      [
+        "Overall growth £[year 1 - #{financial_pointer.period_length}]",
+        financial_pointer.overall_growth
+      ],
+      [
+        "Overall growth %[year 1 - #{financial_pointer.period_length}]",
+        financial_pointer.overall_growth_in_percents
+      ]
+    ]
 
+    pdf_doc.table(rows,
+      cell_style: { size: 12 },
+      column_widths: benchmarks_column_widths
+    )
   end
 end
