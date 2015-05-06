@@ -207,7 +207,7 @@ module CaseSummaryPdfs::General::DataPointer
   def column_widths
     first_row_width = case financial_pointer.period_length
     when 2
-      first_row_width = 527
+      first_row_width = 607
     when 3
       first_row_width = 527
     when 5
@@ -227,8 +227,8 @@ module CaseSummaryPdfs::General::DataPointer
     first_row_width = case financial_pointer.period_length
     when 2
       {
-        0 => 527,
-        1 => 240
+        0 => 607,
+        1 => 160
       }
     when 3
       {

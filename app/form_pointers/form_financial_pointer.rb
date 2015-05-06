@@ -173,7 +173,7 @@ class FormFinancialPointer
       res << [
         form_answer.document['financial_year_date_day'].to_s.rjust(2, '0'),
         form_answer.document['financial_year_date_month'].to_s.rjust(2, '0'),
-        Date.current.year - period_length + i
+        Date.current.year - period_length + i + 1
       ].join("/")
     end
 
