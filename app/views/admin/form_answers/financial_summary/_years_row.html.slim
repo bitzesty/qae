@@ -1,19 +1,13 @@
 tr
   td = t('.financial_year_changed_dates')
-  - financial_year_changed_dates = financial_pointer.data.first[:financial_year_changed_dates]
+  - if financial_pointer.data.first[:financial_year_changed_dates].present?
 
-  - if financial_year_changed_dates.present?
-
-    - last_year = financial_year_changed_dates.last.split("/")[-1][-1].to_i
-    - financial_year_changed_dates.each_with_index do |date, index|
+    - financial_pointer.financial_year_changed_dates.each do |date|
       td
         .form-value
-          - if (index + 1) != financial_year_changed_dates.count
-            = date.join('/') + (last_year - (financial_year_changed_dates.count - (index + 1))).to_s
-          - else
-            = date.join('/')
+          = date
   - else
-    - financial_pointer.period_length.times do |i|
+    - financial_pointer.financial_year_dates.each do |date|
       td
         .form_value
-          = [f.object.document['financial_year_date_day'], f.object.document['financial_year_date_month'], Date.current.year - financial_pointer.period_length + i].join("/")
+          = date

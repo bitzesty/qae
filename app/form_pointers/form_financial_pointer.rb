@@ -156,6 +156,41 @@ class FormFinancialPointer
     end
   end
 
+  def financial_year_dates
+    res = []
+
+    period_length.times do |i|
+      res << [
+        form_answer.document['financial_year_date_day'].to_s.rjust(2, '0'),
+        form_answer.document['financial_year_date_month'].to_s.rjust(2, '0'),
+        Date.current.year
+      ].join("/")
+    end
+
+    res
+  end
+
+  def financial_year_changed_dates
+    dates_by_years = data.first[:financial_year_changed_dates]
+
+    if dates_by_years.present?
+      res = []
+      last_year = dates_by_years.last.split("/")[-1][-1].to_i
+
+      dates_by_years.each_with_index do |date, index|
+        res << if (index + 1) != dates_by_years.count
+          date.join('/') + (last_year - (dates_by_years.count - (index + 1))).to_s
+        else
+          date.join('/')
+        end
+      end
+
+      res
+    else
+      []
+    end
+  end
+
   private
 
   def data_values(key)
