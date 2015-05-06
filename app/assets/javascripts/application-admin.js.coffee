@@ -5,6 +5,7 @@
 #= require jquery.fileupload
 #= require select2.full.min
 #= require ./frontend/password-strength-indicator
+#= require ./frontend/textarea-autoResize
 #= require_tree ./admin
 #= require search
 #= require jquery-ui

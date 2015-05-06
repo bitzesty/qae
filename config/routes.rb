@@ -228,6 +228,8 @@ Rails.application.routes.draw do
 
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
+
+    resource :custom_email, only: [:show, :create]
   end
 
   namespace :account do

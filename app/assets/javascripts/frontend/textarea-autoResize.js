@@ -26,6 +26,10 @@ $(function() {
     var char_count = content.toString().length;
     var new_line_count = content.split("\n").length;
     var text_width = char_count * 8;
+    if (!box_width) {
+      box_width = textInput.innerWidth();
+      text_width = char_count * 7;
+    }
     var line_height = Math.ceil(text_width/box_width) + new_line_count;
     var newHeight = line_height*20;
 

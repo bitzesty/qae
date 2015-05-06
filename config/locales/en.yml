@@ -13,7 +13,13 @@ en:
         mail_from_qae: "Mail from the Queen's Awards Office"
         word_of_mouth: Word of mouth
         other: Other
-
+    custom_email_form:
+      scope:
+        myself: Myself
+        qae_opt_in_group: QAE opt-in group
+        bis_opt_in: BIS opt-in
+        assessors: Assessors
+        all_users: All users
     eligibility/basic:
       organization_kind:
         business: "Business (e.g. companies, partnerships, social enterprises)"
