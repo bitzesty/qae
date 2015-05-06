@@ -1,5 +1,3 @@
-- ratings = ["Very dissatisfied", "Dissatisfied", "Neither satisfied or dissatisfied", "Satisfied", "Very satisfied"]
-
 .row
   .col-xs-12
     .table-overflow-container
@@ -17,55 +15,22 @@
             th.sortable
               ' Feedback
         tbody
-          tr
-            td
-              ' 16/04/2015 11:30
-            td
-              - this_rating = "Neither satisfied or dissatisfied"
-              span.feedback-stars alt=this_rating title=this_rating
-                - (0..ratings.index(this_rating)).each do | start |
-                  span.glyphicon.glyphicon-star
-                - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
-                  span.glyphicon.glyphicon-star-empty
-            td
-              .feedback-description
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          tr
-            td
-              ' 13/03/2015 11:30
-            td
-              - this_rating = "Dissatisfied"
-              span.feedback-stars alt=this_rating title=this_rating
-                - (0..ratings.index(this_rating)).each do | start |
-                  span.glyphicon.glyphicon-star
-                - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
-                  span.glyphicon.glyphicon-star-empty
-            td
-              .feedback-description
-                ' Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          tr
-            td
-              ' 10/03/2015 13:40
-            td
-              - this_rating = "Very satisfied"
-              span.feedback-stars alt=this_rating title=this_rating
-                - (0..ratings.index(this_rating)).each do | start |
-                  span.glyphicon.glyphicon-star
-                - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
-                  span.glyphicon.glyphicon-star-empty
-            td
-              .feedback-description
-                ' Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-          tr
-            td
-              ' 09/03/2015 13:40
-            td
-              - this_rating = "Satisfied"
-              span.feedback-stars alt=this_rating title=this_rating
-                - (0..ratings.index(this_rating)).each do | start |
-                  span.glyphicon.glyphicon-star
-                - (1..(ratings.count - ratings.index(this_rating) - 1)).each do | start |
-                  span.glyphicon.glyphicon-star-empty
-            td
-              .feedback-description
-                ' Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          - @feedbacks.each do |feedback|
+            tr
+              td
+                = feedback.created_at.strftime("%d/%m/%Y %H:%M")
+              td
+                span.feedback-stars alt=feedback.rating.text title=feedback.rating.text
+                  - feedback.rating.value.times do
+                    span.glyphicon.glyphicon-star
+                  - (5 - feedback.rating.value).times do
+                    span.glyphicon.glyphicon-star-empty
+              td
+                .feedback-description
+                  = feedback.comment
+
+
+.row
+  .col-xs-12.text-right
+    = paginate @feedbacks
+    .clear
