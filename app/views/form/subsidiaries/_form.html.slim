@@ -4,17 +4,20 @@ li
                       url: form_form_answer_subsidiaries_url(@form_answer.id, index: detect_index_of_element(name: item.name, location: item.location)),
                       html: { class: 'qae-form', method: (action_name == "edit" ? :put : :post) } do |f|
       .row
-        .span-6
+        .span-4
           = f.input :name,
-                    input_html: { class: "medium" }
-      .row
-        .span-6
+                    input_html: { class: "medium" },
+                    label_html: { class: "small" }
+
+        .span-4
           = f.input :location,
-                    input_html: { class: "medium" }
-      .row
-        .span-6
+                    input_html: { class: "medium" },
+                    label_html: { class: "small" }
+
+        .span-4
           = f.input :employees,
                     input_html: { class: "medium" },
+                    label_html: { class: "small" },
                     label: "Number of UK Employees"
       .row
         .span-12

@@ -2,8 +2,12 @@ li non-js-attribute=attrs["name"]
   div
     = button_to "Remove", form_form_answer_positions_url(@form_answer, position: attrs),
                           method: :delete,
-                          class: "non-js-remove-link",
+                          class: "remove-link non-js-remove-link",
                           form_class: "non-js-button-to"
+
+    = link_to "Edit",
+              edit_form_form_answer_positions_url(@form_answer.id, position: attrs),
+              class: "remove-link non-js-edit-link"
 
   = simple_form_for :position, url: "#", html: { class: 'qae-form' } do |f|
 
@@ -45,5 +49,3 @@ li non-js-attribute=attrs["name"]
       - else
         ' -
     br
-
-  = link_to "Edit role", edit_form_form_answer_positions_url(@form_answer.id, position: attrs)

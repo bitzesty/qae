@@ -1,6 +1,10 @@
 .js-financial-year-changed-dates
   - for c in question.by_year_conditions
     .js-conditional-question.js-fy-entry-container data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
+      .if-js-hide
+        label
+          strong
+            = "If you had growth in the last #{c.years} years"
       .row
         - (1..c.years).each do |y|
           .span-4.js-fy-entries class="#{'fy-latest' if y == c.years}"

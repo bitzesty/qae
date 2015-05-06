@@ -113,9 +113,9 @@ So that I can fill form completelly even if Javascript is turned off
 
     it "should allow to update existing" do
       within("li[non-js-attribute=#{second_item[:name]}]") do
-        click_link "Edit role"
+        click_link "Edit"
       end
-      expect_to_see "Edit Role"
+      expect_to_see "Edit"
 
       fill_in_form(new_item)
 

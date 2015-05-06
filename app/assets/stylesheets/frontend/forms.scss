@@ -1432,19 +1432,14 @@ input[type="file"] {
 
 // Used for NON JS cases - begin
 .non-js-button-to {
-  width: 80px;
   float: right;
 
   .non-js-remove-link {
-    border-width: 0px;
+    @include core-16;
+    margin: 0;
+    padding: 0;
+    border: none;
     background: transparent;
-    font-size: 18px;
-    text-decoration: underline;
-    color: #005ea5;
-    line-height: 1.25;
-    font-weight: 400;
-    text-transform: none;
-    font-family: "nta", Arial, sans-serif;
     cursor: pointer;
   }
 }
