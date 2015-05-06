@@ -241,6 +241,11 @@ class FormFinancialPointer
     res
   end
 
+  def average_growth_for(form_answer, year)
+    growth = form_answer.average_growth_for(year)
+    growth || "-"
+  end
+
   private
 
   def data_values(key)
