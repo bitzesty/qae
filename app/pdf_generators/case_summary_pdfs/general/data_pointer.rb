@@ -118,6 +118,11 @@ module CaseSummaryPdfs::General::DataPointer
 
     pdf_doc.move_down 10.mm
     render_case_summary_comments
+
+    if financial_pointer.present? && !financial_pointer.period_length.zero?
+      pdf_doc.move_down 10.mm
+      render_financial_table
+    end
   end
 
   def render_application_background
@@ -166,5 +171,31 @@ module CaseSummaryPdfs::General::DataPointer
       end
       red_rags.background_color = "FF0000"
     end
+  end
+
+  def render_financial_table
+    render_financials
+
+    pdf_doc.move_down 10.mm
+    render_financial_benchmarks
+  end
+
+  def render_financials
+
+  end
+
+  def render_financial_benchmarks
+    render_base_growth_table
+
+    pdf_doc.move_down 10.mm
+    render_overall_growth_table
+  end
+
+  def render_base_growth_table
+
+  end
+
+  def render_overall_growth_table
+
   end
 end
