@@ -110,10 +110,10 @@ $.fn.charcount = function() {
     }
 
     $("textarea[maxlength]").each(function() {
-      var text_events = $._data(this, "events");
-      if (text_events) {
-        if (!("keydown" in text_events)) {
-          $(this).on("keydown keyup", function (e) {
+      var textEvents = $._data(this, "events");
+      if (textEvents) {
+        if (!("keydown" in textEvents)) {
+          $(this).on("keydown keyup", function () {
             $(this).addClass("char-over-cut");
             while ($(this).hasClass("char-over-cut")) {
               Countable.once(this, cutOverChar);
@@ -133,11 +133,10 @@ $.fn.charcount = function() {
     var textInput = $(this);
 
     if ((e.originalEvent || e).clipboardData) {
-      alert(1);
       var oldText = textInput.val();
       var copyText = ((e.originalEvent || e).clipboardData.getData("text/plain"));
 
-      if (!copyText.length > 0) {
+      if (copyText.length > 0) {
         e.preventDefault();
 
         textInput.after("<div id='oldText'>"+oldText+"</div>");
