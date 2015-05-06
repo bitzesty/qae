@@ -21,6 +21,17 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
 
           /- unless question.required
             '  (optional)
+    - else
+      - if question.ref || question.sub_ref
+        .if-js-hide
+          label for="q_#{question.key}"
+            h2
+              - ref = question.ref ? question.ref : question.sub_ref
+              span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref}"
+                span.visuallyhidden
+                  = ref.to_s
+                span.todo
+                  = ref.to_s
 
     span.question-context.question-debug
       - if question.context
