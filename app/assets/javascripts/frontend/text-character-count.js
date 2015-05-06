@@ -49,7 +49,7 @@ $.fn.charcount = function() {
     var maxWordCountTotal = maxWordCount + maxWordCountLimit;
 
     textInput.closest(".char-count").removeClass("char-over");
-    if (counter.words > maxWordCount) {
+    if (counter.words >= maxWordCount) {
       textInput.closest(".char-count").addClass("char-over");
     }
 
@@ -60,6 +60,39 @@ $.fn.charcount = function() {
     }
   };
 
+  var cutOverChar = function(counter) {
+    var textInput = $(this);
+    var oldText = $(this).val();
+    var newText = "";
+    var wordMax = parseInt(textInput.attr("data-word-max"), 10);
+    var wordMaxLimit = parseInt(textInput.attr("data-word-max-limit"), 10);
+    var wordTotal = wordMax + wordMaxLimit;
+
+    if (counter.words > wordTotal) {
+      var oldTextArray = oldText.split(" ");
+      var lastIndexOf = oldTextArray.length - 1;
+      if (oldTextArray[oldTextArray.length - 1] === "") {
+        lastIndexOf = oldTextArray.length - 2;
+      }
+      var lastIndex = oldText.split(" ", lastIndexOf).join(" ").length;
+      if (oldText.lastIndexOf("\n") + 1 > lastIndex) {
+        lastIndex = oldText.lastIndexOf("\n") + 1;
+      }
+      newText = oldText.substr(0, lastIndex) + " ";
+
+      $(this).closest(".char-count").find(".char-text .current-count").text(wordTotal);
+    } else {
+      $(this).removeClass("char-over-cut");
+      newText = oldText;
+    }
+
+    if (newText[newText.length - 1] == " " && newText[newText.length - 2] == " ") {
+      newText = $.trim(newText) + " ";
+    }
+
+    $(this).val(newText);
+  };
+
   var counting = function(counter) {
     var textInput = $(this);
 
@@ -67,7 +100,7 @@ $.fn.charcount = function() {
 
     if (characterOver(counter, textInput)) {
       // hard limit to word count using maxlength
-      if (((typeof(textInput.attr("maxlength")) !== typeof(undefined)) && textInput.attr("maxlength") !== false) == false) {
+      if (((typeof(textInput.attr("maxlength")) !== typeof(undefined)) && textInput.attr("maxlength") !== false) === false) {
         // Set through typing
         var char_limit = textInput.val().length;
         textInput.attr("maxlength", char_limit);
@@ -75,21 +108,68 @@ $.fn.charcount = function() {
     } else {
       textInput.removeAttr("maxlength");
     }
-  }
+
+    $("textarea[maxlength]").each(function() {
+      var text_events = $._data(this, "events");
+      if (text_events) {
+        if (!("keydown" in text_events)) {
+          $(this).on("keydown keyup", function (e) {
+            $(this).addClass("char-over-cut");
+            while ($(this).hasClass("char-over-cut")) {
+              Countable.once(this, cutOverChar);
+            }
+          });
+        }
+      }
+    });
+  };
+
+  var countText = function(counter) {
+    $(this).attr("data-counted-words", counter.words);
+  };
 
   // Maxlength for pasting text
-  this.bind("paste", function(e){
-    var originalText = ((e.originalEvent || e).clipboardData.getData("text/plain"));
+  $(this).on("paste", function (e) {
+    var textInput = $(this);
 
-    if (originalText.length > 0) {
-      e.preventDefault();
+    if ((e.originalEvent || e).clipboardData) {
+      alert(1);
+      var oldText = textInput.val();
+      var copyText = ((e.originalEvent || e).clipboardData.getData("text/plain"));
 
-      for (var c = 0; c<originalText.length; c++) {
-        if (((typeof($(this).attr("maxlength")) !== typeof(undefined)) && $(this).attr("maxlength") !== false) == false || $(this).val().length <= $(this).attr("maxlength")) {
-          $(this).val($(this).val() + originalText[c]);
+      if (!copyText.length > 0) {
+        e.preventDefault();
+
+        textInput.after("<div id='oldText'>"+oldText+"</div>");
+        Countable.once($("#oldText")[0], countText);
+        textInput.after("<div id='copyText'>"+copyText+"</div>");
+        Countable.once($("#copyText")[0], countText);
+        var oldTextCount = parseInt($("#oldText").attr("data-counted-words"), 10);
+        var copyTextCount = parseInt($("#copyText").attr("data-counted-words"), 10);
+        $("#oldText").remove();
+        $("#copyText").remove();
+        var wordMax = parseInt(textInput.attr("data-word-max"), 10);
+        var wordMaxLimit = parseInt(textInput.attr("data-word-max-limit"), 10);
+        var wordTotal = wordMax + wordMaxLimit;
+        var wordsNeeded = wordTotal - oldTextCount;
+        var newCopytext = copyText;
+        if (copyTextCount > wordsNeeded) {
+          var copyPartIndex = copyText.split(" ", wordsNeeded).join(" ").length;
+          newCopytext = $.trim(copyText.substr(0, copyPartIndex)) + " ";
+        }
+
+        if (newCopytext) {
+          textInput.val(textInput.val() + newCopytext);
           Countable.once(this, counting);
         }
       }
+    } else {
+      setTimeout(function() {
+        textInput.addClass("char-over-cut");
+        while (textInput.hasClass("char-over-cut")) {
+          Countable.once(textInput[0], cutOverChar);
+        }
+      }, 10);
     }
   });
 
@@ -99,7 +179,8 @@ $.fn.charcount = function() {
   });
 
   return this;
-}
+};
+
 // Gets character limit and allows no more
 $(function() {
   // Creates the character count elements
@@ -111,4 +192,4 @@ $.fn.removeCharcountElements = function() {
   // Removes the character count elements
   $(this).unwrap();
   $(".char-text, .char-text-limit", $(this).closest("li")).remove();
-}
+};
