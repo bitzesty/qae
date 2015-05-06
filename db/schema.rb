@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150504112318) do
+ActiveRecord::Schema.define(version: 20150506150526) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -351,6 +351,13 @@ ActiveRecord::Schema.define(version: 20150504112318) do
   end
 
   add_index "settings", ["award_year_id"], name: "index_settings_on_award_year_id", unique: true, using: :btree
+
+  create_table "site_feedbacks", force: :cascade do |t|
+    t.integer  "rating"
+    t.text     "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "support_letter_attachments", force: :cascade do |t|
     t.integer  "user_id",           null: false

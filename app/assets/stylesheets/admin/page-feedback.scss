@@ -1,0 +1,32 @@
+.feedback-stars {
+  white-space: nowrap;
+}
+
+.feedback-description,
+.feedback-table .read-more-container {
+  font-size: 14px;
+}
+
+.read-more-container {
+  .full-text,
+  .read-less {
+    display: none;
+  }
+
+  &.open {
+    .full-text,
+    .read-less {
+      display: inline;
+    }
+
+    .excerpt-text,
+    .read-more {
+      display: none;
+    }
+  }
+
+  .read-link {
+    display: block;
+    text-align: right;
+  }
+}

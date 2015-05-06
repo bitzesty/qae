@@ -1,0 +1,34 @@
+- provide(:page_wrapper_class, "page-feedback")
+
+header.page-header.group.page-header-wider
+  div
+    h1 Send Feedback
+.article-container.article-container-wider
+  article.group role="article"
+    .inner
+      = simple_form_for @feedback, url: feedback_path do |f|
+        ul.list-add
+          li
+            fieldset.question-block.sub-question
+              h2
+                label How would you rate your experience with this service?
+              .errors-container
+              .clear
+              = f.input :rating, as: :radio_buttons, label_html: { class: "visuallyhidden" }, wrapper_html: { class: "question-group" }
+
+              span.clear
+          fieldset.question-block.sub-question
+            h2
+              label Please take a moment to tell us about your experience, what worked and what didn't
+            .errors-container
+            .clear
+            .question-group
+              = f.input :comment,
+                        as: :text,
+                        input_html: { rows: 5, data: { word_max: "2000" }, class: "js-char-count" },
+                        label_html: { class: "visuallyhidden" }
+              .clear
+
+          br
+
+          = f.submit "Send Feedback", class: "button large"
