@@ -19,6 +19,9 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
 
       = link_to "Edit", edit_form_form_answer_current_queens_awards_path(@form_answer, current_queens_award: award), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
 
+      - if award["category"].empty? && award["year"].empty?
+        label -
+
       label
         span.visuallyhidden Category
         span.if-no-js-hide
@@ -45,6 +48,8 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
         span.inline.if-js-hide
           =< award['year']
 
+      span.clear
+
   - if question.entities.none?
     li.js-add-example.if-no-js-hide
       = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
@@ -66,6 +71,8 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
           - question.years.each do |year|
             option value=year
               = year
+
+      span.clear
 
 a.button.button-add.js-button-add.if-no-js-hide href="#" *possible_read_only_ops
   | + Add another award

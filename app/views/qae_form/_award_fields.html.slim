@@ -17,18 +17,49 @@ li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=a
   span.row
     span.span-6
       label
-        ' Award/personal honour title
-        input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][title]" type="text" value=award['title'] data-dependable-option-siffix="title"
+        span.if-no-js-hide
+          ' Award/personal honour title
+          input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][title]" type="text" value=award['title'] data-dependable-option-siffix="title"
+
+        span.if-js-hide
+          strong
+            ' Award/personal honour title
+          br
+          - if award["title"].present?
+            = award["title"]
+          - else
+            ' -
 
     - if question.award_years_present
       span.span-3
         label
-          ' Year
-          input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][year]" type="text" value=award['year'] data-dependable-option-siffix="year"
+          span.if-no-js-hide
+            ' Year
+            input autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][year]" type="text" value=award['year'] data-dependable-option-siffix="year"
+
+          span.if-js-hide
+            strong
+              ' Year
+            br
+            - if award["year"].present?
+              = award["year"]
+            - else
+              ' -
   span.clear
 
-  label for="form[#{question.key}][#{index}][details]"
-    span.label-char-count-reposition
+  span.if-no-js-hide
+    label for="form[#{question.key}][#{index}][details]"
+      span.label-char-count-reposition
         ' Details
-  textarea.award-textarea.js-char-count rows="2" name="form[#{question.key}][#{index}][details]" id="form[#{question.key}][#{index}][details]" data-word-max=question.details_words_max data-dependable-option-siffix="details" *possible_read_only_ops
-    = award['details']
+    textarea.award-textarea.js-char-count rows="2" name="form[#{question.key}][#{index}][details]" id="form[#{question.key}][#{index}][details]" data-word-max=question.details_words_max data-dependable-option-siffix="details" *possible_read_only_ops
+      = award['details']
+  span.if-js-hide
+    br
+    label
+      strong
+        ' Details
+    br
+    - if award["details"].present?
+      = award["details"]
+    - else
+      ' -

@@ -5,27 +5,30 @@ li
   = simple_form_for item, url: form_form_answer_awards_url(@form_answer.id, index: detect_index_of_element(attrs), holder: params[:holder]),
                           html: { class: 'qae-form', method: (action_name == "edit" ? :put : :post) } do |f|
 
-    div
-      = f.input :title,
-          input_html: { class: "form-control medium" },
-          label: "Award/personal honour title"
-
-    - if item.holder?
-      div
-        = f.input :year,
+    span.row
+      span.span-6
+        = f.input :title,
             input_html: { class: "form-control medium" },
-            label: "Year"
-    div
-      = f.label :details
-      .char-count.char-max-shift
-        .char-text-limit
-          | Word limit:
-          span.total-count
-            = question.details_words_max
-        = f.input :details, as: :text,
-                            rows: 2,
-                            label: false
-      .row
-        .span-12
-          = f.submit "Save", class: "button button-alt"
-      .clear
+            label: "Award/personal honour title"
+
+      - if item.holder?
+        span.span-3
+          = f.input :year,
+              input_html: { class: "form-control medium" },
+              label: "Year"
+    span.clear
+    span.row
+      span.span-12
+        = f.label :details
+        .char-count.char-max-shift
+          .char-text-limit
+            | Word limit:
+            span.total-count
+              = question.details_words_max
+          = f.input :details, as: :text,
+                              rows: 2,
+                              label: false
+    span.row
+      span.span-12
+        = f.submit "Save", class: "button button-alt"
+    span.clear
