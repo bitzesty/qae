@@ -156,6 +156,16 @@ class FormFinancialPointer
     end
   end
 
+  def years_list
+    res = []
+
+    period_length.times do |i|
+      res << "Year #{i + 1}"
+    end
+
+    res
+  end
+
   def financial_year_dates
     res = []
 
@@ -189,6 +199,46 @@ class FormFinancialPointer
     else
       []
     end
+  end
+
+  def growth_overseas_earnings_list
+    res = []
+
+    period_length.times do |i|
+      res << growth_overseas_earnings(i)
+    end
+
+    res
+  end
+
+  def sales_exported_list
+    res = []
+
+    period_length.times do |i|
+      res << sales_exported(i)
+    end
+
+    res
+  end
+
+  def average_growth_for_list
+    res = []
+
+    period_length.times do |i|
+      res << average_growth_for(form_answer, i + 1)
+    end
+
+    res
+  end
+
+  def growth_in_total_turnover_list
+    res = []
+
+    period_length.times do |i|
+      res << growth_in_total_turnover(i)
+    end
+
+    res
   end
 
   private

@@ -9,8 +9,8 @@
           tr
             th &nbsp;
 
-            - financial_pointer.period_length.times do |i|
-              th = "Year #{i + 1}"
+            - financial_pointer.years_list.each do |year|
+              th = year
         tbody
           = render "admin/form_answers/financial_summary/years_row", f: f, financial_pointer: financial_pointer
 
