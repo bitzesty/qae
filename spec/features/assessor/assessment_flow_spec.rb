@@ -51,7 +51,13 @@ describe "Assessment flow", %(
     expect(page).to_not have_selector("#case-summary-heading")
     login_as(primary, scope: :assessor)
     visit assessor_form_answer_path(form_answer)
-    expect(page).to have_selector("#case-summary-heading")
+
+    Timeout.timeout(2) do
+      while page.evaluate_script('$("#case-summary-heading").length') == 0
+        sleep 0.2
+      end
+    end
+
     find("#case-summary-heading .panel-title a").click
     within "#section-case-summary" do
       expect(page).to have_selector(".form-value p", text: text, count: 4)
