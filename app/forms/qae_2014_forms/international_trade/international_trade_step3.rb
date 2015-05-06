@@ -117,7 +117,6 @@ class QAE2014Forms
           yes_no
         end
 
-        # TODO: add validation "Must be greater than £100,000"
         by_years :overseas_sales, "Total overseas sales" do
           ref "C 6"
           required
