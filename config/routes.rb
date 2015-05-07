@@ -66,7 +66,7 @@ Rails.application.routes.draw do
   get "/buckingham_palace_attendance"                   => "content_only#buckingham_palace_attendance",                   as: "buckingham_palace_attendance"
   get "/submitted_nomination_successful"                => "content_only#submitted_nomination_successful",                as: "submitted_nomination_successful"
 
-  root to: Rails.env.production? ? redirect("https://www.gov.uk/apply-queens-award-enterprise ") : "content_only#home"
+  root to: Rails.env.production? ? redirect("https://www.gov.uk/apply-queens-award-enterprise ") : "content_only#dashboard"
 
   resource :account, only: :show do
     collection do
