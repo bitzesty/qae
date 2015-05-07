@@ -220,12 +220,12 @@ So that they can collaborate form answers
           visit account_collaborators_path
 
           expect_to_see "Access denied!"
-          expect(current_path).to be_eql(root_path)
+          expect(current_path).to be_eql(dashboard_path)
 
           visit new_account_collaborator_path
 
           expect_to_see "Access denied!"
-          expect(current_path).to be_eql(root_path)
+          expect(current_path).to be_eql(dashboard_path)
         end
       end
     end

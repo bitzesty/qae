@@ -37,17 +37,17 @@ class Users::SupportLettersController < Users::BaseController
   def destroy
     @support_letter = form_answer.support_letters.find(params[:id])
     @support_letter.destroy
-    redirect_to root_path, notice: "Support letter have been successfully destroyed"
+    redirect_to dashboard_path, notice: "Support letter have been successfully destroyed"
   end
 
   private
 
-    def support_letter_params
-      params.require(:support_letter).permit(
-        :first_name,
-        :last_name,
-        :relationship_to_nominee,
-        :attachment
-      )
-    end
+  def support_letter_params
+    params.require(:support_letter).permit(
+      :first_name,
+      :last_name,
+      :relationship_to_nominee,
+      :attachment
+    )
+   end
 end

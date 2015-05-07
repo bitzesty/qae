@@ -1,8 +1,8 @@
 class Users::PressSummariesController < Users::BaseController
   skip_before_action :authenticate_user!
 
-  before_action :check_deadline, :load_press_summary
-  before_action :check_promotion_award_acceptance, except: [:acceptance, :update_acceptance]
+  before_action :check_deadline, :load_press_summary, except: [:success, :failure]
+  before_action :check_promotion_award_acceptance, except: [:acceptance, :update_acceptance, :success, :failure]
 
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
@@ -25,7 +25,7 @@ class Users::PressSummariesController < Users::BaseController
       redirect_to action: :show, token: params[:token]
     else
       form_answer.update(accepted: false)
-      redirect_to root_url
+      redirect_to action: :success
     end
   end
 
@@ -39,8 +39,7 @@ class Users::PressSummariesController < Users::BaseController
 
   def check_deadline
     if settings.deadlines.where(kind: "press_release_comments").first.passed?
-      flash.alert = "Sorry, you can not amend Press Book Notes comments anymore"
-      redirect_to root_url
+      redirect_to action: :failure
     end
   end
 

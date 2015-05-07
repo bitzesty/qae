@@ -90,7 +90,9 @@ Rails.application.routes.draw do
   end
 
   resource :support_letter, only: [:new, :show, :create]
-  resource :feedback, only: [:show, :create]
+  resource :feedback, only: [:show, :create] do
+    get :success
+  end
 
   resources :palace_invites, only: [:edit, :update]
 
@@ -102,6 +104,8 @@ Rails.application.routes.draw do
       resources :support_letters, only: [:create, :show, :destroy]
       resource :press_summary, only: [:show, :update] do
         get :acceptance
+        get :success
+        get :failure
         post :update_acceptance
       end
     end
