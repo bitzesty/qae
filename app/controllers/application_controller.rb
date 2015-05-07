@@ -114,7 +114,7 @@ class ApplicationController < ActionController::Base
 
   def require_to_be_account_admin!
     unless current_user.account_admin?
-      redirect_to root_path,
+      redirect_to dashboard_path,
                   notice: "Access denied!"
     end
   end

@@ -7,8 +7,7 @@ class FeedbacksController < ApplicationController
     @feedback = SiteFeedback.new(feedback_params)
 
     if @feedback.save
-      redirect_to current_user ? dashboard_path : root_path,
-                  notice: "Feedback was successfully sent"
+      redirect_to action: :success
     else
       render :show
     end
