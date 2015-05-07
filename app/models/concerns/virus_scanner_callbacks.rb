@@ -17,7 +17,7 @@ module VirusScannerCallbacks
     ops = {
       filename: self.send(mounted_file_namespace).current_path,
       uuid: SecureRandom.uuid,
-      status: "scanning"
+      status: (ENV["DISABLE_VIRUS_SCANNER"] == "true" ? "clean" : "scanning")
     }
 
     ops[foreign_key_id.to_sym] = self.id
