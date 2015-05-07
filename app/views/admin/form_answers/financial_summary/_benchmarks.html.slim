@@ -19,22 +19,24 @@
         tr.exports-growth
           th % Growth overseas earnings
 
-          - financial_pointer.period_length.times do |i|
-            td.value = financial_pointer.growth_overseas_earnings(i)
+          - financial_pointer.growth_overseas_earnings_list.each do |entry|
+            td.value = entry
         tr.exports-percentage
           th % Sales exported
-          - financial_pointer.period_length.times do |i|
-            td.value = financial_pointer.sales_exported(i)
+
+          - financial_pointer.sales_exported_list.each do |entry|
+            td.value = entry
         tr.sector-average-growth
           th % Sector average growth
-          - financial_pointer.period_length.times do |i|
-            td = average_growth_for(@form_answer, i + 1)
+
+          - financial_pointer.average_growth_for_list.each do |entry|
+            td = entry
       - else
         tr.turnover-growth
           th % Growth in total turnover
 
-          - financial_pointer.period_length.times do |i|
-            td.value = financial_pointer.growth_in_total_turnover(i)
+          - financial_pointer.growth_in_total_turnover_list.each do |entry|
+            td.value = entry
 
   label.avg-growth-legend = @form_answer.average_growth_legend([1,2,3])
 

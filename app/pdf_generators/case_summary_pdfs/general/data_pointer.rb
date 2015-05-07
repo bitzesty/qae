@@ -118,6 +118,11 @@ module CaseSummaryPdfs::General::DataPointer
 
     pdf_doc.move_down 10.mm
     render_case_summary_comments
+
+    if financial_pointer.present? && !financial_pointer.period_length.zero?
+      pdf_doc.move_down 10.mm
+      render_financial_table
+    end
   end
 
   def render_application_background
@@ -166,5 +171,128 @@ module CaseSummaryPdfs::General::DataPointer
       end
       red_rags.background_color = "FF0000"
     end
+  end
+
+  def render_financial_table
+    render_financial_section_header
+    render_financial_table_header
+    render_financials
+    render_financial_benchmarks
+  end
+
+  def render_financial_section_header
+    pdf_doc.text "Financial Summary", header_text_properties
+    pdf_doc.move_down 5.mm
+  end
+
+  def render_financial_table_header
+    pdf_doc.table [year_rows], row_colors: %w(FFFFFF),
+                  cell_style: { size: 12, font_style: :bold },
+                  column_widths: column_widths
+  end
+
+  def render_financials
+    rows = [date_rows]
+
+    financial_metrics_by_years.map do |row|
+      rows << row
+    end
+
+    pdf_doc.table(rows,
+      cell_style: { size: 12 },
+      column_widths: column_widths
+    )
+  end
+
+  def column_widths
+    first_row_width = case financial_pointer.period_length
+    when 2
+      first_row_width = 607
+    when 3
+      first_row_width = 527
+    when 5
+      first_row_width = 367
+    when 6
+      first_row_width = 287
+    end
+
+    res = { 0 => first_row_width }
+
+    financial_pointer.period_length.times do |i|
+      res[i + 1] = 80
+    end
+
+    res
+  end
+
+  def benchmarks_column_widths
+    first_row_width = case financial_pointer.period_length
+    when 2
+      {
+        0 => 607,
+        1 => 160
+      }
+    when 3
+      {
+        0 => 527,
+        1 => 240
+      }
+    when 5
+      {
+        0 => 367,
+        1 => 400
+      }
+    when 6
+      {
+        0 => 287,
+        1 => 480
+      }
+    end
+  end
+
+  def render_financial_benchmarks
+    pdf_doc.move_down 10.mm
+    render_financial_table_header
+    render_base_growth_table
+
+    pdf_doc.move_down 10.mm
+    render_overall_growth_table
+  end
+
+  def render_base_growth_table
+    rows = if @form_answer.trade?
+      [
+        financial_pointer.growth_overseas_earnings_list.unshift("% Growth overseas earnings"),
+        financial_pointer.sales_exported_list.unshift("% Sales exported"),
+        financial_pointer.average_growth_for_list.unshift("% Sector average growth")
+      ]
+    else
+      [
+        financial_pointer.growth_in_total_turnover_list.unshift("% Growth in total turnover")
+      ]
+    end
+
+    pdf_doc.table(rows,
+      cell_style: { size: 12 },
+      column_widths: column_widths
+    )
+  end
+
+  def render_overall_growth_table
+    rows = [
+      [
+        "Overall growth £[year 1 - #{financial_pointer.period_length}]",
+        financial_pointer.overall_growth
+      ],
+      [
+        "Overall growth %[year 1 - #{financial_pointer.period_length}]",
+        financial_pointer.overall_growth_in_percents
+      ]
+    ]
+
+    pdf_doc.table(rows,
+      cell_style: { size: 12 },
+      column_widths: benchmarks_column_widths
+    )
   end
 end

@@ -37,11 +37,6 @@ module FormAnswerHelper
     FormAnswerDecorator::SELECT_BOX_LABELS.invert.to_a
   end
 
-  def average_growth_for(form_answer, year)
-    growth = form_answer.average_growth_for(year)
-    growth || "-"
-  end
-
   def sic_code(form_answer)
     code = form_answer.sic_code
     code || "-"

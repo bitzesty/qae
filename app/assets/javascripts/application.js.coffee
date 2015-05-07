@@ -120,9 +120,6 @@ jQuery ->
     fy_day = $('.js-financial-year-latest .js-fy-day select').val()
     fy_month = $('.js-financial-year-latest .js-fy-month select').val()
     fy_year = new Date().getFullYear()
-    # Conditional latest year depending on 1/10/2013 - 30/09/2014
-    if fy_month >= 10
-      fy_year = parseInt(fy_year) - 1
 
     # Updates the latest changed financial year input
     fy_latest_changed_input.find("input.js-fy-day").val(fy_day)

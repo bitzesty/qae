@@ -1,6 +1,8 @@
-require 'raven'
+unless %w(development test).include?(Rails.env)
+  require 'raven'
 
-Raven.configure do |config|
-  config.silence_ready = true
-  config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
+  Raven.configure do |config|
+    config.silence_ready = true
+    config.sanitize_fields = Rails.application.config.filter_parameters.map(&:to_s)
+  end
 end
