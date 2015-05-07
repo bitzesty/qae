@@ -49,5 +49,5 @@ class Users::SupportLettersController < Users::BaseController
       :relationship_to_nominee,
       :attachment
     )
-   end
+  end
 end

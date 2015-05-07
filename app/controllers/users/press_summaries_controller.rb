@@ -2,7 +2,8 @@ class Users::PressSummariesController < Users::BaseController
   skip_before_action :authenticate_user!
 
   before_action :check_deadline, :load_press_summary, except: [:success, :failure]
-  before_action :check_promotion_award_acceptance, except: [:acceptance, :update_acceptance, :success, :failure]
+  before_action :check_promotion_award_acceptance,
+                except: [:acceptance, :update_acceptance, :success, :failure]
 
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
