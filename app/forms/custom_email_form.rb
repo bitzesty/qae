@@ -33,13 +33,13 @@ class CustomEmailForm
     when "myself"
       [user]
     when "qae_opt_in_group"
-      User.qae_opt_in_group
+      User.qae_opt_in_group.by_email
     when "bis_opt_in"
-      User.bit_opt_in
+      User.bit_opt_in.by_email
     when "assessors"
-      Assessor.all
+      Assessor.all.by_email
     when "all_users"
-      User.all
+      User.all.by_email
     else
       raise ArgumentError, "#{scope} is not included in the list"
     end
