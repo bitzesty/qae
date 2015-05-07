@@ -56,8 +56,6 @@ describe "Assessment flow", %(
       element = first("#case-summary-heading .panel-title a")
       if element
         element.click
-      else
-        nil
       end
     end
 
