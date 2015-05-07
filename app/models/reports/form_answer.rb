@@ -173,7 +173,7 @@ class Reports::FormAnswer
       doc "principal_address_postcode"
     else
       doc "nominee_personal_address_postcode"
-    end
+    end.to_s.upcase
   end
 
   def address_line1
