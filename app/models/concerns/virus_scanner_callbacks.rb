@@ -26,14 +26,16 @@ module VirusScannerCallbacks
   end
 
   def virus_scan
-    scan = Scan.create!(common_attrs)
+    unless Rails.env.test?
+      scan = Scan.create!(common_attrs)
 
-    unless ENV["DISABLE_VIRUS_SCANNER"] == "true"
-      response = ::VirusScanner::File.scan_url(
-        scan.uuid,
-        self.send(mounted_file_namespace).url)
+      unless ENV["DISABLE_VIRUS_SCANNER"] == "true"
+        response = ::VirusScanner::File.scan_url(
+          scan.uuid,
+          self.send(mounted_file_namespace).url)
 
-      scan.update(vs_id: response["id"], status: response["status"])
+        scan.update(vs_id: response["id"], status: response["status"])
+      end
     end
   end
 end
