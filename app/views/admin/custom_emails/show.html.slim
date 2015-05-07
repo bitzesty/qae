@@ -14,20 +14,22 @@ header.page-header
         = select_tag "cutom_email_form[scope]", options_for_select(CustomEmailForm.scope.options, f.object.scope), class: "select required form-control"
 
   .clear
-  p.help-block.email-send-to-help
-    span.help-qae-opt-in
-      ' Sends to those that have said they are happy to be contacted about the queen's awards.
-    span.help-bis-opt-in
-      ' Sends to those that have said they are happy to be contacted about wider BIS-related info.
-    span.help-all-users
-      ' Sends to every registered user (not assessors or admins) in the system.
+  .row
+    .col-lg-7.col-md-6.col-sm-6.col-lg-offset-1.col-md-offset-2.col-sm-offset-2
+      p.help-block.email-send-to-help
+        span.help-qae-opt-in
+          ' Sends to those that have said they are happy to be contacted about the queen's awards.
+        span.help-bis-opt-in
+          ' Sends to those that have said they are happy to be contacted about wider BIS-related info.
+        span.help-all-users
+          ' Sends to every registered user (not assessors or admins) in the system.
 
-  .row.question-group.email-send-to
+  .row.question-group.email-send-subject
     .col-lg-1.col-md-2.col-sm-2
       h3
         label.string.required.control-label.form-label
           ' Subject
-    .col-lg-2.col-md-3.col-sm-3
+    .col-lg-7.col-md-6.col-sm-6
       .input.select.required.form-group
         = text_field_tag "cutom_email_form[subject]", f.object.subject, class: "large required form-control"
 

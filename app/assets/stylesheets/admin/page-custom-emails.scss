@@ -1,9 +1,20 @@
-.email-send-to {
-  margin-top: 40px;
-
+.email-send-to,
+.email-send-subject {
   h3 {
     margin-top: 0.1em;
   }
+}
+
+.email-send-to {
+  margin-top: 40px;
+}
+
+.email-send-subject {
+  margin-top: 20px;
+}
+
+.email-send-to-help {
+  margin-top: 0;
 }
 
 .email-message {
