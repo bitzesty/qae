@@ -5,7 +5,7 @@ describe CustomEmailForm do
 
   it "sends email to myself" do
     form = CustomEmailForm.new(user: admin, scope: "myself", message: "message", subject: "subject")
-    expect(form.emails).to eq([admin.email])
+    expect(form.users).to eq([admin])
   end
 
   it "sends email to users with qae_opt_in_group" do
@@ -18,7 +18,7 @@ describe CustomEmailForm do
                                message: "message",
                                subject: "subject")
 
-    expect(form.emails).to eq([user_1.email, user_3.email])
+    expect(form.users).to eq([user_1, user_3])
   end
 
   it "sends email to users with bis_opt_in" do
@@ -31,7 +31,7 @@ describe CustomEmailForm do
                                message: "message",
                                subject: "subject")
 
-    expect(form.emails).to eq([user_1.email, user_3.email])
+    expect(form.users).to eq([user_1, user_3])
   end
 
   it "sends email to all assessors" do
@@ -44,7 +44,7 @@ describe CustomEmailForm do
                                message: "message",
                                subject: "subject")
 
-    expect(form.emails).to eq([user_1.email, user_2.email, user_3.email])
+    expect(form.users).to eq([user_1, user_2, user_3])
   end
 
   it "sends email to all users" do
@@ -57,6 +57,6 @@ describe CustomEmailForm do
                                message: "message",
                                subject: "subject")
 
-    expect(form.emails).to eq([user_1.email, user_2.email, user_3.email])
+    expect(form.users).to eq([user_1, user_2, user_3])
   end
 end

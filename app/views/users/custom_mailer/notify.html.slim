@@ -1,5 +1,7 @@
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' Dear User,
+  ' Dear
+  = @user.full_name
+  ' ,
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   == @body
