@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150506150526) do
+ActiveRecord::Schema.define(version: 20150507143136) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -334,7 +334,7 @@ ActiveRecord::Schema.define(version: 20150506150526) do
   end
 
   create_table "scans", force: :cascade do |t|
-    t.string   "uuid"
+    t.string   "uuid",                         null: false
     t.string   "filename"
     t.string   "status"
     t.datetime "created_at"
@@ -342,7 +342,10 @@ ActiveRecord::Schema.define(version: 20150506150526) do
     t.integer  "form_answer_attachment_id"
     t.integer  "support_letter_attachment_id"
     t.integer  "audit_certificate_id"
+    t.string   "vs_id"
   end
+
+  add_index "scans", ["uuid"], name: "index_scans_on_uuid", unique: true, using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.datetime "created_at",    null: false
