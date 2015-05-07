@@ -52,13 +52,15 @@ describe "Assessment flow", %(
     login_as(primary, scope: :assessor)
     visit assessor_form_answer_path(form_answer)
 
-    Timeout.timeout(2) do
-      while page.evaluate_script('$("#case-summary-heading").length') == 0
-        sleep 0.2
+    page.document.synchronize do
+      element = first("#case-summary-heading .panel-title a")
+      if element
+        element.click
+      else
+        nil
       end
     end
 
-    find("#case-summary-heading .panel-title a").click
     within "#section-case-summary" do
       expect(page).to have_selector(".form-value p", text: text, count: 4)
       expect(page).to have_selector(".rag-text", text: "Green", count: 3)
