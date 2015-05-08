@@ -21,7 +21,7 @@ class Account < ActiveRecord::Base
   end
 
   def has_trade_award_in_this_year?
-    form_answers.for_year(Date.today.year + 1).
+    form_answers.for_year(AwardYear.current.year.to_s).
                  for_award_type(:trade).
                  present?
   end

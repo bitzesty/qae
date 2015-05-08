@@ -49,7 +49,7 @@ So that I can fill form completelly even if Javascript is turned off
   describe "Current Queen's Awards interactions" do
     let(:new_award_category) { "sustainable_development" }
     let(:new_award_category_name) { "Sustainable Development" }
-    let(:new_award_category_year) { Date.today.year.to_s }
+    let(:new_award_category_year) { (AwardYear.current.year - 1).to_s }
 
     let(:first_award) { awards[0] }
     let(:second_award) { awards[1] }
