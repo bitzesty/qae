@@ -17,7 +17,10 @@ describe Users::ShortlistedUnsuccessfulFeedbackMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to have_link("You can view your application feedback here.", href: "#")
+      expect(mail.html_part.decoded).to have_link(
+        "You can view your application feedback here.",
+        href: users_form_answer_feedback_url(form_answer, format: "pdf")
+      )
       expect(mail.html_part.decoded).to match("Bit Zesty")
     end
   end

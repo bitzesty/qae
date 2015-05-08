@@ -13,10 +13,6 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
   private
 
   def form_answer
-    @form_answer ||= resource.form_answer.decorate
-  end
-
-  def resource
-    @form_answer_feedback ||= current_user.feedbacks.find(params[:id])
+    @form_answer ||= current_account.form_answers.find(params[:id]).decorate
   end
 end
