@@ -3,5 +3,3 @@ ul.nav.nav-pills
     - if policy(role.singularize.to_sym).index?
       li class=('active' if controller_name == role) role="presentation"
         = link_to role.titleize, public_send("admin_#{role}_path")
-.clear
-br

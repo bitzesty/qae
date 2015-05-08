@@ -690,6 +690,12 @@ table .ellipsis {
     overflow: hidden;
   }
 
+  .form_answers-index-page & {
+    @media (max-width: 767px) {
+      margin-top: 15px;
+    }
+  }
+
   .search_query {
     position: relative;
 
@@ -1662,7 +1668,7 @@ table .ellipsis {
   }
 }
 
-.award-year-row {
+.award-year-z-index {
   .lte-ie7 & {
     position: relative;
     z-index: 2;

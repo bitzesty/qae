@@ -416,6 +416,14 @@
   .control-label {
     display: block;
   }
+
+  .select2-container {
+    width: 300px !important;
+
+    @media (max-width: 767px) {
+      width: 100% !important;
+    }
+  }
 }
 
 .js .js-attachment-form {
