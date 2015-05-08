@@ -9,9 +9,11 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
     ' nomination
   - else
     ' application
-  ' for The Queen's Award for Enterprise
+  ' for
   - if @form_answer.promotion?
-    ' Promotion
+    ' The Queen's Award for Enterprise Promotion
+  - else
+    ' The Queen's Awards for Enterprise
   = AwardYear.current.year
   ' .
 
