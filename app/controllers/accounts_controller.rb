@@ -85,7 +85,8 @@ class AccountsController < ApplicationController
       :first_name,
       :last_name,
       :job_title,
-      :phone_number
+      :phone_number,
+      :email
     )
   end
 
