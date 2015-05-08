@@ -4,6 +4,11 @@ class QAEFormBuilder
 
   class StepDecorator < QAEDecorator
 
+    QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE = %w(
+      innovation_materials
+      org_chart
+    )
+
     def next
       @next ||= begin
         form.steps[index + 1]
@@ -42,10 +47,19 @@ class QAEFormBuilder
         question_possible_sub_keys(question).each do |sub_question_key|
           allowed_params[sub_question_key] = form_data[sub_question_key]
         end
+
+        if question.delegate_obj.is_a?(QAEFormBuilder::UploadQuestion) &&
+          form_data[question.key].nil?
+          # This code handles case when user removes all attachments / links
+          # from Form: Add Website Address/Documents section
+          # As in this case params wouldn't have empty hash {}
+          # And data for this question wouldn't be updated
+          allowed_params[question.key] = {}
+        end
       end
 
       allowed_params = allowed_params.select do |k, v|
-        v.present?
+        v.present? || QUESTIONS_WITH_NOT_REJECTING_BLANKS_ON_SAVE.include?(k.to_s)
       end
 
       allowed_params
