@@ -33,15 +33,13 @@
 
   br
 
-- unless @search.query?
-- if current_subject.categories_as_lead.include?(current_award_type)
-  .well.bulk-assign-assessors-form.if-no-js-hide
-    h3 Bulk Assign Assessors
-    = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
-      = flash[:error]
-      fieldset.question-group
-        .row
-          .col-md-4.col-sm-5
+  - if current_subject.categories_as_lead.include?(current_award_type)
+    .bulk-assign-assessors-form.if-no-js-hide
+      .well
+        h3 Bulk Assign Assessors
+        = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
+          = flash[:error]
+          fieldset.question-group
             .input.select.form-group
               label.select.control-label
                 ' Assign Primary Assessor to these applications
@@ -56,12 +54,12 @@
                            [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
                            { include_blank: true },
                            class: "form-control"
-          = f.text_field :form_answer_ids, class: "if-js-hide visuallyhidden"
+            = f.text_field :form_answer_ids, class: "if-js-hide visuallyhidden"
 
-        = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
-        = f.submit "Assign", class: "btn btn-primary"
+            = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
+            = f.submit "Assign", class: "btn btn-primary"
 
-br
+      br
 
 = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   = hidden_field_tag :award_type, current_award_type
