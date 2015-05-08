@@ -23,23 +23,23 @@ class CustomEmailForm
   end
 
   def send!
-    emails.each do |email|
-      Users::CustomMailer.notify(email, message, subject).deliver_later!
+    users.each do |user|
+      Users::CustomMailer.notify(user.id, user.class.name, message, subject).deliver_later!
     end
   end
 
-  def emails
+  def users
     case scope
     when "myself"
-      [user.email]
+      [user]
     when "qae_opt_in_group"
-      User.qae_opt_in_group.pluck(:email)
+      User.qae_opt_in_group.by_email
     when "bis_opt_in"
-      User.bit_opt_in.pluck(:email)
+      User.bit_opt_in.by_email
     when "assessors"
-      Assessor.all.pluck(:email)
+      Assessor.all.by_email
     when "all_users"
-      User.all.pluck(:email)
+      User.all.by_email
     else
       raise ArgumentError, "#{scope} is not included in the list"
     end

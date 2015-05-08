@@ -41,6 +41,8 @@ class Assessor < ActiveRecord::Base
                     }
                   }
 
+  scope :by_email, -> { order(:email) }
+
   def self.roles
     [["Not Assigned", nil], ["Lead Assessor", "lead"], ["Assessor", "regular"]]
   end
