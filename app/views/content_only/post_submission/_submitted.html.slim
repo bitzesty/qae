@@ -1,0 +1,21 @@
+- submitted = FormAnswerDecorator.decorate_collection(award_applications.select { |app| app.decorate.application_in_progress? })
+- if submitted.present?
+  - submitted.each do |award|
+    .container-split.award-list
+      .content-left
+        h3
+          = award.application_name
+          small
+            = award.award_type
+            '  Award
+      .content-right.content-offset-24
+        p
+          ' Your
+          - if award.promotion?
+            ' nomination
+          - else
+            ' application
+          ' is currently being assessed.
+      .clear
+  br
+  br
