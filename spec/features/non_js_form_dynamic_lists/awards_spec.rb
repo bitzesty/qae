@@ -28,7 +28,7 @@ So that I can fill form completelly even if Javascript is turned off
         ]
       end
 
-      let(:new_award_year) { Date.today.year.to_s }
+      let(:new_award_year) { AwardYear.current.year.to_s }
 
       include_context "non js form ep form awards"
     end
