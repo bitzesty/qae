@@ -47,24 +47,18 @@ Rails.application.routes.draw do
 
   get "/apply_innovation_award"                         => "content_only#apply_innovation_award",                         as: "apply_innovation_award"
   get "/award_info_innovation"                          => "content_only#award_info_innovation",                          as: "award_info_innovation"
-  get "/innovation_award_eligible_failure"              => "content_only#innovation_award_eligible_failure",              as: "innovation_award_eligible_failure"
 
   get "/apply_international_trade_award"                => "content_only#apply_international_trade_award",                as: "apply_international_trade_award"
   get "/award_info_trade"                               => "content_only#award_info_trade",                               as: "award_info_trade"
-  get "/international_trade_award_eligible_failure"     => "content_only#international_trade_award_eligible_failure",     as: "trade_award_eligible_failure"
 
   get "/apply_sustainable_development_award"            => "content_only#apply_sustainable_development_award",            as: "apply_sustainable_development_award"
   get "/award_info_development"                         => "content_only#award_info_development",                         as: "award_info_development"
-  get "/sustainable_development_award_eligible_failure" => "content_only#sustainable_development_award_eligible_failure", as: "development_award_eligible_failure"
 
   get "/apply_enterprise_promotion_award"               => "content_only#apply_enterprise_promotion_award",               as: "apply_enterprise_promotion_award"
   get "/award_info_promotion"                           => "content_only#award_info_promotion",                           as: "award_info_promotion"
 
   get "/declaration_of_corporate_responsibility"        => "content_only#declaration_of_corporate_responsibility",        as: "declaration_of_corporate_responsibility"
   get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
-  get "/press_comment"                                  => "content_only#press_comment",                                  as: "press_comment"
-  get "/buckingham_palace_attendance"                   => "content_only#buckingham_palace_attendance",                   as: "buckingham_palace_attendance"
-  get "/submitted_nomination_successful"                => "content_only#submitted_nomination_successful",                as: "submitted_nomination_successful"
 
   root to: Rails.env.production? ? redirect("https://www.gov.uk/apply-queens-award-enterprise ") : "content_only#dashboard"
 
