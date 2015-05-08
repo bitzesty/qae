@@ -20,22 +20,26 @@ module VirusScannerCallbacks
       status: (ENV["DISABLE_VIRUS_SCANNER"] == "true" ? "clean" : "scanning")
     }
 
+    if Rails.env.test? && ops[:filename].blank?
+      # In Tests we can do not upload real files
+      # So, this stub is fixing validation errors in tests
+      ops[:filename] = "test.jpg"
+    end
+
     ops[foreign_key_id.to_sym] = self.id
 
     ops
   end
 
   def virus_scan
-    unless Rails.env.test?
-      scan = Scan.create!(common_attrs)
+    scan = Scan.create!(common_attrs)
 
-      unless ENV["DISABLE_VIRUS_SCANNER"] == "true"
-        response = ::VirusScanner::File.scan_url(
-          scan.uuid,
-          self.send(mounted_file_namespace).url)
+    unless ENV["DISABLE_VIRUS_SCANNER"] == "true"
+      response = ::VirusScanner::File.scan_url(
+        scan.uuid,
+        self.send(mounted_file_namespace).url)
 
-        scan.update(vs_id: response["id"], status: response["status"])
-      end
+      scan.update(vs_id: response["id"], status: response["status"])
     end
   end
 end
