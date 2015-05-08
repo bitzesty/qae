@@ -98,9 +98,11 @@ class Reports::CasesStatusReport
 
   def build
     rows = []
-    scope = ::FormAnswer.select(:id).where(award_year_id: @year.id, submitted: true)
+
+    scope = @year.form_answers.where(submitted: true).order(:id)
     scope.find_in_batches do |batch|
       form_answers = FormAnswer.where(id: batch.map(&:id))
+                     .order(:id)
                      .includes(:user,
                                :assessor_assignments,
                                :audit_certificate,

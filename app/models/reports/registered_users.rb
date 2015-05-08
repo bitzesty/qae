@@ -111,9 +111,10 @@ class Reports::RegisteredUsers
   def build
     rows = []
 
-    scope = ::FormAnswer.select(:id).where(award_year_id: @year.id)
+    scope = @year.form_answers.order(:id)
     scope.find_in_batches do |batch|
       form_answers = FormAnswer.where(id: batch.map(&:id))
+                     .order(:id)
                      .includes(:user,
                                :assessor_assignments,
                                :primary_assessor,

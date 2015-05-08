@@ -10,7 +10,7 @@ describe "Admin generates the CSV reports" do
   let!(:promotion) { create(:form_answer, :promotion, user: user) }
 
   let(:output) do
-    csv = Reports::AdminReport.new(id, trade.award_year).build
+    csv = Reports::AdminReport.new(id, AwardYear.current).build
     CSV.parse(csv)
   end
 
