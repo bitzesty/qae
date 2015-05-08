@@ -17,6 +17,7 @@
 
   - question.options.each do |answer|
     - c = question.preselected_condition_by_option(answer)
+
     label.selectable class=("display-none" if condition.present?)
       - if c.present?
         input.js-trigger-autosave type="radio" name=question.input_name value=answer.value data-preselected-condition="#{c.question_suffix}_#{c.parent_question_answer_key}" checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s) *possible_read_only_ops
