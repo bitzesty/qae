@@ -59,6 +59,14 @@ OSX users you might need to install pcre headers:
 brew install pcre
 ```
 
+## Profile mode in Development
+
+To enable [rack mini profiler](https://github.com/MiniProfiler/rack-mini-profiler)
+in development mode set in .env:
+```
+PROFILE_MODE=true
+```
+
 ## Users import
 ```
   rake users_import:import_from_csv FILEPATH="./spec/fixtures/users.csv"
