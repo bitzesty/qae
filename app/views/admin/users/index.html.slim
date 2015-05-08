@@ -1,19 +1,22 @@
 = simple_form_for @search, url: "#", method: :get, as: :search, html: { class: "search-form" } do |f|
   .row
-    .col-md-3.col-xs-8
+    .col-md-4.col-sm-5.col-xs-12.pull-right
       .form-group.search-input
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = submit_tag :submit, class: 'search-submit'
+  .clear
 
-    .col-md-3.col-xs-4.pull-right.text-right
+  .row
+    .col-md-9.col-sm-8
+      = render 'admin/users/navigation'
+
+    .col-md-3.col-sm-4.col-xs-12.pull-right.text-right
       = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-primary btn-md' do
         span.glyphicon.glyphicon-user
         = "New #{controller_name.singularize}"
   .clear
 
   br
-
-  = render 'admin/users/navigation'
 
   = render 'list', resources: @resources, f: f
 
