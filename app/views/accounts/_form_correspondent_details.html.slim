@@ -11,3 +11,7 @@ fieldset
 fieldset
   h3 = f.label :phone_number, label: "Your telephone number"
   = f.input :phone_number, input_html: { class: 'big small', autocomplete: "off"}, label: false
+
+fieldset
+  h3 = f.label :email, label: "Your email address"
+  = f.input :email, input_html: { class: 'big large', autocomplete: "off"}, label: false
