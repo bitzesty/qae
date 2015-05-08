@@ -1,5 +1,6 @@
-require "virus_scanner"
 class FormAnswerAttachment < ActiveRecord::Base
+  include VirusScannerCallbacks
+
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
   has_one :scan, class_name: Scan
@@ -48,28 +49,9 @@ class FormAnswerAttachment < ActiveRecord::Base
     attachable_type != "User"
   end
 
+  # Virus Scanner check after upload
   def store_file!
     super()
     virus_scan
-  end
-
-  def virus_scan
-    if ENV["DISABLE_VIRUS_SCANNER"] == "true"
-      Scan.create(
-        filename: file.current_path,
-        uuid: SecureRandom.uuid,
-        form_answer_attachment_id: id,
-        status: "clean"
-      )
-    else
-      response = ::VirusScanner::File.scan_url(file.url)
-
-      Scan.create(
-        filename: file.current_path,
-        uuid: response["id"],
-        status: response["status"],
-        form_answer_attachment_id: id
-      )
-    end
   end
 end

@@ -548,12 +548,12 @@ GEM
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
       equalizer (~> 0.0, >= 0.0.9)
-    virus-scanner (0.0.4)
+    virus-scanner (0.0.5)
       faraday
       faraday_middleware
-    vs_rails (0.0.6)
+    vs_rails (0.0.7)
       rails (= 4.2.0)
-      virus-scanner (~> 0.0.4)
+      virus-scanner (~> 0.0.5)
     warden (1.2.3)
       rack (>= 1.0)
     webmock (1.21.0)
@@ -651,7 +651,7 @@ DEPENDENCIES
   turnip
   uglifier (>= 1.3.0)
   virtus
-  vs_rails (~> 0.0.6)
+  vs_rails (~> 0.0.7)
   webmock
   whenever
   wicked (~> 1.1)

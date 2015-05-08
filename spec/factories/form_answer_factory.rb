@@ -36,7 +36,10 @@ FactoryGirl.define do
       state "submitted"
       submitted true
       after(:create) do |rec|
-        scan = rec.audit_certificate.build_scan(status: "clean")
+        scan = rec.audit_certificate.build_scan(
+          uuid: SecureRandom.uuid,
+          status: "clean"
+        )
         scan.save(validate: false)
       end
     end

@@ -1,5 +1,6 @@
-require "virus_scanner"
 class AuditCertificate < ActiveRecord::Base
+  include VirusScannerCallbacks
+
   mount_uploader :attachment, AuditCertificateUploader
   has_one :scan, class_name: Scan
 
@@ -31,27 +32,9 @@ class AuditCertificate < ActiveRecord::Base
     reviewed_at.present?
   end
 
+  # Virus Scanner check after upload
   def store_attachment!
     super()
     virus_scan
-  end
-
-  def virus_scan
-    if ENV["DISABLE_VIRUS_SCANNER"] == "true"
-      Scan.create(
-        filename: attachment.current_path,
-        uuid: SecureRandom.uuid,
-        audit_certificate_id: id,
-        status: "clean"
-      )
-    else
-      response = ::VirusScanner::File.scan_url(attachment.url)
-      Scan.create(
-        filename: attachment.current_path,
-        uuid: response["id"],
-        status: response["status"],
-        audit_certificate_id: id
-      )
-    end
   end
 end
