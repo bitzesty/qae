@@ -52,8 +52,8 @@ class QAEFormBuilder
       placeholder_preselected_conditions.detect do |c|
         linked_answers.any? do |a|
           a["category"] == "international_trade" &&
-            a["year"].to_i >= (AwardYear.current.year - 5)
-        end
+            a["year"].to_i > (AwardYear.current.year - 5)
+        end && answers["queen_award_holder"] == "yes"
       end
     end
 
