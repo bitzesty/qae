@@ -83,7 +83,15 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
       form_answer_attachment.destroy
     end
 
-    redirect_to edit_form_url(id: @form_answer.id, step: "company-information")
+    respond_to do |format|
+      format.html do
+        if request.xhr?
+          render nothing: true
+        else
+          redirect_to edit_form_url(id: @form_answer.id, step: "company-information")
+        end
+      end
+    end
   end
 
   private
