@@ -54,14 +54,17 @@ ready = ->
       errors += error
 
     form.find(".errors-holder").text(errors)
+
+  $("#new_form_answer_attachment").on "fileuploadsubmit", (e, data) ->
+    data.formData =
+      authenticity_token: $("meta[name='csrf-token']").attr("content")
+      format: "js"
+      "form_answer_attachment[title]": $("#form_answer_attachment_title").val()
+
   $("#new_form_answer_attachment").fileupload
     autoUpload: false
     dataType: "html"
     forceIframeTransport: true
-    formData: [
-      { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content")},
-      { name: "format", value: "js" }
-    ]
     add: (e, data) ->
       $(".attachment-title").val(data.files[0].name)
       $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
