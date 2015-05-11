@@ -310,8 +310,20 @@ jQuery ->
       $(li).find("textarea").each process_input
       idx++
 
-  appendLinkDocumentRemoveLink = (div) ->
+  appendRemoveLinkForWebsiteLink = (div) ->
     remove_link = $("<a>").addClass("remove-link").prop("href", "#").text("Remove")
+    div.append(remove_link)
+
+  appendRemoveLinkForAttachment = (div, data) ->
+    attachment_id = data.result['id']
+    form_answer_id = data.result['form_answer_id']
+    destroy_url = "/form/form_answers/" + form_answer_id + "/form_attachments/" + attachment_id
+
+    remove_link = $("<a>").addClass("remove-link")
+                          .prop("href", destroy_url)
+                          .attr("data-method", "delete")
+                          .attr("data-remote", "true")
+                          .text("Remove")
     div.append(remove_link)
 
   $('.js-file-upload').each (idx, el) ->
@@ -377,7 +389,7 @@ jQuery ->
         input = $("<input class=\"medium\" type=\"text\">").
           prop('name', "#{form_name}[#{name}][][link]")
         label.append(input)
-        appendLinkDocumentRemoveLink(div)
+        appendRemoveLinkForWebsiteLink(div)
         div.append(label)
         new_el.append(div)
       else
@@ -395,7 +407,7 @@ jQuery ->
         hidden_input = $("<input type='hidden' name='#{form_name}[#{name}][][file]' value='#{data.result['id']}' />")
 
         div.append(hidden_input)
-        appendLinkDocumentRemoveLink(div)
+        appendRemoveLinkForAttachment(div, data)
         new_el.append(div)
 
       if needs_description

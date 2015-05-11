@@ -1,7 +1,7 @@
 class Form::FormAttachmentsController < Form::MaterialsBaseController
 
   # This controller handles saving of attachments
-  # This section is used in case if JS disabled
+  # This section is used in case if JS disabled (destroy action used for both JS and NON JS)
 
   expose(:form_answer_attachments) do
     @form_answer.form_answer_attachments
@@ -78,7 +78,15 @@ class Form::FormAttachmentsController < Form::MaterialsBaseController
       form_answer_attachment.destroy
     end
 
-    redirect_to form_form_answer_form_attachments_url(@form_answer)
+    respond_to do |format|
+      format.html do
+        if request.xhr?
+          render nothing: true
+        else
+          redirect_to form_form_answer_form_attachments_url(@form_answer)
+        end
+      end
+    end
   end
 
   private
