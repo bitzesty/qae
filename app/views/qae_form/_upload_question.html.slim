@@ -15,11 +15,15 @@
               - if question.key == :org_chart
                 = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "remove-link if-js-hide"
 
-                a.remove-link.if-no-js-hide href="#" *possible_read_only_ops
-                  | Remove
+                = link_to "Remove", form_form_answer_organisational_chart_url(@form_answer.id, el['file'].to_i),
+                                    possible_read_only_ops.merge({class: "remove-link if-no-js-hide",
+                                                                  remote: true,
+                                                                  method: :delete})
               - else
-                a.remove-link href="#" *possible_read_only_ops
-                  | Remove
+                = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
+                                    possible_read_only_ops.merge({class: "remove-link",
+                                                                  remote: true,
+                                                                  method: :delete})
 
             - elsif el['link'].present?
               a.remove-link href="#" *possible_read_only_ops
