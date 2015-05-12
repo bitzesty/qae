@@ -59,23 +59,27 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
         assert_results_number(0)
       end
 
-      it "filters by substatus" do
-        FormAnswer.where(award_type: "development").each do |form|
-          form.update_column(:state, "assessment_in_progress")
+      describe "filtering by substatus" do
+        before do
+          FormAnswer.where(award_type: "development").each do |form|
+            form.update_column(:state, "assessment_in_progress")
+          end
+          visit assessor_form_answers_path
         end
-        visit assessor_form_answers_path
 
-        assert_results_number(3)
-        click_status_option("Missing SIC code")
-        @development_forms.slice!(0)
-        assert_results_number(2)
-        click_status_option("Missing Audit Certificate")
-        assert_results_number(2)
-        click_status_option("Missing Audit Certificate")
-        assert_results_number(2)
-        assign_dummy_audit_certificate(@development_forms.slice!(0))
-        click_status_option("Missing Audit Certificate")
-        assert_results_number(1)
+        it "filters by substatus" do
+          assert_results_number(3)
+          click_status_option("Missing SIC code")
+          @development_forms.slice!(0)
+          assert_results_number(2)
+          click_status_option("Missing Audit Certificate")
+          assert_results_number(2)
+          click_status_option("Missing Audit Certificate")
+          assert_results_number(2)
+          assign_dummy_audit_certificate(@development_forms.slice!(0))
+          click_status_option("Missing Audit Certificate")
+          assert_results_number(1)
+        end
       end
     end
   end
