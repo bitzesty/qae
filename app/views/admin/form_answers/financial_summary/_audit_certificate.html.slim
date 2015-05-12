@@ -1,5 +1,5 @@
 label.form-label Audit Certificate
-- if resource.audit_certificate.present?
+- if policy(resource).download_audit_certificate_pdf?
   p = link_to "View Audit Certificate", resource.audit_certificate.attachment_url,
       target: "_blank", class: "js-audit-certificate-title"
 .form-value
