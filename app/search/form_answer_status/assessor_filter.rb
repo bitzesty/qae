@@ -10,10 +10,6 @@ class FormAnswerStatus::AssessorFilter
       label: "Assessment in progress",
       states: [:assessment_in_progress]
     },
-    not_submitted: {
-      label: "Not submitted",
-      states: [:not_submitted]
-    },
     recommended: {
       label: "Recommended",
       states: [:recommended]
@@ -25,10 +21,6 @@ class FormAnswerStatus::AssessorFilter
     reserved: {
       label: "Reserved",
       states: [:reserved]
-    },
-    not_eligible: {
-      label: "Not Eligible",
-      states: [:not_eligible]
     },
     withdrawn: {
       label: "Withdrawn",
