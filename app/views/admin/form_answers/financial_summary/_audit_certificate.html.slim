@@ -1,5 +1,7 @@
 label.form-label Audit Certificate
-p = link_to "View Audit Certificate", "#", target: "_blank"
+- if resource.audit_certificate.present?
+  p = link_to "View Audit Certificate", resource.audit_certificate.attachment_url,
+      target: "_blank", class: "js-audit-certificate-title"
 .form-value
   - unless resource.audit_certificate.try(:reviewed?)
     p.audit-cert-nil-val Not confirmed yet.
