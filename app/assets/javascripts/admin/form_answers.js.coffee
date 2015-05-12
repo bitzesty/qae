@@ -261,8 +261,9 @@ handleCompanyDetailsForm = ->
 
       $(newNestedForm).find('label').each ->
         oldLabel = $(this).attr 'for'
-        newLabel = oldLabel.replace(new RegExp(/_[0-9]+_/), "_#{formsOnPage}_")
-        $(this).attr 'for', newLabel
+        if oldLabel
+          newLabel = oldLabel.replace(new RegExp(/_[0-9]+_/), "_#{formsOnPage}_")
+          $(this).attr 'for', newLabel
 
       $(newNestedForm).find('select, input').each ->
         oldId = $(this).attr 'id'

@@ -462,3 +462,21 @@
     clear:both;
   }
 }
+
+.form-group.previous-wins-form.form-edit {
+  .form-fields {
+    display: block !important;
+  }
+}
+
+.form-group.sic-code.form-edit {
+  .form-fields {
+    margin-left: 10px;
+  }
+
+  .form-save-link {
+    position: relative;
+    top: -5px;
+    margin-top: 0;
+  }
+}
