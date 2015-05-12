@@ -1,7 +1,7 @@
 - if question.key == :org_chart
   = render "shared/non_js_dynamic_list_redirect_warning", add_message: "Upload"
 
-.js-upload-wrapper data-max-attachments=question.max_attachments data-form-name=question.form_name data-name=question.key data-description=(question.description ? '1' : nil)
+.js-upload-wrapper data-max-attachments=question.max_attachments data-form-name=question.form_name data-name=question.key data-description=(question.description ? '1' : nil) data-list-namespace=(question.key == :org_chart ? "organisational_charts" : "form_attachments")
   ul.js-uploaded-list.list-add
     - (question.input_value(json: true) || {}).to_a.sort_by{|o| o.first.to_i}.each do |(idx, el)|
 

@@ -314,15 +314,11 @@ jQuery ->
     remove_link = $("<a>").addClass("remove-link").prop("href", "#").text("Remove")
     div.append(remove_link)
 
-  appendRemoveLinkForAttachment = (div, name, data) ->
+  appendRemoveLinkForAttachment = (div, wrapper, data) ->
     attachment_id = data.result['id']
     form_answer_id = data.result['form_answer_id']
-
-    destroy_url = if name == "org_chart"
-      "/form/form_answers/" + form_answer_id + "/organisational_charts/" + attachment_id
-    else
-      "/form/form_answers/" + form_answer_id + "/form_attachments/" + attachment_id
-
+    list_namespace = wrapper.attr("data-list-namespace")
+    destroy_url = "/form/form_answers/" + form_answer_id + "/" + list_namespace + "/" + attachment_id
 
     remove_link = $("<a>").addClass("remove-link")
                           .prop("href", destroy_url)
@@ -412,7 +408,7 @@ jQuery ->
         hidden_input = $("<input type='hidden' name='#{form_name}[#{name}][][file]' value='#{data.result['id']}' />")
 
         div.append(hidden_input)
-        appendRemoveLinkForAttachment(div, name, data)
+        appendRemoveLinkForAttachment(div, wrapper, data)
         new_el.append(div)
 
       if needs_description
