@@ -2,10 +2,10 @@
   .application-notice.help-notice
     p You did not submit any applications.
 - else
-  - if Settings.after_shortlisting_stage?
-    = render("content_only/post_submission/shortlisted", award_applications: award_applications)
-  - elsif Settings.winners_stage?
+  - if Settings.winners_stage?
     = render("content_only/post_submission/winners", award_applications: award_applications)
+  - elsif Settings.after_shortlisting_stage?
+    = render("content_only/post_submission/shortlisted", award_applications: award_applications)
   - else
     = render("content_only/post_submission/submitted", award_applications: @user_award_forms)
 
