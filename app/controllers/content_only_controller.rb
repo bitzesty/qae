@@ -31,19 +31,6 @@ class ContentOnlyController < ApplicationController
                   :award_info_promotion
                 ]
 
-  before_action :landing_page,
-                only: [
-                  :home,
-                  :awards_for_organisations,
-                  :enterprise_promotion_awards,
-                  :how_to_apply,
-                  :timeline,
-                  :additional_information_and_contact,
-                  :apply_for_queens_award_for_enterprise,
-                  :sign_up_complete,
-                  :privacy,
-                  :cookies
-                ]
   before_action :restrict_access_if_admin_in_read_only_mode!,
                 only: [:dashboard]
 
@@ -52,9 +39,9 @@ class ContentOnlyController < ApplicationController
   }
 
   def dashboard
-    @user_award_forms = current_user.account.form_answers
-                                            .where(award_year: AwardYear.current)
-                                            .order("award_type")
+    @user_award_forms = current_account.form_answers
+                                       .where(award_year: AwardYear.current)
+                                       .order("award_type")
 
     forms = @user_award_forms.group_by(&:award_type)
 
@@ -67,9 +54,9 @@ class ContentOnlyController < ApplicationController
   end
 
   def award_winners_section
-    @user_award_forms_submitted = current_user.account.form_answers
-                                                      .where(submitted: true)
-                                                      .order("award_type")
+    @user_award_forms_submitted = current_account.form_answers
+                                                 .where(submitted: true)
+                                                 .order("award_type")
   end
 
   def get_current_form
@@ -81,15 +68,5 @@ class ContentOnlyController < ApplicationController
 
   def get_collaborators
     @collaborators = current_user.account.collaborators_without(current_user)
-  end
-
-  def landing_page
-    @is_landing_page = true
-  end
-
-  def landing_page?
-    if defined? @is_landing_page
-      return true
-    end
   end
 end
