@@ -52,15 +52,18 @@ class ContentOnlyController < ApplicationController
   }
 
   def dashboard
-    @user_award_forms = current_user.account.form_answers.order("award_type")
-    @user_award_forms_trade = @user_award_forms.where(award_type: "trade")
-    @user_award_forms_innovation = @user_award_forms.where(award_type: "innovation")
-    @user_award_forms_development = @user_award_forms.where(award_type: "development")
-    @user_award_forms_promotion = @user_award_forms.where(award_type: "promotion")
+    @user_award_forms = current_user.account.form_answers
+                                            .where(award_year: AwardYear.current)
+                                            .order("award_type")
 
-    @user_award_forms_submitted = current_user.account.form_answers
-                                                      .where(submitted: true)
-                                                      .order("award_type")
+    forms = @user_award_forms.group_by(&:award_type)
+
+    @user_award_forms_trade = forms["trade"]
+    @user_award_forms_innovation = forms["innovation"]
+    @user_award_forms_development = forms["development"]
+    @user_award_forms_promotion = forms["promotion"]
+
+    @user_award_forms_submitted = @user_award_forms.where(submitted: true)
   end
 
   def award_winners_section

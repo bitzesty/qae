@@ -1,6 +1,6 @@
-- submitted = FormAnswerDecorator.decorate_collection(award_applications.select { |app| app.decorate.application_in_progress? })
-- if submitted.present?
-  - submitted.each do |award|
+- applications = FormAnswerDecorator.decorate_collection(award_applications.where(state: %w(assessment_in_progress submitted not_submitted application_in_progress)))
+- if applications.present?
+  - applications.each do |award|
     .container-split.award-list
       .content-left
         h3
@@ -11,10 +11,8 @@
       .content-right.content-offset-24
         p
           ' Your
-          - if award.promotion?
-            ' nomination
-          - else
-            ' application
+          - link_name = award.promotion? ? "nomination" : "application"
+          => link_to link_name, edit_form_url(award.id)
           ' is currently being assessed.
       .clear
   br
