@@ -1045,6 +1045,25 @@ input[type="file"] {
   }
 }
 
+// Select2 dropdowns
+.select2-container {
+  min-width: 14em;
+  
+  .select2-selection__rendered {
+    font-size: 14px;
+  }
+
+  .select2-search__field {
+    width: 100%;
+    margin: 0;
+    outline: none;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}
+
 // Error styling
 .errors-box {
   padding: $gutter-half $gutter-two-thirds;
