@@ -107,10 +107,6 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
-  def application_in_progress?
-    ["submitted", "assessment_in_progress"].include? object.state
-  end
-
   def shortlisted?
     ["recommended", "reserved"].include? object.state
   end
