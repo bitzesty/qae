@@ -16,6 +16,9 @@
 #= require_tree .
 
 jQuery ->
+  # initialize Select dropdowns, if needed
+  window.Select2Dropdowns.init()
+
   # This is a very primitive way of testing.
   # Should be refactored once forms stabilize.
   #
