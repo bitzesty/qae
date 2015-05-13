@@ -1,4 +1,4 @@
-window.Select2Dropdowns = 
+window.Select2Dropdowns =
   init: ->
     console.log "really?"
     if $(".select2").length
