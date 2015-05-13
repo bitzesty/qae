@@ -67,11 +67,19 @@ module ApplicationHelper
   end
 
   def application_deadline(kind)
-    Settings.current.deadlines.where(kind: kind).first.decorate.formatted_trigger_time
+    deadline = Rails.cache.fetch("#{kind}_deadline", expires: 1.minute) do
+      Settings.current.deadlines.where(kind: kind).first
+    end
+
+    deadline.decorate.formatted_trigger_time
   end
 
   def application_deadline_short(kind)
-    Settings.current.deadlines.where(kind: kind).first.decorate.formatted_trigger_time_short
+    deadline = Rails.cache.fetch("#{kind}_deadline", expires: 1.minute) do
+      Settings.current.deadlines.where(kind: kind).first
+    end
+
+    deadline.decorate.formatted_trigger_time_short
   end
 
   def format_date(date)

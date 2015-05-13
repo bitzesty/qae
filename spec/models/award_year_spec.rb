@@ -1,7 +1,9 @@
 require "rails_helper"
 
 describe AwardYear do
-  before { allow(described_class).to receive(:mock_current_year?).and_return(false) }
+  before do
+    allow(described_class).to receive(:mock_current_year?).and_return(false)
+  end
 
   describe ".current" do
     context "default submission beginning (21 of April 2015)" do
