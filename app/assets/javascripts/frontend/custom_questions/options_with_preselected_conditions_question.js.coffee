@@ -36,7 +36,7 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
     $(this).closest(".list-add").find("li").each ->
       award_category = $(this).find("[data-dependable-option-siffix='category']").val()
       award_year = $(this).find("[data-dependable-option-siffix='year']").val()
-      console.log award_year, lowest_year
+
       if award_category == "international_trade" && award_year != lowest_year && awarded
         trade_award_and_not_lowest_year = true
 

@@ -38,7 +38,6 @@ window.AuditCertificatesUpload =
 
     failed = (e, data) ->
       error_message = data.jqXHR.responseText
-      console.log data
       parent.find(".errors-container").html("<li>" + error_message + "</li>")
       list.addClass("hidden")
       form.removeClass("hidden")
