@@ -294,10 +294,5 @@ class FormController < ApplicationController
       flash.alert = "Sorry, submission is still closed"
       redirect_to dashboard_url
     end
-
-    if submission_ended?
-      flash.alert = "Sorry, submission has already ended"
-      redirect_to dashboard_url
-    end
   end
 end

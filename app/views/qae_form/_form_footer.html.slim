@@ -16,7 +16,10 @@ footer
 
       - if step.next
         li.submit.js-next-link.js-step-link data-step="step-#{step.next.title.parameterize}"
-          = button_tag rel: "next", title: "Navigate to next part", class: "button" do
+          - opts = possible_read_only_ops
+          - opts[:class] ||= ""
+          - opts[:class] << " button"
+          = button_tag opts.merge(rel: "next", title: "Navigate to next part") do
             ' Save and continue
 
       - else
@@ -25,7 +28,7 @@ footer
             button type="submit" name="submit" value="true" class="button #{step.submit.style.presence}" *possible_read_only_ops(true)
               = step.submit.text
 
-      - unless admin_in_read_only_mode?
+      - if !admin_in_read_only_mode? && !submission_ended?
         li.save-quit-link
           span.if-js-hide
             = button_tag "Save and come back later", class: "save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
