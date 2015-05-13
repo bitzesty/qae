@@ -31,5 +31,7 @@ module Qae
     config.generators do |g|
       g.test_framework :rspec
     end
+
+    config.cache_store = :memory_store
   end
 end

@@ -20,6 +20,9 @@ class EmailNotification < ActiveRecord::Base
 
   validates :kind, :trigger_at, presence: true
 
+  after_save :clear_cache
+  after_destroy :clear_cache
+
   scope :current, -> { where("trigger_at < ?", Time.now.utc).where("sent = 'f' OR sent IS NULL") }
 
   def self.not_shortlisted
@@ -28,5 +31,13 @@ class EmailNotification < ActiveRecord::Base
 
   def self.not_awarded
     where(kind: "unsuccessful_notification")
+  end
+
+  private
+
+  def clear_cache
+    Rails.cache.clear("current_settings")
+    Rails.cache.clear("current_award_year")
+    Rails.cache.clear("#{kind.value}_notification")
   end
 end

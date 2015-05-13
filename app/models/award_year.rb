@@ -14,22 +14,24 @@ class AwardYear < ActiveRecord::Base
   end
 
   def self.current
-    return where(year: 2016).first_or_create if mock_current_year?
-    now = DateTime.now
-    deadline = AwardYear.where(year: now.year + 1)
-                        .first_or_create
-                        .settings.deadlines
-                        .submission_start
-                        .try(:trigger_at)
+    Rails.cache.fetch "current_award_year", expires_in: 1.minute do
+      return where(year: 2016).first_or_create if mock_current_year?
+      now = DateTime.now
+      deadline = AwardYear.where(year: now.year + 1)
+                          .first_or_create
+                          .settings.deadlines
+                          .submission_start
+                          .try(:trigger_at)
 
-    deadline ||= Date.new(now.year, 4, 21)
-    if now >= deadline.to_datetime
-      y = now.year + 1
-    else
-      y = now.year
+      deadline ||= Date.new(now.year, 4, 21)
+      if now >= deadline.to_datetime
+        y = now.year + 1
+      else
+        y = now.year
+      end
+
+      where(year: y).first_or_create
     end
-
-    where(year: y).first_or_create
   rescue ActiveRecord::RecordNotUnique
     retry
   end
