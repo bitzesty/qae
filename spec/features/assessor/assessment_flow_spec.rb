@@ -78,11 +78,16 @@ describe "Assessment flow", %(
     visit assessor_form_answer_path(form_answer)
     find("#case-summary-heading .panel-title a").click
 
-    within "#section-case-summary" do
-      expect(page).to have_selector(".form-value p", text: text, count: 4)
-      expect(page).to have_selector(".rag-text", text: "Green", count: 2)
-      expect(page).to have_selector(".rag-text", text: "Red", count: 1)
-      expect(page).to have_selector("input[value='Confirm case summary']")
+    page.document.synchronize do
+      if first("#section-case-summary")
+
+        within "#section-case-summary" do
+          expect(page).to have_selector(".form-value p", text: text, count: 4)
+          expect(page).to have_selector(".rag-text", text: "Green", count: 2)
+          expect(page).to have_selector(".rag-text", text: "Red", count: 1)
+          expect(page).to have_selector("input[value='Confirm case summary']")
+        end
+      end
     end
   end
 end
