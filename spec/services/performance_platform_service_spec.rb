@@ -16,7 +16,7 @@ describe PerformancePlatformService do
       answer.update_column(:created_at, Time.current - 1.week)
       timestamp = (Time.current - 1.week).beginning_of_day.utc.iso8601
 
-      id = Base64.encode64("#{timestamp}weekonlinedigital")[0..7]
+      id = described_class.md5("#{timestamp}weekonlinedigital")
 
       expected = {
         "period" => "week",
@@ -55,8 +55,8 @@ describe PerformancePlatformService do
       answer_3.update_column(:fill_progress, 75)
       timestamp = (Time.current - 1.week).beginning_of_day.utc.iso8601
 
-      id_1 = Base64.encode64("#{timestamp}weekinternational-trade0-percent")[0..7]
-      id_2 = Base64.encode64("#{timestamp}weekqaep75-99-percent")[0..7]
+      id_1 = described_class.md5("#{timestamp}weekinternational-trade0-percent")
+      id_2 = described_class.md5("#{timestamp}weekqaep75-99-percent")
 
       report_1 = {
         "period" => "week",
