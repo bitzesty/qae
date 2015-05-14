@@ -9,9 +9,9 @@ describe CustomEmailForm do
   end
 
   it "sends email to users with qae_opt_in_group" do
-    user_1 = create(:user, subscribed_to_emails: true)
-    user_2 = create(:user, subscribed_to_emails: false)
-    user_3 = create(:user, subscribed_to_emails: true)
+    user_1 = create(:user, subscribed_to_emails: true, email: "1@example.com")
+    user_2 = create(:user, subscribed_to_emails: false, email: "2@example.com")
+    user_3 = create(:user, subscribed_to_emails: true, email: "3@example.com")
 
     form = CustomEmailForm.new(user: admin,
                                scope: "qae_opt_in_group",
@@ -22,9 +22,9 @@ describe CustomEmailForm do
   end
 
   it "sends email to users with bis_opt_in" do
-    user_1 = create(:user, agree_being_contacted_by_department_of_business: true)
-    user_2 = create(:user, agree_being_contacted_by_department_of_business: false)
-    user_3 = create(:user, agree_being_contacted_by_department_of_business: true)
+    user_1 = create(:user, agree_being_contacted_by_department_of_business: true, email: "1@example.com")
+    user_2 = create(:user, agree_being_contacted_by_department_of_business: false, email: "2@example.com")
+    user_3 = create(:user, agree_being_contacted_by_department_of_business: true, email: "3@example.com")
 
     form = CustomEmailForm.new(user: admin,
                                scope: "bis_opt_in",
@@ -35,9 +35,9 @@ describe CustomEmailForm do
   end
 
   it "sends email to all assessors" do
-    user_1 = create(:assessor)
-    user_2 = create(:assessor)
-    user_3 = create(:assessor)
+    user_1 = create(:assessor, email: "1@example.com")
+    user_2 = create(:assessor, email: "2@example.com")
+    user_3 = create(:assessor, email: "3@example.com")
 
     form = CustomEmailForm.new(user: admin,
                                scope: "assessors",
@@ -48,9 +48,9 @@ describe CustomEmailForm do
   end
 
   it "sends email to all users" do
-    user_1 = create(:user)
-    user_2 = create(:user)
-    user_3 = create(:user)
+    user_1 = create(:user, email: "1@example.com")
+    user_2 = create(:user, email: "2@example.com")
+    user_3 = create(:user, email: "3@example.com")
 
     form = CustomEmailForm.new(user: admin,
                                scope: "all_users",
