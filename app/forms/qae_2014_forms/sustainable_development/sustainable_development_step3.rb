@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class QAE2014Forms
   class << self
     def development_step3
@@ -296,7 +297,6 @@ class QAE2014Forms
           ref "C 8"
           rows 5
           words_max 100
-          conditional :entry_relates_to, :single_product_or_service
           conditional :development_performance_years, :true
         end
 
