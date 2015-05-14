@@ -1,4 +1,4 @@
-form.todo-placeholder
+= simple_form_for @declaration_form, url: users_form_answer_declaration_of_responsibility_path(@form_answer), method: :patch do |f|
   div
     header.group.page-header.page-header-wider
       div
@@ -33,7 +33,10 @@ form.todo-placeholder
             ul.errors-container
             .clear
             .question-group
-              textarea.js-char-count data-word-max="500" rows="5"
+              = f.input :impact_on_society,
+                        as: :text,
+                        input_html: { data: { word_max: 500 }, rows: 5, class: "js-char-count" },
+                        label_html: { class: "visuallyhidden" }
               .clear
 
           fieldset.question-block
@@ -48,7 +51,10 @@ form.todo-placeholder
             ul.errors-container
             .clear
             .question-group
-              textarea.js-char-count data-word-max="500" rows="5"
+              = f.input :impact_on_environment,
+                        as: :text,
+                        input_html: { data: { word_max: 500 }, rows: 5, class: "js-char-count" },
+                        label_html: { class: "visuallyhidden" }
               .clear
 
           fieldset.question-block
@@ -63,7 +69,10 @@ form.todo-placeholder
             ul.errors-container
             .clear
             .question-group
-              textarea.js-char-count data-word-max="500" rows="5"
+              = f.input :partners_relations,
+                        as: :text,
+                        input_html: { data: { word_max: 500 }, rows: 5, class: "js-char-count" },
+                        label_html: { class: "visuallyhidden" }
               .clear
 
           fieldset.question-block
@@ -79,7 +88,10 @@ form.todo-placeholder
             ul.errors-container
             .clear
             .question-group
-              textarea.js-char-count data-word-max="500" rows="5"
+              = f.input :employees_relations,
+                        as: :text,
+                        input_html: { data: { word_max: 500 }, rows: 5, class: "js-char-count" },
+                        label_html: { class: "visuallyhidden" }
               .clear
 
           fieldset.question-block
@@ -95,7 +107,10 @@ form.todo-placeholder
             ul.errors-container
             .clear
             .question-group
-              textarea.js-char-count data-word-max="500" rows="5"
+              = f.input :customers_relations,
+                        as: :text,
+                        input_html: { data: { word_max: 500 }, rows: 5, class: "js-char-count" },
+                        label_html: { class: "visuallyhidden" }
               .clear
 
           br
@@ -103,8 +118,7 @@ form.todo-placeholder
           .application-notice.info-notice
             p
               ' You may still edit your submitted Declaration of Corporate Responsibility up until the deadline on
-              span.todo-placeholder
-                = application_deadline "audit_certificates"
+              = application_deadline "audit_certificates"
               ' .
 
           footer
@@ -114,4 +128,4 @@ form.todo-placeholder
                   = link_to dashboard_path
                     span.pagination-label Back
                 li.submit
-                  a.button rel="next" href="#" Submit Declaration
+                  = f.submit "Submit Declaration", rel: "next", class: "button"

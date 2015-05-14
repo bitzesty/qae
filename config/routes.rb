@@ -57,7 +57,6 @@ Rails.application.routes.draw do
   get "/apply_enterprise_promotion_award"               => "content_only#apply_enterprise_promotion_award",               as: "apply_enterprise_promotion_award"
   get "/award_info_promotion"                           => "content_only#award_info_promotion",                           as: "award_info_promotion"
 
-  get "/declaration_of_corporate_responsibility"        => "content_only#declaration_of_corporate_responsibility",        as: "declaration_of_corporate_responsibility"
   get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
 
   root to: Rails.env.production? ? redirect("https://www.gov.uk/apply-queens-award-enterprise ") : "content_only#dashboard"
@@ -102,6 +101,7 @@ Rails.application.routes.draw do
         get :failure
         post :update_acceptance
       end
+      resource :declaration_of_responsibility, only: [:edit, :update]
     end
     resources :form_answer_feedbacks, only: [:show]
   end
