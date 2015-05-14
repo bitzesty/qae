@@ -3,7 +3,8 @@ class Users::DeclarationOfResponsibilitiesController < Users::BaseController
 
   def update
     if @declaration_form.update(params[:declaration_of_responsibility_form])
-      redirect_to dashboard_url, notice: "Declaration of corporate responsibility was successfully saved"
+      redirect_to dashboard_url,
+                  notice: "Declaration of corporate responsibility was successfully saved"
     else
       render :edit
     end

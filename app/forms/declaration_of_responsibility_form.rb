@@ -12,7 +12,6 @@ class DeclarationOfResponsibilityForm
       :customers_relations
     ]
 
-
   attr_reader :form_answer
 
   attr_accessor *ATTRIBUTES

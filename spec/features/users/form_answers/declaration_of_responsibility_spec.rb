@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 include Warden::Test::Helpers
 
 describe "Corporate Responsibility Form" do
@@ -7,9 +7,7 @@ describe "Corporate Responsibility Form" do
   end
 
   let!(:form_answer) do
-    create :form_answer, :innovation,
-      user: user,
-      urn: "QA0001/19T"
+    create :form_answer, :innovation, user: user
   end
 
   before do
