@@ -1,6 +1,6 @@
 require "json"
 require "net/http"
-require "base64"
+require "digest"
 
 class PerformancePlatformService
   TRANSACTIONS_BY_CHANNEL_URL = "https://www.performance.service.gov.uk/data/queens-awards-for-enterprise/transactions-by-channel"
@@ -161,7 +161,7 @@ class PerformancePlatformService
     result
   end
 
-  # "A base64 encoded concatenation of: _timestamp, period, channel, channel_type, (the dimensions of the data point)"
+  # "A SHA256 encoded concatenation of: _timestamp, period, channel, channel_type, (the dimensions of the data point)"
   def self.generate_transactions_id(data)
     string = ""
 
@@ -169,10 +169,10 @@ class PerformancePlatformService
       string << data[attr]
     end
 
-    Base64.encode64(string)[0..7]
+    md5(string)
   end
 
-  # "A base64 encoded concatenation of: _timestamp, period, award, stage, i.e. (the dimensions of the data point)"
+  # "A SHA256 encoded concatenation of: _timestamp, period, award, stage, i.e. (the dimensions of the data point)"
   def self.generate_applications_id(data)
     string = ""
 
@@ -180,7 +180,7 @@ class PerformancePlatformService
       string << data[attr]
     end
 
-    Base64.encode64(string)[0..7]
+    md5(string)
   end
 
   def self.form_answers_for_past_week
@@ -191,5 +191,12 @@ class PerformancePlatformService
 
   def self.form_answers
     AwardYear.current.form_answers
+  end
+
+  def self.md5(string)
+    md5 = Digest::MD5.new
+    md5.update(string)
+
+    md5.hexdigest
   end
 end
