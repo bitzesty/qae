@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   validates :last_name, presence: true, if: :first_step?
   validates :job_title, presence: true, if: :first_step?
   validates :phone_number, presence: true, if: :first_step?
+  validates :password, confirmation: true
 
   validates :phone_number, length: {
     minimum: 7,
