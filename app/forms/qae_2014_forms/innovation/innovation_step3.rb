@@ -354,7 +354,7 @@ class QAE2014Forms
           sub_ref "C 7.2"
           rows 5
           words_max 100
-          conditional :innovation_part_of, :single_product_or_service
+          conditional :innovation_part_of, :true
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
