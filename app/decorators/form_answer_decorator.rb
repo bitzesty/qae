@@ -41,7 +41,9 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def award_type
-    # TODO: remove this !
+    # Please be aware that this method overrides the parent object method
+    # can produce issues with new decorated objects
+    # TODO: Refactor by removing this
     object.class::AWARD_TYPE_FULL_NAMES[object.award_type]
   end
 
