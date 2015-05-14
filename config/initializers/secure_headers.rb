@@ -8,6 +8,14 @@
   config.x_permitted_cross_domain_policies = "none"
   config.csp = {
     default_src: "https: inline eval",
-    img_src: "https:"
+    img_src: "https:",
+
+    # font_src - defines valid sources of fonts. (http://content-security-policy.com/)
+    # This is fix for "[Report Only] Refused to load the font ..."
+    # error message on Chrome/FF console
+    # By default, we do not specify a font-src which means the value
+    # should have taken the value of default-src ('none' in this case)
+    # Below we add "font-src data:;" to whitelist the font being loaded.
+    font_src: "'self' data:"
   }
 end

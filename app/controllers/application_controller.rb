@@ -6,9 +6,13 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   # TODO: remove back once go live
-  # unless (Rails.env.test? || Rails.env.development?)
-  #   ensure_security_headers
-  # end
+  unless (Rails.env.test? || Rails.env.development?)
+    # Checking on ENV["AWS_ACCESS_KEY_ID"] exists
+    # In order to avoid exceptions on dev and demo servers too
+    # as they also use production env
+
+    ensure_security_headers if ENV["AWS_ACCESS_KEY_ID"]
+  end
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
