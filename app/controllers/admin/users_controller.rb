@@ -32,7 +32,7 @@ class Admin::UsersController < Admin::BaseController
     authorize @resource, :update?
 
     if resource_params[:password].present?
-      @resource.update(resource_params)
+      @resource.update_with_password(resource_params)
     else
       @resource.update_without_password(resource_params)
     end
