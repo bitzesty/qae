@@ -14,11 +14,12 @@
           - elsif !answer.nil?
             = eligibility.class.enumerized_attributes[question].find_value(answer).text
 
-        td.link-right
-          = link_to wizard_path(question, form_id: @form_answer.id, skipped: eligibility.answer_valid?(question, answer)) do
-            ' Change
-            span.visuallyhidden
-              = ' answer to' + eligibility.class.label(question)
+        - unless admin_in_read_only_mode?
+          td.link-right
+            = link_to wizard_path(question, form_id: @form_answer.id, skipped: eligibility.answer_valid?(question, answer)) do
+              ' Change
+              span.visuallyhidden
+                = ' answer to' + eligibility.class.label(question)
 
       - if final_eligibility_page?(step) && !@already_has_invalid_questions && !eligibility.answer_valid?(question, answer)
         - @already_has_invalid_questions = true
