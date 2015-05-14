@@ -1,10 +1,17 @@
-/ TODO: copy
-
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' Hello,
+  ' Dear
+  = @assessor.full_name
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Withdrawn app email
+  ' You're receiving this email because application
+  = @form_answer.urn
+
+  '  has been withdrawn.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' You can view this application
+  = link_to "here", [:assessor, @form_answer]
+  ' .
 
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Thank you,

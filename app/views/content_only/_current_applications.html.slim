@@ -27,8 +27,7 @@
                 = award.decorate.fill_progress_in_percents
                 '  completed
           td.pull-right
-            // TODO use better method to test for submitted awards
-            - if award.urn?
+            - if award.submitted?
               = link_to edit_form_path(award.id)
                 ' Edit
                 - if award.award_type == "promotion"

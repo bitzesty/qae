@@ -93,8 +93,8 @@ describe AssessorAssignment do
   end
 
   describe "#visible_for?" do
-    let(:assessor1) { create(:assessor) }
-    let(:assessor2) { create(:assessor) }
+    let(:assessor1) { create(:assessor, :regular_for_all) }
+    let(:assessor2) { create(:assessor, :regular_for_all) }
     let(:form_answer) { create(:form_answer) }
     let(:primary) { form_answer.assessor_assignments.primary }
     let(:secondary) { form_answer.assessor_assignments.secondary }

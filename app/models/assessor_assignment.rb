@@ -166,7 +166,10 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def assessor_assignment_to_category
-    # TODO: check if assessor is regular or lead per form category
+    return unless assessor_id_changed?
+    if assessor.present? && !assessor.assignable?(form_answer)
+      errors.add(:assessor_id, "Can not be assigned to this case.")
+    end
   end
 
   def notify_assessor_assignment
