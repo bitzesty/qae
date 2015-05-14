@@ -5,14 +5,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  # TODO: remove back once go live
-  unless (Rails.env.test? || Rails.env.development?)
-    # Checking on ENV["AWS_ACCESS_KEY_ID"] exists
-    # In order to avoid exceptions on dev and demo servers too
-    # as they also use production env
-
-    ensure_security_headers if ENV["AWS_ACCESS_KEY_ID"]
-  end
+  ensure_security_headers if ENV['ENSURE_SECURITY_HEADERS']
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
