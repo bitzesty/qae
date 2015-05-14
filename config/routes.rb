@@ -9,6 +9,9 @@ Rails.application.routes.draw do
 
   resource :healthcheck, only: :show
 
+  # Content Security Policy report_uri (http://content-security-policy.com/)
+  resource :csp_report_uri, only: :show
+
   devise_for :users, controllers: {
     registrations: "users/registrations"
   }
