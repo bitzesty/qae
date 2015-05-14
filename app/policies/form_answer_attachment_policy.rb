@@ -1,15 +1,14 @@
 class FormAnswerAttachmentPolicy < ApplicationPolicy
-  # TODO: needs clarification
-
   def create?
-    true
+    admin_or_lead_or_assigned?(record.form_answer)
   end
 
   def show?
-    true
+    admin_or_lead_or_assigned?(record.form_answer)
   end
 
   def destroy?
-    admin? && record.created_by_admin?
+    admin? && record.created_by_admin? ||
+      assessor? && record.attachable == subject
   end
 end
