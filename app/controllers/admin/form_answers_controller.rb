@@ -18,11 +18,7 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def update_financials
     authorize @form_answer, :update_financials?
-    @form_answer.financial_data = params[:financial_data]
-    @form_answer.financial_data["updated_at"] = Time.zone.now
-    @form_answer.financial_data["updated_by_id"] = current_admin.id
-    @form_answer.financial_data["updated_by_type"] = current_admin.class
-
+    @form_answer.financial_data = financial_data_ops
     @form_answer.save
 
     if request.xhr?
@@ -79,5 +75,13 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def lead_case_summary_assessment
     @lead_case_summary_assessment ||= resource.assessor_assignments.lead_case_summary.decorate
+  end
+
+  def financial_data_ops
+    {
+      updated_at: Time.zone.now,
+      updated_by_id: current_admin.id,
+      updated_by_type: current_admin.class
+    }.merge(params[:financial_data])
   end
 end
