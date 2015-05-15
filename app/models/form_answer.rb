@@ -194,6 +194,10 @@ class FormAnswer < ActiveRecord::Base
     submitted? && Settings.after_current_submission_deadline?
   end
 
+  def awarded?
+    state == "awarded"
+  end
+
   private
 
   def nominee_full_name_from_document
