@@ -48,8 +48,8 @@ shared_context "successful appraisal form edition" do
 end
 
 shared_context "successful case summary edition" do
-  let(:case_summary_header) { "#case-summary-heading" }
-  let(:case_summary) { "#section-case-summary" }
+  let(:case_summary_header) { "#case-summary-heading-lead_case_summary" }
+  let(:case_summary) { "#section-case-summary-lead_case_summary" }
   let!(:form_answer) { create(:form_answer, :innovation) }
   let(:text) { "textareatext123123" }
 
