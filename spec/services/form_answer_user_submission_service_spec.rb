@@ -19,7 +19,6 @@ describe FormAnswerUserSubmissionService do
         "innovation",
         "innovation",
         "international_trade",
-        "sustainable_development",
         "sustainable_development"
       ])
   end
