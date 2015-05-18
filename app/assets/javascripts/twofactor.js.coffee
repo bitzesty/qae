@@ -3,6 +3,6 @@
 #= require bootstrap-sprockets
 #= require devise_authy
 
-$(document).ready(() ->
+$(document).ready( ->
   $("html").removeClass("no-js").addClass("js")
 )
