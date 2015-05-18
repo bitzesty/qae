@@ -110,9 +110,20 @@ ready = ->
     $(this).closest(".form-group").addClass("form-edit")
   $(".submit-assessment").on "ajax:error", (e, data, status, xhr) ->
     errors = data.responseJSON
-    $(this).find(".feedbackHolder").html(errors.error)
+    $(this).addClass("field-with-errors")
+    $(this).closest(".panel-body").find("textarea").each ->
+      unless $(this).val().length
+        $(this).closest(".input").addClass("field-with-errors")
+    $(this).find(".feedback-holder").addClass("error")
+    $(this).find(".feedback-holder").html(errors.error)
   $(".submit-assessment").on "ajax:success", (e, data, status, xhr) ->
-    $(this).find(".feedbackHolder").html("Assessment Submitted")
+    $(this).closest(".panel-body").find(".field-with-errors").removeClass("field-with-errors")
+    $(this).find(".feedback-holder").removeClass("error").addClass("alert alert-success")
+
+    successMessage = "Assessment submitted"
+    if $(this).closest(".panel-collapse").hasClass("section-case-summary")
+      successMessage = "Case summary submitted"
+    $(this).find(".feedback-holder").html(successMessage)
     $(this).find("input:submit").remove()
 
   $(document).on "click", ".form-save-link", (e) ->
@@ -123,9 +134,15 @@ ready = ->
     area = formGroup.find("textarea:visible")
     formGroup.removeClass("form-edit")
 
-    if area.length
+    if area.val().length
       formGroup.find(".form-value p").text(area.val())
       updatedSection = link.data("updated-section")
+      $(this).closest(".panel-body").find(".field-with-errors").removeClass("field-with-errors")
+      $(this).closest(".panel-body").find(".feedback-holder.error").html("")
+      $(this).closest(".panel-body").find(".feedback-holder").removeClass("error")
+      formGroup.find("textarea").each ->
+        if $(this).val().length
+          $(this).closest(".input").removeClass("field-with-errors")
       if updatedSection
         input = form.find("input[name='updated_section']")
         if input.length
@@ -169,6 +186,9 @@ changeRagStatus = ->
               .removeClass("rag-blank")
               .addClass(rag_clicked)
     rag_status.find(".rag-text").text($(this).find(".rag-text").text())
+    $(this).closest(".panel-body").find(".field-with-errors").removeClass("field-with-errors")
+    $(this).closest(".panel-body").find(".feedback-holder.error").html("")
+    $(this).closest(".panel-body").find(".feedback-holder").removeClass("error")
 
 editFormAnswerAutoUpdate = ->
   $(".sic-code .form-save-link").on "click", (e) ->

@@ -27,7 +27,7 @@ describe "Assessor submits appraisal form", %(
       within "#section-appraisal-form-primary" do
         click_button "Submit appraisal"
       end
-      expect(page).to have_selector(".feedbackHolder", text: "Assessment Submitted")
+      expect(page).to have_selector(".feedback-holder", text: "Assessment submitted")
       expect(form_answer.assessor_assignments.primary).to be_submitted
     end
   end

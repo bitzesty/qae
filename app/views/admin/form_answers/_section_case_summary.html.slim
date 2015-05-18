@@ -35,11 +35,13 @@
       - unless assessment.submitted?
         = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, authenticity_token: true, class: "submit-assessment", "data-type" => "json")
           = hidden_field_tag :assessment_id, assessment.id
+
+          .feedback-holder
+
           = submit_tag "Confirm case summary", class: "btn btn-default btn-block"
-          .feedbackHolder
       - else
-        p
-          em Case summary submitted
+        .feedback-holder.alert.alert-success
+          ' Case summary submitted
 
 
       / Only show once primary assessor has submitted the case summary
