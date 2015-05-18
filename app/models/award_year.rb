@@ -7,7 +7,6 @@ class AwardYear < ActiveRecord::Base
   after_create :create_settings
 
   AVAILABLE_YEARS = [2016, 2017, 2018, 2019]
-
   # +1 here is to match URN number of assosiated forms
   def self.mock_current_year?
     Rails.env.test?
