@@ -183,9 +183,11 @@
   }
 }
 
-.form-save-button,
-.form-save-link {
-  margin-top: 10px;
+.show-sidebar {
+  .form-save-button,
+  .form-save-link {
+    margin-top: 10px;
+  }
 }
 
 .section-applicant-details {

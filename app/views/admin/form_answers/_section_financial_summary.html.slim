@@ -40,7 +40,10 @@
                 = link_to "#", class: "form-edit-link pull-right edit-review-audit"
                   span.glyphicon.glyphicon-pencil
                   ' Edit
-                = link_to "Save", "#", class: "btn btn-primary save-review-audit pull-right", style: "display: none"
+                .form-actions.text-right
+                  .form-fields
+                    = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+                    = link_to "Save", "#", class: "btn btn-primary save-review-audit pull-right", style: "display: none"
 
                 .clear
           - else

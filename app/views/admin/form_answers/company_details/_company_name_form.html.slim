@@ -7,7 +7,9 @@
         p = @form_answer.company_name
       .input.form-group.form-fields.form-block
         = f.input :company_or_nominee_name, as: :string, label: false, input_html: { class: "form-control" }
-        = f.submit "Save", class: "btn btn-primary pull-right"
+        .form-actions.text-right
+          = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+          = f.submit "Save", class: "btn btn-primary pull-right"
       .clear
       = link_to "#", class: "form-edit-link pull-right"
         span.glyphicon.glyphicon-pencil

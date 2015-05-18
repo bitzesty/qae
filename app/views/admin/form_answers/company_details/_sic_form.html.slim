@@ -17,7 +17,9 @@
                   collection: SICCode.collection,
                   include_blank: false,
                   label: false
-      = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
+      .form-actions.text-right
+        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+        = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
 
       = link_to "#", class: "form-edit-link pull-right"
         span.glyphicon.glyphicon-pencil

@@ -68,4 +68,6 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
             = f.input :additional_info, as: :text, input_html: { class: "form-control", rows: 2 }, label: false
       .row
         .col-md-12
-          = f.submit "Save", class: "btn btn-primary  pull-right"
+          .form-actions.text-right
+            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+            = f.submit "Save", class: "btn btn-primary pull-right"
