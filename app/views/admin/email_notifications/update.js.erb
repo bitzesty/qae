@@ -1,9 +1,9 @@
 wrapper = $("#notification-" + "<%= @email_notification.id %>");
 
 <% if @email_notification.valid? %>
-  $(".form-value", wrapper).show();
-  $(".notification-edit-form", wrapper).hide();
-  $(".actions", wrapper).show();
+  $(".form-value", wrapper).removeClass("hidden");
+  $(".notification-edit-form", wrapper).addClass("hidden");
+  $(".actions", wrapper).removeClass("hidden");
   $(".notification-edit-form input.datepicker", wrapper).val("<%= @email_notification.formatted_trigger_at_date %>");
   $(".notification-edit-form input.timepicker", wrapper).val("<%= @email_notification.formatted_trigger_at_time %>");
   $(".trigger-at", wrapper).html("<%= @email_notification.decorate.formatted_trigger_time %>");
