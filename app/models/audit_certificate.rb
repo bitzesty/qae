@@ -23,6 +23,8 @@ class AuditCertificate < ActiveRecord::Base
               if: :reviewed?
   end
 
+  before_save :clean_changes_description
+
   enum status: {
     no_changes_necessary: 0,
     confirmed_changes: 1
@@ -36,5 +38,13 @@ class AuditCertificate < ActiveRecord::Base
   def store_attachment!
     super()
     virus_scan
+  end
+
+  private
+
+  def clean_changes_description
+    if status_changed? && status == "no_changes_necessary" && changes_description.present?
+      self.changes_description = nil
+    end
   end
 end
