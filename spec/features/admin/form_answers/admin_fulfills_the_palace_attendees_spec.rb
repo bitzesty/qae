@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe "Admin fulfills the Palace Attendees" do
   let!(:admin) { create(:admin) }
-  let!(:form_answer) { create(:form_answer, :promotion) }
+  let!(:form_answer) { create(:form_answer, :promotion, state: "awarded") }
 
   before do
     login_admin(admin)

@@ -41,8 +41,7 @@
         .panel-body
           = render "admin/feedbacks/section", form_answer: @form_answer
 
-  / TODO: display only for successful applications
-  - if true
+  - if @form_answer.awarded?
     .panel.panel-default.panel-parent
       .panel-heading#winners-heading role="tab"
         h4.panel-title
