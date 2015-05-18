@@ -142,10 +142,10 @@
       .form-save-link,
       .form-cancel-link {
         display: inline-block;
+      }
 
-        &.form-block {
-          display: block;
-        }
+      .form-block {
+        display: block;
       }
 
       .form-value,
