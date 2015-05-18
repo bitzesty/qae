@@ -1,16 +1,16 @@
 doctype html
 /[if lt IE 7]
-  <html class="ie ie6 lte-ie9 lte-ie8 lte-ie7 lte-ie6">
+  <html class="ie ie6 lte-ie9 lte-ie8 lte-ie7 lte-ie6 no-js">
 /[if IE 7]
-  <html class="ie ie7 lte-ie9 lte-ie8 lte-ie7">
+  <html class="ie ie7 lte-ie9 lte-ie8 lte-ie7 no-js">
 /[if IE 8]
-  <html class="ie ie8 lte-ie9 lte-ie8">
+  <html class="ie ie8 lte-ie9 lte-ie8 no-js">
 /[if IE 9]
-  <html class="ie ie9 lte-ie9">
+  <html class="ie ie9 lte-ie9 no-js">
 /[if gt IE 9]
-  <html class="ie">
+  <html class="ie no-js">
 | <!--[if !(IE)]<!-->
-html
+html.no-js
   | <!--<![endif]-->
   head
     title Queen's Awards for Enterprise - Admin
@@ -47,7 +47,7 @@ html
 
               .navbar-collapse.collapse#nav-main-collapse
 
-                ul.nav.navbar-nav role="navigation"
+                ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"
                       ' My account
