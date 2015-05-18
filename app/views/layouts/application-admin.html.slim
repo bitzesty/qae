@@ -73,8 +73,9 @@ html.no-js
                       ' My account
                       span.caret
                     ul.dropdown-menu
-                      li
-                        = link_to "Enable 2FA", admin_enable_authy_path
+                      - unless current_admin.authy_enabled
+                        li
+                          = link_to "Enable 2FA", admin_enable_authy_path
                       li
                         = link_to "Sign out",
                                   destroy_admin_session_path,
