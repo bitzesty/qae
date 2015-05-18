@@ -1,36 +1,34 @@
-- if current_subject.is_a?(Admin) || current_subject.lead?(resource)
-  - assessment = lead_case_summary_assessment
-- elsif current_subject.primary?(resource)
-  - assessment = primary_case_summary_assessment
+- visible_case_summaries(current_subject, resource).each do |assessment_obj|
+  - assessment = assessment_obj.assessment
+  .panel.panel-default
+    .panel-heading role="tab" id="case-summary-heading-#{assessment.position}"
+      h4.panel-title
+        a data-toggle="collapse" data-parent="#panel-assessment" href="#section-case-summary-#{assessment.position}" aria-expanded="true" aria-controls="section-case-summary-#{assessment.position}"
+          = assessment_obj.title
+          - if assessment.editable.present?
+            small
+              = "Updated by #{assessment.editable.decorate.full_name} - #{format_date(assessment.updated_at)}"
+    .panel-collapse.collapse role="tabpanel" aria-labelledby="case-summary-heading-#{assessment.position}" id="section-case-summary-#{assessment.position}" class="section-case-summary-#{assessment.position}"
 
-.panel.panel-default
-  .panel-heading#case-summary-heading role="tab"
-    h4.panel-title
-      a data-toggle="collapse" data-parent="#panel-assessment" href="#section-case-summary" aria-expanded="true" aria-controls="section-case-summary"
-        ' Case Summary
-        - if assessment.editable.present?
-          small
-            = "Updated by #{assessment.editable.decorate.full_name} - #{format_date(assessment.updated_at)}"
-  #section-case-summary.section-case-summary.panel-collapse.collapse role="tabpanel" aria-labelledby="case-summary-heading"
-    .panel-body
-      .alert.alert-glyphicon.alert-info
-        span.glyphicon.glyphicon-info-sign
-        p
-          ' Some instructions on how to use this or what this section is about. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
+      .panel-body
+        .alert.alert-glyphicon.alert-info
+          span.glyphicon.glyphicon-info-sign
+          p.todo-placeholder
+            ' Some instructions on how to use this or what this section is about. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus.
 
-      / Only show if Moderated Appraisal is submitted
-      / For Primary Assessor
-      / It becomes read-only for primary assessor after submission
+        / Only show if Moderated Appraisal is submitted
+        / For Primary Assessor
+        / It becomes read-only for primary assessor after submission
 
-      = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true) do |f|
-        = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
-          locals: { f: f}
-        = render_section(resource, f)
-        = hidden_field_tag :updated_section
-        = f.submit "Save changes", class: "if-js-hide btn btn-primary"
+        = simple_form_for([namespace_name, assessment], remote: true, authenticity_token: true) do |f|
+          = render partial: "admin/form_answers/appraisal_form_components/application_background_section",
+            locals: { f: f}
+          = render_section(resource, f)
+          = hidden_field_tag :updated_section
+          = f.submit "Save changes", class: "if-js-hide btn btn-primary"
 
-      .clear
-      br
+        .clear
+        br
 
       - unless assessment.submitted?
         = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, authenticity_token: true, class: "submit-assessment", "data-type" => "json")
@@ -43,6 +41,5 @@
         .feedback-holder.alert.alert-success
           ' Case summary submitted
 
-
-      / Only show once primary assessor has submitted the case summary
-      / Lead assessor must confirm it
+        / Only show once primary assessor has submitted the case summary
+        / Lead assessor must confirm it
