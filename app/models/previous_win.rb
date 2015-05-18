@@ -1,14 +1,15 @@
 class PreviousWin < ActiveRecord::Base
   CATEGORIES = {
     "Innovation" => "innovation",
-    "Internation Trade" => "trade",
-    "Sustainable Development" => "development"
+    "Internation Trade" => "international_trade",
+    "Sustainable Development" => "sustainable_development"
   }
 
   validates :form_answer_id, presence: true
   validates :category, inclusion: {
     in: CATEGORIES.values
-  }, allow_blank: true
+  }
+  validates :year, presence: true
 
   belongs_to :form_answer
 

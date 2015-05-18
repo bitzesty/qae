@@ -17,8 +17,8 @@ describe "Admin sets up previous winnings" do
 
     it "adds previous winning" do
       within ".previous-wins-form" do
-        first("option[value='innovation2']").select_option
-        first("option[value='2016']").select_option
+        first("option[value='innovation']").select_option
+        first("option[value='2014']").select_option
         find("input[type='submit']").click
       end
       within ".previous-wins-form" do
