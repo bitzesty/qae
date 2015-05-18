@@ -16,7 +16,7 @@ class ReviewAuditCertificate
 
   def save
     audit = form_answer.audit_certificate
-    return false if audit.blank? || audit.try(:reviewed?)
+    return false if audit.blank?
 
     audit.reviewable = subject
     audit.changes_description = changes_description

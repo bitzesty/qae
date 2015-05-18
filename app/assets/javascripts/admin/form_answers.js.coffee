@@ -11,22 +11,8 @@ ready = ->
 
   handleCompanyDetailsForm()
   handleWinnersForm()
+  handleReviewAuditCertificate()
 
-  $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
-    $(this).find(".form-group").removeClass("form-edit")
-    $(this).find(".form-edit-link").remove()
-    $(".save-review-audit").remove()
-    area = $(".audit-cert-description textarea")
-    unless area.val()
-      $(this).find(".form-value").html($("<p>No change necessary</p>"))
-    else
-      div = "<div><label>Changes made</label><p class='control-label'>#{area.val()}</p></div>"
-      $(this).find(".form-value").html(div)
-  $("#new_review_audit_certificate").on "click", ".save-review-audit", (e) ->
-    e.preventDefault()
-    $("#new_review_audit_certificate").submit()
-  $(".edit-review-audit").on "click", (e) ->
-    $(".save-review-audit").show()
   $(".section-applicant-status").on "click", "a", (e) ->
     e.preventDefault()
     state = $(this).data("state")
@@ -295,4 +281,22 @@ handleCompanyDetailsForm = ->
     e.preventDefault()
     $(this).closest(".form-group").removeClass("form-edit")
 
+handleReviewAuditCertificate = ->
+  $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
+    $(this).find(".form-group").removeClass("form-edit")
+    $(".save-review-audit").hide()
+    area = $(".audit-cert-description textarea")
+    # unless area.val()
+    confirmedChanges = $("#radio-audit-cert2")
+    unless confirmedChanges.prop("checked")
+      $(this).find(".form-value").html($("<p>No change necessary</p>"))
+    else
+      div = "<div><label>Changes made</label><p class='control-label'>#{area.val()}</p></div>"
+      $(this).find(".form-value").html(div)
+  $("#new_review_audit_certificate").on "click", ".save-review-audit", (e) ->
+    e.preventDefault()
+    $("#new_review_audit_certificate").submit()
+
+  $(".edit-review-audit").on "click", (e) ->
+    $(".save-review-audit").show()
 $(document).ready(ready)
