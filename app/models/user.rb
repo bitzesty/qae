@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
 
-  validates :role, :account, :email, presence: true
+  validates :role, :account, presence: true
   validates :email, email: true
 
   # First step validations
