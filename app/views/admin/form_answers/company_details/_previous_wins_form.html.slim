@@ -14,7 +14,7 @@
           - else
             -
       - f.object.previous_wins.build
-      .input.form-group.form-fields
+      .input.form-group.form-fields.form-block
         = f.simple_fields_for :previous_wins, f.object.previous_wins do |p|
           - klass = p.object.new_record? && f.object.previous_wins.detect{|a| !a.new_record?} ? "if-js-hide" : ""
           ul.list-add.duplicatable-nested-form

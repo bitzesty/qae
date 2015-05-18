@@ -5,7 +5,7 @@
       label.form-label Company name
       .form-value
         p = @form_answer.company_name
-      .input.form-group.form-fields
+      .input.form-group.form-fields.form-block
         = f.input :company_or_nominee_name, as: :string, label: false, input_html: { class: "form-control" }
         = f.submit "Save", class: "btn btn-primary pull-right"
       .clear

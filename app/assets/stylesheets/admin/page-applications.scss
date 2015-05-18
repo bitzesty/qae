@@ -142,6 +142,10 @@
       .form-save-link,
       .form-cancel-link {
         display: inline-block;
+
+        &.form-block {
+          display: block;
+        }
       }
 
       .form-value,
@@ -460,23 +464,5 @@
 .form_answer_attachment {
   .lte-ie8 & {
     clear:both;
-  }
-}
-
-.form-group.previous-wins-form.form-edit {
-  .form-fields {
-    display: block !important;
-  }
-}
-
-.form-group.sic-code.form-edit {
-  .form-fields {
-    margin-left: 10px;
-  }
-
-  .form-save-link {
-    position: relative;
-    top: -5px;
-    margin-top: 0;
   }
 }
