@@ -38,6 +38,7 @@ class QAE2014Forms
 
         textarea :impact_on_society, "The impact of your business operations on society" do
           ref "D 2"
+          conditional :corp_responsibility_form, :complete_now
           required
           context %(
             <p>
@@ -52,7 +53,6 @@ class QAE2014Forms
           )
           rows 5
           words_max 500
-          conditional :corp_responsibility_form, :complete_now
         end
 
         textarea :impact_on_environment, "The environmental impact of your business operations" do
@@ -85,7 +85,7 @@ class QAE2014Forms
             <p>
               Do you encourage best practice or require them to meet your own standards? To what extent are you succeeding?
             </p>
-                    )
+          )
           rows 5
           words_max 500
         end
@@ -104,7 +104,7 @@ class QAE2014Forms
             <p>
               How do you keep your employees engaged? e.g. communication, assessments, incentives, opportunities for career development
             </p>
-                    )
+          )
           rows 5
           words_max 500
         end
@@ -129,8 +129,8 @@ class QAE2014Forms
         end
 
         confirm :declaration_of_corporate_responsibility, "" do
-          required
           sub_ref "D 1.1"
+          required
           text "I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise."
           conditional :corp_responsibility_form, :declare_now
         end

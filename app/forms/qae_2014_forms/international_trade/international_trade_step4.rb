@@ -25,7 +25,7 @@ class QAE2014Forms
             </p>
             <p>
               If you can give quantitative evidence of your initiatives/improvement/success, then do so.
-              </p>
+            </p>
             <p>
               If you have too many initiatives, just outline the ones you think are most relevant/important.
             </p>
@@ -35,8 +35,8 @@ class QAE2014Forms
 
         textarea :impact_on_society, "The impact of your business operations on society" do
           ref "D 2"
-          required
           conditional :corp_responsibility_form, :complete_now
+          required
           context %(
             <p>
               How does your business try to ensure a beneficial impact of all your practices and activites on society?
@@ -66,7 +66,7 @@ class QAE2014Forms
             <p>
               Are environmental considerations and efficient use of resources built into your business/products/services?
             </p>
-                    )
+          )
           rows 5
           words_max 500
         end

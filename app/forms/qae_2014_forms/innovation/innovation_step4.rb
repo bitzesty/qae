@@ -13,7 +13,6 @@ class QAE2014Forms
         end
 
         header :complete_now_header, "" do
-          conditional :corp_responsibility_form, :complete_now
           context %(
             <p>
               The Declaration of Corporate Responsibility is a chance for you to outline your responsible business conduct, and its social, economic and environmental impact.
@@ -26,7 +25,7 @@ class QAE2014Forms
             </p>
             <p>
               If you can give quantitative evidence of your initiatives/improvement/success, then do so.
-              </p>
+            </p>
             <p>
               If you have too many initiatives, just outline the ones you think are most relevant/important.
             </p>
@@ -102,7 +101,7 @@ class QAE2014Forms
             <p>
               How do you keep your employees engaged? e.g. communication, assessments, incentives, opportunities for career development
             </p>
-                    )
+          )
           rows 5
           words_max 500
         end
@@ -127,8 +126,8 @@ class QAE2014Forms
         end
 
         confirm :declaration_of_corporate_responsibility, "" do
-          required
           sub_ref "D 1.1"
+          required
           text "I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise."
           conditional :corp_responsibility_form, :declare_now
         end

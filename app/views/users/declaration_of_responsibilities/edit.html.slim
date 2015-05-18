@@ -17,8 +17,9 @@
             p You don't have to demonstrate strength in all of the areas below.
             p The guidance notes below each section are not exhaustive. Answer the questions in a way that best suits your organisation.
             p If you can give quantitative evidence of your initiatives/improvement/success, then do so.
-            p
-              ' If you have too many initiatives, just outline the ones you think are most relevant/important you think are most relevant/important.
+            p If you have too many initiatives, just outline the ones you think are most relevant/important.
+            - if @form_answer.award_type == "development"
+              p If you have already provided relevant information in your entry, please refer to that information and give any additional information under the relevant heading(s) below.
             .clear
 
           fieldset.question-block
@@ -28,6 +29,7 @@
                   span.todo 1
                 ' The impact of your business operations on society
             .question-context
+              p How does your business try to ensure a beneficial impact of all your practices and activites on society?
               p What activities do you undertake to foster good relations with local communities? Outline how you evaluate and report on their impact.
               p If you have operations in the third world or developing countries, are these conducted with proper regard for the current and future welfare of the people employed there?
             ul.errors-container
@@ -46,8 +48,9 @@
                   span.todo 2
                 ' The environmental impact of your business operations
             .question-context
-              p Description of any environmental considerations within your business e.g. energy efficiency strategies, recycling policies, emissions reduction policies.
-              p If, and how, you undertake environmental impact assessments of major projects.
+              p Describe any environmental considerations within your business e.g. energy efficiency strategies, recycling policies, emissions reduction policies.
+              p State if and how you undertake environmental impact assessments of major projects.
+              p Are environmental considerations and efficient use of resources built into your business/products/services?
             ul.errors-container
             .clear
             .question-group
@@ -64,7 +67,7 @@
                   span.todo 3
                 ' Relations with suppliers, partners and contractors
             .question-context
-              p An outline of your selection criteria, if any, with regard to potential suppliers'/partners'/contractors' economic, social and environmental performance.
+              p Outline your selection criteria, if any, with regard to potential suppliers'/partners'/contractors' economic, social and environmental performance.
               p Do you encourage best practice or require them to meet your own standards? To what extent are you succeeding?
             ul.errors-container
             .clear
@@ -82,9 +85,9 @@
                   span.todo 4
                 ' Relations with employees
             .question-context
-              p Do you have a code of conduct and/or employee policies e.g. health and safety, training, staff welfare, whistleblowing and equal opportunities?
-              p Outline any special employment conditions that you offer e.g. flexible working, extended maternity pay.
-              p How you keep your employees engaged e.g. communication, assessments, incentives, opportunities for career development.
+              p Do you have a code of conduct and/or employee policies? e.g. health and safety, training, staff welfare, whistleblowing and equal opportunities
+              p Do you offer any special employment conditions? e.g. flexible working, extended maternity pay
+              p How do you keep your employees engaged? e.g. communication, assessments, incentives, opportunities for career development
             ul.errors-container
             .clear
             .question-group
@@ -103,7 +106,7 @@
             .question-context
               p What proportion of your sales consist of repeat purchases?
               p How do you measure customer satisfaction, and what have been the results?
-              p The criteria by which you select clients and how you ensure they are appropriate for your services.
+              p By what criteria do you select clients and ensure they are appropriate for your services?
             ul.errors-container
             .clear
             .question-group
