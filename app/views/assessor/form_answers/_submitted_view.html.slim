@@ -29,9 +29,7 @@
           - if show_section_case_summary?
             = render "admin/form_answers/section_case_summary"
 
-
-  / TODO: display only for unsuccessfull applications
-  - if true
+  - if show_feedback_section?
     .panel.panel-default.panel-parent
       .panel-heading#feedback-heading role="tab"
         h4.panel-title
@@ -41,7 +39,7 @@
         .panel-body
           = render "admin/feedbacks/section", form_answer: @form_answer
 
-  - if @form_answer.awarded?
+  - if show_winners_section?
     .panel.panel-default.panel-parent
       .panel-heading#winners-heading role="tab"
         h4.panel-title
@@ -50,6 +48,8 @@
       #section-winners.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="winners-heading"
         .panel-body
           .panel-group#panel-winners-parent role="tablist" aria-multiselectable="true"
-            = render "admin/form_answers/section_press_summary"
+            - if show_press_summary_subsection?
+              = render "admin/form_answers/section_press_summary"
+            - if show_palace_attendees_subsection?
             = render "admin/form_answers/section_palace_attendees"
 
