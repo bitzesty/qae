@@ -137,8 +137,7 @@ Rails.application.routes.draw do
   # NON JS implementation - end
 
   namespace :assessor do
-    root to: "dashboard#index"
-    resources :dashboard, only: [:index]
+    root to: "form_answers#index"
     resources :company_details, only: [:update]
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
     resources :review_audit_certificates, only: [:create]
