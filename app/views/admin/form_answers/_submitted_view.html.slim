@@ -40,7 +40,8 @@
           .panel-body
             = render "admin/feedbacks/section", form_answer: @form_answer
 
-  - if @form_answer.awarded?
+
+  - if @form_answer.awarded? || @form_answer.recommended?
     .panel.panel-default.panel-parent
       .panel-heading#winners-heading role="tab"
         h4.panel-title
@@ -49,5 +50,7 @@
       #section-winners.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="winners-heading"
         .panel-body
           .panel-group#panel-winners-parent role="tablist" aria-multiselectable="true"
-            = render "section_press_summary"
-            = render "section_palace_attendees"
+            - if @form_answer.awarded? || @form_answer.recommended?
+              = render "section_press_summary"
+            - if @form_answer.awarded?
+              = render "section_palace_attendees"
