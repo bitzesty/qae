@@ -1,0 +1,33 @@
+h2
+  = I18n.t('authy_register_title', {:scope => 'devise'})
+  br
+  small
+    = I18n.t('submit_token_title', {:scope => 'devise'})
+
+= verify_authy_form do
+
+  .question-group
+    h3 = label_tag :token
+    .row
+      .col-md-3.col-sm-4
+        = text_field_tag :token, token_value, :autocomplete => :off, :id => 'authy-token', class: 'form-control'
+
+  .question-group
+    .row
+      .col-md-12
+        .checkbox
+          label
+            = check_box_tag :remember_device
+            span
+              = I18n.t('remember_device', {:scope => 'devise'})
+
+  br
+
+  = submit_tag I18n.t('submit_token', {:scope => 'devise'}), :class => 'btn btn-primary'
+
+  br
+
+  small
+    = link_to 'Help', 'https://authy.zendesk.com/hc/en-us/requests/new', :id => 'authy-help', target: "_blank"
+    br
+    = authy_request_sms_link
