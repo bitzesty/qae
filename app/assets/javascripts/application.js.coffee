@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require jquery.iframe-transport
 #= require jquery.fileupload
+#= require select2.full.min
 #= require Countable
 #= require moment.min
 #= require core
@@ -13,9 +14,11 @@
 #= require browser-check
 #= require vendor/zxcvbn
 #= require vendor/jquery-debounce
-#= require_tree .
+#= require_tree ./frontend
 
 jQuery ->
+  $("html").removeClass("no-js").addClass("js")
+
   # initialize Select dropdowns, if needed
   window.Select2Dropdowns.init()
 
