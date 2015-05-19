@@ -1,6 +1,6 @@
 label.form-label Audit Certificate
 - if policy(resource).download_audit_certificate_pdf?
-  p = link_to "View Audit Certificate", resource.audit_certificate.attachment_url,
+  p = link_to "View audit certificate", resource.audit_certificate.attachment_url,
       target: "_blank", class: "js-audit-certificate-title"
 .form-value
   - unless resource.audit_certificate.try(:reviewed?)
@@ -11,7 +11,11 @@ label.form-label Audit Certificate
     - elsif resource.audit_certificate.try(:confirmed_changes?)
       .audit
         label.control-label Changes made
-        p= resource.audit_certificate.changes_description
+        p
+          - if resource.audit_certificate.changes_description.present?
+            = resource.audit_certificate.changes_description
+          - else
+            ' -
 .if-js-hide
   - unless resource.audit_certificate.try(:reviewed?)
     p.audit-cert-nil-val Not confirmed yet.
@@ -21,4 +25,8 @@ label.form-label Audit Certificate
     - elsif resource.audit_certificate.try(:confirmed_changes?)
       .audit
         label.control-label Changes made
-        p= resource.audit_certificate.changes_description
+        p
+          - if resource.audit_certificate.changes_description.present?
+            = resource.audit_certificate.changes_description
+          - else
+            ' -

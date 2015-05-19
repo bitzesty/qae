@@ -34,13 +34,16 @@
                   = f.submit "Save", class: "if-js-hide"
 
                 .audit-cert-description class=("if-js-hide" unless review_audit_certificate.status == "confirmed_changes" )
-                  .input.form-group.form-fields
-                    = f.input :changes_description, as: :text, input_html: { rows: 5, class: "form-control" }, label: false
+                  .input.form-group.form-fields.form-block
+                    = f.input :changes_description, as: :text, input_html: { rows: 5, class: "form-control" }, label: "Changes made"
                     .clear
                 = link_to "#", class: "form-edit-link pull-right edit-review-audit"
                   span.glyphicon.glyphicon-pencil
                   ' Edit
-                = link_to "Save", "#", class: "btn btn-primary save-review-audit pull-right", style: "display: none"
+                .form-actions.text-right
+                  .form-fields
+                    = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+                    = link_to "Save", "#", class: "btn btn-primary save-review-audit pull-right", style: "display: none"
 
                 .clear
           - else

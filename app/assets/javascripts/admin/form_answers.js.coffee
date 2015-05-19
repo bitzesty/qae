@@ -298,9 +298,9 @@ handleCompanyDetailsForm = ->
     e.preventDefault()
     $(this).closest("form").submit()
 
-  $(".show-sidebar").on "click", ".form-cancel-link", (e) ->
+  $(document).on "click", ".form-cancel-link", (e) ->
     e.preventDefault()
-    $(this).closest(".form-group").removeClass("form-edit")
+    $(this).closest(".form-edit").removeClass("form-edit")
 
 handleReviewAuditCertificate = ->
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->

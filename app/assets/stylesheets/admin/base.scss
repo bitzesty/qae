@@ -343,6 +343,10 @@ table .ellipsis {
     &:last-child {
       margin-right: 0;
     }
+
+    &.pull-right {
+      margin-top: 0;
+    }
   }
 }
 

@@ -5,16 +5,15 @@
       label.form-label Previous winnings
 
       .form-value
-        p
-          - if f.object.previous_wins.present?
-            ul
+        - if PreviousWinDecorator.decorate_collection(f.object.previous_wins).any?
+          ul
             - PreviousWinDecorator.decorate_collection(f.object.previous_wins).each do |win|
               li
                 span= win.description
-          - else
-            -
+        - else
+          p -
       - f.object.previous_wins.build
-      .input.form-group.form-fields
+      .input.form-group.form-fields.form-block
         = f.simple_fields_for :previous_wins, f.object.previous_wins do |p|
           - klass = p.object.new_record? && f.object.previous_wins.detect{|a| !a.new_record?} ? "if-js-hide" : ""
           ul.list-add.duplicatable-nested-form
@@ -40,7 +39,9 @@
                             collection: PreviousWin.available_years
 
         = link_to "+ Add another winnings", "#", class: "btn btn-default if-no-js-hide add-previous-winning"
-        = f.submit "Save", class: "btn btn-primary pull-right"
+        .form-actions.text-right
+          = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+          = f.submit "Save", class: "btn btn-primary pull-right"
 
 
       = link_to "#", class: "form-edit-link pull-right"
@@ -50,11 +51,10 @@
 - else
   .form-group
     label.form-label Previous winnings
-    p
-      - if @form_answer.previous_wins.present?
+      - if PreviousWinDecorator.decorate_collection(@form_answer.previous_wins).any?
         ul
-        - PreviousWinDecorator.decorate_collection(@form_answer.previous_wins).each do |win|
-          li
-            span= win.description
+          - PreviousWinDecorator.decorate_collection(@form_answer.previous_wins).each do |win|
+            li
+              span= win.description
       - else
-        -
+        p -

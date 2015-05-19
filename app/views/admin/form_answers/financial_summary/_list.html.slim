@@ -24,8 +24,10 @@
 
     = link_to "#", class: "form-edit-link pull-right"
       span.glyphicon.glyphicon-pencil
-      ' edit
-    = button_tag "Save", class: "btn btn-primary form-save-button pull-right"
+      ' Edit
+    .form-actions.text-right
+      = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+      = button_tag "Save", class: "btn btn-primary form-save-button pull-right"
     .clear
 
 = render "admin/form_answers/financial_summary/benchmarks", financial_pointer: financial_pointer
