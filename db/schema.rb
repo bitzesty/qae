@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150507143136) do
+ActiveRecord::Schema.define(version: 20150519123524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -218,6 +218,7 @@ ActiveRecord::Schema.define(version: 20150507143136) do
     t.string   "attachable_type"
     t.string   "title"
     t.boolean  "restricted_to_admin", default: false
+    t.string   "question_key"
   end
 
   add_index "form_answer_attachments", ["form_answer_id"], name: "index_form_answer_attachments_on_form_answer_id", using: :btree

@@ -217,6 +217,7 @@ class FormController < ApplicationController
 
     @attachment = FormAnswerAttachment.new(attachment_params)
     @attachment.attachable = current_user
+    @attachment.question_key = params[:question_key] if params[:question_key].present?
 
     if @attachment.save!
       # text/plain content type is needed for jquery.fileupload

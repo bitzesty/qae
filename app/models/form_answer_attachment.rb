@@ -21,6 +21,7 @@ class FormAnswerAttachment < ActiveRecord::Base
                           },
                           on: :create,
                           if: "self.non_js_creation.present?"
+  validate :question_key_correctness
   # Used for NON JS implementation - end
 
   begin :validations
@@ -53,5 +54,18 @@ class FormAnswerAttachment < ActiveRecord::Base
   def store_file!
     super()
     virus_scan
+  end
+
+  private
+
+  def question_key_correctness
+    # possible improvements:
+    # - validating all upload questions in this way
+    # - smart collecting max-attachments information from the form structure
+    if question_key == "org_chart" && new_record?
+      if self.class.where(question_key: self.question_key).count > 0
+        errors.add(:base, "Maximum amount of these kind of files reached.")
+      end
+    end
   end
 end

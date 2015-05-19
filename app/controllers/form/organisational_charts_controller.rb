@@ -57,7 +57,8 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     self.form_answer_attachment = current_user.form_answer_attachments.new(
       attachment_params.merge({
         form_answer_id: @form_answer.id,
-        original_filename: original_filename
+        original_filename: original_filename,
+        question_key: "org_chart"
       })
     )
 

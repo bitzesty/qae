@@ -447,7 +447,14 @@ jQuery ->
         forceIframeTransport: true
         dataType: 'json'
         formData: [
-          { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
+          {
+            name: "authenticity_token",
+            value: $("meta[name='csrf-token']").attr("content")
+          },
+          {
+            name: "question_key",
+            value: $el.data("question-key")
+          }
         ]
         done: upload_done
         progressall: progress_all
