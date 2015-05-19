@@ -31,7 +31,7 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_award_title(x_coord, y_coord)
-    pdf_doc.text_box form_answer.award_type.capitalize,
+    pdf_doc.text_box form_answer.award_type_full_name.capitalize,
                      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 

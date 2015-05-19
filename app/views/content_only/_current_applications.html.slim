@@ -8,7 +8,7 @@
       /tr
         td colspan="3"
           h3
-            = award_applications.first.decorate.award_type
+            = award_applications.first.award_type_full_name
             '  Award
       - award_applications.each do |award|
         tr
@@ -17,7 +17,7 @@
               = award.decorate.application_name
               br
               small
-                = award.decorate.award_type
+                = award.award_type_full_name
                 '  Award
           td
             p

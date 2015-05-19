@@ -48,7 +48,7 @@ shared_context "admin feedback pdf file checks" do
   end
 
   let(:award_title) do
-    form_answer.award_type.capitalize
+    form_answer.award_type_full_name.downcase.capitalize
   end
 
   describe "PDF generation" do

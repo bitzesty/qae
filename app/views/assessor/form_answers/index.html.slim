@@ -68,7 +68,7 @@
                       span.urn-not-generated Not yet generated
 
                   - if @search.query?
-                    td = obj.award_type
+                    td = obj.award_type_full_name
                   - else
                     td= obj.state.humanize
                     td= obj.primary_assessor_full_name

@@ -9,10 +9,10 @@ header.page-header.group.page-header-wider
     br
     p
       ' Your
-      - if @form_answer.award_type == "promotion"
+      - if @form_answer.promotion?
         ' nomination for The Queen's Award for Enterprise Promotion Award
       - else
-        ' application for The Queen's Award for #{@form_answer.decorate.award_type}
+        ' application for The Queen's Award for #{@form_answer.award_type_full_name}
       ' was submitted. We have sent you an email confirming your submission.
     br
     p
@@ -21,7 +21,7 @@ header.page-header.group.page-header-wider
     br
     p
       ' You can still edit your submitted
-      - if @form_answer.award_type == "promotion"
+      - if @form_answer.promotion?
         ' nomination
       - else
         ' application
@@ -37,7 +37,7 @@ header.page-header.group.page-header-wider
           p
             = link_to users_form_answer_path(@form_answer, format: :pdf)
               ' Download a PDF of your
-              - if @form_answer.award_type == "promotion"
+              - if @form_answer.promotion?
                 ' nomination
               - else
                 ' application
@@ -52,7 +52,7 @@ header.page-header.group.page-header-wider
 
         h2
           ' What happens next
-        - if @form_answer.award_type == "promotion"
+        - if @form_answer.promotion?
           h3 October/November
 
           p Independent assessment of all nominations received and a shortlist is drawn up. The Queen's Awards Office undertakes due diligence checks of the shortlisted candidates.
