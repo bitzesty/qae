@@ -26,6 +26,9 @@ class DeclarationOfResponsibilityForm
 
   def initialize(form_answer)
     @form_answer = form_answer
+    ATTRIBUTES.each do |attr_name|
+      public_send("#{attr_name}=", form_answer.document[attr_name.to_s])
+    end
   end
 
   def update(attrs = {})
