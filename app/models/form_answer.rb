@@ -198,6 +198,13 @@ class FormAnswer < ActiveRecord::Base
     state == "awarded"
   end
 
+  def unsuccessful?
+    [
+      "not_recommended",
+      "not_awarded"
+    ].include?(state)
+  end
+
   private
 
   def nominee_full_name_from_document

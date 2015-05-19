@@ -26,8 +26,7 @@
           = render "section_appraisal_form_moderated"
           = render "section_case_summary"
 
-  / TODO: display only for unsuccessful applications
-  - if true
+  - if @form_answer.unsuccessful?
     - unless @form_answer.award_type_slug == "promotion"
       .panel.panel-default.panel-parent
         .panel-heading#feedback-heading role="tab"
