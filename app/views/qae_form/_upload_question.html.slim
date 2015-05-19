@@ -47,7 +47,7 @@
     span.button.button-add *possible_read_only_ops
       span
         | + Upload
-      input.fileinput-button.js-file-upload type="file" name="form[file]" id="q_#{question.key}" *possible_read_only_ops
+      input.fileinput-button.js-file-upload type="file" name="form[file]" id="q_#{question.key}" *possible_read_only_ops data-question-key=question.key
     - if question.links
       | &nbsp;
       a.button.button-add.js-file-upload data-add-link="1" href="#" *possible_read_only_ops
