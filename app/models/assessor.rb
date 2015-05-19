@@ -104,6 +104,10 @@ class Assessor < ActiveRecord::Base
     form_answer.assessor_assignments.primary.assessor_id == id
   end
 
+  def secondary?(form_answer)
+    form_answer.assessor_assignments.secondary.assessor_id == id
+  end
+
   private
 
   def categories

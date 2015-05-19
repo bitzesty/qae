@@ -26,22 +26,20 @@
           = render "section_appraisal_form_moderated"
           = render "section_case_summary"
 
-  / TODO: display only for unsuccessful applications
-  - if true
-    - unless @form_answer.award_type_slug == "promotion"
-      .panel.panel-default.panel-parent
-        .panel-heading#feedback-heading role="tab"
-          h4.panel-title
-            a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-feedback" aria-expanded="true" aria-controls="section-feedback"
-              ' Feedback
-              - if feedback_updated_by(@form_answer).present?
-                small
-                  = feedback_updated_by(@form_answer)
-        #section-feedback.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="feedback-heading"
-          .panel-body
-            = render "admin/feedbacks/section", form_answer: @form_answer
+  - if show_feedback_section?
+    .panel.panel-default.panel-parent
+      .panel-heading#feedback-heading role="tab"
+        h4.panel-title
+          a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-feedback" aria-expanded="true" aria-controls="section-feedback"
+            ' Feedback
+            - if feedback_updated_by(@form_answer).present?
+              small
+                = feedback_updated_by(@form_answer)
+      #section-feedback.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="feedback-heading"
+        .panel-body
+          = render "admin/feedbacks/section", form_answer: @form_answer
 
-  - if @form_answer.awarded?
+  - if show_winners_section?
     .panel.panel-default.panel-parent
       .panel-heading#winners-heading role="tab"
         h4.panel-title
@@ -50,5 +48,7 @@
       #section-winners.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="winners-heading"
         .panel-body
           .panel-group#panel-winners-parent role="tablist" aria-multiselectable="true"
-            = render "section_press_summary"
-            = render "section_palace_attendees"
+            - if show_press_summary_subsection?
+              = render "section_press_summary"
+            - if show_palace_attendees_subsection?
+              = render "section_palace_attendees"

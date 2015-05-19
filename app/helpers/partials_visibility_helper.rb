@@ -7,4 +7,22 @@ module PartialsVisibilityHelper
   def show_section_appraisal_moderated?
     current_subject.lead?(@form_answer)
   end
+
+  def show_winners_section?
+    @form_answer.awarded? || @form_answer.recommended?
+  end
+
+  def show_feedback_section?
+    @form_answer.unsuccessful? && !@form_answer.promotion? &&
+      !current_subject.try(:secondary?, @form_answer)
+  end
+
+  def show_press_summary_subsection?
+    (@form_answer.awarded? || @form_answer.recommended?) &&
+      !current_subject.try(:secondary?, @form_answer)
+  end
+
+  def show_palace_attendees_subsection?
+    @form_answer.awarded? && !current_subject.try(:secondary?, @form_answer)
+  end
 end

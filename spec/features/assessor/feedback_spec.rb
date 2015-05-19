@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe "Assessor feedback management" do
   let(:assessor) { create(:assessor, :lead_for_all) }
-  let(:form_answer) { create(:form_answer, :innovation) }
+  let(:form_answer) { create(:form_answer, :innovation, state: "not_awarded") }
 
   before do
     login_as(assessor, scope: :assessor)

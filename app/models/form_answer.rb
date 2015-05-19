@@ -3,6 +3,7 @@ require 'qae_2014_forms'
 class FormAnswer < ActiveRecord::Base
   include PgSearch
   extend Enumerize
+  include FormAnswerStatesHelper
 
   has_paper_trail
 
@@ -192,10 +193,6 @@ class FormAnswer < ActiveRecord::Base
 
   def submitted_and_after_the_deadline?
     submitted? && Settings.after_current_submission_deadline?
-  end
-
-  def awarded?
-    state == "awarded"
   end
 
   private
