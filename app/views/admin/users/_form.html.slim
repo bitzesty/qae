@@ -28,14 +28,15 @@
         .panel-body
           = render "fields_contact_preferences", f: f
 
-    .panel.panel-default
-      .panel-heading role="tab" id="section-collaborators-header"
-        h4.panel-title
-          a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-collaborators" aria-expanded="false" aria-controls="section-collaborators"
-            ' Collaborators
-      #section-collaborators.section-collaborators.panel-collapse.collapse role="tabpanel" aria-labelledby="section-collaborators-header"
-        .panel-body
-          = render "fields_collaborators", f: f, resource: resource
+    - unless action_name == "new"
+      .panel.panel-default
+        .panel-heading role="tab" id="section-collaborators-header"
+          h4.panel-title
+            a.collapsed data-toggle="collapse" data-parent="#user-form-panel" href="#section-collaborators" aria-expanded="false" aria-controls="section-collaborators"
+              ' Collaborators
+        #section-collaborators.section-collaborators.panel-collapse.collapse role="tabpanel" aria-labelledby="section-collaborators-header"
+          .panel-body
+            = render "fields_collaborators", f: f, resource: resource
 
     .panel.panel-default
       .panel-heading role="tab" id="section-password-header"
