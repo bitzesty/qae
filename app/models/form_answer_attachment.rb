@@ -63,7 +63,7 @@ class FormAnswerAttachment < ActiveRecord::Base
     # - validating all upload questions in this way
     # - smart collecting max-attachments information from the form structure
     if question_key == "org_chart" && new_record?
-      if self.class.where(question_key: self.question_key).count > 0
+      if self.class.where(question_key: question_key, form_answer_id: form_answer_id).count > 0
         errors.add(:base, "Maximum amount of these kind of files reached.")
       end
     end
