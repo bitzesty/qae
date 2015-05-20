@@ -219,7 +219,7 @@ class FormController < ApplicationController
     @attachment.attachable = current_user
     @attachment.question_key = params[:question_key] if params[:question_key].present?
 
-    if @attachment.save!
+    if @attachment.save
       # text/plain content type is needed for jquery.fileupload
       render json: @attachment, status: :created, content_type: "text/plain"
     else
