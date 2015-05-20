@@ -37,7 +37,12 @@ class Users::SupportLettersController < Users::BaseController
   def destroy
     @support_letter = form_answer.support_letters.find(params[:id])
     @support_letter.destroy
-    redirect_to dashboard_path, notice: "Support letter have been successfully destroyed"
+
+    if request.xhr?
+      render nothing: true
+    else
+      redirect_to :back, notice: "Support letter have been successfully destroyed"
+    end
   end
 
   private

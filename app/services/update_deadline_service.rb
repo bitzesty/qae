@@ -16,8 +16,10 @@ class UpdateDeadlineService
 
   def trigger_states_transition
     now = DateTime.now
-    if deadline.submission_end? && now >= deadline.trigger_at
-      ::SubmissionDeadlineStatesTransitionWorker.perform_async("#{deadline.id}-#{now}")
+    trigger_at = deadline.trigger_at
+
+    if deadline.submission_end? && trigger_at.present? && now >= trigger_at
+      ::SubmissionDeadlineStatesTransitionWorker.perform_async("#{deadline.id}_#{now}")
     end
   end
 end

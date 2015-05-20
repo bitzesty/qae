@@ -3,7 +3,7 @@ class SubmissionDeadlineStatesTransitionWorker
 
   shoryuken_options queue: "#{Rails.env}_default", auto_delete: true
 
-  def perform(sqs_msg)
+  def perform(_sqs_msg)
     FormAsnwerStateMachine.trigger_deadlines
   end
 end
