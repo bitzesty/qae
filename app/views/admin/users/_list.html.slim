@@ -10,8 +10,12 @@
           th.sortable
             = sort_link f, 'Company', @search, :company_name
           th.filter
+            - role_names = { "account_admin" => "Admin and collaborator", "regular" => "Collaborator only" }
             = f.simple_fields_for [:filters, @search.filters] do |f|
-              = f.input :role, collection: User.role.options, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+              - role_collection = User.role.options.map{ |role| [role_names[role[1]], role[1]] }
+              = f.input :role, collection: role_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+              = f.submit "Filter", class: "if-js-hide"
+              label.if-js-hide Ctrl + left click for multi select
             .dropdown.if-no-js-hide
               button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
                 ' Role:
@@ -30,7 +34,7 @@
                     label data-value=role[1]
                       input type="checkbox"
                       span.label-contents
-                        = role[0]
+                        = role_names[role[1]]
           th.sortable
             = sort_link f, 'Signed in on', @search, :last_sign_in_at
           th.sortable
@@ -49,7 +53,7 @@
                 = link_to user.full_name, edit_admin_user_path(user), class: 'link-edit-user ellipsis'
               td = mail_to user.email, user.email, {class: "ellipsis"}
               td = user.company
-              td = user.role
+              td = user.decorate.role_name
               td
                 small.text-muted
                   span.visible-lg
