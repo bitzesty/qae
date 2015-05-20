@@ -100,7 +100,7 @@ So that they can collaborate form answers
           it "can't add person with invalid email" do
             within("#new_collaborator") do
               fill_in "Email", with: "12345678"
-              choose("Contributor")
+              choose("Collaborator only")
 
               expect {
                 click_on "Save collaborator"
@@ -123,7 +123,7 @@ So that they can collaborate form answers
             it "can't add" do
               within("#new_collaborator") do
                 fill_in "Email", with: user_associated_with_another_account.email
-                choose("Admin and contributor")
+                choose("Admin and collaborator")
 
                 expect {
                   click_on "Save collaborator"
@@ -140,7 +140,7 @@ So that they can collaborate form answers
             it "can't add" do
               within("#new_collaborator") do
                 fill_in "Email", with: account_admin.email
-                choose("Admin and contributor")
+                choose("Admin and collaborator")
 
                 expect {
                   click_on "Save collaborator"
@@ -161,7 +161,7 @@ So that they can collaborate form answers
             it "should create new user record with regular role" do
               within("#new_collaborator") do
                 fill_in "Email", with: new_user_email
-                choose("Contributor")
+                choose("Collaborator only")
 
                 expect {
                   click_on "Save collaborator"
