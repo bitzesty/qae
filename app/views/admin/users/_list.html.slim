@@ -13,6 +13,8 @@
             - role_names = { "account_admin" => "Admin and collaborator", "regular" => "Collaborator only" }
             = f.simple_fields_for [:filters, @search.filters] do |f|
               - role_collection = User.role.options.map{ |role| [role_names[role[1]], role[1]] }
+              = f.input :role, collection: role_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+              = f.submit "Filter", class: "if-js-hide"
               label.if-js-hide Ctrl + left click for multi select
             .dropdown.if-no-js-hide
               button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
