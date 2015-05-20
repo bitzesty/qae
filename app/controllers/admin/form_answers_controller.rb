@@ -57,26 +57,6 @@ class Admin::FormAnswersController < Admin::BaseController
     @form_answer = FormAnswer.find(params[:id]).decorate
   end
 
-  def primary_assessment
-    @primary_assessment ||= resource.assessor_assignments.primary.decorate
-  end
-
-  def secondary_assessment
-    @secondary_assessment ||= resource.assessor_assignments.secondary.decorate
-  end
-
-  def moderated_assessment
-    @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
-  end
-
-  def primary_case_summary_assessment
-    @primary_case_summary_assessment ||= resource.assessor_assignments.primary_case_summary.decorate
-  end
-
-  def lead_case_summary_assessment
-    @lead_case_summary_assessment ||= resource.assessor_assignments.lead_case_summary.decorate
-  end
-
   def financial_data_ops
     {
       updated_at: Time.zone.now,

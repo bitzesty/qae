@@ -47,26 +47,6 @@ class Assessor::FormAnswersController < Assessor::BaseController
     @form_answer ||= current_assessor.applications_scope.find(params[:id]).decorate
   end
 
-  def primary_assessment
-    @primary_assessment ||= resource.assessor_assignments.primary.decorate
-  end
-
-  def secondary_assessment
-    @secondary_assessment ||= resource.assessor_assignments.secondary.decorate
-  end
-
-  def moderated_assessment
-    @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
-  end
-
-  def primary_case_summary_assessment
-    @primary_case_summary_assessment ||= resource.assessor_assignments.primary_case_summary.decorate
-  end
-
-  def lead_case_summary_assessment
-    @lead_case_summary_assessment ||= resource.assessor_assignments.lead_case_summary.decorate
-  end
-
   # Assessor categories tabs
   # TODO: tests, extract
 
