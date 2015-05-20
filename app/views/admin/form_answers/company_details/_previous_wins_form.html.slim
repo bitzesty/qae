@@ -51,10 +51,10 @@
 - else
   .form-group
     label.form-label Previous winnings
-      - if PreviousWinDecorator.decorate_collection(@form_answer.previous_wins).any?
-        ul
-          - PreviousWinDecorator.decorate_collection(@form_answer.previous_wins).each do |win|
-            li
-              span= win.description
-      - else
-        p -
+    - if PreviousWinDecorator.decorate_collection(@form_answer.previous_wins).any?
+      ul
+        - PreviousWinDecorator.decorate_collection(@form_answer.previous_wins).each do |win|
+          li
+            span= win.description
+    - else
+      p -
