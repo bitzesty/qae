@@ -3,7 +3,9 @@ class Admin::DeadlinesController < Admin::BaseController
 
   def update
     authorize @deadline, :update?
-    @deadline.update_attributes(update_params)
+
+    service = UpdateDeadlineService.new(@deadline, update_params)
+    service.perform
 
     respond_to do |format|
       format.html do
