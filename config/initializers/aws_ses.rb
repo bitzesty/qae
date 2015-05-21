@@ -15,7 +15,7 @@
 
 # TODO: remove block below once old servers (dev and demo) will be terminated
 # and uncomment code above ^
-if Rails.env.staging? || Rails.env.production?
+if Rails.env.bzstaging? || Rails.env.staging? || Rails.env.production?
   if ENV["AWS_SES_DOMAIN_NAME"]
     Rails.application.configure do
       config.action_mailer.delivery_method = :smtp
