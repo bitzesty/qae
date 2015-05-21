@@ -32,7 +32,7 @@ module FormAnswerMixin
   end
 
   def review
-    authorize @form_answer, :review?
+    authorize resource, :review?
     sign_in(@form_answer.user, bypass: true)
     session[:admin_in_read_only_mode] = true
 

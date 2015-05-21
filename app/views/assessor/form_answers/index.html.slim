@@ -19,21 +19,21 @@
           = submit_tag :submit, class: 'search-submit'
 
   .row
-    - if show_award_tabs_for_assessor?
+    - if category_picker.show_award_tabs_for_assessor?
       .col-md-9.col-sm-8
         ul.nav.nav-pills
-          - visible_categories.each_with_index do |category, index|
+          - category_picker.visible_categories.each_with_index do |category, index|
             li role="presentation" class="#{'active' if params[:award_type] == category} #{'active' if !params[:award_type].present? and index == 0}"
               = link_to FormAnswer::AWARD_TYPE_FULL_NAMES[category], assessor_form_answers_path(award_type: category)
 
-    - if current_subject.categories_as_lead.include?(current_award_type)
+    - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
       .col-md-3.pull-right.text-right.if-no-js-hide
         .btn.btn-success.bulk-assign-assessors-link Bulk Assign Assessors
   .clear
 
   br
 
-  - if current_subject.categories_as_lead.include?(current_award_type)
+  - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
     .bulk-assign-assessors-form.if-no-js-hide
       .well
         h3 Bulk Assign Assessors
@@ -44,14 +44,14 @@
               label.select.control-label
                 ' Assign Primary Assessor to these applications
                 = f.select :primary_assessor_id,
-                           [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
+                           [["Not Assigned", "not assigned"]] + Assessor.available_for(category_picker.current_award_type).map{|a| [a.full_name, a.id]},
                            { include_blank: true },
                            class: "form-control"
             .input.select.form-group
               label.select.control-label
                 ' Assign Secondary Assessor to these applications
                 = f.select :secondary_assessor_id,
-                           [["Not Assigned", "not assigned"]] + Assessor.available_for(current_award_type).map{|a| [a.full_name, a.id]},
+                           [["Not Assigned", "not assigned"]] + Assessor.available_for(category_picker.current_award_type).map{|a| [a.full_name, a.id]},
                            { include_blank: true },
                            class: "form-control"
             = f.text_field :form_answer_ids, class: "if-js-hide visuallyhidden"
@@ -62,7 +62,7 @@
       br
 
 = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
-  = hidden_field_tag :award_type, current_award_type
+  = hidden_field_tag :award_type, category_picker.current_award_type
 
   .row
     .col-xs-12
