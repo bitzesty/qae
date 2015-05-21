@@ -9,7 +9,9 @@ class Admin::FormAnswersController < Admin::BaseController
 
     @search = FormAnswerSearch.new(@award_year.form_answers, current_admin).search(params[:search])
 
-    @form_answers = @search.results.uniq.page(params[:page]).includes(:comments)
+    @form_answers = @search.results.group("form_answers.id")
+                                   .page(params[:page])
+                                   .includes(:comments)
   end
 
   def show

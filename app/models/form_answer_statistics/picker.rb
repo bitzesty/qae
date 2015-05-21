@@ -32,14 +32,14 @@ class FormAnswerStatistics::Picker
 
 
     n_eligible = []
-    n_eligible << count_with_year(not_eligible(DateTime.now - 1.day))
-    n_eligible << count_with_year(not_eligible(DateTime.now - 7.days))
+    n_eligible << count_with_year(not_eligible(DateTime.now - 1.day).count)
+    n_eligible << count_with_year(not_eligible(DateTime.now - 7.days).count)
     n_eligible << fa_year_scope.where(state: "not_eligible").count
     out[:applications_not_eligible] = { name: "Applications not eligible", counters: n_eligible }
 
     in_progress = []
-    in_progress << count_with_year(application_in_progress(Time.now - 1.days))
-    in_progress << count_with_year(application_in_progress(Time.now - 7.days))
+    in_progress << count_with_year(application_in_progress(Time.now - 1.days).count)
+    in_progress << count_with_year(application_in_progress(Time.now - 7.days).count)
     in_progress << fa_year_scope.where(state: "application_in_progress").count
     out[:applications_in_progress] = { name: "Applications in progress", counters: in_progress }
 
@@ -102,7 +102,7 @@ class FormAnswerStatistics::Picker
       .where("(form_answer_transitions.to_state = ? AND
         form_answer_transitions.created_at > ?) OR (form_answers.created_at > ?)",
         "application_in_progress", time_range, time_range)
-      .uniq
+      .group("form_answers.id")
   end
 
   def not_eligible(time_range)
@@ -110,7 +110,7 @@ class FormAnswerStatistics::Picker
       .where(state: "not_eligible")
       .where("form_answer_transitions.to_state = ? AND
         form_answer_transitions.created_at > ?", "not_eligible", time_range)
-      .uniq
+      .group("form_answers.id")
   end
 
   def submissions_query(scope, time_range)
@@ -118,14 +118,16 @@ class FormAnswerStatistics::Picker
     out = out.where("form_answers.state = ?", "submitted")
     out = out.where("form_answer_transitions.to_state = ?", "submitted")
     out = out.where("form_answer_transitions.created_at > ?", time_range) if time_range
-    out.uniq
+    out.group("form_answers.id")
   end
 
   def collect_submission_ranges(scope)
     temp = []
-    temp << count_with_year(submissions_query(scope, DateTime.now - 1.day))
-    temp << count_with_year(submissions_query(scope, DateTime.now - 7.days))
-    temp << submissions_query(fa_year_scope(scope), nil).count
+    temp << count_with_year(submissions_query(scope, DateTime.now - 1.day).count)
+    temp << count_with_year(submissions_query(scope, DateTime.now - 7.days).count)
+    temp << submissions_query(fa_year_scope(scope), nil).count.count
+    # .count.count above is not mistake - we use group("form_answers.id")
+
     temp
   end
 

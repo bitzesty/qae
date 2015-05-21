@@ -13,8 +13,19 @@ describe "Assessor assigns assessors", %(
   let!(:assessor2) { create(:assessor, :regular_for_trade, first_name: "first-name#{rand(100)}") }
 
   describe "Form submission" do
-    let!(:form_answer) { create(:form_answer, :trade) }
-    let!(:form_answer1) { create(:form_answer, :trade) }
+    let!(:form_answer) do
+      f = create(:form_answer, :trade)
+      f.document["company_name"] = "ABC Company"
+      f.save!
+      f.reload
+    end
+
+    let!(:form_answer1) do
+      f = create(:form_answer, :trade)
+      f.document["company_name"] = "BBC Company"
+      f.save!
+      f.reload
+    end
 
     before do
       login_as(subject, scope: :assessor)

@@ -20,9 +20,7 @@ class FormAnswerUserSubmissionService
 
     award_holder_details = form_answer.document["queen_award_holder_details"]
     if award_holder_details.present?
-      json = JSON.parse(award_holder_details)
-      json.each do |win|
-        win = JSON.parse(win)
+      award_holder_details.each do |win|
         form_answer.previous_wins.create(category: win["category"], year: win["year"] )
       end
     end

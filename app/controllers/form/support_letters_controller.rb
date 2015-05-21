@@ -69,11 +69,11 @@ class Form::SupportLettersController < Form::BaseController
       last_name: @support_letter.last_name,
       relationship_to_nominee: @support_letter.relationship_to_nominee,
       letter_of_support: @support_letter.support_letter_attachment.id
-    }.to_json
+    }
 
     letters << new_letter
 
-    @form_answer.document = @form_answer.document.merge(supporter_letters_list: letters.to_json,
+    @form_answer.document = @form_answer.document.merge(supporter_letters_list: letters,
                                                         manually_upload: "yes")
   end
 
@@ -81,15 +81,15 @@ class Form::SupportLettersController < Form::BaseController
     letters = support_letters_doc
 
     letters.delete_if do |sup|
-      JSON.parse(sup)["support_letter_id"] == @support_letter.id
+      sup["support_letter_id"] == @support_letter.id
     end
 
-    @form_answer.document = @form_answer.document.merge(supporter_letters_list: letters.to_json)
+    @form_answer.document = @form_answer.document.merge(supporter_letters_list: letters)
   end
 
   def support_letters_doc
     if @form_answer.document["supporter_letters_list"].present?
-      JSON.parse(@form_answer.document["supporter_letters_list"])
+      @form_answer.document["supporter_letters_list"]
     else
       []
     end

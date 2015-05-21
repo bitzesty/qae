@@ -10,9 +10,7 @@ class QAEFormBuilder
 
   class SubsidiariesAssociatesPlantsQuestionDecorator < QuestionDecorator
     def subsidiaries
-      @subsidiaries ||= JSON.parse(answers[delegate_obj.key.to_s] || '[]').map do |answer|
-        JSON.parse(answer)
-      end
+      @subsidiaries ||= (answers[delegate_obj.key.to_s] || [])
     end
 
     alias :entities :subsidiaries

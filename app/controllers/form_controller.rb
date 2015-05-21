@@ -123,7 +123,7 @@ class FormController < ApplicationController
           if year.to_i < AwardYear.current.year - 5 || !eligibility_holder
             @form_answer.document = @form_answer.document.merge(queen_award_holder: "no")
           else
-            details = [{ category: "international_trade", year: year.to_s }.to_json].to_json
+            details = [{ category: "international_trade", year: year.to_s }]
             @form_answer.document = @form_answer.document.merge(queen_award_holder_details: details)
           end
         end
@@ -241,12 +241,12 @@ class FormController < ApplicationController
 
   def prepare_doc
     allowed_params = updating_step.allowed_questions_params_list(params[:form])
-    @form_answer.document.merge(serialize_doc(allowed_params))
+    @form_answer.document.merge(prepare_doc_structures(allowed_params))
   end
 
-  ## TODO: maybe we switch to JSON instead of hstore
-  def serialize_doc doc
+  def prepare_doc_structures doc
     result = {}
+
     doc.each do |(k, v)|
       if v.is_a?(Hash)
         if doc[k]["array"] == "true"
@@ -254,11 +254,11 @@ class FormController < ApplicationController
             result[k] ||= []
 
             if value.is_a?(Hash)
-              result[k] << value.to_json
+              result[k] << value
             end
           end
         else
-          result[k] = v.to_json
+          result[k] = v
         end
       else
         result[k] = v

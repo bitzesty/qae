@@ -25,7 +25,7 @@ class CaseSummaryPdfs::Base < ReportPdfBase
                               .having("count(assessor_assignments) > 0")
                               .where("assessor_assignments.submitted_at IS NOT NULL AND assessor_assignments.position IN (3,4)")
                               .order("form_answers.award_year_id, form_answers.sic_code")
-                              .distinct("form_answers.id")
+                              .group("form_answers.id")
                               .where("form_answers.award_year_id =?", current_year.id)
   end
 

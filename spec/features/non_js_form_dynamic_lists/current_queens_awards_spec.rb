@@ -28,7 +28,7 @@ So that I can fill form completelly even if Javascript is turned off
     FactoryGirl.create :form_answer, :innovation,
       user: user,
       account: account,
-      document: { company_name: "Bitzesty", queen_award_holder_details: awards.map(&:to_json) }
+      document: { company_name: "Bitzesty", queen_award_holder_details: awards }
   end
 
   let!(:basic_eligibility) do

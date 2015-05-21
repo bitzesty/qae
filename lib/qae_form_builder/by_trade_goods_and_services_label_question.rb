@@ -29,9 +29,7 @@ class QAEFormBuilder
 
   class ByTradeGoodsAndServicesLabelQuestionDecorator < QuestionDecorator
     def trade_goods_and_services
-      @trade_goods_and_services ||= JSON.parse(answers[delegate_obj.key.to_s] || '[]').map do |answer|
-        JSON.parse(answer)
-      end
+      @trade_goods_and_services ||= (answers[delegate_obj.key.to_s] || [])
     end
 
     def required_sub_fields_list

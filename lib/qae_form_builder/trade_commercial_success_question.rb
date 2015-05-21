@@ -43,9 +43,7 @@ class QAEFormBuilder
 
   class TradeCommercialSuccessQuestionDecorator < QuestionDecorator
     def linked_answers
-      JSON.parse(answers[delegate_obj.question_key.to_s] || '[]').map do |answer|
-        JSON.parse(answer)
-      end
+      answers[delegate_obj.question_key.to_s] || []
     end
 
     def preselected_condition

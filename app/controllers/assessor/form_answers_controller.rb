@@ -26,7 +26,9 @@ class Assessor::FormAnswersController < Assessor::BaseController
     end
 
     @search = FormAnswerSearch.new(scope, current_assessor).search(params[:search])
-    @form_answers = @search.results.uniq.page(params[:page]).includes(:comments)
+    @form_answers = @search.results.group("form_answers.id")
+                                   .page(params[:page])
+                                   .includes(:comments)
   end
 
   def show

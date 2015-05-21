@@ -246,7 +246,7 @@ ActiveRecord::Schema.define(version: 20150519123524) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.hstore   "document"
+    t.hstore   "hstore_document"
     t.string   "award_type"
     t.integer  "account_id"
     t.string   "urn"
@@ -269,6 +269,7 @@ ActiveRecord::Schema.define(version: 20150519123524) do
     t.string   "company_details_editable_type"
     t.integer  "primary_assessor_id"
     t.integer  "secondary_assessor_id"
+    t.json     "document"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

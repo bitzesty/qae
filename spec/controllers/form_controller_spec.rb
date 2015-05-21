@@ -85,7 +85,7 @@ describe FormController do
       it "adds award if it is 5 or less years old" do
         get :edit_form, id: form_answer.id
 
-        expect(form_answer.reload.document["queen_award_holder_details"]).to eq([{category: "international_trade", year: "2015"}.to_json].to_json)
+        expect(form_answer.reload.document["queen_award_holder_details"]).to eq([{"category" => "international_trade", "year" => "2015"}])
         expect(form_answer.document["queen_award_holder"]).to eq("yes")
       end
 
