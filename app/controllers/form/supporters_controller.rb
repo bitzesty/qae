@@ -43,26 +43,26 @@ class Form::SupportersController < Form::BaseController
       last_name: @supporter.last_name,
       relationship_to_nominee: @supporter.relationship_to_nominee,
       email: @supporter.email
-    }.to_json
+    }
 
     supporters << new_supporter
 
-    @form_answer.document = @form_answer.document.merge(supporters: supporters.to_json)
+    @form_answer.document = @form_answer.document.merge(supporters: supporters)
   end
 
   def remove_supporter_from_document!
     supporters = supporters_doc
 
     supporters.delete_if do |sup|
-      JSON.parse(sup)["supporter_id"] == @supporter.id
+      sup["supporter_id"] == @supporter.id
     end
 
-    @form_answer.document = @form_answer.document.merge(supporters: supporters.to_json)
+    @form_answer.document = @form_answer.document.merge(supporters: supporters)
   end
 
   def supporters_doc
     if @form_answer.document["supporters"].present?
-      JSON.parse(@form_answer.document["supporters"])
+      @form_answer.document["supporters"]
     else
       []
     end

@@ -35,8 +35,6 @@ module FormAnswersBasePointer
   end
 
   def fetch_answer_by_key(key)
-    JSON.parse(answers[key])
-  rescue
     answers[key]
   end
 

@@ -19,7 +19,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
     result_materials[next_document_position.to_s] = created_link_ops
 
     @form_answer.document.merge(
-      innovation_materials: result_materials.to_json
+      innovation_materials: result_materials
     )
   end
 
@@ -31,7 +31,7 @@ class Form::FormLinksController < Form::MaterialsBaseController
     result_materials = result_materials.present? ? result_materials : {}
 
     @form_answer.document.merge(
-      innovation_materials: result_materials.to_json
+      innovation_materials: result_materials
     )
   end
 

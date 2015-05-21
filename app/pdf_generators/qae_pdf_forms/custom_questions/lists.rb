@@ -121,19 +121,17 @@ module QaePdfForms::CustomQuestions::Lists
   def list_rows
     if humanized_answer.present?
       humanized_answer.map do |item|
-        prepared_item = JSON.parse(item)
-
         case question.delegate_obj
         when QAEFormBuilder::AwardHolderQuestion
-          award_holder_query_conditions(prepared_item)
+          award_holder_query_conditions(item)
         when QAEFormBuilder::QueenAwardHolderQuestion
-          queen_award_holder_query_conditions(prepared_item)
+          queen_award_holder_query_conditions(item)
         when QAEFormBuilder::PositionDetailsQuestion
-          position_details_query_conditions(prepared_item)
+          position_details_query_conditions(item)
         when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
-          subsidiaries_associates_plants_query_conditions(prepared_item)
+          subsidiaries_associates_plants_query_conditions(item)
         when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
-          trade_goods_conditions(prepared_item)
+          trade_goods_conditions(item)
         end
       end.compact
     end

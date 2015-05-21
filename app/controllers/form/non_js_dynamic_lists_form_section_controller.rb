@@ -15,9 +15,7 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
 
   expose(:existing_parsed_list_doc) do
     if existing_list_doc.present?
-      JSON.parse(existing_list_doc).map do |el|
-        JSON.parse(el)
-      end
+      existing_list_doc
     else
       []
     end
@@ -34,10 +32,9 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
   expose(:add_result_doc) do
     res = existing_parsed_list_doc
     res.push(created_item_ops)
-    res = res.map(&:to_json)
 
     @form_answer.document.merge(
-      input_name => res.to_json
+      input_name => res
     )
   end
 
@@ -47,20 +44,19 @@ class Form::NonJsDynamicListsFormSectionController < Form::BaseController
       item_detect_condition(el)
     end
 
-    res = (res.present? ? res : []).map(&:to_json)
+    res = res.present? ? res : []
 
     @form_answer.document.merge(
-      input_name => res.to_json
+      input_name => res
     )
   end
 
   expose(:update_result_doc) do
     res = existing_parsed_list_doc
     res[params[:index].to_i] = item_params
-    res = res.map(&:to_json)
 
     @form_answer.document.merge(
-      input_name => res.to_json
+      input_name => res
     )
   end
 

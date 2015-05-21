@@ -367,18 +367,9 @@ class Reports::FormAnswer
   def product_service
     service_json = doc "trade_goods_and_services_explanations"
     if service_json
-      service_json.gsub!(/[\\]" | ["]/x, '\"' => '"', '"' => "")
-
-      begin
-        services = JSON.parse(service_json)
-      rescue JSON::ParserError
-        services = []
-      end
-
-      services.map do |service|
+      (service_json || []).map do |service|
         service["desc_short"]
       end.select(&:present?).join(",")
-
     end
   end
 

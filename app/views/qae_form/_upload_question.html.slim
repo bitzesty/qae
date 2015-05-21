@@ -53,7 +53,7 @@
       a.button.button-add.js-file-upload data-add-link="1" href="#" *possible_read_only_ops
         | + Add website address
 
-  - if question.key == :org_chart && JSON.parse(@form_answer.document["org_chart"] || {}.to_json).blank?
+  - if question.key == :org_chart && @form_answer.document["org_chart"].blank?
     .if-js-hide
       = link_to "+ Upload", new_form_form_answer_organisational_chart_url(@form_answer.id),
                             class: "button button-add"

@@ -13,7 +13,7 @@ class Form::MaterialsBaseController < Form::BaseController
 
   expose(:existing_materials) do
     if innovation_materials_doc.present?
-      JSON.parse(innovation_materials_doc)
+      innovation_materials_doc
     else
       {}
     end

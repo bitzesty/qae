@@ -92,8 +92,6 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def answer_by_key
-    JSON.parse(form_pdf.answers[key])
-  rescue
     form_pdf.answers[key]
   end
 

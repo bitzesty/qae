@@ -67,11 +67,9 @@ module CaseSummaryPdfs::General::DataPointer
       answer = filled_answers[current_awards_question.key.to_s]
 
       if answer.present?
-        res = JSON.parse(answer).map do |item|
-          prepared_item = JSON.parse(item)
-
-          if prepared_item["category"].present? && prepared_item["year"].present?
-            "#{prepared_item["year"]} - #{PREVIOUS_AWARDS[prepared_item["category"].to_s]}"
+        res = answer.map do |item|
+          if item["category"].present? && item["year"].present?
+            "#{item["year"]} - #{PREVIOUS_AWARDS[item["category"].to_s]}"
           end
         end.compact
 

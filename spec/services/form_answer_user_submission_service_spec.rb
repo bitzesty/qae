@@ -5,8 +5,13 @@ describe FormAnswerUserSubmissionService do
 
   let(:document) do
     {
-      "queen_award_holder_details" => "[\"{\\\"category\\\":\\\"innovation\\\",\\\"year\\\":\\\"2012\\\"}\", \"{\\\"category\\\":\\\"innovation\\\",\\\"year\\\":\\\"2011\\\"}\", \"{\\\"category\\\":\\\"international_trade\\\",\\\"year\\\":\\\"2015\\\"}\", \"{\\\"category\\\":\\\"sustainable_development\\\",\\\"year\\\":\\\"2014\\\"}\", \"{\\\"category\\\":\\\"sustainable_development\\\",\\\"year\\\":\\\"\\\"}\", \"{\\\"category\\\":\\\"\\\",\\\"year\\\":\\\"\\\"}\"]"
-    } # prob. would be replaced with hash after HSTORE -> json migration
+      "queen_award_holder_details" => [
+        {"category"=>"innovation", "year"=>"2012"},
+        {"category"=>"innovation", "year"=>"2011"},
+        {"category"=>"international_trade", "year"=>"2015"},
+        {"category"=>"sustainable_development", "year"=>"2014"}
+      ]
+    }
   end
 
   let(:form_answer) do

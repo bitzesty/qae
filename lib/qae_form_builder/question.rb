@@ -65,15 +65,14 @@ class QAEFormBuilder
     def input_value options = {}
       result = if options[:index]
         suffix = options.fetch(:suffix)
-      ## TODO: maybe we switch to JSON from hstore?
-        json = JSON.parse(answers[delegate_obj.key] || {})
+        json = answers[delegate_obj.key] || {}
         json[options[:index]][suffix]
       else
         answers[hash_key(options)]
       end
 
       if options[:json]
-        JSON.parse(result || '{}')
+        result || {}
       else
         result
       end

@@ -5,8 +5,8 @@ class QAEFormBuilder
     def errors
       result = super
 
-      supporters = JSON.parse(question.answers["supporters"] || "{}")
-      letters = JSON.parse(question.answers["supporter_letters_list"] || "{}")
+      supporters = question.answers["supporters"] || {}
+      letters = question.answers["supporter_letters_list"] || {}
 
       count = calculate_without_blanks(supporters)
 
@@ -25,7 +25,6 @@ class QAEFormBuilder
 
     def calculate_without_blanks(supporters)
       supporters.count do |sup|
-        sup = JSON.parse(sup)
         sup["support_letter_id"].present? || sup["supporter_id"].present?
       end
     end
