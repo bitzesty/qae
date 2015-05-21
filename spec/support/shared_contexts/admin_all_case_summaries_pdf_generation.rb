@@ -31,7 +31,7 @@ shared_context "admin all case summaries pdf generation" do
 
   describe "Download PDF" do
     before do
-      visit download_case_summary_pdf_admin_reports_path(category: award_type, format: :pdf)
+      visit admin_report_path("case_summaries", category: award_type, format: :pdf)
     end
 
     it "should generate pdf" do
