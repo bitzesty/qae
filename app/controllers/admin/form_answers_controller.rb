@@ -14,10 +14,6 @@ class Admin::FormAnswersController < Admin::BaseController
                                    .includes(:comments)
   end
 
-  def show
-    authorize @form_answer, :show?
-  end
-
   def update_financials
     authorize @form_answer, :update_financials?
     @form_answer.financial_data = financial_data_ops
@@ -32,14 +28,6 @@ class Admin::FormAnswersController < Admin::BaseController
       redirect_to action: :show
       return
     end
-  end
-
-  def review
-    authorize @form_answer, :review?
-    sign_in(@form_answer.user, bypass: true)
-    session[:admin_in_read_only_mode] = true
-
-    redirect_to edit_form_path(@form_answer)
   end
 
   private

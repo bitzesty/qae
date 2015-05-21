@@ -27,6 +27,18 @@ module FormAnswerMixin
     end
   end
 
+  def show
+    authorize resource, :show?
+  end
+
+  def review
+    authorize resource, :review?
+    sign_in(@form_answer.user, bypass: true)
+    session[:admin_in_read_only_mode] = true
+
+    redirect_to edit_form_path(@form_answer)
+  end
+
   private
 
   def update_params
