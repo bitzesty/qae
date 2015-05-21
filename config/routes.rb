@@ -178,12 +178,7 @@ Rails.application.routes.draw do
     resources :users
     resources :assessors
     resources :admins
-    resources :reports, only: [:show] do
-      collection do
-        get :download_feedbacks_pdf
-        get :download_case_summary_pdf
-      end
-    end
+    resources :reports, only: [:show]
     resources :review_audit_certificates, only: [:create]
     resources :company_details, only: [:update]
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
