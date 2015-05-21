@@ -5,7 +5,7 @@
   ul.js-uploaded-list.list-add
     - (question.input_value(json: true) || {}).to_a.sort_by{|o| o.first.to_i}.each do |(idx, el)|
 
-      - if el['file'].present? || el['link'].present?
+      - if (el['file'].present? && attachments[el['file'].to_i].present?) || el['link'].present?
         li class="#{'js-file-uploaded' if el['file'].present?}"
           div
             - if el['file'].present?
