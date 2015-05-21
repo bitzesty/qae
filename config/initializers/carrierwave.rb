@@ -16,7 +16,7 @@
 # and uncomment code above ^
 CarrierWave.configure do |config|
   if Rails.env.staging? || Rails.env.production?
-    if ENV["AWS_ACCESS_KEY_ID"]
+    if ENV["AWS_S3_BUCKET_NAME"]
       config.fog_credentials = {
         provider: 'AWS',
         aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],
