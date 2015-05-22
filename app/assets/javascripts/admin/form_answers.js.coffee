@@ -307,7 +307,6 @@ handleReviewAuditCertificate = ->
     $(this).find(".form-group").removeClass("form-edit")
     $(".save-review-audit").hide()
     area = $(".audit-cert-description textarea")
-    # unless area.val()
     confirmedChanges = $("#radio-audit-cert2")
     unless confirmedChanges.prop("checked")
       $(this).find(".form-value").html($("<p>No change necessary</p>"))
