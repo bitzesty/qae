@@ -47,6 +47,7 @@ ready = ->
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
       "form_answer_attachment[title]": $("#form_answer_attachment_title").val()
+      "form_answer_attachment[restricted_to_admin]": $("#form_answer_attachment_restricted_to_admin").prop("checked")
 
   $("#new_form_answer_attachment").fileupload
     autoUpload: false
