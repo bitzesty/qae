@@ -41,7 +41,7 @@ class AssessorAssignment < ActiveRecord::Base
     scope :lead_or_primary_case_summary, -> { where(position: [3, 4]) }
   end
 
-  around_save :notify_assessor_assignment
+  around_save :notify_form_answer
 
   store_accessor :document, *AppraisalForm.all
 
@@ -172,7 +172,7 @@ class AssessorAssignment < ActiveRecord::Base
     end
   end
 
-  def notify_assessor_assignment
+  def notify_form_answer
     # I would like to be in builder class probably
     if primary? || secondary?
       assessor_changed = assessor_id_changed?
