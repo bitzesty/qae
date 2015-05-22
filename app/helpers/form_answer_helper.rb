@@ -6,7 +6,7 @@ module FormAnswerHelper
     c_size = comments.select do |c|
       c.main_for?(current_subject) && c.flagged?
     end.size
-    if c_size > 0
+    if c_size > 0 || importance_flag?(fa)
       content_tag :span, class: "icon-flagged" do
         content_tag :span, class: "flag-count" do
           c_size += 1 if importance_flag?(fa)
