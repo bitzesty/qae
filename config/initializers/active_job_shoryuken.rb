@@ -8,7 +8,7 @@
 
 # TODO: remove block below once old servers (dev and demo) will be terminated
 # and uncomment code above ^
-if Rails.env.staging? || Rails.env.production?
+if Rails.env.bzstaging? || Rails.env.staging? || Rails.env.production?
   if ENV["AWS_ACCESS_KEY_ID"]
     Rails.application.configure do
       config.active_job.queue_adapter = :shoryuken
