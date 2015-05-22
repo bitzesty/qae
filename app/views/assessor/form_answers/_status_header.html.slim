@@ -1,0 +1,38 @@
+th.filter
+  = f.simple_fields_for [:filters, @search.filters] do |h|
+    = h.input :status, collection: FormAnswerStatus::AssessorFilter.options, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+  = f.simple_fields_for [:filters, @search.filters] do |g|
+    = g.input :sub_status, collection: FormAnswerStatus::AssessorFilter.sub_options, label: false, input_html: { multiple: true, class: "if-js-hide" }
+  .dropdown.if-no-js-hide
+    button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+      ' Status:
+      span.text-filter
+        ' All
+      span.caret
+    ul.dropdown-menu role="menu"
+      li.checkbox role="presentation"
+        label data-value='select_all'
+          input type="checkbox"
+          span.label-contents
+            em Select all
+        - FormAnswerStatus::AssessorFilter.options.each do |k, option|
+          li.checkbox role="presentation"
+            label data-value=k
+              input type="checkbox"
+              span.label-contents
+                = option[:label]
+        li.divider
+        - FormAnswerStatus::AssessorFilter.sub_options.each do |k, option|
+          li.checkbox role="presentation"
+            label data-value=k
+              input type="checkbox"
+              span.label-contents
+                = option[:label]
+  = f.submit "Filter", class: "if-js-hide"
+  label.if-js-hide Ctrl + left click for multi select
+
+  th.sortable
+    = sort_link f, "Primary Assessor", @search, :primary_assessor_name, disabled: @search.query?
+
+  th.sortable
+    = sort_link f, "Secondary Assessor", @search, :secondary_assessor_name, disabled: @search.query?

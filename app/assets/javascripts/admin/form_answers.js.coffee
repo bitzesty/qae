@@ -47,6 +47,7 @@ ready = ->
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
       "form_answer_attachment[title]": $("#form_answer_attachment_title").val()
+      "form_answer_attachment[restricted_to_admin]": $("#form_answer_attachment_restricted_to_admin").prop("checked")
 
   $("#new_form_answer_attachment").fileupload
     autoUpload: false
@@ -307,7 +308,6 @@ handleReviewAuditCertificate = ->
     $(this).find(".form-group").removeClass("form-edit")
     $(".save-review-audit").hide()
     area = $(".audit-cert-description textarea")
-    # unless area.val()
     confirmedChanges = $("#radio-audit-cert2")
     unless confirmedChanges.prop("checked")
       $(this).find(".form-value").html($("<p>No change necessary</p>"))

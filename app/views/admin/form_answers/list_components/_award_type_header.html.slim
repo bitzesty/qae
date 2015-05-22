@@ -1,0 +1,24 @@
+th.filter
+  = f.simple_fields_for [:filters, @search.filters] do |f|
+    = f.input :award_type, collection: award_types_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+  .dropdown.if-no-js-hide
+    button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+      ' Category:
+      span.text-filter
+        ' All
+      span.caret
+    ul.dropdown-menu role="menu"
+      li.checkbox role="presentation"
+        label data-value='select_all'
+          input type="checkbox"
+          span.label-contents
+            em Select all
+      li.divider
+      - award_types_collection.each do |key,v|
+        li.checkbox role="presentation"
+          label data-value=v
+            input type="checkbox"
+            span.label-contents
+              = FormAnswerDecorator::AWARD_TITLES[key]
+  = f.submit "Filter", class: "if-js-hide"
+  label.if-js-hide Ctrl + left click for multi select

@@ -1,4 +1,50 @@
 class AppraisalForm
+  def self.rag_options_for(object, section)
+    options = [%w(Red negative), %w(Amber average), %w(Green positive)]
+    option = options.detect do |opt|
+      opt[1] == object.public_send(section.rate)
+    end || ["Select RAG", "neutral"]
+
+    OpenStruct.new(
+      options: options,
+      option: option
+    )
+  end
+
+  def self.strenght_options_for(object, section)
+    options = [
+      ["Insufficient Information Supplied", "blank"],
+      ["Priority Focus for Development", "negative"],
+      ["Positive - Scop for Ongoing Development", "average"],
+      ["Key Strength", "positive"]
+    ]
+    option = options.detect do |opt|
+      opt[1] == object.public_send(section.rate)
+    end || ["Select Key Strengths and Focuses", "neutral"]
+
+    OpenStruct.new(
+      options: options,
+      option: option
+    )
+  end
+
+  def self.verdict_options_for(object, section)
+    options = [
+      ["Not Recommended", "negative"],
+      ["Reserved", "average"],
+      ["Recommended", "positive"]
+    ]
+
+    option = options.detect do |opt|
+      opt[1] == object.public_send(section.rate)
+    end || ["Select verdict", "neutral"]
+
+    OpenStruct.new(
+      options: options,
+      option: option
+    )
+  end
+
   RAG_ALLOWED_VALUES = [
     "negative",
     "average",

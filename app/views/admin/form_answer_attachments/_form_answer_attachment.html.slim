@@ -1,18 +1,19 @@
 - url_namespace = admin_signed_in? ? :admin : :assessor
-li.form_answer_attachment
-  - if form_answer_attachment.uploaded_not_by_user? && policy(form_answer_attachment).destroy?
-    small.pull-right
-      = form_for(form_answer_attachment, url: admin_form_answer_form_answer_attachment_path(form_answer_attachment.form_answer, form_answer_attachment), html: {method: :delete, style: 'display:inline-block;'}) do |f|
-        = f.submit 'Remove', class: 'if-js-hide'
+- if current_subject.is_a?(Admin) || !form_answer_attachment.restricted_to_admin?
+  li.form_answer_attachment
+    - if form_answer_attachment.uploaded_not_by_user? && policy(form_answer_attachment).destroy?
+      small.pull-right
+        = form_for(form_answer_attachment, url: admin_form_answer_form_answer_attachment_path(form_answer_attachment.form_answer, form_answer_attachment), html: {method: :delete, style: 'display:inline-block;'}) do |f|
+          = f.submit 'Remove', class: 'if-js-hide'
 
-        = link_to "#", class: "text-danger if-no-js-hide", data: {confirm: "Are you sure?"}
-          span.glyphicon.glyphicon-remove
-          span.visible-lg.visible-md
-            ' Remove
-  - if Rails.env.test? || form_answer_attachment.scan.clean?
-    = link_to [url_namespace, form_answer_attachment.form_answer,form_answer_attachment], target: "_blank", class: "action-title"
+          = link_to "#", class: "text-danger if-no-js-hide", data: {confirm: "Are you sure?"}
+            span.glyphicon.glyphicon-remove
+            span.visible-lg.visible-md
+              ' Remove
+    - if Rails.env.test? || form_answer_attachment.scan.clean?
+      = link_to [url_namespace, form_answer_attachment.form_answer,form_answer_attachment], target: "_blank", class: "action-title"
+        span.glyphicon.glyphicon-file
+        = form_answer_attachment.decorate.display_name
+    - else
       span.glyphicon.glyphicon-file
-      = form_answer_attachment.decorate.display_name
-  - else
-    span.glyphicon.glyphicon-file
-    = "Not passed virus scanner check (#{form_answer_attachment.decorate.display_name})"
+      = "Not passed virus scanner check (#{form_answer_attachment.decorate.display_name})"

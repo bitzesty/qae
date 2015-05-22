@@ -1,0 +1,32 @@
+th.filter
+  = f.simple_fields_for [:filters, @search.filters] do |f|
+    = f.input :status, collection: FormAnswerStatus::AdminFilter.collection, label: false, input_html: { multiple: true, class: 'if-js-hide'}
+  = f.simple_fields_for [:filters, @search.filters] do |f|
+    = f.input :sub_status, collection: FormAnswerStatus::AdminFilter.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+  .dropdown.if-no-js-hide
+    button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
+      ' Status:
+      span.text-filter
+        ' All
+      span.caret
+    ul.dropdown-menu role="menu"
+      li.checkbox role="presentation"
+        label data-value='select_all'
+          input type="checkbox"
+          span.label-contents
+            em Select all
+      - FormAnswerStatus::AdminFilter.collection.each do |state|
+        li.checkbox role='presentation'
+          label data-value=state[1]
+            input type='checkbox'
+            span.label-contents
+              = state[0]
+      li.divider
+      - FormAnswerStatus::AdminFilter::SUB_OPTIONS.each do |key, val|
+        li.checkbox role="presentation"
+          label data-value=key
+            input type="checkbox"
+            span.label-contents
+              em = val[:label]
+  = f.submit "Filter", class: "if-js-hide"
+  label.if-js-hide Ctrl + left click for multi select

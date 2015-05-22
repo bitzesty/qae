@@ -1,26 +1,25 @@
-/ TODO: cache it/refact. - pretty slow rendering actually
-- options = [["Red", "negative"], ["Amber", "average"], ["Green", "positive"]]
-- option = options.detect{|opt| opt[1] == f.object.public_send(section.rate)} || ["Select RAG", "neutral"]
+- form = AppraisalForm.rag_options_for(f.object, section)
+
 - editable = f.object.editable_for?(current_subject)
 
 .form-group.rag-section
   = f.input section.rate,
             as: :select,
             label: false,
-            collection: options,
+            collection: form.options,
             input_html: { class: "if-js-hide", "data-updated-section" => section.rate }
 
   label.form-label
     = section.label
     .btn-group.btn-rag
-      button.btn.btn-link.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="false" class="rag-#{option[1]}"
+      button.btn.btn-link.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="false" class="rag-#{form.option[1]}"
         span.glyphicon.icon-rag
-        span.rag-text= option[0]
+        span.rag-text= form.option[0]
         - if editable
           span.caret
       - if editable
         ul.dropdown-menu role="menu"
-          - options.each do |opt|
+          - form.options.each do |opt|
             li class="rag-#{opt[1]}"
               = link_to "#"
                 span.icon-rag

@@ -1,0 +1,25 @@
+- FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
+  tr
+    td.td-title
+      = link_to [namespace_name, obj], class: "ellipsis"
+        - unless obj.company_or_nominee_name.nil?
+          = link_to obj.company_or_nominee_name, [:admin, obj]
+        - else
+          = link_to [namespace_name, obj] do
+            em
+              ' Not found
+    td
+      = link_to [namespace_name, obj]
+        - if obj.urn.present?
+          = obj.urn
+        - else
+          span.urn-not-generated Not yet generated
+    td = obj.award_type_short_name
+    td = obj.progress_text
+    td
+      - app_comments = application_comments(obj.comments)
+      - if app_comments.present?
+        = link_to [namespace_name, obj]
+          = app_comments
+    td = application_flags(obj)
+    td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"
