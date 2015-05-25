@@ -11,10 +11,10 @@ RSpec.describe AuditCertificate, type: :model do
     end
 
     describe "Form answer should have just one Audit Certificate" do
-      let!(:form_answer) { FactoryGirl.create(:form_answer) }
-      let!(:audit_certificate) { FactoryGirl.create(:audit_certificate, form_answer: form_answer) }
+      let!(:form_answer) { create(:form_answer) }
+      let!(:audit_certificate) { create(:audit_certificate, form_answer: form_answer) }
 
-      subject { FactoryGirl.build(:audit_certificate, form_answer: form_answer) }
+      subject { build(:audit_certificate, form_answer: form_answer) }
       it {
         should validate_uniqueness_of(:form_answer_id)
       }

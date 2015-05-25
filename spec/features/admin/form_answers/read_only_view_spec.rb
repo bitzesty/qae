@@ -8,38 +8,38 @@ So that I can have 'read only' version of form
 } do
 
   let!(:admin) do
-    FactoryGirl.create(:admin)
+    create(:admin)
   end
 
   let!(:user) do
-    FactoryGirl.create :user, :completed_profile, first_name: "Test User john"
+    create :user, :completed_profile, first_name: "Test User john"
   end
 
   let!(:form_answer) do
-    FactoryGirl.create :form_answer, :innovation,
-                                     user: user,
-                                     urn: "QA0001/19T",
-                                     document: { company_name: "Bitzesty" }
+    create :form_answer, :innovation,
+                         user: user,
+                         urn: "QA0001/19T",
+                         document: { company_name: "Bitzesty" }
   end
 
   let!(:basic_eligibility) do
-    FactoryGirl.create :basic_eligibility, form_answer: form_answer,
-                                           account: user.account
+    create :basic_eligibility, form_answer: form_answer,
+                               account: user.account
   end
 
   let!(:innovation_eligibility) do
-    FactoryGirl.create :innovation_eligibility, form_answer: form_answer,
-                                                account: user.account
+    create :innovation_eligibility, form_answer: form_answer,
+                                    account: user.account
   end
 
   let!(:trade_eligibility) do
-    FactoryGirl.create :trade_eligibility, form_answer: form_answer,
-                                           account: user.account
+    create :trade_eligibility, form_answer: form_answer,
+                               account: user.account
   end
 
   let!(:development_eligibility) do
-    FactoryGirl.create :development_eligibility, form_answer: form_answer,
-                                                 account: user.account
+    create :development_eligibility, form_answer: form_answer,
+                                     account: user.account
   end
 
   before do

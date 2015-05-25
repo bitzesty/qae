@@ -25,20 +25,23 @@ So that I can fill form completelly even if Javascript is turned off
   end
 
   let!(:form_answer) do
-    FactoryGirl.create :form_answer, :innovation,
-      user: user,
-      account: account,
-      document: { company_name: "Bitzesty", queen_award_holder_details: awards }
+    create :form_answer,
+           :innovation,
+           user: user,
+           account: account,
+           document: { company_name: "Bitzesty", queen_award_holder_details: awards }
   end
 
   let!(:basic_eligibility) do
-    FactoryGirl.create :basic_eligibility, form_answer: form_answer,
-                                           account: account
+    create :basic_eligibility,
+           form_answer: form_answer,
+           account: account
   end
 
   let!(:innovation_eligibility) do
-    FactoryGirl.create :innovation_eligibility, form_answer: form_answer,
-                                                account: account
+    create :innovation_eligibility,
+           form_answer: form_answer,
+           account: account
   end
 
   before do

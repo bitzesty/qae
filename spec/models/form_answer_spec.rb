@@ -17,7 +17,7 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   it "sets account on creating" do
-    form_answer = FactoryGirl.create(:form_answer)
+    form_answer = create(:form_answer)
     expect(form_answer.account).to eq(form_answer.user.account)
   end
 
@@ -38,7 +38,7 @@ RSpec.describe FormAnswer, type: :model do
     end
 
     it "increments URN" do
-      other_form_answer = FactoryGirl.create(:form_answer, :trade, :submitted)
+      other_form_answer = create(:form_answer, :trade, :submitted)
       expect(other_form_answer.urn).to eq("QA0002/#{award_year}T")
     end
 

@@ -23,14 +23,12 @@ class CurrentAwardTypePicker
   end
 
   def visible_categories
-    categories = []
     lead_categories = current_subject.categories_as_lead
     regular_categories = current_subject.applications_scope.pluck(:award_type).uniq
 
-    (lead_categories + regular_categories).uniq.each_with_index do |category, index|
-      categories << AwardCategory.new(slug: category, first_element: index == 0)
+    (lead_categories + regular_categories).uniq.each_with_index.map do |category, index|
+      AwardCategory.new(slug: category, first_element: index == 0)
     end
-    categories
   end
 
   def show_award_tabs_for_assessor?

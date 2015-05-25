@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, :type => :model do
-  let(:user) { FactoryGirl.build(:user) }
+  let(:user) { build(:user) }
 
   it 'creates a new account for user' do
     expect { user.save }.to change {
