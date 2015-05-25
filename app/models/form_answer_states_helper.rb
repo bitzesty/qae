@@ -13,4 +13,8 @@ module FormAnswerStatesHelper
       "not_awarded"
     ].include?(state)
   end
+
+  def submitted_and_after_the_deadline?
+    submitted? && Settings.after_current_submission_deadline?
+  end
 end
