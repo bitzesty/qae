@@ -70,7 +70,7 @@ class FormAnswerStateMachine
           object.update(submitted: true)
         end
         if state == :withdrawn
-          WithdrawNotifier.new(object).notify
+          Notifiers::WithdrawNotifier.new(object).notify
         end
       end
     end

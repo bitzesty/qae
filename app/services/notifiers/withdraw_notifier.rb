@@ -1,4 +1,4 @@
-class WithdrawNotifier
+class Notifiers::WithdrawNotifier
   def initialize(fa)
     @fa = fa
   end
