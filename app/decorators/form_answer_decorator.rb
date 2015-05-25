@@ -199,4 +199,12 @@ class FormAnswerDecorator < ApplicationDecorator
     document["principal_address_region"] ||
       document["organization_address_region"]
   end
+
+  def primary_assessor_full_name
+    object.assessors.primary.try(:full_name) || "Not Assigned"
+  end
+
+  def secondary_assessor_full_name
+    object.assessors.secondary.try(:full_name) || "Not Assigned"
+  end
 end
