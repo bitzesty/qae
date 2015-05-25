@@ -5,8 +5,8 @@ FactoryGirl.define do
     award_year_id { AwardYear.current.id }
 
     trait :submitted do
-      # TOREFACTOR: should be state = submitted and submitted = true
       submitted true
+      state "submitted"
     end
 
     trait :trade do
