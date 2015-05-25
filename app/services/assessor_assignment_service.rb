@@ -23,11 +23,11 @@ class AssessorAssignmentService
     permitted
   end
 
+  private
+
   def update_params
     params.require(:assessor_assignment).permit(*permitted_params)
   end
-
-  private
 
   def admin_or_lead?
     current_subject.is_a?(Admin) || current_subject.try(:lead?, form_answer)

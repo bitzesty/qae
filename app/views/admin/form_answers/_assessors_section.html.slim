@@ -13,7 +13,7 @@
         = resource.lead_assessors
       .clear
 
-    li.form-group
+    li.form-group.primary-assessor-assignment
       label
         span.icon-role 1
         ' Primary:
@@ -26,7 +26,7 @@
       - if policy(resource).assign_assessor?
         = form_for([namespace_name, resource.assessor_assignments.primary], remote: true, html: { "data-type" => "json"}, authenticity_token: true) do |form|
           .form-fields
-            = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.full_name, a.id]}, { include_blank: true }
+            = form.select :assessor_id, available_assessors_for_select, { include_blank: true }
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
             ' Edit
@@ -38,7 +38,7 @@
           .errors-holder
       .clear
 
-    li.form-group
+    li.form-group.secondary-assessor-assignment
       label
         span.icon-role 2
         span.assessor-label Secondary:
@@ -51,7 +51,7 @@
       - if policy(resource).assign_assessor?
         = form_for([namespace_name, resource.assessor_assignments.secondary], remote: true, html: { "data-type" => "json"}, authenticity_token: true) do |form|
           .form-fields
-            = form.select :assessor_id, Assessor.available_for(resource.award_type_slug).map{|a| [a.full_name, a.id]}, { include_blank: true }
+            = form.select :assessor_id, available_assessors_for_select, { include_blank: true }
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
             ' Edit
