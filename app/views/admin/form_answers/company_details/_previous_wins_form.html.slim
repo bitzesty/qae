@@ -1,13 +1,15 @@
 - if @form_answer.submitted_and_after_the_deadline?
+
   .form-group.previous-wins-form
     = simple_form_for [namespace_name, @form_answer], remote: true, authenticity_token: true, html: { "data-type" => "html" } do |f|
+      - previous_wins = PreviousWinDecorator.decorate_collection(f.object.previous_wins)
       = hidden_field_tag :section, "previous_wins"
       label.form-label Previous winnings
 
       .form-value
-        - if PreviousWinDecorator.decorate_collection(f.object.previous_wins).any?
+        - if previous_wins.any?
           ul
-            - PreviousWinDecorator.decorate_collection(f.object.previous_wins).each do |win|
+            - previous_wins.each do |win|
               li
                 span= win.description
         - else
@@ -49,11 +51,12 @@
         ' Edit
       .clear
 - else
+  - previous_wins = PreviousWinDecorator.decorate_collection(@form_answer.previous_wins)
   .form-group
     label.form-label Previous winnings
-    - if PreviousWinDecorator.decorate_collection(@form_answer.previous_wins).any?
+    - if previous_wins.any?
       ul
-        - PreviousWinDecorator.decorate_collection(@form_answer.previous_wins).each do |win|
+        - previous_wins.each do |win|
           li
             span= win.description
     - else
