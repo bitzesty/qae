@@ -23,14 +23,29 @@ class CurrentAwardTypePicker
   end
 
   def visible_categories
+    categories = []
     lead_categories = current_subject.categories_as_lead
     regular_categories = current_subject.applications_scope.pluck(:award_type).uniq
-    (lead_categories + regular_categories).uniq
+
+    (lead_categories + regular_categories).uniq.each_with_index do |category, index|
+      categories << AwardCategory.new(slug: category, first_element: index == 0)
+    end
+    categories
   end
 
   def show_award_tabs_for_assessor?
     if current_subject.categories_as_lead.size > 0
       return true if visible_categories.size > 1
+    end
+  end
+
+  class AwardCategory < OpenStruct
+    def active?(params)
+      slug == params[:award_type] || (params[:award_type].blank? && first_element)
+    end
+
+    def text_label
+      FormAnswer::AWARD_TYPE_FULL_NAMES[slug]
     end
   end
 end
