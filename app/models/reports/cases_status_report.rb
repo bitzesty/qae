@@ -51,20 +51,12 @@ class Reports::CasesStatusReport
       method: :press_release_updated
     },
     {
-      label: "FinSumComplete",
-      method: :fin_sum_complete
-    },
-    {
       label: "ACReceived",
       method: :ac_received
     },
     {
       label: "ACChecked",
       method: :ac_checked
-    },
-    {
-      label: "FinSumReviewComplete",
-      method: :fun_sum_review_complete
     },
     {
       label: "DCRChecked",

@@ -15,19 +15,24 @@ class Reports::PressBookList
       method: :company_or_nominee_name
     },
     {
-      label: "PressContactName"
+      label: "PressContactName",
+      method: :press_contact_name
     },
     {
-      label: "PressContactTel"
+      label: "PressContactTel",
+      method: :press_contact_tel
     },
     {
-      label: "PressContactEmail"
+      label: "PressContactEmail",
+      method: :press_contact_email
     },
     {
-      label: "PressBookNotes"
+      label: "PressBookNotes",
+      method: :press_contact_notes
     },
     {
-      label: "CustomerAcceptedPressNote"
+      label: "CustomerAcceptedPressNote",
+      method: :customer_accepted_press_note
     },
     {
       label: "HeadOfUnit",
@@ -82,7 +87,7 @@ class Reports::PressBookList
       method: :immediate_parent_country
     },
     {
-      label: "QAEAgreedPressNote",
+      label: "QAOAgreedPressNote",
       method: :qao_agreed_press_note
     }
   ]
