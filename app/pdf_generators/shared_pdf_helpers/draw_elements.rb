@@ -35,15 +35,11 @@ module SharedPdfHelpers::DrawElements
                      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
-  def render_headers(table_lines)
+  def render_headers(table_lines, column_widths)
     pdf_doc.move_down 30.mm
     pdf_doc.table table_lines, row_colors: %w(F0F0F0),
                                cell_style: { size: 12, font_style: :bold },
-                               column_widths: {
-                                 0 => 100,
-                                 1 => 100,
-                                 2 => 567
-                               }
+                               column_widths: column_widths
   end
 
   def render_table(table_lines, column_widths)

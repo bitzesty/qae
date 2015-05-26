@@ -25,11 +25,15 @@ module FeedbackPdfs::General::DataPointer
 
   def render_data!
     table_items = feedback_entries
-    render_headers(feedback_table_headers)
+    render_headers(feedback_table_headers, {
+      0 => 130,
+      1 => 300,
+      2 => 337
+    })
     render_table(table_items, {
-      0 => 100,
-      1 => 100,
-      2 => 567
+      0 => 130,
+      1 => 300,
+      2 => 337
     })
   end
 end
