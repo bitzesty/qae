@@ -3,12 +3,13 @@ class Reports::FormAnswer
 
   def initialize(form_answer)
     @obj = form_answer
-    @moderated = @obj.assessor_assignments.detect { |a| a.position == "moderated" }
-    @primary = @obj.assessor_assignments.detect { |a| a.position == "primary" }
-    @secondary = @obj.assessor_assignments.detect { |a| a.position == "secondary" }
-    @lead_case_summary = @obj.assessor_assignments.detect { |a| a.position == "lead_case_summary" }
-    @primary_case_summary = @obj.assessor_assignments.detect { |a| a.position == "primary_case_summary" }
-    @primary_assessor = @obj.primary_assessor
+
+    @moderated = pick_assignment("moderated")
+    @primary = pick_assignment("primary")
+    @secondary = pick_assignment("secondary")
+    @lead_case_summary = pick_assignment("lead_case_summary")
+    @primary_case_summary = pick_assignment("primary_case_summary")
+
     @secondary_assessor = @obj.secondary_assessor
     @press_summary = @obj.press_summary if @obj.awarded?
   end
@@ -30,6 +31,10 @@ class Reports::FormAnswer
   end
 
   private
+
+  def pick_assignment(name)
+    @obj.assessor_assignments.detect { |a| a.position == name }
+  end
 
   def collect_final_value_from_doc(meth)
     if meth
@@ -243,7 +248,7 @@ class Reports::FormAnswer
   end
 
   def first_assessor
-    @primary_assessor.try(:full_name)
+    @obj.primary_assessor.try(:full_name)
   end
 
   def second_assessor
