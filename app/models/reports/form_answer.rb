@@ -7,8 +7,10 @@ class Reports::FormAnswer
     @primary = @obj.assessor_assignments.detect { |a| a.position == "primary" }
     @secondary = @obj.assessor_assignments.detect { |a| a.position == "secondary" }
     @lead_case_summary = @obj.assessor_assignments.detect { |a| a.position == "lead_case_summary" }
+    @primary_case_summary = @obj.assessor_assignments.detect { |a| a.position == "primary_case_summary" }
     @primary_assessor = @obj.primary_assessor
     @secondary_assessor = @obj.secondary_assessor
+    @press_summary = @obj.press_summary if @obj.awarded?
   end
 
   def call_method(methodname)
@@ -441,5 +443,46 @@ class Reports::FormAnswer
       "positive" => "G",
       "average" => "A"
     }[var]
+  end
+
+  def press_contact_name
+    @press_summary.try(:contact_name)
+  end
+
+  def press_contact_tel
+    @press_summary.try(:phone_number)
+  end
+
+  def press_contact_email
+    @press_summary.try(:email)
+  end
+
+  def press_contact_notes
+    @press_summary.try(:comment)
+  end
+
+  def customer_accepted_press_note
+    if @press_summary.present?
+      bool @press_summary.try(:reviewed_by_user?)
+    end
+  end
+
+  def qao_agreed_press_note
+    if @press_summary.present?
+      bool @press_summary.try(:approved?)
+    end
+  end
+
+  def case_summary_status
+    lead_submitted = @lead_case_summary.try(:submitted?)
+    primary_submitted = @primary_case_summary.try(:submitted?)
+
+    if !primary_submitted && !lead_submitted
+      "Not Submitted"
+    elsif primary_submitted && !lead_submitted
+      "Primary Submitted"
+    elsif lead_submitted
+      "Lead Confirmed"
+    end
   end
 end
