@@ -1,5 +1,6 @@
 require "rails_helper"
 include Warden::Test::Helpers
+Warden.test_mode!
 
 describe "User account creation process", js: true do
   it "creates the User account" do
@@ -53,12 +54,13 @@ describe "User account creation process", js: true do
     let!(:user) { create(:user, :completed_profile) }
 
     before do
-      create(:account, owner: user)
       create(:settings, :submission_deadlines)
       login_as(user, scope: :user)
     end
 
-    it "proceeds the eligibility form for trade", focus: true do
+    it "process the eligibility form for trade", focus: true do
+      expect(user.account).to be_persisted
+
       visit dashboard_path
       first("a", text: "New application").click
       fill_in("nickname", with: "trade nick")

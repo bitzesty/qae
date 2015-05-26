@@ -30,7 +30,7 @@ class Eligibility::Trade < Eligibility
             label: "Are you a current holder of a Queen's Award for International Trade?",
             boolean: true,
             accept: :all,
-            if: proc { debugger;account.basic_eligibility.current_holder == "yes" || (form_answer && form_answer.form_basic_eligibility.current_holder == "yes") }
+            if: proc { account.basic_eligibility.current_holder == "yes" || (form_answer && form_answer.form_basic_eligibility.current_holder == "yes") }
 
   property :qae_for_trade_award_year,
            values: (AwardYear.current.year - 5..AwardYear.current.year - 1).to_a.reverse + ["before_#{AwardYear.current.year - 5}"],
