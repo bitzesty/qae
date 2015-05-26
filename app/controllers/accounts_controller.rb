@@ -44,7 +44,7 @@ class AccountsController < ApplicationController
 
       if current_user.role.regular?
         current_user.update_attribute(:completed_registration, true)
-        flash.notice = 'You account details were successfully saved'
+        flash.notice = 'Your account details were successfully saved'
         redirect_to dashboard_path
       else
         redirect_to account_collaborators_path
@@ -59,7 +59,7 @@ class AccountsController < ApplicationController
     unless current_user.completed_registration
       current_user.update_attribute(:completed_registration, true)
 
-      flash.notice = 'You account details were successfully saved'
+      flash.notice = 'Your account details were successfully saved'
       redirect_to dashboard_path
     else
       redirect_to password_settings_account_path
@@ -69,7 +69,7 @@ class AccountsController < ApplicationController
   def update_password_settings
     current_user.set_step(5)
     if current_user.update(password_settings_params)
-      flash.notice = 'You account details were successfully saved'
+      flash.notice = 'Your account details were successfully saved'
       redirect_to dashboard_path
     else
       @active_step = 5
