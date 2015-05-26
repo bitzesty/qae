@@ -13,15 +13,11 @@ set :slack_icon_emoji,   ->{ ":rocket:" }
 set :slack_channel,      ->{ "#qae" }
 set :migration_role, 'app'
 
-set :stages, %w(production staging dev demo)
-set :default_stage, 'staging'
+set :stages, %w(production staging bzstaging)
+set :default_stage, 'bzstaging'
 set :use_sudo, false
 
-if ENV["OLD_SERVERS"]
-  set :deploy_to, "/home/qae/application"
-else
-  set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
-end
+set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
 
 set :scm, :git
 
@@ -60,6 +56,14 @@ namespace :deploy do
     end
   end
 
+  # Running only on dev server (as it has small CPU / Memory resources)
+  desc 'Reboot Server'
+  task :reboot_server do
+    on roles(:bzstaging), in: :sequence, wait: 5 do
+      execute "sudo shutdown -r now"
+    end
+  end
+
   after :finishing, 'deploy:cleanup'
   before :finishing, 'deploy:restart'
   after 'deploy:restart', 'deploy:restart_shoryuken'
@@ -67,6 +71,9 @@ namespace :deploy do
 
   after "deploy:updated",  "whenever:update_crontab"
   after "deploy:reverted", "whenever:update_crontab"
+
+  # Reboot running only on bzstaging server (as it has small CPU / Memory resources)
+  after "deploy:cleanup", "deploy:reboot_server"
 
   desc 'Invoke a rake command on the remote server'
   task :invoke, [:command] => 'deploy:set_rails_env' do |task, args|
@@ -79,4 +86,5 @@ namespace :deploy do
     end
   end
 end
+
 
