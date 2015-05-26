@@ -191,55 +191,6 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
-  def submitted_and_after_the_deadline?
-    submitted? && Settings.after_current_submission_deadline?
-  end
-
-  class << self
-    # Used to convert JSON document to Hash
-    # We use it in spec/factories/form_answer_factory.rb
-    # and in Hstore to JSON db migration (MigrateFormAnswersDocumentToJson)
-    def parse_json_document(doc)
-      result = {}
-
-      doc.each do |k, v|
-        parsed_value = begin
-          JSON.parse(v)
-        rescue
-          v
-        end
-
-        parsed_value = if parsed_value.is_a?(Array)
-          parsed_value.map { |el| JSON.parse(el) }
-
-        elsif parsed_value.is_a?(Hash)
-          new_hash = {}
-
-          parsed_value.each do |key, value|
-            new_hash[key] = if value.is_a?(Hash)
-              value
-            else
-              begin
-                JSON.parse(value)
-              rescue
-                value
-              end
-            end
-          end
-
-          new_hash
-        else
-
-          parsed_value
-        end
-
-        result[k] = parsed_value
-      end
-
-      result
-    end
-  end
-
   private
 
   def nominee_full_name_from_document
@@ -247,25 +198,8 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def set_urn
-    return if urn
-    return unless submitted
-    return unless award_type
-
-    sequence_attr = "urn_seq_promotion_#{award_year.year}" if promotion?
-    sequence_attr ||= "urn_seq_#{award_year.year}"
-
-    next_seq = self.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize(sequence_attr)})")
-
-    generated_urn = "QA#{sprintf('%.4d', next_seq)}/"
-    suffix = {
-      "promotion" => "EP",
-      "development" => "S",
-      "innovation" => "I",
-      "trade" => "T"
-    }[award_type]
-    generated_urn += "#{award_year.year.to_s[2..-1]}#{suffix}"
-
-    self.urn = generated_urn
+    builder = UrnBuilder.new(self)
+    builder.assign
   end
 
   def set_account
@@ -308,44 +242,6 @@ class FormAnswer < ActiveRecord::Base
         errors.add(:base, "Answers invalid")
         self.validator_errors = validator.errors
       end
-    end
-  end
-
-  class AwardEligibilityBuilder
-    attr_reader :form_answer, :account
-
-    def initialize(form_answer)
-      @form_answer = form_answer
-      @account = form_answer.user.account
-    end
-
-    def eligibility
-      method = "#{form_answer.award_type}_eligibility"
-
-      unless form_answer.public_send(method)
-        form_answer.public_send("build_#{method}", account_id: account.id).save!
-      end
-
-      form_answer.public_send(method)
-    end
-
-    def basic_eligibility
-      @basic_eligibility ||= begin
-        return nil if form_answer.promotion?
-
-        if form_answer.form_basic_eligibility.try(:persisted?)
-          form_answer.form_basic_eligibility
-        else
-          form_answer.build_form_basic_eligibility(filter(account.basic_eligibility.try(:attributes) || {}).merge(account_id: account.id)).save!
-          form_answer.form_basic_eligibility
-        end
-      end
-    end
-
-    private
-
-    def filter(params)
-      params.except("id", "created_at", "updated_at")
     end
   end
 end

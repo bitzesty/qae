@@ -39,7 +39,7 @@ class Reports::AdminReport
   private
 
   def category
-    params[:category] if FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
+    params[:category] if ::FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
   end
 
   def pdf_filename

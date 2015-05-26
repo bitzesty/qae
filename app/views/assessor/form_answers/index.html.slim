@@ -71,8 +71,8 @@
                     td = obj.award_type
                   - else
                     td= obj.state.humanize
-                    td= obj.assessors.primary.try(:full_name) || "Not Assigned"
-                    td= obj.assessors.secondary.try(:full_name) || "Not Assigned"
+                    td= obj.primary_assessor_full_name
+                    td= obj.secondary_assessor_full_name
                   td
                     - app_comments = application_comments(obj.comments)
                     - if app_comments.present?

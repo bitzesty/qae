@@ -9,52 +9,60 @@ So that they can collaborate form answers
 } do
 
   let!(:account_admin) do
-    FactoryGirl.create :user, :completed_profile,
-                              first_name: "Account Admin John",
-                              role: "account_admin"
+    create :user,
+           :completed_profile,
+           first_name: "Account Admin John",
+           role: "account_admin"
   end
 
   let!(:account) { account_admin.account }
 
   let!(:form_answer) do
-    FactoryGirl.create :form_answer, :innovation,
-                                     user: account_admin,
-                                     urn: "QA0001/19T",
-                                     document: { company_name: "Bitzesty" }
+    create :form_answer,
+           :innovation,
+           user: account_admin,
+           urn: "QA0001/19T",
+           document: { company_name: "Bitzesty" }
   end
 
   let!(:basic_eligibility) do
-    FactoryGirl.create :basic_eligibility, form_answer: form_answer,
-                                           account: account
+    create :basic_eligibility,
+           form_answer: form_answer,
+           account: account
   end
 
   let!(:innovation_eligibility) do
-    FactoryGirl.create :innovation_eligibility, form_answer: form_answer,
-                                                account: account
+    create :innovation_eligibility,
+           form_answer: form_answer,
+           account: account
  end
 
   let!(:trade_eligibility) do
-    FactoryGirl.create :trade_eligibility, form_answer: form_answer,
-                                           account: account
+    create :trade_eligibility,
+           form_answer: form_answer,
+           account: account
   end
 
   let!(:development_eligibility) do
-    FactoryGirl.create :development_eligibility, form_answer: form_answer,
-                                                 account: account
+    create :development_eligibility,
+           form_answer: form_answer,
+           account: account
   end
 
   let!(:another_account_admin) do
-    FactoryGirl.create :user, :completed_profile,
-                              first_name: "Another Account Admin Mike",
-                              account: account,
-                              role: "account_admin"
+    create :user,
+           :completed_profile,
+           first_name: "Another Account Admin Mike",
+           account: account,
+           role: "account_admin"
   end
 
   let!(:regular_admin) do
-    FactoryGirl.create :user, :completed_profile,
-                              first_name: "Regular Admin Kelly",
-                              account: account,
-                              role: "regular"
+    create :user,
+           :completed_profile,
+           first_name: "Regular Admin Kelly",
+           account: account,
+           role: "regular"
   end
 
   describe "Permissions" do
@@ -116,8 +124,9 @@ So that they can collaborate form answers
 
           describe "Attempt to add person, which is already associated with another account" do
             let!(:user_associated_with_another_account) do
-              FactoryGirl.create :user, :completed_profile,
-                                        role: "account_admin"
+              create :user,
+                     :completed_profile,
+                     role: "account_admin"
             end
 
             it "can't add" do
@@ -182,9 +191,10 @@ So that they can collaborate form answers
 
       describe "Remove from Collaborators" do
         let!(:collaborator) do
-          FactoryGirl.create :user, :completed_profile,
-                                     account_id: account.id,
-                                     role: "regular"
+          create :user,
+                 :completed_profile,
+                 account_id: account.id,
+                 role: "regular"
         end
 
         before do
@@ -231,30 +241,29 @@ So that they can collaborate form answers
     end
   end
 
-  # describe "Ability to submit form answer" do
-  #   describe "I'm logged in as account admin and I can submit form answer" do
-  #     before do
-  #       login_as account_admin
-  #       visit account_collaborators_path
-  #     end
+  describe "Ability to submit form answer" do
+    describe "I'm logged in as account admin and I can submit form answer" do
+      before do
+        login_as account_admin
+        visit account_collaborators_path
+      end
 
-  #     it "Should see list of account collaborators, excluding his self" do
-  #       expect_to_see "Collaborators"
-  #     end
-  #   end
+      it "Should see list of account collaborators, excluding his self" do
+        expect_to_see "Collaborators"
+      end
+    end
 
-  #   describe "I'm logged in as regular admin and I can't submit form answer" do
-  #     before do
-  #       login_as regular_admin
-  #       visit account_collaborators_path
-  #     end
+    describe "I'm logged in as regular admin and I can't submit form answer" do
+      before do
+        login_as regular_admin
+        visit account_collaborators_path
+      end
 
-  #     it "Should restrict access for non account admins" do
-  #       expect_to_see "Access denied!"
-  #       expect(current_path).to be_eql(root_path)
-  #     end
-  #   end
-  # end
+      it "Should restrict access for non account admins" do
+        expect_to_see "Access denied!"
+      end
+    end
+  end
 
   def submit_new_collaborator_form
     within("#new_collaborator") do

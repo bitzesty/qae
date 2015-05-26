@@ -15,7 +15,7 @@ class MigrateFormAnswersDocumentToJson < ActiveRecord::Migration
         hstore_doc = form_answer.hstore_document
 
         if hstore_doc.present?
-          document = FormAnswer.parse_json_document(hstore_doc)
+          document = FormAnswer::DocumentParser.parse_json_document(hstore_doc)
           form_answer.update_column(:document, document)
 
           updated_ids << form_answer.id

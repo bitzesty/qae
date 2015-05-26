@@ -51,12 +51,8 @@ class FormAnswerStateMachine
     end
   end
 
-  def automatic_states
-    [:assessment_in_progress, :not_submitted]
-  end
-
   def collection(subject)
-    permitted_states_with_deadline_constraint# - automatic_states
+    permitted_states_with_deadline_constraint
   end
 
   def perform_transition(state, subject = nil, validate = true)
@@ -64,13 +60,12 @@ class FormAnswerStateMachine
     meta = get_metadata(subject)
 
     if permitted_states_with_deadline_constraint.include?(state) || !validate
-      # Admin can change always and everything
       if transition_to state, meta
         if state == :submitted
           object.update(submitted: true)
         end
         if state == :withdrawn
-          WithdrawNotifier.new(object).notify
+          Notifiers::WithdrawNotifier.new(object).notify
         end
       end
     end

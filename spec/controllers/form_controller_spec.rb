@@ -5,10 +5,11 @@ describe FormController do
   let(:user) { create :user, role: "account_admin" }
   let(:account) { user.account }
   let(:form_answer) do
-    FactoryGirl.create :form_answer, :innovation,
-                                     user: user,
-                                     account: account,
-                                     award_year: award_year
+    create :form_answer,
+           :innovation,
+           user: user,
+           account: account,
+           award_year: award_year
   end
 
   let!(:settings) { Settings.current }
@@ -43,18 +44,19 @@ describe FormController do
     end
 
     it 'denies to open trade form if it is not the first one' do
-      FactoryGirl.create :form_answer, :trade,
-                                       user: user
+      create :form_answer,
+             :trade,
+             user: user
       expect(get :new_international_trade_form).to redirect_to(dashboard_url)
     end
   end
 
   describe "#edit_form" do
     let!(:form_answer) do
-      FactoryGirl.create :form_answer, award_type: "trade",
-                                       user: user,
-                                       account: account,
-                                       award_year: award_year
+      create :form_answer, award_type: "trade",
+                           user: user,
+                           account: account,
+                           award_year: award_year
     end
 
     context "adds award info to the form" do

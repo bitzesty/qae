@@ -2,9 +2,9 @@
   - if category_picker.show_award_tabs_for_assessor?
     .col-md-9.col-sm-8
       ul.nav.nav-pills
-        - category_picker.visible_categories.each_with_index do |category, index|
-          li role="presentation" class="#{'active' if params[:award_type] == category} #{'active' if !params[:award_type].present? and index == 0}"
-            = link_to FormAnswer::AWARD_TYPE_FULL_NAMES[category], assessor_form_answers_path(award_type: category)
+        - category_picker.visible_categories.each do |category|
+          li role="presentation" class=("active" if category.active?(params))
+            = link_to category.text_label, assessor_form_answers_path(award_type: category.slug)
 
   - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
     .col-md-3.pull-right.text-right.if-no-js-hide

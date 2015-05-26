@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe Account do
-  let(:user) { FactoryGirl.build(:user) }
+  let(:user) { build(:user) }
   let(:account) { user.account }
   let(:current_year) { AwardYear.where(year: Date.today.year + 1).first_or_create }
   let(:previous_year) { AwardYear.where(year: current_year).first_or_create }

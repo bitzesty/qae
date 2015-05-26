@@ -5,13 +5,13 @@ FactoryGirl.define do
     award_year_id { AwardYear.current.id }
 
     trait :submitted do
-      # TOREFACTOR: should be state = submitted and submitted = true
       submitted true
+      state "submitted"
     end
 
     trait :trade do
       award_type "trade"
-      document FormAnswer.parse_json_document(
+      document FormAnswer::DocumentParser.parse_json_document(
         JSON.parse(
           File.read(Rails.root.join("spec/fixtures/form_answer_trade.json"))
         )
@@ -20,7 +20,7 @@ FactoryGirl.define do
 
     trait :innovation do
       award_type "innovation"
-      document FormAnswer.parse_json_document(
+      document FormAnswer::DocumentParser.parse_json_document(
         JSON.parse(
           File.read(Rails.root.join("spec/fixtures/form_answer_innovation.json"))
         )
@@ -29,7 +29,7 @@ FactoryGirl.define do
 
     trait :development do
       award_type "development"
-      document FormAnswer.parse_json_document(
+      document FormAnswer::DocumentParser.parse_json_document(
         JSON.parse(
           File.read(Rails.root.join("spec/fixtures/form_answer_development.json"))
         )
@@ -38,7 +38,7 @@ FactoryGirl.define do
 
     trait :promotion do
       award_type "promotion"
-      document FormAnswer.parse_json_document(
+      document FormAnswer::DocumentParser.parse_json_document(
         JSON.parse(
           File.read(Rails.root.join("spec/fixtures/form_answer_promotion.json"))
         )
@@ -46,7 +46,7 @@ FactoryGirl.define do
     end
 
     trait :with_audit_certificate do
-      document FormAnswer.parse_json_document(
+      document FormAnswer::DocumentParser.parse_json_document(
         JSON.parse(
           File.read(Rails.root.join("spec/fixtures/form_answer_development.json"))
         )

@@ -65,7 +65,16 @@ class User < ActiveRecord::Base
   around_save :update_user_full_name
 
   enumerize :prefered_method_of_contact, in: %w(phone email)
-  enumerize :qae_info_source, in: %w(govuk competitor business_event national_press business_press online local_trade_body national_trade_body mail_from_qae word_of_mouth other)
+  enumerize :qae_info_source, in: %w(
+    govuk
+    competitor
+    business_event
+    national_press
+    business_press
+    online
+    local_trade_body
+    national_trade_body
+    mail_from_qae word_of_mouth other)
   enumerize :role, in: POSSIBLE_ROLES, predicates: true
 
   begin :searching
