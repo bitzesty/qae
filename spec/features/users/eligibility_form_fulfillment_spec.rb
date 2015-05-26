@@ -1,4 +1,5 @@
 require "rails_helper"
+include Warden::Test::Helpers
 
 describe "User account creation process", js: true do
   it "creates the User account" do
@@ -12,8 +13,6 @@ describe "User account creation process", js: true do
   end
 
   context "Account details fulfillment" do
-    include Warden::Test::Helpers
-
     let!(:user) { create(:user) }
 
     before do
@@ -49,4 +48,27 @@ describe "User account creation process", js: true do
       expect(user.company_name).to eq(company_name)
     end
   end
+
+  context "Eligibility form fulfillment" do
+    let!(:user) { create(:user, :completed_profile) }
+
+    before do
+      create(:account, owner: user)
+      create(:settings, :submission_deadlines)
+      login_as(user, scope: :user)
+    end
+
+    it "proceeds the eligibility form for trade", focus: true do
+      visit dashboard_path
+      first("a", text: "New application").click
+      fill_in("nickname", with: "trade nick")
+      click_button("Save and start eligibility")
+      # click_yes # to resolve
+    end
+  end
+end
+
+def click_yes
+  first(".question-body .input").set(true)
+  click_button "Continue"
 end
