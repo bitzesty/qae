@@ -14,6 +14,31 @@ ready = ->
   handleWinnersForm()
   handleReviewAuditCertificate()
 
+  # Move the attach document button
+  moveAttachDocumentButton = ->
+    wrapper = $("#application-attachment-form")
+    $(".attachment-link", wrapper).removeClass("if-js-hide")
+    $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
+    $(".attachment-link", wrapper).prepend("Attach document")
+    $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
+    $(".attachment-link", wrapper).prependTo("#new_form_answer_attachment")
+
+  $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
+    $(this).find(".form-group").removeClass("form-edit")
+    $(this).find(".form-edit-link").remove()
+    $(".save-review-audit").remove()
+    area = $(".audit-cert-description textarea")
+    unless area.val()
+      $(this).find(".form-value").html($("<p>No change necessary</p>"))
+    else
+      div = "<div><label>Changes made</label><p class='control-label'>#{area.val()}</p></div>"
+      $(this).find(".form-value").html(div)
+  $("#new_review_audit_certificate").on "click", ".save-review-audit", (e) ->
+    e.preventDefault()
+    $("#new_review_audit_certificate").submit()
+  $(".edit-review-audit").on "click", (e) ->
+    $(".save-review-audit").show()
+
   $(".section-applicant-status").on "click", "a", (e) ->
     e.preventDefault()
     state = $(this).data("state")
@@ -49,35 +74,42 @@ ready = ->
       "form_answer_attachment[title]": $("#form_answer_attachment_title").val()
       "form_answer_attachment[restricted_to_admin]": $("#form_answer_attachment_restricted_to_admin").prop("checked")
 
-  $("#new_form_answer_attachment").fileupload
-    autoUpload: false
-    dataType: "html"
-    forceIframeTransport: true
-    add: (e, data) ->
-      $(".attachment-title").val(data.files[0].name)
-      $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
-      $("#new_form_answer_attachment .btn-submit").focus().blur()
-      $("#new_form_answer_attachment .btn-submit").unbind("click").on "click", (e) ->
-        e.preventDefault()
-        data.submit()
-    success: (result, textStatus, jqXHR) ->
-      $(".document-list .p-empty").addClass("visuallyhidden")
-      $(".document-list ul").append($($.parseHTML(result)).text())
-      form = $("#new_form_answer_attachment")
-      form.closest(".sidebar-section").removeClass("show-attachment-form")
-      $("#form_answer_attachment_title").val(null)
-      $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
+  do initializeFileUpload = ->
+    $("#new_form_answer_attachment").fileupload
+      autoUpload: false
+      dataType: "html"
+      forceIframeTransport: true
+      add: (e, data) ->
+        $(".attachment-title").val(data.files[0].name)
+        $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
+        $("#new_form_answer_attachment .btn-submit").focus().blur()
+        $("#new_form_answer_attachment .btn-submit").unbind("click").on "click", (e) ->
+          e.preventDefault()
+          data.submit()
+      success: (result, textStatus, jqXHR) ->
+        result = $($.parseHTML(result))
+        $("#attachment-buffer").append(result.text())
 
-  # Move the attach document button
-  $(".attachment-link").removeClass("if-js-hide")
-  $(".attachment-link").addClass("btn btn-default btn-block btn-attachment")
-  $(".attachment-link").prepend("<span class='btn-title'>Attach document</span>")
-  $(".attachment-link").prepend("<span class='glyphicon glyphicon-paperclip'></span>")
-  $(".attachment-link").prependTo("#new_form_answer_attachment")
+        if $("#form-answer-attachment-valid", $("#attachment-buffer")).length
+          $("#application-attachment-form").html(result.text())
+          moveAttachDocumentButton()
+          initializeFileUpload()
+        else
+          $(".document-list .p-empty").addClass("visuallyhidden")
+          $(".document-list ul").append(result.text())
+          form = $("#new_form_answer_attachment")
+          form.closest(".sidebar-section").removeClass("show-attachment-form")
+          $("#form_answer_attachment_title").val(null)
+          $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
 
-  $(".js-attachment-form .btn-cancel").on "click", (e) ->
+        $("#attachment-buffer").empty()
+
+  moveAttachDocumentButton()
+
+  $(document).on "click", ".js-attachment-form .btn-cancel", (e) ->
     e.preventDefault()
     $(this).closest(".sidebar-section").removeClass("show-attachment-form")
+    $("#new_form_answer_attachment .errors").empty()
     $("#new_form_answer_attachment").removeClass("uploaded-file")
     $("#form_answer_attachment_title").val(null)
     $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
