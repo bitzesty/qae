@@ -32,13 +32,6 @@ GIT
       faraday (>= 0.7.6)
 
 GIT
-  remote: git://github.com/joekhoobyar/capistrano-shoryuken.git
-  revision: 40e9d53a6d0d16a04b4bf1303770e56fbb482381
-  specs:
-    capistrano-shoryuken (0.1.5)
-      capistrano
-
-GIT
   remote: git://github.com/phstc/shoryuken.git
   revision: 1ec11762012973c4ae5bd42ec74279cbf8bcd1c4
   branch: master
@@ -583,7 +576,6 @@ DEPENDENCIES
   capistrano (~> 3.2.0)
   capistrano-rails (~> 1.1)
   capistrano-rbenv
-  capistrano-shoryuken!
   capybara
   capybara-screenshot
   capybara-webkit

@@ -53,8 +53,16 @@ namespace :deploy do
     end
   end
 
+  desc 'Restart shoryuken'
+  task :restart_shoryuken do
+    on roles(:app), in: :sequence, wait: 5 do
+      execute "sv stop shoryuken && sv start shoryuken"
+    end
+  end
+
   after :finishing, 'deploy:cleanup'
   before :finishing, 'deploy:restart'
+  after 'deploy:restart', 'deploy:restart_shoryuken'
   after 'deploy:rollback', 'deploy:restart'
 
   after "deploy:updated",  "whenever:update_crontab"

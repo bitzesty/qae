@@ -133,7 +133,6 @@ group :development do
   gem 'capistrano', '~> 3.2.0'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv'
-  gem "capistrano-shoryuken", github: "joekhoobyar/capistrano-shoryuken"
   gem 'slackistrano', require: false
   gem 'pry'
   gem 'letter_opener'
