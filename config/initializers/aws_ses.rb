@@ -17,9 +17,9 @@ elsif Rails.env.bzstaging?
     config.action_mailer.smtp_settings = {
       port:           587,
       address:        'smtp.mailgun.org',
-      user_name:      ENV["mailgun_username"],
-      password:       ENV["mailgun_password"],
-      domain:         ENV["mailgun_domain"],
+      user_name:      ENV["MAILGUN_USERNAME"],
+      password:       ENV["MAILGUN_PASSWORD"],
+      domain:         ENV["MAILGUN_DOMAIN"],
       authentication: :plain
     }
   end
