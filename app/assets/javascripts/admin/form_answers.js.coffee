@@ -19,7 +19,7 @@ ready = ->
     wrapper = $("#application-attachment-form")
     $(".attachment-link", wrapper).removeClass("if-js-hide")
     $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
-    $(".attachment-link", wrapper).prepend("Attach document")
+    $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach document</span>")
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
     $(".attachment-link", wrapper).prependTo("#new_form_answer_attachment")
 
