@@ -1,7 +1,7 @@
-- if @form_answer.award_type == "promotion"
+- if @form_answer.promotion?
   - page_title = "Enterprise Promotion Award Nomination"
 - else
-  - page_title =  "#{@form_answer.decorate.award_type.split.map(&:capitalize)*' '} Award Application"
+  - page_title =  "#{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award Application"
 
 header.page-header.group.page-header-over-sidebar
   div
@@ -44,7 +44,7 @@ header.page-header.group.page-header-over-sidebar
               - else
                 .eligibility-failed
                   p
-                    - if @form_answer.award_type == "promotion"
+                    - if @form_answer.promotion?
                       ' Your nominee is
                     - else
                       ' At the moment you are
@@ -52,13 +52,13 @@ header.page-header.group.page-header-over-sidebar
                     '  for this award. Please see your answers below for the reason. If you think you made a mistake in the eligibility questionnaire, you can change your answer.
 
                   p
-                    - if @form_answer.award_type == "promotion"
+                    - if @form_answer.promotion?
                       ' Also, you may consider nominating someone else or your organisation
                     - else
                       ' Also, you
                     ' might be eligible for awards in other categories. Go to the
                     = link_to "applications page", dashboard_path
-                    - if @form_answer.award_type == "promotion"
+                    - if @form_answer.promotion?
                       '  to nominate/apply.
                     - else
                       '  to apply.

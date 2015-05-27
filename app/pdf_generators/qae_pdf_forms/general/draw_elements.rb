@@ -138,7 +138,7 @@ module QaePdfForms::General::DrawElements
             width: 22.5.mm
 
       intro_text = %(
-        This PDF version of the #{form_answer.decorate.award_type} Award #{form_answer.promotion? ? 'nomination' : 'application'} is for <b>reference only</b>.
+        This PDF version of the #{form_answer.award_type_full_name} Award #{form_answer.promotion? ? 'nomination' : 'application'} is for <b>reference only</b>.
 
         <b>Please do not send in</b> this form to apply for this award. To apply for this award, complete this form online.
       )

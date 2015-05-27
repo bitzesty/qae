@@ -40,15 +40,8 @@ class FormAnswerDecorator < ApplicationDecorator
     "#{object.id}_#{download_filename}.csv"
   end
 
-  def award_type
-    # Please be aware that this method overrides the parent object method
-    # can produce issues with new decorated objects
-    # TODO: Refactor by removing this
-    object.class::AWARD_TYPE_FULL_NAMES[object.award_type]
-  end
-
   def application_name
-    object.nickname || award_type
+    object.nickname || object.award_type_full_name
   end
 
   def award_type_slug
@@ -60,11 +53,11 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def award_application_title
-    "#{award_type} Award #{object.award_year.try(:year)}"
+    "#{object.award_type_full_name} Award #{object.award_year.try(:year)}"
   end
 
   def award_application_title_print
-    "The Queen's Awards for Enterprise: #{award_type} #{object.award_year.try(:year)}"
+    "The Queen's Awards for Enterprise: #{object.award_type_full_name} #{object.award_year.try(:year)}"
   end
 
   def company_or_nominee_name

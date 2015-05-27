@@ -1,8 +1,8 @@
 - winners = FormAnswerDecorator.decorate_collection(@user_award_forms_submitted).select{ |app| app.awarded? }
-- any_promotion_winner = winners.select{ |app| app.award_type == "Enterprise Promotion" }.any?
-- any_innovation_winner = winners.select{ |app| app.award_type == "Innovation" }.any?
-- any_trade_winner = winners.select{ |app| app.award_type == "International Trade" }.any?
-- any_development_winner = winners.select{ |app| app.award_type == "Sustainable Development" }.any?
+- any_promotion_winner = winners.select{ |app| app.promotion? }.any?
+- any_innovation_winner = winners.select{ |app| app.innovation? }.any?
+- any_trade_winner = winners.select{ |app| app.trade? }.any?
+- any_development_winner = winners.select{ |app| app.development? }.any?
 
 div
   header.group.page-header.page-header-wider
