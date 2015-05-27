@@ -2,8 +2,8 @@ require "rails_helper"
 include Warden::Test::Helpers
 Warden.test_mode!
 
-describe "User account creation process", js: true do
-  it "creates the User account" do
+describe "User account creation process" do
+  it "creates the User account", js: true do
     visit new_user_registration_path
     fill_in("Email", with: "test@example.com")
     fill_in("Password", with: "asldkj902lkads-0asd")
@@ -24,7 +24,7 @@ describe "User account creation process", js: true do
     let(:phone_number) { "1231233214354235" }
     let(:company_name) { "BitZestyOrg" }
 
-    it "adds the Account details" do
+    it "adds the Account details", js: true do
       visit root_path
       fill_in("Title", with: "Mr")
       fill_in("First name", with: "FirstName")
@@ -58,19 +58,36 @@ describe "User account creation process", js: true do
       login_as(user, scope: :user)
     end
 
-    it "process the eligibility form for trade", focus: true do
-      expect(user.account).to be_persisted
-
+    it "process the eligibility form for trade" do
       visit dashboard_path
       first("a", text: "New application").click
       fill_in("nickname", with: "trade nick")
       click_button("Save and start eligibility")
-      # click_yes # to resolve
+      click_input("Yes")
+      click_input("Yes")
+      click_input(/Business/)
+      click_input(/Product business/)
+      click_input("Yes")
+      click_input("No")
+      click_input("Yes")
+      click_input("No")
+      click_input("Yes")
+      expect(page).to have_content("Before you start your application")
+      click_link "Continue"
+      expect(page).to have_content("You are eligible to begin your application for an International Trade Award.")
     end
   end
 end
 
-def click_yes
-  first(".question-body .input").set(true)
+def click_input(label_id)
+  l = all(".question-body .selectable label").detect do |label|
+    if label_id.is_a?(String)
+      label.text == label_id
+    elsif label_id.is_a?(Regexp)
+      label.text =~ label_id
+    end
+  end
+
+  l.find("input").set(true)
   click_button "Continue"
 end
