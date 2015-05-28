@@ -19,7 +19,6 @@
       label.form-label Document title
       = form.text_field :title, class: "form-control attachment-title"
       - if current_subject.is_a?(Admin)
-        / Only admin can see/set this
         .checkbox
           label
             = form.check_box :restricted_to_admin

@@ -1,8 +1,7 @@
-- url_namespace = admin_signed_in? ? :admin : :assessor
 li.form_answer_attachment
   - if support_letter.support_letter_attachment.present?
     - if support_letter.support_letter_attachment.scan.clean?
-      = link_to [url_namespace, support_letter.form_answer, support_letter],
+      = link_to [namespace_name, support_letter.form_answer, support_letter],
                 target: "_blank", class: "action-title"
         span.glyphicon.glyphicon-file
         = support_letter.support_letter_attachment.original_filename
@@ -10,7 +9,7 @@ li.form_answer_attachment
       span.glyphicon.glyphicon-file
       = "Not passed virus scanner check (#{support_letter.support_letter_attachment.original_filename})"
   - else
-    = link_to [url_namespace, support_letter.form_answer, support_letter],
+    = link_to [namespace_name, support_letter.form_answer, support_letter],
               target: "_blank",
               class: "action-title"
       span.glyphicon.glyphicon-file
