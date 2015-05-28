@@ -83,10 +83,11 @@ ready = ->
         dataType: "html"
         forceIframeTransport: true
         add: (e, data) ->
+          newForm = $("#new_form_answer_attachment")
           $(".attachment-title").val(data.files[0].name)
-          $("#new_form_answer_attachment").closest(".sidebar-section").addClass("show-attachment-form")
-          $("#new_form_answer_attachment .btn-submit").focus().blur()
-          $("#new_form_answer_attachment .btn-submit").unbind("click").on "click", (e) ->
+          newForm.closest(".sidebar-section").addClass("show-attachment-form")
+          newForm.find(".btn-submit").focus().blur()
+          newForm.find(".btn-submit").unbind("click").on "click", (e) ->
             e.preventDefault()
             data.submit()
         success: (result, textStatus, jqXHR) ->
@@ -99,9 +100,10 @@ ready = ->
             initializeFileUpload()
           else
             form = $("#new_form_answer_attachment")
-            form.closest(".sidebar-section").find(".document-list .p-empty").addClass("visuallyhidden")
-            form.closest(".sidebar-section").find(".document-list ul").append(result.text())
-            form.closest(".sidebar-section").removeClass("show-attachment-form")
+            sidebarSection = form.closest(".sidebar-section")
+            sidebarSection.find(".document-list .p-empty").addClass("visuallyhidden")
+            sidebarSection.find(".document-list ul").append(result.text())
+            sidebarSection.removeClass("show-attachment-form")
             $("#form_answer_attachment_title").val(null)
             $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
 
