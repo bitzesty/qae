@@ -1,52 +1,122 @@
 require "rails_helper"
+include Warden::Test::Helpers
+Warden.test_mode!
 
-describe "User account creation process", js: true do
-  it "creates the User account" do
-    visit new_user_registration_path
-    fill_in("Email", with: "test@example.com")
-    fill_in("Password", with: "asldkj902lkads-0asd")
-    fill_in("Password confirmation", with: "asldkj902lkads-0asd")
-    find("#user_agreed_with_privacy_policy").set(true)
-    click_button "Create account"
-    expect(page).to have_content("Sign-up complete")
+describe "Eligibility forms" do
+  let!(:user) { create(:user, :completed_profile) }
+
+  before do
+    create(:settings, :submission_deadlines)
+    login_as(user, scope: :user)
   end
 
-  context "Account details fulfillment" do
-    include Warden::Test::Helpers
+  context "trade" do
+    it "process the eligibility form" do
+      visit dashboard_path
+      new_application("International Trade Award")
+      fill_in("nickname", with: "trade nick")
+      click_button("Save and start eligibility")
 
-    let!(:user) { create(:user) }
-
-    before do
-      create(:settings, :submission_deadlines)
-      login_as(user, scope: :user)
-    end
-
-    let(:phone_number) { "1231233214354235" }
-    let(:company_name) { "BitZestyOrg" }
-
-    it "adds the Account details" do
-      visit root_path
-      fill_in("Title", with: "Mr")
-      fill_in("First name", with: "FirstName")
-      fill_in("Last name", with: "LastName")
-      fill_in("Your job title", with: "job title")
-      fill_in("Your telephone number", with: phone_number)
-
-      click_button("Save and continue")
-      expect(page).to have_content("Organisation Details")
-
-      fill_in("Name of your organisation", with: company_name)
-      fill_in("Main telephone number", with: "9876544")
-      click_button("Save and continue")
-
-      expect(page).to have_content("Contact Preferences")
-      click_button("Save and continue")
-      expect(page).to have_content("Your account details were successfully saved")
-
-      user.reload
-
-      expect(user.phone_number).to eq(phone_number)
-      expect(user.company_name).to eq(company_name)
+      form_choice([
+        "Yes",
+        "Yes",
+        /Business/,
+        /Product/,
+        "Yes",
+        "No",
+        "Yes",
+        "No",
+        "Yes"
+      ])
+      expect(page).to have_content("Before you start your application")
+      click_link "Continue"
+      expect(page).to have_content("You are eligible to begin your application for an International Trade Award.")
     end
   end
+
+  context "innovation" do
+    it "process the eligibility form" do
+      visit dashboard_path
+      new_application("Innovation Award")
+      fill_in("nickname", with: "innovation nick")
+      click_button("Save and start eligibility")
+      form_choice(["Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes"])
+
+      fill_in("How many innovative products/services/initiatives do you have?", with: 2)
+      click_button "Continue"
+      form_choice("Yes")
+      form_choice("Yes")
+      expect(page).to have_content("Before you start your application")
+      click_link "Continue"
+      expect(page).to have_content("You are eligible to begin your application for an Innovation Award.")
+    end
+  end
+
+  context "development" do
+    it "process the eligibility form" do
+      visit dashboard_path
+      new_application("Sustainable Development Award")
+      fill_in "nickname", with: "development nick"
+      click_button "Save and start eligibility"
+      form_choice([
+        "Yes",
+        "Yes",
+        /Business/,
+        /Product/,
+        "Yes",
+        "No",
+        "Yes"
+      ])
+      expect(page).to have_content("Before you start your application")
+      click_link "Continue"
+      expect(page).to have_content("You are eligible to begin your application for a Sustainable Development Award.")
+    end
+  end
+
+  context "promotion" do
+    it "process the eligibility form" do
+      visit dashboard_path
+      new_application "Enterprise Promotion Award"
+      fill_in "nickname", with: "promotion nick"
+      click_button "Save and start eligibility"
+      form_choice([
+        /Someone/,
+        "Yes",
+        "Yes",
+        "Yes",
+        "Yes",
+        "Yes",
+        "No",
+        "Yes",
+        "No",
+        "No",
+        "Yes"
+      ])
+      expect(page).to have_content("Before you start your application")
+      click_link "Continue"
+      expect(page).to have_content("Your nominee is eligible for an Enterprise Promotion Award")
+    end
+  end
+end
+
+def form_choice(labels)
+  label_ids = Array(labels)
+
+  label_ids.each do |label_id|
+    l = all(".question-body .selectable label").detect do |label|
+      if label_id.is_a?(String)
+        label.text == label_id
+      elsif label_id.is_a?(Regexp)
+        label.text =~ label_id
+      end
+    end
+
+    l.find("input").set(true)
+    click_button "Continue"
+  end
+end
+
+def new_application(type)
+  header = all(".applications-list li").detect { |app| app.first("h3", text: type) }
+  header.first("a").click
 end
