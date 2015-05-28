@@ -30,7 +30,10 @@
         br
 
   - if resource.submitted_and_after_the_deadline?
-    = simple_form_for([namespace_name, CompanyDetail.for(resource)], remote: true, authenticity_token: true) do |f|
+    = simple_form_for([namespace_name, CompanyDetail.for(resource)],
+                      remote: true,
+                      authenticity_token: true) do |f|
+
       .input.form-group.form-fields.form-block
         .row
           .col-md-8

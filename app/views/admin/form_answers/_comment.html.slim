@@ -5,7 +5,9 @@
 
         p Delete this comment?
         .btn-actions
-        = form_for([namespace_name, @form_answer, comment], html: { method: :delete, class: "destroy-comment"} ) do |f|
+        = form_for [namespace_name, @form_answer, comment],
+                   html: { method: :delete, class: "destroy-comment"} do |f|
+
             = f.submit 'Yes', class: "btn btn-danger link-delete-comment-confirm"
             ' &nbsp;
             = link_to "No", "#", class: "btn btn-default link-delete-comment-close"
@@ -19,13 +21,20 @@
             ' Delete
             span.icon-delete-comment
       span.pull-right.if-js-hide
+
         - if comment.author?(current_subject)
-          = form_for([namespace_name, @form_answer, comment], html: { method: :delete, class: "destroy-comment"} ) do |f|
+          = form_for [namespace_name, @form_answer, comment],
+                     html: { method: :delete, class: "destroy-comment"} do |f|
+
             = f.submit 'Delete', class: "btn btn-danger link-delete-comment-confirm"
 
   .comment-content
     = comment.body
-  = form_for([namespace_name, @form_answer, comment], remote: true, authenticity_token: true) do |f|
+
+  = form_for([namespace_name, @form_answer, comment],
+             remote: true,
+             authenticity_token: true) do |f|
+
     label.if-js-hide Flag
     = f.check_box :flagged, class: "flag-comment-checkbox if-js-hide"
     .comment-action

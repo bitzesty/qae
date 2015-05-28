@@ -1,8 +1,16 @@
 th.filter
   = f.simple_fields_for [:filters, @search.filters] do |f|
-    = f.input :status, collection: FormAnswerStatus::AdminFilter.collection, label: false, input_html: { multiple: true, class: 'if-js-hide'}
+    = f.input :status,
+              collection: FormAnswerStatus::AdminFilter.collection,
+              label: false,
+              input_html: { multiple: true, class: 'if-js-hide'}
+
   = f.simple_fields_for [:filters, @search.filters] do |f|
-    = f.input :sub_status, collection: FormAnswerStatus::AdminFilter.sub_collection, label: false, input_html: {multiple: true, class: 'if-js-hide'}
+    = f.input :sub_status,
+              collection: FormAnswerStatus::AdminFilter.sub_collection,
+              label: false,
+              input_html: { multiple: true, class: 'if-js-hide'}
+
   .dropdown.if-no-js-hide
     button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"
       ' Status:

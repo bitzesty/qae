@@ -1,6 +1,8 @@
 - if @form_answer.submitted_and_after_the_deadline?
   .form-group.sic-code
-    = simple_form_for [namespace_name, @form_answer], remote: true, authenticity_token: true do |f|
+    = simple_form_for [namespace_name, @form_answer],
+                      remote: true,
+                      authenticity_token: true do |f|
 
       label.form-label SIC code
       .form-value
