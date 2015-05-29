@@ -1,0 +1,35 @@
+tbody
+  - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
+    tr
+      - unless @search.query?
+        td = check_box_tag :check, obj.id, false, class: "form-answer-check"
+
+      td.td-title
+        = link_to [namespace_name, obj], class: "ellipsis"
+          - unless obj.company_or_nominee_name.nil?
+            = link_to obj.company_or_nominee_name, [namespace_name, obj]
+          - else
+            = link_to [namespace_name, obj] do
+              em
+                ' Not found
+
+      td
+        - if obj.urn.present?
+          = obj.urn
+        - else
+          span.urn-not-generated Not yet generated
+
+      - if @search.query?
+        td = obj.award_type_full_name
+      - else
+        td= obj.state.humanize
+        td= obj.primary_assessor_full_name
+        td= obj.secondary_assessor_full_name
+
+      td
+        - app_comments = application_comments(obj.comments)
+        - if app_comments.present?
+          = link_to [namespace_name, obj]
+            = app_comments
+
+      td = application_flags(obj)

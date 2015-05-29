@@ -25,4 +25,16 @@ module PartialsVisibilityHelper
   def show_palace_attendees_subsection?
     @form_answer.awarded? && !current_subject.try(:secondary?, @form_answer)
   end
+
+  def show_bulk_assignment?
+    current_subject.categories_as_lead.include?(category_picker.current_award_type)
+  end
+
+  def show_form_answer_attachment?(attachment)
+    current_subject.is_a?(Admin) || !attachment.restricted_to_admin?
+  end
+
+  def show_remove_form_answer_attachment?(attachment)
+    attachment.uploaded_not_by_user? && policy(attachment).destroy?
+  end
 end

@@ -6,7 +6,7 @@ class Admin::ReportsController < Admin::BaseController
       format.html
 
       format.csv do
-        send_data resource.as_csv
+        send_data resource.as_csv, type: "text/csv"
       end
 
       format.pdf do

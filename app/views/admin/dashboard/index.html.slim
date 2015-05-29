@@ -5,52 +5,7 @@ br
 .row.clearfix
   .col-md-4
     .show-sidebar
-      .well
-        h2
-          ' Reports
-        ul.list-unstyled.list-actions
-          li
-            .pull-right
-              = link_to admin_report_path("registered-users", format: :csv, year: @award_year.year)
-
-                span.glyphicon.glyphicon-download-alt
-                span.visible-lg.visible-md
-                  ' Download
-            = link_to admin_report_path("registered-users", format: :csv, year: @award_year.year)
-              span.glyphicon.glyphicon-file
-              ' Registered users entry
-
-          li
-            .pull-right
-              =link_to admin_report_path("cases-status", format: :csv, year: @award_year.year)
-                span.glyphicon.glyphicon-download-alt
-                span.visible-lg.visible-md
-                  ' Download
-            = link_to admin_report_path("cases-status", format: :csv, year: @award_year.year), class: "action-title"
-              span.glyphicon.glyphicon-file
-              ' Cases status
-
-          li
-            .pull-right
-              = link_to admin_report_path("entries-report", format: :csv, year: @award_year.year)
-                span.glyphicon.glyphicon-download-alt
-                span.visible-lg.visible-md
-                  ' Download
-            = link_to admin_report_path("entries-report", format: :csv, year: @award_year.year), class: "action-title"
-              span.glyphicon.glyphicon-file
-              ' Entries report
-
-          li
-            .pull-right
-              =link_to admin_report_path("press-book-list", format: :csv, year: @award_year.year)
-                span.glyphicon.glyphicon-download-alt
-                span.visible-lg.visible-md
-                  ' Download
-            = link_to admin_report_path("press-book-list", class: "action-title", format: :csv, year: @award_year.year)
-              span.glyphicon.glyphicon-file
-              ' Press book list
-        .clear
-
+      = render "csv_reports"
       - if policy(:report).show?
         = render "admin/feedbacks/pdf_reports"
         = render "admin/reports/case_summaries"

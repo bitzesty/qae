@@ -1,7 +1,11 @@
 - if @form_answer.submitted_and_after_the_deadline?
 
   .form-group.previous-wins-form
-    = simple_form_for [namespace_name, @form_answer], remote: true, authenticity_token: true, html: { "data-type" => "html" } do |f|
+    = simple_form_for [namespace_name, @form_answer],
+                      remote: true,
+                      authenticity_token: true,
+                      html: { "data-type" => "html" } do |f|
+
       - previous_wins = PreviousWinDecorator.decorate_collection(f.object.previous_wins)
       = hidden_field_tag :section, "previous_wins"
       label.form-label Previous winnings

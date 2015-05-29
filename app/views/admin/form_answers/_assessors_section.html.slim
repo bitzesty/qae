@@ -23,10 +23,18 @@
             = resource.assessors.primary.try(:full_name)
         - else
           span.p-empty Not assigned
+
       - if policy(resource).assign_assessor?
-        = form_for([namespace_name, resource.assessor_assignments.primary], remote: true, html: { "data-type" => "json"}, authenticity_token: true) do |form|
+        = form_for [namespace_name, resource.assessor_assignments.primary],
+                   remote: true,
+                   html: { "data-type" => "json"},
+                   authenticity_token: true do |form|
+
           .form-fields
-            = form.select :assessor_id, available_assessors_for_select, { include_blank: true }
+            = form.select :assessor_id,
+                          available_assessors_for_select,
+                          { include_blank: true }
+
           = link_to "#", class: "form-edit-link"
             span.glyphicon.glyphicon-pencil
             ' Edit
@@ -48,8 +56,13 @@
             = resource.assessors.secondary.try(:full_name)
         - else
           span.p-empty Not assigned
+
       - if policy(resource).assign_assessor?
-        = form_for([namespace_name, resource.assessor_assignments.secondary], remote: true, html: { "data-type" => "json"}, authenticity_token: true) do |form|
+        = form_for [namespace_name, resource.assessor_assignments.secondary],
+                   remote: true,
+                   html: { "data-type" => "json" },
+                   authenticity_token: true do |form|
+
           .form-fields
             = form.select :assessor_id, available_assessors_for_select, { include_blank: true }
           = link_to "#", class: "form-edit-link"

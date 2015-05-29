@@ -59,4 +59,9 @@ module FormAnswerHelper
       "Updated by #{ps.authorable.decorate.full_name} - #{format_date(ps.updated_at)}"
     end
   end
+
+  def assessors_collection_for_bulk
+    assessors = Assessor.available_for(category_picker.current_award_type).map { |a| [a.full_name, a.id] }
+    [["Not Assigned", "not assigned"]] + assessors
+  end
 end
