@@ -52,7 +52,7 @@ class Reports::FormAnswer
   end
 
   def case_withdrawn
-    bool(obj.state == "withdrawn")
+    bool obj.withdrawn?
   end
 
   def percentage_complete

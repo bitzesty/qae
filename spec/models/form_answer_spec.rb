@@ -89,4 +89,12 @@ RSpec.describe FormAnswer, type: :model do
       expect(form_answer.fill_progress_in_percents).to eq("11%")
     end
   end
+
+  describe "state helpers" do
+    it "exposes the state as ? method" do
+      expect(build(:form_answer, state: "not_awarded")).to be_not_awarded
+      expect(build(:form_answer, state: "reserved")).to be_reserved
+      expect(build(:form_answer, state: "recommended")).to be_recommended
+    end
+  end
 end

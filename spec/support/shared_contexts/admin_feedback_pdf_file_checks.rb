@@ -4,9 +4,10 @@ shared_context "admin feedback pdf file checks" do
   let!(:user) { create :user }
 
   let!(:form_answer) do
-    create :form_answer, award_type,
-                         :submitted,
-                         user: user
+    create :form_answer,
+           award_type,
+           :submitted,
+           user: user
   end
 
   let(:feedback_content) do
@@ -60,7 +61,7 @@ shared_context "admin feedback pdf file checks" do
     end
 
     it "should contain feedback data" do
-      FeedbackForm.fields_for_award_type(form_answer.award_type).each do |key, value|
+      FeedbackForm.fields_for_award_type(form_answer.award_type).each do |key, _|
         expect(pdf_content).to include(feedback.document["#{key}_strength"])
         expect(pdf_content).to include(feedback.document["#{key}_weakness"])
       end

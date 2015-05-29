@@ -45,9 +45,6 @@ class AssessorAssignment < ActiveRecord::Base
 
   store_accessor :document, *AppraisalForm.all
 
-  # TODO: consider pre-creating the assessment records after the FormAnswer creation
-  # and decreasing the possible overhead with creating 4 records/n+1
-
   def self.primary
     find_or_create_by(position: 0)
   end

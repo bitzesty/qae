@@ -4,9 +4,10 @@ shared_context "admin case summary pdf file checks" do
   let!(:user) { create :user }
 
   let!(:form_answer) do
-    create :form_answer, :submitted,
-                         award_type,
-                         user: user
+    create :form_answer,
+           :submitted,
+           award_type,
+           user: user
   end
 
   let!(:assessor_assignment) do
@@ -63,7 +64,7 @@ shared_context "admin case summary pdf file checks" do
     end
 
     it "should contain case summary data" do
-      AppraisalForm.struct(form_answer).each do |key, value|
+      AppraisalForm.struct(form_answer).each do |key, _|
         expect(pdf_content).to include(assessor_assignment.document["#{key}_desc"])
       end
     end

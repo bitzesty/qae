@@ -17,8 +17,8 @@ describe UserDashboardHelper do
     context "after shortlisting deadline" do
       let(:forms) do
         [
-          double(state: "not_recommended"),
-          double(state: "not_awarded")
+          build(:form_answer, state: "not_recommended"),
+          build(:form_answer, state: "not_awarded")
         ]
       end
 
