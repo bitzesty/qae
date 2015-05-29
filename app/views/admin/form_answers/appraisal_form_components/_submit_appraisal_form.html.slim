@@ -1,5 +1,10 @@
 - unless assessment.submitted?
-  = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, authenticity_token: true, class: "submit-assessment", "data-type" => "json")
+  = form_tag(url_for([namespace_name, :assessment_submissions]),
+            remote: true,
+            authenticity_token: true,
+            class: "submit-assessment",
+            "data-type" => "json")
+
     = hidden_field_tag :assessment_id, assessment.id
 
     .feedback-holder

@@ -9,7 +9,11 @@
           small= @form_answer.draft_note.decorate.try(:last_updated_by)
   #section-draft-notes.section-draft-notes.panel-collapse.collapse role="tabpanel" aria-labelledby="draft-notes-heading"
     .panel-body
-      = simple_form_for([namespace_name, @form_answer, @form_answer.draft_note], remote: true, authenticity_token: true, html: { "data-type" => "json" }) do |f|
+      = simple_form_for([namespace_name, @form_answer, @form_answer.draft_note],
+                        remote: true,
+                        authenticity_token: true,
+                        html: { "data-type" => "json" }) do |f|
+
         .form-group
           .form-value
             p

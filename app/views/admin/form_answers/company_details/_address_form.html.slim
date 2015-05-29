@@ -38,28 +38,53 @@
         .row
           .col-md-8
             label Building and street
-            = f.input :address_building, as: :string, label: false, input_html: { class: "form-control" }
-            = f.input :address_street, as: :string, label: false, input_html: { class: "form-control" }
+            = f.input :address_building,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
+
+            = f.input :address_street,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
         .row
           .col-md-6
             label Town or city
-            = f.input :address_city, as: :string, label: false, input_html: { class: "form-control" }
+            = f.input :address_city,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
         .row
           .col-md-6
             label Country
-            = f.input :address_country, as: :select, label: false, input_html: { class: "form-control" }, collection: country_collection
+            = f.input :address_country,
+                      as: :select,
+                      label: false,
+                      input_html: { class: "form-control" },
+                      collection: country_collection
         .row
           .col-md-3
             label Postcode
-            = f.input :address_postcode, as: :string, label: false, input_html: { class: "form-control" }
+            = f.input :address_postcode,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
         .row
           .col-md-3
             label Telephone number
-            = f.input :telephone, as: :string, label: false, input_html: { class: "form-control" }
+            = f.input :telephone,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
         .row
           .col-md-4
             label Region
-            = f.input :region, as: :select, label: false, input_html: { class: "form-control" }, collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
+            = f.input :region,
+                      as: :select,
+                      label: false,
+                      input_html: { class: "form-control" },
+                      collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
+
         .form-actions.text-right
           = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
           = f.submit "Save", class: "btn btn-primary pull-right"

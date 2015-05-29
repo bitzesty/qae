@@ -1,12 +1,20 @@
 - if @form_answer.submitted_and_after_the_deadline?
   .form-group
-    = simple_form_for [namespace_name, @form_answer], remote: true, authenticity_token: true, html: { "data-type" => "html", class: "company-name-form"} do |f|
+    = simple_form_for [namespace_name, @form_answer],
+                      remote: true,
+                      authenticity_token: true,
+                      html: { "data-type" => "html", class: "company-name-form"} do |f|
+
       = hidden_field_tag :section, "company_name"
       label.form-label Company name
       .form-value
         p = @form_answer.company_name
       .input.form-group.form-fields.form-block
-        = f.input :company_or_nominee_name, as: :string, label: false, input_html: { class: "form-control" }
+        = f.input :company_or_nominee_name,
+                  as: :string,
+                  label: false,
+                  input_html: { class: "form-control" }
+
         .form-actions.text-right
           = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
           = f.submit "Save", class: "btn btn-primary pull-right"
