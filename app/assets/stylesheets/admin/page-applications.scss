@@ -435,6 +435,9 @@
 .js .js-attachment-form {
   display: none;
 }
+.js.lte-ie7 .js-attachment-form {
+  display: block;
+}
 
 .show-attachment-form {
   .attachment-link {
