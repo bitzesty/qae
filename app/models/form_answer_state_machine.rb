@@ -44,7 +44,7 @@ class FormAnswerStateMachine
           fa.state_machine.perform_transition("assessment_in_progress")
         end
 
-        if fa.state == "application_in_progress"
+        if fa.application_in_progress?
           fa.state_machine.perform_transition("not_submitted")
         end
       end

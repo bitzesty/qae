@@ -78,7 +78,7 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def progress_text
     out = progress_text_short
-    out += "...#{fill_progress_in_percents}" if object.state == "application_in_progress"
+    out += "...#{fill_progress_in_percents}" if object.application_in_progress?
     out
   end
 
