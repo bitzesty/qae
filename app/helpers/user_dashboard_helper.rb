@@ -3,15 +3,11 @@ module UserDashboardHelper
     states = {}
     now = DateTime.now
 
-    not_shortlisted_deadline = Settings.not_shortlisted_deadline
-    not_awarded_deadline = Settings.not_awarded_deadline
-    if not_shortlisted_deadline.present? && not_shortlisted_deadline < now
-      states["not_recommended"] = true
-    end
+    after_not_shortlisted_deadline = Settings.not_shortlisted_deadline.try(:<, now)
+    after_not_awarded_deadline = Settings.not_awarded_deadline.try(:<, now)
 
-    if not_awarded_deadline.present? && not_awarded_deadline < now
-      states["not_awarded"] = true
-    end
+    states["not_recommended"] = after_not_shortlisted_deadline
+    states["not_awarded"] = after_not_awarded_deadline
 
     form_answers.select { |fa| states[fa.state] }
   end
