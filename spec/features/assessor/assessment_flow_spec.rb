@@ -54,9 +54,7 @@ describe "Assessment flow", %(
 
     page.document.synchronize do
       element = first("#case-summary-heading-primary_case_summary .panel-title a")
-      if element
-        element.click
-      end
+      element.click if element
     end
 
     page.document.synchronize do
