@@ -130,6 +130,11 @@ jQuery ->
     # Conditional latest year
     # If from October to December -> then previous year
     # If from January to September -> then current year
+    if typeof console != "undefined"
+      console.log("fy_month: " + fy_month)
+      if fy_month >= 10
+        console.log("fy_month: " + (parseInt(fy_year) - 1))
+
     if fy_month >= 10
       fy_year = parseInt(fy_year) - 1
 
