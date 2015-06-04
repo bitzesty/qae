@@ -1,4 +1,12 @@
 module FinancialTable
+  def get_audit_data(key)
+    res = audit_data.detect do |d|
+      d.keys.first.to_s == key.to_s
+    end
+
+    res.present? ? res[key.to_sym] : financial_empty_values
+  end
+
   def financial_table_headers
     if financial_year_changed_dates_value.present?
       financial_table_changed_dates_headers

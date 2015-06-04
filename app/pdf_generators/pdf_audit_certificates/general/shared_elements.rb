@@ -47,16 +47,8 @@ module PdfAuditCertificates::General::SharedElements
     table rows, table_default_ops
   end
 
-  def get_audit_data(key)
-    res = audit_data.detect do |d|
-      d.keys.first.to_s == key.to_s
-    end
-
-    res.present? ? res[key.to_sym] : financial_empty_values
-  end
-
   def table_headers
-    QuestionLabels::AuditCertificateLabel.find(award_type).labels.reject do |l|
+    QuestionLabels::AuditCertificateLabel.find(form_answer.award_type).labels.reject do |l|
       # TODO: remove this rejecting once will be clear with unknown keys
       l["id"].blank?
     end
