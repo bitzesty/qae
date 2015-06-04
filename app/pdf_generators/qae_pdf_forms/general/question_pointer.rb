@@ -501,14 +501,6 @@ class QaePdfForms::General::QuestionPointer
     Date::MONTHNAMES[value.to_i]
   end
 
-  def get_audit_data(key)
-    res = audit_data.detect do |d|
-      d.keys.first.to_s == key.to_s
-    end
-
-    res.present? ? res[key.to_sym] : financial_empty_values
-  end
-
   def financial_data(question_key, question_data)
     question_data.map do |entry|
       if entry.is_a?(Array)

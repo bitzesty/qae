@@ -127,10 +127,15 @@ jQuery ->
     fy_month = $('.js-financial-year-latest .js-fy-month select').val()
     fy_year = new Date().getFullYear()
 
+    # Conditional latest year
+    # If from October to December -> then previous year
+    # If from January to September -> then current year
+    if fy_month >= 10
+      fy_year = parseInt(fy_year) - 1
+
     # Updates the latest changed financial year input
     fy_latest_changed_input.find("input.js-fy-day").val(fy_day)
     fy_latest_changed_input.find("input.js-fy-month").val(fy_month)
-
 
     # Auto fill the year for previous years
     $(".js-financial-year-changed-dates .js-fy-entries").each ->

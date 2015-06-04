@@ -1,5 +1,6 @@
 class FormFinancialPointer
   include FormAnswersBasePointer
+  include LatestYearGenerator
 
   attr_reader :form_answer,
               :award_form,
@@ -170,10 +171,14 @@ class FormFinancialPointer
     res = []
 
     period_length.times do |i|
+      day = form_answer.document['financial_year_date_day'].to_s
+      month = form_answer.document['financial_year_date_month'].to_s
+      year = calculate_last_year(month) - period_length + i + 1
+
       res << [
-        form_answer.document['financial_year_date_day'].to_s.rjust(2, '0'),
-        form_answer.document['financial_year_date_month'].to_s.rjust(2, '0'),
-        Date.current.year - period_length + i + 1
+        day.rjust(2, '0'),
+        month.rjust(2, '0'),
+        year
       ].join("/")
     end
 
