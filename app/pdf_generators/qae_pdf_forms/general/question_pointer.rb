@@ -149,10 +149,13 @@ class QaePdfForms::General::QuestionPointer
 
   def render_question_with_ref
     ref = question.ref || question.sub_ref
-    form_pdf.text_box "#{ref.delete(' ')}.",
-                      style: :bold,
-                      width: 20.mm,
-                      at: [11.mm, form_pdf.cursor - 5.mm]
+
+    form_pdf.indent 11.mm do
+      form_pdf.render_text "#{ref.delete(' ')}.",
+                           style: :bold, width: 20.mm
+    end
+
+    form_pdf.move_cursor_to form_pdf.cursor + 10.mm
 
     if question.escaped_title.present?
       form_pdf.indent 25.mm do
