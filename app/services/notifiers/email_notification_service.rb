@@ -2,7 +2,11 @@ class Notifiers::EmailNotificationService
   attr_reader :email_notifications
 
   def self.run
+    log_this("started")
+
     new.run
+
+    log_this("completed")
   end
 
   def initialize
@@ -96,6 +100,12 @@ class Notifiers::EmailNotificationService
       if ps && ps.approved? && !ps.reviewed_by_user?
         Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
       end
+    end
+  end
+
+  class << self
+    def log_this(message)
+      p "[EmailNotificationService] #{Time.zone.now} #{message}"
     end
   end
 end
