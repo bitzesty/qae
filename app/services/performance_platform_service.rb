@@ -23,8 +23,12 @@ class PerformancePlatformService
   ]
 
   def self.run
+    log_this("started")
+
     perform_transactions_by_channel
     perform_applications_by_stage
+
+    log_this("completed")
   end
 
   #[
@@ -198,5 +202,13 @@ class PerformancePlatformService
     md5.update(string)
 
     md5.hexdigest
+  end
+
+  private
+
+  class << self
+    def log_this(message)
+      p "[PerformancePlatformService] #{Time.zone.now} #{message}"
+    end
   end
 end
