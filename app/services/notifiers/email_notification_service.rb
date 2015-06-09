@@ -103,8 +103,6 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  private
-
   class << self
     def log_this(message)
       p "[EmailNotificationService] #{Time.zone.now} #{message}"

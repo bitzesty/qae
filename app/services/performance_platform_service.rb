@@ -204,8 +204,6 @@ class PerformancePlatformService
     md5.hexdigest
   end
 
-  private
-
   class << self
     def log_this(message)
       p "[PerformancePlatformService] #{Time.zone.now} #{message}"
