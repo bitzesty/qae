@@ -473,6 +473,11 @@ header.page-header aside .inner {
   margin-top: 2em;
 }
 
+// Fixes spacing conflict with using meta inside the article container
+#wrapper.guide article .inner .meta-data {
+  margin-left: 0;
+}
+
 // Progress steps based on `3. Summary menu`
 // https://www.gov.uk/service-manual/user-centred-design/resources/patterns/progress-indicators#summary-menu
 // Included a dropdown
