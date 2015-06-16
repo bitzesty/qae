@@ -288,12 +288,12 @@ jQuery ->
   triggerAutosave = (e) ->
     window.autosave_timer ||= setTimeout( autosave, 500 )
 
-  $(".js-trigger-autosave").debounce "change", triggerAutosave, 50
-  $("input[type='text'].js-trigger-autosave").debounce "keyup", triggerAutosave, 50
-  $("input[type='number'].js-trigger-autosave").debounce "keyup", triggerAutosave, 50
-  $("input[type='url'].js-trigger-autosave").debounce "keyup", triggerAutosave, 50
-  $("input[type='tel'].js-trigger-autosave").debounce "keyup", triggerAutosave, 50
-  $("textarea.js-trigger-autosave").debounce "keyup", triggerAutosave, 50
+  $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, 50
+  $(document).debounce "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave, 50
+  $(document).debounce "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave, 50
+  $(document).debounce "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave, 50
+  $(document).debounce "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave, 50
+  $(document).debounce "keyup", "textarea.js-trigger-autosave", triggerAutosave, 50
 
   updateUploadListVisiblity = (list, button, max) ->
     list_elements = list.find("li")
@@ -398,7 +398,7 @@ jQuery ->
       if link
         div = $("<div>")
         label = $("<label>").text('Website address')
-        input = $("<input class=\"medium\" type=\"text\">").
+        input = $("<input class=\"medium js-trigger-autosave\" type=\"text\">").
           prop('name', "#{form_name}[#{name}][][link]")
         label.append(input)
         appendRemoveLinkForWebsiteLink(div)
@@ -426,7 +426,9 @@ jQuery ->
         desc_div = $("<div>")
         unique_name = "#{form_name}[#{name}][][description]"
         label = ($("<label>").text("Description").attr("for", unique_name))
-        label.append($("<textarea class='js-char-count' rows='2' maxlength='600' data-word-max='100'>").attr("name", unique_name).attr("id", unique_name))
+        label.append($("<textarea class='js-char-count js-trigger-autosave' rows='2' maxlength='600' data-word-max='100'>")
+             .attr("name", unique_name)
+             .attr("id", unique_name))
         desc_div.append(label)
         new_el.append(desc_div)
 
@@ -480,6 +482,7 @@ jQuery ->
       li.remove()
       updateUploadListVisiblity(list, button, max)
       reindexUploadListInputs(list)
+      triggerAutosave()
       false
 
   # Show current holder info when they are a current holder on basic eligibility current holder question

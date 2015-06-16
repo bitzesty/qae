@@ -14,8 +14,13 @@
   }
 
   $.extend($.fn, {
-    debounce: function(event, callback, delay) {
-      this.bind(event, debounce.apply(this, [callback, delay]));
+    debounce: function(event, selector, callback, delay) {
+      // where we use only three params
+      if (delay === undefined) {
+        this.bind(event, debounce.apply(this, [selector, callback]));
+      } else {
+        this.on(event, selector, debounce.apply(this, [callback, delay]));
+      }
     }
   });
 })(jQuery);
