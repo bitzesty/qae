@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '~> 4.2.0'
+gem 'rails', '4.2.2'
 
 # Security HTTP Headers
 gem 'secure_headers'
@@ -19,7 +19,7 @@ gem 'dotenv-rails', '~> 1.0'
 
 # Assets & Templates
 gem 'slim-rails', '~> 3.0.1'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootstrap-sass', '>= 3.3.3'
@@ -76,7 +76,7 @@ gem 'carrierwave'
 gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
 gem "fog"
 gem "fog-aws"
-gem "vs_rails", "~> 0.0.7"
+gem "vs_rails", github: "bitzesty/vs-rails"
 
 # Background jobs
 gem "shoryuken", github: "phstc/shoryuken", branch: "master"
