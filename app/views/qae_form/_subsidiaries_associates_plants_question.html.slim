@@ -23,7 +23,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
           label.small
             .if-no-js-hide
               ' Name
-              input.medium type="text" name="#{question.input_name}[#{index}][name]" value=subsidiary["name"] autocomplete="off" *possible_read_only_ops
+              input.medium.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][name]" value=subsidiary["name"] autocomplete="off" *possible_read_only_ops
             .if-js-hide
               strong Name
               br
@@ -35,7 +35,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
           label.small
             .if-no-js-hide
               ' Location
-              input.medium type="text" name="#{question.input_name}[#{index}][location]" value=subsidiary["location"]  autocomplete="off" *possible_read_only_ops
+              input.medium.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][location]" value=subsidiary["location"]  autocomplete="off" *possible_read_only_ops
             .if-js-hide
               strong Location
               br
@@ -47,7 +47,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
           label.small
             .if-no-js-hide
               ' Number of UK Employees
-              input.small type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary["employees"]  autocomplete="off" *possible_read_only_ops
+              input.small.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary["employees"]  autocomplete="off" *possible_read_only_ops
             .if-js-hide
               strong Number of UK Employees
               br
@@ -64,15 +64,15 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
         span.span-4
           label.small
             ' Name
-            input.medium type="text" name="#{question.input_name}[0][name]" autocomplete="off" *possible_read_only_ops
+            input.medium.js-trigger-autosave type="text" name="#{question.input_name}[0][name]" autocomplete="off" *possible_read_only_ops
         span.span-4
           label.small
             ' Location
-            input.medium type="text" name="#{question.input_name}[0][location]" autocomplete="off" *possible_read_only_ops
+            input.medium.js-trigger-autosave type="text" name="#{question.input_name}[0][location]" autocomplete="off" *possible_read_only_ops
         span.span-4
           label.small
             ' Number of UK Employees
-            input.small type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
+            input.small.js-trigger-autosave type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
       span.clear
 
 a.button.button-add.js-button-add.if-no-js-hide href="#"
