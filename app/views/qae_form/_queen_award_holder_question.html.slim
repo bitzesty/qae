@@ -26,7 +26,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
       label
         span.visuallyhidden Category
         span.if-no-js-hide
-          select.inline name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+          select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
             option value=""
               ' Category
             - question.categories.each do |category|
@@ -39,7 +39,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
       label
         span.visuallyhidden Year Awarded
         span.if-no-js-hide
-          select.inline name="form[queen_award_holder_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+          select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
             option value=""
               ' Year Awarded
             - question.years.each do |year|
@@ -57,7 +57,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
 
       label
         span.visuallyhidden Category
-        select.inline name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+        select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
           option value=""
             ' Category
           - question.categories.each do |category|
@@ -66,7 +66,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 i
 
       label
         span.visuallyhidden Year Awarded
-        select.inline name="form[queen_award_holder_details][0][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+        select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
           option value=""
             ' Year Awarded
           - question.years.each do |year|

@@ -588,6 +588,8 @@ jQuery ->
           # remove the default reached class to allow removing again
           questionAddDefaultReached(question.find(".list-add"))
 
+          triggerAutosave()
+
   # Removing these added fields
   $(document).on "click", ".question-group .list-add .js-remove-link", (e) ->
     e.preventDefault()
@@ -611,7 +613,7 @@ jQuery ->
         $(this).closest("li").remove()
 
       questionAddDefaultReached(parent_ul)
-      autosave()
+      triggerAutosave()
 
   questionAddDefaultReached = (ul) ->
     if ul.size() > 0

@@ -3,7 +3,7 @@ li.js-add-example
   = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
   label
     ' Position/Role
-    input.medium name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
+    input.medium.js-trigger-autosave name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
   .validate-date-start-end
     span.row
       span.span-3
@@ -39,5 +39,5 @@ li.js-add-example
   label for="form[position_details][#{index}][details]"
     span.label-char-count-reposition
       ' Details
-  textarea.position-textarea.js-char-count rows="2" name="form[position_details][#{index}][details]" id="form[position_details][#{index}][details]" data-word-max=question.details_words_max
+  textarea.position-textarea.js-char-count.js-trigger-autosave rows="2" name="form[position_details][#{index}][details]" id="form[position_details][#{index}][details]" data-word-max=question.details_words_max
     = position['details']

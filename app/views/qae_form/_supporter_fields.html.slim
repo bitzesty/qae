@@ -17,7 +17,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
         ' First Name
         ul.errors-container
         .clear
-        input.js-support-letter-first-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter["first_name"]
+        input.js-support-letter-first-name.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][first_name]" type="text" value=supporter["first_name"]
         span.visible-read-only = supporter["first_name"]
   span.clear
   span.row
@@ -26,7 +26,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
         ' Surname
         ul.errors-container
         .clear
-        input.js-support-letter-last-name autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter["last_name"]
+        input.js-support-letter-last-name.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][last_name]" type="text" value=supporter["last_name"]
         span.visible-read-only = supporter["last_name"]
   span.clear
   span.row
@@ -35,7 +35,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
         ' Relationship to Nominee
         ul.errors-container
         .clear
-        input.js-support-letter-relationship-to-nominee autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter["relationship_to_nominee"]
+        input.js-support-letter-relationship-to-nominee.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][relationship_to_nominee]" type="text" value=supporter["relationship_to_nominee"]
         span.visible-read-only = supporter["relationship_to_nominee"]
   span.clear
   span.row
@@ -56,7 +56,7 @@ li.js-add-example class="#{'read-only js-support-letter-received' if persisted}"
           ' Email address
           ul.errors-container
           .clear
-          input.js-support-letter-email autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
+          input.js-support-letter-email.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][email]" type="text" value=supporter['email']
           span.visible-read-only = supporter['email']
   span.clear
   span.row
