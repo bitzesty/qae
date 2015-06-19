@@ -14,12 +14,12 @@ class PerformancePlatformService
   }
 
   POSSIBLE_RANGES = [
-   "100-percent",
-   "75-99-percent",
-   "50-74-percent",
-   "25-49-percent",
-   "1-24-percent",
-   "0-percent"
+    "100-percent",
+    "75-99-percent",
+    "50-74-percent",
+    "25-49-percent",
+    "1-24-percent",
+    "0-percent"
   ]
 
   def self.run
