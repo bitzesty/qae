@@ -14,12 +14,12 @@ class PerformancePlatformService
   }
 
   POSSIBLE_RANGES = [
-   "0-percent",
-   "1-24-percent",
-   "25-49-percent",
-   "50-74-percent",
-   "75-99-percent",
-   "100-percent"
+    "100-percent",
+    "75-99-percent",
+    "50-74-percent",
+    "25-49-percent",
+    "1-24-percent",
+    "0-percent"
   ]
 
   def self.run
@@ -44,7 +44,7 @@ class PerformancePlatformService
   def self.perform_transactions_by_channel
     timestamp = (Time.current - 1.week).beginning_of_day.utc
 
-    form_answers_count = form_answers_for_past_week.count
+    form_answers_count = form_answers_for_past_week.submitted.count
 
     result = {
       "period" => "week",
@@ -66,7 +66,8 @@ class PerformancePlatformService
   #      "period": "week",
   #      "award": "qaep",
   #      "stage": "1-24-percent",
-  #      "count": 23
+  #      "count": 23,
+  #      "cumulative_count": 30
   #  },
   #  {
   #      "_id": "23456780",
@@ -74,7 +75,8 @@ class PerformancePlatformService
   #      "period": "week",
   #      "award": "qaep",
   #      "stage": "0-percent",
-  #      "count": 42
+  #      "count": 42,
+  #      "cumulative_count": 72
   #  }
   #]
 
@@ -115,45 +117,73 @@ class PerformancePlatformService
 
     AWARD_TYPE_MAPPING.each do |award_type, award|
       POSSIBLE_RANGES.each do |stage|
-        count = case stage
+        case stage
         when "0-percent"
-          form_answers
+          count = form_answers
             .where("fill_progress IS NULL OR fill_progress = 0")
             .where(award_type: award_type)
             .count
+
+          cumulative_count = form_answers
+            .where("fill_progress IS NULL OR fill_progress >= 0 OR submitted = true")
+            .where(award_type: award_type)
+            .count
         when "1-24-percent"
-          form_answers
+          count = form_answers
             .where("fill_progress > 0 AND fill_progress < 25")
             .where(award_type: award_type)
             .count
+
+          cumulative_count = form_answers
+            .where("fill_progress > 0 OR submitted = true")
+            .where(award_type: award_type)
+            .count
         when "25-49-percent"
-          form_answers
+          count = form_answers
             .where("fill_progress >= 25 AND fill_progress < 50")
             .where(award_type: award_type)
             .count
+
+          cumulative_count = form_answers
+            .where("fill_progress >= 25 OR submitted = true")
+            .where(award_type: award_type)
+            .count
         when "50-74-percent"
-          form_answers
+          count = form_answers
             .where("fill_progress >= 50 AND fill_progress < 75")
             .where(award_type: award_type)
             .count
+
+          cumulative_count = form_answers
+            .where("fill_progress >= 50 OR submitted = true")
+            .where(award_type: award_type)
+            .count
         when "75-99-percent"
-          form_answers
+          count = form_answers
             .where("fill_progress >= 75 AND fill_progress < 100")
             .where(award_type: award_type)
             .count
+
+          cumulative_count = form_answers
+            .where("fill_progress >= 50 OR submitted = true")
+            .where(award_type: award_type)
+            .count
         when "100-percent"
-          form_answers
+          count = form_answers
             .where("fill_progress = 100 OR submitted = true")
             .where(award_type: award_type)
             .count
+
+          cumulative_count = count
         end
 
-       data = {
+        data = {
           "_timestamp" => timestamp.iso8601,
           "period" => "week",
           "award" => award,
           "stage" => stage,
-          "count" => count
+          "count" => count,
+          "cumulative_count" => cumulative_count
         }
 
         data["_id"] = generate_applications_id(data)
