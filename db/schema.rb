@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150617142142) do
+ActiveRecord::Schema.define(version: 20150622173914) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,11 +46,15 @@ ActiveRecord::Schema.define(version: 20150617142142) do
     t.string   "authy_id"
     t.datetime "last_sign_in_with_authy"
     t.boolean  "authy_enabled",           default: false
+    t.integer  "failed_attempts",         default: 0,     null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "admins", ["authy_id"], name: "index_admins_on_authy_id", using: :btree
   add_index "admins", ["email"], name: "index_admins_on_email", unique: true, using: :btree
   add_index "admins", ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true, using: :btree
+  add_index "admins", ["unlock_token"], name: "index_admins_on_unlock_token", unique: true, using: :btree
 
   create_table "assessor_assignments", force: :cascade do |t|
     t.integer  "form_answer_id",             null: false
@@ -91,11 +95,15 @@ ActiveRecord::Schema.define(version: 20150617142142) do
     t.string   "development_role"
     t.string   "promotion_role"
     t.string   "telephone_number"
+    t.integer  "failed_attempts",        default: 0,  null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "assessors", ["confirmation_token"], name: "index_assessors_on_confirmation_token", unique: true, using: :btree
   add_index "assessors", ["email"], name: "index_assessors_on_email", unique: true, using: :btree
   add_index "assessors", ["reset_password_token"], name: "index_assessors_on_reset_password_token", unique: true, using: :btree
+  add_index "assessors", ["unlock_token"], name: "index_assessors_on_unlock_token", unique: true, using: :btree
 
   create_table "audit_certificates", force: :cascade do |t|
     t.integer  "form_answer_id",      null: false
@@ -460,12 +468,16 @@ ActiveRecord::Schema.define(version: 20150617142142) do
     t.string   "postcode"
     t.string   "phone_number2"
     t.string   "mobile_number"
+    t.integer  "failed_attempts",                                 default: 0,     null: false
+    t.string   "unlock_token"
+    t.datetime "locked_at"
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["unlock_token"], name: "index_users_on_unlock_token", unique: true, using: :btree
 
   create_table "version_associations", force: :cascade do |t|
     t.integer "version_id"
