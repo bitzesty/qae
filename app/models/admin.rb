@@ -6,7 +6,7 @@ class Admin < ActiveRecord::Base
 
   devise :authy_authenticatable, :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable,
-         :zxcvbnable
+         :zxcvbnable, :lockable
 
   validates :first_name, :last_name, presence: true
 
