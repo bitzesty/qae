@@ -1,5 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_filter :find_resource, only: [:show, :edit, :update, :destroy]
+  before_filter :find_resource, only: [:show, :edit, :update, :destroy, :resend_confirmation_email]
 
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
@@ -45,6 +45,15 @@ class Admin::UsersController < Admin::BaseController
 
     @resource.destroy
     respond_with :admin, @resource
+  end
+
+  def resend_confirmation_email
+    authorize @resource, :update?
+
+    @resource.send_confirmation_instructions
+    flash[:notice] = "Confirmation instructions were successfully sent to #{@resource.decorate.full_name} (#{@resource.email})"
+    respond_with :admin, @resource,
+                 location: admin_users_path
   end
 
   private

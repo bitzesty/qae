@@ -59,6 +59,14 @@
 
           ' &nbsp;
 
+        - if resource.persisted? && resource.confirmed_at.blank?
+          = link_to "Resend confirmation email",
+                    resend_confirmation_email_admin_user_path(resource),
+                    class: "btn btn-primary btn-md",
+                    method: :patch
+
+          ' &nbsp;
+
         = f.button :submit,
                   class: "btn btn-primary btn-md"
     .clear
