@@ -89,6 +89,9 @@ class QAE2014Forms
             <p>
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
+            <p>
+              Please do not enter separate your figures with commas
+            </p>
           )
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
