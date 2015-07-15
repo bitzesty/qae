@@ -37,7 +37,7 @@ module QaePdfForms::CustomQuestions::ByYear
     else
       active_fields.map do |field|
         entry = year_entry(field)
-        entry.present? ? entry : IN_PROGRESS
+        entry.present? ? entry.to_s.gsub(",", "") : IN_PROGRESS
       end
     end
 
