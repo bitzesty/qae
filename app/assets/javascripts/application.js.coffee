@@ -212,7 +212,7 @@ jQuery ->
         turnover_selector = "[id='form["+turnover_data+"_"+sales_year+"]']"
         exports_selector = "[id='form["+exports_data+"_"+sales_year+"]']"
         sales_selector = ".js-sales-value[data-year='"+sales_year+"']"
-        sales_value = parseInt($(turnover_selector).val()) - parseInt($(exports_selector).val())
+        sales_value = parseInt($(turnover_selector).val().replace(/,/g, '')) - parseInt($(exports_selector).val().replace(/,/g, ''))
         if sales_value
           $(sales_selector).text(sales_value)
         else

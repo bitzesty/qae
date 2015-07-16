@@ -18,7 +18,7 @@
               - turnover_q = question.form[question.turnover_question]
               - exports_q = question.form[question.exports_question]
               - if turnover_q.input_value(suffix: "#{y}of#{c.years}").present? && exports_q.input_value(suffix: "#{y}of#{c.years}").present?
-                - sales_value = turnover_q.input_value(suffix: "#{y}of#{c.years}").to_i - exports_q.input_value(suffix: "#{y}of#{c.years}").to_i
+                - sales_value = turnover_q.input_value(suffix: "#{y}of#{c.years}").to_s.gsub(",", "").to_i - exports_q.input_value(suffix: "#{y}of#{c.years}").to_s.gsub(",", "").to_i
               - else
                 - sales_value = "-"
               span.js-sales-value data-year="#{y}of#{c.years}" data-turnover=question.turnover_question data-exports=question.exports_question

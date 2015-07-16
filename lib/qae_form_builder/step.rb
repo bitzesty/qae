@@ -45,7 +45,12 @@ class QAEFormBuilder
         allowed_params[question.key] = form_data[question.key]
 
         question_possible_sub_keys(question).each do |sub_question_key|
-          allowed_params[sub_question_key] = form_data[sub_question_key]
+          allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion)
+            # Sometimes users can input commas, we are stripping them
+            form_data[sub_question_key].to_s.gsub(",", "")
+          else
+            form_data[sub_question_key]
+          end
         end
 
         if question.delegate_obj.is_a?(QAEFormBuilder::UploadQuestion) &&

@@ -90,6 +90,9 @@ class QAE2014Forms
             <p>
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
+            <p>
+              Please do not separate your figures with commas
+            </p>
           )
           conditional :trade_commercial_success, :true
           conditional :financial_year_date_changed, :true
