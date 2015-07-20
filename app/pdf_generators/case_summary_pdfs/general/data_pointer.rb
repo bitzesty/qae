@@ -260,13 +260,13 @@ module CaseSummaryPdfs::General::DataPointer
   def render_base_growth_table
     rows = if @form_answer.trade?
       [
-        financial_pointer.growth_overseas_earnings_list.unshift("% Growth overseas earnings"),
-        financial_pointer.sales_exported_list.unshift("% Sales exported"),
-        financial_pointer.average_growth_for_list.unshift("% Sector average growth")
+        @growth_overseas_earnings_list.unshift("% Growth overseas earnings"),
+        @sales_exported_list.unshift("% Sales exported"),
+        @average_growth_for_list.unshift("% Sector average growth")
       ]
     else
       [
-        financial_pointer.growth_in_total_turnover_list.unshift("% Growth in total turnover")
+        @growth_in_total_turnover_list.unshift("% Growth in total turnover")
       ]
     end
 
@@ -280,11 +280,11 @@ module CaseSummaryPdfs::General::DataPointer
     rows = [
       [
         "Overall growth £[year 1 - #{financial_pointer.period_length}]",
-        financial_pointer.overall_growth
+        @overall_growth
       ],
       [
         "Overall growth %[year 1 - #{financial_pointer.period_length}]",
-        financial_pointer.overall_growth_in_percents
+        @overall_growth_in_percents
       ]
     ]
 

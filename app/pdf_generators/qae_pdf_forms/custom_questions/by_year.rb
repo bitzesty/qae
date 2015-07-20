@@ -33,11 +33,13 @@ module QaePdfForms::CustomQuestions::ByYear
 
   def render_years_table
     rows = if CALCULATED_FINANCIAL_DATA.include?(question.key)
-      get_audit_data(question.key).map(&:to_i).map(&:to_s)
+      get_audit_data(question.key).map do |field|
+        ApplicationController.helpers.formatted_uk_sales_value(field)
+      end
     else
       active_fields.map do |field|
-        entry = year_entry(field)
-        entry.present? ? entry.to_s.gsub(",", "") : IN_PROGRESS
+        entry = year_entry(field).to_s.gsub(",", "")
+        entry.present? ? ApplicationController.helpers.number_with_delimiter(entry) : IN_PROGRESS
       end
     end
 

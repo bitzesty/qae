@@ -50,24 +50,36 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
 
       data_rows << if row[:uk_sales]
         row.values.flatten
-           .map { |field| field.to_i.to_s }
-           .unshift(I18n.t("#{LOCALE_PREFIX}.uk_sales_row.#{row.keys.first}"))
+           .map do |field|
+             formatted_uk_sales_value(field)
+           end.unshift(I18n.t("#{LOCALE_PREFIX}.uk_sales_row.#{row.keys.first}"))
       else
         row.values.flatten
-           .map { |field| field[:value] }
-           .unshift(I18n.t("#{LOCALE_PREFIX}.row.#{row.keys.first}"))
+           .map do |field|
+             ApplicationController.helpers.number_with_delimiter(field[:value])
+           end.unshift(I18n.t("#{LOCALE_PREFIX}.row.#{row.keys.first}"))
       end
     end
 
     data_rows
   end
 
+  def formatted_uk_sales_value(item)
+    ApplicationController.helpers.formatted_uk_sales_value(item)
+  end
+
+  def formatter_metrics(list)
+    list.map do |item|
+      formatted_uk_sales_value(item)
+    end
+  end
+
   def set_financial_benchmarks
-    @growth_overseas_earnings_list = financial_pointer.growth_overseas_earnings_list
-    @sales_exported_list = financial_pointer.sales_exported_list
-    @average_growth_for_list = financial_pointer.average_growth_for_list
-    @growth_in_total_turnover_list = financial_pointer.growth_in_total_turnover_list
-    @overall_growth = financial_pointer.overall_growth
-    @overall_growth_in_percents = financial_pointer.overall_growth_in_percents
+    @growth_overseas_earnings_list = formatter_metrics financial_pointer.growth_overseas_earnings_list
+    @sales_exported_list = formatter_metrics financial_pointer.sales_exported_list
+    @average_growth_for_list = formatter_metrics financial_pointer.average_growth_for_list
+    @growth_in_total_turnover_list = formatter_metrics financial_pointer.growth_in_total_turnover_list
+    @overall_growth = formatted_uk_sales_value financial_pointer.overall_growth
+    @overall_growth_in_percents = formatted_uk_sales_value financial_pointer.overall_growth_in_percents
   end
 end
