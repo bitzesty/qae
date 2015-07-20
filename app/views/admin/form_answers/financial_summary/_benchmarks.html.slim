@@ -20,23 +20,23 @@
           th % Growth overseas earnings
 
           - financial_pointer.growth_overseas_earnings_list.each do |entry|
-            td.value = entry
+            td.value = formatted_uk_sales_value(entry)
         tr.exports-percentage
           th % Sales exported
 
           - financial_pointer.sales_exported_list.each do |entry|
-            td.value = entry
+            td.value = formatted_uk_sales_value(entry)
         tr.sector-average-growth
           th % Sector average growth
 
           - financial_pointer.average_growth_for_list.each do |entry|
-            td = entry
+            td = formatted_uk_sales_value(entry)
       - else
         tr.turnover-growth
           th % Growth in total turnover
 
           - financial_pointer.growth_in_total_turnover_list.each do |entry|
-            td.value = entry
+            td.value = formatted_uk_sales_value(entry)
 
   label.avg-growth-legend = @form_answer.average_growth_legend([1,2,3])
 
@@ -48,8 +48,8 @@
       tr.overall-growth
         th
           'Overall growth £[year 1 - #{financial_pointer.period_length}]
-        td.value = financial_pointer.overall_growth
+        td.value = formatted_uk_sales_value(financial_pointer.overall_growth)
       tr.overall-growth-in-percents
         th
           ' Overall growth %[year 1 - #{financial_pointer.period_length}]
-        td.value = financial_pointer.overall_growth_in_percents
+        td.value = formatted_uk_sales_value(financial_pointer.overall_growth_in_percents)

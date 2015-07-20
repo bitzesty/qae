@@ -220,6 +220,13 @@ jQuery ->
 
   updateTurnoverExportCalculation()
 
+  replaceCommasInFinancialData = ->
+    $(document).on "change", "input.js-form-financial-data", ->
+      formatted_value = $(this).val().replace(/,/g, '')
+      $(this).val(formatted_value)
+
+  replaceCommasInFinancialData()
+
   # Show/hide the correct step/page for the award form
   showAwardStep = (step) ->
     $("body").removeClass("show-error-page")

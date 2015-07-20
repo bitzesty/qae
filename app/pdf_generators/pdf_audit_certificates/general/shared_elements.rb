@@ -54,6 +54,10 @@ module PdfAuditCertificates::General::SharedElements
     end
   end
 
+  def number_with_delimiter(val)
+    ApplicationController.helpers.number_with_delimiter(val)
+  end
+
   def financial_data(question_key, question_data)
     question_data.map do |entry|
       if entry.is_a?(Array)
@@ -61,7 +65,7 @@ module PdfAuditCertificates::General::SharedElements
       elsif entry.is_a?(Hash)
         data_by_type(question_key, entry)
       else # CALCULATED_DATA
-        "£#{entry.to_s}"
+        "£#{ApplicationController.helpers.formatted_uk_sales_value(entry)}"
       end
     end
   end
@@ -69,9 +73,9 @@ module PdfAuditCertificates::General::SharedElements
   def data_by_type(question_key, entry)
     if entry[:value].present?
       if NOT_CURRENCY_QUESTION_KEYS.include?(question_key)
-        entry[:value]
+        number_with_delimiter(entry[:value])
       else
-        "£#{entry[:value]}" if entry[:value] != "-"
+        "£#{number_with_delimiter(entry[:value])}" if entry[:value] != "-"
       end
     end
   end
