@@ -4,7 +4,7 @@ class FormPdf < Prawn::Document
   include QaePdfForms::General::DrawElements
   include FormAnswersBasePointer
 
-  UNDEFINED_TITLE = "Not answered yet..."
+  UNDEFINED_TITLE = "No answer ..."
   UNDEFINED_TYPE = "undefined type UNDEFINED"
   TABLE_WITH_COMMENT_QUESTION = %w(financial_year_dates total_turnover exports net_profit total_net_assets)
   INLINE_DATE_QUESTION = %w(started_trading financial_year_date nominee_date_of_birth)

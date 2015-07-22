@@ -52,7 +52,8 @@ class FormFinancialPointer
       end
 
       unless UK_SALES_EXCLUDED_FORM_TYPES.include?(form_answer.object.award_type.to_sym)
-        fetched += [UkSalesCalculator.new(fetched).data]
+        uk_sales_data = UkSalesCalculator.new(fetched).data
+        fetched += [UkSalesCalculator.new(fetched).data] if uk_sales_data.present?
       end
 
       fetched
