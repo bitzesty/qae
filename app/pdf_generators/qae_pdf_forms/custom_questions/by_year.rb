@@ -33,9 +33,11 @@ module QaePdfForms::CustomQuestions::ByYear
 
   def render_years_table
     rows = if CALCULATED_FINANCIAL_DATA.include?(question.key)
-      get_audit_data(question.key).map do |field|
+      res = get_audit_data(question.key).map do |field|
         ApplicationController.helpers.formatted_uk_sales_value(field)
       end
+
+      res.all? { |el| el == {}} ? [] : res
     else
       active_fields.map do |field|
         entry = year_entry(field).to_s.gsub(",", "")
@@ -72,7 +74,7 @@ module QaePdfForms::CustomQuestions::ByYear
     prefix = if AS_AT_DATE_PREFIX_QUESTION_KEYS.include?(question.key)
       AS_AT_DATE_PREFIX
     else
-      YEAR_ENDING_IN_PREFIX
+      financial_year_changed_dates_value.present? ? YEAR_ENDING_IN_PREFIX : ""
     end
 
     financial_table_headers.map do |i|

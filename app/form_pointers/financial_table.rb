@@ -23,7 +23,11 @@ module FinancialTable
       get_audit_data(:financial_year_changed_dates)
     )
 
-    correct_date_headers(res)
+    if res.any? { |el| el.present? }
+      correct_date_headers(res)
+    else
+      [''] * res.size
+    end
   end
 
   def correct_date_headers(res)
