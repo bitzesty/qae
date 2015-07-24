@@ -79,6 +79,7 @@ $.fn.charcount = function() {
         lastIndex = oldText.lastIndexOf("\n") + 1;
       }
       newText = oldText.substr(0, lastIndex) + " ";
+      newText = newText.replace(/\s+$/g, "");
 
       $(this).closest(".char-count").find(".char-text .current-count").text(wordTotal);
     } else {
