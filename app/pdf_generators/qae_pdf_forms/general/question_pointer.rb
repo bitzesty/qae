@@ -219,7 +219,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_question_hints
-    if question.hint.any?
+    if question.hint.any? && urn_blank_or_pdf_blank_mode?
       question.hint.each_with_index do |help, index|
         if help.title.present?
           form_pdf.render_text question.prepared_text(help.title), style: :bold
