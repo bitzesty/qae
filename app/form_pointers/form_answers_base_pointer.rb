@@ -14,8 +14,9 @@ module FormAnswersBasePointer
     "external_organization_or_individual_info_header_some"
   ]
 
-  def fetch_answers
-    ActiveSupport::HashWithIndifferentAccess.new(form_answer.document).select do |key, _value|
+  def fetch_answers(pdf_blank_mode=false)
+    doc = pdf_blank_mode.present? ? {} : form_answer.document
+    ActiveSupport::HashWithIndifferentAccess.new(doc).select do |key, _value|
       !HIDDEN_QUESTIONS.include?(key.to_s)
     end.merge(ActiveSupport::HashWithIndifferentAccess.new(form_answer.financial_data))
   end
