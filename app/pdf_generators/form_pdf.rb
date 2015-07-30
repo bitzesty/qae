@@ -20,14 +20,16 @@ class FormPdf < Prawn::Document
               :answers,
               :filled_answers,
               :form_answer_attachments,
-              :financial_pointer
+              :financial_pointer,
+              :pdf_blank_mode
 
-  def initialize(form_answer)
+  def initialize(form_answer, pdf_blank_mode=false)
     super()
 
     @form_answer = form_answer
     @user = form_answer.user
-    @answers = fetch_answers
+    @pdf_blank_mode = pdf_blank_mode
+    @answers = fetch_answers(pdf_blank_mode)
 
     @award_form = form_answer.award_form.decorate(answers: answers)
     @steps = award_form.steps

@@ -199,14 +199,18 @@ class QaePdfForms::General::QuestionPointer
     end
   end
 
+  def urn_blank_or_pdf_blank_mode?
+    (form_pdf.form_answer.urn.blank? || form_pdf.pdf_blank_mode.present?)
+  end
+
   def render_question_context
-    if question.context.present? && form_pdf.form_answer.urn.blank?
+    if question.context.present? && urn_blank_or_pdf_blank_mode?
       render_context_or_help_block(question.escaped_context)
     end
   end
 
   def render_question_help_note
-    if question.help.any? && form_pdf.form_answer.urn.blank?
+    if question.help.any? && urn_blank_or_pdf_blank_mode?
       question.help.each do |help|
         h_text = question.escaped_help(help.text)
         render_context_or_help_block(h_text) if h_text.present?
@@ -260,7 +264,7 @@ class QaePdfForms::General::QuestionPointer
   def render_info_about_branching_questions
     if answer.blank? &&
       children_conditions.present? &&
-      form_pdf.form_answer.urn.blank?
+      urn_blank_or_pdf_blank_mode?
 
       form_pdf.indent 32.mm do
         children_conditions.each do |child_condition|
@@ -383,7 +387,7 @@ class QaePdfForms::General::QuestionPointer
   def render_word_limit
     if question.delegate_obj.respond_to?(:words_max) &&
        question.words_max.present? &&
-       form_pdf.form_answer.urn.blank?
+       urn_blank_or_pdf_blank_mode?
       form_pdf.text "Word limit: #{question.words_max}"
       form_pdf.move_down 2.5.mm
     end

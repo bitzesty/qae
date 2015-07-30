@@ -15,7 +15,7 @@ header.page-header.group.page-header-over-sidebar
             h2 Before you begin:
             p
               ' For planning purposes you can
-              = link_to "download a blank PDF of the entire nomination form", users_form_answer_path(@form_answer, format: :pdf)
+              = link_to "download a blank PDF of the entire nomination form", users_form_answer_path(@form_answer, format: :pdf, pdf_blank_mode: true)
               ' . However, all nominations must be completed online.
 
             - if @collaborators.any?

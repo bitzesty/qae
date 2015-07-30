@@ -9,8 +9,8 @@ class FormAnswerDecorator < ApplicationDecorator
                    "QAEP" => "QAEP"
                  }
 
-  def pdf_generator
-    "QaePdfForms::Awards2016::#{object.award_type.capitalize}::Base".constantize.new(object)
+  def pdf_generator(pdf_blank_mode=false)
+    "QaePdfForms::Awards2016::#{object.award_type.capitalize}::Base".constantize.new(object, pdf_blank_mode)
   end
 
   def feedbacks_pdf_generator
