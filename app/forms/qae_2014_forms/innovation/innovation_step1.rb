@@ -180,7 +180,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              If you two or more organisations made a significant contribution to the product/service/management approach (e.g. the business marketing a product, providing a service, or using a technology is different from the unit which developed it) and they both achieved commercial success, then you can make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the product/service/management approach (e.g. the business marketing a product, providing a service, or using a technology is different from the unit which developed it) and they both achieved commercial success, then you can make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
           conditional :innovation_any_contributors, :yes

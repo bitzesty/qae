@@ -164,6 +164,10 @@ module QaePdfForms::General::DrawElements
     end
   end
 
+  def render_no_answer_yet
+    render_standart_answer_block(FormPdf::UNDEFINED_TITLE)
+  end
+
   def render_text(title, ops = {})
     default_bottom_margin
     text title, ops

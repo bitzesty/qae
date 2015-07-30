@@ -5,6 +5,7 @@ class QaePdfForms::General::QuestionPointer
   include FinancialTable
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
+  QUESTIONS_WITH_PDF_TITLES = %w(trading_figures_add)
 
   attr_reader :form_pdf,
               :form_answer,
@@ -136,6 +137,8 @@ class QaePdfForms::General::QuestionPointer
   def render_context_and_answer_blocks
     form_pdf.indent 25.mm do
       render_question_context
+      render_question_help_note
+      render_question_hints
 
       if question.classes != "regular-question" ||
          question_block_type(question) == "block" ||
@@ -157,12 +160,17 @@ class QaePdfForms::General::QuestionPointer
 
     form_pdf.move_cursor_to form_pdf.cursor + 10.mm
 
-    if question.escaped_title.present?
+    if question.escaped_title.present? &&
+      (!pdf_title_question? || (pdf_title_question? && list_rows.blank?))
       form_pdf.indent 25.mm do
         form_pdf.render_text question.escaped_title,
                              style: :bold
       end
     end
+  end
+
+  def pdf_title_question?
+    QUESTIONS_WITH_PDF_TITLES.include?(question.key.to_s)
   end
 
   def render_question_without_ref
@@ -193,18 +201,42 @@ class QaePdfForms::General::QuestionPointer
 
   def render_question_context
     if question.context.present? && form_pdf.form_answer.urn.blank?
-      context = question.escaped_context(true)
+      render_context_or_help_block(question.escaped_context)
+    end
+  end
 
-      if question.classes == "application-notice help-notice"
-        form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
-                       at: [-10.mm, form_pdf.cursor - 3.5.mm],
-                       width: 6.5.mm,
-                       height: 6.5.mm
-        form_pdf.render_text context,
-                             style: :bold
-      else
-        form_pdf.render_text context
+  def render_question_help_note
+    if question.help.any? && form_pdf.form_answer.urn.blank?
+      question.help.each do |help|
+        h_text = question.escaped_help(help.text)
+        render_context_or_help_block(h_text) if h_text.present?
       end
+    end
+  end
+
+  def render_question_hints
+    if question.hint.any?
+      question.hint.each_with_index do |help, index|
+        if help.title.present?
+          form_pdf.render_text question.prepared_text(help.title), style: :bold
+        end
+
+        r_text = help.text.squeeze(" ").delete("\n")
+        form_pdf.render_text question.prepared_text(r_text)
+      end
+    end
+  end
+
+  def render_context_or_help_block(context)
+    if question.classes == "application-notice help-notice"
+      form_pdf.image "#{Rails.root}/app/assets/images/icon-important-print.png",
+                     at: [-10.mm, form_pdf.cursor - 3.5.mm],
+                     width: 6.5.mm,
+                     height: 6.5.mm
+      form_pdf.render_text context,
+                           style: :bold
+    else
+      form_pdf.render_text context
     end
   end
 
@@ -327,25 +359,31 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_subsidiaries_plants
-    form_pdf.indent 7.mm do
-      list_rows.each do |subsidiary|
-        subsidiary_text = subsidiary[0]
-        subsidiary_text += ANSWER_FONT_START
-        subsidiary_text += " in "
-        subsidiary_text += subsidiary[1]
-        subsidiary_text += " with "
-        subsidiary_text += subsidiary[2]
-        subsidiary_text += " employees"
-        subsidiary_text += ANSWER_FONT_END
+    if list_rows.present?
+      form_pdf.indent 7.mm do
+        list_rows.each do |subsidiary|
+          subsidiary_text = subsidiary[0]
+          subsidiary_text += ANSWER_FONT_START
+          subsidiary_text += " in "
+          subsidiary_text += subsidiary[1]
+          subsidiary_text += " with "
+          subsidiary_text += subsidiary[2]
+          subsidiary_text += " employees"
+          subsidiary_text += ANSWER_FONT_END
 
-        form_pdf.render_text subsidiary_text,
-                             inline_format: true
+          form_pdf.render_text subsidiary_text,
+                               inline_format: true
+        end
       end
+    else
+      form_pdf.render_no_answer_yet
     end
   end
 
   def render_word_limit
-    if question.words_max.present? && form_pdf.form_answer.urn.blank?
+    if question.delegate_obj.respond_to?(:words_max) &&
+       question.words_max.present? &&
+       form_pdf.form_answer.urn.blank?
       form_pdf.text "Word limit: #{question.words_max}"
       form_pdf.move_down 2.5.mm
     end
@@ -449,6 +487,10 @@ class QaePdfForms::General::QuestionPointer
     row[1] = to_month(row[1]) if row[1].present?
 
     title = (row[0] == FormPdf::UNDEFINED_TITLE ? FormPdf::UNDEFINED_TITLE : row.join(" "))
+
+    render_question_context
+    render_question_help_note
+    render_question_hints
     form_pdf.render_standart_answer_block(title)
   end
 

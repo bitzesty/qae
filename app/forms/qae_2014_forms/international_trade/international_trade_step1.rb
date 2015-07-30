@@ -229,6 +229,7 @@ class QAE2014Forms
         subsidiaries_associates_plants :trading_figures_add, "" do
           required
           sub_ref "A 13.1"
+          pdf_title "Enter Name/Location/UK employees."
           conditional :trading_figures, :yes
         end
 

@@ -189,7 +189,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              If you two or more organisations made a significant contribution to the product/service/management approach, and achieved commercial success, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the product/service/management approach, and achieved commercial success, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
             </p>
                     )
           yes_no
