@@ -11,15 +11,6 @@ class QAE2014Forms
 
           )
 
-          pdf_context %(
-            <p>
-              As nominator you have sole responsibility for sourcing at least 2 letters of support. Nominations with less than 2 letters will not be accepted. We recommend asking 3-5 supporters to ensure you meet the minimum requirements, as some people might not reply.
-            </p>
-            <p>
-              If you have supporters who would rather write a hard copy letter, please see question D2.
-            </p>
-          )
-
           hint "Who should I choose to write letters of support?", %(
             <p>
               Letters of support should be from those with first-hand knowledge of the nominee's contribution to enterprise promotion and the impact their work has had on others. This could be colleagues, collaborators, or those who have benefitted from their work. You, the nominator, may not write a letter of support.

@@ -174,24 +174,34 @@ class QAEFormBuilder
     end
 
     def escaped_title
-      if delegate_obj.title.present?
-        title = delegate_obj.title
+      r_title = ''
+      title = delegate_obj.title
+      pdf_title = delegate_obj.pdf_title
+      main_header = delegate_obj.main_header if delegate_obj.respond_to?(:main_header)
 
-        title = Nokogiri::HTML.parse(title).text
-        title.strip
-      end
+      r_title = title if title.present?
+      r_title = pdf_title if r_title.blank? && pdf_title.present?
+      r_title = main_header if r_title.blank? && main_header.present?
+
+      prepared_text(r_title)
     end
 
-    def escaped_context(pdf=false)
-      content = if pdf && delegate_obj.pdf_context.present?
+    def escaped_context
+      content = if delegate_obj.pdf_context.present?
         delegate_obj.pdf_context
       else
         delegate_obj.context
       end
 
-      if content.present?
-        Nokogiri::HTML.parse(content).text.strip
-      end
+      prepared_text(content) if content.present?
+    end
+
+    def escaped_help(h_text)
+      prepared_text(h_text)
+    end
+
+    def prepared_text(content)
+      Nokogiri::HTML.parse(content).text.strip
     end
 
     # Detects children conditions, grouped by option
@@ -234,6 +244,10 @@ class QAEFormBuilder
   class QuestionBuilder
     def initialize q
       @q = q
+    end
+
+    def pdf_title text
+      @q.pdf_title = text
     end
 
     def context text
@@ -305,6 +319,7 @@ class QAEFormBuilder
     attr_accessor :step,
                   :key,
                   :title,
+                  :pdf_title,
                   :context,
                   :pdf_context,
                   :opts,

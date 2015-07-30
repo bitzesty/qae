@@ -30,10 +30,13 @@ module QaePdfForms::CustomQuestions::Lists
       render_multirows_table(list_headers, list_rows)
 
       if list_rows.blank?
-        form_pdf.render_text(FormPdf::UNDEFINED_TITLE, style: :italic)
+        form_pdf.default_bottom_margin
+        render_word_limit
+        form_pdf.render_no_answer_yet
       end
     else
-      form_pdf.render_text(FormPdf::UNDEFINED_TITLE, style: :italic)
+      render_word_limit
+      form_pdf.render_no_answer_yet
     end
   end
 
