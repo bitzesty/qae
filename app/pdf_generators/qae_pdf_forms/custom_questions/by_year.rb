@@ -1,6 +1,6 @@
 module QaePdfForms::CustomQuestions::ByYear
   YEAR_LABELS = %w(day month year)
-  IN_PROGRESS = "in progress..."
+  IN_PROGRESS = "No answer ..."
   FINANCIAL_YEAR_PREFIX = "Financial year"
   YEAR_ENDING_IN_PREFIX = "Year ending in"
   AS_AT_DATE_PREFIX = "As at"
