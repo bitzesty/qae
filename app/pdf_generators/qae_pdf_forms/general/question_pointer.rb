@@ -53,7 +53,7 @@ class QaePdfForms::General::QuestionPointer
     @humanized_answer = form_pdf.answer_based_on_type(key, answer) if answer.present?
     @sub_answers = fetch_sub_answers
     @financial_pointer = form_pdf.financial_pointer
-    @audit_data = financial_pointer.data
+    @audit_data = form_pdf.pdf_blank_mode.present? ? [] : financial_pointer.data
     @filled_answers = form_pdf.filled_answers
     @step_questions = step.step_questions
     @form_answer = form_pdf.form_answer
