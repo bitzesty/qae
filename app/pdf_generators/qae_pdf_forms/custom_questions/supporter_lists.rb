@@ -6,7 +6,7 @@ module QaePdfForms::CustomQuestions::SupporterLists
       form_answer.supporters
     end
 
-    if entries.present?
+    if entries.present? && form_pdf.pdf_blank_mode.blank?
       render_supporters_list(entries)
     else
       form_pdf.render_nothing_uploaded_message
