@@ -237,7 +237,22 @@ class QAEFormBuilder
         res.delete(' ')
       end
 
-      "If #{option_name}, please answer the questions #{dependencies.to_sentence}"
+      generate_hint(option_name, dependencies)
+    end
+
+    def generate_hint(option_name, dependencies)
+      if delegate_obj.form.title == "Sustainable Development Award Application" && delegate_obj.ref.to_s == "A 8"
+        # Yeah, it's hardcoded by client request:
+        #
+        # "Please change Sustainable Development note in question A8 'If Yes, please answer the questions A8.1 and B7'
+        # to 'If Yes, please answer both parts of question A8.1 and B7' from the print out."
+        # If it would be more cases like this - then need to try code that on conditions
+        #
+        # For now, hardcoding
+        "If #{option_name}, please answer both parts of question A8.1 and B7"
+      else
+        "If #{option_name}, please answer the questions #{dependencies.to_sentence}"
+      end
     end
   end
 
