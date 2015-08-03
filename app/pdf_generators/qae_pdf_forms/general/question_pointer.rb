@@ -276,10 +276,13 @@ class QaePdfForms::General::QuestionPointer
 
   def render_option_branching_info(child_condition)
     text = question.conditional_hint(child_condition, questions_with_references)
-    form_pdf.render_text text,
-                         color: "999999",
-                         style: :italic,
-                         size: 10
+
+    if text.present?
+      form_pdf.render_text text,
+                           color: "999999",
+                           style: :italic,
+                           size: 10
+    end
   end
 
   def question_block_type(question)
