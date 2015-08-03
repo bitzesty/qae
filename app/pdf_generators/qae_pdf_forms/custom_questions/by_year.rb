@@ -77,8 +77,14 @@ module QaePdfForms::CustomQuestions::ByYear
       financial_year_changed_dates_value.present? ? YEAR_ENDING_IN_PREFIX : ""
     end
 
-    financial_table_headers.map do |i|
-      "#{prefix} #{i}"
+    if form_pdf.pdf_blank_mode.present? # BLANK FOR MODE
+      financial_table_default_headers.map.with_index do |item, index|
+        financial_table_default_headers.size == (index + 1) ? "#{item} (Current)" : item
+      end
+    else
+      financial_table_headers.map do |i|
+        "#{prefix} #{i}"
+      end
     end
   end
 
