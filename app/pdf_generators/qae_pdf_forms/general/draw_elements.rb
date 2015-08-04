@@ -88,7 +88,7 @@ module QaePdfForms::General::DrawElements
     render_logo
     move_down 8.mm
     indent 32.mm do
-      render_urn if form_answer.urn.present?
+      render_urn if form_answer.urn.present? && pdf_blank_mode.blank?
       render_award_information
       render_company_name unless pdf_blank_mode.present?
     end
