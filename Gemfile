@@ -110,6 +110,10 @@ gem "skylight"
 gem "sprockets", "2.12.3"
 gem "tilt", "~> 1.1"
 
+# We use it for sending API requests to Sendgrid in
+# AdvancedEmailValidator
+gem 'curb'
+
 group :assets do
   gem 'uglifier', '>= 1.3.0'
 end

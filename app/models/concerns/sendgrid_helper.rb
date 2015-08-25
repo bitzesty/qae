@@ -26,14 +26,10 @@ module SendgridHelper
 
   def self.query_string(email)
     {
-      api_user: smtp_settings[:user_name],
-      api_key: smtp_settings[:password],
+      api_user: ENV["SENDGRID_USERNAME"],
+      api_key: ENV["SENDGRID_PASSWORD"],
       email: email,
     }.to_query
-  end
-
-  def self.smtp_settings
-    Rails.configuration.action_mailer.smtp_settings
   end
 
   def self.spam_reported_url(email)
