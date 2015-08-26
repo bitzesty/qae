@@ -34,6 +34,8 @@ class ContentOnlyController < ApplicationController
   before_action :restrict_access_if_admin_in_read_only_mode!,
                 only: [:dashboard]
 
+  before_action :clean_flash, only: [:sign_up_complete]
+
   expose(:form_answer) {
     current_user.form_answers.find(params[:id])
   }
@@ -68,5 +70,9 @@ class ContentOnlyController < ApplicationController
 
   def get_collaborators
     @collaborators = current_user.account.collaborators_without(current_user)
+  end
+
+  def clean_flash
+    flash.clear
   end
 end

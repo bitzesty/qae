@@ -1,4 +1,5 @@
 - provide(:page_wrapper_class, "page-devise")
+- provide(:flash_disabled, disable_flash_on_login?)
 
 .article-related-positioning-container
   header.page-header.group
@@ -34,7 +35,7 @@
                 = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
           / TODO if email or password is incorrect error
-          - if false
+          - if login_email_or_password_is_incorrect?
             .guidance-panel.account-notice
               .application-notice.help-notice
                 .alert.alert-warning
@@ -50,7 +51,7 @@
                     ' .
 
           / TODO if account isn't confirmed error
-          - if false
+          - if login_account_isnt_confirmed?
             .guidance-panel.account-notice
               .application-notice.help-notice
                 .alert.alert-warning
