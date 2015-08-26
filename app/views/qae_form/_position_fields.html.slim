@@ -1,6 +1,7 @@
 - ongoing_opts = position["ongoing"] == "1" ? { disabled: "disabled" } : {}
 li.js-add-example
-  = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
+  - unless admin_in_read_only_mode?
+    = link_to "Remove", "#", class: "remove-link js-remove-link"
   label
     ' Position/Role
     input.medium.js-trigger-autosave name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
@@ -32,12 +33,12 @@ li.js-add-example
         br
         label.small
           input.js-trigger-autosave type="hidden" name="form[position_details][#{index}][ongoing]" value='0'
-          input.js-trigger-autosave type="checkbox" name="form[position_details][#{index}][ongoing]" checked=('checked' if position['ongoing'] == '1') value='1'
+          input.js-trigger-autosave type="checkbox" name="form[position_details][#{index}][ongoing]" checked=('checked' if position['ongoing'] == '1') value='1' *possible_read_only_ops
           ' Ongoing
     span.clear
 
   label for="form[position_details][#{index}][details]"
     span.label-char-count-reposition
       ' Details
-  textarea.position-textarea.js-char-count.js-trigger-autosave rows="2" name="form[position_details][#{index}][details]" id="form[position_details][#{index}][details]" data-word-max=question.details_words_max
+  textarea.position-textarea.js-char-count.js-trigger-autosave rows="2" name="form[position_details][#{index}][details]" id="form[position_details][#{index}][details]" data-word-max=question.details_words_max *possible_read_only_ops
     = position['details']

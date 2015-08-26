@@ -8,18 +8,19 @@ li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=a
     - if errors && errors[question.key] && errors[question.key][index]
       li = errors[question.key][index]
 
-  = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide #{'read_only' if admin_in_read_only_mode?}"
+  - unless admin_in_read_only_mode?
+    = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide"
 
-  = link_to "Remove", confirm_deletion_form_form_answer_awards_path(@form_answer.id, deletion_attrs), class: "remove-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
+    = link_to "Remove", confirm_deletion_form_form_answer_awards_path(@form_answer.id, deletion_attrs), class: "remove-link if-js-hide"
 
-  = link_to "Edit", edit_form_form_answer_awards_path(@form_answer, award: award, holder: question.award_years_present.present? ? true : nil), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
+    = link_to "Edit", edit_form_form_answer_awards_path(@form_answer, award: award, holder: question.award_years_present.present? ? true : nil), class: "remove-link non-js-edit-link if-js-hide"
 
   span.row
     span.span-6
       label
         span.if-no-js-hide
           ' Award/personal honour title
-          input.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][title]" type="text" value=award['title'] data-dependable-option-siffix="title"
+          input.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][title]" type="text" value=award['title'] data-dependable-option-siffix="title" *possible_read_only_ops
 
         span.if-js-hide
           strong
@@ -35,7 +36,7 @@ li.js-add-example class=(award.blank? ? "if-no-js-hide" : '') non-js-attribute=a
         label
           span.if-no-js-hide
             ' Year
-            input.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][year]" type="text" value=award['year'] data-dependable-option-siffix="year"
+            input.js-trigger-autosave autocomplete="off" class="js-trigger-autosave medium" name="form[#{question.key}][#{index}][year]" type="text" value=award['year'] data-dependable-option-siffix="year" *possible_read_only_ops
 
           span.if-js-hide
             strong

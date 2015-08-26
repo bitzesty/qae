@@ -12,5 +12,5 @@ ul.list-add.supporters-list data-need-to-clear-example=true data-add-limit=quest
     - (0...question.default.to_i).each do |index|
       = render 'qae_form/supporter_fields', question: question, supporter: {}, index: index
 
-a.button.button-add.js-button-add href="#"
+a.button.button-add.js-button-add href="#" *possible_read_only_ops
   | + Add another supporter
