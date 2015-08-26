@@ -1,19 +1,11 @@
 - provide(:page_content_class, "multi-page page-landing")
 
 .article-related-positioning-container
-  header.page-header.group
-    div
-      h1
-        ' Sign-up complete
-
-  .article-container.group
+  .article-container.group.article-container-headerless
     article.group role="article"
       .inner
         header
-          h1 You now have a Queen's Awards for Enterprise account. 
+          h1 We have just sent you an email asking to confirm your account.
 
         p
           ' To proceed, go to your email account and click the link in the email we've just sent you. If you can't find the confirmation email, check your junk folder too.
-
-        p
-          = link_to "After confirming your email address, sign in your account.", new_user_session_path
