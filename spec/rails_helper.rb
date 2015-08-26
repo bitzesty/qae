@@ -58,7 +58,6 @@ RSpec.configure do |config|
       to_return(status: 200, body: "", headers: {})
     # SENDGRID RELATED STUBS - END
 
-
     AwardYear.current
   end
 
