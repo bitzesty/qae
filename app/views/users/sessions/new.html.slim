@@ -33,6 +33,36 @@
               .question-body
                 = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
+          / TODO if email or password is incorrect error
+          - if false
+            .guidance-panel.account-notice
+              .application-notice.help-notice
+                .alert.alert-warning
+                  p.text-underline
+                    ' Invalid email or password
+                  p.text-normal
+                    ' If you don't have an account, please go to
+                    = link_to "create an account page", new_user_registration_path
+                    ' .
+                  p.text-normal
+                    ' If you've forgotten your password, request
+                    = link_to "reset password instructions", new_password_path(resource_name)
+                    ' .
+
+          / TODO if account isn't confirmed error
+          - if false
+            .guidance-panel.account-notice
+              .application-notice.help-notice
+                .alert.alert-warning
+                  p.text-underline
+                    ' You haven't confirmed your account
+                  p.text-normal
+                    ' When you had created your account, we sent you an email asking to confirm it.
+                  p.text-normal
+                    ' If you haven't received it,
+                    = link_to "request confirmation instructions", new_confirmation_path(resource_name)
+                    ' .
+
           .form-actions
             = f.button :submit, "Sign in", class: "button large"
 
