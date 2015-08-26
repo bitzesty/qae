@@ -8,7 +8,8 @@ class AdvancedEmailValidator < ActiveModel::Validator
       validate_address_well_formed(record, parsed) ||
       validate_dns_records(record, parsed) ||
       validate_spam_reporter(record, parsed) ||
-      validate_bounced(record, parsed)
+      validate_bounced(record, parsed) ||
+      validates_with_mailgun(record)
   rescue Mail::Field::ParseError
     set_error(record)
   end
@@ -67,6 +68,12 @@ class AdvancedEmailValidator < ActiveModel::Validator
   def validate_dns_records(record, parsed)
     maybe_set_error(record, "does not appear to be valid") do
       not has_mx_records(parsed.domain)
+    end
+  end
+
+  def validates_with_mailgun(record)
+    maybe_set_error(record, "does not appear to be valid") do
+      MailgunHelper.email_invalid?(record.email)
     end
   end
 end
