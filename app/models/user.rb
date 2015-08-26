@@ -39,6 +39,8 @@ class User < ActiveRecord::Base
     message: "This is not a valid telephone number"
   }, allow_blank: true, if: :second_step?
 
+  validates_with AdvancedEmailValidator, unless: "Rails.env.test? || Rails.env.development?"
+
   begin :associations
     has_many :form_answers, dependent: :destroy
     has_many :feedbacks, through: :form_answers,
