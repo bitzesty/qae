@@ -1,10 +1,7 @@
 class AdvancedEmailValidator < ActiveModel::Validator
-  BAD_DOMAINS = File.readlines("data/bad_domains.txt").map(&:chomp)
-
   def validate(record)
     parsed = Mail::Address.new(record.email)
     validate_address_domain(record, parsed) ||
-      validate_bad_domain(record, parsed) ||
       validate_address_well_formed(record, parsed) ||
       validate_dns_records(record, parsed) ||
       validate_spam_reporter(record, parsed) ||
@@ -47,12 +44,6 @@ class AdvancedEmailValidator < ActiveModel::Validator
   def validate_bounced(record, parsed)
     maybe_set_error(record, "cannot receive messages from this system") do
       SendgridHelper.bounced?(parsed.address)
-    end
-  end
-
-  def validate_bad_domain(record, parsed)
-    maybe_set_error(record, "does not appear to be valid") do
-      BAD_DOMAINS.include?(parsed.domain)
     end
   end
 

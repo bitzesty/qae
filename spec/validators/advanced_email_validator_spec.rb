@@ -44,15 +44,6 @@ RSpec.describe AdvancedEmailValidator do
         subject.validate(model)
       }.to change { model.errors.empty? }
     end
-
-    AdvancedEmailValidator::BAD_DOMAINS.each do |domain|
-      it "doesn't allow domains that are known to be bad: #{domain}" do
-        expect {
-          model.email = "feedback@#{domain}"
-          subject.validate(model)
-        }.to change { model.errors.empty? }
-      end
-    end
   end
 
   it "allows correct e-mail addresses" do
