@@ -12,32 +12,34 @@
               = render "form/form_attachments/file", el: el, attachments: attachments
               input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
 
-              - if question.key == :org_chart
-                = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "remove-link if-js-hide"
+              - unless admin_in_read_only_mode?
+                - if question.key == :org_chart
+                  = link_to "Remove", form_form_answer_organisational_chart_confirm_deletion_url(@form_answer.id, el['file'].to_i), class: "remove-link if-js-hide"
 
-                = link_to "Remove", form_form_answer_organisational_chart_url(@form_answer.id, el['file'].to_i),
-                                    possible_read_only_ops.merge({class: "remove-link if-no-js-hide",
-                                                                  remote: true,
-                                                                  method: :delete})
-              - else
-                = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
-                                    possible_read_only_ops.merge({class: "remove-link",
-                                                                  remote: true,
-                                                                  method: :delete})
+                  = link_to "Remove", form_form_answer_organisational_chart_url(@form_answer.id, el['file'].to_i),
+                                      possible_read_only_ops.merge({class: "remove-link if-no-js-hide",
+                                                                    remote: true,
+                                                                    method: :delete})
+                - else
+                  = link_to "Remove", form_form_answer_form_attachment_url(@form_answer.id, el['file'].to_i),
+                                      possible_read_only_ops.merge({class: "remove-link",
+                                                                    remote: true,
+                                                                    method: :delete})
 
             - elsif el['link'].present?
-              a.remove-link href="#" *possible_read_only_ops
-                | Remove
+              - unless admin_in_read_only_mode?
+                a.remove-link href="#" *possible_read_only_ops
+                  | Remove
               label
                 ' Website address
-                input.large.js-trigger-autosave type="text" name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)
+                input.large.js-trigger-autosave type="text" name=question.input_name(suffix: 'link', index: idx) value=question.input_value(suffix: 'link', index: idx)  *possible_read_only_ops
           - if question.description
             div
               label for=question.input_name(suffix: 'description', index: idx)
                 span.label-char-count-reposition
                   ' Description
                 / (optional)
-              textarea.js-char-count.js-trigger-autosave rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)
+              textarea.js-char-count.js-trigger-autosave rows="2" maxlength="600" data-word-max="100" name=question.input_name(suffix: 'description', index: idx) id=question.input_name(suffix: 'description', index: idx)  *possible_read_only_ops
                 = question.input_value(suffix: 'description', index: idx)
 
   ul.errors-container

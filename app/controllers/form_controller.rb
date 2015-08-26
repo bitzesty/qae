@@ -5,7 +5,7 @@ class FormController < ApplicationController
   before_action :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form, :new_enterprise_promotion_form]
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy,
-    :submit_confirm
+    :submit_confirm, :save, :add_attachment
   ]
   before_action :get_collaborators, only: [
     :submit_confirm
