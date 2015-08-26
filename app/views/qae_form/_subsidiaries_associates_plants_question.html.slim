@@ -6,11 +6,12 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
   - question.subsidiaries.each_with_index do |subsidiary, index|
     li.js-add-example non-js-attribute=subsidiary['name']
 
-      = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide #{'read_only' if admin_in_read_only_mode?}"
+      - unless admin_in_read_only_mode?
+        = link_to "Remove", "#", class: "remove-link js-remove-link if-no-js-hide"
 
-      = link_to "Remove", confirm_deletion_form_form_answer_subsidiaries_path(@form_answer.id, subsidiary: { name: subsidiary['name'], location: subsidiary['location'] }), class: "remove-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
+        = link_to "Remove", confirm_deletion_form_form_answer_subsidiaries_path(@form_answer.id, subsidiary: { name: subsidiary['name'], location: subsidiary['location'] }), class: "remove-link if-js-hide"
 
-      = link_to "Edit", edit_form_form_answer_subsidiaries_path(@form_answer, subsidiary: subsidiary), class: "remove-link non-js-edit-link if-js-hide #{'read_only' if admin_in_read_only_mode?}"
+        = link_to "Edit", edit_form_form_answer_subsidiaries_path(@form_answer, subsidiary: subsidiary), class: "remove-link non-js-edit-link if-js-hide"
 
       .clear
       span.row
@@ -58,7 +59,8 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
       span.clear
   - if question.subsidiaries.none?
     li.js-add-example.if-no-js-hide
-      = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
+      - unless admin_in_read_only_mode?
+        = link_to "Remove", "#", class: "remove-link js-remove-link"
       .clear
       span.row
         span.span-4
@@ -75,7 +77,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
             input.small.js-trigger-autosave type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
       span.clear
 
-a.button.button-add.js-button-add.if-no-js-hide href="#"
+a.button.button-add.js-button-add.if-no-js-hide href="#" *possible_read_only_ops
   | + Add subsidiary, associate or plant
 
 = link_to "+ Add subsidiary, associate or plant", new_form_form_answer_subsidiaries_url(@form_answer.id), class: "button button-add if-js-hide"
