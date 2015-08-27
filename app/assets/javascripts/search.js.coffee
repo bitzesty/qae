@@ -7,7 +7,9 @@ class SearchForm
 
   bindSelectFilters: ->
     ($ '.filter input:checkbox', @form).on 'change', ->
-      do @form.submit
+      setTimeout(() =>
+        do @form.submit
+      , 70)
 
   bindSortLinks: ->
     ($ '.sortable a', @form).on 'click', (event) =>

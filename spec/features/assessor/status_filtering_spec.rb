@@ -39,6 +39,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
       it "filters by status" do
         assert_results_number(1)
         click_status_option("Assessment in progress")
+        sleep(3)
         assert_results_number(0)
       end
     end
@@ -56,6 +57,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
       it "filters by status" do
         assert_results_number(1)
         click_status_option("Assessment in progress")
+        sleep(3)
         assert_results_number(0)
       end
 
@@ -70,14 +72,18 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
         it "filters by substatus" do
           assert_results_number(3)
           click_status_option("Missing SIC code")
+          sleep(3)
           @development_forms.slice!(0)
           assert_results_number(2)
           click_status_option("Missing Audit Certificate")
+          sleep(3)
           assert_results_number(2)
           click_status_option("Missing Audit Certificate")
+          sleep(3)
           assert_results_number(2)
           assign_dummy_audit_certificate(@development_forms.slice!(0))
           click_status_option("Missing Audit Certificate")
+          sleep(3)
           assert_results_number(1)
         end
       end
@@ -96,6 +102,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
     it "filters by status" do
       assert_results_number(2)
       click_status_option("Assessment in progress")
+      sleep(3)
       assert_results_number(0)
     end
   end
