@@ -5,7 +5,8 @@
     article.group role="article"
       .inner
         header
-          h1 We have just sent you an email asking to confirm your account.
+          h1
+            = I18n.t(:custom_login_messages)[:we_just_sent_you_confirmation_email]
 
         p
           ' To proceed, go to your email account and click the link in the email we've just sent you. If you can't find the confirmation email, check your junk folder too.

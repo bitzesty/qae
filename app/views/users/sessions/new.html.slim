@@ -40,13 +40,13 @@
               .application-notice.help-notice
                 .alert.alert-warning
                   p.text-underline
-                    ' Invalid email or password
+                    = I18n.t(:custom_login_messages)[:invalid_email_or_password]
                   p.text-normal
-                    ' If you don't have an account, please go to
+                    = I18n.t(:custom_login_messages)[:have_no_account]
                     = link_to "create an account page", new_user_registration_path
                     ' .
                   p.text-normal
-                    ' If you've forgotten your password, request
+                    = I18n.t(:custom_login_messages)[:forgot_password]
                     = link_to "reset password instructions", new_password_path(resource_name)
                     ' .
 
@@ -56,11 +56,11 @@
               .application-notice.help-notice
                 .alert.alert-warning
                   p.text-underline
-                    ' You haven't confirmed your account
+                    = I18n.t(:custom_login_messages)[:not_confirmed]
                   p.text-normal
-                    ' When you had created your account, we sent you an email asking to confirm it.
+                    = I18n.t(:custom_login_messages)[:when_you_had_created_account]
                   p.text-normal
-                    ' If you haven't received it,
+                    = I18n.t(:custom_login_messages)[:not_received_confirmation_email]
                     = link_to "request confirmation instructions", new_confirmation_path(resource_name)
                     ' .
 

@@ -140,3 +140,14 @@ en:
     shortlisted_notifier: "SHORTLISTED : Email notifying shortlisted applicants of their success, including audit certificate instructions."
     shortlisted_audit_certificate_reminder: "SHORTLISTED : Reminder to submit audit certificates (for shortlisted applicants who have not yet done so)."
     not_shortlisted_notifier: "NOT SHORTLISTED : Email notifying unsuccessful applicants."
+
+  custom_login_messages:
+    we_just_sent_you_confirmation_email: We have just sent you an email asking to confirm your account.
+    already_have_account: If you already have an account please use
+    already_have_account_short: You already have an account
+    invalid_email_or_password: Invalid email or password
+    have_no_account: "If you don't have an account, please go to"
+    forgot_password: "If you've forgotten your password, request"
+    not_confirmed: "You haven't confirmed your account"
+    when_you_had_created_account: "When you had created your account, we sent you an email asking to confirm it."
+    not_received_confirmation_email: "If you haven't received it,"

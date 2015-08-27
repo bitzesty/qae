@@ -12,7 +12,7 @@
           p
             ' If you are a marketing company applying on behalf of a client, your client should create an account first, then add you as a collaborator.
           p
-            ' If you already have an account please use
+            = I18n.t(:custom_login_messages)[:already_have_account]
             = link_to "sign in page", new_user_session_path
             '.
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
@@ -29,7 +29,7 @@
                   .application-notice.help-notice
                     .alert.alert-warning
                       p.text-underline
-                        ' You already have an account
+                        = I18n.t(:custom_login_messages)[:already_have_account_short]
                       p.text-normal
                         ' Please use
                         = link_to "sign in page", new_user_session_path
