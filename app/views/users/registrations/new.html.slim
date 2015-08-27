@@ -20,10 +20,9 @@
           .form-inputs#email-control-group
             .question
               h2 = f.label :email
-              .question-body
+              .question-body class="#{'no-error' if signup_email_already_exists?(f.object)}"
                 = f.input :email, required: true, autofocus: true, label: false, input_html: {autocomplete: "off", class: "large"}, error: !signup_email_already_exists?(f.object)
 
-              / TODO if account exists error
               - if signup_email_already_exists?(f.object)
                 .guidance-panel.account-notice
                   .application-notice.help-notice

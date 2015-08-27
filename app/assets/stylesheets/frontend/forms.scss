@@ -1141,6 +1141,11 @@ input[type="file"] {
   padding-left: $gutter-two-thirds;
   border-left: 3px solid $red;
 
+  .no-error & {
+    padding-left: 0;
+    border: none;
+  }
+
   h2 {
     margin-top: 0;
   }

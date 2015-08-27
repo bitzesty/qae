@@ -34,7 +34,6 @@
               .question-body
                 = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
 
-          / TODO if email or password is incorrect error
           - if login_email_or_password_is_incorrect?
             .guidance-panel.account-notice
               .application-notice.help-notice
@@ -50,7 +49,6 @@
                     =< link_to "reset password instructions", new_password_path(resource_name)
                     ' .
 
-          / TODO if account isn't confirmed error
           - if login_account_isnt_confirmed?
             .guidance-panel.account-notice
               .application-notice.help-notice
