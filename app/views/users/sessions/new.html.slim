@@ -1,4 +1,5 @@
 - provide(:page_wrapper_class, "page-devise")
+- provide(:flash_disabled, disable_flash_on_login?)
 
 .article-related-positioning-container
   header.page-header.group
@@ -32,6 +33,36 @@
             .question
               .question-body
                 = f.input :remember_me, as: :boolean if devise_mapping.rememberable?
+
+          / TODO if email or password is incorrect error
+          - if login_email_or_password_is_incorrect?
+            .guidance-panel.account-notice
+              .application-notice.help-notice
+                .alert.alert-warning
+                  p.text-underline
+                    = I18n.t(:custom_login_messages)[:invalid_email_or_password]
+                  p.text-normal
+                    = I18n.t(:custom_login_messages)[:have_no_account]
+                    =< link_to "create an account page", new_user_registration_path
+                    ' .
+                  p.text-normal
+                    = I18n.t(:custom_login_messages)[:forgot_password]
+                    =< link_to "reset password instructions", new_password_path(resource_name)
+                    ' .
+
+          / TODO if account isn't confirmed error
+          - if login_account_isnt_confirmed?
+            .guidance-panel.account-notice
+              .application-notice.help-notice
+                .alert.alert-warning
+                  p.text-underline
+                    = I18n.t(:custom_login_messages)[:not_confirmed]
+                  p.text-normal
+                    = I18n.t(:custom_login_messages)[:when_you_had_created_account]
+                  p.text-normal
+                    = I18n.t(:custom_login_messages)[:not_received_confirmation_email]
+                    =< link_to "request confirmation instructions", new_confirmation_path(resource_name)
+                    ' .
 
           .form-actions
             = f.button :submit, "Sign in", class: "button large"

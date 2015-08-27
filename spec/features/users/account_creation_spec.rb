@@ -10,7 +10,7 @@ describe "Account forms", js: true do
     fill_in("Password confirmation", with: "asldkj902lkads-0asd")
     find("#user_agreed_with_privacy_policy").set(true)
     click_button "Create account"
-    expect(page).to have_content("Sign-up complete")
+    expect(page).to have_content("We have just sent you an email asking to confirm your account")
   end
 
   context "Account details fulfillment" do

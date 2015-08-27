@@ -12,17 +12,28 @@
           p
             ' If you are a marketing company applying on behalf of a client, your client should create an account first, then add you as a collaborator.
           p
-            ' If you already have an account please
-            = link_to "sign in", new_user_session_path
+            = I18n.t(:custom_login_messages)[:already_have_account]
+            =< link_to "sign in page", new_user_session_path
             '.
         = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-          /= f.error_notification
 
           .form-inputs#email-control-group
             .question
               h2 = f.label :email
               .question-body
-                = f.input :email, required: true, autofocus: true, label: false, input_html: {autocomplete: "off", class: "large"}
+                = f.input :email, required: true, autofocus: true, label: false, input_html: {autocomplete: "off", class: "large"}, error: !signup_email_already_exists?(f.object)
+
+              / TODO if account exists error
+              - if signup_email_already_exists?(f.object)
+                .guidance-panel.account-notice
+                  .application-notice.help-notice
+                    .alert.alert-warning
+                      p.text-underline
+                        = I18n.t(:custom_login_messages)[:already_have_account_short]
+                      p.text-normal
+                        ' Please use
+                        = link_to "sign in page", new_user_session_path
+                        ' .
 
           #password-change-panel
             .form-inputs-group

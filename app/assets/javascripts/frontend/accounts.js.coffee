@@ -14,3 +14,7 @@ jQuery ->
 
     ($ '#user_qae_info_source').on 'change', ->
       toggleOther($ @)
+
+  if $(".account-notice").length
+    $("form input").on "propertychange change keyup input paste", ->
+      $(".account-notice").remove()

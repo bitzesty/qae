@@ -383,10 +383,16 @@ article .help-notice {
   }
 
   p {
-    font-weight:600;
-
+    &,
     a {
-      font-weight:600;
+      font-weight: 600;
+    }
+
+    &.text-normal {
+      &,
+      a {
+        font-weight: normal;
+      }
     }
   }
 }

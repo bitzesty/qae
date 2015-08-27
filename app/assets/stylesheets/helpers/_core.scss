@@ -596,6 +596,10 @@ article {
   min-height: 35em;
   max-width: 38em;
 
+  &.article-container-headerless {
+    margin-top: 3em;
+  }
+
   /* Make webkit browsers contain the margin-bottom of report-a-problem */
   .travel-advice & {
     padding-bottom: 0.01em;

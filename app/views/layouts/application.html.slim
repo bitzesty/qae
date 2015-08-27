@@ -97,7 +97,7 @@
                 = link_to "feedback", feedback_path, target: "_blank"
                 '  will help us to improve it.
 
-        - if [:alert, :notice].any? { |kind| flash[kind].presence }
+        - if !content_for?(:flash_disabled) && [:alert, :notice].any? { |kind| flash[kind].presence }
           .flash
             .flash-inner
               - [:alert, :notice].each do |kind|
