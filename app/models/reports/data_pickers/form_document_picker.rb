@@ -95,6 +95,14 @@ module Reports::DataPickers::FormDocumentPicker
     end.to_s.upcase
   end
 
+  def principal_address4
+    if business_form?
+      doc "principal_address_county"
+    else
+      doc "nominee_personal_address_county"
+    end
+  end
+
   def principal_address3
     if business_form?
       doc "principal_address_city"

@@ -104,6 +104,10 @@ class Reports::AllEntries
       method: :principal_address3
     },
     {
+      label: "Address4",
+      method: :principal_address4
+    },
+    {
       label: "Postcode",
       method: :principal_postcode
     },
