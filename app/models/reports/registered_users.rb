@@ -31,6 +31,10 @@ class Reports::RegisteredUsers
       method: :contact_email
     },
     {
+      label: "RegisteredUserTelephone",
+      method: :contact_telephone
+    },
+    {
       label: "RegisteredUserCompany",
       method: :company_name
     },
