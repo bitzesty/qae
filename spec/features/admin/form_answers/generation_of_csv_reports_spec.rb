@@ -18,8 +18,8 @@ describe "Admin generates the CSV reports" do
     let(:id) { "registered-users" }
     it "produces proper output" do
       expect(output.size).to eq(FormAnswer.count + 1)
-      expect(output[1][7]).to eq("Test Company")
-      expect(output[1][8]).to eq("trade")
+      expect(output[1][8]).to eq("Test Company")
+      expect(output[1][9]).to eq("trade")
     end
   end
 
