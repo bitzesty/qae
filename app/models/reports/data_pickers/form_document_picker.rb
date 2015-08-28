@@ -196,11 +196,17 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def product_service
-    service_json = doc "trade_goods_and_services_explanations"
-    if service_json
-      (service_json || []).map do |service|
-        service["desc_short"]
-      end.select(&:present?).join(",")
+    if innovation?
+      doc "innovation_desc_short"
+    elsif development?
+      doc "development_desc_short"
+    else
+      service_json = doc "trade_goods_and_services_explanations"
+      if service_json
+        (service_json || []).map do |service|
+          service["desc_short"]
+        end.select(&:present?).join(",")
+      end
     end
   end
 
