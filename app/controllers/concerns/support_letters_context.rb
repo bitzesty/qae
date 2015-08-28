@@ -7,6 +7,8 @@ module SupportLettersContext
                 filename: support_letter_attachment.original_filename,
                 disposition: "inline"
       return
+    else
+      render "admin/support_letters/show"
     end
   end
 
