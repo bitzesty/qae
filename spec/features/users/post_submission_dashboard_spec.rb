@@ -32,7 +32,6 @@ describe  "User sees the post submission dashboard" do
       expect(page).to have_content("Declaration of Corporate Responsibility")
       form_answer.update_column(:state, "not_awarded")
       visit dashboard_path
-      expect_to_have_blank_dashboard
 
       settings.email_notifications.create!(
         kind: "unsuccessful_notification",
