@@ -39,7 +39,7 @@ describe  "User sees the post submission dashboard" do
       )
 
       visit dashboard_path
-      expect(page).to have_content("Your application was unsuccessful.")
+      expect(page).to have_content("Your following application was unsuccessful.")
 
       form_answer.update_column(:state, "awarded")
       visit dashboard_path
