@@ -1,12 +1,11 @@
-- award_applications = FormAnswerDecorator.decorate_collection(award_applications)
-- unsuccessful = unsuccessful_collection(award_applications)
+- unsuccessful = FormAnswerDecorator.decorate_collection(award_applications)
 - if unsuccessful.present?
   .container-split
     .content-left
       h2 Unsuccessful
     .content-right.content-offset-36
       p
-        ' Your
+        ' Your following
         - if unsuccessful.length == 1
           ' application was
         - else
@@ -25,6 +24,8 @@
         / Nominators don't get any options after submision
         - if award.promotion?
           p Unfortunately your nomination was unsuccessful.
+        - elsif award.not_submitted?
+          p The application was not submitted on time.
         - else
           h4 Feedback
           - if award.feedback.try(:approved?)
