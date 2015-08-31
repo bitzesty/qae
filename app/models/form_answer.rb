@@ -111,7 +111,7 @@ class FormAnswer < ActiveRecord::Base
     scope :shortlisted, -> { where(state: %w(reserved recommended)) }
     scope :not_shortlisted, -> { where(state: "not_recommended") }
     scope :winners, -> { where(state: %(recomended awarded)) }
-    scope :unsuccessful, -> { where(state: %w(not_recommended not_awarded reserved not_submitted)) }
+    scope :unsuccessful, -> { where(state: %w(not_recommended not_awarded reserved)) }
     scope :submitted, -> { where(submitted: true) }
     scope :business, -> { where(award_type: %w(trade innovation development)) }
     scope :promotion, -> { where(award_type: "promotion") }
