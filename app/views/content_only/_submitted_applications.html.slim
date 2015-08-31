@@ -9,4 +9,4 @@
   - else
     = render("content_only/post_submission/submitted", award_applications: award_applications)
 
-  = render("content_only/post_submission/unsuccessful", award_applications: @user_award_forms.unsuccessful)
+  = render("content_only/post_submission/unsuccessful", award_applications: @user_award_forms.where(state: [:not_recommended, :not_awarded]))
