@@ -193,6 +193,13 @@ class AppraisalForm
     }
   }
 
+  MODERATED = {
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:"
+    }
+  }
+
   CASE_SUMMARY_METHODS = [
     :application_background_section_desc
   ]
@@ -222,7 +229,7 @@ class AppraisalForm
     out = []
     forms.each do |form|
       form.each do |k, obj|
-        out << rate(k).to_sym if [:strengths, :rag, :non_rag, :verdict].include?(obj[:type])
+        out << rate(k).to_sym if [:strengths, :rag, :verdict].include?(obj[:type])
         # strenghts doesn't have description
         out << desc(k).to_sym if [:rag, :non_rag, :verdict].include?(obj[:type])
       end
@@ -232,9 +239,17 @@ class AppraisalForm
     out
   end
 
-  def self.struct(form_answer)
+  def self.struct(form_answer, f)
     meth = form_answer.respond_to?(:award_type_slug) ? :award_type_slug : :award_type
-    const_get(form_answer.public_send(meth).upcase)
+    # Assessor assignment 
+    
+    moderated = (f.object && f.object.position == "moderated")
+
+    if moderated
+      MODERATED
+    else
+      const_get(form_answer.public_send(meth).upcase)
+    end
   end
 
   def self.rates(form_answer, type)
