@@ -1769,3 +1769,39 @@ table .ellipsis {
     background-image: image-url("icon-star-empty@2.png");
   }
 }
+
+// Character count
+.char-count-label .label-char-count-reposition {
+  display: block;
+  margin-bottom: -1.8em;
+}
+
+.char-space {
+  display: inline-block;
+  width: 160px;
+  height: 1em;
+}
+
+.char-count {
+  position: relative;
+
+  &.char-max-shift {
+    margin-top: -1.7em;
+  }
+}
+
+.char-text-limit {
+  font-size: 14px;
+  margin-top: 0.5em;
+  margin-bottom: 0.2em;
+  text-align: right;
+}
+.char-text {
+  font-size: 14px;
+  margin-top: 0.2em;
+  text-align: right;
+
+  .char-over & {
+    color: $error-colour;
+  }
+}

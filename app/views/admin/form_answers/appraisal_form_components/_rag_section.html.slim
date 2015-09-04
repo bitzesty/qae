@@ -32,9 +32,10 @@
       - else
         em.text-muted No comment has been added yet.
     .clear
+
   = f.input section.desc,
             wrapper_html: { class: 'form-group' },
-            input_html: { class: 'form-control', rows: 5 },
+            input_html: { class: 'form-control js-char-count', rows: 5, "data-word-max" => 1200 },
             as: :text,
             label: false
 

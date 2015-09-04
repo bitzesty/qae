@@ -121,7 +121,8 @@
     }
 
     .form-control,
-    .form-fields {
+    .form-fields,
+    .char-count {
       display: none;
       min-width: 100px;
     }
@@ -144,7 +145,8 @@
         display: inline-block;
       }
 
-      .form-block {
+      .form-block,
+      .char-count {
         display: block;
       }
 
