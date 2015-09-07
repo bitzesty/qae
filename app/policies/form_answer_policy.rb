@@ -17,7 +17,7 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def update_financials?
-    true
+    admin? || subject.lead?(record) || subject.primary?(record)
   end
 
   def assign_assessor?
