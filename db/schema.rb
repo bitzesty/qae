@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907145955) do
+ActiveRecord::Schema.define(version: 20150907165227) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,10 +149,30 @@ ActiveRecord::Schema.define(version: 20150907145955) do
     t.string   "address_postcode"
     t.string   "telephone"
     t.string   "region"
-    t.integer  "form_answer_id",   null: false
+    t.integer  "form_answer_id",               null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address_county"
+    t.string   "nominee_organisation"
+    t.string   "nominee_position"
+    t.string   "nominee_organisation_website"
+    t.string   "nominee_building"
+    t.string   "nominee_street"
+    t.string   "nominee_city"
+    t.string   "nominee_county"
+    t.string   "nominee_postcode"
+    t.string   "nominee_telephone"
+    t.string   "nominee_email"
+    t.string   "nominee_region"
+    t.string   "nominator_name"
+    t.string   "nominator_building"
+    t.string   "nominator_street"
+    t.string   "nominator_city"
+    t.string   "nominator_county"
+    t.string   "nominator_postcode"
+    t.string   "nominator_telephone"
+    t.string   "nominator_email"
+    t.string   "nominee_title"
   end
 
   add_index "company_details", ["form_answer_id"], name: "index_company_details_on_form_answer_id", unique: true, using: :btree
@@ -277,7 +297,6 @@ ActiveRecord::Schema.define(version: 20150907145955) do
     t.integer  "primary_assessor_id"
     t.integer  "secondary_assessor_id"
     t.json     "document"
-    t.string   "nominee_title"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

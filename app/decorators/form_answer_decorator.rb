@@ -193,6 +193,86 @@ class FormAnswerDecorator < ApplicationDecorator
       document["organization_address_region"]
   end
 
+  def nominee_title
+    document["nominee_title"]
+  end
+
+  def nominee_organisation
+    document["organization_address_name"]
+  end
+
+  def nominee_position
+    document["nominee_position"]
+  end
+
+  def nominee_organisation_website
+    document["website_url"]
+  end
+
+  def nominee_building
+    document["nominee_personal_address_building"]
+  end
+
+  def nominee_street
+    document["nominee_personal_address_street"]
+  end
+
+  def nominee_city
+    document["nominee_personal_address_city"]
+  end
+
+  def nominee_county
+    document["nominee_personal_address_county"]
+  end
+
+  def nominee_postcode
+    document["nominee_personal_address_postcode"]
+  end
+
+  def nominee_telephone
+    document["nominee_phone"]
+  end
+
+  def nominee_email
+    document["nominee_email"]
+  end
+
+  def nominee_region
+    document["nominee_personal_address_region"]
+  end
+
+  def nominator_name
+    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
+  end
+
+  def nominator_building
+    document["personal_address_building"]
+  end
+
+  def nominator_street
+    document["personal_address_street"]
+  end
+
+  def nominator_city
+    document["personal_address_city"]
+  end
+
+  def nominator_county
+    document["personal_address_county"]
+  end
+
+  def nominator_postcode
+    document["personal_address_postcode"]
+  end
+
+  def nominator_telephone
+    document["personal_phone"]
+  end
+
+  def nominator_email
+    document["personal_email"]
+  end
+
   def primary_assessor_full_name
     object.assessors.primary.try(:full_name) || "Not Assigned"
   end

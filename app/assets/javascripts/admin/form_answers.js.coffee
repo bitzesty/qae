@@ -325,7 +325,11 @@ handleCompanyDetailsForm = ->
       $( newNestedForm ).insertAfter( lastNestedForm )
 
   $(document).on "ajax:success", ".company-details-forms form", (e, data, status, xhr) ->
-    $(this).closest(".form-group").replaceWith($(data))
+    closest_form_group = $(this).closest(".form-group")
+    if closest_form_group.hasClass("form-group-company-address")
+      $(this).closest(".form-group-company-address-parent").replaceWith($(data))
+    else
+      closest_form_group.replaceWith($(data))
 
   $(".company-details-forms").on "click", ".remove-link", (e) ->
     e.preventDefault()

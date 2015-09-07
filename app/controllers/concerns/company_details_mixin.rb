@@ -31,7 +31,26 @@ module CompanyDetailsMixin
                                            :address_postcode,
                                            :telephone,
                                            :region,
-                                           :nominee_title
+                                           :nominee_title,
+                                           :nominee_organisation,
+                                           :nominee_position,
+                                           :nominee_organisation_website,
+                                           :nominee_building,
+                                           :nominee_street,
+                                           :nominee_city,
+                                           :nominee_county,
+                                           :nominee_postcode,
+                                           :nominee_telephone,
+                                           :nominee_email,
+                                           :nominee_region,
+                                           :nominator_name,
+                                           :nominator_building,
+                                           :nominator_street,
+                                           :nominator_city,
+                                           :nominator_county,
+                                           :nominator_postcode,
+                                           :nominator_telephone,
+                                           :nominator_email
   end
 
   def resource
