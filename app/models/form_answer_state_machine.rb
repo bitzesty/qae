@@ -128,8 +128,6 @@ class FormAnswerStateMachine
         :withdrawn
       ]
       case object.state.to_sym
-      when :withdrawn
-        []
       when :not_eligible
         []
       when :application_in_progress
