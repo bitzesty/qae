@@ -3,7 +3,6 @@ class AssessorAssignment < ActiveRecord::Base
     primary: 0,
     secondary: 1,
     moderated: 2,
-    primary_case_summary: 3,
     lead_case_summary: 4
   }
 
@@ -57,10 +56,6 @@ class AssessorAssignment < ActiveRecord::Base
     find_or_create_by(position: 2)
   end
 
-  def self.primary_case_summary
-    find_or_create_by(position: 3)
-  end
-
   def self.lead_case_summary
     find_or_create_by(position: 4)
   end
@@ -99,8 +94,7 @@ class AssessorAssignment < ActiveRecord::Base
   def owner_or_administrative?(subject)
     subject.is_a?(Admin) ||
       subject.try(:lead?, form_answer) ||
-      (!moderated? && !lead_case_summary? && assessor_id == subject.id) ||
-      (primary_case_summary? && subject.primary?(form_answer))
+      (!moderated? && !lead_case_summary? && assessor_id == subject.id)
   end
 
   def award_specific_attributes
@@ -136,7 +130,7 @@ class AssessorAssignment < ActiveRecord::Base
     # as it's only one attribute can be done now without extracting the appraisal type
     # but if any new differences will came relating form structure with the position is expected
     if application_background_section_desc.present? &&
-        (!lead_case_summary? && !primary_case_summary?)
+        (!lead_case_summary?)
       errors.add(:application_background_section_desc, "Can not be present for this appraisal.")
     end
   end
@@ -157,7 +151,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def assessor_existence
-    if (moderated? || lead_case_summary? || primary_case_summary?) && assessor_id.present?
+    if (moderated? || lead_case_summary?) && assessor_id.present?
       errors.add(:assessor_id, "Can not be present for this kind of assessment.")
     end
   end

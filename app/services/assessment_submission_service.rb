@@ -9,7 +9,6 @@ class AssessmentSubmissionService
   def perform
     return if resource.submitted?
     if submit_assessment
-      populate_primary_case_summary
       populate_lead_case_summary
     end
 
@@ -26,16 +25,8 @@ class AssessmentSubmissionService
     resource.update(submitted_at: DateTime.now)
   end
 
-  def populate_primary_case_summary
-    return unless resource.moderated?
-    rec = record(3)
-    rec.document = resource.document
-    rec.save
-  end
-
   def populate_lead_case_summary
-    if (primary_and_lead_is_the_same_person? && resource.moderated?) ||
-       resource.primary_case_summary?
+    if (primary_and_lead_is_the_same_person? && resource.moderated?)
       notify
       rec = record(4)
       rec.document = resource.document
@@ -56,14 +47,5 @@ class AssessmentSubmissionService
   end
 
   def notify
-    if resource.primary_case_summary?
-      Assessor.leads_for(resource.form_answer.award_type).each do |assessor|
-        mailer = Assessors::PrimaryCaseSummaryMailer
-        changes_author = resource.form_answer.assessors.primary
-        if changes_author.present?
-          mailer.notify(assessor.id, resource.form_answer.id, changes_author.id).deliver_later!
-        end
-      end
-    end
   end
 end

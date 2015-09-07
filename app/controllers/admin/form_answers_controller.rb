@@ -36,7 +36,6 @@ class Admin::FormAnswersController < Admin::BaseController
                 :primary_assessment,
                 :secondary_assessment,
                 :moderated_assessment,
-                :primary_case_summary_assessment,
                 :lead_case_summary_assessment
 
   def resource

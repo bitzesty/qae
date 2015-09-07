@@ -62,10 +62,6 @@ module FormAnswerMixin
     @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
   end
 
-  def primary_case_summary_assessment
-    @primary_case_summary_assessment ||= resource.assessor_assignments.primary_case_summary.decorate
-  end
-
   def lead_case_summary_assessment
     @lead_case_summary_assessment ||= resource.assessor_assignments.lead_case_summary.decorate
   end
