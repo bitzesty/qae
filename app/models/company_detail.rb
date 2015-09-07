@@ -14,7 +14,8 @@ class CompanyDetail < ActiveRecord::Base
       address_country: form_answer.address_country,
       address_postcode: form_answer.address_postcode,
       telephone: form_answer.telephone,
-      region: form_answer.region
+      region: form_answer.region,
+      nominee_title: form_answer.nominee_title
     }
     form_answer.create_company_detail(args)
   end

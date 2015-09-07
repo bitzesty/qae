@@ -197,6 +197,10 @@ class FormAnswer < ActiveRecord::Base
     "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
   end
 
+  def nominee_title_from_document
+    document['nominee_title'].strip
+  end
+
   def set_urn
     builder = UrnBuilder.new(self)
     builder.assign
@@ -227,6 +231,7 @@ class FormAnswer < ActiveRecord::Base
       self.company_or_nominee_name = company_or_nominee_from_document
     end
     self.nominee_full_name = nominee_full_name_from_document
+    self.nominee_title = nominee_title_from_document
     self.award_type_full_name = AWARD_TYPE_FULL_NAMES[award_type]
   end
 

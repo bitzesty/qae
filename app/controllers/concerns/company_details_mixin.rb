@@ -30,7 +30,8 @@ module CompanyDetailsMixin
                                            :address_country,
                                            :address_postcode,
                                            :telephone,
-                                           :region
+                                           :region,
+                                           :nominee_title
   end
 
   def resource

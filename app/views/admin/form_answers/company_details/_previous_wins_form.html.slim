@@ -1,4 +1,4 @@
-- unless @form_answer.award_type == "promotion"
+- unless @form_answer.promotion?
   br
   - if @form_answer.submitted_and_after_the_deadline?
     .form-group.previous-wins-form
