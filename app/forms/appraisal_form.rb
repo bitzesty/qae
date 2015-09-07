@@ -239,11 +239,11 @@ class AppraisalForm
     out
   end
 
-  def self.struct(form_answer, f)
+  def self.struct(form_answer, f = nil)
     meth = form_answer.respond_to?(:award_type_slug) ? :award_type_slug : :award_type
+
     # Assessor assignment 
-    
-    moderated = (f.object && f.object.position == "moderated")
+    moderated = (f && f.object && f.object.position == "moderated")
 
     if moderated
       MODERATED
