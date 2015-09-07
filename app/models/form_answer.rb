@@ -180,10 +180,6 @@ class FormAnswer < ActiveRecord::Base
     name.presence
   end
 
-  def nominator_name_from_document
-    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
-  end
-
   def fill_progress_in_percents
     ((fill_progress || 0) * 100).round.to_s + "%"
   end
@@ -229,8 +225,7 @@ class FormAnswer < ActiveRecord::Base
   def assign_searching_attributes
     unless submitted_and_after_the_deadline?
       self.company_or_nominee_name = company_or_nominee_from_document
-      self.nominator_name = nominator_name_from_document
-    end
+     end
     self.nominee_full_name = nominee_full_name_from_document
     self.award_type_full_name = AWARD_TYPE_FULL_NAMES[award_type]
   end
