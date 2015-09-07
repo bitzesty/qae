@@ -229,7 +229,7 @@ class AppraisalForm
     out = []
     forms.each do |form|
       form.each do |k, obj|
-        out << rate(k).to_sym if [:strengths, :rag, :verdict].include?(obj[:type])
+        out << rate(k).to_sym if [:strengths, :rag, :non_rag, :verdict].include?(obj[:type])
         # strenghts doesn't have description
         out << desc(k).to_sym if [:rag, :non_rag, :verdict].include?(obj[:type])
       end
