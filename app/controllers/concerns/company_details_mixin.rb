@@ -27,7 +27,7 @@ module CompanyDetailsMixin
     params.require(:company_detail).permit :address_building,
                                            :address_street,
                                            :address_city,
-                                           :address_country,
+                                           :address_county,
                                            :address_postcode,
                                            :telephone,
                                            :region,

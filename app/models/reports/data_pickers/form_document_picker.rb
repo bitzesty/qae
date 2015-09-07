@@ -95,19 +95,11 @@ module Reports::DataPickers::FormDocumentPicker
     end.to_s.upcase
   end
 
-  def principal_address4
+  def principal_address1
     if business_form?
-      doc "principal_address_county"
+      doc "principal_address_building"
     else
-      doc "nominee_personal_address_county"
-    end
-  end
-
-  def principal_address3
-    if business_form?
-      doc "principal_address_city"
-    else
-      doc "nominee_personal_address_city"
+      doc "nominee_personal_address_building"
     end
   end
 
@@ -119,11 +111,19 @@ module Reports::DataPickers::FormDocumentPicker
     end
   end
 
-  def principal_address1
+  def principal_address3
     if business_form?
-      doc "principal_address_building"
+      doc "principal_address_city"
     else
-      doc "nominee_personal_address_building"
+      doc "nominee_personal_address_city"
+    end
+  end
+
+  def principal_address4
+    if business_form?
+      doc "principal_address_county"
+    else
+      doc "nominee_personal_address_county"
     end
   end
 

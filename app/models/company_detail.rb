@@ -11,7 +11,7 @@ class CompanyDetail < ActiveRecord::Base
       address_building: form_answer.address_building,
       address_street: form_answer.address_street,
       address_city: form_answer.address_city,
-      address_country: form_answer.address_country,
+      address_county: form_answer.address_county,
       address_postcode: form_answer.address_postcode,
       telephone: form_answer.telephone,
       region: form_answer.region,

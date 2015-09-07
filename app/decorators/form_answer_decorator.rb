@@ -174,9 +174,9 @@ class FormAnswerDecorator < ApplicationDecorator
       document["organization_address_city"]
   end
 
-  def address_country
-    document["principal_address_country"] ||
-      document["organization_address_country"]
+  def address_county
+    document["principal_address_county"] ||
+      document["organization_address_county"]
   end
 
   def address_postcode
