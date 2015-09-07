@@ -1,4 +1,6 @@
 - if @form_answer.submitted_and_after_the_deadline?
+  - account_name = @form_answer.award_type == "promotion" ? "Nominee name" : "Company name"
+
   .form-group
     = simple_form_for [namespace_name, @form_answer],
                       remote: true,
@@ -6,7 +8,7 @@
                       html: { "data-type" => "html", class: "company-name-form"} do |f|
 
       = hidden_field_tag :section, "company_name"
-      label.form-label Company name
+      label.form-label = account_name
       .form-value
         p = @form_answer.company_name
       .input.form-group.form-fields.form-block
@@ -25,5 +27,5 @@
       .clear
 - else
   .form-group
-    label.form-label Company name
+    label.form-label = account_name
     p = @form_answer.company_name
