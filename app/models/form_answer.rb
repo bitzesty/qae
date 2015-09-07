@@ -198,7 +198,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def nominee_title_from_document
-    document['nominee_title'].strip
+    document['nominee_title']
   end
 
   def set_urn
