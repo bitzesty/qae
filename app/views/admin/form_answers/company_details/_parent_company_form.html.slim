@@ -45,14 +45,15 @@
             .form-value
               p
                 - if obj.parent_company_country.present?
-                  = obj.parent_company_country
+                  = Country.find_country_by_alpha2(obj.parent_company_country).try(:name)
                 - else
                   ' -
             .form-fields.form-block
               = f.input :parent_company_country,
-                        as: :string,
+                        as: :select,
                         label: false,
-                        input_html: { class: "form-control" }
+                        input_html: { class: "form-control" },
+                        collection: country_collection
               .form-actions.text-right
                 = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
                 = f.submit "Save", class: "btn btn-primary pull-right"
@@ -100,14 +101,15 @@
               .form-value
                 p
                   - if obj.ultimate_control_company_country.present?
-                    = obj.ultimate_control_company_country
+                    = Country.find_country_by_alpha2(obj.ultimate_control_company_country).try(:name)
                   - else
                     ' -
               .form-fields.form-block
                 = f.input :ultimate_control_company_country,
-                          as: :string,
+                          as: :select,
                           label: false,
-                          input_html: { class: "form-control" }
+                          input_html: { class: "form-control" },
+                          collection: country_collection
                 .form-actions.text-right
                   = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
                   = f.submit "Save", class: "btn btn-primary pull-right"
@@ -128,7 +130,7 @@
         label.form-label Country of Immediate Parent company
         p
           - if obj.parent_company_country.present?
-            = obj.parent_company_country
+            = Country.find_country_by_alpha2(obj.parent_company_country).try(:name)
           - else
             ' -
 
@@ -142,7 +144,7 @@
           label.form-label Country of Organisation with Ultimate control
           p
             - if obj.ultimate_control_company_country.present?
-              = obj.ultimate_control_company_country
+              = Country.find_country_by_alpha2(obj.ultimate_control_company_country).try(:name)
             - else
               ' -
 
