@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150907165227) do
+ActiveRecord::Schema.define(version: 20150908105756) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -149,7 +149,7 @@ ActiveRecord::Schema.define(version: 20150907165227) do
     t.string   "address_postcode"
     t.string   "telephone"
     t.string   "region"
-    t.integer  "form_answer_id",               null: false
+    t.integer  "form_answer_id",                   null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "address_county"
@@ -173,6 +173,22 @@ ActiveRecord::Schema.define(version: 20150907165227) do
     t.string   "nominator_telephone"
     t.string   "nominator_email"
     t.string   "nominee_title"
+    t.string   "registration_number"
+    t.string   "date_started_trading"
+    t.string   "website_url"
+    t.string   "head_of_bussines_title"
+    t.string   "head_of_business_full_name"
+    t.string   "head_of_business_honours"
+    t.string   "head_job_title"
+    t.string   "head_email"
+    t.string   "applying_for"
+    t.string   "parent_company"
+    t.string   "parent_company_country"
+    t.boolean  "parent_ultimate_control"
+    t.string   "ultimate_control_company"
+    t.string   "ultimate_control_company_country"
+    t.string   "innovation_desc_short"
+    t.string   "development_desc_short"
   end
 
   add_index "company_details", ["form_answer_id"], name: "index_company_details_on_form_answer_id", unique: true, using: :btree

@@ -1,0 +1,54 @@
+- unless resource.submitted_and_after_the_deadline?
+  - obj = @form_answer
+- else
+  - obj = CompanyDetail.for(@form_answer)
+
+- unless @form_answer.promotion?
+  br
+  - if @form_answer.submitted_and_after_the_deadline?
+    .form-group
+      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+                        remote: true,
+                        authenticity_token: true do |f|
+
+        label.form-label Description of goods/services
+        .form-value
+          p
+            - if @form_answer.innovation?
+              = obj.innovation_desc_short
+            - if @form_answer.development?
+              = obj.development_desc_short
+            - if @form_answer.trade?
+              / TODO
+        .form-fields.form-block
+          - if @form_answer.innovation?
+            = f.input :innovation_desc_short,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
+          - if @form_answer.development?
+            = f.input :development_desc_short,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
+          - if @form_answer.trade?
+            / TODO
+          .form-actions.text-right
+            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+            = f.submit "Save", class: "btn btn-primary pull-right"
+        .clear
+
+        = link_to "#", class: "form-edit-link pull-right"
+          span.glyphicon.glyphicon-pencil
+          ' Edit
+        .clear
+  - else
+    .form-group
+      label.form-label Description of goods/services
+      p
+        - if @form_answer.innovation?
+          = obj.innovation_desc_short
+        - if @form_answer.development?
+          = obj.development_desc_short
+        - if @form_answer.trade?
+          / TODO

@@ -33,7 +33,7 @@
     .form-group
       label.form-label SIC code
       p
-      - if @form_answer.sic_code.present?
-        = @form_answer.sic_code_name
-      - else
-        ' -
+        - if @form_answer.sic_code.present?
+          = @form_answer.sic_code_name
+        - else
+          ' -
