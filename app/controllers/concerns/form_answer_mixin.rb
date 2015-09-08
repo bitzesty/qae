@@ -45,6 +45,22 @@ module FormAnswerMixin
     params.require(:form_answer).permit(
       :sic_code,
       :company_or_nominee_name,
+      :registration_number,
+      :date_started_trading,
+      :website_url,
+      :head_of_bussines_title,
+      :head_of_business_full_name,
+      :head_of_business_honours,
+      :head_job_title,
+      :head_email,
+      :applying_for,
+      :parent_company,
+      :parent_company_country,
+      :parent_ultimate_control,
+      :ultimate_control_company,
+      :ultimate_control_company_country,
+      :innovation_desc_short,
+      :development_desc_short,
       previous_wins_attributes: [:id, :year, :category, :_destroy]
     )
   end

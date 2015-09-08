@@ -1,20 +1,17 @@
-- unless resource.submitted_and_after_the_deadline?
-  - obj = @form_answer
-- else
-  - obj = CompanyDetail.for(@form_answer)
-
 - unless @form_answer.promotion?
   br
   - if @form_answer.submitted_and_after_the_deadline?
     .form-group
-      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+      = simple_form_for [namespace_name, @form_answer],
                         remote: true,
                         authenticity_token: true,
                         html: { "data-type" => "html", class: "registration-number-form"} do |f|
+        = hidden_field_tag :section, "registration_number"
+
         label.form-label Company/charity registration number
         .form-value
           p
-            = obj.registration_number
+            = @form_answer.registration_number
         .form-fields.form-block
           = f.input :registration_number,
                     as: :string,
@@ -33,4 +30,4 @@
     .form-group
       label.form-label Company/charity registration number
       p
-        = obj.registration_number
+        = @form_answer.registration_number
