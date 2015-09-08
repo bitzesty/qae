@@ -52,6 +52,6 @@ class SICCode < ActiveYaml::Base
   end
 
   def self.collection
-    SICCode.all.map { |sic| [sic.name, sic.code] }
+    SICCode.all.sort_by(&:code).map { |sic| [sic.name, sic.code] }
   end
 end
