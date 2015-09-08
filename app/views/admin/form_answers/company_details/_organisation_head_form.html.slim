@@ -1,48 +1,63 @@
+- unless resource.submitted_and_after_the_deadline?
+  - obj = @form_answer
+- else
+  - obj = CompanyDetail.for(@form_answer)
+
 - unless @form_answer.promotion?
   br
   - if @form_answer.submitted_and_after_the_deadline?
     .form-group
-      = simple_form_for [namespace_name, @form_answer],
+      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                         remote: true,
                         authenticity_token: true do |f|
+        = hidden_field_tag :section, "organisation_head"
 
         label.form-label Head of organisation
         .form-value
           p
-            - if @form_answer.head_of_bussines_title.present?
-              = @form_answer.head_of_bussines_title
+            - if obj.head_of_bussines_title.present?
+              = obj.head_of_bussines_title
               ' 
-            = @form_answer.head_of_business_full_name
-            - if @form_answer.head_of_business_honours.present?
+            = obj.head_of_business_full_name
+            - if obj.head_of_business_honours.present?
               ' 
-              = @form_answer.head_of_business_honours
+              = obj.head_of_business_honours
             br
-            - if @form_answer.head_job_title.present?
-              = @form_answer.head_job_title
+            - if obj.head_job_title.present?
+              = obj.head_job_title
               br
-            - if @form_answer.head_email.present?
-              = @form_answer.head_email
+            - if obj.head_email.present?
+              = obj.head_email
         .form-fields.form-block
-          = f.input :head_of_bussines_title,
-                    as: :string,
-                    label: false,
-                    input_html: { class: "form-control" }
-          = f.input :head_of_business_full_name,
-                    as: :string,
-                    label: false,
-                    input_html: { class: "form-control" }
-          = f.input :head_of_business_honours,
-                    as: :string,
-                    label: false,
-                    input_html: { class: "form-control" }
-          = f.input :head_job_title,
-                    as: :string,
-                    label: false,
-                    input_html: { class: "form-control" }
-          = f.input :head_email,
-                    as: :string,
-                    label: false,
-                    input_html: { class: "form-control" }
+          .row
+            .col-md-2
+              = f.input :head_of_bussines_title,
+                        as: :string,
+                        label: "Title",
+                        input_html: { class: "form-control" }
+            .col-md-10
+              = f.input :head_of_business_full_name,
+                        as: :string,
+                        label: "Full name",
+                        input_html: { class: "form-control" }
+          .row
+            .col-md-8
+              = f.input :head_of_business_honours,
+                        as: :string,
+                        label: "Honours",
+                        input_html: { class: "form-control" }
+          .row
+            .col-md-8
+              = f.input :head_job_title,
+                        as: :string,
+                        label: "Job title",
+                        input_html: { class: "form-control" }
+          .row
+            .col-md-8
+              = f.input :head_email,
+                        as: :string,
+                        label: "Email",
+                        input_html: { class: "form-control" }
           .form-actions.text-right
             = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
             = f.submit "Save", class: "btn btn-primary pull-right"
@@ -56,16 +71,16 @@
     .form-group
       label.form-label Head of organisation
       p
-        - if @form_answer.head_of_bussines_title.present?
-          = @form_answer.head_of_bussines_title
+        - if obj.head_of_bussines_title.present?
+          = obj.head_of_bussines_title
           ' 
-        = @form_answer.head_of_business_full_name
-        - if @form_answer.head_of_business_honours.present?
+        = obj.head_of_business_full_name
+        - if obj.head_of_business_honours.present?
           ' 
-          = @form_answer.head_of_business_honours
+          = obj.head_of_business_honours
         br
-        - if @form_answer.head_job_title.present?
-          = @form_answer.head_job_title
+        - if obj.head_job_title.present?
+          = obj.head_job_title
           br
-        - if @form_answer.head_email.present?
-          = @form_answer.head_email
+        - if obj.head_email.present?
+          = obj.head_email

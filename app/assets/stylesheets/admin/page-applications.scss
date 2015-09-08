@@ -124,11 +124,42 @@
       margin-bottom: 0;
     }
 
+    .control-label {
+      display: block;
+      font-size: 14px;
+      text-align: left;
+    }
+
     .form-control,
     .form-fields,
     .char-count {
       display: none;
       min-width: 100px;
+    }
+
+    .form-control-day,
+    .form-control-month,
+    .form-control-year {
+      margin-right: 10px;
+      float: left;
+
+      .form-control {
+        width: 50px;
+        text-align: center;
+      }
+    }
+
+    .form-control-day,
+    .form-control-month {
+      .form-control {
+        min-width: 50px;
+      }
+    }
+
+    .form-control-year {
+      .form-control {
+        min-width: 70px;
+      }
     }
 
     .form-cancel-link,
