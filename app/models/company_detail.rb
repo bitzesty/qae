@@ -15,7 +15,6 @@ class CompanyDetail < ActiveRecord::Base
       address_postcode: form_answer.address_postcode,
       telephone: form_answer.telephone,
       region: form_answer.region,
-      nominee_title: form_answer.nominee_title,
       nominee_organisation: form_answer.nominee_organisation,
       nominee_position: form_answer.nominee_position,
       nominee_organisation_website: form_answer.nominee_organisation_website,

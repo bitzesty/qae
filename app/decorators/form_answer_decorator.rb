@@ -68,6 +68,10 @@ class FormAnswerDecorator < ApplicationDecorator
     company_or_nominee_name
   end
 
+  def nominee_title
+    object.nominee_title ? object.nominee_title : document["nominee_title"]
+  end
+
   def progress_class
     "#{object.state.dasherize[0..-2]}"
   end
@@ -191,10 +195,6 @@ class FormAnswerDecorator < ApplicationDecorator
   def region
     document["principal_address_region"] ||
       document["organization_address_region"]
-  end
-
-  def nominee_title
-    document["nominee_title"]
   end
 
   def nominee_organisation

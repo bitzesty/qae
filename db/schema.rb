@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908163040) do
+ActiveRecord::Schema.define(version: 20150908172247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,23 +173,22 @@ ActiveRecord::Schema.define(version: 20150908163040) do
     t.string   "nominator_postcode"
     t.string   "nominator_telephone"
     t.string   "nominator_email"
-    t.string   "nominee_title"
-    t.string   "development_desc_short"
-    t.string   "innovation_desc_short"
-    t.string   "ultimate_control_company_country"
-    t.string   "ultimate_control_company"
-    t.boolean  "parent_ultimate_control"
-    t.string   "parent_company_country"
-    t.string   "parent_company"
-    t.string   "applying_for"
-    t.string   "head_email"
-    t.string   "head_job_title"
-    t.string   "head_of_business_honours"
-    t.string   "head_of_business_full_name"
-    t.string   "head_of_bussines_title"
-    t.string   "website_url"
     t.string   "registration_number"
-    t.datetime "date_started_trading"
+    t.string   "date_started_trading"
+    t.string   "website_url"
+    t.string   "head_of_bussines_title"
+    t.string   "head_of_business_full_name"
+    t.string   "head_of_business_honours"
+    t.string   "head_job_title"
+    t.string   "head_email"
+    t.string   "applying_for"
+    t.string   "parent_company"
+    t.string   "parent_company_country"
+    t.boolean  "parent_ultimate_control"
+    t.string   "ultimate_control_company"
+    t.string   "ultimate_control_company_country"
+    t.string   "innovation_desc_short"
+    t.string   "development_desc_short"
   end
 
   add_index "company_details", ["form_answer_id"], name: "index_company_details_on_form_answer_id", unique: true, using: :btree
@@ -294,9 +293,9 @@ ActiveRecord::Schema.define(version: 20150908163040) do
     t.string   "award_type"
     t.integer  "account_id"
     t.string   "urn"
-    t.boolean  "submitted",                     default: false
+    t.boolean  "submitted",                        default: false
     t.float    "fill_progress"
-    t.string   "state",                         default: "application_in_progress", null: false
+    t.string   "state",                            default: "application_in_progress", null: false
     t.string   "company_or_nominee_name"
     t.string   "nominee_full_name"
     t.string   "user_full_name"
@@ -304,16 +303,33 @@ ActiveRecord::Schema.define(version: 20150908163040) do
     t.string   "sic_code"
     t.string   "nickname"
     t.hstore   "financial_data"
-    t.boolean  "admin_importance_flag",         default: false
-    t.boolean  "assessor_importance_flag",      default: false
-    t.boolean  "accepted",                      default: false
+    t.boolean  "admin_importance_flag",            default: false
+    t.boolean  "assessor_importance_flag",         default: false
+    t.boolean  "accepted",                         default: false
     t.datetime "company_details_updated_at"
-    t.integer  "award_year_id",                                                     null: false
+    t.integer  "award_year_id",                                                        null: false
     t.integer  "company_details_editable_id"
     t.string   "company_details_editable_type"
     t.integer  "primary_assessor_id"
     t.integer  "secondary_assessor_id"
     t.json     "document"
+    t.string   "registration_number"
+    t.string   "date_started_trading"
+    t.string   "website_url"
+    t.string   "head_of_bussines_title"
+    t.string   "head_of_business_full_name"
+    t.string   "head_of_business_honours"
+    t.string   "head_job_title"
+    t.string   "head_email"
+    t.string   "applying_for"
+    t.string   "parent_company"
+    t.string   "parent_company_country"
+    t.boolean  "parent_ultimate_control"
+    t.string   "ultimate_control_company"
+    t.string   "ultimate_control_company_country"
+    t.string   "innovation_desc_short"
+    t.string   "development_desc_short"
+    t.string   "nominee_title"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
