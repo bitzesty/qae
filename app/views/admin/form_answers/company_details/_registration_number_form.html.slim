@@ -11,6 +11,7 @@
                         remote: true,
                         authenticity_token: true,
                         html: { "data-type" => "html", class: "registration-number-form"} do |f|
+        = hidden_field_tag :section, "registration_number"
         label.form-label Company/charity registration number
         .form-value
           p

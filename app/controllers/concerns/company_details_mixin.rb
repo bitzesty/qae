@@ -46,6 +46,9 @@ module CompanyDetailsMixin
   ]
 
   def update
+    # TODO add section=address hidden fields and delete the following line
+    params[:section] = "address" unless params[:section]
+
     @company_detail = CompanyDetail.find(params[:id])
     authorize @company_detail, :update?
 
@@ -59,7 +62,7 @@ module CompanyDetailsMixin
     respond_to do |format|
       format.html do
         if request.xhr?
-          render partial: "admin/form_answers/company_details/address_form", layout: false
+          render partial: "admin/form_answers/company_details/#{params[:section]}_form", layout: false
         else
           redirect_to [namespace_name, resource]
         end
@@ -77,7 +80,7 @@ module CompanyDetailsMixin
     ops = update_params
 
     ops.reject! do |k, v|
-      ADDRESS_FIELDS.include?(k.to_sym) &&
+      COMPANY_DETAILS_FIELDS.include?(k.to_sym) &&
       !CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
     end
 
