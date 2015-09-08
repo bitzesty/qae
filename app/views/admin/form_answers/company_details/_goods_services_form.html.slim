@@ -10,6 +10,7 @@
       = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                         remote: true,
                         authenticity_token: true do |f|
+        = hidden_field_tag :section, "goods_services"
 
         label.form-label Description of goods/services
         .form-value

@@ -43,10 +43,9 @@
           .input.form-group.form-fields.form-block
             .row
               .col-md-8
-                label Building and street
                 = f.input :nominee_building,
                           as: :string,
-                          label: false,
+                          label: "Building and street",
                           input_html: { class: "form-control" }
 
                 = f.input :nominee_street,
@@ -55,45 +54,39 @@
                           input_html: { class: "form-control" }
             .row
               .col-md-6
-                label Town or city
                 = f.input :nominee_city,
                           as: :string,
-                          label: false,
+                          label: "Town or city",
                           input_html: { class: "form-control" }
             .row
               .col-md-6
-                label County
                 = f.input :nominee_county,
                           as: :string,
-                          label: false,
+                          label: "County",
                           input_html: { class: "form-control" }
             .row
               .col-md-3
-                label Postcode
                 = f.input :nominee_postcode,
                           as: :string,
-                          label: false,
+                          label: "Postcode",
                           input_html: { class: "form-control" }
             .row
               .col-md-3
-                label Telephone number
                 = f.input :nominee_telephone,
                           as: :string,
-                          label: false,
+                          label: "Telephone number",
                           input_html: { class: "form-control" }
             .row
               .col-md-8
-                label Email
                 = f.input :nominee_email,
                           as: :string,
-                          label: false,
+                          label: "Email",
                           input_html: { class: "form-control" }
             .row
               .col-md-4
-                label Region
                 = f.input :nominee_region,
                           as: :select,
-                          label: false,
+                          label: "Region",
                           input_html: { class: "form-control" },
                           collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
 
@@ -161,24 +154,21 @@
           - if @form_answer.promotion?
             .row
               .col-md-8
-                label Organisation Name
                 = f.input :nominee_organisation,
                           as: :string,
-                          label: false,
+                          label: "Organisation Name",
                           input_html: { class: "form-control" }
             .row
               .col-md-8
-                label Nominee Position
                 = f.input :nominee_position,
                           as: :string,
-                          label: false,
+                          label: "Nominee Position",
                           input_html: { class: "form-control" }
           .row
             .col-md-8
-              label Building and street
               = f.input :address_building,
                         as: :string,
-                        label: false,
+                        label: "Building and street",
                         input_html: { class: "form-control" }
 
               = f.input :address_street,
@@ -187,50 +177,44 @@
                         input_html: { class: "form-control" }
           .row
             .col-md-6
-              label Town or city
               = f.input :address_city,
                         as: :string,
-                        label: false,
+                        label: "Town or city",
                         input_html: { class: "form-control" }
           .row
             .col-md-6
-              label County
               = f.input :address_county,
                         as: :string,
-                        label: false,
+                        label: "County",
                         input_html: { class: "form-control" }
           .row
             .col-md-3
-              label Postcode
               = f.input :address_postcode,
                         as: :string,
-                        label: false,
+                        label: "Postcode",
                         input_html: { class: "form-control" }
           .row
             .col-md-3
-              label Telephone number
               = f.input :telephone,
                         as: :string,
-                        label: false,
+                        label: "Telephone number",
                         input_html: { class: "form-control" }
 
           - unless @form_answer.promotion?
             .row
               .col-md-4
-                label Region
                 = f.input :region,
                           as: :select,
-                          label: false,
+                          label: "Region",
                           input_html: { class: "form-control" },
                           collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
 
           - if @form_answer.promotion?
             .row
               .col-md-8
-                label Website
                 = f.input :nominee_organisation_website,
                           as: :string,
-                          label: false,
+                          label: "Website",
                           input_html: { class: "form-control" }
 
           .form-actions.text-right
@@ -283,17 +267,15 @@
           .input.form-group.form-fields.form-block
             .row
               .col-md-8
-                label Nominator Name
                 = f.input :nominator_name,
                           as: :string,
-                          label: false,
+                          label: "Nominator Name",
                           input_html: { class: "form-control" }
             .row
               .col-md-8
-                label Building and street
                 = f.input :nominator_building,
                           as: :string,
-                          label: false,
+                          label: "Building and street",
                           input_html: { class: "form-control" }
 
                 = f.input :nominator_street,
@@ -302,38 +284,33 @@
                           input_html: { class: "form-control" }
             .row
               .col-md-6
-                label Town or city
                 = f.input :nominator_city,
                           as: :string,
-                          label: false,
+                          label: "Town or city",
                           input_html: { class: "form-control" }
             .row
               .col-md-6
-                label County
                 = f.input :nominator_county,
                           as: :string,
-                          label: false,
+                          label: "County",
                           input_html: { class: "form-control" }
             .row
               .col-md-3
-                label Postcode
                 = f.input :nominator_postcode,
                           as: :string,
-                          label: false,
+                          label: "Postcode",
                           input_html: { class: "form-control" }
             .row
               .col-md-3
-                label Telephone number
                 = f.input :nominator_telephone,
                           as: :string,
-                          label: false,
+                          label: "Telephone number",
                           input_html: { class: "form-control" }
             .row
               .col-md-8
-                label Email
                 = f.input :nominator_email,
                           as: :string,
-                          label: false,
+                          label: "Email",
                           input_html: { class: "form-control" }
 
             .form-actions.text-right

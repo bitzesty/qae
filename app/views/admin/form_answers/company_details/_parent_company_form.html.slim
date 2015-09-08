@@ -11,6 +11,7 @@
         = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                           remote: true,
                           authenticity_token: true do |f|
+          = hidden_field_tag :section, "parent_company"
 
           label.form-label Name of Immediate Parent company
           .form-value
@@ -37,6 +38,7 @@
         = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                           remote: true,
                           authenticity_token: true do |f|
+          = hidden_field_tag :section, "parent_company"
 
           label.form-label Country of Immediate Parent company
           .form-value
@@ -64,6 +66,7 @@
           = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                             remote: true,
                             authenticity_token: true do |f|
+            = hidden_field_tag :section, "parent_company"
 
             label.form-label Name of Organisation with Ultimate control
             .form-value
@@ -90,6 +93,7 @@
           = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                             remote: true,
                             authenticity_token: true do |f|
+            = hidden_field_tag :section, "parent_company"
 
             label.form-label Country of Organisation with Ultimate control
             .form-value

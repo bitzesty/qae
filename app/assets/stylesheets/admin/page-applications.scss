@@ -124,6 +124,12 @@
       margin-bottom: 0;
     }
 
+    .control-label {
+      display: block;
+      font-size: 14px;
+      text-align: left;
+    }
+
     .form-control,
     .form-fields,
     .char-count {
@@ -136,12 +142,6 @@
     .form-control-year {
       margin-right: 10px;
       float: left;
-
-      .control-label {
-        display: block;
-        font-size: 14px;
-        text-align: left;
-      }
 
       .form-control {
         width: 50px;
