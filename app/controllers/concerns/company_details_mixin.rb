@@ -77,7 +77,7 @@ module CompanyDetailsMixin
     ops = update_params
 
     ops.reject! do |k, v|
-      ADDRESS_FIELDS.include?(k.to_sym) &&
+      COMPANY_DETAILS_FIELDS.include?(k.to_sym) &&
       !CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
     end
 
