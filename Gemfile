@@ -152,3 +152,8 @@ group :test, :development do
   gem 'factory_girl_rails'
   gem 'byebug'
 end
+
+group :development, :staging do
+  # When need to copy model with nested associations
+  gem 'amoeba'
+end
