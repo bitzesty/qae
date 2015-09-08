@@ -1,5 +1,5 @@
 module CompanyDetailsMixin
-  ADDRESS_FIELDS = [
+  COMPANY_DETAILS_FIELDS = [
     :address_building,
     :address_street,
     :address_city,
@@ -26,7 +26,23 @@ module CompanyDetailsMixin
     :nominator_county,
     :nominator_postcode,
     :nominator_telephone,
-    :nominator_email
+    :nominator_email,
+    :registration_number,
+    :date_started_trading,
+    :website_url,
+    :head_of_bussines_title,
+    :head_of_business_full_name,
+    :head_of_business_honours,
+    :head_job_title,
+    :head_email,
+    :applying_for,
+    :parent_company,
+    :parent_company_country,
+    :parent_ultimate_control,
+    :ultimate_control_company,
+    :ultimate_control_company_country,
+    :innovation_desc_short,
+    :development_desc_short
   ]
 
   def update
@@ -54,7 +70,7 @@ module CompanyDetailsMixin
   private
 
   def update_params
-    params.require(:company_detail).permit ADDRESS_FIELDS
+    params.require(:company_detail).permit COMPANY_DETAILS_FIELDS
   end
 
   def allowed_params
