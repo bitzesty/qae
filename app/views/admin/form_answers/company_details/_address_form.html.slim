@@ -3,10 +3,10 @@
 - else
   - obj = CompanyDetail.for(@form_answer)
 
-.form-group-company-address-parent
+.form-group-multiple-parent
   - if @form_answer.promotion?
     br
-    .form-group.form-group-company-address.company-address-personal-form
+    .form-group.form-group-multiple.company-address-personal-form
       label.form-label Nominee Address
       .form-value
         p
@@ -102,7 +102,7 @@
       .clear
 
   br
-  .form-group.form-group-company-address.company-address-form
+  .form-group.form-group-multiple.company-address-form
     label.form-label
       = @form_answer.promotion? ? "Organisation Address" : "Address"
     .form-value
@@ -230,7 +230,7 @@
 
   - if @form_answer.promotion?
     br
-    .form-group.form-group-company-address.company-address-nominator-form
+    .form-group.form-group-multiple.company-address-nominator-form
       label.form-label Nominator Address
       .form-value
         p

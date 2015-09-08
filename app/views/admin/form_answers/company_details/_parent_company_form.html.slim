@@ -7,76 +7,22 @@
   - if obj.applying_for == "division branch subsidiary"
     br
     - if @form_answer.submitted_and_after_the_deadline?
-      .form-group
-        = simple_form_for [namespace_name, CompanyDetail.for(resource)],
-                          remote: true,
-                          authenticity_token: true do |f|
-          = hidden_field_tag :section, "parent_company"
-
-          label.form-label Name of Immediate Parent company
-          .form-value
-            p
-              - if obj.parent_company.present?
-                = obj.parent_company
-              - else
-                ' -
-          .form-fields.form-block
-            = f.input :parent_company,
-                      as: :string,
-                      label: false,
-                      input_html: { class: "form-control" }
-            .form-actions.text-right
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-              = f.submit "Save", class: "btn btn-primary pull-right"
-          .clear
-
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          .clear
-      .form-group
-        = simple_form_for [namespace_name, CompanyDetail.for(resource)],
-                          remote: true,
-                          authenticity_token: true do |f|
-          = hidden_field_tag :section, "parent_company"
-
-          label.form-label Country of Immediate Parent company
-          .form-value
-            p
-              - if obj.parent_company_country.present?
-                = obj.parent_company_country
-              - else
-                ' -
-          .form-fields.form-block
-            = f.input :parent_company_country,
-                      as: :string,
-                      label: false,
-                      input_html: { class: "form-control" }
-            .form-actions.text-right
-              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-              = f.submit "Save", class: "btn btn-primary pull-right"
-          .clear
-
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          .clear
-      - if obj.parent_ultimate_control
-        .form-group
+      .form-group-multiple-parent
+        .form-group.form-group-multiple
           = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                             remote: true,
                             authenticity_token: true do |f|
             = hidden_field_tag :section, "parent_company"
 
-            label.form-label Name of Organisation with Ultimate control
+            label.form-label Name of Immediate Parent company
             .form-value
               p
-                - if obj.ultimate_control_company.present?
-                  = obj.ultimate_control_company
+                - if obj.parent_company.present?
+                  = obj.parent_company
                 - else
                   ' -
             .form-fields.form-block
-              = f.input :ultimate_control_company,
+              = f.input :parent_company,
                         as: :string,
                         label: false,
                         input_html: { class: "form-control" }
@@ -89,21 +35,21 @@
               span.glyphicon.glyphicon-pencil
               ' Edit
             .clear
-        .form-group
+        .form-group.form-group-multiple
           = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                             remote: true,
                             authenticity_token: true do |f|
             = hidden_field_tag :section, "parent_company"
 
-            label.form-label Country of Organisation with Ultimate control
+            label.form-label Country of Immediate Parent company
             .form-value
               p
-                - if obj.ultimate_control_company_country.present?
-                  = obj.ultimate_control_company_country
+                - if obj.parent_company_country.present?
+                  = obj.parent_company_country
                 - else
                   ' -
             .form-fields.form-block
-              = f.input :ultimate_control_company_country,
+              = f.input :parent_company_country,
                         as: :string,
                         label: false,
                         input_html: { class: "form-control" }
@@ -116,6 +62,61 @@
               span.glyphicon.glyphicon-pencil
               ' Edit
             .clear
+        - unless obj.parent_ultimate_control
+          .form-group.form-group-multiple
+            = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+                              remote: true,
+                              authenticity_token: true do |f|
+              = hidden_field_tag :section, "parent_company"
+
+              label.form-label Name of Organisation with Ultimate control
+              .form-value
+                p
+                  - if obj.ultimate_control_company.present?
+                    = obj.ultimate_control_company
+                  - else
+                    ' -
+              .form-fields.form-block
+                = f.input :ultimate_control_company,
+                          as: :string,
+                          label: false,
+                          input_html: { class: "form-control" }
+                .form-actions.text-right
+                  = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+                  = f.submit "Save", class: "btn btn-primary pull-right"
+              .clear
+
+              = link_to "#", class: "form-edit-link pull-right"
+                span.glyphicon.glyphicon-pencil
+                ' Edit
+              .clear
+          .form-group.form-group-multiple
+            = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+                              remote: true,
+                              authenticity_token: true do |f|
+              = hidden_field_tag :section, "parent_company"
+
+              label.form-label Country of Organisation with Ultimate control
+              .form-value
+                p
+                  - if obj.ultimate_control_company_country.present?
+                    = obj.ultimate_control_company_country
+                  - else
+                    ' -
+              .form-fields.form-block
+                = f.input :ultimate_control_company_country,
+                          as: :string,
+                          label: false,
+                          input_html: { class: "form-control" }
+                .form-actions.text-right
+                  = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+                  = f.submit "Save", class: "btn btn-primary pull-right"
+              .clear
+
+              = link_to "#", class: "form-edit-link pull-right"
+                span.glyphicon.glyphicon-pencil
+                ' Edit
+              .clear
     - else
       .form-group
         label.form-label Name of Immediate Parent company
