@@ -1,17 +1,22 @@
+- unless resource.submitted_and_after_the_deadline?
+  - obj = @form_answer
+- else
+  - obj = CompanyDetail.for(@form_answer)
+
 - unless @form_answer.promotion?
-  - if @form_answer.applying_for == "division branch subsidiary"
+  - if obj.applying_for == "division branch subsidiary"
     br
     - if @form_answer.submitted_and_after_the_deadline?
       .form-group
-        = simple_form_for [namespace_name, @form_answer],
+        = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                           remote: true,
                           authenticity_token: true do |f|
 
           label.form-label Name of Immediate Parent company
           .form-value
             p
-              - if @form_answer.parent_company.present?
-                = @form_answer.parent_company
+              - if obj.parent_company.present?
+                = obj.parent_company
               - else
                 ' -
           .form-fields.form-block
@@ -29,15 +34,15 @@
             ' Edit
           .clear
       .form-group
-        = simple_form_for [namespace_name, @form_answer],
+        = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                           remote: true,
                           authenticity_token: true do |f|
 
           label.form-label Country of Immediate Parent company
           .form-value
             p
-              - if @form_answer.parent_company_country.present?
-                = @form_answer.parent_company_country
+              - if obj.parent_company_country.present?
+                = obj.parent_company_country
               - else
                 ' -
           .form-fields.form-block
@@ -54,17 +59,17 @@
             span.glyphicon.glyphicon-pencil
             ' Edit
           .clear
-      - if @form_answer.parent_ultimate_control
+      - if obj.parent_ultimate_control
         .form-group
-          = simple_form_for [namespace_name, @form_answer],
+          = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                             remote: true,
                             authenticity_token: true do |f|
 
             label.form-label Name of Organisation with Ultimate control
             .form-value
               p
-                - if @form_answer.ultimate_control_company.present?
-                  = @form_answer.ultimate_control_company
+                - if obj.ultimate_control_company.present?
+                  = obj.ultimate_control_company
                 - else
                   ' -
             .form-fields.form-block
@@ -82,15 +87,15 @@
               ' Edit
             .clear
         .form-group
-          = simple_form_for [namespace_name, @form_answer],
+          = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                             remote: true,
                             authenticity_token: true do |f|
 
             label.form-label Country of Organisation with Ultimate control
             .form-value
               p
-                - if @form_answer.ultimate_control_company_country.present?
-                  = @form_answer.ultimate_control_company_country
+                - if obj.ultimate_control_company_country.present?
+                  = obj.ultimate_control_company_country
                 - else
                   ' -
             .form-fields.form-block
@@ -112,27 +117,27 @@
         label.form-label Name of Immediate Parent company
         p
           - if @form_answer.parent_company.present?
-            = @form_answer.parent_company
+            = obj.parent_company
           - else
             ' -
         label.form-label Country of Immediate Parent company
         p
-          - if @form_answer.parent_company_country.present?
-            = @form_answer.parent_company_country
+          - if obj.parent_company_country.present?
+            = obj.parent_company_country
           - else
             ' -
 
-        - if @form_answer.parent_ultimate_control
+        - if obj.parent_ultimate_control
           label.form-label Name of Organisation with Ultimate control
           p
-            - if @form_answer.ultimate_control_company.present?
-              = @form_answer.ultimate_control_company
+            - if obj.ultimate_control_company.present?
+              = obj.ultimate_control_company
             - else
               ' -
           label.form-label Country of Organisation with Ultimate control
           p
-            - if @form_answer.ultimate_control_company_country.present?
-              = @form_answer.ultimate_control_company_country
+            - if obj.ultimate_control_company_country.present?
+              = obj.ultimate_control_company_country
             - else
               ' -
 

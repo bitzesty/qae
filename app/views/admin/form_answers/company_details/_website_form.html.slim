@@ -1,16 +1,21 @@
+- unless resource.submitted_and_after_the_deadline?
+  - obj = @form_answer
+- else
+  - obj = CompanyDetail.for(@form_answer)
+
 - unless @form_answer.promotion?
   br
   - if @form_answer.submitted_and_after_the_deadline?
     .form-group
-      = simple_form_for [namespace_name, @form_answer],
+      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                         remote: true,
                         authenticity_token: true do |f|
 
         label.form-label Website address
         .form-value
           p
-            - if @form_answer.website_url.present?
-              = @form_answer.website_url
+            - if obj.website_url.present?
+              = obj.website_url
             - else
               ' -
         .form-fields.form-block
@@ -31,7 +36,7 @@
     .form-group
       label.form-label Website address
       p
-        - if @form_answer.website_url.present?
-          = @form_answer.website_url
+        - if obj.website_url.present?
+          = obj.website_url
         - else
           ' -

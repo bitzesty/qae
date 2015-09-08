@@ -1,8 +1,13 @@
+- unless resource.submitted_and_after_the_deadline?
+  - obj = @form_answer
+- else
+  - obj = CompanyDetail.for(@form_answer)
+
 - unless @form_answer.promotion?
   br
   - if @form_answer.submitted_and_after_the_deadline?
     .form-group
-      = simple_form_for [namespace_name, @form_answer],
+      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                         remote: true,
                         authenticity_token: true do |f|
 
@@ -10,9 +15,9 @@
         .form-value
           p
             - if @form_answer.innovation?
-              = @form_answer.innovation_desc_short
+              = obj.innovation_desc_short
             - if @form_answer.development?
-              = @form_answer.development_desc_short
+              = obj.development_desc_short
             - if @form_answer.trade?
               / TODO
         .form-fields.form-block
@@ -42,8 +47,8 @@
       label.form-label Description of goods/services
       p
         - if @form_answer.innovation?
-          = @form_answer.innovation_desc_short
+          = obj.innovation_desc_short
         - if @form_answer.development?
-          = @form_answer.development_desc_short
+          = obj.development_desc_short
         - if @form_answer.trade?
           / TODO
