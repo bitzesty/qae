@@ -1,6 +1,6 @@
 - unless @form_answer.promotion?
   br
-  - if @form_answer.submitted_and_after_the_deadline?
+  - if @form_answer.submitted_and_after_the_deadline? && policy(resource).can_update_by_admin_lead_and_primary_assessors?
     .form-group.sic-code
       = simple_form_for [namespace_name, @form_answer],
                         remote: true,
