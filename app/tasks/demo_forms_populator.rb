@@ -42,7 +42,7 @@ class DemoFormsPopulator
       end
 
       new_form.user_id = user.id
-      new_form.company_or_nominee_name = "DEMO Company #{y}"
+      new_form.company_or_nominee_name = "DEMO Company #{form_answer.award_type} #{y}"
       new_form.account_id = user.account.id
       new_form.company_details_editable_id = nil
       new_form.company_details_editable_type = nil
