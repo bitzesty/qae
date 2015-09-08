@@ -1,5 +1,5 @@
 - account_name = @form_answer.promotion? ? "Nominee name" : "Company name"
-- if @form_answer.submitted_and_after_the_deadline?
+- if @form_answer.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_company_name?
   .form-group
     = simple_form_for [namespace_name, @form_answer],
                       remote: true,
@@ -12,7 +12,7 @@
         p
           - if @form_answer.promotion?
             = @form_answer.nominee_title
-            ' 
+            '
           = @form_answer.company_name
       .input.form-group.form-fields.form-block
         .row
@@ -42,5 +42,5 @@
     p
       - if @form_answer.promotion?
         = @form_answer.nominee_title
-        ' 
+        '
       = @form_answer.company_name

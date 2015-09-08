@@ -35,7 +35,7 @@
             = obj.nominee_region
             br
 
-      - if resource.submitted_and_after_the_deadline?
+      - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
         = simple_form_for([namespace_name, CompanyDetail.for(resource)],
                           remote: true,
                           authenticity_token: true) do |f|
@@ -152,7 +152,7 @@
             = obj.nominee_organisation_website
             br
 
-    - if resource.submitted_and_after_the_deadline?
+    - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
       = simple_form_for([namespace_name, CompanyDetail.for(resource)],
                         remote: true,
                         authenticity_token: true) do |f|
@@ -275,7 +275,7 @@
             = obj.nominator_email
             br
 
-      - if resource.submitted_and_after_the_deadline?
+      - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
         = simple_form_for([namespace_name, CompanyDetail.for(resource)],
                           remote: true,
                           authenticity_token: true) do |f|

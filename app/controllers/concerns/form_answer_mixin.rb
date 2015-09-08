@@ -1,7 +1,7 @@
 module FormAnswerMixin
   def update
     authorize resource, :update?
-    resource.assign_attributes(update_params)
+    resource.assign_attributes(allowed_params)
     resource.company_details_updated_at = DateTime.now
     resource.company_details_editable = current_subject
 
@@ -63,5 +63,16 @@ module FormAnswerMixin
 
   def lead_case_summary_assessment
     @lead_case_summary_assessment ||= resource.assessor_assignments.lead_case_summary.decorate
+  end
+
+  def allowed_params
+    ops = update_params
+
+    ops.reject! do |k, v|
+      k.to_sym == :company_or_nominee_name &&
+      !CompanyDetailPolicy.new(pundit_user, resource).can_manage_company_name?
+    end
+
+    ops
   end
 end
