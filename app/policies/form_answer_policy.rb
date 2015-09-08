@@ -16,6 +16,10 @@ class FormAnswerPolicy < ApplicationPolicy
     admin? || subject.lead?(record)
   end
 
+  def can_update_by_admin_lead_and_primary_assessors?
+    admin? || subject.lead?(record) || subject.primary?(record)
+  end
+
   def update_financials?
     admin? || subject.lead?(record) || subject.primary?(record)
   end

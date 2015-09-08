@@ -6,6 +6,8 @@
                         remote: true,
                         authenticity_token: true do |f|
 
+        = hidden_field_tag :section, "sic_code"
+
         label.form-label SIC code
         .form-value
           p

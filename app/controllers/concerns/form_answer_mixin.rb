@@ -1,6 +1,6 @@
 module FormAnswerMixin
   def update
-    authorize resource, :update?
+    check_rigths_by_updating_options
     resource.assign_attributes(allowed_params)
     resource.company_details_updated_at = DateTime.now
     resource.company_details_editable = current_subject
@@ -90,5 +90,21 @@ module FormAnswerMixin
     end
 
     ops
+  end
+
+  def its_previous_wins_update?
+    params[:section] == "previous_wins"
+  end
+
+  def its_sic_code_update?
+    params[:section] == "sic_code"
+  end
+
+  def check_rigths_by_updating_options
+    if its_previous_wins_update? || its_sic_code_update?
+      authorize resource, :can_update_by_admin_lead_and_primary_assessors?
+    else
+      authorize resource, :update?
+    end
   end
 end
