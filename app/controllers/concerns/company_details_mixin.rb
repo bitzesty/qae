@@ -1,9 +1,39 @@
 module CompanyDetailsMixin
+  ADDRESS_FIELDS = [
+    :address_building,
+    :address_street,
+    :address_city,
+    :address_county,
+    :address_postcode,
+    :telephone,
+    :region,
+    :nominee_title,
+    :nominee_organisation,
+    :nominee_position,
+    :nominee_organisation_website,
+    :nominee_building,
+    :nominee_street,
+    :nominee_city,
+    :nominee_county,
+    :nominee_postcode,
+    :nominee_telephone,
+    :nominee_email,
+    :nominee_region,
+    :nominator_name,
+    :nominator_building,
+    :nominator_street,
+    :nominator_city,
+    :nominator_county,
+    :nominator_postcode,
+    :nominator_telephone,
+    :nominator_email
+  ]
+
   def update
     @company_detail = CompanyDetail.find(params[:id])
     authorize @company_detail, :update?
 
-    @company_detail.update(update_params)
+    @company_detail.update(allowed_params)
 
     @form_answer = @company_detail.form_answer.decorate
     @form_answer.company_details_updated_at = DateTime.now
@@ -24,33 +54,18 @@ module CompanyDetailsMixin
   private
 
   def update_params
-    params.require(:company_detail).permit :address_building,
-                                           :address_street,
-                                           :address_city,
-                                           :address_county,
-                                           :address_postcode,
-                                           :telephone,
-                                           :region,
-                                           :nominee_title,
-                                           :nominee_organisation,
-                                           :nominee_position,
-                                           :nominee_organisation_website,
-                                           :nominee_building,
-                                           :nominee_street,
-                                           :nominee_city,
-                                           :nominee_county,
-                                           :nominee_postcode,
-                                           :nominee_telephone,
-                                           :nominee_email,
-                                           :nominee_region,
-                                           :nominator_name,
-                                           :nominator_building,
-                                           :nominator_street,
-                                           :nominator_city,
-                                           :nominator_county,
-                                           :nominator_postcode,
-                                           :nominator_telephone,
-                                           :nominator_email
+    params.require(:company_detail).permit ADDRESS_FIELDS
+  end
+
+  def allowed_params
+    ops = update_params
+
+    ops.reject! do |k, v|
+      ADDRESS_FIELDS.include?(k.to_sym) &&
+      !CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
+    end
+
+    ops
   end
 
   def resource
