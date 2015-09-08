@@ -18,8 +18,20 @@
         .form-fields.form-block
           = f.input :date_started_trading,
                     as: :string,
-                    label: false,
-                    input_html: { class: "form-control" }
+                    label: "Day",
+                    input_html: { class: "form-control" },
+                    wrapper_html: { class: "form-control-day" }
+          = f.input :date_started_trading,
+                    as: :string,
+                    label: "Month",
+                    input_html: { class: "form-control" },
+                    wrapper_html: { class: "form-control-month" }
+          = f.input :date_started_trading,
+                    as: :string,
+                    label: "Year",
+                    input_html: { class: "form-control" },
+                    wrapper_html: { class: "form-control-year" }
+          .clear
           .form-actions.text-right
             = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
             = f.submit "Save", class: "btn btn-primary pull-right"
