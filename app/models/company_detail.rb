@@ -34,7 +34,23 @@ class CompanyDetail < ActiveRecord::Base
       nominator_county: form_answer.nominator_county,
       nominator_postcode: form_answer.nominator_postcode,
       nominator_telephone: form_answer.nominator_telephone,
-      nominator_email: form_answer.nominator_email
+      nominator_email: form_answer.nominator_email,
+      registration_number: form_answer.registration_number,
+      date_started_trading: form_answer.date_started_trading,
+      website_url: form_answer.website_url,
+      head_of_bussines_title: form_answer.head_of_bussines_title,
+      head_of_business_full_name: form_answer.head_of_business_full_name,
+      head_of_business_honours: form_answer.head_of_business_honours,
+      head_job_title: form_answer.head_job_title,
+      head_email: form_answer.head_email,
+      applying_for: form_answer.applying_for,
+      parent_company: form_answer.parent_company,
+      parent_company_country: form_answer.parent_company_country,
+      parent_ultimate_control: form_answer.parent_ultimate_control,
+      ultimate_control_company: form_answer.ultimate_control_company,
+      ultimate_control_company_country: form_answer.ultimate_control_company_country,
+      innovation_desc_short: form_answer.innovation_desc_short,
+      development_desc_short: form_answer.development_desc_short
     }
     form_answer.create_company_detail(args)
   end

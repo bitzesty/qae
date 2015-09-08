@@ -273,6 +273,70 @@ class FormAnswerDecorator < ApplicationDecorator
     document["personal_email"]
   end
 
+  def registration_number
+    document["registration_number"]
+  end
+
+  def date_started_trading
+    "#{document['started_trading_day']}/#{document['started_trading_month']}/#{document['started_trading_year']}".strip
+  end
+
+  def website_url
+    document["website_url"]
+  end
+
+  def head_of_bussines_title
+    document["head_of_bussines_title"]
+  end
+
+  def head_of_business_full_name
+    "#{document['head_of_business_first_name']} #{document['head_of_business_last_name']}".strip
+  end
+
+  def head_of_business_honours
+    document["head_of_business_honours"]
+  end
+
+  def head_job_title
+    document["head_job_title"]
+  end
+
+  def head_email
+    document["head_email"]
+  end
+
+  def applying_for
+    document["applying_for"]
+  end
+
+  def parent_company
+    document["parent_company"]
+  end
+
+  def parent_company_country
+    document["parent_company_country"]
+  end
+
+  def parent_ultimate_control
+    document["parent_ultimate_control"]
+  end
+
+  def ultimate_control_company
+    document["ultimate_control_company"]
+  end
+
+  def ultimate_control_company_country
+    document["ultimate_control_company_country"]
+  end
+
+  def innovation_desc_short
+    document["innovation_desc_short"]
+  end
+
+  def development_desc_short
+    document["development_desc_short"]
+  end
+
   def primary_assessor_full_name
     object.assessors.primary.try(:full_name) || "Not Assigned"
   end
