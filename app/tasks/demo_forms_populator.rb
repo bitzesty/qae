@@ -37,7 +37,8 @@ class DemoFormsPopulator
         user.save(validate: false)
         user.update_column(:confirmed_at, Time.zone.now - 3.days)
 
-        Account.create(owner: user)
+        account = Account.create(owner: user)
+        user.update_column(:account_id, account.id)
         user.reload
       end
 
