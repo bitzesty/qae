@@ -6,7 +6,10 @@
     .form-value.no-js-update
       p = press_summary.body.presence || content_tag(:i, "No Press Book Notes has been added yet")
     .input.form-group
-      = f.input :body, as: :text, input_html: { class: 'form-control', rows: 4 }, label: false
+      = f.input :body,
+                as: :text,
+                input_html: { class: 'form-control js-char-count', rows: 4, "data-word-max" => 150 },
+                label: false
     .clear
 
     - if policy(press_summary).update?
