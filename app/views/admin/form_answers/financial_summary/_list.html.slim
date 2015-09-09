@@ -22,12 +22,13 @@
             - else
               = render "admin/form_answers/financial_summary/row", f: f, row: row
 
-    = link_to "#", class: "form-edit-link pull-right"
-      span.glyphicon.glyphicon-pencil
-      ' Edit
-    .form-actions.text-right
-      = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-      = button_tag "Save", class: "btn btn-primary form-save-button pull-right"
-    .clear
+    - if policy(resource).update_financials?
+      = link_to "#", class: "form-edit-link pull-right"
+        span.glyphicon.glyphicon-pencil
+        ' Edit
+      .form-actions.text-right
+        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+        = button_tag "Save", class: "btn btn-primary form-save-button pull-right"
+      .clear
 
 = render "admin/form_answers/financial_summary/benchmarks", financial_pointer: financial_pointer

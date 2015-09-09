@@ -68,6 +68,10 @@ class FormAnswerDecorator < ApplicationDecorator
     company_or_nominee_name
   end
 
+  def nominee_title
+    object.nominee_title ? object.nominee_title : document["nominee_title"]
+  end
+
   def progress_class
     "#{object.state.dasherize[0..-2]}"
   end
@@ -174,9 +178,9 @@ class FormAnswerDecorator < ApplicationDecorator
       document["organization_address_city"]
   end
 
-  def address_country
-    document["principal_address_country"] ||
-      document["organization_address_country"]
+  def address_county
+    document["principal_address_county"] ||
+      document["organization_address_county"]
   end
 
   def address_postcode
@@ -191,6 +195,146 @@ class FormAnswerDecorator < ApplicationDecorator
   def region
     document["principal_address_region"] ||
       document["organization_address_region"]
+  end
+
+  def nominee_organisation
+    document["organization_address_name"]
+  end
+
+  def nominee_position
+    document["nominee_position"]
+  end
+
+  def nominee_organisation_website
+    document["website_url"]
+  end
+
+  def nominee_building
+    document["nominee_personal_address_building"]
+  end
+
+  def nominee_street
+    document["nominee_personal_address_street"]
+  end
+
+  def nominee_city
+    document["nominee_personal_address_city"]
+  end
+
+  def nominee_county
+    document["nominee_personal_address_county"]
+  end
+
+  def nominee_postcode
+    document["nominee_personal_address_postcode"]
+  end
+
+  def nominee_telephone
+    document["nominee_phone"]
+  end
+
+  def nominee_email
+    document["nominee_email"]
+  end
+
+  def nominee_region
+    document["nominee_personal_address_region"]
+  end
+
+  def nominator_name
+    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
+  end
+
+  def nominator_building
+    document["personal_address_building"]
+  end
+
+  def nominator_street
+    document["personal_address_street"]
+  end
+
+  def nominator_city
+    document["personal_address_city"]
+  end
+
+  def nominator_county
+    document["personal_address_county"]
+  end
+
+  def nominator_postcode
+    document["personal_address_postcode"]
+  end
+
+  def nominator_telephone
+    document["personal_phone"]
+  end
+
+  def nominator_email
+    document["personal_email"]
+  end
+
+  def registration_number
+    document["registration_number"]
+  end
+
+  def date_started_trading
+    "#{document['started_trading_day']}/#{document['started_trading_month']}/#{document['started_trading_year']}".strip
+  end
+
+  def website_url
+    document["website_url"]
+  end
+
+  def head_of_bussines_title
+    document["head_of_bussines_title"]
+  end
+
+  def head_of_business_full_name
+    "#{document['head_of_business_first_name']} #{document['head_of_business_last_name']}".strip
+  end
+
+  def head_of_business_honours
+    document["head_of_business_honours"]
+  end
+
+  def head_job_title
+    document["head_job_title"]
+  end
+
+  def head_email
+    document["head_email"]
+  end
+
+  def applying_for
+    document["applying_for"]
+  end
+
+  def parent_company
+    document["parent_company"]
+  end
+
+  def parent_company_country
+    document["parent_company_country"]
+  end
+
+  def parent_ultimate_control
+    document["parent_ultimate_control"]
+  end
+
+  def ultimate_control_company
+    document["ultimate_control_company"]
+  end
+
+  def ultimate_control_company_country
+    document["ultimate_control_company_country"]
+  end
+
+  def innovation_desc_short
+    document["innovation_desc_short"]
+  end
+
+  def development_desc_short
+    document["development_desc_short"]
   end
 
   def primary_assessor_full_name

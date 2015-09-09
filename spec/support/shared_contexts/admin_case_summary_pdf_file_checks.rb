@@ -14,7 +14,7 @@ shared_context "admin case summary pdf file checks" do
     create :assessor_assignment, form_answer: form_answer,
                                  submitted_at: Date.today,
                                  assessor: nil,
-                                 position: "primary_case_summary",
+                                 position: "lead_case_summary",
                                  document: assessor_assignment_document
   end
 

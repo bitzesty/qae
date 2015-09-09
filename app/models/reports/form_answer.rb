@@ -11,7 +11,6 @@ class Reports::FormAnswer
     @primary = pick_assignment("primary")
     @secondary = pick_assignment("secondary")
     @lead_case_summary = pick_assignment("lead_case_summary")
-    @primary_case_summary = pick_assignment("primary_case_summary")
 
     @secondary_assessor = @obj.secondary_assessor
     @press_summary = @obj.press_summary if @obj.awarded?
@@ -181,12 +180,9 @@ class Reports::FormAnswer
 
   def case_summary_status
     lead_submitted = @lead_case_summary.try(:submitted?)
-    primary_submitted = @primary_case_summary.try(:submitted?)
 
-    if !primary_submitted && !lead_submitted
+    if !lead_submitted
       "Not Submitted"
-    elsif primary_submitted && !lead_submitted
-      "Primary Submitted"
     elsif lead_submitted
       "Lead Confirmed"
     end

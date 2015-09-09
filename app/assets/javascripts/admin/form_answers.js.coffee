@@ -7,7 +7,6 @@ ready = ->
   bindRags("#section-appraisal-form-primary .edit_assessor_assignment")
   bindRags("#section-appraisal-form-secondary .edit_assessor_assignment")
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
-  bindRags("#section-case-summary-primary_case_summary .edit_assessor_assignment")
   bindRags("#section-case-summary-lead_case_summary .edit_assessor_assignment")
 
   handleCompanyDetailsForm()
@@ -326,7 +325,11 @@ handleCompanyDetailsForm = ->
       $( newNestedForm ).insertAfter( lastNestedForm )
 
   $(document).on "ajax:success", ".company-details-forms form", (e, data, status, xhr) ->
-    $(this).closest(".form-group").replaceWith($(data))
+    closest_form_group = $(this).closest(".form-group")
+    if closest_form_group.hasClass("form-group-multiple")
+      $(this).closest(".form-group-multiple-parent").replaceWith($(data))
+    else
+      closest_form_group.replaceWith($(data))
 
   $(".company-details-forms").on "click", ".remove-link", (e) ->
     e.preventDefault()

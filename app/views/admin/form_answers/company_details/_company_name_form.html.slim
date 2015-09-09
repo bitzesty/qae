@@ -1,4 +1,5 @@
-- if @form_answer.submitted_and_after_the_deadline?
+- account_name = @form_answer.promotion? ? "Nominee name" : "Company name"
+- if @form_answer.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_company_name?
   .form-group
     = simple_form_for [namespace_name, @form_answer],
                       remote: true,
@@ -6,14 +7,26 @@
                       html: { "data-type" => "html", class: "company-name-form"} do |f|
 
       = hidden_field_tag :section, "company_name"
-      label.form-label Company name
+      label.form-label = account_name
       .form-value
-        p = @form_answer.company_name
+        p
+          - if @form_answer.promotion?
+            = @form_answer.nominee_title
+            '
+          = @form_answer.company_name
       .input.form-group.form-fields.form-block
-        = f.input :company_or_nominee_name,
-                  as: :string,
-                  label: false,
-                  input_html: { class: "form-control" }
+        .row
+          - if @form_answer.promotion?
+            .col-md-2
+              = f.input :nominee_title,
+                        as: :string,
+                        label: "Title",
+                        input_html: { class: "form-control" }
+          div class="#{@form_answer.promotion? ? 'col-md-10' : 'col-md-12'}"
+            = f.input :company_or_nominee_name,
+                      as: :string,
+                      label: @form_answer.promotion? ? 'Full name' : false,
+                      input_html: { class: "form-control" }
 
         .form-actions.text-right
           = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
@@ -25,5 +38,9 @@
       .clear
 - else
   .form-group
-    label.form-label Company name
-    p = @form_answer.company_name
+    label.form-label = account_name
+    p
+      - if @form_answer.promotion?
+        = @form_answer.nominee_title
+        '
+      = @form_answer.company_name

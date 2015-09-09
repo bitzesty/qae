@@ -4,8 +4,10 @@
 #= require jquery.iframe-transport
 #= require jquery.fileupload
 #= require select2.full.min
+#= require Countable
 #= require ./frontend/password-strength-indicator
 #= require ./frontend/textarea-autoResize
+#= require ./frontend/text-character-count
 #= require_tree ./admin
 #= require search
 #= require jquery-ui

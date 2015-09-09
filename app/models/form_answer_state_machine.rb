@@ -120,7 +120,6 @@ class FormAnswerStateMachine
     if Settings.after_current_submission_deadline?
       all_states = [
         :assessment_in_progress,
-        :not_submitted,
         :recommended,
         :reserved,
         :not_recommended,
@@ -129,8 +128,6 @@ class FormAnswerStateMachine
         :withdrawn
       ]
       case object.state.to_sym
-      when :withdrawn
-        []
       when :not_eligible
         []
       when :application_in_progress

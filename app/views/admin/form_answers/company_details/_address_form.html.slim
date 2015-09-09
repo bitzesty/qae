@@ -1,97 +1,325 @@
-.form-group.company-address-form
-  label.form-label Address
-  .form-value
-    p
-      - unless resource.submitted_and_after_the_deadline?
-        - obj = @form_answer
-      - else
-        - obj = CompanyDetail.for(@form_answer)
+- unless resource.submitted_and_after_the_deadline?
+  - obj = @form_answer
+- else
+  - obj = CompanyDetail.for(@form_answer)
 
-      - if obj.address_building.present?
-        = obj.address_building
-        br
-      - if obj.address_street.present?
-        = obj.address_street
-        br
-      - if obj.address_city.present?
-        = obj.address_city
-        br
-      - if obj.address_country.present?
-        = Country.find_country_by_alpha2(obj.address_country).try(:name)
-        br
-      - if obj.address_postcode.present?
-        = obj.address_postcode
-        br
-      - if obj.telephone.present?
-        = obj.telephone
-        br
-      - if obj.region.present?
-        = obj.region
-        br
+.form-group-multiple-parent
+  - if @form_answer.promotion?
+    br
+    .form-group.form-group-multiple.company-address-personal-form
+      label.form-label Nominee Address
+      .form-value
+        p
+          - if obj.nominee_building.present?
+            = obj.nominee_building
+            br
+          - if obj.nominee_street.present?
+            = obj.nominee_street
+            br
+          - if obj.nominee_city.present?
+            = obj.nominee_city
+            br
+          - if obj.nominee_county.present?
+            = obj.nominee_county
+            br
+          - if obj.nominee_postcode.present?
+            = obj.nominee_postcode
+            br
+          - if obj.nominee_telephone.present?
+            = obj.nominee_telephone
+            br
+          - if obj.nominee_email.present?
+            = obj.nominee_email
+            br
+          - if obj.nominee_region.present?
+            = obj.nominee_region
+            br
 
-  - if resource.submitted_and_after_the_deadline?
-    = simple_form_for([namespace_name, CompanyDetail.for(resource)],
-                      remote: true,
-                      authenticity_token: true) do |f|
+      - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
+        = simple_form_for([namespace_name, CompanyDetail.for(resource)],
+                          remote: true,
+                          authenticity_token: true) do |f|
 
-      .input.form-group.form-fields.form-block
-        .row
-          .col-md-8
-            label Building and street
-            = f.input :address_building,
-                      as: :string,
-                      label: false,
-                      input_html: { class: "form-control" }
+          .input.form-group.form-fields.form-block
+            .row
+              .col-md-8
+                = f.input :nominee_building,
+                          as: :string,
+                          label: "Building and street",
+                          input_html: { class: "form-control" }
 
-            = f.input :address_street,
-                      as: :string,
-                      label: false,
-                      input_html: { class: "form-control" }
-        .row
-          .col-md-6
-            label Town or city
-            = f.input :address_city,
-                      as: :string,
-                      label: false,
-                      input_html: { class: "form-control" }
-        .row
-          .col-md-6
-            label Country
-            = f.input :address_country,
-                      as: :select,
-                      label: false,
-                      input_html: { class: "form-control" },
-                      collection: country_collection
-        .row
-          .col-md-3
-            label Postcode
-            = f.input :address_postcode,
-                      as: :string,
-                      label: false,
-                      input_html: { class: "form-control" }
-        .row
-          .col-md-3
-            label Telephone number
-            = f.input :telephone,
-                      as: :string,
-                      label: false,
-                      input_html: { class: "form-control" }
-        .row
-          .col-md-4
-            label Region
-            = f.input :region,
-                      as: :select,
-                      label: false,
-                      input_html: { class: "form-control" },
-                      collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
+                = f.input :nominee_street,
+                          as: :string,
+                          label: false,
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-6
+                = f.input :nominee_city,
+                          as: :string,
+                          label: "Town or city",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-6
+                = f.input :nominee_county,
+                          as: :string,
+                          label: "County",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-3
+                = f.input :nominee_postcode,
+                          as: :string,
+                          label: "Postcode",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-3
+                = f.input :nominee_telephone,
+                          as: :string,
+                          label: "Telephone number",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-8
+                = f.input :nominee_email,
+                          as: :string,
+                          label: "Email",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-4
+                = f.input :nominee_region,
+                          as: :select,
+                          label: "Region",
+                          input_html: { class: "form-control" },
+                          collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
 
-        .form-actions.text-right
-          = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-          = f.submit "Save", class: "btn btn-primary pull-right"
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary pull-right"
 
+          .clear
+
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
       .clear
 
-      = link_to "#", class: "form-edit-link pull-right"
-        span.glyphicon.glyphicon-pencil
-        ' Edit
-  .clear
+  br
+  .form-group.form-group-multiple.company-address-form
+    label.form-label
+      = @form_answer.promotion? ? "Organisation Address" : "Address"
+    .form-value
+      p
+        - if @form_answer.promotion?
+          - if obj.nominee_organisation.present?
+            = obj.nominee_organisation
+            br
+
+          - if obj.nominee_position.present?
+            = obj.nominee_position
+            br
+
+        - if obj.address_building.present?
+          = obj.address_building
+          br
+        - if obj.address_street.present?
+          = obj.address_street
+          br
+        - if obj.address_city.present?
+          = obj.address_city
+          br
+        - if obj.address_county.present?
+          = obj.address_county
+          br
+        - if obj.address_postcode.present?
+          = obj.address_postcode
+          br
+
+        - unless @form_answer.promotion?
+          - if obj.telephone.present?
+            = obj.telephone
+            br
+          - if obj.region.present?
+            = obj.region
+            br
+
+        - if @form_answer.promotion?
+          - if obj.nominee_organisation_website.present?
+            = obj.nominee_organisation_website
+            br
+
+    - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
+      = simple_form_for([namespace_name, CompanyDetail.for(resource)],
+                        remote: true,
+                        authenticity_token: true) do |f|
+
+        .input.form-group.form-fields.form-block
+          - if @form_answer.promotion?
+            .row
+              .col-md-8
+                = f.input :nominee_organisation,
+                          as: :string,
+                          label: "Organisation Name",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-8
+                = f.input :nominee_position,
+                          as: :string,
+                          label: "Nominee Position",
+                          input_html: { class: "form-control" }
+          .row
+            .col-md-8
+              = f.input :address_building,
+                        as: :string,
+                        label: "Building and street",
+                        input_html: { class: "form-control" }
+
+              = f.input :address_street,
+                        as: :string,
+                        label: false,
+                        input_html: { class: "form-control" }
+          .row
+            .col-md-6
+              = f.input :address_city,
+                        as: :string,
+                        label: "Town or city",
+                        input_html: { class: "form-control" }
+          .row
+            .col-md-6
+              = f.input :address_county,
+                        as: :string,
+                        label: "County",
+                        input_html: { class: "form-control" }
+          .row
+            .col-md-3
+              = f.input :address_postcode,
+                        as: :string,
+                        label: "Postcode",
+                        input_html: { class: "form-control" }
+          .row
+            .col-md-3
+              = f.input :telephone,
+                        as: :string,
+                        label: "Telephone number",
+                        input_html: { class: "form-control" }
+
+          - unless @form_answer.promotion?
+            .row
+              .col-md-4
+                = f.input :region,
+                          as: :select,
+                          label: "Region",
+                          input_html: { class: "form-control" },
+                          collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
+
+          - if @form_answer.promotion?
+            .row
+              .col-md-8
+                = f.input :nominee_organisation_website,
+                          as: :string,
+                          label: "Website",
+                          input_html: { class: "form-control" }
+
+          .form-actions.text-right
+            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+            = f.submit "Save", class: "btn btn-primary pull-right"
+
+        .clear
+
+        = link_to "#", class: "form-edit-link pull-right"
+          span.glyphicon.glyphicon-pencil
+          ' Edit
+    .clear
+
+  - if @form_answer.promotion?
+    br
+    .form-group.form-group-multiple.company-address-nominator-form
+      label.form-label Nominator Address
+      .form-value
+        p
+          - if obj.nominator_name.present?
+            = obj.nominator_name
+            br
+          - if obj.nominator_building.present?
+            = obj.nominator_building
+            br
+          - if obj.nominator_street.present?
+            = obj.nominator_street
+            br
+          - if obj.nominator_city.present?
+            = obj.nominator_city
+            br
+          - if obj.nominator_county.present?
+            = obj.nominator_county
+            br
+          - if obj.nominator_postcode.present?
+            = obj.nominator_postcode
+            br
+          - if obj.nominator_telephone.present?
+            = obj.nominator_telephone
+            br
+          - if obj.nominator_email.present?
+            = obj.nominator_email
+            br
+
+      - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
+        = simple_form_for([namespace_name, CompanyDetail.for(resource)],
+                          remote: true,
+                          authenticity_token: true) do |f|
+
+          .input.form-group.form-fields.form-block
+            .row
+              .col-md-8
+                = f.input :nominator_name,
+                          as: :string,
+                          label: "Nominator Name",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-8
+                = f.input :nominator_building,
+                          as: :string,
+                          label: "Building and street",
+                          input_html: { class: "form-control" }
+
+                = f.input :nominator_street,
+                          as: :string,
+                          label: false,
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-6
+                = f.input :nominator_city,
+                          as: :string,
+                          label: "Town or city",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-6
+                = f.input :nominator_county,
+                          as: :string,
+                          label: "County",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-3
+                = f.input :nominator_postcode,
+                          as: :string,
+                          label: "Postcode",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-3
+                = f.input :nominator_telephone,
+                          as: :string,
+                          label: "Telephone number",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-8
+                = f.input :nominator_email,
+                          as: :string,
+                          label: "Email",
+                          input_html: { class: "form-control" }
+
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary pull-right"
+
+          .clear
+
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+      .clear

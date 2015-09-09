@@ -194,7 +194,7 @@ class FormAnswer < ActiveRecord::Base
   private
 
   def nominee_full_name_from_document
-    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
+    "#{document['user_info_first_name']} #{document['user_info_last_name']}".strip
   end
 
   def set_urn
@@ -225,7 +225,7 @@ class FormAnswer < ActiveRecord::Base
   def assign_searching_attributes
     unless submitted_and_after_the_deadline?
       self.company_or_nominee_name = company_or_nominee_from_document
-    end
+     end
     self.nominee_full_name = nominee_full_name_from_document
     self.award_type_full_name = AWARD_TYPE_FULL_NAMES[award_type]
   end

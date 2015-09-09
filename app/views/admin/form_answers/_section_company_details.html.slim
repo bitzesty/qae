@@ -2,7 +2,7 @@
   .panel-heading#company-details-heading role="tab"
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-application-info" href="#section-company-details" aria-expanded="true" aria-controls="section-company-details"
-        ' Company Details
+        = @form_answer.promotion? ? "Nominee Details" : "Company Details"
         - if resource.company_details_updated_at && resource.company_details_editable
           small
             = "Updated by: #{resource.company_details_editable.decorate.full_name} - #{format_date(resource.company_details_updated_at)}"
@@ -11,12 +11,15 @@
   #section-company-details.section-company-details.panel-collapse.collapse role="tabpanel" aria-labelledby="company-details-heading"
     .panel-body.company-details-forms
       = render "admin/form_answers/company_details/company_name_form"
-      br
       = render "admin/form_answers/company_details/address_form"
-      br
       = render "admin/form_answers/company_details/previous_wins_form"
-      br
       = render "admin/form_answers/company_details/sic_form"
+      = render "admin/form_answers/company_details/registration_number_form"
+      = render "admin/form_answers/company_details/date_trading_form"
+      = render "admin/form_answers/company_details/website_form"
+      = render "admin/form_answers/company_details/organisation_head_form"
+      = render "admin/form_answers/company_details/parent_company_form"
+      = render "admin/form_answers/company_details/goods_services_form"
 
         .form-group
           label.form-label User accounts

@@ -10,12 +10,14 @@ class AppraisalForm
       option: option
     )
   end
+  def self.non_rag_options_for(object, section)
+  end
 
   def self.strenght_options_for(object, section)
     options = [
       ["Insufficient Information Supplied", "blank"],
       ["Priority Focus for Development", "negative"],
-      ["Positive - Scop for Ongoing Development", "average"],
+      ["Positive - Scope for Ongoing Development", "average"],
       ["Key Strength", "positive"]
     ]
     option = options.detect do |opt|
@@ -46,6 +48,12 @@ class AppraisalForm
   end
 
   RAG_ALLOWED_VALUES = [
+    "negative",
+    "average",
+    "positive"
+  ]
+
+  NON_RAG_ALLOWED_VALUES = [
     "negative",
     "average",
     "positive"
@@ -136,24 +144,24 @@ class AppraisalForm
       label: "Strategy:"
     },
     environment: {
-      type: :rag,
-      label: "Environment:"
+      type: :non_rag,
+      label: "Environmental dimension:"
     },
     social: {
-      type: :rag,
-      label: "Social:"
+      type: :non_rag,
+      label: "Social dimension:"
     },
     economic: {
-      type: :rag,
-      label: "Economic:"
+      type: :non_rag,
+      label: "Economic dimension:"
     },
     leadership_management: {
-      type: :rag,
+      type: :non_rag,
       label: "Leadership & management:"
     },
     environment_protection: {
       type: :strengths,
-      label: "Environment protection and management:"
+      label: "Environmental protection and management:"
     },
     benefiting_the_wilder_community: {
       type: :strengths,
@@ -185,6 +193,13 @@ class AppraisalForm
     }
   }
 
+  MODERATED = {
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:"
+    }
+  }
+
   CASE_SUMMARY_METHODS = [
     :application_background_section_desc
   ]
@@ -200,7 +215,7 @@ class AppraisalForm
   def self.meths_for_award_type(award_type)
     const_get(award_type.upcase).map do |k, obj|
       methods = Array(rate(k))
-      methods << desc(k) if [:rag, :verdict].include?(obj[:type])
+      methods << desc(k) if [:rag, :non_rag, :verdict].include?(obj[:type])
       methods
     end.flatten.map(&:to_sym)
   end
@@ -214,9 +229,9 @@ class AppraisalForm
     out = []
     forms.each do |form|
       form.each do |k, obj|
-        out << rate(k).to_sym if [:strengths, :rag, :verdict].include?(obj[:type])
+        out << rate(k).to_sym if [:strengths, :rag, :non_rag, :verdict].include?(obj[:type])
         # strenghts doesn't have description
-        out << desc(k).to_sym if [:rag, :verdict].include?(obj[:type])
+        out << desc(k).to_sym if [:rag, :non_rag, :verdict].include?(obj[:type])
       end
     end
 
@@ -224,9 +239,17 @@ class AppraisalForm
     out
   end
 
-  def self.struct(form_answer)
+  def self.struct(form_answer, f = nil)
     meth = form_answer.respond_to?(:award_type_slug) ? :award_type_slug : :award_type
-    const_get(form_answer.public_send(meth).upcase)
+
+    # Assessor assignment 
+    moderated = (f && f.object && f.object.position == "moderated")
+
+    if moderated
+      MODERATED
+    else
+      const_get(form_answer.public_send(meth).upcase)
+    end
   end
 
   def self.rates(form_answer, type)

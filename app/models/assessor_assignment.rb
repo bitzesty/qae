@@ -3,7 +3,6 @@ class AssessorAssignment < ActiveRecord::Base
     primary: 0,
     secondary: 1,
     moderated: 2,
-    primary_case_summary: 3,
     lead_case_summary: 4
   }
 
@@ -27,7 +26,6 @@ class AssessorAssignment < ActiveRecord::Base
     validates :assessor_id,
               uniqueness: { scope: [:form_answer_id] },
               allow_nil: true
-    validate :application_background_section
   end
 
   begin :associations
@@ -38,7 +36,6 @@ class AssessorAssignment < ActiveRecord::Base
 
   begin :scopes
     scope :submitted, -> { where.not(submitted_at: nil) }
-    scope :lead_or_primary_case_summary, -> { where(position: [3, 4]) }
   end
 
   around_save :notify_form_answer
@@ -55,10 +52,6 @@ class AssessorAssignment < ActiveRecord::Base
 
   def self.moderated
     find_or_create_by(position: 2)
-  end
-
-  def self.primary_case_summary
-    find_or_create_by(position: 3)
   end
 
   def self.lead_case_summary
@@ -90,7 +83,7 @@ class AssessorAssignment < ActiveRecord::Base
     if errors.blank?
       {}
     else
-      { error: "All assessment sections should be fulfilled" }
+      { error: errors.full_messages }
     end
   end
 
@@ -99,8 +92,7 @@ class AssessorAssignment < ActiveRecord::Base
   def owner_or_administrative?(subject)
     subject.is_a?(Admin) ||
       subject.try(:lead?, form_answer) ||
-      (!moderated? && !lead_case_summary? && assessor_id == subject.id) ||
-      (primary_case_summary? && subject.primary?(form_answer))
+      (!moderated? && !lead_case_summary? && assessor_id == subject.id)
   end
 
   def award_specific_attributes
@@ -113,6 +105,8 @@ class AssessorAssignment < ActiveRecord::Base
 
   def mandatory_fields_for_submitted
     return unless submitted?
+    # TODO Needs to do validation on the verdict fields
+    return if moderated?  
     struct.meths_for_award_type(form_answer.award_type).each do |meth|
       if public_send(meth).blank?
         errors.add(meth, "can not be blank for submitted assessment")
@@ -121,6 +115,8 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def validate_rate(rate_type)
+    # TODO Needs to do validation on the verdict fields
+    return if moderated?
     struct.rates(form_answer, rate_type).each do |section, _|
       val = section_rate(section)
       c = "#{rate_type.upcase}_ALLOWED_VALUES"
@@ -128,16 +124,6 @@ class AssessorAssignment < ActiveRecord::Base
         sect_name = struct.rate(section)
         errors.add(sect_name, "#{rate_type} field has not permitted value")
       end
-    end
-  end
-
-  def application_background_section
-    # case summary sections has additional attribute related with background summary
-    # as it's only one attribute can be done now without extracting the appraisal type
-    # but if any new differences will came relating form structure with the position is expected
-    if application_background_section_desc.present? &&
-        (!lead_case_summary? && !primary_case_summary?)
-      errors.add(:application_background_section_desc, "Can not be present for this appraisal.")
     end
   end
 
@@ -157,7 +143,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def assessor_existence
-    if (moderated? || lead_case_summary? || primary_case_summary?) && assessor_id.present?
+    if (moderated? || lead_case_summary?) && assessor_id.present?
       errors.add(:assessor_id, "Can not be present for this kind of assessment.")
     end
   end
