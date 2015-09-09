@@ -293,7 +293,7 @@ jQuery ->
     #TODO: indicators, error handlers?
 
   triggerAutosave = (e) ->
-    window.autosave_timer ||= setTimeout( autosave, 500 )
+    window.autosave_timer ||= setTimeout( autosave, 5000 )
 
   $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, 50
   $(document).debounce "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave, 50
