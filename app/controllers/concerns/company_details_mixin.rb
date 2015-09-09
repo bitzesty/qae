@@ -1,5 +1,5 @@
 module CompanyDetailsMixin
-  COMPANY_DETAILS_FIELDS = [
+  ADDRESS_FIELDS = [
     :address_building,
     :address_street,
     :address_city,
@@ -26,7 +26,10 @@ module CompanyDetailsMixin
     :nominator_county,
     :nominator_postcode,
     :nominator_telephone,
-    :nominator_email,
+    :nominator_email
+  ]
+
+  COMPANY_DETAILS_FIELDS = ADDRESS_FIELDS + [
     :registration_number,
     :date_started_trading,
     :website_url,
@@ -80,7 +83,7 @@ module CompanyDetailsMixin
     ops = update_params
 
     ops.reject! do |k, v|
-      COMPANY_DETAILS_FIELDS.include?(k.to_sym) &&
+      ADDRESS_FIELDS.include?(k.to_sym) &&
       !CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
     end
 
