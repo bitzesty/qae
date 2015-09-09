@@ -2,6 +2,20 @@ class CompanyDetail < ActiveRecord::Base
   validates :form_answer_id, presence: true
   belongs_to :form_answer
 
+  def trade_goods_amount
+    form_answer.document["trade_goods_amount"].to_i
+  end
+
+  def trade_goods_descriptions
+    form_answer.document["trade_goods_and_services_explanations"].map{ |e| e["desc_short"] }
+  end
+
+  def trade_goods_descriptions= values
+    values.each_with_index do |value, index|
+      form_answer.document["trade_goods_and_services_explanations"][index]["desc_short"] = value
+    end
+  end
+
   def self.for(form_answer)
     detail = form_answer.company_detail
     return detail if detail.present?
@@ -15,7 +29,6 @@ class CompanyDetail < ActiveRecord::Base
       address_postcode: form_answer.address_postcode,
       telephone: form_answer.telephone,
       region: form_answer.region,
-      nominee_title: form_answer.nominee_title,
       nominee_organisation: form_answer.nominee_organisation,
       nominee_position: form_answer.nominee_position,
       nominee_organisation_website: form_answer.nominee_organisation_website,

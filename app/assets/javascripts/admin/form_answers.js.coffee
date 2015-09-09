@@ -326,8 +326,8 @@ handleCompanyDetailsForm = ->
 
   $(document).on "ajax:success", ".company-details-forms form", (e, data, status, xhr) ->
     closest_form_group = $(this).closest(".form-group")
-    if closest_form_group.hasClass("form-group-company-address")
-      $(this).closest(".form-group-company-address-parent").replaceWith($(data))
+    if closest_form_group.hasClass("form-group-multiple")
+      $(this).closest(".form-group-multiple-parent").replaceWith($(data))
     else
       closest_form_group.replaceWith($(data))
 

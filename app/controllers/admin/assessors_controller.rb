@@ -51,6 +51,7 @@ class Admin::AssessorsController < Admin::UsersController
       permit(:email,
              :password,
              :password_confirmation,
+             :company,
              :first_name,
              :last_name,
              :telephone_number,

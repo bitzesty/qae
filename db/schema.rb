@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908105756) do
+ActiveRecord::Schema.define(version: 20150908172247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,7 @@ ActiveRecord::Schema.define(version: 20150908105756) do
     t.integer  "failed_attempts",        default: 0,  null: false
     t.string   "unlock_token"
     t.datetime "locked_at"
+    t.string   "company"
   end
 
   add_index "assessors", ["confirmation_token"], name: "index_assessors_on_confirmation_token", unique: true, using: :btree
@@ -172,7 +173,6 @@ ActiveRecord::Schema.define(version: 20150908105756) do
     t.string   "nominator_postcode"
     t.string   "nominator_telephone"
     t.string   "nominator_email"
-    t.string   "nominee_title"
     t.string   "development_desc_short"
     t.string   "innovation_desc_short"
     t.string   "ultimate_control_company_country"
@@ -187,8 +187,8 @@ ActiveRecord::Schema.define(version: 20150908105756) do
     t.string   "head_of_business_full_name"
     t.string   "head_of_bussines_title"
     t.string   "website_url"
-    t.string   "date_started_trading"
     t.string   "registration_number"
+    t.datetime "date_started_trading"
   end
 
   add_index "company_details", ["form_answer_id"], name: "index_company_details_on_form_answer_id", unique: true, using: :btree
@@ -313,6 +313,7 @@ ActiveRecord::Schema.define(version: 20150908105756) do
     t.integer  "primary_assessor_id"
     t.integer  "secondary_assessor_id"
     t.json     "document"
+    t.string   "nominee_title"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

@@ -42,7 +42,8 @@ module CompanyDetailsMixin
     :ultimate_control_company,
     :ultimate_control_company_country,
     :innovation_desc_short,
-    :development_desc_short
+    :development_desc_short,
+    trade_goods_descriptions: []
   ]
 
   def update
@@ -53,7 +54,6 @@ module CompanyDetailsMixin
     authorize @company_detail, :update?
 
     @company_detail.update(allowed_params)
-
     @form_answer = @company_detail.form_answer.decorate
     @form_answer.company_details_updated_at = DateTime.now
     @form_answer.company_details_editable = current_subject
