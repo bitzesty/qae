@@ -344,4 +344,12 @@ class FormAnswerDecorator < ApplicationDecorator
   def secondary_assessor_full_name
     object.assessors.secondary.try(:full_name) || "Not Assigned"
   end
+
+  def primary_assessment_submitted?
+    object.assessor_assignments.primary.submitted?
+  end
+
+  def secondary_assessment_submitted?
+    object.assessor_assignments.secondary.submitted?
+  end
 end

@@ -551,7 +551,8 @@ table .ellipsis {
 // Icons
   .icon-comment,
   .icon-flagged,
-  .icon-unflagged {
+  .icon-unflagged,
+  .icon-check {
     display: inline-block;
     width: 30px;
     height: 30px;
@@ -624,6 +625,26 @@ table .ellipsis {
       background-image: image-url("icon-flag-grey@2.png");
     }
   }
+
+.icon-check {
+  position: relative;
+  width: 20px;
+  height: 20px;
+  top: -6px;
+  margin-right: 5px;
+  background-image: image-url("icon-check.png");
+  background-position: center center;
+  background-size: 20px 14px;
+  vertical-align: -webkit-baseline-middle;
+
+  @include is-retina {
+    background-image: image-url("icon-check@2.png");
+  }
+
+  .lte-ie7 & {
+    float: left;
+  }
+}
 
 .icon-role {
   display: inline-block;

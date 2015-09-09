@@ -23,8 +23,14 @@ tbody
         td = obj.award_type_full_name
       - else
         td= obj.state.humanize
-        td= obj.primary_assessor_full_name
-        td= obj.secondary_assessor_full_name
+        td
+          - if obj.primary_assessment_submitted?
+            span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
+          = obj.primary_assessor_full_name
+        td
+          - if obj.secondary_assessment_submitted?
+            span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
+          = obj.secondary_assessor_full_name
 
       td
         - app_comments = application_comments(obj.comments)
