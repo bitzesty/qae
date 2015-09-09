@@ -29,26 +29,25 @@
 
   .row
     .col-xs-12
-      .table-overflow-container
-        table.table.applications-table
-          thead
-            tr
-              - unless @search.query?
-                th
-                  span.if-no-js-hide
-                    = check_box_tag :check_all
+      table.table.applications-table
+        thead
+          tr
+            - unless @search.query?
+              th
+                span.if-no-js-hide
+                  = check_box_tag :check_all
+            th.sortable
+              = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
+            th.sortable
+              = sort_link f, "Reference", @search, :urn, disabled: @search.query?
+            - if @search.query?
+              th Award Type
+            - else
+              = render("assessor/form_answers/status_header", f: f)
+              th &nbsp;
               th.sortable
-                = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
-              th.sortable
-                = sort_link f, "Reference", @search, :urn, disabled: @search.query?
-              - if @search.query?
-                th Award Type
-              - else
-                = render("assessor/form_answers/status_header", f: f)
-                th &nbsp;
-                th.sortable
-                  = sort_link f, "Flag", @search, :flag, disabled: @search.query?
-            = render(partial: "assessor/form_answers/list_body")
+                = sort_link f, "Flag", @search, :flag, disabled: @search.query?
+          = render(partial: "assessor/form_answers/list_body")
   .row
   .col-xs-12.text-right
     = paginate @form_answers
