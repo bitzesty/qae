@@ -1452,6 +1452,17 @@ table .ellipsis {
     }
   }
 
+  .non-editable {
+    cursor: default;
+
+    &,
+    a,
+    a:hover,
+    a:focus {
+      text-decoration: none;
+    }
+  }
+
   .dropdown-toggle,
   .dropdown-menu a {
     position: relative;
