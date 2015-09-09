@@ -17,28 +17,34 @@ class DemoFormsPopulator
       y = i + 1
       new_form = form_answer.amoeba_dup
 
-      pass = SecureRandom.hex
+      user = User.find_by_email("test_#{y}@example.com")
 
-      user = User.new(
-        email: "test_#{y}@example.com",
-        title: "test_#{y}_title",
-        first_name: "John #{y}",
-        last_name: "Doe #{y}",
-        job_title: "Manager",
-        phone_number: "1298312#{y}#{rand(1..10)}",
-        password: pass,
-        password_confirmation: pass
-      )
-      user.skip_confirmation!
+      unless user.present?
+        pass = SecureRandom.hex
 
-      user.save(validate: false)
-      user.update_column(:confirmed_at, Time.zone.now - 3.days)
+        user = User.new(
+          email: "test_#{y}@example.com",
+          title: "test_#{y}_title",
+          first_name: "John #{y}",
+          last_name: "Doe #{y}",
+          job_title: "Manager",
+          phone_number: "1298312#{y}#{rand(1..10)}",
+          password: pass,
+          password_confirmation: pass
+        )
+        user.skip_confirmation!
 
-      account = Account.create(owner: user)
+        user.save(validate: false)
+        user.update_column(:confirmed_at, Time.zone.now - 3.days)
+
+        account = Account.create(owner: user)
+        user.update_column(:account_id, account.id)
+        user.reload
+      end
 
       new_form.user_id = user.id
-      new_form.company_or_nominee_name = "DEMO Company #{y}"
-      new_form.account_id = account.id
+      new_form.company_or_nominee_name = "DEMO Company #{form_answer.award_type} #{y}"
+      new_form.account_id = user.account.id
       new_form.company_details_editable_id = nil
       new_form.company_details_editable_type = nil
       new_form.primary_assessor_id = nil
