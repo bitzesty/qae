@@ -293,14 +293,15 @@ jQuery ->
     #TODO: indicators, error handlers?
 
   triggerAutosave = (e) ->
-    window.autosave_timer ||= setTimeout( autosave, 5000 )
+    window.autosave_timer ||= setTimeout( autosave, 1000 )
 
-  $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, 50
-  $(document).debounce "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave, 50
-  $(document).debounce "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave, 50
-  $(document).debounce "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave, 50
-  $(document).debounce "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave, 50
-  $(document).debounce "keyup", "textarea.js-trigger-autosave", triggerAutosave, 50
+  debounceTime = 5000
+  $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, debounceTime
+  $(document).debounce "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave, debounceTime
+  $(document).debounce "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave, debounceTime
+  $(document).debounce "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave, debounceTime
+  $(document).debounce "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave, debounceTime
+  $(document).debounce "keyup", "textarea.js-trigger-autosave", triggerAutosave, debounceTime
 
   updateUploadListVisiblity = (list, button, max) ->
     list_elements = list.find("li")
