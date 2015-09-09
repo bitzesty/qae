@@ -5,7 +5,7 @@ class FormAnswer < ActiveRecord::Base
   extend Enumerize
   include FormAnswerStatesHelper
 
-  has_paper_trail
+  has_paper_trail if: Proc.new { |t| t.versions.last.created_at < Time.zone.now - 1.day }
 
   attr_accessor :current_step, :validator_errors, :steps_with_errors
 
