@@ -260,6 +260,8 @@ jQuery ->
       # Setting current_step_id to form as we updating only current section form_data (not whole form)
       $("#current_step_id").val(step)
 
+  changesUnsaved = false
+
   $(document).on "click", ".js-step-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("step-current")
@@ -276,7 +278,19 @@ jQuery ->
       # Resize textareas that were previously hidden
       resetResizeTextarea()
 
-  autosave = () ->
+  $(document).on "click", ".save-quit-link a", (e) ->
+    if changesUnsaved
+      e.preventDefault()
+      e.stopPropagation()
+
+      link = $(@).attr("href")
+
+      $(@).text("Saving...")
+
+      autosave ->
+        window.location.href = link
+
+  autosave = (callback) ->
     window.autosave_timer = null
     url = $('form.qae-form').data('autosave-url')
     if url
@@ -289,19 +303,38 @@ jQuery ->
         data: form_data
         type: 'POST'
         dataType: 'json'
+        success: ->
+          changesUnsaved = false
+          if callback isnt undefined
+            callback()
       })
     #TODO: indicators, error handlers?
+
+  loseChangesMessage = "You have unsaved changes! If you leave the page now, some answers will be lost. Stay on the page for a minute in order for everything to be saved or use the buttons at the bottom of the page."
+
+  window.onbeforeunload = ->
+    if changesUnsaved then loseChangesMessage else null
+
+  if window.addEventListener isnt undefined
+    window.addEventListener "beforeunload", (e) ->
+      return null unless changesUnsaved
+
+      e.returnValue = loseChangesMessage
+      loseChangesMessage
 
   triggerAutosave = (e) ->
     window.autosave_timer ||= setTimeout( autosave, 1000 )
 
-  debounceTime = 5000
-  $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, debounceTime
-  $(document).debounce "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave, debounceTime
-  $(document).debounce "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave, debounceTime
-  $(document).debounce "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave, debounceTime
-  $(document).debounce "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave, debounceTime
-  $(document).debounce "keyup", "textarea.js-trigger-autosave", triggerAutosave, debounceTime
+  raiseChangesFlag = ->
+    changesUnsaved = true
+
+  debounceTime = 10000
+  $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
+  $(document).debounce "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
+  $(document).debounce "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
+  $(document).debounce "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
+  $(document).debounce "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
+  $(document).debounce "keyup", "textarea.js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
 
   updateUploadListVisiblity = (list, button, max) ->
     list_elements = list.find("li")
