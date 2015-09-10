@@ -1,0 +1,18 @@
+.comment class="#{'comment-flagged' if comment_read_only.flagged?}"
+  .comment-header
+    h3
+      = comment_read_only.author_email
+
+  .comment-content
+    = comment_read_only.body
+
+
+  label.if-js-hide Flag
+  .comment-action
+    = l comment_read_only.created_at, format: :date_at_time
+    span.divider •
+    span.link-flag-comment
+      span.unflagged-visible
+        ' Unflagged
+      span.flagged-visible
+        ' Flagged

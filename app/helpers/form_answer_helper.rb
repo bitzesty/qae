@@ -1,13 +1,23 @@
 require "countries"
 
 module FormAnswerHelper
-  def application_flags(fa)
+  def application_flags(fa, subject = nil)
     comments = fa.comments
     c_size = comments.select do |c|
-      c.main_for?(current_subject) && c.flagged?
+      if subject
+        c.main_for?(current_subject) && c.flagged?
+      else
+        !c.main_for?(current_subject) && c.flagged?
+      end
     end.size
+    current_user = current_subject.model_name.to_s.parameterize
+    if subject
+      flag_type = "icon-flag-#{current_user}"
+    else
+      flag_type = current_user == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
+    end
     if c_size > 0 || importance_flag?(fa)
-      content_tag :span, class: "icon-flagged" do
+      content_tag :span, class: "icon-flagged #{flag_type}" do
         content_tag :span, class: "flag-count" do
           c_size += 1 if importance_flag?(fa)
           c_size.to_s
@@ -21,9 +31,7 @@ module FormAnswerHelper
   end
 
   def application_comments(comments)
-    visible_comments = comments.select do |c|
-      c.main_for?(current_subject)
-    end
+    visible_comments = comments
 
     return unless visible_comments.present?
 
