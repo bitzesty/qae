@@ -328,7 +328,7 @@ jQuery ->
   raiseChangesFlag = ->
     changesUnsaved = true
 
-  debounceTime = 10000
+  debounceTime = 20000
   $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "input[type='text'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
