@@ -13,7 +13,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
     params[:search] ||= {
       sort: "company_or_nominee_name",
       search_filter: {
-        status: FormAnswerStatus::AssessorFilter::OPTIONS.invert.values
+        status: FormAnswerStatus::AssessorFilter::checked_options.invert.values
       }
     }
     scope = current_assessor.applications_scope

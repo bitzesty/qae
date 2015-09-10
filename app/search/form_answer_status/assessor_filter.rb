@@ -58,6 +58,10 @@ class FormAnswerStatus::AssessorFilter
     }
   }
 
+  def self.checked_options
+    OPTIONS.except(:application_in_progress)
+  end
+
   def self.options
     OPTIONS
   end
