@@ -1,4 +1,5 @@
-ul.dropdown-menu role="menu"
-  - collection.each do |state|
-    li.checkbox role="presentation"
-      = link_to state.to_s.humanize, "#", "data-state" => state.to_s, "data-label" => state.to_s.humanize
+- if policy
+  ul.dropdown-menu role="menu"
+    - collection.each do |state|
+      li.checkbox role="presentation"
+        = link_to state.to_s.humanize, "#", "data-state" => state.to_s, "data-label" => state.to_s.humanize

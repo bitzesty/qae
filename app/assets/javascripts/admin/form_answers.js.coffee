@@ -47,6 +47,9 @@ ready = ->
     form.submit()
   $("#new_form_answer_state_transition").on "ajax:success", (e, data, status, xhr) ->
     $(".section-applicant-status .dropdown-menu").replaceWith(data)
+    if data == ""
+      stateToggle = $(".section-applicant-status .dropdown-toggle")
+      stateToggle.replaceWith("<p class='p-lg'>"+stateToggle.text()+"</p>")
 
   $(".section-applicant-users .edit_assessor_assignment select").select2()
   $("#new_assessor_assignment_collection select").select2()
