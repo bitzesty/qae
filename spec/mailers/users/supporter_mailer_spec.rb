@@ -26,6 +26,6 @@ describe Users::SupporterMailer do
       href: new_support_letter_url(access_key: supporter.access_key)
     )
 
-    expect(mail.body.encoded).to match("Jon Snow")
+    expect(mail.body.encoded).to match(user.full_name)
   end
 end
