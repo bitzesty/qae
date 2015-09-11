@@ -103,6 +103,7 @@ gem "with_advisory_lock"
 
 # Monitoring
 gem "skylight"
+gem 'newrelic_rpm'
 
 # Lock sprockets
 # As 3.0.0 cause Capistrano error
