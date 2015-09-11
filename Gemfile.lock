@@ -369,6 +369,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
+    newrelic_rpm (3.13.0.299)
     nilify_blanks (1.2.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -617,6 +618,7 @@ DEPENDENCIES
   kaminari (~> 0.16)
   launchy
   letter_opener
+  newrelic_rpm
   nilify_blanks
   nokogiri (~> 1.6.0)
   paper_trail!
