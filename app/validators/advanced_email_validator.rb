@@ -4,7 +4,7 @@ class AdvancedEmailValidator < ActiveModel::Validator
     validate_address_domain(record, parsed) ||
       validate_address_well_formed(record, parsed) ||
       validate_dns_records(record, parsed) ||
-      validate_spam_reporter(record, parsed) ||
+      # validate_spam_reporter(record, parsed) ||
       validate_bounced(record, parsed) ||
       validates_with_mailgun(record)
   rescue Mail::Field::ParseError
