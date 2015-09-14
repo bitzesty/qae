@@ -22,7 +22,7 @@ ready = ->
   deleteCommentAlert()
 
 toggleFlagged = ->
-  $(document).on "click", ".link-flag-comment", (e) ->
+  $(document).on "click", ".js-link-flag-comment", (e) ->
     e.preventDefault()
     flagged = "comment-flagged"
     newComment = $(this).closest(".comment-actions")
