@@ -3,19 +3,20 @@ require "countries"
 module FormAnswerHelper
   def application_flags(fa, subject = nil)
     comments = fa.comments
+
     c_size = comments.select do |c|
-      if subject
-        c.main_for?(current_subject) && c.flagged?
-      else
-        !c.main_for?(current_subject) && c.flagged?
-      end
+      main = c.main_for?(current_subject)
+      (subject ? main : !main) && c.flagged?
     end.size
-    current_user = current_subject.model_name.to_s.parameterize
-    if subject
-      flag_type = "icon-flag-#{current_user}"
+
+    current_user_class = current_subject.model_name.to_s.parameterize
+
+    flag_type = if subject
+      "icon-flag-#{current_user_class}"
     else
-      flag_type = current_user == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
+      current_user_class == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
     end
+
     if c_size > 0 || importance_flag?(fa)
       content_tag :span, class: "icon-flagged #{flag_type}" do
         content_tag :span, class: "flag-count" do
