@@ -351,6 +351,21 @@ window.FormValidation =
       @appendMessage(question, "You need to request or upload at least 2 letters of support")
       @addErrorClass(question)
 
+  validateGoodsServicesPercentage: (question) ->
+    totalOverseasTradeInputs = question.find(".js-by-trade-goods-and-services-amount .show-question input[type='text']")
+    totalOverseasTradePercentage = 0
+    missingOverseasTradeValue = false
+    totalOverseasTradeInputs.each ->
+      if $(this).val().toString().trim().length
+        totalOverseasTradePercentage += parseInt $(this).val()
+      else
+        missingOverseasTradeValue = true
+    if !missingOverseasTradeValue
+      if totalOverseasTradePercentage != 100
+        @log_this(question, "validateGoodsServicesPercentage", "% of your total overseas trade should add up to 100")
+        @appendMessage(question, "% of your total overseas trade should add up to 100")
+        @addErrorClass(question)
+
   # It's for easy debug of validation errors
   # As it really tricky to find out the validation which blocks form
   # and do not display any error massage on form
@@ -434,6 +449,10 @@ window.FormValidation =
          question.hasClass("question-support-uploads")
         # console.log "validateSupportLetters"
         @validateSupportLetters(question)
+
+      if question.find(".js-by-trade-goods-and-services-amount").length
+        # console.log "validateGoodsServicesPercentage"
+        @validateGoodsServicesPercentage(question)
 
       #console.log @validates
 
