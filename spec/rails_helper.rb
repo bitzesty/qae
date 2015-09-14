@@ -51,11 +51,11 @@ RSpec.configure do |config|
       to_return(status: 200, body: { id: "de401fdf-08b0-44a8-810b-20794c5c98c7" }.to_json)
 
     # SENDGRID RELATED STUBS - BEGIN
-    stub_request(:get, "https://sendgrid.com/api/spamreports.get.json?api_key=test_smtp_password&api_user=test_smtp_username&email=test@example.com").
-      to_return(status: 200, body: "", headers: {})
+    # stub_request(:get, "https://sendgrid.com/api/spamreports.get.json?api_key=test_smtp_password&api_user=test_smtp_username&email=test@example.com").
+    #   to_return(status: 200, body: "", headers: {})
 
-    stub_request(:get, "https://sendgrid.com/api/bounces.get.jsonapi_key=test_smtp_password&api_user=test_smtp_username&email=test@example.com").
-      to_return(status: 200, body: "", headers: {})
+    stub_sendgrid_bounced_emails_check_request("test@irrelevant.com")
+    stub_sendgrid_bounced_emails_check_request("test@example.com")
     # SENDGRID RELATED STUBS - END
 
     AwardYear.current
@@ -66,4 +66,9 @@ RSpec.configure do |config|
   end
 
   config.infer_spec_type_from_file_location!
+end
+
+def stub_sendgrid_bounced_emails_check_request(email)
+  stub_request(:get, "https://sendgrid.com/api/bounces.get.jsonapi_key=test_smtp_password&api_user=test_smtp_username&email=#{email}").
+    to_return(status: 200, body: "", headers: {})
 end
