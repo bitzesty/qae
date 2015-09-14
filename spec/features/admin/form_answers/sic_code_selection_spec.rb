@@ -15,7 +15,7 @@ describe "SIC Code selection", "
   end
 
   it "sets up the sic code per form" do
-    find("#form_answer_sic_code").find(:xpath, "option[1]").select_option
+    find("#form_answer_sic_code option[value='1623']").select_option
     expect {
       within ".sic-code" do
         click_button "Save"
