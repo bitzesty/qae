@@ -10,6 +10,8 @@ ready = ->
       success: (data)->
         that.parents(".comments-container").find("textarea").val("")
         that.parents(".comments-container").find(".comment-insert").after(data)
+        that.find("input[type='checkbox']").prop("checked", false)
+        that.find(".comment-actions").removeClass("comment-flagged")
 
   $('body').on 'submit', '.destroy-comment', (e) ->
     e.preventDefault()
@@ -27,13 +29,11 @@ toggleFlagged = ->
     flagged = "comment-flagged"
     newComment = $(this).closest(".comment-actions")
     newComment.toggleClass(flagged)
-    toggleGlobalFlag =(id, commentBox, flagged) ->
-      checkbox = commentBox.closest(".comments-container").find(id)
+    toggleNewCommentFlag =(commentBox, flagged) ->
+      checkbox = commentBox.find("input[type='checkbox']")
       checkbox.prop("checked", commentBox.hasClass(flagged))
-      checkbox.closest("form").submit()
 
-    toggleGlobalFlag("#_assessor_importance_flag", newComment, flagged)
-    toggleGlobalFlag("#_admin_importance_flag", newComment, flagged)
+    toggleNewCommentFlag(newComment, flagged)
 
     editComment = $(this).closest(".comment")
     editComment.toggleClass(flagged)

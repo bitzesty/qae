@@ -6,12 +6,7 @@
   #section-critical-comments.section-critical-comments.panel-collapse.collapse role="tabpanel" aria-labelledby="critical-comments-heading"
     .panel-body
       .comments-container.comment-assessor
-        = form_tag [:toggle, namespace_name, @form_answer, :flags], remote: true, authenticity_token: true, class: "critical-flag" do
-          - checked = "checked" if @form_answer.assessor_importance_flag?
-          = check_box nil, :assessor_importance_flag, { class: "flag-comment-checkbox if-js-hide", checked: checked}, 1, 0
-
-          = submit_tag "Flag", class: "if-js-hide btn btn-default"
         = form_for([namespace_name, @form_answer, @form_answer.comments.new(section: "critical")]) do |f|
-          = render("admin/comments/form", f: f, section_flagged: @form_answer.assessor_importance_flag?)
+          = render("admin/comments/form", f: f)
         .comment-insert
         = render(collection: @form_answer.comments.critical, partial: "admin/form_answers/comment")
