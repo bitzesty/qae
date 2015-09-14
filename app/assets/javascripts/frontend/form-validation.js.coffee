@@ -61,7 +61,7 @@ window.FormValidation =
       return true
     else
       if @isTextishQuestion(question)
-        return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").val().toString().length
+        return question.find("input[type='text'], input[type='number'], input[type='password'], input[type='email'], input[type='url'], textarea").val().toString().trim().length
 
       if @isSelectQuestion(question)
         return question.find("select").val()
