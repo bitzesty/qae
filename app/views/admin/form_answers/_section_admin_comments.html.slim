@@ -7,14 +7,8 @@
     .panel-body
       .comments-container data-comment-form=new_admin_form_answer_comment_path(@form_answer)
         - if !(defined? read_only)
-          = form_tag [:toggle, namespace_name, @form_answer, :flags], remote: true, authenticity_token: true, class: "critical-flag" do
-            - checked = "checked" if @form_answer.admin_importance_flag?
-            = check_box nil, :admin_importance_flag, { class: "flag-comment-checkbox if-js-hide", checked: checked}, 1, 0
-
-            = submit_tag "Flag", class: "if-js-hide btn btn-default"
-
           = form_for([:admin, @form_answer, @form_answer.comments.new(section: "admin")]) do |f|
-            = render('admin/comments/form', f: f, section_flagged: @form_answer.admin_importance_flag?)
+            = render('admin/comments/form', f: f)
           .comment-insert
         - if !(defined? read_only)
           = render(collection: @form_answer.comments.admin, partial: "admin/form_answers/comment" )
