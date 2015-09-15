@@ -162,9 +162,6 @@ Rails.application.routes.draw do
       end
 
       member { get(:review) }
-      resources :flags, only: [] do
-        collection { post :toggle }
-      end
       resources :draft_notes, only: [:create, :update]
     end
     resources :assessor_assignments, only: [:update]
@@ -209,9 +206,6 @@ Rails.application.routes.draw do
 
       resources :draft_notes, only: [:create, :update]
 
-      resources :flags, only: [] do
-        collection { post :toggle }
-      end
       member do
         patch :update_financials
         get :review
