@@ -161,7 +161,11 @@ class QAE2014Forms
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-
+          context %(
+            <p>
+              Use a minus symbol to record any losses.
+            </p>
+          )
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
