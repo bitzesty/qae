@@ -23,12 +23,12 @@ class PerformancePlatformService
   ]
 
   def self.run
-    log_this("started")
+    log_this("started") unless Rails.env.test?
 
     perform_transactions_by_channel
     perform_applications_by_stage
 
-    log_this("completed")
+    log_this("completed") unless Rails.env.test?
   end
 
   #[
