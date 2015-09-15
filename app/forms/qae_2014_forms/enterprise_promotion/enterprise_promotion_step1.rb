@@ -50,6 +50,11 @@ class QAE2014Forms
           required
           option "british", "British"
           option "other", "Other"
+          context %(
+            <p>
+              Citizens of countries where The Queen is not Head of State may only be considered for honorary awards.
+            </p>
+          )
         end
 
         text :nominee_nationality_other, "Please specify" do
