@@ -3,6 +3,15 @@ class QAE2014Forms
   class << self
     def development_step3
       @development_step3 ||= proc do
+        header :commercial_success_intro, "" do
+          classes "application-notice help-notice"
+          context %(
+            <p>
+              If shortlisted, figures provided must be capable of being verified by an independent, qualified, practising accountant or auditor.
+            </p>
+          )
+        end
+
         options :development_performance_years, "How would you describe the impact of your sustainable development on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"

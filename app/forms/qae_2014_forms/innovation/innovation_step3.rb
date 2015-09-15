@@ -2,6 +2,15 @@ class QAE2014Forms
   class << self
     def innovation_step3
       @innovation_step3 ||= proc do
+        header :commercial_success_intro, "" do
+          classes "application-notice help-notice"
+          context %(
+            <p>
+              If shortlisted, figures provided must be capable of being verified by an independent, qualified, practising accountant or auditor.
+            </p>
+          )
+        end
+
         options :innovation_performance_years, "How would you describe the impact of your innovation on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
