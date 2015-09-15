@@ -49,12 +49,12 @@ I want to be able to view, create and destroy the comments per application.
         first("#admin-comments-heading a").click
         within admin_comments do
           populate_comment_form
-          find(".link-flag-comment").click
+          find(".js-link-flag-comment").click
           click_button "Comment"
           expect(page).to have_selector(".comment-flagged", count: 1)
 
           within ".comment" do
-            find(".link-flag-comment").click # unclick flag
+            find(".js-link-flag-comment").click # unclick flag
           end
           visit admin_form_answer_path(form_answer)
           expect(page).to have_selector(".comment-flagged", count: 0)
@@ -66,7 +66,7 @@ I want to be able to view, create and destroy the comments per application.
         first("#critical-comments-heading a").click
         within critical_comments do
           populate_comment_form
-          find(".link-flag-comment").click
+          find(".js-link-flag-comment").click
           click_button "Comment"
           expect(page).to have_selector(".comment-flagged", count: 1)
         end

@@ -21,5 +21,7 @@
       - if app_comments.present?
         = link_to [namespace_name, obj]
           = app_comments
-    td = application_flags(obj)
+    td.td-flags
+      = application_flags(obj, current_subject)
+      = application_flags(obj)
     td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"

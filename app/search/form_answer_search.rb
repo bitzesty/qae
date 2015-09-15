@@ -18,11 +18,9 @@ class FormAnswerSearch < Search
   def sort_by_flag(scoped_results, desc = false)
     section = (@subject.is_a?(Admin) ? "admin" : "critical")
     section = Comment.sections[section]
-    importance_flag = @subject.is_a?(Admin) ? "admin_importance_flag" : "assessor_importance_flag"
 
     q = "form_answers.*,
-      (COUNT(comments.id) +
-      (CASE WHEN form_answers.#{importance_flag} THEN 1 ELSE 0 END)) AS flags_count"
+      (COUNT(comments.id)) AS flags_count"
     scoped_results.select(q)
       .joins("LEFT OUTER JOIN comments on comments.commentable_id=form_answers.id")
       .group("form_answers.id")

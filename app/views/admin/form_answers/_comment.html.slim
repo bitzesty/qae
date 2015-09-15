@@ -40,7 +40,7 @@
     .comment-action
       = l comment.created_at, format: :date_at_time
       span.divider •
-      = link_to "#flag-comment", class: "link-flag-comment"
+      = link_to "#flag-comment", class: "link-flag-comment js-link-flag-comment"
         span.unflagged-visible
           ' Mark as flagged
         span.flagged-visible

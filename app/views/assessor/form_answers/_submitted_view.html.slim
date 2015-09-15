@@ -7,6 +7,7 @@
     #section-application-info.section-application-info.panel-collapse.collapse.in role="tabpanel" aria-labelledby="application-info-heading"
       .panel-body
         .panel-group#panel-application-info role="tablist" aria-multiselectable="true"
+          = render "admin/form_answers/section_admin_comments", { read_only: true }
           = render "admin/form_answers/section_company_details"
           = render "admin/form_answers/section_financial_summary"
 

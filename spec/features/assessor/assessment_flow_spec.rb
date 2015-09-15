@@ -19,6 +19,8 @@ describe "Assessment flow", %(
     p.save
   end
 
+  # TODO: need to rewrite this spec in accordance with latest flow changes
+
   #  it "follows the appropriate assessment flow" do
   #    login_as(lead, scope: :assessor)
   #    visit assessor_form_answer_path(form_answer)

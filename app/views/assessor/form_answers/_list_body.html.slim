@@ -38,4 +38,6 @@ tbody
           = link_to [namespace_name, obj]
             = app_comments
 
-      td = application_flags(obj)
+      td.td-flags
+        = application_flags(obj)
+        = application_flags(obj, current_subject)

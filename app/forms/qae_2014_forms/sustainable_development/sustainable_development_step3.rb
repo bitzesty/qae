@@ -3,6 +3,15 @@ class QAE2014Forms
   class << self
     def development_step3
       @development_step3 ||= proc do
+        header :commercial_success_intro, "" do
+          classes "application-notice help-notice"
+          context %(
+            <p>
+              If shortlisted, figures provided must be capable of being verified by an independent, qualified, practising accountant or auditor.
+            </p>
+          )
+        end
+
         options :development_performance_years, "How would you describe the impact of your sustainable development on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
@@ -149,7 +158,11 @@ class QAE2014Forms
           label ->(y) { "Financial year #{y}" }
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
-
+          context %(
+            <p>
+              Use a minus symbol to record any losses.
+            </p>
+          )
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover

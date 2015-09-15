@@ -441,6 +441,10 @@ table .ellipsis {
     }
   }
 
+  .td-flags {
+    white-space: nowrap;
+  }
+
   .list-actions {
     margin-bottom: 0;
     margin-left: 0;
@@ -597,7 +601,7 @@ table .ellipsis {
       background-image: image-url("icon-flag@2.png");
     }
 
-    .assessor-layout & {
+    &.icon-flag-assessor {
       background-image: image-url("icon-flag-yellow.png");
 
       @include is-retina {
@@ -1087,6 +1091,11 @@ table .ellipsis {
   position: relative;
   padding: 15px 0;
   border-top: 1px solid $grey;
+
+  &:first-child {
+    padding-top: 0;
+    border-top: none;
+  }
 }
 
 .comment-header {
@@ -1235,6 +1244,12 @@ table .ellipsis {
   .link-flag-comment {
     display: inline-block;
     margin-top: 5px;
+  }
+
+  input[type="checkbox"] {
+    .js & {
+      display: none;
+    }
   }
 }
 

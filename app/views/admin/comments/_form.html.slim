@@ -3,8 +3,9 @@
     ' Add a comment
   = f.hidden_field :section
   = f.text_area :body, class: 'form-control', rows: 4
-  .comment-actions class=("comment-flagged" if section_flagged)
-    = link_to "#flag-comment", class: "link-flag-comment"
+  .comment-actions
+    = f.check_box :flagged
+    = link_to "#flag-comment", class: "link-flag-comment js-link-flag-comment"
       span.unflagged-visible
         ' Mark as flagged
       span.flagged-visible
