@@ -1,5 +1,5 @@
 - account_name = @form_answer.promotion? ? "Nominee name" : "Company name"
-- if @form_answer.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_company_name?
+- if user_can_edit(@form_answer, :company_name)
   .form-group
     = simple_form_for [namespace_name, @form_answer],
                       remote: true,
