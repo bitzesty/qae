@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150908172247) do
+ActiveRecord::Schema.define(version: 20150914114817) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -303,8 +303,6 @@ ActiveRecord::Schema.define(version: 20150908172247) do
     t.string   "sic_code"
     t.string   "nickname"
     t.hstore   "financial_data"
-    t.boolean  "admin_importance_flag",         default: false
-    t.boolean  "assessor_importance_flag",      default: false
     t.boolean  "accepted",                      default: false
     t.datetime "company_details_updated_at"
     t.integer  "award_year_id",                                                     null: false

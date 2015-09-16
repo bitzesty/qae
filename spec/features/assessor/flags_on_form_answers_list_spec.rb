@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe "assessor sees the proper number of flags and sort by it" do
   let!(:assessor) { create(:assessor, :lead_for_all) }
-  let!(:form_answer) { create(:form_answer, assessor_importance_flag: true, state: 'assessment_in_progress') }
+  let!(:form_answer) { create(:form_answer, state: 'assessment_in_progress') }
 
   before do
     login_as(assessor, scope: :assessor)
@@ -13,22 +13,39 @@ describe "assessor sees the proper number of flags and sort by it" do
     before {
       visit assessor_form_answers_path
     }
-    it "sees only the global flag indicator" do
+    it "doesn't see counters" do
       within ".applications-table" do
-        expect(first(".flag-count").text).to eq("1")
+        expect(first(".flag-count")).to be_nil
+        expect(first(".comment-count")).to be_nil
       end
     end
   end
 
-  context "with flagged comments" do
+  context "with not flagged comment" do
     let!(:comment) do
-      create(:flagged_comment, :assessor, commentable: form_answer, authorable: assessor)
+      create(:comment, :assessor, commentable: form_answer, authorable: assessor)
     end
     before {
       visit assessor_form_answers_path
     }
 
-    it "sees sum of comment flags and global flag" do
+    it "sees sum of comments" do
+      within ".applications-table" do
+        expect(first(".comment-count").text).to eq("1")
+        expect(first(".flag-count")).to be_nil
+      end
+    end
+  end
+
+  context "with flagged comment" do
+    let!(:comment) do
+      create(:comment, :flagged, :assessor, commentable: form_answer, authorable: assessor)
+    end
+    before {
+      visit assessor_form_answers_path
+    }
+
+    it "sees sum of comments and flagged comments" do
       within ".applications-table" do
         expect(first(".comment-count").text).to eq("1")
         expect(first(".flag-count").text).to eq("1")

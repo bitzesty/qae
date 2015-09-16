@@ -17,18 +17,13 @@ module FormAnswerHelper
       current_user_class == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
     end
 
-    if c_size > 0 || importance_flag?(fa)
+    if c_size > 0
       content_tag :span, class: "icon-flagged #{flag_type}" do
         content_tag :span, class: "flag-count" do
-          c_size += 1 if importance_flag?(fa)
           c_size.to_s
         end
       end
     end
-  end
-
-  def importance_flag?(fa)
-    fa.public_send("#{current_subject.class.to_s.downcase}_importance_flag?")
   end
 
   def user_can_edit(form, item)

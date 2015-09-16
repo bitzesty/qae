@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe "Admin sees the proper number of flags and sort by it" do
   let!(:admin) { create(:admin) }
-  let!(:form_answer) { create(:form_answer, admin_importance_flag: true) }
+  let!(:form_answer) { create(:form_answer) }
 
   before do
     login_admin(admin)
@@ -11,22 +11,39 @@ describe "Admin sees the proper number of flags and sort by it" do
 
   context "no comments" do
     before { visit admin_form_answers_path }
-    it "sees only the global flag indicator" do
+
+    it "doesn't see counters" do
       within ".applications-table" do
-        expect(first(".flag-count").text).to eq("1")
+        expect(first(".flag-count")).to be_nil
+        expect(first(".comment-count")).to be_nil
       end
     end
   end
 
   context "with flagged comments" do
     let!(:comment) do
-      create(:flagged_comment, :admin, commentable: form_answer, authorable: admin)
+      create(:comment, :admin, commentable: form_answer, authorable: admin)
     end
     before { visit admin_form_answers_path }
 
-    it "sees sum of comment flags and global flag" do
+    it "sees sum of comments" do
       within ".applications-table" do
-        expect(first(".flag-count").text).to eq("2")
+        expect(first(".comment-count").text).to eq("1")
+        expect(first(".flag-count")).to be_nil
+      end
+    end
+  end
+
+  context "with flagged comments" do
+    let!(:comment) do
+      create(:comment, :flagged, :admin, commentable: form_answer, authorable: admin)
+    end
+    before { visit admin_form_answers_path }
+
+    it "sees sum of comments and flagged comments" do
+      within ".applications-table" do
+        expect(first(".comment-count").text).to eq("1")
+        expect(first(".flag-count").text).to eq("1")
       end
     end
   end

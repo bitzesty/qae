@@ -12,6 +12,10 @@ describe AssessmentSubmissionService do
   before do
     allow_any_instance_of(AssessorAssignment).to receive(:valid?).and_return(true)
     assessment.document = document
+
+    primary = form_answer.assessor_assignments.primary
+    primary.assessor_id = assessor.id
+    primary.save!
   end
 
   context "moderated form submission" do

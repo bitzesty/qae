@@ -3,6 +3,15 @@ class QAE2014Forms
   class << self
     def trade_step3
       @trade_step3 ||= proc do
+        header :commercial_success_intro, "" do
+          classes "application-notice help-notice"
+          context %(
+            <p>
+              If shortlisted, figures provided must be capable of being verified by an independent, qualified, practising accountant or auditor.
+            </p>
+          )
+        end
+
         trade_commercial_success :trade_commercial_success, "" do
           main_header %(
             How would you describe your organisation's growth and commercial success in international trade?
@@ -124,8 +133,39 @@ class QAE2014Forms
           ref "C 6"
           required
           context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
+            <p>
+              Please include only:
+            </p>
+            <ul>
+              <li>
+                direct overseas sales of all goods and services (including income from royalties, licence fees, provision of know-how etc.)
+              </li>
+              <li>
+                total export agency commissions
+              </li>
+              <li>
+                dividends remitted to the UK from direct overseas investments
+              </li>
+              <li>
+                income from portfolio investment abroad remitted to the UK
+              </li>
+              <li>
+                dividends on investments abroad not remitted to the UK
+              </li>
+              <li>
+                other earnings from overseas residents remitted to the UK
+              </li>
+            </ul>
+            <p>
+              If applicable include your sales to and the sales by, your overseas branches or subsidiaries. For goods /services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
+            </p>
+            <p>
+              The goods/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
+            </p>
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete this question.
+            </p>
+          )
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
@@ -156,8 +196,13 @@ class QAE2014Forms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete this question.
+            </p>
+            <p>
+              Use a minus symbol to record any losses.
+            </p>
+          )
           conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
         end

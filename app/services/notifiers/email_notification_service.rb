@@ -2,11 +2,11 @@ class Notifiers::EmailNotificationService
   attr_reader :email_notifications
 
   def self.run
-    log_this("started")
+    log_this("started") unless Rails.env.test?
 
     new.run
 
-    log_this("completed")
+    log_this("completed") unless Rails.env.test?
   end
 
   def initialize

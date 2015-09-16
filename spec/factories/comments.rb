@@ -1,12 +1,9 @@
 FactoryGirl.define do
   factory :comment do
-    body 'Comment body'
-    authorable { create(:admin) }
-  end
-
-  factory :flagged_comment, class: Comment do
     body "comment body"
-    flagged true
+    authorable { create(:admin) }
+
+    flagged false
 
     trait :admin do
       section 0
@@ -14,6 +11,10 @@ FactoryGirl.define do
 
     trait :assessor do
       section 1
+    end
+
+    trait :flagged do
+      flagged true
     end
   end
 end

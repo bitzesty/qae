@@ -42,6 +42,14 @@ shared_context "pdf file checks" do
     form_answer.urn
   end
 
+  let(:match_name_condition) do
+    if award_type == :promotion
+      form_answer.send("nominee_full_name_from_document").upcase
+    else
+      company_name
+    end
+  end
+
   before do
     form_answer
   end
@@ -49,7 +57,7 @@ shared_context "pdf file checks" do
   describe "PDF generation" do
     it "should include main header information" do
       expect(pdf_content.join(" ")).to match(award_application_title)
-      expect(pdf_content).to include(company_name)
+      expect(pdf_content).to include(match_name_condition)
       expect(pdf_content).to include(form_urn)
     end
 
