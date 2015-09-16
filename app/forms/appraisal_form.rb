@@ -212,16 +212,22 @@ class AppraisalForm
     "#{key}_desc"
   end
 
-  def self.meths_for_award_type(award_type)
+  def self.meths_for_award_type(award_type, moderated = false)
+    if moderated
+      assessment_types = [:verdict]
+    else
+      assessment_types = [:rag, :non_rag, :verdict]
+    end
     const_get(award_type.upcase).map do |k, obj|
-      methods = Array(rate(k))
-      methods << desc(k) if [:rag, :non_rag, :verdict].include?(obj[:type])
+      methods = Array.new
+      methods << Array(rate(k)) if ((!moderated) || (moderated && obj[:type] == :verdict))
+      methods << desc(k) if assessment_types.include?(obj[:type])
       methods
     end.flatten.map(&:to_sym)
   end
 
-  def self.diff(award_type)
-    (all.map(&:to_sym) - meths_for_award_type(award_type)).uniq - CASE_SUMMARY_METHODS
+  def self.diff(award_type, moderated = false)
+    (all.map(&:to_sym) - meths_for_award_type(award_type, moderated)).uniq - CASE_SUMMARY_METHODS
   end
 
   def self.all
