@@ -202,7 +202,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def nominator_email_from_document
-    document["personal_email"].strip
+    document["personal_email"]
   end
 
   def set_urn
