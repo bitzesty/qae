@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914114817) do
+ActiveRecord::Schema.define(version: 20150917135114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -173,21 +173,21 @@ ActiveRecord::Schema.define(version: 20150914114817) do
     t.string   "nominator_postcode"
     t.string   "nominator_telephone"
     t.string   "nominator_email"
-    t.string   "development_desc_short"
-    t.string   "innovation_desc_short"
-    t.string   "ultimate_control_company_country"
-    t.string   "ultimate_control_company"
-    t.boolean  "parent_ultimate_control"
-    t.string   "parent_company_country"
-    t.string   "parent_company"
-    t.string   "applying_for"
-    t.string   "head_email"
-    t.string   "head_job_title"
-    t.string   "head_of_business_honours"
-    t.string   "head_of_business_full_name"
-    t.string   "head_of_bussines_title"
-    t.string   "website_url"
     t.string   "registration_number"
+    t.string   "website_url"
+    t.string   "head_of_bussines_title"
+    t.string   "head_of_business_full_name"
+    t.string   "head_of_business_honours"
+    t.string   "head_job_title"
+    t.string   "head_email"
+    t.string   "applying_for"
+    t.string   "parent_company"
+    t.string   "parent_company_country"
+    t.boolean  "parent_ultimate_control"
+    t.string   "ultimate_control_company"
+    t.string   "ultimate_control_company_country"
+    t.string   "innovation_desc_short"
+    t.string   "development_desc_short"
     t.datetime "date_started_trading"
   end
 
@@ -312,6 +312,8 @@ ActiveRecord::Schema.define(version: 20150914114817) do
     t.integer  "secondary_assessor_id"
     t.json     "document"
     t.string   "nominee_title"
+    t.string   "nominator_full_name"
+    t.string   "nominator_email"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

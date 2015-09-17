@@ -1,11 +1,9 @@
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' Dear
-  =<> @supporter.full_name
-  ' ,
+  = "Dear #{@supporter.full_name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' You've been chosen by
-  =<> @user.full_name
+  =<> @nominator_name
   ' to write a letter of support in aid of the nomination of
   =<> @nominee_name
   ' for a Queen's Award for Enterprise Promotion.
@@ -15,7 +13,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' If you feel that you are not in a position to write a letter of support, please email the nominator as soon as possible at
-  =<> mail_to @user.email
+  =<> mail_to @nominator_email
   '  so they can contact alternative supporters. You can also email them with any questions regarding the nomination.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
