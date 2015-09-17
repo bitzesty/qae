@@ -180,6 +180,10 @@ class FormAnswer < ActiveRecord::Base
     name.presence
   end
 
+  def nominee_full_name_from_document
+    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
+  end
+
   def fill_progress_in_percents
     ((fill_progress || 0) * 100).round.to_s + "%"
   end
@@ -192,10 +196,6 @@ class FormAnswer < ActiveRecord::Base
   end
 
   private
-
-  def nominee_full_name_from_document
-    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
-  end
 
   def nominator_full_name_from_document
     "#{document['user_info_first_name']} #{document['user_info_last_name']}".strip

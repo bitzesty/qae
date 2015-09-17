@@ -58,6 +58,7 @@ RSpec.describe FormAnswer, type: :model do
   describe "#company_or_nominee_from_document" do
     subject { build(:form_answer, kind, document: doc) }
     let(:c_name) { "company name" }
+    let(:n_name) { "company name" }
 
     context "promotion form" do
       let(:doc) { { "organization_name" => " #{c_name} " } }
@@ -68,9 +69,9 @@ RSpec.describe FormAnswer, type: :model do
       end
 
       context "organization name blank" do
-        let(:doc) { { "user_info_first_name" => c_name } }
+        let(:doc) { { "nominee_info_first_name" => n_name } }
         it "gets the nominee name" do
-          expect(subject.company_or_nominee_from_document).to eq(c_name)
+          expect(subject.nominee_full_name_from_document).to eq(n_name)
         end
       end
     end
