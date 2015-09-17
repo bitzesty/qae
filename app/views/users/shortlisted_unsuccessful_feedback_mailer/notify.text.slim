@@ -1,12 +1,6 @@
-' Dear
-= @user.full_name
-' ,
+= "Dear #{@user.full_name},"
 
-' Firstly, we'd like to thank you, and
-= @company_name
-' , for taking the time to apply for The Queen's Awards for Enterprise:
-= @form_answer.award_type_full_name
-' .
+= "Firstly, we'd like to thank you, and #{@company_name}, for taking the time to apply for The Queen's Awards for Enterprise: #{@form_answer.award_type_full_name}."
 
 ' We understand that the application process can be time-consuming, and for this reason our assessors have compiled some feedback on your application's strengths and weaknesses, which we hope will help with any future application(s) you make.
 
