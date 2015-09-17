@@ -1,9 +1,7 @@
-' Dear
-= @supporter.full_name
-' ,
+= "Dear #{@supporter.full_name},"
 
 ' You've been chosen by
-= @user.full_name
+= @nominator_name
 '  to write a letter of support in aid of the nomination of
 = @nominee_name
 '  for a Queen's Award for Enterprise Promotion.
@@ -12,7 +10,7 @@
 ' The Queen's Award for Enterprise Promotion is a nomination-only award recognising individuals who have played an outstanding role in promoting the growth of enterprise and/or entrepreneurial skills and attitudes in others.
 
 ' If you feel that you are not in a position to write a letter of support, please email the nominator as soon as possible at
-= mail_to @user.email
+= mail_to @nominator_email
 '  so they can contact alternative supporters. You can also email them with any questions regarding the nomination.
 
 ' As this is an honorary award, all information relating to it should remain confidential - even from the nominee in question.
