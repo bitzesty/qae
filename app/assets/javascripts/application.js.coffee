@@ -262,6 +262,14 @@ jQuery ->
 
   changesUnsaved = false
 
+  $(".qae-form").on "submit", (e) ->
+    if changesUnsaved
+      e.preventDefault()
+      e.stopPropagation()
+
+      autosave ->
+        $(".qae-form").trigger("submit")
+
   $(document).on "click", ".js-step-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("step-current")
