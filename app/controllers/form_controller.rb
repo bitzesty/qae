@@ -227,7 +227,7 @@ class FormController < ApplicationController
 
       if @attachment.save
         attachments_hash = @form_answer.document[@attachment.question_key]
-        index = last_key(attachments_hash)
+        index = next_index(attachments_hash)
         attachments_hash[index] = { file: @attachment.id }
         @form_answer.save!
 
@@ -245,7 +245,7 @@ class FormController < ApplicationController
 
   private
 
-  def last_key(hash)
+  def next_index(hash)
     return 0 if hash.empty?
     return hash.keys.sort.last.to_i + 1
   end
