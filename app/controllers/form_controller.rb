@@ -208,26 +208,34 @@ class FormController < ApplicationController
   end
 
   def add_attachment
-    attachment_params = params[:form]
-    attachment_params.merge!(form_answer_id: @form_answer.id)
+    FormAnswer.transaction do
+      attachment_params = params[:form]
+      attachment_params.merge!(form_answer_id: @form_answer.id)
 
-    attachment_params.merge!(original_filename: attachment_params[:file].original_filename) if attachment_params[:file].respond_to?(:original_filename)
+      attachment_params.merge!(original_filename: attachment_params[:file].original_filename) if attachment_params[:file].respond_to?(:original_filename)
 
-    attachment_params = attachment_params.permit(:original_filename, :file, :description, :link, :form_answer_id)
+      attachment_params = attachment_params.permit(:original_filename, :file, :description, :link, :form_answer_id)
 
-    @attachment = FormAnswerAttachment.new(attachment_params)
-    @attachment.attachable = current_user
-    @attachment.question_key = params[:question_key] if params[:question_key].present?
+      @attachment = FormAnswerAttachment.new(attachment_params)
+      @attachment.attachable = current_user
+      @attachment.question_key = params[:question_key] if params[:question_key].present?
 
-    if @attachment.question_key == "org_chart"
-      @form_answer.form_answer_attachments.where(question_key: "org_chart").destroy_all
-    end
+      if @attachment.question_key == "org_chart"
+        @form_answer.document["org_chart"] = {}
+        @form_answer.form_answer_attachments.where(question_key: "org_chart").destroy_all
+      end
 
-    if @attachment.save
-      # text/plain content type is needed for jquery.fileupload
-      render json: @attachment, status: :created, content_type: "text/plain"
-    else
-      render json: @attachment.errors, status: 500
+      if @attachment.save
+        attachments_hash = @form_answer.document[@attachment.question_key]
+        index = last_key(attachments_hash)
+        attachments_hash[index] = { file: @attachment.id }
+        @form_answer.save!
+
+        # text/plain content type is needed for jquery.fileupload
+        render json: @attachment, status: :created, content_type: "text/plain"
+      else
+        render json: @attachment.errors, status: 500
+      end
     end
   end
 
@@ -236,6 +244,11 @@ class FormController < ApplicationController
   end
 
   private
+
+  def last_key(hash)
+    return 0 if hash.empty?
+    return hash.keys.sort.last.to_i + 1
+  end
 
   def updating_step
     @form_answer.award_form.steps.detect do |s|

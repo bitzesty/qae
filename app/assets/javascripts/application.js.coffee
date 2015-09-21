@@ -487,7 +487,6 @@ jQuery ->
       list.removeClass('visuallyhidden')
       updateUploadListVisiblity(list, button, max)
       reindexUploadListInputs(list)
-      triggerAutosave()
 
     updateUploadListVisiblity(list, button, max)
 
