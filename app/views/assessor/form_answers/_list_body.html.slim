@@ -15,7 +15,7 @@ tbody
 
       td
         - if obj.urn.present?
-          = obj.urn
+          = link_to  obj.urn, [namespace_name, obj]
         - else
           span.urn-not-generated Not yet generated
 
