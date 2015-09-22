@@ -2,4 +2,5 @@ ul.nav.nav-pills
   - %w[users assessors admins].each do |role|
     - if policy(role.singularize.to_sym).index?
       li class=('active' if controller_name == role) role="presentation"
-        = link_to role.titleize, public_send("admin_#{role}_path")
+        - role_name = role == "users" ? "Applicants" : role.titleize
+        = link_to role_name, public_send("admin_#{role}_path")

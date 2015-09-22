@@ -119,6 +119,48 @@ table .ellipsis {
   }
 }
 
+.btn-secondary {
+  color: $white-true;
+  background-color: $black-header;
+  border-color: $black-true;
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $white-true;
+    background-color: $black-true;
+    border-color: $black-true;
+  }
+
+  .btn-primary:active,
+  .btn-primary.active,
+  .open > .btn-primary.dropdown-toggle {
+    background-image: none;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: $less-black;
+      border-color: $black-header;
+    }
+  }
+
+  .badge {
+    color: $less-black;
+    background-color: $white-true;
+  }
+}
+
 .alert {
   padding-top: 10px;
   padding-bottom: 10px;

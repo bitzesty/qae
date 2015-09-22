@@ -4,7 +4,7 @@
       .panel-heading#user-details-heading role="tab"
         h4.panel-title
           a data-toggle="collapse" data-parent="#user-form-panel" href="#user-details" aria-expanded="true" aria-controls="user-details"
-            = controller_name.singularize.titleize
+            = controller_name == "users" ? "Applicant" : controller_name.singularize.titleize
             '  Details
       #user-details.section-user-details.panel-collapse.collapse.in role="tabpanel" aria-labelledby="user-details-heading"
         .panel-body
@@ -67,6 +67,6 @@
 
           ' &nbsp;
 
-        = f.button :submit,
+        = f.button :submit, "Save",
                   class: "btn btn-primary btn-md"
     .clear
