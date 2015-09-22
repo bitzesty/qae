@@ -34,23 +34,12 @@ header.page-header
         = text_field_tag "cutom_email_form[subject]", f.object.subject, class: "large required form-control"
 
   .clear
-  .row.question-group.email-message
+  .row.question-group
     .col-md-8
       h3
         label.text.required.control-label.form-label
           ' Message
-      .input.text.required.form-group
-        .form-control.email-container
-          .email-header
-            ' Dear User
-
-          = text_area_tag "cutom_email_form[message]", f.object.message, class: "text required form-control", rows: 10
-          .email-footer
-            strong
-              ' Thank you,
-              br
-              br
-              ' The Queen's Awards Office
+      = text_area_tag "cutom_email_form[message]", f.object.message, class: "text required form-control", rows: 10
   .clear
 
   br
