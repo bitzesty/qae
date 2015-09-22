@@ -450,6 +450,8 @@
 }
 
 .bulk-assign-assessors-form {
+  max-width: 755px;
+
   .js & {
     display: none;
   }
@@ -469,30 +471,33 @@
   }
 
   .btn {
-    margin-right: 10px;
+    margin-left: 10px;
   }
 
   .form-group {
-    clear: both;
+    position: relative;
+    padding-left: 26em;
+
+    @include screen-sm-max {
+      padding-left: 0;
+    }
   }
 
   .control-label {
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 26em;
-    float: left;
 
-    @media (max-width: 767px) {
+    @include screen-sm-max {
+      position: relative;
       width: auto;
       float: none;
     }
   }
 
   .select2-container {
-    width: 300px !important;
-
-    @media (max-width: 767px) {
-      width: 100% !important;
-    }
+    width: 100% !important;
   }
 }
 

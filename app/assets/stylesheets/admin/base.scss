@@ -752,7 +752,7 @@ table .ellipsis {
   }
 
   .form_answers-index-page & {
-    @media (max-width: 767px) {
+    @include screen-sm-max {
       margin-top: 15px;
     }
   }

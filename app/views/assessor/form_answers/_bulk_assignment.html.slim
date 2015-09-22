@@ -27,5 +27,7 @@
                          class: "form-control"
             = f.text_field :form_answer_ids, class: "if-js-hide visuallyhidden"
 
-            = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
-            = f.submit "Assign", class: "btn btn-primary"
+            .pull-right
+              = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
+              = f.submit "Assign", class: "btn btn-primary"
+            .clear
