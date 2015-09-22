@@ -258,7 +258,10 @@
 }
 
 .section-applicant-details {
-  border-bottom: none;
+  &.well {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 
   h2 {
     margin-top: 0;
@@ -282,8 +285,18 @@
 }
 
 .section-applicant-status {
-  h2 {
+
+  h2,
+  p {
     margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 15px;
+
+    &.p-lg {
+      font-size: 20px;
+    }
   }
 
   .btn-group {
@@ -293,9 +306,8 @@
 
   .dropdown-toggle {
     display: inline-block;
-    padding-top: 0;
+    padding: 0;
     padding-right: 20px;
-    padding-left: 0;
     float: none;
     color: $black;
     font-size: 20px;
@@ -319,12 +331,17 @@
     }
   }
 
-  p {
-    margin-bottom: 5px;
-    font-size: 15px;
+  .state-container {
+    position: relative;
 
-    &.p-lg {
-      font-size: 20px;
+    h2 {
+      position: absolute;
+      top: 0.4em;
+      left: 0;
+    }
+
+    .state-input {
+      text-align: right;
     }
   }
 }

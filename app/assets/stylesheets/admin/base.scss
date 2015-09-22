@@ -1040,13 +1040,6 @@ table .ellipsis {
         font-size: 15px;
       }
 
-      small {
-        display: block;
-        margin-top: 0.25em;
-        font-size: 14px;
-        text-transform: none;
-      }
-
       .pull-right {
         @include screen-md-max {
           display: inline-block;
@@ -1065,6 +1058,14 @@ table .ellipsis {
       @include screen-md-max {
         font-size: 15px;
       }
+    }
+
+    small {
+      display: block;
+      margin-top: 0.25em;
+      color: #777777;
+      font-size: 14px;
+      text-transform: none;
     }
 
     .well {
