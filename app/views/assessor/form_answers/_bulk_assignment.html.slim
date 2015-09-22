@@ -1,28 +1,31 @@
 - if show_bulk_assignment?
-  .bulk-assign-assessors-form.if-no-js-hide
-    .well
-      h3 Bulk Assign Assessors
+  .if-no-js-hide
+    .btn.btn-success.bulk-assign-assessors-link Bulk Assign Assessors
 
-      = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
-        = flash[:error]
-        fieldset.question-group
-          .input.select.form-group
-            label.select.control-label
-              ' Assign Primary Assessor to these applications
+    .bulk-assign-assessors-form
+      .well
+        h3 Bulk Assign Assessors
+
+        p Please make sure that the correct applications are selected in the list before assigning assessors.
+        br
+
+        = form_for [namespace_name, AssessorAssignmentCollection.new] do |f|
+          = flash[:error]
+          fieldset.question-group
+            .input.select.form-group
+              = f.label :primary_assessor_id, "Assign Primary Assessor to these applications", class: "control-label"
               = f.select :primary_assessor_id,
                          assessors_collection_for_bulk,
                          { include_blank: true },
                          class: "form-control"
 
-          .input.select.form-group
-            label.select.control-label
-              ' Assign Secondary Assessor to these applications
+            .input.select.form-group
+              = f.label :primary_assessor_id, "Assign Secondary Assessor to these applications", class: "control-label"
               = f.select :secondary_assessor_id,
                          assessors_collection_for_bulk,
                          { include_blank: true },
                          class: "form-control"
-          = f.text_field :form_answer_ids, class: "if-js-hide visuallyhidden"
+            = f.text_field :form_answer_ids, class: "if-js-hide visuallyhidden"
 
-          = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
-          = f.submit "Assign", class: "btn btn-primary"
-    br
+            = link_to "Cancel", "#", class: "btn btn-default if-no-js-hide bulk-assign-assessors-cancel-link"
+            = f.submit "Assign", class: "btn btn-primary"

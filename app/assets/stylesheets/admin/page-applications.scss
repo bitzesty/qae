@@ -445,19 +445,33 @@
   margin-bottom: 20px;
 }
 
-.js .bulk-assign-assessors-form {
-  display: none;
-}
+.bulk-assign-assessors-link {
+  position: relative;
+  left: -9999px;
+  margin-bottom: 10px;
 
-.js .show-bulk-assign .bulk-assign-assessors-form {
-  display: block;
-}
+  &.show-button {
+    left: 0;
+  }
 
-.js .show-bulk-assign .bulk-assign-assessors-link {
-  display: none;
+  .show-bulk-assign & {
+    .js & {
+      display: none;
+    }
+  }
 }
 
 .bulk-assign-assessors-form {
+  .js & {
+    display: none;
+  }
+
+  .show-bulk-assign & {
+    .js & {
+      display: block;
+    }
+  }
+
   h3 {
     margin-top: 0;
   }
@@ -470,8 +484,19 @@
     margin-right: 10px;
   }
 
+  .form-group {
+    clear: both;
+  }
+
   .control-label {
     display: block;
+    width: 26em;
+    float: left;
+
+    @media (max-width: 767px) {
+      width: auto;
+      float: none;
+    }
   }
 
   .select2-container {

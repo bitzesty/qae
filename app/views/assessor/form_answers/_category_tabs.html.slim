@@ -5,7 +5,3 @@
         - category_picker.visible_categories.each do |category|
           li role="presentation" class=("active" if category.active?(params))
             = link_to category.text_label, assessor_form_answers_path(award_type: category.slug)
-
-  - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
-    .col-md-3.pull-right.text-right.if-no-js-hide
-      .btn.btn-success.bulk-assign-assessors-link Bulk Assign Assessors

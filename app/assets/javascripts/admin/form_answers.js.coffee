@@ -195,6 +195,15 @@ ready = ->
     $(this).closest("table").find(".form-answer-check").prop("checked", select_all_value)
 
   # Show/hide the bulk assign assessors form
+  $(".form-answer-check, #check_all").on "change", ->
+    show_button = false
+    $(".form-answer-check").each ->
+      if $(this).prop("checked")
+        show_button = true
+    if show_button
+      $(".bulk-assign-assessors-link").addClass("show-button")
+    else
+      $(".bulk-assign-assessors-link").removeClass("show-button")
   $(".bulk-assign-assessors-link").on "click", (e) ->
     e.preventDefault()
     $(".bulk-assign-assessors-form").closest(".container").addClass("show-bulk-assign")
