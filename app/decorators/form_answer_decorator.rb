@@ -164,28 +164,23 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def address_building
-    document["principal_address_building"].presence ||
-      document["organization_address_building"]
+    document["organization_address_building"]
   end
 
   def address_street
-    document["principal_address_street"] ||
-      document["organization_address_street"]
+    document["organization_address_street"]
   end
 
   def address_city
-    document["principal_address_city"] ||
-      document["organization_address_city"]
+    document["organization_address_city"]
   end
 
   def address_county
-    document["principal_address_county"] ||
-      document["organization_address_county"]
+    document["organization_address_county"]
   end
 
   def address_postcode
-    document["principal_address_postcode"] ||
-      document["organization_address_postcode"]
+    document["organization_address_postcode"]
   end
 
   def telephone
@@ -193,8 +188,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def region
-    document["principal_address_region"] ||
-      document["organization_address_region"]
+    document["organization_address_region"]
   end
 
   def nominee_organisation
