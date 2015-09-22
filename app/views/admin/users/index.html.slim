@@ -1,10 +1,5 @@
 = simple_form_for @search, url: "#", method: :get, as: :search, html: { class: "search-form" } do |f|
-  .row
-    .col-md-9.col-sm-8
-      = render 'admin/users/navigation'
-  .clear
-
-  br
+  = render 'admin/users/navigation'
 
   .row
     .col-md-4.col-sm-5.col-xs-12

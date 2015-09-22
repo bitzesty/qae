@@ -1897,3 +1897,62 @@ table .ellipsis {
     color: $error-colour;
   }
 }
+
+.nav-subnav {
+  margin-bottom: 15px;
+  border-bottom: 4px solid $black-header;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    float: left;
+
+    @include screen-sm-max {
+      float: none;
+    }
+
+    &:first-child a {
+      @include screen-sm-min {
+        padding-left: 0;
+      }
+    }
+  }
+
+  a {
+    display: block;
+    padding: 10px 15px;
+    padding-bottom: 15px;
+    float: left;
+    color: $black;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    @include screen-md-max {
+      padding: 8px 10px;
+      padding-bottom: 15px;
+    }
+
+    @include screen-sm-max {
+      float: none;
+    }
+  }
+
+  .active a {
+    background: transparent image-url("icon-arrow-admin-subnav.png") no-repeat center 110%;
+    background-size: 24px 12px;
+    color: $bootstrap-blue;
+
+    @include is-retina {
+      background-image: image-url("icon-arrow-admin-subnav@2.png");
+    }
+
+    @include screen-sm-max {
+      background: none;
+    }
+  }
+}

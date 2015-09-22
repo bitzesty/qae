@@ -16,9 +16,7 @@
         = link_to "(Clear search)", assessor_form_answers_path, class: "btn btn-link"
 
 = render("assessor/form_answers/category_tabs")
-.clear
 
-br
 = render("assessor/form_answers/bulk_assignment")
 
 = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
