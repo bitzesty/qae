@@ -1,28 +1,25 @@
+.row
+  = render "layouts/admin_award_year"
+
+  .col-md-4.col-sm-5.col-xs-12.pull-right
+    .form-group.search-input
+      = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search do |f|
+
+        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
+        = submit_tag :submit, class: 'search-submit'
+
 - if @search.query?
-  .row
-    = render "layouts/admin_award_year"
-  .clear
-  br
+  .well.search-text
+    p
+      = "Search results for '#{@search.query}'"
+      small
+        = link_to "(Clear search)", assessor_form_answers_path, class: "btn btn-link"
 
-  h2.ellipsis
-    = link_to "‹ Back to overview", assessor_form_answers_path, class: "btn btn-link btn-lg pull-left"
-    = "Search results for '#{@search.query}'"
-- else
-  .row
-    = render "layouts/admin_award_year"
+= render("assessor/form_answers/category_tabs")
+.clear
 
-    .col-md-4.col-sm-5.col-xs-12.pull-right
-      .form-group.search-input
-        = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search do |f|
-
-          = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
-          = submit_tag :submit, class: 'search-submit'
-
-  = render("assessor/form_answers/category_tabs")
-  .clear
-
-  br
-  = render("assessor/form_answers/bulk_assignment")
+br
+= render("assessor/form_answers/bulk_assignment")
 
 = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   = hidden_field_tag :award_type, category_picker.current_award_type
@@ -40,11 +37,8 @@
               = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
             th.sortable
               = sort_link f, "Reference", @search, :urn, disabled: @search.query?
-            - if @search.query?
-              th Award Type
-            - else
-              = render("assessor/form_answers/status_header", f: f)
-              = render("assessor/form_answers/assessor_header", f: f)
+            = render("assessor/form_answers/status_header", f: f)
+            = render("assessor/form_answers/assessor_header", f: f)
             th &nbsp;
             th.sortable
               = sort_link f, "Flag", @search, :flag, disabled: @search.query?

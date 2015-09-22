@@ -1,12 +1,5 @@
 = simple_form_for @search, url: "#", method: :get, as: :search, html: { class: "search-form" } do |f|
   .row
-    .col-md-4.col-sm-5.col-xs-12.pull-right
-      .form-group.search-input
-        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
-        = submit_tag :submit, class: 'search-submit'
-  .clear
-
-  .row
     .col-md-9.col-sm-8
       = render 'admin/users/navigation'
 
@@ -16,6 +9,20 @@
   .clear
 
   br
+
+  .row
+    .col-md-4.col-sm-5.col-xs-12
+      .form-group.search-input
+        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
+        = submit_tag :submit, class: 'search-submit'
+  .clear
+
+  - if @search.query?
+    .well.search-text
+      p
+        = "Search results for '#{@search.query}'"
+        small
+          = link_to "(Clear search)", [:admin, controller_name], class: "btn btn-link"
 
   = render 'list', resources: @resources, f: f
 

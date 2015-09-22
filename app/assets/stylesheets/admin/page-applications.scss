@@ -1,5 +1,21 @@
 @import "mixins";
 
+.search-text {
+  margin-bottom: 30px;
+  padding: 10px 15px;
+  background-color: $grey-lighter;
+  font-size: 18px;
+  font-style: italic;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  a {
+    font-style: normal;
+  }
+}
+
 .applications-table {
   .urn-not-generated {
     color: $grey;
