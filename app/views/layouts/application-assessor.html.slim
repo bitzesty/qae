@@ -57,6 +57,12 @@ html.no-js
                       span.caret
                     ul.dropdown-menu
                       li
+                        span
+                          strong = current_subject.decorate.full_name
+                          br
+                          small = current_subject.email
+                      li.divider
+                      li
                         = link_to "Sign out",
                                   destroy_assessor_session_path,
                                   method: :delete
