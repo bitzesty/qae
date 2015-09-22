@@ -1802,8 +1802,8 @@ table .ellipsis {
       left: auto;
       padding-right: 10px;
       padding-left: 10px;
-      border-left: 1px solid $bootstrap-blue-line;
-      background: $bootstrap-blue;
+      border-left: 1px solid $less-black;
+      background: $black-header;
 
       .caret {
         margin-top: 0.7em;
@@ -1816,8 +1816,8 @@ table .ellipsis {
   .btn:active,
   .open > .dropdown-toggle {
     .caret-container {
-      border-color: $bootstrap-blue-line-dark;
-      background-color: $bootstrap-blue-dark;
+      border-color: $black-true;
+      background-color: $less-black;
     }
   }
 
