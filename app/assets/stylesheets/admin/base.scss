@@ -1648,19 +1648,11 @@ table .ellipsis {
 .glyphicon-pencil {
   width: 15px;
   height: 13px;
-  background-image: image-url("icon-edit.png");
+  background-image: image-url("icon-edit-black.png");
   background-size: 15px 13px;
 
   @include is-retina {
-    background-image: image-url("icon-edit@2.png");
-  }
-
-  .list-actions & {
-    background-image: image-url("icon-edit-black.png");
-
-    @include is-retina {
-      background-image: image-url("icon-edit-black@2.png");
-    }
+    background-image: image-url("icon-edit-black@2.png");
   }
 }
 
