@@ -338,42 +338,24 @@
 
   li {
     position: relative;
+    margin-bottom: 20px;
     clear: both;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   label {
-    width: 32%;
-    margin-bottom: 0;
-    float: left;
-    font-weight: normal;
-
-    @include screen-lg-max {
-      width: 40%;
-    }
-
-    @include screen-md-max {
-      width: 120px;
-    }
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   select {
     width: 100%;
     max-width: 100%;
-  }
-
-  form,
-  .form-value {
-    width: 65%;
-    float: right;
-
-    @include screen-lg-max {
-      width: 60%;
-    }
-
-    @include screen-md-max {
-      width: auto;
-      float: none;
-    }
   }
 
   .form-fields {
@@ -395,16 +377,6 @@
 
   .select2-container {
     width: 100% !important;
-  }
-
-  .edit-value {
-    padding-right: 60px;
-
-    .lte-ie7 & {
-      padding-right: 0;
-      width: 45% !important;
-      padding-right: 20%;
-    }
   }
 
   .form-edit-link {
