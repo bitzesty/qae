@@ -1,13 +1,8 @@
-- unless resource.submitted_and_after_the_deadline?
-  - obj = @form_answer
-- else
-  - obj = CompanyDetail.for(@form_answer)
-
 - unless @form_answer.promotion?
   br
   - if user_can_edit(@form_answer, :website)
     .form-group
-      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+      = simple_form_for [namespace_name, resource],
                         remote: true,
                         authenticity_token: true do |f|
         = hidden_field_tag :section, "website"
@@ -15,8 +10,8 @@
         label.form-label Website address
         .form-value
           p
-            - if obj.website_url.present?
-              = obj.website_url
+            - if @form_answer.website_url.present?
+              = @form_answer.website_url
             - else
               ' -
         .form-fields.form-block
@@ -37,7 +32,7 @@
     .form-group
       label.form-label Website address
       p
-        - if obj.website_url.present?
-          = obj.website_url
+        - if @form_answer.website_url.present?
+          = @form_answer.website_url
         - else
           ' -

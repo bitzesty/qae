@@ -1,8 +1,3 @@
-- unless resource.submitted_and_after_the_deadline?
-  - obj = @form_answer
-- else
-  - obj = CompanyDetail.for(@form_answer)
-
 .form-group-multiple-parent
   - if @form_answer.promotion?
     br
@@ -10,33 +5,33 @@
       label.form-label Nominee Address
       .form-value
         p
-          - if obj.nominee_building.present?
-            = obj.nominee_building
+          - if @form_answer.nominee_building.present?
+            = @form_answer.nominee_building
             br
-          - if obj.nominee_street.present?
-            = obj.nominee_street
+          - if @form_answer.nominee_street.present?
+            = @form_answer.nominee_street
             br
-          - if obj.nominee_city.present?
-            = obj.nominee_city
+          - if @form_answer.nominee_city.present?
+            = @form_answer.nominee_city
             br
-          - if obj.nominee_county.present?
-            = obj.nominee_county
+          - if @form_answer.nominee_county.present?
+            = @form_answer.nominee_county
             br
-          - if obj.nominee_postcode.present?
-            = obj.nominee_postcode
+          - if @form_answer.nominee_postcode.present?
+            = @form_answer.nominee_postcode
             br
-          - if obj.nominee_telephone.present?
-            = obj.nominee_telephone
+          - if @form_answer.nominee_telephone.present?
+            = @form_answer.nominee_telephone
             br
-          - if obj.nominee_email.present?
-            = obj.nominee_email
+          - if @form_answer.nominee_email.present?
+            = @form_answer.nominee_email
             br
-          - if obj.nominee_region.present?
-            = obj.nominee_region
+          - if @form_answer.nominee_region.present?
+            = @form_answer.nominee_region
             br
 
       - if user_can_edit(@form_answer, :address)
-        = simple_form_for([namespace_name, CompanyDetail.for(resource)],
+        = simple_form_for([namespace_name, resource],
                           remote: true,
                           authenticity_token: true) do |f|
 
@@ -108,45 +103,45 @@
     .form-value
       p
         - if @form_answer.promotion?
-          - if obj.nominee_organisation.present?
-            = obj.nominee_organisation
+          - if @form_answer.nominee_organisation.present?
+            = @form_answer.nominee_organisation
             br
 
-          - if obj.nominee_position.present?
-            = obj.nominee_position
+          - if @form_answer.nominee_position.present?
+            = @form_answer.nominee_position
             br
 
-        - if obj.address_building.present?
-          = obj.address_building
+        - if @form_answer.address_building.present?
+          = @form_answer.address_building
           br
-        - if obj.address_street.present?
-          = obj.address_street
+        - if @form_answer.address_street.present?
+          = @form_answer.address_street
           br
-        - if obj.address_city.present?
-          = obj.address_city
+        - if @form_answer.address_city.present?
+          = @form_answer.address_city
           br
-        - if obj.address_county.present?
-          = obj.address_county
+        - if @form_answer.address_county.present?
+          = @form_answer.address_county
           br
-        - if obj.address_postcode.present?
-          = obj.address_postcode
+        - if @form_answer.address_postcode.present?
+          = @form_answer.address_postcode
           br
 
         - unless @form_answer.promotion?
-          - if obj.telephone.present?
-            = obj.telephone
+          - if @form_answer.telephone.present?
+            = @form_answer.telephone
             br
-          - if obj.region.present?
-            = obj.region
+          - if @form_answer.region.present?
+            = @form_answer.region
             br
 
         - if @form_answer.promotion?
-          - if obj.nominee_organisation_website.present?
-            = obj.nominee_organisation_website
+          - if @form_answer.nominee_organisation_website.present?
+            = @form_answer.nominee_organisation_website
             br
 
     - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
-      = simple_form_for([namespace_name, CompanyDetail.for(resource)],
+      = simple_form_for([namespace_name, resource],
                         remote: true,
                         authenticity_token: true) do |f|
 
@@ -234,33 +229,33 @@
       label.form-label Nominator Address
       .form-value
         p
-          - if obj.nominator_name.present?
-            = obj.nominator_name
+          - if @form_answer.nominator_name.present?
+            = @form_answer.nominator_name
             br
-          - if obj.nominator_building.present?
-            = obj.nominator_building
+          - if @form_answer.nominator_building.present?
+            = @form_answer.nominator_building
             br
-          - if obj.nominator_street.present?
-            = obj.nominator_street
+          - if @form_answer.nominator_street.present?
+            = @form_answer.nominator_street
             br
-          - if obj.nominator_city.present?
-            = obj.nominator_city
+          - if @form_answer.nominator_city.present?
+            = @form_answer.nominator_city
             br
-          - if obj.nominator_county.present?
-            = obj.nominator_county
+          - if @form_answer.nominator_county.present?
+            = @form_answer.nominator_county
             br
-          - if obj.nominator_postcode.present?
-            = obj.nominator_postcode
+          - if @form_answer.nominator_postcode.present?
+            = @form_answer.nominator_postcode
             br
-          - if obj.nominator_telephone.present?
-            = obj.nominator_telephone
+          - if @form_answer.nominator_telephone.present?
+            = @form_answer.nominator_telephone
             br
-          - if obj.nominator_email.present?
-            = obj.nominator_email
+          - if @form_answer.nominator_email.present?
+            = @form_answer.nominator_email
             br
 
       - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
-        = simple_form_for([namespace_name, CompanyDetail.for(resource)],
+        = simple_form_for([namespace_name, resource],
                           remote: true,
                           authenticity_token: true) do |f|
 

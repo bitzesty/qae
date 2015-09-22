@@ -1,13 +1,8 @@
-- unless resource.submitted_and_after_the_deadline?
-  - obj = @form_answer
-- else
-  - obj = CompanyDetail.for(@form_answer)
-
 - unless @form_answer.promotion?
   br
   - if user_can_edit(@form_answer, :organisation_head)
     .form-group
-      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+      = simple_form_for [namespace_name, resource],
                         remote: true,
                         authenticity_token: true do |f|
         = hidden_field_tag :section, "organisation_head"
@@ -15,19 +10,19 @@
         label.form-label Head of organisation
         .form-value
           p
-            - if obj.head_of_bussines_title.present?
-              = obj.head_of_bussines_title
+            - if @form_answer.head_of_bussines_title.present?
+              = @form_answer.head_of_bussines_title
               '
-            = obj.head_of_business_full_name
-            - if obj.head_of_business_honours.present?
+            = @form_answer.head_of_business_full_name
+            - if @form_answer.head_of_business_honours.present?
               '
-              = obj.head_of_business_honours
+              = @form_answer.head_of_business_honours
             br
-            - if obj.head_job_title.present?
-              = obj.head_job_title
+            - if @form_answer.head_job_title.present?
+              = @form_answer.head_job_title
               br
-            - if obj.head_email.present?
-              = obj.head_email
+            - if @form_answer.head_email.present?
+              = @form_answer.head_email
         .form-fields.form-block
           .row
             .col-md-2
@@ -71,16 +66,16 @@
     .form-group
       label.form-label Head of organisation
       p
-        - if obj.head_of_bussines_title.present?
-          = obj.head_of_bussines_title
+        - if @form_answer.head_of_bussines_title.present?
+          = @form_answer.head_of_bussines_title
           '
-        = obj.head_of_business_full_name
-        - if obj.head_of_business_honours.present?
+        = @form_answer.head_of_business_full_name
+        - if @form_answer.head_of_business_honours.present?
           '
-          = obj.head_of_business_honours
+          = @form_answer.head_of_business_honours
         br
-        - if obj.head_job_title.present?
-          = obj.head_job_title
+        - if @form_answer.head_job_title.present?
+          = @form_answer.head_job_title
           br
-        - if obj.head_email.present?
-          = obj.head_email
+        - if @form_answer.head_email.present?
+          = @form_answer.head_email
