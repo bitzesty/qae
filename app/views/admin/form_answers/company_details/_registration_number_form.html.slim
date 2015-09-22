@@ -13,25 +13,27 @@
                         html: { "data-type" => "html", class: "registration-number-form"} do |f|
         = hidden_field_tag :section, "registration_number"
         label.form-label Company/charity registration number
-        .form-value
-          p
-            = obj.registration_number
-        .form-fields.form-block
-          = f.input :registration_number,
-                    as: :string,
-                    label: false,
-                    input_html: { class: "form-control" }
-          .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-            = f.submit "Save", class: "btn btn-primary pull-right"
-        .clear
+        .form-value-container
+          .form-value
+            p
+              = obj.registration_number
+          .form-fields.form-block
+            = f.input :registration_number,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary pull-right"
+          .clear
 
-        = link_to "#", class: "form-edit-link pull-right"
-          span.glyphicon.glyphicon-pencil
-          ' Edit
-        .clear
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
   - else
     .form-group
       label.form-label Company/charity registration number
-      p
-        = obj.registration_number
+      .form-value-container
+        p
+          = obj.registration_number

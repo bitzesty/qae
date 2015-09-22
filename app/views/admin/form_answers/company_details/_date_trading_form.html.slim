@@ -13,31 +13,33 @@
         = hidden_field_tag :section, "date_trading"
 
         label.form-label Date started trading
-        .form-value
-          p
-            = obj.date_started_trading.try(:strftime, "%d-%m-%Y")
-        .form-fields.form-block
-          .input.string.optional.company_detail_date_started_trading.form-control-day
-            = label_tag "date_started_trading_3i", "Day", class: "string optional control-label"
-            input.string.optional.form-control id="date_started_trading_3i" type='text' name="company_detail[date_started_trading(3i)]" value="#{obj.date_started_trading.try(:day)}"
-          .input.string.optional.company_detail_date_started_trading.form-control-month
-            = label_tag "date_started_trading_2i", "Month", class: "string optional control-label"
-            input.string.optional.form-control id="date_started_trading_2i" type='text' name="company_detail[date_started_trading(2i)]" value="#{obj.date_started_trading.try(:month)}"
-          .input.string.optional.company_detail_date_started_trading.form-control-year
-            = label_tag "date_started_trading_1i", "Year", class: "string optional control-label"
-            input.string.optional.form-control id="date_started_trading_1i" type='text' name="company_detail[date_started_trading(1i)]" value="#{obj.date_started_trading.try(:year)}"
+        .form-value-container
+          .form-value
+            p
+              = obj.date_started_trading.try(:strftime, "%d-%m-%Y")
+          .form-fields.form-block
+            .input.string.optional.company_detail_date_started_trading.form-control-day
+              = label_tag "date_started_trading_3i", "Day", class: "string optional control-label"
+              input.string.optional.form-control id="date_started_trading_3i" type='text' name="company_detail[date_started_trading(3i)]" value="#{obj.date_started_trading.try(:day)}"
+            .input.string.optional.company_detail_date_started_trading.form-control-month
+              = label_tag "date_started_trading_2i", "Month", class: "string optional control-label"
+              input.string.optional.form-control id="date_started_trading_2i" type='text' name="company_detail[date_started_trading(2i)]" value="#{obj.date_started_trading.try(:month)}"
+            .input.string.optional.company_detail_date_started_trading.form-control-year
+              = label_tag "date_started_trading_1i", "Year", class: "string optional control-label"
+              input.string.optional.form-control id="date_started_trading_1i" type='text' name="company_detail[date_started_trading(1i)]" value="#{obj.date_started_trading.try(:year)}"
+            .clear
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary pull-right"
           .clear
-          .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-            = f.submit "Save", class: "btn btn-primary pull-right"
-        .clear
 
-        = link_to "#", class: "form-edit-link pull-right"
-          span.glyphicon.glyphicon-pencil
-          ' Edit
-        .clear
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
   - else
     .form-group
       label.form-label Date started trading
-      p
-        = obj.date_started_trading
+      .form-value-container
+        p
+          = obj.date_started_trading

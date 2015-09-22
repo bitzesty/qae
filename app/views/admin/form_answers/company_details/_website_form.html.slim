@@ -13,31 +13,33 @@
         = hidden_field_tag :section, "website"
 
         label.form-label Website address
-        .form-value
-          p
-            - if obj.website_url.present?
-              = obj.website_url
-            - else
-              ' -
-        .form-fields.form-block
-          = f.input :website_url,
-                    as: :string,
-                    label: false,
-                    input_html: { class: "form-control" }
-          .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-            = f.submit "Save", class: "btn btn-primary pull-right"
-        .clear
+        .form-value-container
+          .form-value
+            p
+              - if obj.website_url.present?
+                = obj.website_url
+              - else
+                ' -
+          .form-fields.form-block
+            = f.input :website_url,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary pull-right"
+          .clear
 
-        = link_to "#", class: "form-edit-link pull-right"
-          span.glyphicon.glyphicon-pencil
-          ' Edit
-        .clear
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
   - else
     .form-group
       label.form-label Website address
-      p
-        - if obj.website_url.present?
-          = obj.website_url
-        - else
-          ' -
+      .form-value-container
+        p
+          - if obj.website_url.present?
+            = obj.website_url
+          - else
+            ' -

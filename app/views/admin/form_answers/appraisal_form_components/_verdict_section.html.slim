@@ -34,24 +34,25 @@
                 span.icon-rag
                 span.rag-text= opt[0]
 
-  .form-value
-    p
-      - if f.object.public_send(section.desc).present?
-        = f.object.public_send(section.desc)
-      - else
-        em.text-muted No comment has been added yet.
-    .clear
-  = f.input section.desc,
-            wrapper_html: { class: 'form-group' },
-            input_html: { class: 'form-control js-char-count', rows: 5, "data-word-max" => 1200 },
-            as: :text,
-            label: false
+  .form-value-container
+    .form-value
+      p
+        - if f.object.public_send(section.desc).present?
+          = f.object.public_send(section.desc)
+        - else
+          em.text-muted No comment has been added yet.
+      .clear
+    = f.input section.desc,
+              wrapper_html: { class: 'form-group' },
+              input_html: { class: 'form-control js-char-count', rows: 5, "data-word-max" => 1200 },
+              as: :text,
+              label: false
 
-  - if editable
-    = link_to "#", class: "form-edit-link pull-right"
-      span.glyphicon.glyphicon-pencil
-      ' Edit
-    .form-actions.text-right
-      = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-      = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide", "data-updated-section" => section.desc
-    .clear
+    - if editable
+      = link_to "#", class: "form-edit-link pull-right"
+        span.glyphicon.glyphicon-pencil
+        ' Edit
+      .form-actions.text-right
+        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide", "data-updated-section" => section.desc
+      .clear
