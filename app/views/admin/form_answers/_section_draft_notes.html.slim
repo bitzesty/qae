@@ -14,13 +14,13 @@
                         authenticity_token: true,
                         html: { "data-type" => "json" }) do |f|
 
-        .form-group
+        .form-group class="#{'form-edit' if f.object.content.blank?}"
           .form-value
             p
               - if f.object.content.present?
                 = f.object.content
               - else
-                ' -
+                em.text-muted No draft notes added yet.
           = f.input :content,
                     wrapper_html: { class: "form-group" },
                     input_html: { class: "form-control", rows: 10 },

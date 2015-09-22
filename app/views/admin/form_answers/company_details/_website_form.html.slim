@@ -6,7 +6,7 @@
 - unless @form_answer.promotion?
   br
   - if user_can_edit(@form_answer, :website)
-    .form-group
+    .form-group class="#{'form-edit' if obj.website_url.blank?}"
       = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                         remote: true,
                         authenticity_token: true do |f|
@@ -19,7 +19,7 @@
               - if obj.website_url.present?
                 = obj.website_url
               - else
-                ' -
+                em.text-muted No website added.
           .form-fields.form-block
             = f.input :website_url,
                       as: :string,
@@ -42,4 +42,4 @@
           - if obj.website_url.present?
             = obj.website_url
           - else
-            ' -
+            em.text-muted No website added.

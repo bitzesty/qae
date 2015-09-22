@@ -2,8 +2,12 @@ br
 .form-group
   label.form-label User accounts
   .form-value-container
-    ul.list-unstyled.list-actions
-      - (resource.account.try(:users) || []).each do |user|
-        li
-          = link_to "#", class: "ellipsis"
-            = "#{user.full_name} (#{user.email})"
+    - if (resource.account.try(:users) || []).any?
+      ul.list-unstyled.list-actions
+        - (resource.account.try(:users) || []).each do |user|
+          li
+            = link_to "#", class: "ellipsis"
+              = "#{user.full_name} (#{user.email})"
+    - else
+      p
+        em.text-muted No users were added.

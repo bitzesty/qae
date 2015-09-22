@@ -1,9 +1,14 @@
-.form-group.application-background-section
+.form-group.application-background-section class="#{'form-edit' if f.object.application_background_section_desc.blank?}"
   label.form-label Application background
   .form-value-container
     .form-value
       p
-        = f.object.application_background_section_desc
+        - if f.object.application_background_section_desc.present?
+          = f.object.application_background_section_desc
+        - else
+          em.text-muted No comment has been added yet.
+      .clear
+
     = f.input :application_background_section_desc,
               wrapper_html: { class: "form-group" },
               input_html: { class: "form-control", rows: 10 },

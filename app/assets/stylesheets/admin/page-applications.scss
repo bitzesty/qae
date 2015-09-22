@@ -227,6 +227,10 @@
   margin: 0 -10px;
   padding: 10px;
   background: $grey-lighter;
+
+  .char-count.char-max-shift {
+    margin-top: 0;
+  }
 }
 
 .section-appraisal-form .form-label {

@@ -16,7 +16,10 @@
         .form-value-container
           .form-value
             p
-              = obj.date_started_trading.try(:strftime, "%d-%m-%Y")
+              - if obj.date_started_trading.try(:strftime, "%d/%m/%Y").present?
+                = obj.date_started_trading.try(:strftime, "%d/%m/%Y")
+              - else
+                em.text-muted Date started trading not added.
           .form-fields.form-block
             .input.string.optional.company_detail_date_started_trading.form-control-day
               = label_tag "date_started_trading_3i", "Day", class: "string optional control-label"
@@ -42,4 +45,8 @@
       label.form-label Date started trading
       .form-value-container
         p
-          = obj.date_started_trading
+          - if obj.date_started_trading.try(:strftime, "%d/%m/%Y").present?
+            ' TRUE
+            = obj.date_started_trading.try(:strftime, "%d/%m/%Y")
+          - else
+            em.text-muted Date started trading not added.

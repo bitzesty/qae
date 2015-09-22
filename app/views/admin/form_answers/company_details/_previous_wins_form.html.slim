@@ -19,7 +19,8 @@
                   li
                     span= win.description
             - else
-              p -
+              p
+                em.text-muted No previous winnings added.
           - f.object.previous_wins.build
           .input.form-group.form-fields.form-block
             = f.simple_fields_for :previous_wins, f.object.previous_wins do |p|
@@ -67,4 +68,5 @@
               li
                 span= win.description
         - else
-          p -
+          p
+            em.text-muted No previous winnings added.

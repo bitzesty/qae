@@ -1,7 +1,7 @@
 - unless @form_answer.promotion?
   br
   - if user_can_edit(@form_answer, :sic_code)
-    .form-group.sic-code
+    .form-group.sic-code class="#{'form-edit' if @form_answer.sic_code.blank?}"
       = simple_form_for [namespace_name, @form_answer],
                         remote: true,
                         authenticity_token: true do |f|
@@ -15,7 +15,7 @@
               - if @form_answer.sic_code.present?
                 = @form_answer.sic_code_name
               - else
-                ' -
+                em.text-muted No SIC code assigned.
           .form-fields.form-block
             = f.input :sic_code,
                       wrapper_html: { class: "form-group" },
@@ -40,4 +40,4 @@
           - if @form_answer.sic_code.present?
             = @form_answer.sic_code_name
           - else
-            ' -
+            em.text-muted No SIC code assigned.
