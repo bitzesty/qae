@@ -1446,10 +1446,10 @@ table .ellipsis {
     }
 
     .icon-rag {
-      background-image: image-url("icon-grade-neutral.png");
+      background-image: image-url("icon-grade-blank.png");
 
       @include is-retina {
-        background-image: image-url("icon-grade-neutral@2.png");
+        background-image: image-url("icon-grade-blank@2.png");
       }
     }
   }
