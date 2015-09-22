@@ -44,9 +44,13 @@
               th Award Type
             - else
               = render("assessor/form_answers/status_header", f: f)
-              th &nbsp;
-              th.sortable
-                = sort_link f, "Flag", @search, :flag, disabled: @search.query?
+              = render("assessor/form_answers/assessor_header", f: f)
+            th &nbsp;
+            th.sortable
+              = sort_link f, "Flag", @search, :flag, disabled: @search.query?
+            th &nbsp;
+            th.sortable
+              = sort_link f, "Flag", @search, :flag, disabled: @search.query?
           = render(partial: "assessor/form_answers/list_body")
   .row
   .col-xs-12.text-right

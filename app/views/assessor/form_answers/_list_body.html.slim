@@ -22,14 +22,19 @@ tbody
       - if @search.query?
         td = obj.award_type_full_name
       - else
-        td= obj.state.humanize
-        td
+        td = obj.state.humanize
+        td.td-assessment-submitted
           - if obj.primary_assessment_submitted?
             span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
-          = obj.primary_assessor_full_name
+
         td
+          = obj.primary_assessor_full_name
+
+        td.td-assessment-submitted
           - if obj.secondary_assessment_submitted?
             span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
+
+        td
           = obj.secondary_assessor_full_name
 
       td

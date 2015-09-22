@@ -420,110 +420,114 @@ table .ellipsis {
   }
 }
 
-  .p-empty {
-    font-style: italic;
+.p-empty {
+  font-style: italic;
+}
+
+.td-title {
+  padding-left: 20px;
+  font-size: 1.2em;
+
+  a {
+    color: inherit;
   }
 
-  .td-title {
-    padding-left: 20px;
-    font-size: 1.2em;
+  .ellipsis {
+    max-width: 350px;
 
+    @include screen-md-max {
+      max-width: 250px;
+    }
+  }
+}
+
+.td-flags {
+  white-space: nowrap;
+}
+
+.table > tbody > tr > .td-assessment-submitted {
+  padding-right: 0;
+}
+
+.list-actions {
+  margin-bottom: 0;
+  margin-left: 0;
+
+  a {
+    color: inherit;
+  }
+
+  .pull-right {
     a {
-      color: inherit;
-    }
+      color: $list-actions;
 
-    .ellipsis {
-      max-width: 350px;
-
-      @include screen-md-max {
-        max-width: 250px;
+      &.text-danger {
+        color: $list-actions-danger;
       }
     }
   }
 
-  .td-flags {
-    white-space: nowrap;
+  .glyphicon {
+    margin-right: 5px;
   }
 
-  .list-actions {
-    margin-bottom: 0;
-    margin-left: 0;
+  li {
+    margin-bottom: 10px;
+    @extend .clearfix;
 
-    a {
-      color: inherit;
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    .pull-right {
-      a {
-        color: $list-actions;
+    .action-title {
+      display: block;
+      margin-right: 110px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
-        &.text-danger {
-          color: $list-actions-danger;
-        }
+      .lte-ie8 & {
+        max-width: 200px;
+        margin-right: 0;
+        float: left;
       }
     }
 
-    .glyphicon {
-      margin-right: 5px;
-    }
-
-    li {
-      margin-bottom: 10px;
-      @extend .clearfix;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      .action-title {
-        display: block;
-        margin-right: 110px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        .lte-ie8 & {
-          max-width: 200px;
-          margin-right: 0;
-          float: left;
-        }
-      }
-
-      a span {
-        .lte-ie7 & {
-          display: inline !important;
-        }
-      }
-    }
-  }
-
-  .btn-attachment {
-    position: relative;
-    overflow: hidden;
-
-    .lte-ie8 & {
-      max-height: 25px;
-    }
-
-    input[type="file"] {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: auto;
-      width: 100%;
-      cursor: pointer;
-      font-size: 200px;
-      opacity: 0;
-      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-      filter: alpha(opacity=0);
-
+    a span {
       .lte-ie7 & {
-        left: auto !important;
-        height: 100%;
+        display: inline !important;
       }
     }
   }
+}
+
+.btn-attachment {
+  position: relative;
+  overflow: hidden;
+
+  .lte-ie8 & {
+    max-height: 25px;
+  }
+
+  input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: 100%;
+    cursor: pointer;
+    font-size: 200px;
+    opacity: 0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+
+    .lte-ie7 & {
+      left: auto !important;
+      height: 100%;
+    }
+  }
+}
 
 // Alerts
 .alert-container {
@@ -635,7 +639,6 @@ table .ellipsis {
   width: 20px;
   height: 20px;
   top: -6px;
-  margin-right: 5px;
   background-image: image-url("icon-check.png");
   background-position: center center;
   background-size: 20px 14px;
