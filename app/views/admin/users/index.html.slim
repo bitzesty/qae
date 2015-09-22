@@ -2,10 +2,6 @@
   .row
     .col-md-9.col-sm-8
       = render 'admin/users/navigation'
-
-    .col-md-3.col-sm-4.col-xs-12.pull-right.text-right
-      = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-secondary btn-md' do
-        = "+ Add #{controller_name == "users" ? "applicant" : controller_name.singularize}"
   .clear
 
   br
@@ -15,6 +11,10 @@
       .form-group.search-input
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = submit_tag :submit, class: 'search-submit'
+
+    .col-md-3.col-sm-4.col-xs-12.pull-right.text-right
+      = link_to public_send("new_admin_#{controller_name.singularize}_path"), class: 'new-user btn btn-secondary btn-md' do
+        = "+ Add #{controller_name == "users" ? "applicant" : controller_name.singularize}"
   .clear
 
   - if @search.query?
