@@ -61,6 +61,9 @@ class User < ActiveRecord::Base
     scope :by_email, -> { order(:email) }
     scope :qae_opt_in_group, -> { where(subscribed_to_emails: true) }
     scope :bit_opt_in, -> { where(agree_being_contacted_by_department_of_business: true) }
+    scope :confirmed, -> {
+      where("confirmed_at IS NOT NULL")
+    }
   end
 
   before_validation :create_account, on: :create
