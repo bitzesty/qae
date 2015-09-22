@@ -26,6 +26,10 @@ module FormAnswerHelper
     end
   end
 
+  def user_can_edit(form, item)
+    policy(form).update_item?(item) && form.submitted_and_after_the_deadline?
+  end
+
   def application_comments(comments)
     visible_comments = comments
 

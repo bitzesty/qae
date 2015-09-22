@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914114817) do
+ActiveRecord::Schema.define(version: 20150917135114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -312,6 +312,8 @@ ActiveRecord::Schema.define(version: 20150914114817) do
     t.integer  "secondary_assessor_id"
     t.json     "document"
     t.string   "nominee_title"
+    t.string   "nominator_full_name"
+    t.string   "nominator_email"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree

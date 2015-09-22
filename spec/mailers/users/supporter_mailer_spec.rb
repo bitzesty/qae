@@ -10,6 +10,8 @@ describe Users::SupporterMailer do
     form_answer.document = {
       nominee_info_first_name: "Jon",
       nominee_info_last_name: "Snow",
+      user_info_first_name: "Arya",
+      user_info_last_name: "Stark",
     }
     form_answer.save!
   end
@@ -26,6 +28,6 @@ describe Users::SupporterMailer do
       href: new_support_letter_url(access_key: supporter.access_key)
     )
 
-    expect(mail.body.encoded).to match(user.full_name)
+    expect(mail.body.encoded).to match(supporter.form_answer.nominator_full_name)
   end
 end

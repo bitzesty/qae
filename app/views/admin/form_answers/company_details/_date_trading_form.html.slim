@@ -5,7 +5,7 @@
 
 - unless @form_answer.promotion?
   br
-  - if @form_answer.submitted_and_after_the_deadline?
+  - if user_can_edit(@form_answer, :date_trading)
     .form-group
       = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                         remote: true,

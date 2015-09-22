@@ -180,6 +180,10 @@ class FormAnswer < ActiveRecord::Base
     name.presence
   end
 
+  def nominee_full_name_from_document
+    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
+  end
+
   def fill_progress_in_percents
     ((fill_progress || 0) * 100).round.to_s + "%"
   end
@@ -193,8 +197,12 @@ class FormAnswer < ActiveRecord::Base
 
   private
 
-  def nominee_full_name_from_document
+  def nominator_full_name_from_document
     "#{document['user_info_first_name']} #{document['user_info_last_name']}".strip
+  end
+
+  def nominator_email_from_document
+    document["personal_email"]
   end
 
   def set_urn
@@ -227,6 +235,8 @@ class FormAnswer < ActiveRecord::Base
       self.company_or_nominee_name = company_or_nominee_from_document
      end
     self.nominee_full_name = nominee_full_name_from_document
+    self.nominator_full_name = nominator_full_name_from_document
+    self.nominator_email = nominator_email_from_document
     self.award_type_full_name = AWARD_TYPE_FULL_NAMES[award_type]
   end
 

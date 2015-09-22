@@ -25,6 +25,7 @@ class Notifiers::EmailNotificationService
   def ep_reminder_support_letters(award_year)
     award_year.form_answers.promotion.includes(:support_letters).each do |form_answer|
       if form_answer.support_letters.count < 2
+        Rails.logger.info "[EP REMINDER SUPPORT LETTER]              #{form_answer.id}"
         Users::PromotionLettersOfSupportReminderMailer.notify(form_answer.id).deliver_later!
       end
     end
@@ -32,6 +33,7 @@ class Notifiers::EmailNotificationService
 
   def reminder_to_submit(award_year)
     award_year.form_answers.business.where(submitted: false).each do |form_answer|
+      Rails.logger.info "[REMINDER TO SUBMIT]              #{form_answer.id}"
       Users::ReminderToSubmitMailer.notify(form_answer.id).deliver_later!
     end
   end

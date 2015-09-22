@@ -5,7 +5,7 @@
 
 - unless @form_answer.promotion?
   br
-  - if @form_answer.submitted_and_after_the_deadline?
+  - if user_can_edit(@form_answer, :organisation_head)
     .form-group
       = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                         remote: true,
@@ -17,10 +17,10 @@
           p
             - if obj.head_of_bussines_title.present?
               = obj.head_of_bussines_title
-              ' 
+              '
             = obj.head_of_business_full_name
             - if obj.head_of_business_honours.present?
-              ' 
+              '
               = obj.head_of_business_honours
             br
             - if obj.head_job_title.present?
@@ -73,10 +73,10 @@
       p
         - if obj.head_of_bussines_title.present?
           = obj.head_of_bussines_title
-          ' 
+          '
         = obj.head_of_business_full_name
         - if obj.head_of_business_honours.present?
-          ' 
+          '
           = obj.head_of_business_honours
         br
         - if obj.head_job_title.present?
