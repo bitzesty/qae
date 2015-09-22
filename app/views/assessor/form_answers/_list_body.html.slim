@@ -1,7 +1,7 @@
 tbody
   - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
     tr
-      - unless @search.query?
+      - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
         td = check_box_tag :check, obj.id, false, class: "form-answer-check"
 
       td.td-title

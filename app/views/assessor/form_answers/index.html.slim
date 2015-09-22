@@ -32,7 +32,7 @@
       table.table.applications-table
         thead
           tr
-            - unless @search.query?
+            - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
               th
                 span.if-no-js-hide
                   = check_box_tag :check_all
@@ -45,9 +45,6 @@
             - else
               = render("assessor/form_answers/status_header", f: f)
               = render("assessor/form_answers/assessor_header", f: f)
-            th &nbsp;
-            th.sortable
-              = sort_link f, "Flag", @search, :flag, disabled: @search.query?
             th &nbsp;
             th.sortable
               = sort_link f, "Flag", @search, :flag, disabled: @search.query?
