@@ -33,11 +33,12 @@ describe "Assessor assigns assessors", %(
     end
 
     it "assigns the assessor as primary", js: true do
-      find(".btn", text: "Bulk Assign Assessors").click
-
       within ".applications-table" do
         first(".form-answer-check").set(true)
       end
+
+      find(".btn", text: "Bulk Assign Assessors").click
+
       open_primary_select
 
       all(".select2-results__options li")[3].click
@@ -54,10 +55,12 @@ describe "Assessor assigns assessors", %(
     end
 
     it "assigns both assessors", js: true do
-      find(".btn", text: "Bulk Assign Assessors").click
       within ".applications-table" do
         first(".form-answer-check").set(true)
       end
+
+      find(".btn", text: "Bulk Assign Assessors").click
+
       open_primary_select
       all(".select2-results__options li")[2].click
       open_secondary_select

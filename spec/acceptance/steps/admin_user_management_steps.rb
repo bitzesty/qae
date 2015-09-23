@@ -4,14 +4,14 @@ end
 
 step "I create new user" do
   step "I go to user management page"
-  click_link 'New user'
+  click_link "+ Add applicant"
 
   fill_in 'Email', with: 'user@example.com'
   select "Regular", from: "Account type"
   fill_in 'Password', with: "my98ssdkjv9823kds=2"
   fill_in 'Password confirmation', with: "my98ssdkjv9823kds=2"
 
-  click_button 'Create User'
+  click_button "Save"
 end
 
 step "I edit user" do
@@ -20,7 +20,7 @@ step "I edit user" do
 
   fill_in 'Email', with: 'user@example.com'
 
-  click_button 'Update User'
+  click_button "Save"
 end
 
 step "I delete user" do

@@ -37,7 +37,9 @@
 
             .feedback-holder
 
-            = submit_tag "Confirm case summary", class: "btn btn-default btn-block"
+            .pull-right
+              = submit_tag "Confirm case summary", class: "btn btn-primary btn-confirm-submit"
+            .clear
         - else
           / Only show once primary assessor has submitted the case summary
           / Lead assessor must confirm it

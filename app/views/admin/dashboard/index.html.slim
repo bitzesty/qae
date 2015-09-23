@@ -3,14 +3,14 @@
 .clear
 br
 .row.clearfix
-  .col-md-4
+  .show-sidebar-container
     .show-sidebar
       = render "csv_reports"
       - if policy(:report).show?
         = render "admin/feedbacks/pdf_reports"
         = render "admin/reports/case_summaries"
 
-  .col-md-8
+  .show-main-content
     .panel-group#dashboard-details-parent role="tablist" aria-multiselectable="true"
       .panel.panel-default
         .panel-heading#stage-one-application-heading role="tab"

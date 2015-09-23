@@ -7,7 +7,6 @@
   ul.list-unstyled.list-actions
     li.form-group
       label
-        span.icon-role L
         span.assessor-label Lead:
       .form-value.lead-assessor
         = resource.lead_assessors
@@ -15,7 +14,6 @@
 
     li.form-group.primary-assessor-assignment
       label
-        span.icon-role 1
         ' Primary:
       .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
         - if resource.assessors.primary.present?
@@ -42,13 +40,12 @@
           .form-actions.text-right
             span.if-no-js-hide
               = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
-            = form.submit :add, class: "btn btn-primary form-save-button"
+            = form.submit "Save", class: "btn btn-primary form-save-button"
           .errors-holder
       .clear
 
     li.form-group.secondary-assessor-assignment
       label
-        span.icon-role 2
         span.assessor-label Secondary:
       .form-value class=("ellipsis edit-value" if policy(resource).assign_assessor?)
         - if resource.assessors.secondary.present?
@@ -72,6 +69,6 @@
           .form-actions.text-right
             span.if-no-js-hide
               = link_to "Cancel", "#", class: "btn btn-default form-cancel-link"
-            = form.submit :add, class: "btn btn-primary form-save-button"
+            = form.submit "Save", class: "btn btn-primary form-save-button"
           .errors-holder
       .clear

@@ -47,9 +47,9 @@
     tbody
       tr.overall-growth
         th
-          'Overall growth £[year 1 - #{financial_pointer.period_length}]
+          'Overall growth in £ (year 1 - #{financial_pointer.period_length})
         td.value = formatted_uk_sales_value(financial_pointer.overall_growth)
       tr.overall-growth-in-percents
         th
-          ' Overall growth %[year 1 - #{financial_pointer.period_length}]
+          ' Overall growth in % (year 1 - #{financial_pointer.period_length})
         td.value = formatted_uk_sales_value(financial_pointer.overall_growth_in_percents)

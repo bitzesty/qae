@@ -3,7 +3,7 @@ class AppraisalForm
     options = [%w(Red negative), %w(Amber average), %w(Green positive)]
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || ["Select RAG", "neutral"]
+    end || ["Select RAG", "blank"]
 
     OpenStruct.new(
       options: options,
@@ -15,14 +15,14 @@ class AppraisalForm
 
   def self.strenght_options_for(object, section)
     options = [
-      ["Insufficient Information Supplied", "blank"],
+      ["Insufficient Information Supplied", "neutral"],
       ["Priority Focus for Development", "negative"],
       ["Positive - Scope for Ongoing Development", "average"],
       ["Key Strength", "positive"]
     ]
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || ["Select Key Strengths and Focuses", "neutral"]
+    end || ["Select Key Strengths and Focuses", "blank"]
 
     OpenStruct.new(
       options: options,
@@ -39,7 +39,7 @@ class AppraisalForm
 
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || ["Select verdict", "neutral"]
+    end || ["Select verdict", "blank"]
 
     OpenStruct.new(
       options: options,
@@ -60,7 +60,7 @@ class AppraisalForm
   ]
 
   STRENGTHS_ALLOWED_VALUES = [
-    "blank",
+    "neutral",
     "negative",
     "average",
     "positive"
@@ -212,16 +212,22 @@ class AppraisalForm
     "#{key}_desc"
   end
 
-  def self.meths_for_award_type(award_type)
+  def self.meths_for_award_type(award_type, moderated = false)
+    if moderated
+      assessment_types = [:verdict]
+    else
+      assessment_types = [:rag, :non_rag, :verdict]
+    end
     const_get(award_type.upcase).map do |k, obj|
-      methods = Array(rate(k))
-      methods << desc(k) if [:rag, :non_rag, :verdict].include?(obj[:type])
+      methods = Array.new
+      methods << Array(rate(k)) if ((!moderated && (obj[:type] != :non_rag)) || (moderated && obj[:type] == :verdict))
+      methods << desc(k) if assessment_types.include?(obj[:type])
       methods
     end.flatten.map(&:to_sym)
   end
 
-  def self.diff(award_type)
-    (all.map(&:to_sym) - meths_for_award_type(award_type)).uniq - CASE_SUMMARY_METHODS
+  def self.diff(award_type, moderated = false)
+    (all.map(&:to_sym) - meths_for_award_type(award_type, moderated)).uniq - CASE_SUMMARY_METHODS
   end
 
   def self.all
@@ -230,7 +236,7 @@ class AppraisalForm
     forms.each do |form|
       form.each do |k, obj|
         out << rate(k).to_sym if [:strengths, :rag, :non_rag, :verdict].include?(obj[:type])
-        # strenghts doesn't have description
+        # strengths doesn't have description
         out << desc(k).to_sym if [:rag, :non_rag, :verdict].include?(obj[:type])
       end
     end

@@ -1,7 +1,7 @@
 tbody
   - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
     tr
-      - unless @search.query?
+      - if current_subject.categories_as_lead.include?(category_picker.current_award_type)
         td = check_box_tag :check, obj.id, false, class: "form-answer-check"
 
       td.td-title
@@ -15,22 +15,24 @@ tbody
 
       td
         - if obj.urn.present?
-          = obj.urn
+          = link_to  obj.urn, [namespace_name, obj]
         - else
           span.urn-not-generated Not yet generated
 
-      - if @search.query?
-        td = obj.award_type_full_name
-      - else
-        td= obj.state.humanize
-        td
-          - if obj.primary_assessment_submitted?
-            span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
-          = obj.primary_assessor_full_name
-        td
-          - if obj.secondary_assessment_submitted?
-            span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
-          = obj.secondary_assessor_full_name
+      td = obj.state.humanize
+      td.td-assessment-submitted
+        - if obj.primary_assessment_submitted?
+          span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
+
+      td.td-primary-name
+        = obj.primary_assessor_full_name
+
+      td.td-assessment-submitted
+        - if obj.secondary_assessment_submitted?
+          span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
+
+      td.td-secondary-name
+        = obj.secondary_assessor_full_name
 
       td
         - app_comments = application_comments(obj.comments)
