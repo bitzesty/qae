@@ -1004,117 +1004,140 @@ table .ellipsis {
 }
 
 // Sidebar
-  .show-sidebar {
-    position: relative;
-    padding: 15px;
-    background: $white-true;
-    zoom: 1;
+.show-main-content,
+.show-sidebar-container {
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+}
+
+.show-main-content {
+  width: 68%;
+
+  @include screen-md-max {
+    width: 100%;
+  }
+}
+
+.show-sidebar-container {
+  width: 32%;
+
+  @include screen-md-max {
+    width: 100%;
+  }
+}
+
+.show-sidebar {
+  position: relative;
+  padding: 15px;
+  background: $white-true;
+  zoom: 1;
+
+  @include screen-md-max {
+    margin-bottom: 30px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .glyphicon {
+      margin-right: 5px;
+    }
+  }
+
+  h1 {
+    font-size: 32px;
 
     @include screen-md-max {
-      margin-bottom: 30px;
+      font-size: 24px;
+    }
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    @include screen-md-max {
+      font-size: 15px;
     }
 
-    h1,
-    h2,
-    h3 {
-      &:first-child {
-        margin-top: 0;
-      }
-
-      .glyphicon {
-        margin-right: 5px;
-      }
-    }
-
-    h1 {
-      font-size: 32px;
-
+    .pull-right {
       @include screen-md-max {
-        font-size: 24px;
-      }
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      font-size: 16px;
-      font-weight: bold;
-      text-transform: uppercase;
-
-      @include screen-md-max {
-        font-size: 15px;
-      }
-
-      .pull-right {
-        @include screen-md-max {
-          display: inline-block;
-          width: 100%;
-          margin-top: 10px;
-          float: none !important;
-        }
-      }
-    }
-
-    h3 {
-      margin-bottom: 20px;
-      font-size: 16px;
-      font-weight: bold;
-
-      @include screen-md-max {
-        font-size: 15px;
-      }
-    }
-
-    small {
-      display: block;
-      margin-top: 0.25em;
-      color: #777777;
-      font-size: 14px;
-      text-transform: none;
-    }
-
-    .well {
-      margin: 0;
-      padding: 20px 0;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid $grey;
-      border-radius: 0;
-      box-shadow: none;
-
-      &:first-child {
-        padding-top: 0;
-      }
-
-      &:last-child {
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-
-      .well {
-        padding: 19px;
-        border: 1px solid $grey;
-        border-radius: 4px;
-      }
-    }
-
-    .form-actions {
-      .btn:last-child {
-        margin-right: 0;
-      }
-
-      .form-cancel-link:last-child {
-        margin-right: 15px;
-      }
-    }
-
-    .sidebar-section {
-      margin-bottom: 45px;
-
-      &:last-child {
-        margin-bottom: 0;
+        display: inline-block;
+        width: 100%;
+        margin-top: 10px;
+        float: none !important;
       }
     }
   }
+
+  h3 {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+
+    @include screen-md-max {
+      font-size: 15px;
+    }
+  }
+
+  small {
+    display: block;
+    margin-top: 0.25em;
+    color: #777777;
+    font-size: 14px;
+    text-transform: none;
+  }
+
+  .well {
+    margin: 0;
+    padding: 20px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $grey;
+    border-radius: 0;
+    box-shadow: none;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .well {
+      padding: 19px;
+      border: 1px solid $grey;
+      border-radius: 4px;
+    }
+  }
+
+  .form-actions {
+    .btn:last-child {
+      margin-right: 0;
+    }
+
+    .form-cancel-link:last-child {
+      margin-right: 15px;
+    }
+  }
+
+  .sidebar-section {
+    margin-bottom: 45px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
 
 // Comments sidebar
 .js .inline-form-view .comments-container .form-control {
@@ -1420,9 +1443,16 @@ table .ellipsis {
   margin-top: 10px;
   margin-bottom: 10px;
 
-  @include screen-sm-max {
+  @include screen-xs-max {
     margin-top: 0;
     margin-bottom: 0;
+  }
+
+  .strengths-section & {
+    @include screen-lg-max {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
   }
 }
 
@@ -1431,7 +1461,7 @@ table .ellipsis {
   right: 0;
   top: -5px;
 
-  @include screen-sm-max {
+  @include screen-xs-max {
     display: block;
     position: static;
   }
@@ -1439,6 +1469,13 @@ table .ellipsis {
   &.open {
     .lte-ie7 & {
       z-index: 9999;
+    }
+  }
+
+  .strengths-section & {
+    @include screen-lg-max {
+      display: block;
+      position: static;
     }
   }
 
@@ -1475,8 +1512,20 @@ table .ellipsis {
     padding-right: 25px;
     padding-left: 0;
 
-    @include screen-sm-max {
+    @include screen-xs-max {
       float: none;
+      text-align: left;
+      white-space: normal;
+    }
+
+    .strengths-section & {
+      @include screen-lg-max {
+        float: none;
+      }
+
+      @include screen-xs-max {
+        width: 100%;
+      }
     }
   }
 
@@ -1486,8 +1535,14 @@ table .ellipsis {
 
   .dropdown-menu {
     &.pull-right {
-      @include screen-sm-max {
+      @include screen-xs-max {
         right: auto;
+      }
+
+      .strengths-section & {
+        @include screen-lg-max {
+          right: auto;
+        }
       }
     }
 
@@ -1495,6 +1550,10 @@ table .ellipsis {
       padding-top: 6px;
       padding-bottom: 6px;
       padding-left: 37px;
+
+      @include screen-xs-max {
+        white-space: normal;
+      }
     }
 
     .icon-rag {

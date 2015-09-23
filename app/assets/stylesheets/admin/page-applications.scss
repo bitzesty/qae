@@ -349,10 +349,24 @@
       position: absolute;
       top: 0.4em;
       left: 0;
+
+      @include screen-lg-max {
+        position: static;
+      }
     }
 
     .state-input {
       text-align: right;
+
+      @include screen-lg-max {
+        text-align: left;
+      }
+    }
+
+    .dropdown-menu.pull-right {
+      @include screen-lg-max {
+        right: auto;
+      }
     }
   }
 }
