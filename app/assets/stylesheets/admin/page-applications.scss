@@ -1,5 +1,21 @@
 @import "mixins";
 
+.search-text {
+  margin-bottom: 30px;
+  padding: 10px 15px;
+  background-color: $grey-lighter;
+  font-size: 18px;
+  font-style: italic;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  a {
+    font-style: normal;
+  }
+}
+
 .applications-table {
   .urn-not-generated {
     color: $grey;
@@ -207,6 +223,16 @@
   }
 }
 
+.form-value-container {
+  margin: 0 -10px;
+  padding: 10px;
+  background: $grey-lighter;
+
+  .char-count.char-max-shift {
+    margin-top: 0;
+  }
+}
+
 .section-appraisal-form .form-label {
   font-weight: bold;
 }
@@ -226,6 +252,7 @@
 
 .form-edit-link {
   margin-top: 10px;
+  color: $black;
   font-size: 16px;
 
   .glyphicon {
@@ -242,7 +269,10 @@
 }
 
 .section-applicant-details {
-  border-bottom: none;
+  &.well {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
 
   h2 {
     margin-top: 0;
@@ -266,8 +296,18 @@
 }
 
 .section-applicant-status {
-  h2 {
+
+  h2,
+  p {
     margin-bottom: 5px;
+  }
+
+  p {
+    font-size: 15px;
+
+    &.p-lg {
+      font-size: 20px;
+    }
   }
 
   .btn-group {
@@ -277,9 +317,8 @@
 
   .dropdown-toggle {
     display: inline-block;
-    padding-top: 0;
+    padding: 0;
     padding-right: 20px;
-    padding-left: 0;
     float: none;
     color: $black;
     font-size: 20px;
@@ -303,12 +342,31 @@
     }
   }
 
-  p {
-    margin-bottom: 5px;
-    font-size: 15px;
+  .state-container {
+    position: relative;
 
-    &.p-lg {
-      font-size: 20px;
+    h2 {
+      position: absolute;
+      top: 0.4em;
+      left: 0;
+
+      @include screen-lg-max {
+        position: static;
+      }
+    }
+
+    .state-input {
+      text-align: right;
+
+      @include screen-lg-max {
+        text-align: left;
+      }
+    }
+
+    .dropdown-menu.pull-right {
+      @include screen-lg-max {
+        right: auto;
+      }
     }
   }
 }
@@ -322,42 +380,24 @@
 
   li {
     position: relative;
+    margin-bottom: 20px;
     clear: both;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   label {
-    width: 32%;
-    margin-bottom: 0;
-    float: left;
-    font-weight: normal;
-
-    @include screen-lg-max {
-      width: 40%;
-    }
-
-    @include screen-md-max {
-      width: 120px;
-    }
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
   }
 
   select {
     width: 100%;
     max-width: 100%;
-  }
-
-  form,
-  .form-value {
-    width: 65%;
-    float: right;
-
-    @include screen-lg-max {
-      width: 60%;
-    }
-
-    @include screen-md-max {
-      width: auto;
-      float: none;
-    }
   }
 
   .form-fields {
@@ -379,16 +419,6 @@
 
   .select2-container {
     width: 100% !important;
-  }
-
-  .edit-value {
-    padding-right: 60px;
-
-    .lte-ie7 & {
-      padding-right: 0;
-      width: 45% !important;
-      padding-right: 20%;
-    }
   }
 
   .form-edit-link {
@@ -445,19 +475,35 @@
   margin-bottom: 20px;
 }
 
-.js .bulk-assign-assessors-form {
-  display: none;
-}
+.bulk-assign-assessors-link {
+  position: relative;
+  left: -9999px;
+  margin-bottom: 10px;
 
-.js .show-bulk-assign .bulk-assign-assessors-form {
-  display: block;
-}
+  &.show-button {
+    left: 0;
+  }
 
-.js .show-bulk-assign .bulk-assign-assessors-link {
-  display: none;
+  .show-bulk-assign & {
+    .js & {
+      display: none;
+    }
+  }
 }
 
 .bulk-assign-assessors-form {
+  max-width: 755px;
+
+  .js & {
+    display: none;
+  }
+
+  .show-bulk-assign & {
+    .js & {
+      display: block;
+    }
+  }
+
   h3 {
     margin-top: 0;
   }
@@ -467,19 +513,33 @@
   }
 
   .btn {
-    margin-right: 10px;
+    margin-left: 10px;
+  }
+
+  .form-group {
+    position: relative;
+    padding-left: 26em;
+
+    @include screen-sm-max {
+      padding-left: 0;
+    }
   }
 
   .control-label {
-    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 26em;
+
+    @include screen-sm-max {
+      position: relative;
+      width: auto;
+      float: none;
+    }
   }
 
   .select2-container {
-    width: 300px !important;
-
-    @media (max-width: 767px) {
-      width: 100% !important;
-    }
+    width: 100% !important;
   }
 }
 

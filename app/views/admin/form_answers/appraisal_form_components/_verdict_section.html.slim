@@ -11,47 +11,48 @@
     - unless (current_user && current_user.account_admin?)
       - rag_editable = false
 
-.form-group.verdict-section
+.form-group.verdict-section class="#{'form-edit' if f.object.public_send(section.desc).blank?} form-#{section.label.parameterize}"
   = f.input section.rate,
             as: :select,
             label: false,
             collection: form.options,
             input_html: { class: "if-js-hide", "data-updated-section"  => section.desc}
 
-  label.form-label
+  label.form-label.form-label-rag
     = section.label
-    .btn-group.btn-rag
+    .btn-group.btn-rag class="#{'rag-editable' if editable && rag_editable}"
       button.btn.btn-link.dropdown-toggle class="#{'non-editable' if !editable || !rag_editable}" type="button" data-toggle="dropdown" aria-expanded="false" class="rag-#{form.option[1]}"
-        span.glyphicon.icon-rag
         span.rag-text= form.option[0]
+        span.glyphicon.icon-rag
         - if editable && rag_editable
           span.caret
       - if editable && rag_editable
-        ul.dropdown-menu role="menu"
+        ul.dropdown-menu.pull-right role="menu"
           - form.options.each do |opt|
             li class="rag-#{opt[1]}"
               = link_to "#"
                 span.icon-rag
                 span.rag-text= opt[0]
 
-  .form-value
-    p
-      - if f.object.public_send(section.desc).present?
-        = f.object.public_send(section.desc)
-      - else
-        em.text-muted No comment has been added yet.
-    .clear
-  = f.input section.desc,
-            wrapper_html: { class: 'form-group' },
-            input_html: { class: 'form-control js-char-count', rows: 5, "data-word-max" => 1200 },
-            as: :text,
-            label: false
+  .form-value-container
+    .form-value
+      p
+        - if f.object.public_send(section.desc).present?
+          = f.object.public_send(section.desc)
+        - else
+          em.text-muted No comment has been added yet.
+      .clear
+    = f.input section.desc,
+              wrapper_html: { class: 'form-group' },
+              input_html: { class: 'form-control js-char-count', rows: 5, "data-word-max" => 1200 },
+              as: :text,
+              label: false
 
-  - if editable
-    = link_to "#", class: "form-edit-link pull-right"
-      span.glyphicon.glyphicon-pencil
-      ' Edit
-    .form-actions.text-right
-      = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-      = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide", "data-updated-section" => section.desc
-    .clear
+    - if editable
+      = link_to "#", class: "form-edit-link pull-right"
+        span.glyphicon.glyphicon-pencil
+        ' Edit
+      .form-actions.text-right
+        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+        = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide", "data-updated-section" => section.desc
+      .clear

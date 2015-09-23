@@ -6,68 +6,101 @@
 - unless @form_answer.promotion?
   br
   - if user_can_edit(@form_answer, :goods_services)
-    .form-group
+    - goods_services_blank = false
+    - if @form_answer.innovation? and obj.innovation_desc_short.blank?
+      - goods_services_blank = true
+    - if @form_answer.development? and obj.development_desc_short.blank?
+      - goods_services_blank = true
+    - if @form_answer.trade?
+      - (1..obj.trade_goods_amount).each_with_index do |placement, index|
+        - if obj.trade_goods_descriptions[index].blank?
+          - goods_services_blank = true
+    .form-group class="#{'form-edit' if goods_services_blank}"
       = simple_form_for [namespace_name, CompanyDetail.for(resource)],
                         remote: true,
                         authenticity_token: true do |f|
         = hidden_field_tag :section, "goods_services"
 
         label.form-label Description of goods/services
-        .form-value
-          - if @form_answer.innovation?
-            p = obj.innovation_desc_short
-          - if @form_answer.development?
-            p = obj.development_desc_short
-          - if @form_answer.trade?
-            / # TODO pull in trade good services
-            ul.list-unstyled.good-services-list
-              - (1..obj.trade_goods_amount).each_with_index do |placement, index|
-                li
-                  label.label-small
-                    = "Goods/services #{index + 1}"
-                  p
-                    = obj.trade_goods_descriptions[index]
-        .form-fields.form-block
-          - if @form_answer.innovation?
-            = f.input :innovation_desc_short,
-                      as: :text,
-                      label: false,
-                      input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
-          - if @form_answer.development?
-            = f.input :development_desc_short,
-                      as: :text,
-                      label: false,
-                      input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
-          - if @form_answer.trade?
-            / # TODO pull in trade good services
-            ul.list-unstyled.good-services-list
-              - (1..obj.trade_goods_amount).each_with_index do |placement, index|
-                li.well
-                  label
-                    = "Goods/services #{index + 1}"
-                  input.form-control.js-chart-count type="text" name="company_detail[trade_goods_descriptions][]" value="#{obj.trade_goods_descriptions[index]}" rows= 3 data-word-max = 15
+        .form-value-container
+          .form-value
+            - if @form_answer.innovation?
+              p
+                - if obj.innovation_desc_short.present?
+                  = obj.innovation_desc_short
+                - else
+                  em.text-muted No description of good/services added.
+            - if @form_answer.development?
+              p
+                - if obj.development_desc_short.present?
+                  = obj.development_desc_short
+                - else
+                  em.text-muted No description of good/services added.
+            - if @form_answer.trade?
+              / # TODO pull in trade good services
+              ul.list-unstyled.good-services-list
+                - (1..obj.trade_goods_amount).each_with_index do |placement, index|
+                  li
+                    label.label-small
+                      = "Goods/services #{index + 1}"
+                    p
+                      - if obj.trade_goods_descriptions[index].present?
+                        = obj.trade_goods_descriptions[index]
+                      - else
+                        em.text-muted No description of good/services added.
+          .form-fields.form-block
+            - if @form_answer.innovation?
+              = f.input :innovation_desc_short,
+                        as: :text,
+                        label: false,
+                        input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
+            - if @form_answer.development?
+              = f.input :development_desc_short,
+                        as: :text,
+                        label: false,
+                        input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
+            - if @form_answer.trade?
+              ul.list-unstyled.good-services-list
+                - (1..obj.trade_goods_amount).each_with_index do |placement, index|
+                  li.well
+                    label
+                      = "Goods/services #{index + 1}"
+                    textarea.form-control.js-chart-count type="text" name="company_detail[trade_goods_descriptions][]" value="#{obj.trade_goods_descriptions[index]}" rows=3 data-word-max=15
+                      = obj.trade_goods_descriptions[index]
 
-          .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-            = f.submit "Save", class: "btn btn-primary pull-right"
-        .clear
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary pull-right"
+          .clear
 
-        = link_to "#", class: "form-edit-link pull-right"
-          span.glyphicon.glyphicon-pencil
-          ' Edit
-        .clear
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
   - else
     .form-group
       label.form-label Description of goods/services
-      - if @form_answer.innovation?
-        p = obj.innovation_desc_short
-      - if @form_answer.development?
-        p = obj.development_desc_short
-      - if @form_answer.trade?
-        ul.list-unstyled.good-services-list
-          / # TODO pull in trade good services
-          - (1..3).each_with_index do |placement, index|
-            li
-              label.label-small
-                = "Goods/services #{index + 1}"
-              p Description of trade
+      .form-value-container
+        - if @form_answer.innovation?
+          p
+            - if obj.innovation_desc_short.present?
+              = obj.innovation_desc_short
+            - else
+              em.text-muted No description of good/services added.
+        - if @form_answer.development?
+          p
+            - if obj.development_desc_short.present?
+              = obj.development_desc_short
+            - else
+              em.text-muted No description of good/services added.
+        - if @form_answer.trade?
+          ul.list-unstyled.good-services-list
+            - (1..CompanyDetail.for(@form_answer).trade_goods_amount).each_with_index do |placement, index|
+              li
+                label.label-small
+                  = "Goods/services #{index + 1}"
+                p
+                  - if CompanyDetail.for(@form_answer).trade_goods_descriptions[index].present?
+                    = CompanyDetail.for(@form_answer).trade_goods_descriptions[index]
+                  - else
+                    em.text-muted No description of good/services added.

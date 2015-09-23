@@ -1,22 +1,20 @@
 = simple_form_for @search, url: admin_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
-  - if @search.query?
-    .row
-      = render "layouts/admin_award_year"
-    .clear
-    br
+  .row
+    = render "layouts/admin_award_year"
+    .col-md-4.col-sm-5.col-xs-12.pull-right
+      .form-group.search-input
+        = text_field_tag :year, @award_year.year, class: "visuallyhidden"
+        = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
+        = submit_tag :submit, class: 'search-submit'
 
-    h2.ellipsis
-      = link_to "‹ Back to overview", admin_form_answers_path, class: "btn btn-link btn-lg pull-left"
-      = "Search results for '#{@search.query}'"
+  - if @search.query?
+    .well.search-text
+      p
+        = "Search results for '#{@search.query}'"
+        small
+          = link_to "(Clear search)", admin_form_answers_path, class: "btn btn-link"
   - else
-    .row
-      = render "layouts/admin_award_year"
-      .col-md-4.col-sm-5.col-xs-12.pull-right
-        .form-group.search-input
-          = text_field_tag :year, @award_year.year, class: "visuallyhidden"
-          = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
-          = submit_tag :submit, class: 'search-submit'
-  br
+    br
 
   .row
     .col-xs-12

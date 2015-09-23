@@ -73,6 +73,12 @@ html.no-js
                       ' My account
                       span.caret
                     ul.dropdown-menu
+                      li
+                        span
+                          strong = current_subject.decorate.full_name
+                          br
+                          small = current_subject.email
+                      li.divider
                       - unless current_admin.authy_enabled
                         li
                           = link_to "Enable 2FA", admin_enable_authy_path

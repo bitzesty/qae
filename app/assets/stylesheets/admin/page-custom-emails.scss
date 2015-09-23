@@ -17,41 +17,6 @@
   margin-top: 0;
 }
 
-.email-message {
-  .email-container {
-    position: relative;
-    padding: 4em 0;
-    padding-bottom: 7em;
-
-    textarea {
-      padding: 0 12px;
-      border: none;
-      background: transparent;
-      resize: none;
-      -webkit-box-shadow: none;
-              box-shadow: none;
-    }
-  }
-
-  .email-header,
-  .email-footer {
-    position: absolute;
-    padding: 10px 12px;
-    font-size: 14px;
-    line-height: 1.42857143;
-    color: $grey-dark;
-  }
-
-  .email-header {
-    top: 0;
-  }
-
-  .email-footer {
-    bottom: 0;
-  }
-}
-
-
 .help-qae-opt-in,
 .help-bis-opt-in,
 .help-all-users {

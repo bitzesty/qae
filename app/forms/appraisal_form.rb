@@ -3,7 +3,7 @@ class AppraisalForm
     options = [%w(Red negative), %w(Amber average), %w(Green positive)]
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || ["Select RAG", "neutral"]
+    end || ["Select RAG", "blank"]
 
     OpenStruct.new(
       options: options,
@@ -15,14 +15,14 @@ class AppraisalForm
 
   def self.strenght_options_for(object, section)
     options = [
-      ["Insufficient Information Supplied", "blank"],
+      ["Insufficient Information Supplied", "neutral"],
       ["Priority Focus for Development", "negative"],
       ["Positive - Scope for Ongoing Development", "average"],
       ["Key Strength", "positive"]
     ]
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || ["Select Key Strengths and Focuses", "neutral"]
+    end || ["Select Key Strengths and Focuses", "blank"]
 
     OpenStruct.new(
       options: options,
@@ -39,7 +39,7 @@ class AppraisalForm
 
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
-    end || ["Select verdict", "neutral"]
+    end || ["Select verdict", "blank"]
 
     OpenStruct.new(
       options: options,

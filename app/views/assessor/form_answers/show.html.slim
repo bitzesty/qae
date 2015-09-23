@@ -4,7 +4,7 @@
       = link_to "‹ Back to overview", assessor_form_answers_path, class: "btn btn-link btn-lg"
 
 .row.inline-form-view
-  .col-md-4
+  .show-sidebar-container
     .show-sidebar
       = render("admin/form_answers/applicant_details")
 
@@ -12,6 +12,6 @@
       = render("admin/form_answers/section_documents")
       = render("admin/form_answers/assessors_section")
 
-  .col-md-8.submitted-view
+  .show-main-content.submitted-view
     = render "submitted_view"
 

@@ -15,20 +15,26 @@
             th.sortable
               ' Feedback
         tbody
-          - @feedbacks.each do |feedback|
+          - if @feedbacks.none?
             tr
-              td
-                = feedback.created_at.strftime("%d/%m/%Y %H:%M")
-              td
-                span.feedback-stars alt=feedback.rating.text title=feedback.rating.text
-                  - feedback.rating.value.times do
-                    span.glyphicon.glyphicon-star
-                  - (5 - feedback.rating.value).times do
-                    span.glyphicon.glyphicon-star-empty
-              td
-                .feedback-description
-                  = feedback.comment
-
+              td.text-center colspan=100
+                br
+                p.p-empty No feedback received.
+                br
+          - else
+            - @feedbacks.each do |feedback|
+              tr
+                td
+                  = feedback.created_at.strftime("%d/%m/%Y %H:%M")
+                td
+                  span.feedback-stars alt=feedback.rating.text title=feedback.rating.text
+                    - feedback.rating.value.times do
+                      span.glyphicon.glyphicon-star
+                    - (5 - feedback.rating.value).times do
+                      span.glyphicon.glyphicon-star-empty
+                td
+                  .feedback-description
+                    = feedback.comment
 
 .row
   .col-xs-12.text-right

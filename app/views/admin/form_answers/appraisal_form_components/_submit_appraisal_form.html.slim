@@ -9,7 +9,9 @@
 
     .feedback-holder
 
-    = submit_tag "Submit appraisal", class: "btn btn-default btn-block"
+    .pull-right
+      = submit_tag "Submit appraisal", class: "btn btn-primary btn-confirm-submit"
+    .clear
 - else
   .feedback-holder.alert.alert-success
     ' Assessment submitted

@@ -1,5 +1,11 @@
 .well
   .sidebar-section
+    = link_to [:review, namespace_name, @form_answer], class: "btn btn-default btn-block", target: "_blank"
+      span.icon-view
+      span.btn-title
+        ' View application
+
+  .sidebar-section
     h2
       ' Application & Supporting Docs
     = render "admin/form_answers/docs/application_and_supporting_docs"
