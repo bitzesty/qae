@@ -1,9 +1,7 @@
 module AuditCertificateContext
   def show
     authorize form_answer, :download_audit_certificate_pdf?
-    send_data resource.attachment.read,
-              filename: resource.attachment.filename,
-              disposition: "inline"
+    redirect_to resource.attachment_url
   end
 
   private
