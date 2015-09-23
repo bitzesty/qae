@@ -1414,9 +1414,26 @@ table .ellipsis {
 }
 
 // RAG dropdown
+.form-label-rag {
+  display: block;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  @include screen-sm-max {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
 .btn-rag {
-  .lte-ie7 & {
-    display: inline;
+  position: absolute;
+  right: 0;
+  top: -5px;
+
+  @include screen-sm-max {
+    display: block;
+    position: static;
   }
 
   &.open {
@@ -1428,13 +1445,61 @@ table .ellipsis {
   .icon-rag {
     position: absolute;
     top: 50%;
-    left: 0;
+    right: 0;
     width: 20px;
     height: 20px;
     margin-top: -10px;
     background-size: 20px 20px;
     text-align: left;
     text-indent: -9999px;
+  }
+
+  &.rag-editable .icon-rag {
+    right: 15px;
+  }
+
+  .caret {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -2px;
+  }
+
+  .dropdown-toggle,
+  .dropdown-menu a {
+    position: relative;
+    font-weight: bold;
+  }
+
+  .dropdown-toggle {
+    padding-right: 25px;
+    padding-left: 0;
+
+    @include screen-sm-max {
+      float: none;
+    }
+  }
+
+  &.rag-editable .dropdown-toggle {
+    padding-right: 40px;
+  }
+
+  .dropdown-menu {
+    &.pull-right {
+      @include screen-sm-max {
+        right: auto;
+      }
+    }
+
+    a {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 37px;
+    }
+
+    .icon-rag {
+      left: 12px;
+    }
   }
 
   .rag-blank {
@@ -1530,32 +1595,6 @@ table .ellipsis {
     a:hover,
     a:focus {
       text-decoration: none;
-    }
-  }
-
-  .dropdown-toggle,
-  .dropdown-menu a {
-    position: relative;
-    font-weight: bold;
-  }
-
-  .dropdown-toggle {
-    padding-left: 25px;
-
-    .rag-text {
-      margin-right: 5px;
-    }
-  }
-
-  .dropdown-menu {
-    a {
-      padding-top: 6px;
-      padding-bottom: 6px;
-      padding-left: 37px;
-    }
-
-    .icon-rag {
-      left: 12px;
     }
   }
 }
