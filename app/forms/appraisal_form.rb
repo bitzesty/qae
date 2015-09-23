@@ -60,7 +60,7 @@ class AppraisalForm
   ]
 
   STRENGTHS_ALLOWED_VALUES = [
-    "blank",
+    "neutral",
     "negative",
     "average",
     "positive"
@@ -220,7 +220,7 @@ class AppraisalForm
     end
     const_get(award_type.upcase).map do |k, obj|
       methods = Array.new
-      methods << Array(rate(k)) if ((!moderated) || (moderated && obj[:type] == :verdict))
+      methods << Array(rate(k)) if ((!moderated && (obj[:type] != :non_rag)) || (moderated && obj[:type] == :verdict))
       methods << desc(k) if assessment_types.include?(obj[:type])
       methods
     end.flatten.map(&:to_sym)
@@ -236,7 +236,7 @@ class AppraisalForm
     forms.each do |form|
       form.each do |k, obj|
         out << rate(k).to_sym if [:strengths, :rag, :non_rag, :verdict].include?(obj[:type])
-        # strenghts doesn't have description
+        # strengths doesn't have description
         out << desc(k).to_sym if [:rag, :non_rag, :verdict].include?(obj[:type])
       end
     end

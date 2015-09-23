@@ -144,7 +144,7 @@ ready = ->
       unless $(this).val().length
         $(this).closest(".input").addClass("field-with-errors")
     $(this).find(".feedback-holder").addClass("error")
-    $(this).find(".feedback-holder").html(errors.error)
+    $(this).find(".feedback-holder").html(errors.error.join("<br>"))
   $(".submit-assessment").on "ajax:success", (e, data, status, xhr) ->
     $(this).closest(".panel-body").find(".field-with-errors").removeClass("field-with-errors")
     $(this).find(".feedback-holder").removeClass("error").addClass("alert alert-success")
