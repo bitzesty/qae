@@ -3,5 +3,5 @@ set :rails_env, 'staging'
 set :branch, ENV["BRANCH"] || 'master'
 
 # HARDCODED FOR NOW
-server '52.17.212.1', user: 'qae', roles: %w{web app db}
-server '52.17.204.106', user: 'qae', roles: %w{web app db}
+server '54.77.25.71', user: 'qae', roles: %w{web app db}
+server '54.76.8.34', user: 'qae', roles: %w{web app db}
