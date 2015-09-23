@@ -60,7 +60,7 @@ class AppraisalForm
   ]
 
   STRENGTHS_ALLOWED_VALUES = [
-    "blank",
+    "neutral",
     "negative",
     "average",
     "positive"
