@@ -35,7 +35,7 @@ describe Users::AuditCertificateRequestMailer do
       expect(mail.html_part.decoded).to have_link("upload your completed Audit Certificate here.",
                                                   href: users_form_answer_audit_certificate_url(form_answer))
       expect(mail.html_part.decoded).to have_link("download a blank copy of the Audit Certificate here.",
-                                                  href: users_form_answer_audit_certificate_url(form_answer))
+                                                  href: users_form_answer_audit_certificate_url(form_answer, format: :pdf))
       expect(mail.html_part.decoded).to match(deadline)
     end
   end
