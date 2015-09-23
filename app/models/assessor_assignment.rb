@@ -96,7 +96,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def award_specific_attributes
-    struct.diff(form_answer.award_type).each do |att|
+    struct.diff(form_answer.award_type, moderated?).each do |att|
       if public_send(att).present?
         errors.add(att, "Can not be present for this Award Type")
       end
@@ -105,9 +105,7 @@ class AssessorAssignment < ActiveRecord::Base
 
   def mandatory_fields_for_submitted
     return unless submitted?
-    # TODO Needs to do validation on the verdict fields
-    return if moderated?  
-    struct.meths_for_award_type(form_answer.award_type).each do |meth|
+    struct.meths_for_award_type(form_answer.award_type, moderated?).each do |meth|
       if public_send(meth).blank?
         errors.add(meth, "can not be blank for submitted assessment")
       end
@@ -115,8 +113,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def validate_rate(rate_type)
-    # TODO Needs to do validation on the verdict fields
-    return if moderated?
+    return if moderated? && rate_type != :verdict
     struct.rates(form_answer, rate_type).each do |section, _|
       val = section_rate(section)
       c = "#{rate_type.upcase}_ALLOWED_VALUES"
