@@ -2,6 +2,6 @@
   .nav-subnav
     ul
       - category_picker.visible_categories.each do |category|
-        li role="presentation" class=("active" if category.active?(params))
+        li class="cat-#{category.text_label.parameterize} #{'active' if category.active?(params)}" role="presentation"
           = link_to category.text_label, assessor_form_answers_path(award_type: category.slug)
     .clear

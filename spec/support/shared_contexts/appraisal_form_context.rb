@@ -98,12 +98,16 @@ end
 def assert_description_change(section_id, header_id)
   find("#{header_id} .panel-title a").click
   selector = section_id == moderated ? "assessor_assignment_verdict_desc" : "assessor_assignment_level_of_innovation_desc"
+  parent_selector = section_id == moderated ? ".form-overall-verdict" : ".form-level-of-innovation"
 
   within section_id do
-    first(".form-edit-link").click
-    expect(page).to have_selector("textarea", count: 1)
-    fill_in(selector, with: text)
-    find(".form-save-link").click
+    within ".#{selector}" do
+      expect(page).to have_selector("textarea", count: 1)
+      fill_in(selector, with: text)
+    end
+    within parent_selector do
+      find(".form-save-link").click
+    end
   end
 
   sleep(0.5)
@@ -126,11 +130,9 @@ def assert_multiple_description_change(section_id, header_id)
   find("#{header_id} .panel-title a").click
   within section_id do
     unless section_id == moderated
-      first(".form-edit-link").click
       fill_in("assessor_assignment_level_of_innovation_desc", with: text)
     end
 
-    all(".form-edit-link").last.click
     fill_in("assessor_assignment_verdict_desc", with: text2)
     all(".form-save-link").last.click
   end

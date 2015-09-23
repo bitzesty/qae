@@ -16,7 +16,6 @@ describe "Admin fulfills the draft notes.", js: true do
   it "fulfills the draft notes form" do
     find("#draft-notes-heading .panel-title a").click
     within "#section-draft-notes" do
-      click_link "Edit"
       find("#draft_note_content").set(text)
       click_link "Save"
       wait_for_ajax

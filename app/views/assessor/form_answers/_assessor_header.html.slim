@@ -1,7 +1,7 @@
 th.td-assessment-submitted &nbsp;
-th.sortable
+th.sortable.th-primary-name
   = sort_link f, "Primary Assessor", @search, :primary_assessor_name, disabled: @search.query?
 
 th.td-assessment-submitted &nbsp;
-th.sortable
+th.sortable.th-secondary-name
   = sort_link f, "Secondary Assessor", @search, :secondary_assessor_name, disabled: @search.query?

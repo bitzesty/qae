@@ -33,7 +33,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
     context "promotion tab" do
       before do
         within ".nav-subnav" do
-          find("a", text: "Enterprise Promotion").click
+          find(".cat-enterprise-promotion").click
         end
       end
       it "filters by status" do
@@ -48,7 +48,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
       before do
         @forms << create(:form_answer, :development, state: "assessment_in_progress")
         within ".nav-subnav" do
-          find("a", text: "Sustainable Development").click
+          find(".cat-sustainable-development").click
           expect(page).to have_selector("a", count: 2)
         end
         @development_forms = @forms.select(&:development?)

@@ -11,7 +11,7 @@
     - unless (current_user && current_user.account_admin?)
       - rag_editable = false
 
-.form-group.verdict-section class="#{'form-edit' if f.object.public_send(section.desc).blank?}"
+.form-group.verdict-section class="#{'form-edit' if f.object.public_send(section.desc).blank?} form-#{section.label.parameterize}"
   = f.input section.rate,
             as: :select,
             label: false,
