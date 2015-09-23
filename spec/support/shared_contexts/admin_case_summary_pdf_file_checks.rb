@@ -24,7 +24,9 @@ shared_context "admin case summary pdf file checks" do
     AppraisalForm.struct(form_answer).each_with_index do |block, index|
       key = block[0]
       res["#{key}_desc"] = "#{index}_desc"
-      res["#{key}_rate"] = "positive"
+      if block[1][:type] != :non_rag
+        res["#{key}_rate"] = "positive"
+      end
     end
 
     res
