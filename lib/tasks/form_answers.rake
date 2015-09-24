@@ -97,4 +97,11 @@ namespace :form_answers do
 
     p "Saved: #{output[:saved].size}; not saved: #{output[:not_saved].inspect}"
   end
+
+  desc "Resaves company_or_nominee_name field"
+  task resave_company_or_nominee_name: :environment do
+    FormAnswer.find_each do |f|
+      f.update_column(:company_or_nominee_name, f.company_or_nominee_from_document)
+    end
+  end
 end
