@@ -243,7 +243,37 @@ table .ellipsis {
         background-color: $grey-lighter;
       }
     }
+
+    td {
+      padding-top: 10px;
+    }
+
+    .td-assessment-submitted {
+      padding-right: 0;
+    }
   }
+}
+
+.td-title {
+  a {
+    display: block;
+    height: 1em;
+    margin-top: -0.1em;
+    color: inherit;
+    font-size: 1.2em;
+  }
+
+  .ellipsis {
+    max-width: 350px;
+
+    @include screen-md-max {
+      max-width: 250px;
+    }
+  }
+}
+
+.td-flags {
+  white-space: nowrap;
 }
 
 .visuallyhidden {
@@ -470,31 +500,6 @@ table .ellipsis {
   font-style: italic;
 }
 
-.td-title {
-  padding-left: 20px;
-  font-size: 1.2em;
-
-  a {
-    color: inherit;
-  }
-
-  .ellipsis {
-    max-width: 350px;
-
-    @include screen-md-max {
-      max-width: 250px;
-    }
-  }
-}
-
-.td-flags {
-  white-space: nowrap;
-}
-
-.table > tbody > tr > .td-assessment-submitted {
-  padding-right: 0;
-}
-
 .list-actions {
   margin-bottom: 0;
   margin-left: 0;
@@ -603,82 +608,88 @@ table .ellipsis {
 }
 
 // Icons
-  .icon-comment,
-  .icon-flagged,
-  .icon-unflagged,
-  .icon-check {
-    display: inline-block;
-    width: 30px;
-    height: 30px;
-    text-align: left;
-    text-indent: -9999px;
-    background-repeat: no-repeat;
-    background-position: center center;
+.icon-comment,
+.icon-flagged,
+.icon-unflagged,
+.icon-check {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: left;
+  text-indent: -9999px;
+  background-repeat: no-repeat;
+  background-position: center center;
 
-    .lte-ie7 & {
-      display: block;
-    }
+  .lte-ie7 & {
+    display: block;
+  }
+}
+
+.icon-comment {
+  position: relative;
+  width: 25px;
+  height: 18px;
+  top: 3px;
+  background-image: image-url("icon-comment-sm.png");
+  background-position: left top;
+  background-size: 20px 18px;
+
+  @include is-retina {
+    background-image: image-url("icon-comment-sm@2.png");
   }
 
-  .icon-comment {
-    position: relative;
-    background-image: image-url("icon-comment.png");
-    background-position: left bottom;
-    background-size: 26px 23px;
+  .comment-count {
+    position: absolute;
+    top: -6px;
+    left: 23px;
+    color: $black;
+    font-size: 10px;
+    font-weight: bold;
+    text-indent: 0;
+  }
+}
+
+.icon-flagged {
+  position: relative;
+  width: 25px;
+  height: 18px;
+  top: 3px;
+  background-image: image-url("icon-flag-sm.png");
+  background-position: left top;
+  background-size: 12px 15px;
+
+  @include is-retina {
+    background-image: image-url("icon-flag-sm@2.png");
+  }
+
+  &.icon-flag-assessor {
+    background-image: image-url("icon-flag-sm-yellow.png");
 
     @include is-retina {
-      background-image: image-url("icon-comment@2.png");
-    }
-
-    .comment-count {
-      position: absolute;
-      top: 0;
-      left: 100%;
-      margin-left: -5px;
-      color: $black;
-      font-size: 10px;
-      font-weight: bold;
-      text-indent: 0;
+      background-image: image-url("icon-flag-sm-yellow@2.png");
     }
   }
 
-  .icon-flagged {
-    position: relative;
-    background-image: image-url("icon-flag.png");
-    background-size: 20px 26px;
-
-    @include is-retina {
-      background-image: image-url("icon-flag@2.png");
-    }
-
-    &.icon-flag-assessor {
-      background-image: image-url("icon-flag-yellow.png");
-
-      @include is-retina {
-        background-image: image-url("icon-flag-yellow@2.png");
-      }
-    }
-
-    .flag-count {
-      position: absolute;
-      top: 0;
-      left: 100%;
-      margin-left: -5px;
-      color: $black;
-      font-size: 10px;
-      font-weight: bold;
-      text-indent: 0;
-    }
+  .flag-count {
+    position: absolute;
+    top: -6px;
+    left: 13px;
+    color: $black;
+    font-size: 10px;
+    font-weight: bold;
+    text-indent: 0;
   }
+}
 
-  .icon-unflagged {
-    background-image: image-url("icon-flag-grey.png");
-    background-size: 30px 30px;
+.icon-unflagged {
+  background-image: image-url("icon-flag-sm-grey.png");
+  background-position: left top;
+  background-size: 12px 15px;
 
-    @include is-retina {
-      background-image: image-url("icon-flag-grey@2.png");
-    }
+  @include is-retina {
+    background-image: image-url("icon-flag-sm-grey@2.png");
   }
+}
 
 .icon-check {
   position: relative;
@@ -700,19 +711,19 @@ table .ellipsis {
 }
 
 .icon-view {
-  width: 30px;
-  height: 30px;
-  background-image: image-url("icon-computer.png");
+  width: 18px;
+  min-height: 16px;
+  background-image: image-url("icon-computer-sm.png");
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 30px 26px;
+  background-size: 18px 16px;
   text-align: left;
   text-indent: -9999px;
   opacity: 0.3;
   display: inline-block;
 
   @include is-retina {
-    background-image: image-url("icon-computer@2.png");
+    background-image: image-url("icon-computer-sm@2.png");
   }
 
   .lte-ie7 & {

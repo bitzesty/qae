@@ -16,6 +16,18 @@
   }
 }
 
+.applications-table,
+.admin-table {
+  > tbody > tr > td {
+    padding-top: 13px;
+    padding-bottom: 12px;
+  }
+
+  > tbody > tr:first-child > td {
+    padding-top: 16px;
+  }
+}
+
 .applications-table {
   .urn-not-generated {
     color: $grey;
