@@ -16,6 +16,18 @@
   }
 }
 
+.applications-table,
+.admin-table {
+  > tbody > tr > td {
+    padding-top: 13px;
+    padding-bottom: 12px;
+  }
+
+  > tbody > tr:first-child > td {
+    padding-top: 16px;
+  }
+}
+
 .applications-table {
   .urn-not-generated {
     color: $grey;
@@ -223,13 +235,20 @@
   }
 }
 
-.form-value-container {
-  margin: 0 -10px;
+.form-container {
   padding: 10px;
   background: $grey-lighter;
 
   .char-count.char-max-shift {
     margin-top: 0;
+  }
+}
+
+.form-group-multiple-parent {
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 
@@ -478,7 +497,7 @@
 .bulk-assign-assessors-link {
   position: relative;
   left: -9999px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 
   &.show-button {
     left: 0;
@@ -493,6 +512,8 @@
 
 .bulk-assign-assessors-form {
   max-width: 755px;
+  margin-top: 25px;
+  margin-bottom: 10px;
 
   .js & {
     display: none;
@@ -540,6 +561,10 @@
 
   .select2-container {
     width: 100% !important;
+  }
+
+  .well {
+    margin-bottom: 0;
   }
 }
 

@@ -1,7 +1,7 @@
-br
 .form-group
-  label.form-label User accounts
-  .form-value-container
+  .form-container
+    label.form-label User accounts
+
     - if (resource.account.try(:users) || []).any?
       ul.list-unstyled.list-actions
         - (resource.account.try(:users) || []).each do |user|

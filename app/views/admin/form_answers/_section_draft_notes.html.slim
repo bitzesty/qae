@@ -15,23 +15,24 @@
                         html: { "data-type" => "json" }) do |f|
 
         .form-group class="#{'form-edit' if f.object.content.blank?}"
-          .form-value
-            p
-              - if f.object.content.present?
-                = f.object.content
-              - else
-                em.text-muted No draft notes added yet.
-          = f.input :content,
-                    wrapper_html: { class: "form-group" },
-                    input_html: { class: "form-control", rows: 10 },
-                    as: :text,
-                    label: false
+          .form-container
+            .form-value
+              p
+                - if f.object.content.present?
+                  = f.object.content
+                - else
+                  em.text-muted No draft notes added yet.
+            = f.input :content,
+                      wrapper_html: { class: "form-group" },
+                      input_html: { class: "form-control", rows: 10 },
+                      as: :text,
+                      label: false
 
-          = link_to "#", class: "form-edit-link pull-right"
-            span.glyphicon.glyphicon-pencil
-            ' Edit
-          .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-            = f.submit "Save", class: "btn btn-primary form-save-link pull-right if-js-hide"
-            = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
-          .clear
+            = link_to "#", class: "form-edit-link pull-right"
+              span.glyphicon.glyphicon-pencil
+              ' Edit
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary form-save-link pull-right if-js-hide"
+              = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
+            .clear

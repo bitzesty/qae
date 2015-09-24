@@ -68,15 +68,14 @@
   br
   .row
     .col-md-4.col-sm-6
-      = link_to "Cancel",
-                admin_admins_path,
-                class: 'btn btn-default btn-md pull-left'
+      - if action_name == "edit" && policy(resource).destroy?
+        = link_to 'Delete', admin_admin_path(resource), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-md pull-left'
 
       .pull-right
-        - if action_name == "edit" && policy(resource).destroy?
-          = link_to 'Delete', admin_admin_path(resource), data: { method: :delete, confirm: 'Are you sure?' }, class: 'btn btn-danger btn-md'
-
-          ' &nbsp;
+        = link_to "Cancel",
+                  admin_admins_path,
+                  class: 'btn btn-default btn-md'
+        ' &nbsp;
 
         = f.button :submit,
                   class: 'btn btn-primary btn-md'

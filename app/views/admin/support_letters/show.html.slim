@@ -1,7 +1,8 @@
 .page-header.page-header-nav
   h2
-    = link_to "‹ Back to overview", [namespace_name, @support_letter.form_answer], class: "btn btn-link btn-lg pull-left"
     = "Support letter from #{@support_letter.full_name} for #{@support_letter.form_answer.urn}"
+    br
+    = link_to "‹ Back to application", [namespace_name, @support_letter.form_answer], class: "btn btn-link btn-lg"
 
 .question-group
   - %w(first_name last_name organization_name phone relationship_to_nominee address_first address_second city country postcode body).each do |attr|

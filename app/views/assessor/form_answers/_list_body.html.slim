@@ -5,13 +5,13 @@ tbody
         td = check_box_tag :check, obj.id, false, class: "form-answer-check"
 
       td.td-title
-        = link_to [namespace_name, obj], class: "ellipsis"
+        = link_to [namespace_name, obj]
           - unless obj.company_or_nominee_name.nil?
-            = link_to obj.company_or_nominee_name, [namespace_name, obj]
+            span.ellipsis
+              = obj.company_or_nominee_name
           - else
-            = link_to [namespace_name, obj] do
-              em
-                ' Not found
+            em
+              ' Not found
 
       td
         - if obj.urn.present?
