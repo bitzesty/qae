@@ -4,7 +4,7 @@
     .form-group
       = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true do |f|
+                        authenticity_token: true, html: { "data-type" => "html" } do |f|
         = hidden_field_tag :section, "goods_services"
 
         label.form-label Description of goods/services
@@ -23,24 +23,25 @@
                   p
                     = @form_answer.document["trade_goods_and_services_explanations"][index]["desc_short"]
         .form-fields.form-block
-          - if @form_answer.innovation?
-            = f.input :innovation_desc_short,
-                      as: :text,
-                      label: false,
-                      input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
-          - if @form_answer.development?
-            = f.input :development_desc_short,
-                      as: :text,
-                      label: false,
-                      input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
-          - if @form_answer.trade?
-            / # TODO pull in trade good services
-            ul.list-unstyled.good-services-list
-              - (1..@form_answer.document["trade_goods_amount"].to_i).each_with_index do |placement, index|
-                li.well
-                  label
-                    = "Goods/services #{index + 1}"
-                  input.form-control.js-chart-count type="text" name="company_detail[trade_goods_descriptions][]" value="#{@form_answer.document["trade_goods_and_services_explanations"][index]["desc_short"]}" rows= 3 data-word-max = 15
+          = f.simple_fields_for(:data) do |f|
+            - if @form_answer.innovation?
+              = f.input :innovation_desc_short,
+                        as: :text,
+                        label: false,
+                        input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
+            - if @form_answer.development?
+              = f.input :development_desc_short,
+                        as: :text,
+                        label: false,
+                        input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
+            - if @form_answer.trade?
+              / # TODO pull in trade good services
+              ul.list-unstyled.good-services-list
+                - (1..@form_answer.document["trade_goods_amount"].to_i).each_with_index do |placement, index|
+                  li.well
+                    label
+                      = "Goods/services #{index + 1}"
+                    input.form-control.js-chart-count type="text" name="form_answer[data_attributes][trade_goods_and_services_explanations][#{index}][desc_short]" value="#{@form_answer.document["trade_goods_and_services_explanations"][index]["desc_short"]}" rows= 3 data-word-max = 15
 
           .form-actions.text-right
             = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"

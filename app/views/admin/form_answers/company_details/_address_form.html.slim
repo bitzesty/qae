@@ -33,8 +33,9 @@
       - if user_can_edit(@form_answer, :address)
         = simple_form_for([namespace_name, resource],
                           remote: true,
-                          authenticity_token: true) do |f|
+                          authenticity_token: true, html: { "data-type" => "html" }) do |f|
 
+          = hidden_field_tag :section, "address"
           .input.form-group.form-fields.form-block
             .row
               .col-md-8
@@ -111,106 +112,107 @@
             = @form_answer.nominee_position
             br
 
-        - if @form_answer.address_building.present?
-          = @form_answer.address_building
+        - if @form_answer.document["organization_address_building"].present?
+          = @form_answer.document["organization_address_building"]
           br
-        - if @form_answer.address_street.present?
-          = @form_answer.address_street
+        - if @form_answer.document["organization_address_street"].present?
+          = @form_answer.document["organization_address_street"]
           br
-        - if @form_answer.address_city.present?
-          = @form_answer.address_city
+        - if @form_answer.document["organization_address_city"].present?
+          = @form_answer.document["organization_address_city"]
           br
-        - if @form_answer.address_county.present?
-          = @form_answer.address_county
+        - if @form_answer.document["organization_address_county"].present?
+          = @form_answer.document["organization_address_county"]
           br
-        - if @form_answer.address_postcode.present?
-          = @form_answer.address_postcode
+        - if @form_answer.document["organization_address_postcode"].present?
+          = @form_answer.document["organization_address_postcode"]
           br
 
         - unless @form_answer.promotion?
-          - if @form_answer.telephone.present?
-            = @form_answer.telephone
+          - if @form_answer.document["org_telephone"].present?
+            = @form_answer.document["org_telephone"]
             br
-          - if @form_answer.region.present?
-            = @form_answer.region
+          - if @form_answer.document["organization_address_region"].present?
+            = @form_answer.document["organization_address_region"]
             br
 
         - if @form_answer.promotion?
-          - if @form_answer.nominee_organisation_website.present?
-            = @form_answer.nominee_organisation_website
+          - if @form_answer.document["website_url"].present?
+            = @form_answer.document["website_url"]
             br
 
     - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
       = simple_form_for([namespace_name, resource],
                         remote: true,
-                        authenticity_token: true) do |f|
-
+                        authenticity_token: true, html: { "data-type" => "html" }) do |f|
+        = hidden_field_tag :section, "address"
         .input.form-group.form-fields.form-block
-          - if @form_answer.promotion?
+          = f.simple_fields_for(:data) do |f|
+            - if @form_answer.promotion?
+              .row
+                .col-md-8
+                  = f.input :nominee_organisation,
+                            as: :string,
+                            label: "Organisation Name",
+                            input_html: { class: "form-control" }
+              .row
+                .col-md-8
+                  = f.input :nominee_position,
+                            as: :string,
+                            label: "Nominee Position",
+                            input_html: { class: "form-control" }
             .row
               .col-md-8
-                = f.input :nominee_organisation,
+                = f.input :organization_address_building,
                           as: :string,
-                          label: "Organisation Name",
+                          label: "Building and street",
+                          input_html: { class: "form-control" }
+
+                = f.input :organization_address_street,
+                          as: :string,
+                          label: false,
                           input_html: { class: "form-control" }
             .row
-              .col-md-8
-                = f.input :nominee_position,
+              .col-md-6
+                = f.input :organization_address_city,
                           as: :string,
-                          label: "Nominee Position",
+                          label: "Town or city",
                           input_html: { class: "form-control" }
-          .row
-            .col-md-8
-              = f.input :address_building,
-                        as: :string,
-                        label: "Building and street",
-                        input_html: { class: "form-control" }
-
-              = f.input :address_street,
-                        as: :string,
-                        label: false,
-                        input_html: { class: "form-control" }
-          .row
-            .col-md-6
-              = f.input :address_city,
-                        as: :string,
-                        label: "Town or city",
-                        input_html: { class: "form-control" }
-          .row
-            .col-md-6
-              = f.input :address_county,
-                        as: :string,
-                        label: "County",
-                        input_html: { class: "form-control" }
-          .row
-            .col-md-3
-              = f.input :address_postcode,
-                        as: :string,
-                        label: "Postcode",
-                        input_html: { class: "form-control" }
-          .row
-            .col-md-3
-              = f.input :telephone,
-                        as: :string,
-                        label: "Telephone number",
-                        input_html: { class: "form-control" }
-
-          - unless @form_answer.promotion?
             .row
-              .col-md-4
-                = f.input :region,
-                          as: :select,
-                          label: "Region",
-                          input_html: { class: "form-control" },
-                          collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
-
-          - if @form_answer.promotion?
-            .row
-              .col-md-8
-                = f.input :nominee_organisation_website,
+              .col-md-6
+                = f.input :organization_address_county,
                           as: :string,
-                          label: "Website",
+                          label: "County",
                           input_html: { class: "form-control" }
+            .row
+              .col-md-3
+                = f.input :organization_address_postcode,
+                          as: :string,
+                          label: "Postcode",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-3
+                = f.input :org_telephone,
+                          as: :string,
+                          label: "Telephone number",
+                          input_html: { class: "form-control" }
+
+            - unless @form_answer.promotion?
+              .row
+                .col-md-4
+                  = f.input :organization_address_region,
+                            as: :select,
+                            label: "Region",
+                            input_html: { class: "form-control" },
+                            collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
+
+            - if @form_answer.promotion?
+              .row
+                .col-md-8
+                  = f.input :website_url,
+                            as: :string,
+                            label: "Website",
+                            input_html: { class: "form-control" }
 
           .form-actions.text-right
             = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
@@ -257,8 +259,8 @@
       - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
         = simple_form_for([namespace_name, resource],
                           remote: true,
-                          authenticity_token: true) do |f|
-
+                          authenticity_token: true, html: { "data-type" => "html" }) do |f|
+          = hidden_field_tag :section, "address"
           .input.form-group.form-fields.form-block
             .row
               .col-md-8

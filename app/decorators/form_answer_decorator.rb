@@ -64,9 +64,20 @@ class FormAnswerDecorator < ApplicationDecorator
     object.company_or_nominee_name
   end
 
+  def data
+    #object.document
+    OpenStruct.new(object.document.merge(persisted?: true))
+  end
+
+  def data_attributes=(attributes)
+    object.document.merge! attributes
+  end
+
   def company_name
     company_or_nominee_name
   end
+
+  def
 
   def nominee_title
     object.nominee_title ? object.nominee_title : document["nominee_title"]
@@ -163,44 +174,12 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
-  def address_building
-    document["organization_address_building"]
-  end
-
-  def address_street
-    document["organization_address_street"]
-  end
-
-  def address_city
-    document["organization_address_city"]
-  end
-
-  def address_county
-    document["organization_address_county"]
-  end
-
-  def address_postcode
-    document["organization_address_postcode"]
-  end
-
-  def telephone
-    document["org_telephone"]
-  end
-
-  def region
-    document["organization_address_region"]
-  end
-
   def nominee_organisation
     document["organization_address_name"]
   end
 
   def nominee_position
     document["nominee_position"]
-  end
-
-  def nominee_organisation_website
-    document["website_url"]
   end
 
   def nominee_building

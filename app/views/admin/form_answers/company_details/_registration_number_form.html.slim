@@ -12,10 +12,11 @@
           p
             = @form_answer.registration_number
         .form-fields.form-block
-          = f.input :registration_number,
-                    as: :string,
-                    label: false,
-                    input_html: { class: "form-control" }
+          = f.simple_fields_for(:data) do |f|
+            = f.input :registration_number,
+                      as: :string,
+                      label: false,
+                      input_html: { class: "form-control" }
           .form-actions.text-right
             = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
             = f.submit "Save", class: "btn btn-primary pull-right"

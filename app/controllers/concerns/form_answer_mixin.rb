@@ -1,7 +1,9 @@
 module FormAnswerMixin
   def update
     check_rigths_by_updating_options
-    resource.assign_attributes(allowed_params)
+
+    resource.assign_attributes(allowed_params.except(:data_attributes))
+    resource.data_attributes = allowed_params[:data_attributes].except(:id) if allowed_params[:data_attributes]
     resource.company_details_updated_at = DateTime.now
     resource.company_details_editable = current_subject
 
@@ -41,15 +43,6 @@ module FormAnswerMixin
 
   private
 
-  def update_params
-    params.require(:form_answer).permit(
-      :sic_code,
-      :company_or_nominee_name,
-      :nominee_title,
-      previous_wins_attributes: [:id, :year, :category, :_destroy]
-    )
-  end
-
   def primary_assessment
     @primary_assessment ||= resource.assessor_assignments.primary.decorate
   end
@@ -67,7 +60,7 @@ module FormAnswerMixin
   end
 
   def allowed_params
-    ops = update_params
+    ops = params.require(:form_answer).permit!
 
     ops.reject! do |k, v|
       (k.to_sym == :company_or_nominee_name || k.to_sym == :nominee_title) &&
