@@ -242,7 +242,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def nominator_name
-    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
+    "#{document['user_info_first_name']} #{document['user_info_last_name']}".strip
   end
 
   def nominator_building
