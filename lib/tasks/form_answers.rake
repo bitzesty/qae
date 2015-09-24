@@ -80,21 +80,17 @@ namespace :form_answers do
     end
   end
 
-  desc "Populate the form progresses"
-  # Remove after use - it assumes that progress set up before save
-  task populate_form_answer_progresses: :environment do
-    output = {
-      saved: [],
-      not_saved: []
-    }
+  desc "Resaves company_or_nominee_name field"
+  task resave_company_or_nominee_name: :environment do
     FormAnswer.find_each do |f|
-      if f.save
-        output[:saved] << f.id
-      else
-        output[:not_saved] << f.id
-      end
-    end
+      args = {
+        company_or_nominee_name: f.company_or_nominee_from_document,
+        nominee_full_name: f.nominee_full_name_from_document,
+        nominator_full_name: f.send(:nominator_full_name_from_document),
+        nominator_email: f.send(:nominator_email_from_document)
+      }
 
-    p "Saved: #{output[:saved].size}; not saved: #{output[:not_saved].inspect}"
+      f.update_columns(args)
+    end
   end
 end
