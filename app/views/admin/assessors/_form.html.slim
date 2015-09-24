@@ -86,7 +86,7 @@
 
   .row
     .col-md-2.col-sm-3
-      = f.label :trade_role
+      = f.label :trade_role, FormAnswerDecorator::AWARD_TITLES["International Trade"]
     .col-md-2.col-sm-3
       = f.input :trade_role,
                 wrapper_html: { class: "form-group" },
@@ -98,7 +98,7 @@
 
   .row
     .col-md-2.col-sm-3
-      = f.label :innovation_role
+      = f.label :innovation_role, FormAnswerDecorator::AWARD_TITLES["Innovation"]
     .col-md-2.col-sm-3
       = f.input :innovation_role,
                 wrapper_html: { class: "form-group" },
@@ -110,7 +110,7 @@
 
   .row
     .col-md-2.col-sm-3
-      = f.label :development_role
+      = f.label :development_role, FormAnswerDecorator::AWARD_TITLES["Sustainable Development"]
     .col-md-2.col-sm-3
       = f.input :development_role,
                 wrapper_html: { class: "form-group" },
@@ -121,7 +121,7 @@
                 label: false
   .row
     .col-md-2.col-sm-3
-      = f.label :promotion_role
+      = f.label :promotion_role, FormAnswerDecorator::AWARD_TITLES["Enterprise Promotion"]
     .col-md-2.col-sm-3
       = f.input :promotion_role,
                 wrapper_html: { class: "form-group" },
