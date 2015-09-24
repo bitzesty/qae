@@ -19,7 +19,7 @@ en:
         qae_opt_in_group: QAE opt-in group
         bis_opt_in: BIS opt-in
         assessors: Assessors
-        all_users: All users
+        all_users: All applicants
     eligibility/basic:
       organization_kind:
         business: "Business (e.g. companies, partnerships, social enterprises)"

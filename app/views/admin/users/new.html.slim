@@ -1,5 +1,5 @@
 header.page-header
   h1
-    = "New #{controller_name.singularize}"
+    = "New #{controller_name == "users" ? "applicant" : controller_name.singularize}"
 
 = render 'form', resource: @resource

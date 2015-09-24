@@ -206,7 +206,18 @@
       z-index: 999999 !important;
     }
 
-    > li > a {
+    > li > span {
+      display: block;
+      padding: 3px 20px;
+      clear: both;
+      font-weight: normal;
+      line-height: 1.42857143;
+      color: #333333;
+      white-space: nowrap;
+    }
+
+    > li > a,
+    > li > span {
       @include screen-sm-max {
         padding: 15px;
         padding-left: 35px;
@@ -218,7 +229,9 @@
         padding: 7px 10px !important;
         color: $black !important;
       }
+    }
 
+    > li > a {
       &:hover,
       &:focus {
         @include screen-sm-max {

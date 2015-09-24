@@ -119,6 +119,52 @@ table .ellipsis {
   }
 }
 
+.btn-secondary {
+  color: $white-true;
+  background-color: $black-header;
+  border-color: $black-true;
+
+  &:hover,
+  &:focus,
+  &.focus,
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    color: $white-true;
+    background-color: $black-true;
+    border-color: $black-true;
+  }
+
+  .btn-primary:active,
+  .btn-primary.active,
+  .open > .btn-primary.dropdown-toggle {
+    background-image: none;
+  }
+
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &,
+    &:hover,
+    &:focus,
+    &.focus,
+    &:active,
+    &.active {
+      background-color: $less-black;
+      border-color: $black-header;
+    }
+  }
+
+  .badge {
+    color: $less-black;
+    background-color: $white-true;
+  }
+}
+
+.btn-confirm-submit {
+  font-size: 17px;
+}
+
 .alert {
   padding-top: 10px;
   padding-bottom: 10px;
@@ -420,110 +466,114 @@ table .ellipsis {
   }
 }
 
-  .p-empty {
-    font-style: italic;
+.p-empty {
+  font-style: italic;
+}
+
+.td-title {
+  padding-left: 20px;
+  font-size: 1.2em;
+
+  a {
+    color: inherit;
   }
 
-  .td-title {
-    padding-left: 20px;
-    font-size: 1.2em;
+  .ellipsis {
+    max-width: 350px;
 
+    @include screen-md-max {
+      max-width: 250px;
+    }
+  }
+}
+
+.td-flags {
+  white-space: nowrap;
+}
+
+.table > tbody > tr > .td-assessment-submitted {
+  padding-right: 0;
+}
+
+.list-actions {
+  margin-bottom: 0;
+  margin-left: 0;
+
+  a {
+    color: inherit;
+  }
+
+  .pull-right {
     a {
-      color: inherit;
-    }
+      color: $list-actions;
 
-    .ellipsis {
-      max-width: 350px;
-
-      @include screen-md-max {
-        max-width: 250px;
+      &.text-danger {
+        color: $list-actions-danger;
       }
     }
   }
 
-  .td-flags {
-    white-space: nowrap;
+  .glyphicon {
+    margin-right: 5px;
   }
 
-  .list-actions {
-    margin-bottom: 0;
-    margin-left: 0;
+  li {
+    margin-bottom: 10px;
+    @extend .clearfix;
 
-    a {
-      color: inherit;
+    &:last-child {
+      margin-bottom: 0;
     }
 
-    .pull-right {
-      a {
-        color: $list-actions;
+    .action-title {
+      display: block;
+      margin-right: 110px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
 
-        &.text-danger {
-          color: $list-actions-danger;
-        }
+      .lte-ie8 & {
+        max-width: 200px;
+        margin-right: 0;
+        float: left;
       }
     }
 
-    .glyphicon {
-      margin-right: 5px;
-    }
-
-    li {
-      margin-bottom: 10px;
-      @extend .clearfix;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      .action-title {
-        display: block;
-        margin-right: 110px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-
-        .lte-ie8 & {
-          max-width: 200px;
-          margin-right: 0;
-          float: left;
-        }
-      }
-
-      a span {
-        .lte-ie7 & {
-          display: inline !important;
-        }
-      }
-    }
-  }
-
-  .btn-attachment {
-    position: relative;
-    overflow: hidden;
-
-    .lte-ie8 & {
-      max-height: 25px;
-    }
-
-    input[type="file"] {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: auto;
-      width: 100%;
-      cursor: pointer;
-      font-size: 200px;
-      opacity: 0;
-      -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
-      filter: alpha(opacity=0);
-
+    a span {
       .lte-ie7 & {
-        left: auto !important;
-        height: 100%;
+        display: inline !important;
       }
     }
   }
+}
+
+.btn-attachment {
+  position: relative;
+  overflow: hidden;
+
+  .lte-ie8 & {
+    max-height: 25px;
+  }
+
+  input[type="file"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: auto;
+    width: 100%;
+    cursor: pointer;
+    font-size: 200px;
+    opacity: 0;
+    -ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+    filter: alpha(opacity=0);
+
+    .lte-ie7 & {
+      left: auto !important;
+      height: 100%;
+    }
+  }
+}
 
 // Alerts
 .alert-container {
@@ -635,7 +685,6 @@ table .ellipsis {
   width: 20px;
   height: 20px;
   top: -6px;
-  margin-right: 5px;
   background-image: image-url("icon-check.png");
   background-position: center center;
   background-size: 20px 14px;
@@ -648,22 +697,6 @@ table .ellipsis {
   .lte-ie7 & {
     float: left;
   }
-}
-
-.icon-role {
-  display: inline-block;
-  position: relative;
-  top: -3px;
-  width: 16px;
-  height: 16px;
-  margin-right: 5px;
-  border: 2px solid $black;
-  border-radius: 100px;
-  font-size: 9px;
-  font-weight: bold;
-  line-height: 1.25;
-  text-align: center;
-  text-transform: uppercase;
 }
 
 .icon-view {
@@ -723,7 +756,7 @@ table .ellipsis {
   }
 
   .form_answers-index-page & {
-    @media (max-width: 767px) {
+    @include screen-sm-max {
       margin-top: 15px;
     }
   }
@@ -971,116 +1004,140 @@ table .ellipsis {
 }
 
 // Sidebar
-  .show-sidebar {
-    position: relative;
-    padding: 15px;
-    background: $white-true;
-    zoom: 1;
+.show-main-content,
+.show-sidebar-container {
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+}
+
+.show-main-content {
+  width: 68%;
+
+  @include screen-md-max {
+    width: 100%;
+  }
+}
+
+.show-sidebar-container {
+  width: 32%;
+
+  @include screen-md-max {
+    width: 100%;
+  }
+}
+
+.show-sidebar {
+  position: relative;
+  padding: 15px;
+  background: $white-true;
+  zoom: 1;
+
+  @include screen-md-max {
+    margin-bottom: 30px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    &:first-child {
+      margin-top: 0;
+    }
+
+    .glyphicon {
+      margin-right: 5px;
+    }
+  }
+
+  h1 {
+    font-size: 32px;
 
     @include screen-md-max {
-      margin-bottom: 30px;
+      font-size: 24px;
+    }
+  }
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    @include screen-md-max {
+      font-size: 15px;
     }
 
-    h1,
-    h2,
-    h3 {
-      &:first-child {
-        margin-top: 0;
-      }
-
-      .glyphicon {
-        margin-right: 5px;
-      }
-    }
-
-    h1 {
-      font-size: 32px;
-
+    .pull-right {
       @include screen-md-max {
-        font-size: 24px;
-      }
-    }
-
-    h2 {
-      margin-bottom: 20px;
-      font-size: 16px;
-      font-weight: bold;
-      text-transform: uppercase;
-
-      @include screen-md-max {
-        font-size: 15px;
-      }
-
-      small {
-        display: block;
-        margin-top: 0.25em;
-        font-size: 14px;
-        text-transform: none;
-      }
-
-      .pull-right {
-        @include screen-md-max {
-          display: inline-block;
-          width: 100%;
-          margin-top: 10px;
-          float: none !important;
-        }
-      }
-    }
-
-    h3 {
-      margin-bottom: 20px;
-      font-size: 16px;
-      font-weight: bold;
-
-      @include screen-md-max {
-        font-size: 15px;
-      }
-    }
-
-    .well {
-      margin: 0;
-      padding: 20px 0;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid $grey;
-      border-radius: 0;
-      box-shadow: none;
-
-      &:first-child {
-        padding-top: 0;
-      }
-
-      &:last-child {
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-
-      .well {
-        padding: 19px;
-        border: 1px solid $grey;
-        border-radius: 4px;
-      }
-    }
-
-    .form-actions {
-      .btn:last-child {
-        margin-right: 0;
-      }
-
-      .form-cancel-link:last-child {
-        margin-right: 15px;
-      }
-    }
-
-    .sidebar-section {
-      margin-bottom: 45px;
-
-      &:last-child {
-        margin-bottom: 0;
+        display: inline-block;
+        width: 100%;
+        margin-top: 10px;
+        float: none !important;
       }
     }
   }
+
+  h3 {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: bold;
+
+    @include screen-md-max {
+      font-size: 15px;
+    }
+  }
+
+  small {
+    display: block;
+    margin-top: 0.25em;
+    color: #777777;
+    font-size: 14px;
+    text-transform: none;
+  }
+
+  .well {
+    margin: 0;
+    padding: 20px 0;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid $grey;
+    border-radius: 0;
+    box-shadow: none;
+
+    &:first-child {
+      padding-top: 0;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .well {
+      padding: 19px;
+      border: 1px solid $grey;
+      border-radius: 4px;
+    }
+  }
+
+  .form-actions {
+    .btn:last-child {
+      margin-right: 0;
+    }
+
+    .form-cancel-link:last-child {
+      margin-right: 15px;
+    }
+  }
+
+  .sidebar-section {
+    margin-bottom: 45px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
 
 // Comments sidebar
 .js .inline-form-view .comments-container .form-control {
@@ -1380,9 +1437,33 @@ table .ellipsis {
 }
 
 // RAG dropdown
+.form-label-rag {
+  display: block;
+  position: relative;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  @include screen-xs-max {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .strengths-section & {
+    @include screen-lg-max {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+}
+
 .btn-rag {
-  .lte-ie7 & {
-    display: inline;
+  position: absolute;
+  right: 0;
+  top: -5px;
+
+  @include screen-xs-max {
+    display: block;
+    position: static;
   }
 
   &.open {
@@ -1391,16 +1472,93 @@ table .ellipsis {
     }
   }
 
+  .strengths-section & {
+    @include screen-lg-max {
+      display: block;
+      position: static;
+    }
+  }
+
   .icon-rag {
     position: absolute;
     top: 50%;
-    left: 0;
+    right: 0;
     width: 20px;
     height: 20px;
     margin-top: -10px;
     background-size: 20px 20px;
     text-align: left;
     text-indent: -9999px;
+  }
+
+  &.rag-editable .icon-rag {
+    right: 15px;
+  }
+
+  .caret {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -2px;
+  }
+
+  .dropdown-toggle,
+  .dropdown-menu a {
+    position: relative;
+    font-weight: bold;
+  }
+
+  .dropdown-toggle {
+    padding-right: 25px;
+    padding-left: 0;
+
+    @include screen-xs-max {
+      float: none;
+      text-align: left;
+      white-space: normal;
+    }
+
+    .strengths-section & {
+      @include screen-lg-max {
+        float: none;
+      }
+
+      @include screen-xs-max {
+        width: 100%;
+      }
+    }
+  }
+
+  &.rag-editable .dropdown-toggle {
+    padding-right: 40px;
+  }
+
+  .dropdown-menu {
+    &.pull-right {
+      @include screen-xs-max {
+        right: auto;
+      }
+
+      .strengths-section & {
+        @include screen-lg-max {
+          right: auto;
+        }
+      }
+    }
+
+    a {
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 37px;
+
+      @include screen-xs-max {
+        white-space: normal;
+      }
+    }
+
+    .icon-rag {
+      left: 12px;
+    }
   }
 
   .rag-blank {
@@ -1412,10 +1570,10 @@ table .ellipsis {
     }
 
     .icon-rag {
-      background-image: image-url("icon-grade-neutral.png");
+      background-image: image-url("icon-grade-blank.png");
 
       @include is-retina {
-        background-image: image-url("icon-grade-neutral@2.png");
+        background-image: image-url("icon-grade-blank@2.png");
       }
     }
   }
@@ -1496,32 +1654,6 @@ table .ellipsis {
     a:hover,
     a:focus {
       text-decoration: none;
-    }
-  }
-
-  .dropdown-toggle,
-  .dropdown-menu a {
-    position: relative;
-    font-weight: bold;
-  }
-
-  .dropdown-toggle {
-    padding-left: 25px;
-
-    .rag-text {
-      margin-right: 5px;
-    }
-  }
-
-  .dropdown-menu {
-    a {
-      padding-top: 6px;
-      padding-bottom: 6px;
-      padding-left: 37px;
-    }
-
-    .icon-rag {
-      left: 12px;
     }
   }
 }
@@ -1618,19 +1750,11 @@ table .ellipsis {
 .glyphicon-pencil {
   width: 15px;
   height: 13px;
-  background-image: image-url("icon-edit.png");
+  background-image: image-url("icon-edit-black.png");
   background-size: 15px 13px;
 
   @include is-retina {
-    background-image: image-url("icon-edit@2.png");
-  }
-
-  .list-actions & {
-    background-image: image-url("icon-edit-black.png");
-
-    @include is-retina {
-      background-image: image-url("icon-edit-black@2.png");
-    }
+    background-image: image-url("icon-edit-black@2.png");
   }
 }
 
@@ -1757,8 +1881,8 @@ table .ellipsis {
       left: auto;
       padding-right: 10px;
       padding-left: 10px;
-      border-left: 1px solid $bootstrap-blue-line;
-      background: $bootstrap-blue;
+      border-left: 1px solid $less-black;
+      background: $black-header;
 
       .caret {
         margin-top: 0.7em;
@@ -1771,8 +1895,8 @@ table .ellipsis {
   .btn:active,
   .open > .dropdown-toggle {
     .caret-container {
-      border-color: $bootstrap-blue-line-dark;
-      background-color: $bootstrap-blue-dark;
+      border-color: $black-true;
+      background-color: $less-black;
     }
   }
 
@@ -1850,5 +1974,64 @@ table .ellipsis {
 
   .char-over & {
     color: $error-colour;
+  }
+}
+
+.nav-subnav {
+  margin-bottom: 15px;
+  border-bottom: 4px solid $black-header;
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  li {
+    float: left;
+
+    @include screen-sm-max {
+      float: none;
+    }
+
+    &:first-child a {
+      @include screen-sm-min {
+        padding-left: 0;
+      }
+    }
+  }
+
+  a {
+    display: block;
+    padding: 10px 15px;
+    padding-bottom: 15px;
+    float: left;
+    color: $black;
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+
+    @include screen-md-max {
+      padding: 8px 10px;
+      padding-bottom: 15px;
+    }
+
+    @include screen-sm-max {
+      float: none;
+    }
+  }
+
+  .active a {
+    background: transparent image-url("icon-arrow-admin-subnav.png") no-repeat center 110%;
+    background-size: 24px 12px;
+    color: $bootstrap-blue;
+
+    @include is-retina {
+      background-image: image-url("icon-arrow-admin-subnav@2.png");
+    }
+
+    @include screen-sm-max {
+      background: none;
+    }
   }
 }

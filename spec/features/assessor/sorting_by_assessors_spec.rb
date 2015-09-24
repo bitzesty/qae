@@ -20,11 +20,11 @@ describe "As Lead Assessor I want to sort by assessors", js: true do
 
   it "displays the forms based on the primary assessor name order" do
     expected_indices = %w(0 1 2)
-    find("th.sortable", text: "Primary Assessor").find("a").click
+    find("th.sortable.th-primary-name", text: "Primary Assessor").find("a").click
 
     expect(assessor_names).to eq(expected_indices)
 
-    find("th.sortable", text: "Primary Assessor").find("a").click
+    find("th.sortable.th-primary-name", text: "Primary Assessor").find("a").click
 
     expect(assessor_names).to eq(expected_indices.reverse)
   end
@@ -36,7 +36,8 @@ def assessor_names
   names = []
   within ".applications-table" do
     names = all("tbody tr").map do |tr|
-      tr.all("td")[4].text
+      tr.find(".td-primary-name").text
+      #tr.all("td")[5].text
     end
   end
   names.map { |name| name[0] }

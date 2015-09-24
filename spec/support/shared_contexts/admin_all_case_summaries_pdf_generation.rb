@@ -19,7 +19,9 @@ shared_context "admin all case summaries pdf generation" do
 
     AppraisalForm.struct(form_answer).each do |key, _|
       res["#{key}_desc"] = "Lorem Ipsum"
-      res["#{key}_rate"] = ["negative", "positive", "average"].sample
+      if _[:type] != :non_rag
+        res["#{key}_rate"] = ["negative", "positive", "average"].sample
+      end
     end
 
     res

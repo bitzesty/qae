@@ -1,6 +1,8 @@
+- url_namespace = admin_signed_in? ? :admin : :assessor
+
 label.form-label Audit Certificate
 - if policy(resource).download_audit_certificate_pdf?
-  p = link_to "View audit certificate", resource.audit_certificate.attachment_url,
+  p = link_to "View audit certificate", [url_namespace, resource, resource.audit_certificate],
       target: "_blank", class: "js-audit-certificate-title"
 .form-value
   - unless resource.audit_certificate.try(:reviewed?)

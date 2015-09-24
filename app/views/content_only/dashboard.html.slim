@@ -1,5 +1,19 @@
 - provide(:page_wrapper_class, "page-dashboard")
 
+- if Settings.after_current_submission_deadline?
+  article.group role="article"
+    .inner
+      br
+      .application-notice.info-notice
+        p
+          ' The entry period for the
+          = AwardYear.current.year
+          '  Awards season has now closed.
+          br
+          ' Award winners will be announced on 21st April
+          = AwardYear.current.year
+          ' .
+
 header.page-header.group
   div
     h1

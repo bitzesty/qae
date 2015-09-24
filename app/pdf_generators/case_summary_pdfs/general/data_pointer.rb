@@ -279,11 +279,11 @@ module CaseSummaryPdfs::General::DataPointer
   def render_overall_growth_table
     rows = [
       [
-        "Overall growth £[year 1 - #{financial_pointer.period_length}]",
+        "Overall growth in £ (year 1 - #{financial_pointer.period_length})",
         @overall_growth
       ],
       [
-        "Overall growth %[year 1 - #{financial_pointer.period_length}]",
+        "Overall growth in % (year 1 - #{financial_pointer.period_length})",
         @overall_growth_in_percents
       ]
     ]

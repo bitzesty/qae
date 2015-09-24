@@ -14,18 +14,10 @@
       = render "admin/form_answers/company_details/address_form"
       = render "admin/form_answers/company_details/previous_wins_form"
       = render "admin/form_answers/company_details/sic_form"
+      = render "admin/form_answers/company_details/goods_services_form"
       = render "admin/form_answers/company_details/registration_number_form"
       = render "admin/form_answers/company_details/date_trading_form"
       = render "admin/form_answers/company_details/website_form"
       = render "admin/form_answers/company_details/organisation_head_form"
       = render "admin/form_answers/company_details/parent_company_form"
-      = render "admin/form_answers/company_details/goods_services_form"
-
-        .form-group
-          label.form-label User accounts
-          ul.list-unstyled.list-actions
-            - (resource.account.try(:users) || []).each do |user|
-              li
-                = link_to "#", class: "ellipsis"
-                  span.icon-role A
-                  = "#{user.full_name} (#{user.email})"
+      = render "admin/form_answers/company_details/user_accounts"

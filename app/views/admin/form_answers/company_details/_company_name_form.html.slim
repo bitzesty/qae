@@ -8,39 +8,41 @@
 
       = hidden_field_tag :section, "company_name"
       label.form-label = account_name
-      .form-value
-        p
-          - if @form_answer.promotion?
-            = @form_answer.nominee_title
-            '
-          = @form_answer.company_name
-      .input.form-group.form-fields.form-block
-        .row
-          - if @form_answer.promotion?
-            .col-md-2
-              = f.input :nominee_title,
+      .form-value-container
+        .form-value
+          p
+            - if @form_answer.promotion?
+              = @form_answer.nominee_title
+              '
+            = @form_answer.company_name
+        .input.form-group.form-fields.form-block
+          .row
+            - if @form_answer.promotion?
+              .col-md-2
+                = f.input :nominee_title,
+                          as: :string,
+                          label: "Title",
+                          input_html: { class: "form-control" }
+            div class="#{@form_answer.promotion? ? 'col-md-10' : 'col-md-12'}"
+              = f.input :company_or_nominee_name,
                         as: :string,
-                        label: "Title",
+                        label: @form_answer.promotion? ? 'Full name' : false,
                         input_html: { class: "form-control" }
-          div class="#{@form_answer.promotion? ? 'col-md-10' : 'col-md-12'}"
-            = f.input :company_or_nominee_name,
-                      as: :string,
-                      label: @form_answer.promotion? ? 'Full name' : false,
-                      input_html: { class: "form-control" }
 
-        .form-actions.text-right
-          = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-          = f.submit "Save", class: "btn btn-primary pull-right"
-      .clear
-      = link_to "#", class: "form-edit-link pull-right"
-        span.glyphicon.glyphicon-pencil
-        ' Edit
-      .clear
+          .form-actions.text-right
+            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+            = f.submit "Save", class: "btn btn-primary pull-right"
+        .clear
+        = link_to "#", class: "form-edit-link pull-right"
+          span.glyphicon.glyphicon-pencil
+          ' Edit
+        .clear
 - else
   .form-group
     label.form-label = account_name
-    p
-      - if @form_answer.promotion?
-        = @form_answer.nominee_title
-        '
-      = @form_answer.company_name
+    .form-value-container
+      p
+        - if @form_answer.promotion?
+          = @form_answer.nominee_title
+          '
+        = @form_answer.company_name

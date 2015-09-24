@@ -13,74 +13,76 @@
         = hidden_field_tag :section, "organisation_head"
 
         label.form-label Head of organisation
-        .form-value
-          p
-            - if obj.head_of_bussines_title.present?
-              = obj.head_of_bussines_title
-              '
-            = obj.head_of_business_full_name
-            - if obj.head_of_business_honours.present?
-              '
-              = obj.head_of_business_honours
-            br
-            - if obj.head_job_title.present?
-              = obj.head_job_title
+        .form-value-container
+          .form-value
+            p
+              - if obj.head_of_bussines_title.present?
+                = obj.head_of_bussines_title
+                '
+              = obj.head_of_business_full_name
+              - if obj.head_of_business_honours.present?
+                '
+                = obj.head_of_business_honours
               br
-            - if obj.head_email.present?
-              = obj.head_email
-        .form-fields.form-block
-          .row
-            .col-md-2
-              = f.input :head_of_bussines_title,
-                        as: :string,
-                        label: "Title",
-                        input_html: { class: "form-control" }
-            .col-md-10
-              = f.input :head_of_business_full_name,
-                        as: :string,
-                        label: "Full name",
-                        input_html: { class: "form-control" }
-          .row
-            .col-md-8
-              = f.input :head_of_business_honours,
-                        as: :string,
-                        label: "Honours",
-                        input_html: { class: "form-control" }
-          .row
-            .col-md-8
-              = f.input :head_job_title,
-                        as: :string,
-                        label: "Job title",
-                        input_html: { class: "form-control" }
-          .row
-            .col-md-8
-              = f.input :head_email,
-                        as: :string,
-                        label: "Email",
-                        input_html: { class: "form-control" }
-          .form-actions.text-right
-            = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-            = f.submit "Save", class: "btn btn-primary pull-right"
-        .clear
+              - if obj.head_job_title.present?
+                = obj.head_job_title
+                br
+              - if obj.head_email.present?
+                = obj.head_email
+          .form-fields.form-block
+            .row
+              .col-md-2
+                = f.input :head_of_bussines_title,
+                          as: :string,
+                          label: "Title",
+                          input_html: { class: "form-control" }
+              .col-md-10
+                = f.input :head_of_business_full_name,
+                          as: :string,
+                          label: "Full name",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-8
+                = f.input :head_of_business_honours,
+                          as: :string,
+                          label: "Honours",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-8
+                = f.input :head_job_title,
+                          as: :string,
+                          label: "Job title",
+                          input_html: { class: "form-control" }
+            .row
+              .col-md-8
+                = f.input :head_email,
+                          as: :string,
+                          label: "Email",
+                          input_html: { class: "form-control" }
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary pull-right"
+          .clear
 
-        = link_to "#", class: "form-edit-link pull-right"
-          span.glyphicon.glyphicon-pencil
-          ' Edit
-        .clear
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
   - else
     .form-group
       label.form-label Head of organisation
-      p
-        - if obj.head_of_bussines_title.present?
-          = obj.head_of_bussines_title
-          '
-        = obj.head_of_business_full_name
-        - if obj.head_of_business_honours.present?
-          '
-          = obj.head_of_business_honours
-        br
-        - if obj.head_job_title.present?
-          = obj.head_job_title
+      .form-value-container
+        p
+          - if obj.head_of_bussines_title.present?
+            = obj.head_of_bussines_title
+            '
+          = obj.head_of_business_full_name
+          - if obj.head_of_business_honours.present?
+            '
+            = obj.head_of_business_honours
           br
-        - if obj.head_email.present?
-          = obj.head_email
+          - if obj.head_job_title.present?
+            = obj.head_job_title
+            br
+          - if obj.head_email.present?
+            = obj.head_email

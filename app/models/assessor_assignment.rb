@@ -96,27 +96,24 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def award_specific_attributes
-    struct.diff(form_answer.award_type).each do |att|
+    struct.diff(form_answer.award_type, moderated?).each do |att|
       if public_send(att).present?
-        errors.add(att, "Can not be present for this Award Type")
+        errors.add(att, "cannot be present for this Award Type")
       end
     end
   end
 
   def mandatory_fields_for_submitted
     return unless submitted?
-    # TODO Needs to do validation on the verdict fields
-    return if moderated?  
-    struct.meths_for_award_type(form_answer.award_type).each do |meth|
+    struct.meths_for_award_type(form_answer.award_type, moderated?).each do |meth|
       if public_send(meth).blank?
-        errors.add(meth, "can not be blank for submitted assessment")
+        errors.add(meth, "cannot be blank for submitted assessment")
       end
     end
   end
 
   def validate_rate(rate_type)
-    # TODO Needs to do validation on the verdict fields
-    return if moderated?
+    return if moderated? && rate_type != :verdict
     struct.rates(form_answer, rate_type).each do |section, _|
       val = section_rate(section)
       c = "#{rate_type.upcase}_ALLOWED_VALUES"
@@ -138,20 +135,20 @@ class AssessorAssignment < ActiveRecord::Base
   def submitted_at_immutability
     return if new_record?
     if submitted_at_changed? && submitted_at_was.present?
-      errors.add(:submitted_at, "Can not be re-submitted")
+      errors.add(:submitted_at, "cannot be re-submitted")
     end
   end
 
   def assessor_existence
     if (moderated? || lead_case_summary?) && assessor_id.present?
-      errors.add(:assessor_id, "Can not be present for this kind of assessment.")
+      errors.add(:assessor_id, "cannot be present for this kind of assessment.")
     end
   end
 
   def assessor_assignment_to_category
     return unless assessor_id_changed?
     if assessor.present? && !assessor.assignable?(form_answer)
-      errors.add(:assessor_id, "Can not be assigned to this case.")
+      errors.add(:assessor_id, "cannot be assigned to this case.")
     end
   end
 

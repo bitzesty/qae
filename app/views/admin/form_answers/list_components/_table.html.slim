@@ -5,15 +5,9 @@ table.table.applications-table
         = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
       th.sortable
         = sort_link f, "Reference", @search, :urn, disabled: @search.query?
-      - if @search.query?
-        th Award Type
-      - else
-        = render('admin/form_answers/list_components/award_type_header', f: f)
+      = render('admin/form_answers/list_components/award_type_header', f: f)
 
-      - if @search.query?
-        th Status
-      - else
-        = render("admin/form_answers/list_components/award_status_header", f: f)
+      = render("admin/form_answers/list_components/award_status_header", f: f)
       th &nbsp;
       th.sortable
         = sort_link f, "Flag", @search, :flag, disabled: @search.query?
