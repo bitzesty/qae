@@ -1,16 +1,11 @@
-- unless resource.submitted_and_after_the_deadline?
-  - obj = @form_answer
-- else
-  - obj = CompanyDetail.for(@form_answer)
-
 - unless @form_answer.promotion?
   - if @form_answer.applying_for == "division branch subsidiary"
     - if @form_answer.submitted_and_after_the_deadline?
       .form-group-multiple-parent
-        .form-group.form-group-multiple class="#{'form-edit' if obj.parent_company.blank?}"
-          = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+        .form-group.form-group-multiple class="#{'form-edit' if @form_answer.parent_company.blank?}"
+          = simple_form_for [namespace_name, resource],
                             remote: true,
-                            authenticity_token: true do |f|
+                            authenticity_token: true, html: { "data-type" => "html" } do |f|
             = hidden_field_tag :section, "parent_company"
 
             .form-container
@@ -18,8 +13,8 @@
 
               .form-value
                 p
-                  - if obj.parent_company.present?
-                    = obj.parent_company
+                  - if @form_answer.parent_company.present?
+                    = @form_answer.parent_company
                   - else
                     em.text-muted Name of immediate parent company not added.
               .form-fields.form-block
@@ -36,8 +31,8 @@
                 span.glyphicon.glyphicon-pencil
                 ' Edit
               .clear
-        .form-group.form-group-multiple class="#{'form-edit' if obj.parent_company_country.blank?}"
-          = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+        .form-group.form-group-multiple class="#{'form-edit' if @form_answer.parent_company_country.blank?}"
+          = simple_form_for [namespace_name, resource],
                             remote: true,
                             authenticity_token: true do |f|
             = hidden_field_tag :section, "parent_company"
@@ -47,8 +42,8 @@
 
               .form-value
                 p
-                  - if obj.parent_company_country.present?
-                    = Country.find_country_by_alpha2(obj.parent_company_country).try(:name)
+                  - if @form_answer.parent_company_country.present?
+                    = Country.find_country_by_alpha2(@form_answer.parent_company_country).try(:name)
                   - else
                     em.text-muted Country of immediate Parent company not added.
               .form-fields.form-block
@@ -66,9 +61,9 @@
                 span.glyphicon.glyphicon-pencil
                 ' Edit
               .clear
-        - unless obj.parent_ultimate_control
-          .form-group.form-group-multiple class="#{'form-edit' if obj.ultimate_control_company.blank?}"
-            = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+        - unless @form_answer.parent_ultimate_control
+          .form-group.form-group-multiple class="#{'form-edit' if @form_answer.ultimate_control_company.blank?}"
+            = simple_form_for [namespace_name, resource],
                               remote: true,
                               authenticity_token: true do |f|
               = hidden_field_tag :section, "parent_company"
@@ -78,8 +73,8 @@
 
                 .form-value
                   p
-                    - if obj.ultimate_control_company.present?
-                      = obj.ultimate_control_company
+                    - if @form_answer.ultimate_control_company.present?
+                      = @form_answer.ultimate_control_company
                     - else
                       em.text-muted Name of organisation with ultimate control not added.
                 .form-fields.form-block
@@ -96,8 +91,8 @@
                   span.glyphicon.glyphicon-pencil
                   ' Edit
                 .clear
-          .form-group.form-group-multiple class="#{'form-edit' if obj.ultimate_control_company_country.blank?}"
-            = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+          .form-group.form-group-multiple class="#{'form-edit' if @form_answer.ultimate_control_company_country.blank?}"
+            = simple_form_for [namespace_name, resource],
                               remote: true,
                               authenticity_token: true do |f|
               = hidden_field_tag :section, "parent_company"
@@ -107,8 +102,8 @@
 
                 .form-value
                   p
-                    - if obj.ultimate_control_company_country.present?
-                      = Country.find_country_by_alpha2(obj.ultimate_control_company_country).try(:name)
+                    - if @form_answer.ultimate_control_company_country.present?
+                      = Country.find_country_by_alpha2(@form_answer.ultimate_control_company_country).try(:name)
                     - else
                       em.text-muted Country of organisation with ultimate control not added.
                 .form-fields.form-block
@@ -133,26 +128,26 @@
 
           p
             - if @form_answer.parent_company.present?
-              = obj.parent_company
+              = @form_answer.parent_company
             - else
               em.text-muted Name of immediate parent company not added.
-        
+
         .form-container
           label.form-label Country of Immediate Parent company
 
           p
-            - if obj.parent_company_country.present?
-              = Country.find_country_by_alpha2(obj.parent_company_country).try(:name)
+            - if @form_answer.parent_company_country.present?
+              = Country.find_country_by_alpha2(@form_answer.parent_company_country).try(:name)
             - else
               em.text-muted Country of immediate Parent company not added.
 
-        - if obj.parent_ultimate_control
+        - if @form_answer.parent_ultimate_control
           .form-container
             label.form-label Name of Organisation with Ultimate control
 
             p
-              - if obj.ultimate_control_company.present?
-                = obj.ultimate_control_company
+              - if @form_answer.ultimate_control_company.present?
+                = @form_answer.ultimate_control_company
               - else
                 em.text-muted Name of organisation with ultimate control not added.
 
@@ -160,8 +155,8 @@
             label.form-label Country of Organisation with Ultimate control
 
             p
-              - if obj.ultimate_control_company_country.present?
-                = Country.find_country_by_alpha2(obj.ultimate_control_company_country).try(:name)
+              - if @form_answer.ultimate_control_company_country.present?
+                = Country.find_country_by_alpha2(@form_answer.ultimate_control_company_country).try(:name)
               - else
                 em.text-muted Country of organisation with ultimate control not added.
 

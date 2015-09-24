@@ -1,14 +1,9 @@
-- unless resource.submitted_and_after_the_deadline?
-  - obj = @form_answer
-- else
-  - obj = CompanyDetail.for(@form_answer)
-
 - unless @form_answer.promotion?
   - if user_can_edit(@form_answer, :website)
-    .form-group class="#{'form-edit' if obj.website_url.blank?}"
-      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+    .form-group class="#{'form-edit' if @form_answer.website_url.blank?}"
+      = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true do |f|
+                        authenticity_token: true, html: { "data-type" => "html" } do |f|
         = hidden_field_tag :section, "website"
 
         .form-container
@@ -16,15 +11,16 @@
 
           .form-value
             p
-              - if obj.website_url.present?
-                = obj.website_url
+              - if @form_answer.website_url.present?
+                = @form_answer.website_url
               - else
                 em.text-muted No website added.
           .form-fields.form-block
-            = f.input :website_url,
-                      as: :string,
-                      label: false,
-                      input_html: { class: "form-control" }
+            = f.simple_fields_for(:data) do |f|
+              = f.input :website_url,
+                        as: :string,
+                        label: false,
+                        input_html: { class: "form-control" }
             .form-actions.text-right
               = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
               = f.submit "Save", class: "btn btn-primary pull-right"
@@ -40,7 +36,7 @@
         label.form-label Website address
 
         p
-          - if obj.website_url.present?
-            = obj.website_url
+          - if @form_answer.website_url.present?
+            = @form_answer.website_url
           - else
             em.text-muted No website added.

@@ -1,23 +1,18 @@
-- unless resource.submitted_and_after_the_deadline?
-  - obj = @form_answer
-- else
-  - obj = CompanyDetail.for(@form_answer)
-
 - unless @form_answer.promotion?
   - if user_can_edit(@form_answer, :goods_services)
     - goods_services_blank = false
-    - if @form_answer.innovation? and obj.innovation_desc_short.blank?
+    - if @form_answer.innovation? and @form_answer.innovation_desc_short.blank?
       - goods_services_blank = true
-    - if @form_answer.development? and obj.development_desc_short.blank?
+    - if @form_answer.development? and @form_answer.development_desc_short.blank?
       - goods_services_blank = true
     - if @form_answer.trade?
-      - (1..obj.trade_goods_amount).each_with_index do |placement, index|
-        - if obj.trade_goods_descriptions[index].blank?
+      - (1..@form_answer.trade_goods_amount).each_with_index do |placement, index|
+        - if @form_answer.trade_goods_descriptions[index].blank?
           - goods_services_blank = true
     .form-group class="#{'form-edit' if goods_services_blank}"
-      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+      = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true do |f|
+                        authenticity_token: true, html: { "data-type" => "html" } do |f|
         = hidden_field_tag :section, "goods_services"
 
         .form-container
@@ -26,47 +21,48 @@
           .form-value
             - if @form_answer.innovation?
               p
-                - if obj.innovation_desc_short.present?
-                  = obj.innovation_desc_short
+                - if @form_answer.innovation_desc_short.present?
+                  = @form_answer.innovation_desc_short
                 - else
                   em.text-muted No description of good/services added.
             - if @form_answer.development?
               p
-                - if obj.development_desc_short.present?
-                  = obj.development_desc_short
+                - if @form_answer.development_desc_short.present?
+                  = @form_answer.development_desc_short
                 - else
                   em.text-muted No description of good/services added.
             - if @form_answer.trade?
               / # TODO pull in trade good services
               ul.list-unstyled.good-services-list
-                - (1..obj.trade_goods_amount).each_with_index do |placement, index|
+                - (1..@form_answer.trade_goods_amount).each_with_index do |placement, index|
                   li
                     label.label-small
                       = "Goods/services #{index + 1}"
                     p
-                      - if obj.trade_goods_descriptions[index].present?
-                        = obj.trade_goods_descriptions[index]
+                      - if @form_answer.trade_goods_descriptions[index].present?
+                        = @form_answer.trade_goods_descriptions[index]
                       - else
                         em.text-muted No description of good/services added.
           .form-fields.form-block
-            - if @form_answer.innovation?
-              = f.input :innovation_desc_short,
-                        as: :text,
-                        label: false,
-                        input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
-            - if @form_answer.development?
-              = f.input :development_desc_short,
-                        as: :text,
-                        label: false,
-                        input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
-            - if @form_answer.trade?
-              ul.list-unstyled.good-services-list
-                - (1..obj.trade_goods_amount).each_with_index do |placement, index|
-                  li.well
-                    label
-                      = "Goods/services #{index + 1}"
-                    textarea.form-control.js-chart-count type="text" name="company_detail[trade_goods_descriptions][]" value="#{obj.trade_goods_descriptions[index]}" rows=3 data-word-max=15
-                      = obj.trade_goods_descriptions[index]
+            = f.simple_fields_for(:data) do |f|
+              - if @form_answer.innovation?
+                = f.input :innovation_desc_short,
+                          as: :text,
+                          label: false,
+                          input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
+              - if @form_answer.development?
+                = f.input :development_desc_short,
+                          as: :text,
+                          label: false,
+                          input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
+              - if @form_answer.trade?
+                ul.list-unstyled.good-services-list
+                  - (1..@form_answer.trade_goods_amount).each_with_index do |placement, index|
+                    li.well
+                      label
+                        = "Goods/services #{index + 1}"
+                      textarea.form-control.js-chart-count type="text" name="company_detail[trade_goods_descriptions][]" value="#{@form_answer.trade_goods_descriptions[index]}" rows=3 data-word-max=15
+                        = @form_answer.trade_goods_descriptions[index]
 
             .form-actions.text-right
               = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
@@ -84,24 +80,26 @@
 
         - if @form_answer.innovation?
           p
-            - if obj.innovation_desc_short.present?
-              = obj.innovation_desc_short
+            - if @form_answer.innovation_desc_short.present?
+              = @form_answer.innovation_desc_short
             - else
               em.text-muted No description of good/services added.
         - if @form_answer.development?
           p
-            - if obj.development_desc_short.present?
-              = obj.development_desc_short
+            - if @form_answer.development_desc_short.present?
+              = @form_answer.development_desc_short
             - else
               em.text-muted No description of good/services added.
         - if @form_answer.trade?
           ul.list-unstyled.good-services-list
-            - (1..CompanyDetail.for(@form_answer).trade_goods_amount).each_with_index do |placement, index|
-              li
-                label.label-small
-                  = "Goods/services #{index + 1}"
-                p
-                  - if CompanyDetail.for(@form_answer).trade_goods_descriptions[index].present?
-                    = CompanyDetail.for(@form_answer).trade_goods_descriptions[index]
-                  - else
-                    em.text-muted No description of good/services added.
+            / TODO: need to convert it use form answer
+            /
+            / - (1..CompanyDetail.for(@form_answer).trade_goods_amount).each_with_index do |placement, index|
+            /   li
+            /     label.label-small
+            /       = "Goods/services #{index + 1}"
+            /     p
+            /       - if CompanyDetail.for(@form_answer).trade_goods_descriptions[index].present?
+            /         = CompanyDetail.for(@form_answer).trade_goods_descriptions[index]
+            /       - else
+            /         em.text-muted No description of good/services added.
