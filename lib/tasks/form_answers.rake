@@ -83,7 +83,14 @@ namespace :form_answers do
   desc "Resaves company_or_nominee_name field"
   task resave_company_or_nominee_name: :environment do
     FormAnswer.find_each do |f|
-      f.update_column(:company_or_nominee_name, f.company_or_nominee_from_document)
+      args = {
+        company_or_nominee_name: f.company_or_nominee_from_document,
+        nominee_full_name: f.nominee_full_name_from_document,
+        nominator_full_name: f.send(:nominator_full_name_from_document),
+        nominator_email: f.send(:nominator_email_from_document)
+      }
+
+      f.update_columns(args)
     end
   end
 end
