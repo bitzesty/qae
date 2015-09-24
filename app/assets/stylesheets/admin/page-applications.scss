@@ -490,7 +490,7 @@
 .bulk-assign-assessors-link {
   position: relative;
   left: -9999px;
-  margin-bottom: 10px;
+  margin-top: 10px;
 
   &.show-button {
     left: 0;
@@ -505,6 +505,8 @@
 
 .bulk-assign-assessors-form {
   max-width: 755px;
+  margin-top: 25px;
+  margin-bottom: 10px;
 
   .js & {
     display: none;
@@ -552,6 +554,10 @@
 
   .select2-container {
     width: 100% !important;
+  }
+
+  .well {
+    margin-bottom: 0;
   }
 }
 
