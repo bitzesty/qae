@@ -441,10 +441,6 @@ window.FormValidation =
         # console.log "validateDropBlockCondition"
         @validateDropBlockCondition(question)
 
-      if question.hasClass("js-conditional-drop-block-answer")
-        # console.log "validateDropBlockCondition"
-        @validateDropBlockCondition(question)
-
       if question.hasClass("question-support-requests") ||
          question.hasClass("question-support-uploads")
         # console.log "validateSupportLetters"
