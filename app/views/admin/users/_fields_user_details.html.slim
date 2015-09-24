@@ -1,20 +1,32 @@
 fieldset.question-group
-  h3 Full name
+  h3
+    = f.label :title
   .row
     .col-md-1.col-sm-2
       = f.input :title,
                 wrapper_html: { class: "form-group" },
-                input_html: { class: "form-control" }
+                input_html: { class: "form-control" },
+                label: false
+
+fieldset.question-group
+  h3
+    = f.label :first_name
   .row
     .col-lg-2.col-md-3.col-sm-4
       = f.input :first_name,
                 wrapper_html: { class: "form-group" },
-                input_html: { class: "form-control" }
+                input_html: { class: "form-control" },
+                label: false
+
+fieldset.question-group
+  h3
+    = f.label :last_name
   .row
     .col-lg-2.col-md-3.col-sm-4
       = f.input :last_name,
                 wrapper_html: { class: "form-group" },
-                input_html: { class: "form-control" }
+                input_html: { class: "form-control" },
+                label: false
 
 fieldset.question-group
   h3
