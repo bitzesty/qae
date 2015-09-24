@@ -17,7 +17,7 @@ namespace :form_answers do
   task normalize_address: :environment do
     FormAnswer.find_each do |f|
       fix_address f, "principal_address", "organization_address"
-      f.save!
+      f.update_column(:document, f.document)
     end
   end
 
