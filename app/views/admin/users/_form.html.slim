@@ -49,15 +49,15 @@
 
     br
     .clearfix
-      = link_to "Cancel",
-                admin_users_path,
-                class: "btn btn-default btn-md pull-left"
+      - if action_name == "edit" && policy(resource).destroy?
+        = link_to "Delete", admin_user_path(resource), data: { method: :delete, confirm: "Are you sure?" }, class: "btn btn-danger btn-md pull-left"
 
       .pull-right
-        - if action_name == "edit" && policy(resource).destroy?
-          = link_to "Delete", admin_user_path(resource), data: { method: :delete, confirm: "Are you sure?" }, class: "btn btn-danger btn-md"
+        = link_to "Cancel",
+                  admin_users_path,
+                  class: "btn btn-default btn-md"
 
-          ' &nbsp;
+        ' &nbsp;
 
         - if resource.persisted? && resource.confirmed_at.blank?
           = link_to "Resend confirmation email",
