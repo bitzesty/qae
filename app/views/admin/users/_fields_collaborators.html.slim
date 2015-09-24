@@ -4,4 +4,10 @@
   - if collaborators.any?
     = render "account/collaborators/list", collaborators: collaborators
   - else
-    p.p-empty This user has not added any collaborators.
+    table.table.table-borderless
+      tbody
+        tr
+          td.text-center
+            br
+            p.p-empty This user has not added any collaborators.
+            br

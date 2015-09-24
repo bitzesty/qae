@@ -1337,6 +1337,14 @@ table .ellipsis {
       border-right: 2px solid $black;
     }
   }
+
+  .table-borderless tbody {
+    &,
+    > tr > th,
+    > tr > td {
+      border: none;
+    }
+  }
 }
 
 .panel-group .panel {
