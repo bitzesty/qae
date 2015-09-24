@@ -235,13 +235,20 @@
   }
 }
 
-.form-value-container {
-  margin: 0 -10px;
+.form-container {
   padding: 10px;
   background: $grey-lighter;
 
   .char-count.char-max-shift {
     margin-top: 0;
+  }
+}
+
+.form-group-multiple-parent {
+  margin-bottom: 15px;
+
+  &:last-child {
+    margin-bottom: 0;
   }
 }
 

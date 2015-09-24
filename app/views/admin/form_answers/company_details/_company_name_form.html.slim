@@ -7,8 +7,8 @@
                       html: { "data-type" => "html", class: "company-name-form"} do |f|
 
       = hidden_field_tag :section, "company_name"
-      label.form-label = account_name
-      .form-value-container
+      .form-container
+        label.form-label = account_name
         .form-value
           p
             - if @form_answer.promotion?
@@ -39,8 +39,8 @@
         .clear
 - else
   .form-group
-    label.form-label = account_name
-    .form-value-container
+    .form-container
+      label.form-label = account_name
       p
         - if @form_answer.promotion?
           = @form_answer.nominee_title

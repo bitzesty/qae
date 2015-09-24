@@ -4,7 +4,6 @@
   - obj = CompanyDetail.for(@form_answer)
 
 - unless @form_answer.promotion?
-  br
   - if user_can_edit(@form_answer, :website)
     .form-group class="#{'form-edit' if obj.website_url.blank?}"
       = simple_form_for [namespace_name, CompanyDetail.for(resource)],
@@ -12,8 +11,9 @@
                         authenticity_token: true do |f|
         = hidden_field_tag :section, "website"
 
-        label.form-label Website address
-        .form-value-container
+        .form-container
+          label.form-label Website address
+
           .form-value
             p
               - if obj.website_url.present?
@@ -36,8 +36,9 @@
           .clear
   - else
     .form-group
-      label.form-label Website address
-      .form-value-container
+      .form-container
+        label.form-label Website address
+
         p
           - if obj.website_url.present?
             = obj.website_url

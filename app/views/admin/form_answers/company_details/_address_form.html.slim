@@ -5,11 +5,10 @@
 
 .form-group-multiple-parent
   - if @form_answer.promotion?
-    br
     .form-group.form-group-multiple.company-address-personal-form
-      label.form-label Nominee Address
+      .form-container
+        label.form-label Nominee Address
 
-      .form-value-container
         .form-value
           p
             - if obj.nominee_building.present?
@@ -35,7 +34,6 @@
               br
             - if obj.nominee_region.present?
               = obj.nominee_region
-              br
 
         - if user_can_edit(@form_answer, :address)
           = simple_form_for([namespace_name, CompanyDetail.for(resource)],
@@ -103,12 +101,11 @@
               ' Edit
         .clear
 
-  br
   .form-group.form-group-multiple.company-address-form
-    label.form-label
-      = @form_answer.promotion? ? "Organisation Address" : "Address"
+    .form-container
+      label.form-label
+        = @form_answer.promotion? ? "Organisation Address" : "Address"
 
-    .form-value-container
       .form-value
         p
           - if @form_answer.promotion?
@@ -147,7 +144,6 @@
           - if @form_answer.promotion?
             - if obj.nominee_organisation_website.present?
               = obj.nominee_organisation_website
-              br
 
       - if resource.submitted_and_after_the_deadline? && CompanyDetailPolicy.new(pundit_user, resource).can_manage_address?
         = simple_form_for([namespace_name, CompanyDetail.for(resource)],
@@ -233,11 +229,10 @@
       .clear
 
   - if @form_answer.promotion?
-    br
     .form-group.form-group-multiple.company-address-nominator-form
-      label.form-label Nominator Address
+      .form-container
+        label.form-label Nominator Address
 
-      .form-value-container
         .form-value
           p
             - if obj.nominator_name.present?

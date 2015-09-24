@@ -1157,8 +1157,7 @@ table .ellipsis {
 
 .comment {
   position: relative;
-  padding: 15px 0;
-  border-top: 1px solid $grey;
+  margin-bottom: 15px;
 
   &:first-child {
     padding-top: 0;
