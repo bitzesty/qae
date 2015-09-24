@@ -1,6 +1,6 @@
 namespace :form_answers do
 
-  def replace_key f, old_key, new_key
+  def replace_key f, new_key, old_key
     f.document[new_key] = f.document.delete(old_key) if f.document[old_key].present?
   end
 
