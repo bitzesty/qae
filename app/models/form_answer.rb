@@ -233,7 +233,8 @@ class FormAnswer < ActiveRecord::Base
   def assign_searching_attributes
     unless submitted_and_after_the_deadline?
       self.company_or_nominee_name = company_or_nominee_from_document
-     end
+    end
+
     self.nominee_full_name = nominee_full_name_from_document
     self.nominator_full_name = nominator_full_name_from_document
     self.nominator_email = nominator_email_from_document
