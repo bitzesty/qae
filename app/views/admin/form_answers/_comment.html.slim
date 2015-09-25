@@ -1,4 +1,4 @@
-.comment class="#{'comment-flagged' if comment.flagged?}"
+.form-container.comment class="#{'comment-flagged' if comment.flagged?}"
   .overlay-delete
     .overlay-content
       - if comment.author?(current_subject)

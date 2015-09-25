@@ -4,7 +4,6 @@
   - obj = CompanyDetail.for(@form_answer)
 
 - unless @form_answer.promotion?
-  br
   - if user_can_edit(@form_answer, :registration_number)
     .form-group class="#{'form-edit' if obj.registration_number.blank?}"
       = simple_form_for [namespace_name, CompanyDetail.for(resource)],
@@ -12,8 +11,9 @@
                         authenticity_token: true,
                         html: { "data-type" => "html", class: "registration-number-form"} do |f|
         = hidden_field_tag :section, "registration_number"
-        label.form-label Company/charity registration number
-        .form-value-container
+        .form-container
+          label.form-label Company/charity registration number
+
           .form-value
             p
               - if obj.registration_number.present?
@@ -36,8 +36,9 @@
           .clear
   - else
     .form-group
-      label.form-label Company/charity registration number
-      .form-value-container
+      .form-container
+        label.form-label Company/charity registration number
+
         p
           - if obj.registration_number.present?
             = obj.registration_number

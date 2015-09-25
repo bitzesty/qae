@@ -3,10 +3,10 @@
 - editable = f.object.editable_for?(current_subject)
 
 .form-group.rag-section class="#{'form-edit' if f.object.public_send(section.desc).blank?}"
-  label.form-label
-    = section.label
+  .form-container
+    label.form-label
+      = section.label
 
-  .form-value-container
     .form-value
       p
         - if f.object.public_send(section.desc).present?

@@ -2,13 +2,13 @@
 - editable = f.object.editable_for?(current_subject)
 
 .form-group.strengths-section
-  = f.input section.rate,
-    as: :select,
-    label: false,
-    collection: form.options,
-    input_html: { class: "if-js-hide", "data-updated-section" => section.rate }
+  .form-container
+    = f.input section.rate,
+      as: :select,
+      label: false,
+      collection: form.options,
+      input_html: { class: "if-js-hide", "data-updated-section" => section.rate }
 
-  div class="#{'form-value-container' if section_odd_even}"
     label.form-label.form-label-rag
       = section.label
       .btn-group.btn-rag class="#{'rag-editable' if editable}"

@@ -3,8 +3,8 @@ class FormAnswerDecorator < ApplicationDecorator
   SELECT_BOX_LABELS = FormAnswer::AWARD_TYPE_FULL_NAMES.merge("promotion" => "QAEP")
 
   AWARD_TITLES = { "Innovation" => "Innovation",
-                   "International Trade" => "Intl Trade",
-                   "Sustainable Development" => "Sus Dev",
+                   "International Trade" => "Int'l Trade",
+                   "Sustainable Development" => "Sust. Dev.",
                    "Enterprise Promotion" => "QAEP",
                    "QAEP" => "QAEP"
                  }
@@ -242,7 +242,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def nominator_name
-    "#{document['nominee_info_first_name']} #{document['nominee_info_last_name']}".strip
+    "#{document['user_info_first_name']} #{document['user_info_last_name']}".strip
   end
 
   def nominator_building

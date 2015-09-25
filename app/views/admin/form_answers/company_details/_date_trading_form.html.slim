@@ -4,7 +4,6 @@
   - obj = CompanyDetail.for(@form_answer)
 
 - unless @form_answer.promotion?
-  br
   - if user_can_edit(@form_answer, :date_trading)
     .form-group
       = simple_form_for [namespace_name, CompanyDetail.for(resource)],
@@ -12,8 +11,9 @@
                         authenticity_token: true do |f|
         = hidden_field_tag :section, "date_trading"
 
-        label.form-label Date started trading
-        .form-value-container
+        .form-container
+          label.form-label Date started trading
+
           .form-value
             p
               - if obj.date_started_trading.try(:strftime, "%d/%m/%Y").present?
@@ -42,8 +42,9 @@
           .clear
   - else
     .form-group
-      label.form-label Date started trading
-      .form-value-container
+      .form-container
+        label.form-label Date started trading
+
         p
           - if obj.date_started_trading.try(:strftime, "%d/%m/%Y").present?
             ' TRUE

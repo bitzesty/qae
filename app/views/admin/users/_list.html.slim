@@ -50,7 +50,9 @@
           - UserDecorator.decorate_collection(resources).each do |user|
             tr
               td.td-title
-                = link_to user.full_name, edit_admin_user_path(user), class: 'link-edit-user ellipsis'
+                = link_to edit_admin_user_path(user), class: "link-edit-user" do
+                  span.ellipsis
+                    = user.full_name
               td = mail_to user.email, user.email, {class: "ellipsis"}
               td = user.company
               td = user.decorate.role_name

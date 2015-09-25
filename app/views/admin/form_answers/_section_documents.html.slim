@@ -26,7 +26,7 @@
       ' Other Docs
     .document-list
       p.p-empty class="#{'visuallyhidden' if @form_answer.form_answer_attachments.any?}"
-        ' No documents have been attached to this case.
+        ' No documents have been attached.
       ul.list-unstyled.list-actions
         - if @form_answer.form_answer_attachments.uploaded_not_by_user.any?
           = render(partial: "admin/form_answer_attachments/form_answer_attachment", collection: @form_answer.form_answer_attachments.uploaded_not_by_user.visible_for(current_subject))

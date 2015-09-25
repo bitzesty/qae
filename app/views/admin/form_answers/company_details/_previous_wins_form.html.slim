@@ -1,5 +1,4 @@
 - unless @form_answer.promotion?
-  br
   - if user_can_edit(@form_answer, :previous_wins)
     .form-group.previous-wins-form
       = simple_form_for [namespace_name, @form_answer],
@@ -9,9 +8,9 @@
 
         - previous_wins = PreviousWinDecorator.decorate_collection(f.object.previous_wins)
         = hidden_field_tag :section, "previous_wins"
-        label.form-label Previous winnings
+        .form-container
+          label.form-label Previous winnings
 
-        .form-value-container
           .form-value
             - if previous_wins.any?
               ul
@@ -60,8 +59,9 @@
   - else
     - previous_wins = PreviousWinDecorator.decorate_collection(@form_answer.previous_wins)
     .form-group
-      label.form-label Previous winnings
-      .form-value-container
+      .form-container
+        label.form-label Previous winnings
+
         - if previous_wins.any?
           ul
             - previous_wins.each do |win|

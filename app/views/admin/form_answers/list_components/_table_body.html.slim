@@ -1,13 +1,14 @@
 - FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
   tr
     td.td-title
-      = link_to [namespace_name, obj], class: "ellipsis"
-        - unless obj.company_or_nominee_name.nil?
-          = link_to obj.company_or_nominee_name, [:admin, obj]
-        - else
-          = link_to [namespace_name, obj] do
-            em
-              ' Not found
+      - unless obj.company_or_nominee_name.nil?
+        = link_to [:admin, obj] do
+          span.ellipsis
+            = obj.company_or_nominee_name
+      - else
+        = link_to [namespace_name, obj] do
+          em
+            ' Not found
     td
       = link_to [namespace_name, obj]
         - if obj.urn.present?
