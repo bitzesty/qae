@@ -176,7 +176,7 @@ class QAE2014Forms
 
         by_years :total_turnover, "Total turnover (home plus overseas)" do
           classes "sub-question"
-          sub_ref "C 6.3"
+          sub_ref "C 6.1"
           type :money
           required
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -190,7 +190,7 @@ class QAE2014Forms
 
         by_years :net_profit, "Net profit after tax but before dividends" do
           classes "sub-question"
-          sub_ref "C 6.4"
+          sub_ref "C 6.2"
           required
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -209,7 +209,7 @@ class QAE2014Forms
 
         textarea :drops_in_turnover, "Explain any drops in total turnover or net profit, and any losses made." do
           classes "sub-question js-conditional-drop-question"
-          sub_ref "C 6.5"
+          sub_ref "C 6.3"
           rows 5
           words_max 500
           conditional :trade_commercial_success, :true
@@ -218,7 +218,7 @@ class QAE2014Forms
 
         options :resale_overseas, "Do you purchase your products/services (or any of their components) from overseas for resale overseas?" do
           classes "sub-question"
-          sub_ref "C 6.7"
+          sub_ref "C 6.4"
           required
           yes_no
           context %(
@@ -229,7 +229,7 @@ class QAE2014Forms
 
         by_years :total_imported_cost, "Total cost of these imports" do
           classes "sub-question"
-          sub_ref "C 6.8"
+          sub_ref "C 6.5"
           required
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
