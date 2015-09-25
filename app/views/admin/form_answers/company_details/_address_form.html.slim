@@ -37,54 +37,55 @@
 
             = hidden_field_tag :section, "address"
             .input.form-group.form-fields.form-block
-              .row
-                .col-md-8
-                  = f.input :nominee_building,
-                            as: :string,
-                            label: "Building and street",
-                            input_html: { class: "form-control" }
+              = f.simple_fields_for(:data) do |f|
+                .row
+                  .col-md-8
+                    = f.input :nominee_personal_address_building,
+                              as: :string,
+                              label: "Building and street",
+                              input_html: { class: "form-control" }
 
-                  = f.input :nominee_street,
-                            as: :string,
-                            label: false,
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-6
-                  = f.input :nominee_city,
-                            as: :string,
-                            label: "Town or city",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-6
-                  = f.input :nominee_county,
-                            as: :string,
-                            label: "County",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-3
-                  = f.input :nominee_postcode,
-                            as: :string,
-                            label: "Postcode",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-3
-                  = f.input :nominee_telephone,
-                            as: :string,
-                            label: "Telephone number",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-8
-                  = f.input :nominee_email,
-                            as: :string,
-                            label: "Email",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-4
-                  = f.input :nominee_region,
-                            as: :select,
-                            label: "Region",
-                            input_html: { class: "form-control" },
-                            collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
+                    = f.input :nominee_personal_address_street,
+                              as: :string,
+                              label: false,
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-6
+                    = f.input :nominee_personal_address_city,
+                              as: :string,
+                              label: "Town or city",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-6
+                    = f.input :nominee_personal_address_county,
+                              as: :string,
+                              label: "County",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-3
+                    = f.input :nominee_personal_address_postcode,
+                              as: :string,
+                              label: "Postcode",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-3
+                    = f.input :nominee_phone,
+                              as: :string,
+                              label: "Telephone number",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-8
+                    = f.input :nominee_email,
+                              as: :string,
+                              label: "Email",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-4
+                    = f.input :nominee_personal_address_region,
+                              as: :select,
+                              label: "Region",
+                              input_html: { class: "form-control" },
+                              collection: QAEFormBuilder::AddressQuestionDecorator::REGIONS
 
               .form-actions.text-right
                 = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
@@ -265,53 +266,59 @@
                             authenticity_token: true, html: { "data-type" => "html" }) do |f|
             = hidden_field_tag :section, "address"
             .input.form-group.form-fields.form-block
-              .row
-                .col-md-8
-                  = f.input :nominator_name,
-                            as: :string,
-                            label: "Nominator Name",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-8
-                  = f.input :nominator_building,
-                            as: :string,
-                            label: "Building and street",
-                            input_html: { class: "form-control" }
+              = f.simple_fields_for(:data) do |f|
+                .row
+                  .col-md-4
+                    = f.input :user_info_first_name,
+                              as: :string,
+                              label: "Nominator Name",
+                              input_html: { class: "form-control" }
+                  .col-md-4
+                    = f.input :user_info_last_name,
+                              as: :string,
+                              label: "Nominator Name",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-8
+                    = f.input :personal_address_building,
+                              as: :string,
+                              label: "Building and street",
+                              input_html: { class: "form-control" }
 
-                  = f.input :nominator_street,
-                            as: :string,
-                            label: false,
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-6
-                  = f.input :nominator_city,
-                            as: :string,
-                            label: "Town or city",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-6
-                  = f.input :nominator_county,
-                            as: :string,
-                            label: "County",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-3
-                  = f.input :nominator_postcode,
-                            as: :string,
-                            label: "Postcode",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-3
-                  = f.input :nominator_telephone,
-                            as: :string,
-                            label: "Telephone number",
-                            input_html: { class: "form-control" }
-              .row
-                .col-md-8
-                  = f.input :nominator_email,
-                            as: :string,
-                            label: "Email",
-                            input_html: { class: "form-control" }
+                    = f.input :personal_address_street,
+                              as: :string,
+                              label: false,
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-6
+                    = f.input :personal_address_city,
+                              as: :string,
+                              label: "Town or city",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-6
+                    = f.input :personal_address_county,
+                              as: :string,
+                              label: "County",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-3
+                    = f.input :personal_address_postcode,
+                              as: :string,
+                              label: "Postcode",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-3
+                    = f.input :personal_phone,
+                              as: :string,
+                              label: "Telephone number",
+                              input_html: { class: "form-control" }
+                .row
+                  .col-md-8
+                    = f.input :personal_email,
+                              as: :string,
+                              label: "Email",
+                              input_html: { class: "form-control" }
 
               .form-actions.text-right
                 = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
