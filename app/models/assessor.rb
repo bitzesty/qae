@@ -93,13 +93,9 @@ class Assessor < ActiveRecord::Base
   end
 
   def lead_for_any_category?
-    lead = false
-    ["trade", "innovation", "development", "promotion"].each do |cat|
-      if get_role(cat) == "lead"
-        lead = true
-      end
+    ["trade", "innovation", "development", "promotion"].any? do |cat|
+      get_role(cat) == "lead"
     end
-    return lead
   end
 
   def categories_as_lead
