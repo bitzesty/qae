@@ -147,6 +147,7 @@
                           remote: true,
                           authenticity_token: true, html: { "data-type" => "html" }) do |f|
 
+          = hidden_field_tag :section, "address"
           .input.form-group.form-fields.form-block
             = f.simple_fields_for(:data) do |f|
               - if @form_answer.promotion?
