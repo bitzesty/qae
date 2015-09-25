@@ -113,6 +113,31 @@ class Reports::CasesStatusReport
     as_csv(rows)
   end
 
+  def build_for_lead(current_subject)
+    rows = []
+
+    scope = @year.form_answers.where(submitted: true, award_type: current_subject.categories_as_lead).order(:id)
+    scope.find_in_batches do |batch|
+      form_answers = FormAnswer.where(id: batch.map(&:id))
+                     .order(:id)
+                     .includes(:user,
+                               :assessor_assignments,
+                               :audit_certificate,
+                               :feedback,
+                               :primary_assessor,
+                               :secondary_assessor
+                               )
+      form_answers.each do |fa|
+        f = Reports::FormAnswer.new(fa)
+        rows << mapping.map do |m|
+          f.call_method(m[:method])
+        end
+      end
+    end
+
+    as_csv(rows)
+  end
+
   private
 
   def mapping

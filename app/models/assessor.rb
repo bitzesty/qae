@@ -92,6 +92,16 @@ class Assessor < ActiveRecord::Base
     lead?(form_answer) || assigned?(form_answer)
   end
 
+  def lead_for_any_category?
+    lead = false
+    ["trade", "innovation", "development", "promotion"].each do |cat|
+      if get_role(cat) == "lead"
+        lead = true
+      end
+    end
+    return lead
+  end
+
   def categories_as_lead
     categories.select { |_, v| v == "lead" }.keys
   end
