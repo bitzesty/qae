@@ -70,7 +70,21 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def data_attributes=(attributes)
-    object.document.merge! attributes
+    object.document.merge! attributes.except(*array_keys)
+    # arrays needs special treatment
+    # it only works for array of hashes.
+    # If you had to update something else, you would need to refactor
+    array_keys.each do |key|
+      if attributes.has_key? key
+        new_array = attributes[key]
+        old_array = object.document[key]
+        new_array.each{ |index, value| old_array[index.to_i].merge! value }
+      end
+    end
+  end
+
+  def array_keys
+    object.document.select{ |item, value|  value.kind_of?(Array) }.keys
   end
 
   def company_name
