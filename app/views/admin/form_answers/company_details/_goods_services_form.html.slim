@@ -16,12 +16,13 @@
           - if @form_answer.trade?
             / # TODO pull in trade good services
             ul.list-unstyled.good-services-list
-              - (1..@form_answer.document["trade_goods_amount"].to_i).each_with_index do |placement, index|
-                li
-                  label.label-small
-                    = "Goods/services #{index + 1}"
-                  p
-                    = @form_answer.document["trade_goods_and_services_explanations"][index]["desc_short"]
+              - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
+                - if index < @form_answer.document["trade_goods_amount"].to_i
+                  li
+                    label.label-small
+                      = "Goods/services #{index + 1}"
+                    p
+                      = service["desc_short"]
         .form-fields.form-block
           = f.simple_fields_for(:data) do |f|
             - if @form_answer.innovation?
@@ -37,11 +38,12 @@
             - if @form_answer.trade?
               / # TODO pull in trade good services
               ul.list-unstyled.good-services-list
-                - (1..@form_answer.document["trade_goods_amount"].to_i).each_with_index do |placement, index|
-                  li.well
-                    label
-                      = "Goods/services #{index + 1}"
-                    input.form-control.js-chart-count type="text" name="form_answer[data_attributes][trade_goods_and_services_explanations][#{index}][desc_short]" value="#{@form_answer.document["trade_goods_and_services_explanations"][index]["desc_short"]}" rows= 3 data-word-max = 15
+                - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
+                  - if index < @form_answer.document["trade_goods_amount"].to_i
+                    li.well
+                      label
+                        = "Goods/services #{index + 1}"
+                      input.form-control.js-chart-count type="text" name="form_answer[data_attributes][trade_goods_and_services_explanations][#{index}][desc_short]" value="#{service["desc_short"]}" rows= 3 data-word-max = 15
 
           .form-actions.text-right
             = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
