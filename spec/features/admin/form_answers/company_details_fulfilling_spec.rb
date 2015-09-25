@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe "Admin fulfills the company details" do
   let!(:admin) { create(:admin) }
-  let!(:form_answer) { create(:form_answer) }
+  let!(:form_answer) { create(:form_answer, :trade) }
 
   before do
     login_admin(admin)
@@ -15,10 +15,10 @@ describe "Admin fulfills the company details" do
   it "fulfills the address information" do
     building = "buildingbuildingbuilding"
     within ".company-address-form" do
-      find(".company_detail_address_building input").set(building)
+      find(".form_answer_data_organization_address_building input").set(building)
       click_button "Save"
     end
-    expect(form_answer.reload.company_detail.address_building).to eq(building)
+    expect(form_answer.reload.document["organization_address_building"]).to eq(building)
   end
 
   it "fulfills the company name" do
