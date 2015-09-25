@@ -265,6 +265,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def date_started_trading
+    return nil if document['started_trading_year'].blank?
     "#{document['started_trading_day']}/#{document['started_trading_month']}/#{document['started_trading_year']}".strip
   end
 
