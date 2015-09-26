@@ -127,6 +127,7 @@ class FormAnswerStateMachine
         :not_awarded,
         :withdrawn
       ]
+
       case object.state.to_sym
       when :not_eligible
         []

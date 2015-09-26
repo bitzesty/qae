@@ -12,7 +12,7 @@
         .btn-group
           button.btn.btn-link.dropdown-toggle.state-toggle.if-no-js-hide type="button" data-toggle="dropdown" aria-expanded="false"
             = @form_answer.state.humanize
-          = render("admin/form_answers/states_list", collection: @state_collection, policy: policy(state).view_dropdown?)
+          = render("admin/form_answers/states_list", collection: state.collection, policy: policy(state).view_dropdown?)
 
           = simple_form_for([namespace_name, resource, state],
                             html: { class: "if-js-hide", "data-type" => "html" },

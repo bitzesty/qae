@@ -29,15 +29,6 @@ module FormAnswerMixin
 
   def show
     authorize resource, :show?
-
-    state = FormAnswerStateTransition.new
-    state.form_answer = resource
-    state.subject = current_subject
-    if !current_admin && current_subject.lead?(@form_answer)
-      @state_collection = state.collection.reject { |s| s == :not_awarded || s == :withdrawn }
-    else
-      @state_collection = state.collection
-    end
   end
 
   def review
