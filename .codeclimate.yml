@@ -16,3 +16,8 @@ exclude_paths:
 - db/**/*
 - spec/**/*
 - vendor/**/*
+- Capfile
+- Gemfile*
+- public/**/*
+- bin/**/*
+- config.ru
