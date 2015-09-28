@@ -1,8 +1,6 @@
 require "qae_2014_forms"
 
 class FormController < ApplicationController
-  before_action :set_paper_trail_whodunnit
-
   before_action :authenticate_user!, :check_account_completion, :check_deadlines
   before_action :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form, :new_enterprise_promotion_form]
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
@@ -315,9 +313,5 @@ class FormController < ApplicationController
       flash.alert = "Sorry, submission is still closed"
       redirect_to dashboard_url
     end
-  end
-
-  def user_for_paper_trail
-    "USER:#{current_user.id}"
   end
 end
