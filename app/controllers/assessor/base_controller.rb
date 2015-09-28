@@ -3,7 +3,7 @@ class Assessor::BaseController < ApplicationController
 
   layout "application-assessor"
 
-  before_action :authenticate_assessor!, :load_award_year_and_settings
+  before_action :authenticate_assessor!, :load_award_year_and_settings, :set_paper_trail_whodunnit
   after_action :verify_authorized
 
   skip_before_action :authenticate_user!
@@ -30,5 +30,9 @@ class Assessor::BaseController < ApplicationController
   def user_not_authorized
     flash.alert = "You are not authorized to perform this action."
     redirect_to(assessor_root_path)
+  end
+
+  def user_for_paper_trail
+    "ASSESSOR:#{current_assessor.id}"
   end
 end

@@ -4,7 +4,7 @@ class Admin::BaseController < ApplicationController
 
   layout "application-admin"
 
-  before_action :authenticate_admin!, :load_award_year_and_settings
+  before_action :authenticate_admin!, :load_award_year_and_settings, :set_paper_trail_whodunnit
   after_action :verify_authorized
 
   skip_before_action :authenticate_user!
@@ -29,5 +29,9 @@ class Admin::BaseController < ApplicationController
 
   def current_subject
     current_admin
+  end
+
+  def user_for_paper_trail
+    "ADMIN:#{current_admin.id}"
   end
 end
