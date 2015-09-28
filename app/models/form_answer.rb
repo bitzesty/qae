@@ -5,7 +5,7 @@ class FormAnswer < ActiveRecord::Base
   extend Enumerize
   include FormAnswerStatesHelper
 
-  has_paper_trail if: Proc.new { |t| t.latest_version_was_less_than_day_ago? }
+  has_paper_trail if: Proc.new { |t| t.need_to_save_version? }
 
   attr_accessor :current_step, :validator_errors, :steps_with_errors
 
@@ -194,9 +194,28 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
-  def latest_version_was_less_than_day_ago?
+  def need_to_save_version?
     versions.count < 1 ||
-    (versions.present? && versions.last.created_at < Time.zone.now - 1.day)
+    its_admin_or_assessor_action? ||
+    (its_user_action? && latest_version_was_less_than_day_ago?)
+  end
+
+  def whodunnit
+    PaperTrail.whodunnit
+  end
+
+  def its_admin_or_assessor_action?
+    ["ADMIN", "ASSESSOR"].any? do |namespace|
+      whodunnit.include?(namespace)
+    end
+  end
+
+  def its_user_action?
+    whodunnit.include?("USER")
+  end
+
+  def latest_version_was_less_than_day_ago?
+    versions.where(whodunnit: whodunnit).last.created_at < (Time.zone.now - 2.minutes)
   end
 
   private
