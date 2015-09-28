@@ -1,5 +1,5 @@
 class ReportPolicy < ApplicationPolicy
   def show?
-    admin?
+    admin? || subject.lead_for_any_category?
   end
 end
