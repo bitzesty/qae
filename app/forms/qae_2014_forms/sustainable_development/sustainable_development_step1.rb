@@ -204,7 +204,7 @@ class QAE2014Forms
           rows 5
         end
 
-        address :principal_address, "Principal address of your organisation" do
+        address :organization_address, "Principal address of your organisation" do
           required
           ref "A 9"
           sub_fields([

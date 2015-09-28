@@ -7,7 +7,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def business_region
     if business_form?
-      doc "principal_address_region"
+      doc "organization_address_region"
     else
       doc "nominee_personal_address_region"
     end
@@ -85,7 +85,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def principal_postcode
     if business_form?
-      doc "principal_address_postcode"
+      doc "organization_address_postcode"
     else
       doc "nominee_personal_address_postcode"
     end.to_s.upcase
@@ -93,7 +93,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def principal_address1
     if business_form?
-      doc "principal_address_building"
+      doc "organization_address_building"
     else
       doc "nominee_personal_address_building"
     end
@@ -101,7 +101,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def principal_address2
     if business_form?
-      doc "principal_address_street"
+      doc "organization_address_street"
     else
       doc "nominee_personal_address_street"
     end
@@ -109,7 +109,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def principal_address3
     if business_form?
-      doc "principal_address_city"
+      doc "organization_address_city"
     else
       doc "nominee_personal_address_city"
     end
@@ -117,7 +117,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def principal_address4
     if business_form?
-      doc "principal_address_county"
+      doc "organization_address_county"
     else
       doc "nominee_personal_address_county"
     end
