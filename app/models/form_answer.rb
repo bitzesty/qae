@@ -197,7 +197,7 @@ class FormAnswer < ActiveRecord::Base
   def need_to_save_version?
     versions.count < 1 ||
     its_admin_or_assessor_action? ||
-    (its_user_action? && latest_version_was_less_than_day_ago?)
+    (its_user_action? && no_latest_version_or_it_was_less_than_day_ago?)
   end
 
   def whodunnit
@@ -214,8 +214,13 @@ class FormAnswer < ActiveRecord::Base
     whodunnit.include?("USER")
   end
 
-  def latest_version_was_less_than_day_ago?
-    versions.where(whodunnit: whodunnit).last.created_at < (Time.zone.now - 2.minutes)
+  def no_latest_version_or_it_was_less_than_day_ago?
+    last_version = versions.where(whodunnit: whodunnit).last
+
+    last_version.blank? || (
+      last_version.present? &&
+      last_version.created_at < (Time.zone.now - 2.minutes)
+    )
   end
 
   private
