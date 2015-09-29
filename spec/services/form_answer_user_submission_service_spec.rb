@@ -5,12 +5,11 @@ describe FormAnswerUserSubmissionService do
 
   let(:document) do
     {
-      queen_award_holder: "yes",
-      queen_award_holder_details: [
-        { category: "innovation", year: "2012" },
-        { category: "innovation", year: "2011" },
-        { category: "international_trade", year: "2015" },
-        { category: "sustainable_development", year: "2014" }
+      "queen_award_holder_details" => [
+        {"category"=>"innovation", "year"=>"2012"},
+        {"category"=>"innovation", "year"=>"2011"},
+        {"category"=>"international_trade", "year"=>"2015"},
+        {"category"=>"sustainable_development", "year"=>"2014"}
       ]
     }
   end

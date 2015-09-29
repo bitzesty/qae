@@ -5,7 +5,7 @@ shared_context "non js form ep form awards" do
     FactoryGirl.create :form_answer, :promotion,
       user: user,
       account: account,
-      document: { company_name: "Bitzesty", question_namespace => awards }.merge(conditional_answer)
+      document: { company_name: "Bitzesty", question_namespace => awards }
   end
 
   let!(:basic_eligibility) do
