@@ -5,7 +5,9 @@ class FormAnswer < ActiveRecord::Base
   extend Enumerize
   include FormAnswerStatesHelper
 
-  has_paper_trail if: Proc.new { |t| t.need_to_save_version? }
+  unless Rails.env.test? # DO NOT NEED TO CREATE VERSIONS IN TEST ENV
+    has_paper_trail if: Proc.new { |t| t.need_to_save_version? }
+  end
 
   attr_accessor :current_step, :validator_errors, :steps_with_errors
 
