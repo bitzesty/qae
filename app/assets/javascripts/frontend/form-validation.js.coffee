@@ -254,6 +254,9 @@ window.FormValidation =
       first_year_min_validation = true
 
     for subquestion in question.find("input")
+      subq = $(subquestion)
+      err_container = subq.closest(".span-financial")
+
       shown_question = true
       for conditional in $(subquestion).parents('.js-conditional-question')
         if !$(conditional).hasClass('show-question')
@@ -262,17 +265,15 @@ window.FormValidation =
       if shown_question
         input_cells_counter += 1
 
-        subq = $(subquestion)
         if not subq.val() and question.hasClass("question-required")
           @log_this(question, "validateMoneyByYears", "This field is required")
-          @appendMessage(subq.closest("label"), "This field is required")
+          @appendMessage(err_container, "This field is required")
           @addErrorClass(question)
           continue
         else if not subq.val()
           continue
 
         value = subq.val().toString()
-        err_container = subq.closest(".span-financial")
 
         if not value.match(@numberRegex)
           @log_this(question, "validateMoneyByYears", "Not a valid currency value")
