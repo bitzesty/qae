@@ -38,4 +38,9 @@ Rails.application.configure do
 
   config.active_job.queue_adapter = :test
   config.cache_store = :null_store
+
+  config.after_initialize do
+    PaperTrail.enabled = false
+  end
 end
+

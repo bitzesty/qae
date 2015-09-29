@@ -4,7 +4,7 @@ class Admin::BaseController < ApplicationController
 
   layout "application-admin"
 
-  before_action :authenticate_admin!, :load_award_year_and_settings, :set_paper_trail_whodunnit
+  before_action :authenticate_admin!, :load_award_year_and_settings
   after_action :verify_authorized
 
   skip_before_action :authenticate_user!

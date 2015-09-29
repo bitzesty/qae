@@ -5,9 +5,7 @@ class FormAnswer < ActiveRecord::Base
   extend Enumerize
   include FormAnswerStatesHelper
 
-  unless Rails.env.test? # DO NOT NEED TO CREATE VERSIONS IN TEST ENV
-    has_paper_trail if: Proc.new { |t| t.need_to_save_version? }
-  end
+  has_paper_trail if: Proc.new { |t| t.need_to_save_version? }
 
   attr_accessor :current_step, :validator_errors, :steps_with_errors
 
@@ -221,7 +219,7 @@ class FormAnswer < ActiveRecord::Base
 
     last_version.blank? || (
       last_version.present? &&
-      last_version.created_at < (Time.zone.now - 2.minutes)
+      last_version.created_at < (Time.zone.now - 1.day)
     )
   end
 
