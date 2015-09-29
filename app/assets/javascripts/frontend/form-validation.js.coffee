@@ -312,17 +312,6 @@ window.FormValidation =
           @appendMessage(q_parent, "Not a valid date")
           @addErrorClass(question)
 
-        dateRange = q_parent.find(".date-range").text()
-        if dateRange.length > 0
-          dates = dateRange.trim().split(" - ")
-          expDateStart = dates[0]
-          expDateEnd = dates[1]
-
-          if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
-            @log_this(question, "validateDateByYears", "Date should be between #{expDateStart} and #{expDateEnd}")
-            @appendMessage(q_parent, "Date should be between #{expDateStart} and #{expDateEnd}")
-            @addErrorClass(question)
-
   validateDateStartEnd: (question) ->
     if question.find(".validate-date-start-end").length > 0
       root_this = @
