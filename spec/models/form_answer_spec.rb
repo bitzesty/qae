@@ -93,72 +93,10 @@ RSpec.describe FormAnswer, type: :model do
   end
 
   describe "state helpers" do
-    it "exposes the state as boolean method" do
+    it "exposes the state as ? method" do
       expect(build(:form_answer, state: "not_awarded")).to be_not_awarded
       expect(build(:form_answer, state: "reserved")).to be_reserved
       expect(build(:form_answer, state: "recommended")).to be_recommended
-    end
-  end
-
-  context "conditional question's answers cleanup" do
-    let(:form_answer) { create(:form_answer, :trade) }
-
-    context "plain answers" do
-      before do
-        document = form_answer.document
-        document["invoicing_unit_relations"] = "kappa"
-        document["principal_business"] = "no"
-
-        form_answer.update_column(:document, document)
-      end
-
-      it "saves conditional question's answer if condition is correct" do
-        form_answer.save!
-
-        expect(form_answer.reload.document["invoicing_unit_relations"]).to eq("kappa")
-      end
-
-      it "cleans up conditional question's answer if condition is incorrect" do
-        document = form_answer.document
-        document["principal_business"] = "yes"
-
-        form_answer.save!
-
-        expect(form_answer.reload.document["invoicing_unit_relations"]).to be_blank
-      end
-    end
-
-    context "complex answers" do
-      before do
-        document = form_answer.document
-
-        document["queen_award_holder"] = "yes"
-        document["queen_award_holder_details"] = [
-          {
-            "category" => "innovation_5",
-            "year" => (Date.current.year - 2).to_s
-          }
-        ]
-
-        form_answer.update_column(:document, document)
-      end
-
-      it "saves conditional question's answer if condition is correct" do
-        form_answer.save!
-
-        expected = [HashWithIndifferentAccess.new({category: "innovation_5", year: (Date.current.year - 2).to_s})]
-        expect(form_answer.reload.document["queen_award_holder_details"]).to eq(expected)
-      end
-
-      it "cleans up conditional question's answer if condition is incorrect" do
-        document = form_answer.document
-        document["queen_award_holder"] = "no"
-
-        form_answer.save!
-
-        expected = [HashWithIndifferentAccess.new({category: "", year: ""})]
-        expect(form_answer.reload.document["queen_award_holder_details"]).to eq(expected)
-      end
     end
   end
 end
