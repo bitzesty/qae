@@ -116,9 +116,9 @@ window.FormValidation =
   validateMaxDate: (question) ->
     val = question.find("input[type='text']").val()
 
-    questionYear = parseInt($(".js-date-input-year").val())
-    questionMonth = parseInt($(".js-date-input-month").val())
-    questionDay = parseInt($(".js-date-input-day").val())
+    questionYear = parseInt(question.find(".js-date-input-year").val())
+    questionMonth = parseInt(question.find(".js-date-input-month").val())
+    questionDay = parseInt(question.find(".js-date-input-day").val())
     questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
 
     if not val
@@ -127,7 +127,7 @@ window.FormValidation =
     expDate = question.data("date-max")
     diff = @compareDateInDays(questionDate, expDate)
 
-    if not @toDate(val).isValid()
+    if not @toDate(questionDate).isValid()
       @log_this(question, "validateMaxDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
@@ -139,9 +139,9 @@ window.FormValidation =
   validateMinDate: (question) ->
     val = question.find("input[type='text']").val()
 
-    questionYear = parseInt($(".js-date-input-year").val())
-    questionMonth = parseInt($(".js-date-input-month").val())
-    questionDay = parseInt($(".js-date-input-day").val())
+    questionYear = parseInt(question.find(".js-date-input-year").val())
+    questionMonth = parseInt(question.find(".js-date-input-month").val())
+    questionDay = parseInt(question.find(".js-date-input-day").val())
     questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
 
     if not val
@@ -150,7 +150,7 @@ window.FormValidation =
     expDate = question.data("date-min")
     diff = @compareDateInDays(questionDate, expDate)
 
-    if not @toDate(val).isValid()
+    if not @toDate(questionDate).isValid()
       @log_this(question, "validateMinDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
@@ -162,9 +162,9 @@ window.FormValidation =
   validateBetweenDate: (question) ->
     val = question.find("input[type='text']").val()
 
-    questionYear = parseInt($(".js-date-input-year").val())
-    questionMonth = parseInt($(".js-date-input-month").val())
-    questionDay = parseInt($(".js-date-input-day").val())
+    questionYear = parseInt(question.find(".js-date-input-year").val())
+    questionMonth = parseInt(question.find(".js-date-input-month").val())
+    questionDay = parseInt(question.find(".js-date-input-day").val())
     questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
 
     if not val
@@ -176,7 +176,7 @@ window.FormValidation =
     diffStart = @compareDateInDays(questionDate, expDateStart)
     diffEnd = @compareDateInDays(questionDate, expDateEnd)
 
-    if not @toDate(val).isValid()
+    if not @toDate(questionDate).isValid()
       @log_this(question, "validateBetweenDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
@@ -254,6 +254,9 @@ window.FormValidation =
       first_year_min_validation = true
 
     for subquestion in question.find("input")
+      subq = $(subquestion)
+      err_container = subq.closest(".span-financial")
+
       shown_question = true
       for conditional in $(subquestion).parents('.js-conditional-question')
         if !$(conditional).hasClass('show-question')
@@ -262,17 +265,15 @@ window.FormValidation =
       if shown_question
         input_cells_counter += 1
 
-        subq = $(subquestion)
         if not subq.val() and question.hasClass("question-required")
           @log_this(question, "validateMoneyByYears", "This field is required")
-          @appendMessage(subq.closest("label"), "This field is required")
+          @appendMessage(err_container, "This field is required")
           @addErrorClass(question)
           continue
         else if not subq.val()
           continue
 
         value = subq.val().toString()
-        err_container = subq.closest(".span-financial")
 
         if not value.match(@numberRegex)
           @log_this(question, "validateMoneyByYears", "Not a valid currency value")
@@ -312,33 +313,35 @@ window.FormValidation =
           @appendMessage(q_parent, "Not a valid date")
           @addErrorClass(question)
 
-        dateRange = q_parent.find(".date-range").text()
-        if dateRange.length > 0
-          dates = dateRange.trim().split(" - ")
-          expDateStart = dates[0]
-          expDateEnd = dates[1]
-
-          if @compareDateInDays(val, expDateStart) < 0 or @compareDateInDays(val, expDateEnd) > 0
-            @log_this(question, "validateDateByYears", "Date should be between #{expDateStart} and #{expDateEnd}")
-            @appendMessage(q_parent, "Date should be between #{expDateStart} and #{expDateEnd}")
-            @addErrorClass(question)
-
   validateDateStartEnd: (question) ->
-    question.find(".validate-date-start-end").each () ->
-      # Whether we need to validate if date is ongoing
-      if $(this).find(".validate-date-end input[disabled]").size() == 0
-        # Whether we're checking just year or month as well
-        dateInputCount = $(this).find(".validate-date-start label").size()
+    if question.find(".validate-date-start-end").length > 0
+      root_this = @
+      question.find(".validate-date-start-end").each () ->
+        # Whether we need to validate if date is ongoing
+        if $(this).find(".validate-date-end input[disabled]").size() == 0
+          startYear = parseInt($(this).find(".validate-date-start .js-date-input-year").val())
+          startMonth = parseInt($(this).find(".validate-date-start .js-date-input-month").val())
+          startDate = "01/#{startMonth}/#{startYear}"
 
-        for i in [dateInputCount-1..0] by -1
-          startDate = parseInt($(this).find(".validate-date-start label:eq("+i+") input").val())
-          endDate = parseInt($(this).find(".validate-date-end label:eq("+i+") input").val())
+          endYear = parseInt($(this).find(".validate-date-end .js-date-input-year").val())
+          endMonth = parseInt($(this).find(".validate-date-end .js-date-input-month").val())
+          endDate = "01/#{endMonth}/#{endYear}"
 
-          if startDate > endDate
-            @log_this(question, "validateDateStartEnd", "Start date cannot be after end date")
-            @appendMessage(subq.parent(), "Start date cannot be after end date")
-            @addErrorClass(question)
-            return
+          diff = root_this.compareDateInDays(startDate, endDate)
+
+          if not root_this.toDate(startDate).isValid()
+            root_this.log_this(question, "validateDateStartEnd", "Not a valid date")
+            root_this.addErrorMessage($(this).find(".validate-date-start").closest("span"), "Not a valid date")
+
+          else if not root_this.toDate(endDate).isValid()
+            root_this.log_this(question, "validateDateStartEnd", "Not a valid date")
+            root_this.addErrorMessage($(this).find(".validate-date-end").closest("span"), "Not a valid date")
+
+          else if diff > 0
+            root_this.log_this(question, "validateDateStartEnd", "Start date cannot be after end date")
+            root_this.addErrorMessage($(this), "Start date cannot be after end date")
+
+        return
 
   validateDropBlockCondition: (question) ->
     drop = false

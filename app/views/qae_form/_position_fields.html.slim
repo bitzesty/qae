@@ -6,29 +6,32 @@ li.js-add-example
     ' Position/Role
     input.medium.js-trigger-autosave name="form[position_details][#{index}][name]" value=position['name'] type="text" *possible_read_only_ops
   .validate-date-start-end
+    .errors-container
     span.row
       span.span-3
         label
           ' Start Date
+        .errors-container
         .date-input.validate-date-start
           label.small.date-input-field
             ' Month
-            input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][start_month]" value=position['start_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
+            input.js-trigger-autosave.tiny.js-date-input-month type="text" name="form[position_details][#{index}][start_month]" value=position['start_month'] maxlength=2 autocomplete="off" *possible_read_only_ops
           label.small.date-input-field
             ' Year
-            input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][start_year]" value=position['start_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
+            input.js-trigger-autosave.small.js-date-input-year type="text" name="form[position_details][#{index}][start_year]" value=position['start_year'] maxlength=4 autocomplete="off" *possible_read_only_ops
     span.clear
     span.row.nominee-end-date-row
       span.span-3
         label
           ' End Date
+        .errors-container
         .date-input.validate-date-end
           label.small.date-input-field
             ' Month
-            input.js-trigger-autosave.tiny type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" *(possible_read_only_ops.merge(ongoing_opts))
+            input.js-trigger-autosave.tiny.js-date-input-month type="text" name="form[position_details][#{index}][end_month]" value=position['end_month'] maxlength=2 autocomplete="off" *(possible_read_only_ops.merge(ongoing_opts))
           label.small.date-input-field
             ' Year
-            input.js-trigger-autosave.small type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *(possible_read_only_ops.merge(ongoing_opts))
+            input.js-trigger-autosave.small.js-date-input-year type="text" name="form[position_details][#{index}][end_year]" value=position['end_year'] maxlength=4 autocomplete="off" *(possible_read_only_ops.merge(ongoing_opts))
       span.span-3.date-ongoing
         br
         label.small
