@@ -1,6 +1,6 @@
 - unless @form_answer.promotion?
   - if @form_answer.applying_for == "division branch subsidiary"
-    - if @form_answer.submitted_and_after_the_deadline?
+    - if user_can_edit(@form_answer, :parent_company)
       .form-group-multiple-parent
         = render "admin/form_answers/company_details/parent_company/form"
     - else
