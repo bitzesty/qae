@@ -121,6 +121,7 @@ class FormAnswer < ActiveRecord::Base
     before_save :set_urn
     before_save :set_progress
     before_save :assign_searching_attributes
+    before_save :cleanup_conditional_answers
 
     before_create :set_account
     before_create :set_user_full_name
@@ -253,5 +254,14 @@ class FormAnswer < ActiveRecord::Base
         self.validator_errors = validator.errors
       end
     end
+  end
+
+  def cleanup_conditional_answers
+    return if submitted && !submitted_changed?
+
+    service = FormAnswerCleanupService.new(self)
+    service.perform!
+
+    self.document = service.processed_answers
   end
 end
