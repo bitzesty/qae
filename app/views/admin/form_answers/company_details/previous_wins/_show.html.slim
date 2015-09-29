@@ -1,0 +1,11 @@
+label.form-label Previous winnings
+
+.form-value
+  - if @form_answer.document["queen_award_holder_details"].any?
+    ul
+      - @form_answer.document["queen_award_holder_details"].each do |win|
+        li
+          span= "#{win["category"]} #{win["year"]}"
+  - else
+    p
+      em.text-muted No previous winnings added.
