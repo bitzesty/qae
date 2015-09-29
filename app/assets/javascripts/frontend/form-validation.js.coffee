@@ -116,11 +116,16 @@ window.FormValidation =
   validateMaxDate: (question) ->
     val = question.find("input[type='text']").val()
 
+    questionYear = parseInt($(".js-date-input-year").val())
+    questionMonth = parseInt($(".js-date-input-month").val())
+    questionDay = parseInt($(".js-date-input-day").val())
+    questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
+
     if not val
       return
 
     expDate = question.data("date-max")
-    diff = @compareDateInDays(val, expDate)
+    diff = @compareDateInDays(questionDate, expDate)
 
     if not @toDate(val).isValid()
       @log_this(question, "validateMaxDate", "Not a valid date")
@@ -134,11 +139,16 @@ window.FormValidation =
   validateMinDate: (question) ->
     val = question.find("input[type='text']").val()
 
+    questionYear = parseInt($(".js-date-input-year").val())
+    questionMonth = parseInt($(".js-date-input-month").val())
+    questionDay = parseInt($(".js-date-input-day").val())
+    questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
+
     if not val
       return
 
-    expDate = question.data("date-max")
-    diff = @compareDateInDays(val, expDate)
+    expDate = question.data("date-min")
+    diff = @compareDateInDays(questionDate, expDate)
 
     if not @toDate(val).isValid()
       @log_this(question, "validateMinDate", "Not a valid date")
@@ -152,14 +162,19 @@ window.FormValidation =
   validateBetweenDate: (question) ->
     val = question.find("input[type='text']").val()
 
+    questionYear = parseInt($(".js-date-input-year").val())
+    questionMonth = parseInt($(".js-date-input-month").val())
+    questionDay = parseInt($(".js-date-input-day").val())
+    questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
+
     if not val
       return
 
     dates = question.data("date-between").split(",")
     expDateStart = dates[0]
     expDateEnd = dates[1]
-    diffStart = @compareDateInDays(val, expDateStart)
-    diffEnd = @compareDateInDays(val, expDateEnd)
+    diffStart = @compareDateInDays(questionDate, expDateStart)
+    diffEnd = @compareDateInDays(questionDate, expDateEnd)
 
     if not @toDate(val).isValid()
       @log_this(question, "validateBetweenDate", "Not a valid date")
