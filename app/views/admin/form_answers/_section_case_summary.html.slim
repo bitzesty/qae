@@ -31,18 +31,18 @@
           .clear
           br
 
-        - unless assessment.submitted?
-          = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, authenticity_token: true, class: "submit-assessment", "data-type" => "json")
-            = hidden_field_tag :assessment_id, assessment.id
+          - unless assessment.submitted?
+            = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, authenticity_token: true, class: "submit-assessment", "data-type" => "json")
+              = hidden_field_tag :assessment_id, assessment.id
 
-            .feedback-holder
+              .feedback-holder
 
-            .pull-right
-              = submit_tag "Confirm case summary", class: "btn btn-primary btn-confirm-submit"
-            .clear
-        - else
-          / Only show once primary assessor has submitted the case summary
-          / Lead assessor must confirm it
-          .feedback-holder.alert.alert-success
-            ' Case summary submitted
+              .pull-right
+                = submit_tag "Confirm case summary", class: "btn btn-primary btn-confirm-submit"
+              .clear
+          - else
+            / Only show once primary assessor has submitted the case summary
+            / Lead assessor must confirm it
+            .feedback-holder.alert.alert-success
+              ' Case summary submitted
 

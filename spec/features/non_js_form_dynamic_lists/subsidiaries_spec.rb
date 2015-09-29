@@ -22,7 +22,7 @@ So that I can fill form completelly even if Javascript is turned off
     FactoryGirl.create :form_answer, :trade,
       user: user,
       account: account,
-      document: { company_name: "Bitzesty", "trading_figures" => "yes", question_key => subsidiaries }
+      document: { company_name: "Bitzesty", question_key => subsidiaries }
   end
 
   let!(:basic_eligibility) do

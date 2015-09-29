@@ -4,24 +4,14 @@ require "rails_helper"
 describe "Admin generates the CSV reports" do
   let!(:user) { create(:user, :completed_profile) }
 
-  let!(:trade) { build(:form_answer, :trade, user: user, submitted: true) }
-  let!(:innovation) { build(:form_answer, :innovation, user: user) }
-  let!(:development) { build(:form_answer, :development, user: user, state: "awarded") }
-  let!(:promotion) { build(:form_answer, :promotion, user: user) }
+  let!(:trade) { create(:form_answer, :trade, user: user, submitted: true) }
+  let!(:innovation) { create(:form_answer, :innovation, user: user) }
+  let!(:development) { create(:form_answer, :development, user: user, state: "awarded") }
+  let!(:promotion) { create(:form_answer, :promotion, user: user) }
 
   let(:output) do
     csv = Reports::AdminReport.new(id, AwardYear.current).as_csv
     CSV.parse(csv)
-  end
-
-  before do
-    [trade, innovation, development].each do |fa|
-      document = fa.document
-      document["applying_for"] = "division branch subsidiary"
-      fa.document = document
-
-      fa.save!
-    end
   end
 
   describe "Registered users entry" do

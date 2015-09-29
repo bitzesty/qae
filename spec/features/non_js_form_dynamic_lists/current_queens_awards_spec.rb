@@ -29,9 +29,7 @@ So that I can fill form completelly even if Javascript is turned off
            :innovation,
            user: user,
            account: account,
-           document: { company_name: "Bitzesty",
-                       queen_award_holder: "yes",
-                       queen_award_holder_details: awards }
+           document: { company_name: "Bitzesty", queen_award_holder_details: awards }
   end
 
   let!(:basic_eligibility) do

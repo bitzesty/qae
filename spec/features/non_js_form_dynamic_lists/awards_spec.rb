@@ -12,7 +12,6 @@ So that I can fill form completelly even if Javascript is turned off
   describe "Award interactions" do
     describe "Holder Awards" do
       let(:question_namespace) { "awards" }
-      let(:conditional_answer) { { award_holder: "yes" } }
 
       let(:award_1) do
         (Date.today - 2.years).year.to_s
@@ -36,7 +35,6 @@ So that I can fill form completelly even if Javascript is turned off
 
     describe "Nomination Awards" do
       let(:question_namespace) { "nomination_awards" }
-      let(:conditional_answer) { { nominated_for_award: "yes" } }
 
       let(:awards) do
         [
