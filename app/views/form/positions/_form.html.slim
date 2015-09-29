@@ -6,17 +6,19 @@ li
               label: "Position/Role"
 
     .validate-date-start-end
+      .errors-container
       span.row
         span.span-3
           label
             ' Start Date
+          .errors-container
           .date-input.validate-date-start
             label.small.date-input-field
               ' Month
-              = f.input_field :start_month, class: "tiny"
+              = f.input_field :start_month, class: "tiny js-date-input-month"
             label.small.date-input-field
               ' Year
-              = f.input_field :start_year, class: "tiny"
+              = f.input_field :start_year, class: "tiny js-date-input-year"
       span.clear
       - if f.object.errors[:start_month].present? || f.object.errors[:start_year].present?
         span.row
@@ -33,13 +35,14 @@ li
         span.span-3
           label
             ' End Date
+          .errors-container
           .date-input.validate-date-end
             label.small.date-input-field
               ' Month
-              = f.input_field :end_month, class: "tiny"
+              = f.input_field :end_month, class: "tiny js-date-input-month"
             label.small.date-input-field
               ' Year
-              = f.input_field :end_year, class: "tiny"
+              = f.input_field :end_year, class: "tiny js-date-input-year"
         span.span-3.date-ongoing
           br
           = f.input :ongoing, as: :boolean,
