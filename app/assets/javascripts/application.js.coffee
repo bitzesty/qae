@@ -273,11 +273,12 @@ jQuery ->
   $(document).on "click", ".js-step-link", (e) ->
     e.preventDefault()
     if !$(this).hasClass("step-current")
+      autosave()
+
       current = $(this).attr("data-step")
       if $(this).hasClass "js-next-link"
         if $("body").hasClass("tried-submitting")
           validate()
-        autosave()
       showAwardStep(current)
       # Scroll to top
       $("html, body").animate(
