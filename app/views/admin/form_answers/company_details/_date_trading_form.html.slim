@@ -41,8 +41,7 @@
         label.form-label Date started trading
 
         p
-          - if @form_answer.date_started_trading.try(:strftime, "%d/%m/%Y").present?
-            ' TRUE
-            = @form_answer.date_started_trading.try(:strftime, "%d/%m/%Y")
+          - if resource.date_started_trading.present?
+            = resource.date_started_trading
           - else
             em.text-muted Date started trading not added.
