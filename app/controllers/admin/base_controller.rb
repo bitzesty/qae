@@ -30,4 +30,8 @@ class Admin::BaseController < ApplicationController
   def current_subject
     current_admin
   end
+
+  def user_for_paper_trail
+    "ADMIN:#{current_admin.id}"
+  end
 end

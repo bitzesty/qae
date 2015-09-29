@@ -31,4 +31,8 @@ class Assessor::BaseController < ApplicationController
     flash.alert = "You are not authorized to perform this action."
     redirect_to(assessor_root_path)
   end
+
+  def user_for_paper_trail
+    "ASSESSOR:#{current_assessor.id}"
+  end
 end
