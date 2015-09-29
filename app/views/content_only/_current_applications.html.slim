@@ -24,8 +24,10 @@
               - if award.submitted?
                 ' Submitted
               - else
-                = award.decorate.fill_progress_in_percents
-                '  completed
+                ' In progress
+                / TODO fix progress percentage
+                / = award.decorate.fill_progress_in_percents
+                / '  completed
           td.pull-right
             - if award.submitted?
               = link_to edit_form_path(award.id)
