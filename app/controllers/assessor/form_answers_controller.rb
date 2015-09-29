@@ -1,6 +1,8 @@
 class Assessor::FormAnswersController < Assessor::BaseController
   include FormAnswerMixin
 
+  before_filter :load_resource, only: [:update_financials]
+
   helper_method :resource,
                 :primary_assessment,
                 :secondary_assessment,

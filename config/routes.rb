@@ -160,7 +160,10 @@ Rails.application.routes.draw do
         end
       end
 
-      member { get(:review) }
+      member do
+        patch :update_financials
+        get :review
+      end
       resources :draft_notes, only: [:create, :update]
     end
     resources :assessor_assignments, only: [:update]

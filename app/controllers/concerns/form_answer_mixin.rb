@@ -29,6 +29,22 @@ module FormAnswerMixin
     end
   end
 
+  def update_financials
+    authorize @form_answer, :update_financials?
+    @form_answer.financial_data = financial_data_ops
+    @form_answer.save
+
+    if request.xhr?
+      head :ok, content_type: "text/html"
+
+      return
+    else
+      flash.notice = "Financial data updated"
+      redirect_to action: :show
+      return
+    end
+  end
+
   def show
     authorize resource, :show?
   end
@@ -84,5 +100,17 @@ module FormAnswerMixin
     else
       authorize resource, :update?
     end
+  end
+
+  def load_resource
+    @form_answer = FormAnswer.find(params[:id]).decorate
+  end
+
+  def financial_data_ops
+    {
+      updated_at: Time.zone.now,
+      updated_by_id: pundit_user.id,
+      updated_by_type: pundit_user.class
+    }.merge(params[:financial_data])
   end
 end
