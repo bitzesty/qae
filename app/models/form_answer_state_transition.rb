@@ -21,6 +21,12 @@ class FormAnswerStateTransition
   end
 
   def collection
-    form_answer.state_machine.collection(subject)
+    states = form_answer.state_machine.collection(subject)
+
+    if !subject.kind_of?(Admin) && subject.lead?(form_answer)
+      states - [:not_awarded, :withdrawn]
+    else
+      states
+    end
   end
 end

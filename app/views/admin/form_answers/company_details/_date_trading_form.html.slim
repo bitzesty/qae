@@ -1,14 +1,9 @@
-- unless resource.submitted_and_after_the_deadline?
-  - obj = @form_answer
-- else
-  - obj = CompanyDetail.for(@form_answer)
-
 - unless @form_answer.promotion?
   - if user_can_edit(@form_answer, :date_trading)
     .form-group
-      = simple_form_for [namespace_name, CompanyDetail.for(resource)],
+      = simple_form_for [namespace_name, resource],
                         remote: true,
-                        authenticity_token: true do |f|
+                        authenticity_token: true, html: { "data-type" => "html" } do |f|
         = hidden_field_tag :section, "date_trading"
 
         .form-container
@@ -16,20 +11,20 @@
 
           .form-value
             p
-              - if obj.date_started_trading.try(:strftime, "%d/%m/%Y").present?
-                = obj.date_started_trading.try(:strftime, "%d/%m/%Y")
+              - if resource.date_started_trading.present?
+                = resource.date_started_trading
               - else
                 em.text-muted Date started trading not added.
           .form-fields.form-block
             .input.string.optional.company_detail_date_started_trading.form-control-day
               = label_tag "date_started_trading_3i", "Day", class: "string optional control-label"
-              input.string.optional.form-control id="date_started_trading_3i" type='text' name="company_detail[date_started_trading(3i)]" value="#{obj.date_started_trading.try(:day)}"
+              input.string.optional.form-control id="date_started_trading_3i" type='text' name="form_answer[data_attributes][started_trading_day]" value="#{@form_answer.document["started_trading_day"]}"
             .input.string.optional.company_detail_date_started_trading.form-control-month
               = label_tag "date_started_trading_2i", "Month", class: "string optional control-label"
-              input.string.optional.form-control id="date_started_trading_2i" type='text' name="company_detail[date_started_trading(2i)]" value="#{obj.date_started_trading.try(:month)}"
+              input.string.optional.form-control id="date_started_trading_2i" type='text' name="form_answer[data_attributes][started_trading_month]" value="#{@form_answer.document["started_trading_month"]}"
             .input.string.optional.company_detail_date_started_trading.form-control-year
               = label_tag "date_started_trading_1i", "Year", class: "string optional control-label"
-              input.string.optional.form-control id="date_started_trading_1i" type='text' name="company_detail[date_started_trading(1i)]" value="#{obj.date_started_trading.try(:year)}"
+              input.string.optional.form-control id="date_started_trading_1i" type='text' name="form_answer[data_attributes][started_trading_year]" value="#{@form_answer.document["started_trading_year"]}"
             .clear
             .form-actions.text-right
               = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
@@ -46,8 +41,7 @@
         label.form-label Date started trading
 
         p
-          - if obj.date_started_trading.try(:strftime, "%d/%m/%Y").present?
-            ' TRUE
-            = obj.date_started_trading.try(:strftime, "%d/%m/%Y")
+          - if resource.date_started_trading.present?
+            = resource.date_started_trading
           - else
             em.text-muted Date started trading not added.

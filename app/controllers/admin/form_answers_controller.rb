@@ -14,22 +14,6 @@ class Admin::FormAnswersController < Admin::BaseController
                                    .includes(:comments)
   end
 
-  def update_financials
-    authorize @form_answer, :update_financials?
-    @form_answer.financial_data = financial_data_ops
-    @form_answer.save
-
-    if request.xhr?
-      head :ok, content_type: "text/html"
-
-      return
-    else
-      flash.notice = "Financial data updated"
-      redirect_to action: :show
-      return
-    end
-  end
-
   private
 
   helper_method :resource,
@@ -40,17 +24,5 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def resource
     @form_answer ||= load_resource
-  end
-
-  def load_resource
-    @form_answer = FormAnswer.find(params[:id]).decorate
-  end
-
-  def financial_data_ops
-    {
-      updated_at: Time.zone.now,
-      updated_by_id: current_admin.id,
-      updated_by_type: current_admin.class
-    }.merge(params[:financial_data])
   end
 end

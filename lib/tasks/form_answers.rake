@@ -1,5 +1,26 @@
 namespace :form_answers do
 
+  def replace_key f, new_key, old_key
+    f.document[new_key] = f.document.delete(old_key) if f.document[old_key].present?
+  end
+
+  def fix_address f, old_key, new_key
+    replace_key f, "#{new_key}_building", "#{old_key}_building"
+    replace_key f, "#{new_key}_street",   "#{old_key}_street"
+    replace_key f, "#{new_key}_city",     "#{old_key}_city"
+    replace_key f, "#{new_key}_county",   "#{old_key}_county"
+    replace_key f, "#{new_key}_postcode", "#{old_key}_postcode"
+    replace_key f, "#{new_key}_region",   "#{old_key}_region"
+  end
+
+  desc "normalize address fields to use the same fields for different kind of documentss"
+  task normalize_address: :environment do
+    FormAnswer.find_each do |f|
+      fix_address f, "principal_address", "organization_address"
+      f.update_column(:document, f.document)
+    end
+  end
+
   desc 'fixes missing org_chart from document'
   task fix_missing_org_chart: :environment do
     FormAnswerAttachment.where(question_key: "org_chart").find_each do |attachment|

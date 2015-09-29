@@ -64,9 +64,34 @@ class FormAnswerDecorator < ApplicationDecorator
     object.company_or_nominee_name
   end
 
+  def data
+    #object.document
+    OpenStruct.new(object.document.merge(persisted?: true))
+  end
+
+  def data_attributes=(attributes)
+    object.document.merge! attributes.except(*array_keys)
+    # arrays needs special treatment
+    # it only works for array of hashes.
+    # If you had to update something else, you would need to refactor
+    array_keys.each do |key|
+      if attributes.has_key? key
+        new_array = attributes[key]
+        old_array = object.document[key]
+        new_array.each{ |index, value| old_array[index.to_i].merge! value }
+      end
+    end
+  end
+
+  def array_keys
+    object.document.select{ |item, value|  value.kind_of?(Array) }.keys
+  end
+
   def company_name
     company_or_nominee_name
   end
+
+  def
 
   def nominee_title
     object.nominee_title ? object.nominee_title : document["nominee_title"]
@@ -163,50 +188,12 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
-  def address_building
-    document["principal_address_building"].presence ||
-      document["organization_address_building"]
-  end
-
-  def address_street
-    document["principal_address_street"] ||
-      document["organization_address_street"]
-  end
-
-  def address_city
-    document["principal_address_city"] ||
-      document["organization_address_city"]
-  end
-
-  def address_county
-    document["principal_address_county"] ||
-      document["organization_address_county"]
-  end
-
-  def address_postcode
-    document["principal_address_postcode"] ||
-      document["organization_address_postcode"]
-  end
-
-  def telephone
-    document["org_telephone"]
-  end
-
-  def region
-    document["principal_address_region"] ||
-      document["organization_address_region"]
-  end
-
   def nominee_organisation
     document["organization_address_name"]
   end
 
   def nominee_position
     document["nominee_position"]
-  end
-
-  def nominee_organisation_website
-    document["website_url"]
   end
 
   def nominee_building
@@ -278,6 +265,7 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def date_started_trading
+    return nil if document['started_trading_year'].blank?
     "#{document['started_trading_day']}/#{document['started_trading_month']}/#{document['started_trading_year']}".strip
   end
 

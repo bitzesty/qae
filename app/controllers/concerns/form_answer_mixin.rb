@@ -1,7 +1,9 @@
 module FormAnswerMixin
   def update
     check_rigths_by_updating_options
-    resource.assign_attributes(allowed_params)
+
+    resource.assign_attributes(allowed_params.except(:data_attributes))
+    resource.data_attributes = allowed_params[:data_attributes].except(:id) if allowed_params[:data_attributes]
     resource.company_details_updated_at = DateTime.now
     resource.company_details_editable = current_subject
 
@@ -27,6 +29,22 @@ module FormAnswerMixin
     end
   end
 
+  def update_financials
+    authorize @form_answer, :update_financials?
+    @form_answer.financial_data = financial_data_ops
+    @form_answer.save
+
+    if request.xhr?
+      head :ok, content_type: "text/html"
+
+      return
+    else
+      flash.notice = "Financial data updated"
+      redirect_to action: :show
+      return
+    end
+  end
+
   def show
     authorize resource, :show?
   end
@@ -40,15 +58,6 @@ module FormAnswerMixin
   end
 
   private
-
-  def update_params
-    params.require(:form_answer).permit(
-      :sic_code,
-      :company_or_nominee_name,
-      :nominee_title,
-      previous_wins_attributes: [:id, :year, :category, :_destroy]
-    )
-  end
 
   def primary_assessment
     @primary_assessment ||= resource.assessor_assignments.primary.decorate
@@ -67,7 +76,7 @@ module FormAnswerMixin
   end
 
   def allowed_params
-    ops = update_params
+    ops = params.require(:form_answer).permit!
 
     ops.reject! do |k, v|
       (k.to_sym == :company_or_nominee_name || k.to_sym == :nominee_title) &&
@@ -91,5 +100,17 @@ module FormAnswerMixin
     else
       authorize resource, :update?
     end
+  end
+
+  def load_resource
+    @form_answer = FormAnswer.find(params[:id]).decorate
+  end
+
+  def financial_data_ops
+    {
+      updated_at: Time.zone.now,
+      updated_by_id: pundit_user.id,
+      updated_by_type: pundit_user.class
+    }.merge(params[:financial_data])
   end
 end

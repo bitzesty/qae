@@ -138,7 +138,6 @@ Rails.application.routes.draw do
 
   namespace :assessor do
     root to: "form_answers#index"
-    resources :company_details, only: [:update]
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
     resources :review_audit_certificates, only: [:create]
 
@@ -161,7 +160,10 @@ Rails.application.routes.draw do
         end
       end
 
-      member { get(:review) }
+      member do
+        patch :update_financials
+        get :review
+      end
       resources :draft_notes, only: [:create, :update]
     end
     resources :assessor_assignments, only: [:update]
@@ -180,7 +182,6 @@ Rails.application.routes.draw do
     resources :admins
     resources :reports, only: [:show]
     resources :review_audit_certificates, only: [:create]
-    resources :company_details, only: [:update]
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
 
     resources :form_answers do
