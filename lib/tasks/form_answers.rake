@@ -1,5 +1,20 @@
 namespace :form_answers do
 
+  desc "fixes attachment arrays"
+  task fix_attachments: :environment do
+    FormAnswer.find_each do |f|
+      if f.document["innovation_materials"].kind_of? Array
+        array = f.document["innovation_materials"]
+        hash = {}
+        array.each_index do |i|
+          hash[i.to_s] = array[i]
+        end
+        f.document["innovation_materials"] = hash
+        f.update_column(:document, f.document)
+      end
+    end
+  end
+
   def replace_key f, new_key, old_key
     f.document[new_key] = f.document.delete(old_key) if f.document[old_key].present?
   end
