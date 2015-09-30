@@ -222,7 +222,7 @@ class FormAnswer < ActiveRecord::Base
 
     last_version.blank? || (
       last_version.present? &&
-      last_version.created_at < (Time.zone.now - 1.day)
+      last_version.created_at < (Time.zone.now - 15.minutes)
     )
   end
 
