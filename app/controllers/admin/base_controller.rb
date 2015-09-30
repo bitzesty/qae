@@ -32,6 +32,6 @@ class Admin::BaseController < ApplicationController
   end
 
   def user_for_paper_trail
-    "ADMIN:#{current_admin.id}"
+    "ADMIN:#{current_admin.id}" if current_admin.present?
   end
 end

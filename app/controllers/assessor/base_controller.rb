@@ -33,6 +33,6 @@ class Assessor::BaseController < ApplicationController
   end
 
   def user_for_paper_trail
-    "ASSESSOR:#{current_assessor.id}"
+    "ASSESSOR:#{current_assessor.id}" if current_assessor.present?
   end
 end
