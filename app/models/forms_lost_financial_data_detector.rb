@@ -1,7 +1,7 @@
 # This class is used for detection of forms which was updated in specific date
 # but after update financial data were lost.
 
-#[1925, 2569, 998, 2582, 551, 2580, 2570, 2584, 2395, 2583, 1993, 2595, 2270, 2304, 750, 2596, 2572, 1572, 251, 2539, 2589, 26, 443, 2558, 2531, 2511, 2559, 564, 2555, 2532, 2561, 2601, 2602, 1333, 2600, 2593, 2594, 2548, 2535, 2536, 1705, 439, 429, 1768, 1391, 2574, 2341, 677, 1406, 2547, 2560, 2348, 2162, 2240, 2302, 2314, 1945, 1714, 2206, 2543, 2494, 2553, 2578, 1117, 2352, 1584, 2549, 1371, 2250, 2211, 1161, 292, 1118, 2344, 1474, 1795, 2196, 2214, 2563]
+# [1925, 2569, 998, 2582, 551, 2580, 2570, 2584, 2395, 2583, 1993, 2595, 2270, 2304, 750, 2596, 2572, 1572, 251, 2539, 2589, 26, 443, 2558, 2531, 2511, 2559, 564, 2555, 2532, 2561, 2601, 2602, 1333, 2600, 2593, 2594, 2548, 2535, 2536, 1705, 429, 1768, 1391, 2574, 2341, 677, 1406, 2547, 2560, 2348, 2162, 2240, 2302, 2314, 1945, 1714, 2206, 2543, 2494, 2553, 2578, 1117, 2352, 1584, 2549, 1371, 2250, 2211, 1161, 292, 1118, 2344, 1474, 1795, 2196, 2214, 2563]
 
 class FormsLostFinancialDataDetector
 
@@ -37,10 +37,33 @@ class FormsLostFinancialDataDetector
     QUESTIONS.map do |q|
       [2, 3, 5, 6].map do |i|
         (1..i).to_a.map do |y|
-          "#{q}#{y}_#{i}"
+          "#{q}#{y}of#{i}"
+        end
+      end
+    end.flatten.uniq +
+    financial_dates
+  end
+
+  def financial_dates
+    ["day", "month", "year"].map do |i|
+      [2, 3, 5, 6].map do |z|
+        (1..z).to_a.map do |y|
+          "financial_year_changed_dates_#{y}of#{z}#{i}"
         end
       end
     end.flatten.uniq
+  end
+
+  def set_form(f, doc)
+    possible_question_keys.each do |k|
+      puts "[#{f.id}] #{k}: #{doc[k]}"
+      if doc[k].present?
+        puts "[#{f.id}] #{k}: #{doc[k]} --------------- ADDED"
+        f.document[k] = doc[k]
+      end
+    end
+
+    f
   end
 
   def fetch_forms
@@ -81,7 +104,7 @@ class FormsLostFinancialDataDetector
         date
       ]
     end.select do |item|
-      ids.include?(item[0].to_s) &&
+      #ids.include?(item[0].to_s) &&
       possible_question_keys.any? do |k|
         item[1]["#{k}"].present?
       end
