@@ -1,6 +1,8 @@
 # This class is used for detection of forms which was updated in specific date
 # but after update financial data were lost.
 
+#[1925, 2569, 998, 2582, 551, 2580, 2570, 2584, 2395, 2583, 1993, 2595, 2270, 2304, 750, 2596, 2572, 1572, 251, 2539, 2589, 26, 443, 2558, 2531, 2511, 2559, 564, 2555, 2532, 2561, 2601, 2602, 1333, 2600, 2593, 2594, 2548, 2535, 2536, 1705, 439, 429, 1768, 1391, 2574, 2341, 677, 1406, 2547, 2560, 2348, 2162, 2240, 2302, 2314, 1945, 1714, 2206, 2543, 2494, 2553, 2578, 1117, 2352, 1584, 2549, 1371, 2250, 2211, 1161, 292, 1118, 2344, 1474, 1795, 2196, 2214, 2563]
+
 class FormsLostFinancialDataDetector
 
   QUESTIONS = [
@@ -61,7 +63,33 @@ class FormsLostFinancialDataDetector
   end
 
   def get_target_requests_from_logfile
-    file = File.open("#{Rails.root}/logfile.log")
-    entries = file.scan(/^(.*)Parameters: (.*)"current_step_id"=>(.*)"form"=>(.*)"id"=>(.*)$/)
+    content = File.read("#{Rails.root}/production.log")
+    entries = content.scan(/^(.*)Parameters: (.*)$/).select do |entry|
+      entry[1].include?("current_step_id")
+    end
+
+    res = entries.map do |entry|
+      hash_of_params = eval(entry[1])
+
+      id = hash_of_params["id"]
+      form = hash_of_params["form"]
+      date = fetch_date(entry[0])
+
+      [
+        id,
+        form,
+        date
+      ]
+    end.select do |item|
+      ids.include?(item[0].to_s)
+    end.sort do |a, b|
+      b[2] <=> a[2]
+    end
+
+    res
+  end
+
+  def fetch_date(str)
+    str.split("[").last.split(".").first.to_datetime
   end
 end
