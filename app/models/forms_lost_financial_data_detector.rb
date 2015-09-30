@@ -24,7 +24,7 @@ class FormsLostFinancialDataDetector
   attr_accessor :forms, :date_of_update
 
   def initialize
-    self.date_of_update = Date.new(2015,9,28)
+    self.date_of_update = Date.new(2015,9,29)
     self.forms = fetch_forms
   end
 
@@ -40,7 +40,15 @@ class FormsLostFinancialDataDetector
 
   def fetch_forms
     target_forms = FormAnswer.where(award_type: ["innovation", "development", "trade"]).
-                              where("date(form_answers.updated_at) = ?", date_of_update).to_a.uniq
+                              where("date(form_answers.updated_at) = ?", date_of_update).
+                              where("(document #>> '{employees_1of2}') IS NULL AND
+                                     (document #>> '{employees_1of3}') IS NULL AND
+                                     (document #>> '{employees_1of5}') IS NULL AND
+                                     (document #>> '{employees_1of6}') IS NULL AND
+                                     (document #>> '{total_turnover_1of2}') IS NULL AND
+                                     (document #>> '{total_turnover_1of3}') IS NULL AND
+                                     (document #>> '{total_turnover_1of5}') IS NULL AND
+                                     (document #>> '{total_turnover_1of6}') IS NULL")
 
     target_forms.select do |f|
       possible_question_keys.any? do |k|
