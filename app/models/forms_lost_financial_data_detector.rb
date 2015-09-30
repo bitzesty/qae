@@ -28,6 +28,9 @@ class FormsLostFinancialDataDetector
     self.forms = fetch_forms
   end
 
+  def restore
+  end
+
   def possible_question_keys
     QUESTIONS.map do |q|
       [2, 3, 5, 6].map do |i|
@@ -55,5 +58,10 @@ class FormsLostFinancialDataDetector
         f.document["#{k}"].blank?
       end
     end
+  end
+
+  def get_target_requests_from_logfile
+    file = File.open("#{Rails.root}/logfile.log")
+    entries = file.scan(/^(.*)Parameters: (.*)"current_step_id"=>(.*)"form"=>(.*)"id"=>(.*)$/)
   end
 end
