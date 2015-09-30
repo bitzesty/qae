@@ -221,12 +221,11 @@ class FormController < ApplicationController
       @attachment.question_key = params[:question_key] if params[:question_key].present?
 
       if @attachment.question_key == "org_chart"
-        @form_answer.document["org_chart"] = {}
         @form_answer.form_answer_attachments.where(question_key: "org_chart").destroy_all
       end
 
       if @attachment.save
-        @form_answer.document[@attachment.question_key]  ||= []
+        @form_answer.document[@attachment.question_key]  ||= {}
         attachments_hash = @form_answer.document[@attachment.question_key]
         index = next_index(attachments_hash)
         attachments_hash[index] = { file: @attachment.id }

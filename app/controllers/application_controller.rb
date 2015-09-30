@@ -163,4 +163,8 @@ class ApplicationController < ActionController::Base
     @settings = @award_year.settings
     @deadlines = @settings.deadlines.to_a
   end
+
+  def user_for_paper_trail
+    "USER:#{current_user.id}" if current_user.present?
+  end
 end
