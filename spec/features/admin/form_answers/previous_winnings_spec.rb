@@ -22,22 +22,22 @@ describe "Admin sets up previous winnings" do
         find("input[type='submit']").click
       end
       within ".previous-wins-form" do
-        expect(page).to have_selector(".well", count: 2)
+        expect(page).to have_selector(".well", count: 1)
       end
     end
   end
 
   context "deletion" do
-    let!(:form_answer) { create(:previous_win).form_answer }
+    let!(:form_answer) { create(:form_answer, :trade) }
 
     it "deletes previous winning" do
       within ".previous-wins-form" do
-        expect(page).to have_selector(".list-add", count: 2)
+        expect(page).to have_selector(".well", count: 1)
         first("input[type='checkbox']").set(true)
         click_button "Save"
       end
       within ".previous-wins-form" do
-        expect(page).to have_selector(".well", count: 1)
+        expect(page).to have_selector(".well", count: 0)
       end
     end
   end
