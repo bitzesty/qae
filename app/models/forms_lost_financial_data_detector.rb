@@ -39,7 +39,8 @@ class FormsLostFinancialDataDetector
   end
 
   def fetch_forms
-    target_forms = FormAnswer.where("date(form_answers.updated_at) >= ?", date_of_update).to_a.uniq
+    target_forms = FormAnswer.where(award_type: ["innovation", "development", "trade"]).
+                              where("date(form_answers.updated_at) = ?", date_of_update).to_a.uniq
 
     target_forms.select do |f|
       possible_question_keys.any? do |k|
