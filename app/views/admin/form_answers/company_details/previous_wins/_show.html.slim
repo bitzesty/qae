@@ -5,7 +5,7 @@ label.form-label Previous winnings
     ul
       - @form_answer.document["queen_award_holder_details"].each do |win|
         li
-          span= "#{PreviousWin::CATEGORIES.select{ |key, value| value == win["category"]}.first.first} #{win["year"]}"
+          span= "#{PreviousWin::CATEGORIES.select{ |key, value| value == win["category"]}.try(:first).try(:first)} #{win["year"]}"
   - else
     p
       em.text-muted No previous winnings added.
