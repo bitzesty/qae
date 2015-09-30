@@ -1,4 +1,4 @@
-- unless @form_answer.promotion?
+- if @form_answer.document["queen_award_holder_details"]
   .form-group.previous-wins-form
     - if user_can_edit(@form_answer, :previous_wins)
         = render "admin/form_answers/company_details/previous_wins/form"
