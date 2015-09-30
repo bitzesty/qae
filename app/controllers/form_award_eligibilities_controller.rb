@@ -57,6 +57,7 @@ class FormAwardEligibilitiesController < ApplicationController
         if @eligibility.eligible_on_step?(step)
           redirect_to next_wizard_path(form_id: @form_answer.id, skipped: false)
         else
+          @form_answer.state_machine.perform_transition("not_eligible", nil, false) unless @form_answer.not_eligible?
           redirect_to action: :show, form_id: @form_answer.id
         end
       else
