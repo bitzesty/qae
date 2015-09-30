@@ -63,7 +63,7 @@ class FormsLostFinancialDataDetector
   end
 
   def get_target_requests_from_logfile
-    content = File.read("#{Rails.root}/production.log")
+    content = File.read("#{Rails.root}/logfile.log")
     entries = content.scan(/^(.*)Parameters: (.*)$/).select do |entry|
       entry[1].include?("current_step_id")
     end
@@ -81,7 +81,10 @@ class FormsLostFinancialDataDetector
         date
       ]
     end.select do |item|
-      ids.include?(item[0].to_s)
+      ids.include?(item[0].to_s) &&
+      possible_question_keys.any? do |k|
+        item[1]["#{k}"].present?
+      end
     end.sort do |a, b|
       b[2] <=> a[2]
     end
