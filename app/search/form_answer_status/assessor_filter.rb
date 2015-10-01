@@ -2,6 +2,10 @@ class FormAnswerStatus::AssessorFilter
   extend FormAnswerStatus::FilteringHelper
 
   OPTIONS = {
+    eligibility_in_progress: {
+      label: "Eligibility in progress",
+      states: [:eligibility_in_progress]
+    },
     application_in_progress: {
       label: "Application in progress",
       states: [:application_in_progress]
@@ -59,7 +63,7 @@ class FormAnswerStatus::AssessorFilter
   }
 
   def self.checked_options
-    OPTIONS.except(:application_in_progress)
+    OPTIONS.except(:eligibility_in_progress, :application_in_progress)
   end
 
   def self.options

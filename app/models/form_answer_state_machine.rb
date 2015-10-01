@@ -2,6 +2,7 @@ class FormAnswerStateMachine
   include Statesman::Machine
 
   STATES = [
+    :eligibility_in_progress,
     :application_in_progress,
     :submitted,
     :withdrawn,
@@ -15,7 +16,8 @@ class FormAnswerStateMachine
     :not_awarded
   ]
 
-  state :application_in_progress, initial: true
+  state :eligibility_in_progress, initial: true
+  state :application_in_progress
   state :submitted
   state :withdrawn
   state :not_eligible
@@ -34,19 +36,12 @@ class FormAnswerStateMachine
   end
 
   def self.trigger_deadlines
-    relevant_states = [
-      "submitted",
-      "application_in_progress"
-    ]
     if Settings.after_current_submission_deadline?
-      FormAnswer.where(state: relevant_states).find_each do |fa|
-        if fa.state == "submitted"
-          fa.state_machine.perform_transition("assessment_in_progress")
-        end
-
-        if fa.application_in_progress?
-          fa.state_machine.perform_transition("not_submitted")
-        end
+      FormAnswer.where(state: "submitted").find_each do |fa|
+        fa.state_machine.perform_transition("assessment_in_progress")
+      end
+      FormAnswer.where(state: ["eligibility_in_progress", "application_in_progress"]).find_each do |fa|
+        fa.state_machine.perform_transition("not_submitted")
       end
     end
   end
@@ -71,6 +66,10 @@ class FormAnswerStateMachine
     end
   end
 
+  def perform_simple_transition(state)
+    perform_transition(state, nil, false) unless object.state == state
+  end
+
   def submit(subject)
     # TODO: tech debt - we store the submitted state in 2 places
     # in state machine and in `form_answers.submitted`
@@ -89,14 +88,16 @@ class FormAnswerStateMachine
     perform_transition(new_state, subject)
   end
 
-  def trigger_eligibility_change
-    eligible = object.eligible?
-    # called by the eligibility form updates, made by User
-    if !eligible && object.state.to_sym == :application_in_progress
-      perform_transition :not_eligible
-    elsif eligible && object.state.to_sym == :not_eligible
-      perform_transition :application_in_progress
+  def after_eligibility_step_progress
+    if object.eligible? # already eligible
+      perform_simple_transition :application_in_progress
+    else
+      perform_simple_transition :eligibility_in_progress
     end
+  end
+
+  def after_eligibility_step_failure
+    perform_simple_transition :not_eligible
   end
 
   # store the state directly in model attribute
