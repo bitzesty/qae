@@ -9,6 +9,13 @@ namespace :form_answers do
     FormAnswerUserSubmissionService.new(f).perform
   end
 
+  desc "fixes eligibility inconsistencies"
+  task fix_eligibility: :environment do
+    FormAnswer.find_each do |f|
+      f.state_machine.perform_transition("not_eligible", nil, false) unless f.eligible?
+    end
+  end
+
   desc "fixes attachment arrays"
   task fix_attachments: :environment do
     FormAnswer.find_each do |f|
