@@ -53,14 +53,16 @@ class FormAnswerStatistics::Picker
 
   def applications_completions
     out = {}
+    out["total"] = [0,0,0,0,0,0,0,0]
     klass::POSSIBLE_AWARDS.each do |aw|
       scope = fa_year_scope.where(award_type: aw)
       out[aw] = collect_completion_ranges(scope)
+      unless aw == "promotion"
+        out[aw].each_with_index do |val, index|
+          out["total"][index] += val
+        end
+      end
     end
-    out["total"] = collect_completion_ranges(fa_year_scope.where
-      .not(state: "not_eligible")
-      .where.not(award_type: "promotion")
-      .where(submitted: false))
     out
   end
 
