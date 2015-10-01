@@ -1,5 +1,14 @@
 namespace :form_answers do
 
+  desc "Force submit an application"
+  task :force_submit, [:id] => [:environment] do |t, args|
+    f = FormAnswer.find(args[:id])
+    f.submitted = true
+    f.save
+    f.state_machine.submit(f.user)
+    FormAnswerUserSubmissionService.new(f).perform
+  end
+
   desc "fixes attachment arrays"
   task fix_attachments: :environment do
     FormAnswer.find_each do |f|
