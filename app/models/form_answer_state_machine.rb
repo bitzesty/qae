@@ -132,7 +132,7 @@ class FormAnswerStateMachine
       case object.state.to_sym
       when :not_eligible
         []
-      when :application_in_progress
+      when :application_in_progress, :eligibility_in_progress
         [:not_submitted]
       when :submitted
         [:assessment_in_progress]

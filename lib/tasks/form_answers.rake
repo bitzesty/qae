@@ -82,6 +82,12 @@ namespace :form_answers do
     end
   end
 
+  desc "Creates the urns"
+  task create_urns: :environment do
+    FormAnswer.connection.execute("CREATE SEQUENCE urn_seq_2016")
+    FormAnswer.connection.execute("CREATE SEQUENCE urn_seq_promotion_2016")
+  end
+
   # For single use only
   desc "Rebuilds the urns for all apps"
   task rebuild_urn: :environment do

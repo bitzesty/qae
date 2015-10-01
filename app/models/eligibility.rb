@@ -114,6 +114,7 @@ class Eligibility < ActiveRecord::Base
   end
 
   def answer_valid?(question, answer)
+    return true if self.class.questions_storage[question.to_sym].nil?
     acceptance_criteria = self.class.questions_storage[question.to_sym][:accept].to_s
     validator = "Eligibility::Validation::#{acceptance_criteria.camelize}Validation".constantize.new(self, question, answer)
     validator.valid?
