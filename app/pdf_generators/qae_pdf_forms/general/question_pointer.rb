@@ -74,7 +74,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def q_visible?
-    question.visible?
+    step.award_form[question.key].visible?
   end
 
   def render!
