@@ -123,7 +123,6 @@ module QaePdfForms::CustomQuestions::Lists
 
   def list_rows
     if humanized_answer.present?
-      Rails.logger.info "------------------ #{question.delegate_obj}"
       if question.delegate_obj.is_a? QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
         render_goods_and_services
       else
