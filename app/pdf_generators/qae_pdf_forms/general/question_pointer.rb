@@ -317,7 +317,7 @@ class QaePdfForms::General::QuestionPointer
           end
         end
       when QAEFormBuilder::ConfirmQuestion
-        if humanized_answer.present?
+        if q_visible? && humanized_answer.present?
           form_pdf.render_answer_by_display(question_checked_value_title, display)
         else
           question_option_box question.text
