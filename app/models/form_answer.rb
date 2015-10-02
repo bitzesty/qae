@@ -73,7 +73,6 @@ class FormAnswer < ActiveRecord::Base
                        .order(position: :desc) },
              class_name: "AssessorAssignment",
              foreign_key: :form_answer_id
-    has_many :previous_wins, dependent: :destroy
     has_many :assessors, through: :assessor_assignments do
       def primary
         where(assessor_assignments:
@@ -138,12 +137,6 @@ class FormAnswer < ActiveRecord::Base
       @state_machine ||= FormAnswerStateMachine.new(self, transition_class: FormAnswerTransition)
     end
   end
-
-  accepts_nested_attributes_for :previous_wins,
-                                allow_destroy: true,
-                                reject_if: proc { |attrs|
-                                  attrs[:year].blank? && attrs[:category].blank?
-                                }
 
   def award_form
     QAE2014Forms.public_send(award_type) if award_type.present?

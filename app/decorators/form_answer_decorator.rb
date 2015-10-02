@@ -78,7 +78,16 @@ class FormAnswerDecorator < ApplicationDecorator
       if attributes.has_key? key
         new_array = attributes[key]
         old_array = object.document[key]
+
+        if new_array.length < old_array.length
+          old_array.slice!(new_array.length, old_array.length)
+        else
+          old_array.push *Array.new(new_array.length - old_array.length, {})
+        end
+
         new_array.each{ |index, value| old_array[index.to_i].merge! value }
+
+        old_array.reject!{|i| i.include? "_destroy" }
       end
     end
   end
