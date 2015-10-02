@@ -14,6 +14,15 @@ class QaePdfForms::General::StepPointer
       FormPdf::HIDDEN_QUESTIONS.include?(question.key.to_s)
     end
 
+    # When we are displaying only visible questions (in accordance with conditions) use:
+    #
+    # @filtered_questions = step_questions.select do |question|
+    #   award_form[question.key].visible?
+    # end
+    #
+    # If need to show all questions use:
+    # @filtered_questions = step_questions
+
     @filtered_questions = step_questions.select do |question|
        award_form[question.key].visible?
     end
