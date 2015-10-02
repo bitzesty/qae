@@ -45,6 +45,14 @@ module FormAnswerHelper
     FormAnswerDecorator::SELECT_BOX_LABELS.invert.to_a
   end
 
+  def each_index_or_empty(collection, attrs, &block)
+    if collection.any?
+      collection.each_with_index &block
+    else
+      block.(attrs, 0)
+    end
+  end
+
   def sic_code(form_answer)
     code = form_answer.sic_code
     code || "-"
