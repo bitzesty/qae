@@ -22,9 +22,11 @@ module QaePdfForms::CustomQuestions::SupporterLists
 
       if entry.is_a?(Supporter)
         ops[:email] = entry.email
+        render_supporter(entry, ops)
+      else
+        manually_upload_option = filled_answers["manually_upload"].to_s
+        render_supporter(entry, ops) if manually_upload_option == "yes"
       end
-
-      render_supporter(entry, ops)
     end
   end
 
