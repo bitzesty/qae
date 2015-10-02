@@ -9,7 +9,7 @@
 
     .input.form-group.form-fields.form-block
       ul.list-add
-        - @form_answer.document["queen_award_holder_details"].each_with_index do |win, index|
+        - each_index_or_empty(@form_answer.document["queen_award_holder_details"], {"category" => nil, "year" => nil }) do |win, index|
           li.well.duplicatable-nested-form
             .pull-right
               = link_to "Remove", "#", class: "if-no-js-hide remove-link"
