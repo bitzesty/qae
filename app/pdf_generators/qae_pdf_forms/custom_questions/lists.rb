@@ -26,7 +26,7 @@ module QaePdfForms::CustomQuestions::Lists
   ]
 
   def render_list
-    if humanized_answer.present?
+    if q_visible? && humanized_answer.present?
       render_multirows_table(list_headers, list_rows)
 
       if list_rows.blank?

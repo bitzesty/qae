@@ -23,9 +23,7 @@ class QaePdfForms::General::StepPointer
     # If need to show all questions use:
     # @filtered_questions = step_questions
 
-    @filtered_questions = step_questions.select do |question|
-       award_form[question.key].visible?
-    end
+    @filtered_questions = step_questions
   end
 
   def render!
