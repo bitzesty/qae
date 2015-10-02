@@ -123,20 +123,33 @@ module QaePdfForms::CustomQuestions::Lists
 
   def list_rows
     if humanized_answer.present?
-      humanized_answer.map do |item|
-        case question.delegate_obj
-        when QAEFormBuilder::AwardHolderQuestion
-          award_holder_query_conditions(item)
-        when QAEFormBuilder::QueenAwardHolderQuestion
-          queen_award_holder_query_conditions(item)
-        when QAEFormBuilder::PositionDetailsQuestion
-          position_details_query_conditions(item)
-        when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
-          subsidiaries_associates_plants_query_conditions(item)
-        when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
-          trade_goods_conditions(item)
-        end
-      end.compact
+      Rails.logger.info "------------------ #{question.delegate_obj}"
+      if question.delegate_obj.is_a? QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
+        render_goods_and_services
+      else
+        humanized_answer.map do |item|
+          case question.delegate_obj
+          when QAEFormBuilder::AwardHolderQuestion
+            award_holder_query_conditions(item)
+          when QAEFormBuilder::QueenAwardHolderQuestion
+            queen_award_holder_query_conditions(item)
+          when QAEFormBuilder::PositionDetailsQuestion
+            position_details_query_conditions(item)
+          when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
+            subsidiaries_associates_plants_query_conditions(item)
+          end
+        end.compact
+      end
+    end
+  end
+
+  def render_goods_and_services
+    trade_goods_amount = filled_answers["trade_goods_amount"]
+
+    if trade_goods_amount.present?
+      humanized_answer[0..(trade_goods_amount.to_i - 1)].map do |item|
+        trade_goods_conditions(item)
+      end
     end
   end
 end
