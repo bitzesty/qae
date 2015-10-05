@@ -55,7 +55,7 @@ describe FormAnswerStateMachine do
             FormAnswerStateMachine.trigger_deadlines
           }.to change {
             form_answer.reload.state
-          }.from("application_in_progress").to("not_submitted")
+          }.from("eligibility_in_progress").to("not_submitted")
         end
       end
     end

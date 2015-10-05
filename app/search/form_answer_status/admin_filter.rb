@@ -31,6 +31,10 @@ class FormAnswerStatus::AdminFilter
   }
 
   OPTIONS = {
+    eligibility_in_progress: {
+      label: "Eligibility in progress",
+      states: [:eligibility_in_progress]
+    },
     application_in_progress: {
       label: "Application in progress",
       states: [:application_in_progress]

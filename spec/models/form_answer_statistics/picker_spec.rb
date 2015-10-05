@@ -127,9 +127,9 @@ describe FormAnswerStatistics::Picker do
 end
 
 def populate_application_completions
-  create(:form_answer, :trade).update_column(:fill_progress, 0.0)
-  create(:form_answer, :trade).update_column(:fill_progress, 0.25)
-  create(:form_answer, :trade).update_column(:fill_progress, 0.50)
-  create(:form_answer, :trade).update_column(:fill_progress, 1)
+  create(:form_answer, :trade, state: "application_in_progress").update_column(:fill_progress, 0.0)
+  create(:form_answer, :trade, state: "application_in_progress").update_column(:fill_progress, 0.25)
+  create(:form_answer, :trade, state: "application_in_progress").update_column(:fill_progress, 0.50)
+  create(:form_answer, :trade, state: "application_in_progress").update_column(:fill_progress, 1)
   create(:form_answer, :trade, state: "not_eligible").update_column(:fill_progress, 0.99)
 end

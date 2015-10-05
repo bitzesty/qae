@@ -3,7 +3,6 @@ class Eligibility < ActiveRecord::Base
 
   belongs_to :account
   belongs_to :form_answer
-  after_update :trigger_eligibility_change, if: :answers_changed?
 
   attr_accessor :current_step
 
@@ -110,7 +109,12 @@ class Eligibility < ActiveRecord::Base
     false
   end
 
+  def any_error_yet?
+    answers.any?{ |answer| !answer_valid?(answer[0], answer[1]) }
+  end
+
   def answer_valid?(question, answer)
+    return true if self.class.questions_storage[question.to_sym].nil?
     acceptance_criteria = self.class.questions_storage[question.to_sym][:accept].to_s
     validator = "Eligibility::Validation::#{acceptance_criteria.camelize}Validation".constantize.new(self, question, answer)
     validator.valid?
@@ -142,9 +146,5 @@ class Eligibility < ActiveRecord::Base
     if current_step && public_send(current_step).nil?
       errors.add(current_step, :blank)
     end
-  end
-
-  def trigger_eligibility_change
-    form_answer.state_machine.trigger_eligibility_change
   end
 end
