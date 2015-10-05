@@ -6,7 +6,7 @@ describe AssessmentSubmissionService do
   subject { described_class.new(assessment, assessor) }
 
   let(:form_answer) { create(:form_answer, :trade) }
-  let(:document) { { "dumb_key" => "1" } }
+  let(:document) { { "verdict_desc" => "description NOT to copy", "verdict_rate" => "positive" } }
   let(:assessor) { create(:assessor, :lead_for_all) }
 
   before do
@@ -15,15 +15,21 @@ describe AssessmentSubmissionService do
 
     primary = form_answer.assessor_assignments.primary
     primary.assessor_id = assessor.id
+    primary.document = { "verdict_desc" => "description to copy", "verdict_rate" => "negative" }
     primary.save!
   end
 
   context "moderated form submission" do
     let(:assessment) { form_answer.assessor_assignments.moderated }
 
-    it "populates the lead case summary form with values from moderated form" do
+    it "populates the lead case summary form with values from primary form" do
+      expected = {
+        "verdict_desc" => "description to copy",
+        "verdict_rate" => "positive"
+      }
+
       expect { expect_to_submit }.to change {
-        form_answer.assessor_assignments.lead_case_summary.document == document
+        form_answer.assessor_assignments.lead_case_summary.document == expected
       }.from(false).to(true)
     end
   end

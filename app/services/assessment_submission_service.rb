@@ -26,11 +26,17 @@ class AssessmentSubmissionService
   end
 
   def populate_lead_case_summary
-    if (primary_and_lead_is_the_same_person? && resource.moderated?)
-      notify
-      rec = record(AssessorAssignment.positions[:lead_case_summary])
-      rec.document = resource.document
-      rec.save
+    if resource.moderated?
+      case_summary = record(AssessorAssignment.positions[:lead_case_summary])
+      primary_assessment = record(AssessorAssignment.positions[:primary])
+      moderated_assessment = record(AssessorAssignment.positions[:moderated])
+
+      document = primary_assessment.document.merge(
+        "verdict_rate" => moderated_assessment.document["verdict_rate"]
+      )
+
+      case_summary.document = document
+      case_summary.save
     end
   end
 
@@ -44,8 +50,5 @@ class AssessmentSubmissionService
     AssessorAssignment.where(
       form_answer_id: resource.form_answer_id, position: position
     ).first_or_create
-  end
-
-  def notify
   end
 end
