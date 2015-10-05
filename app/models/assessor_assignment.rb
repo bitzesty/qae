@@ -43,19 +43,19 @@ class AssessorAssignment < ActiveRecord::Base
   store_accessor :document, *AppraisalForm.all
 
   def self.primary
-    find_or_create_by(position: 0)
+    find_or_create_by(position: positions[:primary])
   end
 
   def self.secondary
-    find_or_create_by(position: 1)
+    find_or_create_by(position: positions[:secondary])
   end
 
   def self.moderated
-    find_or_create_by(position: 2)
+    find_or_create_by(position: positions[:moderated])
   end
 
   def self.lead_case_summary
-    find_or_create_by(position: 4)
+    find_or_create_by(position: positions[:lead_case_summary])
   end
 
   def submitted?

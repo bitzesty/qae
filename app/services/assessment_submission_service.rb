@@ -28,7 +28,7 @@ class AssessmentSubmissionService
   def populate_lead_case_summary
     if (primary_and_lead_is_the_same_person? && resource.moderated?)
       notify
-      rec = record(4)
+      rec = record(AssessorAssignment.positions[:lead_case_summary])
       rec.document = resource.document
       rec.save
     end
