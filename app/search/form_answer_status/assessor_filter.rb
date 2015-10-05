@@ -50,6 +50,9 @@ class FormAnswerStatus::AssessorFilter
     missing_audit_certificate: {
       label: "Missing Audit Certificate"
     },
+    missing_corp_responsibility: {
+      label: "Missing Corp Responsibility"
+    },
     missing_feedback: {
       label: "Missing Feedback"
     },
