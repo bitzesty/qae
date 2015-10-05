@@ -129,50 +129,6 @@ $.fn.charcount = function() {
     $(this).attr("data-counted-words", counter.words);
   };
 
-  // Maxlength for pasting text
-  $(this).on("paste", function (e) {
-    var textInput = $(this);
-
-    if ((e.originalEvent || e).clipboardData) {
-      var oldText = textInput.val();
-      var copyText = ((e.originalEvent || e).clipboardData.getData("text/plain"));
-
-      if (copyText.length > 0) {
-        e.preventDefault();
-
-        textInput.after("<div id='oldText'>"+oldText+"</div>");
-        Countable.once($("#oldText")[0], countText);
-        textInput.after("<div id='copyText'>"+copyText+"</div>");
-        Countable.once($("#copyText")[0], countText);
-        var oldTextCount = parseInt($("#oldText").attr("data-counted-words"), 10);
-        var copyTextCount = parseInt($("#copyText").attr("data-counted-words"), 10);
-        $("#oldText").remove();
-        $("#copyText").remove();
-        var wordMax = parseInt(textInput.attr("data-word-max"), 10);
-        var wordMaxLimit = parseInt(textInput.attr("data-word-max-limit"), 10);
-        var wordTotal = wordMax + wordMaxLimit;
-        var wordsNeeded = wordTotal - oldTextCount;
-        var newCopytext = copyText;
-        if (copyTextCount > wordsNeeded) {
-          var copyPartIndex = copyText.split(" ", wordsNeeded).join(" ").length;
-          newCopytext = $.trim(copyText.substr(0, copyPartIndex)) + " ";
-        }
-
-        if (newCopytext) {
-          textInput.val(textInput.val() + newCopytext);
-          Countable.once(this, counting);
-        }
-      }
-    } else {
-      setTimeout(function() {
-        textInput.addClass("char-over-cut");
-        while (textInput.hasClass("char-over-cut")) {
-          Countable.once(textInput[0], cutOverChar);
-        }
-      }, 10);
-    }
-  });
-
   this.each(function() {
     // Makes word count dynamic
     Countable.live(this, counting);
