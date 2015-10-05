@@ -29,7 +29,11 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def download_filename
-    "#{object.award_type}_award_#{created_at}"
+    if Settings.after_current_submission_deadline? && object.urn.present?
+      "#{object.award_type}_award_#{object.urn}_#{created_at_timestamp}"
+    else
+      "#{object.award_type}_award_#{created_at_timestamp}"
+    end
   end
 
   def pdf_filename
@@ -78,7 +82,15 @@ class FormAnswerDecorator < ApplicationDecorator
       if attributes.has_key? key
         new_array = attributes[key]
         old_array = object.document[key]
-        new_array.each{ |index, value| old_array[index.to_i].merge! value }
+
+        new_array.each do |index, value|
+          if index.to_i < old_array.length
+            old_array[index.to_i].merge! value
+          else
+            old_array << value
+          end
+        end
+        old_array.reject!{|i| i.include? "_destroy" }
       end
     end
   end

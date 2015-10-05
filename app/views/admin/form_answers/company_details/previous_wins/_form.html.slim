@@ -1,0 +1,42 @@
+= simple_form_for [namespace_name, @form_answer],
+                  remote: true,
+                  authenticity_token: true,
+                  html: { "data-type" => "html" } do |f|
+
+  = hidden_field_tag :section, "previous_wins"
+  .form-container
+    = render "admin/form_answers/company_details/previous_wins/show"
+
+    .input.form-group.form-fields.form-block
+      ul.list-add
+        - each_index_or_empty(@form_answer.document["queen_award_holder_details"], {"category" => nil, "year" => nil }) do |win, index|
+          li.well.duplicatable-nested-form
+            .pull-right
+              = link_to "Remove", "#", class: "if-no-js-hide remove-link"
+              .remove-section.if-js-hide
+                = check_box_tag "form_answer[data_attributes][queen_award_holder_details][#{index}][_destroy]"
+
+            .row
+              .col-sm-5
+                .input.select.required
+                  = select_tag "form_answer[data_attributes][queen_award_holder_details][#{index}][category]",
+                    options_for_select(PreviousWin::CATEGORIES, win["category"]),
+                    { include_blank: "",
+                      class: "select required form-control" }
+              .col-sm-2
+                .input.select.required
+                  = select_tag "form_answer[data_attributes][queen_award_holder_details][#{index}][year]",
+                    options_for_select(PreviousWin.available_years, win["year"]),
+                    { include_blank: "",
+                      class: "select required form-control" }
+
+      = link_to "+ Add another winnings", "#", class: "btn btn-default if-no-js-hide add-previous-winning"
+      .form-actions.text-right
+        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+        = f.submit "Save", class: "btn btn-primary pull-right"
+
+
+    = link_to "#", class: "form-edit-link pull-right"
+      span.glyphicon.glyphicon-pencil
+      ' Edit
+    .clear

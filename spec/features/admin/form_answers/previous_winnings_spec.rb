@@ -22,17 +22,27 @@ describe "Admin sets up previous winnings" do
         find("input[type='submit']").click
       end
       within ".previous-wins-form" do
-        expect(page).to have_selector(".well", count: 2)
+        expect(page).to have_selector(".well", count: 1)
       end
     end
   end
 
   context "deletion" do
-    let!(:form_answer) { create(:previous_win).form_answer }
+    let!(:form_answer) do
+      form = create(:form_answer, :trade)
+
+      form.document["queen_award_holder_details"] = [
+        {"category"=>"international_trade", "year"=>"2015"},
+        {"category"=>"international_trade", "year"=>"2015"}
+      ]
+      form.update_column(:document, form.document)
+
+      return form
+    end
 
     it "deletes previous winning" do
       within ".previous-wins-form" do
-        expect(page).to have_selector(".list-add", count: 2)
+        expect(page).to have_selector(".well", count: 2)
         first("input[type='checkbox']").set(true)
         click_button "Save"
       end

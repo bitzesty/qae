@@ -73,6 +73,10 @@ class QaePdfForms::General::QuestionPointer
     @children_conditions = question.children_conditions(questions_with_references)
   end
 
+  def q_visible?
+    step.award_form[question.key].visible?
+  end
+
   def render!
     if humanized_answer.present?
       question_block
@@ -121,7 +125,7 @@ class QaePdfForms::General::QuestionPointer
     render_question_title_with_ref_or_not
     render_context_and_answer_blocks
 
-    if question.can_have_conditional_hints?
+    if question.can_have_conditional_hints? && q_visible?
       render_info_about_branching_questions
     end
   end
@@ -303,7 +307,7 @@ class QaePdfForms::General::QuestionPointer
           render_attachments
         end
       when QAEFormBuilder::OptionsQuestion
-        if humanized_answer.present?
+        if q_visible? && humanized_answer.present?
           form_pdf.render_answer_by_display(question_option_title, display)
         else
           form_pdf.indent 7.mm do
@@ -313,7 +317,7 @@ class QaePdfForms::General::QuestionPointer
           end
         end
       when QAEFormBuilder::ConfirmQuestion
-        if humanized_answer.present?
+        if q_visible? && humanized_answer.present?
           form_pdf.render_answer_by_display(question_checked_value_title, display)
         else
           question_option_box question.text
@@ -337,7 +341,7 @@ class QaePdfForms::General::QuestionPointer
           render_supporters
         end
       when QAEFormBuilder::TextareaQuestion
-        title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
+        title = q_visible? && humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
 
         form_pdf.default_bottom_margin
         render_word_limit
@@ -348,25 +352,29 @@ class QaePdfForms::General::QuestionPointer
           render_list
         end
       else
-        title = humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
+        title = q_visible? && humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
         form_pdf.render_answer_by_display(title, display)
       end
     end
   end
 
   def render_queen_award_holder
-    form_pdf.indent 7.mm do
-      form_pdf.font("Times-Roman") do
-        list_rows.each do |award|
-          form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
-                               color: "999999"
+    if q_visible? && list_rows.present?
+      form_pdf.indent 7.mm do
+        form_pdf.font("Times-Roman") do
+          list_rows.each do |award|
+            form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
+                                 color: "999999"
+          end
         end
       end
+    else
+      form_pdf.render_no_answer_yet
     end
   end
 
   def render_subsidiaries_plants
-    if list_rows.present?
+    if q_visible? && list_rows.present?
       form_pdf.indent 7.mm do
         list_rows.each do |subsidiary|
           subsidiary_text = subsidiary[0]
@@ -460,7 +468,7 @@ class QaePdfForms::General::QuestionPointer
 
     if cells.present?
       headers = cells.map { |a| a[0] }
-      row = cells.map { |a| a[1] }
+      row = cells.map { |a| q_visible? ? a[1] : "" }
       render_single_row_table(headers, row)
     end
 
@@ -482,7 +490,9 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.indent 7.mm do
       headers.each_with_index do |_col, index|
         form_pdf.default_bottom_margin
-        form_pdf.text "#{headers[index]}: #{ANSWER_FONT_START}#{row[index]}#{ANSWER_FONT_END}",
+
+        res = q_visible? ? "#{ANSWER_FONT_START}#{row[index]}#{ANSWER_FONT_END}" : ""
+        form_pdf.text "#{headers[index]}: #{res}",
                       inline_format: true
       end
     end
@@ -493,7 +503,11 @@ class QaePdfForms::General::QuestionPointer
     row = sub_answers.map { |a| a[1] }
     row[1] = to_month(row[1]) if row[1].present?
 
-    title = (row[0] == FormPdf::UNDEFINED_TITLE ? FormPdf::UNDEFINED_TITLE : row.join(" "))
+    title = if q_visible? && row[0] != FormPdf::UNDEFINED_TITLE
+      row.join(" ")
+    else
+      FormPdf::UNDEFINED_TITLE
+    end
 
     render_question_context
     render_question_help_note
@@ -509,21 +523,24 @@ class QaePdfForms::General::QuestionPointer
 
   def sub_question_block(sub_question, sub_answer)
     form_pdf.default_bottom_margin
-    form_pdf.text "#{sub_question}: #{ANSWER_FONT_START}#{sub_answer}#{ANSWER_FONT_END}",
+    res = q_visible? ? "#{ANSWER_FONT_START}#{sub_answer}#{ANSWER_FONT_END}" : FormPdf::UNDEFINED_TITLE
+    form_pdf.text "#{sub_question}: #{res}",
                   inline_format: true
   end
 
   def sub_question_block_without_title(sub_answer)
     form_pdf.font("Times-Roman") do
-      form_pdf.render_text sub_answer,
+      form_pdf.render_text (q_visible? ? sub_answer : FormPdf::UNDEFINED_TITLE),
                            color: "999999"
     end
   end
 
   def question_option_title
-    question.options.select do |option|
+    res = question.options.detect do |option|
       option.value.to_s == humanized_answer.to_s
-    end.first.text
+    end
+
+    q_visible? && res.present? ? res.text : ""
   end
 
   def question_option_box(title)

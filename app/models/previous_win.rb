@@ -1,17 +1,9 @@
-class PreviousWin < ActiveRecord::Base
+class PreviousWin
   CATEGORIES = {
     "Innovation" => "innovation",
     "Internation Trade" => "international_trade",
     "Sustainable Development" => "sustainable_development"
   }
-
-  validates :form_answer_id, presence: true
-  validates :category, inclusion: {
-    in: CATEGORIES.values
-  }
-  validates :year, presence: true
-
-  belongs_to :form_answer
 
   def self.available_years
     current_year = AwardYear.current.year

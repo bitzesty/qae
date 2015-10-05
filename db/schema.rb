@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151001144155) do
+ActiveRecord::Schema.define(version: 20151005112348) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(version: 20151001144155) do
     t.string   "urn"
     t.boolean  "submitted",                     default: false
     t.float    "fill_progress"
-    t.string   "state",                         default: "eligibility_in_progress", null: false
+    t.string   "state",                         default: "application_in_progress", null: false
     t.string   "company_or_nominee_name"
     t.string   "nominee_full_name"
     t.string   "user_full_name"
@@ -264,6 +264,7 @@ ActiveRecord::Schema.define(version: 20151001144155) do
     t.string   "nominee_title"
     t.string   "nominator_full_name"
     t.string   "nominator_email"
+    t.string   "user_email"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
