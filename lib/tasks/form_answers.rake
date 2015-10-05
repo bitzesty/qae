@@ -145,4 +145,19 @@ namespace :form_answers do
       f.update_columns(args)
     end
   end
+
+  desc "Updates user_email field"
+  task update_user_email_field: :environment do
+    i = 0
+
+    puts "Updating form answers..."
+    FormAnswer.find_each do |f|
+      if f.user
+        f.update_column(:user_email, f.user.email)
+        i += 1
+      end
+    end
+
+    puts "#{i} form answers were updated"
+  end
 end

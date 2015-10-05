@@ -15,7 +15,8 @@ class FormAnswer < ActiveRecord::Base
                     :award_type_full_name,
                     :company_or_nominee_name,
                     :nominee_full_name,
-                    :user_full_name
+                    :user_full_name,
+                    :user_email
                   ],
                   using: {
                     tsearch: {
@@ -122,7 +123,7 @@ class FormAnswer < ActiveRecord::Base
     before_save :assign_searching_attributes
 
     before_create :set_account
-    before_create :set_user_full_name
+    before_create :set_user_info
   end
 
   store_accessor :document
@@ -265,8 +266,11 @@ class FormAnswer < ActiveRecord::Base
     self.award_type_full_name = AWARD_TYPE_FULL_NAMES[award_type]
   end
 
-  def set_user_full_name
-    self.user_full_name ||= user.full_name if user.present?
+  def set_user_info
+    if user.present?
+      self.user_full_name ||= user.full_name
+      self.user_email ||= user.email
+    end
   end
 
   def validate_answers
