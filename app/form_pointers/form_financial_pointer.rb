@@ -120,17 +120,20 @@ class FormFinancialPointer
     end
   end
 
-  def overall_growth
-    turnover = data_values(:total_turnover)
+  def overall_growth_values
+    form_answer.trade? ? data_values(:overseas_sales) : data_values(:total_turnover)
+  end
 
-    turnover.last && turnover.first ? turnover.last[:value].to_i - turnover.first[:value].to_i : "-"
+  def overall_growth
+    res = overall_growth_values
+    res.last && res.first ? res.last[:value].to_i - res.first[:value].to_i : "-"
   end
 
   def overall_growth_in_percents
-    turnover = data_values(:total_turnover)
+    res = overall_growth_values
 
-    if turnover && turnover.any? && !turnover.first[:value].to_f.zero?
-      (turnover.last[:value].to_f / turnover.first[:value].to_f * 100 - 100).round(2)
+    if res && res.any? && !res.first[:value].to_f.zero?
+      (res.last[:value].to_f / res.first[:value].to_f * 100 - 100).round(2)
     else
       "-"
     end
