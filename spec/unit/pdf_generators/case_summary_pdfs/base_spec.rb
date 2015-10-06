@@ -16,7 +16,7 @@ describe "CaseSummaryPdfs::Base" do
         create :assessor_assignment, form_answer: form_answer,
                                      submitted_at: Date.today,
                                      assessor: nil,
-                                     position: "lead_case_summary",
+                                     position: "case_summary",
                                      document: set_case_summary_content(form_answer)
       end
     end

@@ -10,7 +10,7 @@ class Reports::FormAnswer
     @moderated = pick_assignment("moderated")
     @primary = pick_assignment("primary")
     @secondary = pick_assignment("secondary")
-    @lead_case_summary = pick_assignment("lead_case_summary")
+    @case_summary = pick_assignment("case_summary")
 
     @secondary_assessor = @obj.secondary_assessor
     @press_summary = @obj.press_summary if @obj.awarded?
@@ -87,7 +87,7 @@ class Reports::FormAnswer
   end
 
   def case_summary_overall_grade
-    rag(@lead_case_summary.try(:verdict_rate))
+    rag(@case_summary.try(:verdict_rate))
   end
 
   def section1
@@ -179,7 +179,7 @@ class Reports::FormAnswer
   end
 
   def case_summary_status
-    lead_submitted = @lead_case_summary.try(:submitted?)
+    lead_submitted = @case_summary.try(:submitted?)
 
     if !lead_submitted
       "Not Submitted"

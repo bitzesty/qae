@@ -18,7 +18,7 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
               :overall_growth_in_percents
 
   def generate!
-    # fetch lead_case_summary or primary (if lead missing)
+    # fetch case_summary or primary (if lead missing)
     @data = form_answer.lead_or_primary_assessor_assignments.first.document
     fetch_financial_data if !form_answer.promotion? && form_answer.submitted?
 

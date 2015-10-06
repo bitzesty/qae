@@ -9,7 +9,7 @@ class AssessmentSubmissionService
   def perform
     return if resource.submitted?
     if submit_assessment
-      populate_lead_case_summary
+      populate_case_summary
     end
 
     if resource.moderated?
@@ -25,9 +25,9 @@ class AssessmentSubmissionService
     resource.update(submitted_at: DateTime.now)
   end
 
-  def populate_lead_case_summary
+  def populate_case_summary
     if resource.moderated?
-      case_summary = record(AssessorAssignment.positions[:lead_case_summary])
+      case_summary = record(AssessorAssignment.positions[:case_summary])
       primary_assessment = record(AssessorAssignment.positions[:primary])
       moderated_assessment = record(AssessorAssignment.positions[:moderated])
 

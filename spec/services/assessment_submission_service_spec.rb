@@ -29,7 +29,7 @@ describe AssessmentSubmissionService do
       }
 
       expect { expect_to_submit }.to change {
-        form_answer.assessor_assignments.lead_case_summary.document == expected
+        form_answer.assessor_assignments.case_summary.document == expected
       }.from(false).to(true)
     end
   end
