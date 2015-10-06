@@ -5,7 +5,7 @@ describe AssessmentSubmissionService do
 
   subject { described_class.new(assessment, assessor) }
 
-  let(:form_answer) { create(:form_answer, :trade) }
+  let(:form_answer) { create(:form_answer, :trade, :submitted) }
   let(:document) { { "verdict_desc" => "description NOT to copy", "verdict_rate" => "positive" } }
   let(:assessor) { create(:assessor, :lead_for_all) }
 
@@ -17,6 +17,9 @@ describe AssessmentSubmissionService do
     primary.assessor_id = assessor.id
     primary.document = { "verdict_desc" => "description to copy", "verdict_rate" => "negative" }
     primary.save!
+
+    create(:settings, :expired_submission_deadlines)
+    form_answer.state_machine.perform_transition(:assessment_in_progress)
   end
 
   context "moderated form submission" do
@@ -31,6 +34,17 @@ describe AssessmentSubmissionService do
       expect { expect_to_submit }.to change {
         form_answer.assessor_assignments.case_summary.document == expected
       }.from(false).to(true)
+    end
+  end
+
+  context "case summary submission" do
+    let(:assessment) { form_answer.assessor_assignments.case_summary }
+
+    it "performs state transition when case summary is submitted" do
+      assessment.document =  { "verdict_desc" => "description to copy", "verdict_rate" => "negative" }
+
+      subject.perform
+      expect(form_answer.reload.state).to eq("not_recommended")
     end
   end
 end
