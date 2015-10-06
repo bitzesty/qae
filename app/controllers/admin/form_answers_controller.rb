@@ -20,7 +20,7 @@ class Admin::FormAnswersController < Admin::BaseController
                 :primary_assessment,
                 :secondary_assessment,
                 :moderated_assessment,
-                :lead_case_summary_assessment
+                :case_summary_assessment
 
   def resource
     @form_answer ||= load_resource

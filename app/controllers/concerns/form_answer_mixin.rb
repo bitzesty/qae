@@ -71,8 +71,8 @@ module FormAnswerMixin
     @moderated_assessment ||= resource.assessor_assignments.moderated.decorate
   end
 
-  def lead_case_summary_assessment
-    @lead_case_summary_assessment ||= resource.assessor_assignments.lead_case_summary.decorate
+  def case_summary_assessment
+    @case_summary_assessment ||= resource.assessor_assignments.case_summary.decorate
   end
 
   def allowed_params

@@ -245,7 +245,7 @@ ActiveRecord::Schema.define(version: 20151005112348) do
     t.string   "urn"
     t.boolean  "submitted",                     default: false
     t.float    "fill_progress"
-    t.string   "state",                         default: "application_in_progress", null: false
+    t.string   "state",                         default: "eligibility_in_progress", null: false
     t.string   "company_or_nominee_name"
     t.string   "nominee_full_name"
     t.string   "user_full_name"

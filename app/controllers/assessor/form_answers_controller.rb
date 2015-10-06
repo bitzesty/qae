@@ -7,7 +7,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
                 :primary_assessment,
                 :secondary_assessment,
                 :moderated_assessment,
-                :lead_case_summary_assessment,
+                :case_summary_assessment,
                 :category_picker
 
   def index

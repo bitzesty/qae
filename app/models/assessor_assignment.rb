@@ -3,7 +3,7 @@ class AssessorAssignment < ActiveRecord::Base
     primary: 0,
     secondary: 1,
     moderated: 2,
-    lead_case_summary: 4
+    case_summary: 4
   }
 
   begin :validations
@@ -43,19 +43,19 @@ class AssessorAssignment < ActiveRecord::Base
   store_accessor :document, *AppraisalForm.all
 
   def self.primary
-    find_or_create_by(position: 0)
+    find_or_create_by(position: positions[:primary])
   end
 
   def self.secondary
-    find_or_create_by(position: 1)
+    find_or_create_by(position: positions[:secondary])
   end
 
   def self.moderated
-    find_or_create_by(position: 2)
+    find_or_create_by(position: positions[:moderated])
   end
 
-  def self.lead_case_summary
-    find_or_create_by(position: 4)
+  def self.case_summary
+    find_or_create_by(position: positions[:case_summary])
   end
 
   def submitted?
@@ -92,7 +92,7 @@ class AssessorAssignment < ActiveRecord::Base
   def owner_or_administrative?(subject)
     subject.is_a?(Admin) ||
       subject.try(:lead?, form_answer) ||
-      (!moderated? && !lead_case_summary? && assessor_id == subject.id)
+      (!moderated? && !case_summary? && assessor_id == subject.id)
   end
 
   def award_specific_attributes
@@ -140,7 +140,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def assessor_existence
-    if (moderated? || lead_case_summary?) && assessor_id.present?
+    if (moderated? || case_summary?) && assessor_id.present?
       errors.add(:assessor_id, "cannot be present for this kind of assessment.")
     end
   end
