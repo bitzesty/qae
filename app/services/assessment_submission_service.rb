@@ -6,6 +6,8 @@ class AssessmentSubmissionService
     @current_subject = current_subject
   end
 
+  delegate :form_answer, to: :resource
+
   def perform
     return if resource.submitted?
     if submit_assessment
@@ -13,7 +15,11 @@ class AssessmentSubmissionService
     end
 
     if resource.moderated?
-      resource.form_answer.state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
+      form_answer.state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
+    end
+
+    if resource.case_summary?
+      perform_state_transition!
     end
   end
 
@@ -42,13 +48,20 @@ class AssessmentSubmissionService
 
   def primary_and_lead_is_the_same_person?
     # possibly some logic can be reviewed
-    primary = resource.form_answer.assessors.primary
-    Assessor.leads_for(resource.form_answer.award_type).include?(primary)
+    primary = form_answer.assessors.primary
+    Assessor.leads_for(form_answer.award_type).include?(primary)
   end
 
   def record(position)
     AssessorAssignment.where(
-      form_answer_id: resource.form_answer_id, position: position
+      form_answer_id: form_answer.id, position: position
     ).first_or_create
+  end
+
+  private
+
+  def perform_state_transition!
+    state_machine = form_answer.state_machine
+    state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
   end
 end
