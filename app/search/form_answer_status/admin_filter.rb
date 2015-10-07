@@ -8,6 +8,12 @@ class FormAnswerStatus::AdminFilter
     assessors_not_assigned: {
       label: "Assessors not assigned"
     },
+    primary_assessment_submitted: {
+      label: "Primary Assessment submitted"
+    },
+    secondary_assessment_submitted: {
+      label: "Secondary Assessment submitted"
+    },
     missing_audit_certificate: {
       label: "Missing Audit Certificate"
     },

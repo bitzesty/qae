@@ -55,6 +55,14 @@ class FormAnswerSearch < Search
         out = out.where("sic_code IS NULL")
       when "assessors_not_assigned"
         out = out.where(primary_assessor_id: nil, secondary_assessor_id: nil)
+      when "primary_assessment_submitted"
+        out = out.joins(
+          "JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id=form_answers.id"
+        ).where("primary_assignments.position = ? AND primary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:primary])
+      when "secondary_assessment_submitted"
+        out = out.joins(
+          "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id"
+        ).where("secondary_assignments.position = ? AND secondary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:secondary])
       when "missing_audit_certificate"
         out = out.joins(
           "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id"
