@@ -129,7 +129,8 @@ class FormController < ApplicationController
         end
       end
 
-      @form_answer.save
+      # TODO: remove me once you fix issue with missing data after deadline
+      # @form_answer.save
       @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
       render template: "qae_form/show"
     else
@@ -138,69 +139,73 @@ class FormController < ApplicationController
   end
 
   def save
-    @form_answer.document = prepare_doc
-    @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+    render nothing: true
+    return false
 
-    redirected = params[:next_action] == "redirect"
-    submitted = params[:submit] == "true" && !redirected
+    # TODO: remove me once you fix issue with missing data after deadline
+    # @form_answer.document = prepare_doc
+    # @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
 
-    respond_to do |format|
-      format.html do
-        redirected = params[:next_action] == "redirect"
+    # redirected = params[:next_action] == "redirect"
+    # submitted = params[:submit] == "true" && !redirected
 
-        if submitted
-          @form_answer.submitted = true
-        end
+    # respond_to do |format|
+    #   format.html do
+    #     redirected = params[:next_action] == "redirect"
 
-        submitted_was_changed = @form_answer.submitted_changed?
-        @form_answer.current_step = params[:current_step] || @form.steps.first.title.parameterize
+    #     if submitted
+    #       @form_answer.submitted = true
+    #     end
 
-        if @form_answer.eligible? && (saved = @form_answer.save)
-          if submitted_was_changed
-            @form_answer.state_machine.submit(current_user)
-            FormAnswerUserSubmissionService.new(@form_answer).perform
-          end
-        end
+    #     submitted_was_changed = @form_answer.submitted_changed?
+    #     @form_answer.current_step = params[:current_step] || @form.steps.first.title.parameterize
 
-        if redirected
-          redirect_to dashboard_url
-        else
-          if submitted && saved
-            redirect_to submit_confirm_url(@form_answer)
-          else
-            if saved
-              params[:next_step] ||= @form.steps[1].title.parameterize
-              redirect_to edit_form_url(@form_answer, step: params[:next_step])
-            else
-              params[:step] = @form_answer.steps_with_errors.try(:first)
-              # avoid redirecting to supporters page
-              if !params[:step] || params[:step] == "letters-of-support"
-                params[:step] = @form.steps.first.title.parameterize
-              end
+    #     if @form_answer.eligible? && (saved = @form_answer.save)
+    #       if submitted_was_changed
+    #         @form_answer.state_machine.submit(current_user)
+    #         FormAnswerUserSubmissionService.new(@form_answer).perform
+    #       end
+    #     end
 
-              render template: "qae_form/show"
-            end
-          end
-        end
-      end
+    #     if redirected
+    #       redirect_to dashboard_url
+    #     else
+    #       if submitted && saved
+    #         redirect_to submit_confirm_url(@form_answer)
+    #       else
+    #         if saved
+    #           params[:next_step] ||= @form.steps[1].title.parameterize
+    #           redirect_to edit_form_url(@form_answer, step: params[:next_step])
+    #         else
+    #           params[:step] = @form_answer.steps_with_errors.try(:first)
+    #           # avoid redirecting to supporters page
+    #           if !params[:step] || params[:step] == "letters-of-support"
+    #             params[:step] = @form.steps.first.title.parameterize
+    #           end
 
-      format.js do
-        if submitted
-          @form_answer.submitted = true
-        end
+    #           render template: "qae_form/show"
+    #         end
+    #       end
+    #     end
+    #   end
 
-        submitted_was_changed = @form_answer.submitted_changed?
+    #   format.js do
+    #     if submitted
+    #       @form_answer.submitted = true
+    #     end
 
-        if @form_answer.eligible? && @form_answer.save
-          if submitted_was_changed
-            @form_answer.state_machine.submit(current_user)
-            FormAnswerUserSubmissionService.new(@form_answer).perform
-          end
-        end
+    #     submitted_was_changed = @form_answer.submitted_changed?
 
-        render json: { progress: @form_answer.fill_progress }
-      end
-    end
+    #     if @form_answer.eligible? && @form_answer.save
+    #       if submitted_was_changed
+    #         @form_answer.state_machine.submit(current_user)
+    #         FormAnswerUserSubmissionService.new(@form_answer).perform
+    #       end
+    #     end
+
+    #     render json: { progress: @form_answer.fill_progress }
+    #   end
+    # end
   end
 
   def submit_confirm
@@ -224,12 +229,12 @@ class FormController < ApplicationController
         @form_answer.form_answer_attachments.where(question_key: "org_chart").destroy_all
       end
 
-      if @attachment.save
+      if true #@attachment.save # TODO: remove me once you fix issue with missing data after deadline
         @form_answer.document[@attachment.question_key]  ||= {}
         attachments_hash = @form_answer.document[@attachment.question_key]
         index = next_index(attachments_hash)
         attachments_hash[index] = { file: @attachment.id }
-        @form_answer.save!
+        # @form_answer.save! TODO: remove me once you fix issue with missing data after deadline
 
         # text/plain content type is needed for jquery.fileupload
         render json: @attachment, status: :created, content_type: "text/plain"
