@@ -14,7 +14,7 @@
               p = @form_answer.innovation_desc_short
             - if @form_answer.development?
               p = @form_answer.development_desc_short
-            - if @form_answer.trade?
+            - if @form_answer.trade? && @form_answer.document["trade_goods_and_services_explanations"].present?
               ul.list-unstyled.good-services-list
                 - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
                   - if index < @form_answer.document["trade_goods_amount"].to_i
@@ -35,7 +35,7 @@
                           as: :text,
                           label: false,
                           input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
-              - if @form_answer.trade?
+              - if @form_answer.trade? && @form_answer.document["trade_goods_and_services_explanations"].present?
                 ul.list-unstyled.good-services-list
                   - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
                     - if index < @form_answer.document["trade_goods_amount"].to_i
@@ -61,7 +61,7 @@
           p = @form_answer.innovation_desc_short
         - if @form_answer.development?
           p = @form_answer.development_desc_short
-        - if @form_answer.trade?
+        - if @form_answer.trade? && @form_answer.document["trade_goods_and_services_explanations"].present?
           ul.list-unstyled.good-services-list
             - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
               - if index < @form_answer.document["trade_goods_amount"].to_i
