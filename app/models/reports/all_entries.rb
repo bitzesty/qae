@@ -116,6 +116,10 @@ class Reports::AllEntries
       method: :unit_website
     },
     {
+      label: "ImmediateParentName",
+      method: :immediate_parent_name
+    },
+    {
       label: "ImmediateParentCountry",
       method: :immediate_parent_country
     },
