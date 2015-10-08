@@ -15,7 +15,6 @@
             - if @form_answer.development?
               p = @form_answer.development_desc_short
             - if @form_answer.trade?
-              / # TODO pull in trade good services
               ul.list-unstyled.good-services-list
                 - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
                   - if index < @form_answer.document["trade_goods_amount"].to_i
@@ -37,7 +36,6 @@
                           label: false,
                           input_html: { class: "form-control js-char-count", rows: 3, "data-word-max" => 15 }
               - if @form_answer.trade?
-                / # TODO pull in trade good services
                 ul.list-unstyled.good-services-list
                   - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
                     - if index < @form_answer.document["trade_goods_amount"].to_i
@@ -65,9 +63,10 @@
           p = @form_answer.development_desc_short
         - if @form_answer.trade?
           ul.list-unstyled.good-services-list
-            / # TODO pull in trade good services
-            - (1..3).each_with_index do |placement, index|
-              li
-                label.label-small
-                  = "Goods/services #{index + 1}"
-                p Description of trade
+            - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
+              - if index < @form_answer.document["trade_goods_amount"].to_i
+                li
+                  label.label-small
+                    = "Goods/services #{index + 1}"
+                  p
+                    = service["desc_short"]
