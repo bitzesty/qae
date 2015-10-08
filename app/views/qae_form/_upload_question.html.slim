@@ -10,7 +10,7 @@
           div
             - if el['file'].present?
               = render "form/form_attachments/file", el: el, attachments: attachments
-              input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id
+              input type='hidden' name=question.input_name(suffix: 'file', index: idx) value=attachments[el['file'].to_i].id *possible_read_only_ops
 
               - unless admin_in_read_only_mode?
                 - if question.key == :org_chart

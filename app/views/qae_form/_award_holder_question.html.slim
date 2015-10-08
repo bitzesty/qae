@@ -1,7 +1,7 @@
 = render "shared/non_js_dynamic_list_redirect_warning", add_message: "Add Award/Personal honour"
 
 ul.list-add data-need-to-clear-example=true data-add-limit="10" data-default=1 id="non_js_#{question.key}-list-question"
-  input name="form[#{question.key}][array]" value="true" type="hidden"
+  input name="form[#{question.key}][array]" value="true" type="hidden" *possible_read_only_ops
 
   - question.entities.each_with_index do |award, index|
     = render 'qae_form/award_fields', question: question, award: award, index: index
@@ -9,7 +9,7 @@ ul.list-add data-need-to-clear-example=true data-add-limit="10" data-default=1 i
   - if question.entities.none?
     = render 'qae_form/award_fields', question: question, award: {}, index: 0
 
-a.button.button-add.js-button-add.if-no-js-hide href="#"
+a.button.button-add.js-button-add.if-no-js-hide href="#" *possible_read_only_ops
   | + Add another Award/Personal honour
 
 = link_to "+ Add Award/Personal honour", new_form_form_answer_awards_url(@form_answer.id, question.award_years_present ? {holder: true} : {}),

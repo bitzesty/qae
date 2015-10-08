@@ -307,6 +307,7 @@ jQuery ->
       $("#current_step_id").val($(".js-step-condition.step-current").attr("data-step"))
 
       form_data = $('form.qae-form').serialize()
+
       $.ajax({
         url: url
         data: form_data
