@@ -45,7 +45,7 @@ describe "Admin generates the CSV reports" do
     let(:id) { "press-book-list" }
     it "produces proper output" do
       expect(output.size).to eq(2)
-      expect(output[1][-2]).to eq("GB")
+      expect(output[1][-2]).to eq("United Kingdom")
       expect(output[1][-4]).to eq("example.com")
     end
   end
