@@ -189,13 +189,17 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def need_to_save_version?
-    versions.count < 1 || (
-      whodunnit.present? && (
-        its_admin_or_assessor_action? ||
-        (its_user_action? && no_latest_version_or_it_was_less_than_day_ago?)
-      )
-    )
+    true
   end
+
+  # def need_to_save_version?
+  #   versions.count < 1 || (
+  #     whodunnit.present? && (
+  #       its_admin_or_assessor_action? ||
+  #       (its_user_action? && no_latest_version_or_it_was_less_than_day_ago?)
+  #     )
+  #   )
+  # end
 
   def whodunnit
     PaperTrail.whodunnit
