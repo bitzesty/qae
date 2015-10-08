@@ -79,8 +79,8 @@ class Reports::PressBookList
       method: :unit_website
     },
     {
-      label: "ImmediateParent",
-      method: :immediate_parent
+      label: "ImmediateParentName",
+      method: :immediate_parent_name
     },
     {
       label: "ImmediateParentCountry",
