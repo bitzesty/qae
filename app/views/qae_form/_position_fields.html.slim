@@ -35,7 +35,7 @@ li.js-add-example
       span.span-3.date-ongoing
         br
         label.small
-          input.js-trigger-autosave type="hidden" name="form[position_details][#{index}][ongoing]" value='0'
+          input.js-trigger-autosave type="hidden" name="form[position_details][#{index}][ongoing]" value='0' *(possible_read_only_ops.merge(ongoing_opts))
           input.js-trigger-autosave type="checkbox" name="form[position_details][#{index}][ongoing]" checked=('checked' if position['ongoing'] == '1') value='1' *possible_read_only_ops
           ' Ongoing
     span.clear

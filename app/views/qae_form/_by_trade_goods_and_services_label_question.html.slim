@@ -1,5 +1,5 @@
 .js-by-trade-goods-and-services-amount
-  input name="#{question.input_name}[array]" value="true" type="hidden"
+  input name="#{question.input_name}[array]" value="true" type="hidden" *possible_read_only_ops
 
   - (1..5).each_with_index do |placement, index|
     - item = question.trade_goods_and_services[index]
