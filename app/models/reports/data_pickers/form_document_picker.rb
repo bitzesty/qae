@@ -124,16 +124,11 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def immediate_parent_country
-    country_code = doc("parent_company_country")
-
-    if country_code
-      country = ISO3166::Country[country_code]
-      country.name
-    end
+    country_name(doc("parent_company_country"))
   end
 
   def organisation_with_ultimate_control_country
-    doc("ultimate_control_company_country")
+    country_name(doc("ultimate_control_company_country"))
   end
 
   def organisation_with_ultimate_control
@@ -246,5 +241,12 @@ module Reports::DataPickers::FormDocumentPicker
 
   def doc(key)
     obj.document[key]
+  end
+
+  def country_name(code)
+    if code
+      country = ISO3166::Country[code]
+      country.name
+    end
   end
 end
