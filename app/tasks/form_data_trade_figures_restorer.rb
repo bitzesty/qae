@@ -1,6 +1,6 @@
 # Example of use:
 #
-# FormDataTradeFiguresRestorer.restore_blanks
+# FormDataTradeFiguresRestorer.restore_with_blank_data
 #
 # FormDataTradeFiguresRestorer.restore_with_existing_data
 #
