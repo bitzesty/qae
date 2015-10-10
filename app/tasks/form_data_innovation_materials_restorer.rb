@@ -22,9 +22,10 @@ class FormInnovationMaterialsRestorer
     end
 
     def restore_blanks
+      @corrected_ids = []
+
       if forms_with_blank_data.present?
-        all_ids = forms_with_bad_data.map(&:id)
-        corrected_ids = []
+        all_ids = forms_with_blank_data.map(&:id)
 
         puts ""
         puts "   FORMS with blank innovation_materials detected! (#{forms_with_blank_data.count})"
@@ -32,12 +33,19 @@ class FormInnovationMaterialsRestorer
         puts ""
 
         forms_with_blank_data.each do |form|
-          run(form, corrected_ids)
+          run(form)
         end
 
         puts ""
-        puts "   FIXED #{corrected_ids.count} entries"
-        puts "   FIXED IDs: #{corrected_ids}"
+        puts "   FIXED #{@corrected_ids.count} entries"
+        puts "   FIXED IDs: #{@corrected_ids}"
+        puts ""
+
+        not_fixed_ids = all_ids - @corrected_ids
+
+        puts ""
+        puts "   NOT FIXED #{not_fixed_ids.count} entries"
+        puts "   NOT FIXED IDs: #{not_fixed_ids}"
         puts ""
       else
         puts ""
@@ -64,9 +72,10 @@ class FormInnovationMaterialsRestorer
     end
 
     def restore_with_existing_data
+      @corrected_ids = []
+
       if forms_with_bad_data.present?
         all_ids = forms_with_bad_data.map(&:id)
-        corrected_ids = []
 
         puts ""
         puts "   FORMS with bad innovation_materials detected! (#{forms_with_bad_data.count})"
@@ -74,12 +83,19 @@ class FormInnovationMaterialsRestorer
         puts ""
 
         forms_with_bad_data.each do |form|
-          corrected_ids = run(form, corrected_ids)
+          run(form)
         end
 
         puts ""
-        puts "   FIXED #{corrected_ids.count} entries"
-        puts "   FIXED IDs: #{corrected_ids}"
+        puts "   FIXED #{@corrected_ids.count} entries"
+        puts "   FIXED IDs: #{@corrected_ids}"
+        puts ""
+
+        not_fixed_ids = all_ids - @corrected_ids
+
+        puts ""
+        puts "   NOT FIXED #{not_fixed_ids.count} entries"
+        puts "   NOT FIXED IDs: #{not_fixed_ids}"
         puts ""
       else
         puts ""
@@ -90,7 +106,7 @@ class FormInnovationMaterialsRestorer
       nil
     end
 
-    def run(form, corrected_ids)
+    def run(form)
       day_after_deadline = Date.new(2015, 10, 1)
 
       all_versions = form.versions.select do |v|
@@ -109,10 +125,39 @@ class FormInnovationMaterialsRestorer
       puts ""
       puts "   VERSION LIST: "
 
-      all_versions.each_with_index do |v, index|
+      all_versions.each_with_index do |ver, index|
+
+        mats = ver.object["document"]["innovation_materials"]
+
         puts ""
-        puts "   VERSION #{index + 1}, date: #{v.created_at}: #{v.object["document"]["innovation_materials"]}"
+        puts "     VERSION #{index + 1}, date: #{ver.created_at}: #{mats}"
         puts ""
+
+        v_file_items = mats.select do |key, value|
+          value["file"].present?
+        end
+
+        if v_file_items.present?
+          v_attachments = v_file_items.all? do |k, v|
+            file = v["file"]
+            fa = FormAnswerAttachment.find_by_id(file)
+            att_present = fa.present?
+
+            if att_present
+              puts "        | Attachment #{fa.id} is VALID"
+            else
+              puts "        | ERROR: Attachment #{file} is not exist!"
+            end
+
+            att_present
+          end
+
+          if v_attachments
+            puts "        | all attachments are valid!"
+          else
+            puts "        | ERROR: some attachments invalid!"
+          end
+        end
       end
 
       print "Would you like to set one of versions? [y/n]: "
@@ -204,9 +249,16 @@ class FormInnovationMaterialsRestorer
             form.document["innovation_materials"] = selected_version
             form.save!
 
-            corrected_ids << form.id
+            @corrected_ids << form.id
 
-            puts "   SAVED!"
+            puts "|||||||||||||||||||||||||||||||||||||||||||||||||||"
+            puts ""
+            puts "   #{form.id} SAVED!"
+            puts ""
+            puts "|||||||||||||||||||||||||||||||||||||||||||||||||||"
+            puts ""
+
+            sleep 10
 
           when 'n'
             puts ""
@@ -228,7 +280,7 @@ class FormInnovationMaterialsRestorer
 
       puts ""
 
-      corrected_ids
+      @corrected_ids
     end
   end
 end
