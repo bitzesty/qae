@@ -1,12 +1,12 @@
 # Example of use:
 # form = FormAnswer.find(1123)
-# FormDataRestorer.new(form).run
+# FormDataGoodsAndServicesRestorer.new(form).run
 # ------------------------------
 # [1123] amount: 1, found amout: 1
 #    new_data: [{"desc_short"=>"Design, manufacture and service of laboratory gas generators.", "total_overseas_trade"=>"100%"}, {"desc_short"=>"", "total_overseas_trade"=>""}, {"desc_short"=>"", "total_overseas_trade"=>""}, {"desc_short"=>"", "total_overseas_trade"=>""}, {"desc_short"=>"", "total_overseas_trade"=>""}]
 # ------------------------------
 
-class FormDataRestorer
+class FormDataGoodsAndServicesRestorer
 
   attr_accessor :form
 
@@ -29,7 +29,20 @@ class FormDataRestorer
     puts "   new_data: #{new_data}"
     puts "------------------------------"
 
-    form.document["trade_goods_and_services_explanations"] = new_data
-    form.save!
+    # form.document["trade_goods_and_services_explanations"] = new_data
+    # form.save!
+  end
+
+  class << self
+    def bad_forms
+      FormAnswer.submitted
+                .for_award_type("trade")
+                .select do |f|
+        f.document["trade_goods_and_services_explanations"].present? &&
+        f.document["trade_goods_and_services_explanations"].all? do |g|
+          g["desc_short"].blank?
+        end
+      end
+    end
   end
 end
