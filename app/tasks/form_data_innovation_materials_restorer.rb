@@ -23,14 +23,22 @@ class FormInnovationMaterialsRestorer
 
     def restore_blanks
       if forms_with_blank_data.present?
+        all_ids = forms_with_bad_data.map(&:id)
+        corrected_ids = []
+
         puts ""
         puts "   FORMS with blank innovation_materials detected! (#{forms_with_blank_data.count})"
-        puts "   IDs: #{forms_with_blank_data.map(&:id)}"
+        puts "   IDs: #{all_ids}"
         puts ""
 
         forms_with_blank_data.each do |form|
-          run(form)
+          run(form, corrected_ids)
         end
+
+        puts ""
+        puts "   FIXED #{corrected_ids.count} entries"
+        puts "   FIXED IDs: #{corrected_ids}"
+        puts ""
       else
         puts ""
         puts "   FORMS with blank innovation_materials are not exist"
@@ -57,14 +65,22 @@ class FormInnovationMaterialsRestorer
 
     def restore_with_existing_data
       if forms_with_bad_data.present?
+        all_ids = forms_with_bad_data.map(&:id)
+        corrected_ids = []
+
         puts ""
         puts "   FORMS with bad innovation_materials detected! (#{forms_with_bad_data.count})"
-        puts "   IDs: #{forms_with_bad_data.map(&:id)}"
+        puts "   IDs: #{all_ids}"
         puts ""
 
         forms_with_bad_data.each do |form|
-          run(form)
+          corrected_ids = run(form, corrected_ids)
         end
+
+        puts ""
+        puts "   FIXED #{corrected_ids.count} entries"
+        puts "   FIXED IDs: #{corrected_ids}"
+        puts ""
       else
         puts ""
         puts "   FORMS with bad innovation_materials are not exist"
@@ -74,7 +90,7 @@ class FormInnovationMaterialsRestorer
       nil
     end
 
-    def run(form)
+    def run(form, corrected_ids)
       day_after_deadline = Date.new(2015, 10, 1)
 
       all_versions = form.versions.select do |v|
@@ -185,8 +201,10 @@ class FormInnovationMaterialsRestorer
             puts "   RESTORE"
             puts ""
 
-            # form.document["innovation_materials"] = selected_version
-            # form.save!
+            form.document["innovation_materials"] = selected_version
+            form.save!
+
+            corrected_ids << form.id
 
             puts "   SAVED!"
 
@@ -209,6 +227,8 @@ class FormInnovationMaterialsRestorer
       end
 
       puts ""
+
+      corrected_ids
     end
   end
 end
