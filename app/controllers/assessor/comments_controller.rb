@@ -20,8 +20,12 @@ class Assessor::CommentsController < Assessor::BaseController
     respond_to do |format|
       format.html do
         if request.xhr?
-          render partial: "admin/form_answers/comment",
-                 locals: { comment: @comment, resource: form_answer }
+          if @comment.persisted?
+            render partial: "admin/form_answers/comment",
+                   locals: { comment: @comment, resource: form_answer }
+          else
+            render nothing: true
+          end
         else
           redirect_to assessor_form_answer_path(form_answer)
         end
