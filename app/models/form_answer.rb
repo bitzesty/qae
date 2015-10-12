@@ -248,8 +248,16 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def set_progress
-    form = award_form.decorate(answers: HashWithIndifferentAccess.new(document || {}))
-    self.fill_progress = form.progress
+    #TODO: move this logic to it's specific class when you create one class per document type.
+    if award_type == "promotion"
+      questions_that_dont_count = []
+    else
+      questions_that_dont_count = [:company_name, :queen_award_holder]
+    end
+
+    progress_hash = HashWithIndifferentAccess.new(document || {}).except(*questions_that_dont_count)
+    form = award_form.decorate(answers: progress_hash)
+    self.fill_progress = form.required_visible_questions_filled.to_f / (form.required_visible_questions_total - questions_that_dont_count.count)
 
     unless new_record?
       progress = (form_answer_progress || build_form_answer_progress)
