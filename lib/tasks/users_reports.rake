@@ -15,9 +15,7 @@ namespace :users_reports do
                 else
                   ep_not_submitted_csv << [user.email, user.first_name, user.last_name]
                 end
-              end
-
-              if user.form_answers.select{|f| f.award_type != "promotion" }.any?
+              else
                 if user.form_answers.select{|f| f.award_type != "promotion" && f.submitted? }.any?
                   submitted_csv << [user.email, user.first_name, user.last_name]
                 else
