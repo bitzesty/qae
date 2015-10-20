@@ -6,9 +6,10 @@ module CaseSummaryHelper
     return all if subject.is_a?(Admin)
 
     lead = subject.lead?(form_answer)
+    primary = subject.primary?(form_answer)
 
     assessments =
-    if lead
+    if lead || primary
       all
     end
 
