@@ -224,6 +224,22 @@ class FormAnswer < ActiveRecord::Base
     )
   end
 
+  def submission_end_date
+    award_year.settings
+              .deadlines
+              .submission_end
+              .last
+              .trigger_at
+  end
+
+  def submission_ended?
+    Time.zone.now > submission_end_date
+  end
+
+  def version_before_deadline
+    version_at(submission_end_date - 1.minute)
+  end
+
   private
 
   def nominator_full_name_from_document
