@@ -233,7 +233,8 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def submission_ended?
-    Time.zone.now > submission_end_date
+    submission_end_date.present? &&
+    (Time.zone.now > submission_end_date)
   end
 
   def version_before_deadline
