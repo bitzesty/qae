@@ -58,6 +58,7 @@ class QAE2014Forms
         textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
           sub_ref "C 2.3"
+          required
           rows 5
           words_max 100
           conditional :financial_year_date_changed, :yes
