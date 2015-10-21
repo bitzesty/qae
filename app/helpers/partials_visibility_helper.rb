@@ -5,7 +5,7 @@ module PartialsVisibilityHelper
   end
 
   def show_section_appraisal_moderated?
-    current_subject.lead?(@form_answer)
+    policy(@form_answer).show_section_appraisal_moderated?
   end
 
   def show_winners_section?
