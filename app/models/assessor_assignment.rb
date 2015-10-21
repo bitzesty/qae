@@ -92,6 +92,7 @@ class AssessorAssignment < ActiveRecord::Base
   def owner_or_administrative?(subject)
     subject.is_a?(Admin) ||
       subject.try(:lead?, form_answer) ||
+      (case_summary? && subject.try(:primary?, form_answer)) ||
       (!moderated? && !case_summary? && assessor_id == subject.id)
   end
 

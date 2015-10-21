@@ -3,6 +3,11 @@ class FormAnswerPolicy < ApplicationPolicy
     admin? || assessor?
   end
 
+  def show_section_appraisal_moderated?
+    subject.lead?(record) ||
+      (record.assessor_assignments.moderated.submitted? && subject.primary?(record))
+  end
+
   def review?
     return true if admin?
     subject.lead_or_assigned?(record)
