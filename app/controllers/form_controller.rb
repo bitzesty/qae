@@ -34,6 +34,10 @@ class FormController < ApplicationController
     end
   end
 
+  expose(:original_form_answer) do
+    @form_answer.original_form_answer
+  end
+
   def new_innovation_form
     form_answer = FormAnswer.create!(
       user: current_user,
@@ -89,6 +93,8 @@ class FormController < ApplicationController
   end
 
   def edit_form
+    @form_answer = original_form_answer if admin_in_read_only_mode?
+
     if @form_answer.eligible?
       if params[:step] == "letters-of-support"
         redirect_to form_form_answer_supporters_path(@form_answer)
@@ -129,7 +135,7 @@ class FormController < ApplicationController
         end
       end
 
-      @form_answer.save
+      @form_answer.save unless admin_in_read_only_mode?
       @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
       render template: "qae_form/show"
     else

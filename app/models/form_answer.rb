@@ -241,6 +241,10 @@ class FormAnswer < ActiveRecord::Base
     version_at(submission_end_date - 1.minute)
   end
 
+  def original_form_answer
+    submission_ended? ? version_before_deadline : self
+  end
+
   private
 
   def nominator_full_name_from_document
