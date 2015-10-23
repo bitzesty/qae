@@ -1,7 +1,7 @@
 class PreviousWin
   CATEGORIES = {
     "Innovation" => "innovation",
-    "Internation Trade" => "international_trade",
+    "International Trade" => "international_trade",
     "Sustainable Development" => "sustainable_development"
   }
 
