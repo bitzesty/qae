@@ -4,7 +4,7 @@ class CustomEmailForm
   include ActiveModel::Validations
   extend Enumerize
 
-  SCOPES = %w(myself qae_opt_in_group bis_opt_in assessors all_users)
+  SCOPES = %w(myself qae_opt_in_group bis_opt_in assessors all_users not_signed_in)
 
   attr_reader :scope, :message, :user, :subject
   validates :message, :scope, :subject, presence: true
@@ -40,6 +40,8 @@ class CustomEmailForm
       Assessor.all.by_email
     when "all_users"
       User.all.by_email
+    when "not_signed_in"
+      User.where(last_sign_in_at: nil).by_email
     else
       raise ArgumentError, "#{scope} is not included in the list"
     end
