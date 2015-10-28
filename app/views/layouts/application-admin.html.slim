@@ -61,8 +61,8 @@ html.no-js
                   li class=('active' if controller_name == 'settings')
                     = link_to "Settings", admin_settings_path(year: AwardYear.current.year)
 
-                  li class=("active" if controller_name == "custom_emails")
-                    = link_to "Custom email", admin_custom_email_path
+                  / li class=("active" if controller_name == "custom_emails")
+                  /  = link_to "Custom email", admin_custom_email_path
 
                   li class=("active" if controller_name == "users_feedbacks")
                     = link_to "Feedback", admin_users_feedback_path

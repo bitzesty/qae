@@ -8,7 +8,7 @@ class Users::CustomMailer < ApplicationMailer
       @user = user_class.constantize.find(user_id).decorate
       @body = auto_link(simple_format(body))
 
-      mail to: @user.email, subject: subject, reply_to: "laura@bitzesty.com"
+      mail to: @user.email, subject: subject
     end
   end
 end
