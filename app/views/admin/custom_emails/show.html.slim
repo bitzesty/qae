@@ -11,7 +11,7 @@ header.page-header
           ' Send to
     .col-lg-2.col-md-3.col-sm-3
       .input.select.required.form-group
-        = select_tag "cutom_email_form[scope]", options_for_select(CustomEmailForm.scope.options, f.object.scope), class: "select required form-control"
+        = select_tag "custom_email_form[scope]", options_for_select(CustomEmailForm.scope.options, f.object.scope), class: "select required form-control"
 
   .clear
   .row
@@ -33,7 +33,7 @@ header.page-header
           ' Subject
     .col-lg-7.col-md-6.col-sm-6
       .input.select.required.form-group
-        = text_field_tag "cutom_email_form[subject]", f.object.subject, class: "large required form-control"
+        = text_field_tag "custom_email_form[subject]", f.object.subject, class: "large required form-control"
 
   .clear
   .row.question-group
@@ -41,7 +41,7 @@ header.page-header
       h3
         label.text.required.control-label.form-label
           ' Message
-      = text_area_tag "cutom_email_form[message]", f.object.message, class: "text required form-control", rows: 10
+      = text_area_tag "custom_email_form[message]", f.object.message, class: "text required form-control", rows: 10
   .clear
 
   br

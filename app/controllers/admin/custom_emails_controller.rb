@@ -1,16 +1,16 @@
 class Admin::CustomEmailsController < Admin::BaseController
   def show
     authorize :custom_email, :show?
-    @form = CustomEmailForm.new(user: current_admin)
+    @form = CustomEmailForm.new(admin_id: current_admin.id)
   end
 
   def create
     authorize :custom_email, :create?
-
-    @form = CustomEmailForm.new(params[:cutom_email_form].merge(user: current_admin))
+    custom_email_form_attributes = params[:custom_email_form].merge(admin_id: current_admin.id)
+    @form = CustomEmailForm.new(custom_email_form_attributes)
     if @form.valid?
-      @form.send!
-      redirect_to admin_custom_email_path, notice: "Email was successfully sent"
+      CustomEmailWorker.perform_async(custom_email_form_attributes)
+      redirect_to admin_custom_email_path, notice: "Email was successfully scheduled"
     else
       render :show
     end

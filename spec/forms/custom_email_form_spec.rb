@@ -3,7 +3,7 @@ require "rails_helper"
 describe CustomEmailForm do
   let!(:admin) { create :admin }
   let(:form) do
-    CustomEmailForm.new(user: admin,
+    CustomEmailForm.new(admin_id: admin.id,
                         scope: scope,
                         message: "message",
                         subject: "subject")
