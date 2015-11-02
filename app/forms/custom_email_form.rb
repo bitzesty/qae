@@ -6,7 +6,7 @@ class CustomEmailForm
 
   SCOPES = %w(myself qae_opt_in_group bis_opt_in assessors all_users not_signed_in)
 
-  attr_reader :scope, :message, :user, :subject
+  attr_reader :scope, :message, :admin_id, :subject
   validates :message, :scope, :subject, presence: true
 
   enumerize :scope, in: SCOPES
@@ -14,7 +14,7 @@ class CustomEmailForm
   def initialize(attrs = {})
     @scope = attrs[:scope]
     @message = attrs[:message]
-    @user = attrs[:user]
+    @admin_id = attrs[:admin_id]
     @subject = attrs[:subject]
   end
 
@@ -24,14 +24,19 @@ class CustomEmailForm
 
   def send!
     users.each do |user|
-      Users::CustomMailer.notify(user.id, user.class.name, message, subject).deliver_later!
+      begin
+        Users::CustomMailer.notify(user.id, user.class.name, message, subject).deliver_later!
+      rescue => e
+        puts "Error: #{e}"
+        Raven.capture_exception(e)
+      end
     end
   end
 
   def users
     case scope
     when "myself"
-      [user]
+      [Admin.find(admin_id)]
     when "qae_opt_in_group"
       User.qae_opt_in_group.by_email
     when "bis_opt_in"
