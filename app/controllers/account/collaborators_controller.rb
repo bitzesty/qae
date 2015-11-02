@@ -1,6 +1,6 @@
 class Account::CollaboratorsController < Account::BaseController
 
-  before_action :require_to_be_not_current_user!, only: [:destroy]
+  before_action :require_to_be_not_current_user_and_not_account_owner!, only: [:destroy]
   before_action :restrict_access_if_admin_in_read_only_mode!
 
   before_action :set_form_answer
@@ -8,8 +8,12 @@ class Account::CollaboratorsController < Account::BaseController
   expose(:account) do
     current_user.account
   end
+  expose(:account_owner) do
+    account.owner
+  end
   expose(:collaborators) do
     account.collaborators_without(current_user)
+           .excluding(account_owner)
   end
   expose(:collaborator) do
     collaborators.find(params[:id])
@@ -55,6 +59,8 @@ class Account::CollaboratorsController < Account::BaseController
     collaborator.account_id = Account.create(owner: collaborator).id
     collaborator.role = "account_admin"
     collaborator.save!
+    collaborator.form_answers
+                .update_all(user_id: account.owner_id)
 
     if params.has_key? :form_id
       redirect_to account_collaborators_path(form_id: params[:form_id]),
@@ -85,7 +91,11 @@ class Account::CollaboratorsController < Account::BaseController
     )
   end
 
-  def require_to_be_not_current_user!
-    render head :forbidden if current_user.id == collaborator.id
+  def require_to_be_not_current_user_and_not_account_owner!
+    if current_user.id == collaborator.id ||
+       account_owner.id == collaborator.id
+
+      render head :forbidden
+    end
   end
 end
