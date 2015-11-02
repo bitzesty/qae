@@ -59,6 +59,8 @@ class Account::CollaboratorsController < Account::BaseController
     collaborator.account_id = Account.create(owner: collaborator).id
     collaborator.role = "account_admin"
     collaborator.save!
+    collaborator.form_answers
+                .update_all(user_id: account.owner_id)
 
     if params.has_key? :form_id
       redirect_to account_collaborators_path(form_id: params[:form_id]),
