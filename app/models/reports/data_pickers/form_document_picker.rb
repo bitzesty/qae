@@ -80,7 +80,17 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def current_queens_award_holder
-    doc "queen_award_holder"
+    awards = doc("queen_award_holder_details")
+    return if !awards || awards.empty?
+
+    categories = PreviousWin::CATEGORIES.invert
+
+    awards.map do |award|
+      category = categories[award["category"]]
+      year = award["year"]
+
+      [category, year].compact.join(" ")
+    end.join(", ")
   end
 
   def principal_postcode
@@ -132,7 +142,7 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def organisation_with_ultimate_control
-    bool doc("parent_ultimate_control")
+    doc("ultimate_control_company")
   end
 
   def employees
