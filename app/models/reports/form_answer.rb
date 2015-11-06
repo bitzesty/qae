@@ -1,11 +1,18 @@
 class Reports::FormAnswer
   include Reports::DataPickers::UserPicker
   include Reports::DataPickers::FormDocumentPicker
+  include FormAnswersBasePointer
 
-  attr_reader :obj, :award_form
+  attr_reader :obj,
+              :form_answer,
+              :award_form
 
   def initialize(form_answer)
     @obj = form_answer
+
+    # FormAnswersBasePointer#fetch_answers mixin uses form_answer, instead of obj
+    @form_answer = form_answer
+    @award_form = form_answer.award_form.decorate(answers: fetch_answers)
 
     @moderated = pick_assignment("moderated")
     @primary = pick_assignment("primary")
@@ -14,6 +21,11 @@ class Reports::FormAnswer
 
     @secondary_assessor = @obj.secondary_assessor
     @press_summary = @obj.press_summary if @obj.awarded?
+  end
+
+  def question_visible?(question_key)
+    question = award_form[question_key.to_sym]
+    question.present? && question.visible?
   end
 
   def call_method(methodname)
