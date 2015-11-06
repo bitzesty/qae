@@ -24,6 +24,7 @@ module QaePdfForms::CustomQuestions::Lists
     "Good/Service",
     "% of your total overseas trade"
   ]
+  UNDEFINED_CELL_VALUE = "Undefined"
 
   def render_list
     if q_visible? && humanized_answer.present?
@@ -113,10 +114,10 @@ module QaePdfForms::CustomQuestions::Lists
   end
 
   def trade_goods_conditions(prepared_item)
-    if prepared_item["desc_short"].present?
+    if prepared_item["desc_short"].present? || prepared_item["total_overseas_trade"].present?
       [
-        prepared_item["desc_short"],
-        prepared_item["total_overseas_trade"].present? ? prepared_item["total_overseas_trade"] : FormPdf::UNDEFINED_TITLE
+        form_pdf.render_value_or_undefined(prepared_item["desc_short"], UNDEFINED_CELL_VALUE),
+        form_pdf.render_value_or_undefined(prepared_item["total_overseas_trade"], UNDEFINED_CELL_VALUE)
       ]
     end
   end
