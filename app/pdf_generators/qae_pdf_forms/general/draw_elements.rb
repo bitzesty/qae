@@ -216,4 +216,8 @@ module QaePdfForms::General::DrawElements
       valign: :top
     }
   end
+
+  def render_value_or_undefined(val, undefined_text)
+    val.present? ? val : undefined_text
+  end
 end
