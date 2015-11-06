@@ -85,12 +85,14 @@
   }
 }
 
-
-input{
+input,
+textarea {
   &[disabled="disabled"] {
     opacity: 0.5;
   }
+}
 
+input{
   &[type="text"],
   &[type="search"]{
     @include core-16($line-height: (20 / 16));
