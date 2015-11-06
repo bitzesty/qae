@@ -254,7 +254,7 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def country_name(code)
-    if code
+    if code.present?
       country = ISO3166::Country[code]
       country.name
     end
