@@ -25,7 +25,7 @@ class Reports::FormAnswer
 
   def question_visible?(question_key)
     question = award_form[question_key.to_sym]
-    question.present? && question.visible?
+    question.blank? || question.visible?
   end
 
   def call_method(methodname)
