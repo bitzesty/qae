@@ -250,11 +250,11 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def doc(key)
-    obj.document[key]
+    obj.document[key] if key.present? && question_visible?(key)
   end
 
   def country_name(code)
-    if code
+    if code.present?
       country = ISO3166::Country[code]
       country.name
     end
