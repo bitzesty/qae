@@ -323,7 +323,8 @@ jQuery ->
   loseChangesMessage = "You have unsaved changes! If you leave the page now, some answers will be lost. Stay on the page for a minute in order for everything to be saved or use the buttons at the bottom of the page."
 
   window.onbeforeunload = ->
-    if changesUnsaved then loseChangesMessage else undefined
+    if !$(".page-read-only-form").length
+      if changesUnsaved then loseChangesMessage else undefined
 
   if window.addEventListener isnt undefined
     window.addEventListener "beforeunload", (e) ->
