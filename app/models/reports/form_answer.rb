@@ -4,15 +4,13 @@ class Reports::FormAnswer
   include FormAnswersBasePointer
 
   attr_reader :obj,
-              :form_answer,
               :award_form
 
   def initialize(form_answer)
     @obj = form_answer
-
-    # FormAnswersBasePointer#fetch_answers mixin uses form_answer, instead of obj
-    @form_answer = form_answer
-    @award_form = form_answer.award_form.decorate(answers: fetch_answers)
+    @award_form = form_answer.award_form.decorate(
+      answers: ActiveSupport::HashWithIndifferentAccess.new(obj.document)
+    )
 
     @moderated = pick_assignment("moderated")
     @primary = pick_assignment("primary")
