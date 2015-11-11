@@ -237,7 +237,10 @@ module Reports::DataPickers::FormDocumentPicker
   def collect_final_value_from_doc(meth)
     if meth
       b = doc meth.keys.first
-      doc meth.values.first[b]
+      target_key = meth.values.first[b]
+
+      amended_value = financial_data[target_key]
+      amended_value.present? ? amended_value : doc(target_key)
     end
   end
 
