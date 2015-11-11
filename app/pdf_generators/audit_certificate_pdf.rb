@@ -17,7 +17,7 @@ class AuditCertificatePdf < Prawn::Document
 
     @form_answer = form_answer.decorate
     @award_type = form_answer.award_type_full_name.downcase
-    @financial_pointer = FormFinancialPointer.new(@form_answer)
+    @financial_pointer = FormFinancialPointer.new(@form_answer, {exclude_ignored_questions: true})
     @audit_data = financial_pointer.data
     @step_questions = financial_pointer.financial_step.questions
     @filled_answers = financial_pointer.filled_answers
@@ -50,5 +50,17 @@ class AuditCertificatePdf < Prawn::Document
     render_financial_table
     render_explanation_of_the_changes
     render_additional_comments
+  end
+
+  def formatted_uk_sales_value(item)
+    ApplicationController.helpers.formatted_uk_sales_value(item)
+  end
+
+  def number_with_delimiter(item)
+    ApplicationController.helpers.number_with_delimiter(item)
+  end
+
+  def financials_i18_prefix
+    "admin.form_answers.financial_summary"
   end
 end

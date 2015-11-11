@@ -32,53 +32,114 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line(p2, 5, { leading: 2 })
   end
 
+  ###################################
+  # Financial Data: Version 1 - begin
+  ###################################
+
+  # def render_financial_table
+  #   rows = [financial_table_headers.unshift("")]
+
+  #   table_headers.map do |label|
+  #     question_key = label["id"]
+
+  #     rows << financial_data(
+  #       question_key,
+  #       get_audit_data(question_key)
+  #     ).unshift(label["label"])
+  #   end
+
+  #   table rows, table_default_ops
+  # end
+
+  # def table_headers
+  #   QuestionLabels::AuditCertificateLabel.find(form_answer.award_type).labels.reject do |l|
+  #     # TODO: remove this rejecting once will be clear with unknown keys
+  #     l["id"].blank?
+  #   end
+  # end
+
+  # def number_with_delimiter(val)
+  #   ApplicationController.helpers.number_with_delimiter(val)
+  # end
+
+  # def financial_data(question_key, question_data)
+  #   question_data.map do |entry|
+  #     if entry.is_a?(Array)
+  #       entry.join("/")
+  #     elsif entry.is_a?(Hash)
+  #       data_by_type(question_key, entry)
+  #     else # CALCULATED_DATA
+  #       "£#{ApplicationController.helpers.formatted_uk_sales_value(entry)}"
+  #     end
+  #   end
+  # end
+
+  # def data_by_type(question_key, entry)
+  #   if entry[:value].present?
+  #     if NOT_CURRENCY_QUESTION_KEYS.include?(question_key)
+  #       number_with_delimiter(entry[:value])
+  #     else
+  #       "£#{number_with_delimiter(entry[:value])}" if entry[:value] != "-"
+  #     end
+  #   end
+  # end
+
+  ###################################
+  # Financial Data: Version 1 - end
+  ###################################
+
+  ###################################
+  # Financial Data: Version 2 - begin
+  ###################################
+
   def render_financial_table
-    rows = [financial_table_headers.unshift("")]
+    render_financial_main_table
+    render_financial_benchmarks
+  end
 
-    table_headers.map do |label|
-      question_key = label["id"]
+  def render_financial_main_table
+    rows = [financial_pointer.years_list.unshift("")]
 
-      rows << financial_data(
-        question_key,
-        get_audit_data(question_key)
-      ).unshift(label["label"])
+    financial_pointer.data.each_with_index do |row, index|
+      next if row[:financial_year_changed_dates]
+
+      rows << if row[:uk_sales]
+        render_financial_uk_sales_row(row)
+      else
+        render_financial_row(row)
+      end
     end
 
     table rows, table_default_ops
   end
 
-  def table_headers
-    QuestionLabels::AuditCertificateLabel.find(form_answer.award_type).labels.reject do |l|
-      # TODO: remove this rejecting once will be clear with unknown keys
-      l["id"].blank?
+  def render_financial_uk_sales_row(row)
+    res = [I18n.t("#{financials_i18_prefix}.uk_sales_row.uk_sales")]
+
+    res += row.values.flatten.map do |field|
+      formatted_uk_sales_value(field)
     end
+
+    res
   end
 
-  def number_with_delimiter(val)
-    ApplicationController.helpers.number_with_delimiter(val)
+  def render_financial_row(row)
+    res = [I18n.t("#{financials_i18_prefix}.row.#{row.keys.first}")]
+
+    res += row.values.flatten.map do |field|
+      number_with_delimiter(field[:value])
+    end
+
+    res
   end
 
-  def financial_data(question_key, question_data)
-    question_data.map do |entry|
-      if entry.is_a?(Array)
-        entry.join("/")
-      elsif entry.is_a?(Hash)
-        data_by_type(question_key, entry)
-      else # CALCULATED_DATA
-        "£#{ApplicationController.helpers.formatted_uk_sales_value(entry)}"
-      end
-    end
+  def render_financial_benchmarks
+
   end
 
-  def data_by_type(question_key, entry)
-    if entry[:value].present?
-      if NOT_CURRENCY_QUESTION_KEYS.include?(question_key)
-        number_with_delimiter(entry[:value])
-      else
-        "£#{number_with_delimiter(entry[:value])}" if entry[:value] != "-"
-      end
-    end
-  end
+  ###################################
+  # Financial Data: Version 2 - end
+  ###################################
 
   def render_user_filling_block
     b1 = %{Signed ..................................................................................................................}
