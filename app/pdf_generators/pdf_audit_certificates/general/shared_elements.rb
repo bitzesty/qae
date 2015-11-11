@@ -134,6 +134,49 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_financial_benchmarks
+    render_financial_benchmarks_by_years
+    render_financial_overall_benchmarks
+  end
+
+  def render_financial_benchmarks_by_years
+    rows = [benchmark_by_years_table_headers]
+
+    rows += if form_answer.trade?
+      [
+        benchmarks_row("growth_overseas_earnings"),
+        benchmarks_row("sales_exported"),
+        benchmarks_row("sector_average_growth")
+      ]
+    else
+      [
+        benchmarks_row("growth_in_total_turnover")
+      ]
+    end
+
+    table rows, table_default_ops
+  end
+
+  def benchmark_by_years_table_headers
+    res = [""]
+
+    res += financial_pointer.period_length.times do |i|
+      "Year #{i + 1}"
+    end
+
+    res
+  end
+
+  def benchmarks_row(metric)
+    res = [I18n.t("#{financials_i18_prefix}.benchmarks.#{metric}")]
+
+    res += financial_pointer.send("#{metric}_list").map do |entry|
+      formatted_uk_sales_value(entry)
+    end
+
+    res
+  end
+
+  def render_financial_overall_benchmarks
 
   end
 
