@@ -5,12 +5,14 @@ class Reports::FormAnswer
 
   attr_reader :obj,
               :answers,
-              :award_form
+              :award_form,
+              :financial_data
 
   def initialize(form_answer)
     @obj = form_answer
     @answers = ActiveSupport::HashWithIndifferentAccess.new(obj.document)
     @award_form = form_answer.award_form.decorate(answers: answers)
+    @financial_data = form_answer.financial_data || {}
 
     @moderated = pick_assignment("moderated")
     @primary = pick_assignment("primary")
