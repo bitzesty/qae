@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'qae_form_builder'
 
 describe QAEFormBuilder do
 
