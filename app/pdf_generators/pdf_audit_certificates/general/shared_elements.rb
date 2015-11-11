@@ -98,7 +98,10 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_financial_main_table
-    rows = [financial_pointer.years_list.unshift("")]
+    rows = [
+      financial_pointer.years_list.unshift(""),
+      financial_table_year_and_date_data
+    ]
 
     financial_pointer.data.each_with_index do |row, index|
       next if row[:financial_year_changed_dates]
@@ -140,8 +143,7 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_financial_benchmarks_by_years
     rows = [
-      benchmark_by_years_table_headers,
-      benchmark_by_year_and_date_data
+      benchmark_by_years_table_headers
     ]
 
     rows += if form_answer.trade?
@@ -169,7 +171,7 @@ module PdfAuditCertificates::General::SharedElements
     benchmark_year_headers.unshift("")
   end
 
-  def benchmark_by_year_and_date_data
+  def financial_table_year_and_date_data
     res = [I18n.t("#{financials_i18_prefix}.years_row.financial_year_changed_dates")]
 
     res += if financial_pointer.data.first[:financial_year_changed_dates].present?
