@@ -139,7 +139,10 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_financial_benchmarks_by_years
-    rows = [benchmark_by_years_table_headers]
+    rows = [
+      benchmark_by_years_table_headers,
+      benchmark_by_year_and_date_data
+    ]
 
     rows += if form_answer.trade?
       [
@@ -164,6 +167,18 @@ module PdfAuditCertificates::General::SharedElements
     end
 
     benchmark_year_headers.unshift("")
+  end
+
+  def benchmark_by_year_and_date_data
+    res = [I18n.t("#{financials_i18_prefix}.years_row.financial_year_changed_dates")]
+
+    res += if financial_pointer.data.first[:financial_year_changed_dates].present?
+      financial_pointer.financial_year_changed_dates
+    else
+      financial_pointer.financial_year_dates
+    end
+
+    res
   end
 
   def benchmarks_row(metric)
