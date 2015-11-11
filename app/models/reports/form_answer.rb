@@ -4,13 +4,13 @@ class Reports::FormAnswer
   include FormAnswersBasePointer
 
   attr_reader :obj,
+              :answers,
               :award_form
 
   def initialize(form_answer)
     @obj = form_answer
-    @award_form = form_answer.award_form.decorate(
-      answers: ActiveSupport::HashWithIndifferentAccess.new(obj.document)
-    )
+    @answers = ActiveSupport::HashWithIndifferentAccess.new(obj.document)
+    @award_form = form_answer.award_form.decorate(answers: answers)
 
     @moderated = pick_assignment("moderated")
     @primary = pick_assignment("primary")
@@ -23,7 +23,7 @@ class Reports::FormAnswer
 
   def question_visible?(question_key)
     question = award_form[question_key.to_sym]
-    question.blank? || question.visible?
+    question.blank? || question.visible?(answers)
   end
 
   def call_method(methodname)

@@ -147,12 +147,19 @@ class QAEFormBuilder
       delegate_obj.required
     end
 
-    def visible?
+    def visible?(fetched_answers=nil)
       dc = delegate_obj.drop_condition_parent
       delegate_obj.conditions.
         all?{|condition|
           question_value = condition.question_value
-          parent_question_answer = step.form[condition.question_key].input_value
+
+          parent_question_answer = if fetched_answers.present?
+            # Used in Reports::AllEntries, as passing json of answers
+            # allows to make it faster
+            fetched_answers[condition.question_key]
+          else
+            step.form[condition.question_key].input_value
+          end
 
           if question_value == :true
             parent_question_answer.present?
@@ -162,6 +169,22 @@ class QAEFormBuilder
         } &&
       (!dc || (dc.present? && has_drops?))
     end
+
+    # def check_visible_for?(fetched_answers)
+    #   dc = delegate_obj.drop_condition_parent
+    #   delegate_obj.conditions.
+    #     all?{|condition|
+    #       question_value = condition.question_value
+    #       parent_question_answer = fetched_answers[condition.question_key]
+
+    #       if question_value == :true
+    #         parent_question_answer.present?
+    #       else
+    #         parent_question_answer == question_value.to_s
+    #       end
+    #     } &&
+    #   (!dc || (dc.present? && has_drops?))
+    # end
 
     def required_visible?
       required? && visible?

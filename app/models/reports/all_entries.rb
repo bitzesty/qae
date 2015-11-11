@@ -182,7 +182,7 @@ class Reports::AllEntries
 
     scope = @year.form_answers.order(:id)
     scope.find_in_batches do |batch|
-      form_answers = FormAnswer.where(id: batch.map(&:id))
+      form_answers = ::FormAnswer.where(id: batch.map(&:id))
                      .order(:id)
                      .includes(:user,
                                :assessor_assignments,
