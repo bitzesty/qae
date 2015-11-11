@@ -113,7 +113,7 @@ module PdfAuditCertificates::General::SharedElements
       end
     end
 
-    table rows, table_default_ops
+    table rows, table_default_ops(:main_table)
   end
 
   def render_financial_uk_sales_row(row)
@@ -137,7 +137,9 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_financial_benchmarks
+    move_down 3.mm
     render_financial_benchmarks_by_years
+    move_down 3.mm
     render_financial_overall_benchmarks
   end
 
@@ -158,7 +160,7 @@ module PdfAuditCertificates::General::SharedElements
       ]
     end
 
-    table rows, table_default_ops
+    table rows, table_default_ops(:main_table)
   end
 
   def benchmark_by_years_table_headers
@@ -205,7 +207,7 @@ module PdfAuditCertificates::General::SharedElements
       ]
     ]
 
-    table rows, table_default_ops
+    table rows, table_default_ops(:overall_benchmarks)
   end
 
   ###################################
@@ -299,15 +301,71 @@ module PdfAuditCertificates::General::SharedElements
     }
   end
 
-  def table_default_ops
+
+  #######################################
+  # Financial Data: Version 1 - table ops
+  #######################################
+  # def table_default_ops
+  #   {
+  #     column_widths: {
+  #       0 => 200
+  #     },
+  #     cell_style: {
+  #       size: 10,
+  #       padding: [3, 3, 3, 3]
+  #     }
+  #   }
+  # end
+
+  #############################################
+  # Financial Data: Version 2 - table ops begin
+  #############################################
+
+  def table_default_ops(table_type)
     {
-      column_widths: {
-        0 => 200
-      },
+      column_widths: send("#{table_type}_column_widths"),
       cell_style: {
         size: 10,
         padding: [3, 3, 3, 3]
       }
     }
   end
+
+  def main_table_column_widths
+    res = case financial_pointer.years_list.size
+    when 2
+      [340, 100, 100]
+    when 3
+      [300, 50, 50, 50]
+    when 5
+      [300, 50, 50, 50, 50, 50]
+    when 6
+      [300, 50, 50, 50, 50, 50, 50]
+    end
+
+    hashed_columns(res)
+  end
+
+  def overall_benchmarks_column_widths
+    res = case financial_pointer.years_list.size
+    when 2
+      [340, 200]
+    when 3
+      [300, 100]
+    when 5
+      [300, 100]
+    when 6
+      [300, 100]
+    end
+
+    hashed_columns(res)
+  end
+
+  def hashed_columns(arr)
+    Hash[arr.map.with_index { |x, i| [i, x] }]
+  end
+
+  #############################################
+  # Financial Data: Version 2 - table ops end
+  #############################################
 end
