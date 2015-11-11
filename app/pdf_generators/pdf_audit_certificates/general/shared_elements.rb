@@ -157,13 +157,13 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def benchmark_by_years_table_headers
-    res = [""]
+    benchmark_year_headers = []
 
-    res += financial_pointer.period_length.times do |i|
-      "Year #{i + 1}"
+    financial_pointer.period_length.times do |i|
+      benchmark_year_headers << "Year #{i + 1}"
     end
 
-    res
+    benchmark_year_headers.unshift("")
   end
 
   def benchmarks_row(metric)
@@ -177,7 +177,18 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_financial_overall_benchmarks
+    rows = [
+      [
+        "Overall growth in £ (year 1 - #{financial_pointer.period_length})",
+        formatted_uk_sales_value(financial_pointer.overall_growth)
+      ],
+      [
+        "Overall growth in % (year 1 - #{financial_pointer.period_length})",
+        formatted_uk_sales_value(financial_pointer.overall_growth_in_percents)
+      ]
+    ]
 
+    table rows, table_default_ops
   end
 
   ###################################
