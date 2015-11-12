@@ -25,10 +25,10 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_base_paragraph
     p1 = %{This certificate should confirm all the figures quoted in the table below, or as amended in the revised table on page 2. By completing this certificate, you are confirming that you have carried out such work as you consider necessary to confirm the relevant figures and that the applicant has complied with the accounting standards applicable to the applicant status in preparing the entry.}
-    render_text_line(p1, 2, { leading: 2 })
+    render_text_line(p1, 2, { leading: 1 })
 
     p2 = "If you tick option 1, then you should only complete the signatory and company details below. If you tick option 2, you should complete the signatory and company details below and revise the figures in the table on page 2 of this form, initial and provide an explanation of the changes. This certificate should be completed in writing on a printed copy of this document. Please return the completed certificate to your client."
-    render_text_line(p2, 5, { leading: 2 })
+    render_text_line(p2, 2, { leading: 1 })
   end
 
   ###################################
@@ -226,7 +226,7 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line(b2, 1)
 
     b3 = %{Company Registration Number: ...........................................................................}
-    render_text_line(b3, 5)
+    render_text_line(b3, 1)
 
     b4 = %{Address: ...............................................................................................................}
     render_text_line(b4, 1)
@@ -235,12 +235,14 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line(b5, 1)
 
     b6 = %{Email: ...................................................................................................................}
-    render_text_line(b6, 5)
+    render_text_line(b6, 1)
 
     b7 = %{Date: .....................................................................................................................}
-    render_text_line(b7, 5)
+    render_text_line(b7, 1)
 
-    render_text_line(%{Company stamp:}, 5)
+    text_box "Company stamp:", default_text_ops.merge({
+      at: [120.mm, cursor + 33.mm]
+    })
   end
 
   def render_revised_schedule
