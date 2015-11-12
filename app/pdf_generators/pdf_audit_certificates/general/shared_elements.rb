@@ -1,6 +1,5 @@
 module PdfAuditCertificates::General::SharedElements
   DEFAULT_OFFSET = 110.mm
-  LIST_POINTER = "o   "
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
 
   def render_main_header
@@ -26,59 +25,198 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_base_paragraph
     p1 = %{This certificate should confirm all the figures quoted in the table below, or as amended in the revised table on page 2. By completing this certificate, you are confirming that you have carried out such work as you consider necessary to confirm the relevant figures and that the applicant has complied with the accounting standards applicable to the applicant status in preparing the entry.}
-    render_text_line(p1, 2, { leading: 2 })
+    render_text_line(p1, 2, { leading: 1 })
 
     p2 = "If you tick option 1, then you should only complete the signatory and company details below. If you tick option 2, you should complete the signatory and company details below and revise the figures in the table on page 2 of this form, initial and provide an explanation of the changes. This certificate should be completed in writing on a printed copy of this document. Please return the completed certificate to your client."
-    render_text_line(p2, 5, { leading: 2 })
+    render_text_line(p2, 2, { leading: 1 })
   end
+
+  ###################################
+  # Financial Data: Version 1 - begin
+  ###################################
+
+  # def render_financial_table
+  #   rows = [financial_table_headers.unshift("")]
+
+  #   table_headers.map do |label|
+  #     question_key = label["id"]
+
+  #     rows << financial_data(
+  #       question_key,
+  #       get_audit_data(question_key)
+  #     ).unshift(label["label"])
+  #   end
+
+  #   table rows, table_default_ops
+  # end
+
+  # def table_headers
+  #   QuestionLabels::AuditCertificateLabel.find(form_answer.award_type).labels.reject do |l|
+  #     # TODO: remove this rejecting once will be clear with unknown keys
+  #     l["id"].blank?
+  #   end
+  # end
+
+  # def number_with_delimiter(val)
+  #   ApplicationController.helpers.number_with_delimiter(val)
+  # end
+
+  # def financial_data(question_key, question_data)
+  #   question_data.map do |entry|
+  #     if entry.is_a?(Array)
+  #       entry.join("/")
+  #     elsif entry.is_a?(Hash)
+  #       data_by_type(question_key, entry)
+  #     else # CALCULATED_DATA
+  #       "£#{ApplicationController.helpers.formatted_uk_sales_value(entry)}"
+  #     end
+  #   end
+  # end
+
+  # def data_by_type(question_key, entry)
+  #   if entry[:value].present?
+  #     if NOT_CURRENCY_QUESTION_KEYS.include?(question_key)
+  #       number_with_delimiter(entry[:value])
+  #     else
+  #       "£#{number_with_delimiter(entry[:value])}" if entry[:value] != "-"
+  #     end
+  #   end
+  # end
+
+  ###################################
+  # Financial Data: Version 1 - end
+  ###################################
+
+  ###################################
+  # Financial Data: Version 2 - begin
+  ###################################
 
   def render_financial_table
-    rows = [financial_table_headers.unshift("")]
-
-    table_headers.map do |label|
-      question_key = label["id"]
-
-      rows << financial_data(
-        question_key,
-        get_audit_data(question_key)
-      ).unshift(label["label"])
-    end
-
-    table rows, table_default_ops
+    render_financial_main_table
+    render_financial_benchmarks
   end
 
-  def table_headers
-    QuestionLabels::AuditCertificateLabel.find(form_answer.award_type).labels.reject do |l|
-      # TODO: remove this rejecting once will be clear with unknown keys
-      l["id"].blank?
-    end
-  end
+  def render_financial_main_table
+    rows = [
+      financial_pointer.years_list.unshift(""),
+      financial_table_year_and_date_data
+    ]
 
-  def number_with_delimiter(val)
-    ApplicationController.helpers.number_with_delimiter(val)
-  end
+    financial_pointer.data.each_with_index do |row, index|
+      next if row[:financial_year_changed_dates]
 
-  def financial_data(question_key, question_data)
-    question_data.map do |entry|
-      if entry.is_a?(Array)
-        entry.join("/")
-      elsif entry.is_a?(Hash)
-        data_by_type(question_key, entry)
-      else # CALCULATED_DATA
-        "£#{ApplicationController.helpers.formatted_uk_sales_value(entry)}"
-      end
-    end
-  end
-
-  def data_by_type(question_key, entry)
-    if entry[:value].present?
-      if NOT_CURRENCY_QUESTION_KEYS.include?(question_key)
-        number_with_delimiter(entry[:value])
+      rows << if row[:uk_sales]
+        render_financial_uk_sales_row(row)
       else
-        "£#{number_with_delimiter(entry[:value])}" if entry[:value] != "-"
+        render_financial_row(row)
       end
     end
+
+    table rows, table_default_ops(:main_table)
   end
+
+  def render_financial_uk_sales_row(row)
+    res = [I18n.t("#{financials_i18_prefix}.uk_sales_row.uk_sales")]
+
+    res += row.values.flatten.map do |field|
+      formatted_uk_sales_value(field)
+    end
+
+    res
+  end
+
+  def render_financial_row(row)
+    res = [I18n.t("#{financials_i18_prefix}.row.#{row.keys.first}")]
+
+    res += row.values.flatten.map do |field|
+      number_with_delimiter(field[:value])
+    end
+
+    res
+  end
+
+  def render_financial_benchmarks
+    move_down 3.mm
+    render_financial_benchmarks_by_years
+    move_down 3.mm
+    render_financial_overall_benchmarks
+  end
+
+  def render_financial_benchmarks_by_years
+    # Uncomment me if you need to display Year labels too like:
+    # Year 1, Year 2
+    #
+    # rows = [
+    #   benchmark_by_years_table_headers
+    # ]
+
+    rows = []
+
+    rows += if form_answer.trade?
+      [
+        benchmarks_row("growth_overseas_earnings"),
+        benchmarks_row("sales_exported"),
+        benchmarks_row("average_growth_for")
+      ]
+    else
+      [
+        benchmarks_row("growth_in_total_turnover")
+      ]
+    end
+
+    table rows, table_default_ops(:main_table)
+  end
+
+  def benchmark_by_years_table_headers
+    benchmark_year_headers = []
+
+    financial_pointer.period_length.times do |i|
+      benchmark_year_headers << "Year #{i + 1}"
+    end
+
+    benchmark_year_headers.unshift("")
+  end
+
+  def financial_table_year_and_date_data
+    res = [I18n.t("#{financials_i18_prefix}.years_row.financial_year_changed_dates")]
+
+    res += if financial_pointer.data.first[:financial_year_changed_dates].present?
+      financial_pointer.financial_year_changed_dates
+    else
+      financial_pointer.financial_year_dates
+    end
+
+    res
+  end
+
+  def benchmarks_row(metric)
+    res = [I18n.t("#{financials_i18_prefix}.benchmarks.#{metric}")]
+
+    res += financial_pointer.send("#{metric}_list").map do |entry|
+      formatted_uk_sales_value(entry)
+    end
+
+    res
+  end
+
+  def render_financial_overall_benchmarks
+    rows = [
+      [
+        "Overall growth in £ (year 1 - #{financial_pointer.period_length})",
+        formatted_uk_sales_value(financial_pointer.overall_growth)
+      ],
+      [
+        "Overall growth in % (year 1 - #{financial_pointer.period_length})",
+        formatted_uk_sales_value(financial_pointer.overall_growth_in_percents)
+      ]
+    ]
+
+    table rows, table_default_ops(:overall_benchmarks)
+  end
+
+  ###################################
+  # Financial Data: Version 2 - end
+  ###################################
 
   def render_user_filling_block
     b1 = %{Signed ..................................................................................................................}
@@ -88,7 +226,7 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line(b2, 1)
 
     b3 = %{Company Registration Number: ...........................................................................}
-    render_text_line(b3, 5)
+    render_text_line(b3, 1)
 
     b4 = %{Address: ...............................................................................................................}
     render_text_line(b4, 1)
@@ -97,12 +235,14 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line(b5, 1)
 
     b6 = %{Email: ...................................................................................................................}
-    render_text_line(b6, 5)
+    render_text_line(b6, 1)
 
     b7 = %{Date: .....................................................................................................................}
-    render_text_line(b7, 5)
+    render_text_line(b7, 1)
 
-    render_text_line(%{Company stamp:}, 5)
+    text_box "Company stamp:", default_text_ops.merge({
+      at: [120.mm, cursor + 33.mm]
+    })
   end
 
   def render_revised_schedule
@@ -124,8 +264,10 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_options(opt1, opt2)
     move_down 6.mm
-    render_text_line("#{LIST_POINTER}#{opt1}", 2, default_list_ops)
-    render_text_line("#{LIST_POINTER}#{opt1}", 6, default_list_ops)
+    stroke_rectangle [0, cursor], 7, 7
+    render_text_line(opt1, 2, default_list_ops)
+    stroke_rectangle [0, cursor], 7, 7
+    render_text_line(opt2, 6, default_list_ops)
   end
 
   def render_footer_note
@@ -155,7 +297,7 @@ module PdfAuditCertificates::General::SharedElements
 
   def default_list_ops
     {
-      leading: 2.2,
+      leading: 1.8,
       indent_paragraphs: 10
     }
   end
@@ -167,15 +309,71 @@ module PdfAuditCertificates::General::SharedElements
     }
   end
 
-  def table_default_ops
+
+  #######################################
+  # Financial Data: Version 1 - table ops
+  #######################################
+  # def table_default_ops
+  #   {
+  #     column_widths: {
+  #       0 => 200
+  #     },
+  #     cell_style: {
+  #       size: 10,
+  #       padding: [3, 3, 3, 3]
+  #     }
+  #   }
+  # end
+
+  #############################################
+  # Financial Data: Version 2 - table ops begin
+  #############################################
+
+  def table_default_ops(table_type)
     {
-      column_widths: {
-        0 => 200
-      },
+      column_widths: send("#{table_type}_column_widths"),
       cell_style: {
         size: 10,
         padding: [3, 3, 3, 3]
       }
     }
   end
+
+  def main_table_column_widths
+    res = case financial_pointer.years_list.size
+    when 2
+      [340, 100, 100]
+    when 3
+      [324, 72, 72, 72]
+    when 5
+      [180, 72, 72, 72, 72, 72]
+    when 6
+      [150, 65, 65, 65, 65, 65, 65]
+    end
+
+    hashed_columns(res)
+  end
+
+  def overall_benchmarks_column_widths
+    res = case financial_pointer.years_list.size
+    when 2
+      [340, 200]
+    when 3
+      [324, 216]
+    when 5
+      [180, 360]
+    when 6
+      [150, 390]
+    end
+
+    hashed_columns(res)
+  end
+
+  def hashed_columns(arr)
+    Hash[arr.map.with_index { |x, i| [i, x] }]
+  end
+
+  #############################################
+  # Financial Data: Version 2 - table ops end
+  #############################################
 end

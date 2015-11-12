@@ -116,6 +116,12 @@ en:
           overseas_yearly_percentage: Overseas Yearly Percentage
         uk_sales_row:
           uk_sales: UK sales (£)
+        benchmarks:
+          growth_overseas_earnings: "% Growth overseas earnings"
+          sales_exported: "% Sales exported"
+          average_growth_for: "% Sector average growth"
+          growth_in_total_turnover: "% Growth in total turnover"
+
   errors:
     messages:
       wrong_size: "is the wrong size (should be %{file_size})"

@@ -17,23 +17,27 @@
     tbody
       - if @form_answer.trade?
         tr.exports-growth
-          th % Growth overseas earnings
+          th
+            = t('.growth_overseas_earnings')
 
           - financial_pointer.growth_overseas_earnings_list.each do |entry|
             td.value = formatted_uk_sales_value(entry)
         tr.exports-percentage
-          th % Sales exported
+          th
+            = t('.sales_exported')
 
           - financial_pointer.sales_exported_list.each do |entry|
             td.value = formatted_uk_sales_value(entry)
         tr.sector-average-growth
-          th % Sector average growth
+          th
+            = t('.average_growth_for')
 
           - financial_pointer.average_growth_for_list.each do |entry|
             td = formatted_uk_sales_value(entry)
       - else
         tr.turnover-growth
-          th % Growth in total turnover
+          th
+            = t('.growth_in_total_turnover')
 
           - financial_pointer.growth_in_total_turnover_list.each do |entry|
             td.value = formatted_uk_sales_value(entry)
