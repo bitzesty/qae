@@ -4,7 +4,7 @@
     .form-value
       p
         - if f.object.application_background_section_desc.present?
-          = f.object.application_background_section_desc
+          = simple_format f.object.application_background_section_desc
         - else
           em.text-muted No comment has been added yet.
       .clear
