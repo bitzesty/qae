@@ -8,6 +8,8 @@ class AuditCertificatePdf < Prawn::Document
   attr_reader :audit_data,
               :form_answer,
               :award_type,
+              :award_type_full_name,
+              :company_name,
               :financial_pointer,
               :step_questions,
               :filled_answers
@@ -17,6 +19,8 @@ class AuditCertificatePdf < Prawn::Document
 
     @form_answer = form_answer.decorate
     @award_type = form_answer.award_type_full_name.downcase
+    @award_type_full_name = "#{@form_answer.award_type_full_name} #{form_answer.award_year.year}"
+    @company_name = @form_answer.company_name
     @financial_pointer = FormFinancialPointer.new(@form_answer, {exclude_ignored_questions: true})
     @audit_data = financial_pointer.data
     @step_questions = financial_pointer.financial_step.questions

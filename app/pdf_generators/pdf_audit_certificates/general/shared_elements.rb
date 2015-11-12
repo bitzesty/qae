@@ -259,7 +259,7 @@ module PdfAuditCertificates::General::SharedElements
   def render_options(opt1, opt2)
     move_down 6.mm
     render_text_line("#{LIST_POINTER}#{opt1}", 2, default_list_ops)
-    render_text_line("#{LIST_POINTER}#{opt1}", 6, default_list_ops)
+    render_text_line("#{LIST_POINTER}#{opt2}", 6, default_list_ops)
   end
 
   def render_footer_note
