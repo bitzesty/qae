@@ -119,7 +119,7 @@ en:
         benchmarks:
           growth_overseas_earnings: "% Growth overseas earnings"
           sales_exported: "% Sales exported"
-          sector_average_growth: "% Sector average growth"
+          average_growth_for: "% Sector average growth"
           growth_in_total_turnover: "% Growth in total turnover"
 
   errors:
