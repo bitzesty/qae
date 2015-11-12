@@ -10,7 +10,7 @@
     .form-value
       p
         - if f.object.public_send(section.desc).present?
-          = f.object.public_send(section.desc)
+          = simple_format f.object.public_send(section.desc)
         - else
           em.text-muted No comment has been added yet.
       .clear
