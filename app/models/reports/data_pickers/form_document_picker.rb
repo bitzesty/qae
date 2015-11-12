@@ -215,9 +215,10 @@ module Reports::DataPickers::FormDocumentPicker
     elsif development?
       doc "development_desc_short"
     else
+      number_of_goods_and_services =  doc("trade_goods_amount").to_i
       service_json = doc "trade_goods_and_services_explanations"
       if service_json
-        (service_json || []).map do |service|
+        (service_json || [])[0..(number_of_goods_and_services - 1)].map do |service|
           service["desc_short"]
         end.select(&:present?).join(",")
       end
