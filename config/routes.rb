@@ -189,7 +189,9 @@ Rails.application.routes.draw do
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]
       resources :support_letters, only: [:show]
-      resources :audit_certificates, only: [:show]
+      resources :audit_certificates, only: [:show] do
+        get :download_initial_pdf, on: :collection
+      end
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit

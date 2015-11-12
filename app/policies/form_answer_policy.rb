@@ -66,4 +66,8 @@ class FormAnswerPolicy < ApplicationPolicy
     download_case_summary_pdf? ||
     download_audit_certificate_pdf?
   end
+
+  def can_download_initial_pdf?
+    admin?
+  end
 end
