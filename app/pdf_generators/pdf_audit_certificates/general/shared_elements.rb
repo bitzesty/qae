@@ -1,6 +1,5 @@
 module PdfAuditCertificates::General::SharedElements
   DEFAULT_OFFSET = 110.mm
-  LIST_POINTER = "o   "
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
 
   def render_main_header
@@ -263,8 +262,10 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_options(opt1, opt2)
     move_down 6.mm
-    render_text_line("#{LIST_POINTER}#{opt1}", 2, default_list_ops)
-    render_text_line("#{LIST_POINTER}#{opt2}", 6, default_list_ops)
+    stroke_rectangle [0, cursor], 7, 7
+    render_text_line(opt1, 2, default_list_ops)
+    stroke_rectangle [0, cursor], 7, 7
+    render_text_line(opt2, 6, default_list_ops)
   end
 
   def render_footer_note
@@ -294,7 +295,7 @@ module PdfAuditCertificates::General::SharedElements
 
   def default_list_ops
     {
-      leading: 2.2,
+      leading: 1.8,
       indent_paragraphs: 10
     }
   end
