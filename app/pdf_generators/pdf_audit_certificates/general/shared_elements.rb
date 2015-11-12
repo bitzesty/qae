@@ -144,15 +144,20 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_financial_benchmarks_by_years
-    rows = [
-      benchmark_by_years_table_headers
-    ]
+    # Uncomment me if you need to display Year labels too like:
+    # Year 1, Year 2
+    #
+    # rows = [
+    #   benchmark_by_years_table_headers
+    # ]
+
+    rows = []
 
     rows += if form_answer.trade?
       [
         benchmarks_row("growth_overseas_earnings"),
         benchmarks_row("sales_exported"),
-        benchmarks_row("sector_average_growth")
+        benchmarks_row("average_growth_for")
       ]
     else
       [
@@ -336,11 +341,11 @@ module PdfAuditCertificates::General::SharedElements
     when 2
       [340, 100, 100]
     when 3
-      [300, 50, 50, 50]
+      [324, 72, 72, 72]
     when 5
-      [300, 50, 50, 50, 50, 50]
+      [180, 72, 72, 72, 72, 72]
     when 6
-      [300, 50, 50, 50, 50, 50, 50]
+      [150, 65, 65, 65, 65, 65, 65]
     end
 
     hashed_columns(res)
@@ -351,11 +356,11 @@ module PdfAuditCertificates::General::SharedElements
     when 2
       [340, 200]
     when 3
-      [300, 100]
+      [324, 216]
     when 5
-      [300, 100]
+      [180, 360]
     when 6
-      [300, 100]
+      [150, 390]
     end
 
     hashed_columns(res)
