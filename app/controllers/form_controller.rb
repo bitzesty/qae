@@ -334,7 +334,7 @@ class FormController < ApplicationController
   def require_to_be_account_admin_for_current_form!
     unless account_admin_for_current_form?
       if request.xhr?
-        render json: "ERROR: Access denied!"
+        render json: { error: "ERROR: Access denied!" }
       else
         redirect_to dashboard_path,
                     notice: "Access denied!"
@@ -347,7 +347,7 @@ class FormController < ApplicationController
   def check_if_deadline_ended!
     if current_form_submission_ended?
       if request.xhr?
-        render json: "ERROR: Form can't be updated as submission ended!"
+        render json: { error: "ERROR: Form can't be updated as submission ended!" }
       else
         redirect_to dashboard_path,
                     notice: "Form can't be updated as submission ended!"
