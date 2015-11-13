@@ -23,12 +23,12 @@ footer
             ' Save and continue
 
       - else
-        - if step.submit
+        - if step.submit && current_form_is_editable?
           li.submit.qae-form
             button type="submit" name="submit" value="true" class="button #{step.submit.style.presence}"
               = step.submit.text
 
-      - if !admin_in_read_only_mode? && !submission_ended?
+      - if current_form_is_editable?
         li.save-quit-link
           span.if-js-hide
             = button_tag "Save and come back later", class: "save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }

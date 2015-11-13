@@ -10,5 +10,5 @@
   - if submit.notice
     br
     .application-notice.info-notice
-      == submit.notice
+      == submit.notice.gsub("[SUBMISSION_ENDS_TIME]", submission_deadline.decorate.formatted_trigger_time)
     br

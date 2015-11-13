@@ -10,7 +10,7 @@ class FormController < ApplicationController
   before_action :get_collaborators, only: [
     :submit_confirm
   ]
-  before_action :require_to_be_account_admin!, only: :submit_confirm
+  before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
   before_action :check_trade_count_limit, only: :new_international_trade_form
   before_action do
     allow_assessor_access!(@form_answer)
@@ -317,6 +317,23 @@ class FormController < ApplicationController
     unless submission_started?
       flash.alert = "Sorry, submission is still closed"
       redirect_to dashboard_url
+    end
+  end
+
+  def submit_action?
+    params[:submit] == "true"
+  end
+
+  def check_if_deadline_ended!
+    if current_form_submission_ended?
+      if request.xhr?
+        render json: { error: "ERROR: Form can't be updated as submission ended!" }
+      else
+        redirect_to dashboard_path,
+                    notice: "Form can't be updated as submission ended!"
+      end
+
+      return false
     end
   end
 end

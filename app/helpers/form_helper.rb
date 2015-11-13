@@ -2,12 +2,20 @@ module FormHelper
   def possible_read_only_ops
     ops = {}
 
-    if admin_in_read_only_mode? || submission_ended?
+    if current_form_is_not_editable?
       ops[:disabled] = "disabled"
       ops[:class] = "read-only"
     end
 
     ops
+  end
+
+  def current_form_is_editable?
+    !current_form_is_not_editable?
+  end
+
+  def current_form_is_not_editable?
+    admin_in_read_only_mode? || current_form_submission_ended?
   end
 
   def next_step(form, step)
