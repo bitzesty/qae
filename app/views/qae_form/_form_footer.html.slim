@@ -23,7 +23,7 @@ footer
             ' Save and continue
 
       - else
-        - if step.submit && current_form_is_editable? && account_admin_for_current_form?
+        - if step.submit && current_form_is_editable?
           li.submit.qae-form
             button type="submit" name="submit" value="true" class="button #{step.submit.style.presence}"
               = step.submit.text

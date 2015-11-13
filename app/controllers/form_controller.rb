@@ -10,8 +10,6 @@ class FormController < ApplicationController
   before_action :get_collaborators, only: [
     :submit_confirm
   ]
-  before_action :require_to_be_account_admin_for_current_form!, only: :submit_confirm
-  before_action :require_to_be_account_admin_for_current_form!, only: :save, if: "submit_action?"
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
   before_action :check_trade_count_limit, only: :new_international_trade_form
   before_action do
@@ -324,24 +322,6 @@ class FormController < ApplicationController
 
   def submit_action?
     params[:submit] == "true"
-  end
-
-  def account_admin_for_current_form?
-    @form_answer.account.owner_id == current_user.id
-  end
-  helper_method :account_admin_for_current_form?
-
-  def require_to_be_account_admin_for_current_form!
-    unless account_admin_for_current_form?
-      if request.xhr?
-        render json: { error: "ERROR: Access denied!" }
-      else
-        redirect_to dashboard_path,
-                    notice: "Access denied!"
-      end
-
-      return false
-    end
   end
 
   def check_if_deadline_ended!
