@@ -68,6 +68,6 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def can_download_initial_pdf?
-    admin?
+    admin? && record.shortlisted?
   end
 end

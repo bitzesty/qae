@@ -245,6 +245,10 @@ class FormAnswer < ActiveRecord::Base
     submission_ended? ? version_before_deadline : self
   end
 
+  def shortlisted?
+    state == "reserved" || state == "recommended"
+  end
+
   private
 
   def nominator_full_name_from_document
