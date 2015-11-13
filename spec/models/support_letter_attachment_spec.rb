@@ -63,7 +63,7 @@ RSpec.describe SupportLetterAttachment, type: :model do
       it "should allow to upload files with allowed extensions" do
         expect(attachment_with_wrong_extension_file.valid?).to be_falsey
         expect(attachment_with_wrong_extension_file.errors.full_messages).to include(
-          "Attachment You are not allowed to upload \"log\" files, allowed types: jpg, jpeg, gif, png, chm, csv, diff, doc, docx, dot, dxf, eps, gml, ics, kml, odp, ods, odt, pdf, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip"
+          "Attachment You are not allowed to upload \"log\" files, allowed types: #{FileUploader.new.extension_white_list.join(", ")}"
         )
       end
 
