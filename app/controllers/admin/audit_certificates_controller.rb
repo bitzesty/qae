@@ -6,7 +6,7 @@ class Admin::AuditCertificatesController < Admin::BaseController
   end
 
   def download_initial_pdf
-    authorize form_answer, :can_download_initial_pdf?
+    authorize form_answer, :can_download_initial_audit_certificate_pdf?
 
     respond_to do |format|
       format.html

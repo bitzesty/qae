@@ -67,7 +67,7 @@ class FormAnswerPolicy < ApplicationPolicy
     download_audit_certificate_pdf?
   end
 
-  def can_download_initial_pdf?
+  def can_download_initial_audit_certificate_pdf?
     admin? && record.shortlisted?
   end
 end

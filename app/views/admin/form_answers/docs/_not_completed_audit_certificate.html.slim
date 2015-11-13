@@ -1,4 +1,4 @@
-- if policy(@form_answer).can_download_initial_pdf?
+- if policy(@form_answer).can_download_initial_audit_certificate_pdf?
   = link_to download_initial_pdf_admin_form_answer_audit_certificates_url(@form_answer, format: :pdf), class: "btn btn-default btn-block", target: "_blank"
     span.glyphicon.glyphicon-file
     span.btn-title
