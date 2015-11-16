@@ -157,3 +157,7 @@ en:
     not_confirmed: "You haven't confirmed your account"
     when_you_had_created_account: "When you created your account, we sent you an email asking to confirm it."
     not_received_confirmation_email: "If you haven't received it,"
+
+  days:
+    one: 1 day
+    other: "%{count} days"

@@ -1,7 +1,7 @@
 = "Dear #{@user.full_name},"
 
 ' Don't forget you only have
-=> pluralize(@days_before_submission, 'day', 'days')
+=> t(:days, count: @days_before_submission)
 ' to submit your application for a Queen's Award for Enterprise before the deadline on
 = @deadline
 ' .
