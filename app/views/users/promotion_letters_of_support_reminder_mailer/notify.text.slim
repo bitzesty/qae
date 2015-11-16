@@ -1,8 +1,8 @@
 = "Dear #{@user.full_name},"
 
 ' Don't forget you only have
-=> @days_before_submission
-' days to submit your nomination of
+=> t(:days, count: @days_before_submission)
+' to submit your nomination of
 => @nominee_name
 ' for a Queen's Award for Enterprise Promotion before the deadline on
 = @deadline
