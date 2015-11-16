@@ -1,12 +1,5 @@
 class Admin::UsersController < Admin::BaseController
-  before_filter :find_resource, only: [
-    :show,
-    :edit,
-    :update,
-    :destroy,
-    :resend_confirmation_email,
-    :unlock
-  ]
+  before_filter :find_resource, except: [:index, :new, :create]
 
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
