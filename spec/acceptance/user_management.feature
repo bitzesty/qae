@@ -26,3 +26,13 @@ Feature:  User management
     Then I see resend confirmation link
     When I do resend confirmation instructions
     And I should see flash message about confirmation email sending
+
+  Scenario: I unlock user as admin
+    Given I am admin user
+    And a user exists
+    And a locked user exists
+    When I am on locked user page
+    Then I see unlock user link
+    When I do unlock of user
+    And I should see flash message about unlocked access for user
+    And user should be unlocked
