@@ -67,6 +67,15 @@
 
           ' &nbsp;
 
+        - if resource.access_locked?
+          = link_to "Unlock",
+                    unlock_admin_user_path(resource),
+                    class: "btn btn-primary btn-md",
+                    method: :patch
+
+          ' &nbsp;
+
+
         = f.button :submit, "Save",
                   class: "btn btn-primary btn-md"
     .clear

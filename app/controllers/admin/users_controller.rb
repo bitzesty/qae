@@ -1,5 +1,12 @@
 class Admin::UsersController < Admin::BaseController
-  before_filter :find_resource, only: [:show, :edit, :update, :destroy, :resend_confirmation_email]
+  before_filter :find_resource, only: [
+    :show,
+    :edit,
+    :update,
+    :destroy,
+    :resend_confirmation_email,
+    :unlock
+  ]
 
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
@@ -54,6 +61,15 @@ class Admin::UsersController < Admin::BaseController
     flash[:notice] = "Confirmation instructions were successfully sent to #{@resource.decorate.full_name} (#{@resource.email})"
     respond_with :admin, @resource,
                  location: admin_users_path
+  end
+
+  def unlock
+    authorize @resource, :update?
+
+    @resource.unlock_access!
+    flash[:notice] = "User #{@resource.decorate.full_name} (#{@resource.email}) successfully unlocked!"
+    respond_with :admin, @resource,
+                 location: edit_admin_user_path(@resource)
   end
 
   private

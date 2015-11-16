@@ -176,7 +176,10 @@ Rails.application.routes.draw do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
     resources :users do
-      patch :resend_confirmation_email, on: :member
+      member do
+        patch :resend_confirmation_email
+        patch :unlock
+      end
     end
     resources :assessors
     resources :admins
