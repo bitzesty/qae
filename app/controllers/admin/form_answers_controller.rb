@@ -3,6 +3,13 @@ class Admin::FormAnswersController < Admin::BaseController
 
   before_filter :load_resource, only: [:review, :show, :update, :update_financials]
 
+  expose(:financial_pointer) do
+    FormFinancialPointer.new(@form_answer, {
+      exclude_ignored_questions: true,
+      financial_summary_view: true
+    })
+  end
+
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
     authorize :form_answer, :index?
