@@ -26,7 +26,7 @@ class QaePdfForms::General::QuestionPointer
                       "international_trade" => "International Trade",
                       "sustainable_development" => "Sustainable Development" }
 
-  ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='999999'>"
+  ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>"
   ANSWER_FONT_END = "</font></color>"
 
   BLOCK_QUESTIONS = [
@@ -364,7 +364,7 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.font("Times-Roman") do
           list_rows.each do |award|
             form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
-                                 color: "999999"
+                                 color: FormPdf::DEFAULT_ANSWER_COLOR
           end
         end
       end
@@ -531,7 +531,7 @@ class QaePdfForms::General::QuestionPointer
   def sub_question_block_without_title(sub_answer)
     form_pdf.font("Times-Roman") do
       form_pdf.render_text (q_visible? ? sub_answer : FormPdf::UNDEFINED_TITLE),
-                           color: "999999"
+                           color: FormPdf::DEFAULT_ANSWER_COLOR
     end
   end
 

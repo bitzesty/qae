@@ -177,6 +177,15 @@ label > .visible-read-only,
   }
 }
 
+input.read-only, textarea.read-only {
+  color: #000000;
+  opacity: 0.6;
+}
+
+select.read-only {
+  color: #5B5757;
+}
+
 .view-value {
   display: block;
 }

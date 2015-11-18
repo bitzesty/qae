@@ -7,7 +7,7 @@ module QaePdfForms::CustomQuestions::ByYear
   AS_AT_DATE_PREFIX_QUESTION_KEYS = [
     :total_net_assets
   ]
-  ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='999999'>"
+  ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>"
   ANSWER_FONT_END = "</font></color>"
   CALCULATED_FINANCIAL_DATA = [
     :uk_sales
