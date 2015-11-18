@@ -78,7 +78,7 @@ module QaePdfForms::General::DrawElements
 
         if description.present?
           text description,
-               color: "999999"
+               color: FormPdf::DEFAULT_ANSWER_COLOR
         end
       end
     end
@@ -159,7 +159,7 @@ module QaePdfForms::General::DrawElements
 
     indent 7.mm do
       font("Times-Roman") do
-        render_text title, color: "999999"
+        render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
       end
     end
   end
@@ -191,7 +191,7 @@ module QaePdfForms::General::DrawElements
 
   def render_nothing_uploaded_message
     font("Times-Roman") do
-      render_text "Nothing uploaded yet...", color: "999999"
+      render_text "Nothing uploaded yet...", color: FormPdf::DEFAULT_ANSWER_COLOR
     end
   end
 
