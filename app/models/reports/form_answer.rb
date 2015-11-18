@@ -199,4 +199,8 @@ class Reports::FormAnswer
       "Lead Confirmed"
     end
   end
+
+  def overall_status
+    obj.state.humanize
+  end
 end
