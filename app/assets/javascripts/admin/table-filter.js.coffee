@@ -38,7 +38,7 @@ filterTableDropdowns = () ->
     if selected_label == "select_all"
       # Select all
       all_selected = true
-      selected_options = $(this).closest("th.filter").find("option")
+      selected_options = $(this).closest("th.filter").find("select.js-admin-filter-option option")
       selected_options.each () ->
         if !$(this).attr('selected')
           all_selected = false
@@ -50,7 +50,7 @@ filterTableDropdowns = () ->
     else
       # Select individual
       selected_option = $(this).closest("th.filter").find("option[value='"+selected_label+"']")
-      
+
       if selected_option.attr('selected')
         selected_option.prop('selected', false).trigger('change')
       else

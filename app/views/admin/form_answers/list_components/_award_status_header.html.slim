@@ -3,7 +3,7 @@ th.filter
     = f.input :status,
               collection: FormAnswerStatus::AdminFilter.collection,
               label: false,
-              input_html: { multiple: true, class: 'if-js-hide'}
+              input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide'}
 
   = f.simple_fields_for [:filters, @search.filters] do |f|
     = f.input :sub_status,
