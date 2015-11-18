@@ -72,6 +72,10 @@ class Reports::AllEntries
       method: :case_summary_overall_grade
     },
     {
+      label: "Overall Status",
+      method: :overall_status
+    },
+    {
       label: "SICCode",
       method: :sic_code
     },
