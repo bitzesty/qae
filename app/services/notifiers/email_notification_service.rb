@@ -53,7 +53,7 @@ class Notifiers::EmailNotificationService
   end
 
   def shortlisted_audit_certificate_reminder(award_year)
-    award_year.form_answers.shortlisted.each do |form_answer|
+    award_year.form_answers.business.shortlisted.each do |form_answer|
       if !form_answer.audit_certificate
         Notifiers::Shortlist::AuditCertificateRequest.new(form_answer).run
       end
