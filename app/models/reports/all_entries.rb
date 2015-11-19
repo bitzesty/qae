@@ -71,10 +71,12 @@ class Reports::AllEntries
       label: "CaseSummaryOverallGrade",
       method: :case_summary_overall_grade
     },
-    {
-      label: "Overall Status",
-      method: :overall_status
-    },
+    # Uncomment me if need to return back 'Overall Status'
+    #
+    # {
+    #   label: "Overall Status",
+    #   method: :overall_status
+    # },
     {
       label: "SICCode",
       method: :sic_code
