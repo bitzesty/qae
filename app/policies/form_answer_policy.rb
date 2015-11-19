@@ -68,6 +68,6 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def can_download_initial_audit_certificate_pdf?
-    admin? && record.shortlisted?
+    admin? && !record.promotion? && record.shortlisted?
   end
 end
