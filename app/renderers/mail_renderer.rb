@@ -65,6 +65,7 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
     assigns[:deadline] = deadline("audit_certificates")
+    assigns[:award_type_full_name] = "Innovation"
 
     render(assigns, "users/notify_shortlisted_mailer/notify")
   end

@@ -3,25 +3,24 @@
 ' Congratulations, your organisation
 => @company_name
 ' has been shortlisted for a Queen's Award for Enterprise:
-= @form_answer.award_type_full_name
-' !
+=> @award_type_full_name
 
-' In order to progress to the next stage, you need to download and complete
-=> link_to "this Audit Certificate.", users_form_answer_audit_certificate_url(@form_answer, format: :pdf)
-' Which you can then
-= link_to "upload here.", users_form_answer_audit_certificate_url(@form_answer)
+| To enable us to proceed with your entry, you are now required to provide an Auditor’s Certificate from an independent, qualified, practising  accountant or auditor, (as stated in the commercial performance section of the online entry), to verify your submitted figures.
 
-' If you've not already done so, you should also complete
-= link_to "the full Declaration of Corporate Responsibility.", edit_users_form_answer_declaration_of_responsibility_url(@form_answer)
+| If you've not already done so, you should also complete the full Declaration of Corporate Responsibility.
+
+| Failure to provide these documents will mean we do not have sufficient information to complete the assessment of your application and it is unlikely to be considered by the judging panel.
 
 ' These must both be submitted by
 = @deadline
-' .
+' .We cannot extend this deadline.
 
-' You can see more information regarding this stage of the process on your
+' Please
+=> link_to "log in now", new_user_session_url
+' to your Queen’s Award account to access the necessary templates.
 
-= link_to "application dashboard.", dashboard_url
+| Note - Please do not make any public announcement of your shortlisted status as the assessment process in on going and reaching this stage is not guarantee of success.
 
-' Thank you,
+' Kind regards,
 
 ' The Queen’s Awards Office
