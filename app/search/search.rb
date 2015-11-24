@@ -4,7 +4,8 @@ class Search
   extend ActiveModel::Naming
   include ActiveModel::Conversion
 
-  attr_reader :scope, :params, :ordered_by, :ordered_desc, :filter_params, :query
+  attr_reader :scope, :params, :ordered_desc, :filter_params, :query
+  attr_accessor :ordered_by
 
   # Example usage for users
   # scope = User.scoped

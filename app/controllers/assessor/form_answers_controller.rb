@@ -32,6 +32,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
     end
 
     @search = FormAnswerSearch.new(scope, current_assessor).search(params[:search])
+    @search.ordered_by = "company_or_nominee_name" unless @search.ordered_by
     @form_answers = @search.results.group("form_answers.id")
                                    .page(params[:page])
                                    .includes(:comments)
