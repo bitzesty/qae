@@ -55,6 +55,7 @@ class MailRenderer
   def not_shortlisted_notifier
     assigns = {}
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
+    assigns[:current_year] = AwardYear.current.year
     render(assigns, "users/notify_non_shortlisted_mailer/notify")
   end
 
