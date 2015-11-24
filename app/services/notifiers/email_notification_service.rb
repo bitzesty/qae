@@ -43,12 +43,8 @@ class Notifiers::EmailNotificationService
   end
 
   def not_shortlisted_notifier(award_year)
-    award_year.form_answers.not_shortlisted.each do |form_answer|
-      if form_answer.promotion?
-        Users::NotifyNonShortlistedMailer.ep_notify(form_answer.id).deliver_later!
-      else
-        Users::NotifyNonShortlistedMailer.notify(form_answer.id).deliver_later!
-      end
+    award_year.form_answers.business.not_shortlisted.each do |form_answer|
+      Users::NotifyNonShortlistedMailer.notify(form_answer.id).deliver!
     end
   end
 
