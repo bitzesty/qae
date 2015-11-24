@@ -6,6 +6,7 @@ class Users::NotifyShortlistedMailer < AccountMailer
     @company_name = @form_answer.company_or_nominee_name
     @deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
     @deadline = @deadline.trigger_at.strftime("%d/%m/%Y")
+    @award_type_full_name = @form_answer.award_type_full_name
 
     mail to: @user.email, subject: @subject
   end
