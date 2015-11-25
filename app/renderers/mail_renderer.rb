@@ -64,7 +64,10 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
-    assigns[:deadline] = deadline("audit_certificates")
+
+    # TODO -FIXME: for now deadline is harcoded
+    assigns[:deadline] = Date.new(2015, 12, 17).strftime("%d/%m/%Y")
+
     assigns[:award_type_full_name] = "Innovation"
 
     render(assigns, "users/notify_shortlisted_mailer/notify")
