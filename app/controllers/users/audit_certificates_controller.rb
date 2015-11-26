@@ -1,4 +1,7 @@
 class Users::AuditCertificatesController < Users::BaseController
+
+  before_action :check_if_audit_certificate_already_exist!, only: [:create]
+
   expose(:form_answer) do
     current_user.account.
                 form_answers.
@@ -57,17 +60,6 @@ class Users::AuditCertificatesController < Users::BaseController
     end
   end
 
-  def destroy
-    audit_certificate.destroy
-
-    if request.xhr?
-      render nothing: true
-    else
-      redirect_to users_form_answer_audit_certificate_url(form_answer),
-                  notice: "Audit Certificate deleted!"
-    end
-  end
-
   private
 
   def audit_certificate_params
@@ -89,5 +81,12 @@ class Users::AuditCertificatesController < Users::BaseController
                      .full_messages
                      .reject { |m| m == "Attachment This field cannot be blank" }
                      .join(", ")
+  end
+
+  def check_if_audit_certificate_already_exist!
+    if audit_certificate.present? && audit_certificate.persisted?
+      render nothing: true
+      return
+    end
   end
 end
