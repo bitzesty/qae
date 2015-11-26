@@ -2,7 +2,6 @@ window.AuditCertificatesUpload =
   init: ->
     $('.js-audit-certificate-file-upload').each (idx, el) ->
       AuditCertificatesUpload.fileupload_init(el)
-    AuditCertificatesUpload.remove_attachment_init()
 
   fileupload_init: (el) ->
     form = $(el).closest('form')
@@ -35,6 +34,7 @@ window.AuditCertificatesUpload =
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.find(".li-audit-upload").removeClass("hidden")
+      $(".js-audit-certificate-status-message").remove()
 
     failed = (e, data) ->
       error_message = data.jqXHR.responseText
@@ -57,17 +57,3 @@ window.AuditCertificatesUpload =
       send: upload_started
       fail: failed
     )
-
-  remove_attachment_init: ->
-    $(document).on "click", ".js-upload-wrapper .js-remove-audit-certificate-link", (e) ->
-      e.preventDefault()
-
-      parent = $(this).closest('.js-upload-wrapper')
-      list = parent.find('.js-uploaded-list')
-      form = parent.find('form')
-
-      parent.find(".errors-container").html("")
-      list.addClass("hidden")
-      form.removeClass("hidden")
-
-      false

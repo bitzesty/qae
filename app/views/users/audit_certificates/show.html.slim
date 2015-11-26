@@ -1,19 +1,22 @@
+- cert_exists = form_answer.audit_certificate.present? && form_answer.audit_certificate.persisted?
+
 header.page-header.group class=('page-header-wider')
   div
     h1 Audit Certificate
 .article-container
   article.group role="article"
     .inner
-      p
-        ' Please download and complete
-        = link_to "this audit certificate",
-                  users_form_answer_audit_certificate_url(form_answer, format: :pdf),
-                  target: "_blank"
-        ' . You can then upload your completed certificate below.
-
+      - unless cert_exists
+        p.js-audit-certificate-status-message
+          ' Please download and complete
+          = link_to "this audit certificate",
+                    users_form_answer_audit_certificate_url(form_answer, format: :pdf),
+                    target: "_blank"
+          ' . You can then upload your completed certificate below.
       br
 
-      = render "users/audit_certificates/upload_block", award: form_answer
+      = render "users/audit_certificates/upload_block", award: form_answer,
+                                                        cert_exists: cert_exists
 
       footer
         nav.pagination.no-border aria-label="Pagination" role="navigation"

@@ -755,8 +755,7 @@ input[type="file"] {
     margin-right: $gutter-one-third;
   }
 
-  .remove-link,
-  .js-remove-audit-certificate-link {
+  .remove-link {
     @include core-16;
     float: right;
     border: none;
@@ -1048,7 +1047,7 @@ input[type="file"] {
 // Select2 dropdowns
 .select2-container {
   min-width: 14em;
-  
+
   .select2-selection__rendered {
     font-size: 14px;
   }
