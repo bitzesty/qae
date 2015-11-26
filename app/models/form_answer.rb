@@ -249,6 +249,10 @@ class FormAnswer < ActiveRecord::Base
     state == "reserved" || state == "recommended"
   end
 
+  def business?
+    %w(trade innovation development).include?(award_type)
+  end
+
   private
 
   def nominator_full_name_from_document

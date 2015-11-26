@@ -1,0 +1,42 @@
+- if @form_answer.business? && @form_answer.shortlisted?
+  .panel.panel-default
+    .panel-heading#corp-responsibility-heading role="tab"
+      h4.panel-title
+        a data-toggle="collapse" data-parent="#submitted-application" href="#corp-responsibility" aria-expanded="true" aria-controls="corp-responsibility"
+          ' Declaration of Corporate Responsibility
+          - if @form_answer.corp_responsibility_reviewed_updated_by
+            small
+              ' Updated by
+              = @form_answer.corp_responsibility_reviewed_updated_by
+              ' -
+              = l @form_answer.corp_responsibility_reviewed_updated_at.to_datetime, format: :date_at_time
+
+    #corp-responsibility.panel-collapse.collapse role="tabpanel" aria-labelledby="corp-responsibility-heading"
+      .panel-body
+        strong Status:
+        - if @form_answer.corp_responsibility_submitted?
+          |  Complete
+        - else
+          |  Incomplete
+
+        - if @form_answer.corp_responsibility_submitted?
+          = simple_form_for([namespace_name, @form_answer],
+                            remote: true,
+                            authenticity_token: true, html: {class: "corp-responsibility-review"}) do |f|
+            .form-group
+              .input.form-group.form-fields
+                = f.input :corp_responsibility_reviewed, as: :boolean,
+                                                         label: false
+                span.corp-responsibility-assessor-reviewed
+                  |reviewed
+                = f.submit "Save", class: "if-js-hide"
+
+              = link_to "#", class: "form-edit-link pull-right edit-corp-responsibility"
+                span.glyphicon.glyphicon-pencil
+                ' Edit
+              .form-actions.text-right
+                .form-fields
+                  = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+                  = link_to "Save", "#", class: "btn btn-primary save-corp-responsibility pull-right", style: "display: none"
+
+              .clear
