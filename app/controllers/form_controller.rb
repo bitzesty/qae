@@ -93,7 +93,10 @@ class FormController < ApplicationController
   end
 
   def edit_form
-    @form_answer = original_form_answer if admin_in_read_only_mode?
+    # TODO:
+    # for now we will display always latest version of form
+    # in future would be special button for this
+    # @form_answer = original_form_answer if admin_in_read_only_mode?
 
     if @form_answer.eligible?
       if params[:step] == "letters-of-support"

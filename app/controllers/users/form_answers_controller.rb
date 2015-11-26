@@ -20,7 +20,12 @@ class Users::FormAnswersController < Users::BaseController
   def show
     respond_to do |format|
       format.pdf do
-        pdf = original_form_answer.decorate.pdf_generator(pdf_blank_mode)
+        # TODO:
+        # for now we will display always latest version of form
+        # in future would be special button for this
+        # pdf = original_form_answer.decorate.pdf_generator(pdf_blank_mode)
+        #
+        pdf = form_answer.decorate.pdf_generator(pdf_blank_mode)
         send_data pdf.render,
                   filename: original_form_answer.decorate.pdf_filename,
                   type: "application/pdf"
