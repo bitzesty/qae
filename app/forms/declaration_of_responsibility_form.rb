@@ -17,7 +17,6 @@ class DeclarationOfResponsibilityForm
   attr_accessor *ATTRIBUTES
 
   validates *ATTRIBUTES,
-            presence: true,
             length: {
               maximum: 551,
               tokenizer: -> (str) { str.split },

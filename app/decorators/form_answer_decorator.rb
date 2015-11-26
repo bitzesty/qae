@@ -147,8 +147,19 @@ class FormAnswerDecorator < ApplicationDecorator
     ["recommended", "reserved"].include? object.state
   end
 
+  def corp_responsibility_required_keys
+    object.award_form.steps.detect do |step|
+      step.short_title == "Corporate Responsibility"
+    end.questions.select do |q|
+      q.is_a?(QAEFormBuilder::TextareaQuestion) && q.required
+    end.map(&:key)
+       .map(&:to_s)
+  end
+
   def corp_responsibility_missing?
-    object.document["impact_on_society"].blank?
+    corp_responsibility_required_keys.any? do |key|
+      object.document[key].blank?
+    end
   end
 
   def awarded?

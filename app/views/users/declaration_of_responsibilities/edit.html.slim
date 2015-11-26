@@ -116,14 +116,6 @@
                         label_html: { class: "visuallyhidden" }
               .clear
 
-          br
-
-          .application-notice.info-notice
-            p
-              ' You may still edit your submitted Declaration of Corporate Responsibility up until the deadline on
-              = application_deadline "audit_certificates"
-              ' .
-
           footer
             nav.pagination.no-border aria-label="Pagination" role="navigation"
               ul.group
@@ -131,4 +123,5 @@
                   = link_to dashboard_path
                     span.pagination-label Back
                 li.submit
-                  = f.submit "Submit Declaration", rel: "next", class: "button"
+                  = f.submit "Save", rel: "next", name: "save", class: "button"
+                  = f.submit "Submit Declaration", name: "submit_declaration", rel: "next", class: "button submit-corp-declaration", disabled: corp_responsibility_missing?
