@@ -70,4 +70,10 @@ class FormAnswerPolicy < ApplicationPolicy
   def can_download_initial_audit_certificate_pdf?
     admin? && !record.promotion? && record.shortlisted?
   end
+
+  def can_review_corp_responsibility?
+    record.business? &&
+    record.shortlisted? &&
+    (admin? || subject.lead?(record) || subject.primary?(record))
+  end
 end
