@@ -29,6 +29,6 @@ describe "Corporate Responsibility Form" do
 
     click_button "Submit Declaration"
 
-    expect(page).to have_content "Declaration of corporate responsibility was successfully saved"
+    expect(page).to have_content "Declaration of corporate responsibility was successfully submitted"
   end
 end
