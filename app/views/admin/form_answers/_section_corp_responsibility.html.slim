@@ -11,4 +11,10 @@
           |  Incomplete
 
         - if @form_answer.corp_responsibility_submitted?
+          br
+          strong.js-corp-responsibility-status
+            - if @form_answer.corp_responsibility_reviewed?
+              ' Reviewed
+            - else
+              ' Not reviewed
           = render "admin/form_answers/corp_responsibility/review_form"

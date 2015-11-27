@@ -205,13 +205,17 @@ class FormAnswerDecorator < ApplicationDecorator
 
     if version.present?
       user_class, user_id = version.whodunnit.split(":")
-      user_class.constantize.find(user_id).full_name
+      user_class.capitalize
+                .constantize
+                .find(user_id)
+                .decorate
+                .full_name
     end
   end
 
   def corp_responsibility_reviewed_updated_at
     version = corp_responsibility_reviewed_changes
-    version.created_at.strftime("%d%m%Y_%H%M") if version.present?
+    version.created_at if version.present?
   end
 
   def lead_assessors
