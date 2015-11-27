@@ -1,0 +1,14 @@
+- if FormAnswerPolicy.new(pundit_user, @form_answer).can_review_corp_responsibility?
+  .panel.panel-default
+    = render "admin/form_answers/corp_responsibility/status"
+
+    #corp-responsibility.panel-collapse.collapse role="tabpanel" aria-labelledby="corp-responsibility-heading"
+      .panel-body
+        strong Status:
+        - if @form_answer.corp_responsibility_submitted?
+          |  Complete
+        - else
+          |  Incomplete
+
+        - if @form_answer.corp_responsibility_submitted?
+          = render "admin/form_answers/corp_responsibility/review_form"

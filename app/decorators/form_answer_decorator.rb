@@ -147,8 +147,19 @@ class FormAnswerDecorator < ApplicationDecorator
     ["recommended", "reserved"].include? object.state
   end
 
+  def corp_responsibility_required_keys
+    object.award_form.steps.detect do |step|
+      step.short_title == "Corporate Responsibility"
+    end.questions.select do |q|
+      q.is_a?(QAEFormBuilder::TextareaQuestion) && q.required
+    end.map(&:key)
+       .map(&:to_s)
+  end
+
   def corp_responsibility_missing?
-    object.document["impact_on_society"].blank?
+    corp_responsibility_required_keys.any? do |key|
+      object.document[key].blank?
+    end
   end
 
   def awarded?
@@ -180,6 +191,27 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def financial_summary_updated_at
     object.financial_data && object.financial_data["updated_at"]
+  end
+
+  def corp_responsibility_reviewed_changes
+    @corp_responsibility_reviewed_changes ||= object.versions.select do |v|
+      v["object_changes"].present? &&
+      v["object_changes"]["corp_responsibility_reviewed"].present?
+    end.last
+  end
+
+  def corp_responsibility_reviewed_updated_by
+    version = corp_responsibility_reviewed_changes
+
+    if version.present?
+      user_class, user_id = version.whodunnit.split(":")
+      user_class.constantize.find(user_id).full_name
+    end
+  end
+
+  def corp_responsibility_reviewed_updated_at
+    version = corp_responsibility_reviewed_changes
+    version.created_at.strftime("%d%m%Y_%H%M") if version.present?
   end
 
   def lead_assessors

@@ -165,6 +165,8 @@ Rails.application.routes.draw do
         get :review
       end
       resources :draft_notes, only: [:create, :update]
+
+      resources :review_corp_responsibility, only: [:create]
     end
     resources :assessor_assignments, only: [:update]
     resources :assessment_submissions, only: [:create]
@@ -217,6 +219,8 @@ Rails.application.routes.draw do
         patch :update_financials
         get :review
       end
+
+      resources :review_corp_responsibility, only: [:create]
     end
 
     resource :settings, only: [:show] do

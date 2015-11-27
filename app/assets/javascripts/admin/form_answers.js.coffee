@@ -12,6 +12,7 @@ ready = ->
   handleCompanyDetailsForm()
   handleWinnersForm()
   handleReviewAuditCertificate()
+  handleReviewCorpResponsibility()
 
   # Move the attach document button
   moveAttachDocumentButton = ->
@@ -374,4 +375,12 @@ handleReviewAuditCertificate = ->
 
   $(".edit-review-audit").on "click", (e) ->
     $(".save-review-audit").show()
+
+handleReviewCorpResponsibility = ->
+  $("form.corp-responsibility-review").on "click", ".save-corp-responsibility", (e) ->
+    e.preventDefault()
+    $("form.corp-responsibility-review").submit()
+
+  $(".edit-corp-responsibility").on "click", (e) ->
+    $(".save-corp-responsibility").show()
 $(document).ready(ready)
