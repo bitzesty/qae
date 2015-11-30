@@ -11,6 +11,10 @@ class Users::DeclarationOfResponsibilitiesController < Users::BaseController
     params[:submit_declaration].present?
   end
 
+  expose(:full_dcr_selected?) do
+    @form_answer.decorate.full_dcr_selected?
+  end
+
   expose(:short_dcr_selected?) do
     @form_answer.decorate.short_dcr_selected?
   end
@@ -22,10 +26,11 @@ class Users::DeclarationOfResponsibilitiesController < Users::BaseController
   def update
     if @declaration_form.update(params[:declaration_of_responsibility_form])
       if submit_declaration && !corp_responsibility_missing?
-        @form_answer.update_column(:corp_responsibility_submitted, true)
+        @form_answer.document["corp_responsibility_form"] = "complete_now"
+        @form_answer.save!
       end
 
-      if @form_answer.corp_responsibility_submitted?
+      if full_dcr_selected?
         redirect_to dashboard_url, notice: "Declaration of corporate responsibility was successfully submitted"
       else
         flash.now[:notice] = "Declaration of corporate responsibility was successfully saved"
@@ -70,7 +75,7 @@ class Users::DeclarationOfResponsibilitiesController < Users::BaseController
   end
 
   def require_to_have_missing_corp_responsibility!
-    if @form_answer.corp_responsibility_submitted?
+    if full_dcr_selected?
       redirect_to dashboard_url, notice: "Declaration already submitted!"
       return false
     end

@@ -59,7 +59,7 @@ describe "Corporate Responsibility Form" do
     describe "Cant' submit Declaration twice!" do
       before do
         form_answer.state = "recommended"
-        form_answer.corp_responsibility_submitted = true
+        form_answer.document["corp_responsibility_form"] = "complete_now"
         form_answer.save!
 
         visit edit_users_form_answer_declaration_of_responsibility_path(form_answer)
@@ -76,7 +76,6 @@ describe "Corporate Responsibility Form" do
     describe "Save" do
       before do
         form_answer.state = "recommended"
-        form_answer.corp_responsibility_submitted = false
         DCR_OPTIONS.each_with_index do |attr|
           form_answer.document[attr.to_s] = nil
         end

@@ -5,12 +5,12 @@
     #corp-responsibility.panel-collapse.collapse role="tabpanel" aria-labelledby="corp-responsibility-heading"
       .panel-body
         strong Status:
-        - if @form_answer.full_dcr_selected? || @form_answer.corp_responsibility_submitted?
+        - if @form_answer.full_dcr_selected?
           |  Complete
         - else
           |  Incomplete
 
-        - if @form_answer.full_dcr_selected? || @form_answer.corp_responsibility_submitted?
+        - if @form_answer.full_dcr_selected?
           br
           strong.js-corp-responsibility-status
             - if @form_answer.corp_responsibility_reviewed?
