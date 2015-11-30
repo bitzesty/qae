@@ -55,28 +55,12 @@ describe "Corporate Responsibility Form" do
         expect_to_see_no "Please complete the full corporate responsibility form now you are shortlisted."
       end
     end
-
-    describe "Cant' submit Declaration twice!" do
-      before do
-        form_answer.state = "recommended"
-        form_answer.corp_responsibility_submitted = true
-        form_answer.save!
-
-        visit edit_users_form_answer_declaration_of_responsibility_path(form_answer)
-      end
-
-      it "should restrict access" do
-        expect_to_see "Declaration already submitted!"
-        expect_to_see_no "Please complete the full corporate responsibility form now you are shortlisted."
-      end
-    end
   end
 
   describe "Application Shortlisted" do
     describe "Save" do
       before do
         form_answer.state = "recommended"
-        form_answer.corp_responsibility_submitted = false
         DCR_OPTIONS.each_with_index do |attr|
           form_answer.document[attr.to_s] = nil
         end
@@ -116,7 +100,7 @@ describe "Corporate Responsibility Form" do
         # 4: Trying to access DCR form after submission of declaration
         #    And getting restriction redirect with message
         visit edit_users_form_answer_declaration_of_responsibility_path(form_answer)
-        expect_to_see "Declaration already submitted!"
+        expect_to_see "Available for short DCR selected only!"
       end
     end
   end

@@ -65,8 +65,7 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
 
-    # TODO -FIXME: for now deadline is harcoded
-    assigns[:deadline] = Date.new(2015, 12, 17).strftime("%d/%m/%Y")
+    assigns[:deadline] = deadline("audit_certificates")
 
     assigns[:award_type_full_name] = "Innovation"
 
