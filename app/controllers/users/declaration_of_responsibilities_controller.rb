@@ -2,8 +2,7 @@ class Users::DeclarationOfResponsibilitiesController < Users::BaseController
   before_action :load_form_answer,
                 :load_form,
                 :require_application_to_be_business_and_shortlisted!,
-                :require_application_to_have_short_dcr_selected!,
-                :require_to_have_missing_corp_responsibility!
+                :require_application_to_have_short_dcr_selected!
 
   before_action :require_to_fill_all_required_questions_to_submit!, only: [:update]
 
@@ -28,9 +27,7 @@ class Users::DeclarationOfResponsibilitiesController < Users::BaseController
       if submit_declaration && !corp_responsibility_missing?
         @form_answer.document["corp_responsibility_form"] = "complete_now"
         @form_answer.save!
-      end
 
-      if full_dcr_selected?
         redirect_to dashboard_url, notice: "Declaration of corporate responsibility was successfully submitted"
       else
         flash.now[:notice] = "Declaration of corporate responsibility was successfully saved"
@@ -70,13 +67,6 @@ class Users::DeclarationOfResponsibilitiesController < Users::BaseController
     if submit_declaration && corp_responsibility_missing?
       redirect_to dashboard_url,
                   notice: "You have to answer on all questions in order to submit declaration!"
-      return false
-    end
-  end
-
-  def require_to_have_missing_corp_responsibility!
-    if full_dcr_selected?
-      redirect_to dashboard_url, notice: "Declaration already submitted!"
       return false
     end
   end
