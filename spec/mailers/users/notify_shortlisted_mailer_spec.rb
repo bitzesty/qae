@@ -9,12 +9,9 @@ describe Users::NotifyShortlistedMailer do
   end
 
   let!(:deadline) do
-    # deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
-    # deadline.update(trigger_at: Date.current)
-    # deadline.trigger_at.strftime("%d/%m/%Y")
-    #
-    # for now deadline is harcoded
-    Date.new(2015, 12, 17).strftime("%d/%m/%Y")
+    deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
+    deadline.update(trigger_at: Date.current)
+    deadline.trigger_at.strftime("%d/%m/%Y")
   end
 
   let(:award_title) { form_answer.decorate.award_application_title }
