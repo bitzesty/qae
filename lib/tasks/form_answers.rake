@@ -9,15 +9,6 @@ namespace :form_answers do
     FormAnswerUserSubmissionService.new(f).perform
   end
 
-  desc "Sets corp_responsibility_submitted trigger for business apps which already has full DCR"
-  task set_corp_responsibility_trigger: :environment do
-    FormAnswer.shortlisted.business.find_each do |f|
-      unless f.decorate.corp_responsibility_missing?
-        f.update_column(:corp_responsibility_submitted, true)
-      end
-    end
-  end
-
   desc "fixes eligibility inconsistencies"
   task fix_eligibility: :environment do
     FormAnswer.find_each do |f|

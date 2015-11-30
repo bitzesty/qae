@@ -27,7 +27,7 @@
         p Please review the actions below to complete your shortlisted application.
         ul.post-dashboard-actions
           li
-            - if award.object.corp_responsibility_submitted?
+            - if award.full_dcr_selected? || award.object.corp_responsibility_submitted?
               | Declaration of Corporate Responsibility
             - else
               = link_to "Declaration of Corporate Responsibility",
@@ -37,7 +37,7 @@
               span.pull-right
                 ' Due by
                 = application_deadline_short(:audit_certificates)
-              - if award.object.corp_responsibility_submitted?
+              - if award.full_dcr_selected? || award.object.corp_responsibility_submitted?
                 span.label-status.label-status-green
                   ' Complete
               - else
