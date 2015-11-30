@@ -211,7 +211,7 @@ class FormAnswerDecorator < ApplicationDecorator
   def corp_responsibility_reviewed_updated_by
     version = corp_responsibility_reviewed_changes
 
-    if version.present?
+    if version.present? && version.whodunnit.present?
       user_class, user_id = version.whodunnit.split(":")
       user_class.capitalize
                 .constantize
