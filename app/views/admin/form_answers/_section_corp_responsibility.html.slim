@@ -1,5 +1,5 @@
-- if FormAnswerPolicy.new(pundit_user, @form_answer).can_review_corp_responsibility?
-  .panel.panel-default
+- if FormAnswerPolicy.new(pundit_user, @form_answer).can_see_corp_responsibility?
+  .panel.panel-default#corp-responsibility-section
     = render "admin/form_answers/corp_responsibility/status"
 
     #corp-responsibility.panel-collapse.collapse role="tabpanel" aria-labelledby="corp-responsibility-heading"
@@ -17,4 +17,6 @@
               ' Reviewed
             - else
               ' Not reviewed
-          = render "admin/form_answers/corp_responsibility/review_form"
+
+          - if FormAnswerPolicy.new(pundit_user, @form_answer).can_review_corp_responsibility?
+            = render "admin/form_answers/corp_responsibility/review_form"

@@ -9,6 +9,10 @@ FactoryGirl.define do
       state "submitted"
     end
 
+    trait :recommended do
+      state "recommended"
+    end
+
     trait :trade do
       award_type "trade"
       document FormAnswer::DocumentParser.parse_json_document(
