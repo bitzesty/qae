@@ -71,9 +71,12 @@ class FormAnswerPolicy < ApplicationPolicy
     admin? && !record.promotion? && record.shortlisted?
   end
 
+  def can_see_corp_responsibility?
+    record.business? && record.shortlisted?
+  end
+
   def can_review_corp_responsibility?
-    record.business? &&
-    record.shortlisted? &&
+    can_see_corp_responsibility? &&
     (admin? || subject.lead?(record) || subject.primary?(record))
   end
 end
