@@ -246,7 +246,7 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def dcr_checked
-    bool(obj.corp_responsibility_reviewed?)
+    bool(obj.decorate.full_dcr_selected?)
   end
 
   def immediate_parent_name
