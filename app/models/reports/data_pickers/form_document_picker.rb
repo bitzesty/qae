@@ -246,7 +246,7 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def dcr_checked
-    bool(obj.document["corp_responsibility_form"].to_s == "declare_now")
+    bool(obj.corp_responsibility_reviewed?)
   end
 
   def immediate_parent_name
