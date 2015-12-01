@@ -76,4 +76,8 @@ class FormAnswerPolicy < ApplicationPolicy
     record.shortlisted? &&
     (admin? || subject.lead?(record) || subject.primary?(record))
   end
+
+  def can_download_original_pdf_of_application_before_deadline?
+    admin? && record.submission_ended?
+  end
 end
