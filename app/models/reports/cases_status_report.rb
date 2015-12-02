@@ -59,6 +59,10 @@ class Reports::CasesStatusReport
       method: :ac_checked
     },
     {
+      label: "DCRSubmitted",
+      method: :dcr_submitted
+    },
+    {
       label: "DCRChecked",
       method: :dcr_checked
     },
