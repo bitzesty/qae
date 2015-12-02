@@ -245,8 +245,12 @@ module Reports::DataPickers::FormDocumentPicker
     end
   end
 
-  def dcr_checked
+  def dcr_submitted
     bool(obj.decorate.full_dcr_selected?)
+  end
+
+  def dcr_checked
+    bool(obj.corp_responsibility_reviewed?)
   end
 
   def immediate_parent_name
