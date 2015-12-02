@@ -1,7 +1,7 @@
 class Assessor::FormAnswersController < Assessor::BaseController
   include FormAnswerMixin
 
-  before_filter :load_resource, only: [:update_financials]
+  before_filter :load_resource, only: [:update_financials, :original_pdf_before_deadline]
 
   expose(:financial_pointer) do
     FormFinancialPointer.new(@form_answer, {

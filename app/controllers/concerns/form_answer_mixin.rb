@@ -57,6 +57,18 @@ module FormAnswerMixin
     redirect_to edit_form_path(@form_answer)
   end
 
+  def original_pdf_before_deadline
+    authorize @form_answer, :can_download_original_pdf_of_application_before_deadline?
+
+    respond_to do |format|
+      format.pdf do
+        send_data pdf_data.render,
+                  filename: pdf_filename,
+                  type: "application/pdf"
+      end
+    end
+  end
+
   private
 
   def primary_assessment
@@ -112,5 +124,17 @@ module FormAnswerMixin
       updated_by_id: pundit_user.id,
       updated_by_type: pundit_user.class
     }.merge(params[:financial_data])
+  end
+
+  def original_form_answer
+    @form_answer.original_form_answer
+  end
+
+  def pdf_data
+    original_form_answer.decorate.pdf_generator
+  end
+
+  def pdf_filename
+    "original_pdf_before_deadline_#{@form_answer.decorate.pdf_filename}"
   end
 end

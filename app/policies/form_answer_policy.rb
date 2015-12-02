@@ -77,10 +77,10 @@ class FormAnswerPolicy < ApplicationPolicy
 
   def can_review_corp_responsibility?
     can_see_corp_responsibility? &&
-    (admin? || subject.lead?(record) || subject.primary?(record))
+    can_update_by_admin_lead_and_primary_assessors?
   end
 
   def can_download_original_pdf_of_application_before_deadline?
-    admin? && record.submission_ended?
+    can_update_by_admin_lead_and_primary_assessors? && record.submission_ended?
   end
 end
