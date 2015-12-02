@@ -190,6 +190,10 @@ Rails.application.routes.draw do
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
 
     resources :form_answers do
+      member do
+        get :original_pdf_before_deadline
+      end
+
       resources :form_answer_state_transitions, only: [:create]
       resources :comments
       resources :form_answer_attachments, only: [:create, :show, :destroy]
