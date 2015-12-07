@@ -1,15 +1,6 @@
 - form = AppraisalForm.verdict_options_for(f.object, section)
 - editable = f.object.editable_for?(current_subject)
-
-/ # TODO will probably need to move this into policies
-- rag_editable = true
-/ If this is a moderated verdict
-- if f && f.object && f.object.position == "moderated"
-  / If moderacted assessment has been submitted
-  - if moderated_assessment.submitted?
-    / Only admins can edit moderated verdict RAGs after submission
-    - unless (current_user && current_user.account_admin?)
-      - rag_editable = false
+- rag_editable = f.object.moderated_rag_editable_for?(current_subject, moderated_assessment)
 
 .form-group.verdict-section class="#{'form-edit' if f.object.public_send(section.desc).blank?} form-#{section.label.parameterize}"
   .form-container
