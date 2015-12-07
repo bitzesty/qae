@@ -13,6 +13,7 @@ ready = ->
   handleWinnersForm()
   handleReviewAuditCertificate()
   handleReviewCorpResponsibility()
+  handleRemovingOfAuditCertificate()
 
   # Move the attach document button
   moveAttachDocumentButton = ->
@@ -407,6 +408,12 @@ handleReviewCorpResponsibility = ->
     $("form.corp-responsibility-review.form-actions").hide()
     $(".edit-corp-responsibility").show()
 
+    return false
+
+handleRemovingOfAuditCertificate = ->
+  $(document).on "click", ".js-remove-audit-certificate-link", (e) ->
+    $(this).closest("form").submit()
+    $(this).closest("li").remove()
     return false
 
 $(document).ready(ready)
