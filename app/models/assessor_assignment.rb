@@ -79,6 +79,11 @@ class AssessorAssignment < ActiveRecord::Base
     owner_or_administrative?(subject)
   end
 
+  def moderated_rag_editable_for?(subject,  moderated_assessment)
+    editable_for?(subject) &&
+    (subject.is_a?(Admin) || position != "moderated" || !moderated_assessment.submitted?)
+  end
+
   def as_json
     if errors.blank?
       {}
