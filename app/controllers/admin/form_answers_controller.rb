@@ -6,7 +6,8 @@ class Admin::FormAnswersController < Admin::BaseController
     :show,
     :update,
     :update_financials,
-    :original_pdf_before_deadline
+    :original_pdf_before_deadline,
+    :remove_audit_certificate
   ]
 
   expose(:financial_pointer) do
@@ -25,6 +26,22 @@ class Admin::FormAnswersController < Admin::BaseController
     @form_answers = @search.results.group("form_answers.id")
                                    .page(params[:page])
                                    .includes(:comments)
+  end
+
+  def remove_audit_certificate
+    authorize @form_answer, :remove_audit_certificate?
+
+    @form_answer.audit_certificate.destroy
+
+    respond_to do |format|
+      format.html do
+        flash.notice = "Audit Certificate successfully removed"
+        redirect_to admin_form_answer_url(@form_answer)
+      end
+      format.js do
+        render nothing: true
+      end
+    end
   end
 
   private

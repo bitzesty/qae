@@ -196,6 +196,7 @@ Rails.application.routes.draw do
     resources :form_answers do
       member do
         get :original_pdf_before_deadline
+        patch :remove_audit_certificate
       end
 
       resources :form_answer_state_transitions, only: [:create]

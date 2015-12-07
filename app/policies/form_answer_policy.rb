@@ -61,6 +61,10 @@ class FormAnswerPolicy < ApplicationPolicy
     record.audit_certificate.scan.clean?
   end
 
+  def remove_audit_certificate?
+    admin? && record.audit_certificate.present?
+  end
+
   def has_access_to_post_shortlisting_docs?
     download_feedback_pdf? ||
     download_case_summary_pdf? ||
