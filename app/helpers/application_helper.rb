@@ -85,4 +85,17 @@ module ApplicationHelper
   def format_date(date)
     date.strftime("%e %b %Y at %H:%M")
   end
+
+  # Custom version of http://apidock.com/rails/v4.2.1/ActionView/Helpers/TextHelper/simple_format
+  # Because we do not need tag wrappers
+  def qae_simple_format(text)
+    text = sanitize(text)
+    paragraphs = split_paragraphs(text)
+
+    if paragraphs.present?
+      paragraphs.map! { |paragraph|
+        raw(paragraph)
+      }.join("\n\n").html_safe
+    end
+  end
 end

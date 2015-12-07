@@ -29,7 +29,7 @@
             = f.submit 'Delete', class: "btn btn-danger link-delete-comment-confirm"
 
   .comment-content
-    = simple_format comment.body
+    = qae_simple_format comment.body
 
   = form_for([namespace_name, @form_answer, comment],
              remote: true,

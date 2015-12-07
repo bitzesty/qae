@@ -19,7 +19,7 @@
             .form-value
               p
                 - if f.object.content.present?
-                  = simple_format f.object.content
+                  = qae_simple_format f.object.content
                 - else
                   em.text-muted No draft notes added yet.
             = f.input :content,

@@ -165,7 +165,7 @@ ready = ->
     formGroup.removeClass("form-edit")
 
     if area.val().length
-      formGroup.find(".form-value p").text(area.val())
+      formGroup.find(".form-value p").html(area.val().replace(/\n/g, '<br />'))
       updatedSection = link.data("updated-section")
       $(this).closest(".panel-body").find(".field-with-errors").removeClass("field-with-errors")
       $(this).closest(".panel-body").find(".feedback-holder.error").html("")
