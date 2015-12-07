@@ -47,7 +47,7 @@ So that User can re-upload Audit Certificate
     end
   end
 
-  describe "Removing", js: true do
+  describe "Removing", js: true, skip_travis: true do
     let!(:admin) { create(:admin) }
 
     before do
