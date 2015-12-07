@@ -58,6 +58,7 @@ class AdditionalEpStats
     log_this("not submitted: #{not_submitted_forms_count}")
     log_this("eligible, but not submitted: #{eligible_but_not_submitted_count}")
 
+    log_this("how many received letters of support: #{not_submitted_with_at_least_of_one_support_letter}")
     log_this("how many received only 1 letter of support: #{with_one_support_letter_count}")
     log_this("how many received only 1 letter of support ids: #{with_one_support_letter_ids}")
     log_this("how many received none: #{not_submitted_without_support_letters_count}")
