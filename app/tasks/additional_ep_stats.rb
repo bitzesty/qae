@@ -30,7 +30,7 @@ class AdditionalEpStats
     self.not_submitted_forms_count = not_submitted_forms.count
 
     self.eligible_but_not_submitted = not_submitted_forms.where(state: "application_in_progress")
-                                                         .select { |f| f.eligible? }
+                                                         .select { |f| f.eligible? && f.fill_progress > 0.8}
     self.eligible_but_not_submitted_count = eligible_but_not_submitted.count
 
     self.not_submitted_with_at_least_of_one_support_letter = eligible_but_not_submitted.select do |f|
