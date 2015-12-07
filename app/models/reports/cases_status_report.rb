@@ -47,8 +47,8 @@ class Reports::CasesStatusReport
       method: :case_summary_overall_grade
     },
     {
-      label: "PressReleaseUpdated",
-      method: :press_release_updated
+      label: "Overall Status",
+      method: :overall_status
     },
     {
       label: "ACReceived",
@@ -73,6 +73,10 @@ class Reports::CasesStatusReport
     {
       label: "FeedbackComplete",
       method: :feedback_complete
+    },
+    {
+      label: "PressReleaseUpdated",
+      method: :press_release_updated
     },
     {
       label: "CaseWithdrawn",
