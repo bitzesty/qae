@@ -152,6 +152,7 @@ end
 group :test, :development do
   gem 'factory_girl_rails'
   gem 'byebug'
+  gem "rspec_junit_formatter"
 end
 
 group :development, :staging do

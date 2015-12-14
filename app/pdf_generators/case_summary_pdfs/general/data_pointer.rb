@@ -3,12 +3,6 @@ module CaseSummaryPdfs::General::DataPointer
                       "international_trade" => "International Trade",
                       "sustainable_development" => "Sustainable Development" }
 
-  POSSIBLE_RAGS = {
-    negative: "Red",
-    average: "Amber",
-    positive: "Green"
-  }
-
   def undefined_value
     FeedbackPdfs::Pointer::UNDEFINED_VALUE
   end
@@ -105,8 +99,19 @@ module CaseSummaryPdfs::General::DataPointer
       [
         value[:label].gsub(":", ""),
         data["#{key}_desc"] || undefined_value,
-        data["#{key}_rate"].present? ? POSSIBLE_RAGS[data["#{key}_rate"].to_sym] : undefined_value
+        rag(key, value)
       ]
+    end
+  end
+
+  def rag(key, value)
+    if data["#{key}_rate"].present?
+      source = value[:type] == :verdict ? AppraisalForm::VERDICT_OPTIONS : AppraisalForm::RAG_OPTIONS
+      val = source.detect { |el| el[1] == data["#{key}_rate"] }
+
+      val.present? ? val[0] : undefined_value
+    else
+      undefined_value
     end
   end
 
@@ -155,17 +160,17 @@ module CaseSummaryPdfs::General::DataPointer
 
       values = cells.columns(2).rows(0..-1)
       green_rags = values.filter do |cell|
-        cell.content.to_s.strip == "Green"
+        %w(Green Recommended).include?(cell.content.to_s.strip)
       end
       green_rags.background_color = "6B8E23"
 
       amber_rags = values.filter do |cell|
-        cell.content.to_s.strip == "Amber"
+        %w(Amber Reserved).include?(cell.content.to_s.strip)
       end
       amber_rags.background_color = "DAA520"
 
       red_rags = values.filter do |cell|
-        cell.content.to_s.strip == "Red"
+        ["Red", "Not Recommended"].include?(cell.content.to_s.strip)
       end
       red_rags.background_color = "FF0000"
     end

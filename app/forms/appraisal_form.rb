@@ -1,6 +1,26 @@
 class AppraisalForm
+  RAG_OPTIONS = [
+    %w(Red negative),
+    %w(Amber average),
+    %w(Green positive)
+  ]
+
+  STRENGTH_OPTIONS = [
+    ["Insufficient Information Supplied", "neutral"],
+    ["Priority Focus for Development", "negative"],
+    ["Positive - Scope for Ongoing Development", "average"],
+    ["Key Strength", "positive"]
+  ]
+
+  VERDICT_OPTIONS = [
+    ["Not Recommended", "negative"],
+    ["Reserved", "average"],
+    ["Recommended", "positive"]
+  ]
+
   def self.rag_options_for(object, section)
-    options = [%w(Red negative), %w(Amber average), %w(Green positive)]
+    options = RAG_OPTIONS
+
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
     end || ["Select RAG", "blank"]
@@ -10,16 +30,13 @@ class AppraisalForm
       option: option
     )
   end
+
   def self.non_rag_options_for(object, section)
   end
 
   def self.strenght_options_for(object, section)
-    options = [
-      ["Insufficient Information Supplied", "neutral"],
-      ["Priority Focus for Development", "negative"],
-      ["Positive - Scope for Ongoing Development", "average"],
-      ["Key Strength", "positive"]
-    ]
+    options = STRENGTH_OPTIONS
+
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
     end || ["Select Key Strengths and Focuses", "blank"]
@@ -31,11 +48,7 @@ class AppraisalForm
   end
 
   def self.verdict_options_for(object, section)
-    options = [
-      ["Not Recommended", "negative"],
-      ["Reserved", "average"],
-      ["Recommended", "positive"]
-    ]
+    options = VERDICT_OPTIONS
 
     option = options.detect do |opt|
       opt[1] == object.public_send(section.rate)
@@ -248,7 +261,7 @@ class AppraisalForm
   def self.struct(form_answer, f = nil)
     meth = form_answer.respond_to?(:award_type_slug) ? :award_type_slug : :award_type
 
-    # Assessor assignment 
+    # Assessor assignment
     moderated = (f && f.object && f.object.position == "moderated")
 
     if moderated

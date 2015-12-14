@@ -1,0 +1,13 @@
+dependencies:
+  bundler:
+    without: [development, deployment]
+database:
+  override:
+    - mv config/database.ci.yml config/database.yml
+    - cp .env.example .env
+    - cp config/secrets.yml.example config/secrets.yml
+    - bundle exec rake db:create
+    - bundle exec rake db:migrate
+test:
+  override:
+    - bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
