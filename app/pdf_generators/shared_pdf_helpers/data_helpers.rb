@@ -11,7 +11,7 @@ module SharedPdfHelpers::DataHelpers
         end[1]
 
         if selected_option == options.values.max
-          "Continious"
+          "Сontinuous"
         else
           "Outstanding"
         end

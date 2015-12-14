@@ -46,7 +46,7 @@ shared_context "admin case summary pdf file checks" do
   end
 
   let(:applicant) do
-    "Applicant: #{user.decorate.applicant_info_print}"
+    "Applicant: #{form_answer.decorate.application_name}"
   end
 
   let(:award_general_information) do
@@ -54,7 +54,7 @@ shared_context "admin case summary pdf file checks" do
   end
 
   let(:award_title) do
-    form_answer.award_type_full_name.downcase.capitalize
+    form_answer.award_type_full_name.titlecase
   end
 
   describe "PDF generation" do
