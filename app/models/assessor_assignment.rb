@@ -76,12 +76,15 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def editable_for?(subject)
-    owner_or_administrative?(subject)
+    admin?(subject) ||
+    subject.lead?(form_answer) ||
+    primary_assessor_can_edit?(subject) ||
+    secondary_assessor_can_edit?(subject)
   end
 
   def moderated_rag_editable_for?(subject,  moderated_assessment)
     editable_for?(subject) &&
-    (subject.is_a?(Admin) || position != "moderated" || !moderated_assessment.submitted?)
+    (position != "moderated" || !moderated_assessment.submitted?)
   end
 
   def as_json
@@ -94,11 +97,31 @@ class AssessorAssignment < ActiveRecord::Base
 
   private
 
+  def admin?(subject)
+    subject.is_a?(Admin)
+  end
+
   def owner_or_administrative?(subject)
-    subject.is_a?(Admin) ||
-      subject.try(:lead?, form_answer) ||
-      (case_summary? && subject.try(:primary?, form_answer)) ||
-      (!moderated? && !case_summary? && assessor_id == subject.id)
+    admin?(subject) ||
+    subject.lead?(form_answer) ||
+    primary_or_secondary_assessors_allowed?(subject)
+  end
+
+  def primary_or_secondary_assessors_allowed?(subject)
+    (case_summary? && subject.primary?(form_answer)) ||
+    (!moderated? && !case_summary? && assessor_id == subject.id)
+  end
+
+  def primary_assessor_can_edit?(subject)
+    !submitted? &&
+    (primary? || case_summary?) &&
+    subject.primary?(form_answer)
+  end
+
+  def secondary_assessor_can_edit?(subject)
+    !submitted? &&
+    secondary? &&
+    subject.secondary?(form_answer)
   end
 
   def award_specific_attributes
@@ -140,7 +163,8 @@ class AssessorAssignment < ActiveRecord::Base
 
   def submitted_at_immutability
     return if new_record?
-    if submitted_at_changed? && submitted_at_was.present?
+
+    if !case_summary? && submitted_at_changed? && submitted_at_was.present?
       errors.add(:submitted_at, "cannot be re-submitted")
     end
   end
