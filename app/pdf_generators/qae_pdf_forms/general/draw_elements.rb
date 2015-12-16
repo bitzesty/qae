@@ -41,11 +41,16 @@ module QaePdfForms::General::DrawElements
   def draw_link_with_file_attachment(attachment, description)
     default_bottom_margin
 
-    image path_to_attachment_file(attachment.file),
-          fit: [35, 35],
-          align: :left
+    # FIXME: https://app.getsentry.com/bit-zesty-client-apps/qae/issues/101873287/
+    # Prawn::Errors::UnsupportedImageType
+    # PNG uses unsupported interlace method
+    # Uncomment me once you solve issue with wrong file formats
+    #
+    # image path_to_attachment_file(attachment.file),
+    #       fit: [35, 35],
+    #       align: :left
 
-    move_up 17
+    # move_up 17
 
     base_link_sceleton(
       attachment_path(attachment.file, true),
