@@ -1,4 +1,6 @@
-.form-group.application-background-section class="#{'form-edit' if f.object.application_background_section_desc.blank?}"
+- editable = f.object.editable_for?(current_subject)
+
+.form-group.application-background-section class="#{'form-edit' if f.object.application_background_section_desc.blank? && editable}"
   .form-container
     label.form-label Application background
     .form-value
@@ -14,8 +16,10 @@
               input_html: { class: "form-control", rows: 10 },
               as: :text,
               label: false
-    = link_to "#", class: "form-edit-link pull-right"
-      span.glyphicon.glyphicon-pencil
-      ' Edit
-    = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
-    .clear
+
+    - if editable
+      = link_to "#", class: "form-edit-link pull-right"
+        span.glyphicon.glyphicon-pencil
+        ' Edit
+      = link_to "Save", "#", class: "btn btn-primary form-save-link pull-right if-no-js-hide"
+      .clear

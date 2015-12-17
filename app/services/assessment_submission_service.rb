@@ -9,18 +9,28 @@ class AssessmentSubmissionService
   delegate :form_answer, to: :resource
 
   def perform
-    return if resource.submitted?
-    if submit_assessment
-      populate_case_summary
-    end
+    if resource.submitted?
+      resubmit! if resource.case_summary?
+    else
+      if submit_assessment
+        populate_case_summary
+      end
 
-    if resource.moderated?
-      form_answer.state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
-    end
+      if resource.moderated?
+        form_answer.state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
+      end
 
-    if resource.case_summary?
-      perform_state_transition!
+      if resource.case_summary?
+        perform_state_transition!
+      end
     end
+  end
+
+  def resubmit!
+    # TODO: probably need further actions!
+    # NEED TO CONFIRM!
+    #
+    set_submitted_at_as_now!
   end
 
   delegate :as_json, to: :resource
@@ -28,6 +38,10 @@ class AssessmentSubmissionService
   private
 
   def submit_assessment
+    set_submitted_at_as_now!
+  end
+
+  def set_submitted_at_as_now!
     resource.update(submitted_at: DateTime.now)
   end
 

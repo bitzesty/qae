@@ -9,4 +9,12 @@ class AssessorAssignmentPolicy < ApplicationPolicy
     record.assessor == subject ||
       subject.lead?(record.form_answer)
   end
+
+  def can_be_submitted?
+    submit? && !record.submitted?
+  end
+
+  def can_be_re_submitted?
+    submit? && record.submitted? && record.case_summary?
+  end
 end
