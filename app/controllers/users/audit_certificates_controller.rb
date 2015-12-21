@@ -52,9 +52,8 @@ class Users::AuditCertificatesController < Users::BaseController
                  status: :created,
                  content_type: "text/plain"
         else
-          render json: humanized_errors,
-                 status: :unprocessable_entity,
-                 content_type: "text/plain"
+          render json: { errors: humanized_errors }.to_json,
+                 status: :unprocessable_entity
         end
       end
     end
@@ -81,6 +80,7 @@ class Users::AuditCertificatesController < Users::BaseController
                      .full_messages
                      .reject { |m| m == "Attachment This field cannot be blank" }
                      .join(", ")
+                     .gsub("Attachment ", "")
   end
 
   def check_if_audit_certificate_already_exist!

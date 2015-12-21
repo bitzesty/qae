@@ -36,14 +36,22 @@ window.AuditCertificatesUpload =
       list.find(".li-audit-upload").removeClass("hidden")
       $(".js-audit-certificate-status-message").remove()
 
-    failed = (e, data) ->
-      error_message = data.jqXHR.responseText
+    failed = (error_message) ->
       parent.find(".errors-container").html("<li>" + error_message + "</li>")
       list.addClass("hidden")
       form.removeClass("hidden")
+
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.removeClass("hidden")
+
+    success_or_error = (e, data) ->
+      errors = data.result.errors
+
+      if errors
+        failed(errors.toString())
+      else
+        upload_done(e, data)
 
     $el.fileupload(
       url: form.attr("action") + ".json"
@@ -52,8 +60,7 @@ window.AuditCertificatesUpload =
       formData: [
         { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
       ]
-      done: upload_done
       progressall: progress_all
       send: upload_started
-      fail: failed
+      always: success_or_error
     )

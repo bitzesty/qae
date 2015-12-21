@@ -21,7 +21,7 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
              status: :created,
              content_type: "text/plain"
     else
-      render json: humanized_errors,
+      render json: { errors: humanized_errors }.to_json,
              status: :unprocessable_entity
     end
   end
@@ -42,6 +42,7 @@ class Users::SupportLetterAttachmentsController < Users::BaseController
       support_letter_attachment.errors.
                                full_messages.
                                reject { |m| m == "Attachment This field cannot be blank" }.
-                               join(", ")
+                               join(", ").
+                               gsub("Attachment ", "")
     end
 end
