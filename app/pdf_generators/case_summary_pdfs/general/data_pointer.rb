@@ -25,7 +25,7 @@ module CaseSummaryPdfs::General::DataPointer
       employees_year_entry(field)
     end.compact
 
-    res.present? ? res.map(&:to_s).max : undefined_value
+    res.present? ? res.last : undefined_value
   end
 
   def employees_year_entry(field)
