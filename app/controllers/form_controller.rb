@@ -243,7 +243,8 @@ class FormController < ApplicationController
         # text/plain content type is needed for jquery.fileupload
         render json: @attachment, status: :created, content_type: "text/plain"
       else
-        render json: @attachment.errors, status: 500
+        render json: { errors: humanized_upload_errors }.to_json,
+               status: :unprocessable_entity
       end
     end
   end
@@ -338,5 +339,13 @@ class FormController < ApplicationController
 
       return false
     end
+  end
+
+  def humanized_upload_errors
+    @attachment.errors
+               .full_messages
+               .reject { |m| m == "File This field cannot be blank" }
+               .join(", ")
+               .gsub("File ", "")
   end
 end

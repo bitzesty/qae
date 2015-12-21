@@ -422,16 +422,19 @@ jQuery ->
       wrapper.removeClass("question-has-errors")
       wrapper.find(".errors-container").empty()
 
-    failed = (e, data) ->
-      error_json = data.jqXHR.responseJSON
-      if error_json
-        error_key = Object.keys(error_json)[0]
-        error_message = data.jqXHR.responseJSON[error_key]
+    success_or_error = (e, data) ->
+      errors = data.result.errors
+
+      if errors
+        failed(errors.toString())
       else
-        error_message = data.jqXHR.responseText
+        upload_done(e, data)
+
+    failed = (error_message) ->
       if error_message
         wrapper.addClass("question-has-errors")
         wrapper.find(".errors-container").html("<li>" + error_message + "</li>")
+
       # Remove `Uploading...`
       list.find(".js-uploading").remove()
       list.removeClass("visuallyhidden")
@@ -514,10 +517,9 @@ jQuery ->
             value: $el.data("question-key")
           }
         ]
-        done: upload_done
         progressall: progress_all
         send: upload_started
-        fail: failed
+        always: success_or_error
       )
 
   $(document).on "click", ".js-upload-wrapper .remove-link", (e) ->

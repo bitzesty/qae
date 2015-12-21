@@ -13,7 +13,7 @@ window.SupportLetters =
     $el = $(el)
     parent = $el.closest("label")
 
-    upload_done = (e, data, link) ->
+    upload_done = (e, data) ->
       SupportLetters.clean_up_system_tags(parent)
 
       if data.result['original_filename']
@@ -29,11 +29,18 @@ window.SupportLetters =
       parent.append(hidden_input)
       SupportLetters.autosave()
 
-    failed = (e, data) ->
+    failed = (error_message) ->
       SupportLetters.clean_up_system_tags(parent)
-      error_message = data.jqXHR.responseText
       parent.find(".errors-container").html("<li>" + error_message + "</li>")
       parent.closest("label").addClass("question-has-errors")
+
+    success_or_error = (e, data) ->
+      errors = data.result.errors
+
+      if errors
+        failed(errors.toString())
+      else
+        upload_done(e, data)
 
     $el.fileupload(
       url: $el.closest(".list-add").data('attachments-url') + ".json"
@@ -42,8 +49,7 @@ window.SupportLetters =
       formData: [
         { name: "authenticity_token", value: $("meta[name='csrf-token']").attr("content") }
       ]
-      done: upload_done
-      fail: failed
+      always: success_or_error
     )
 
   clean_up_system_tags: (parent) ->
