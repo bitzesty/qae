@@ -274,4 +274,16 @@ class AppraisalForm
   def self.rates(form_answer, type)
     struct(form_answer).select { |_, v| v[:type] == type }
   end
+
+  class << self
+    def group_labels_by(type)
+      %w(rag strength verdict).map do |label_type|
+        const_get("#{label_type.upcase}_OPTIONS").detect do |el|
+          el[1] == type
+        end
+      end.compact
+         .map { |el| el[0] }
+         .flatten
+    end
+  end
 end

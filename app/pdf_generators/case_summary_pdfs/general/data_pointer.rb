@@ -3,6 +3,12 @@ module CaseSummaryPdfs::General::DataPointer
                       "international_trade" => "International Trade",
                       "sustainable_development" => "Sustainable Development" }
 
+  COLOR_LABELS = %w(positive average negative neutral)
+  POSITIVE_COLOR = "6B8E23"
+  AVERAGE_COLOR = "DAA520"
+  NEGATIVE_COLOR = "FF0000"
+  NEUTRAL_COLOR = "ECECEC"
+
   def undefined_value
     FeedbackPdfs::Pointer::UNDEFINED_VALUE
   end
@@ -104,10 +110,22 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
+  def rag_source(value)
+    case value[:type]
+    when :rag
+      AppraisalForm::RAG_OPTIONS
+    when :verdict
+      AppraisalForm::VERDICT_OPTIONS
+    when :strengths
+      AppraisalForm::STRENGTH_OPTIONS
+    end
+  end
+
   def rag(key, value)
     if data["#{key}_rate"].present?
-      source = value[:type] == :verdict ? AppraisalForm::VERDICT_OPTIONS : AppraisalForm::RAG_OPTIONS
-      val = source.detect { |el| el[1] == data["#{key}_rate"] }
+      val = rag_source(value).detect do |el|
+        el[1] == data["#{key}_rate"]
+      end
 
       val.present? ? val[0] : undefined_value
     else
@@ -116,7 +134,7 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_data!
-    pdf_doc.move_down 50.mm
+    pdf_doc.move_down 60.mm
     render_application_background
 
     pdf_doc.move_down 10.mm
@@ -149,6 +167,13 @@ module CaseSummaryPdfs::General::DataPointer
                                                 }
   end
 
+  # Classes and methods are not available inside pdf_doc.table below (Prawn::Table)
+  # but constants for current class are available
+  # so, that we are setting them here
+  COLOR_LABELS.each do |label|
+    const_set("#{label.upcase}_LABELS", AppraisalForm.group_labels_by(label))
+  end
+
   def render_items
     pdf_doc.table(case_summaries_entries,
                   cell_style: { size: 12 },
@@ -159,20 +184,26 @@ module CaseSummaryPdfs::General::DataPointer
                   }) do
 
       values = cells.columns(2).rows(0..-1)
+
       green_rags = values.filter do |cell|
-        %w(Green Recommended).include?(cell.content.to_s.strip)
+        POSITIVE_LABELS.include?(cell.content.to_s.strip)
       end
-      green_rags.background_color = "6B8E23"
+      green_rags.background_color = POSITIVE_COLOR
 
       amber_rags = values.filter do |cell|
-        %w(Amber Reserved).include?(cell.content.to_s.strip)
+        AVERAGE_LABELS.include?(cell.content.to_s.strip)
       end
-      amber_rags.background_color = "DAA520"
+      amber_rags.background_color = AVERAGE_COLOR
 
       red_rags = values.filter do |cell|
-        ["Red", "Not Recommended"].include?(cell.content.to_s.strip)
+        NEGATIVE_LABELS.include?(cell.content.to_s.strip)
       end
-      red_rags.background_color = "FF0000"
+      red_rags.background_color = NEGATIVE_COLOR
+
+      neutral_rags = values.filter do |cell|
+        NEUTRAL_LABELS.include?(cell.content.to_s.strip)
+      end
+      neutral_rags.background_color = NEUTRAL_COLOR
     end
   end
 
