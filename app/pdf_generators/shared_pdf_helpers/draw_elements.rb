@@ -4,6 +4,11 @@ module SharedPdfHelpers::DrawElements
   LOGO_ICON = "logo-pdf.png"
   AWARD_GENERAL_INFO_PREFIX = "The Queen's Awards for Enterprise"
 
+  def render_official_sensitive(x_coord, y_coord)
+    pdf_doc.text_box "OFFICIAL - SENSITIVE",
+                     header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
+  end
+
   def render_logo(x_coord, y_coord)
     pdf_doc.image "#{IMAGES_PATH}#{LOGO_ICON}",
                   at: [x_coord, y_coord.mm + DEFAULT_OFFSET],
