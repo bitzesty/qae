@@ -105,7 +105,7 @@ module CaseSummaryPdfs::General::DataPointer
       [
         value[:label].gsub(":", ""),
         data["#{key}_desc"] || undefined_value,
-        rag(key, value)
+        value[:type] == :non_rag ? "" : rag(key, value)
       ]
     end
   end
