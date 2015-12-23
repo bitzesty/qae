@@ -102,6 +102,8 @@ module CaseSummaryPdfs::General::DataPointer
 
   def case_summaries_entries
     AppraisalForm.struct(form_answer).map do |key, value|
+      Rails.logger.info "[#{form_answer.id}] --------------------- key: #{key}"
+
       [
         value[:label].gsub(":", ""),
         data["#{key}_desc"] || undefined_value,
@@ -111,6 +113,8 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def rag_source(value)
+    Rails.logger.info "[#{form_answer.id}] --------------------- value: #{value}"
+
     case value[:type]
     when :rag
       AppraisalForm::RAG_OPTIONS
