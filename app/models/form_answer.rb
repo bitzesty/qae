@@ -112,6 +112,7 @@ class FormAnswer < ActiveRecord::Base
     scope :winners, -> { where(state: %(recomended awarded)) }
     scope :unsuccessful, -> { where(state: %w(not_recommended not_awarded reserved)) }
     scope :submitted, -> { where(submitted: true) }
+    scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
     scope :business, -> { where(award_type: %w(trade innovation development)) }
     scope :promotion, -> { where(award_type: "promotion") }
   end
@@ -153,6 +154,10 @@ class FormAnswer < ActiveRecord::Base
 
   def eligible?
     eligibility && eligibility.eligible? && (promotion? || (form_basic_eligibility && form_basic_eligibility.eligible?))
+  end
+
+  def in_positive_state?
+    FormAnswerStateMachine::POSITIVE_STATES.map(&:to_s).include?(state)
   end
 
   def document

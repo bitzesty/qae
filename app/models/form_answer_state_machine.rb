@@ -16,6 +16,12 @@ class FormAnswerStateMachine
     :not_awarded
   ]
 
+  POSITIVE_STATES = [
+    :reserved,
+    :recommended,
+    :awarded
+  ]
+
   state :eligibility_in_progress, initial: true
   state :application_in_progress
   state :submitted

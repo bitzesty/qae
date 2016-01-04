@@ -50,7 +50,7 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def download_case_summary_pdf?
-    admin? && record.submitted? && record.lead_or_primary_assessor_assignments.any?
+    admin? && record.in_positive_state? && record.lead_or_primary_assessor_assignments.any?
   end
 
   def download_audit_certificate_pdf?

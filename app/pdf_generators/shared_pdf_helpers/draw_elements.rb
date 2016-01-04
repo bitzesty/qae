@@ -21,7 +21,7 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_applicant(x_coord, y_coord)
-    pdf_doc.text_box "Applicant: #{form_answer.decorate.application_name}",
+    pdf_doc.text_box "Applicant: #{form_answer.decorate.company_nominee_or_application_name}",
                      header_text_properties.merge(at: [x_coord.mm, y_coord.mm + DEFAULT_OFFSET])
   end
 
