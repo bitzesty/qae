@@ -17,7 +17,7 @@ class CaseSummaryPdfs::Base < ReportPdfBase
   end
 
   def set_form_answers
-    @form_answers = FormAnswer.submitted
+    @form_answers = FormAnswer.positive
                               .includes(:lead_or_primary_assessor_assignments)
                               .for_award_type(options[:category])
                               .joins(:assessor_assignments)
