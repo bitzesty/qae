@@ -68,6 +68,10 @@ class FormAnswerDecorator < ApplicationDecorator
     object.company_or_nominee_name
   end
 
+  def company_nominee_or_application_name
+    company_or_nominee_name || application_name
+  end
+
   def data
     #object.document
     OpenStruct.new(object.document.merge(persisted?: true))
