@@ -5,7 +5,7 @@ shared_context "admin case summary pdf file checks" do
 
   let!(:form_answer) do
     create :form_answer,
-           :submitted,
+           :recommended,
            award_type,
            user: user
   end
@@ -46,7 +46,7 @@ shared_context "admin case summary pdf file checks" do
   end
 
   let(:applicant) do
-    "Applicant: #{form_answer.decorate.application_name}"
+    "Applicant: #{form_answer.decorate.company_nominee_or_application_name}"
   end
 
   let(:award_general_information) do

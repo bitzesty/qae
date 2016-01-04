@@ -41,7 +41,7 @@ shared_context "admin feedback pdf file checks" do
   end
 
   let(:applicant) do
-    "Applicant: #{form_answer.decorate.application_name}"
+    "Applicant: #{form_answer.decorate.company_nominee_or_application_name}"
   end
 
   let(:award_general_information) do

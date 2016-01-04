@@ -2,11 +2,11 @@ require 'rails_helper'
 
 describe "CaseSummaryPdfs::Base" do
   let!(:form_answer_current_year_innovation) do
-    FactoryGirl.create :form_answer, :submitted, :innovation
+    FactoryGirl.create :form_answer, :recommended, :innovation
   end
 
   let!(:form_answer_current_year_trade) do
-    FactoryGirl.create :form_answer, :submitted, :trade
+    FactoryGirl.create :form_answer, :recommended, :trade
   end
 
   before do

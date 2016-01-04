@@ -10,6 +10,7 @@ FactoryGirl.define do
     end
 
     trait :recommended do
+      submitted true
       state "recommended"
     end
 
