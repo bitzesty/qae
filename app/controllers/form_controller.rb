@@ -97,7 +97,6 @@ class FormController < ApplicationController
     # for now we will display always latest version of form
     # in future would be special button for this
     # @form_answer = original_form_answer if admin_in_read_only_mode?
-
     if @form_answer.eligible?
       if params[:step] == "letters-of-support"
         redirect_to form_form_answer_supporters_path(@form_answer)
@@ -140,6 +139,8 @@ class FormController < ApplicationController
 
       @form_answer.save unless admin_in_read_only_mode?
       @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+      gon.push base_year: @form_answer.award_year.year - 1
+
       render template: "qae_form/show"
     else
       redirect_to form_award_eligibility_url(form_id: @form_answer.id)

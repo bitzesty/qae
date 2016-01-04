@@ -187,7 +187,7 @@ class FormFinancialPointer
     period_length.times do |i|
       day = form_answer.document['financial_year_date_day'].to_s
       month = form_answer.document['financial_year_date_month'].to_s
-      year = calculate_last_year(month) - period_length + i + 1
+      year = calculate_last_year(form_answer, month) - period_length + i + 1
 
       res << [
         day.rjust(2, '0'),

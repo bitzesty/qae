@@ -125,7 +125,11 @@ jQuery ->
 
     fy_day = $('.js-financial-year-latest .js-fy-day select').val()
     fy_month = $('.js-financial-year-latest .js-fy-month select').val()
-    fy_year = new Date().getFullYear()
+
+    if gon?
+      fy_year = gon.base_year || new Date().getFullYear()
+    else
+      fy_year = new Date().getFullYear()
 
     # Conditional latest year
     # If from October to December -> then previous year

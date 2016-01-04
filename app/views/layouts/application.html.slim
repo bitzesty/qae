@@ -134,6 +134,7 @@
       = link_to "The Queen's Awards Office", "http://blogs.bis.gov.uk/queensawards/"
 
 - content_for :body_end do
+  = include_gon
   = javascript_include_tag 'application'
 
 = render :file => 'layouts/govuk_template'
