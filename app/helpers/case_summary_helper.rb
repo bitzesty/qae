@@ -25,6 +25,6 @@ module CaseSummaryHelper
 
   def submit_case_summary_title(assessment)
     prefix = policy(assessment).can_be_submitted? ? "Confirm" : "Re-submit"
-    "#{prefix} case summary"
+    "#{prefix} Case Summary"
   end
 end
