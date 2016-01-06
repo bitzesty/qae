@@ -1,0 +1,34 @@
+- if policy(assessment).can_be_submitted? || policy(assessment).can_be_re_submitted?
+
+  = form_tag(url_for([namespace_name, :assessment_submissions]), remote: true, authenticity_token: true, class: "submit-assessment", "data-type" => "json")
+    = hidden_field_tag :assessment_id, assessment.id
+
+    .feedback-holder
+
+    .pull-right
+      = submit_tag submit_case_summary_title(assessment), class: "btn btn-primary btn-confirm-submit"
+    .clear
+
+- elsif assessment.submitted?
+
+  - if policy(assessment).can_unlock?
+
+    - unlock_url = namespace_name == :admin ? unlock_admin_assessment_submission_url(assessment) : unlock_assessor_assessment_submission_url(assessment)
+
+    = form_tag unlock_url, method: :patch do
+      = hidden_field_tag :assessment_id, assessment.id
+      .feedback-holder.alert.alert-success
+        ' Case Summary Submitted
+
+        .pull-right
+          = submit_tag "Unlock", class: "btn btn-primary"
+        .clear
+
+  - else
+    .feedback-holder.alert.alert-success
+      ' Case Summary Submitted
+
+- elsif !assessment.submitted?
+
+  .feedback-holder.alert.alert-info
+    ' Case Summary is not submitted yet!

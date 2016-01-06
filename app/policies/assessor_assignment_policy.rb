@@ -6,8 +6,15 @@ class AssessorAssignmentPolicy < ApplicationPolicy
   def submit?
     return true if admin?
     return false unless assessor?
-    record.assessor == subject ||
-      subject.lead?(record.form_answer)
+    lead? || primary?
+  end
+
+  def lead?
+    record.assessor == subject || subject.lead?(record.form_answer)
+  end
+
+  def primary?
+    record.assessor == subject || subject.primary?(record.form_answer)
   end
 
   def can_be_submitted?
@@ -15,6 +22,15 @@ class AssessorAssignmentPolicy < ApplicationPolicy
   end
 
   def can_be_re_submitted?
-    submit? && record.submitted? && record.case_summary?
+    !record.locked? &&
+    submit? &&
+    record.submitted? &&
+    record.case_summary?
+  end
+
+  def can_unlock?
+    record.locked? &&
+    record.case_summary? &&
+    (admin? || (assessor? && lead?))
   end
 end

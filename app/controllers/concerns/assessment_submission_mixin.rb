@@ -12,6 +12,13 @@ module AssessmentSubmissionMixin
     end
   end
 
+  def unlock
+    authorize resource, :can_unlock?
+    resource.update_column(:locked_at, nil)
+
+    redirect_to [namespace_name, resource.form_answer]
+  end
+
   private
 
   def json_response

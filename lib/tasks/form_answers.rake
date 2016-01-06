@@ -16,6 +16,13 @@ namespace :form_answers do
     end
   end
 
+  desc "populate locked_at for case summary assessor assignments"
+  task populate_locked_at_for_case_summaries: :environment do
+    AssessorAssignment.submitted.where(position: 4).each do |assignment|
+      assignment.update_column(:locked_at, assignment.submitted_at)
+    end
+  end
+
   desc "fixes attachment arrays"
   task fix_attachments: :environment do
     FormAnswer.find_each do |f|

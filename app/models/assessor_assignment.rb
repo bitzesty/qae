@@ -62,6 +62,10 @@ class AssessorAssignment < ActiveRecord::Base
     submitted_at.present?
   end
 
+  def locked?
+    locked_at.present?
+  end
+
   def visible_for?(subject)
     return true if owner_or_administrative?(subject)
     # regular assessors flow
@@ -76,6 +80,14 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def editable_for?(subject)
+    role_allow_to_edit?(subject) &&
+    (
+      !case_summary? ||
+      (case_summary? && !locked?) # Case Summary can be updated only if it's not locked
+    )
+  end
+
+  def role_allow_to_edit?(subject)
     admin?(subject) ||
     subject.lead?(form_answer) ||
     primary_assessor_can_edit?(subject) ||
@@ -113,7 +125,10 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def primary_assessor_can_edit?(subject)
-    !submitted? &&
+    (
+      (case_summary? && !locked?) ||
+      !submitted?
+    ) &&
     (primary? || case_summary?) &&
     subject.primary?(form_answer)
   end

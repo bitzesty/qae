@@ -173,7 +173,9 @@ Rails.application.routes.draw do
       resources :review_corp_responsibility, only: [:create]
     end
     resources :assessor_assignments, only: [:update]
-    resources :assessment_submissions, only: [:create]
+    resources :assessment_submissions, only: [:create] do
+      patch :unlock, on: :member
+    end
     resources :assessor_assignment_collections, only: [:create]
     resources :reports, only: [:show]
   end
@@ -238,7 +240,9 @@ Rails.application.routes.draw do
     end
 
     resources :assessor_assignments, only: [:update]
-    resources :assessment_submissions, only: [:create]
+    resources :assessment_submissions, only: [:create] do
+      patch :unlock, on: :member
+    end
 
     resource :custom_email, only: [:show, :create]
     resource :users_feedback, only: [:show]

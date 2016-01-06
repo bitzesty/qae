@@ -42,7 +42,10 @@ class AssessmentSubmissionService
   end
 
   def set_submitted_at_as_now!
-    resource.update(submitted_at: DateTime.now)
+    resource.update(
+      submitted_at: DateTime.now,
+      locked_at: DateTime.now
+    )
   end
 
   def populate_case_summary
