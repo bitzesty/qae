@@ -15,9 +15,10 @@ class CaseSummaryPdfs::Base < ReportPdfBase
     number_pages "<page>", {
       start_count_at: 1,
       at: [
-        bounds.right - 10,
+        bounds.right - 50,
         bounds.top + 20
       ],
+      align: :right,
       size: 14
     }
   end
