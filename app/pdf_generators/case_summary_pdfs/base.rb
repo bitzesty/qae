@@ -2,6 +2,26 @@ class CaseSummaryPdfs::Base < ReportPdfBase
 
   attr_reader :form_answers
 
+  def generate!
+    if mode == "singular"
+      render_item(form_answer)
+    else
+      all_mode
+      add_page_numbers
+    end
+  end
+
+  def add_page_numbers
+    number_pages "<page>", {
+      start_count_at: 1,
+      at: [
+        bounds.right - 10,
+        bounds.top + 20
+      ],
+      size: 14
+    }
+  end
+
   def all_mode
     set_form_answers
 
