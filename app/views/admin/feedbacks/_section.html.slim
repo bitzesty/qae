@@ -1,6 +1,8 @@
 - feedback = form_answer.feedback || form_answer.build_feedback
 - url = feedback.persisted? ? polymorphic_url([namespace_name, form_answer, feedback]) : polymorphic_url([namespace_name, form_answer, :feedbacks])
 = simple_form_for feedback, url: url, remote: true, authenticity_token: true do |f|
+  - if !form_answer.promotion?
+    = render "admin/feedbacks/overall_feedback_field", f: f, feedback: feedback
   - FeedbackForm.fields_for_award_type(form_answer.object.award_type).each do |feedback_field, feedback_field_value|
     = render "admin/feedbacks/feedback_fields", feedback_field: feedback_field, feedback_field_value: feedback_field_value, feedback: feedback, f: f
 
