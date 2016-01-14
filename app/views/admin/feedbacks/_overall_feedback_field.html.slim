@@ -1,9 +1,9 @@
-strong Overall Feedback
+strong Overall Summary
 .form-group
   .form-value.no-js-update
-    p = feedback.overall_feedback.presence || content_tag(:i, "No feedback has been added yet")
+    p = feedback.overall_summary.presence || content_tag(:i, "No feedback has been added yet")
   .input.form-group
-    = f.input :overall_feedback, as: :text, input_html: { class: 'form-control js-char-count', rows: 4, data: { word_max: 200 } }, label: false
+    = f.input :overall_summary, as: :text, input_html: { class: 'form-control js-char-count', rows: 4, data: { word_max: 200 } }, label: false
   .clear
 
   - if policy(feedback).update?
