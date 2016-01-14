@@ -5,7 +5,7 @@ class FeedbackForm
 
     keys = filtered_fields(keys).uniq
 
-    keys.map { |k| ["#{k}_strength", "#{k}_weakness"] }.flatten
+    ["overall_summary"] + keys.map { |k| ["#{k}_strength", "#{k}_weakness"] }.flatten
   end
 
   def self.fields_for_award_type(type)

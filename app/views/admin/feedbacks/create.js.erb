@@ -1,1 +1,2 @@
 $("#section-feedback .panel-body").html("<%= escape_javascript(render "admin/feedbacks/section", form_answer: @form_answer) %>");
+$(".js-char-count", $("#section-feedback .panel-body")).charcount();
