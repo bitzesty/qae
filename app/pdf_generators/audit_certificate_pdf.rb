@@ -17,11 +17,14 @@ class AuditCertificatePdf < Prawn::Document
   def initialize(form_answer)
     super()
 
-    @form_answer = form_answer.decorate
+    @form_answer = initialize_form_answer(form_answer)
     @award_type = form_answer.award_type_full_name.downcase
     @award_type_full_name = "#{@form_answer.award_type_full_name} #{form_answer.award_year.year}"
     @company_name = @form_answer.company_name
-    @financial_pointer = initialize_financial_pointer
+    @financial_pointer = FormFinancialPointer.new(@form_answer, {
+      exclude_ignored_questions: true,
+      financial_summary_view: true
+    })
     @audit_data = financial_pointer.data
     @step_questions = financial_pointer.financial_step.questions
     @filled_answers = financial_pointer.filled_answers
@@ -70,10 +73,7 @@ class AuditCertificatePdf < Prawn::Document
 
   private
 
-  def initialize_financial_pointer
-    FormFinancialPointer.new(@form_answer, {
-      exclude_ignored_questions: true,
-      financial_summary_view: true
-    })
+  def initialize_form_answer(form)
+    form.decorate
   end
 end
