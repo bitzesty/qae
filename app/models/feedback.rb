@@ -5,4 +5,8 @@ class Feedback < ActiveRecord::Base
 
   scope :submitted, -> { where submitted: true }
   belongs_to :authorable, polymorphic: true
+
+  def locked?
+    locked_at.present?
+  end
 end

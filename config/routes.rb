@@ -154,7 +154,7 @@ Rails.application.routes.draw do
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit
-          post :approve
+          post :unlock
         end
       end
 
@@ -211,7 +211,7 @@ Rails.application.routes.draw do
       resources :feedbacks, only: [:create, :update] do
         member do
           post :submit
-          post :approve
+          post :unlock
         end
 
         get :download_pdf, on: :collection

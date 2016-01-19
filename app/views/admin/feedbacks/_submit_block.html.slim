@@ -1,0 +1,26 @@
+- if policy(feedback).can_be_submitted? || policy(feedback).can_be_re_submitted?
+  - if feedback.persisted?
+    = form_tag(polymorphic_url([:submit, namespace_name, form_answer, feedback]), authenticity_token: true, class: "submit-feedback", "data-type" => "json")
+      .feedback-holder
+
+      .pull-right
+        = submit_tag submit_feedback_title(feedback), class: "btn btn-primary btn-confirm-submit"
+      .clear
+
+- elsif feedback.submitted?
+  - if policy(feedback).unlock?
+    = form_tag polymorphic_url([:unlock, namespace_name, form_answer, feedback]) do
+      .feedback-holder.alert.alert-success
+        ' Feedback Submitted
+
+        .pull-right
+          = submit_tag "Unlock", class: "btn btn-primary"
+        .clear
+
+  - else
+    .feedback-holder.alert.alert-success
+      ' Feedback Submitted
+
+- elsif !feedback.submitted?
+  .feedback-holder.alert.alert-info
+    ' Feedback is not submitted yet!

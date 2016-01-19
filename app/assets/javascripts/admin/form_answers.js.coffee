@@ -165,20 +165,28 @@ ready = ->
     area = formGroup.find("textarea:visible")
     formGroup.removeClass("form-edit")
 
-    if area.val().length
-      formGroup.find(".form-value p").html(area.val().replace(/\n/g, '<br />'))
-      updatedSection = link.data("updated-section")
-      $(this).closest(".panel-body").find(".field-with-errors").removeClass("field-with-errors")
-      $(this).closest(".panel-body").find(".feedback-holder.error").html("")
-      $(this).closest(".panel-body").find(".feedback-holder").removeClass("error")
-      formGroup.find("textarea").each ->
-        if $(this).val().length
-          $(this).closest(".input").removeClass("field-with-errors")
-      if updatedSection
-        input = form.find("input[name='updated_section']")
-        if input.length
-          input.val(updatedSection)
-      form.submit()
+    if area.length == 1
+      if area.val().length
+        formGroup.find(".form-value p").html(area.val().replace(/\n/g, '<br />'))
+        updatedSection = link.data("updated-section")
+        $(this).closest(".panel-body").find(".field-with-errors").removeClass("field-with-errors")
+        $(this).closest(".panel-body").find(".feedback-holder.error").html("")
+        $(this).closest(".panel-body").find(".feedback-holder").removeClass("error")
+        formGroup.find("textarea").each ->
+          if $(this).val().length
+            $(this).closest(".input").removeClass("field-with-errors")
+        if updatedSection
+          input = form.find("input[name='updated_section']")
+          if input.length
+            input.val(updatedSection)
+        form.submit()
+     else
+       if area.first().val().length
+         formGroup.find(".form-value p:first").html(area.first().val().replace(/\n/g, '<br />'))
+       if area.last().val().length
+         formGroup.find(".form-value p:last").html(area.last().val().replace(/\n/g, '<br />'))
+       form.submit()
+
   $("#new_review_audit_certificate input[type='radio']").on "change", ->
     area = $(".audit-cert-description")
     if $(this).val() == "confirmed_changes"

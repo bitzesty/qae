@@ -47,7 +47,7 @@ class Reports::FormAnswer
   end
 
   def feedback_complete
-    bool(obj.feedback.present?)
+    obj.feedback && obj.feedback.submitted? && obj.feedback.locked? ? "Submitted" : "Not Submitted"
   end
 
   def ac_received

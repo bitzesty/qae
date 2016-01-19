@@ -2,7 +2,7 @@
   h2
     ' Feedback
   ul.list-unstyled.list-actions
-    - FormAnswer::AWARD_TYPE_FULL_NAMES.each do |key, value|
+    - FormAnswer::AWARD_TYPE_FULL_NAMES.select { |k, _| k != "promotion" }.each do |key, value|
       li
         .pull-right
           = link_to admin_report_path("feedbacks", category: key, format: :pdf, year: @award_year.year)

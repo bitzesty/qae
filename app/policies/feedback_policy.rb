@@ -5,9 +5,10 @@ class FeedbackPolicy < ApplicationPolicy
 
   def update?
     return @can_update unless @can_update.nil?
+    return false if record.locked?
 
     @can_update = if assessor?
-      subject.lead?(form_answer) || (subject.assigned?(form_answer) && !record.submitted?)
+      subject.lead?(form_answer) || subject.assigned?(form_answer)
     else
       admin?
     end
@@ -18,20 +19,28 @@ class FeedbackPolicy < ApplicationPolicy
     return @can_submit unless @can_submit.nil?
 
     @can_submit = if assessor?
-      !subject.lead?(form_answer) && subject.assigned?(form_answer) && !record.submitted?
+      subject.lead?(form_answer) || subject.assigned?(form_answer)
     else
-      admin? && !record.submitted?
+      admin?
     end
   end
 
-  def approve?
-    return @can_approve unless @can_approve.nil?
-
-    @can_approve = if assessor?
-      subject.lead?(form_answer) && record.submitted? && !record.approved?
+  def unlock?
+    if assessor?
+      subject.lead?(form_answer) && record.submitted? && record.locked?
     else
-      admin? && record.submitted? && !record.approved?
+      admin? && record.submitted? && record.locked?
     end
+  end
+
+  def can_be_submitted?
+    submit? && !record.submitted?
+  end
+
+  def can_be_re_submitted?
+    !record.locked? &&
+    submit? &&
+    record.submitted?
   end
 
   private

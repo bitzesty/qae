@@ -38,6 +38,7 @@ describe AssessmentSubmissionService do
   end
 
   context "case summary submission" do
+    let(:form_answer) { create(:form_answer, :development, :submitted) }
     let(:assessment) { form_answer.assessor_assignments.case_summary }
 
     it "performs state transition when case summary is submitted" do
@@ -45,6 +46,18 @@ describe AssessmentSubmissionService do
 
       subject.perform
       expect(form_answer.reload.state).to eq("not_recommended")
+    end
+
+    it "creates populated feedback" do
+      assessment.document =  { "environment_protection_desc" => "description to copy", "environment_protection_rate" => "negative", "industry_sector_desc" => "cool", "industry_sector_rate" => "positive" }
+
+      subject.perform
+      expect(form_answer.reload.feedback).not_to be_nil
+
+      expect(form_answer.feedback.document["environment_protection_desc"]).to eq("description to copy")
+      expect(form_answer.feedback.document["environment_protection_rate"]).to eq("negative")
+      expect(form_answer.feedback.document["industry_sector_desc"]).to eq("cool")
+      expect(form_answer.feedback.document["industry_sector_rate"]).to eq("positive")
     end
   end
 end
