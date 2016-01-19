@@ -39,6 +39,8 @@
             = sort_link f, 'Signed in on', @search, :last_sign_in_at
           th.sortable
             = sort_link f, "Confirmed on", @search, :confirmed_at
+          th.sortable
+            = sort_link f, "Locked?", @search, :locked_at
       tbody
         - if UserDecorator.decorate_collection(resources).none?
           tr
@@ -69,3 +71,7 @@
                 - else
                   small.text-danger
                     ' Not confirmed
+              td
+                - if user.locked_at.present?
+                  small.text-muted
+                    = l user.locked_at, format: :date_at_time

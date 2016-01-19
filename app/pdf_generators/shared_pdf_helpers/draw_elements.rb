@@ -71,7 +71,7 @@ module SharedPdfHelpers::DrawElements
   end
 
   def render_not_found_category
-    pdf_doc.text_box options[:category].capitalize,
+    pdf_doc.text_box FormAnswer::AWARD_TYPE_FULL_NAMES[options[:category]],
                      header_text_properties.merge(at: [130.mm, 129.5.mm + DEFAULT_OFFSET])
   end
 

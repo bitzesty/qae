@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 module PdfAuditCertificates::General::SharedElements
   DEFAULT_OFFSET = 110.mm
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
