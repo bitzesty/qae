@@ -43,6 +43,14 @@ class Settings < ActiveRecord::Base
     DateTime.now >= deadline.trigger_at if deadline.present?
   end
 
+  def self.unsuccessful_stage?
+    deadline = Rails.cache.fetch("unsuccessful_notification_notification", expires_in: 1.minute) do
+      current.email_notifications.where(kind: "unsuccessful_notification").first
+    end
+
+    DateTime.now >= deadline.trigger_at if deadline.present?
+  end
+
   def self.not_shortlisted_deadline
     Rails.cache.fetch("not_shortlisted_notifier_notification", expires_in: 1.minute) do
       current.email_notifications.not_shortlisted.first.try(:trigger_at)
