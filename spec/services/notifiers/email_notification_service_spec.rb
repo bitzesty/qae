@@ -157,7 +157,7 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
-      expect(Users::ShortlistedUnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
+      expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
 
       described_class.run
 
