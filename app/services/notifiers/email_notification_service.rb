@@ -60,8 +60,8 @@ class Notifiers::EmailNotificationService
     award_year.form_answers.unsuccessful.each do |form_answer|
       if form_answer.promotion?
         Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
-      elsif form_answer.audit_certificate #todo: Confirm if this condition is OK
-        Users::ShortlistedUnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+      else
+        Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
       end
     end
   end
