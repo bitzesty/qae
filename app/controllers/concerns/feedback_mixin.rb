@@ -28,13 +28,16 @@ module FeedbackMixin
   def submit
     authorize @feedback, :submit?
     @feedback.submitted = true
+    @feedback.locked_at = Time.zone.now
+
     save_and_render_submit("submitted")
   end
 
-  def approve
-    authorize @feedback, :approve?
-    @feedback.approved = true
-    save_and_render_submit("approved")
+  def unlock
+    authorize @feedback, :unlock?
+    @feedback.locked_at = nil
+
+    save_and_render_submit("unlocked")
   end
 
   private
@@ -63,7 +66,14 @@ module FeedbackMixin
         redirect_to [namespace_name, @form_answer]
       end
 
-      format.js { render "admin/feedbacks/create" }
+      format.json do
+        if @feedback.valid?
+          render json: { errors: [] }
+        else
+          render status: :unprocessable_entity,
+                 json: { errors: @feedback.resource.errors }
+        end
+      end
     end
   end
 

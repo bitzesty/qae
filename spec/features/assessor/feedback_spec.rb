@@ -17,28 +17,30 @@ describe "Assessor feedback management" do
       within "#section-feedback .level_of_innovation" do
         find("a.form-edit-link").click
         fill_in "feedback[level_of_innovation_strength]", with: "Feedback 101"
-        click_button "Save"
+        click_link "Save"
 
         expect(page).to have_selector(".form-value", text: "Feedback 101")
       end
     end
   end
 
-  describe "feedback approval" do
+  describe "feedback unlocking" do
     before do
       feedback = form_answer.build_feedback
       feedback.submitted = true
+      feedback.locked_at = Time.zone.now
       feedback.save!
 
       form_answer.reload
     end
 
-    it "approves submitted feedback", js: true do
+    it "unlocks submitted feedback", js: true do
       visit assessor_form_answer_path(form_answer)
       find("#feedback-heading a").click
-      click_button "Approve feedback"
+      expect(page).to have_selector(".feedback-holder", text: "Feedback Submitted")
+      click_button "Unlock"
 
-      expect(page).to have_no_selector(".btn-block", text: "Approve feedback")
+      expect(page).to have_no_selector(".feedback-holder", text: "Feedback Submitted")
     end
   end
 end
