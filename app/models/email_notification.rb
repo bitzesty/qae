@@ -12,7 +12,6 @@ class EmailNotification < ActiveRecord::Base
                          :winners_notification,
                          :winners_press_release_comments_request,
                          :unsuccessful_notification,
-                         :all_unsuccessful_feedback,
                          :shortlisted_notifier,
                          :shortlisted_audit_certificate_reminder,
                          :not_shortlisted_notifier

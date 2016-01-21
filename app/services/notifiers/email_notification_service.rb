@@ -57,20 +57,11 @@ class Notifiers::EmailNotificationService
   end
 
   def unsuccessful_notification(award_year)
-    # initialy shortlisted but then did not win
-    award_year.form_answers.business.unsuccessful.each do |form_answer|
-      if form_answer.audit_certificate
-        Users::ShortlistedUnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
-      end
-    end
-  end
-
-  def all_unsuccessful_feedback(award_year)
     award_year.form_answers.unsuccessful.each do |form_answer|
       if form_answer.promotion?
         Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
-      else
-        Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+      elsif form_answer.audit_certificate #todo: Confirm if this condition is OK
+        Users::ShortlistedUnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
       end
     end
   end
