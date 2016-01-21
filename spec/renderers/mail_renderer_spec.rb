@@ -33,13 +33,6 @@ describe MailRenderer do
     end
   end
 
-  describe "#all_unsuccessful_feedback" do
-    it "renders e-mail" do
-      rendered = described_class.new.all_unsuccessful_feedback
-      expect(rendered).to match("Jon Doe")
-    end
-  end
-
   describe "#reminder_to_submit" do
     it "renders e-mail" do
       link = "http://queens-awards-enterprise.service.gov.uk/form/0"

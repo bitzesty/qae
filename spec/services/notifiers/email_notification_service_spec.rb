@@ -115,44 +115,6 @@ describe Notifiers::EmailNotificationService do
     end
   end
 
-  context "all_unsuccessful_feedback" do
-    let(:kind) { "all_unsuccessful_feedback" }
-
-    let(:form_answer) do
-      create(:form_answer, :trade, :submitted)
-    end
-
-    before do
-      form_answer.update_column(:state, "reserved")
-    end
-
-    it "triggers current notification" do
-      mailer = double(deliver_later!: true)
-      expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
-
-      described_class.run
-
-      expect(current_notification.reload).to be_sent
-    end
-
-    it "triggers notification from the previous year awards" do
-      previous_award_year = AwardYear.create(year: Date.current.year)
-      notification = create(:email_notification,
-                            trigger_at: Time.now - 1.day,
-                            kind: kind,
-                            settings: previous_award_year.settings)
-
-      form_answer.update_attribute(:award_year, previous_award_year)
-
-      mailer = double(deliver_later!: true)
-      expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
-
-      described_class.run
-
-      expect(notification.reload).to be_sent
-    end
-  end
-
   context "reminder_to_submit" do
     let(:kind) { "reminder_to_submit" }
 
@@ -195,7 +157,7 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
-      expect(Users::ShortlistedUnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
+      expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
 
       described_class.run
 

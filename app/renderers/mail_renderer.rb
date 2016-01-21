@@ -93,14 +93,6 @@ class MailRenderer
     render(assigns, "users/winners_press_release/notify")
   end
 
-  def all_unsuccessful_feedback
-    assigns = {}
-    assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
-    assigns[:form_answer] = form_answer
-    assigns[:award_title] = assigns[:form_answer].award_application_title
-    render(assigns, "users/unsuccessful_feedback_mailer/notify")
-  end
-
   private
 
   def render(assigns, template)

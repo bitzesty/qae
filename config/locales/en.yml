@@ -142,7 +142,6 @@ en:
     winners_reminder_to_submit:" WINNERS : Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
     winners_press_release_comments_request: "WINNERS : Email requesting comments on press release."
     unsuccessful_notification: "UNSUCCESSFUL : Email notifying shortlisted applicants who have not been successful."
-    all_unsuccessful_feedback: "ALL UNSUCCESSFUL : Email with link to feedback for all unsuccessful applicants."
     shortlisted_notifier: "SHORTLISTED : Email notifying shortlisted applicants of their success, including audit certificate instructions."
     shortlisted_audit_certificate_reminder: "SHORTLISTED : Reminder to submit audit certificates (for shortlisted applicants who have not yet done so)."
     not_shortlisted_notifier: "NOT SHORTLISTED : Email notifying unsuccessful applicants."
