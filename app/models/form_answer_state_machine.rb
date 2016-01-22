@@ -65,8 +65,13 @@ class FormAnswerStateMachine
         if state == :submitted
           object.update(submitted: true)
         end
+
         if state == :withdrawn
           Notifiers::WithdrawNotifier.new(object).notify
+        end
+
+        if state == :not_recommended
+          FeedbackCreationService.new(object, subject).perform
         end
       end
     end

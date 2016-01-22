@@ -74,5 +74,29 @@ describe FormAnswerStateMachine do
         end
       end
     end
+
+    context "feedback creation" do
+      let(:form_answer) { create(:form_answer, :development, :submitted, award_year: award_year) }
+      let(:assessment) { form_answer.assessor_assignments.primary }
+      let(:assessor) { create(:assessor, :regular_for_all) }
+      let!(:settings) { create(:settings, :expired_submission_deadlines) }
+
+      before do
+        assessment.assessor = assessor
+        assessment.save!
+      end
+
+      it "creates populated feedback" do
+        assessment.document =  { "environment_protection_rate" => "negative", "industry_sector_rate" => "positive" }
+        assessment.save!
+
+        form_answer.state_machine.perform_transition(:assessment_in_progress, assessor)
+        form_answer.state_machine.perform_transition(:not_recommended, assessor)
+        expect(form_answer.reload.feedback).not_to be_nil
+
+        expect(form_answer.feedback.document["environment_protection_rate"]).to eq("negative")
+        expect(form_answer.feedback.document["industry_sector_rate"]).to eq("positive")
+      end
+    end
   end
 end
