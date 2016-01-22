@@ -17,7 +17,7 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
               :overall_growth,
               :overall_growth_in_percents
 
-  def initialize(pdf_doc, form_answer, award_year)
+  def initialize(pdf_doc, form_answer, award_year=nil)
     @award_year = award_year
     @pdf_doc = pdf_doc
     @form_answer = form_answer

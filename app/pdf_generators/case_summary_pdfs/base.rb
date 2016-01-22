@@ -51,7 +51,7 @@ class CaseSummaryPdfs::Base < ReportPdfBase
                               .where("form_answers.award_year_id =?", current_year.id)
   end
 
-  def render_item(form_answer, award_year)
+  def render_item(form_answer, award_year=nil)
     CaseSummaryPdfs::Pointer.new(self, form_answer, award_year)
   end
 end
