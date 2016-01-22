@@ -15,8 +15,13 @@ shared_context "admin feedback pdf file checks" do
 
     FeedbackForm.fields_for_award_type(form_answer.award_type).each_with_index do |block, index|
       key = block[0]
-      res["#{key}_strength"] = "#{index}_strength"
-      res["#{key}_weakness"] = "#{index}_weakness"
+
+      if block[1][:type] == :strengths
+        res["#{key}_rate"] = %w(average neutral negative positive).sample
+      else
+        res["#{key}_strength"] = "#{index}_strength"
+        res["#{key}_weakness"] = "#{index}_weakness"
+      end
     end
 
     res
@@ -61,9 +66,13 @@ shared_context "admin feedback pdf file checks" do
     end
 
     it "should contain feedback data" do
-      FeedbackForm.fields_for_award_type(form_answer.award_type).each do |key, _|
-        expect(pdf_content).to include(feedback.document["#{key}_strength"])
-        expect(pdf_content).to include(feedback.document["#{key}_weakness"])
+      FeedbackForm.fields_for_award_type(form_answer.award_type).each do |key, opts|
+        if opts[:type] == :strengths
+          expect(pdf_content).to include(AppraisalForm::STRENGTH_OPTIONS.detect { |k, v| v == feedback.document["#{key}_rate"] }[0] )
+        else
+          expect(pdf_content).to include(feedback.document["#{key}_strength"])
+          expect(pdf_content).to include(feedback.document["#{key}_weakness"])
+        end
       end
     end
   end
