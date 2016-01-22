@@ -24,12 +24,13 @@ class CaseSummaryPdfs::Base < ReportPdfBase
   end
 
   def all_mode
+    award_year = current_year.year
     set_form_answers
 
     if form_answers.present?
       form_answers.each_with_index do |form_answer, index|
         start_new_page if index.to_i != 0
-        render_item(form_answer)
+        render_item(form_answer, award_year)
       end
     else
       @missing_data_name = "case summaries"
@@ -50,7 +51,7 @@ class CaseSummaryPdfs::Base < ReportPdfBase
                               .where("form_answers.award_year_id =?", current_year.id)
   end
 
-  def render_item(form_answer)
-    CaseSummaryPdfs::Pointer.new(self, form_answer)
+  def render_item(form_answer, award_year)
+    CaseSummaryPdfs::Pointer.new(self, form_answer, award_year)
   end
 end

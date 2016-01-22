@@ -17,7 +17,8 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
               :overall_growth,
               :overall_growth_in_percents
 
-  def initialize(pdf_doc, form_answer)
+  def initialize(pdf_doc, form_answer, award_year)
+    @award_year = award_year
     @pdf_doc = pdf_doc
     @form_answer = form_answer
     @answers = fetch_answers
@@ -27,6 +28,7 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
 
     generate!
   end
+
   def generate!
     # fetch case_summary or primary (if lead missing)
     @data = form_answer.lead_or_primary_assessor_assignments.first.document
@@ -37,7 +39,10 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
   end
 
   def fetch_financial_data
-    @financial_pointer = FormFinancialPointer.new(form_answer.decorate, {exclude_ignored_questions: true})
+    @financial_pointer = FormFinancialPointer.new(form_answer.decorate, {
+      exclude_ignored_questions: true,
+      award_year: @award_year
+    })
     @financial_data = financial_pointer.data
 
     @year_rows = financial_pointer.years_list.unshift("")
