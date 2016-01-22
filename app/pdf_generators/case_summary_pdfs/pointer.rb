@@ -17,6 +17,16 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
               :overall_growth,
               :overall_growth_in_percents
 
+  def initialize(pdf_doc, form_answer)
+    @pdf_doc = pdf_doc
+    @form_answer = form_answer
+    @answers = fetch_answers
+    @award_form = form_answer.award_form.decorate(answers: answers)
+    @all_questions = award_form.steps.map(&:questions).flatten
+    @filled_answers = fetch_filled_answers
+
+    generate!
+  end
   def generate!
     # fetch case_summary or primary (if lead missing)
     @data = form_answer.lead_or_primary_assessor_assignments.first.document
