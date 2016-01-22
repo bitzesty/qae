@@ -1,4 +1,15 @@
 module FeedbackPdfs::General::DataPointer
+  COLOR_LABELS = %w(positive average negative neutral)
+
+  POSITIVE_COLOR = "6B8E23"
+  AVERAGE_COLOR = "DAA520"
+  NEGATIVE_COLOR = "FF0000"
+  NEUTRAL_COLOR = "ECECEC"
+
+  COLOR_LABELS.each do |label|
+    const_set("#{label.upcase}_LABELS", AppraisalForm.group_labels_by(label))
+  end
+
   def undefined_value
     FeedbackPdfs::Pointer::UNDEFINED_VALUE
   end
@@ -15,12 +26,25 @@ module FeedbackPdfs::General::DataPointer
 
   def feedback_entries
     FeedbackForm.fields_for_award_type(form_answer.award_type).map do |key, value|
-      [
-        value[:label].gsub(":", ""),
-        data["#{key}_strength"] || undefined_value,
-        data["#{key}_weakness"] || undefined_value
-      ]
-    end
+      if value[:type] != :strengths
+        [
+          value[:label].gsub(":", ""),
+          data["#{key}_strength"] || undefined_value,
+          data["#{key}_weakness"] || undefined_value
+        ]
+      end
+    end.compact
+  end
+
+  def strengths_entries
+    FeedbackForm.fields_for_award_type(form_answer.award_type).map do |key, value|
+      if value[:type] == :strengths
+        [
+          value[:label].gsub(":", ""),
+          rag(key)
+        ]
+      end
+    end.compact
   end
 
   def render_data!
@@ -37,6 +61,37 @@ module FeedbackPdfs::General::DataPointer
       1 => 300,
       2 => 337
     })
+
+    if form_answer.development?
+      pdf_doc.table(strengths_entries,
+                    cell_style: { size: 12 },
+                    column_widths: {
+                      0 => 130,
+                      1 => 637
+                    }) do
+        values = cells.columns(1).rows(0..-1)
+
+        green_rags = values.filter do |cell|
+          POSITIVE_LABELS.include?(cell.content.to_s.strip)
+        end
+        green_rags.background_color = POSITIVE_COLOR
+
+        amber_rags = values.filter do |cell|
+          AVERAGE_LABELS.include?(cell.content.to_s.strip)
+        end
+        amber_rags.background_color = AVERAGE_COLOR
+
+        red_rags = values.filter do |cell|
+          NEGATIVE_LABELS.include?(cell.content.to_s.strip)
+        end
+        red_rags.background_color = NEGATIVE_COLOR
+
+        neutral_rags = values.filter do |cell|
+          NEUTRAL_LABELS.include?(cell.content.to_s.strip)
+        end
+        neutral_rags.background_color = NEUTRAL_COLOR
+      end
+    end
   end
 
   def render_overall_summary!
@@ -52,5 +107,17 @@ module FeedbackPdfs::General::DataPointer
     pdf_doc.table table_lines, row_colors: %w(F0F0F0),
                                cell_style: { size: 12, font_style: :bold },
                                column_widths: column_widths
+  end
+
+  def rag(key)
+    if data["#{key}_rate"].present?
+      val =  AppraisalForm::STRENGTH_OPTIONS.detect do |el|
+        el[1] == data["#{key}_rate"]
+      end
+
+      val.present? ? val[0] : undefined_value
+    else
+      undefined_value
+    end
   end
 end

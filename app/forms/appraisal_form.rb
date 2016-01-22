@@ -34,7 +34,7 @@ class AppraisalForm
   def self.non_rag_options_for(object, section)
   end
 
-  def self.strenght_options_for(object, section)
+  def self.strength_options_for(object, section)
     options = STRENGTH_OPTIONS
 
     option = options.detect do |opt|

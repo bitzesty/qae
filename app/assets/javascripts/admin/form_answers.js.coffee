@@ -8,6 +8,7 @@ ready = ->
   bindRags("#section-appraisal-form-secondary .edit_assessor_assignment")
   bindRags("#section-appraisal-form-moderated .edit_assessor_assignment")
   bindRags("#section-case-summary-case_summary .edit_assessor_assignment")
+  bindRags("#section-feedback .edit_feedback")
 
   handleCompanyDetailsForm()
   handleWinnersForm()

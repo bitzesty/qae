@@ -4,7 +4,10 @@
   - if !form_answer.promotion?
     = render "admin/feedbacks/overall_feedback_field", f: f, feedback: feedback
   - FeedbackForm.fields_for_award_type(form_answer.object.award_type).each do |feedback_field, feedback_field_value|
-    = render "admin/feedbacks/feedback_fields", feedback_field: feedback_field, feedback_field_value: feedback_field_value, feedback: feedback, f: f
+    - if feedback_field_value[:type] == :strengths
+      = render "admin/feedbacks/strength_field", field: feedback_field, value: feedback_field_value, feedback: feedback, f: f
+    - else
+      = render "admin/feedbacks/feedback_fields", feedback_field: feedback_field, feedback_field_value: feedback_field_value, feedback: feedback, f: f
 
 br
 br
