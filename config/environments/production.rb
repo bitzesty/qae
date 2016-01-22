@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.to_prepare { Devise::PasswordsController.force_ssl }
   #
   # Set to :debug to see everything in the log.
-  config.log_level = :info
+  config.log_level = :debug
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
