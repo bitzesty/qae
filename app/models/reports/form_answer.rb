@@ -191,12 +191,10 @@ class Reports::FormAnswer
   end
 
   def case_summary_status
-    lead_submitted = @case_summary.try(:submitted?)
-
-    if !lead_submitted
+    if @case_summary.try(:submitted?) && @case_summary.locked?
+      "Submitted"
+    else
       "Not Submitted"
-    elsif lead_submitted
-      "Lead Confirmed"
     end
   end
 

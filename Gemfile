@@ -145,7 +145,6 @@ group :development do
   gem 'quiet_assets'
   gem 'rack-mini-profiler', require: false
   gem 'passenger'
-  gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rubocop', require: false
 end

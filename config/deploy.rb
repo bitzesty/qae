@@ -13,8 +13,8 @@ set :slack_icon_emoji,   ->{ ":rocket:" }
 set :slack_channel,      ->{ "#qae" }
 set :migration_role, 'app'
 
-set :stages, %w(production staging bzstaging)
-set :default_stage, 'bzstaging'
+set :stages, %w(production staging)
+set :default_stage, 'staging'
 set :use_sudo, false
 
 set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
@@ -75,5 +75,3 @@ namespace :deploy do
     end
   end
 end
-
-

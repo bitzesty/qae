@@ -17,7 +17,7 @@ class AuditCertificatePdf < Prawn::Document
   def initialize(form_answer)
     super()
 
-    @form_answer = form_answer.decorate
+    @form_answer = initialize_form_answer(form_answer)
     @award_type = form_answer.award_type_full_name.downcase
     @award_type_full_name = "#{@form_answer.award_type_full_name} #{form_answer.award_year.year}"
     @company_name = @form_answer.company_name
@@ -69,5 +69,11 @@ class AuditCertificatePdf < Prawn::Document
 
   def financials_i18_prefix
     "admin.form_answers.financial_summary"
+  end
+
+  private
+
+  def initialize_form_answer(form)
+    form.decorate
   end
 end
