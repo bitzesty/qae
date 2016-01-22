@@ -129,6 +129,19 @@ $.fn.charcount = function() {
     $(this).attr("data-counted-words", counter.words);
   };
 
+  // When a paste event happens, it waits a bit and then triggers the over word count
+  // If it isn't over, great, if it is then it cuts it down
+  $(this).on("paste", function (e) {
+    var textInput = $(this);
+
+    setTimeout(function() {
+      textInput.addClass("char-over-cut");
+      while (textInput.hasClass("char-over-cut")) {
+        Countable.once(textInput[0], cutOverChar);
+      }
+    }, 100);
+  });
+
   this.each(function() {
     // Makes word count dynamic
     Countable.live(this, counting);
