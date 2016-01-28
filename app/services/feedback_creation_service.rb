@@ -20,12 +20,12 @@ class FeedbackCreationService
     feedback = form_answer.build_feedback
     feedback.authorable = user
     feedback.document = {}
-    case_summary = form_answer.assessor_assignments.case_summary
+    primary_assignment = form_answer.assessor_assignments.primary
 
     AppraisalForm::DEVELOPMENT.each do |attr, val|
       next if val[:type] != :strengths
 
-      feedback.document["#{attr}_rate"] = case_summary.document["#{attr}_rate"]
+      feedback.document["#{attr}_rate"] = primary_assignment.document["#{attr}_rate"]
     end
 
     feedback.save!
