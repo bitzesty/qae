@@ -82,7 +82,7 @@ module SharedPdfHelpers::DrawElements
   def header_text_properties
     {
       width: 160.mm,
-      size: 16,
+      size: 12,
       align: :left,
       valign: :top,
       style: :bold
