@@ -105,21 +105,69 @@ $.fn.charcount = function() {
         // Set through typing
         var char_limit = textInput.val().length;
         textInput.attr("maxlength", char_limit);
+        textInput.addClass("maxlength-reached");
       }
     } else {
       textInput.removeAttr("maxlength");
+      textInput.removeClass("maxlength-reached");
     }
 
-    $("textarea[maxlength]").each(function() {
-      var textEvents = $._data(this, "events");
-      if (textEvents) {
-        if (!("keydown" in textEvents)) {
-          $(this).on("keydown keyup", function () {
-            $(this).addClass("char-over-cut");
-            while ($(this).hasClass("char-over-cut")) {
-              Countable.once(this, cutOverChar);
-            }
-          });
+    // Locks typing out when the max is reached
+    var allowed_keys = [
+      8, // backspace key
+      46, // delete key
+      37, 38, 39, 40, //directional keys
+      33, 34, 35, 36, // page jump keys
+      9, // tab key
+      16, // shift key
+      18, // alt key
+      112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, // function keys
+      27 // escape key
+    ];
+    var allowed_option_keys = [
+      17, // control key
+      91, // mac key
+    ];
+    // Checks if the option key is down
+    window.option_key_down = [];
+    textInput.on("keydown", function (e) {
+      for (var k=0; k<allowed_option_keys.length; k++) {
+        if (e.keyCode == allowed_option_keys[k]) {
+          if ($.inArray(allowed_option_keys[k], window.option_key_down) < 0) {
+            window.option_key_down.push(allowed_option_keys[k]);
+          }
+        }
+      }
+    });
+    // Checks if the option key is up
+    textInput.on("keyup", function (e) {
+      for (var k=0; k<allowed_option_keys.length; k++) {
+        if (e.keyCode == allowed_option_keys[k]) {
+          if ($.inArray(allowed_option_keys[k], window.option_key_down) > -1) {
+            window.option_key_down.splice(window.option_key_down.indexOf(allowed_option_keys[k]), 1);
+          }
+        }
+      }
+    });
+    textInput.on("keydown keyup", function (e) {
+      if (textInput.hasClass("maxlength-reached")) {
+        var key_allowed = false;
+
+        // Allows some keys like delete
+        for (var k=0; k<allowed_keys.length; k++) {
+          if (e.keyCode == allowed_keys[k]) {
+            key_allowed = true;
+          }
+        }
+
+        // Allows option key combinations like refreshing the page
+        if (window.option_key_down.length > 0) {
+          key_allowed = true;
+        }
+
+        // Prevents keys that add characters
+        if (!key_allowed) {
+          e.preventDefault();
         }
       }
     });
@@ -145,6 +193,13 @@ $.fn.charcount = function() {
   this.each(function() {
     // Makes word count dynamic
     Countable.live(this, counting);
+
+    // Count words even if you backspace/delete
+    $(this).on("keydown keyup", function (e) {
+      if (e.keyCode == 8 || e.keyCode == 46) {
+        Countable.once($(this)[0], counting);
+      }
+    });
   });
 
   return this;
