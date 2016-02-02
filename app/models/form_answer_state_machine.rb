@@ -70,7 +70,7 @@ class FormAnswerStateMachine
           Notifiers::WithdrawNotifier.new(object).notify
         end
 
-        if state == :not_recommended
+        if [:not_awarded, :not_recommended].include?(state)
           FeedbackCreationService.new(object, subject).perform
         end
       end
