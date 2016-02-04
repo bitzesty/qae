@@ -6,8 +6,8 @@ class PressSummaryPolicy < ApplicationPolicy
   def update?
     return @can_update unless @can_update.nil?
 
-    @can_update = if assessor?
-      subject.lead?(form_answer) || (subject.assigned?(form_answer) && !record.submitted?)
+    @can_update = !record.submitted? && if assessor?
+      subject.lead?(form_answer) || subject.assigned?(form_answer)
     else
       admin?
     end
