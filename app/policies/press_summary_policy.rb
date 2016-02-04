@@ -27,7 +27,7 @@ class PressSummaryPolicy < ApplicationPolicy
   def submit?
     return @can_submit unless @can_submit.nil?
 
-    @can_submit = !record.submitted? && assessor? && subject.primary?(form_answer)
+    @can_submit = !record.submitted? && (admin? || subject.assigned?(form_answer))
   end
 
   def unlock?
