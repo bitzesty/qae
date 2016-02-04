@@ -29,19 +29,35 @@ module PressSummaryMixin
   def approve
     authorize @press_summary, :approve?
     @press_summary.approved = true
-    @press_summary.save
+    change_state "Press Summary was successfully approved"
+  end
+
+  def submit
+    authorize @press_summary, :submit?
+    @press_summary.submitted = true
+    change_state "Press Summary was successfully submitted"
+  end
+
+  def unlock
+    authorize @press_summary, :unlock?
+    @press_summary.submitted = false
+    change_state "Press Summary was successfully unlocked"
+  end
+
+  private
+
+  def change_state(message)
+    @press_summary.save!
 
     respond_to do |format|
       format.html do
-        flash.notice = "Press Summary was successfully approved"
+        flash.notice = message
         redirect_to [namespace_name, @form_answer]
       end
 
       format.js { render "admin/press_summaries/create" }
     end
   end
-
-  private
 
   def press_summary_params
     params.require(:press_summary).permit(:body)
