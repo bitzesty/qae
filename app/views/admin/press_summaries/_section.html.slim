@@ -39,7 +39,21 @@
       - else
         p.p-empty Applicant hasn't confirmed the Press Book Notes
 
-- if press_summary.persisted? && policy(press_summary).approve?
-  br
-  br
-  = button_to "Approve Press Book Notes", polymorphic_url([:approve, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true
+- if press_summary.submitted?
+  - if policy(press_summary).unlock?
+    br
+    br
+    = button_to "Unlock Press Book Notes", polymorphic_url([:unlock, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true
+  - else
+    br
+    br
+    p.p-empty Press Notes submitted
+- else
+  - if press_summary.persisted? && policy(press_summary).submit?
+    br
+    br
+    = button_to "Submit Press Book Notes", polymorphic_url([:submit, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true
+  - else
+    br
+    br
+    p.p-empty Press Notes not submitted

@@ -9,7 +9,7 @@ module PartialsVisibilityHelper
   end
 
   def show_winners_section?
-    @form_answer.awarded? || @form_answer.recommended?
+    @form_answer.awarded? || @form_answer.recommended? || @form_answer.reserved?
   end
 
   def show_feedback_section?
@@ -18,7 +18,7 @@ module PartialsVisibilityHelper
   end
 
   def show_press_summary_subsection?
-    (@form_answer.awarded? || @form_answer.recommended?) &&
+    (@form_answer.awarded? || @form_answer.recommended? || @form_answer.reserved?) &&
       !current_subject.try(:secondary?, @form_answer)
   end
 

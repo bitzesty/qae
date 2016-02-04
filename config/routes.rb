@@ -161,6 +161,8 @@ Rails.application.routes.draw do
       resources :press_summaries, only: [:create, :update] do
         member do
           post :approve
+          post :submit
+          post :unlock
         end
       end
 
@@ -220,6 +222,8 @@ Rails.application.routes.draw do
       resources :press_summaries, only: [:create, :update] do
         member do
           post :approve
+          post :submit
+          post :unlock
         end
       end
       resources :case_summaries, only: [:index]
