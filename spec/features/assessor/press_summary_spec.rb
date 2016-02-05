@@ -25,12 +25,7 @@ describe "Assessor press_summary management", js: true do
   end
 
   describe "press_summary approval" do
-    let(:primary){ form_answer.assessor_assignments.primary }
-
     it "submit press_summary" do
-      primary.assessor = assessor
-      primary.save!
-
       press_summary = form_answer.build_press_summary
       press_summary.body = "body"
       press_summary.save!
