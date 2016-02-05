@@ -26,4 +26,8 @@ class Admin < ActiveRecord::Base
   def lead?(*)
     true
   end
+
+  def lead_or_assigned?(*)
+    true
+  end
 end

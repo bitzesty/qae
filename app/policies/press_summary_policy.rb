@@ -1,40 +1,24 @@
 class PressSummaryPolicy < ApplicationPolicy
   def create?
-    admin? || (assessor? && subject.assigned?(form_answer))
+    subject.lead_or_assigned?(form_answer)
   end
 
   def update?
-    return @can_update unless @can_update.nil?
-
-    @can_update = !record.submitted? && if assessor?
-      subject.lead?(form_answer) || subject.assigned?(form_answer)
-    else
-      admin?
-    end
+    !record.submitted? && subject.lead_or_assigned?(form_answer)
   end
+
   alias :create? :update?
 
   def approve?
-    return @can_approve unless @can_approve.nil?
-
-    @can_approve = if assessor?
-      subject.lead?(form_answer) && !record.approved?
-    else
-      admin? && !record.approved?
-    end
+    !record.approved? && subject.lead?(form_answer)
   end
 
   def submit?
-    return @can_submit unless @can_submit.nil?
-
-    @can_submit = !record.submitted? && (admin? || subject.assigned?(form_answer))
+    !record.submitted? && subject.lead_or_assigned?(form_answer)
   end
 
   def unlock?
-    return @can_unlock unless @can_unlock.nil?
-
-    @can_unlock = record.submitted? &&
-      (admin? || (assessor? && subject.lead?(form_answer)))
+    record.submitted? && subject.lead?(form_answer)
   end
 
   private
