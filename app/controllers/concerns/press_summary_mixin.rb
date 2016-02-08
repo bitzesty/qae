@@ -83,7 +83,14 @@ module PressSummaryMixin
         redirect_to [namespace_name, @form_answer]
       end
 
-      format.js { render "admin/press_summaries/create" }
+      format.js do
+        if @press_summary.valid?
+           render json: { errors: [] }
+        else
+           render status: :unprocessable_entity,
+                  json: { errors: @press_summary.resource.errors }
+        end
+      end
     end
   end
 end
