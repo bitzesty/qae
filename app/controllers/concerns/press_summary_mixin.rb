@@ -85,10 +85,10 @@ module PressSummaryMixin
 
       format.js do
         if @press_summary.valid?
-           render json: { errors: [] }
+          render json: { errors: [] }
         else
-           render status: :unprocessable_entity,
-                  json: { errors: @press_summary.resource.errors }
+          render status: :unprocessable_entity,
+                 json: { errors: @press_summary.resource.errors }
         end
       end
     end
