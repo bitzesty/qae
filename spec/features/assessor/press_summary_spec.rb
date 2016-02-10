@@ -25,16 +25,17 @@ describe "Assessor press_summary management", js: true do
   end
 
   describe "press_summary approval" do
-    it "approves submitted press_summary" do
+    it "submit press_summary" do
       press_summary = form_answer.build_press_summary
       press_summary.body = "body"
       press_summary.save!
 
       visit assessor_form_answer_path(form_answer)
       find("#press-summary-heading a").click
-      click_button "Approve Press Book Notes"
 
-      expect(page).to have_no_selector(".btn-block", text: "Approve Press Book Notes")
+      click_button "Submit Press Book Notes"
+
+      expect(page).to have_no_selector(".btn-block", text: "Submit Press Book Notes")
     end
   end
 end

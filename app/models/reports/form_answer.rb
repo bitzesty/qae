@@ -50,6 +50,10 @@ class Reports::FormAnswer
     obj.feedback && obj.feedback.submitted? && obj.feedback.locked? ? "Submitted" : "Not Submitted"
   end
 
+  def press_release_updated
+    obj.press_summary && obj.press_summary.submitted ? "Submitted" : "Not Submitted"
+  end
+
   def ac_received
     bool obj.audit_certificate.present?
   end

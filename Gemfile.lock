@@ -666,6 +666,3 @@ DEPENDENCIES
   whenever
   wicked (~> 1.1)
   with_advisory_lock
-
-BUNDLED WITH
-   1.10.6
