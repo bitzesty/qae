@@ -1,5 +1,5 @@
 - unsuccessful = FormAnswerDecorator.decorate_collection(award_applications)
-- if unsuccessful.present?
+- if unsuccessful.present? && Settings.unsuccessful_stage?
   .container-split
     .content-left
       h2 Unsuccessful
@@ -28,7 +28,7 @@
           p The application was not submitted on time.
         - else
           h4 Feedback
-          - if award.feedback.try(:approved?) && Settings.unsuccessful_stage?
+          - if award.feedback.try(:approved?)
             p
               ' Please
               = link_to "download and read the feedback document", users_form_answer_feedback_path(award, format: :pdf)
