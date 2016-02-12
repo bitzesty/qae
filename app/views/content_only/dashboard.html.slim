@@ -13,15 +13,15 @@
           ' Award winners will be announced on 21st April
           = AwardYear.current.year
           ' .
+- if show_applications?
+  header.page-header.group
+    div
+      h1
+        ' Applications
 
-header.page-header.group
-  div
-    h1
-      ' Applications
-
-- if Settings.after_current_submission_deadline?
-  .dashboard-post-submission
-    = render "dashboard_post_submission"
-- else
-  .dashboard-pre-submission
-    = render "dashboard_pre_submission"
+  - if Settings.after_current_submission_deadline?
+    .dashboard-post-submission
+      = render "dashboard_post_submission"
+  - else
+    .dashboard-pre-submission
+      = render "dashboard_pre_submission"
