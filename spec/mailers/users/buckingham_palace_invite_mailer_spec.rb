@@ -24,7 +24,7 @@ describe Users::BuckinghamPalaceInviteMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to have_link("the Winner's Dashboard.",
+      expect(mail.html_part.decoded).to have_link("Log in here",
                                                   href: dashboard_url)
       expect(mail.html_part.decoded).to match("Jon Snow")
     end
