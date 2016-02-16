@@ -16,7 +16,7 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:nominee_name] = "Nominee Name"
 
-    render(assigns, "users/shortlisted_unsuccessful_feedback_mailer/notify")
+    render(assigns, "users/unsuccessful_feedback_mailer/ep_notify")
   end
 
   def ep_reminder_support_letters
