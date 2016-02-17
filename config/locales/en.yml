@@ -134,7 +134,7 @@ en:
     buckingham_palace_attendees_details: Buckingham Palace reception attendees details due by
     buckingham_palace_media_information: Buckingham Palace provides information to the media of the winners on
     buckingham_palace_confirm_press_book_notes: Buckingham Palace Press Book Notes confirmation due by
-    buckingham_palace_attendees_invite: Buckingham Palace invites two representatives for the winners to attend HM The Queen's Reception on 
+    buckingham_palace_attendees_invite: Buckingham Palace invites two representatives for the winners to attend HM The Queen's Reception on
     press_release_comments: Press release comments due by
     audit_certificates: Audit certificates due by
 
@@ -145,6 +145,7 @@ en:
     winners_reminder_to_submit:" WINNERS : Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
     winners_press_release_comments_request: "WINNERS : Email requesting comments on press release."
     unsuccessful_notification: "UNSUCCESSFUL : Email notifying shortlisted applicants who have not been successful."
+    unsuccessful_ep_notification: "UNSUCCESSFUL : Email notifying shortlisted companies who have not been successful."
     shortlisted_notifier: "SHORTLISTED : Email notifying shortlisted applicants of their success, including audit certificate instructions."
     shortlisted_audit_certificate_reminder: "SHORTLISTED : Reminder to submit audit certificates (for shortlisted applicants who have not yet done so)."
     not_shortlisted_notifier: "NOT SHORTLISTED : Email notifying unsuccessful applicants."
