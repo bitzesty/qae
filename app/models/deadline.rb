@@ -10,6 +10,9 @@ class Deadline < ActiveRecord::Base
     "submission_start",
     "submission_end",
     "buckingham_palace_attendees_details",
+    "buckingham_palace_attendees_invite",
+    "buckingham_palace_confirm_press_book_notes",
+    "buckingham_palace_media_information",
     "press_release_comments",
     "audit_certificates"
   ]
