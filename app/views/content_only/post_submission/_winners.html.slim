@@ -35,7 +35,6 @@
           p Your nomination was successful.
         - else
           - if award.press_summary.present? && award.press_summary.body.present?
-            p Please review the action below to complete your successful application.
             ul.post-dashboard-actions
               li
                 = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token)
