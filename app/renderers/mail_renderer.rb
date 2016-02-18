@@ -14,6 +14,16 @@ class MailRenderer
 
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
+    assigns[:company_name] = "Company Name"
+
+    render(assigns, "users/unsuccessful_feedback_mailer/notify")
+  end
+
+  def unsuccessful_ep_notification
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+    assigns[:form_answer] = form_answer
     assigns[:nominee_name] = "Nominee Name"
 
     render(assigns, "users/unsuccessful_feedback_mailer/ep_notify")
