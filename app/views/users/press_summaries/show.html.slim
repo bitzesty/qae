@@ -15,6 +15,14 @@ div
 
         br
 
+        .application-notice.info-notice
+          = render "users/press_summaries/award_summary/name"
+          = render "users/press_summaries/award_summary/address"
+          = render "users/press_summaries/award_summary/goods_services"
+          = render "users/press_summaries/award_summary/website"
+          = render "users/press_summaries/award_summary/organisation_head"
+          = render "users/press_summaries/award_summary/parent_company"
+
         = simple_form_for @press_summary, url: users_form_answer_press_summary_path(form_answer, token: params[:token]), html: { class: "qae-form" } do |f|
           fieldset.question-block.sub-question.js-press-comment-correct
             h2 = f.label :correct, label: "Do you have any comments on the Press Book Notes?"

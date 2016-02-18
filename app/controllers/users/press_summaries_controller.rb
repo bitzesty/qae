@@ -8,6 +8,9 @@ class Users::PressSummariesController < Users::BaseController
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
   end
+  expose(:decorated_form_answer) do
+    form_answer.decorate
+  end
 
   def update
     @press_summary.reviewed_by_user = true

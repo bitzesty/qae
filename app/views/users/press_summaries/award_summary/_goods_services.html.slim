@@ -1,0 +1,12 @@
+- unless decorated_form_answer.promotion?
+  p
+    strong Description of goods/services
+    - if decorated_form_answer.innovation?
+      br
+      = decorated_form_answer.innovation_desc_short
+    - if decorated_form_answer.development?
+      br
+      = decorated_form_answer.development_desc_short
+    - if decorated_form_answer.trade? && decorated_form_answer.document["trade_goods_and_services_explanations"].any?
+      br
+      = decorated_form_answer.document["trade_goods_and_services_explanations"].first["desc_short"]

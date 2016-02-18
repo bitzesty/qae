@@ -1,0 +1,9 @@
+p
+  strong
+    = decorated_form_answer.promotion? ? "Nominee name" : "Company name"
+    ' :
+    br
+  - if decorated_form_answer.promotion?
+    = decorated_form_answer.nominee_title
+    '
+  = decorated_form_answer.decorate.company_name
