@@ -90,6 +90,13 @@ class Notifiers::EmailNotificationService
     end
   end
 
+  # to 'Head of Organisation' of the Successful Business categories winners
+  def winners_head_of_organisation_notification(award_year)
+    award_year.form_answers.business.winners.each do |form_answer|
+      Users::WinnersHeadOfOrganisationMailer.notify(form_answer.id).deliver_later!
+    end
+  end
+
   class << self
     def log_this(message)
       p "[EmailNotificationService] #{Time.zone.now} #{message}"
