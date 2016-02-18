@@ -57,12 +57,14 @@ class Notifiers::EmailNotificationService
   end
 
   def unsuccessful_notification(award_year)
-    award_year.form_answers.unsuccessful.each do |form_answer|
-      if form_answer.promotion?
-        Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
-      else
-        Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
-      end
+    award_year.form_answers.business.unsuccessful.each do |form_answer|
+      Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+    end
+  end
+
+  def unsuccessful_ep_notification(award_year)
+    award_year.form_answers.promotion.unsuccessful.each do |form_answer|
+      Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
     end
   end
 
