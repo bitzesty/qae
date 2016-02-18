@@ -77,4 +77,11 @@ describe MailRenderer do
       expect(rendered).to match("21/09/#{Date.current.year}")
     end
   end
+
+  describe "#winners_head_of_organisation_notification" do
+    it "renders e-mail" do
+      rendered = described_class.new.winners_head_of_organisation_notification
+      expect(rendered).to match("Jon Doe")
+    end
+  end
 end

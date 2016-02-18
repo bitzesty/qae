@@ -9,6 +9,11 @@ FactoryGirl.define do
       state "submitted"
     end
 
+    trait :awarded do
+      submitted true
+      state "awarded"
+    end
+
     trait :recommended do
       submitted true
       state "recommended"

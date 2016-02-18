@@ -179,4 +179,22 @@ describe Notifiers::EmailNotificationService do
       expect(current_notification.reload).to be_sent
     end
   end
+
+  context "winners_head_of_organisation_notification" do
+    let(:kind) { "winners_head_of_organisation_notification" }
+    let(:user) { create(:user) }
+
+    let(:form_answer) do
+      create(:form_answer, :trade, :awarded)
+    end
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(Users::WinnersHeadOfOrganisationMailer).to receive(:notify).with(form_answer.id) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
 end
