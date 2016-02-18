@@ -164,4 +164,19 @@ describe Notifiers::EmailNotificationService do
       expect(current_notification.reload).to be_sent
     end
   end
+
+  context "unsuccessful_ep_notification" do
+    let(:kind) { "unsuccessful_ep_notification" }
+
+    let(:form_answer) { create(:form_answer, :promotion, state: "not_awarded") }
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(Users::UnsuccessfulFeedbackMailer).to receive(:ep_notify).with(form_answer.id) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
 end
