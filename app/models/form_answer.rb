@@ -109,7 +109,7 @@ class FormAnswer < ActiveRecord::Base
     scope :for_year, -> (year) { joins(:award_year).where(award_years: { year: year }) }
     scope :shortlisted, -> { where(state: %w(reserved recommended)) }
     scope :not_shortlisted, -> { where(state: "not_recommended") }
-    scope :winners, -> { where(state: %(recomended awarded)) }
+    scope :winners, -> { where(state: "awarded") }
     scope :unsuccessful, -> { where(state: %w(not_recommended not_awarded reserved)) }
     scope :submitted, -> { where(submitted: true) }
     scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
