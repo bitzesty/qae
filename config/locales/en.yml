@@ -141,6 +141,7 @@ en:
     winners_notification: "WINNERS : Email notifying all winning applicants of their success, including request for reception attendee details."
     winners_reminder_to_submit:" WINNERS : Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
     winners_press_release_comments_request: "WINNERS : Email requesting comments on press release."
+    winners_head_of_organisation_notification: "WINNERS : Success email to the 'Head of Organisation' of the Business categories Winner."
     unsuccessful_notification: "UNSUCCESSFUL : Email notifying shortlisted applicants who have not been successful."
     shortlisted_notifier: "SHORTLISTED : Email notifying shortlisted applicants of their success, including audit certificate instructions."
     shortlisted_audit_certificate_reminder: "SHORTLISTED : Reminder to submit audit certificates (for shortlisted applicants who have not yet done so)."

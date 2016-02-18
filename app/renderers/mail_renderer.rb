@@ -93,6 +93,20 @@ class MailRenderer
     render(assigns, "users/winners_press_release/notify")
   end
 
+  def winners_head_of_organisation_notification
+    assigns = {}
+    form = form_answer
+
+    assigns[:form_answer] = form
+    assigns[:award_year] = form.award_year.year
+    assigns[:urn] = "QAXXXX/#{assigns[:award_year].to_s[2..-1]}I"
+    assigns[:award_category_title] = form.award_type_full_name
+    assigns[:head_email] = "john@example.com"
+    assigns[:head_of_business_full_name] = "Jon Doe"
+
+    render(assigns, "users/winners_head_of_organisation_mailer/notify")
+  end
+
   private
 
   def render(assigns, template)
