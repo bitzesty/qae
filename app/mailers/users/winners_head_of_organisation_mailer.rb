@@ -8,7 +8,8 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @head_email = @form_answer.head_email
     @award_year = @form_answer.award_year.year
     @award_category_title = @form_answer.award_type_full_name
-    @head_of_business_full_name = @form_answer.head_of_business_full_name
+    @title = @form_answer.head_of_bussines_title
+    @last_name = @form_answer.document["head_of_business_last_name"]
 
     @subject = "[Queen's Awards for Enterprise] Important information about your Queen's Award!"
 
