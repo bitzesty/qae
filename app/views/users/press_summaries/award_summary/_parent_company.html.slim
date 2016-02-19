@@ -1,0 +1,12 @@
+- if award.applying_for == "division branch subsidiary"
+  p
+    strong Parent companies
+    br
+    - if award.parent_company.present?
+      = award.parent_company
+    - else
+      em.text-muted Name of immediate parent company not added.
+
+    - if award.parent_company_country.present?
+      br
+      = Country.find_country_by_alpha2(award.parent_company_country).try(:name)

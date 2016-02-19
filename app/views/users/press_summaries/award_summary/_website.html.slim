@@ -1,6 +1,6 @@
-- unless decorated_form_answer.promotion?
+- unless award.promotion?
   p
     strong Website address
-    - if decorated_form_answer.website_url.present?
+    - if award.website_url.present?
       br
-      = decorated_form_answer.website_url
+      = award.website_url

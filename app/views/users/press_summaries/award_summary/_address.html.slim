@@ -1,39 +1,17 @@
 p
-  - if decorated_form_answer.promotion?
-    strong Address:
-    - if decorated_form_answer.nominee_building.present?
-      br
-      = decorated_form_answer.nominee_building
-    - if decorated_form_answer.nominee_street.present?
-      br
-      = decorated_form_answer.nominee_street
-    - if decorated_form_answer.nominee_city.present?
-      br
-      = decorated_form_answer.nominee_city
-    - if decorated_form_answer.nominee_county.present?
-      br
-      = decorated_form_answer.nominee_county
-    - if decorated_form_answer.nominee_postcode.present?
-      br
-      = decorated_form_answer.nominee_postcode
-    - if decorated_form_answer.nominee_email.present?
-      br
-      = decorated_form_answer.nominee_email
-
-  - else
-    strong Organisation Address:
-    - if decorated_form_answer.document["organization_address_building"].present?
-      br
-      = decorated_form_answer.document["organization_address_building"]
-    - if decorated_form_answer.document["organization_address_street"].present?
-      br
-      = decorated_form_answer.document["organization_address_street"]
-    - if decorated_form_answer.document["organization_address_city"].present?
-      br
-      = decorated_form_answer.document["organization_address_city"]
-    - if decorated_form_answer.document["organization_address_county"].present?
-      br
-      = decorated_form_answer.document["organization_address_county"]
-    - if decorated_form_answer.document["organization_address_postcode"].present?
-      br
-      = decorated_form_answer.document["organization_address_postcode"]
+  strong Organisation Address:
+  - if award.document["organization_address_building"].present?
+    br
+    = award.document["organization_address_building"]
+  - if award.document["organization_address_street"].present?
+    br
+    = award.document["organization_address_street"]
+  - if award.document["organization_address_city"].present?
+    br
+    = award.document["organization_address_city"]
+  - if award.document["organization_address_county"].present?
+    br
+    = award.document["organization_address_county"]
+  - if award.document["organization_address_postcode"].present?
+    br
+    = award.document["organization_address_postcode"]

@@ -1,12 +1,11 @@
-- unless decorated_form_answer.promotion?
-  p
-    strong Head of organisation
-    br
-    - if decorated_form_answer.head_of_bussines_title.present?
-      = decorated_form_answer.head_of_bussines_title
-      '
-    = decorated_form_answer.head_of_business_full_name
+p
+  strong Head of organisation
+  br
+  - if award.head_of_bussines_title.present?
+    = award.head_of_bussines_title
+    '
+  = award.head_of_business_full_name
 
-    - if decorated_form_answer.head_job_title.present?
-      br
-      = decorated_form_answer.head_job_title
+  - if award.head_job_title.present?
+    br
+    = award.head_job_title

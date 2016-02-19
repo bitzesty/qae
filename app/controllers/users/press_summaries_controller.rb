@@ -8,7 +8,7 @@ class Users::PressSummariesController < Users::BaseController
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
   end
-  expose(:decorated_form_answer) do
+  expose(:award) do
     form_answer.decorate
   end
 
