@@ -17,7 +17,7 @@ describe "Press Summary" do
     it "should allow to fill the form untill deadline" do
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
 
-      fill_in "First name", with: "Jon"
+      fill_in "Name", with: "Jon"
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
@@ -50,7 +50,7 @@ describe "Press Summary" do
 
       click_button "Continue"
 
-      fill_in "First name", with: "Jon"
+      fill_in "Name", with: "Jon"
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
