@@ -10,7 +10,7 @@ class PressSummary < ActiveRecord::Base
   belongs_to :authorable, polymorphic: true
 
   def contact_name
-    "#{first_name} #{last_name}".strip.presence
+    first_name.to_s.strip.presence
   end
 
   private
