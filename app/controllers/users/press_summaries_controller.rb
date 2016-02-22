@@ -8,6 +8,9 @@ class Users::PressSummariesController < Users::BaseController
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
   end
+  expose(:award) do
+    form_answer.decorate
+  end
 
   def update
     @press_summary.reviewed_by_user = true
@@ -34,7 +37,7 @@ class Users::PressSummariesController < Users::BaseController
 
   def press_summary_params
     params.require(:press_summary).permit(
-      :comment, :correct, :phone_number, :first_name, :last_name, :email
+      :comment, :correct, :phone_number, :first_name, :email
     )
   end
 

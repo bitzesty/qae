@@ -1,0 +1,6 @@
+- unless award.promotion?
+  p
+    strong Website address
+    - if award.website_url.present?
+      br
+      = award.website_url

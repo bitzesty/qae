@@ -61,6 +61,8 @@ class ContentOnlyController < ApplicationController
                                                  .order("award_type")
   end
 
+  private
+
   def get_current_form
     @form_answer = current_account.form_answers.find(params[:form_id])
     @form = @form_answer.award_form.decorate(
@@ -75,4 +77,14 @@ class ContentOnlyController < ApplicationController
   def clean_flash
     flash.clear
   end
+
+  def deadline_for(kind, format = "%A %d %B %Y")
+    deadline = settings.deadlines.find_by(kind: kind)
+    if deadline.present? && deadline.trigger_at.present?
+      deadline.trigger_at.strftime(format)
+    else
+      "--/--/----"
+    end
+  end
+  helper_method :deadline_for
 end
