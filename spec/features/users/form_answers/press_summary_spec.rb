@@ -22,7 +22,7 @@ describe "Press Summary" do
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Confirm Press Book Notes"
+      click_button "Submit"
 
       expect(page).to have_content("Press Book Notes successfully updated")
     end
@@ -56,7 +56,7 @@ describe "Press Summary" do
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Confirm Press Book Notes"
+      click_button "Submit"
 
       expect(page).to have_content("Press Book Notes successfully updated")
     end
