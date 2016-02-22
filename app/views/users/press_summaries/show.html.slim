@@ -49,11 +49,9 @@ div
             .question-group
               = f.input :first_name, input_html: { class: "medium" }
             .question-group
-              = f.input :last_name, input_html: { class: "medium" }
+              = f.input :phone_number, input_html: { class: "medium" }, label: "Telephone"
             .question-group
               = f.input :email, input_html: { class: "medium" }
-            .question-group
-              = f.input :phone_number, input_html: { class: "medium" }, label: "Telephone"
 
           footer
             nav.pagination.no-border aria-label="Pagination" role="navigation"
@@ -62,4 +60,4 @@ div
                   = link_to dashboard_path
                     span.pagination-label Back
                 li.submit
-                  = f.submit "Confirm Press Book Notes", class: "button", rel: "next"
+                  = f.submit "Submit", class: "button", rel: "next"
