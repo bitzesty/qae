@@ -68,7 +68,7 @@ describe Notifiers::EmailNotificationService do
       form_answer.save!
 
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
-        .with("head@email.com", form_answer.id)
+        .with({email: "head@email.com", form_answer_id: form_answer.id})
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
@@ -82,7 +82,7 @@ describe Notifiers::EmailNotificationService do
       form_answer.save!
 
       expect(Notifiers::Winners::PromotionBuckinghamPalaceInvite).to receive(:perform_async)
-        .with("nominee@email.com", form_answer.id)
+        .with({email: "nominee@email.com", form_answer_id: form_answer.id})
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run

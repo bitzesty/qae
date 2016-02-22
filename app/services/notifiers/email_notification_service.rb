@@ -71,13 +71,17 @@ class Notifiers::EmailNotificationService
   def winners_notification(award_year)
     award_year.form_answers.winners.each do |form_answer|
       document = form_answer.document
+      email = form_answer.promotion? ? document["nominee_email"] : document["head_email"]
+
+      shoryuken_ops = {
+        email: email,
+        form_answer_id: form_answer.id
+      }
 
       if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],
-                                                                          form_answer.id)
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(shoryuken_ops)
       else
-        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
-                                                                 form_answer.id)
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(shoryuken_ops)
       end
     end
   end
