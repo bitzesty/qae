@@ -12,12 +12,8 @@ class Users::PressSummariesController < Users::BaseController
     form_answer.decorate
   end
   expose(:employees_figure) do
-    row = FormFinancialPointer.new(award, {
-      exclude_ignored_questions: true,
-      financial_summary_view: true
-    }).data.detect { |r| r[:employees].present? }
-    if row.present?
-      row[:employees].reverse.detect do |data|
+    if financial_pointer.present?
+      financial_pointer[:employees].reverse.detect do |data|
         data[:value].present? && data[:value] != "-"
       end
     end
@@ -68,5 +64,13 @@ class Users::PressSummariesController < Users::BaseController
     @press_summary = form_answer.press_summary
 
     head :forbidden if @press_summary.token != params[:token]
+  end
+
+  def financial_pointer
+    FormFinancialPointer.new(
+      award,
+      exclude_ignored_questions: true,
+      financial_summary_view: true
+    ).data.detect { |r| r[:employees].present? }
   end
 end
