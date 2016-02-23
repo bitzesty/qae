@@ -11,7 +11,7 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @title = @form_answer.head_of_bussines_title
     @last_name = @form_answer.document["head_of_business_last_name"]
 
-    @subject = "[Queen's Awards for Enterprise] Important information about your Queen's Award!"
+    @subject = "[Queen's Awards for Enterprise] Important information about your Queen's Award Entry!"
 
     mail to: @head_email, subject: @subject
   end
