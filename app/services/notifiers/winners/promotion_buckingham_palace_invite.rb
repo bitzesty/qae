@@ -1,7 +1,7 @@
 class Notifiers::Winners::PromotionBuckinghamPalaceInvite
-  include Shoryuken::Worker
+  include Sidekiq::Worker
 
-  shoryuken_options queue: "#{Rails.env}_default", auto_delete: true
+  sidekiq_options queue: :default
 
   def perform(sqs_msg, ops={})
     email = ops[:email]
