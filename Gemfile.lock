@@ -40,14 +40,12 @@ GIT
       faraday (>= 0.7.6)
 
 GIT
-  remote: git://github.com/phstc/shoryuken.git
-  revision: 1ec11762012973c4ae5bd42ec74279cbf8bcd1c4
-  branch: master
+  remote: git://github.com/seuros/capistrano-sidekiq.git
+  revision: 0794cf99be7bfe7f3e6828c4965db135d7e1c20b
   specs:
-    shoryuken (1.0.0)
-      aws-sdk-core (= 2.0.21)
-      aws-sdk-resources (= 2.0.21.pre)
-      celluloid (~> 0.16.0)
+    capistrano-sidekiq (0.5.4)
+      capistrano
+      sidekiq (>= 3.4)
 
 GEM
   remote: https://rubygems.org/
@@ -104,13 +102,6 @@ GEM
     autoprefixer-rails (5.1.5)
       execjs
       json
-    aws-sdk-core (2.0.21)
-      builder (~> 3.0)
-      jmespath (~> 1.0)
-      multi_json (~> 1.0)
-      multi_xml (~> 0.5)
-    aws-sdk-resources (2.0.21.pre)
-      aws-sdk-core (= 2.0.21)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -157,8 +148,6 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    celluloid (0.16.0)
-      timers (~> 4.0.0)
     chronic (0.10.2)
     codeclimate-test-reporter (0.4.3)
       simplecov (>= 0.7.1, < 1.0.0)
@@ -175,6 +164,8 @@ GEM
     colored (1.2)
     colorize (0.7.3)
     columnize (0.9.0)
+    concurrent-ruby (1.0.0)
+    connection_pool (2.2.0)
     countries (0.9.3)
       currencies (~> 0.4.2)
     country_select (2.1.0)
@@ -331,7 +322,6 @@ GEM
       rails (>= 3.1)
     hashery (2.1.1)
     hike (1.2.3)
-    hitimes (1.2.2)
     httpclient (2.6.0.1)
     i18n (0.7.0)
     ice_nine (0.11.1)
@@ -340,8 +330,6 @@ GEM
     jbuilder (2.2.5)
       activesupport (>= 3.0.0, < 5)
       multi_json (~> 1.2)
-    jmespath (1.0.2)
-      multi_json (~> 1.0)
     jquery-rails (4.0.4)
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
@@ -365,7 +353,6 @@ GEM
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
-    multi_xml (0.5.5)
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
@@ -500,6 +487,10 @@ GEM
     secure_headers (2.0.0)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
+    sidekiq (4.1.0)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      redis (~> 3.2, >= 3.2.1)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -542,8 +533,6 @@ GEM
     thread_safe (0.3.5)
     tilt (1.4.1)
     timecop (0.7.3)
-    timers (4.0.1)
-      hitimes
     ttfunk (1.4.0)
     turnip (1.2.4)
       gherkin (>= 2.5)
@@ -590,6 +579,7 @@ DEPENDENCIES
   capistrano (~> 3.2.0)
   capistrano-rails (~> 1.1)
   capistrano-rbenv
+  capistrano-sidekiq!
   capybara
   capybara-screenshot
   capybara-webkit
@@ -648,8 +638,8 @@ DEPENDENCIES
   rubocop
   secure_headers
   sentry-raven!
-  shoryuken!
   shoulda-matchers
+  sidekiq (~> 4.1.0)
   simple_form (~> 3.1)
   skylight
   slackistrano

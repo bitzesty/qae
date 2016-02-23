@@ -1,7 +1,7 @@
 class CustomEmailWorker
-  include Shoryuken::Worker
+  include Sidekiq::Worker
 
-  shoryuken_options queue: "#{Rails.env}_default", auto_delete: true
+  sidekiq_options queue: :default
 
   def perform(sqs_msg, request)
     puts "processing email #{request}"

@@ -38,8 +38,6 @@ set :ssh_options, {
 
 set :keep_releases, 5
 
-set :shoryuken_log, -> { File.join(shared_path, 'log', 'shoryuken.log') }
-
 namespace :deploy do
   desc 'Restart application'
   task :restart do
@@ -49,16 +47,8 @@ namespace :deploy do
     end
   end
 
-  desc 'Restart shoryuken'
-  task :restart_shoryuken do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute "sv stop shoryuken && sv start shoryuken"
-    end
-  end
-
   after :finishing, 'deploy:cleanup'
   before :finishing, 'deploy:restart'
-  after 'deploy:restart', 'deploy:restart_shoryuken'
   after 'deploy:rollback', 'deploy:restart'
 
   after "deploy:updated",  "whenever:update_crontab"
