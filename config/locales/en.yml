@@ -131,10 +131,10 @@ en:
   deadline_messages:
     submission_start: Submission period starts on
     submission_end: Submission period closes on
-    buckingham_palace_attendees_details: Buckingham Palace reception attendees details due by
-    buckingham_palace_media_information: Buckingham Palace provides information to the media of the winners on
-    buckingham_palace_confirm_press_book_notes: Buckingham Palace Press Book Notes confirmation due by
-    buckingham_palace_attendees_invite: Buckingham Palace invites two representatives for the winners to attend HM The Queen's Reception on
+    buckingham_palace_attendees_details: HM The Queen's Birthday (end of embargo)
+    buckingham_palace_media_information: QAO provides information to the media of the winners on
+    buckingham_palace_confirm_press_book_notes: Press Book Entry confirmation due by
+    buckingham_palace_attendees_invite: Buckingham Palace Reception on
     press_release_comments: Press release comments due by
     audit_certificates: Audit certificates due by
 
