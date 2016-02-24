@@ -19,6 +19,25 @@ FactoryGirl.define do
       state "recommended"
     end
 
+    trait :withdrawn do
+      state "withdrawn"
+    end
+
+    trait :not_recommended do
+      submitted true
+      state "not_recommended"
+    end
+
+    trait :not_awarded do
+      submitted true
+      state "not_awarded"
+    end
+
+    trait :reserved do
+      submitted true
+      state "reserved"
+    end
+
     trait :trade do
       award_type "trade"
       document FormAnswer::DocumentParser.parse_json_document(
