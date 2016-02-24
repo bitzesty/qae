@@ -21,8 +21,6 @@ set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
 
 set :scm, :git
 
-set :webserver, "passenger"
-
 set :rbenv_type, :user
 set :rbenv_ruby, '2.1.5'
 set :rbenv_roles, :all
@@ -39,17 +37,7 @@ set :ssh_options, {
 set :keep_releases, 5
 
 namespace :deploy do
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :mkdir, "-p", release_path.join('tmp')
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
-
   after :finishing, 'deploy:cleanup'
-  before :finishing, 'deploy:restart'
-  after 'deploy:rollback', 'deploy:restart'
 
   after "deploy:updated",  "whenever:update_crontab"
   after "deploy:reverted", "whenever:update_crontab"
