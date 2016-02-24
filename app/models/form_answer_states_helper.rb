@@ -1,8 +1,4 @@
 module FormAnswerStatesHelper
-  def unsuccessful?
-    not_recommended? || not_awarded?
-  end
-
   def submitted_and_after_the_deadline?
     submitted? && Settings.after_current_submission_deadline?
   end

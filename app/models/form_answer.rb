@@ -110,7 +110,7 @@ class FormAnswer < ActiveRecord::Base
     scope :shortlisted, -> { where(state: %w(reserved recommended)) }
     scope :not_shortlisted, -> { where(state: "not_recommended") }
     scope :winners, -> { where(state: "awarded") }
-    scope :unsuccessful, -> { where(state: %w(not_recommended not_awarded reserved)) }
+    scope :unsuccessful, -> { where(state: 'not_awarded') }
     scope :submitted, -> { where(submitted: true) }
     scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
     scope :business, -> { where(award_type: %w(trade innovation development)) }

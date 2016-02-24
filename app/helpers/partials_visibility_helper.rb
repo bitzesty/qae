@@ -13,7 +13,7 @@ module PartialsVisibilityHelper
   end
 
   def show_feedback_section?
-    @form_answer.unsuccessful? && !@form_answer.promotion? &&
+    @form_answer.not_recommended? && !@form_answer.promotion? &&
       !current_subject.try(:secondary?, @form_answer)
   end
 
