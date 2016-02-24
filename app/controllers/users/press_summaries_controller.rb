@@ -49,7 +49,7 @@ class Users::PressSummariesController < Users::BaseController
   end
 
   def check_deadline
-    if settings.deadlines.where(kind: "press_release_comments").first.passed?
+    if settings.deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first.passed?
       redirect_to action: :failure
     end
   end

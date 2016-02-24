@@ -9,7 +9,7 @@ class Users::WinnersPressRelease < AccountMailer
       @user.email
     end
 
-    @deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
+    @deadline = Settings.current.deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first
     @deadline = @deadline.trigger_at.strftime("%d/%m/%Y")
 
     @token = @form_answer.press_summary.token

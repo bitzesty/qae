@@ -131,17 +131,16 @@ en:
   deadline_messages:
     submission_start: Submission period starts on
     submission_end: Submission period closes on
-    buckingham_palace_attendees_details: Buckingham Palace reception attendees details due by
-    buckingham_palace_media_information: Buckingham Palace provides information to the media of the winners on
-    buckingham_palace_confirm_press_book_notes: Buckingham Palace Press Book Notes confirmation due by
-    buckingham_palace_attendees_invite: Buckingham Palace invites two representatives for the winners to attend HM The Queen's Reception on
-    press_release_comments: Press release comments due by
+    buckingham_palace_attendees_details: HM The Queen's Birthday (end of embargo)
+    buckingham_palace_media_information: QAO provides information to the media of the winners on
+    buckingham_palace_confirm_press_book_notes: Press Book Entry confirmation due by
+    buckingham_palace_attendees_invite: Buckingham Palace Reception on
     audit_certificates: Audit certificates due by
 
   email_notification_headers:
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."
-    winners_notification: "WINNERS : Email notifying all winning applicants of their success, including request for reception attendee details."
+    winners_notification: "WINNERS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry."
     winners_reminder_to_submit:" WINNERS : Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
     winners_press_release_comments_request: "WINNERS : Email requesting comments on press release."
     winners_head_of_organisation_notification: "WINNERS : Success email to the 'Head of Organisation' of the Business categories Winner."

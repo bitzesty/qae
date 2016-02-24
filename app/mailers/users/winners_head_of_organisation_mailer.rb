@@ -11,6 +11,9 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @title = @form_answer.head_of_bussines_title
     @last_name = @form_answer.document["head_of_business_last_name"]
 
+    @media_deadline = Settings.current.deadlines.where(kind: "buckingham_palace_media_information").first
+    @media_deadline = @media_deadline.try :strftime, "%H.%M on %A %d %B %Y"
+
     @subject = "[Queen's Awards for Enterprise] Important information about your Queen's Award Entry!"
 
     mail to: @head_email, subject: @subject

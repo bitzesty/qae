@@ -64,11 +64,13 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       form_answer = create(:form_answer, :trade, :submitted)
-      form_answer.document = form_answer.document.merge(head_email: "head@email.com")
+      form_answer.document = form_answer.document
       form_answer.save!
 
+      account_holder = form_answer.account.owner
+
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
-        .with({email: "head@email.com", form_answer_id: form_answer.id})
+        .with({email: account_holder.email, form_answer_id: form_answer.id})
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
