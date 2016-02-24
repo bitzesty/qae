@@ -3,7 +3,7 @@ class Users::BuckinghamPalaceInviteMailer < ApplicationMailer
     invite = PalaceInvite.find(invite_id)
     @token = invite.token
     @form_answer = invite.form_answer.decorate
-    account_holder = @form_answer.user
+    account_holder = @form_answer.account.owner
 
     @name = "#{account_holder.title} #{account_holder.last_name}"
 
