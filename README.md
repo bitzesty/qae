@@ -52,13 +52,6 @@ This means, that `hstore postgresql` extension needs to be installed:
 sudo apt-get install postgresql-contrib
 ```
 
-For passenger:
-OSX users you might need to install pcre headers:
-
-```
-brew install pcre
-```
-
 ## Profile mode in Development
 
 To enable [rack mini profiler](https://github.com/MiniProfiler/rack-mini-profiler)

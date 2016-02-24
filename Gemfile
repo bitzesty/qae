@@ -116,6 +116,9 @@ gem "tilt", "~> 1.1"
 # AdvancedEmailValidator
 gem 'curb'
 
+gem 'rails_12factor', '~> 0.0.3', group: :production
+gem 'puma', '~> 2.16.0'
+
 group :assets do
   gem 'uglifier', '>= 1.3.0'
 end
@@ -145,7 +148,6 @@ group :development do
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'rack-mini-profiler', require: false
-  gem 'passenger'
   gem 'binding_of_caller'
   gem 'rubocop', require: false
 end
