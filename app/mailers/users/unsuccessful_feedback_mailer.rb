@@ -13,7 +13,7 @@ class Users::UnsuccessfulFeedbackMailer < AccountMailer
     @user = @form_answer.user.decorate
     @nominee_name = @form_answer.nominee_full_name
 
-    subject = "THE QUEEN’S AWARD FOR ENTERPRISE PROMOTION 2016"
+    subject = "Important information about your Queen's Award nomination"
     mail to: @user.email, subject: subject
   end
 end

@@ -3,9 +3,9 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
     | Congratulations on winning a Queen's Award in
     =< @award_category_title
     =< @award_year
-    |. [
-    = @urn
-    |]
+    |.
+    = " " + @urn
+    |
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@title} #{@last_name},"
@@ -22,8 +22,13 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   =< @award_year
   |. You must not make any announcement about your Award, either to employees or outside your organisation, before this date.</strong>
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | We have emailed your online account holder with a link to the Winners' Dashboard to check the Press Book entry (a factual account of why you have won the Award and not a promotional press opportunity), provide details of a contact for media enquiries, check the other details for your organisation, and respond by <strong>5 pm on Monday 28 March</strong>, otherwise we will use the proposed text together with the contact details that we already hold.
+div style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  | We have emailed your online account holder with a link to the Winners' Dashboard to check:
+  ul
+    li the Press Book entry (a factual account of why you have won the Award and not a promotional press opportunity)
+    li the other details for your organisation are correct.
+    li provide details of a contact for press enquiries
+  | Your account holder needs to respond by <strong>5 pm on Monday 28 March</strong>, otherwise we will use the proposed text together with the contact details that we already hold.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | Under the terms of the embargo we will provide information to the media about each of the winners at noon on Monday 11 April
@@ -33,7 +38,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   |.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  | A link to the Winners' Resources to gain access to the Queen's Awards emblems and Winners Manual is also on the online account.
+  | A link to the Queen's Awards emblems and Winners' Manual is also on the online account.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | Two representatives from your winning organisation will be invited to attend HM The Queen's Reception at Buckingham Palace on Thursday 14 July
@@ -42,9 +47,26 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    | Additional benefits for winners
+    | Further Information
   br
-  | [TODO]
+  | UKTI - Award winners will be contacted by UK Trade & Investment who will assist with any help needed on export strategies, routes to market, sources of additional expertise, or access to its overseas network in tailoring support to meet your needs.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  | Growth Hubs - Government is investing in 39 Growth Hubs in England, and giving them ownership of how they support local businesses to start and scale-up. They can provide national business support, and diagnostic and signposting advice to help businesses find the right support easily, no matter what their size or sector. If you would like to find out more visit
+  | &nbsp;
+  a href="http://www.lepnetwork.net/growth-hubs/"
+    | http://www.lepnetwork.net/growth-hubs/
+  | , or call the Business Support Helpline, tel: 0300 456 3565 (Monday to Friday, 9.00am – 6.00pm). For business support outside of England go to
+  | &nbsp;
+  a href="http://www.bgateway.com/"
+    | Scotland
+  | ,&nbsp;
+  a href="http://business.wales.gov.uk/"
+    | Wales
+  | &nbsp;and&nbsp;
+  a href="http://www.investni.com/index.html"
+    | Northern Ireland
+  | .
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' Congratulations once again on your Award.
@@ -52,5 +74,6 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   br
   ' Yours sincerely
   br
+  ' Nichola Bruno
   br
-  ' The Secretary, Queen's Awards for Enterprise
+  ' The Secretary, The Queen's Awards for Enterprise
