@@ -25,8 +25,8 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
     ' . You must not make any announcement about your Award, either to employees or outside your organisation, before this date.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Under the terms of the embargo we will provide information to the media of the winners at noon on
-  = @media_deadline
+  ' Under the terms of the embargo we will provide information to the media of the winners at
+  =< @media_deadline
   ' , and the list of winners will be published in the Supplement to the London Gazette on
   = @deadline.try :strftime, "%d %B %Y"
 
