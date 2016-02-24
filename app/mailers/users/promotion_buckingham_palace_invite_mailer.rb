@@ -4,7 +4,7 @@ class Users::PromotionBuckinghamPalaceInviteMailer < AccountMailer
     @form_answer = invite.form_answer.decorate
     @token = invite.token
     @name = @form_answer.nominee_full_name
-    @user = @form_answer.user.decoarate
+    @user = @form_answer.user.decorate
     @deadline = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first
     @deadline = @deadline.trigger_at.strftime("%d/%m/%Y")
 
