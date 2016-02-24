@@ -21,8 +21,6 @@ set :deploy_to, "/home/#{fetch(:user)}/#{fetch(:application)}"
 
 set :scm, :git
 
-set :webserver, "passenger"
-
 set :rbenv_type, :user
 set :rbenv_ruby, '2.1.5'
 set :rbenv_roles, :all
@@ -38,28 +36,8 @@ set :ssh_options, {
 
 set :keep_releases, 5
 
-set :shoryuken_log, -> { File.join(shared_path, 'log', 'shoryuken.log') }
-
 namespace :deploy do
-  desc 'Restart application'
-  task :restart do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute :mkdir, "-p", release_path.join('tmp')
-      execute :touch, release_path.join('tmp/restart.txt')
-    end
-  end
-
-  desc 'Restart shoryuken'
-  task :restart_shoryuken do
-    on roles(:app), in: :sequence, wait: 5 do
-      execute "sv stop shoryuken && sv start shoryuken"
-    end
-  end
-
   after :finishing, 'deploy:cleanup'
-  before :finishing, 'deploy:restart'
-  after 'deploy:restart', 'deploy:restart_shoryuken'
-  after 'deploy:rollback', 'deploy:restart'
 
   after "deploy:updated",  "whenever:update_crontab"
   after "deploy:reverted", "whenever:update_crontab"

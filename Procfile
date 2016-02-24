@@ -1,2 +1,2 @@
-web: passenger start
-worker: bundle exec shoryuken -R -C ./config/shoryuken.yml -L ./log/worker.log
+web: bundle exec rails server
+worker: bundle exec sidekiq -L ./log/worker.log

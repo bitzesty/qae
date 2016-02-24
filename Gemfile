@@ -80,7 +80,7 @@ gem "fog-aws"
 gem "vs_rails", github: "bitzesty/vs-rails"
 
 # Background jobs
-gem "shoryuken", github: "phstc/shoryuken", branch: "master"
+gem "sidekiq", "~> 4.1.0"
 
 # Redis
 gem 'redis-rails'
@@ -116,6 +116,9 @@ gem "tilt", "~> 1.1"
 # AdvancedEmailValidator
 gem 'curb'
 
+gem 'rails_12factor', '~> 0.0.3', group: :production
+gem 'puma', '~> 2.16.0'
+
 group :assets do
   gem 'uglifier', '>= 1.3.0'
 end
@@ -139,12 +142,12 @@ group :development do
   gem 'capistrano', '~> 3.2.0'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv'
+  gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
   gem 'slackistrano', require: false
   gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'rack-mini-profiler', require: false
-  gem 'passenger'
   gem 'binding_of_caller'
   gem 'rubocop', require: false
 end

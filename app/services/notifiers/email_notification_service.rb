@@ -73,15 +73,15 @@ class Notifiers::EmailNotificationService
       document = form_answer.document
       email = form_answer.promotion? ? document["nominee_email"] : document["head_email"]
 
-      shoryuken_ops = {
+      opts = {
         email: email,
         form_answer_id: form_answer.id
       }
 
       if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(shoryuken_ops)
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(opts)
       else
-        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(shoryuken_ops)
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(opts)
       end
     end
   end

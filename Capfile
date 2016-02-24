@@ -3,6 +3,7 @@ require 'capistrano/setup'
 require 'capistrano/deploy'
 require 'capistrano/rbenv'
 require 'capistrano/rails'
+require 'capistrano/sidekiq'
 require 'whenever/capistrano'
 require 'slackistrano'
 
