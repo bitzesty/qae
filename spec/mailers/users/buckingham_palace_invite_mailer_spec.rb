@@ -13,10 +13,8 @@ describe Users::BuckinghamPalaceInviteMailer do
 
   describe "#notify" do
     let(:mail) { Users::BuckinghamPalaceInviteMailer.invite(palace_invite.id) }
-
-    before do
-      allow_any_instance_of(FormAnswer).to receive(:head_of_business) { "Jon Snow" }
-    end
+    let(:account_holder) { palace_invite.form_answer.user }
+    let(:account_holder_name) { "#{account_holder.title} #{account_holder.last_name}" }
 
     it "renders the headers" do
       expect(mail.to).to eq([palace_invite.email])
@@ -26,7 +24,7 @@ describe Users::BuckinghamPalaceInviteMailer do
     it "renders the body" do
       expect(mail.html_part.decoded).to have_link("Log in here",
                                                   href: dashboard_url)
-      expect(mail.html_part.decoded).to match("Jon Snow")
+      expect(mail.html_part.decoded).to match(account_holder_name)
     end
   end
 end
