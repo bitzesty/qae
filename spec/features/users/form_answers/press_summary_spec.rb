@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe "Press Summary" do
   before do
-    deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
+    deadline = Settings.current.deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first
     deadline.update_column(:trigger_at, Time.current + 1.day)
   end
 
@@ -27,7 +27,7 @@ describe "Press Summary" do
     end
 
     it "should not allow to fill the form after the deadline" do
-      deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
+      deadline = Settings.current.deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first
       deadline.update_column(:trigger_at, Time.current - 1.day)
 
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)

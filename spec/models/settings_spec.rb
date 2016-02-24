@@ -11,7 +11,6 @@ describe Settings do
         buckingham_palace_attendees_invite
         buckingham_palace_confirm_press_book_notes
         buckingham_palace_media_information
-        press_release_comments
         submission_end submission_start
       )
       expect(settings.deadlines.order(:kind).map(&:kind)).to eq(expected)
