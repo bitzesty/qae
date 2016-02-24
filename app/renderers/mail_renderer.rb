@@ -87,11 +87,11 @@ class MailRenderer
 
     assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
-    assigns[:name] = "Jon Snow"
+    assigns[:name] = "Mr Smith"
     assigns[:deadline] = deadline("buckingham_palace_attendees_details")
     assigns[:media_deadline] = deadline_str(
       "buckingham_palace_media_information",
-      "%A %d %B %Y"
+      "%H.%M on %A %d %B %Y"
     )
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",

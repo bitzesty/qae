@@ -3,7 +3,10 @@ class Users::BuckinghamPalaceInviteMailer < ApplicationMailer
     invite = PalaceInvite.find(invite_id)
     @token = invite.token
     @form_answer = invite.form_answer.decorate
-    @name = @form_answer.head_of_business
+    account_holder = @form_answer.user
+
+    @name = "#{account_holder.title} #{account_holder.last_name}"
+
     @deadline = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first
     @deadline = @deadline.trigger_at
     @media_deadline = Settings.current.deadlines.where(kind: "buckingham_palace_media_information").first

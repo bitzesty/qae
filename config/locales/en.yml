@@ -140,7 +140,7 @@ en:
   email_notification_headers:
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."
-    winners_notification: "WINNERS : Email notifying all winning applicants of their success, including request for reception attendee details."
+    winners_notification: "WINNERS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry."
     winners_reminder_to_submit:" WINNERS : Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
     winners_press_release_comments_request: "WINNERS : Email requesting comments on press release."
     winners_head_of_organisation_notification: "WINNERS : Success email to the 'Head of Organisation' of the Business categories Winner."
