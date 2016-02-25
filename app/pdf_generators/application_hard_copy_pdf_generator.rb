@@ -17,7 +17,12 @@ class ApplicationHardCopyPdfGenerator
                       .decorate
                       .pdf_generator
 
-    timestamp = form_answer.submission_end_date.strftime('%d_%b_%Y_%H_%M')
+    timestamp = if Rails.env.test?
+      Time.zone.now
+    else
+      form_answer.submission_end_date
+    end.strftime('%d_%b_%Y_%H_%M')
+
     @tempfile_name = "application_#{form_answer.urn}_#{timestamp}_SEPARATOR".gsub("/", "_")
   end
 

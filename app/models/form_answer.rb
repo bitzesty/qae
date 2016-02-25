@@ -237,7 +237,7 @@ class FormAnswer < ActiveRecord::Base
               .deadlines
               .submission_end
               .last
-              .trigger_at
+              .try(:trigger_at)
   end
 
   def submission_ended?
