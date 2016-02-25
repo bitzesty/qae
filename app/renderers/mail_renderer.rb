@@ -14,7 +14,8 @@ class MailRenderer
 
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
-    assigns[:company_name] = "Company Name"
+    assigns[:year] = AwardYear.closed.year
+    form_answer.urn = "QA0128/16EP"
 
     render(assigns, "users/unsuccessful_feedback_mailer/notify")
   end
@@ -25,7 +26,9 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     assigns[:nominee_name] = "Nominee Name"
+    assigns[:year] = AwardYear.closed.year
     form_answer.urn = "QA0128/16EP"
+
     render(assigns, "users/unsuccessful_feedback_mailer/ep_notify")
   end
 

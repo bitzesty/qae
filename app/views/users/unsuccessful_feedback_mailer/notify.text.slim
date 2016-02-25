@@ -1,13 +1,42 @@
+' The Queen's Awards for Enterprise
+=> @year
+| [
+= @form_answer.urn
+| ]
+
 = "Dear #{@user.full_name},"
 
-= "Firstly, we'd like to thank you, and #{@company_name}, for taking the time to apply for The Queen's Awards for Enterprise: #{@form_answer.award_type_full_name}."
+' Thank you for your entry for The Queen's Awards for Enterprise
+= @year
+' .
+
+' I am sorry to inform you that your organisation was not among those recommended to Her Majesty The Queen for an Award this year.
+
+' This year's entries were of a very high standard and selecting those organisations which had demonstrated the most outstanding achievements was particularly difficult.
 
 ' We understand that the application process can be time-consuming, and for this reason our assessors have compiled some feedback on your application's strengths and weaknesses, which we hope will help with any future application(s) you make.
 
 = link_to "You can view your application feedback here.", users_form_answer_feedback_url(@form_answer, format: "pdf")
 
-' We hope you'll apply again next year.
+' If you are looking for help to grow or scale up your business you may wish to contact your local Growth Hub. The Government is investing in 39 Growth Hubs in England, and giving them ownership of how they support local businesses to start and scale-up. They can provide national business support, and diagnostic and signposting advice to help businesses find the right support easily, no matter what their size or sector. If you would like to find out more visit
+= link_to "www.lepnetwork.net/growth-hubs", "http://www.lepnetwork.net/growth-hubs/"
+' , or call the Business Support Helpline, tel: 0300 456 3565 (Monday to Friday, 9.00am – 6.00pm). For business support outside of England go to
+= link_to "Scotland", "http://www.bgateway.com"
+' ,
+=> link_to "Wales", "http://business.wales.gov.uk"
+' and
+= link_to "Northern Ireland", "http://www.investni.com/index.html"
+' .
 
-' Thank you,
+' If you are looking to export, the potential for you to reach out to new customers and lucrative new markets beyond the UK has never been greater. Whatever your sector, there's a market out there for your products or services. For further help and information visit the Government website
+=> link_to "www.exportingisgreat.gov.uk", "https://www.exportingisgreat.gov.uk/"
+' or contact your local UKTI export expert,
+= link_to "www.greatbusiness.gov.uk/ukti", "http://www.greatbusiness.gov.uk/ukti/"
+' .
 
-' The Queen's Awards Office
+' Thank you once again for taking the time to enter The Queen's Awards for Enterprise and I wish you the best of luck if you decide to enter again next year.
+
+' Yours sincerely
+
+' Nichola Bruno
+' The Secretary, The Queen's Awards for Enterprise
