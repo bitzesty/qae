@@ -71,8 +71,7 @@ class Notifiers::EmailNotificationService
   def winners_notification(award_year)
     award_year.form_answers.winners.each do |form_answer|
       document = form_answer.document
-      account_holder = form_answer.account.owner
-      email = form_answer.promotion? ? document["nominee_email"] : account_holder.email
+      email = form_answer.promotion? ? document["nominee_email"] : form_answer.user.email
 
       shoryuken_ops = {
         email: email,
