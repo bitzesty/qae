@@ -1,17 +1,12 @@
 p
   strong Organisation Address:
-  - if award.document["organization_address_building"].present?
-    br
-    = award.document["organization_address_building"]
-  - if award.document["organization_address_street"].present?
-    br
-    = award.document["organization_address_street"]
-  - if award.document["organization_address_city"].present?
-    br
-    = award.document["organization_address_city"]
-  - if award.document["organization_address_county"].present?
-    br
-    = award.document["organization_address_county"]
-  - if award.document["organization_address_postcode"].present?
-    br
-    = award.document["organization_address_postcode"]
+  br
+  = award.document["organization_address_building"]
+  br
+  = award.document["organization_address_street"]
+  br
+  = award.document["organization_address_city"]
+  br
+  = award.document["organization_address_county"]
+  br
+  = award.document["organization_address_postcode"]

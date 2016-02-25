@@ -1,5 +1,4 @@
-- if employees_figure.present?
-  p
-    strong Number of UK employees
-    br
-    = employees_figure[:value]
+p
+  strong Number of UK employees
+  br
+  = employees_figure[:value] if employees_figure.present?
