@@ -11,9 +11,20 @@ namespace :form_answers do
 
   desc "populate hard copy PDF version for current award year applications"
   task populate_hard_copy_pdf_version_for_applications: :environment do
+    not_updated_entries = []
+
     AwardYear.current.form_answers.submitted.find_each do |form_answer|
-      ApplicationHardCopyPdfWorker.perform_async(form_answer.id)
+      begin
+        form_answer.generate_pdf_version!
+        sleep 1
+
+        puts "[form_answer]---------------------------------#{form_answer.id} updated"
+      rescue
+        not_updated_entries << form_answer.id
+      end
     end
+
+    puts "[not_updated_entries] ------------ #{not_updated_entries.inspect}"
   end
 
   desc "fixes eligibility inconsistencies"
