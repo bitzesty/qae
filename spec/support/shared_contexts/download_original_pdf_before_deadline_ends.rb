@@ -41,28 +41,12 @@ shared_context "download original pdf before deadline ends" do
 
       it "should display download button" do
         expect(page).to have_link(
-          "Download original PDF before deadline", pdf_url
+          "Download original PDF before deadline",
+          form_answer.pdf_version.url
         )
       end
     end
 
-    describe "PDF generation" do
-      let(:pdf_filename) do
-        "original_pdf_before_deadline_#{form_answer.decorate.pdf_filename}"
-      end
-
-      before do
-        visit pdf_url
-      end
-
-      it "should generate pdf file" do
-        expect(page.status_code).to eq(200)
-        expect(page.response_headers["Content-Disposition"]).to be_eql(
-          "attachment; filename=\"#{pdf_filename}\""
-        )
-        expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
-      end
-    end
 
     describe "PDF content" do
       let(:registration_number_at_the_deadline) {
