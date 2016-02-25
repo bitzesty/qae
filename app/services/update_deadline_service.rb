@@ -23,6 +23,7 @@ class UpdateDeadlineService
         ::SubmissionDeadlineStatesTransitionWorker.perform_async("#{deadline.id}_#{now}")
       end
 
+      # TODO: check this after migration to sidekiq
       ::SubmissionDeadlineApplicationPdfGenerationWorker.set(
         wait_until: trigger_at
       ).perform_later

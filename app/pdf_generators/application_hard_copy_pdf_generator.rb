@@ -16,7 +16,8 @@ class ApplicationHardCopyPdfGenerator
     @pdf = form_answer.original_form_answer
                       .decorate
                       .pdf_generator
-    timestamp = Time.now.strftime('%d_%b_%Y_%H_%M')
+
+    timestamp = form_answer.submission_end_date.strftime('%d_%b_%Y_%H_%M')
     @tempfile_name = "application_#{form_answer.urn}_#{timestamp}_SEPARATOR".gsub("/", "_")
   end
 
