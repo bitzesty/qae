@@ -40,6 +40,8 @@ class FormAnswer < ActiveRecord::Base
 
   enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true
 
+  mount_uploader :pdf_version, FormAnswerPdfVersionUploader
+
   begin :associations
     belongs_to :user
     belongs_to :account
@@ -115,6 +117,7 @@ class FormAnswer < ActiveRecord::Base
     scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
     scope :business, -> { where(award_type: %w(trade innovation development)) }
     scope :promotion, -> { where(award_type: "promotion") }
+    scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
   end
 
   begin :callbacks
@@ -256,6 +259,10 @@ class FormAnswer < ActiveRecord::Base
 
   def business?
     %w(trade innovation development).include?(award_type)
+  end
+
+  def generate_pdf_version!
+    ApplicationHardCopyPdfGenerator.new(self).run
   end
 
   private

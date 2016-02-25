@@ -1,8 +1,6 @@
 - if policy(@form_answer).can_download_original_pdf_of_application_before_deadline?
 
-  - target_url = pundit_user.is_a?(Admin) ? original_pdf_before_deadline_admin_form_answer_url(@form_answer, format: :pdf) : original_pdf_before_deadline_assessor_form_answer_url(@form_answer, format: :pdf)
-
-  = link_to target_url,
+  = link_to @form_answer.pdf_version.url,
             class: "btn btn-default btn-block",
             target: "_blank"
     span.glyphicon.glyphicon-file

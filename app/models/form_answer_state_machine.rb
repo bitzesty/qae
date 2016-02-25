@@ -43,10 +43,13 @@ class FormAnswerStateMachine
 
   def self.trigger_deadlines
     if Settings.after_current_submission_deadline?
-      FormAnswer.where(state: "submitted").find_each do |fa|
+      current_year = Settings.current.award_year
+
+      current_year.form_answers.where(state: "submitted").find_each do |fa|
         fa.state_machine.perform_transition("assessment_in_progress")
       end
-      FormAnswer.where(state: ["eligibility_in_progress", "application_in_progress"]).find_each do |fa|
+
+      current_year.form_answers.in_progress.find_each do |fa|
         fa.state_machine.perform_transition("not_submitted")
       end
     end

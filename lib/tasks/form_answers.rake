@@ -9,6 +9,13 @@ namespace :form_answers do
     FormAnswerUserSubmissionService.new(f).perform
   end
 
+  desc "populate hard copy PDF version for current award year applications"
+  task populate_hard_copy_pdf_version_for_applications: :environment do
+    AwardYear.current.form_answers.submitted.find_each do |form_answer|
+      ApplicationHardCopyPdfWorker.perform_async(form_answer.id)
+    end
+  end
+
   desc "fixes eligibility inconsistencies"
   task fix_eligibility: :environment do
     FormAnswer.find_each do |f|

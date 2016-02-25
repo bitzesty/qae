@@ -13,11 +13,8 @@ So that I can see original application data was at the deadline moment
     admin_form_answer_path(form_answer)
   end
 
-  let(:pdf_url) do
-    original_pdf_before_deadline_admin_form_answer_url(form_answer, format: :pdf)
-  end
-
   before do
+    form_answer.generate_pdf_version!
     login_admin(admin)
   end
 

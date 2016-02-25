@@ -6,7 +6,6 @@ class Admin::FormAnswersController < Admin::BaseController
     :show,
     :update,
     :update_financials,
-    :original_pdf_before_deadline,
     :remove_audit_certificate
   ]
 
