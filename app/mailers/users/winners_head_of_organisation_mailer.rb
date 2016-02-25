@@ -10,6 +10,7 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @award_category_title = @form_answer.award_type_full_name
     @title = @form_answer.head_of_bussines_title
     @last_name = @form_answer.document["head_of_business_last_name"]
+    @name = "#{@title} #{@last_name}"
 
     @media_deadline = Settings.current.deadlines.where(kind: "buckingham_palace_media_information").first
     @media_deadline = @media_deadline.try :strftime, "%H.%M on %A %d %B %Y"

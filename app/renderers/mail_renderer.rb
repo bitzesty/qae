@@ -12,6 +12,7 @@ class MailRenderer
   def unsuccessful_notification
     assigns = {}
 
+    assigns[:name] = "Mr Smith"
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     assigns[:year] = AwardYear.closed.year
@@ -122,6 +123,7 @@ class MailRenderer
     assigns = {}
     form = form_answer
 
+    assigns[:name] = "Mr Smith"
     assigns[:form_answer] = form
     assigns[:award_year] = form.award_year.year
     assigns[:urn] = "QAXXXX/#{assigns[:award_year].to_s[2..-1]}I"
