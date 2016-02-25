@@ -3,6 +3,7 @@ class Users::UnsuccessfulFeedbackMailer < AccountMailer
     @form_answer = FormAnswer.find(form_answer_id).decorate
     @user = @form_answer.user.decorate
     @year = AwardYear.closed.year
+    @name = "#{@user.title} #{@user.last_name}"
 
     subject = "Important information about your Queen's Award entry"
     mail to: @user.email, subject: subject

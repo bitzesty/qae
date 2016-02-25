@@ -1,11 +1,11 @@
-class Users::BuckinghamPalaceInviteMailer < ApplicationMailer
+class Users::BuckinghamPalaceInviteMailer < AccountMailer
   def invite(invite_id)
     invite = PalaceInvite.find(invite_id)
     @token = invite.token
     @form_answer = invite.form_answer.decorate
-    account_holder = @form_answer.account.owner
+    @user = @form_answer.user.decorate
 
-    @name = "#{account_holder.title} #{account_holder.last_name}"
+    @name = "#{@user.title} #{@user.last_name}"
 
     @deadline = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first
     @deadline = @deadline.trigger_at
