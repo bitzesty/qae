@@ -131,6 +131,12 @@ class MailRenderer
     assigns[:head_email] = "john@example.com"
     assigns[:head_of_business_full_name] = "Jon Doe"
 
+    assigns[:media_deadline] = deadline_str("buckingham_palace_media_information", "%H.%M on %A %d %B %Y")
+    assigns[:end_of_embargo_date] = deadline_str("buckingham_palace_attendees_details", "%-d %B %Y")
+    assigns[:end_of_embargo_datetime] = deadline_str("buckingham_palace_attendees_details","%H.%Mhrs on %-d %B %Y")
+    assigns[:press_book_entry_datetime] = deadline_str("buckingham_palace_confirm_press_book_notes", "%l:%M %p on %A %-d %B")
+    assigns[:attendees_invite_date] = deadline_str("buckingham_palace_attendees_invite","%A %d %B %Y")
+
     render(assigns, "users/winners_head_of_organisation_mailer/notify")
   end
 
@@ -161,7 +167,7 @@ class MailRenderer
     if d.present?
       d.strftime(format)
     else
-      "21/09/#{Date.current.year}"
+      DateTime.new(Date.current.year, 9, 21, 10, 30).strftime(format)
     end
   end
 
