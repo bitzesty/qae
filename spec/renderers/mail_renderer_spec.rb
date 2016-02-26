@@ -58,7 +58,7 @@ describe MailRenderer do
     it "renders e-mail" do
       rendered = described_class.new.unsuccessful_notification
       expect(rendered).to match("Mr Smith")
-      expect(rendered).to match("QA0128/16EP")
+      expect(rendered).to match("QA0001/16I")
     end
   end
 
