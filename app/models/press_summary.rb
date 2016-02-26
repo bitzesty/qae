@@ -21,7 +21,9 @@ class PressSummary < ActiveRecord::Base
 
   def notify_applicant
     if approved_changed? && approved?
-      Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
+      form_answer.account.users.each do |user|
+        Users::WinnersPressRelease.notify(form_answer.id, user.id).deliver_later!
+      end
     end
   end
 end

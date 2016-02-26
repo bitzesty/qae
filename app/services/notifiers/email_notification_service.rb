@@ -95,7 +95,9 @@ class Notifiers::EmailNotificationService
       ps = form_answer.press_summary
 
       if ps && ps.approved? && !ps.reviewed_by_user?
-        Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
+        form_answer.account.users.each do |user|
+          Users::WinnersPressRelease.notify(form_answer.id, user.id).deliver_later!
+        end
       end
     end
   end
