@@ -57,36 +57,49 @@ class Notifiers::EmailNotificationService
   end
 
   def unsuccessful_notification(award_year)
-    award_year.form_answers.unsuccessful.each do |form_answer|
-      if form_answer.promotion?
-        Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
-      else
-        Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
-      end
+    award_year.form_answers.business.non_winners.each do |form_answer|
+      Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+    end
+  end
+
+  def unsuccessful_ep_notification(award_year)
+    award_year.form_answers.promotion.non_winners.each do |form_answer|
+      Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
     end
   end
 
   def winners_notification(award_year)
     award_year.form_answers.winners.each do |form_answer|
       document = form_answer.document
+      email = form_answer.promotion? ? document["nominee_email"] : form_answer.user.email
+
+      shoryuken_ops = {
+        email: email,
+        form_answer_id: form_answer.id
+      }
 
       if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(document["nominee_email"],
-                                                                          form_answer.id)
+        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(shoryuken_ops)
       else
-        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(document["head_email"],
-                                                                 form_answer.id)
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(shoryuken_ops)
       end
     end
   end
 
   def winners_press_release_comments_request(award_year)
-    award_year.form_answers.winners.includes(:press_summary).each do |form_answer|
+    award_year.form_answers.business.winners.includes(:press_summary).each do |form_answer|
       ps = form_answer.press_summary
 
       if ps && ps.approved? && !ps.reviewed_by_user?
         Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
       end
+    end
+  end
+
+  # to 'Head of Organisation' of the Successful Business categories winners
+  def winners_head_of_organisation_notification(award_year)
+    award_year.form_answers.business.winners.each do |form_answer|
+      Users::WinnersHeadOfOrganisationMailer.notify(form_answer.id).deliver_later!
     end
   end
 

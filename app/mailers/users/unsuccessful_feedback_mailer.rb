@@ -2,9 +2,10 @@ class Users::UnsuccessfulFeedbackMailer < AccountMailer
   def notify(form_answer_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
     @user = @form_answer.user.decorate
-    @company_name = @form_answer.company_or_nominee_name
+    @year = AwardYear.closed.year
+    @name = "#{@user.title} #{@user.last_name}"
 
-    subject = "Queen's Award for Enterprise: Application Feedback"
+    subject = "Important information about your Queen's Award entry"
     mail to: @user.email, subject: subject
   end
 
@@ -12,8 +13,9 @@ class Users::UnsuccessfulFeedbackMailer < AccountMailer
     @form_answer = FormAnswer.find(form_answer_id).decorate
     @user = @form_answer.user.decorate
     @nominee_name = @form_answer.nominee_full_name
+    @year = AwardYear.closed.year
 
-    subject = "Queen's Award for Enterprise Promotion: Nomination Feedback"
+    subject = "Important information about your Queen's Award nomination"
     mail to: @user.email, subject: subject
   end
 end

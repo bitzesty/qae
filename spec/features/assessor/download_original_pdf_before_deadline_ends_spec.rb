@@ -11,8 +11,8 @@ So that I can see original application data was at the deadline moment
     assessor_form_answer_path(form_answer)
   end
 
-  let(:pdf_url) do
-    original_pdf_before_deadline_assessor_form_answer_url(form_answer, format: :pdf)
+  before do
+    form_answer.generate_pdf_version!
   end
 
   describe "Lead Assessor" do

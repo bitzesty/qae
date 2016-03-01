@@ -1,20 +1,42 @@
+' Congratulations on winning a Queen's Award in
+=> @form_answer.award_type_short_name
+=> "#{@form_answer.award_year.year}."
+= "[#{@form_answer.urn}]"
+
 = "Dear #{@name},"
 
-' Congratulations, your application for a Queen's Award for Enterprise:
+' I am delighted to inform you that Her Majesty The Queen has been graciously pleased to approve the Prime Minister's recommendation that your organisation should receive a Queen's Award for Enterprise in
 => @form_answer.award_type_full_name
-' was successful!
+' this year. We have also informed your Head of Unit by email.
 
-' All winning organisations can send two representatives to the Queen's Awards for Enterprise Buckingham Palace reception. But you must enter their details online before
-= @deadline
-'.
+' Please read this email carefully as it contains important information about actions you need to do now.
 
-' One of our assessors is currently in the process of writing a Press Book piece for your application. Once it's complete, we will notify you so you can check it over before
-= @deadline
-'.
+' The Award will be conferred on
+= @deadline.strftime("%A %d %B %Y")
+' ,  (Her Majesty's birthday). Although you can make arrangements for publicity now, there is a strict embargo preventing public announcement or publication of any Awards information until
+= @deadline.strftime("%H.%Mhrs on %d %B %Y")
+' . You must not make any announcement about your Award, either to employees or outside your organisation, before this date.
 
-' To complete both of these task, and access other winners' resources, go to
-= link_to "the Winner's Dashboard.", dashboard_url
+' Under the terms of the embargo we will provide information to the media of the winners at
+=< @media_deadline
+' , and the list of winners will be published in the Supplement to the London Gazette on
+= @deadline.strftime("%d %B %Y")
 
-' Thank you,
+' Approve your Press Book entry
 
-' The Queen's Awards Office
+=> link_to "Log in here", dashboard_url
+' to access the Winners' Dashboard to check the Press Book Notes (a factual account of why you have won the Award and not a promotional press opportunity), and your organisational details for accuracy, and let us know of any factual errors. You will also need to enter details of a contact for media enquiries, and click the "Submit" button by
+= @book_notes_deadline
+' . If you do not respond by the deadline we will use the proposed text together with the contact details that we already hold.
+
+' A link to the Winners' Resources to gain access to the Queen's Awards emblems and Winners Manual is also on your online account.
+
+' Two representatives from your winning organisation will be invited to attend HM The Queen's Reception at Buckingham Palace on
+= @attendees_invite_date
+' .  We will contact you closer to the time with instructions for submitting the details of the attendees.
+
+' Congratulations once again on your Award.
+
+' Yours sincerely
+
+' The Secretary, Queen's Awards for Enterprise

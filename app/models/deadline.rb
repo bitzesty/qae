@@ -10,7 +10,9 @@ class Deadline < ActiveRecord::Base
     "submission_start",
     "submission_end",
     "buckingham_palace_attendees_details",
-    "press_release_comments",
+    "buckingham_palace_attendees_invite",
+    "buckingham_palace_confirm_press_book_notes",
+    "buckingham_palace_media_information",
     "audit_certificates"
   ]
 
@@ -32,8 +34,28 @@ class Deadline < ActiveRecord::Base
     where(kind: "submission_start").first
   end
 
+  def self.end_of_embargo
+    where(kind: "buckingham_palace_attendees_details").first
+  end
+
+  def self.buckingham_palace_confirm_press_book_notes
+    where(kind: "buckingham_palace_confirm_press_book_notes").first
+  end
+
+  def self.buckingham_palace_attendees_invite
+    where(kind: "buckingham_palace_attendees_invite").first
+  end
+
+  def self.buckingham_palace_media_information
+    where(kind: "buckingham_palace_media_information").first
+  end
+
   def passed?
     trigger_at && trigger_at < Time.zone.now
+  end
+
+  def strftime(format)
+    trigger_at ? trigger_at.strftime(format) : "-"
   end
 
   private

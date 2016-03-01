@@ -99,4 +99,25 @@ RSpec.describe FormAnswer, type: :model do
       expect(build(:form_answer, state: "recommended")).to be_recommended
     end
   end
+
+  describe "non_winners" do
+    it "excludes awarded form_answers" do
+      form_answer = create(:form_answer, :promotion, :awarded)
+      expect(FormAnswer.non_winners).not_to include(form_answer)
+    end
+
+    it "excludes withdrawn form_answers" do
+      form_answer = create(:form_answer, :promotion, :withdrawn)
+      expect(FormAnswer.non_winners).not_to include(form_answer)
+    end
+
+    it "includes all other form_answers" do
+      not_recommended = create(:form_answer, :promotion, :not_recommended)
+      not_awarded = create(:form_answer, :promotion, :not_awarded)
+      reserved = create(:form_answer, :promotion, :reserved)
+      expect(FormAnswer.non_winners).to include(not_recommended)
+      expect(FormAnswer.non_winners).to include(not_awarded)
+      expect(FormAnswer.non_winners).to include(reserved)
+    end
+  end
 end

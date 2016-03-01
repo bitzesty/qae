@@ -1,0 +1,10 @@
+p
+  strong Head of organisation
+  br
+  - if award.head_of_bussines_title.present?
+    = award.head_of_bussines_title
+    '
+  = award.head_of_business_full_name
+
+  br
+  = award.head_job_title

@@ -4,15 +4,22 @@
     .content-left
       h2 Successful
     .content-right.content-offset-36
+      p Congratulations on winning a Queen's Award for Enterprise
       p
-        ' Congratulations! Your
-        - if winners.length == 1
-          ' application was
-        - else
-          ' applications were
-        ' successful.
+        ' We know you'll be keen to share your success. However, please remember there is a strict embargo preventing public announcement or publication of any Awards information until
+        = deadline_for("buckingham_palace_attendees_details", "%H.%M on %A %d %B %Y")
+        ' . You must not make any announcements about your Award, either to employees or outside your organisation, before this date.
       p
-        strong You are not allowed to announce success until after April 21st.
+        strong Approve your Press Book entry
+      p
+        ' We will be providing a Press Book to the media containing information about all the winners at
+        => deadline_for("buckingham_palace_media_information", "%H.%M on %A %d %B %Y")
+        ' under the terms of the embargo. Click the 'Press Book Notes' link below to check your press piece, organization details and enter details of a contact for press enquiries, and
+        strong
+          'submit it by
+          = deadline_for("buckingham_palace_confirm_press_book_notes", "%l %p on %A %d %B")
+          ' .
+        ' If we do not hear from you by the above deadline, we will use the proposed text along with the contact details that we already hold.
     .clear
   - winners.each do |award|
     .container-split.award-list
@@ -28,14 +35,13 @@
           p Your nomination was successful.
         - else
           - if award.press_summary.present? && award.press_summary.body.present?
-            p Please review the action below to complete your successful application.
             ul.post-dashboard-actions
               li
                 = link_to "Press Book Notes", users_form_answer_press_summary_url(award, token: award.press_summary.token)
                 span.award-info
                   span.pull-right
                     ' Due by
-                    = application_deadline_short(:press_release_comments)
+                    = application_deadline_short(:buckingham_palace_confirm_press_book_notes)
                   = link_to users_form_answer_press_summary_url(award, token: award.press_summary.token)
                     - if award.press_summary.reviewed_by_user
                       span.label-status.label-status-green

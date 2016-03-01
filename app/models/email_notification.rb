@@ -12,9 +12,11 @@ class EmailNotification < ActiveRecord::Base
                          :winners_notification,
                          :winners_press_release_comments_request,
                          :unsuccessful_notification,
+                         :unsuccessful_ep_notification,
                          :shortlisted_notifier,
                          :shortlisted_audit_certificate_reminder,
-                         :not_shortlisted_notifier
+                         :not_shortlisted_notifier,
+                         :winners_head_of_organisation_notification
                        ]
 
   validates :kind, :trigger_at, presence: true
@@ -29,7 +31,7 @@ class EmailNotification < ActiveRecord::Base
   end
 
   def self.not_awarded
-    where(kind: "unsuccessful_notification")
+    where(kind: ["unsuccessful_notification", "unsuccessful_ep_notification"])
   end
 
   private

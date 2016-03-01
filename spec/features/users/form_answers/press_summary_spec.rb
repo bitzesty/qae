@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 describe "Press Summary" do
   before do
-    deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
+    deadline = Settings.current.deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first
     deadline.update_column(:trigger_at, Time.current + 1.day)
   end
 
@@ -17,18 +17,17 @@ describe "Press Summary" do
     it "should allow to fill the form untill deadline" do
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
 
-      fill_in "First name", with: "Jon"
-      fill_in "Last name", with: "Doe"
+      fill_in "Name", with: "Jon"
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Confirm Press Book Notes"
+      click_button "Submit"
 
       expect(page).to have_content("Press Book Notes successfully updated")
     end
 
     it "should not allow to fill the form after the deadline" do
-      deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
+      deadline = Settings.current.deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first
       deadline.update_column(:trigger_at, Time.current - 1.day)
 
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
@@ -51,12 +50,11 @@ describe "Press Summary" do
 
       click_button "Continue"
 
-      fill_in "First name", with: "Jon"
-      fill_in "Last name", with: "Doe"
+      fill_in "Name", with: "Jon"
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Confirm Press Book Notes"
+      click_button "Submit"
 
       expect(page).to have_content("Press Book Notes successfully updated")
     end

@@ -9,8 +9,11 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def review?
-    return true if admin?
-    subject.lead_or_assigned?(record)
+    record.award_year.current? &&
+    (
+      admin? ||
+      subject.lead_or_assigned?(record)
+    )
   end
 
   def show?
@@ -85,6 +88,9 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def can_download_original_pdf_of_application_before_deadline?
-    can_update_by_admin_lead_and_primary_assessors? && record.submission_ended?
+    can_update_by_admin_lead_and_primary_assessors? &&
+    record.submitted? &&
+    record.submission_ended? &&
+    record.pdf_version.present?
   end
 end

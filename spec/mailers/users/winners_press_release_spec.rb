@@ -8,7 +8,7 @@ describe Users::WinnersPressRelease do
   end
 
   let!(:deadline) do
-    deadline = Settings.current.deadlines.where(kind: "press_release_comments").first
+    deadline = Settings.current.deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first
     deadline.update!(trigger_at: Date.current)
     deadline.trigger_at.strftime("%d/%m/%Y")
   end

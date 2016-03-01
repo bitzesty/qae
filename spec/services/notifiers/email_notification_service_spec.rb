@@ -64,11 +64,13 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       form_answer = create(:form_answer, :trade, :submitted)
-      form_answer.document = form_answer.document.merge(head_email: "head@email.com")
+      form_answer.document = form_answer.document
       form_answer.save!
 
+      account_holder = form_answer.account.owner
+
       expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
-        .with("head@email.com", form_answer.id)
+        .with({email: account_holder.email, form_answer_id: form_answer.id})
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
@@ -82,7 +84,7 @@ describe Notifiers::EmailNotificationService do
       form_answer.save!
 
       expect(Notifiers::Winners::PromotionBuckinghamPalaceInvite).to receive(:perform_async)
-        .with("nominee@email.com", form_answer.id)
+        .with({email: "nominee@email.com", form_answer_id: form_answer.id})
       expect(FormAnswer).to receive(:winners) { [form_answer] }
 
       described_class.run
@@ -158,6 +160,39 @@ describe Notifiers::EmailNotificationService do
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
       expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "unsuccessful_ep_notification" do
+    let(:kind) { "unsuccessful_ep_notification" }
+
+    let(:form_answer) { create(:form_answer, :promotion, state: "not_awarded") }
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(Users::UnsuccessfulFeedbackMailer).to receive(:ep_notify).with(form_answer.id) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "winners_head_of_organisation_notification" do
+    let(:kind) { "winners_head_of_organisation_notification" }
+    let(:user) { create(:user) }
+
+    let(:form_answer) do
+      create(:form_answer, :trade, :awarded)
+    end
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(Users::WinnersHeadOfOrganisationMailer).to receive(:notify).with(form_answer.id) { mailer }
 
       described_class.run
 

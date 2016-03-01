@@ -40,6 +40,8 @@ class FormAnswer < ActiveRecord::Base
 
   enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true
 
+  mount_uploader :pdf_version, FormAnswerPdfVersionUploader
+
   begin :associations
     belongs_to :user
     belongs_to :account
@@ -109,12 +111,13 @@ class FormAnswer < ActiveRecord::Base
     scope :for_year, -> (year) { joins(:award_year).where(award_years: { year: year }) }
     scope :shortlisted, -> { where(state: %w(reserved recommended)) }
     scope :not_shortlisted, -> { where(state: "not_recommended") }
-    scope :winners, -> { where(state: %(recomended awarded)) }
-    scope :unsuccessful, -> { where(state: %w(not_recommended not_awarded reserved)) }
+    scope :winners, -> { where(state: "awarded") }
+    scope :non_winners, -> { where("state not in ('awarded', 'withdrawn')") }
     scope :submitted, -> { where(submitted: true) }
     scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
     scope :business, -> { where(award_type: %w(trade innovation development)) }
     scope :promotion, -> { where(award_type: "promotion") }
+    scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
   end
 
   begin :callbacks
@@ -234,7 +237,7 @@ class FormAnswer < ActiveRecord::Base
               .deadlines
               .submission_end
               .last
-              .trigger_at
+              .try(:trigger_at)
   end
 
   def submission_ended?
@@ -256,6 +259,10 @@ class FormAnswer < ActiveRecord::Base
 
   def business?
     %w(trade innovation development).include?(award_type)
+  end
+
+  def generate_pdf_version!
+    ApplicationHardCopyPdfGenerator.new(self).run
   end
 
   private

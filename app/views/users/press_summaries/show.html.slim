@@ -1,23 +1,32 @@
 div
   header.group.page-header.page-header-wider
     div
-      h1 Press Book Notes
+      h1 Press Book Entry
 
   .article-container.article-container-wider
     article.group role="article"
       .inner
-        p Please check that the Press Book Notes are factually accurate:
+        p Please check that this is factually accurate (please note employee numbers cannot be changed)
 
         br
 
         .application-notice.info-notice
-          p = @press_summary.body
+          = render "users/press_summaries/award_summary/press_book_notes"
 
         br
 
+        .application-notice.info-notice
+          = render "users/press_summaries/award_summary/name"
+          = render "users/press_summaries/award_summary/address"
+          = render "users/press_summaries/award_summary/goods_services"
+          = render "users/press_summaries/award_summary/website"
+          = render "users/press_summaries/award_summary/organisation_head"
+          = render "users/press_summaries/award_summary/parent_company"
+          = render "users/press_summaries/award_summary/financial_summary"
+
         = simple_form_for @press_summary, url: users_form_answer_press_summary_path(form_answer, token: params[:token]), html: { class: "qae-form" } do |f|
           fieldset.question-block.sub-question.js-press-comment-correct
-            h2 = f.label :correct, label: "Do you have any comments on the Press Book Notes?"
+            h2 = f.label :correct, label: "Do you have any comments on the Press Book Notes or organisation details?"
             ul.errors-container
             .clear
             .question-group
@@ -39,13 +48,11 @@ div
             label
               h2 Contact details for press enquiries
             .question-group
-              = f.input :first_name, input_html: { class: "medium" }
-            .question-group
-              = f.input :last_name, input_html: { class: "medium" }
-            .question-group
-              = f.input :email, input_html: { class: "medium" }
+              = f.input :name, input_html: { class: "medium" }
             .question-group
               = f.input :phone_number, input_html: { class: "medium" }, label: "Telephone"
+            .question-group
+              = f.input :email, input_html: { class: "medium" }
 
           footer
             nav.pagination.no-border aria-label="Pagination" role="navigation"
@@ -54,4 +61,4 @@ div
                   = link_to dashboard_path
                     span.pagination-label Back
                 li.submit
-                  = f.submit "Confirm Press Book Notes", class: "button", rel: "next"
+                  = f.submit "Submit", class: "button", rel: "next"

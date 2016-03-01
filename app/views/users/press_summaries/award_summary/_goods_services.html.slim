@@ -1,0 +1,11 @@
+p
+  strong Description of goods/services
+  - if award.innovation?
+    br
+    = award.innovation_desc_short
+  - if award.development?
+    br
+    = award.development_desc_short
+  - if award.trade? && award.document["trade_goods_and_services_explanations"].any?
+    br
+    = award.document["trade_goods_and_services_explanations"].first["desc_short"]
