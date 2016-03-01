@@ -91,7 +91,7 @@ class Notifiers::EmailNotificationService
   end
 
   def winners_press_release_comments_request(award_year)
-    award_year.form_answers.winners.includes(:press_summary).each do |form_answer|
+    award_year.form_answers.business.winners.includes(:press_summary).each do |form_answer|
       ps = form_answer.press_summary
 
       if ps && ps.approved? && !ps.reviewed_by_user?
