@@ -58,13 +58,17 @@ class Notifiers::EmailNotificationService
 
   def unsuccessful_notification(award_year)
     award_year.form_answers.business.non_winners.each do |form_answer|
-      Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
+      form_answer.account.users.each do |user|
+        Users::UnsuccessfulFeedbackMailer.notify(form_answer.id, user.id).deliver_later!
+      end
     end
   end
 
   def unsuccessful_ep_notification(award_year)
     award_year.form_answers.promotion.non_winners.each do |form_answer|
-      Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
+      form_answer.account.users.each do |user|
+        Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id, user.id).deliver_later!
+      end
     end
   end
 
@@ -87,11 +91,13 @@ class Notifiers::EmailNotificationService
   end
 
   def winners_press_release_comments_request(award_year)
-    award_year.form_answers.winners.includes(:press_summary).each do |form_answer|
+    award_year.form_answers.business.winners.includes(:press_summary).each do |form_answer|
       ps = form_answer.press_summary
 
       if ps && ps.approved? && !ps.reviewed_by_user?
-        Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
+        form_answer.account.users.each do |user|
+          Users::WinnersPressRelease.notify(form_answer.id, user.id).deliver_later!
+        end
       end
     end
   end

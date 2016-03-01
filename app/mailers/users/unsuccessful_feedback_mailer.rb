@@ -1,7 +1,7 @@
 class Users::UnsuccessfulFeedbackMailer < AccountMailer
-  def notify(form_answer_id)
+  def notify(form_answer_id, user_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
-    @user = @form_answer.user.decorate
+    @user = User.find(user_id).decorate
     @year = AwardYear.closed.year
     @name = "#{@user.title} #{@user.last_name}"
 
@@ -9,9 +9,9 @@ class Users::UnsuccessfulFeedbackMailer < AccountMailer
     mail to: @user.email, subject: subject
   end
 
-  def ep_notify(form_answer_id)
+  def ep_notify(form_answer_id, user_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
-    @user = @form_answer.user.decorate
+    @user = User.find(user_id).decorate
     @nominee_name = @form_answer.nominee_full_name
     @year = AwardYear.closed.year
 

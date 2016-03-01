@@ -98,7 +98,7 @@ describe Notifiers::EmailNotificationService do
     let(:user) { create(:user) }
 
     let(:form_answer) do
-      create(:form_answer, :trade, :submitted)
+      create(:form_answer, :trade, :submitted, user: user)
     end
 
     let(:press_summary) do
@@ -108,7 +108,7 @@ describe Notifiers::EmailNotificationService do
     it "triggers current notification" do
       press_summary
       mailer = double(deliver_later!: true)
-      expect(Users::WinnersPressRelease).to receive(:notify).with(form_answer.id) { mailer }
+      expect(Users::WinnersPressRelease).to receive(:notify).with(form_answer.id, user.id) { mailer }
       expect(FormAnswer).to receive(:winners) { FormAnswer.where(id: form_answer.id) }
 
       described_class.run
@@ -153,13 +153,14 @@ describe Notifiers::EmailNotificationService do
 
   context "unsuccessful_notification" do
     let(:kind) { "unsuccessful_notification" }
+    let(:user) { create(:user) }
 
-    let(:form_answer) { create(:form_answer, :trade, state: "not_awarded") }
+    let(:form_answer) { create(:form_answer, :trade, state: "not_awarded", user: user) }
     let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
-      expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id) { mailer }
+      expect(Users::UnsuccessfulFeedbackMailer).to receive(:notify).with(form_answer.id, user.id) { mailer }
 
       described_class.run
 
@@ -169,12 +170,13 @@ describe Notifiers::EmailNotificationService do
 
   context "unsuccessful_ep_notification" do
     let(:kind) { "unsuccessful_ep_notification" }
+    let(:user) { create(:user) }
 
-    let(:form_answer) { create(:form_answer, :promotion, state: "not_awarded") }
+    let(:form_answer) { create(:form_answer, :promotion, state: "not_awarded", user: user) }
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
-      expect(Users::UnsuccessfulFeedbackMailer).to receive(:ep_notify).with(form_answer.id) { mailer }
+      expect(Users::UnsuccessfulFeedbackMailer).to receive(:ep_notify).with(form_answer.id, user.id) { mailer }
 
       described_class.run
 
