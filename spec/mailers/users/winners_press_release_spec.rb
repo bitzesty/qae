@@ -22,7 +22,7 @@ describe Users::WinnersPressRelease do
     let!(:press_release) { create :press_summary, form_answer: form_answer }
 
     let(:mail) do
-      Users::WinnersPressRelease.notify(form_answer.id)
+      Users::WinnersPressRelease.notify(form_answer.id, user.id)
     end
 
     it "renders the headers" do
