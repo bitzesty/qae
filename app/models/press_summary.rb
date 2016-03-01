@@ -5,7 +5,6 @@ class PressSummary < ActiveRecord::Base
   validates :name, :email, :phone_number, presence: true, if: :reviewed_by_user?
 
   before_validation :set_token, on: :create
-  after_save :notify_applicant
 
   belongs_to :authorable, polymorphic: true
 
@@ -17,11 +16,5 @@ class PressSummary < ActiveRecord::Base
 
   def set_token
     self.token = SecureRandom.base64(24)
-  end
-
-  def notify_applicant
-    if approved_changed? && approved?
-      Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
-    end
   end
 end
