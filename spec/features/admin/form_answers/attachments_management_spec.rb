@@ -30,9 +30,9 @@ describe 'Form answer attachments management', %q{
             Rails.root,'spec','support','file_samples','photo_with_size_less_than_5MB.jpg'
           )
         ),
-        attachable: admin
+        attachable: admin,
+        file_scan_results: "clean"
       )
-      Scan.create(uuid: '1234-456-789-abcdf', filename: 'grumpy_cat.jpg', status: 'clean', form_answer_attachment_id: form_answer.form_answer_attachments.last.id)
       visit admin_form_answer_path(form_answer)
     end
 

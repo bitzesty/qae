@@ -155,7 +155,7 @@ class ApplicationController < ActionController::Base
 
   def need_authentication?
     (Rails.env.staging? || Rails.env.production?) &&
-    (controller_name != "healthchecks" && controller_name != "scans")
+    (controller_name != "healthchecks")
   end
 
   def load_award_year_and_settings

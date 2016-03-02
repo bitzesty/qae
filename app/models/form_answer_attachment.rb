@@ -1,11 +1,10 @@
 class FormAnswerAttachment < ActiveRecord::Base
-  include VirusScannerCallbacks
 
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
-  has_one :scan, class_name: Scan
 
   mount_uploader :file, FormAnswerAttachmentUploader
+  scan_file      :file
 
   scope :uploaded_by_user, -> { where attachable_type: "User" }
   scope :uploaded_not_by_user, -> { where.not(attachable_type: "User") }
@@ -48,12 +47,6 @@ class FormAnswerAttachment < ActiveRecord::Base
 
   def uploaded_not_by_user?
     attachable_type != "User"
-  end
-
-  # Virus Scanner check after upload
-  def store_file!
-    super()
-    virus_scan
   end
 
   private
