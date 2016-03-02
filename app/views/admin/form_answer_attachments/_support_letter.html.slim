@@ -1,6 +1,6 @@
 li.form_answer_attachment
   - if support_letter.support_letter_attachment.present?
-    - if support_letter.support_letter_attachment.scan.clean?
+    - if support_letter.support_letter_attachment.clean?
       = link_to [namespace_name, support_letter.form_answer, support_letter],
                 target: "_blank", class: "action-title"
         span.glyphicon.glyphicon-file

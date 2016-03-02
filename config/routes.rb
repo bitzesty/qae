@@ -1,12 +1,4 @@
 Rails.application.routes.draw do
-  # Virus Scanner integration - begin
-  namespace :vs_rails do
-    resources :scans, only: [] do
-      post :callback, on: :collection
-    end
-  end
-  # Virus Scanner integration - end
-
   resource :healthcheck, only: :show
 
   # Content Security Policy report_uri (http://content-security-policy.com/)

@@ -84,7 +84,7 @@ gem 'carrierwave'
 gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
 gem "fog"
 gem "fog-aws"
-gem "vs_rails", github: "bitzesty/vs-rails"
+gem 'vigilion-rails'
 
 # Background jobs
 gem "sidekiq", "~> 4.1.1"
