@@ -103,7 +103,6 @@ gem "nilify_blanks"
 gem "with_advisory_lock"
 
 # Monitoring
-gem "skylight"
 gem 'newrelic_rpm'
 
 # Lock sprockets

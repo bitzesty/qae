@@ -36,6 +36,13 @@ So probably let's put upgrade Rails  on hold for now.
 foreman start
 ```
 
+### Running with convox
+
+```
+convox start
+docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
+```
+
 #### Help
 
 If you see the following error:
