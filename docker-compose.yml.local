@@ -1,0 +1,26 @@
+web: &web
+  build: .
+  command: bundle exec rails server -b 0.0.0.0 -P /tmp/server.pid
+  environment:
+    - RAILS_ENV=development
+    - RACK_ENV=development
+    - DATABASE_URL=postgres://postgres:password@db:5432/app
+  ports:
+    - 3000:3000
+  volumes:
+    - .:/app
+  links:
+    - db
+    - redis
+worker:
+  <<: *web
+  ports: []
+  command: bundle exec sidekiq
+redis:
+  image: convox/redis
+  ports:
+    - 6379
+db:
+  image: convox/postgres
+  ports:
+    - 5432
