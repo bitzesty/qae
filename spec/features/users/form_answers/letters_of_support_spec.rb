@@ -23,10 +23,6 @@ describe "Letters of Support" do
   end
 
   describe "Support Letters" do
-    before do
-      allow_any_instance_of(Scan).to receive(:status).and_return("clean")
-    end
-
     it "should be able to upload support letter" do
       click_link "+ Add another support letter"
 

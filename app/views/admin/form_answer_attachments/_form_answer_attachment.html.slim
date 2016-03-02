@@ -13,7 +13,7 @@
             span.visible-lg.visible-md
               ' Remove
 
-    - if Rails.env.test? || form_answer_attachment.scan.clean?
+    - if Rails.env.test? || form_answer_attachment.clean?
       = link_to [namespace_name, form_answer_attachment.form_answer,form_answer_attachment], target: "_blank", class: "action-title"
         span.glyphicon.glyphicon-file
         = form_answer_attachment.decorate.display_name
