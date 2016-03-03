@@ -99,7 +99,7 @@ class MailRenderer
     )
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "%l %p on %A %d %B"
+      "%H.%M %p on %A %d %B"
     )
     assigns[:attendees_invite_date] = deadline_str(
       "buckingham_palace_attendees_invite",
