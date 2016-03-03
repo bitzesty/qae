@@ -14,16 +14,16 @@ module PartialsVisibilityHelper
 
   def show_feedback_section?
     @form_answer.unsuccessful? && !@form_answer.promotion? &&
-      !current_subject.try(:secondary?, @form_answer)
+      admin_lead_or_primary?
   end
 
   def show_press_summary_subsection?
     (@form_answer.awarded? || @form_answer.recommended? || @form_answer.reserved?) &&
-      !current_subject.try(:secondary?, @form_answer)
+      admin_lead_or_primary?
   end
 
   def show_palace_attendees_subsection?
-    @form_answer.awarded? && !current_subject.try(:secondary?, @form_answer)
+    @form_answer.awarded? && admin_lead_or_primary?
   end
 
   def show_bulk_assignment?
@@ -36,5 +36,13 @@ module PartialsVisibilityHelper
 
   def show_remove_form_answer_attachment?(attachment)
     attachment.uploaded_not_by_user? && policy(attachment).destroy?
+  end
+
+  private
+
+  def admin_lead_or_primary?
+    current_subject.is_a?(Admin) ||
+    current_subject.lead?(@form_answer) ||
+    current_subject.primary?(@form_answer)
   end
 end

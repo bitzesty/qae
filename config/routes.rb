@@ -188,7 +188,12 @@ Rails.application.routes.draw do
       end
     end
     resources :assessors
-    resources :admins
+    resources :admins do
+      collection do
+        # TODO: remove it once you fix issue with assessor access
+        get :login_as_assessor
+      end
+    end
     resources :reports, only: [:show]
     resources :review_audit_certificates, only: [:create]
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
