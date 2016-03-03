@@ -86,16 +86,6 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  def winners_press_release_comments_request(award_year)
-    award_year.form_answers.business.winners.includes(:press_summary).each do |form_answer|
-      ps = form_answer.press_summary
-
-      if ps && ps.approved? && !ps.reviewed_by_user?
-        Users::WinnersPressRelease.notify(form_answer.id).deliver_later!
-      end
-    end
-  end
-
   # to 'Head of Organisation' of the Successful Business categories winners
   def winners_head_of_organisation_notification(award_year)
     award_year.form_answers.business.winners.each do |form_answer|
