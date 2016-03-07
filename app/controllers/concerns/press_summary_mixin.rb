@@ -60,7 +60,7 @@ module PressSummaryMixin
   end
 
   def press_summary_params
-    params.require(:press_summary).permit(:body)
+    params.require(:press_summary).permit(:body, :name, :phone_number, :email)
   end
 
   def load_form_answer
