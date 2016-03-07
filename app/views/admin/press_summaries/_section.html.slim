@@ -20,9 +20,9 @@
         = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
         = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
       .clear
-= simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
-  .form-group
-    - if press_summary.reviewed_by_user
+- if press_summary.reviewed_by_user
+  = simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
+    .form-group
       label.form-label Contact details for press enquiries
       .form-value.no-js-update
         p data-for="press_summary_name"
@@ -44,16 +44,16 @@
                   as: :string,
                   label: "Email",
                   input_html: { class: 'form-control' }
-    .clear
-
-    - if policy(press_summary).update?
-      = link_to "#", class: "form-edit-link pull-right" do
-        span.glyphicon.glyphicon-pencil
-        ' Edit
-      .form-actions.text-right
-        = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
-        = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
       .clear
+
+      - if policy(press_summary).update?
+        = link_to "#", class: "form-edit-link pull-right" do
+          span.glyphicon.glyphicon-pencil
+          ' Edit
+        .form-actions.text-right
+          = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+          = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
+        .clear
 
     - if press_summary.body.present?
       - if press_summary.reviewed_by_user
