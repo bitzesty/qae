@@ -18,7 +18,7 @@ class PressSummaryPolicy < ApplicationPolicy
   end
 
   def unlock?
-    record.submitted? && subject.lead?(form_answer)
+    record.submitted? && subject.lead?(form_answer) && !Settings.winners_stage?
   end
 
   private
