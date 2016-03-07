@@ -182,7 +182,7 @@ class Reports::FormAnswer
     @press_summary.try(:comment)
   end
 
-  def customer_accepted_press_note
+  def customer_submitted_press_note
     if @press_summary.present?
       bool @press_summary.try(:reviewed_by_user?)
     end
@@ -190,7 +190,7 @@ class Reports::FormAnswer
 
   def qao_agreed_press_note
     if @press_summary.present?
-      bool @press_summary.try(:approved?)
+      bool @press_summary.try(:submitted?)
     end
   end
 
