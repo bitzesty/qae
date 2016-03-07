@@ -179,7 +179,7 @@ class Reports::FormAnswer
   end
 
   def press_contact_notes
-    @press_summary.try(:comment)
+    @press_summary.try(:body)
   end
 
   def customer_accepted_press_note

@@ -166,7 +166,11 @@ ready = ->
     area = formGroup.find("textarea:visible")
     formGroup.removeClass("form-edit")
 
-    if area.length == 1
+    if formGroup.find(".form-value p[data-for]").length > 0 # use manual mapping
+      formGroup.find(".form-value p[data-for]").each ->
+        $(this).html($("##{$(this).data("for")}").val())
+      form.submit()
+    else if area.length == 1
       if area.val().length
         formGroup.find(".form-value p").html(area.val().replace(/\n/g, '<br />'))
         updatedSection = link.data("updated-section")
@@ -181,7 +185,7 @@ ready = ->
           if input.length
             input.val(updatedSection)
         form.submit()
-     else
+    else
        if area.first().val().length
          formGroup.find(".form-value p:first").html(area.first().val().replace(/\n/g, '<br />'))
        if area.last().val().length
