@@ -27,7 +27,7 @@ class FeedbackPolicy < ApplicationPolicy
 
   def unlock?
     if assessor?
-      subject.lead?(form_answer) && record.submitted? && record.locked?
+      subject.lead?(form_answer) && record.submitted? && record.locked? && Settings.unsuccessful_stage?
     else
       admin? && record.submitted? && record.locked?
     end
