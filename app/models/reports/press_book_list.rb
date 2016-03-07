@@ -31,8 +31,8 @@ class Reports::PressBookList
       method: :press_contact_notes
     },
     {
-      label: "CustomerAcceptedPressNote",
-      method: :customer_accepted_press_note
+      label: "CustomerSubmittedPressNote",
+      method: :customer_submitted_press_note
     },
     {
       label: "HeadOfUnit",
@@ -69,6 +69,10 @@ class Reports::PressBookList
     {
       label: "Address3",
       method: :principal_address3
+    },
+    {
+      label: "Address4",
+      method: :principal_address4
     },
     {
       label: "Postcode",
