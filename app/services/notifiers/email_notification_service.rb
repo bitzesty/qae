@@ -11,7 +11,9 @@ class Notifiers::EmailNotificationService
 
   def initialize
     @email_notifications = AwardYear.current.settings.email_notifications.current.to_a
-    @email_notifications += AwardYear.closed.settings.email_notifications.current.to_a
+    if AwardYear.current != AwardYear.closed
+      @email_notifications += AwardYear.closed.settings.email_notifications.current.to_a
+    end
   end
 
   def run
