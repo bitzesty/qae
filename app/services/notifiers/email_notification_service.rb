@@ -11,7 +11,9 @@ class Notifiers::EmailNotificationService
 
   def initialize
     @email_notifications = AwardYear.current.settings.email_notifications.current.to_a
-    @email_notifications += AwardYear.closed.settings.email_notifications.current.to_a
+    if AwardYear.current != AwardYear.closed
+      @email_notifications += AwardYear.closed.settings.email_notifications.current.to_a
+    end
   end
 
   def run
@@ -69,20 +71,15 @@ class Notifiers::EmailNotificationService
   end
 
   def winners_notification(award_year)
-    award_year.form_answers.winners.each do |form_answer|
+    award_year.form_answers.business.winners.each do |form_answer|
       document = form_answer.document
-      email = form_answer.promotion? ? document["nominee_email"] : form_answer.user.email
 
       shoryuken_ops = {
-        email: email,
+        email: form_answer.user.email,
         form_answer_id: form_answer.id
       }
 
-      if form_answer.promotion?
-        Notifiers::Winners::PromotionBuckinghamPalaceInvite.perform_async(shoryuken_ops)
-      else
-        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(shoryuken_ops)
-      end
+      Notifiers::Winners::BuckinghamPalaceInvite.perform_async(shoryuken_ops)
     end
   end
 
