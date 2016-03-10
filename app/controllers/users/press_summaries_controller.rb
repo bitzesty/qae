@@ -5,7 +5,7 @@ class Users::PressSummariesController < Users::BaseController
   before_action :check_promotion_award_acceptance,
                 except: [:acceptance, :update_acceptance, :success, :failure]
 
-  before_action :require_press_summary_to_be_not_submitted_by_user!, only: [:show, :update]
+  before_action :require_press_summary_to_be_valid!, only: [:show, :update]
 
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
@@ -82,10 +82,10 @@ class Users::PressSummariesController < Users::BaseController
     ).data.detect { |r| r[:employees].present? }
   end
 
-  def require_press_summary_to_be_not_submitted_by_user!
-    if @press_summary.applicant_submitted?
+  def require_press_summary_to_be_valid!
+    if !@press_summary.submitted? || @press_summary.applicant_submitted?
       redirect_to dashboard_url,
-                  notice: "Press Summary already submitted!"
+                  notice: "Press Summary can't be updated!"
       return
     end
   end
