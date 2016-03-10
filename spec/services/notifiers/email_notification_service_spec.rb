@@ -63,31 +63,21 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "winners_notification" }
 
     it "triggers current notification" do
-      form_answer = create(:form_answer, :trade, :submitted)
+      form_answer = create(:form_answer, :trade, :awarded)
       form_answer.document = form_answer.document
       form_answer.save!
 
       account_holder = form_answer.account.owner
 
-      expect(Notifiers::Winners::BuckinghamPalaceInvite).to receive(:perform_async)
-        .with({email: account_holder.email, form_answer_id: form_answer.id})
-      expect(FormAnswer).to receive(:winners) { [form_answer] }
+      expect {
+        described_class.run
+      }.to change {
+        PalaceInvite.count
+      }.by(1)
 
-      described_class.run
-
-      expect(current_notification.reload).to be_sent
-    end
-
-    it "triggers current notification" do
-      form_answer = build(:form_answer, :promotion, :submitted)
-      form_answer.document = form_answer.document.merge(nominee_email: "nominee@email.com")
-      form_answer.save!
-
-      expect(Notifiers::Winners::PromotionBuckinghamPalaceInvite).to receive(:perform_async)
-        .with({email: "nominee@email.com", form_answer_id: form_answer.id})
-      expect(FormAnswer).to receive(:winners) { [form_answer] }
-
-      described_class.run
+      last_invite = PalaceInvite.last
+      expect(last_invite.email).to be_eql account_holder.email
+      expect(last_invite.form_answer_id).to be_eql form_answer.id
 
       expect(current_notification.reload).to be_sent
     end
