@@ -47,7 +47,7 @@ module Reports::DataPickers::FormDocumentPicker
 
   def head_full_name
     if business_form?
-      doc("head_of_business_first_name").to_s + doc("head_of_business_last_name").to_s
+      "#{doc('head_of_bussines_title')} #{doc('head_of_business_first_name')} #{doc('head_of_business_last_name')} #{doc('head_of_business_honours')}"
     end
   end
 
@@ -134,7 +134,7 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def immediate_parent_country
-    country_name(doc("parent_company_country"))
+    country_name(doc_including_hidden("parent_company_country"))
   end
 
   def organisation_with_ultimate_control_country
@@ -254,11 +254,16 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def immediate_parent_name
-    doc("parent_company")
+    doc_including_hidden("parent_company")
   end
 
   def doc(key)
     obj.document[key] if key.present? && question_visible?(key)
+  end
+
+  # shows hidden questions
+  def doc_including_hidden(key)
+    obj.document[key]
   end
 
   def country_name(code)
