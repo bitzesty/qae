@@ -1,8 +1,7 @@
 class AuditCertificate < ActiveRecord::Base
-  include VirusScannerCallbacks
 
   mount_uploader :attachment, AuditCertificateUploader
-  has_one :scan, class_name: Scan
+  scan_file      :attachment
 
   begin :associations
     belongs_to :form_answer
@@ -32,12 +31,6 @@ class AuditCertificate < ActiveRecord::Base
 
   def reviewed?
     reviewed_at.present?
-  end
-
-  # Virus Scanner check after upload
-  def store_attachment!
-    super()
-    virus_scan
   end
 
   private
