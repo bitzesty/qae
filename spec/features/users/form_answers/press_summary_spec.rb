@@ -32,7 +32,7 @@ describe "Press Summary" do
 
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
 
-      expect(page).to have_content("Sorry, you can not amend Press Book Notes comments anymore")
+      expect(page).to have_content("Sorry, you cannot amend Press Book Notes comments anymore")
     end
   end
 

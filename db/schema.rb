@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224174712) do
+ActiveRecord::Schema.define(version: 20160310140650) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -307,21 +307,22 @@ ActiveRecord::Schema.define(version: 20160224174712) do
   add_index "palace_invites", ["form_answer_id"], name: "index_palace_invites_on_form_answer_id", using: :btree
 
   create_table "press_summaries", force: :cascade do |t|
-    t.integer  "form_answer_id",                   null: false
+    t.integer  "form_answer_id",                      null: false
     t.text     "body"
     t.text     "comment"
-    t.boolean  "approved",         default: false
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.boolean  "approved",            default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.string   "name"
     t.string   "email"
     t.string   "phone_number"
     t.boolean  "correct"
-    t.boolean  "reviewed_by_user", default: false
+    t.boolean  "reviewed_by_user",    default: false
     t.string   "token"
     t.string   "authorable_type"
     t.integer  "authorable_id"
-    t.boolean  "submitted",        default: false
+    t.boolean  "submitted",           default: false
+    t.boolean  "applicant_submitted", default: false
   end
 
   add_index "press_summaries", ["form_answer_id"], name: "index_press_summaries_on_form_answer_id", using: :btree
