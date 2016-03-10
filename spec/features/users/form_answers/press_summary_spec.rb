@@ -21,9 +21,10 @@ describe "Press Summary" do
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Submit"
+      click_button "Save"
 
       expect(page).to have_content("Press Book Notes successfully updated")
+      expect(press_summary.reload.applicant_submitted).to be_falsey
     end
 
     it "should not allow to fill the form after the deadline" do
@@ -54,9 +55,10 @@ describe "Press Summary" do
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Submit"
+      click_button "Save"
 
       expect(page).to have_content("Press Book Notes successfully updated")
+      expect(press_summary.reload.applicant_submitted).to be_falsey
     end
 
     it "redirects to home page without acceptance" do
