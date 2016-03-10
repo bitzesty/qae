@@ -59,11 +59,6 @@ RSpec.configure do |config|
     stub_sendgrid_bounced_emails_check_request("test@example.com")
     # SENDGRID RELATED STUBS - END
 
-    # Stub AWS request
-    stub_request(:get, "http://169.254.169.254/latest/meta-data/iam/security-credentials/").
-      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
-      to_return(:status => 200, :body => "", :headers => {})
-
     AwardYear.current
   end
 

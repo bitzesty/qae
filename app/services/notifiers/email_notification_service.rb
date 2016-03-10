@@ -79,7 +79,17 @@ class Notifiers::EmailNotificationService
         form_answer_id: form_answer.id
       }
 
-      Notifiers::Winners::BuckinghamPalaceInvite.perform_async(shoryuken_ops)
+      # Prevent of sending real request to AWS on dev and test environments
+      if %w{bzstaging staging production}.include?(Rails.env)
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(shoryuken_ops)
+      else
+        invite = PalaceInvite.where(
+          email: shoryuken_ops[:email],
+          form_answer_id: shoryuken_ops[:form_answer_id]
+        ).first_or_create
+
+        Users::BuckinghamPalaceInviteMailer.invite(invite.id).deliver_later!
+      end
     end
   end
 
