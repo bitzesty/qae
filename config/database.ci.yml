@@ -1,8 +1,0 @@
-test:
-  adapter: postgresql
-  encoding: utf8
-  pool: 5
-  username: ubuntu
-  database: qae_test
-  port: 5432
-  host: localhost

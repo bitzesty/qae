@@ -35,3 +35,5 @@ RUN bundle install
 
 # copy the rest of the app
 COPY . /app
+
+RUN RAILS_ENV=staging ONLY_ASSETS=true bundle exec rake assets:precompile
