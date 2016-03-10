@@ -47,6 +47,7 @@ RSpec.configure do |config|
       DatabaseCleaner.strategy = :truncation
     end
     DatabaseCleaner.start
+
     stub_request(:post, /virus.scanner/).
       to_return(status: 200, body: { id: "de401fdf-08b0-44a8-810b-20794c5c98c7" }.to_json)
 
@@ -57,6 +58,11 @@ RSpec.configure do |config|
     stub_sendgrid_bounced_emails_check_request("test@irrelevant.com")
     stub_sendgrid_bounced_emails_check_request("test@example.com")
     # SENDGRID RELATED STUBS - END
+
+    # Stub AWS request
+    stub_request(:get, "http://169.254.169.254/latest/meta-data/iam/security-credentials/").
+      with(:headers => {'Accept'=>'*/*', 'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3', 'User-Agent'=>'Ruby'}).
+      to_return(:status => 200, :body => "", :headers => {})
 
     AwardYear.current
   end
