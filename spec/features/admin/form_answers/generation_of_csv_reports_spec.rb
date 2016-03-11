@@ -46,7 +46,7 @@ describe "Admin generates the CSV reports" do
     it "produces proper output" do
       expect(output.size).to eq(2)
       expect(output[1][1]).to eq("Sustainable Development")
-      expect(output[1][-4]).to eq("example.com")
+      expect(output[1][-5]).to eq("example.com")
     end
   end
 end
