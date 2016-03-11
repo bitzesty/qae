@@ -91,6 +91,10 @@ class Reports::PressBookList
       method: :immediate_parent_country
     },
     {
+      label: "AssessorAgreedPressNote",
+      method: :assessor_agreed_press_note
+    },
+    {
       label: "QAOAgreedPressNote",
       method: :qao_agreed_press_note
     }

@@ -21,6 +21,10 @@ class PressSummaryPolicy < ApplicationPolicy
     record.submitted? && subject.lead?(form_answer) && !Settings.winners_stage?
   end
 
+  def admin_signoff?
+    record.applicant_submitted? && admin? && !Settings.winners_stage?
+  end
+
   def can_see_contact_details?
     record.reviewed_by_user? || deadline_passed?
   end
