@@ -61,4 +61,10 @@ div
                   = link_to dashboard_path
                     span.pagination-label Back
                 li.submit
-                  = f.submit "Submit", class: "button", rel: "next"
+                  = f.submit "Save", class: "button save-press-summary-button",
+                                     name: "save"
+                  span.press-summary-action-devider
+                    ' OR
+                  = f.submit "Submit", class: "button",
+                                       rel: "next",
+                                       name: "submit"

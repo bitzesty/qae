@@ -224,6 +224,7 @@ Rails.application.routes.draw do
           post :approve
           post :submit
           post :unlock
+          post :signoff
         end
       end
       resources :case_summaries, only: [:index]

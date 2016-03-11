@@ -54,7 +54,7 @@ describe  "User sees the post submission dashboard" do
       expect(page).to have_content("Congratulations on winning a Queen's Award for Enterprise")
       expect(page).to have_content("You will be notified when your press book notes are ready.")
 
-      create :press_summary, form_answer: form_answer, approved: true
+      create :press_summary, form_answer: form_answer, approved: true, submitted: true
 
       visit dashboard_path
       expect(page).to have_link("Press Book Notes")

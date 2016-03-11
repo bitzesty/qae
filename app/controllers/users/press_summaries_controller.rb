@@ -5,6 +5,8 @@ class Users::PressSummariesController < Users::BaseController
   before_action :check_promotion_award_acceptance,
                 except: [:acceptance, :update_acceptance, :success, :failure]
 
+  before_action :require_press_summary_to_be_valid!, only: [:show, :update]
+
   expose(:form_answer) do
     FormAnswer.find(params[:form_answer_id])
   end
@@ -21,10 +23,16 @@ class Users::PressSummariesController < Users::BaseController
 
   def update
     @press_summary.reviewed_by_user = true
+    @press_summary.applicant_submitted = params[:submit].present?
 
     if @press_summary.update(press_summary_params)
-      flash.notice = "Press Book Notes successfully updated"
-      redirect_to action: :show, token: params[:token]
+      if @press_summary.applicant_submitted?
+        flash.notice = "Press Book Notes successfully submitted"
+        redirect_to dashboard_url
+      else
+        flash.notice = "Press Book Notes successfully updated"
+        redirect_to action: :show, token: params[:token]
+      end
     else
       render :show
     end
@@ -72,5 +80,13 @@ class Users::PressSummariesController < Users::BaseController
       exclude_ignored_questions: true,
       financial_summary_view: true
     ).data.detect { |r| r[:employees].present? }
+  end
+
+  def require_press_summary_to_be_valid!
+    if !@press_summary.submitted? || @press_summary.applicant_submitted?
+      redirect_to dashboard_url,
+                  notice: "Press Summary can't be updated!"
+      return
+    end
   end
 end

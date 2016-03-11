@@ -188,9 +188,15 @@ class Reports::FormAnswer
     end
   end
 
-  def qao_agreed_press_note
+  def assessor_agreed_press_note
     if @press_summary.present?
       bool @press_summary.try(:submitted?)
+    end
+  end
+
+  def qao_agreed_press_note
+    if @press_summary.present?
+      bool @press_summary.try(:admin_sign_off?)
     end
   end
 

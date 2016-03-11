@@ -12,7 +12,7 @@ describe "Press Summary" do
       create :form_answer, :innovation
     end
 
-    let!(:press_summary) { create :press_summary, form_answer: form_answer, approved: true }
+    let!(:press_summary) { create :press_summary, form_answer: form_answer, approved: true, submitted: true }
 
     it "should allow to fill the form untill deadline" do
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
@@ -21,9 +21,10 @@ describe "Press Summary" do
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Submit"
+      click_button "Save"
 
       expect(page).to have_content("Press Book Notes successfully updated")
+      expect(press_summary.reload.applicant_submitted).to be_falsey
     end
 
     it "should not allow to fill the form after the deadline" do
@@ -32,7 +33,7 @@ describe "Press Summary" do
 
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
 
-      expect(page).to have_content("Sorry, you can not amend Press Book Notes comments anymore")
+      expect(page).to have_content("Sorry, you cannot amend Press Book Notes comments anymore")
     end
   end
 
@@ -41,7 +42,7 @@ describe "Press Summary" do
       create :form_answer, :promotion
     end
 
-    let!(:press_summary) { create :press_summary, form_answer: form_answer, approved: true }
+    let!(:press_summary) { create :press_summary, form_answer: form_answer, approved: true, submitted: true }
 
     it "should show acceptance form before press summary form" do
       visit users_form_answer_press_summary_url(form_answer, token: press_summary.token)
@@ -54,9 +55,10 @@ describe "Press Summary" do
       fill_in "Email", with: "jon@example.com"
       fill_in "Telephone", with: "1234567"
 
-      click_button "Submit"
+      click_button "Save"
 
       expect(page).to have_content("Press Book Notes successfully updated")
+      expect(press_summary.reload.applicant_submitted).to be_falsey
     end
 
     it "redirects to home page without acceptance" do

@@ -1,5 +1,6 @@
 - press_summary = form_answer.press_summary || form_answer.build_press_summary
 - url = press_summary.persisted? ? polymorphic_url([namespace_name, form_answer, press_summary]) : polymorphic_url([namespace_name, form_answer, :press_summaries])
+
 = simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
   .form-group
     label.form-label Body
@@ -20,7 +21,8 @@
         = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
         = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
       .clear
-- if press_summary.reviewed_by_user
+
+- if policy(press_summary).can_see_contact_details?
   = simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
     .form-group
       label.form-label Contact details for press enquiries
@@ -31,22 +33,23 @@
           = press_summary.phone_number
         p data-for="press_summary_email"
           = press_summary.email
-      .input.form-group.form-fields.form-block
-        = f.input :name,
-                  as: :string,
-                  label: "Name",
-                  input_html: { class: 'form-control' }
-        = f.input :phone_number,
-                  as: :string,
-                  label: "Telephone",
-                  input_html: { class: 'form-control' }
-        = f.input :email,
-                  as: :string,
-                  label: "Email",
-                  input_html: { class: 'form-control' }
-      .clear
 
-      - if policy(press_summary).update?
+      - if policy(press_summary).can_update_contact_details?
+        .input.form-group.form-fields.form-block
+          = f.input :name,
+                    as: :string,
+                    label: "Name",
+                    input_html: { class: 'form-control' }
+          = f.input :phone_number,
+                    as: :string,
+                    label: "Telephone",
+                    input_html: { class: 'form-control' }
+          = f.input :email,
+                    as: :string,
+                    label: "Email",
+                    input_html: { class: 'form-control' }
+        .clear
+
         = link_to "#", class: "form-edit-link pull-right" do
           span.glyphicon.glyphicon-pencil
           ' Edit
@@ -56,23 +59,22 @@
         .clear
 
     - if press_summary.body.present?
-      - if press_summary.reviewed_by_user
-        - if press_summary.correct
-          .form-group
-            label.form-label
-              ' Comments by Applicant
-            p
-              - if press_summary.comment.present?
-                = press_summary.comment
-              - else
-                ' No comment by applicant
-        - else
-          br
-          .alert.alert-success
-            ' Applicant has confirmed the Press Book Notes
+      - if press_summary.correct
+        .form-group
+          label.form-label
+            ' Comments by Applicant
+          p
+            - if press_summary.comment.present?
+              = press_summary.comment
+            - else
+              ' No comment by applicant
 
-      - else
-        p.p-empty Applicant hasn't confirmed the Press Book Notes
+    - if press_summary.applicant_submitted?
+      .alert.alert-success
+        ' Applicant has confirmed the Press Book Notes
+    - else
+      p.p-empty
+        | Applicant hasn't confirmed the Press Book Notes
 
 - if press_summary.submitted?
   - if policy(press_summary).unlock?
@@ -92,3 +94,17 @@
     br
     br
     p.p-empty Press Notes not submitted
+
+- if press_summary.admin_sign_off?
+  br
+  br
+  p.p-empty Admin has signed off the Press Book Notes
+- else
+  - if press_summary.persisted? && policy(press_summary).admin_signoff?
+    br
+    br
+    = button_to "Admin Sign off Press Release", polymorphic_url([:signoff, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true
+  - else
+    br
+    br
+    p.p-empty Admin hasn't signed off the Press Book Notes
