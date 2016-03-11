@@ -94,3 +94,17 @@
     br
     br
     p.p-empty Press Notes not submitted
+
+- if press_summary.admin_sign_off?
+  br
+  br
+  p.p-empty Admin has signed off the Press Book Notes
+- else
+  - if press_summary.persisted? && policy(press_summary).admin_signoff?
+    br
+    br
+    = button_to "Admin Sign off Press Release", polymorphic_url([:signoff, namespace_name, form_answer, press_summary]), class: "btn btn-default btn-block", remote: true
+  - else
+    br
+    br
+    p.p-empty Admin hasn't signed off the Press Book Notes

@@ -44,6 +44,12 @@ module PressSummaryMixin
     change_state "Press Summary was successfully unlocked"
   end
 
+  def signoff
+    authorize @press_summary, :admin_signoff?
+    @press_summary.admin_sign_off = true
+    change_state "Press Summary was successfully submitted"
+  end
+
   private
 
   def change_state(message)
