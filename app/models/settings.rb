@@ -37,7 +37,7 @@ class Settings < ActiveRecord::Base
 
   def self.winners_stage?
     deadline = Rails.cache.fetch("winners_notification_notification", expires_in: 1.minute) do
-      current.email_notifications.where(kind: "winners_notification").first
+      current.winners_email_notification
     end
 
     DateTime.now >= deadline.trigger_at if deadline.present?
@@ -61,6 +61,10 @@ class Settings < ActiveRecord::Base
     Rails.cache.fetch("unsuccessful_notification_notification", expires_in: 1.minute) do
       current.email_notifications.not_awarded.first.try(:trigger_at)
     end
+  end
+
+  def winners_email_notification
+    email_notifications.where(kind: "winners_notification").first
   end
 
   private
