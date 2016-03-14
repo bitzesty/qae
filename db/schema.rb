@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160310140650) do
+ActiveRecord::Schema.define(version: 20160311130931) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -323,6 +323,7 @@ ActiveRecord::Schema.define(version: 20160310140650) do
     t.integer  "authorable_id"
     t.boolean  "submitted",           default: false
     t.boolean  "applicant_submitted", default: false
+    t.boolean  "admin_sign_off",      default: false
   end
 
   add_index "press_summaries", ["form_answer_id"], name: "index_press_summaries_on_form_answer_id", using: :btree
