@@ -41,9 +41,7 @@ class ContentOnlyController < ApplicationController
   }
 
   def dashboard
-    @user_award_forms = current_account.form_answers
-                                       .where(award_year: AwardYear.current)
-                                       .order("award_type")
+    @user_award_forms = user_award_forms
 
     forms = @user_award_forms.group_by(&:award_type)
 
@@ -56,13 +54,17 @@ class ContentOnlyController < ApplicationController
   end
 
   def award_winners_section
-    @user_award_forms_submitted = current_account.form_answers
-                                                 .where(submitted: true)
-                                                 .order("award_type")
+    @user_award_forms_submitted = user_award_forms.submitted
     render "content_only/award_winners_section/#{AwardYear.current.year}"
   end
 
   private
+
+  def user_award_forms
+    current_account.form_answers
+                   .where(award_year: AwardYear.current)
+                   .order("award_type")
+  end
 
   def get_current_form
     @form_answer = current_account.form_answers.find(params[:form_id])
