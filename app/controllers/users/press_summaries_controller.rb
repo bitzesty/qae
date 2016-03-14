@@ -22,7 +22,6 @@ class Users::PressSummariesController < Users::BaseController
   end
 
   def update
-    @press_summary.reviewed_by_user = true
     @press_summary.applicant_submitted = params[:submit].present?
 
     if @press_summary.update(press_summary_params)
