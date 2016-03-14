@@ -2,7 +2,7 @@ class PressSummary < ActiveRecord::Base
   belongs_to :form_answer
 
   validates :form_answer, :body, :token, presence: true
-  validates :name, :email, :phone_number, presence: true, if: :reviewed_by_user?
+  validates :name, :email, :phone_number, presence: true, if: :applicant_submitted?
 
   before_validation :set_token, on: :create
 

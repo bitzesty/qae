@@ -10,8 +10,11 @@ describe "Assessor press_summary management", js: true do
   end
 
   describe "press_summary submission" do
-    it "submits press_summary" do
+    before do
       visit assessor_form_answer_path(form_answer)
+    end
+
+    it "submits press_summary" do
       find("#press-summary-heading a").click
 
       within "#section-press-summary" do
@@ -25,14 +28,17 @@ describe "Assessor press_summary management", js: true do
   end
 
   describe "press_summary approval" do
-    it "submit press_summary" do
-      press_summary = form_answer.build_press_summary
+    let!(:press_summary) { create :press_summary, form_answer: form_answer }
+
+    before do
       press_summary.body = "body"
       press_summary.save!
 
       visit assessor_form_answer_path(form_answer)
-      find("#press-summary-heading a").click
+    end
 
+    it "submit press_summary" do
+      find("#press-summary-heading a").click
       click_button "Submit Press Book Notes"
 
       expect(page).to have_no_selector(".btn-block", text: "Submit Press Book Notes")
