@@ -59,6 +59,7 @@ class ContentOnlyController < ApplicationController
     @user_award_forms_submitted = current_account.form_answers
                                                  .where(submitted: true)
                                                  .order("award_type")
+    render "content_only/award_winners_section/#{AwardYear.current.year}"
   end
 
   private

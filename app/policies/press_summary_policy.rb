@@ -22,7 +22,7 @@ class PressSummaryPolicy < ApplicationPolicy
   end
 
   def admin_signoff?
-    record.applicant_submitted? && admin? && !on_winners_stage?
+    record.applicant_submitted? && admin? && on_winners_stage?
   end
 
   def can_see_contact_details?
