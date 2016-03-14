@@ -4,7 +4,7 @@ class PressSummaryPolicy < ApplicationPolicy
   end
 
   def update?
-    !record.submitted? && subject.lead_or_assigned?(form_answer)
+    (!record.submitted? && subject.lead_or_assigned?(form_answer)) || admin?
   end
 
   alias :create? :update?
