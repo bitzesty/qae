@@ -26,7 +26,7 @@ class PressSummaryPolicy < ApplicationPolicy
   end
 
   def can_see_contact_details?
-    record.reviewed_by_user? || deadline_passed?
+    record.applicant_submitted? || deadline_passed?
   end
 
   def can_update_contact_details?

@@ -184,7 +184,7 @@ class Reports::FormAnswer
 
   def customer_submitted_press_note
     if @press_summary.present?
-      bool @press_summary.try(:reviewed_by_user?)
+      bool @press_summary.try(:applicant_submitted?)
     end
   end
 
