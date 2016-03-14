@@ -25,6 +25,10 @@ class EmailNotification < ActiveRecord::Base
 
   scope :current, -> { where("trigger_at < ?", Time.now.utc).where("sent = 'f' OR sent IS NULL") }
 
+  def passed?
+    trigger_at && trigger_at < Time.zone.now
+  end
+
   def self.not_shortlisted
     where(kind: "not_shortlisted_notifier")
   end
