@@ -17,7 +17,7 @@ describe "Assessor press_summary management", js: true do
     it "submits press_summary" do
       find("#press-summary-heading a").click
 
-      within "#section-press-summary" do
+      within "#section-press-summary .press-summary-body-block" do
         find("a.form-edit-link").click
         fill_in "press_summary[body]", with: "Press Book Notes 101"
         click_button "Save"

@@ -2,7 +2,7 @@
 - url = press_summary.persisted? ? polymorphic_url([namespace_name, form_answer, press_summary]) : polymorphic_url([namespace_name, form_answer, :press_summaries])
 
 = simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
-  .form-group
+  .form-group.press-summary-body-block
     label.form-label Body
     .form-value.no-js-update
       p = press_summary.body.presence || content_tag(:i, "No Press Book Notes has been added yet")
