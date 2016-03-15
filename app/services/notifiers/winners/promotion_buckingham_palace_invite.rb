@@ -1,9 +1,7 @@
 class Notifiers::Winners::PromotionBuckinghamPalaceInvite
   include Sidekiq::Worker
 
-  sidekiq_options queue: :default
-
-  def perform(sqs_msg, ops={})
+  def perform(ops={})
     email = ops[:email]
     form_answer_id = ops[:form_answer_id]
 
