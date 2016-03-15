@@ -16,8 +16,6 @@
 * Postgresql 9
 * Redis
 
-### NOTES
-
 ### Running application
 
 ```
@@ -30,6 +28,14 @@ foreman start
 ```
 convox start
 docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
+```
+
+### Deploying with convox
+
+```
+convox switch qae
+
+convox deploy -a qae-dev
 ```
 
 #### Help
@@ -54,9 +60,4 @@ To enable [rack mini profiler](https://github.com/MiniProfiler/rack-mini-profile
 in development mode set in .env:
 ```
 PROFILE_MODE=true
-```
-
-## Users import
-```
-  rake users_import:import_from_csv FILEPATH="./spec/fixtures/users.csv"
 ```
