@@ -39,7 +39,7 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = ENV["FORCE_SSL"].to_s.downcase == "true" ? true : false
+  config.force_ssl = ENV.fetch("FORCE_SSL").to_s.downcase == "true" ? true : false
 
   # config.to_prepare { Devise::SessionsController.force_ssl }
   # config.to_prepare { Devise::RegistrationsController.force_ssl }
