@@ -10,7 +10,7 @@ en:
         online: Online
         local_trade_body: From a local trade body
         national_trade_body: From a national trade body
-        mail_from_qae: "Mail from the Queen's Awards Office"
+        mail_from_qae: "Mail from The Queen's Awards Office"
         word_of_mouth: Word of mouth
         other: Other
     custom_email_form:

@@ -275,7 +275,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_footer_note
-    title = %{Note for applicants/auditors: The submission of this Auditor's Certificate to the Queen's Awards Office (QAO) provides authority for the QAO to verify the information contained in it with the above-named auditor.}
+    title = %{Note for applicants/auditors: The submission of this Auditor's Certificate to The Queen's Awards Office (QAO) provides authority for the QAO to verify the information contained in it with the above-named auditor.}
     text_box title, default_text_ops.merge({
       at: [0.mm, 10.mm]
     })

@@ -69,7 +69,7 @@ class QAE2014Forms
           classes "queen-award-holder"
         end
 
-        queen_award_holder :queen_award_holder_details, "List the Queen's Award(s) you currently hold" do
+        queen_award_holder :queen_award_holder_details, "List The Queen's Award(s) you currently hold" do
           classes "sub-question question-current-awards"
           sub_ref "A 6.1"
 

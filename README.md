@@ -5,7 +5,7 @@
 ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) Queen's Awards for Enterprise
 ---------------------------
 
-"QAE" is the application which powers the application process for the Queen's Awards for Enterprise.
+"QAE" is the application which powers the application process for The Queen's Awards for Enterprise.
 
 ## Setup
 
