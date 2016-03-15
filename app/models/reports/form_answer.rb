@@ -182,7 +182,7 @@ class Reports::FormAnswer
     @press_summary.try(:body)
   end
 
-  def customer_submitted_press_note
+  def applicant_submitted_press_note
     if @press_summary.present?
       bool @press_summary.try(:applicant_submitted?)
     end

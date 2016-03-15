@@ -31,8 +31,8 @@ class Reports::PressBookList
       method: :press_contact_notes
     },
     {
-      label: "CustomerSubmittedPressNote",
-      method: :customer_submitted_press_note
+      label: "ApplicantSubmittedPressNote",
+      method: :applicant_submitted_press_note
     },
     {
       label: "HeadOfUnit",
