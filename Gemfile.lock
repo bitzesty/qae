@@ -609,7 +609,6 @@ DEPENDENCIES
   sidekiq (~> 4.1.0)
   simple_form (~> 3.1)
   slim-rails (~> 3.0.1)
-  sprockets (= 2.12.3)
   statesman
   tilt (~> 1.1)
   timecop
@@ -621,6 +620,3 @@ DEPENDENCIES
   whenever
   wicked (~> 1.1)
   with_advisory_lock
-
-BUNDLED WITH
-   1.11.2

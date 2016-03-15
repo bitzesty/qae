@@ -104,11 +104,6 @@ gem "with_advisory_lock"
 
 # Monitoring
 gem 'newrelic_rpm'
-
-# Lock sprockets
-# As 3.0.0 cause Capistrano error
-# DEBUG[0c9b1934] cp: cannot stat '/home/qae/application/releases/20150414085552/public/assets/manifest*': No such file or directory
-gem "sprockets", "2.12.3"
 gem "tilt", "~> 1.1"
 
 # We use it for sending API requests to Sendgrid in
