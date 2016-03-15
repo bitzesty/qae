@@ -18,17 +18,6 @@
 
 ### NOTES
 
-Please, do not update Rails from 4.2.0 to 4.2.1 as it cause sprockets / capistrano conflict:
-```
-cp: cannot stat ‘/home/qae/application/releases/20150414082336/public/assets/manifest*’: No such file or directory
-cap aborted!
-SSHKit::Runner::ExecuteError: Exception while executing on host 95.138.174.112: cp exit status: 1
-cp stdout: Nothing written
-cp stderr: cp: cannot stat ‘/home/qae/application/releases/20150414082336/public/assets/manifest*’: No such file or directory
-```
-and to fix it we need to upgrade capistrano stuff (gems/ configuration) which can take more time.
-So probably let's put upgrade Rails  on hold for now.
-
 ### Running application
 
 ```
