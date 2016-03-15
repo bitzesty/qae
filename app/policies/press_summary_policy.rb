@@ -25,10 +25,6 @@ class PressSummaryPolicy < ApplicationPolicy
     record.applicant_submitted? && admin? && on_winners_stage?
   end
 
-  def can_see_contact_details?
-    record.applicant_submitted? || deadline_passed?
-  end
-
   def can_update_contact_details?
     ( !deadline_passed? && update? ) || admin?
   end

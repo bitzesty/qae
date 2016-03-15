@@ -22,7 +22,7 @@
         = f.submit "Save", class: "btn btn-primary form-save-link pull-right"
       .clear
 
-- if policy(press_summary).can_see_contact_details?
+- if policy(press_summary).update?
   = simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
     .form-group
       label.form-label Contact details for press enquiries
