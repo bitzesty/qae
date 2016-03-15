@@ -752,11 +752,12 @@ CREATE TABLE press_summaries (
     email character varying,
     phone_number character varying,
     correct boolean,
-    reviewed_by_user boolean DEFAULT false,
     token character varying,
     authorable_type character varying,
     authorable_id integer,
-    submitted boolean DEFAULT false
+    submitted boolean DEFAULT false,
+    applicant_submitted boolean DEFAULT false,
+    admin_sign_off boolean DEFAULT false
 );
 
 
@@ -3579,4 +3580,10 @@ INSERT INTO schema_migrations (version) VALUES ('20160222153821');
 INSERT INTO schema_migrations (version) VALUES ('20160222175452');
 
 INSERT INTO schema_migrations (version) VALUES ('20160224174712');
+
+INSERT INTO schema_migrations (version) VALUES ('20160310140650');
+
+INSERT INTO schema_migrations (version) VALUES ('20160311130931');
+
+INSERT INTO schema_migrations (version) VALUES ('20160314141838');
 
