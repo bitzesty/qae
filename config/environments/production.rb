@@ -39,14 +39,14 @@ Rails.application.configure do
   # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  config.force_ssl = ENV.fetch('FORCE_SSL').to_s.downcase == 'true' ? true : false
+  config.force_ssl = true
 
   # config.to_prepare { Devise::SessionsController.force_ssl }
   # config.to_prepare { Devise::RegistrationsController.force_ssl }
   # config.to_prepare { Devise::PasswordsController.force_ssl }
   #
   # Set to :debug to see everything in the log.
-  config.log_level = ENV.fetch('ASSET_HOST', 'info').to_sym
+  config.log_level = ENV.fetch('LOG_LEVEL', 'info').to_sym
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
