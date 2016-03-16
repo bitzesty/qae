@@ -99,7 +99,7 @@ class MailRenderer
     )
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "%H.%M %p on %A %d %B"
+      "%H.%Mhrs on %d %B %Y"
     )
     assigns[:attendees_invite_date] = deadline_str(
       "buckingham_palace_attendees_invite",
@@ -124,7 +124,7 @@ class MailRenderer
     assigns[:media_deadline] = deadline_str("buckingham_palace_media_information", "%H.%M on %A %d %B %Y")
     assigns[:end_of_embargo_date] = deadline_str("buckingham_palace_attendees_details", "%-d %B %Y")
     assigns[:end_of_embargo_datetime] = deadline_str("buckingham_palace_attendees_details","%H.%Mhrs on %-d %B %Y")
-    assigns[:press_book_entry_datetime] = deadline_str("buckingham_palace_confirm_press_book_notes", "%l:%M %p on %A %-d %B")
+    assigns[:press_book_entry_datetime] = deadline_str("buckingham_palace_confirm_press_book_notes", "%H.%Mhrs on %d %B %Y")
     assigns[:attendees_invite_date] = deadline_str("buckingham_palace_attendees_invite","%A %d %B %Y")
 
     render(assigns, "users/winners_head_of_organisation_mailer/notify")
