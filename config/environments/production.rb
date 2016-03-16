@@ -46,7 +46,7 @@ Rails.application.configure do
   # config.to_prepare { Devise::PasswordsController.force_ssl }
   #
   # Set to :debug to see everything in the log.
-  config.log_level = ENV.fetch('LOG_LEVEL', 'info').to_sym
+  config.log_level = ENV['LOG_LEVEL'].present? : ENV['LOG_LEVEL'] : :info
 
   # Prepend all log lines with the following tags.
   # config.log_tags = [ :subdomain, :uuid ]
@@ -58,13 +58,13 @@ Rails.application.configure do
   # Cache settings set in config/initializers/redis.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host = ENV.fetch('ASSET_HOST')
+  config.action_controller.asset_host = ENV['ASSET_HOST']
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
-  config.action_mailer.default_url_options = { host: ENV.fetch('MAILER_HOST') }
-  config.action_mailer.asset_host = "https://#{ENV.fetch('ASSET_HOST')}"
+  config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'] }
+  config.action_mailer.asset_host = "https://#{ENV['ASSET_HOST']}"
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

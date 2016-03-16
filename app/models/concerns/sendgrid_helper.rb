@@ -35,8 +35,8 @@ module SendgridHelper
 
     def smtp_settings
       {
-        user_name: ENV.fetch('SENDGRID_USERNAME', 'test_smtp_username'),
-        password:  ENV.fetch('SENDGRID_PASSWORD', 'test_smtp_password')
+        user_name: ENV['SENDGRID_USERNAME'],
+        password:  ENV['SENDGRID_PASSWORD']
       }
     end
 
