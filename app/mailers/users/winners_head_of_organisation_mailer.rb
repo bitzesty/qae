@@ -21,7 +21,7 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @end_of_embargo_datetime =
       deadlines.end_of_embargo.strftime("%H.%Mhrs on %-d %B %Y")
     @press_book_entry_datetime =
-      deadlines.buckingham_palace_confirm_press_book_notes.strftime("%l:%M %p on %A %-d %B")
+      deadlines.buckingham_palace_confirm_press_book_notes.strftime("%H.%Mhrs on %d %B %Y")
     @attendees_invite_date =
       deadlines.buckingham_palace_attendees_invite.strftime("%A %d %B %Y")
 
