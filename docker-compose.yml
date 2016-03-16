@@ -4,6 +4,8 @@ web: &web
   environment:
     - RACK_ENV=production
     - RAILS_ENV=production
+    - ASSET_HOST=temp
+    - MAILER_HOST=temp
   ports:
     - '80:3000'
     - '443:3000'
