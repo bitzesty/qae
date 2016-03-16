@@ -12,7 +12,7 @@ class Users::BuckinghamPalaceInviteMailer < AccountMailer
     @media_deadline = Settings.current.deadlines.where(kind: "buckingham_palace_media_information").first
     @media_deadline = @media_deadline.try :strftime, "%H.%M on %A %d %B %Y"
     @book_notes_deadline = Settings.current.deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first
-    @book_notes_deadline = @book_notes_deadline.try :strftime, "%H.%Mhrs on %d %B %Y"
+    @book_notes_deadline = @book_notes_deadline.try :strftime, "%H.%M hrs on %d %B %Y"
     @attendees_invite_date = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_invite").first
     @attendees_invite_date = @attendees_invite_date.try :strftime, "%A %d %B %Y"
 
