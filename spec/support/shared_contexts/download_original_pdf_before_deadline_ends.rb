@@ -16,7 +16,7 @@ shared_context "download original pdf before deadline ends" do
   describe "Policies" do
     describe "Submission not ended" do
       before do
-        deadline.trigger_at = DateTime.now + 1.day
+        deadline.trigger_at = Time.zone.now + 1.day
         deadline.save!
 
         visit target_url
@@ -30,7 +30,7 @@ shared_context "download original pdf before deadline ends" do
 
   describe "Download" do
     before do
-      deadline.trigger_at = DateTime.now - 1.day
+      deadline.trigger_at = Time.zone.now - 1.day
       deadline.save!
     end
 
@@ -74,7 +74,7 @@ shared_context "download original pdf before deadline ends" do
         PaperTrail.enabled = true
 
         # Set current time to date before deadline
-        Timecop.freeze(DateTime.now - 2.days) do
+        Timecop.freeze(Time.zone.now - 2.days) do
           form_answer.reload
           form_answer.document["registration_number"] = registration_number_at_the_deadline
           form_answer.save!
