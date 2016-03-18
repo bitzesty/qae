@@ -80,7 +80,8 @@ gem "fog-aws"
 gem "vs_rails", github: "bitzesty/vs-rails"
 
 # Background jobs
-gem "sidekiq", "~> 4.1.0"
+gem "sidekiq", "~> 4.1.1"
+gem "sidekiq-cron", "~> 0.4.2"
 
 # Redis
 gem 'redis-rails'
@@ -94,13 +95,8 @@ gem 'pg_search'
 
 # YAML/Hash loading
 gem 'active_hash'
-
-# CronJob Sceduler
-gem 'whenever'
 gem "virtus"
 gem "nilify_blanks"
-# DB locking
-gem "with_advisory_lock"
 
 # Monitoring
 gem 'newrelic_rpm'

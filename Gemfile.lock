@@ -118,7 +118,6 @@ GEM
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-    chronic (0.10.2)
     codeclimate-test-reporter (0.4.3)
       simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
@@ -133,7 +132,7 @@ GEM
     coffee-script-source (1.9.1.1)
     colored (1.2)
     columnize (0.9.0)
-    concurrent-ruby (1.0.0)
+    concurrent-ruby (1.0.1)
     connection_pool (2.2.0)
     countries (0.9.3)
       currencies (~> 0.4.2)
@@ -405,7 +404,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     rake (10.5.0)
-    redis (3.2.1)
+    redis (3.2.2)
     redis-actionpack (4.0.0)
       actionpack (~> 4)
       redis-rack (~> 1.5.0)
@@ -413,6 +412,8 @@ GEM
     redis-activesupport (4.0.0)
       activesupport (~> 4)
       redis-store (~> 1.1.0)
+    redis-namespace (1.5.2)
+      redis (~> 3.0, >= 3.0.4)
     redis-rack (1.5.0)
       rack (~> 1.5)
       redis-store (~> 1.1.0)
@@ -456,15 +457,20 @@ GEM
       ruby-progressbar (~> 1.4)
     ruby-progressbar (1.7.1)
     ruby-rc4 (0.1.5)
+    rufus-scheduler (3.2.0)
     safe_yaml (1.0.4)
     sass (3.4.9)
     secure_headers (2.0.0)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
-    sidekiq (4.1.0)
+    sidekiq (4.1.1)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
       redis (~> 3.2, >= 3.2.1)
+    sidekiq-cron (0.4.2)
+      redis-namespace (>= 1.5.2)
+      rufus-scheduler (>= 2.0.24)
+      sidekiq (>= 4.0.0)
     simple_form (3.1.0)
       actionpack (~> 4.0)
       activemodel (~> 4.0)
@@ -520,14 +526,8 @@ GEM
     webmock (1.21.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
-    whenever (0.9.2)
-      activesupport (>= 2.3.4)
-      chronic (>= 0.6.3)
     wicked (1.1.0)
       rails (>= 3.0.7)
-    with_advisory_lock (3.0.0)
-      activerecord (>= 3.2)
-      thread_safe
     xpath (2.0.0)
       nokogiri (~> 1.3)
     zxcvbn-ruby (0.0.3)
@@ -601,7 +601,8 @@ DEPENDENCIES
   secure_headers
   sentry-raven!
   shoulda-matchers
-  sidekiq (~> 4.1.0)
+  sidekiq (~> 4.1.1)
+  sidekiq-cron (~> 0.4.2)
   simple_form (~> 3.1)
   slim-rails (~> 3.0.1)
   statesman
@@ -612,9 +613,7 @@ DEPENDENCIES
   virtus
   vs_rails!
   webmock
-  whenever
   wicked (~> 1.1)
-  with_advisory_lock
 
 BUNDLED WITH
    1.11.2
