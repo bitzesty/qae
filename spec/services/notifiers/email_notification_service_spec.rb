@@ -120,7 +120,7 @@ describe Notifiers::EmailNotificationService do
   context "unsuccessful_notification" do
     let(:kind) { "unsuccessful_notification" }
 
-    let(:form_answer) { create(:form_answer, :trade, state: "not_awarded") }
+    let(:form_answer) { create(:form_answer, :trade, :submitted, state: "not_awarded") }
     let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
 
     it "triggers current notification" do
@@ -136,7 +136,7 @@ describe Notifiers::EmailNotificationService do
   context "unsuccessful_ep_notification" do
     let(:kind) { "unsuccessful_ep_notification" }
 
-    let(:form_answer) { create(:form_answer, :promotion, state: "not_awarded") }
+    let(:form_answer) { create(:form_answer, :promotion, :submitted, state: "not_awarded") }
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
