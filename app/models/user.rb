@@ -64,6 +64,12 @@ class User < ActiveRecord::Base
     scope :confirmed, -> {
       where("confirmed_at IS NOT NULL")
     }
+    scope :by_email_part, -> (email) {
+      where("email ilike ?", "%#{email}%")
+    }
+    scope :not_in_ids, -> (ids) {
+      where.not(id: ids)
+    }
   end
 
   before_validation :create_account, on: :create
@@ -119,6 +125,14 @@ class User < ActiveRecord::Base
     else
       super
     end
+  end
+
+  def can_be_added_to_collaborators_to_another_account?
+    account.blank? || (
+      account.present? &&
+      form_answers.blank? &&
+      account.form_answers.blank?
+    )
   end
 
   private

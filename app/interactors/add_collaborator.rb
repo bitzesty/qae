@@ -37,8 +37,8 @@ class AddCollaborator
       if user.present?
         if user.account_id == account.id
           @errors = ["This user already added to collaborators!"]
-        elsif user.account_id.present?
-          @errors = ["User already associated with another account!"]
+        elsif !user.can_be_added_to_collaborators_to_another_account?
+          @errors = ["User already associated with another account which already has applications!"]
         end
 
         user.role = params[:role]

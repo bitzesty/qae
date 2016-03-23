@@ -22,3 +22,25 @@
     }
   }
 }
+
+.admin-search-collaborators-form {
+  .admin-search-collaborators-query {
+    padding-left: 0;
+  }
+
+  input.form-control#admin-search-collaborators-query {
+    display: block;
+  }
+}
+
+.js-admin-search-collaborators-error-box {
+  margin-bottom: 10px;
+}
+
+.js-admin-search-collaborators-results-box {
+  margin-bottom: 20px;
+}
+
+.cant_add_to_collaborators_message {
+  color: #a94442;
+}
