@@ -18,10 +18,10 @@ module AdminActions
     def run
       if query.present?
         @candidates = if existing_collaborators.present?
-          User.by_email_part(query)
+          User.by_query_part(query)
               .not_in_ids(existing_collaborators.pluck(:id))
         else
-          User.by_email_part(query)
+          User.by_query_part(query)
         end
 
         nothing_found! if @candidates.blank?
