@@ -92,4 +92,8 @@ class FormAnswerPolicy < ApplicationPolicy
     record.submission_ended? &&
     record.pdf_version.present?
   end
+
+  def can_add_collaborators_to_application?
+    admin?
+  end
 end

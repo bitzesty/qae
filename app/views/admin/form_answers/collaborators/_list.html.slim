@@ -1,0 +1,8 @@
+ul.list-unstyled.list-actions.js-collaborators-list
+  - if (resource.account.try(:users) || []).any?
+    - (resource.account.try(:users) || []).each do |user|
+      li
+        = link_to "#{user.full_name} (#{user.email})", edit_admin_user_path(user)
+  - else
+    li
+      em.text-muted No users were added.

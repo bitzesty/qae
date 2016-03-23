@@ -229,6 +229,9 @@ Rails.application.routes.draw do
       end
 
       resources :review_corp_responsibility, only: [:create]
+      resources :collaborators, only: [:create], module: "form_answers" do
+        get :search, on: :collection
+      end
     end
 
     resource :settings, only: [:show] do

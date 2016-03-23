@@ -82,7 +82,7 @@ describe "Interactors::AddCollaborator" do
 
       expect(account.reload.users.count).to be_eql 1
       expect(enqueued_jobs.size).to be_eql(0)
-      expect(add_collaborator_interactor.errors).to be_eql ["User already associated with another account!"]
+      expect(add_collaborator_interactor.errors).to be_eql ["User already associated with another account which already has applications!"]
     end
   end
 
