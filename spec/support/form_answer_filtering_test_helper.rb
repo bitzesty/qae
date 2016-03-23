@@ -35,9 +35,9 @@ module FormAnswerFilteringTestHelper
     end
   end
 
-  def assign_dummy_feedback(form_answers, approved = true)
+  def assign_dummy_feedback(form_answers, submitted = true)
     Array(form_answers).each do |fa|
-      feedback = fa.build_feedback(approved: approved)
+      feedback = fa.build_feedback(submitted: submitted)
       feedback.save(validate: false)
     end
   end

@@ -74,7 +74,7 @@ class FormAnswerSearch < Search
       when "missing_feedback"
         out = out.joins(
           "LEFT OUTER JOIN feedbacks on feedbacks.form_answer_id=form_answers.id"
-        ).where("feedbacks.approved = false OR feedbacks.id IS NULL")
+        ).where("feedbacks.submitted = false OR feedbacks.id IS NULL")
       when "missing_press_summary"
         out = out.joins(
           "LEFT OUTER JOIN press_summaries on press_summaries.form_answer_id = form_answers.id"

@@ -51,6 +51,8 @@ class ContentOnlyController < ApplicationController
     @user_award_forms_promotion = forms["promotion"]
 
     @user_award_forms_submitted = @user_award_forms.where(submitted: true)
+
+    set_unsuccessful_business_applications if Settings.unsuccessful_stage?
   end
 
   def award_winners_section
@@ -90,4 +92,9 @@ class ContentOnlyController < ApplicationController
     end
   end
   helper_method :deadline_for
+
+  def set_unsuccessful_business_applications
+    @unsuccessful_business_applications = @user_award_forms.business
+                                                           .unsuccessful_applications
+  end
 end
