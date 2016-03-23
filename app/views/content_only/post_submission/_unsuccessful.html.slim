@@ -28,7 +28,7 @@
           p The application was not submitted on time.
         - else
           h4 Feedback
-          - if award.feedback.try(:approved?)
+          - if award.feedback.try(:submitted?)
             p
               ' Please
               = link_to "download and read the feedback document", users_form_answer_feedback_path(award, format: :pdf)
