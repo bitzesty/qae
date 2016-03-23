@@ -65,7 +65,7 @@ class User < ActiveRecord::Base
       where("confirmed_at IS NOT NULL")
     }
     scope :by_query_part, -> (email) {
-      where("email ilike ? OR first_name ? OR ? last_name",
+      where("email ilike ? OR first_name ilike ? OR last_name ilike ?",
             "%#{email}%", "%#{email}%", "%#{email}%")
     }
     scope :not_in_ids, -> (ids) {
