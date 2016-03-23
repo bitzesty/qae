@@ -4,8 +4,12 @@
 - else
   - if Settings.winners_stage?
     = render("content_only/post_submission/winners", award_applications: award_applications)
+
+    - if Settings.unsuccessful_stage?
+      = render("content_only/post_submission/unsuccessful", award_applications: @unsuccessful_business_applications)
+
   - elsif Settings.after_shortlisting_stage?
     = render("content_only/post_submission/shortlisted", award_applications: award_applications)
-    = render("content_only/post_submission/unsuccessful", award_applications: @user_award_forms.where(state: [:not_recommended, :not_awarded]))
+    = render("content_only/post_submission/unsuccessful", award_applications: @user_award_forms.not_shortlisted)
   - else
     = render("content_only/post_submission/submitted", award_applications: award_applications)
