@@ -28,7 +28,7 @@ module AdminActions
 
     def persist!
       user.role = "regular"
-      user.account_id = form_answer.account_id
+      user.account = form_answer.account
 
       if user.save
         @success = true

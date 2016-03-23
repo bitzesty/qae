@@ -70,7 +70,9 @@ gem 'prawn-table'
 gem 'nokogiri', '~> 1.6.0'
 
 # Error reporting
-gem 'sentry-raven', github: 'getsentry/raven-ruby'
+group :bzstaging, :staging, :production do
+  gem 'sentry-raven', github: 'getsentry/raven-ruby'
+end
 
 # Uploads
 gem 'carrierwave'
