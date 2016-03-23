@@ -141,7 +141,7 @@ So that they can collaborate form answers
                 }
               end
 
-              expect_to_see "User already associated with another account which already has applications!"
+              expect_to_see "User already associated with another account!"
             end
           end
 
