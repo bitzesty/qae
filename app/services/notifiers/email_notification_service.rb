@@ -99,7 +99,7 @@ class Notifiers::EmailNotificationService
           form_answer_id: shoryuken_ops[:form_answer_id]
         ).first_or_create
 
-        Users::BuckinghamPalaceMailer.invite(invite.id).deliver_later!
+        Users::BuckinghamPalaceInviteMailer.invite(invite.id).deliver_later!
       end
     end
   end
