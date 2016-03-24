@@ -1,7 +1,9 @@
 require "rails_helper"
 
 describe Users::BusinessAppsWinnersMailer do
-  let(:palace_invite) { create :palace_invite, email: "palace@example.com" }
+  let!(:form_answer) do
+    create :form_answer, :awarded, :innovation
+  end
 
   let!(:settings) { create :settings, :submission_deadlines }
 
@@ -12,12 +14,12 @@ describe Users::BusinessAppsWinnersMailer do
   end
 
   describe "#notify" do
-    let(:mail) { Users::BusinessAppsWinnersMailer.notify(palace_invite.id) }
-    let(:account_holder) { palace_invite.form_answer.user }
+    let(:mail) { Users::BusinessAppsWinnersMailer.notify(form_answer.id) }
+    let(:account_holder) { form_answer.user }
     let(:account_holder_name) { "#{account_holder.title} #{account_holder.last_name}" }
 
     it "renders the headers" do
-      expect(mail.to).to eq([palace_invite.email])
+      expect(mail.to).to eq([account_holder.email])
       expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
     end
 
