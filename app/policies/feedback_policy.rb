@@ -1,6 +1,7 @@
 class FeedbackPolicy < ApplicationPolicy
   def create?
-    admin? || (assessor? && subject.assigned?(form_answer))
+    admin? || (assessor? && subject.assigned?(form_answer)) &&
+    form_answer.reload.feedback.blank?
   end
 
   def update?
