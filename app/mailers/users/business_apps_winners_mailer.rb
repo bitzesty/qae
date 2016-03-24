@@ -1,8 +1,6 @@
 class Users::BusinessAppsWinnersMailer < AccountMailer
-  def invite(invite_id)
-    invite = PalaceInvite.find(invite_id)
-    @token = invite.token
-    @form_answer = invite.form_answer.decorate
+  def notify(form_answer_id)
+    @form_answer = FormAnswer.find(form_answer_id).decorate
     @user = @form_answer.user.decorate
 
     @name = "#{@user.title} #{@user.last_name}"
@@ -17,6 +15,6 @@ class Users::BusinessAppsWinnersMailer < AccountMailer
     @attendees_invite_date = @attendees_invite_date.try :strftime, "%A %d %B %Y"
 
     subject = "Important information about your Queen’s Award"
-    mail to: invite.email, subject: subject
+    mail to: @user.email, subject: subject
   end
 end

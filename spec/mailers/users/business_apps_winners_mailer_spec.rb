@@ -12,7 +12,7 @@ describe Users::BusinessAppsWinnersMailer do
   end
 
   describe "#notify" do
-    let(:mail) { Users::BusinessAppsWinnersMailer.invite(palace_invite.id) }
+    let(:mail) { Users::BusinessAppsWinnersMailer.notify(palace_invite.id) }
     let(:account_holder) { palace_invite.form_answer.user }
     let(:account_holder_name) { "#{account_holder.title} #{account_holder.last_name}" }
 
