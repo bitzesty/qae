@@ -1,4 +1,4 @@
-- feedback = form_answer.feedback || form_answer.build_feedback
+- feedback = form_answer.feedback.present? ? form_answer.feedback : form_answer.build_feedback
 - url = feedback.persisted? ? polymorphic_url([namespace_name, form_answer, feedback]) : polymorphic_url([namespace_name, form_answer, :feedbacks])
 = simple_form_for feedback, url: url, remote: true, authenticity_token: true, html: { "data-type" => "json" } do |f|
   - if !form_answer.promotion?

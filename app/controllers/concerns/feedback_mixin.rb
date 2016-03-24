@@ -7,7 +7,17 @@ module FeedbackMixin
   end
 
   def create
-    @feedback = @form_answer.build_feedback(feedback_params)
+    @feedback = if @form_answer.feedback.present?
+      # Looks bit ugly
+      # but hopefully will prevent duplicates creation
+      #
+      f = @form_answer.feedback
+      f.assign_attributes(feedback_params)
+      f
+    else
+      @form_answer.build_feedback(feedback_params)
+    end
+
     authorize @feedback, :create?
     @feedback.authorable = current_subject
     @feedback.save
