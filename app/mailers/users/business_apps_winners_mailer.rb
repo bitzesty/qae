@@ -1,4 +1,4 @@
-class Users::BuckinghamPalaceInviteMailer < AccountMailer
+class Users::BusinessAppsWinnersMailer < AccountMailer
   def invite(invite_id)
     invite = PalaceInvite.find(invite_id)
     @token = invite.token

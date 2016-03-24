@@ -72,21 +72,23 @@ class Notifiers::EmailNotificationService
 
   def winners_notification(award_year)
     award_year.form_answers.business.winners.each do |form_answer|
-      opts = {
+      document = form_answer.document
+
+      shoryuken_ops = {
         email: form_answer.user.email,
         form_answer_id: form_answer.id
       }
 
       # Prevent of sending real request to AWS on dev and test environments
       if %w{bzstaging staging production}.include?(Rails.env)
-        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(opts)
+        Notifiers::Winners::BusinessAppsWinnersNotifier.perform_async(shoryuken_ops)
       else
         invite = PalaceInvite.where(
-          email: opts[:email],
-          form_answer_id: opts[:form_answer_id]
+          email: shoryuken_ops[:email],
+          form_answer_id: shoryuken_ops[:form_answer_id]
         ).first_or_create
 
-        Users::BuckinghamPalaceInviteMailer.invite(invite.id).deliver_later!
+        Users::BusinessAppsWinnersMailer.invite(invite.id).deliver_later!
       end
     end
   end
