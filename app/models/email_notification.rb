@@ -15,7 +15,8 @@ class EmailNotification < ActiveRecord::Base
                          :shortlisted_notifier,
                          :shortlisted_audit_certificate_reminder,
                          :not_shortlisted_notifier,
-                         :winners_head_of_organisation_notification
+                         :winners_head_of_organisation_notification,
+                         :buckingham_palace_invite
                        ]
 
   validates :kind, :trigger_at, presence: true
