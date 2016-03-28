@@ -17,6 +17,8 @@ class Reports::AdminReport
       Reports::CasesStatusReport.new(year).build
     when "entries-report"
       Reports::AllEntries.new(year).build
+    when "reception-buckingham-palace"
+      Reports::ReceptionBuckinghamPalaceReport.new(year).build
     end
   end
 

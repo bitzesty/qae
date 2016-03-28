@@ -51,6 +51,14 @@ class Settings < ActiveRecord::Base
     DateTime.now >= deadline.trigger_at if deadline.present?
   end
 
+  def self.buckingham_palace_invites_stage?
+    deadline = Rails.cache.fetch("buckingham_palace_invite", expires_in: 1.minute) do
+      current.email_notifications.where(kind: "buckingham_palace_invite").first
+    end
+
+    DateTime.now >= deadline.trigger_at if deadline.present?
+  end
+
   def self.not_shortlisted_deadline
     Rails.cache.fetch("not_shortlisted_notifier_notification", expires_in: 1.minute) do
       current.email_notifications.not_shortlisted.first.try(:trigger_at)

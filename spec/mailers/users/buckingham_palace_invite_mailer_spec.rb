@@ -17,8 +17,8 @@ describe Users::BuckinghamPalaceInviteMailer do
     it "renders the body" do
       expect(mail.html_part.decoded).to match(account_holder_name)
       expect(mail.html_part.decoded).to have_link(
-        "attendee details",
-        href: edit_palace_invite_url(id: token)
+        "Log in here",
+        href: dashboard_url
       )
     end
   end
