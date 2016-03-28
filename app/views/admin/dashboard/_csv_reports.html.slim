@@ -42,4 +42,14 @@
       = link_to admin_report_path("press-book-list", class: "action-title", format: :csv, year: @award_year.year)
         span.glyphicon.glyphicon-file
         ' Press book list
+
+    li
+      .pull-right
+        =link_to admin_report_path("reception-buckingham-palace", format: :csv, year: @award_year.year)
+          span.glyphicon.glyphicon-download-alt
+          span.visible-lg.visible-md
+            ' Download
+      = link_to admin_report_path("reception-buckingham-palace", class: "action-title", format: :csv, year: @award_year.year)
+        span.glyphicon.glyphicon-file
+        ' Reception Buckingham Palace
   .clear

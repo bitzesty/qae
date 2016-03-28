@@ -61,6 +61,8 @@
             .clear
           - else
             p You will be notified when your press book notes are ready.
+
+          = render "content_only/post_submission/palace_invite_info", award: award if Settings.buckingham_palace_invites_stage?
       .clear
   br
   .container-split

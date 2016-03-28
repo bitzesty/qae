@@ -326,7 +326,7 @@ $status-green: #3b816f;
   margin-left: 10px;
 }
 
-.save-press-summary-button {
+.save-press-summary-button, .save-palace-attendees-button {
   margin-right: 10px;
 }
 
@@ -338,4 +338,8 @@ $status-green: #3b816f;
   .char-text-limit {
     margin-top: 32px;
   }
+}
+
+.palace-attendees-action-devider {
+  margin-right: 7px;
 }
