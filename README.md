@@ -33,7 +33,7 @@ docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
 ### Deploying with convox
 
 ```
-convox switch qae
+convox switch bitzesty/qae
 
 convox deploy -a qae-dev
 ```
