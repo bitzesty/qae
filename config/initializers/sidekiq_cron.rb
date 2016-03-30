@@ -11,8 +11,10 @@ production_schedule = {
     "class" => "Scheduled::PerformancePlatformServiceWorker"
   }
 }
-
-Sidekiq::Cron::Job.load_from_hash(default_schedule)
-if ENV["SCHEDULE_PRODUCTION_JOBS"].present?
-  Sidekiq::Cron::Job.load_from_hash(production_schedule)
+unless ENV["ONLY_ASSETS"]
+  if ENV["SCHEDULE_PRODUCTION_JOBS"].present?
+    Sidekiq::Cron::Job.load_from_hash(production_schedule)
+  else
+    Sidekiq::Cron::Job.load_from_hash(default_schedule)
+  end
 end
