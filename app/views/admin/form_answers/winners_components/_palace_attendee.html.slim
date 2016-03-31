@@ -32,13 +32,6 @@
           p= pa.post_nominals
           - unless @form_answer.promotion?
             br
-            label Product or brief description
-            p
-              - if pa.product_description.present?
-                = pa.product_description
-              - else
-                ' -
-            br
             label Additional Information e.g. Wheelchair user
             p
               - if pa.additional_info.present?

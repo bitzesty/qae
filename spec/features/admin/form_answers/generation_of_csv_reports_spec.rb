@@ -49,4 +49,29 @@ describe "Admin generates the CSV reports" do
       expect(output[1][-5]).to eq("example.com")
     end
   end
+
+  describe "Reception Buckingham Palace" do
+    let(:id) { "reception-buckingham-palace" }
+
+    let(:title) { "MyTitle" }
+    let(:first_name) { "MyFirstName" }
+
+    let!(:palace_invite) do
+      create :palace_invite, form_answer: development,
+                             email: user.email,
+                             submitted: true
+    end
+
+    let!(:attendee) do
+      create(:palace_attendee, palace_invite: palace_invite,
+                               title: title,
+                               first_name: first_name)
+    end
+
+    it "produces proper output" do
+      expect(output.size).to eq(2)
+      expect(output[1][2]).to eq(title)
+      expect(output[1][3]).to eq(first_name)
+    end
+  end
 end

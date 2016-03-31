@@ -59,11 +59,6 @@ ul.list-add.list-attendees class=('if-js-hide' if palace_attendee.new_record? &&
       - unless @form_answer.promotion?
         .row
           .col-md-12
-            label Product or brief description
-            = f.input :product_description, as: :text, input_html: { class: "form-control", rows: 3 }, label: false
-            p.help-block Max 20 words
-        .row
-          .col-md-12
             label Additional Information e.g. Wheelchair user
             = f.input :additional_info, as: :text, input_html: { class: "form-control", rows: 2 }, label: false
       .row

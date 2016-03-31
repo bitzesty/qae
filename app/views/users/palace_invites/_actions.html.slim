@@ -1,0 +1,15 @@
+footer
+  nav.pagination aria-label="Pagination" role="navigation"
+    ul.group
+      li.previous.previous-alternate
+        = link_to dashboard_path
+          span.pagination-label Back
+
+      li.submit
+        = f.submit "Save", class: "button save-palace-attendees-button",
+                           name: "save"
+        span.palace-attendees-action-devider
+          ' OR
+        = f.submit "Confirm Attendees", class: "button",
+                                        rel: "next",
+                                        name: "submit"

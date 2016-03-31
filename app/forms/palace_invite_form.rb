@@ -14,11 +14,20 @@ class PalaceInviteForm
       public_send("#{k}=", v) if respond_to?("#{k}=")
     end
 
-    invite.save if valid?
+    if attributes[:submitted].present?
+      if valid? && invite.save
+        invite.update_column(:submitted, true)
+      end
+    else
+      invite.save(validate: false)
+    end
   end
 
   def valid?
-    invite.valid? && palace_attendees.all?(&:valid?)
+    invite.valid? &&
+    palace_attendees.count > 0 &&
+    palace_attendees.count <= 2 &&
+    palace_attendees.all?(&:valid?)
   end
 
   def palace_attendees
@@ -43,13 +52,15 @@ class PalaceInviteForm
         build_palace_attendee
       end
 
-      if attendee_attributes.delete("_remove") == "1"
+      if attendee_attributes.keys.count == 1 &&
+         attendee_attributes["id"].present?
         if attendee.persisted?
           attendee.mark_for_destruction
         else
           @attendees.pop
         end
       else
+        attendee_attributes.delete("_remove")
         attendee.attributes = attendee_attributes
       end
     end

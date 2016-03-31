@@ -72,8 +72,19 @@ class Notifiers::EmailNotificationService
 
   def winners_notification(award_year)
     award_year.form_answers.business.winners.each do |form_answer|
-      document = form_answer.document
+      Users::BusinessAppsWinnersMailer.notify(form_answer.id).deliver_later!
+    end
+  end
 
+  # to 'Head of Organisation' of the Successful Business categories winners
+  def winners_head_of_organisation_notification(award_year)
+    award_year.form_answers.business.winners.each do |form_answer|
+      Users::WinnersHeadOfOrganisationMailer.notify(form_answer.id).deliver_later!
+    end
+  end
+
+  def buckingham_palace_invite(award_year)
+    award_year.form_answers.business.winners.each do |form_answer|
       shoryuken_ops = {
         email: form_answer.user.email,
         form_answer_id: form_answer.id
@@ -90,13 +101,6 @@ class Notifiers::EmailNotificationService
 
         Users::BuckinghamPalaceInviteMailer.invite(invite.id).deliver_later!
       end
-    end
-  end
-
-  # to 'Head of Organisation' of the Successful Business categories winners
-  def winners_head_of_organisation_notification(award_year)
-    award_year.form_answers.business.winners.each do |form_answer|
-      Users::WinnersHeadOfOrganisationMailer.notify(form_answer.id).deliver_later!
     end
   end
 

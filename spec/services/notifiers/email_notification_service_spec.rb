@@ -61,14 +61,24 @@ describe Notifiers::EmailNotificationService do
 
   context "winners_notifier" do
     let(:kind) { "winners_notification" }
+    let(:form_answer) { create(:form_answer, :trade, :awarded) }
 
     it "triggers current notification" do
-      form_answer = create(:form_answer, :trade, :awarded)
-      form_answer.document = form_answer.document
-      form_answer.save!
+      mailer = double(deliver_later!: true)
+      expect(Users::BusinessAppsWinnersMailer).to receive(:notify).with(form_answer.id) { mailer }
 
-      account_holder = form_answer.account.owner
+      described_class.run
 
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "buckingham_palace_invite" do
+    let(:kind) { "buckingham_palace_invite" }
+    let!(:form_answer) { create(:form_answer, :trade, :awarded) }
+    let!(:account_holder) { form_answer.account.owner }
+
+    it "triggers current notification" do
       expect {
         described_class.run
       }.to change {
