@@ -11,7 +11,6 @@ FactoryGirl.define do
     address_4 "MyString"
     postcode "MyString"
     phone_number "MyString"
-    product_description "MyString"
     additional_info "MyText"
     association :palace_invite
   end
