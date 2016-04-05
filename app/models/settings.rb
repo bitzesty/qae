@@ -51,7 +51,7 @@ class Settings < ActiveRecord::Base
     DateTime.now >= deadline.trigger_at if deadline.present?
   end
 
-  def self.buckingham_palace_invites_stage?(settings=nil)
+  def self.buckingham_palace_invites_stage?(settings = nil)
     settings = current if settings.blank?
 
     deadline = Rails.cache.fetch("buckingham_palace_invite", expires_in: 1.minute) do

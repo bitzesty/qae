@@ -61,7 +61,14 @@ class ContentOnlyController < ApplicationController
 
   def award_winners_section
     @user_award_forms_submitted = user_award_forms.submitted
-    render "content_only/award_winners_section/#{AwardYear.current.year}"
+
+    award_year = if params[:award_year_id].present?
+      AwardYear.find(params[:award_year_id])
+    else
+      AwardYear.current
+    end
+
+    render "content_only/award_winners_section/#{award_year.year}"
   end
 
   private

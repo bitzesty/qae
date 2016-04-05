@@ -13,7 +13,7 @@
             - past_awarded_applications = apps.select { |app| app.awarded? && !app.promotion? }
 
             - if past_awarded_applications.present?
-              = render "content_only/past_applications/winners", past_awarded_applications: past_awarded_applications
+              = render "content_only/past_applications/winners", past_awarded_applications: past_awarded_applications, award_year: award_year
 
             - past_unsuccessful_applications = apps.select { |app| app.unsuccessful_app? }
 
