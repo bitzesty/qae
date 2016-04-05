@@ -88,6 +88,7 @@ class AwardYear < ActiveRecord::Base
   end
 
   def self.past_years
-    AVAILABLE_YEARS.slice_before(current.year).to_a[0]
+    years = AVAILABLE_YEARS.slice_before(current.year).to_a
+    years[0] if years.count > 1
   end
 end
