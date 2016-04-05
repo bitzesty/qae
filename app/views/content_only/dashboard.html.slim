@@ -25,3 +25,12 @@
   - else
     .dashboard-pre-submission
       = render "dashboard_pre_submission"
+
+  - if past_applications.present?
+    header.page-header.group
+      div
+        h1
+          ' Past Applications
+
+    .dashboard-post-submission
+      = render "dashboard_past_applications"
