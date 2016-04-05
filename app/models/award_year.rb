@@ -8,6 +8,10 @@ class AwardYear < ActiveRecord::Base
 
   AVAILABLE_YEARS = [2016, 2017, 2018, 2019]
 
+  scope :past, -> {
+    where(year: past_years)
+  }
+
   def current?
     self.year == self.class.current.year
   end
@@ -81,5 +85,9 @@ class AwardYear < ActiveRecord::Base
     @settings ||= Settings.where(award_year: self).first_or_create
   rescue ActiveRecord::RecordNotUnique
     retry
+  end
+
+  def self.past_years
+    AVAILABLE_YEARS.slice_before(current.year).to_a[0]
   end
 end

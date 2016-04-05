@@ -40,6 +40,10 @@ class ContentOnlyController < ApplicationController
     current_user.form_answers.find(params[:id])
   }
 
+  expose(:past_applications) {
+    current_account.form_answers.past
+  }
+
   def dashboard
     @user_award_forms = user_award_forms
 
