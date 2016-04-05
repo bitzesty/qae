@@ -1,0 +1,10 @@
+.article-related-positioning-container
+  .article-container.article-container-widest
+    article.group role="article"
+      .inner
+        - if past_awarded_applications.present?
+          = render "content_only/past_applications/winners"
+
+        - if past_unsuccessful_applications.present?
+          = render "content_only/past_applications/unsuccessful"
+
