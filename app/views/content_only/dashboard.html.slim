@@ -25,3 +25,6 @@
   - else
     .dashboard-pre-submission
       = render "dashboard_pre_submission"
+
+    - if past_applications.any?
+      = render "dashboard_past_applications"
