@@ -1,10 +1,22 @@
-.article-related-positioning-container
-  .article-container.article-container-widest
-    article.group role="article"
-      .inner
-        - if past_awarded_applications.present?
-          = render "content_only/past_applications/winners"
+- past_applications.each do |award_year, apps|
+  header.page-header.group
+    div
+      h1
+        ' Past Applications
+        = award_year.year
 
-        - if past_unsuccessful_applications.present?
-          = render "content_only/past_applications/unsuccessful"
+  .dashboard-post-submission
+    .article-related-positioning-container
+      .article-container.article-container-widest
+        article.group role="article"
+          .inner
+            - past_awarded_applications = apps.select { |app| app.awarded? && !app.promotion? }
+
+            - if past_awarded_applications.present?
+              = render "content_only/past_applications/winners", past_awarded_applications: past_awarded_applications
+
+            - past_unsuccessful_applications = apps.select { |app| app.unsuccessful_app? }
+
+            - if past_unsuccessful_applications.present?
+              = render "content_only/past_applications/unsuccessful", past_unsuccessful_applications: past_unsuccessful_applications
 

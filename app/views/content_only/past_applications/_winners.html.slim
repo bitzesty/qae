@@ -1,31 +1,16 @@
 .container-split
   .content-left
     h2 Successful
+
   .content-right.content-offset-36
     p
       strong
         ' Congratulations on winning a Queen's Award for Enterprise
-    p
-      ' We know you'll be keen to share your success. However, please remember there is a
-      strong
-        ' strict embargo preventing public announcement or publication of any Awards information
-      strong
-        '  until
-        = deadline_for("buckingham_palace_attendees_details", "%H.%M hrs on %A %d %B %Y")
-        ' . You must not make any announcements about your Award, either to employees or outside your organisation, before this date.
-    p
-      strong Approve your Press Book entry
-    p
-      ' We will be providing a Press Book to the media containing information about all the winners at
-      => deadline_for("buckingham_palace_media_information", "%H.%M hrs on %A %d %B %Y")
-      ' under the terms of the embargo. Click the 'Press Book Notes' link below to check your press note, organisation details and enter details of a contact for press enquiries, and
-      strong
-        'submit it by
-        = deadline_for("buckingham_palace_confirm_press_book_notes", "%H.%M hrs on %A %d %B")
-        ' .
-      ' If we do not hear from you by the above deadline, we will use the proposed text along with the contact details that we already hold.
   .clear
+
 - past_awarded_applications.each do |award|
+  - award = award.decorate
+
   .container-split.award-list
     .content-left
       h3
@@ -48,7 +33,7 @@
               span.award-info
                 span.pull-right
                   ' Due by
-                  = application_deadline_short(:buckingham_palace_confirm_press_book_notes)
+                  = application_deadline_for_year(award.award_year, :buckingham_palace_confirm_press_book_notes)
                 - if award.press_summary.applicant_submitted?
                   span.label-status.label-status-green
                     ' Complete
@@ -60,7 +45,7 @@
         - else
           p You will be notified when your press book notes are ready.
 
-        = render "content_only/post_submission/palace_invite_info", award: award if Settings.buckingham_palace_invites_stage?
+        = render "content_only/post_submission/palace_invite_info", award: award if Settings.buckingham_palace_invites_stage?(award.award_year.settings)
     .clear
 br
 .container-split

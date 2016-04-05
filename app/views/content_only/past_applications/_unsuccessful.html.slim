@@ -13,6 +13,8 @@
   .clear
 
 - past_unsuccessful_applications.each do |award|
+  - award = award.decorate
+
   .container-split.award-list
     .content-left
       h3

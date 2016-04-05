@@ -41,15 +41,7 @@ class ContentOnlyController < ApplicationController
   }
 
   expose(:past_applications) {
-    current_account.form_answers.business.past
-  }
-
-  expose(:past_awarded_applications) {
-    past_applications.winners.decorate
-  }
-
-  expose(:past_unsuccessful_applications) {
-    past_applications.unsuccessful_applications.decorate
+    current_account.form_answers.submitted.past.group_by(&:award_year)
   }
 
   def dashboard

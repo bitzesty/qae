@@ -268,6 +268,10 @@ class FormAnswer < ActiveRecord::Base
     ApplicationHardCopyPdfGenerator.new(self).run
   end
 
+  def unsuccessful_app?
+    !awarded? && !withdrawn?
+  end
+
   private
 
   def nominator_full_name_from_document
