@@ -19,7 +19,8 @@
           = award.award_type_full_name
           '  Award
     .content-right.content-offset-24
-      / Nominators don't get any options after submision
+      = render "content_only/past_applications/download_pdf_link", award: award
+
       - if award.promotion?
         p Your nomination was successful.
       - else

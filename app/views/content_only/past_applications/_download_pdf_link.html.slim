@@ -1,0 +1,6 @@
+p
+  = link_to users_form_answer_path(award, format: :pdf), "target" => "_blank" do
+    - if award.promotion?
+      ' Download your nomination
+    - else
+      ' Download your application
