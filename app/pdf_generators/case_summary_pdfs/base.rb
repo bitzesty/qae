@@ -24,7 +24,6 @@ class CaseSummaryPdfs::Base < ReportPdfBase
   end
 
   def all_mode
-    award_year = current_year.year
     set_form_answers
 
     if form_answers.present?
@@ -48,10 +47,10 @@ class CaseSummaryPdfs::Base < ReportPdfBase
                               .where("assessor_assignments.submitted_at IS NOT NULL AND assessor_assignments.position IN (3,4)")
                               .order("form_answers.award_year_id, form_answers.sic_code")
                               .group("form_answers.id")
-                              .where("form_answers.award_year_id =?", current_year.id)
+                              .where("form_answers.award_year_id =?", award_year.id)
   end
 
-  def render_item(form_answer, award_year=nil)
-    CaseSummaryPdfs::Pointer.new(self, form_answer, award_year)
+  def render_item(form_answer)
+    CaseSummaryPdfs::Pointer.new(self, form_answer)
   end
 end
