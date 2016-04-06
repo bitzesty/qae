@@ -17,6 +17,8 @@ class ReportPdfBase < Prawn::Document
     @form_answer = form_answer
     @options = options
 
+    options[:award_year] = form_answer.award_year if mode == "singular"
+
     generate!
   end
 

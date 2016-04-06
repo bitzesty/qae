@@ -36,21 +36,21 @@ class ContentOnlyController < ApplicationController
 
   before_action :clean_flash, only: [:sign_up_complete]
 
-  expose(:form_answer) {
+  expose(:form_answer) do
     current_user.form_answers.find(params[:id])
-  }
+  end
 
-  expose(:past_applications) {
-    current_account.form_answers.business.past
-  }
+  expose(:past_applications) do
+    current_account.form_answers.submitted.past.group_by(&:award_year)
+  end
 
-  expose(:past_awarded_applications) {
-    past_applications.winners.decorate
-  }
-
-  expose(:past_unsuccessful_applications) {
-    past_applications.unsuccessful_applications.decorate
-  }
+  expose(:winners_award_year) do
+    if params[:award_year_id].present?
+      AwardYear.find(params[:award_year_id])
+    else
+      AwardYear.current
+    end
+  end
 
   def dashboard
     @user_award_forms = user_award_forms
@@ -69,7 +69,8 @@ class ContentOnlyController < ApplicationController
 
   def award_winners_section
     @user_award_forms_submitted = user_award_forms.submitted
-    render "content_only/award_winners_section/#{AwardYear.current.year}"
+
+    render "content_only/award_winners_section/#{winners_award_year.year}"
   end
 
   private
