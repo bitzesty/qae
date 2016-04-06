@@ -19,6 +19,7 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
 
   def initialize(pdf_doc, form_answer)
     @pdf_doc = pdf_doc
+    @award_year = pdf_doc.award_year
     @form_answer = form_answer
     @answers = fetch_answers
     @award_form = form_answer.award_form.decorate(answers: answers)
