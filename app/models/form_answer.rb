@@ -118,6 +118,10 @@ class FormAnswer < ActiveRecord::Base
     scope :business, -> { where(award_type: %w(trade innovation development)) }
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
+
+    scope :past, -> {
+      where(award_year_id: AwardYear.past.pluck(:id)).order("award_type")
+    }
   end
 
   begin :callbacks
@@ -262,6 +266,10 @@ class FormAnswer < ActiveRecord::Base
 
   def generate_pdf_version!
     ApplicationHardCopyPdfGenerator.new(self).run
+  end
+
+  def unsuccessful_app?
+    !awarded? && !withdrawn?
   end
 
   private

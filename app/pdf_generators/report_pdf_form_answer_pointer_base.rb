@@ -14,9 +14,10 @@ class ReportPdfFormAnswerPointerBase
               :answers,
               :filled_answers,
               :data,
-              :pdf_doc
+              :pdf_doc,
+              :options
 
-  def initialize(pdf_doc, form_answer)
+  def initialize(pdf_doc, form_answer, options={})
     @pdf_doc = pdf_doc
     @form_answer = form_answer
     @user = form_answer.user
@@ -24,6 +25,7 @@ class ReportPdfFormAnswerPointerBase
     @award_form = form_answer.award_form.decorate(answers: answers)
     @all_questions = award_form.steps.map(&:questions).flatten
     @filled_answers = fetch_filled_answers
+    @options = options
 
     generate!
   end

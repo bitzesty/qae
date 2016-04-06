@@ -56,7 +56,7 @@ class Users::PalaceInvitesController < Users::BaseController
   end
 
   def require_palace_invite_to_be_not_submitted_and_proper_stage!
-    if !Settings.buckingham_palace_invites_stage? || invite.submitted?
+    if !Settings.buckingham_palace_invites_stage?(form_answer.award_year.settings) || invite.submitted?
       flash.notice = "Access denied!"
       redirect_to dashboard_url
 

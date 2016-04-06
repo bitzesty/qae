@@ -82,6 +82,12 @@ module ApplicationHelper
     deadline.decorate.formatted_trigger_time_short
   end
 
+  def application_deadline_for_year(award_year, kind)
+    deadline = Rails.cache.fetch("#{kind}_deadline_#{award_year.year}", expires: 1.minute) do
+      award_year.settings.deadlines.where(kind: kind).first
+    end.decorate.formatted_trigger_time_short
+  end
+
   def format_date(date)
     date.strftime("%e %b %Y at %H:%M")
   end

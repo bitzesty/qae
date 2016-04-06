@@ -1,0 +1,43 @@
+.container-split
+  .content-left
+    h2 Unsuccessful
+
+  .content-right.content-offset-36
+    p
+      ' Your following
+      - if past_unsuccessful_applications.length == 1
+        ' application was
+      - else
+        ' applications were
+      ' unsuccessful.
+  .clear
+
+- past_unsuccessful_applications.each do |award|
+  - award = award.decorate
+
+  .container-split.award-list
+    .content-left
+      h3
+        = award.application_name
+        small
+          = award.award_type_full_name
+          '  Award
+    .content-right.content-offset-24
+      = render "content_only/past_applications/download_pdf_link", award: award
+
+      - if award.promotion?
+        p Unfortunately your nomination was unsuccessful.
+      - elsif award.not_submitted?
+        p The application was not submitted on time.
+      - else
+        h4 Feedback
+        - if award.feedback.try(:submitted?)
+          p
+            ' Please
+            = link_to "download and read the feedback document", users_form_answer_feedback_path(award, format: :pdf)
+            '  so you can better understand our decision. We hope it will help you to improve your future applications.
+        - else
+          p You will be notified when your feedback is ready.
+    .clear
+br
+br
