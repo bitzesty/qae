@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 describe "CaseSummaryPdfs::Base" do
+  let!(:award_year) do
+    create :award_year
+  end
+
   let!(:form_answer_current_year_innovation) do
-    FactoryGirl.create :form_answer, :recommended, :innovation
+    FactoryGirl.create :form_answer, :recommended, :innovation, award_year: award_year
   end
 
   let!(:form_answer_current_year_trade) do
-    FactoryGirl.create :form_answer, :recommended, :trade
+    FactoryGirl.create :form_answer, :recommended, :trade, award_year: award_year
   end
 
   before do
@@ -24,17 +28,25 @@ describe "CaseSummaryPdfs::Base" do
 
   describe "#set_form_answers" do
     it "should be ordered in year and filtered by category" do
-      innovation_case_summaries = CaseSummaryPdfs::Base.new("all", nil, {category: "innovation"})
-                                                  .set_form_answers
-                                                  .map(&:id)
+      innovation_case_summaries = CaseSummaryPdfs::Base.new(
+        "all", nil, {
+          category: "innovation",
+          award_year: award_year
+        }
+      ).set_form_answers
+       .map(&:id)
 
       expect(innovation_case_summaries).to match_array([
         form_answer_current_year_innovation.id,
       ])
 
-      trade_case_summaries = CaseSummaryPdfs::Base.new("all", nil, {category: "trade"})
-                                                  .set_form_answers
-                                                  .map(&:id)
+      trade_case_summaries = CaseSummaryPdfs::Base.new(
+        "all", nil, {
+          category: "trade",
+          award_year: award_year
+        }
+      ).set_form_answers
+       .map(&:id)
 
       expect(trade_case_summaries).to match_array([
         form_answer_current_year_trade.id,
