@@ -25,6 +25,6 @@ class FeedbackPdfs::Base < ReportPdfBase
   end
 
   def render_item(form_answer)
-    FeedbackPdfs::Pointer.new(self, form_answer)
+    FeedbackPdfs::Pointer.new(self, form_answer, options)
   end
 end
