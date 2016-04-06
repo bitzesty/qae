@@ -7,29 +7,76 @@ I want to be able to see Past Applications for previous years
 So that I see
 } do
 
+  let(:previous_year) do
+    1.year.ago
+  end
+
+  let!(:previous_award_year) do
+    create :award_year, year: previous_year.year
+  end
+
+  let!(:previous_award_year_settings) do
+    settings = previous_award_year.settings
+
+    start = settings.deadlines.where(kind: "submission_start").first
+    start.update_column(:trigger_at, previous_year - 25.days)
+    finish = settings.deadlines.where(kind: "submission_end").first
+    finish.update_column(:trigger_at, previous_year - 20.days)
+
+    settings.reload
+
+    settings.email_notifications.create!(
+      kind: "winners_notification",
+      trigger_at: previous_year
+    )
+
+    settings.email_notifications.create!(
+      kind: "unsuccessful_notification",
+      trigger_at: previous_year
+    )
+
+    settings.reload
+
+    settings
+  end
+
+  let!(:current_year_settings) do
+    create(:settings, :submission_deadlines)
+  end
+
   let!(:user) do
     create :user, :completed_profile, role: "account_admin"
   end
 
-  let!(:form_answer) do
-    create :form_answer, :innovation, :awarded, user: user
-  end
-
-  let!(:palace_invite) do
-    create :palace_invite, form_answer: form_answer, email: user.email
-  end
-
-  let!(:settings) do
-    s = create(:settings, :expired_submission_deadlines)
-    s.email_notifications.create!(
-      kind: "winners_notification",
-      trigger_at: DateTime.now - 1.year
-    )
-
-    s
-  end
-
   before do
     login_as(user, scope: :user)
+  end
+
+  describe "Displaying of past applications on dashboard" do
+    describe "Successful Applications" do
+      let!(:past_awarded_form_answer) do
+        create(:form_answer, :innovation,
+                             :awarded,
+                             award_year: previous_award_year,
+                             user: user)
+      end
+
+      before do
+        visit dashboard_path
+      end
+
+      it "should display past successful applications" do
+        save_and_open_page
+      end
+    end
+
+    # describe "Unsuccessful Applications" do
+    #   let!(:past_unsuccessful_form_answer) do
+    #     create(:form_answer, :innovation,
+    #                          :not_awarded,
+    #                          award_year: previous_award_year,
+    #                          user: user)
+    #   end
+    # end
   end
 end
