@@ -29,7 +29,7 @@ class CaseSummaryPdfs::Base < ReportPdfBase
     if form_answers.present?
       form_answers.each_with_index do |form_answer, index|
         start_new_page if index.to_i != 0
-        render_item(form_answer, award_year)
+        render_item(form_answer)
       end
     else
       @missing_data_name = "case summaries"
