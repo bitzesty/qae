@@ -136,6 +136,10 @@ class User < ActiveRecord::Base
     )
   end
 
+  def new_member?
+    created_at > 3.days.ago
+  end
+
   private
 
   def first_step?

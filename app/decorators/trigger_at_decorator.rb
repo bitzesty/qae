@@ -1,6 +1,6 @@
 module TriggerAtDecorator
   PLACEHOLDER = "<strong>-- --- #{AwardYear.current.year}</strong> at --:--".html_safe
-  DATE_PLACEHOLDER = "<strong>-- --- #{AwardYear.current.year}</strong>"
+  DATE_PLACEHOLDER = "<strong>-- --- #{AwardYear.current.year}</strong>".html_safe
 
   def formatted_trigger_time
     return PLACEHOLDER unless object.trigger_at

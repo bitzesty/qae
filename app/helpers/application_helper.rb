@@ -94,6 +94,11 @@ module ApplicationHelper
     end
   end
 
+  def deadline_or_default(award_year, kind, manual_value, format=nil)
+    str = application_deadline_for_year(award_year, kind, format)
+    str.to_s.include?("---") ? manual_value : str
+  end
+
   def format_date(date)
     date.strftime("%e %b %Y at %H:%M")
   end

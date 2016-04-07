@@ -5,14 +5,15 @@ article.group role="article"
     br
     .application-notice.info-notice
       p
-        ' Thank you for registering for an account.
-        br
+        - if current_user.new_member?
+          ' Thank you for registering for an account.
+          br
         ' Application forms for the
         => award_year.year
         ' Awards round will open on
-        =>< application_deadline_for_year(award_year, :submission_start, "without_year")
+        =>< deadline_or_default(award_year, :submission_start, "3 May", "without_year")
         ' and close on
-        =< application_deadline_for_year(award_year, :submission_end, "without_year")
+        =< deadline_or_default(award_year, :submission_end, "30 September", "without_year")
         ' .
         br
         ' We will email you a reminder when applications are open.

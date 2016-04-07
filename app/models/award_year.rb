@@ -28,7 +28,7 @@ class AwardYear < ActiveRecord::Base
       deadline = AwardYear.where(year: now.year + 1)
                           .first_or_create
                           .settings.deadlines
-                          .submission_start
+                          .registrations_open_on
                           .try(:trigger_at)
 
       deadline ||= Date.new(now.year, 4, 21)

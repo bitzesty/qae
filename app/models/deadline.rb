@@ -23,12 +23,12 @@ class Deadline < ActiveRecord::Base
   after_save :clear_cache
   after_destroy :clear_cache
 
-  scope :registrations_open_on, -> {
-    where(kind: "registrations_open_on")
-  }
-
   def self.with_states_to_trigger(time = DateTime.now)
     where(kind: "submission_end", states_triggered_at: nil).where("trigger_at < ?", time)
+  end
+
+  def self.registrations_open_on
+    where(kind: "registrations_open_on").first
   end
 
   def self.submission_end

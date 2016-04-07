@@ -2,6 +2,7 @@
 
 - if Settings.after_current_submission_deadline?
   = render "content_only/info_messages/award_season_closed"
+- elsif Settings.current_registrations_open_on?
   = render "content_only/info_messages/registrations_open_on"
 
 - if show_applications?
