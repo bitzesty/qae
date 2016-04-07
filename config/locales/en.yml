@@ -129,6 +129,7 @@ en:
       size_too_big: "is too big (should be at most %{file_size})"
 
   deadline_messages:
+    registrations_open_on: Registrations open on
     submission_start: Submission period starts on
     submission_end: Submission period closes on
     buckingham_palace_attendees_details: HM The Queen's Birthday (end of embargo)

@@ -96,16 +96,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_form_submission_ended?
 
   def submission_started_deadline
-    Rails.cache.fetch("submission_start_deadline", expires_in: 1.minute) do
-      settings.deadlines.where(kind: "submission_start").first
-    end
+    Settings.current_submission_start_deadline
   end
   helper_method :submission_started_deadline
 
   def submission_deadline
-    Rails.cache.fetch("submission_end_deadline", expires_in: 1.minute) do
-      settings.deadlines.where(kind: "submission_end").first
-    end
+    Settings.current_submission_deadline
   end
   helper_method :submission_deadline
 

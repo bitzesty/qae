@@ -3,17 +3,15 @@ require "rails_helper"
 describe Settings do
   context "after create" do
     let(:settings) { Settings.current }
+    let(:deadlines) {
+      Deadline::AVAILABLE_DEADLINES.sort do |a, b|
+        a <=> b
+      end
+    }
+
     it "creates all kinds of deadlines" do
-      expect(settings.deadlines.count).to eq(7)
-      expected = %w(
-        audit_certificates
-        buckingham_palace_attendees_details
-        buckingham_palace_attendees_invite
-        buckingham_palace_confirm_press_book_notes
-        buckingham_palace_media_information
-        submission_end submission_start
-      )
-      expect(settings.deadlines.order(:kind).map(&:kind)).to eq(expected)
+      expect(settings.deadlines.count).to eq(8)
+      expect(settings.deadlines.order(:kind).map(&:kind)).to eq(deadlines)
     end
   end
 end
