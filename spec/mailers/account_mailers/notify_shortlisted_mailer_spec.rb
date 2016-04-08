@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Users::NotifyShortlistedMailer do
+describe AccountMailers::NotifyShortlistedMailer do
   let!(:user) { create :user }
   let!(:collaborator) { create :user, account: user.account, role: "regular" }
 
@@ -19,17 +19,21 @@ describe Users::NotifyShortlistedMailer do
     "[Queen's Awards for Enterprise] Congratulations! You've been shortlisted!"
   end
 
+  let(:mail) {
+    AccountMailers::NotifyShortlistedMailer.notify(
+      form_answer.id,
+      user.id
+    )
+  }
+
   before do
     form_answer
   end
 
   describe "#notify" do
-    let(:mail) { Users::NotifyShortlistedMailer.notify(form_answer.id) }
-
     it "renders the headers" do
       expect(mail.subject).to eq(subject)
       expect(mail.to).to eq([user.email])
-      expect(mail.bcc).to eq(user.account.collaborators_without(user).map(&:email))
       expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
     end
 

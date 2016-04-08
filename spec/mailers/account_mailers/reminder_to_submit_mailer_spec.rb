@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Users::ReminderToSubmitMailer do
+describe AccountMailers::ReminderToSubmitMailer do
   let(:user) { create :user }
   let(:form_answer) { create :form_answer, user: user }
 
@@ -10,9 +10,14 @@ describe Users::ReminderToSubmitMailer do
     d.trigger_at.strftime("%d/%m/%Y")
   end
 
-  describe "#notify" do
-    let(:mail) { Users::ReminderToSubmitMailer.notify(form_answer.id) }
+  let(:mail) {
+    AccountMailers::ReminderToSubmitMailer.notify(
+      form_answer.id,
+      user.id
+    )
+  }
 
+  describe "#notify" do
     it "renders the headers" do
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])

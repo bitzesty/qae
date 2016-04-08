@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Users::PromotionLettersOfSupportReminderMailer do
+describe AccountMailers::PromotionLettersOfSupportReminderMailer do
   let(:user) { create :user }
   let(:form_answer) { create :form_answer, :promotion, user: user }
 
@@ -10,6 +10,13 @@ describe Users::PromotionLettersOfSupportReminderMailer do
     Settings.current_submission_deadline.trigger_at.strftime("%d/%m/%Y")
   end
 
+  let(:mail) {
+    AccountMailers::PromotionLettersOfSupportReminderMailer.notify(
+      form_answer.id,
+      user.id
+    )
+  }
+
   before do
     doc = form_answer.document
     form_answer.document = doc.merge(nominee_info_first_name: "Jovan",
@@ -18,8 +25,6 @@ describe Users::PromotionLettersOfSupportReminderMailer do
   end
 
   describe "#notify" do
-    let(:mail) { Users::PromotionLettersOfSupportReminderMailer.notify(form_answer.id) }
-
     it "renders the headers" do
       expect(mail.to).to eq([user.email])
       expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])

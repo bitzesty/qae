@@ -67,6 +67,8 @@ So that I see
 
       it "should display past successful applications" do
         save_and_open_page
+
+        # TODO: need to finish this spec
       end
     end
 

@@ -16,6 +16,10 @@ class Account < ActiveRecord::Base
     basic_eligibilities.first
   end
 
+  def collaborators_with(user)
+    users.confirmed.unshift(user).uniq
+  end
+
   def collaborators_without(user)
     users.excluding(user).by_email
   end

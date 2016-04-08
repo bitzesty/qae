@@ -272,6 +272,10 @@ class FormAnswer < ActiveRecord::Base
     !awarded? && !withdrawn?
   end
 
+  def collaborators
+    account.collaborators_with(user)
+  end
+
   private
 
   def nominator_full_name_from_document
