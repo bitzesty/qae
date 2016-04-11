@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Users::NotifyNonShortlistedMailer do
+describe AccountMailers::NotifyNonShortlistedMailer do
   let!(:user) { create :user }
   let!(:form_answer) do
     create :form_answer, :submitted, :innovation, user: user
@@ -12,7 +12,12 @@ describe Users::NotifyNonShortlistedMailer do
   end
 
   describe "#notify" do
-    let(:mail) { Users::NotifyNonShortlistedMailer.notify(form_answer.id) }
+    let(:mail) {
+      AccountMailers::NotifyNonShortlistedMailer.notify(
+        form_answer.id,
+        user.id
+      )
+    }
 
     it "renders the headers" do
       expect(mail.subject).to eq(subject)
@@ -31,7 +36,12 @@ describe Users::NotifyNonShortlistedMailer do
       "Queen's Awards for Enterprise Promotion: Thank you for your nomination"
     end
 
-    let(:mail) { Users::NotifyNonShortlistedMailer.ep_notify(form_answer.id) }
+    let(:mail) {
+      AccountMailers::NotifyNonShortlistedMailer.ep_notify(
+        form_answer.id,
+        user.id
+      )
+    }
 
     it "renders the headers" do
       expect(mail.subject).to eq(subject)

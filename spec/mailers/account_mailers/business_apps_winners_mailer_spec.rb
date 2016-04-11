@@ -1,11 +1,13 @@
 require "rails_helper"
 
-describe Users::BusinessAppsWinnersMailer do
+describe AccountMailers::BusinessAppsWinnersMailer do
   let!(:form_answer) do
     create :form_answer, :awarded, :innovation
   end
 
   let!(:settings) { create :settings, :submission_deadlines }
+  let(:account_holder) { form_answer.user }
+  let(:account_holder_name) { "#{account_holder.title} #{account_holder.last_name}" }
 
   let!(:deadline) do
     deadline = Settings.current.deadlines.where(kind: "buckingham_palace_attendees_details").first
@@ -13,11 +15,14 @@ describe Users::BusinessAppsWinnersMailer do
     deadline.trigger_at.strftime("%d/%m/%Y")
   end
 
-  describe "#notify" do
-    let(:mail) { Users::BusinessAppsWinnersMailer.notify(form_answer.id) }
-    let(:account_holder) { form_answer.user }
-    let(:account_holder_name) { "#{account_holder.title} #{account_holder.last_name}" }
+  let(:mail) {
+    AccountMailers::BusinessAppsWinnersMailer.notify(
+      form_answer.id,
+      account_holder.id
+    )
+  }
 
+  describe "#notify" do
     it "renders the headers" do
       expect(mail.to).to eq([account_holder.email])
       expect(mail.from).to eq(["no-reply@queens-awards-enterprise.service.gov.uk"])
