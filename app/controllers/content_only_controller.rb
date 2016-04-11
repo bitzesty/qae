@@ -40,6 +40,18 @@ class ContentOnlyController < ApplicationController
     current_user.form_answers.find(params[:id])
   }
 
+  expose(:past_applications) {
+    current_account.form_answers.business.past
+  }
+
+  expose(:past_awarded_applications) {
+    past_applications.winners.decorate
+  }
+
+  expose(:past_unsuccessful_applications) {
+    past_applications.unsuccessful_applications.decorate
+  }
+
   def dashboard
     @user_award_forms = user_award_forms
 
@@ -51,6 +63,8 @@ class ContentOnlyController < ApplicationController
     @user_award_forms_promotion = forms["promotion"]
 
     @user_award_forms_submitted = @user_award_forms.where(submitted: true)
+
+    set_unsuccessful_business_applications if Settings.unsuccessful_stage?
   end
 
   def award_winners_section
@@ -90,4 +104,9 @@ class ContentOnlyController < ApplicationController
     end
   end
   helper_method :deadline_for
+
+  def set_unsuccessful_business_applications
+    @unsuccessful_business_applications = @user_award_forms.business
+                                                           .unsuccessful_applications
+  end
 end

@@ -70,14 +70,17 @@ gem 'prawn-table'
 gem 'nokogiri', '~> 1.6.0'
 
 # Error reporting
-gem 'sentry-raven', github: 'getsentry/raven-ruby'
+group :bzstaging, :staging, :production do
+  gem 'sentry-raven', github: 'getsentry/raven-ruby'
+end
 
 # Uploads
 gem 'carrierwave'
 gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
 gem "fog"
 gem "fog-aws"
-gem "vs_rails", github: "bitzesty/vs-rails"
+gem 'vigilion', github: "vigilion/vigilion-ruby"
+gem 'vigilion-rails', github: "vigilion/vigilion-rails"
 
 # Background jobs
 gem "sidekiq", "~> 4.1.1"

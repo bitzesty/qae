@@ -37,7 +37,7 @@ class AddCollaborator
       if user.present?
         if user.account_id == account.id
           @errors = ["This user already added to collaborators!"]
-        elsif user.account_id.present?
+        elsif user.account.present?
           @errors = ["User already associated with another account!"]
         end
 

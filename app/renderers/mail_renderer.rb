@@ -89,7 +89,6 @@ class MailRenderer
   def winners_notification
     assigns = {}
 
-    assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
     assigns[:name] = "Mr Smith"
     assigns[:deadline] = deadline("buckingham_palace_attendees_details")
@@ -99,14 +98,14 @@ class MailRenderer
     )
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "%H.%M %p on %A %d %B"
+      "%H.%M hrs on %d %B %Y"
     )
     assigns[:attendees_invite_date] = deadline_str(
       "buckingham_palace_attendees_invite",
       "%A %d %B %Y"
     )
 
-    render(assigns, "users/buckingham_palace_invite_mailer/invite")
+    render(assigns, "users/business_apps_winners_mailer/notify")
   end
 
   def winners_head_of_organisation_notification
@@ -123,11 +122,21 @@ class MailRenderer
 
     assigns[:media_deadline] = deadline_str("buckingham_palace_media_information", "%H.%M on %A %d %B %Y")
     assigns[:end_of_embargo_date] = deadline_str("buckingham_palace_attendees_details", "%-d %B %Y")
-    assigns[:end_of_embargo_datetime] = deadline_str("buckingham_palace_attendees_details","%H.%Mhrs on %-d %B %Y")
-    assigns[:press_book_entry_datetime] = deadline_str("buckingham_palace_confirm_press_book_notes", "%l:%M %p on %A %-d %B")
+    assigns[:end_of_embargo_datetime] = deadline_str("buckingham_palace_attendees_details","%H.%M hrs on %-d %B %Y")
+    assigns[:press_book_entry_datetime] = deadline_str("buckingham_palace_confirm_press_book_notes", "%H.%M hrs on %d %B %Y")
     assigns[:attendees_invite_date] = deadline_str("buckingham_palace_attendees_invite","%A %d %B %Y")
 
     render(assigns, "users/winners_head_of_organisation_mailer/notify")
+  end
+
+  def buckingham_palace_invite
+    assigns = {}
+
+    assigns[:token] = "secret"
+    assigns[:form_answer] = form_answer
+    assigns[:name] = "Mr Smith"
+
+    render(assigns, "users/buckingham_palace_invite_mailer/invite")
   end
 
   private

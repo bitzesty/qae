@@ -10,21 +10,20 @@
       p
         ' We know you'll be keen to share your success. However, please remember there is a
         strong
-          ' strict embargo
-        preventing public announcement or publication of any Awards information
+          ' strict embargo preventing public announcement or publication of any Awards information
         strong
           '  until
-          = deadline_for("buckingham_palace_attendees_details", "%H.%M on %A %d %B %Y")
+          = deadline_for("buckingham_palace_attendees_details", "%H.%M hrs on %A %d %B %Y")
           ' . You must not make any announcements about your Award, either to employees or outside your organisation, before this date.
       p
         strong Approve your Press Book entry
       p
         ' We will be providing a Press Book to the media containing information about all the winners at
-        => deadline_for("buckingham_palace_media_information", "%H.%M on %A %d %B %Y")
-        ' under the terms of the embargo. Click the 'Press Book Notes' link below to check your press piece, organization details and enter details of a contact for press enquiries, and
+        => deadline_for("buckingham_palace_media_information", "%H.%M hrs on %A %d %B %Y")
+        ' under the terms of the embargo. Click the 'Press Book Notes' link below to check your press note, organisation details and enter details of a contact for press enquiries, and
         strong
           'submit it by
-          = deadline_for("buckingham_palace_confirm_press_book_notes", "%H.%M %p on %A %d %B")
+          = deadline_for("buckingham_palace_confirm_press_book_notes", "%H.%M hrs on %A %d %B")
           ' .
         ' If we do not hear from you by the above deadline, we will use the proposed text along with the contact details that we already hold.
     .clear
@@ -62,6 +61,8 @@
             .clear
           - else
             p You will be notified when your press book notes are ready.
+
+          = render "content_only/post_submission/palace_invite_info", award: award if Settings.buckingham_palace_invites_stage?
       .clear
   br
   .container-split

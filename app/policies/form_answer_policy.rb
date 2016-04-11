@@ -60,8 +60,7 @@ class FormAnswerPolicy < ApplicationPolicy
     (admin? || subject.lead_or_assigned?(record)) &&
     record.audit_certificate.present? &&
     record.audit_certificate.attachment.present? &&
-    record.audit_certificate.scan.present? &&
-    record.audit_certificate.scan.clean?
+    record.audit_certificate.clean?
   end
 
   def remove_audit_certificate?
@@ -92,5 +91,9 @@ class FormAnswerPolicy < ApplicationPolicy
     record.submitted? &&
     record.submission_ended? &&
     record.pdf_version.present?
+  end
+
+  def can_add_collaborators_to_application?
+    admin?
   end
 end

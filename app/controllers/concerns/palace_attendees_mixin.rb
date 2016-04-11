@@ -79,7 +79,6 @@ module PalaceAttendeesMixin
       :address_4,
       :postcode,
       :phone_number,
-      :product_description,
       :additional_info,
       :palace_invite_id,
       :id

@@ -59,35 +59,20 @@ class Notifiers::EmailNotificationService
   end
 
   def unsuccessful_notification(award_year)
-    award_year.form_answers.business.non_winners.each do |form_answer|
+    award_year.form_answers.business.unsuccessful_applications.each do |form_answer|
       Users::UnsuccessfulFeedbackMailer.notify(form_answer.id).deliver_later!
     end
   end
 
   def unsuccessful_ep_notification(award_year)
-    award_year.form_answers.promotion.non_winners.each do |form_answer|
+    award_year.form_answers.promotion.unsuccessful_applications.each do |form_answer|
       Users::UnsuccessfulFeedbackMailer.ep_notify(form_answer.id).deliver_later!
     end
   end
 
   def winners_notification(award_year)
     award_year.form_answers.business.winners.each do |form_answer|
-      opts = {
-        email: form_answer.user.email,
-        form_answer_id: form_answer.id
-      }
-
-      # Prevent of sending real request to AWS on dev and test environments
-      if %w{bzstaging staging production}.include?(Rails.env)
-        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(opts)
-      else
-        invite = PalaceInvite.where(
-          email: opts[:email],
-          form_answer_id: opts[:form_answer_id]
-        ).first_or_create
-
-        Users::BuckinghamPalaceInviteMailer.invite(invite.id).deliver_later!
-      end
+      Users::BusinessAppsWinnersMailer.notify(form_answer.id).deliver_later!
     end
   end
 
@@ -95,6 +80,27 @@ class Notifiers::EmailNotificationService
   def winners_head_of_organisation_notification(award_year)
     award_year.form_answers.business.winners.each do |form_answer|
       Users::WinnersHeadOfOrganisationMailer.notify(form_answer.id).deliver_later!
+    end
+  end
+
+  def buckingham_palace_invite(award_year)
+    award_year.form_answers.business.winners.each do |form_answer|
+      shoryuken_ops = {
+        email: form_answer.user.email,
+        form_answer_id: form_answer.id
+      }
+
+      # Prevent of sending real request to AWS on dev and test environments
+      if %w{bzstaging staging production}.include?(Rails.env)
+        Notifiers::Winners::BuckinghamPalaceInvite.perform_async(shoryuken_ops)
+      else
+        invite = PalaceInvite.where(
+          email: shoryuken_ops[:email],
+          form_answer_id: shoryuken_ops[:form_answer_id]
+        ).first_or_create
+
+        Users::BuckinghamPalaceInviteMailer.invite(invite.id).deliver_later!
+      end
     end
   end
 
