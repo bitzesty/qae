@@ -10,4 +10,8 @@ database:
     - bundle exec rake db:migrate
 test:
   override:
-    - bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
+    - bundle exec rspec --tag '~skip_ci' --format RspecJunitFormatter --out $CIRCLE_TEST_REPORTS/rspec.xml:
+        parallel: true
+        files:
+          - spec/unit/sample.rb   # can be a direct path to file
+          - spec/**/*.rb          # or a glob (ruby globs)
