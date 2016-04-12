@@ -1,0 +1,54 @@
+#!/usr/bin/env ruby
+require "simplecov"
+require "codeclimate-test-reporter"
+
+branch = ENV['CIRCLE_BRANCH']
+node_index = ENV['CIRCLE_NODE_INDEX'].to_i
+node_total = ENV['CIRCLE_NODE_TOTAL'].to_i
+app_dir = File.join(ENV['HOME'], ENV["CIRCLE_PROJECT_REPONAME"])
+coverage_dir = File.join(app_dir, "coverage")
+filename = '.resultset.json'
+
+SimpleCov.coverage_dir(coverage_dir)
+
+# Only run on node0
+exit if !node_index.zero?
+
+# Only submit coverage to codeclimate on master branch
+exit if branch != 'master'
+
+if node_total > 0
+  # Copy coverage results from all nodes to circle artifacts directory
+  1.upto(node_total-1) do |i|
+    node = "node#{i}"
+    from = File.join(app_dir, 'coverage', filename)
+    to = File.join(coverage_dir, "#{i}#{filename}")
+    command = "scp #{node}:#{from} #{to}"
+
+    puts "running command: #{command}"
+    `#{command}`
+  end
+end
+
+# .resultset.json is a hidden file and thus ignored by the glob
+# Merge coverage results from other nodes
+files = Dir.glob(File.join(coverage_dir, "*#{filename}"))
+puts files
+files.each_with_index do |file, i|
+  resultset = JSON.load(File.read(file))
+  resultset.each do |command_name, data|
+    result = SimpleCov::Result.from_hash(['command', i].join => data)
+    SimpleCov::ResultMerger.store_result(result)
+  end
+end
+
+merged_result = SimpleCov::ResultMerger.merged_result
+merged_result.command_name = 'RSpec'
+
+# Format merged result with html
+html_formatter = SimpleCov::Formatter::HTMLFormatter.new
+html_formatter.format(merged_result)
+
+# Post merged coverage result to codeclimate
+codeclimate_formatter = CodeClimate::TestReporter::Formatter.new
+codeclimate_formatter.format(merged_result)

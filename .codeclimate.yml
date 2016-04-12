@@ -1,10 +1,16 @@
 ---
 engines:
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: true
   rubocop:
     enabled: true
   coffeelint:
     enabled: true
   scsslint:
+    enabled: true
+  fixme:
     enabled: true
 ratings:
   paths:
