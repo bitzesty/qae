@@ -9,10 +9,5 @@ database:
     - bundle exec rake db:create
     - bundle exec rake db:migrate
 test:
-  override:
-    - bundle exec rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml:
-      parallel: true
-      files:
-        - spec/**/*.rb
   post:
     - bundle exec bin/circle
