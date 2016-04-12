@@ -10,8 +10,8 @@ database:
     - bundle exec rake db:migrate
 test:
   override:
-    - bundle exec rspec --tag '~skip_ci' -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml
-        parallel: true
+    - bundle exec rspec --tag '~skip_ci' -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml:
+      parallel: true
         files:
           - spec/**/*.rb
   post:
