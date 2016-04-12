@@ -12,7 +12,7 @@ test:
   override:
     - bundle exec rspec --tag '~skip_ci' -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml:
       parallel: true
-        files:
-          - spec/**/*.rb
+      files:
+        - spec/**/*.rb
   post:
     - bundle exec bin/circle
