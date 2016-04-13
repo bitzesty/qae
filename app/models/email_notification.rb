@@ -7,6 +7,7 @@ class EmailNotification < ActiveRecord::Base
   belongs_to :settings
 
   enumerize :kind, in: [
+                         :submission_started_notification,
                          :reminder_to_submit,
                          :ep_reminder_support_letters,
                          :winners_notification,

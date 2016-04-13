@@ -24,6 +24,14 @@ class Notifiers::EmailNotificationService
     end
   end
 
+  def submission_started_notification(award_year)
+    User.confirmed.each do |user|
+      Users::SubmissionStartedNotificationMailer.notify(
+        user.id
+      ).deliver_later!
+    end
+  end
+
   def ep_reminder_support_letters(award_year)
     award_year.form_answers.promotion.includes(:support_letters).each do |form_answer|
       if form_answer.support_letters.count < 2

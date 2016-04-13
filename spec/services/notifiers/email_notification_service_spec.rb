@@ -17,6 +17,26 @@ describe Notifiers::EmailNotificationService do
     form_answer.user
   end
 
+  context "submission_started_notification" do
+    let(:kind) { "submission_started_notification" }
+
+    let(:user) do
+      create(:user)
+    end
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+
+      expect(Users::SubmissionStartedNotificationMailer).to receive(:notify).with(
+        user.id
+      ) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
   context "shortlisted_audit_certificate_reminder" do
     let(:kind) { "shortlisted_audit_certificate_reminder" }
     let(:form_answer) { create(:form_answer, :trade, :submitted) }
