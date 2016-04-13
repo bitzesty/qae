@@ -1,0 +1,8 @@
+.panel.panel-default
+  .panel-heading#registration-stage-email-notifications-heading role="tab"
+    h4.panel-title
+      a data-toggle="collapse" data-parent="#panel-final-stage" href="#section-registration-stage-email-notifications" aria-expanded="true" aria-controls="section-registration-stage-email-notifications"
+        ' Email notification
+  #section-registration-stage-email-notifications.section-appraisal-form.section-registration-stage-email-notifications.panel-collapse.collapse.in role="tabpanel" aria-labelledby="registration-stage-email-notifications-heading"
+    .panel-body
+      = render 'email_notification', kind: 'submission_started_notification'

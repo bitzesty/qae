@@ -9,6 +9,14 @@ class MailRenderer
     end
   end
 
+  def submission_started_notification
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+
+    render(assigns, "users/submission_started_notification_mailer/notify")
+  end
+
   def unsuccessful_notification
     assigns = {}
 
