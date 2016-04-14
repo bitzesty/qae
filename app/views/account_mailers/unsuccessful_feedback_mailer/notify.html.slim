@@ -1,0 +1,68 @@
+h4 style="font-size: 19px; font-weight:bold; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' The Queen's Awards for Enterprise
+  => @year
+  | [
+  = @form_answer.urn
+  | ]
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  = "Dear #{@name},"
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Thank you for your entry to The Queen's Awards for Enterprise
+  = @year
+  ' .
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' I am sorry to inform you that your organisation was not among those recommended to Her Majesty The Queen for an Award this year.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' This year's entries were of a very high standard and selecting those organisations which had demonstrated the most outstanding achievements was particularly difficult.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' I understand that the application process can be time consuming and for this reason, our assessors have compiled some feedback on your application's strengths and weaknesses which we hope will help with any future applications you make.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  = link_to "You can view your application feedback here.", users_form_answer_feedback_url(@form_answer, format: "pdf")
+
+h5 style="font-size: 19px; font-weight: bold; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Business Support
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' If you are looking for help to grow or scale up, you may wish to contact your local Growth Hub. They can provide national business support, and diagnostic and signposting advice to help businesses find the right support easily, no matter what their size or sector. If you would like to find out more, visit
+  = link_to "www.lepnetwork.net/growth-hubs", "http://www.lepnetwork.net/growth-hubs/"
+  ', or call the Business Support Helpline on 0300 456 3565 (Monday to Friday, 9.00am – 6.00pm).
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' For business support outside of England go to the
+  = link_to "Scotland", "http://www.bgateway.com"
+  ',
+  => link_to "Wales", "http://business.wales.gov.uk"
+  ' and
+  => link_to "Northern Ireland", "http://www.investni.com/index.html"
+  ' websites.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' If you are looking to export, the potential for you to reach out to new customers and lucrative new markets beyond the UK has never been greater. Whatever your sector, there's a market out there for your products or services. For further help and information visit the Government website
+  => link_to "www.exportingisgreat.gov.uk", "https://www.exportingisgreat.gov.uk/"
+  ' or contact your local UKTI export expert,
+  = link_to "www.greatbusiness.gov.uk/ukti", "http://www.greatbusiness.gov.uk/ukti/"
+  ' .
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Finally, you may be interested in the Entrepreneurs Exchange, an initiative to support entrepreneurs right across the UK to grow their business, whether regionally, nationally, or internationally. .
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Entrepreneurs Exchange is about entrepreneurs supporting entrepreneurs. On one day only, 18 May, in 20 cities across the UK, at 6pm, over 40 of the nation’s leading business founders are coming together to give free, real business advice to the next generation of the UK’s entrepreneurs. To find out more, please visit:
+  => link_to "www.entrepreneurs-exchange.co.uk", "http://www.entrepreneurs-exchange.co.uk"
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Thank you once again for taking the time to enter The Queen's Awards for Enterprise and I wish you every success in the future.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
+  ' Yours sincerely
+  br
+  br
+  ' Nichola Bruno
+  br
+  ' The Secretary, The Queen's Awards for Enterprise

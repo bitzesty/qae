@@ -47,7 +47,7 @@ So that User can re-upload Audit Certificate
     end
   end
 
-  describe "Removing", js: true, skip_ci: true do
+  describe "Removing", js: true do
     let!(:admin) { create(:admin) }
 
     before do
@@ -56,7 +56,7 @@ So that User can re-upload Audit Certificate
       visit admin_form_answer_path(form_answer)
     end
 
-    it "should remove Audit Certificate" do
+    xit "should remove Audit Certificate" do
       expect(form_answer.audit_certificate.present?).to be_truthy
 
       find(".js-remove-audit-certificate-link").click

@@ -70,7 +70,9 @@ gem 'prawn-table'
 gem 'nokogiri', '~> 1.6.0'
 
 # Error reporting
-gem 'sentry-raven', github: 'getsentry/raven-ruby'
+group :bzstaging, :staging, :production do
+  gem 'sentry-raven', github: 'getsentry/raven-ruby'
+end
 
 # Uploads
 gem 'carrierwave'
@@ -123,7 +125,7 @@ group :test do
   gem 'turnip'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
-  gem 'codeclimate-test-reporter', group: :test, require: nil
+  gem 'codeclimate-test-reporter', require: nil
   gem "timecop"
   gem "webmock"
 end

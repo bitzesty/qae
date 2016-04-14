@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160314141838) do
+ActiveRecord::Schema.define(version: 20160328124213) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -193,7 +193,6 @@ ActiveRecord::Schema.define(version: 20160314141838) do
   create_table "feedbacks", force: :cascade do |t|
     t.integer  "form_answer_id"
     t.boolean  "submitted",       default: false
-    t.boolean  "approved",        default: false
     t.hstore   "document"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
@@ -287,11 +286,10 @@ ActiveRecord::Schema.define(version: 20160314141838) do
     t.string   "address_4"
     t.string   "postcode"
     t.string   "phone_number"
-    t.string   "product_description"
     t.text     "additional_info"
     t.integer  "palace_invite_id"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
   end
 
   add_index "palace_attendees", ["palace_invite_id"], name: "index_palace_attendees_on_palace_invite_id", using: :btree
@@ -300,8 +298,9 @@ ActiveRecord::Schema.define(version: 20160314141838) do
     t.string   "email"
     t.integer  "form_answer_id"
     t.string   "token"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
+    t.boolean  "submitted",      default: false
   end
 
   add_index "palace_invites", ["form_answer_id"], name: "index_palace_invites_on_form_answer_id", using: :btree

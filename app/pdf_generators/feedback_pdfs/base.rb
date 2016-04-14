@@ -20,7 +20,7 @@ class FeedbackPdfs::Base < ReportPdfBase
                          .includes(:form_answer)
                          .joins(form_answer: :award_year)
                          .where("form_answers.award_type = ?", options[:category])
-                         .where("form_answers.award_year_id = ?", current_year.id)
+                         .where("form_answers.award_year_id = ?", award_year.id)
 
   end
 

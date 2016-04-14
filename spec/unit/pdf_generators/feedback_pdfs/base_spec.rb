@@ -1,12 +1,16 @@
 require 'rails_helper'
 
 describe "FeedbackPdfs::Base" do
+  let!(:award_year) do
+    create :award_year
+  end
+
   let!(:form_answer_innovation) do
-    FactoryGirl.create :form_answer, :submitted, :innovation
+    FactoryGirl.create :form_answer, :submitted, :innovation, award_year: award_year
   end
 
   let!(:form_answer_trade) do
-    FactoryGirl.create :form_answer, :submitted, :trade
+    FactoryGirl.create :form_answer, :submitted, :trade, award_year: award_year
   end
 
   before do
@@ -21,16 +25,25 @@ describe "FeedbackPdfs::Base" do
 
   describe "#set_feedbacks" do
     it "should be ordered in year and filtered by category" do
-      innovation_feedbacks = FeedbackPdfs::Base.new("all", nil, {category: "innovation"})
-                                               .set_feedbacks
-                                               .map(&:id)
+      innovation_feedbacks = FeedbackPdfs::Base.new(
+        "all", nil, {
+          category: "innovation",
+          award_year: award_year
+        }
+      ).set_feedbacks
+       .map(&:id)
+
       expect(innovation_feedbacks).to match_array([
         form_answer_innovation.feedback.id,
       ])
 
-      trade_feedbacks = FeedbackPdfs::Base.new("all", nil, {category: "trade"})
-                                          .set_feedbacks
-                                          .map(&:id)
+      trade_feedbacks = FeedbackPdfs::Base.new(
+        "all", nil, {
+          category: "trade",
+          award_year: award_year
+        }
+      ).set_feedbacks
+       .map(&:id)
 
       expect(trade_feedbacks).to match_array([
         form_answer_trade.feedback.id,

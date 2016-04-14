@@ -7,6 +7,7 @@ class EmailNotification < ActiveRecord::Base
   belongs_to :settings
 
   enumerize :kind, in: [
+                         :submission_started_notification,
                          :reminder_to_submit,
                          :ep_reminder_support_letters,
                          :winners_notification,
@@ -15,7 +16,8 @@ class EmailNotification < ActiveRecord::Base
                          :shortlisted_notifier,
                          :shortlisted_audit_certificate_reminder,
                          :not_shortlisted_notifier,
-                         :winners_head_of_organisation_notification
+                         :winners_head_of_organisation_notification,
+                         :buckingham_palace_invite
                        ]
 
   validates :kind, :trigger_at, presence: true

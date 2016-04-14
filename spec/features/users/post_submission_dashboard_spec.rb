@@ -28,19 +28,6 @@ describe  "User sees the post submission dashboard" do
       )
       visit dashboard_path
 
-      #expect(page).to have_content("Congratulations! Your application was shortlisted.")
-      #expect(page).to have_content("Declaration of Corporate Responsibility")
-      form_answer.update_column(:state, "not_awarded")
-      visit dashboard_path
-
-      settings.email_notifications.create!(
-        kind: "unsuccessful_notification",
-        trigger_at: DateTime.now - 1.year
-      )
-
-      visit dashboard_path
-      expect(page).to have_content("Your following application was unsuccessful.")
-
       form_answer.update_column(:state, "awarded")
       visit dashboard_path
       expect_to_have_blank_dashboard
@@ -58,6 +45,17 @@ describe  "User sees the post submission dashboard" do
 
       visit dashboard_path
       expect(page).to have_link("Press Book Notes")
+
+      form_answer.update_column(:state, "not_awarded")
+      visit dashboard_path
+
+      settings.email_notifications.create!(
+        kind: "unsuccessful_notification",
+        trigger_at: DateTime.now - 1.year
+      )
+
+      visit dashboard_path
+      expect(page).to have_content("Your following application was unsuccessful.")
     end
   end
 end

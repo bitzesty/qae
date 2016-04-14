@@ -1,0 +1,19 @@
+- if award.palace_invite.present?
+  ul.post-dashboard-actions
+    li
+      - if award.palace_invite.submitted?
+        ' Palace Attendees
+      - else
+        = link_to "Palace Attendees", edit_users_form_answer_palace_invite_url(award)
+      span.award-info
+        span.pull-right
+          ' Due by
+          = application_deadline_for_year(award.award_year, :buckingham_palace_attendees_details)
+        - if award.palace_invite.submitted?
+          span.label-status.label-status-green
+            ' Complete
+        - else
+          = link_to edit_users_form_answer_palace_invite_url(award)
+            span.label-status.label-status-red
+              ' Incomplete
+  .clear

@@ -17,9 +17,9 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
               :overall_growth,
               :overall_growth_in_percents
 
-  def initialize(pdf_doc, form_answer, award_year=nil)
-    @award_year = award_year
+  def initialize(pdf_doc, form_answer)
     @pdf_doc = pdf_doc
+    @award_year = pdf_doc.award_year
     @form_answer = form_answer
     @answers = fetch_answers
     @award_form = form_answer.award_form.decorate(answers: answers)

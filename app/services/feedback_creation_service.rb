@@ -15,7 +15,7 @@ class FeedbackCreationService
   private
 
   def populate_feedback!
-    return if form_answer.feedback
+    return if form_answer.feedback.present?
 
     feedback = form_answer.build_feedback
     feedback.authorable = user

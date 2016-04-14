@@ -9,6 +9,14 @@ class MailRenderer
     end
   end
 
+  def submission_started_notification
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+
+    render(assigns, "users/submission_started_notification_mailer/notify")
+  end
+
   def unsuccessful_notification
     assigns = {}
 
@@ -18,7 +26,7 @@ class MailRenderer
     assigns[:year] = AwardYear.closed.year
     form_answer.urn = "QA0001/16I"
 
-    render(assigns, "users/unsuccessful_feedback_mailer/notify")
+    render(assigns, "account_mailers/unsuccessful_feedback_mailer/notify")
   end
 
   def unsuccessful_ep_notification
@@ -30,7 +38,7 @@ class MailRenderer
     assigns[:year] = AwardYear.closed.year
     form_answer.urn = "QA0128/16EP"
 
-    render(assigns, "users/unsuccessful_feedback_mailer/ep_notify")
+    render(assigns, "account_mailers/unsuccessful_feedback_mailer/ep_notify")
   end
 
   def ep_reminder_support_letters
@@ -42,7 +50,7 @@ class MailRenderer
     assigns[:deadline] = deadline_str("submission_end")
     assigns[:nominee_name] = "Jane Doe"
 
-    render(assigns, "users/promotion_letters_of_support_reminder_mailer/notify")
+    render(assigns, "account_mailers/promotion_letters_of_support_reminder_mailer/notify")
   end
 
   def reminder_to_submit
@@ -53,7 +61,7 @@ class MailRenderer
     assigns[:days_before_submission] = "N"
     assigns[:deadline] = deadline_str("submission_end")
 
-    render(assigns, "users/reminder_to_submit_mailer/notify")
+    render(assigns, "account_mailers/reminder_to_submit_mailer/notify")
   end
 
   def shortlisted_audit_certificate_reminder
@@ -70,7 +78,7 @@ class MailRenderer
     assigns = {}
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:current_year] = AwardYear.current.year
-    render(assigns, "users/notify_non_shortlisted_mailer/notify")
+    render(assigns, "account_mailers/notify_non_shortlisted_mailer/notify")
   end
 
   def shortlisted_notifier
@@ -83,13 +91,12 @@ class MailRenderer
 
     assigns[:award_type_full_name] = "Innovation"
 
-    render(assigns, "users/notify_shortlisted_mailer/notify")
+    render(assigns, "account_mailers/notify_shortlisted_mailer/notify")
   end
 
   def winners_notification
     assigns = {}
 
-    assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
     assigns[:name] = "Mr Smith"
     assigns[:deadline] = deadline("buckingham_palace_attendees_details")
@@ -99,14 +106,14 @@ class MailRenderer
     )
     assigns[:book_notes_deadline] = deadline_str(
       "buckingham_palace_confirm_press_book_notes",
-      "%H.%M %p on %A %d %B"
+      "%H.%M hrs on %d %B %Y"
     )
     assigns[:attendees_invite_date] = deadline_str(
       "buckingham_palace_attendees_invite",
       "%A %d %B %Y"
     )
 
-    render(assigns, "users/buckingham_palace_invite_mailer/invite")
+    render(assigns, "account_mailers/business_apps_winners_mailer/notify")
   end
 
   def winners_head_of_organisation_notification
@@ -123,11 +130,28 @@ class MailRenderer
 
     assigns[:media_deadline] = deadline_str("buckingham_palace_media_information", "%H.%M on %A %d %B %Y")
     assigns[:end_of_embargo_date] = deadline_str("buckingham_palace_attendees_details", "%-d %B %Y")
-    assigns[:end_of_embargo_datetime] = deadline_str("buckingham_palace_attendees_details","%H.%Mhrs on %-d %B %Y")
-    assigns[:press_book_entry_datetime] = deadline_str("buckingham_palace_confirm_press_book_notes", "%l:%M %p on %A %-d %B")
+    assigns[:end_of_embargo_datetime] = deadline_str("buckingham_palace_attendees_details","%H.%M hrs on %-d %B %Y")
+    assigns[:press_book_entry_datetime] = deadline_str("buckingham_palace_confirm_press_book_notes", "%H.%M hrs on %d %B %Y")
     assigns[:attendees_invite_date] = deadline_str("buckingham_palace_attendees_invite","%A %d %B %Y")
 
     render(assigns, "users/winners_head_of_organisation_mailer/notify")
+  end
+
+  def buckingham_palace_invite
+    assigns = {}
+
+    assigns[:token] = "secret"
+    assigns[:form_answer] = form_answer
+    assigns[:name] = "Mr Smith"
+
+    invite_date = AwardYear.buckingham_palace_reception_date
+    invite_date = DateTime.new(Date.current.year, 7, 14, 18, 00) if invite_date.blank?
+
+    assigns[:invite_date] = invite_date.strftime(
+      "%A %d %B at %H:%M"
+    )
+
+    render(assigns, "account_mailers/buckingham_palace_invite_mailer/invite")
   end
 
   private

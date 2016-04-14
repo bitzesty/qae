@@ -36,7 +36,7 @@ class FormFinancialPointer
     @options = options
     @answers = fetch_answers
     @award_form = form_answer.award_form.decorate(answers: answers)
-    @form_answer_award_year = options[:award_year] if options[:award_year].present?
+    @form_answer_award_year = form_answer.award_year.year
 
     @steps = award_form.steps
     @financial_step = steps.third

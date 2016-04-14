@@ -5,5 +5,5 @@ database:
   pre:
     - cp .env.example .env
 test:
-  override:
-    - RAILS_ENV=test bundle exec rspec -r rspec_junit_formatter --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml --tag '~skip_ci'
+  post:
+    - bundle exec bin/circle

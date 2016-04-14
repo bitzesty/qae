@@ -1,0 +1,16 @@
+div
+  header.group.page-header.page-header-wider
+    div
+      h1 Buckingham Palace Attendees
+
+  .article-container.article-container-wider
+    article.group role="article"
+      .inner
+        p
+          ' On
+          = AwardYear.buckingham_palace_reception_deadline.decorate.formatted_trigger_time
+          '  there will be a Royal reception held at Buckingham Palace for organisations and individuals who have won Queen's Awards. Winning organisations can send up to two attendees per award won.
+
+        br
+
+        = render 'form'

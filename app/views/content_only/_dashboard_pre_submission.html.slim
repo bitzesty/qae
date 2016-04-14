@@ -8,7 +8,7 @@
           = render "current_applications", award_applications: @user_award_forms_trade
           = render "current_applications", award_applications: @user_award_forms_innovation
           = render "current_applications", award_applications: @user_award_forms_development
-          = render "current_applications", award_applications: @user_award_forms_promotion
+          / = render "current_applications", award_applications: @user_award_forms_promotion
 
           br
 
@@ -20,19 +20,7 @@
 
           = render "shared/application_awards_status"
 
-          br
-
-          h2
-            ' Nominating an individual for The Queen's Award for Enterprise Promotion?
-
-          p To begin a new nomination, click below. You can make more than one nomination as long as you submit a separate application for each of them.
-
-          ul.applications-list
-            li.no-border
-              h3
-                ' Enterprise Promotion Award
-              .pull-right
-                = link_to "New nomination", apply_enterprise_promotion_award_path
+          / = render "apply_to_promotion_award_block"
 
   .related-positioning.related-positioning-no-header
     .related-container

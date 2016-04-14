@@ -90,8 +90,6 @@ Rails.application.routes.draw do
     get :success
   end
 
-  resources :palace_invites, only: [:edit, :update]
-
   namespace :users do
     resources :form_answers, only: [:show] do
       resource :audit_certificate, only: [:show, :create]
@@ -105,6 +103,7 @@ Rails.application.routes.draw do
         post :update_acceptance
       end
       resource :declaration_of_responsibility, only: [:edit, :update]
+      resource :palace_invite, only: [:edit, :update]
     end
     resources :form_answer_feedbacks, only: [:show]
   end
@@ -237,6 +236,9 @@ Rails.application.routes.draw do
       end
 
       resources :review_corp_responsibility, only: [:create]
+      resources :collaborators, only: [:create], module: "form_answers" do
+        get :search, on: :collection
+      end
     end
 
     resource :settings, only: [:show] do

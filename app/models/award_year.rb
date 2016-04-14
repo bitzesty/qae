@@ -8,6 +8,10 @@ class AwardYear < ActiveRecord::Base
 
   AVAILABLE_YEARS = [2016, 2017, 2018, 2019]
 
+  scope :past, -> {
+    where(year: past_years)
+  }
+
   def current?
     self.year == self.class.current.year
   end
@@ -24,7 +28,7 @@ class AwardYear < ActiveRecord::Base
       deadline = AwardYear.where(year: now.year + 1)
                           .first_or_create
                           .settings.deadlines
-                          .submission_start
+                          .registrations_open_on
                           .try(:trigger_at)
 
       deadline ||= Date.new(now.year, 4, 21)
@@ -81,5 +85,27 @@ class AwardYear < ActiveRecord::Base
     @settings ||= Settings.where(award_year: self).first_or_create
   rescue ActiveRecord::RecordNotUnique
     retry
+  end
+
+  def self.past_years
+    years = AVAILABLE_YEARS.slice_before(current.year).to_a
+    years[0] if years.count > 1
+  end
+
+  class << self
+    # so Buckingham Palace Reception date
+    # is usually 14th July
+    # so new award year would be already started
+    # that's why we are pulling this date from current year (not current award year)
+    def buckingham_palace_reception_deadline
+      find_by_year(Date.today.year).settings
+                                   .deadlines
+                                   .where(kind: "buckingham_palace_attendees_invite")
+                                   .first
+    end
+
+    def buckingham_palace_reception_date
+      buckingham_palace_reception_deadline.trigger_at
+    end
   end
 end

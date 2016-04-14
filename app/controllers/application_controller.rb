@@ -18,7 +18,14 @@ class ApplicationController < ActionController::Base
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
-      dashboard_path
+      custom_redirect_url = session[:custom_redirect]
+
+      if custom_redirect_url.present?
+        session[:custom_redirect] = nil
+        custom_redirect_url
+      else
+        dashboard_path
+      end
     else
       super
     end
@@ -89,16 +96,12 @@ class ApplicationController < ActionController::Base
   helper_method :current_form_submission_ended?
 
   def submission_started_deadline
-    Rails.cache.fetch("submission_start_deadline", expires_in: 1.minute) do
-      settings.deadlines.where(kind: "submission_start").first
-    end
+    Settings.current_submission_start_deadline
   end
   helper_method :submission_started_deadline
 
   def submission_deadline
-    Rails.cache.fetch("submission_end_deadline", expires_in: 1.minute) do
-      settings.deadlines.where(kind: "submission_end").first
-    end
+    Settings.current_submission_deadline
   end
   helper_method :submission_deadline
 

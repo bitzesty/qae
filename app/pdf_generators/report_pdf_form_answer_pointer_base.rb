@@ -14,10 +14,12 @@ class ReportPdfFormAnswerPointerBase
               :answers,
               :filled_answers,
               :data,
-              :pdf_doc
+              :pdf_doc,
+              :award_year
 
   def initialize(pdf_doc, form_answer)
     @pdf_doc = pdf_doc
+    @award_year = pdf_doc.award_year
     @form_answer = form_answer
     @user = form_answer.user
     @answers = fetch_answers

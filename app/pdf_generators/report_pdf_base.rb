@@ -7,7 +7,8 @@ class ReportPdfBase < Prawn::Document
               :form_answer,
               :options,
               :pdf_doc,
-              :missing_data_name
+              :missing_data_name,
+              :award_year
 
   def initialize(mode, form_answer=nil, options={})
     super(page_size: "A4", page_layout: :landscape)
@@ -16,6 +17,12 @@ class ReportPdfBase < Prawn::Document
     @mode = mode
     @form_answer = form_answer
     @options = options
+
+    @award_year = if mode == "singular"
+      form_answer.award_year
+    else
+      options[:award_year]
+    end
 
     generate!
   end
