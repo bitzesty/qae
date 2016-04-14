@@ -97,13 +97,15 @@ class AwardYear < ActiveRecord::Base
     # is usually 14th July
     # so new award year would be already started
     # that's why we are pulling this date from current year (not current award year)
-
-    def buckingham_palace_reception_date
+    def buckingham_palace_reception_deadline
       find_by_year(Date.today.year).settings
                                    .deadlines
                                    .where(kind: "buckingham_palace_attendees_invite")
                                    .first
-                                   .trigger_at
+    end
+
+    def buckingham_palace_reception_date
+      buckingham_palace_reception_deadline.trigger_at
     end
   end
 end
