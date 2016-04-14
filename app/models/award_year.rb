@@ -91,4 +91,19 @@ class AwardYear < ActiveRecord::Base
     years = AVAILABLE_YEARS.slice_before(current.year).to_a
     years[0] if years.count > 1
   end
+
+  class << self
+    # so Buckingham Palace Reception date
+    # is usually 14th July
+    # so new award year would be already started
+    # that's why we are pulling this date from current year (not current award year)
+
+    def buckingham_palace_reception_date
+      find_by_year(Date.today.year).settings
+                                   .deadlines
+                                   .where(kind: "buckingham_palace_attendees_invite")
+                                   .first
+                                   .trigger_at
+    end
+  end
 end
