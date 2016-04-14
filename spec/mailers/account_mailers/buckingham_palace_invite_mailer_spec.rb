@@ -2,8 +2,21 @@ require "rails_helper"
 
 describe AccountMailers::BuckinghamPalaceInviteMailer do
   let!(:user) { create :user }
+
+  let!(:year) do
+    create(:award_year)
+  end
+  let!(:year_settings) do
+    settings = year.settings
+
+    invite = settings.deadlines.where(kind: "buckingham_palace_attendees_invite").first
+    invite.update_column(:trigger_at, DateTime.new(Date.current.year, 7, 14, 18, 00))
+
+    settings.reload
+  end
+
   let!(:form_answer) do
-    create :form_answer, :awarded, :innovation, user: user
+    create :form_answer, :awarded, :innovation, user: user, award_year: year
   end
   let(:palace_invite) do
     create :palace_invite, form_answer: form_answer, email: user.email
@@ -32,7 +45,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
     it "renders the body" do
       expect(mail.html_part.decoded).to match(account_holder_name)
       expect(mail.html_part.decoded).to have_link(
-        "Log in here",
+        "log in here",
         href: dashboard_url
       )
     end

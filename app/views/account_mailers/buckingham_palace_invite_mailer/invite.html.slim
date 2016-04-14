@@ -1,26 +1,28 @@
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' An invitation to HM The Queen's Reception at Buckingham Palace
+  ' An invitation to The Queen’s Awards for Enterprise reception at Buckingham Palace
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' You've been invited to Buckingham Palace Evening Reception.
+  | Each year, HM The Queen invites two representatives per winning entity to an evening reception at Buckingham Palace.
 
-p style="font-weight: 700; text-decoration: underline; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  ' Please fill in and confirm palace attendees
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | This year’s reception will take place on
+  =< @invite_date
+  | , from 6pm until 8pm.
 
-div style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  => link_to "Log in here", dashboard_url
-  ' to access the Winners' Dashboard to:
-  br
-  br
-  ul
-    li check the 'Palace Attendees' page
-    li provide palace attendees details
-  br
-  ' Then click the "Confirm Attendees" button by
-  span style="font-weight: 700;"
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  strong
+    | Please
+    =<> link_to "log in here", dashboard_url
+  | to access the Winners' Dashboard to view the 'Palace Attendees' page and provide details of the two representatives you wish to attend The Queen’s Awards for Enterprise reception.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Please ensure you click the "Confirm Attendees" button by midday on
+  strong
+    =< "Friday 6 May"
+  | .
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Congratulations once again on your Award.

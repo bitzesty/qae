@@ -144,6 +144,13 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:name] = "Mr Smith"
 
+    invite_date = AwardYear.buckingham_palace_reception_date
+    invite_date = DateTime.new(Date.current.year, 7, 14, 18, 00) if invite_date.blank?
+
+    assigns[:invite_date] = invite_date.strftime(
+      "%A #{invite_date.day.ordinalize} %B"
+    )
+
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/invite")
   end
 

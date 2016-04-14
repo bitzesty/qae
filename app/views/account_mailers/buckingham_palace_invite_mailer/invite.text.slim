@@ -1,23 +1,25 @@
-' An invitation to HM The Queen's Reception at Buckingham Palace
+' An invitation to The Queen’s Awards for Enterprise reception at Buckingham Palace
 
 = "Dear #{@name},"
 
-' You've been invited to Buckingham Palace Evening Reception.
+| Each year, HM The Queen invites two representatives per winning entity to an evening reception at Buckingham Palace.
 
-' Please fill in and confirm palace attendees
+| This year’s reception will take place on
+=< @invite_date
+| , from 6pm until 8pm.
 
-=> link_to "Log in here", dashboard_url
-' to access the Winners' Dashboard to:
 
-' check the 'Palace Attendees' page
-' provide palace attendees details
+| Please
+=<> link_to "log in here", dashboard_url
+| to access the Winners' Dashboard to view the 'Palace Attendees' page and provide details of the two representatives you wish to attend The Queen’s Awards for Enterprise reception.
 
-' Then click the "Confirm Attendees" button by
+| Please ensure you click the "Confirm Attendees" button by midday on
+=< "Friday 6 May"
+| .
 
 ' Congratulations once again on your Award.
 
 ' Yours sincerely
 
 ' Nichola Bruno
-
 ' The Secretary, The Queen's Awards for Enterprise
