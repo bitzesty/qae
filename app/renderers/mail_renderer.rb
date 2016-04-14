@@ -148,7 +148,7 @@ class MailRenderer
     invite_date = DateTime.new(Date.current.year, 7, 14, 18, 00) if invite_date.blank?
 
     assigns[:invite_date] = invite_date.strftime(
-      "%A #{invite_date.day.ordinalize} %B"
+      "%A %d %B at %H:%M"
     )
 
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/invite")

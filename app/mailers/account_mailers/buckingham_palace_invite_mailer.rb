@@ -8,7 +8,7 @@ class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
     @user = @form_answer.user.decorate
 
     @invite_date = AwardYear.buckingham_palace_reception_date
-    @invite_date = @invite_date.try(:strftime, "%A #{@invite_date.day.ordinalize} %B")
+    @invite_date = @invite_date.try(:strftime, "%A %d %B at %H:%M")
 
     @name = "#{@user.title} #{@user.last_name}"
 
