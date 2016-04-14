@@ -15,6 +15,19 @@ So that I provide a full list of attendees for Buckingham Palace reception
     create :form_answer, :innovation, :awarded, user: user
   end
 
+  let!(:award_year) do
+    create(:award_year)
+  end
+
+  let!(:year_settings) do
+    settings = award_year.settings
+
+    invite = settings.deadlines.where(kind: "buckingham_palace_attendees_invite").first
+    invite.update_column(:trigger_at, DateTime.new(Date.current.year, 7, 14, 18, 00))
+
+    settings.reload
+  end
+
   let!(:palace_invite) do
     create :palace_invite, form_answer: form_answer, email: user.email
   end
