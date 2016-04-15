@@ -1,13 +1,12 @@
 ENV["RAILS_ENV"] ||= 'test'
 ENV["VIRUS_SCANNER_API_URL"] ||= "http://virus.scanner"
 ENV["VIRUS_SCANNER_API_KEY"] ||= "random_api_key"
+
+require 'simplecov'
 require "codeclimate-test-reporter"
-
-CodeClimate::TestReporter.configure do |config|
-  config.logger.level = Logger::WARN
-end
-
-CodeClimate::TestReporter.start
+SimpleCov.add_filter 'vendor'
+SimpleCov.formatters = []
+SimpleCov.start CodeClimate::TestReporter.configuration.profile
 
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
