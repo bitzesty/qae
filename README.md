@@ -26,7 +26,7 @@ foreman start
 ### Running with convox
 
 ```
-convox start
+convox start -f docker-compose.yml.local
 docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
 ```
 
