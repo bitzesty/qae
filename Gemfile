@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.3.0"
+ruby '2.3.0'
 
 gem 'rails', '4.2.5.2'
 
@@ -28,6 +28,9 @@ gem 'bootstrap-sass', '>= 3.3.3'
 gem 'govuk_frontend_toolkit', github: 'alphagov/govuk_frontend_toolkit_gem',
                               submodules: true
 gem 'govuk_template', '0.12.0'
+gem 'uglifier', '>= 1.3.0'
+
+# Autolinking in admin mass user mailer
 gem 'rails_autolink'
 
 # Decorators & Exposing named methods
@@ -99,25 +102,25 @@ gem 'pg_search'
 
 # YAML/Hash loading
 gem 'active_hash'
-gem "virtus"
-gem "nilify_blanks"
+gem 'virtus'
+gem 'nilify_blanks'
 
 # Monitoring
 gem 'newrelic_rpm'
-gem "tilt", "~> 1.1"
 
 # We use it for sending API requests to Sendgrid in
 # AdvancedEmailValidator
 gem 'curb'
 
 gem 'rails_12factor', '~> 0.0.3', group: :production
+
 gem 'puma', '~> 2.16.0'
 
 group :assets do
-  gem 'uglifier', '>= 1.3.0'
 end
 
 group :test do
+  gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'capybara-screenshot'
@@ -128,8 +131,9 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
   gem 'codeclimate-test-reporter', require: nil
-  gem "timecop"
-  gem "webmock"
+  gem 'rspec_junit_formatter'
+  gem 'timecop'
+  gem 'webmock'
 end
 
 group :development do
@@ -139,15 +143,6 @@ group :development do
   gem 'rack-mini-profiler', require: false
   gem 'binding_of_caller'
   gem 'rubocop', require: false
-end
-
-group :test, :development do
-  gem 'factory_girl_rails'
-  gem 'byebug'
-  gem "rspec_junit_formatter"
-end
-
-group :development, :staging do
   # When need to copy model with nested associations
   gem 'amoeba'
 end
