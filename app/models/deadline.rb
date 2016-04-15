@@ -14,6 +14,7 @@ class Deadline < ActiveRecord::Base
     "buckingham_palace_attendees_invite",
     "buckingham_palace_confirm_press_book_notes",
     "buckingham_palace_media_information",
+    "buckingham_palace_reception_attendee_information_due_by",
     "audit_certificates"
   ]
 
