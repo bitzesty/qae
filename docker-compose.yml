@@ -1,6 +1,6 @@
 web:
   build: .
-  command: bundle exec puma -C config/puma.rb
+  command: [bundle, exec, puma, -C, config/puma.rb]
   environment:
     - RACK_ENV=production
     - RAILS_ENV=production
@@ -13,6 +13,6 @@ web:
     - .:/app
 worker:
   build: .
-  command: bundle exec sidekiq
+  command: [bundle, exec, sidekiq]
   volumes:
     - '.:/app'
