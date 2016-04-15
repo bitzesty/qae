@@ -4,35 +4,7 @@
 br
 
 .panel-group#admin-settings-parent role="tablist" aria-multiselectable="true"
-  .panel.panel-default.panel-parent
-    .panel-heading#application-submission-stage-heading role="tab"
-      h4.panel-title
-        a data-toggle="collapse" data-parent="#admin-settings" href="#application-submission-stage" aria-expanded="true" aria-controls="application-submission-stage"
-          ' Application Submission Stage
-    #application-submission-stage.panel-collapse.collapse.in role="tabpanel" aria-labelledby="application-submission-stage-heading"
-      .panel-body
-        .panel-group#panel-application-submission-stage-parent role="tablist" aria-multiselectable="true"
-          = render "section_application_submission_stage_deadlines"
-          = render "section_application_submission_stage_email_notifications"
-
-  .panel.panel-default.panel-parent
-    .panel-heading role="tab" id="shortlisted-stage-header"
-      h4.panel-title
-        a.collapsed data-toggle="collapse" data-parent="#admin-settings" href="#shortlisted-stage" aria-expanded="false" aria-controls="shortlisted-stage"
-          ' Shortlisted Stage
-    #shortlisted-stage.panel-collapse.collapse.in role="tabpanel" aria-labelledby="shortlisted-stage-header"
-      .panel-body
-        .panel-group#panel-shortlisted-stage-parent role="tablist" aria-multiselectable="true"
-          = render "section_shortlisted_stage_deadlines"
-          = render "section_shortlisted_stage_email_notifications"
-
-  .panel.panel-default.panel-parent
-    .panel-heading role="tab" id="final-stage-header"
-      h4.panel-title
-        a.collapsed data-toggle="collapse" data-parent="#admin-settings" href="#final-stage" aria-expanded="false" aria-controls="final-stage"
-          ' Final Stage
-    #final-stage.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-header"
-      .panel-body
-        .panel-group#panel-final-stage-parent role="tablist" aria-multiselectable="true"
-          = render "section_final_stage_deadlines"
-          = render "section_final_stage_email_notifications"
+  = render "admin/settings/stages/registration_stage"
+  = render "admin/settings/stages/application_submission_stage"
+  = render "admin/settings/stages/shortlisted_stage"
+  = render "admin/settings/stages/final_stage"

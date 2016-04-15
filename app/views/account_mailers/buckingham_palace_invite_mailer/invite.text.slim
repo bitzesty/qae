@@ -1,0 +1,25 @@
+' An invitation to The Queen’s Awards for Enterprise reception at Buckingham Palace
+
+= "Dear #{@name},"
+
+| Each year, HM The Queen invites two representatives per winning entity to an evening reception at Buckingham Palace.
+
+| This year’s reception will take place on
+=< @reception_date
+| .
+
+
+| Please
+=<> link_to "log in here", dashboard_url
+| to access the Winners' Dashboard to view the 'Palace Attendees' page and provide details of the two representatives you wish to attend The Queen’s Awards for Enterprise reception.
+
+| Please ensure you click the "Confirm Attendees" button by midday on
+=< @palace_attendees_due
+| .
+
+' Congratulations once again on your Award.
+
+' Yours sincerely
+
+' Nichola Bruno
+' The Secretary, The Queen's Awards for Enterprise

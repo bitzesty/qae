@@ -7,12 +7,14 @@ class Deadline < ActiveRecord::Base
   belongs_to :settings
 
   AVAILABLE_DEADLINES = [
+    "registrations_open_on",
     "submission_start",
     "submission_end",
     "buckingham_palace_attendees_details",
     "buckingham_palace_attendees_invite",
     "buckingham_palace_confirm_press_book_notes",
     "buckingham_palace_media_information",
+    "buckingham_palace_reception_attendee_information_due_by",
     "audit_certificates"
   ]
 
@@ -24,6 +26,10 @@ class Deadline < ActiveRecord::Base
 
   def self.with_states_to_trigger(time = DateTime.now)
     where(kind: "submission_end", states_triggered_at: nil).where("trigger_at < ?", time)
+  end
+
+  def self.registrations_open_on
+    where(kind: "registrations_open_on").first
   end
 
   def self.submission_end

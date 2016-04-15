@@ -1,0 +1,19 @@
+- award_year = AwardYear.current
+
+article.group role="article"
+  .inner
+    br
+    .application-notice.info-notice
+      p
+        - if current_user.new_member?
+          ' Thank you for registering for an account.
+          br
+        ' Application forms for the
+        => award_year.year
+        ' Awards round will open on
+        =>< deadline_or_default(award_year, :submission_start, "3 May", "without_year")
+        ' and close on
+        =< deadline_or_default(award_year, :submission_end, "30 September", "without_year")
+        ' .
+        br
+        ' We will email you a reminder when applications are open.

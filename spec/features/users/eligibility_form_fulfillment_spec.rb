@@ -73,30 +73,33 @@ describe "Eligibility forms" do
     end
   end
 
-  context "promotion" do
-    it "process the eligibility form" do
-      visit dashboard_path
-      new_application "Enterprise Promotion Award"
-      fill_in "nickname", with: "promotion nick"
-      click_button "Save and start eligibility"
-      form_choice([
-        /Someone/,
-        "Yes",
-        "Yes",
-        "Yes",
-        "Yes",
-        "Yes",
-        "No",
-        "Yes",
-        "No",
-        "No",
-        "Yes"
-      ])
-      expect(page).to have_content("Before you start your application")
-      click_link "Continue"
-      expect(page).to have_content("Your nominee is eligible for an Enterprise Promotion Award")
-    end
-  end
+  #
+  # TODO: remove me once will get confirmation about removing EP Award from QAE
+  #
+  # context "promotion" do
+  #   it "process the eligibility form" do
+  #     visit dashboard_path
+  #     new_application "Enterprise Promotion Award"
+  #     fill_in "nickname", with: "promotion nick"
+  #     click_button "Save and start eligibility"
+  #     form_choice([
+  #       /Someone/,
+  #       "Yes",
+  #       "Yes",
+  #       "Yes",
+  #       "Yes",
+  #       "Yes",
+  #       "No",
+  #       "Yes",
+  #       "No",
+  #       "No",
+  #       "Yes"
+  #     ])
+  #     expect(page).to have_content("Before you start your application")
+  #     click_link "Continue"
+  #     expect(page).to have_content("Your nominee is eligible for an Enterprise Promotion Award")
+  #   end
+  # end
 end
 
 def form_choice(labels)

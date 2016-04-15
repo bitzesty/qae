@@ -94,7 +94,7 @@ module PressSummaryMixin
           render json: { errors: [] }
         else
           render status: :unprocessable_entity,
-                 json: { errors: @press_summary.resource.errors }
+                 json: { errors: @press_summary.errors.full_messages }
         end
       end
     end

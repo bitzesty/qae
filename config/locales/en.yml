@@ -129,15 +129,18 @@ en:
       size_too_big: "is too big (should be at most %{file_size})"
 
   deadline_messages:
+    registrations_open_on: Registrations open on
     submission_start: Submission period starts on
     submission_end: Submission period closes on
     buckingham_palace_attendees_details: HM The Queen's Birthday (end of embargo)
     buckingham_palace_media_information: QAO provides information to the media of the winners on
     buckingham_palace_confirm_press_book_notes: Press Book Entry confirmation due by
+    buckingham_palace_reception_attendee_information_due_by: Buckingham Palace reception attendee information due by
     buckingham_palace_attendees_invite: Buckingham Palace Reception on
     audit_certificates: Audit certificates due by
 
   email_notification_headers:
+    submission_started_notification: "Notify users that applications for the new Award year are open"
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."
     winners_notification: "WINNERS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry."

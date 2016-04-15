@@ -9,5 +9,5 @@ database:
     - bundle exec rake db:create
     - bundle exec rake db:migrate
 test:
-  override:
-    - bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
+  post:
+    - bundle exec bin/circle

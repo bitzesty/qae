@@ -1,6 +1,25 @@
 require "rails_helper"
 
 describe MailRenderer do
+  describe "#submission_started_notification" do
+    let(:login_link) do
+      "http://queens-awards-enterprise.service.gov.uk/users/sign_in"
+    end
+
+    let(:user_full_name) do
+      "Jon Doe"
+    end
+
+    let(:rendered_email) do
+      described_class.new.submission_started_notification
+    end
+
+    it "renders e-mail" do
+      expect(rendered_email).to match(user_full_name)
+      expect(rendered_email).to match(login_link)
+    end
+  end
+
   describe "#shortlisted_audit_certificate_reminder" do
     it "renders e-mail" do
       rendered = described_class.new.shortlisted_audit_certificate_reminder
