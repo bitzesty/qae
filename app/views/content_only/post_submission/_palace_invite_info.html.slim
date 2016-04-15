@@ -8,7 +8,7 @@
       span.award-info
         span.pull-right
           ' Due by
-          = application_deadline_for_year(award.award_year, :buckingham_palace_attendees_details)
+          = application_deadline_for_year(award.award_year, :buckingham_palace_reception_attendee_information_due_by)
         - if award.palace_invite.submitted?
           span.label-status.label-status-green
             ' Complete
