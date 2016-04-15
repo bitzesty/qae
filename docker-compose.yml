@@ -1,4 +1,4 @@
-web: &web
+web:
   build: .
   command: bundle exec puma -C config/puma.rb
   environment:
@@ -12,6 +12,7 @@ web: &web
   volumes:
     - .:/app
 worker:
-  <<: *web
-  ports: []
+  build: .
   command: bundle exec sidekiq
+  volumes:
+    - '.:/app'
