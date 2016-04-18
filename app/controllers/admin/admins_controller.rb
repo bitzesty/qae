@@ -33,7 +33,7 @@ class Admin::AdminsController < Admin::UsersController
     respond_with :admin, @resource, location: admin_admins_path
   end
 
-  # TODO: remove it once you fix issue with assessor access
+  # NOTE: debug abilities for Admin - BEGIN
   def login_as_assessor
     authorize Admin, :index?
     assessor = Assessor.find_by_email(params[:email])
@@ -41,6 +41,15 @@ class Admin::AdminsController < Admin::UsersController
 
     redirect_to assessor_root_path
   end
+
+  def login_as_user
+    authorize Admin, :index?
+    user = User.find_by_email(params[:email])
+    sign_in(user, bypass: true)
+
+    redirect_to dashboard_url
+  end
+  # NOTE: debug abilities for Admin - END
 
   private
 

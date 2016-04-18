@@ -189,8 +189,9 @@ Rails.application.routes.draw do
     resources :assessors
     resources :admins do
       collection do
-        # TODO: remove it once you fix issue with assessor access
+        # NOTE: debug abilities for Admin
         get :login_as_assessor
+        get :login_as_user
       end
     end
     resources :reports, only: [:show]
