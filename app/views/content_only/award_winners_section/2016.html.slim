@@ -25,6 +25,18 @@ div
                       class: "thumbnail",
                       target: "_blank"
 
+          p
+            ' Please do not publicise the information in the press book until
+            strong
+              => deadline_for("buckingham_palace_attendees_details", "%d %B")
+            ' as it is under embargo.
+
+          p
+            = link_to "Queen's Awards for Enterprise Press Book 2016 (PDF, 5,8 MB)",
+                      static_s3_asset_path(2016, "Queen's Awards for Enterprise Press Book 2016.pdf"),
+                      class: "thumbnail",
+                      target: "_blank"
+
         h2 Download The Queen's Awards for Enterprise 2016 Emblems in various formats
 
         - if any_promotion_winner
