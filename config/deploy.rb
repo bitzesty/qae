@@ -36,7 +36,7 @@ set :ssh_options, {
   forward_agent: true
 }
 
-set :keep_releases, 5
+set :keep_releases, 2
 
 set :shoryuken_log, -> { File.join(shared_path, 'log', 'shoryuken.log') }
 
