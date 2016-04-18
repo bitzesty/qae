@@ -3,7 +3,7 @@ class Users::PalaceInvitesController < Users::BaseController
   before_action :require_palace_invite_to_be_not_submitted_and_proper_stage!
 
   expose(:form_answer) do
-    current_user.form_answers.find(params[:form_answer_id])
+    current_user.account.form_answers.find(params[:form_answer_id])
   end
 
   expose(:invite) do
