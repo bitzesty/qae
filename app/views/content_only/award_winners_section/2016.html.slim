@@ -28,7 +28,7 @@ div
           p
             ' Please do not publicise the information in the press book until
             strong
-              => deadline_for("buckingham_palace_attendees_details", "%d %B")
+              => application_deadline_for_year(target_award_year, :buckingham_palace_attendees_details, "%d %B")
             ' as it is under embargo.
 
           p
