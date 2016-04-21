@@ -44,7 +44,7 @@ class ContentOnlyController < ApplicationController
     current_account.form_answers.submitted.past.group_by(&:award_year)
   end
 
-  expose(:winners_award_year) do
+  expose(:target_award_year) do
     if params[:award_year_id].present?
       AwardYear.find(params[:award_year_id])
     else
@@ -70,14 +70,14 @@ class ContentOnlyController < ApplicationController
   def award_winners_section
     @user_award_forms_submitted = user_award_forms.submitted
 
-    render "content_only/award_winners_section/#{winners_award_year.year}"
+    render "content_only/award_winners_section/#{target_award_year.year}"
   end
 
   private
 
   def user_award_forms
     current_account.form_answers
-                   .where(award_year: AwardYear.current)
+                   .where(award_year: target_award_year)
                    .order("award_type")
   end
 
