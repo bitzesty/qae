@@ -79,12 +79,8 @@ class Reports::RegisteredUsers
       method: :user_creation_date
     },
     {
-      label: "BusinessSector",
-      method: :business_sector
-    },
-    {
-      label: "BusinessSectorOther",
-      method: :business_sector_other
+      label: "SIC code",
+      method: :sic_code
     },
     {
       label: "Region",

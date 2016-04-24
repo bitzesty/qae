@@ -229,16 +229,9 @@ class QAE2014Forms
           form_hint "e.g. www.example.com"
         end
 
-        business_sector_dropdown :business_sector, "Business Sector" do
+        sic_code_dropdown :sic_code, "SIC code" do
           required
           ref "A 12"
-        end
-
-        text :business_sector_other, "Please specify" do
-          classes "regular-question"
-          sub_ref "A 12.1"
-          required
-          conditional :business_sector, :other
         end
 
         header :parent_company_header, "Parent Companies" do

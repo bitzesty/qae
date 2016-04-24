@@ -1,4 +1,4 @@
-select.js-trigger-autosave.select2 name=question.input_name *possible_read_only_ops id="q_#{question.key}"
+select.js-trigger-autosave.select2.sic_code-selector name=question.input_name *possible_read_only_ops id="q_#{question.key}"
   - question.options.each do |option|
     option value="#{option.value}" selected=((question.input_value || '').to_s == option.value.to_s)
       = option.text
