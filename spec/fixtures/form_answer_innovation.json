@@ -75,6 +75,7 @@
 "customers_relations": "1",
 "employees_relations": "1",
 "investments_details": "1",
+"organisation_type": "company",
 "registration_number": "n/a",
 "started_trading_day": "01",
 "total_turnover_1of2": "1000000",
