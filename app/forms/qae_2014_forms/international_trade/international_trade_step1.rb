@@ -2,6 +2,15 @@ class QAE2014Forms
   class << self
     def trade_step1
       @trade_step1 ||= proc do
+        header :company_information_header, "" do
+          context %(
+            <p>
+              We need this information to ensure we have some basic information about your organisation,
+              which will help us to undertake due diligence checks if your application is shortlisted.
+            </p>
+          )
+        end
+
         options :applying_for, "Are you applying on behalf of your:" do
           ref "A 1"
           required
@@ -23,7 +32,7 @@ class QAE2014Forms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses/has used.</p>
                     )
         end
 
@@ -64,8 +73,12 @@ class QAE2014Forms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context "<p>Organisations that began trading after #{AwardYear.start_trading_moment('trade')} aren't eligible for this award.</p>"
-          date_max AwardYear.start_trading_moment("trade")
+          context "<p>
+            Organisations that began trading after #{start_trading_since(3)}
+            aren't eligible for this award
+            (or #{start_trading_since(6)} if you are applying for the five-year award).
+          </p>"
+          date_max AwardYear.start_trading_since(6)
         end
 
         options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
@@ -96,29 +109,29 @@ class QAE2014Forms
 
         options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
           classes "sub-question"
+          sub_ref "A 6.2"
 
           option "yes", "Yes"
           option "no", "No"
-          option "first", "This is our first ever entry"
         end
 
         text :previous_business_name, "Name used previously" do
           classes "regular-question"
-          sub_ref "A 6.2"
+          sub_ref "A 6.3"
           required
           conditional :business_name_changed, :yes
         end
 
         textarea :previous_business_ref_num, "Reference number(s) used previously" do
           classes "regular-question"
-          sub_ref "A 6.3"
+          sub_ref "A 6.4"
           required
           conditional :business_name_changed, :yes
           rows 5
           words_max 100
         end
 
-        options :other_awards_won, "Have you won any other business or enterprise awards in the past?" do
+        options :other_awards_won, "Have you won any other awards in the past?" do
           ref "A 7"
           required
           yes_no
@@ -233,7 +246,7 @@ class QAE2014Forms
           conditional :trading_figures, :yes
         end
 
-        options :export_agent, "Are you an export agent/merchant?" do
+        options :export_agent, "Are you an export agent/merchant/wholesaler?" do
           ref "A 14"
           required
           yes_no
@@ -253,7 +266,7 @@ class QAE2014Forms
                     )
         end
 
-        upload :org_chart, "Upload an organisational chart." do
+        upload :org_chart, "Upload an organisational chart (this is optional)." do
           ref "A 16"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>

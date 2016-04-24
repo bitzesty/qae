@@ -24,7 +24,7 @@ class QAE2014Forms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses/has used.</p>
                     )
         end
 
@@ -69,10 +69,10 @@ class QAE2014Forms
           ref "A 5"
           context %(
             <p>
-              Organisations that began trading after #{AwardYear.start_trading_moment('development')} aren't eligible for this award.
+              Organisations that began trading after #{AwardYear.start_trading_since} aren't eligible for this award.
             </p>
                     )
-          date_max AwardYear.start_trading_moment("development")
+          date_max AwardYear.start_trading_since
         end
 
         header :business_awards_header, "Business awards" do
@@ -127,7 +127,7 @@ class QAE2014Forms
           words_max 100
         end
 
-        options :other_awards_won, "Have you won any other business or enterprise awards in the past?" do
+        options :other_awards_won, "Have you won any other awards in the past?" do
           ref "A 7"
           required
           yes_no
@@ -281,7 +281,7 @@ class QAE2014Forms
           conditional :applying_for, "division branch subsidiary"
         end
 
-        upload :org_chart, "Upload an organisational chart." do
+        upload :org_chart, "Upload an organisational chart (this is optional)." do
           ref "A 14"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>

@@ -63,15 +63,6 @@ class AwardYear < ActiveRecord::Base
     "#{AwardYear.current.year - 5}-#{AwardYear.current.year - 1}"
   end
 
-  def self.start_trading_moment(kind)
-    if ["trade"].include?(kind)
-      i = 4
-    else
-      i = 3
-    end
-    Date.new(AwardYear.current.year - i, 10, 1).strftime("%d/%m/%Y")
-  end
-
   def self.admin_switch
     output = {}
     year0 = 2016
@@ -117,6 +108,10 @@ class AwardYear < ActiveRecord::Base
       current_year_deadline(
         "buckingham_palace_reception_attendee_information_due_by"
       ).trigger_at
+    end
+
+    def start_trading_since(years_number=3)
+      Date.new(AwardYear.current.year - years_number, 9, 3).strftime("%d/%m/%Y")
     end
   end
 end
