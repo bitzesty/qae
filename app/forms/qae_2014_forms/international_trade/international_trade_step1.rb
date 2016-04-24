@@ -74,9 +74,9 @@ class QAE2014Forms
           required
           ref "A 5"
           context "<p>
-            Organisations that began trading after #{start_trading_since(3)}
+            Organisations that began trading after #{AwardYear.start_trading_since(3)}
             aren't eligible for this award
-            (or #{start_trading_since(6)} if you are applying for the five-year award).
+            (or #{AwardYear.start_trading_since(6)} if you are applying for the five-year award).
           </p>"
           date_max AwardYear.start_trading_since(6)
         end
