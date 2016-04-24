@@ -28,17 +28,6 @@ describe FormAnswerSearch do
     expect(res).to include(invite2)
   end
 
-  it "filters by corp_responsibility missing" do
-    admin = create(:admin)
-    create(:form_answer)
-    form2 = create(:form_answer, document: { "website_url" => "www.example.com" })
-
-    expect(FormAnswer.count).to eq(2)
-    res = described_class.new(scope, admin).filter_by_sub_status(scope, ["missing_corp_responsibility"])
-    expect(res.size).to eq(1)
-    expect(res).to include(form2)
-  end
-
   context "assessment filters" do
     let(:assessor) { create(:assessor, :lead_for_all) }
     let(:form_answer) { create(:form_answer, :trade, :submitted) }
