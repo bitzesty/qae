@@ -3,11 +3,18 @@ class QAE2014Forms
   class << self
     def trade_step2
       @trade_step2 ||= proc do
-        context %(
-          <p>
-            Please try to avoid using technical jargon in this section.
-          </p>
-        )
+        header :your_internation_trade_header, "" do
+          context %(
+            <p>
+              This section gives you the opportunity to present the detail of your products/services
+              nd to give us the evidence of its commercial impact on your business that will enable
+              us to assess your application.
+            </p>
+            <p>
+              Please try to avoid using technical jargon in this section.
+            </p>
+          )
+        end
 
         textarea :trade_desc_whole, "Describe your business as a whole" do
           ref "B 1"
@@ -55,7 +62,17 @@ class QAE2014Forms
           ref "B 3"
           required
           context %{
-            <p>Include, for example, comparisons between domestic and international strategies, treatment of different markets (linking to top performing markets), market research, market development, routes to market, after sales and technical advice, activities to sustain/grow markets, staff language training, export practices, overseas distributors, inward/outward trade missions, trade fairs and visits to existing/potential markets. Make sure you explain how your actual performance compares to your planned performance.</p>
+            <p>
+              Include for example: your overseas market structure,
+              comparisons between domestic and international strategies,
+              treatment of different markets (linking to top performing markets),
+              market research, market development,
+              routes to market, after sales and technical advice,
+              activities to sustain/grow markets,
+              staff language training, export practices, overseas distributors,
+              inward/outward trade missions, trade fairs and visits to existing/potential markets.
+              Make sure you explain how your actual performance compares to your planned performance.
+            </p>
           }
           rows 5
           words_max 800
@@ -63,20 +80,33 @@ class QAE2014Forms
 
         header :overseas_markets_header, "Overseas Markets" do
           ref "B 4"
+          context %{
+            <p>
+              If applicable, demonstrate why penetration of a particular market represents a
+              significant achievement: for example are you the first, leading, fastest growing
+              UK exporter to an overseas market? How does your performance compare with other
+              companies operating in your sector or overseas market?
+            </p>
+          }
         end
 
         textarea :markets_geo_spread, "Describe the geographical spread of your overseas markets." do
           required
+          sub_ref "B 4.1"
           classes "sub-question"
-          context %(
-            <p>Include evidence of how you segment and manage geographical regions. Please supply market share information.</p>
-                    )
+          context %{
+            <p>
+              Include evidence of how you segment and manage geographical regions to demonstrate
+              your company’s focus. Please supply market share information.
+            </p>
+          }
           rows 5
           words_max 500
         end
 
         textarea :top_overseas_sales, "What percentage of total overseas sales was made to each of your top 5 overseas markets (ie. individual countries) during the final year of your entry?" do
           classes "sub-question"
+          sub_ref "B 4.2"
           required
           rows 5
           words_max 200
@@ -84,6 +114,7 @@ class QAE2014Forms
 
         textarea :identify_new_overseas, "Identify new overseas markets established during your period of entry, and their contribution to total overseas sales." do
           classes "sub-question"
+          sub_ref "B 4.3"
           required
           rows 5
           words_max 300
