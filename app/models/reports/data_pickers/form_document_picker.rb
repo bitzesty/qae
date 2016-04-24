@@ -1,10 +1,4 @@
 module Reports::DataPickers::FormDocumentPicker
-  def business_sector_other
-    if business_form?
-      doc "business_sector_other"
-    end
-  end
-
   def business_region
     if business_form?
       doc "organization_address_region"
@@ -15,12 +9,6 @@ module Reports::DataPickers::FormDocumentPicker
 
   def business_reg_no
     doc "registration_number"
-  end
-
-  def business_sector
-    if business_form?
-      doc "business_sector"
-    end
   end
 
   def unit_website
