@@ -45,11 +45,18 @@ class QAE2014Forms
           rows 5
         end
 
-        text :registration_number, "Company/Charity Registration Number" do
+        options :organisation_type, "Are you a company or charity?" do
           required
           ref "A 4"
+          option "company", "Company"
+          option "charity", "Charity"
+        end
+
+        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
+          required
+          ref "A 4.1"
           context %(
-            <p>If you don't have a Company/Charity Registration Number please enter 'N/A'. If you're an unregistered subsidiary, please enter your parent company's number.</p>
+            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
                     )
           style "small"
         end
