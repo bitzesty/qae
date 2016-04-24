@@ -57,12 +57,20 @@ class QAE2014Forms
           words_max 15
         end
 
-        dropdown :trade_goods_amount, "How many types of goods/services make up your international trade?" do
+        checkbox_seria :application_relate_to_header, "This entry relates to (please select all that apply):" do
           ref "B 2"
+          check_options [
+            ["products", "Products"],
+            ["services", "Services"]
+          ]
+        end
+
+        dropdown :trade_goods_amount, "How many types of products/services make up your international trade?" do
+          ref "B 2.1"
           required
           context %(
             <p>
-              If you have more than 5, please try to group them into fewer types of goods/services.
+              If you have more than 5, please try to group them into fewer types of products/services.
             </p>
           )
           option "", "Select"
@@ -73,7 +81,7 @@ class QAE2014Forms
           option "5", "5"
         end
 
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Briefly describe each type of good/service you trade." do
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Briefly describe each type of product/service you trade." do
           classes "sub-question word-max-strict"
           sub_ref "B 2.1"
           required

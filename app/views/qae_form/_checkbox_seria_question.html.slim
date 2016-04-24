@@ -1,0 +1,9 @@
+br
+h2
+  = question.input_value
+
+input name="form[#{question.key}][array]" value="true" type="hidden"
+- question.check_options.each do |check_option|
+  label.checkbox-inline.qae-form-checkbox-seria-question-item
+    input.js-trigger-autosave type="checkbox" name="#{question.input_name}[#{check_option[0]}]" value="#{check_option[0]}" checked=!!question.input_value *possible_read_only_ops
+    = check_option[1]
