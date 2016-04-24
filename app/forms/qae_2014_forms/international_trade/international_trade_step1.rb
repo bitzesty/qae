@@ -266,7 +266,7 @@ class QAE2014Forms
                     )
         end
 
-        upload :org_chart, "Upload an organisational chart (this is optional)." do
+        upload :org_chart, "Upload an organisational chart (optional)." do
           ref "A 16"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>

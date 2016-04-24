@@ -286,7 +286,7 @@ class QAE2014Forms
           conditional :applying_for, "division branch subsidiary"
         end
 
-        upload :org_chart, "Upload an organisational chart (this is optional)." do
+        upload :org_chart, "Upload an organisational chart (optional)." do
           ref "A 15"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
