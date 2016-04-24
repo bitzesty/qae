@@ -16,14 +16,45 @@ class QAE2014Forms
           )
         end
 
-        textarea :trade_desc_whole, "Describe your business as a whole" do
+        header :trade_desc_whole_header, "Describe your business as a whole" do
           ref "B 1"
+        end
+
+        textarea :trade_overall_growth_strategy, "Explain your overall growth strategy." do
+          sub_ref "B 1.1"
+          classes "sub-question"
           required
-          context %(
-            <p>Include a brief history, your overall growth strategy, corporate targets/direction/vision, and a full description of the products/services you export.</p>
-                    )
           rows 5
           words_max 500
+        end
+
+        textarea :trade_overall_importance, "Explain the overall importance of exporting to your company." do
+          sub_ref "B 1.2"
+          classes "sub-question"
+          required
+          rows 5
+          words_max 500
+        end
+
+        textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction." do
+          sub_ref "B 1.3"
+          classes "sub-question"
+          required
+          rows 5
+          words_max 500
+        end
+
+        textarea :trade_goods_briefly, "Briefly describe each type of goods/services you sell internationally." do
+          sub_ref "B 1.4"
+          classes "sub-question"
+          required
+          context %{
+            <p>
+              This summary will be used in publicity material if your application is successful.
+            </p>
+          }
+          rows 2
+          words_max 15
         end
 
         dropdown :trade_goods_amount, "How many types of goods/services make up your international trade?" do
