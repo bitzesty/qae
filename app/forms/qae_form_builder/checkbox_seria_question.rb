@@ -16,7 +16,5 @@ class QAEFormBuilder
     def checked_items
       @checked_items ||= (answers[delegate_obj] || [])
     end
-
-    alias :checked_items
   end
 end
