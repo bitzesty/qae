@@ -64,7 +64,7 @@ So that I can fill form completelly even if Javascript is turned off
     end
 
     it "should allow to add another" do
-      within("fieldset[data-answer=#{question_key}-]") do
+      within("fieldset[data-answer='trading_figures_add-enter-the-name-location-and-amount-of-uk-employees-fte-full-time-equivalent-for-each-of-the-uk-subsidiaries-included-in-this-application-and-the-reason-why-you-are-including-them']") do
         first(".button-add.if-js-hide").click
       end
       expect_to_see "Add subsidiary, associate or plant"
@@ -78,10 +78,13 @@ So that I can fill form completelly even if Javascript is turned off
       [
         "Name",
         "Location",
-        "Number of UK Employees",
-        "Specify the reason why you are including it."
+        "Number of UK Employees"
       ].each do |field_name|
         expect_to_see "#{field_name}can't be blank"
+      end
+
+      within(".subsidiary_description") do
+        expect_to_see "can't be blank"
       end
 
       fill_in "Name", with: new_name
