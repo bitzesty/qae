@@ -64,7 +64,8 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
           label.small
             .if-no-js-hide
               ' Specify the reason why you are including it.
-              input.small.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][description]" value=subsidiary["description"]  autocomplete="off" *possible_read_only_ops
+              textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[#{index}][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
+                = subsidiary["description"]
             .if-js-hide
               strong
                 ' Specify the reason why you are including it.
@@ -99,7 +100,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
         span.span-12
           label.small
             ' Specify the reason why you are including it.
-            input.small.js-trigger-autosave type="text" name="#{question.input_name}[0][description]" autocomplete="off" *possible_read_only_ops
+            textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[#{index}][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
 
       span.clear
 

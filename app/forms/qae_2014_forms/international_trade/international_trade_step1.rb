@@ -245,6 +245,7 @@ class QAE2014Forms
           sub_ref "A 13.1"
           pdf_title "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them."
           conditional :trading_figures, :yes
+          details_words_max 100
         end
 
         options :export_agent, "Are you an export agent/merchant/wholesaler?" do
