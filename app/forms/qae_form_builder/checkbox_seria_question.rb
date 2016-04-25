@@ -13,8 +13,8 @@ class QAEFormBuilder
   end
 
   class CheckboxSeriaQuestionDecorator < QuestionDecorator
-    def checked_items
-      @checked_items ||= (answers[delegate_obj] || [])
+    def entities
+      @entities ||= (answers[delegate_obj.key.to_s] || [])
     end
   end
 end
