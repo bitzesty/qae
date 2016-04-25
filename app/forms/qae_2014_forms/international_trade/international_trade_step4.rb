@@ -95,6 +95,8 @@ class QAE2014Forms
             <p>
               How are you training and developing your staff?
               Do you encourage/support them to learn new skills and gain new qualifications?
+            </p>
+            <p>
               Do you take on apprentices, and if so, how many?
             </p>
           )
