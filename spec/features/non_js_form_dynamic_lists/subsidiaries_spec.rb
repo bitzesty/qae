@@ -13,8 +13,8 @@ So that I can fill form completelly even if Javascript is turned off
 
   let(:subsidiaries) do
     [
-      { name: "location_name_1", location: "location1", employees: "10" },
-      { name: "location_name_2", location: "location2", employees: "20" }
+      { name: "location_name_1", location: "location1", employees: "10", description: "desc1" },
+      { name: "location_name_2", location: "location2", employees: "20", description: "desc2" }
     ]
   end
 
@@ -44,6 +44,7 @@ So that I can fill form completelly even if Javascript is turned off
     let(:new_name) { "location_name_3" }
     let(:new_location) { "location3" }
     let(:new_employees) { "15" }
+    let(:new_description) { "new_description" }
 
     let(:first_item) { subsidiaries[0] }
     let(:second_item) { subsidiaries[1] }
@@ -74,13 +75,19 @@ So that I can fill form completelly even if Javascript is turned off
         form_answer.reload.document
       }
 
-      ["Name", "Location", "Number of UK Employees"].each do |field_name|
+      [
+        "Name",
+        "Location",
+        "Number of UK Employees",
+        "Specify the reason why you are including it."
+      ].each do |field_name|
         expect_to_see "#{field_name}can't be blank"
       end
 
       fill_in "Name", with: new_name
       fill_in "Location", with: new_location
       fill_in "Number of UK Employees", with: new_employees
+      fill_in "Specify the reason why you are including it.", with: new_description
 
       expect {
         click_button "Save"
@@ -110,6 +117,7 @@ So that I can fill form completelly even if Javascript is turned off
       fill_in "Name", with: new_name
       fill_in "Location", with: new_location
       fill_in "Number of UK Employees", with: new_employees
+      fill_in "Specify the reason why you are including it.", with: new_description
 
       expect {
         click_button "Save"

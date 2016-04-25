@@ -19,6 +19,15 @@ li
                     input_html: { class: "medium" },
                     label_html: { class: "small" },
                     label: "Number of UK Employees"
+
+      .clear
+      = f.label :description, "Specify the reason why you are including it."
+      .char-count.char-max-shift
+        .char-text-limit
+          | Word limit:
+          span.total-count 100
+        = f.input :description, as: :text, rows: 2, label: false
+
       .row
         .span-12
           = f.submit "Save", class: "button button-alt"
