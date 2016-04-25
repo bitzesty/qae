@@ -76,7 +76,7 @@ class QAE2014Forms
           context "<p>
             Organisations that began trading after #{AwardYear.start_trading_since(3)}
             aren't eligible for this award
-            (or #{AwardYear.start_trading_since(6)} if you are applying for the five-year award).
+            (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award).
           </p>"
           date_max AwardYear.start_trading_since(3)
         end
@@ -239,10 +239,11 @@ class QAE2014Forms
           yes_no
         end
 
-        subsidiaries_associates_plants :trading_figures_add, "" do
+        subsidiaries_associates_plants :trading_figures_add, "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them." do
           required
+          classes "sub-question"
           sub_ref "A 13.1"
-          pdf_title "Enter Name/Location/UK employees."
+          pdf_title "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them."
           conditional :trading_figures, :yes
         end
 

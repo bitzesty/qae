@@ -111,7 +111,7 @@ class AwardYear < ActiveRecord::Base
     end
 
     def start_trading_since(years_number=3)
-      Date.new(AwardYear.current.year - years_number, 9, 3).strftime("%d/%m/%Y")
+      Date.new(AwardYear.current.year - 1 - years_number, 9, 3).strftime("%d/%m/%Y")
     end
   end
 end

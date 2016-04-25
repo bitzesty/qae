@@ -301,6 +301,10 @@ class QAEFormBuilder
       @q.sub_ref = id
     end
 
+    def display_sub_ref_on_js_form(mode)
+      @q.display_sub_ref_on_js_form = mode
+    end
+
     def required
       @q.required = true
     end
@@ -360,6 +364,7 @@ class QAEFormBuilder
                   :form_hint,
                   :ref,
                   :sub_ref,
+                  :display_sub_ref_on_js_form,
                   :conditions,
                   :header,
                   :header_context,
@@ -377,6 +382,8 @@ class QAEFormBuilder
       @help = []
       @hint = []
       @conditions = []
+      @display_sub_ref_on_js_form = true
+
       self.after_create if self.respond_to?(:after_create)
     end
 
