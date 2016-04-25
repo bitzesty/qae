@@ -22,7 +22,6 @@ class QAE2014Forms
 
         textarea :trade_overall_growth_strategy, "Explain your overall growth strategy." do
           sub_ref "B 1.1"
-          classes "sub-question"
           required
           rows 5
           words_max 500
@@ -30,7 +29,6 @@ class QAE2014Forms
 
         textarea :trade_overall_importance, "Explain the overall importance of exporting to your company." do
           sub_ref "B 1.2"
-          classes "sub-question"
           required
           rows 5
           words_max 500
@@ -38,7 +36,6 @@ class QAE2014Forms
 
         textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction." do
           sub_ref "B 1.3"
-          classes "sub-question"
           required
           rows 5
           words_max 500
@@ -46,7 +43,6 @@ class QAE2014Forms
 
         textarea :trade_goods_briefly, "Briefly describe each type of goods/services you sell internationally." do
           sub_ref "B 1.4"
-          classes "sub-question"
           required
           context %{
             <p>
@@ -81,7 +77,7 @@ class QAE2014Forms
           option "5", "5"
         end
 
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Briefly describe each type of product/service you trade." do
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Please list and briefly describe the products/services you export." do
           classes "sub-question word-max-strict"
           sub_ref "B 2.1"
           required
