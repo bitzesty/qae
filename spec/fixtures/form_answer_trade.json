@@ -71,7 +71,7 @@
 "total_turnover_4of6": "",
 "total_turnover_5of6": "",
 "total_turnover_6of6": "",
-"trading_figures_add": "[\"{\\\"name\\\":\\\"\\\",\\\"location\\\":\\\"\\\",\\\"employees\\\":\\\"\\\"}\"]",
+"trading_figures_add": "[\"{\\\"name\\\":\\\"\\\",\\\"location\\\":\\\"\\\",\\\"employees\\\":\\\"\\\", \\\"description\\\":\\\"\\\"}\"]",
 "started_trading_year": "2012",
 "business_name_changed": "no",
 "identify_new_overseas": "123",
