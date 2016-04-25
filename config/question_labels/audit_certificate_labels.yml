@@ -32,8 +32,6 @@
       label: "Total Turnover (home plus overseas)"
     - id: "net_profit"
       label: "Net Profit (i.e. after tax, before dividends)"
-    - id: "total_imported_cost"
-      label: "If 'Yes' please state your 'Overseas sales' net of the cost of the imported products/services."
 - id: "development"
   name: "Sustainable Development Award"
   labels:

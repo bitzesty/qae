@@ -138,17 +138,6 @@ class QAE2014Forms
           conditional :pareent_group_excluding, "yes"
         end
 
-        options :do_you_want_to_calculate_overseas_and_so_on, "If your organisation is in the financial (or related) services sector and is cyclical in nature, you can calculate overseas sales and total sales as rolling averages. Do you want to do this?" do
-          ref "C 5"
-          context %(
-            <p>
-              Entries for Outstanding Achievement must submit three three-year rolling averages, whilst Continuous Achievement requires six three-year rolling averages. You should calculate these yourself and enter the resulting figures.
-            </p>
-          )
-          conditional :trade_commercial_success, :true
-          yes_no
-        end
-
         by_years :overseas_sales, "Total overseas sales" do
           ref "C 6"
           required
@@ -234,76 +223,6 @@ class QAE2014Forms
           words_max 500
           conditional :trade_commercial_success, :true
           drop_condition_parent
-        end
-
-        options :resale_overseas, "Do you purchase your products/services (or any of their components) from overseas for resale overseas?" do
-          classes "sub-question"
-          sub_ref "C 6.4"
-          required
-          yes_no
-          context %(
-            <p>Excluding raw materials and value added.</p>
-                    )
-          conditional :trade_commercial_success, :true
-        end
-
-        by_years :total_imported_cost, "Total cost of these imports" do
-          classes "sub-question"
-          sub_ref "C 6.5"
-          required
-          type :money
-          by_year_condition :trade_commercial_success, "3 to 5", 3
-          by_year_condition :trade_commercial_success, "6 plus", 6
-          context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
-          conditional :trade_commercial_success, :true
-          conditional :resale_overseas, "yes"
-          drop_conditional :drops_in_turnover
-        end
-
-        options :company_estimated_figures, "Are any of the figures used on this page estimates?" do
-          ref "C 7"
-          yes_no
-          conditional :trade_commercial_success, :true
-        end
-
-        textarea :company_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
-          classes "sub-question"
-          sub_ref "C 7.1"
-          rows 5
-          words_max 400
-          conditional :trade_commercial_success, :true
-          conditional :company_estimated_figures, "yes"
-        end
-
-        options :manufacture_overseas, "Do you manufacture overseas?" do
-          ref "C 8"
-          required
-          yes_no
-        end
-
-        by_years :overseas_yearly_percentage, "Indicate the yearly percentage of your products produced overseas." do
-          classes "sub-question"
-          sub_ref "C 8.1"
-          required
-          type :percent
-          by_year_condition :trade_commercial_success, "3 to 5", 3
-          by_year_condition :trade_commercial_success, "6 plus", 6
-          conditional :trade_commercial_success, :true
-          conditional :manufacture_overseas, "yes"
-        end
-
-        textarea :manufacture_model_benefits, "Please explain your business model(s) and rationale for this. Describe the benefits of this business model to the UK." do
-          classes "sub-question"
-          sub_ref "C 8.2"
-          rows 5
-          words_max 400
-          context %{
-            <p>
-             We ask this in order to help us carry out due diligence if your application is shortlisted.
-            </p>
-          }
         end
 
         options :operate_overseas, "Do you run your overseas operations as a franchise?" do
