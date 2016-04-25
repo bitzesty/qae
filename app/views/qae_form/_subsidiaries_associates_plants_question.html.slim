@@ -23,10 +23,11 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
         span.span-4
           label.small
             .if-no-js-hide
-              ' Name
+              ' Name of subsidiary
               input.medium.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][name]" value=subsidiary["name"] autocomplete="off" *possible_read_only_ops
             .if-js-hide
-              strong Name
+              strong
+                ' Name of subsidiary
               br
               - if subsidiary["name"].present?
                 = subsidiary["name"]
@@ -47,10 +48,11 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
         span.span-4
           label.small
             .if-no-js-hide
-              ' Number of UK Employees
+              ' Amount of UK employees
               input.small.js-trigger-autosave type="text" name="#{question.input_name}[#{index}][employees]" value=subsidiary["employees"]  autocomplete="off" *possible_read_only_ops
             .if-js-hide
-              strong Number of UK Employees
+              strong
+                ' Amount of UK employees
               br
               - if subsidiary["employees"].present?
                 = subsidiary["employees"]
@@ -65,7 +67,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
       span.row
         span.span-4
           label.small
-            ' Name
+            ' Name of subsidiary
             input.medium.js-trigger-autosave type="text" name="#{question.input_name}[0][name]" autocomplete="off" *possible_read_only_ops
         span.span-4
           label.small
@@ -73,7 +75,7 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
             input.medium.js-trigger-autosave type="text" name="#{question.input_name}[0][location]" autocomplete="off" *possible_read_only_ops
         span.span-4
           label.small
-            ' Number of UK Employees
+            ' Amount of UK employees
             input.small.js-trigger-autosave type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
       span.clear
 
