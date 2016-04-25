@@ -47,6 +47,13 @@ class QAE2014Forms
             <p>
               This summary will be used in publicity material if your application is successful.
             </p>
+            <p>
+              e.g. Design and manufacture of contract fabrics for commercial interiors.
+              Design and manufacture of mass passenger transport fabrics.
+            </p>
+            <p>
+              e.g. Musical heritage tours and events, exploring popular music history by theme, genre or specific artist.
+            </p>
           }
           rows 2
           words_max 15
