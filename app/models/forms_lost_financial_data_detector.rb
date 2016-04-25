@@ -18,9 +18,7 @@ class FormsLostFinancialDataDetector
     "sales_royalties_",
     "avg_unit_cost_self_",
     "overseas_sales_",
-    "avg_unit_price_",
-    "total_imported_cost_",
-    "overseas_yearly_percentage_"
+    "avg_unit_price_"
   ]
 
   attr_accessor :forms, :date_of_update
