@@ -66,6 +66,18 @@ class QAE2014Forms
           )
         end
 
+        confirm :shortlisted_case_confirmation, "" do
+          ref "F 4.1"
+          required
+          text %{
+            By ticking this box, you agree that if your application is shortlisted you will supply
+            verified commercial figures before the specified deadline.
+            <br>
+            <br>
+            If verified figures are not provided by the deadline specified at short list stage, your entry will be rejected.
+          }
+        end
+
         submit "Submit application" do
           notice %(
             <p>
