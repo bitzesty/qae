@@ -58,12 +58,30 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
                 = subsidiary["employees"]
               - else
                 ' -
+
+      span.row
+        span.span-12
+          label.small
+            .if-no-js-hide
+              ' Specify the reason why you are including it.
+              textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[#{index}][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
+                = subsidiary["description"]
+            .if-js-hide
+              strong
+                ' Specify the reason why you are including it.
+              br
+              - if subsidiary["description"].present?
+                = subsidiary["description"]
+              - else
+                ' -
+
       span.clear
   - if question.subsidiaries.none?
     li.js-add-example.if-no-js-hide
       - unless admin_in_read_only_mode?
         = link_to "Remove", "#", class: "remove-link js-remove-link"
       .clear
+
       span.row
         span.span-4
           label.small
@@ -77,6 +95,13 @@ ul.list-add data-add-limit="10" data-need-to-clear-example="true" data-default=1
           label.small
             ' Amount of UK employees
             input.small.js-trigger-autosave type="text" name="#{question.input_name}[0][employees]" autocomplete="off" *possible_read_only_ops
+
+      span.row
+        span.span-12
+          label.small
+            ' Specify the reason why you are including it.
+            textarea.award-textarea.js-char-count.js-trigger-autosave rows="2" name="#{question.input_name}[0][description]" autocomplete="off" data-word-max=question.details_words_max *possible_read_only_ops
+
       span.clear
 
 a.button.button-add.js-button-add.if-no-js-hide href="#" *possible_read_only_ops
