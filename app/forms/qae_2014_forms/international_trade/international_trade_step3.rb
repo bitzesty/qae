@@ -3,24 +3,34 @@ class QAE2014Forms
   class << self
     def trade_step3
       @trade_step3 ||= proc do
+        header :commercial_success_info_block, "" do
+          context %{
+            <p>
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
+              This section enables you to demonstrate that you have delivered outstanding
+              short term growth in the last three years, or outstanding continuous growth over six years.
+            </p>
+          }
+        end
+
         header :commercial_success_intro, "" do
           classes "application-notice help-notice"
           context %(
             <p>
-              If shortlisted, figures provided must be capable of being verified by an independent, qualified, practising accountant or auditor.
+              If your application is shortlisted you will have to supply verified commercial figures.
             </p>
           )
         end
 
         trade_commercial_success :trade_commercial_success, "" do
           main_header %(
-            How would you describe your organisation's growth and commercial success in international trade?
+            Which Award are you applying for?
                     )
           classes "js-entry-period"
           ref "C 1"
           required
-          option "3 to 5", "Outstanding growth in the last 3 years"
-          option "6 plus", "Continuous growth in the last 6 years"
+          option "3 to 5", "Outstanding Short Term Growth Award: outstanding year on year growth in the last 3 years with no dips"
+          option "6 plus", "Outstanding Continuous Growth Award: continuous year on year growth in the last 6 years with no dips"
           placeholder_preselected_condition :queen_award_holder_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
@@ -38,21 +48,31 @@ class QAE2014Forms
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
           ref "C 2"
           required
-          context %(
-            <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
-                    )
+          context %{
+            <p>
+              If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.
+              If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.
+            </p>
+          }
           financial_date_pointer
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> year) entry period?" do
           classes "sub-question js-financial-year-change"
+          sub_ref "C 2.1"
           required
           yes_no
+          context %{
+            <p>
+              We ask this so that we ensure we obtain all of the commercial figures we need to assess your application.
+              You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3 or 6</span> full 12-month periods.
+            </p>
+          }
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
-          sub_ref "C 2.1"
+          sub_ref "C 2.2"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
@@ -64,7 +84,7 @@ class QAE2014Forms
 
         textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
-          sub_ref "C 2.2"
+          sub_ref "C 2.3"
           required
           rows 5
           words_max 100
@@ -207,7 +227,7 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in total turnover or net profit, and any losses made." do
+        textarea :drops_in_turnover, "Explain any drops in total turnover or net profit, and any losses made. Sustained or unexplained losses may lead to the entry being rejected." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 6.3"
           rows 5
@@ -274,12 +294,16 @@ class QAE2014Forms
           conditional :manufacture_overseas, "yes"
         end
 
-        textarea :manufacture_model_benefits, "Describe the benefits of this business model to the UK." do
+        textarea :manufacture_model_benefits, "Please explain your business model(s) and rationale for this. Describe the benefits of this business model to the UK." do
           classes "sub-question"
           sub_ref "C 8.2"
           rows 5
           words_max 400
-          conditional :manufacture_overseas, "yes"
+          context %{
+            <p>
+             We ask this in order to help us carry out due diligence if your application is shortlisted.
+            </p>
+          }
         end
 
         options :operate_overseas, "Do you run your overseas operations as a franchise?" do
@@ -288,13 +312,17 @@ class QAE2014Forms
           yes_no
         end
 
-        textarea :operate_model_benefits, "Describe the benefits of this business model to the UK." do
+        textarea :operate_model_benefits, "Please explain your business model(s) and rationale for this. Describe the benefits of this business model to the UK." do
           classes "sub-question"
           sub_ref "C 9.1"
           required
           rows 5
           words_max 500
-          conditional :operate_overseas, "yes"
+          context %{
+            <p>
+             We ask this in order to help us carry out due diligence if your application is shortlisted.
+            </p>
+          }
         end
 
         options :received_grant, "Did you receive any grant funding to support this product/service?" do

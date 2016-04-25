@@ -7,7 +7,7 @@ class QAE2014Forms
           classes "application-notice help-notice"
           context %(
             <p>
-              If shortlisted, figures provided must be capable of being verified by an independent, qualified, practising accountant or auditor.
+              If your application is shortlisted you will have to supply verified commercial figures.
             </p>
           )
         end
