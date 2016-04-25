@@ -15,6 +15,7 @@
 "position_details": "[\"{\\\"name\\\":\\\"\\\",\\\"start_month\\\":\\\"\\\",\\\"start_year\\\":\\\"\\\",\\\"end_month\\\":\\\"\\\",\\\"end_year\\\":\\\"\\\",\\\"ongoing\\\":\\\"0\\\",\\\"details\\\":\\\"\\\"}\"]",
 "nomination_awards": "[\"{\\\"title\\\":\\\"\\\",\\\"details\\\":\\\"\\\"}\"]",
 "entry_confirmation": "on",
+"shortlisted_case_confirmation": "on",
 "nominated_for_award": "no",
 "nominee_nationality": "british",
 "nominee_title_other": "",
