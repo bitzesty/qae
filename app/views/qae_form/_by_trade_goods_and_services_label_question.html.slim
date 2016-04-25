@@ -8,7 +8,7 @@
       .question-group
         h2
           label for=question.input_name(suffix: "desc_short_#{placement}")
-            = "Good/Service #{placement}"
+            = "Product/Service #{placement}"
         ul.errors-container
           - errors = @form_answer.validator_errors
           - if errors && errors[question.key] && errors[question.key][index]

@@ -21,7 +21,7 @@ module QaePdfForms::CustomQuestions::Lists
     "Details"
   ]
   TRADE_GOODS_AND_SERVICES_HEADERS = [
-    "Good/Service",
+    "Product/Service",
     "% of your total overseas trade"
   ]
   UNDEFINED_CELL_VALUE = "Undefined"
