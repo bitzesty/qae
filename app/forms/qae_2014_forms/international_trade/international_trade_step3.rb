@@ -139,7 +139,7 @@ class QAE2014Forms
         end
 
         by_years :overseas_sales, "Total overseas sales" do
-          ref "C 6"
+          ref "C 4.1"
           required
           context %(
             <p>
@@ -185,7 +185,7 @@ class QAE2014Forms
 
         by_years :total_turnover, "Total turnover (UK and overseas)" do
           classes "sub-question"
-          sub_ref "C 6.1"
+          sub_ref "C 4.2"
           type :money
           required
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -199,7 +199,7 @@ class QAE2014Forms
 
         by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
           classes "sub-question"
-          sub_ref "C 6.2"
+          sub_ref "C 4.3"
           required
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
@@ -218,7 +218,7 @@ class QAE2014Forms
 
         textarea :drops_in_turnover, "Explain any drops in total turnover or net profit, and any losses made. Sustained or unexplained losses may lead to the entry being rejected." do
           classes "sub-question js-conditional-drop-question"
-          sub_ref "C 6.3"
+          sub_ref "C 4.4"
           rows 5
           words_max 500
           conditional :trade_commercial_success, :true
@@ -226,14 +226,14 @@ class QAE2014Forms
         end
 
         options :operate_overseas, "Do you run your overseas operations as a franchise?" do
-          ref "C 9"
+          ref "C 5"
           required
           yes_no
         end
 
         textarea :operate_model_benefits, "Please explain your business model(s) and rationale for this. Describe the benefits of this business model to the UK." do
           classes "sub-question"
-          sub_ref "C 9.1"
+          sub_ref "C 5.1"
           required
           rows 5
           words_max 500
@@ -245,14 +245,14 @@ class QAE2014Forms
         end
 
         options :received_grant, "Did you receive any grant funding to support this product/service?" do
-          ref "C 10"
+          ref "C 6"
           required
           yes_no
         end
 
         textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
-          sub_ref "C 10.1"
+          sub_ref "C 6.1"
           required
           rows 5
           words_max 300
