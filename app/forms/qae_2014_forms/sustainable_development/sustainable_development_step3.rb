@@ -149,7 +149,7 @@ class QAE2014Forms
           exports :exports
         end
 
-        by_years :net_profit, "Net profit after tax but before dividends" do
+        by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
           classes "sub-question"
           sub_ref "C 5.2"
           required

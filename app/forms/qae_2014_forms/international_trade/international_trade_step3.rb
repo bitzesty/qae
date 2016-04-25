@@ -183,7 +183,7 @@ class QAE2014Forms
           drop_block_conditional
         end
 
-        by_years :total_turnover, "Total turnover (home plus overseas)" do
+        by_years :total_turnover, "Total turnover (UK and overseas)" do
           classes "sub-question"
           sub_ref "C 6.1"
           type :money
@@ -197,7 +197,7 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        by_years :net_profit, "Net profit after tax but before dividends" do
+        by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
           classes "sub-question"
           sub_ref "C 6.2"
           required
