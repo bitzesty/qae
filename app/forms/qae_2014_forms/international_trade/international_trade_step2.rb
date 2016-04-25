@@ -1,4 +1,3 @@
-
 class QAE2014Forms
   class << self
     def trade_step2
@@ -41,7 +40,7 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :trade_goods_briefly, "Briefly describe each type of goods/services you sell internationally." do
+        textarea :trade_goods_briefly, "Briefly describe each type of products/services you sell internationally." do
           sub_ref "B 1.4"
           required
           context %{
@@ -155,7 +154,7 @@ class QAE2014Forms
           words_max 300
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade in goods or services, and how you overcame them." do
+        textarea :trade_factors, "Describe any special challenges affecting your trade in products or services, and how you overcame them." do
           ref "B 5"
           required
           rows 5

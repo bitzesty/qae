@@ -138,7 +138,7 @@ class QAE2014Forms
             </p>
             <ul>
               <li>
-                direct overseas sales of all goods and services (including income from royalties, licence fees, provision of know-how etc.)
+                direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how etc.)
               </li>
               <li>
                 total export agency commissions
@@ -157,10 +157,10 @@ class QAE2014Forms
               </li>
             </ul>
             <p>
-              If applicable include your sales to and the sales by, your overseas branches or subsidiaries. For goods /services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
+              If applicable include your sales to and the sales by, your overseas branches or subsidiaries. For products /services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
             </p>
             <p>
-              The goods/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
+              The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
             <p>
               If you haven't reached your latest year-end, please use estimates to complete this question.
@@ -263,7 +263,7 @@ class QAE2014Forms
           yes_no
         end
 
-        by_years :overseas_yearly_percentage, "Indicate the yearly percentage of your goods produced overseas." do
+        by_years :overseas_yearly_percentage, "Indicate the yearly percentage of your products produced overseas." do
           classes "sub-question"
           sub_ref "C 8.1"
           required
