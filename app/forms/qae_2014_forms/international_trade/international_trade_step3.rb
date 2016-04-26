@@ -237,17 +237,17 @@ class QAE2014Forms
           required
           rows 5
           words_max 500
-          context %{
-            <p>
-             We ask this in order to help us carry out due diligence if your application is shortlisted.
-            </p>
-          }
         end
 
         options :received_grant, "Did you receive any grant funding to support this product/service?" do
           ref "C 6"
           required
           yes_no
+          context %{
+            <p>
+             We ask this in order to help us carry out due diligence if your application is shortlisted.
+            </p>
+          }
         end
 
         textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding." do

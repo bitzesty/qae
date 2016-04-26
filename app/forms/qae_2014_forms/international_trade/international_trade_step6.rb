@@ -52,6 +52,7 @@ class QAE2014Forms
           text %{
             I am happy to be contacted by the Department for Business, Innovation and Skills.
           }
+          show_ref_always true
         end
 
         confirm :entry_confirmation, "Confirmation of entry" do
@@ -68,6 +69,7 @@ class QAE2014Forms
         confirm :shortlisted_case_confirmation, "" do
           ref "F 4.1"
           required
+          show_ref_always true
           text %{
             By ticking this box, you agree that if your application is shortlisted you will supply
             verified commercial figures before the specified deadline.
