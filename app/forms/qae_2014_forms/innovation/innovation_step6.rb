@@ -50,6 +50,7 @@ class QAE2014Forms
 
         confirm :agree_being_contacted_by_department_of_business, "" do
           sub_ref "F 3.1"
+          show_ref_always true
           text %{
             I am happy to be contacted by the Department for Business, Innovation and Skills.
           }
@@ -69,6 +70,7 @@ class QAE2014Forms
         confirm :shortlisted_case_confirmation, "" do
           ref "F 4.1"
           required
+          show_ref_always true
           text %{
             By ticking this box, you agree that if your application is shortlisted you will supply
             verified commercial figures before the specified deadline.

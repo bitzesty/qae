@@ -305,6 +305,10 @@ class QAEFormBuilder
       @q.display_sub_ref_on_js_form = mode
     end
 
+    def show_ref_always(mode)
+      @q.show_ref_always = mode
+    end
+
     def required
       @q.required = true
     end
@@ -365,6 +369,7 @@ class QAEFormBuilder
                   :ref,
                   :sub_ref,
                   :display_sub_ref_on_js_form,
+                  :show_ref_always,
                   :conditions,
                   :header,
                   :header_context,
@@ -383,6 +388,7 @@ class QAEFormBuilder
       @hint = []
       @conditions = []
       @display_sub_ref_on_js_form = true
+      @show_ref_always = false
 
       self.after_create if self.respond_to?(:after_create)
     end
