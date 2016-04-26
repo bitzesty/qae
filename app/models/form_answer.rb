@@ -147,8 +147,6 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
-  delegate :submitted, to: :palace_invite, prefix: true
-
   def award_form
     QAE2014Forms.public_send(award_type) if award_type.present?
   end
@@ -276,6 +274,10 @@ class FormAnswer < ActiveRecord::Base
 
   def collaborators
     account.collaborators_with(user)
+  end
+
+  def palace_invite_submitted
+    palace_invite.try(:submitted) ? 'Yes' : 'No'
   end
 
   private
