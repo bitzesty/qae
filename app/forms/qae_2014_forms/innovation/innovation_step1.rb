@@ -2,6 +2,15 @@ class QAE2014Forms
   class << self
     def innovation_step1
       @innovation_step1 ||= proc do
+        header :company_information_header, "" do
+          context %(
+            <p>
+              We need this information to ensure we have some basic information about your organisation,
+              which will help us to undertake due diligence checks if your application is shortlisted.
+            </p>
+          )
+        end
+
         options :applying_for, "Are you applying on behalf of your:" do
           ref "A 1"
           required
@@ -22,9 +31,12 @@ class QAE2014Forms
         text :company_name, "Full/legal name of your organisation" do
           required
           ref "A 2"
-          context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses/has used.</p>
-                    )
+          context %{
+            <p>
+              If applicable, include 'trading as',
+              or any other name your organisation uses/has used.
+            </P>
+          }
         end
 
         options :principal_business, "Does your organisation operate as a principal?" do
@@ -66,8 +78,14 @@ class QAE2014Forms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context "<p>Organisations that began trading after #{AwardYear.start_trading_since} aren't eligible for this award.</p>"
-          date_max AwardYear.start_trading_since
+          context "
+            <p>
+              Organisations that began trading after #{AwardYear.start_trading_since(2)}
+              aren't eligible for this award
+              (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+            </p>
+          "
+          date_max AwardYear.start_trading_since(2)
         end
 
         options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
@@ -156,9 +174,8 @@ class QAE2014Forms
           required
           conditional :innovation_any_contributors, :yes
           conditional :innovation_joint_contributors, :no
-          option :yes, "Yes, they are aware"
-          option :no, "No, they aren't aware"
-          option :some, "Some are aware"
+          option :yes, "Yes, they are all aware"
+          option :no, "No, they are not all aware"
         end
 
         header :innovation_contributors_aware_header_no, "" do
@@ -181,13 +198,24 @@ class QAE2014Forms
           conditional :innovation_joint_contributors, :no
         end
 
-        options :innovation_joint_contributors, "Is this application part of a joint entry with any of the contributing organisation(s)?" do
+        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications" do
           classes "sub-question"
           sub_ref "A 8.2"
           required
+          conditional :innovation_contributors_aware, :no
+          rows 3
+          words_max 200
+        end
+
+        options :innovation_joint_contributors, "Is this application part of a joint entry with any of the contributing organisation(s)?" do
+          classes "sub-question"
+          sub_ref "A 8.3"
+          required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the product/service/management approach (e.g. the business marketing a product, providing a service, or using a technology is different from the unit which developed it) and they both achieved commercial success, then you can make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the product,
+              service or business model then you should make a joint entry.
+              Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
           conditional :innovation_any_contributors, :yes
@@ -196,15 +224,15 @@ class QAE2014Forms
 
         textarea :innovation_contributors, "Please enter their name(s)" do
           classes "sub-question"
-          sub_ref "A 8.3"
+          sub_ref "A 8.4"
           required
           conditional :innovation_any_contributors, :yes
           conditional :innovation_joint_contributors, :yes
-          rows 5
-          words_max 500
+          rows 2
+          words_max 100
         end
 
-        options :innovation_under_license, "Is your innovation under license from another organisation?" do
+        options :innovation_under_license, "Is your innovation under licence from another organisation?" do
           ref "A 9"
           yes_no
         end
@@ -287,7 +315,7 @@ class QAE2014Forms
         end
 
         upload :org_chart, "Upload an organisational chart (optional)." do
-          ref "A 15"
+          ref "A 14.6"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
                     )
