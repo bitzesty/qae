@@ -276,6 +276,10 @@ class FormAnswer < ActiveRecord::Base
     account.collaborators_with(user)
   end
 
+  def palace_invite_submitted
+    palace_invite.try(:submitted) ? 'Yes' : 'No'
+  end
+
   private
 
   def nominator_full_name_from_document
