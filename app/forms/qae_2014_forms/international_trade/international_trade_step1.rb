@@ -232,6 +232,14 @@ class QAE2014Forms
           yes_no
         end
 
+        options :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application?" do
+          classes "sub-question"
+          conditional :applying_for, :true
+          sub_ref "A 12.8"
+          conditional :pareent_group_excluding, "yes"
+          yes_no
+        end
+
         options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
           ref "A 13"
           required

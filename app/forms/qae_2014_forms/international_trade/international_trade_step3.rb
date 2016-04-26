@@ -109,6 +109,7 @@ class QAE2014Forms
         end
 
         header :company_financials, "Company Financials" do
+          ref "C 4"
           context %(
             <p>
               A parent company making a group entry should include the trading figures of all UK members of the group.
@@ -125,17 +126,6 @@ class QAE2014Forms
           )
           conditional :trade_commercial_success, :true
           conditional :financial_year_date_changed, :true
-        end
-
-        textarea :trade_excluded_explanation, "In questions A12.6 and A12.7  you said you are applying on behalf of a group but are excluding some member(s)'s financial figures. Please explain why." do
-          ref "C 4"
-          rows 5
-          words_max 150
-          conditional :trade_commercial_success, :true
-          conditional :financial_year_date_changed, :true
-          conditional :applying_for, "organisation"
-          conditional :parent_group_entry, "yes"
-          conditional :pareent_group_excluding, "yes"
         end
 
         by_years :overseas_sales, "Total overseas sales" do
