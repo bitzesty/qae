@@ -97,11 +97,15 @@ class Reports::PressBookList
     {
       label: "QAOAgreedPressNote",
       method: :qao_agreed_press_note
+    },
+    {
+      label: "ConfirmedPalaceAttendees",
+      method: :palace_invite_submitted
     }
   ]
 
   def initialize(year)
-    @scope = year.form_answers.where(state: ["awarded", "recommended"]).order(:id).includes(:user)
+    @scope = year.form_answers.where(state: ["awarded", "recommended"]).order(:id).includes(:user, :palace_invite)
   end
 
   private

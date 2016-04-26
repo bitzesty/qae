@@ -147,6 +147,8 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
+  delegate :submitted, to: :palace_invite, prefix: true
+
   def award_form
     QAE2014Forms.public_send(award_type) if award_type.present?
   end
