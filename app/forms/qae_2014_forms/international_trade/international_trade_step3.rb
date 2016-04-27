@@ -7,8 +7,8 @@ class QAE2014Forms
           context %{
             <p>
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
-              This section enables you to demonstrate that you have delivered outstanding
-              short term growth in the last three years, or outstanding continuous growth over six years.
+              This section enables you to demonstrate the impact that your international trade activities had
+              on your organisation's financial performance.
             </p>
           }
         end
