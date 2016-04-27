@@ -7,12 +7,57 @@ class QAE2014Forms
           <p>Please try to avoid using technical jargon in this section.</p>
                 )
 
-        options :my_entry_relates_to, "This entry relates to:" do
+        checkbox_seria :application_relate_to, "This entry relates to:" do
           ref "B 1"
           required
-          option "product service", "A product/service"
-          option "management approach", "A management approach"
-          option "both", "Both of the above"
+          context %(
+            <p>Select all that apply.</p>
+          )
+          check_options [
+            ["product", "A product"],
+            ["service", "A service"],
+            ["management_approach", "A management approach"]
+          ]
+        end
+
+        textarea :development_management_approach_briefly, "Briefly describe your product, service or management approach" do
+          classes "word-max-strict"
+          ref "B 1.1"
+          required
+          context %{
+            <p>
+              If more than one, please make sure you cover all of them.
+            </p>
+            <p>
+              This will be used in publicity material if your application is successful.
+            </p>
+            <ul>
+              <li>
+                e.g. Working with organisations to produce the highest quality printed material with the lightest environmental impact.
+              </li>
+              <li>
+                e.g. Product and ingredient certification, business services and public awareness for fair and sustainable trade.
+              </li>
+              <li>
+                e.g. Own, manage and develop environmentally friendly commercial property, focused on UK retail and London offices.
+              </li>
+            </ul>
+          }
+          rows 2
+          words_max 15
+        end
+
+        textarea :development_desc_long, "Summarise your product, service or management approach." do
+          classes "word-max-strict"
+          ref "B 1.2"
+          required
+          context %{
+            <p>
+              If more than one, please make sure you cover all of them. Include a brief description of its/their origin and development.
+            </p>
+          }
+          rows 5
+          words_max 500
         end
 
         textarea :development_desc_short, "Describe how you demonstrate leadership in terms of influencing staff and/or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers." do
@@ -55,16 +100,6 @@ class QAE2014Forms
           }
           rows 8
           words_max 750
-        end
-
-        textarea :development_desc_long, "Summarise your product/service/management approach" do
-          ref "B 3"
-          required
-          context %(
-            <p>Include a brief description of its origin and development.</p>
-                    )
-          rows 5
-          words_max 500
         end
 
         header :provide_evidence_header, "Where possible, provide evidence of your product/service/management approach's contribution to each of the dimensions of sustainable development below. If your contribution is weak in any of them, describe the relevant actions taken to improve this." do

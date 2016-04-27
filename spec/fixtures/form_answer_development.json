@@ -70,7 +70,7 @@
 "employees_relations": "1",
 "investments_details": "1",
 "licensing_agreement": "1",
-"my_entry_relates_to": "product service",
+"application_relate_to": "product",
 "part_of_joint_entry": "no",
 "organisation_type": "company",
 "registration_number": "n/a",
@@ -171,4 +171,5 @@
 "parent_or_a_holding_company": "yes",
 "parent_company": "test",
 "parent_ultimate_control": "yes",
+"development_management_approach_briefly": "test",
 "company_estimates_use": "1"}
