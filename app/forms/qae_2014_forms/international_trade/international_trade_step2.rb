@@ -177,6 +177,45 @@ class QAE2014Forms
           rows 5
           words_max 200
         end
+
+        checkbox_seria :operate_overseas, "How do you run your overseas operations?" do
+          ref "B 6"
+          context %(
+            <p>Select all that apply.</p>
+          )
+          check_options [
+            ["franchise", "As a franchise"],
+            ["other", "Other business model(s)"]
+          ]
+        end
+
+        textarea :operate_model_benefits, "Please explain your franchise and/or other business model(s) and rationale for this. Describe the benefits this brings to the UK." do
+          classes "sub-question"
+          sub_ref "B 6.1"
+          required
+          rows 5
+          words_max 500
+        end
+
+        options :received_grant, "Did you receive any grant funding to support this product/service?" do
+          ref "B 7"
+          required
+          yes_no
+          context %{
+            <p>
+             We ask this in order to help us carry out due diligence if your application is shortlisted.
+            </p>
+          }
+        end
+
+        textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding." do
+          classes "sub-question"
+          sub_ref "B 7.1"
+          required
+          rows 5
+          words_max 300
+          conditional :received_grant, "yes"
+        end
       end
     end
   end
