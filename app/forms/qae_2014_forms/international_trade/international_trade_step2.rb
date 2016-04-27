@@ -66,8 +66,11 @@ class QAE2014Forms
           words_max 15
         end
 
-        checkbox_seria :application_relate_to_header, "This entry relates to (please select all that apply):" do
+        checkbox_seria :application_relate_to_header, "This entry relates to:" do
           ref "B 2"
+          context %(
+            <p>Select all that apply.</p>
+          )
           check_options [
             ["products", "Products"],
             ["services", "Services"]
