@@ -100,14 +100,8 @@ class QAE2014Forms
           employees_question
         end
 
-        options :innovation_part_of, "How does your innovation fit within the overall business?" do
-          ref "C 4"
-          required
-          option :entire_business, "It's integral to the whole business"
-          option :single_product_or_service, "It affects a single product/service"
-        end
-
         header :company_financials, "Company Financials" do
+          ref "C 4"
           context %(
             <p>
               A parent company making a group entry should include the trading figures of all UK members of the group.
@@ -127,7 +121,7 @@ class QAE2014Forms
         end
 
         by_years :total_turnover, "Total turnover" do
-          ref "C 5"
+          ref "C 4.1"
           required
           context %(
             <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
@@ -145,7 +139,7 @@ class QAE2014Forms
 
         by_years :exports, "Of which exports" do
           classes "sub-question"
-          sub_ref "C 5.1"
+          sub_ref "C 4.2"
           required
           context %(<p>Please enter '0' if you had none.</p>)
 
@@ -162,6 +156,7 @@ class QAE2014Forms
         # UK sales = turnover - exports
         turnover_exports_calculation :uk_sales, "UK Sales" do
           classes "sub-question"
+          sub_ref "C 4.3"
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
@@ -174,7 +169,7 @@ class QAE2014Forms
 
         by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
           classes "sub-question"
-          sub_ref "C 5.2"
+          sub_ref "C 4.4"
           required
 
           type :money
@@ -193,7 +188,7 @@ class QAE2014Forms
 
         by_years :total_net_assets, "Total net assets" do
           classes "sub-question total-net-assets"
-          sub_ref "C 5.3"
+          sub_ref "C 4.5"
           required
           context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>}
 
@@ -209,7 +204,7 @@ class QAE2014Forms
 
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
-          sub_ref "C 5.4"
+          sub_ref "C 4.6"
           rows 5
           words_max 200
           conditional :innovation_performance_years, :true
@@ -217,100 +212,93 @@ class QAE2014Forms
           drop_condition_parent
         end
 
-        header :product_financials, "Product/Service Financials" do
-          ref "C 6"
-          context %(
+        options :innovation_part_of, "How does the innovation that forms the basis of this application fit within the overall business?" do
+          ref "C 5"
+          required
+          option :entire_business, "It's integral to the whole business"
+          option :single_product_or_service, "It affects a single product/service"
+          context %{
             <p>
-              If you haven't reached your latest year-end, please use estimates to complete these questions.
+              It is important that we know whether or not your innovation is the key thing your business does, or forms part of a wider approach.
+              This is so we can understand the value of your innovation in the context of your overall commercial performance.
             </p>
-          )
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
+          }
         end
 
-        by_years :units_sold, "Number of innovative units/contracts sold" do
+        header :product_financials, "Innovation Financials" do
+          ref "C 6"
+          context %{
+            <p>
+              If applicable, please provide your unit price, cost details and sales figures which explain the value of the innovation.
+            </p>
+            <p>
+              Some questions may not apply, please answer the ones that are applicable to your innovation.
+            </p>
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete this section.
+            </p>
+            <p>
+              You must enter actual financial figures in £ sterling (ignoring pennies).
+            </p>
+            <p>
+              Please do not separate your figures with commas.
+            </p>
+          }
+        end
+
+        by_years :units_sold, "Number of innovative units/contracts sold (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.1"
-          required
-
           type :number
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales, "Sales of your innovative product/service" do
+        by_years :sales, "Sales of your innovative product/service (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.2"
-          required
-
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_exports, "Of which exports" do
+        by_years :sales_exports, "Of which exports (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.3"
           context %(<p>Please enter '0' if you had none.</p>)
-          required
-
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_royalties, "Of which royalties or licenses" do
+        by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.4"
           context %(<p>Please enter '0' if you had none.</p>)
-          required
-
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_sales
         end
 
-        textarea :drops_in_sales, "Explain any drop in sales or number of units sold" do
+        textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 6.5"
           rows 5
           words_max 300
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
           drop_condition_parent
         end
 
-        by_years :avg_unit_price, "Average unit selling price/contract value" do
+        by_years :avg_unit_price, "Average unit selling price/contract value (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.6"
-          required
-
           context %(
             <p>
               If you haven't reached your latest year-end, please use estimates to complete this question.
@@ -320,28 +308,18 @@ class QAE2014Forms
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
         end
 
-        textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods." do
+        textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.7"
-          required
           rows 5
           words_max 300
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
         end
 
-        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract" do
+        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.8"
-          required
-
           context %(
             <p>
               If you haven't reached your latest year-end, please use estimates to complete this question.
@@ -351,21 +329,13 @@ class QAE2014Forms
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods." do
+        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.9"
-          required
           rows 5
           words_max 300
-          conditional :innovation_part_of, :single_product_or_service
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
