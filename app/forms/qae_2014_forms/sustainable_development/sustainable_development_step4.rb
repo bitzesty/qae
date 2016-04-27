@@ -12,9 +12,6 @@ class QAE2014Forms
               The Declaration of Corporate Responsibility is a chance for you to outline your responsible business conduct, and its social, economic and environmental impact.
             </p>
             <p>
-              You don't have to demonstrate strength in all of the areas below.
-            </p>
-            <p>
               The guidance notes below each section are not exhaustive. Answer the questions in a way that best suits your organisation.
             </p>
             <p>
@@ -24,6 +21,21 @@ class QAE2014Forms
               If you have too many initiatives, just outline the ones you think are most relevant/important.
             </p>
           )
+        end
+
+        header :declaration_and_corporate_responsibility_intro, "" do
+          classes "application-notice help-notice"
+          context %{
+            <p>
+              You may have answered some of the questions in this section in other parts of the form.
+            </p>
+            <p>
+              If you believe this is the case, you do not need to repeat the information, but make it clear by referencing other parts of the form.
+            </p>
+            <p>
+              Please use this section to give us additional information about corporate responsibility that you have not covered elsewhere in the form and would like us to see.
+            </p>
+          }
         end
 
         textarea :impact_on_society, "The impact of your business operations on society" do
