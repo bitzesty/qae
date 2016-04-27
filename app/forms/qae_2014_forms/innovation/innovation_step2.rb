@@ -15,26 +15,71 @@ class QAE2014Forms
           )
         end
 
-        textarea :innovation_desc_short, "Briefly describe your innovative product/service/initiative" do
+        checkbox_seria :application_relate_to_header, "This entry relates to:" do
           ref "B 1"
-          required
           context %(
-            <p>e.g. 'innovation in the production of injectable general anaesthetic.'</p>
-                    )
+            <p>Select all that apply.</p>
+          )
+          check_options [
+            ["product", "A product"],
+            ["service", "A service"],
+            ["business_model", "A business model"]
+          ]
+        end
+
+        textarea :innovation_desc_short, "Briefly describe your innovative product, service or business model" do
+          ref "B 1.1"
+          required
+          context %{
+            <p>
+              This summary will be used in publicity material if your application is successful.
+            </p>
+            <p>
+              e.g. Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
+            </p>
+            <p>
+              e.g. Innovative software testing tool to improve the efficiency and quality of software.
+            </p>
+            <p>
+              e.g. Innovative person centred, non-medical home care for the elderly.
+            </p>
+            <p>
+              e.g. Leadership in the design and project management of biomethane gas-to-grid connections.
+            </p>
+          }
           rows 2
           classes "word-max-strict"
           words_max 15
         end
 
-        textarea :innovation_desc_long, "Summarise your innovative product/service/initiative" do
+        textarea :innovation_desc_long, "Summarise your innovative product, service or business model" do
           classes "sub-question"
-          sub_ref "B 1.1"
+          sub_ref "B 1.2"
           required
           context %{
-            <p>Describe the product/service/initiative itself. Explain any aspect(s) you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Also explain how it fits within the overall business i.e. is it your sole product?</p>
+            <p>
+              Describe the product, service or business model itself.
+              Explain any aspect(s) you think are innovative, and why you think they are innovative.
+              Consider its uniqueness and the challenges you had to overcome.
+              Also explain how it fits within the overall business i.e. is it your sole product?
+            </p>
           }
           rows 5
           words_max 800
+        end
+
+        options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
+          ref "B 2"
+          required
+          yes_no
+        end
+
+        textarea :innovation_other_countries_it_was_developed, "Please describe in what other countries (and by what parties) was it developed. Please estimate what proportion of the innovation was developed there." do
+          sub_ref "B 2.1"
+          required
+          conditional :innovation_conceived_and_developed, :no
+          rows 5
+          words_max 500
         end
 
         textarea :innovation_external_contributors, "Please name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s)." do
