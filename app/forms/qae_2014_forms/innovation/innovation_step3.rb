@@ -16,10 +16,13 @@ class QAE2014Forms
           ref "C 1"
           required
           context %{
-            <p>Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).</p>
+            <p>
+              Your answer here will determine whether you are assessed for outstanding innovation
+              (over two years) or continuous innovation (over five years).
+            </p>
           }
-          option "2 to 4", "Outstanding performance improvements in the last 2 years"
-          option "5 plus", "Steady performance improvements in the last 5 years"
+          option "2 to 4", "Outstanding Commercial Performance: innovation has improved commercial performance over 2 years"
+          option "5 plus", "Outstanding Commercial Performance: innovation has improved commercial performance over 5 years"
           financial_date_selector({
             "2 to 4" => "2",
             "5 plus" => "5"

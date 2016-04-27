@@ -22,15 +22,12 @@ class QAE2014Forms
           )
         end
 
-        trade_commercial_success :trade_commercial_success, "" do
-          main_header %(
-            Which Award are you applying for?
-                    )
+        trade_commercial_success :trade_commercial_success, "How you would describe the impact of your international trade activities on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
-          option "3 to 5", "Outstanding Short Term Growth Award: outstanding year on year growth in the last 3 years with no dips"
-          option "6 plus", "Outstanding Continuous Growth Award: continuous year on year growth in the last 6 years with no dips"
+          option "3 to 5", "Outstanding Short Term Growth: international trade has resulted in outstanding year on year growth in the last 3 years with no dips"
+          option "6 plus", "Outstanding Continuous Growth: international trade has resulted in continuous year on year growth in the last 6 years with no dips"
           placeholder_preselected_condition :queen_award_holder_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
@@ -43,6 +40,12 @@ class QAE2014Forms
             "6 plus" => "6"
           })
           sub_category_question
+          context %{
+            <p>
+              Your answer here will determine whether you are assessed for outstanding
+              growth (over three years) or continuous growth (over six years).
+            </p>
+          }
         end
 
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
