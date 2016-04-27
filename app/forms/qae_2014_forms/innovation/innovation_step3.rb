@@ -2,11 +2,21 @@ class QAE2014Forms
   class << self
     def innovation_step3
       @innovation_step3 ||= proc do
+        header :commercial_success_info_block, "" do
+          context %{
+            <p>
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
+              This section enables you to demonstrate the impact that your innovation had on your
+              organisation's financial performance.
+            </p>
+          }
+        end
+
         header :commercial_success_intro, "" do
           classes "application-notice help-notice"
           context %(
             <p>
-              If your application is shortlisted you will have to supply verified commercial figures.
+              If your application is shortlisted you will have to supply commercial figures verified by an independent accountant within a specified deadline.
             </p>
           )
         end
@@ -34,7 +44,7 @@ class QAE2014Forms
           ref "C 2"
           required
           context %(
-            <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
+            <p>If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.</p>
                     )
           financial_date_pointer
         end
@@ -44,6 +54,12 @@ class QAE2014Forms
           sub_ref "C 2.1"
           required
           yes_no
+          context %{
+            <p>
+              We ask this so that we ensure we obtain all of the commercial figures we need to assess your application.
+              You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
+            </p>
+          }
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
@@ -72,7 +88,7 @@ class QAE2014Forms
           ref "C 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
+            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
                     )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -379,12 +395,14 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_performance, "Describe how, when, and to what extent the innovation improved the commercial performance of your business." do
+        textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, please demonstrate clearly how and when in the future they will be delivered." do
           ref "C 8"
           required
-          context %(
-            <p>e.g. new sales, cost savings, and their overall effect on turnover and profitability.</p>
-                    )
+          context %{
+            <p>
+              For example, new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
+            </p>
+          }
           rows 5
           words_max 300
         end
@@ -394,13 +412,26 @@ class QAE2014Forms
           required
           rows 5
           words_max 300
+          context %{
+            <p>
+              This should include both capital purchases, and investments, grants, and loans received,
+              as well as the cost of staff time and other non cash resources.
+            </p>
+          }
         end
 
         textarea :roi_details, "How long did it take you to recover the investment indicated above? When and how did you achieve this?" do
           classes "sub-question"
+          sub_ref "C 9.1"
           required
           rows 5
-          words_max 300
+          words_max 500
+          context %{
+            <p>
+              If your innovation is expected to recover its full costs in the future,
+              please explain how and when this will happen.
+            </p>
+          }
         end
       end
     end

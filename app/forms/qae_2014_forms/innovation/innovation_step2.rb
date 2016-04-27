@@ -17,6 +17,7 @@ class QAE2014Forms
 
         checkbox_seria :application_relate_to_header, "This entry relates to:" do
           ref "B 1"
+          required
           context %(
             <p>Select all that apply.</p>
           )

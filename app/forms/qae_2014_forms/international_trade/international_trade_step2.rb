@@ -68,6 +68,7 @@ class QAE2014Forms
 
         checkbox_seria :application_relate_to_header, "This entry relates to:" do
           ref "B 2"
+          required
           context %(
             <p>Select all that apply.</p>
           )
@@ -180,6 +181,7 @@ class QAE2014Forms
 
         checkbox_seria :operate_overseas, "How do you run your overseas operations?" do
           ref "B 6"
+          required
           context %(
             <p>Select all that apply.</p>
           )
