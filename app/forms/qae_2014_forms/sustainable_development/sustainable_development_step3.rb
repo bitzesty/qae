@@ -3,6 +3,15 @@ class QAE2014Forms
   class << self
     def development_step3
       @development_step3 ||= proc do
+        header :commercial_success_info_block, "" do
+          context %{
+            <p>
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
+              This section enables you to demonstrate the impact that your sustainable development had on your organisation's financial performance.
+            </p>
+          }
+        end
+
         header :commercial_success_intro, "" do
           classes "application-notice help-notice"
           context %(
@@ -43,6 +52,7 @@ class QAE2014Forms
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
           classes "sub-question js-financial-year-change"
+          sub_ref "C 2.1"
           required
           yes_no
           context %{
@@ -56,7 +66,7 @@ class QAE2014Forms
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
-          sub_ref "C 2.1"
+          sub_ref "C 2.2"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
@@ -68,7 +78,7 @@ class QAE2014Forms
 
         textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
-          sub_ref "C 2.2"
+          sub_ref "C 2.3"
           required
           rows 5
           words_max 100
@@ -325,25 +335,20 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
 
-        textarea :financial_comments, "Additional comments (optional)" do
+        textarea :development_performance, "What cost savings have you or your customers' businesses made as a result of the introduction of the product, service or management approach?" do
           ref "C 8"
-          rows 5
-          words_max 100
-          conditional :development_performance_years, :true
-        end
-
-        textarea :development_performance, "Explain the cost savings you or your customers' businesses made as a result of the introduction of the product/service/management approach." do
-          ref "C 9"
           required
-          context %(
-            <p>Use figures if known.</p>
-                    )
+          context %{
+            <p>
+              This is in addition to the sustainability impact you have already demonstrated in section B of this form. Please provide figures if known.
+            </p>
+          }
           rows 5
           words_max 300
         end
 
         textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach." do
-          ref "C 10"
+          ref "C 9"
           required
           context %(
             <p>
@@ -355,7 +360,7 @@ class QAE2014Forms
         end
 
         textarea :roi_details, "How long did it take you to break even? When and how was this achieved?" do
-          sub_ref "C 10.1"
+          sub_ref "C 9.1"
           classes "sub-question"
           required
           context %(
