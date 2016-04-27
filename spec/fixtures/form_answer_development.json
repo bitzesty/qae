@@ -169,4 +169,6 @@
 "company_estimated_figures": "yes",
 "why_external_organisations_contributed_your_nomination": "test",
 "parent_or_a_holding_company": "yes",
+"parent_company": "test",
+"parent_ultimate_control": "yes",
 "company_estimates_use": "1"}
