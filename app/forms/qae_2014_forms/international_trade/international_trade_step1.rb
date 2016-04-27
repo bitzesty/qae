@@ -176,48 +176,9 @@ class QAE2014Forms
           ref "A 11"
         end
 
-        header :parent_company_header, "Parent Companies" do
-          ref "A 12"
-          conditional :applying_for, :true
-        end
-
-        text :parent_company, "Name of immediate parent company" do
-          classes "sub-question"
-          sub_ref "A 12.1"
-          conditional :applying_for, "division branch subsidiary"
-        end
-
-        country :parent_company_country, "Country of immediate parent company" do
-          classes "regular-question"
-          sub_ref "A 12.2"
-          conditional :applying_for, "division branch subsidiary"
-        end
-
-        options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
-          classes "sub-question"
-          sub_ref "A 12.3"
-          conditional :applying_for, "division branch subsidiary"
-          yes_no
-        end
-
-        text :ultimate_control_company, "Name of organisation with ultimate control" do
-          classes "regular-question"
-          sub_ref "A 12.4"
-          conditional :parent_ultimate_control, :no
-          conditional :applying_for, "division branch subsidiary"
-        end
-
-        country :ultimate_control_company_country, "Country of organisation with ultimate control" do
-          classes "regular-question"
-          sub_ref "A 12.5"
-          conditional :parent_ultimate_control, :no
-          conditional :applying_for, "division branch subsidiary"
-        end
-
         options :parent_group_entry, "Are you a parent company making a group entry?" do
           classes "sub-question"
-          conditional :applying_for, :true
-          sub_ref "A 12.6"
+          ref "A 12"
           context %(
             <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
                     )
@@ -226,22 +187,57 @@ class QAE2014Forms
 
         options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
           classes "sub-question"
-          conditional :applying_for, :true
-          sub_ref "A 12.7"
+          sub_ref "A 12.1"
           conditional :parent_group_entry, "yes"
           yes_no
         end
 
-        options :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application?" do
+        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application?" do
           classes "sub-question"
-          conditional :applying_for, :true
-          sub_ref "A 12.8"
+          sub_ref "A 12.2"
           conditional :pareent_group_excluding, "yes"
+          rows 5
+          words_max 150
+        end
+
+        options :has_parent_company, "Do you have a parent or a holding company?" do
+          ref "A 13"
           yes_no
         end
 
+        text :parent_company, "Name of immediate parent company" do
+          classes "sub-question"
+          sub_ref "A 13.1"
+          conditional :has_parent_company, "yes"
+        end
+
+        country :parent_company_country, "Country of immediate parent company" do
+          classes "regular-question"
+          sub_ref "A 13.2"
+          conditional :has_parent_company, "yes"
+        end
+
+        options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
+          classes "sub-question"
+          sub_ref "A 13.3"
+          conditional :has_parent_company, "yes"
+          yes_no
+        end
+
+        text :ultimate_control_company, "Name of organisation with ultimate control" do
+          classes "regular-question"
+          sub_ref "A 13.4"
+          conditional :parent_ultimate_control, :no
+        end
+
+        country :ultimate_control_company_country, "Country of organisation with ultimate control" do
+          classes "regular-question"
+          sub_ref "A 13.5"
+          conditional :parent_ultimate_control, :no
+        end
+
         options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
-          ref "A 13"
+          ref "A 14"
           required
           yes_no
         end
@@ -249,14 +245,14 @@ class QAE2014Forms
         subsidiaries_associates_plants :trading_figures_add, "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them." do
           required
           classes "sub-question"
-          sub_ref "A 13.1"
+          sub_ref "A 14.1"
           pdf_title "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them."
           conditional :trading_figures, :yes
           details_words_max 100
         end
 
         options :export_agent, "Are you an export agent/merchant/wholesaler?" do
-          ref "A 14"
+          ref "A 15"
           required
           yes_no
           context %(
@@ -267,7 +263,7 @@ class QAE2014Forms
         end
 
         options :export_unit, "Are you an export unit?" do
-          ref "A 15"
+          ref "A 16"
           required
           yes_no
           help "What is an export unit?", %(
@@ -276,7 +272,7 @@ class QAE2014Forms
         end
 
         upload :org_chart, "Upload an organisational chart (optional)." do
-          ref "A 16"
+          ref "A 17"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
                     )
