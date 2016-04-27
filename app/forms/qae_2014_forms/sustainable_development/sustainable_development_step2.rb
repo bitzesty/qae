@@ -225,64 +225,74 @@ class QAE2014Forms
           words_max 750
         end
 
-        textarea :sector_leader_desc, "Describe how you demonstrate sector-leading sustainability performance." do
-          ref "B 6"
+        textarea :sector_leader_desc, "How does the information provided in previous answers demonstrate that you are showing sector-leading sustainability performance?" do
+          ref "B 4"
           required
           context %(
-            <p>This can include describing how you benchmark your performance against others in your sector.</p>
+            <p>Can you benchmark this  performance against other comparable organisations?</p>
                     )
           rows 5
           words_max 750
         end
 
-        textarea :name_of_external_organization_or_individual, "Please name the external organisation(s)/individual(s) that contributed to your product/service/management approach, and explain their contributions." do
-          ref "B 7"
+        textarea :name_of_external_organization_or_individual, "Please name the external organisation(s) or individual(s) that contributed to your product, service or management approach, and explain their contributions." do
+          ref "B 5"
           required
           rows 5
           words_max 500
           conditional :external_contribute_to_sustainable_product, "yes"
         end
 
-        options :another_org_licensed, "Is the product/service/management approach under license from another organisation?" do
-          ref "B 8"
+        options :another_org_licensed, "Is the product, service or management approach under licence from another organisation?" do
+          ref "B 6"
           required
           yes_no
         end
 
         textarea :licensing_agreement, "Briefly describe the licensing arrangement." do
           classes "sub-question"
-          sub_ref "B 8.1"
+          sub_ref "B 6.1"
           required
           rows 5
           words_max 100
           conditional :another_org_licensed, :yes
         end
 
-        options :grant_support, "Have you received any grant funding to support this product/service/management approach?" do
-          ref "B 9"
+        options :grant_support, "Have you received any grant funding to support this product, service or management approach?" do
+          ref "B 7"
           required
           yes_no
+          context %{
+            <p>
+              We ask this in order to help us carry out due diligence if your application is shortlisted.
+            </p>
+          }
         end
 
         textarea :grant_details, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
-          sub_ref "B 9.1"
+          sub_ref "B 7.1"
           required
           rows 5
           words_max 300
           conditional :grant_support, :yes
         end
 
-        number :innovation_years_by_applicant, "How long has the product/service/management approach been in commercial operation, production or progress?" do
-          ref "B 10"
+        date :development_was_launched_since, "Please select the date since when your product, service or management approach has been in commercial operation, production or in progress?" do
           required
-          max 100
-          unit " years"
-          style "small inline"
+          ref "B 8"
+          context "
+            <p>
+              You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)}
+              (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award)
+            </p>
+          "
+          date_max AwardYear.start_trading_since(2)
         end
 
         textarea :development_additional_comments, "Additional comments (optional)" do
           classes "sub-question"
+          sub_ref "B 8.1"
           rows 5
           words_max 200
         end

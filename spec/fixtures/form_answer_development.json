@@ -147,7 +147,6 @@
 "head_of_business_first_name": "Walter",
 "head_of_bussines_title_other": "",
 "development_performance_years": "2 to 4",
-"innovation_years_by_applicant": "4",
 "development_additional_comments": "1",
 "development_excluded_explanation": "1",
 "ultimate_control_company_country": "GB",
@@ -172,4 +171,7 @@
 "parent_company": "test",
 "parent_ultimate_control": "yes",
 "development_management_approach_briefly": "test",
+"development_was_launched_since_day": "01",
+"development_was_launched_since_month": "09",
+"development_was_launched_since_year": "2011",
 "company_estimates_use": "1"}
