@@ -2,6 +2,15 @@ class QAE2014Forms
   class << self
     def development_step1
       @development_step1 ||= proc do
+        header :company_information_header, "" do
+          context %(
+            <p>
+              We need this information to ensure we have some basic information about your organisation,
+              which will help us to undertake due diligence checks if your application is shortlisted.
+            </p>
+          )
+        end
+
         options :applying_for, "Are you applying on behalf of your:" do
           ref "A 1"
           required
@@ -67,15 +76,14 @@ class QAE2014Forms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context %(
+          context %{
             <p>
-              Organisations that began trading after #{AwardYear.start_trading_since} aren't eligible for this award.
+               Organisations that began trading after #{AwardYear.start_trading_since(2)}
+               aren't eligible for this award
+               (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
             </p>
-                    )
-          date_max AwardYear.start_trading_since
-        end
-
-        header :business_awards_header, "Business awards" do
+          }
+          date_max AwardYear.start_trading_since(2)
         end
 
         options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
@@ -163,9 +171,8 @@ class QAE2014Forms
                 "Are they aware that you're applying for this award?" do
           sub_ref "A 8.1"
           required
-          option "yes", "Yes, they are aware"
-          option "no", "No, they aren't aware"
-          option "some", "Some are aware"
+          option "yes", "Yes, they are all aware"
+          option "no", "No, they are not all aware"
           conditional :external_contribute_to_sustainable_product, "yes"
         end
 
@@ -189,24 +196,35 @@ class QAE2014Forms
           conditional :external_are_aware_about_award, "some"
         end
 
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications" do
+          sub_ref "A 8.2"
+          required
+          words_max 200
+          conditional :external_are_aware_about_award, "no"
+          rows 3
+        end
+
         options :part_of_joint_entry,
                 "Is this application part of a joint entry with any of the contributing organisation(s)?" do
           required
-          context %(
+          sub_ref "A 8.3"
+          context %{
             <p>
-              If two or more organisations made a significant contribution to the product/service/management approach, and achieved commercial success, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the product,
+              service or management approach then you should make a joint entry.
+              Each organisation should submit separate, cross-referenced, entry forms.
             </p>
-                    )
+          }
           yes_no
           conditional :external_contribute_to_sustainable_product, "yes"
         end
 
         textarea :part_of_joint_entry_names, "Please enter their name(s)" do
-          sub_ref "A 8.2"
+          sub_ref "A 8.4"
           required
           conditional :part_of_joint_entry, "yes"
-          words_max 200
-          rows 5
+          words_max 100
+          rows 2
         end
 
         address :organization_address, "Principal address of your organisation" do
@@ -239,31 +257,32 @@ class QAE2014Forms
           ref "A 12"
         end
 
-        header :parent_company_header, "Parent Companies" do
+        options :parent_or_a_holding_company, "Do you have a parent or a holding company?" do
+          required
           ref "A 13"
-          conditional :applying_for, "division branch subsidiary"
+          yes_no
         end
 
         text :parent_company, "Name of immediate parent company" do
           required
           classes "sub-question"
           sub_ref "A 13.1"
-          conditional :applying_for, "division branch subsidiary"
+          conditional :parent_or_a_holding_company, :yes
         end
 
         country :parent_company_country, "Country of immediate parent company" do
           required
           classes "regular-question"
           sub_ref "A 13.2"
-          conditional :applying_for, "division branch subsidiary"
+          conditional :parent_or_a_holding_company, :yes
         end
 
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
           required
           classes "sub-question"
           sub_ref "A 13.3"
-          conditional :applying_for, "division branch subsidiary"
           yes_no
+          conditional :parent_or_a_holding_company, :yes
         end
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
@@ -271,18 +290,18 @@ class QAE2014Forms
           classes "regular-question"
           sub_ref "A 13.4"
           conditional :parent_ultimate_control, :no
-          conditional :applying_for, "division branch subsidiary"
+          conditional :parent_or_a_holding_company, :yes
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
           sub_ref "A 13.5"
           conditional :parent_ultimate_control, :no
-          conditional :applying_for, "division branch subsidiary"
+          conditional :parent_or_a_holding_company, :yes
         end
 
         upload :org_chart, "Upload an organisational chart (optional)." do
-          ref "A 14"
+          ref "A 13.6"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
                     )
@@ -295,6 +314,7 @@ class QAE2014Forms
             </p>
           )
           max_attachments 1
+          conditional :parent_or_a_holding_company, :yes
         end
       end
     end
