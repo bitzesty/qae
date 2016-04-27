@@ -214,40 +214,6 @@ class QAE2014Forms
           conditional :trade_commercial_success, :true
           drop_condition_parent
         end
-
-        options :operate_overseas, "Do you run your overseas operations as a franchise?" do
-          ref "C 5"
-          required
-          yes_no
-        end
-
-        textarea :operate_model_benefits, "Please explain your business model(s) and rationale for this. Describe the benefits of this business model to the UK." do
-          classes "sub-question"
-          sub_ref "C 5.1"
-          required
-          rows 5
-          words_max 500
-        end
-
-        options :received_grant, "Did you receive any grant funding to support this product/service?" do
-          ref "C 6"
-          required
-          yes_no
-          context %{
-            <p>
-             We ask this in order to help us carry out due diligence if your application is shortlisted.
-            </p>
-          }
-        end
-
-        textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding." do
-          classes "sub-question"
-          sub_ref "C 6.1"
-          required
-          rows 5
-          words_max 300
-          conditional :received_grant, "yes"
-        end
       end
     end
   end
