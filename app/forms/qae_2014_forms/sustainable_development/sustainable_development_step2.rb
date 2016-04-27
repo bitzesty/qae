@@ -102,191 +102,124 @@ class QAE2014Forms
           words_max 750
         end
 
-        header :provide_evidence_header, "Where possible, provide evidence of your product/service/management approach's contribution to each of the dimensions of sustainable development below. If your contribution is weak in any of them, describe the relevant actions taken to improve this." do
-          ref "B 5"
+        header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below." do
+          ref "B 3"
+          context %{
+            <p>
+              You should demonstrate outstanding performance in at least one area.
+              If your contribution is not outstanding in all areas, please describe the actions you are taking to improve outcomes in those areas.
+            </p>
+          }
         end
 
-        textarea :environmental_contribution, "Explain how it contributes to environmental dimensions of sustainable development." do
+        textarea :environmental_contribution, "Explain how it contributes to environmental outcomes of sustainable development." do
           required
           classes "sub-question"
+          sub_ref "B 3.1"
           context %(
             <p>
-              'Environmental dimensions' means respecting the limits of the planet's environment, resources and biodiversity
-              <a href="#hidden-hint-0" class="hidden-link-for">
-                e.g. resources, efficiency, waste reduction and biological diversity/productivity.
-              </a>
+             'Environmental outcomes' means respecting the limits of the planet's environment, natural resources and biodiversity, including, where possible, improving the state of the environment.
             </p>
-          )
-          hint "", %(
-            <h3>
-              Resources
-            </h3>
             <p>
-              e.g. reducing use of fossil fuels, metals, aggregates and minerals, increasing use of renewable and recycled materials, generating or using renewable energy.
-            </p>
-
-            <h3>
-              Efficiency
-            </h3>
-            <p>
-              e.g. using materials (including water) and energy efficiently.
-            </p>
-
-            <h3>
-              Wastes, emissions and pollution
-            </h3>
-            <p>
-              e.g. reducing waste, reducing omissions of greenhouse gasesm ozone-depleters, toxic and radioactive substances, and persitent synthetics.
-            </p>
-
-            <h3>
-              Biological diversity and productivity
-            </h3>
-            <p>
-              e.g. protesting and enhancing native species and habitats, increasing use of sustainably managed sources.
-            </p>
-          )
-          rows 5
-          words_max 750
-        end
-
-        textarea :social_contribution, "Explain how it contributes to social dimensions of sustainable development." do
-          classes "sub-question"
-          required
-          context %(
-            <p>
-              'Social dimensions' means towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities
-              <a href="#hidden-hint-0" class="hidden-link-for">
-                e.g. health and safety, lifelong learning, and building strong communities.
-              </a>
-            </p>
-          )
-          hint "", %(
-            <h3>
-              Health, safety and support
-            </h3>
-            <p>
-              e.g. promoting health and safety in (global) supply chains, promoting skills support and activities to encourage healthy living, promoting access to work and services for people with special needs, contributing to local environment and infrastructure to improve safety and provide opportunities to be healthy.
-            </p>
-
-            <h3>
-              Social skills, participation and life-long learning
-            </h3>
-            <p>
-              e.g. encouraging people to be involved in sharing views and ideas and making decisions, promoting participation and employee development, increasing opportunities to learn critical skills, helping people to continue learning in their work and personal lives.
-            </p>
-
-            <h3>
-              Building strong communities
-            </h3>
-            <p>
-              e.g working in partnership with local communities, supporting community activity and volunteering, helping to reduce prejudice and promote understanding, sharing resources with community, voluntary, educational or charitable groups.
-            </p>
-          )
-          rows 5
-          words_max 750
-        end
-
-        textarea :economic_contribution, "Explain how it contributes to economic dimensions of sustainable development." do
-          classes "sub-question"
-          required
-          context %(
-            <p>
-              'Economic dimensions' means building a fair, sustainable economy which provides prosperity and opportunity for all
-              <a href="#hidden-hint-0" class="hidden-link-for">
-                e.g. productivity, socially useful activity, supporting local economies, considering sustainability when making financial and purchasing decisions.
-              </a>
-            </p>
-          )
-          hint "", %(
-            <h3>
-              Work, productive and socially useful activity
-            </h3>
-            <p>
-              e.g. creating jobs, helping people (long-term unemployed, disabled) who might otherwise be without work to contribute to society, and realise their potential.
-            </p>
-
-            <h3>
-              Finance and sustainable economy
-            </h3>
-            <p>
-              e.g. contributing to prosperity of wider local, regional and national economy, considering environmental and social impact when considering internal financial management systems and financial services bought, using purchase power to support local economy and organisations which are contributing to sustainable development.
-            </p>
-          )
-          rows 5
-          words_max 750
-        end
-
-        textarea :leadership_contribution, "Explain how it contributes to leadership dimensions of sustainable development." do
-          classes "sub-question"
-          required
-          context %(
-            <p>
-              'Leadership dimensions' means actively promoting effective, participative systems of governance in all levels of society
-              <a href="#hidden-hint-0" class="hidden-link-for">
-                e.g. promotion of sustainable development, increasing access to information, management innovation, ethical conduct.
-              </a>
-            </p>
-          )
-          hint "", %(
-            <h3>
-              Trust, access to formation, good governance and stakeholder relations
-            </h3>
-            <p>
-              e.g. improving flow of information to stakeholders, consulting with stakeholders to inform decisions, conducting ethical business and actively opposing corruption and unfair practices.
-            </p>
-
-            <h3>
-              Promotion of sustainable development
-            </h3>
-            <p>
-              e.g. using indicators, targets, policies and management processes that integrate business practices with sustainable development. Promoting sustainable development:
+              For example, you might wish to demonstrate how you and your suppliers:
             </p>
             <ul>
               <li>
-                to employees
+                Have adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
               </li>
               <li>
-                through the supply chain
+                Reduce greenhouse gas emissions and reliance on fossil fuels.
               </li>
               <li>
-                within the business sector
+                Reduce the amount of waste generated.
               </li>
               <li>
-                to local communities and to other stakeholders
+                Substitute material inputs for more environmentally sound alternatives.
               </li>
               <li>
-                in internional operations
+                Reduce energy and water consumption.
+              </li>
+              <li>
+                Protect or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
+              </li>
+              <li>
+                Participate in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
+              </li>
+              <li>
+                Undertake sustainable, i.e. green, procurement.
               </li>
             </ul>
+          )
+          rows 5
+          words_max 750
+        end
 
-            <h3>
-              Taking part in:
-            </h3>
+        textarea :social_contribution, "Explain how it contributes to social outcomes of sustainable development." do
+          classes "sub-question"
+          sub_ref "B 3.2"
+          required
+          context %(
+            <p>
+              'Social ouctomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
+            </p>
+            <p>
+              For example, you may wish to demonstrate how you:
+            </p>
             <ul>
               <li>
-                demonstration and pilot projects
+                Create products and services that deliver social value, such as positive nutritional outcomes and health and wellbeing benefits, as well as market offers that in themselves help build sustainable communities.
               </li>
               <li>
-                accredited and verified schemes
+                Promote health and safety for your staff and supply chain, and at the very least meet British Standards or their equivalent, and influence others in the sector to do similar.
               </li>
               <li>
-                benchmarking
+                Promote the wellbeing of staff including helping them to deliver skills which will be of value both inside and outside work.
               </li>
               <li>
-                business sector initiatives
+                Support local communities for example through staff volunteering or sharing of resources, premises and expertise.
               </li>
               <li>
-                local initiatives
+                Engage with local schools, colleges and universities to help increase the life chances of young people.
+              </li>
+              <li>
+                Procure food that meets British or equivalent production standards and support a healthy balanced diet.
+              </li>
+              <li>
+                Conserve any parts of your environment with historic or cultural importance.
               </li>
             </ul>
+          )
+          rows 5
+          words_max 750
+        end
 
-            <h3>
-              Management innovation
-            </h3>
+        textarea :economic_contribution, "Explain how it contributes to economic outcomes of sustainable development." do
+          classes "sub-question"
+          sub_ref "B 3.3"
+          required
+          context %(
             <p>
-              e.g. including sustainable development in organisation's missions and values, having process to address dilemmas and constraints on action in place, developing innovative ways to engage employees, local communities and stakeholders in sustainable development, developing ways to enhance the organisation's reputation by engaging with sustainable development, developing reawrds for employees with good environmental and social performance.
+             'Economic outcomes' means building a fair, sustainable economy which provides prosperity and opportunity for all, promotes innovation and encourages lifelong learning.
             </p>
+            <p>
+              For example, you may wish to demonstrate how you:
+            </p>
+            <ul>
+              <li>
+                Have implemented sustainable development practices that have helped you to create jobs, especially amongst disadvantaged groups.
+              </li>
+              <li>
+                Have created procurement practices which support the local economy.
+              <li>
+                Encourage and enable staff in your organisation and supply chain to undertake learning and development to improve their skills and life chances, including through formal routes such as apprenticeships and informal on-the-job learning.
+              </li>
+              <li>
+                Are open to new concepts in sustainable development and are finding innovative ways to improve both sustainability and the bottom line.
+              </li>
+              <li>
+                Promote sustainable construction practices.
+              </li>
+            </ul>
           )
           rows 5
           words_max 750
