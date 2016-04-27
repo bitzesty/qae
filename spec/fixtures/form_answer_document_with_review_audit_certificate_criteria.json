@@ -171,4 +171,6 @@
  "declaration_of_corporate_responsibility":"on",
  "financial_year_date_changed_explaination":"",
  "external_contribute_to_sustainable_product":"no",
+ "parent_company": "test",
+ "parent_ultimate_control": "yes",
  "name_of_external_organization_or_individual":""}

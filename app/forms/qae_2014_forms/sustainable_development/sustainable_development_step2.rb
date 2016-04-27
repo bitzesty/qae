@@ -7,43 +7,99 @@ class QAE2014Forms
           <p>Please try to avoid using technical jargon in this section.</p>
                 )
 
-        options :my_entry_relates_to, "This entry relates to:" do
+        checkbox_seria :application_relate_to, "This entry relates to:" do
           ref "B 1"
           required
-          option "product service", "A product/service"
-          option "management approach", "A management approach"
-          option "both", "Both of the above"
+          context %(
+            <p>Select all that apply.</p>
+          )
+          check_options [
+            ["product", "A product"],
+            ["service", "A service"],
+            ["management_approach", "A management approach"]
+          ]
         end
 
-        textarea :development_desc_short, "Briefly describe your product/service/management approach" do
+        textarea :development_management_approach_briefly, "Briefly describe your product, service or management approach" do
           classes "word-max-strict"
-          ref "B 2"
+          ref "B 1.1"
           required
-          context %(
-            <p>e.g. Arts Company:  “Sustainable print marketing for arts and tourism”; Energy Company:  “Management and delivery of commercial and domestic projects to tackle fuel poverty, energy efficiency and carbon reduction”.</p>
-                    )
+          context %{
+            <p>
+              If more than one, please make sure you cover all of them.
+            </p>
+            <p>
+              This will be used in publicity material if your application is successful.
+            </p>
+            <ul>
+              <li>
+                e.g. Working with organisations to produce the highest quality printed material with the lightest environmental impact.
+              </li>
+              <li>
+                e.g. Product and ingredient certification, business services and public awareness for fair and sustainable trade.
+              </li>
+              <li>
+                e.g. Own, manage and develop environmentally friendly commercial property, focused on UK retail and London offices.
+              </li>
+            </ul>
+          }
           rows 2
           words_max 15
         end
 
-        textarea :development_desc_long, "Summarise your product/service/management approach" do
-          ref "B 3"
+        textarea :development_desc_long, "Summarise your product, service or management approach." do
+          classes "word-max-strict"
+          ref "B 1.2"
           required
-          context %(
-            <p>Include a brief description of its origin and development.</p>
-                    )
+          context %{
+            <p>
+              If more than one, please make sure you cover all of them. Include a brief description of its/their origin and development.
+            </p>
+          }
           rows 5
           words_max 500
         end
 
-        textarea :development_approach, "Describe how you manage the resources and/or relationships important to your product/service/management approach." do
-          ref "B 4"
+        textarea :development_desc_short, "Describe how you demonstrate leadership in terms of influencing staff and/or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers." do
+          classes "word-max-strict"
+          ref "B 2"
           required
-          context %(
-            <p>Please provide details of any plans, policies, strategies, etc. that you have in place to guide resource and relationship management. Please identify the roles, teams, departments, etc. responsible for the management of resources and/or relationships and how they achieve successful, sustainable management of these.</p>
-                    )
-          rows 5
-          words_max 500
+          context %{
+            <p>
+              Please summarise any plans, policies, strategies, etc. that you have in place that demonstrate your leadership approach within your own organisation and which drive your relationships with your partners.
+            </p>
+
+            <p>
+              For example, you may wish to demonstrate how you:
+            </p>
+
+            <ul>
+              <li>
+                Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits, or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
+              </li>
+              <li>
+                Follow principles of good governance, openness and consultation with regards to customers, suppliers and staff.
+              </li>
+              <li>
+                Have embedded ethical business principles and, where appropriate, have actively opposed corruption and unfair practices or challenged those with a detrimental impact on the environment.
+              </li>
+              <li>
+                Systematically promote sustainable development  for example by using indicators, targets, policies and management processes to enable you to demonstrate and measure progress and success.
+              </li>
+              <li>
+                Take part in and commit to relevant accredited and verified schemes such as British Standards and ISO.
+              </li>
+              <li>
+                Create management innovation - e.g. develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
+              </li>
+            </ul>
+
+            <p>
+              Please specify the timescale over which your sustainable development performance has been or will be sustained.
+            </p>
+          }
+          rows 8
+          words_max 750
         end
 
         header :provide_evidence_header, "Where possible, provide evidence of your product/service/management approach's contribution to each of the dimensions of sustainable development below. If your contribution is weak in any of them, describe the relevant actions taken to improve this." do
