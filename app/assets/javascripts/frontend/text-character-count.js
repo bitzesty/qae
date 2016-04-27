@@ -28,16 +28,8 @@ $.fn.charcount = function() {
       $(this).closest(".char-count").addClass("char-max-shift");
       $(this).closest(".char-count").find(".char-text").append("/<span class='total-count'>" +maxlength+ "</span>");
 
-      // hard limit to word count
-      var maxlengthlimit = maxlength *0.1;
-      if (maxlengthlimit < 5) {
-        maxlengthlimit = 5;
-      }
-      // Strict limit with no extra words
-      if ($(this).closest(".word-max-strict").size() > 0) {
-        maxlengthlimit = 0;
-      }
-      $(this).attr("data-word-max-limit", (maxlengthlimit));
+      // ATM we are using only hard limits
+      $(this).attr("data-word-max-limit", 0);
     }
   });
 
