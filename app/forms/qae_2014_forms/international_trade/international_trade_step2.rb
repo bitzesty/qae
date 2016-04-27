@@ -88,6 +88,7 @@ class QAE2014Forms
           option "3", "3"
           option "4", "4"
           option "5", "5"
+          default_option "1"
         end
 
         by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Please list and briefly describe each product or services you export." do

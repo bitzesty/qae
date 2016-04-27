@@ -112,22 +112,25 @@ class QAE2014Forms
 
           option "yes", "Yes"
           option "no", "No"
+          conditional :queen_award_holder, :yes
         end
 
         text :previous_business_name, "Name used previously" do
           classes "regular-question"
           sub_ref "A 6.3"
           required
+          conditional :queen_award_holder, :yes
           conditional :business_name_changed, :yes
         end
 
-        textarea :previous_business_ref_num, "Reference number(s) used previously" do
+        textarea :previous_business_ref_num, "Please provide your previous winning application reference number(s)" do
           classes "regular-question"
           sub_ref "A 6.4"
           required
-          conditional :business_name_changed, :yes
           rows 5
           words_max 100
+          conditional :queen_award_holder, :yes
+          conditional :business_name_changed, :yes
         end
 
         options :other_awards_won, "Have you won any other awards in the past?" do
@@ -195,9 +198,10 @@ class QAE2014Forms
         textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application?" do
           classes "sub-question"
           sub_ref "A 12.2"
-          conditional :pareent_group_excluding, "yes"
           rows 5
           words_max 150
+          conditional :parent_group_entry, "yes"
+          conditional :pareent_group_excluding, "yes"
         end
 
         options :has_parent_company, "Do you have a parent or a holding company?" do
@@ -227,12 +231,14 @@ class QAE2014Forms
         text :ultimate_control_company, "Name of organisation with ultimate control" do
           classes "regular-question"
           sub_ref "A 13.4"
+          conditional :has_parent_company, "yes"
           conditional :parent_ultimate_control, :no
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
           sub_ref "A 13.5"
+          conditional :has_parent_company, "yes"
           conditional :parent_ultimate_control, :no
         end
 
