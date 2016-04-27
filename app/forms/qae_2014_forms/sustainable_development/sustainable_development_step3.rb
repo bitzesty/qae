@@ -16,13 +16,19 @@ class QAE2014Forms
           classes "js-entry-period"
           ref "C 1"
           required
-          option "2 to 4", "Outstanding achievement over 2 years"
-          option "5 plus", "Continuous achievement over 5 years"
+          option "2 to 4", "Outstanding Sustainable Development: sustainable development has improved commercial performance over 2 years "
+          option "5 plus", "Continuous Sustainable Development: sustainable development has improved commercial performance over 5 years "
           financial_date_selector({
             "2 to 4" => "2",
             "5 plus" => "5"
           })
           sub_category_question
+          context %{
+            <p>
+              Your answer here will determine whether you are assessed for outstanding sustainable
+              development (over two years) or continuous sustainable development (over five years).
+            </p>
+          }
         end
 
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
