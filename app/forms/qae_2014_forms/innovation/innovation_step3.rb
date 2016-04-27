@@ -156,9 +156,10 @@ class QAE2014Forms
         end
 
         # UK sales = turnover - exports
-        turnover_exports_calculation :uk_sales, "UK Sales" do
+        turnover_exports_calculation :uk_sales, "Of which UK sales" do
           classes "sub-question"
           sub_ref "C 4.3"
+          context %(<p>This number is automatically calculated using your total turnover and export figures</p>)
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
