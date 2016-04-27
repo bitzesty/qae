@@ -39,6 +39,7 @@ class QAE2014Forms
             "3 to 5" => "3",
             "6 plus" => "6"
           })
+          default_option "6 plus"
           sub_category_question
           context %{
             <p>
@@ -71,6 +72,7 @@ class QAE2014Forms
               You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3 or 6</span> full 12-month periods.
             </p>
           }
+          default_option "no"
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
@@ -105,9 +107,6 @@ class QAE2014Forms
           label ->(y) { "Financial year #{y}" }
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
-          conditional :trade_commercial_success, :true
-          conditional :financial_year_date_changed, :true
-
           employees_question
         end
 
@@ -127,8 +126,6 @@ class QAE2014Forms
               Please do not separate your figures with commas
             </p>
           )
-          conditional :trade_commercial_success, :true
-          conditional :financial_year_date_changed, :true
         end
 
         by_years :overseas_sales, "Total overseas sales" do
@@ -172,7 +169,6 @@ class QAE2014Forms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           first_year_min_value "100000", "Cannot be less than £100,000"
-          conditional :trade_commercial_success, :true
           drop_block_conditional
         end
 
@@ -186,7 +182,6 @@ class QAE2014Forms
           context %(
             <p>Exclude VAT, overseas taxes and, where applicable, excise duties.</p>
                     )
-          conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
         end
 
@@ -205,7 +200,6 @@ class QAE2014Forms
               Use a minus symbol to record any losses.
             </p>
           )
-          conditional :trade_commercial_success, :true
           drop_conditional :drops_in_turnover
         end
 
@@ -214,7 +208,6 @@ class QAE2014Forms
           sub_ref "C 4.4"
           rows 5
           words_max 500
-          conditional :trade_commercial_success, :true
           drop_condition_parent
         end
       end

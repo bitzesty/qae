@@ -37,6 +37,7 @@ class QAE2014Forms
             "2 to 4" => "2",
             "5 plus" => "5"
           })
+          default_option "5 plus"
           sub_category_question
         end
 
@@ -60,6 +61,7 @@ class QAE2014Forms
               You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
             </p>
           }
+          default_option "no"
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
