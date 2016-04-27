@@ -2,13 +2,13 @@
 
 .js-options-with-parent-dependency data-depends-on=question.depends_on
   h2
-    - if question.ref || question.sub_ref
-      - ref = question.ref ? question.ref : question.sub_ref
-      span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
-        span.visuallyhidden
-          = ref.to_s
-        span.todo
-          = ref.to_s
+    / - if question.ref || question.sub_ref
+    /   - ref = question.ref ? question.ref : question.sub_ref
+    /   span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
+    /     span.visuallyhidden
+    /       = ref.to_s
+    /     span.todo
+    /       = ref.to_s
     .js-option-by-preselected-condition data-preselected-condition='default' class=("display-none" if condition.present?)
       = question.main_header
     - question.placeholder_preselected_conditions.each do |c|
@@ -20,7 +20,7 @@
 
     label.selectable class=("display-none" if condition.present?)
       - if c.present?
-        input.js-trigger-autosave type="radio" name=question.input_name value=answer.value data-preselected-condition="#{c.question_suffix}_#{c.parent_question_answer_key}" checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s) *possible_read_only_ops
+        input.js-trigger-autosave type="radio" name=question.input_name value=answer.value data-preselected-condition="#{c.question_suffix}_#{c.parent_question_answer_key}" checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s || question.default_option.to_s == answer.value.to_s) *possible_read_only_ops
       - else
-        input.js-trigger-autosave type="radio" name=question.input_name value=answer.value checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s) *possible_read_only_ops
+        input.js-trigger-autosave type="radio" name=question.input_name value=answer.value checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s || question.default_option.to_s == answer.value.to_s) *possible_read_only_ops
       = answer.text
