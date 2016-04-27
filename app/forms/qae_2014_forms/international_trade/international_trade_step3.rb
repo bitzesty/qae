@@ -22,11 +22,7 @@ class QAE2014Forms
           )
         end
 
-        trade_commercial_success :trade_commercial_success, "" do
-          main_header %{
-            How you would describe the impact of your international trade activities
-            on your organisation's financial performance?
-          }
+        trade_commercial_success :trade_commercial_success, "How you would describe the impact of your international trade activities on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
