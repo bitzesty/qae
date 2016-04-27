@@ -15,40 +15,36 @@ class QAE2014Forms
           )
         end
 
-        header :trade_desc_whole_header, "Your business" do
-          ref "B 1"
-        end
-
         textarea :trade_business_as_a_whole, "Describe your business as a whole." do
-          sub_ref "B 1.1"
+          sub_ref "B 1"
           required
           rows 5
           words_max 500
         end
 
         textarea :trade_overall_growth_strategy, "Explain your overall growth strategy." do
-          sub_ref "B 1.2"
+          sub_ref "B 1.1"
           required
           rows 5
           words_max 500
         end
 
         textarea :trade_overall_importance, "Explain the overall importance of exporting to your company." do
-          sub_ref "B 1.3"
+          sub_ref "B 1.2"
           required
           rows 5
           words_max 500
         end
 
         textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction." do
-          sub_ref "B 1.4"
+          sub_ref "B 1.3"
           required
           rows 5
           words_max 500
         end
 
-        textarea :trade_goods_briefly, "Briefly describe each type of products/services you sell internationally." do
-          sub_ref "B 1.5"
+        textarea :trade_goods_briefly, "Please briefly describe all products or services that you sell internationally." do
+          sub_ref "B 1.4"
           required
           context %{
             <p>
@@ -94,9 +90,9 @@ class QAE2014Forms
           option "5", "5"
         end
 
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Please list and briefly describe the products/services you export." do
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Please list and briefly describe each product or services you export." do
           classes "sub-question word-max-strict"
-          sub_ref "B 2.1"
+          sub_ref "B 2.2"
           required
           context %(
             <p>
