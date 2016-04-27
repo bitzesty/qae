@@ -7,7 +7,7 @@ class QAE2014Forms
           classes "application-notice help-notice"
           context %(
             <p>
-              If your application is shortlisted you will have to supply verified commercial figures.
+              If your application is shortlisted you will have to supply commercial figures verified by an independent accountant within a specified deadline.
             </p>
           )
         end
@@ -35,7 +35,7 @@ class QAE2014Forms
           ref "C 2"
           required
           context %(
-            <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
+            <p>If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.</p>
                     )
           financial_date_pointer
         end
@@ -44,6 +44,12 @@ class QAE2014Forms
           classes "sub-question js-financial-year-change"
           required
           yes_no
+          context %{
+            <p>
+              We ask this so that we ensure we obtain all of the commercial figures we need to assess your application.
+              You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
+            </p>
+          }
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
@@ -72,7 +78,7 @@ class QAE2014Forms
           ref "C 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
+            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
                     )
           type :number
           label ->(y) { "Financial year #{y}" }
