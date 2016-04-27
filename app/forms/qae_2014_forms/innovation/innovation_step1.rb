@@ -303,20 +303,20 @@ class QAE2014Forms
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
           classes "regular-question"
-          sub_ref "A 14.4"
+          sub_ref "A 13.4"
           conditional :parent_ultimate_control, :no
           conditional :has_parent_company, "yes"
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
-          sub_ref "A 14.5"
+          sub_ref "A 13.5"
           conditional :parent_ultimate_control, :no
           conditional :has_parent_company, "yes"
         end
 
         upload :org_chart, "Upload an organisational chart (optional)." do
-          ref "A 14.6"
+          ref "A 15"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
                     )

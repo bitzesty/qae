@@ -185,8 +185,7 @@ class QAE2014Forms
         end
 
         textarea :innovation_additional_comments, "Additional comments (optional)" do
-          classes "sub-question"
-          sub_ref "B 11.1"
+          ref "B 12"
           rows 5
           words_max 200
           context %(

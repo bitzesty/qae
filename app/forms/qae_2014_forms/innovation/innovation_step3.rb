@@ -357,16 +357,6 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :financial_comments, "Additional comments (optional)" do
-          classes "sub-question"
-          sub_ref "C 7.2"
-          rows 5
-          words_max 100
-          conditional :innovation_part_of, :true
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-        end
-
         textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, please demonstrate clearly how and when in the future they will be delivered." do
           ref "C 8"
           required
@@ -379,7 +369,7 @@ class QAE2014Forms
           words_max 300
         end
 
-        textarea :investments_details, "Please enter details of all your investments in the innovation. *Include all investments made both during and prior to your entry period.* Also include the year(s) in which they were made." do
+        textarea :investments_details, "Please enter details of all your investments in the innovation. Include all investments made both during and prior to your entry period. Also include the year(s) in which they were made." do
           ref "C 9"
           required
           rows 5
