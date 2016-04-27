@@ -276,27 +276,28 @@ class QAE2014Forms
           ref "A 13"
         end
 
-        header :parent_company_header, "Parent Companies" do
+        options :has_parent_company, "Do you have a parent or a holding company?" do
           ref "A 14"
-          conditional :applying_for, "division branch subsidiary"
+          yes_no
+          required
         end
 
         text :parent_company, "Name of immediate parent company" do
           sub_ref "A 14.1"
           classes "sub-question"
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
         end
 
         country :parent_company_country, "Country of immediate parent company" do
           sub_ref "A 14.2"
           classes "regular-question"
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
         end
 
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
           sub_ref "A 14.3"
           classes "sub-question"
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
           yes_no
         end
 
@@ -304,14 +305,14 @@ class QAE2014Forms
           classes "regular-question"
           sub_ref "A 14.4"
           conditional :parent_ultimate_control, :no
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
           sub_ref "A 14.5"
           conditional :parent_ultimate_control, :no
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
         end
 
         upload :org_chart, "Upload an organisational chart (optional)." do
