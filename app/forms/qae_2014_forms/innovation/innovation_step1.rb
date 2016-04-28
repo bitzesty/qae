@@ -242,7 +242,7 @@ class QAE2014Forms
           words_max 100
         end
 
-        address :organization_address, "Principal address of your organisation" do
+        address :organization_address, "Trading address of your organisation" do
           required
           ref "A 11"
           sub_fields([
