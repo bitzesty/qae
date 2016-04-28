@@ -54,7 +54,7 @@ class QAE2014Forms
           required
           context %{
             <p>
-              If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.
+              If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.
               If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.
             </p>
           }
