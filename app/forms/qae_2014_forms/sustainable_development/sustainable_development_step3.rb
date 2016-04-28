@@ -156,7 +156,7 @@ class QAE2014Forms
         end
 
         # UK sales = turnover - exports
-        turnover_exports_calculation :uk_sales, "UK Sales" do
+        turnover_exports_calculation :uk_sales, "Of which UK sales" do
           classes "sub-question"
           sub_ref "C 4.3"
           label ->(y) { "Financial year #{y}" }
@@ -167,6 +167,12 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
           exports :exports
+
+          context %{
+            <p>
+              This number is automatically calculated using your total turnover and export figures.
+            </p>
+          }
         end
 
         by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
