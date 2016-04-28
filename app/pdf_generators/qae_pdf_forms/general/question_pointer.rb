@@ -2,6 +2,7 @@ class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
   include QaePdfForms::CustomQuestions::Lists
   include QaePdfForms::CustomQuestions::SupporterLists
+  include QaePdfForms::CustomQuestions::CheckboxSeria
   include FinancialTable
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
@@ -351,6 +352,8 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.indent 7.mm do
           render_list
         end
+      when QAEFormBuilder::CheckboxSeriaQuestion
+        render_checkbox_selected_values
       else
         title = q_visible? && humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
         form_pdf.render_answer_by_display(title, display)
