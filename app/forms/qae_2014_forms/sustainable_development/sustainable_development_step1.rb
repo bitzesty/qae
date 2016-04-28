@@ -205,6 +205,7 @@ class QAE2014Forms
               We recommend that you notify all the contributors to your product/service/management approach of this entry.
             </p>
           )
+          conditional :external_contribute_to_sustainable_product, "yes"
           conditional :external_are_aware_about_award, "no"
         end
 
@@ -212,6 +213,7 @@ class QAE2014Forms
           sub_ref "A 9.2"
           required
           words_max 200
+          conditional :external_contribute_to_sustainable_product, "yes"
           conditional :external_are_aware_about_award, "no"
           rows 3
         end
