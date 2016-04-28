@@ -5,9 +5,9 @@ class QAE2014Forms
         header :your_internation_trade_header, "" do
           context %(
             <p>
-              This section gives you the opportunity to present the detail of your products/services
-              nd to give us the evidence of its commercial impact on your business that will enable
-              us to assess your application.
+              This section gives you the opportunity to present the detail of your products or services
+              that you export and to give us the evidence of their commercial impact on your business
+              that will enable us to assess your application.
             </p>
             <p>
               Please try to avoid using technical jargon in this section.
