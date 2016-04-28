@@ -167,7 +167,6 @@ class QAE2014Forms
             </p>
           }
           yes_no
-          conditional :external_contribute_to_sustainable_product, "yes"
         end
 
         textarea :part_of_joint_entry_names, "Please enter their name(s)" do
@@ -219,7 +218,7 @@ class QAE2014Forms
 
         address :organization_address, "Principal address of your organisation" do
           required
-          ref "A 9"
+          ref "A 10"
           sub_fields([
             { building: "Building" },
             { street: "Street" },
@@ -232,45 +231,45 @@ class QAE2014Forms
 
         text :org_telephone, "Main telephone number" do
           required
-          ref "A 10"
+          ref "A 11"
           style "small"
         end
 
         text :website_url, "Website Address" do
-          ref "A 11"
+          ref "A 12"
           style "large"
           form_hint "e.g. www.example.com"
         end
 
         sic_code_dropdown :sic_code, "SIC code" do
           required
-          ref "A 12"
+          ref "A 13"
         end
 
         options :parent_or_a_holding_company, "Do you have a parent or a holding company?" do
           required
-          ref "A 13"
+          ref "A 14"
           yes_no
         end
 
         text :parent_company, "Name of immediate parent company" do
           required
           classes "sub-question"
-          sub_ref "A 13.1"
+          sub_ref "A 14.1"
           conditional :parent_or_a_holding_company, :yes
         end
 
         country :parent_company_country, "Country of immediate parent company" do
           required
           classes "regular-question"
-          sub_ref "A 13.2"
+          sub_ref "A 14.2"
           conditional :parent_or_a_holding_company, :yes
         end
 
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
           required
           classes "sub-question"
-          sub_ref "A 13.3"
+          sub_ref "A 14.3"
           yes_no
           conditional :parent_or_a_holding_company, :yes
         end
@@ -278,20 +277,20 @@ class QAE2014Forms
         text :ultimate_control_company, "Name of organisation with ultimate control" do
           required
           classes "regular-question"
-          sub_ref "A 13.4"
+          sub_ref "A 14.4"
           conditional :parent_ultimate_control, :yes
           conditional :parent_or_a_holding_company, :yes
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
-          sub_ref "A 13.5"
+          sub_ref "A 14.5"
           conditional :parent_ultimate_control, :yes
           conditional :parent_or_a_holding_company, :yes
         end
 
         upload :org_chart, "Upload an organisational chart (optional)." do
-          ref "A 14"
+          ref "A 15"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
                     )
