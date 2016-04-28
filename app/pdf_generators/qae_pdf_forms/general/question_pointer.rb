@@ -391,6 +391,12 @@ class QaePdfForms::General::QuestionPointer
 
           form_pdf.render_text subsidiary_text,
                                inline_format: true
+
+          desc = subsidiary[3]
+          if desc.present?
+            form_pdf.render_text "#{ANSWER_FONT_START} #{desc} #{ANSWER_FONT_END}",
+                                 inline_format: true
+          end
         end
       end
     else
@@ -591,5 +597,9 @@ class QaePdfForms::General::QuestionPointer
         "£#{entry[:value]}" if entry[:value] != "-"
       end
     end
+  end
+
+  def render_or_undefined(str)
+    str || FormPdf::UNDEFINED_TITLE
   end
 end

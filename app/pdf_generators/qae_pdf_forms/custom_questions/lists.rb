@@ -107,8 +107,9 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["name"].present?
       [
         prepared_item["name"],
-        prepared_item["location"].present? ? prepared_item["location"] : FormPdf::UNDEFINED_TITLE,
-        prepared_item["employees"].present? ? prepared_item["employees"] : FormPdf::UNDEFINED_TITLE
+        render_or_undefined(prepared_item["location"]),
+        render_or_undefined(prepared_item["employees"]),
+        render_or_undefined(prepared_item["description"])
       ]
     end
   end
