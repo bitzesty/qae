@@ -3,9 +3,16 @@ class QAE2014Forms
   class << self
     def development_step2
       @development_step2 ||= proc do
-        context %(
-          <p>Please try to avoid using technical jargon in this section.</p>
-                )
+        header :development_b_section_header, "" do
+          context %{
+            <p>
+              This section gives you the opportunity to present the detail of your product, service or management approach and to give us the evidence about your activities, leadership and achievements that will enable us to assess your application.
+            </p>
+            <p>
+              Please try to avoid using technical jargon in this section.
+            </p>
+          }
+        end
 
         checkbox_seria :application_relate_to, "This entry relates to:" do
           ref "B 1"
