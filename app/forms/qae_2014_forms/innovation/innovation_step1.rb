@@ -75,6 +75,15 @@ class QAE2014Forms
           style "small"
         end
 
+        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
+          required
+          ref "A 4.2"
+          context %(
+            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
+                    )
+          style "small"
+        end
+
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
