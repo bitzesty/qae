@@ -132,7 +132,7 @@
 "invoicing_unit_relations": "",
 "organization_address_region": "East",
 "organization_address_street": "1",
-"ultimate_control_company": "",
+"ultimate_control_company": "test",
 "financial_year_date_month": "1",
 "part_of_joint_entry_names": "",
 "previous_business_ref_num": "",
