@@ -160,7 +160,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              'Social ouctomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
+              'Social outcomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
             </p>
             <p>
               For example, you may wish to demonstrate how you:
