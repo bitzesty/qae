@@ -12,6 +12,8 @@ class FormController < ApplicationController
   ]
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
   before_action :check_trade_count_limit, only: :new_international_trade_form
+  before_action :check_development_count_limit, only: :new_sustainable_development_form
+
   before_action do
     allow_assessor_access!(@form_answer)
   end
@@ -305,9 +307,17 @@ class FormController < ApplicationController
   end
 
   def check_trade_count_limit
-    if current_account.has_trade_award_in_this_year?
+    check_applications_limit(:trade)
+  end
+
+  def check_development_count_limit
+    check_applications_limit(:development)
+  end
+
+  def check_applications_limit(type_of_award)
+    if current_account.has_award_in_this_year?(type_of_award)
       redirect_to dashboard_url, flash: {
-        alert: "You can not submit more than one trade form per year"
+        alert: "You can not submit more than one #{type_of_award} form per year!"
       }
     end
   end
