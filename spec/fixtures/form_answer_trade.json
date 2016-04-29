@@ -148,8 +148,8 @@
 "agree_being_contacted_by_department_of_business": "on",
 "operate_model_benefits": "test",
 "trade_business_as_a_whole": "test",
-"application_relate_to_header": "products",
-"operate_overseas": "other",
+"application_relate_to_header": "[\"{\\\"type\\\":\\\"products\\\"}\"]",
+"operate_overseas": "[\"{\\\"type\\\":\\\"other\\\"}\"]",
 "parent_company": "test",
 "parent_ultimate_control": "yes",
 "agree_being_contacted_about_issues_not_related_to_application": "on"}

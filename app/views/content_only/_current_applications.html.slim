@@ -23,6 +23,7 @@
             p
               - if award.submitted?
                 ' Submitted
+                = render "content_only/past_applications/download_pdf_link", award: award
               - else
                 ' In progress
                 / TODO fix progress percentage
