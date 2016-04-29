@@ -306,22 +306,6 @@ class FormController < ApplicationController
     end
   end
 
-  def check_trade_count_limit
-    check_applications_limit(:trade)
-  end
-
-  def check_development_count_limit
-    check_applications_limit(:development)
-  end
-
-  def check_applications_limit(type_of_award)
-    if current_account.has_award_in_this_year?(type_of_award)
-      redirect_to dashboard_url, flash: {
-        alert: "You can not submit more than one #{type_of_award} form per year!"
-      }
-    end
-  end
-
   def nickname
     params[:nickname].presence
   end
