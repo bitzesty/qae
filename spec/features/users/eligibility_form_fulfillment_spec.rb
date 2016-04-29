@@ -42,7 +42,7 @@ describe "Eligibility forms" do
       click_button("Save and start eligibility")
       form_choice(["Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes"])
 
-      fill_in("How many innovative products/services/initiatives do you have?", with: 2)
+      fill_in("How many innovative products, services or business models do you have?", with: 2)
       click_button "Continue"
       form_choice("Yes")
       form_choice("Yes")
