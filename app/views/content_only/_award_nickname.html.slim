@@ -41,25 +41,7 @@
             ' applications
           ' up to this date.
 
-  br
-
-  fieldset.question-block
-    h2 = label_tag :nickname, "Please choose a reference for this #{award_type == 'promotion' ? 'nomination' : 'application'}:"
-    p.question-context
-      - if award_type == "promotion"
-        ' This is for your own use. It will appear on the Applications page. Once chosen, the reference is permanent.
-      - else
-        ' This is for use by you and your collaborators. It will appear on the Applications page. Once chosen, your reference is permanent.
-
-    .question-group
-      = text_field_tag :nickname, "", autocomplete: "off", type: "text", class: "big medium"
-
-      p.hint
-        - if award_type == "promotion"
-          ' e.g. “Nomination of John Smith”
-        - else
-          ' e.g. “Smith and Sons App #2”
-      .clear
+  / =# render "content_only/award_nickname_block", award_type: award_type
 
   p#get-started.get-started.group
     = submit_tag "Save and start eligibility", class: "button", rel: "external"
