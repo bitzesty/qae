@@ -218,20 +218,11 @@ class QAE2014Forms
           # conditional :innovation_joint_contributors, :no
         end
 
-        header :innovation_contributors_aware_header_some, "" do
-          classes "application-notice help-notice if-no-js-hide"
-          context %(
-            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
-                    )
-          conditional :innovation_any_contributors, :yes
-          conditional :innovation_contributors_aware, :some
-          conditional :innovation_joint_contributors, :no
-        end
-
         textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications" do
           classes "sub-question"
           sub_ref "A 9.2"
           required
+          conditional :innovation_any_contributors, :yes
           conditional :innovation_contributors_aware, :no
           rows 3
           words_max 200
