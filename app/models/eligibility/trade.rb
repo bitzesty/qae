@@ -4,6 +4,7 @@ class Eligibility::Trade < Eligibility
 
   validates :qae_for_trade_award_year,
             presence: true,
+            not_winner_in_last_year: true,
             if: proc { current_holder_of_qae_for_trade? && (!current_step || current_step == :qae_for_trade_award_year) }
 
   property :sales_above_100_000_pounds,
