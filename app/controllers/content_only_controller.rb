@@ -36,6 +36,9 @@ class ContentOnlyController < ApplicationController
 
   before_action :clean_flash, only: [:sign_up_complete]
 
+  before_action :check_trade_count_limit, only: :apply_international_trade_award
+  before_action :check_development_count_limit, only: :apply_sustainable_development_award
+
   expose(:form_answer) do
     current_user.form_answers.find(params[:id])
   end
