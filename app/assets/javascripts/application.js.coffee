@@ -572,14 +572,26 @@ jQuery ->
   if $(".trade-awarded-input").size() > 0
     $(".trade-awarded-input").bind "change", ->
       lowest_year = "9999"
+      last_year = "2000"
+      taInfo = $("#trade-awarded-info")
+      lyInfo = $("#trade-awarded-last-year-info")
       $(".trade-awarded-input option").each ->
-        if $(this).attr("value") != ""
-          if parseInt(lowest_year) > parseInt($(this).attr("value"))
-            lowest_year = $(this).attr("value")
-      if $(this).val().indexOf(lowest_year) == -1
-        $("#trade-awarded-info").removeClass("visuallyhidden")
+        this_year = $(this).attr("value")
+        if this_year != ""
+          if parseInt(lowest_year) > parseInt(this_year)
+            lowest_year = this_year
+          if parseInt(last_year) < parseInt(this_year)
+            last_year = this_year
+      if $(this).val() == last_year
+        lyInfo.removeClass("visuallyhidden")
+        taInfo.addClass("visuallyhidden")
+      else if $(this).val().indexOf(lowest_year) == -1
+        taInfo.removeClass("visuallyhidden")
+        lyInfo.addClass("visuallyhidden")
       else
-        $("#trade-awarded-info").addClass("visuallyhidden")
+        taInfo.addClass("visuallyhidden")
+        lyInfo.addClass("visuallyhidden")
+    $(".trade-awarded-input").trigger "change"
 
   # Show the eligibility failure contact message
   if $("#basic-eligibility-failure-submit").size() > 0
