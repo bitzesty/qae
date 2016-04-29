@@ -6,7 +6,9 @@ module TriggerAtDecorator
     return PLACEHOLDER unless object.trigger_at
 
     trigger_on = object.trigger_at.strftime("%-d %b %Y")
-    trigger_at = object.trigger_at.strftime("%k:%M")
+    trigger_at = object.trigger_at.strftime("%-l:%M%P")
+    trigger_at = "midnight" if object.trigger_at == object.trigger_at.midnight
+    trigger_at = "midday" if object.trigger_at == object.trigger_at.midday
 
     h.content_tag(:strong, trigger_on) + " at #{trigger_at}".html_safe
   end
