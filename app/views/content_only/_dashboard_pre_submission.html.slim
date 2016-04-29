@@ -22,10 +22,10 @@
 
           / = render "apply_to_promotion_award_block"
 
-  .related-positioning.related-positioning-no-header
-    .related-container.hidden
-      .related#related
-        - if submission_deadline && submission_deadline.trigger_at
+  - if submission_deadline && submission_deadline.trigger_at
+    .related-positioning.related-positioning-no-header
+      .related-container
+        .related#related
           .highlighted-event
             p
               ' Submission deadline

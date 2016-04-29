@@ -7,8 +7,8 @@ module TriggerAtDecorator
 
     trigger_on = object.trigger_at.strftime("%-d %b %Y")
     trigger_at = object.trigger_at.strftime("%-l:%M%P")
-    trigger_at = "midnight" if object.trigger_at == object.trigger_at.midnight
-    trigger_at = "midday" if object.trigger_at == object.trigger_at.midday
+    trigger_at = "midnight" if midnight?
+    trigger_at = "midday" if midday?
 
     h.content_tag(:strong, trigger_on) + " at #{trigger_at}".html_safe
   end
@@ -26,5 +26,15 @@ module TriggerAtDecorator
     str_format = str_format + " %Y" if format.present? && format == "with_year"
 
     object.trigger_at.strftime(str_format)
+  end
+
+  private
+
+  def midday?
+    object.trigger_at == object.trigger_at.midday
+  end
+
+  def midnight?
+    object.trigger_at == object.trigger_at.midnight
   end
 end
