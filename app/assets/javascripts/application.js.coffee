@@ -575,6 +575,7 @@ jQuery ->
       last_year = "2000"
       taInfo = $("#trade-awarded-info")
       lyInfo = $("#trade-awarded-last-year-info")
+
       $(".trade-awarded-input option").each ->
         this_year = $(this).attr("value")
         if this_year != ""
@@ -582,10 +583,13 @@ jQuery ->
             lowest_year = this_year
           if parseInt(last_year) < parseInt(this_year)
             last_year = this_year
+
+      index_res = $(this).val().indexOf(lowest_year)
+
       if $(this).val() == last_year
         lyInfo.removeClass("visuallyhidden")
         taInfo.addClass("visuallyhidden")
-      else if $(this).val().indexOf(lowest_year) == -1
+      else if $(this).val().length > 1 && (index_res == -1 || index_res == 0)
         taInfo.removeClass("visuallyhidden")
         lyInfo.addClass("visuallyhidden")
       else
