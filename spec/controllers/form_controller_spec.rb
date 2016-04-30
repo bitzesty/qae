@@ -81,14 +81,14 @@ describe FormController do
           sales_above_100_000_pounds: "yes",
           any_dips_over_the_last_three_years: true,
           current_holder_of_qae_for_trade: true,
-          qae_for_trade_award_year: (award_year.year - 1).to_s
+          qae_for_trade_award_year: (award_year.year - 2).to_s
         )
       end
 
       it "adds award if it is 5 or less years old" do
         get :edit_form, id: form_answer.id
 
-        expect(form_answer.reload.document["queen_award_holder_details"]).to eq([{"category" => "international_trade", "year" => (award_year.year - 1).to_s}])
+        expect(form_answer.reload.document["queen_award_holder_details"]).to eq([{"category" => "international_trade", "year" => (award_year.year - 2).to_s}])
         expect(form_answer.document["queen_award_holder"]).to eq("yes")
       end
 
