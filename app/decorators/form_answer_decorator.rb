@@ -243,7 +243,7 @@ class FormAnswerDecorator < ApplicationDecorator
   def last_state_updated_by
     transition = object.state_machine.last_transition
     if transition.present? && transition.transitable
-      time = transition.created_at.try(:strftime, "%e %b %Y at %H:%M")
+      time = transition.created_at.try(:strftime, "%e %b %Y at %-l:%M%P")
       "Updated by #{transition.transitable.decorate.full_name} - #{time}"
     end
   end
