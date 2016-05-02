@@ -344,6 +344,10 @@ window.FormValidation =
         return
 
   validateDropBlockCondition: (question) ->
+
+    if $("[name='form[financial_year_date_changed]']:checked").val() is "yes"
+      return
+
     drop = false
     last_val = 0
 

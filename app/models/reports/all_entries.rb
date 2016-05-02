@@ -84,14 +84,6 @@ class Reports::AllEntries
       method: :employees
     },
     {
-      label: "BusinessSector",
-      method: :business_sector
-    },
-    {
-      label: "BusinessSectorOther",
-      method: :business_sector_other
-    },
-    {
       label: "CompanyRegNo",
       method: :business_reg_no
     },

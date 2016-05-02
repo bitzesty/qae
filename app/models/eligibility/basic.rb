@@ -4,7 +4,12 @@ class Eligibility::Basic < Eligibility
 
   property :based_in_uk,
             boolean: true,
-            label: "Is your organisation based in the UK?",
+            label: "Is your organisation based in the UK (including the Channel Islands and the Isle of Man)?",
+            accept: :true
+
+  property :do_you_file_company_tax_returns,
+            boolean: true,
+            label: "Do you file your Company Tax Returns with HM Revenue and Customs (HMRC)?",
             accept: :true
 
   property :has_management_and_two_employees,

@@ -1,10 +1,10 @@
 .question-body
   p.question-context
-    ' For this question a 'dip' is any annual drop in overseas sales.
+    == @eligibility.class.hint(step)
   p.question-context
-    ' There are two types of entry in International Trade in which you must show either:
+    ' You can choose to be assessed for outstanding growth (over three years) or continuous growth (over six years), depending if your international trade has resulted in:
   ul.question-context
-    li Steep year on year growth (without dips) in overseas sales in the last 3 years
-    li Substantial year on year growth (without dips) in overseas sales in the last 6 years
+    li Outstanding year on year growth in the last 3 years with no dips
+    li Continuous year on year growth in the last 6 years with no dips
   = f.input :any_dips_over_the_last_three_years, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
 span.clear

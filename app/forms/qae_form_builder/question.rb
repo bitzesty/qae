@@ -44,11 +44,8 @@ class QAEFormBuilder
     end
 
     def limit_with_buffer(limit)
-      if limit > 15
-        (limit + limit * 0.1).to_i + 1
-      else
-        limit
-      end
+      # ATM we are using hard limits (0 allowance)
+      limit
     end
   end
 
@@ -301,6 +298,14 @@ class QAEFormBuilder
       @q.sub_ref = id
     end
 
+    def display_sub_ref_on_js_form(mode)
+      @q.display_sub_ref_on_js_form = mode
+    end
+
+    def show_ref_always(mode)
+      @q.show_ref_always = mode
+    end
+
     def required
       @q.required = true
     end
@@ -360,6 +365,8 @@ class QAEFormBuilder
                   :form_hint,
                   :ref,
                   :sub_ref,
+                  :display_sub_ref_on_js_form,
+                  :show_ref_always,
                   :conditions,
                   :header,
                   :header_context,
@@ -377,6 +384,9 @@ class QAEFormBuilder
       @help = []
       @hint = []
       @conditions = []
+      @display_sub_ref_on_js_form = true
+      @show_ref_always = false
+
       self.after_create if self.respond_to?(:after_create)
     end
 

@@ -112,8 +112,6 @@ en:
           sales_royalties: Royalties/Licences (£)
           avg_unit_price: Avg. selling price (£)
           avg_unit_cost_self: Unit costs (£)
-          total_imported_cost: Total Imported Cost
-          overseas_yearly_percentage: Overseas Yearly Percentage
         uk_sales_row:
           uk_sales: UK sales (£)
         benchmarks:

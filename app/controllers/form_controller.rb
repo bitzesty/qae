@@ -12,6 +12,8 @@ class FormController < ApplicationController
   ]
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
   before_action :check_trade_count_limit, only: :new_international_trade_form
+  before_action :check_development_count_limit, only: :new_sustainable_development_form
+
   before_action do
     allow_assessor_access!(@form_answer)
   end
@@ -301,14 +303,6 @@ class FormController < ApplicationController
     @attachments = @form_answer.form_answer_attachments.inject({}) do |r, attachment|
       r[attachment.id] = attachment
       r
-    end
-  end
-
-  def check_trade_count_limit
-    if current_account.has_trade_award_in_this_year?
-      redirect_to dashboard_url, flash: {
-        alert: "You can not submit more than one trade form per year"
-      }
     end
   end
 

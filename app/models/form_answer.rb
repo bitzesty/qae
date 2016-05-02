@@ -346,7 +346,15 @@ class FormAnswer < ActiveRecord::Base
       validator = FormAnswerValidator.new(self)
 
       unless validator.valid?
-        errors.add(:base, "Answers invalid")
+
+        if Rails.env.test?
+          # Better output in Test env
+          # so that devs can easily detect the reasons of issues!
+          errors.add(:base, "Answers invalid! Errors: #{validator.errors.inspect}")
+        else
+          errors.add(:base, "Answers invalid")
+        end
+
         self.validator_errors = validator.errors
       end
     end

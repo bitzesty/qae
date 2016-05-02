@@ -21,7 +21,7 @@ module QaePdfForms::CustomQuestions::Lists
     "Details"
   ]
   TRADE_GOODS_AND_SERVICES_HEADERS = [
-    "Good/Service",
+    "Product/Service",
     "% of your total overseas trade"
   ]
   UNDEFINED_CELL_VALUE = "Undefined"
@@ -107,8 +107,9 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["name"].present?
       [
         prepared_item["name"],
-        prepared_item["location"].present? ? prepared_item["location"] : FormPdf::UNDEFINED_TITLE,
-        prepared_item["employees"].present? ? prepared_item["employees"] : FormPdf::UNDEFINED_TITLE
+        render_or_undefined(prepared_item["location"]),
+        render_or_undefined(prepared_item["employees"]),
+        render_or_undefined(prepared_item["description"])
       ]
     end
   end

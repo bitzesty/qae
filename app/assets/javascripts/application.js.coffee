@@ -134,7 +134,7 @@ jQuery ->
     # Conditional latest year
     # If from October to December -> then previous year
     # If from January to September -> then current year
-    if fy_month >= 10
+    if fy_month >= 9 && fy_day >= 3
       fy_year = parseInt(fy_year) - 1
 
     # Updates the latest changed financial year input
@@ -145,7 +145,7 @@ jQuery ->
     $(".js-financial-year-changed-dates .js-fy-entries").each ->
       parent_fy = $(this).parent().find(".js-fy-entries")
       this_fy_year = fy_year - (parent_fy.size() - parent_fy.index($(this)) - 1)
-      $(this).find("input.js-fy-year").val(this_fy_year).attr("disabled", "disabled")
+      $(this).find("input.js-fy-year").val(this_fy_year)
     fy_latest_changed_input.find("input").attr("disabled", "disabled")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)
 
@@ -195,7 +195,7 @@ jQuery ->
             $(this).find(".js-year-text").text("#{pre_text} #{fy_day}/#{fy_month}/#{fy_year}")
 
   updateYearEndInput()
-  $(".js-financial-year-changed-dates input, .js-financial-year select").change () ->
+  $(".js-financial-year select").change () ->
     updateYearEndInput()
   $(".js-financial-year-latest").closest(".question-block").next().find("input").change () ->
     updateYearEnd()
@@ -572,14 +572,30 @@ jQuery ->
   if $(".trade-awarded-input").size() > 0
     $(".trade-awarded-input").bind "change", ->
       lowest_year = "9999"
+      last_year = "2000"
+      taInfo = $("#trade-awarded-info")
+      lyInfo = $("#trade-awarded-last-year-info")
+
       $(".trade-awarded-input option").each ->
-        if $(this).attr("value") != ""
-          if parseInt(lowest_year) > parseInt($(this).attr("value"))
-            lowest_year = $(this).attr("value")
-      if $(this).val().indexOf(lowest_year) == -1
-        $("#trade-awarded-info").removeClass("visuallyhidden")
+        this_year = $(this).attr("value")
+        if this_year != ""
+          if parseInt(lowest_year) > parseInt(this_year)
+            lowest_year = this_year
+          if parseInt(last_year) < parseInt(this_year)
+            last_year = this_year
+
+      index_res = $(this).val().indexOf(lowest_year)
+
+      if $(this).val() == last_year
+        lyInfo.removeClass("visuallyhidden")
+        taInfo.addClass("visuallyhidden")
+      else if $(this).val().length > 1 && (index_res == -1 || index_res == 0)
+        taInfo.removeClass("visuallyhidden")
+        lyInfo.addClass("visuallyhidden")
       else
-        $("#trade-awarded-info").addClass("visuallyhidden")
+        taInfo.addClass("visuallyhidden")
+        lyInfo.addClass("visuallyhidden")
+    $(".trade-awarded-input").trigger "change"
 
   # Show the eligibility failure contact message
   if $("#basic-eligibility-failure-submit").size() > 0

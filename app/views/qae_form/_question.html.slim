@@ -6,12 +6,12 @@
 
 fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=("question-has-errors" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
   = condition_divs question do
-    - if question.title != ""
+    - if question.title != "" || question.show_ref_always.present?
       label for="q_#{question.key}"
         h2
           - if question.ref || question.sub_ref
             - ref = question.ref ? question.ref : question.sub_ref
-            span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref}"
+            span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
               span.visuallyhidden
                 = ref.to_s
               span.todo
@@ -27,7 +27,7 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
           label for="q_#{question.key}"
             h2
               - ref = question.ref ? question.ref : question.sub_ref
-              span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref}"
+              span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
                 span.visuallyhidden
                   = ref.to_s
                 span.todo

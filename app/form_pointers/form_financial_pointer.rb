@@ -26,10 +26,6 @@ class FormFinancialPointer
     :trade,
     :promotion
   ]
-  TRADE_OPTIONAL_OPS = [
-    :total_imported_cost,
-    :overseas_yearly_percentage
-  ]
 
   def initialize(form_answer, options={})
     @form_answer = form_answer
@@ -60,8 +56,6 @@ class FormFinancialPointer
         uk_sales_data = UkSalesCalculator.new(fetched).data
         fetched += [UkSalesCalculator.new(fetched).data] if uk_sales_data.present?
       end
-
-      add_missing_trade_items(fetched) if need_to_populate_missing_trade_ops?
 
       fetched
     end
@@ -264,46 +258,6 @@ class FormFinancialPointer
   def average_growth_for(form_answer, year)
     growth = form_answer.average_growth_for(year)
     growth || "-"
-  end
-
-  def need_to_populate_missing_trade_ops?
-    options[:financial_summary_view].present? &&
-    form_answer.trade?
-  end
-
-  def add_missing_trade_items(fetched)
-    # For International Trade, always display the two optional fields:
-    # Total Imported Cost and Overseas Yearly Percentage
-    # in the financial summary and audit certificate, even if blank.
-
-    years_length = get_length(fetched.first)
-
-    TRADE_OPTIONAL_OPS.each do |option|
-      option_data = fetched.detect do |el|
-        el.has_key?(option)
-      end
-
-      if option_data.blank?
-        option_data_hash = {}
-        option_data_values = []
-
-        years_length.times do |i|
-          option_data_values << {
-            name: "#{option}_#{i + 1}of#{years_length}",
-            value: ""
-          }
-        end
-
-        option_data_hash[option] = option_data_values
-
-        if option == :total_imported_cost &&
-           fetched.detect { |el| el.has_key?(:overseas_yearly_percentage) }.present?
-          fetched.insert(-2, option_data_hash)
-        else
-          fetched << option_data_hash
-        end
-      end
-    end
   end
 
   private

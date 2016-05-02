@@ -2,6 +2,15 @@ class QAE2014Forms
   class << self
     def innovation_step1
       @innovation_step1 ||= proc do
+        header :company_information_header, "" do
+          context %(
+            <p>
+              We need this information to ensure we have some basic information about your organisation,
+              which will help us to undertake due diligence checks if your application is shortlisted.
+            </p>
+          )
+        end
+
         options :applying_for, "Are you applying on behalf of your:" do
           ref "A 1"
           required
@@ -22,9 +31,12 @@ class QAE2014Forms
         text :company_name, "Full/legal name of your organisation" do
           required
           ref "A 2"
-          context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses.</p>
-                    )
+          context %{
+            <p>
+              If applicable, include 'trading as',
+              or any other name your organisation uses/has used.
+            </P>
+          }
         end
 
         options :principal_business, "Does your organisation operate as a principal?" do
@@ -47,11 +59,27 @@ class QAE2014Forms
           rows 5
         end
 
-        text :registration_number, "Company/Charity Registration Number" do
+        options :organisation_type, "Are you a company or charity?" do
           required
           ref "A 4"
+          option "company", "Company"
+          option "charity", "Charity"
+        end
+
+        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
+          required
+          ref "A 4.1"
           context %(
-            <p>If you don't have a Company/Charity Registration Number please enter 'N/A'. If you're an unregistered subsidiary, please enter your parent company's number.</p>
+            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
+                    )
+          style "small"
+        end
+
+        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
+          required
+          ref "A 4.2"
+          context %(
+            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
                     )
           style "small"
         end
@@ -59,8 +87,14 @@ class QAE2014Forms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context "<p>Organisations that began trading after #{AwardYear.start_trading_moment('innovation')} aren't eligible for this award.</p>"
-          date_max AwardYear.start_trading_moment("innovation")
+          context "
+            <p>
+              Organisations that began trading after #{AwardYear.start_trading_since(2)}
+              aren't eligible for this award
+              (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+            </p>
+          "
+          date_max AwardYear.start_trading_since(2)
         end
 
         options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
@@ -113,7 +147,7 @@ class QAE2014Forms
           words_max 100
         end
 
-        options :other_awards_won, "Have you won any other business or enterprise awards in the past?" do
+        options :other_awards_won, "Have you won any other awards in the past?" do
           ref "A 7"
           required
           yes_no
@@ -129,8 +163,29 @@ class QAE2014Forms
           words_max 300
         end
 
-        options :innovation_any_contributors, "Did any external organisation(s) or individual(s) contribute to your innovation?" do
+        options :innovation_joint_contributors, "Is this application part of a joint entry with any of the contributing organisation(s)?" do
           ref "A 8"
+          required
+          context %(
+            <p>
+              If two or more organisations made a significant contribution to the product,
+              service or business model then you should make a joint entry.
+              Each organisation should submit separate, cross-referenced, entry forms.
+            </p>
+          )
+          yes_no
+        end
+
+        textarea :innovation_contributors, "Please enter their name(s)" do
+          classes "sub-question"
+          sub_ref "A 8.1"
+          conditional :innovation_joint_contributors, :yes
+          rows 2
+          words_max 100
+        end
+
+        options :innovation_any_contributors, "Did any external organisation(s) or individual(s) contribute to your innovation?" do
+          ref "A 9"
           required
           # context %(
           #   <p>
@@ -145,13 +200,12 @@ class QAE2014Forms
 
         options :innovation_contributors_aware, "Are they aware that you're applying for this award?" do
           classes "sub-question"
-          sub_ref "A 8.1"
+          sub_ref "A 9.1"
           required
           conditional :innovation_any_contributors, :yes
-          conditional :innovation_joint_contributors, :no
-          option :yes, "Yes, they are aware"
-          option :no, "No, they aren't aware"
-          option :some, "Some are aware"
+          # conditional :innovation_joint_contributors, :no
+          option :yes, "Yes, they are all aware"
+          option :no, "No, they are not all aware"
         end
 
         header :innovation_contributors_aware_header_no, "" do
@@ -161,59 +215,36 @@ class QAE2014Forms
                     )
           conditional :innovation_any_contributors, :yes
           conditional :innovation_contributors_aware, :no
-          conditional :innovation_joint_contributors, :no
+          # conditional :innovation_joint_contributors, :no
         end
 
-        header :innovation_contributors_aware_header_some, "" do
-          classes "application-notice help-notice if-no-js-hide"
-          context %(
-            <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
-                    )
-          conditional :innovation_any_contributors, :yes
-          conditional :innovation_contributors_aware, :some
-          conditional :innovation_joint_contributors, :no
-        end
-
-        options :innovation_joint_contributors, "Is this application part of a joint entry with any of the contributing organisation(s)?" do
+        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications" do
           classes "sub-question"
-          sub_ref "A 8.2"
-          required
-          context %(
-            <p>
-              If two or more organisations made a significant contribution to the product/service/management approach (e.g. the business marketing a product, providing a service, or using a technology is different from the unit which developed it) and they both achieved commercial success, then you can make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
-            </p>
-          )
-          conditional :innovation_any_contributors, :yes
-          yes_no
-        end
-
-        textarea :innovation_contributors, "Please enter their name(s)" do
-          classes "sub-question"
-          sub_ref "A 8.3"
+          sub_ref "A 9.2"
           required
           conditional :innovation_any_contributors, :yes
-          conditional :innovation_joint_contributors, :yes
-          rows 5
-          words_max 500
+          conditional :innovation_contributors_aware, :no
+          rows 3
+          words_max 200
         end
 
-        options :innovation_under_license, "Is your innovation under license from another organisation?" do
-          ref "A 9"
+        options :innovation_under_license, "Is your innovation under licence from another organisation?" do
+          ref "A 10"
           yes_no
         end
 
         textarea :innovation_license_terms, "Briefly describe the licensing arrangement." do
           classes "sub-question"
-          sub_ref "A 9.1"
+          sub_ref "A 10.1"
           required
           conditional :innovation_under_license, :yes
           rows 5
           words_max 100
         end
 
-        address :organization_address, "Principal address of your organisation" do
+        address :organization_address, "Trading address of your organisation" do
           required
-          ref "A 10"
+          ref "A 11"
           sub_fields([
             { building: "Building" },
             { street: "Street" },
@@ -226,68 +257,62 @@ class QAE2014Forms
 
         text :org_telephone, "Main telephone number" do
           required
-          ref "A 11"
+          ref "A 12"
           style "small"
         end
 
         text :website_url, "Website Address" do
-          ref "A 12"
+          ref "A 13"
           style "large"
           form_hint "e.g. www.example.com"
         end
 
-        business_sector_dropdown :business_sector, "Business Sector" do
+        sic_code_dropdown :sic_code, "SIC code" do
           required
-          ref "A 13"
-        end
-
-        text :business_sector_other, "Please specify" do
-          classes "regular-question"
-          sub_ref "A 13.1"
-          required
-          conditional :business_sector, :other
-        end
-
-        header :parent_company_header, "Parent Companies" do
           ref "A 14"
-          conditional :applying_for, "division branch subsidiary"
+        end
+
+        options :has_parent_company, "Do you have a parent or a holding company?" do
+          ref "A 15"
+          yes_no
+          required
         end
 
         text :parent_company, "Name of immediate parent company" do
-          sub_ref "A 14.1"
+          sub_ref "A 15.1"
           classes "sub-question"
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
         end
 
         country :parent_company_country, "Country of immediate parent company" do
-          sub_ref "A 14.2"
+          sub_ref "A 15.2"
           classes "regular-question"
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
         end
 
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
-          sub_ref "A 14.3"
+          sub_ref "A 15.3"
           classes "sub-question"
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
           yes_no
         end
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
           classes "regular-question"
-          sub_ref "A 14.4"
+          sub_ref "A 15.4"
           conditional :parent_ultimate_control, :no
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
-          sub_ref "A 14.5"
+          sub_ref "A 15.5"
           conditional :parent_ultimate_control, :no
-          conditional :applying_for, "division branch subsidiary"
+          conditional :has_parent_company, "yes"
         end
 
-        upload :org_chart, "Upload an organisational chart." do
-          ref "A 15"
+        upload :org_chart, "Upload an organisational chart (optional)." do
+          ref "A 16"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
                     )

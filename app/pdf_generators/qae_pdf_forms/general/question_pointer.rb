@@ -2,6 +2,7 @@ class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::ByYear
   include QaePdfForms::CustomQuestions::Lists
   include QaePdfForms::CustomQuestions::SupporterLists
+  include QaePdfForms::CustomQuestions::CheckboxSeria
   include FinancialTable
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
@@ -351,6 +352,8 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.indent 7.mm do
           render_list
         end
+      when QAEFormBuilder::CheckboxSeriaQuestion
+        render_checkbox_selected_values
       else
         title = q_visible? && humanized_answer.present? ? humanized_answer : FormPdf::UNDEFINED_TITLE
         form_pdf.render_answer_by_display(title, display)
@@ -388,6 +391,12 @@ class QaePdfForms::General::QuestionPointer
 
           form_pdf.render_text subsidiary_text,
                                inline_format: true
+
+          desc = subsidiary[3]
+          if desc.present?
+            form_pdf.render_text "#{ANSWER_FONT_START} #{desc} #{ANSWER_FONT_END}",
+                                 inline_format: true
+          end
         end
       end
     else
@@ -482,7 +491,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_multirows_table(headers, rows)
-    table_lines = rows.unshift(headers)
+    table_lines = rows.unshift(headers).compact
     form_pdf.render_table(table_lines)
   end
 
@@ -588,5 +597,9 @@ class QaePdfForms::General::QuestionPointer
         "£#{entry[:value]}" if entry[:value] != "-"
       end
     end
+  end
+
+  def render_or_undefined(str)
+    str || FormPdf::UNDEFINED_TITLE
   end
 end

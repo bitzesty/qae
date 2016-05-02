@@ -16,9 +16,10 @@ header.page-header.group.page-header-over-sidebar
 
             h2 Before you begin:
             p
-              ' For planning purposes you can
-              = link_to "download a blank PDF of the entire application form", users_form_answer_path(@form_answer, format: :pdf, pdf_blank_mode: true)
-              ' . However, all applications must be completed online.
+              | All applications must be completed online, but if you find it useful to have it in PDF format for planning purposes, downloadable PDF of the form will be available from 17th of May.
+              / ' For planning purposes you can
+              / = link_to "download a blank PDF of the entire application form", users_form_answer_path(@form_answer, format: :pdf, pdf_blank_mode: true)
+              / ' . However, all applications must be completed online.
 
             - if @collaborators.any?
               br
