@@ -595,6 +595,11 @@ jQuery ->
       else
         taInfo.addClass("visuallyhidden")
         lyInfo.addClass("visuallyhidden")
+
+      if $(this).val().length > 0 && $(this).val() != last_year
+        $(".eligibility_qae_for_trade_award_year").removeClass("field-with-errors")
+                                                  .find("span.error").remove();
+
     $(".trade-awarded-input").trigger "change"
 
   # Show the eligibility failure contact message

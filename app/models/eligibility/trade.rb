@@ -5,7 +5,7 @@ class Eligibility::Trade < Eligibility
   validates :qae_for_trade_award_year,
             presence: true,
             not_winner_in_last_year: true,
-            if: proc { current_holder_of_qae_for_trade? && (!current_step || current_step == :qae_for_trade_award_year) }
+            if: proc { current_holder_of_qae_for_trade? && current_step == :qae_for_trade_award_year }
 
   property :sales_above_100_000_pounds,
             values: %w[yes no skip],
@@ -37,6 +37,6 @@ class Eligibility::Trade < Eligibility
            values: (AwardYear.current.year - 5..AwardYear.current.year - 1).to_a.reverse + ["before_#{AwardYear.current.year - 5}"],
            accept: :not_nil_if_current_holder_of_qae_for_trade,
            label: "In which year did you receive the award?",
-           if: proc { account.basic_eligibility.current_holder == "yes" || current_holder_of_qae_for_trade? },
+           if: proc { account.basic_eligibility.current_holder == "yes" && current_holder_of_qae_for_trade? },
            allow_nil: true
 end
