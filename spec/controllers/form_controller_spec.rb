@@ -108,6 +108,11 @@ describe FormController do
       end
 
       it "does nothing there was no award" do
+        el = account.basic_eligibility
+        el.update!(
+          current_holder: "no"
+        )
+
         trade_el = form_answer.trade_eligibility
         trade_el.update!(
           sales_above_100_000_pounds: "yes",
