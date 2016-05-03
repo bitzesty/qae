@@ -153,7 +153,7 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def corp_responsibility_required_keys
     object.award_form.steps.detect do |step|
-      step.short_title == "Corporate Responsibility"
+      step.short_title == "Declaration of Corporate Responsibility"
     end.questions.select do |q|
       q.is_a?(QAEFormBuilder::TextareaQuestion) && q.required
     end.map(&:key)
