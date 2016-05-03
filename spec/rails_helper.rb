@@ -11,7 +11,6 @@ SimpleCov.start CodeClimate::TestReporter.configuration.profile
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
 require 'capybara/rspec'
-require 'database_cleaner'
 require 'shoulda/matchers'
 require "capybara-screenshot/rspec"
 require "webmock/rspec"
@@ -40,13 +39,6 @@ RSpec.configure do |config|
   config.order = "random"
 
   config.before :each do
-    if Capybara.current_driver == :rack_test
-      DatabaseCleaner.strategy = :transaction
-    else
-      DatabaseCleaner.strategy = :truncation
-    end
-    DatabaseCleaner.start
-
     stub_request(:post, /virus.scanner/).
       to_return(status: 200, body: { id: "de401fdf-08b0-44a8-810b-20794c5c98c7" }.to_json)
 
@@ -60,11 +52,6 @@ RSpec.configure do |config|
 
     AwardYear.current
   end
-
-  config.after do
-    DatabaseCleaner.clean
-  end
-
   config.infer_spec_type_from_file_location!
 end
 
