@@ -7,7 +7,7 @@ class Eligibility::Trade < Eligibility
             if: proc {
               account.basic_eligibility.try(:current_holder) == "yes" && (
                 current_step == :current_holder_of_qae_for_trade ||
-                current_step.blank?
+                force_validate_now.present?
               )
             }, on: :update
 
@@ -18,9 +18,9 @@ class Eligibility::Trade < Eligibility
               account.basic_eligibility.try(:current_holder) == "yes" &&
               current_holder_of_qae_for_trade? && (
                 current_step == :qae_for_trade_award_year ||
-                current_step.blank?
+                force_validate_now.present?
               )
-            }
+            }, on: :update
 
   property :sales_above_100_000_pounds,
             values: %w[yes no skip],
