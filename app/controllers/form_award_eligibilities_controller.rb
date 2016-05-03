@@ -119,11 +119,10 @@ class FormAwardEligibilitiesController < ApplicationController
 
   def check_passed_award_eligibility_after_changing_answer!
     if @basic_eligibility.passed? && @award_eligibility.passed?
-      # Check validations which are not depends on current_step
-      # if case if Eligibility was already marked as #passed
-      # We need it in case if user changed answer after passing of validation
+      # We need to check validations it in case if user changed answer
+      # after passing of validation
       #
-      @award_eligibility.current_step = nil
+      @award_eligibility.force_validate_now = true
 
       # Mark eligibility as not passed in case if answer was changed
       # and now eligibility is not valid!
