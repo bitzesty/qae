@@ -248,6 +248,20 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
+  def feedback_updated_by
+    feedback = object.feedback
+    if feedback && feedback.authorable.present?
+      "Updated by: #{feedback.authorable.decorate.full_name} - #{feedback.updated_at.strftime("%e %b %Y at %-l:%M%P")}"
+    end
+  end
+
+  def press_summary_updated_by
+    ps = object.press_summary
+    if ps.present? && ps.authorable.present?
+      "Updated by #{ps.authorable.decorate.full_name} - #{ps.updated_at.strftime("%e %b %Y at %-l:%M%P")}"
+    end
+  end
+
   def nominee_organisation
     document["organization_address_name"]
   end
