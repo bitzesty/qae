@@ -148,7 +148,7 @@ class MailRenderer
     reception_date = DateTime.new(Date.current.year, 7, 14, 18, 00) if reception_date.blank?
 
     assigns[:reception_date] = reception_date.strftime(
-      "%A %d %B at %H:%M"
+      "%A %d %B at %-l:%M%P"
     )
 
     palace_attendees_due = AwardYear.buckingham_palace_reception_attendee_information_due_by

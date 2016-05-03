@@ -45,7 +45,7 @@ class Reports::AdminReport
   end
 
   def pdf_filename
-    pdf_timestamp = Time.zone.now.strftime("%e_%b_%Y_at_%H:%M")
+    pdf_timestamp = Time.zone.now.strftime("%e_%b_%Y_at_%-l:%M%P")
     "#{::FormAnswer::AWARD_TYPE_FULL_NAMES[params[:category]]}_award_#{id}_#{pdf_timestamp}.pdf"
   end
 end
