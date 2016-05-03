@@ -243,8 +243,22 @@ class FormAnswerDecorator < ApplicationDecorator
   def last_state_updated_by
     transition = object.state_machine.last_transition
     if transition.present? && transition.transitable
-      time = transition.created_at.try(:strftime, "%e %b %Y at %H:%M")
+      time = transition.created_at.try(:strftime, "%e %b %Y at %-l:%M%P")
       "Updated by #{transition.transitable.decorate.full_name} - #{time}"
+    end
+  end
+
+  def feedback_updated_by
+    feedback = object.feedback
+    if feedback && feedback.authorable.present?
+      "Updated by: #{feedback.authorable.decorate.full_name} - #{feedback.updated_at.strftime("%e %b %Y at %-l:%M%P")}"
+    end
+  end
+
+  def press_summary_updated_by
+    ps = object.press_summary
+    if ps.present? && ps.authorable.present?
+      "Updated by #{ps.authorable.decorate.full_name} - #{ps.updated_at.strftime("%e %b %Y at %-l:%M%P")}"
     end
   end
 

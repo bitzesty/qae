@@ -100,7 +100,7 @@ module ApplicationHelper
   end
 
   def format_date(date)
-    date.strftime("%e %b %Y at %H:%M")
+    date.strftime("%e %b %Y at %-l:%M%P")
   end
 
   # Custom version of http://apidock.com/rails/v4.2.1/ActionView/Helpers/TextHelper/simple_format

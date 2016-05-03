@@ -33,9 +33,9 @@
         h4.panel-title
           a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-feedback" aria-expanded="true" aria-controls="section-feedback"
             ' Feedback
-            - if feedback_updated_by(@form_answer).present?
+            - if @form_answer.feedback_updated_by
               small
-                = feedback_updated_by(@form_answer)
+                = @form_answer.feedback_updated_by
       #section-feedback.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="feedback-heading"
         .panel-body
           = render "admin/feedbacks/section", form_answer: @form_answer
