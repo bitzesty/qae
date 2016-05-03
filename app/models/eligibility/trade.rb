@@ -2,14 +2,14 @@
 class Eligibility::Trade < Eligibility
   AWARD_NAME = 'International Trade'
 
-  validates :current_holder_of_qae_for_trade,
-            presence: true,
-            if: proc {
-              account.basic_eligibility.try(:current_holder) == "yes" && (
-                current_step == :current_holder_of_qae_for_trade ||
-                current_step.blank?
-              )
-            }
+  # validates :current_holder_of_qae_for_trade,
+  #           presence: true,
+  #           if: proc {
+  #             account.basic_eligibility.try(:current_holder) == "yes" && (
+  #               current_step == :current_holder_of_qae_for_trade ||
+  #               current_step.blank?
+  #             )
+  #           }
 
   validates :qae_for_trade_award_year,
             presence: true,
