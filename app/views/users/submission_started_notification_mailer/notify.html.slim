@@ -3,12 +3,14 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
     = "Dear #{@user.decorate.full_name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
- | We're emailing to remind you that applications for the new Award year are open.
+  | We're emailing to remind you that applications for the Awards round for the Queen's Awards for Enterprise
+  =<> AwardYear.current.year
+  | are now open.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Please
-  => link_to "log in", new_user_session_url
-  ' to your Queen’s Award account to access it.
+  | If you would like to enter, please
+  =<> link_to "log in", new_user_session_url
+  | to your Queen's Awards account to start an application.
 
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Kind regards,
