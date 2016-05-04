@@ -6,10 +6,6 @@ describe FormAnswerStateMachine do
 
   describe "#submit" do
     context "before the submission deadline" do
-      before do
-        allow(Settings).to receive(:after_submission_deadline?).and_return(false)
-      end
-
       it "changes state/flag for application to submitted" do
         form_answer.state_machine.submit(form_answer.user)
         expect(form_answer).to be_submitted

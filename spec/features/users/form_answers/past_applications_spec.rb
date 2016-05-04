@@ -65,10 +65,8 @@ So that I see
         visit dashboard_path
       end
 
-      it "should display past successful applications" do
-        save_and_open_page
-
-        # TODO: need to finish this spec
+      xit "should display past successful applications" do
+        # save_and_open_page
       end
     end
 
