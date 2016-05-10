@@ -23,19 +23,19 @@ describe "Letters of Support" do
   end
 
   describe "Support Letters" do
+    require "virus_scanner"
     before do
-      allow_any_instance_of(Scan).to receive(:status).and_return("clean")
+      response = { "id" => "123", "status" => "clean" }
+      allow(::VirusScanner::File).to receive(:scan_url).and_return(response)
     end
 
     it "should be able to upload support letter" do
       click_link "+ Add another support letter"
-
       fill_in "First name", with: "Jack"
       fill_in "Last name", with: "Lee"
       fill_in "Relationship to nominee", with: "Brother"
       attach_file "Attachment", Rails.root.join("spec/fixtures/cat.jpg")
       click_button "Submit letter of support"
-
       expect(page).to have_link("cat.jpg")
     end
   end

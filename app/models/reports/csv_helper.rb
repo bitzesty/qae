@@ -2,7 +2,7 @@ require "csv"
 
 module Reports::CSVHelper
   def build
-    csv_string = CSV.generate do |csv|
+    csv_string = CSV.generate(encoding: "UTF-8", force_quotes: true) do |csv|
       csv << headers
       @scope.each do |form_answer|
         form_answer = Reports::FormAnswer.new(form_answer)
@@ -16,7 +16,7 @@ module Reports::CSVHelper
   end
 
   def as_csv(rows)
-    CSV.generate do |csv|
+    CSV.generate(encoding: "UTF-8", force_quotes: true) do |csv|
       csv << headers
       rows.each do |row|
         csv << row

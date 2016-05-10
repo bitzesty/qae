@@ -20,64 +20,53 @@ describe "As Admin I want to filter applications", js: true do
   end
 
   it "filters by status" do
+    # 4 Applications
     assert_results_number(4)
+
     click_status_option("Application in progress")
-    sleep(3)
     assert_results_number(2)
+
     click_status_option("Application in progress")
-    sleep(3)
     assert_results_number(4)
+
     click_status_option("Applications not submitted")
-    sleep(3)
     assert_results_number(3)
+
     click_status_option("Not eligible")
-    sleep(3)
     assert_results_number(2)
   end
 
   it "filters by sub options" do
+    # 4 Applications
     assert_results_number(4)
+
     click_status_option("Missing SIC code")
-    sleep(3)
-    @forms.slice!(0)
     assert_results_number(3)
-    click_status_option("Assessors not assigned")
-    sleep(3)
-    assert_results_number(3)
-    click_status_option("Assessors not assigned")
-    sleep(3)
-    assert_results_number(3)
+
+    # Add assesors to all applications and check filter
     assign_dummy_assessors(@forms, create(:assessor, :lead_for_all))
     click_status_option("Assessors not assigned")
-    sleep(3)
     assert_results_number(0)
+
+    # Uncheck filter
     click_status_option("Assessors not assigned")
-    sleep(3)
     assert_results_number(3)
+
+    # Add audit certificate to the first 2 applications and check filter
+    first_two_forms = @forms.slice(0..1)
+    assign_dummy_audit_certificate(first_two_forms)
     click_status_option("Missing Audit Certificate")
-    sleep(3)
-    assert_results_number(3)
-    click_status_option("Missing Audit Certificate")
-    sleep(3)
-    assert_results_number(3)
-    assign_dummy_audit_certificate(@forms.slice!(0))
-    click_status_option("Missing Audit Certificate")
-    sleep(3)
     assert_results_number(2)
-    assign_dummy_feedback(@forms.slice!(0), true)
-    assign_dummy_feedback(@forms[0], false)
+
+    # Add feedback to the first 3 applications and check filter
+    first_three_forms = @forms.slice(0..2)
+    assign_dummy_feedback(first_three_forms)
     click_status_option("Missing Feedback")
-    sleep(3)
     assert_results_number(1)
+
+    # Add press summary to all applications and check filter
+    assign_dummy_press_summary(@forms)
     click_status_option("Missing Press Summary")
-    sleep(3)
-    assert_results_number(1)
-    click_status_option("Missing Press Summary")
-    sleep(3)
-    assert_results_number(1)
-    assign_dummy_feedback(@forms.slice!(0))
-    click_status_option("Missing Press Summary")
-    sleep(3)
     assert_results_number(0)
   end
 end
