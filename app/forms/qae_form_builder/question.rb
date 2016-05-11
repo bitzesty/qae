@@ -144,6 +144,10 @@ class QAEFormBuilder
       delegate_obj.required
     end
 
+    def have_conditional_parent?
+      delegate_obj.conditions.any?
+    end
+
     def visible?(fetched_answers=nil)
       dc = delegate_obj.drop_condition_parent
       delegate_obj.conditions.
@@ -226,6 +230,35 @@ class QAEFormBuilder
       delegate_obj.is_a?(QAEFormBuilder::TradeCommercialSuccessQuestion)
     end
 
+    def can_have_parent_conditional_hints?
+      !delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion)
+    end
+
+    def pdf_conditional_hints(questions_with_references)
+      refs_and_values = conditions.map do |condition|
+        parent_q = questions_with_references.detect do |q|
+          q.key == condition.question_key
+        end
+
+        parent_ref = parent_q.ref.present? ? parent_q.ref : parent_q.sub_ref
+        [parent_ref.to_s.delete(' '), condition.question_value]
+      end
+
+      pdf_hints = refs_and_values.map do |parent_ref, parent_val|
+        if parent_ref.present?
+          if parent_val.to_s == "true"
+            "if you answered question #{parent_ref}"
+          else
+            "if you selected '#{parent_val.capitalize}' in question #{parent_ref}"
+          end
+        else
+          "if you selected '#{parent_val.capitalize}' in previous question"
+        end
+      end
+
+      "Answer this question #{pdf_hints.join(" and ")}."
+    end
+
     def conditional_hint(child_condition, questions_with_references)
       option_name = child_condition[0].to_s
                                       .split("_")
@@ -284,6 +317,10 @@ class QAEFormBuilder
 
     def pdf_context text
       @q.pdf_context = text
+    end
+
+    def additional_pdf_context text
+      @q.additional_pdf_context = text
     end
 
     def classes text
@@ -358,6 +395,7 @@ class QAEFormBuilder
                   :pdf_title,
                   :context,
                   :pdf_context,
+                  :additional_pdf_context,
                   :opts,
                   :required,
                   :help,

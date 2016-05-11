@@ -70,6 +70,9 @@ class QAE2014Forms
           required
           type :date
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
+
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
           conditional :development_performance_years, :true
@@ -94,6 +97,9 @@ class QAE2014Forms
                     )
           type :number
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
+
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
           conditional :development_performance_years, :true
@@ -119,6 +125,9 @@ class QAE2014Forms
               Please do not separate your figures with commas
             </p>
           )
+
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
+
           conditional :development_performance_years, :true
         end
 
@@ -252,6 +261,8 @@ class QAE2014Forms
               Please do not separate your figures with commas.
             </p>
           }
+
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
         end
 
         by_years :units_sold, "Number of units/contracts sold (if applicable)" do

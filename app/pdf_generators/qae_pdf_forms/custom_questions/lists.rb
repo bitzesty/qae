@@ -33,11 +33,9 @@ module QaePdfForms::CustomQuestions::Lists
       if list_rows.blank?
         form_pdf.default_bottom_margin
         render_word_limit
-        form_pdf.render_no_answer_yet
       end
     else
       render_word_limit
-      form_pdf.render_no_answer_yet
     end
   end
 
@@ -91,7 +89,7 @@ module QaePdfForms::CustomQuestions::Lists
         position_date(prepared_item['start_month'], prepared_item['start_year']),
         position_date(prepared_item['end_month'], prepared_item['end_year']),
         prepared_item["ongoing"].to_s == "1" ? "yes" : "no",
-        prepared_item["details"].present? ? prepared_item["details"] : FormPdf::UNDEFINED_TITLE
+        prepared_item["details"]
       ]
     end
   end
@@ -107,9 +105,9 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["name"].present?
       [
         prepared_item["name"],
-        render_or_undefined(prepared_item["location"]),
-        render_or_undefined(prepared_item["employees"]),
-        render_or_undefined(prepared_item["description"])
+        prepared_item["location"],
+        prepared_item["employees"],
+        prepared_item["description"]
       ]
     end
   end
