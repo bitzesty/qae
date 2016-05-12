@@ -33,7 +33,7 @@
                      ' #{step_letters[step.index]}.
                    = step.short_title.html_safe
 
-    / li.divider
+    li.divider
     li.step-past.step-download
       = link_to users_form_answer_path(@form_answer, format: :pdf)
         - if @form_answer.award_type == "promotion"

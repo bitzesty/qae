@@ -1,11 +1,11 @@
 .form-submit
   .form-download
     p
-      / = link_to users_form_answer_path(@form_answer, format: :pdf)
-      /   - if @form_answer.award_type == "promotion"
-      /     ' Download your nomination
-      /   - else
-      /     ' Download your application
+      = link_to users_form_answer_path(@form_answer, format: :pdf)
+        - if @form_answer.award_type == "promotion"
+          ' Download your nomination
+        - else
+          ' Download your application
 
   - if submit.notice
     br
