@@ -246,9 +246,7 @@ class QAEFormBuilder
 
       pdf_hints = refs_and_values.map do |parent_ref, parent_val|
         if parent_ref.present?
-          if parent_val.to_s == "true"
-            "if you answered question #{parent_ref}"
-          else
+          if parent_val.to_s != "true"
             "if you selected '#{parent_val.capitalize}' in question #{parent_ref}"
           end
         else
@@ -256,7 +254,7 @@ class QAEFormBuilder
         end
       end
 
-      "Answer this question #{pdf_hints.join(" and ")}."
+      "Answer this question #{pdf_hints.compact.join(" and ")}." if pdf_hints.any?
     end
 
     def conditional_hint(child_condition, questions_with_references)

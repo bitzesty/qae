@@ -126,8 +126,6 @@ class QAE2014Forms
             </p>
           )
 
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-
           conditional :development_performance_years, :true
         end
 
@@ -143,6 +141,7 @@ class QAE2014Forms
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
 
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -158,6 +157,7 @@ class QAE2014Forms
           label ->(y) { "Financial year #{y}" }
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -171,6 +171,7 @@ class QAE2014Forms
           label ->(y) { "Financial year #{y}" }
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -200,6 +201,7 @@ class QAE2014Forms
           )
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           drop_conditional :drops_in_turnover
         end
 
@@ -213,6 +215,7 @@ class QAE2014Forms
           label ->(y) { "As at the end of year #{y}" }
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -261,8 +264,6 @@ class QAE2014Forms
               Please do not separate your figures with commas.
             </p>
           }
-
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
         end
 
         by_years :units_sold, "Number of units/contracts sold (if applicable)" do
@@ -272,6 +273,7 @@ class QAE2014Forms
           label "..."
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           drop_conditional :drops_in_sales
         end
 
@@ -291,6 +293,7 @@ class QAE2014Forms
           context %(<p>Please enter '0' if you had none.</p>)
           type :money
           label "..."
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -302,6 +305,7 @@ class QAE2014Forms
           context %(<p>Please enter '0' if you had none.</p>)
           type :money
           label "..."
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -323,6 +327,7 @@ class QAE2014Forms
           context %(
             <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
                     )
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
         end

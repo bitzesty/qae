@@ -5,8 +5,7 @@ class QAE2014Forms
         header :company_information_header, "" do
           context %(
             <p>
-              We need this information to ensure we have some basic information about your organisation,
-              which will help us to undertake due diligence checks if your application is shortlisted.
+              We need this information to ensure we have some basic information about your organisation, which will help us to undertake due diligence checks if your application is shortlisted.
             </p>
           )
         end
@@ -89,9 +88,7 @@ class QAE2014Forms
           ref "A 5"
           context "
             <p>
-              Organisations that began trading after #{AwardYear.start_trading_since(2)}
-              aren't eligible for this award
-              (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+              Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
             </p>
           "
           date_max AwardYear.start_trading_since(2)
