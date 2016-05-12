@@ -288,7 +288,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_info_about_conditional_parent
-    if answer.blank? || form_pdf.pdf_blank_mode
+    if answer.blank? && urn_blank_or_pdf_blank_mode?
 
       hints = question.pdf_conditional_hints(non_header_questions)
 
