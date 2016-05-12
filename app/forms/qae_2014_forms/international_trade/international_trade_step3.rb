@@ -81,6 +81,9 @@ class QAE2014Forms
           required
           type :date
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
+
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           conditional :trade_commercial_success, :true
@@ -105,6 +108,9 @@ class QAE2014Forms
                     )
           type :number
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
+
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           employees_question
@@ -126,6 +132,8 @@ class QAE2014Forms
               Please do not separate your figures with commas
             </p>
           )
+
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
         end
 
         by_years :overseas_sales, "Total overseas sales" do

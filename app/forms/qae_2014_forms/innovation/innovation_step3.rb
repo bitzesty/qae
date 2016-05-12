@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class QAE2014Forms
   class << self
     def innovation_step3
@@ -70,6 +71,9 @@ class QAE2014Forms
           required
           type :date
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
+
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           conditional :innovation_performance_years, :true
@@ -118,6 +122,9 @@ class QAE2014Forms
               Please do not separate your figures with commas
             </p>
           )
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
@@ -247,6 +254,8 @@ class QAE2014Forms
               Please do not separate your figures with commas.
             </p>
           }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
         end
 
         by_years :units_sold, "Number of innovative units/contracts sold (if applicable)" do
@@ -254,6 +263,7 @@ class QAE2014Forms
           sub_ref "C 6.1"
           type :number
           label ->(y) { "Financial year #{y}" }
+
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales

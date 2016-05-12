@@ -3,3 +3,5 @@ Style/StringLiterals:
   SupportedStyles:
     - single_quotes
     - double_quotes
+Metrics/LineLength:
+  Max: 120

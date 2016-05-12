@@ -1,6 +1,5 @@
 module QaePdfForms::CustomQuestions::ByYear
   YEAR_LABELS = %w(day month year)
-  IN_PROGRESS = "No answer ..."
   FINANCIAL_YEAR_PREFIX = "Financial year"
   YEAR_ENDING_IN_PREFIX = "Year ending in"
   AS_AT_DATE_PREFIX = "As at"
@@ -41,7 +40,7 @@ module QaePdfForms::CustomQuestions::ByYear
     else
       active_fields.map do |field|
         entry = year_entry(field).to_s.gsub(",", "")
-        entry.present? ? ApplicationController.helpers.number_with_delimiter(entry) : IN_PROGRESS
+        entry.present? ? ApplicationController.helpers.number_with_delimiter(entry) : ""
       end
     end
 

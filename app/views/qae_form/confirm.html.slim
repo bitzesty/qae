@@ -35,12 +35,12 @@ header.page-header.group.page-header-wider
       .inner
         .form-download
           p
-            / = link_to users_form_answer_path(@form_answer, format: :pdf)
-            /   ' Download a PDF of your
-            /   - if @form_answer.promotion?
-            /     ' nomination
-            /   - else
-            /     ' application
+            = link_to users_form_answer_path(@form_answer, format: :pdf)
+              ' Download a PDF of your
+              - if @form_answer.promotion?
+                ' nomination
+              - else
+                ' application
 
         .application-notice.help-notice
           p

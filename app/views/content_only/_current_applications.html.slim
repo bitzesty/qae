@@ -23,9 +23,7 @@
             p
               - if award.submitted?
                 ' Submitted
-                br
-                | Your application will be available to download from 17th of May
-                / =# render "content_only/past_applications/download_pdf_link", award: award
+                = render "content_only/past_applications/download_pdf_link", award: award
               - else
                 ' In progress
                 / TODO fix progress percentage
