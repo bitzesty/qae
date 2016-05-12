@@ -132,8 +132,6 @@ class QAE2014Forms
               Please do not separate your figures with commas
             </p>
           )
-
-          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
         end
 
         by_years :overseas_sales, "Total overseas sales" do
@@ -173,9 +171,11 @@ class QAE2014Forms
               If you haven't reached your latest year-end, please use estimates to complete this question.
             </p>
           )
+
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           first_year_min_value "100000", "Cannot be less than £100,000"
           drop_block_conditional
         end
@@ -190,6 +190,7 @@ class QAE2014Forms
           context %(
             <p>Exclude VAT, overseas taxes and, where applicable, excise duties.</p>
                     )
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           drop_conditional :drops_in_turnover
         end
 
@@ -208,6 +209,7 @@ class QAE2014Forms
               Use a minus symbol to record any losses.
             </p>
           )
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           drop_conditional :drops_in_turnover
         end
 

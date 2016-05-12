@@ -102,6 +102,7 @@ class QAE2014Forms
           by_year_condition :innovation_performance_years, "5 plus", 5
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
 
           employees_question
         end
@@ -123,8 +124,6 @@ class QAE2014Forms
             </p>
           )
 
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
-
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
@@ -141,6 +140,7 @@ class QAE2014Forms
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
 
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -157,6 +157,7 @@ class QAE2014Forms
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
 
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -171,6 +172,7 @@ class QAE2014Forms
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
 
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
@@ -191,6 +193,9 @@ class QAE2014Forms
               Use a minus symbol to record any losses.
             </p>
           )
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -201,6 +206,8 @@ class QAE2014Forms
           sub_ref "C 4.5"
           required
           context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>}
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
 
           type :money
           label ->(y) { "As at the end of year #{y}" }
@@ -217,6 +224,7 @@ class QAE2014Forms
           sub_ref "C 4.6"
           rows 5
           words_max 200
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_condition_parent
@@ -254,8 +262,6 @@ class QAE2014Forms
               Please do not separate your figures with commas.
             </p>
           }
-
-          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
         end
 
         by_years :units_sold, "Number of innovative units/contracts sold (if applicable)" do
@@ -264,6 +270,7 @@ class QAE2014Forms
           type :number
           label ->(y) { "Financial year #{y}" }
 
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -274,6 +281,8 @@ class QAE2014Forms
           sub_ref "C 6.2"
           type :money
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -285,6 +294,8 @@ class QAE2014Forms
           context %(<p>Please enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -296,6 +307,8 @@ class QAE2014Forms
           context %(<p>Please enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -317,6 +330,8 @@ class QAE2014Forms
               If you haven't reached your latest year-end, please use estimates to complete this question.
             </p>
           )
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
@@ -338,6 +353,8 @@ class QAE2014Forms
               If you haven't reached your latest year-end, please use estimates to complete this question.
             </p>
           )
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2

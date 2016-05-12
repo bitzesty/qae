@@ -8,6 +8,7 @@ class QaePdfForms::General::QuestionPointer
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
   QUESTIONS_WITH_PDF_TITLES = %w(trading_figures_add)
+  SKIP_HEADER_HINT_KEYS = %w(head_of_bussines_header)
 
   attr_reader :form_pdf,
               :form_answer,
@@ -139,15 +140,18 @@ class QaePdfForms::General::QuestionPointer
   def render_pdf_hint
     if question.additional_pdf_context.present?
       form_pdf.indent 25.mm do
-        form_pdf.render_text question.additional_pdf_context
+        form_pdf.render_text question.additional_pdf_context,
+          color: "999999",
+          style: :italic,
+          size: 10
       end
     end
   end
 
   def render_header_hint
-    if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion) && (question.ref.present? || question.sub_ref.present?)
+    if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion) && (question.ref.present? || question.sub_ref.present?) && SKIP_HEADER_HINT_KEYS.exclude?(question.key.to_s)
       form_pdf.indent 25.mm do
-        form_pdf.render_text "Please note #{(question.ref || question.sub_ref).to_s.delete(" ")} is just a heading for the following subquestions"
+        form_pdf.render_text "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following subquestions"
       end
     end
   end
@@ -320,13 +324,11 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.indent 7.mm do
           render_attachments
         end
-      when QAEFormBuilder::DropdownQuestion
+      when QAEFormBuilder::SicCodeDropdownQuestion
         if q_visible? && humanized_answer.present?
           form_pdf.render_answer_by_display(question_option_title, display)
         else
-          form_pdf.indent 7.mm do
-            form_pdf.text "Select #{question.title}"
-          end
+          form_pdf.text "Select #{question.title}"
         end
       when QAEFormBuilder::OptionsQuestion
         if q_visible? && humanized_answer.present?
@@ -402,9 +404,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_queen_award_holder_header
-    form_pdf.indent 7.mm do
-      form_pdf.render_text "Year Awarded - Category"
-    end
+    form_pdf.render_text "Year Awarded - Category"
   end
 
   def render_subsidiaries_plants
@@ -470,7 +470,6 @@ class QaePdfForms::General::QuestionPointer
 
   def complex_question
     render_question_title_with_ref_or_not
-
     if question.delegate_obj.class.to_s == "QAEFormBuilder::HeadOfBusinessQuestion"
       form_pdf.move_up 5.mm
     end
@@ -538,10 +537,13 @@ class QaePdfForms::General::QuestionPointer
     headers = sub_answers.map { |a| a[0] }
     row = sub_answers.map { |a| a[1] }
     row[1] = to_month(row[1]) if row[1].present?
+    empty_date = false
 
     title = if q_visible? && row[0] != ""
       row.join(" ")
     else
+      empty_date = true
+
       if row.size > 2
         "Day Month Year"
       else
@@ -552,7 +554,12 @@ class QaePdfForms::General::QuestionPointer
     render_question_context
     render_question_help_note
     render_question_hints
-    form_pdf.render_standart_answer_block(title)
+
+    if !empty_date
+      form_pdf.render_standart_answer_block(title)
+    else
+      form_pdf.render_text title
+    end
   end
 
   def render_sub_questions(items)
@@ -564,11 +571,18 @@ class QaePdfForms::General::QuestionPointer
   def sub_question_block(sub_question, sub_answer)
     form_pdf.default_bottom_margin
     res = q_visible? ? "#{ANSWER_FONT_START}#{sub_answer}#{ANSWER_FONT_END}" : ""
+
     form_pdf.text "#{sub_question}: #{res}",
                   inline_format: true
   end
 
   def sub_question_block_without_title(sub_answer)
+    if question.can_have_parent_conditional_hints? && question.have_conditional_parent?
+      form_pdf.indent -25.mm do # compensating 25mm indent for subquestion
+        render_info_about_conditional_parent
+      end
+    end
+
     form_pdf.font("Times-Roman") do
       form_pdf.render_text (q_visible? ? sub_answer : ""),
                            color: FormPdf::DEFAULT_ANSWER_COLOR

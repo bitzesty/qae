@@ -83,10 +83,9 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :innovation_external_contributors, "Please name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s)." do
+        textarea :innovation_external_contributors, 'Please name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s) or enter "N/A".' do
           ref "B 3"
           required
-          conditional :innovation_any_contributors, :yes
           rows 5
           words_max 500
         end
@@ -176,9 +175,7 @@ class QAE2014Forms
           ref "B 11"
           context "
             <p>
-              Your innovation isn't eligible for this award if it was launched in the market
-              after #{AwardYear.start_trading_since(2)}
-              (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+              Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
             </p>
           "
           date_max AwardYear.start_trading_since(2)

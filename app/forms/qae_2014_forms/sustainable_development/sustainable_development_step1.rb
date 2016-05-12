@@ -5,8 +5,7 @@ class QAE2014Forms
         header :company_information_header, "" do
           context %(
             <p>
-              We need this information to ensure we have some basic information about your organisation,
-              which will help us to undertake due diligence checks if your application is shortlisted.
+              We need this information to ensure we have some basic information about your organisation, which will help us to undertake due diligence checks if your application is shortlisted.
             </p>
           )
         end
