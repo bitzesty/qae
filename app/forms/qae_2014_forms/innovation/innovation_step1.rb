@@ -30,22 +30,22 @@ class QAE2014Forms
         text :company_name, "Full/legal name of your organisation" do
           required
           ref "A 2"
-          context %{
+          context %(
             <p>
               If applicable, include 'trading as',
               or any other name your organisation uses/has used.
             </P>
-          }
+          )
         end
 
         options :principal_business, "Does your organisation operate as a principal?" do
           required
           ref "A 3"
-          context %{
+          context %(
             <p>
               We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
             </p>
-          }
+          )
           yes_no
         end
 

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Eligibility::Trade, :type => :model do
+RSpec.describe Eligibility::Trade, type: :model do
   let(:account) { FactoryGirl.create(:account) }
   before do
     create :basic_eligibility, account: account

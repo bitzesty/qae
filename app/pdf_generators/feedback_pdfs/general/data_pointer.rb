@@ -28,7 +28,7 @@ module FeedbackPdfs::General::DataPointer
     FeedbackForm.fields_for_award_type(form_answer.award_type).map do |key, value|
       if value[:type] != :strengths
         [
-          value[:label].gsub(":", ""),
+          value[:label].delete(":"),
           data["#{key}_strength"] || undefined_value,
           data["#{key}_weakness"] || undefined_value
         ]
@@ -40,7 +40,7 @@ module FeedbackPdfs::General::DataPointer
     FeedbackForm.fields_for_award_type(form_answer.award_type).map do |key, value|
       if value[:type] == :strengths
         [
-          value[:label].gsub(":", ""),
+          value[:label].delete(":"),
           rag(key)
         ]
       end

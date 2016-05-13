@@ -4,14 +4,14 @@ class QAE2014Forms
     def development_step2
       @development_step2 ||= proc do
         header :development_b_section_header, "" do
-          context %{
+          context %(
             <p>
               This section gives you the opportunity to present the detail of your product, service or management approach and to give us the evidence about your activities, leadership and achievements that will enable us to assess your application.
             </p>
             <p>
               Please try to avoid using technical jargon in this section.
             </p>
-          }
+          )
         end
 
         checkbox_seria :application_relate_to, "This entry relates to:" do
@@ -31,7 +31,7 @@ class QAE2014Forms
           classes "word-max-strict"
           ref "B 1.1"
           required
-          context %{
+          context %(
             <p>
               If more than one, please make sure you cover all of them.
             </p>
@@ -49,7 +49,7 @@ class QAE2014Forms
                 e.g. Own, manage and develop environmentally friendly commercial property, focused on UK retail and London offices.
               </li>
             </ul>
-          }
+          )
           rows 2
           words_max 15
         end
@@ -58,11 +58,11 @@ class QAE2014Forms
           classes "word-max-strict"
           ref "B 1.2"
           required
-          context %{
+          context %(
             <p>
               If more than one, please make sure you cover all of them. Include a brief description of its/their origin and development.
             </p>
-          }
+          )
           rows 5
           words_max 500
         end
@@ -71,7 +71,7 @@ class QAE2014Forms
           classes "word-max-strict"
           ref "B 2"
           required
-          context %{
+          context %(
             <p>
               Please summarise any plans, policies, strategies, etc. that you have in place that demonstrate your leadership approach within your own organisation and which drive your relationships with your partners.
             </p>
@@ -104,19 +104,19 @@ class QAE2014Forms
             <p>
               Please specify the timescale over which your sustainable development performance has been or will be sustained.
             </p>
-          }
+          )
           rows 8
           words_max 750
         end
 
         header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below." do
           ref "B 3"
-          context %{
+          context %(
             <p>
               You should demonstrate outstanding performance in at least one area.
               If your contribution is not outstanding in all areas, please describe the actions you are taking to improve outcomes in those areas.
             </p>
-          }
+          )
         end
 
         textarea :environmental_contribution, "Explain how it contributes to environmental outcomes of sustainable development." do
@@ -269,11 +269,11 @@ class QAE2014Forms
           ref "B 7"
           required
           yes_no
-          context %{
+          context %(
             <p>
               We ask this in order to help us carry out due diligence if your application is shortlisted.
             </p>
-          }
+          )
         end
 
         textarea :grant_details, "Please give details of date(s), source(s) and level(s) of funding." do

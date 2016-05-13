@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe SupportLettersController, :type => :controller do
+RSpec.describe SupportLettersController, type: :controller do
   context "access key check" do
     let!(:user) { create(:user) }
     let!(:form_answer) { create(:form_answer, user: user) }

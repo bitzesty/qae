@@ -3,7 +3,7 @@
 # Source: https://gist.github.com/795665
 class FileSizeValidator < ActiveModel::EachValidator
   MESSAGES = { is: :wrong_size, minimum: :size_too_small, maximum: :size_too_big }.freeze
-  CHECKS = { is: :==, minimum: :>=, :maximum => :<= }.freeze
+  CHECKS = { is: :==, minimum: :>=, maximum: :<= }.freeze
 
   DEFAULT_TOKENIZER = lambda { |value| value.split(//) }
   RESERVED_OPTIONS = [:minimum, :maximum, :within, :is, :tokenizer, :too_short, :too_long]

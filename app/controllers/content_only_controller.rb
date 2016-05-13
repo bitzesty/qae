@@ -19,16 +19,14 @@ class ContentOnlyController < ApplicationController
                 only: [
                   :award_info_innovation,
                   :award_info_trade,
-                  :award_info_development,
-                  :award_info_promotion
+                  :award_info_development
                 ]
 
   before_action :get_collaborators,
                 only: [
                   :award_info_innovation,
                   :award_info_trade,
-                  :award_info_development,
-                  :award_info_promotion
+                  :award_info_development
                 ]
 
   before_action :restrict_access_if_admin_in_read_only_mode!,
