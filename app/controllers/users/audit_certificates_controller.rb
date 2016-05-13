@@ -80,7 +80,7 @@ class Users::AuditCertificatesController < Users::BaseController
                      .full_messages
                      .reject { |m| m == "Attachment This field cannot be blank" }
                      .join(", ")
-                     .gsub("Attachment ", "")
+                     .delete("Attachment ")
   end
 
   def check_if_audit_certificate_already_exist!

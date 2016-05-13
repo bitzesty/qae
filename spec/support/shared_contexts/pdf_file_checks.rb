@@ -70,7 +70,7 @@ shared_context "pdf file checks" do
           # returns  "Step 2 of 6: Description of Goods or Services, Markets and", "Marketing"
           # instead of  "Step 2 of 6: Description of Goods or Services, Markets and Marketing"
           # as "Marketing" in pdf is located in new line
-          title = title.gsub(' Marketing', '')
+          title = title.delete(' Marketing')
         end
 
         expect(pdf_content).to include(title)

@@ -232,7 +232,7 @@ class FormController < ApplicationController
 
   def updating_step
     @form_answer.award_form.steps.detect do |s|
-      s.title.parameterize == params[:current_step_id].gsub("step-", "")
+      s.title.parameterize == params[:current_step_id].delete("step-")
     end.decorate
   end
 
@@ -322,6 +322,6 @@ class FormController < ApplicationController
                .full_messages
                .reject { |m| m == "File This field cannot be blank" }
                .join(", ")
-               .gsub("File ", "")
+               .delete("File ")
   end
 end

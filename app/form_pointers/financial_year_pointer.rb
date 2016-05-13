@@ -34,7 +34,7 @@ class FinancialYearPointer
 
   def fetch_years
     active_fields.map do |field|
-      value = entry(field).to_s.gsub(",", "")
+      value = entry(field).to_s.delete(",")
       {
         value: value.present? ? value : FormFinancialPointer::IN_PROGRESS,
         name: "#{key}_#{field}"

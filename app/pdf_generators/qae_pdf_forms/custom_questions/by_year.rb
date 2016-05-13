@@ -39,7 +39,7 @@ module QaePdfForms::CustomQuestions::ByYear
       res.all? { |el| el == {}} ? [] : res
     else
       active_fields.map do |field|
-        entry = year_entry(field).to_s.gsub(",", "")
+        entry = year_entry(field).to_s.delete(",")
         entry.present? ? ApplicationController.helpers.number_with_delimiter(entry) : ""
       end
     end
