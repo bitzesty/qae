@@ -86,4 +86,14 @@ Rails.application.configure do
 
   # configure the devise email layout
   config.to_prepare { Devise::Mailer.layout "mailer" }
+
+  #
+  # Usefull env var allows you to hide any PDF links on Applicant's view
+  # for example in case if you are changing smth in PDF generators
+  # and it's on development mode!
+  #
+  # Uncomment line below to hide PDF links:
+  #
+  Rails.configuration.hide_pdf_links = true
+  #
 end

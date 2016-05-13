@@ -71,3 +71,12 @@ PROFILE_MODE=true
 ```
   rake users_import:import_from_csv FILEPATH="./spec/fixtures/users.csv"
 ```
+
+## Hide Application's PDF links anythere on Applicant view
+
+Uncomment following line in config/environments/production.rb:
+```
+Rails.configuration.hide_pdf_links = true
+```
+and all PDF blocks on Applicant's view would be automatically replaced with
+maintenance messages and PDF links would be hidden.
