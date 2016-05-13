@@ -4,12 +4,12 @@ class QAE2014Forms
     def development_step3
       @development_step3 ||= proc do
         header :commercial_success_info_block, "" do
-          context %{
+          context %(
             <p>
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
               This section enables you to demonstrate the impact that your sustainable development had on your organisation's financial performance.
             </p>
-          }
+          )
         end
 
         header :commercial_success_intro, "" do
@@ -33,12 +33,12 @@ class QAE2014Forms
           })
           default_option "5 plus"
           sub_category_question
-          context %{
+          context %(
             <p>
               Your answer here will determine whether you are assessed for outstanding sustainable
               development (over two years) or continuous sustainable development (over five years).
             </p>
-          }
+          )
         end
 
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
@@ -55,12 +55,12 @@ class QAE2014Forms
           sub_ref "C 2.1"
           required
           yes_no
-          context %{
+          context %(
             <p>
               We ask this so that we ensure we obtain all of the commercial figures we need to assess your application.
               You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
             </p>
-          }
+          )
           default_option "no"
         end
 
@@ -178,11 +178,11 @@ class QAE2014Forms
           turnover :total_turnover
           exports :exports
 
-          context %{
+          context %(
             <p>
               This number is automatically calculated using your total turnover and export figures.
             </p>
-          }
+          )
         end
 
         by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
@@ -209,8 +209,12 @@ class QAE2014Forms
           classes "sub-question total-net-assets"
           sub_ref "C 4.5"
           required
-          context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>}
-
+          context %(
+            <p>
+              As per your balance sheet. Total assets (fixed and current),
+              less liabilities (current and long-term).
+            </p>
+          )
           type :money
           label ->(y) { "As at the end of year #{y}" }
           by_year_condition :development_performance_years, "2 to 4", 2
@@ -237,17 +241,17 @@ class QAE2014Forms
           required
           option :entire_business, "It's integral to the whole business"
           option :single_product_or_service, "It affects specific product, service or management approach"
-          context %{
+          context %(
             <p>
               It is important that we know whether or not your sustainable development is the key thing your business does, or forms part of a wider approach.
               This is so we can understand the commercial value of your sustainable development in the context of your overall commercial performance.
             </p>
-          }
+          )
         end
 
         header :product_financials, "Sustainable Development Financials" do
           ref "C 6"
-          context %{
+          context %(
             <p>
               If applicable, please provide your unit price, cost details and sales figures which explain the value of the sustainable development.
             </p>
@@ -263,7 +267,7 @@ class QAE2014Forms
             <p>
               Please do not separate your figures with commas.
             </p>
-          }
+          )
         end
 
         by_years :units_sold, "Number of units/contracts sold (if applicable)" do
@@ -360,11 +364,11 @@ class QAE2014Forms
         textarea :development_performance, "What cost savings have you or your customers' businesses made as a result of the introduction of the product, service or management approach?" do
           ref "C 8"
           required
-          context %{
+          context %(
             <p>
               This is in addition to the sustainability impact you have already demonstrated in section B of this form. Please provide figures if known.
             </p>
-          }
+          )
           rows 5
           words_max 300
         end
