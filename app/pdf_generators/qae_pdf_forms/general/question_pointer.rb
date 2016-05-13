@@ -132,8 +132,8 @@ class QaePdfForms::General::QuestionPointer
       render_info_about_conditional_parent
     end
 
-    render_context_and_answer_blocks
     render_pdf_hint
+    render_context_and_answer_blocks
     render_header_hint
   end
 
@@ -141,17 +141,19 @@ class QaePdfForms::General::QuestionPointer
     if question.additional_pdf_context.present?
       form_pdf.indent 25.mm do
         form_pdf.render_text question.additional_pdf_context,
-          color: "999999",
-          style: :italic,
-          size: 10
+                             style: :italic
       end
     end
   end
 
   def render_header_hint
-    if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion) && (question.ref.present? || question.sub_ref.present?) && SKIP_HEADER_HINT_KEYS.exclude?(question.key.to_s)
+    if question.delegate_obj.is_a?(QAEFormBuilder::HeaderQuestion) &&
+      (question.ref.present? || question.sub_ref.present?) &&
+      SKIP_HEADER_HINT_KEYS.exclude?(question.key.to_s)
+
       form_pdf.indent 25.mm do
-        form_pdf.render_text "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following subquestions"
+        form_pdf.render_text "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following subquestions.",
+                             style: :italic
       end
     end
   end
@@ -299,9 +301,7 @@ class QaePdfForms::General::QuestionPointer
       if hints.present?
         form_pdf.indent 25.mm do
           form_pdf.render_text hints,
-            color: "999999",
-            style: :italic,
-            size: 10
+                               style: :italic
         end
       end
     end
@@ -328,6 +328,7 @@ class QaePdfForms::General::QuestionPointer
         if q_visible? && humanized_answer.present?
           form_pdf.render_answer_by_display(question_option_title, display)
         else
+          form_pdf.default_bottom_margin
           form_pdf.text "Select #{question.title}"
         end
       when QAEFormBuilder::OptionsQuestion

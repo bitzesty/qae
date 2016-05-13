@@ -61,7 +61,7 @@ module QaePdfForms::CustomQuestions::ByYear
 
     financial_table_headers.each_with_index do |item, placement|
       header_item = "#{FINANCIAL_YEAR_PREFIX} #{placement + 1}"
-      header_item += " (Current)" if (size == (placement + 1))
+      header_item += " (current)" if size == (placement + 1)
 
       res << header_item
     end
@@ -78,11 +78,13 @@ module QaePdfForms::CustomQuestions::ByYear
 
     if form_pdf.pdf_blank_mode.present? # BLANK FOR MODE
       financial_table_default_headers.map.with_index do |item, index|
-        financial_table_default_headers.size == (index + 1) ? "#{item} (Current)" : item
+        financial_table_default_headers.size == (index + 1) ? "#{item} (current)" : item
       end
     else
-      financial_table_headers.map do |i|
-        "#{prefix} #{i}"
+      size = financial_table_headers.size
+      financial_table_headers.map.with_index do |item, index|
+        item = "#{prefix} #{item}"
+        size == (index.to_i + 1) && item.include?(FINANCIAL_YEAR_PREFIX) ? "#{item} (current)" : item
       end
     end
   end

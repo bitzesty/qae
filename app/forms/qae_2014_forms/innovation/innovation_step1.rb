@@ -32,8 +32,7 @@ class QAE2014Forms
           ref "A 2"
           context %(
             <p>
-              If applicable, include 'trading as',
-              or any other name your organisation uses/has used.
+              If applicable, include 'trading as', or any other name your organisation uses/has used.
             </P>
           )
         end
@@ -215,7 +214,7 @@ class QAE2014Forms
           # conditional :innovation_joint_contributors, :no
         end
 
-        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications" do
+        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications." do
           classes "sub-question"
           sub_ref "A 9.2"
           required
@@ -230,7 +229,7 @@ class QAE2014Forms
           yes_no
         end
 
-        textarea :innovation_license_terms, "Briefly describe the licensing arrangement." do
+        textarea :innovation_license_terms, "Briefly describe the licensing arrangement" do
           classes "sub-question"
           sub_ref "A 10.1"
           required
@@ -308,7 +307,7 @@ class QAE2014Forms
           conditional :has_parent_company, "yes"
         end
 
-        upload :org_chart, "Upload an organisational chart (optional)." do
+        upload :org_chart, "Upload an organisational chart (optional)" do
           ref "A 16"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>

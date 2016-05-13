@@ -6,9 +6,7 @@ class QAE2014Forms
         header :commercial_success_info_block, "" do
           context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
-              This section enables you to demonstrate the impact that your innovation had on your
-              organisation's financial performance.
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your innovation had on your organisation's financial performance.
             </p>
           )
         end
@@ -42,7 +40,7 @@ class QAE2014Forms
           sub_category_question
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
           context %(
@@ -65,7 +63,7 @@ class QAE2014Forms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
+        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year" do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -80,7 +78,7 @@ class QAE2014Forms
           conditional :financial_year_date_changed, :yes
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -120,7 +118,7 @@ class QAE2014Forms
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
             <p>
-              Please do not separate your figures with commas
+              Please do not separate your figures with commas.
             </p>
           )
 
@@ -167,7 +165,7 @@ class QAE2014Forms
         turnover_exports_calculation :uk_sales, "Of which UK sales" do
           classes "sub-question"
           sub_ref "C 4.3"
-          context %(<p>This number is automatically calculated using your total turnover and export figures</p>)
+          context %(<p>This number is automatically calculated using your total turnover and export figures.</p>)
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
@@ -410,8 +408,7 @@ class QAE2014Forms
           words_max 300
           context %(
             <p>
-              This should include both capital purchases, and investments, grants, and loans received,
-              as well as the cost of staff time and other non cash resources.
+              This should include both capital purchases, and investments, grants, and loans received, as well as the cost of staff time and other non cash resources.
             </p>
           )
         end
@@ -424,8 +421,7 @@ class QAE2014Forms
           words_max 500
           context %(
             <p>
-              If your innovation is expected to recover its full costs in the future,
-              please explain how and when this will happen.
+              If your innovation is expected to recover its full costs in the future, please explain how and when this will happen.
             </p>
           )
         end
