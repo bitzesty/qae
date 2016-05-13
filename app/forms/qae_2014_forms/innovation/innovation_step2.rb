@@ -90,12 +90,9 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation." do
+        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation. Or otherwise, how you identified a gap in the market." do
           ref "B 4"
           required
-          context %(
-            <p>Or otherwise, how you identified a gap in the market.</p>
-                    )
           rows 5
           words_max 500
         end
@@ -161,7 +158,7 @@ class QAE2014Forms
           )
         end
 
-        textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding." do
+        textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding" do
           classes "sub-question"
           sub_ref "B 10.1"
           required

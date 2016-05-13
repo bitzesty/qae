@@ -54,7 +54,7 @@ class QAE2014Forms
           words_max 15
         end
 
-        textarea :development_desc_long, "Summarise your product, service or management approach." do
+        textarea :development_desc_long, "Summarise your product, service or management approach" do
           classes "word-max-strict"
           ref "B 1.2"
           required
@@ -119,7 +119,7 @@ class QAE2014Forms
           )
         end
 
-        textarea :environmental_contribution, "Explain how it contributes to environmental outcomes of sustainable development." do
+        textarea :environmental_contribution, "Explain how it contributes to environmental outcomes of sustainable development" do
           required
           classes "sub-question"
           sub_ref "B 3.1"
@@ -161,7 +161,7 @@ class QAE2014Forms
           words_max 750
         end
 
-        textarea :social_contribution, "Explain how it contributes to social outcomes of sustainable development." do
+        textarea :social_contribution, "Explain how it contributes to social outcomes of sustainable development" do
           classes "sub-question"
           sub_ref "B 3.2"
           required
@@ -200,7 +200,7 @@ class QAE2014Forms
           words_max 750
         end
 
-        textarea :economic_contribution, "Explain how it contributes to economic outcomes of sustainable development." do
+        textarea :economic_contribution, "Explain how it contributes to economic outcomes of sustainable development" do
           classes "sub-question"
           sub_ref "B 3.3"
           required
@@ -242,12 +242,11 @@ class QAE2014Forms
           words_max 750
         end
 
-        textarea :name_of_external_organization_or_individual, "Please name the external organisation(s) or individual(s) that contributed to your product, service or management approach, and explain their contributions." do
+        textarea :name_of_external_organization_or_individual, 'Please name the external organisation(s) or individual(s) that contributed to your product, service or management approach, and explain their contributions or enter "N/A".' do
           ref "B 5"
           required
           rows 5
           words_max 500
-          conditional :external_contribute_to_sustainable_product, "yes"
         end
 
         options :another_org_licensed, "Is the product, service or management approach under licence from another organisation?" do
@@ -256,7 +255,7 @@ class QAE2014Forms
           yes_no
         end
 
-        textarea :licensing_agreement, "Briefly describe the licensing arrangement." do
+        textarea :licensing_agreement, "Briefly describe the licensing arrangement" do
           classes "sub-question"
           sub_ref "B 6.1"
           required
@@ -290,8 +289,7 @@ class QAE2014Forms
           ref "B 8"
           context "
             <p>
-              You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)}
-              (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award)
+              You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award)
             </p>
           "
           date_max AwardYear.start_trading_since(2)

@@ -155,10 +155,6 @@ module QaePdfForms::General::DrawElements
     end
   end
 
-  def render_answer_by_display(title, display)
-    render_standart_answer_block(title)
-  end
-
   def render_standart_answer_block(title)
     if title.present?
       indent 7.mm do

@@ -6,8 +6,7 @@ class QAE2014Forms
         header :commercial_success_info_block, "" do
           context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
-              This section enables you to demonstrate the impact that your sustainable development had on your organisation's financial performance.
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your sustainable development had on your organisation's financial performance.
             </p>
           )
         end
@@ -41,7 +40,7 @@ class QAE2014Forms
           )
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
           context %(
@@ -122,7 +121,7 @@ class QAE2014Forms
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
             <p>
-              Please do not separate your figures with commas
+              Please do not separate your figures with commas.
             </p>
           )
 

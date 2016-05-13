@@ -35,7 +35,28 @@ module QaePdfForms::CustomQuestions::Lists
         render_word_limit
       end
     else
-      render_word_limit
+      if question.delegate_obj.is_a?(QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
+        render_by_trade_goods_question
+      else
+        render_word_limit
+      end
+    end
+  end
+
+  def render_by_trade_goods_question
+    TRADE_GOODS_AND_SERVICES_HEADERS.each_with_index do |header, i|
+      text = header
+
+      if question.delegate_obj.respond_to?(:words_max) &&
+          question.words_max.present? &&
+          urn_blank_or_pdf_blank_mode? &&
+          i == 0
+        text += " (word limit: #{question.words_max})"
+      end
+
+      form_pdf.default_bottom_margin
+      form_pdf.text "#{text}:",
+                    inline_format: true
     end
   end
 
