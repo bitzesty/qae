@@ -9,6 +9,7 @@ class QaePdfForms::General::QuestionPointer
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
   QUESTIONS_WITH_PDF_TITLES = %w(trading_figures_add)
   SKIP_HEADER_HINT_KEYS = %w(head_of_bussines_header)
+  RENDER_INLINE_KEYS = %w(head_of_bussines_title)
 
   attr_reader :form_pdf,
               :form_answer,
@@ -167,17 +168,14 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_context_and_answer_blocks
-    form_pdf.indent 25.mm do
-      render_question_context
-      render_question_help_note
-      render_question_hints
+    # for inline questions answer is rendered with the title
+    if RENDER_INLINE_KEYS.exclude?(question.key.to_s)
+      form_pdf.indent 25.mm do
+        render_question_context
+        render_question_help_note
+        render_question_hints
 
-      if question.classes != "regular-question" ||
-         question_block_type(question) == "block" ||
-         humanized_answer.blank?
-        question_answer(question, "block")
-      else
-        question_answer(question, "inline")
+        question_answer(question)
       end
     end
   end
@@ -213,7 +211,7 @@ class QaePdfForms::General::QuestionPointer
             inline_question_text = question.escaped_title
             inline_question_text += ": "
             inline_question_text += ANSWER_FONT_START
-            inline_question_text += question_answer(question, "inline")
+            inline_question_text += humanized_answer
             inline_question_text += ANSWER_FONT_END
 
             form_pdf.text inline_question_text,
@@ -309,7 +307,7 @@ class QaePdfForms::General::QuestionPointer
 
   def question_block_type(question)
     unless FormPdf::JUST_NOTES.include?(question.delegate_obj.class.to_s)
-      if BLOCK_QUESTIONS.include?(question.delegate_obj.class)
+      if BLOCK_QUESTIONS.include?(question.delegate_obj.class) && RENDER_INLINE_KEYS.exclude?(question.key.to_s)
         "block"
       else
         "inline"
@@ -317,7 +315,7 @@ class QaePdfForms::General::QuestionPointer
     end
   end
 
-  def question_answer(question, display)
+  def question_answer(question)
     unless FormPdf::JUST_NOTES.include?(question.delegate_obj.class.to_s)
       case question.delegate_obj
       when QAEFormBuilder::UploadQuestion
@@ -326,24 +324,26 @@ class QaePdfForms::General::QuestionPointer
         end
       when QAEFormBuilder::SicCodeDropdownQuestion
         if q_visible? && humanized_answer.present?
-          form_pdf.render_answer_by_display(question_option_title, display)
+          form_pdf.render_standart_answer_block(question_option_title)
         else
           form_pdf.default_bottom_margin
           form_pdf.text "Select #{question.title}"
         end
       when QAEFormBuilder::OptionsQuestion
         if q_visible? && humanized_answer.present?
-          form_pdf.render_answer_by_display(question_option_title, display)
+          form_pdf.render_standart_answer_block(question_option_title)
         else
           form_pdf.indent 7.mm do
             question.options.each do |answer|
-              question_option_box answer.text
+              unless answer.value.empty?
+                question_option_box answer.text
+              end
             end
           end
         end
       when QAEFormBuilder::ConfirmQuestion
         if q_visible? && humanized_answer.present?
-          form_pdf.render_answer_by_display(question_checked_value_title, display)
+          form_pdf.render_standart_answer_block(question_checked_value_title)
         else
           question_option_box question.text
         end
@@ -382,7 +382,7 @@ class QaePdfForms::General::QuestionPointer
         render_checkbox_selected_values
       else
         title = q_visible? && humanized_answer.present? ? humanized_answer : ""
-        form_pdf.render_answer_by_display(title, display)
+        form_pdf.render_standart_answer_block(title)
       end
     end
   end
@@ -572,7 +572,6 @@ class QaePdfForms::General::QuestionPointer
   def sub_question_block(sub_question, sub_answer)
     form_pdf.default_bottom_margin
     res = q_visible? ? "#{ANSWER_FONT_START}#{sub_answer}#{ANSWER_FONT_END}" : ""
-
     form_pdf.text "#{sub_question}: #{res}",
                   inline_format: true
   end

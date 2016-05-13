@@ -11,6 +11,7 @@ module QaePdfForms::CustomQuestions::ByYear
   CALCULATED_FINANCIAL_DATA = [
     :uk_sales
   ]
+  OMIT_COLON_KEYS = [:financial_year_changed_dates]
 
   def render_years_labels_table
     rows = financial_table_changed_dates_headers.map do |a|
@@ -24,7 +25,11 @@ module QaePdfForms::CustomQuestions::ByYear
 
     year_headers.each_with_index do |header_item, placement|
       form_pdf.default_bottom_margin
-      title = "#{header_item}: #{ANSWER_FONT_START}#{rows[placement].join(" ")}#{ANSWER_FONT_END}"
+      if OMIT_COLON_KEYS.include?(question.key)
+        title = header_item
+      else
+        title = "#{header_item}: #{ANSWER_FONT_START}#{rows[placement].join(" ")}#{ANSWER_FONT_END}"
+      end
       form_pdf.text title,
                     inline_format: true
     end

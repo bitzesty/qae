@@ -6,9 +6,7 @@ class QAE2014Forms
         header :commercial_success_info_block, "" do
           context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
-              This section enables you to demonstrate the impact that your international trade activities had
-              on your organisation's financial performance.
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your international trade activities had on your organisation's financial performance.
             </p>
           )
         end
@@ -49,7 +47,7 @@ class QAE2014Forms
           )
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
           context %(
@@ -75,7 +73,7 @@ class QAE2014Forms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
+        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year" do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -90,7 +88,7 @@ class QAE2014Forms
           conditional :financial_year_date_changed, "yes"
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -99,7 +97,7 @@ class QAE2014Forms
           conditional :financial_year_date_changed, "yes"
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry" do
           classes "question-employee-min"
           ref "C 3"
           required
@@ -143,22 +141,22 @@ class QAE2014Forms
             </p>
             <ul>
               <li>
-                direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how etc.)
+                Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how etc.).
               </li>
               <li>
-                total export agency commissions
+                Total export agency commissions.
               </li>
               <li>
-                dividends remitted to the UK from direct overseas investments
+                Dividends remitted to the UK from direct overseas investments.
               </li>
               <li>
-                income from portfolio investment abroad remitted to the UK
+                Income from portfolio investment abroad remitted to the UK.
               </li>
               <li>
-                dividends on investments abroad not remitted to the UK
+                Dividends on investments abroad not remitted to the UK.
               </li>
               <li>
-                other earnings from overseas residents remitted to the UK
+                Other earnings from overseas residents remitted to the UK.
               </li>
             </ul>
             <p>

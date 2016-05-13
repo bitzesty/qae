@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class QAE2014Forms
   class << self
     def trade_step2
@@ -15,35 +16,35 @@ class QAE2014Forms
           )
         end
 
-        textarea :trade_business_as_a_whole, "Describe your business as a whole." do
+        textarea :trade_business_as_a_whole, "Describe your business as a whole" do
           sub_ref "B 1"
           required
           rows 5
           words_max 500
         end
 
-        textarea :trade_overall_growth_strategy, "Explain your overall growth strategy." do
+        textarea :trade_overall_growth_strategy, "Explain your overall growth strategy" do
           sub_ref "B 1.1"
           required
           rows 5
           words_max 500
         end
 
-        textarea :trade_overall_importance, "Explain the overall importance of exporting to your company." do
+        textarea :trade_overall_importance, "Explain the overall importance of exporting to your company" do
           sub_ref "B 1.2"
           required
           rows 5
           words_max 500
         end
 
-        textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction." do
+        textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction" do
           sub_ref "B 1.3"
           required
           rows 5
           words_max 500
         end
 
-        textarea :trade_goods_briefly, "Please briefly describe all products or services that you sell internationally." do
+        textarea :trade_goods_briefly, "Please briefly describe all products or services that you sell internationally" do
           sub_ref "B 1.4"
           required
           context %(
@@ -91,7 +92,7 @@ class QAE2014Forms
           default_option "1"
         end
 
-        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Please list and briefly describe each product or services you export." do
+        by_trade_goods_and_services_label :trade_goods_and_services_explanations, "Please list and briefly describe each product or services you export" do
           classes "sub-question word-max-strict"
           sub_ref "B 2.2"
           required
@@ -99,6 +100,9 @@ class QAE2014Forms
             <p>
               If relevant, give details of material used or end use. e.g. 'design and manufacture of bespoke steel windows and doors'. Your percentage answers below should add up to 100.
             </p>
+          )
+          additional_pdf_context %(
+            You will need to complete this information for each product or service depending on your answer for question B2.1"
           )
           rows 2
           words_max 15
@@ -112,15 +116,8 @@ class QAE2014Forms
           required
           context %(
             <p>
-              Include for example: your overseas market structure,
-              comparisons between domestic and international strategies,
-              treatment of different markets (linking to top performing markets),
-              market research, market development,
-              routes to market, after sales and technical advice,
-              activities to sustain/grow markets,
-              staff language training, export practices, overseas distributors,
-              inward/outward trade missions, trade fairs and visits to existing/potential markets.
-              Make sure you explain how your actual performance compares to your planned performance.
+              Include for example: your overseas market structure, comparisons between domestic and international strategies, treatment of different markets (linking to top performing markets), market research, market development, routes to market, after sales and technical advice,
+              activities to sustain/grow markets, staff language training, export practices, overseas distributors, inward/outward trade missions, trade fairs and visits to existing/potential markets. Make sure you explain how your actual performance compares to your planned performance.
             </p>
           )
           rows 5
@@ -139,7 +136,7 @@ class QAE2014Forms
           )
         end
 
-        textarea :markets_geo_spread, "Describe the geographical spread of your overseas markets." do
+        textarea :markets_geo_spread, "Describe the geographical spread of your overseas markets" do
           required
           sub_ref "B 4.1"
           classes "sub-question"
@@ -161,7 +158,7 @@ class QAE2014Forms
           words_max 200
         end
 
-        textarea :identify_new_overseas, "Identify new overseas markets established during your period of entry, and their contribution to total overseas sales." do
+        textarea :identify_new_overseas, "Identify new overseas markets established during your period of entry, and their contribution to total overseas sales" do
           classes "sub-question"
           sub_ref "B 4.3"
           required
@@ -207,7 +204,7 @@ class QAE2014Forms
           )
         end
 
-        textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding." do
+        textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding" do
           classes "sub-question"
           sub_ref "B 7.1"
           required
