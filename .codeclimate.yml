@@ -6,6 +6,9 @@ engines:
     enabled: true
   rubocop:
     enabled: true
+    checks:
+      Rubocop/Style/AccessorMethodName:
+        enabled: false
   coffeelint:
     enabled: true
   scsslint:
