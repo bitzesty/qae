@@ -47,7 +47,7 @@ class QAEFormBuilder
         question_possible_sub_keys(question).each do |sub_question_key|
           allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion)
             # Sometimes users can input commas, we are stripping them
-            form_data[sub_question_key].to_s.gsub(",", "")
+            form_data[sub_question_key].to_s.delete(",")
           else
             form_data[sub_question_key]
           end
@@ -133,7 +133,7 @@ class QAEFormBuilder
       klass_builder = QAEFormBuilder.const_get( "#{meth.to_s.camelize}QuestionBuilder" ) rescue nil
       klass = QAEFormBuilder.const_get( "#{meth.to_s.camelize}Question" ) rescue nil
 
-      if klass_builder && klass && args.length >= 2 && args.length <=3
+      if klass_builder && klass && args.length >= 2 && args.length <= 3
         id, title, opts = args
         create_question klass_builder, klass, id, title, opts, &block
       else
@@ -177,7 +177,6 @@ class QAEFormBuilder
   end
 
   class Step
-
     attr_accessor :title, :short_title, :opts, :questions, :form, :context, :submit
 
     def initialize form, title, short_title, opts={}

@@ -46,7 +46,7 @@ class QAE2014Forms
         textarea :trade_goods_briefly, "Please briefly describe all products or services that you sell internationally." do
           sub_ref "B 1.4"
           required
-          context %{
+          context %(
             <p>
               This summary will be used in publicity material if your application is successful.
             </p>
@@ -57,7 +57,7 @@ class QAE2014Forms
             <p>
               e.g. Musical heritage tours and events, exploring popular music history by theme, genre or specific artist.
             </p>
-          }
+          )
           rows 2
           words_max 15
         end
@@ -110,7 +110,7 @@ class QAE2014Forms
         textarea :trade_plans_desc, "Describe your international and domestic trading strategies (plans), their vision/objectives for the future, their method of implementation, and how your actual performance compared to the plans set out." do
           ref "B 3"
           required
-          context %{
+          context %(
             <p>
               Include for example: your overseas market structure,
               comparisons between domestic and international strategies,
@@ -122,33 +122,33 @@ class QAE2014Forms
               inward/outward trade missions, trade fairs and visits to existing/potential markets.
               Make sure you explain how your actual performance compares to your planned performance.
             </p>
-          }
+          )
           rows 5
           words_max 800
         end
 
         header :overseas_markets_header, "Overseas Markets" do
           ref "B 4"
-          context %{
+          context %(
             <p>
               If applicable, demonstrate why penetration of a particular market represents a
               significant achievement: for example are you the first, leading, fastest growing
               UK exporter to an overseas market? How does your performance compare with other
               companies operating in your sector or overseas market?
             </p>
-          }
+          )
         end
 
         textarea :markets_geo_spread, "Describe the geographical spread of your overseas markets." do
           required
           sub_ref "B 4.1"
           classes "sub-question"
-          context %{
+          context %(
             <p>
               Include evidence of how you segment and manage geographical regions to demonstrate
               your company’s focus. Please supply market share information.
             </p>
-          }
+          )
           rows 5
           words_max 500
         end
@@ -200,11 +200,11 @@ class QAE2014Forms
           ref "B 7"
           required
           yes_no
-          context %{
+          context %(
             <p>
              We ask this in order to help us carry out due diligence if your application is shortlisted.
             </p>
-          }
+          )
         end
 
         textarea :funding_details, "Please give details of date(s), source(s) and level(s) of funding." do

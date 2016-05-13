@@ -39,11 +39,11 @@ class QAE2014Forms
         options :principal_business, "Does your organisation operate as a principal?" do
           required
           ref "A 3"
-          context %{
+          context %(
             <p>
               We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
             </p>
-          }
+          )
           yes_no
         end
 
@@ -84,13 +84,13 @@ class QAE2014Forms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context %{
+          context %(
             <p>
                Organisations that began trading after #{AwardYear.start_trading_since(2)}
                aren't eligible for this award
                (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
             </p>
-          }
+          )
           date_max AwardYear.start_trading_since(2)
         end
 
@@ -167,13 +167,13 @@ class QAE2014Forms
                 "Is this application part of a joint entry with any of the contributing organisation(s)?" do
           ref "A 8"
           required
-          context %{
+          context %(
             <p>
               If two or more organisations made a significant contribution to the product,
               service or management approach then you should make a joint entry.
               Each organisation should submit separate, cross-referenced, entry forms.
             </p>
-          }
+          )
           yes_no
         end
 
