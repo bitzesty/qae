@@ -3,5 +3,9 @@ Style/StringLiterals:
   SupportedStyles:
     - single_quotes
     - double_quotes
+Style/AccessorMethodName:
+  enabled: false
+Style/MethodDefParentheses:
+  enabled: false
 Metrics/LineLength:
   Max: 120
