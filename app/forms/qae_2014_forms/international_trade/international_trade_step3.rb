@@ -4,13 +4,13 @@ class QAE2014Forms
     def trade_step3
       @trade_step3 ||= proc do
         header :commercial_success_info_block, "" do
-          context %{
+          context %(
             <p>
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
               This section enables you to demonstrate the impact that your international trade activities had
               on your organisation's financial performance.
             </p>
-          }
+          )
         end
 
         header :commercial_success_intro, "" do
@@ -31,9 +31,9 @@ class QAE2014Forms
           placeholder_preselected_condition :queen_award_holder_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
-                                            placeholder_text: %{
+                                            placeholder_text: %(
               As you currently hold a Queen's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
-            }
+            )
 
           financial_date_selector({
             "3 to 5" => "3",
@@ -41,23 +41,23 @@ class QAE2014Forms
           })
           default_option "6 plus"
           sub_category_question
-          context %{
+          context %(
             <p>
               Your answer here will determine whether you are assessed for outstanding
               growth (over three years) or continuous growth (over six years).
             </p>
-          }
+          )
         end
 
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
           ref "C 2"
           required
-          context %{
+          context %(
             <p>
               If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.
               If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.
             </p>
-          }
+          )
           financial_date_pointer
         end
 
@@ -66,12 +66,12 @@ class QAE2014Forms
           sub_ref "C 2.1"
           required
           yes_no
-          context %{
+          context %(
             <p>
               We ask this so that we ensure we obtain all of the commercial figures we need to assess your application.
               You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3 or 6</span> full 12-month periods.
             </p>
-          }
+          )
           default_option "no"
         end
 

@@ -25,7 +25,7 @@ class QAE2014Forms
 
         header :declaration_and_corporate_responsibility_intro, "" do
           classes "application-notice help-notice"
-          context %{
+          context %(
             <p>
               You may have answered some of the questions in this section in other parts of the form.
             </p>
@@ -35,7 +35,7 @@ class QAE2014Forms
             <p>
               Please use this section to give us additional information about corporate responsibility that you have not covered elsewhere in the form and would like us to see.
             </p>
-          }
+          )
         end
 
         textarea :impact_on_society, "The impact of your business operations on society" do

@@ -42,17 +42,17 @@ class QAE2014Forms
 
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
           ref "F 3"
-          text %{
+          text %(
             I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).
-          }
+          )
         end
 
         confirm :agree_being_contacted_by_department_of_business, "" do
           sub_ref "F 3.1"
           show_ref_always true
-          text %{
+          text %(
             I am happy to be contacted by the Department for Business, Innovation and Skills.
-          }
+          )
         end
 
         confirm :entry_confirmation, "Confirmation of entry" do
@@ -70,13 +70,13 @@ class QAE2014Forms
           ref "F 4.1"
           required
           show_ref_always true
-          text %{
+          text %(
             By ticking this box, you agree that if your application is shortlisted you will supply
             verified commercial figures before the specified deadline.
             <br>
             <br>
             If verified figures are not provided by the deadline specified at short list stage, your entry will be rejected.
-          }
+          )
         end
 
         submit "Submit application" do
