@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   validates :phone_number, length: {
     minimum: 7,
     maximum: 20,
-    :message => "This is not a valid telephone number"
+    message: "This is not a valid telephone number"
   }, if: :first_step?
 
   validates :company_phone_number, length: {

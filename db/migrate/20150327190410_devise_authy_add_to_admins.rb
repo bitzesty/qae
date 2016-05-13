@@ -3,7 +3,7 @@ class DeviseAuthyAddToAdmins < ActiveRecord::Migration
     change_table :admins do |t|
       t.string    :authy_id
       t.datetime  :last_sign_in_with_authy
-      t.boolean   :authy_enabled, :default => false
+      t.boolean   :authy_enabled, default: false
     end
 
     add_index :admins, :authy_id

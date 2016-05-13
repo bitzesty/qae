@@ -1,18 +1,27 @@
 require "qae_2014_forms"
 
 class FormController < ApplicationController
-  before_action :authenticate_user!, :check_account_completion, :check_deadlines
-  before_action :set_form_answer, :except => [:new_innovation_form, :new_international_trade_form, :new_sustainable_development_form, :new_enterprise_promotion_form]
+  before_action :authenticate_user!, :check_account_completion,
+                                     :check_deadlines
+
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy,
     :submit_confirm, :save, :add_attachment
   ]
+
+  before_action :check_trade_count_limit, only: :new_international_trade_form
+  before_action :check_development_count_limit, only: :new_sustainable_development_form
+
+  before_action :set_form_answer, except: [
+    :new_innovation_form,
+    :new_international_trade_form,
+    :new_sustainable_development_form
+  ]
+
   before_action :get_collaborators, only: [
     :submit_confirm
   ]
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
-  before_action :check_trade_count_limit, only: :new_international_trade_form
-  before_action :check_development_count_limit, only: :new_sustainable_development_form
 
   before_action do
     allow_assessor_access!(@form_answer)
@@ -41,57 +50,15 @@ class FormController < ApplicationController
   end
 
   def new_innovation_form
-    form_answer = FormAnswer.create!(
-      user: current_user,
-      account: current_user.account,
-      award_type: "innovation",
-      nickname: nickname,
-      document: {
-        company_name: current_user.company_name
-    })
-    redirect_to edit_form_url(form_answer)
+    build_new_form("innovation")
   end
 
   def new_international_trade_form
-    form_answer = FormAnswer.create!(
-      user: current_user,
-      account: current_user.account,
-      award_type: "trade",
-      nickname: nickname,
-      document: {
-        company_name: current_user.company_name
-    })
-
-    redirect_to edit_form_url(form_answer)
+    build_new_form("trade")
   end
 
   def new_sustainable_development_form
-    form_answer = FormAnswer.create!(
-      user: current_user,
-      account: current_user.account,
-      award_type: "development",
-      nickname: nickname,
-      document: {
-        company_name: current_user.company_name
-    })
-
-    redirect_to edit_form_url(form_answer)
-  end
-
-  def new_enterprise_promotion_form
-    form_answer = FormAnswer.create!(
-      user: current_user,
-      account: current_user.account,
-      award_type: "promotion",
-      nickname: nickname,
-      document: {
-        email: current_user.email,
-        first_name: current_user.first_name,
-        last_name: current_user.last_name,
-        phone: current_user.phone_number,
-        title: current_user.title
-    })
-    redirect_to edit_form_url(form_answer)
+    build_new_form("development")
   end
 
   def edit_form
@@ -296,6 +263,20 @@ class FormController < ApplicationController
     end
 
     result
+  end
+
+  def build_new_form(award_type)
+    form_answer = FormAnswer.create!(
+      user: current_user,
+      account: current_user.account,
+      award_type: award_type,
+      nickname: nickname,
+      document: {
+        company_name: current_user.company_name
+      }
+    )
+
+    redirect_to edit_form_url(form_answer)
   end
 
   def set_form_answer
