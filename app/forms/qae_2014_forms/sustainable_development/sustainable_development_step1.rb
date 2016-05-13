@@ -86,9 +86,7 @@ class QAE2014Forms
           ref "A 5"
           context %(
             <p>
-               Organisations that began trading after #{AwardYear.start_trading_since(2)}
-               aren't eligible for this award
-               (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+               Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
             </p>
           )
           date_max AwardYear.start_trading_since(2)
@@ -217,7 +215,7 @@ class QAE2014Forms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications" do
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications." do
           sub_ref "A 9.2"
           required
           words_max 200
@@ -288,7 +286,7 @@ class QAE2014Forms
           required
           classes "regular-question"
           sub_ref "A 14.4"
-          conditional :parent_ultimate_control, :yes
+          conditional :parent_ultimate_control, :no
           conditional :parent_or_a_holding_company, :yes
         end
 
@@ -299,7 +297,7 @@ class QAE2014Forms
           conditional :parent_or_a_holding_company, :yes
         end
 
-        upload :org_chart, "Upload an organisational chart (optional)." do
+        upload :org_chart, "Upload an organisational chart (optional)" do
           ref "A 15"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
