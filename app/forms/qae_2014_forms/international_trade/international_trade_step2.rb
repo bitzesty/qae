@@ -102,7 +102,7 @@ class QAE2014Forms
             </p>
           )
           additional_pdf_context %(
-            You will need to complete this information for each product or service depending on your answer for question B2.1"
+            You will need to complete this information for each product or service depending on your answer for question B2.1
           )
           rows 2
           words_max 15
