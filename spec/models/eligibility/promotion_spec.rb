@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Eligibility::Promotion, :type => :model do
+RSpec.describe Eligibility::Promotion, type: :model do
   let(:account) { FactoryGirl.create(:account) }
 
   context 'answers storage' do

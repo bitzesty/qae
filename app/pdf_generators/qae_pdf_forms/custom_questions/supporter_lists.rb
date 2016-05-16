@@ -8,8 +8,6 @@ module QaePdfForms::CustomQuestions::SupporterLists
 
     if entries.present? && form_pdf.pdf_blank_mode.blank?
       render_supporters_list(entries)
-    else
-      form_pdf.render_nothing_uploaded_message
     end
   end
 
@@ -52,8 +50,6 @@ module QaePdfForms::CustomQuestions::SupporterLists
         form_pdf.attachment_path(entry.support_letter_attachment.attachment, true),
         entry.support_letter_attachment.original_filename.truncate(60)
       )
-    else
-      form_pdf.render_nothing_uploaded_message
     end
 
     form_pdf.move_down 2.5.mm

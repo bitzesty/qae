@@ -103,7 +103,7 @@ module CaseSummaryPdfs::General::DataPointer
   def case_summaries_entries
     AppraisalForm.struct(form_answer).map do |key, value|
       [
-        value[:label].gsub(":", ""),
+        value[:label].delete(":"),
         data["#{key}_desc"] || undefined_value,
         value[:type] == :non_rag ? "" : rag(key, value)
       ]

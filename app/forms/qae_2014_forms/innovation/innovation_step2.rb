@@ -31,7 +31,7 @@ class QAE2014Forms
         textarea :innovation_desc_short, "Briefly describe your innovative product, service or business model" do
           ref "B 1.1"
           required
-          context %{
+          context %(
             <p>
               This summary will be used in publicity material if your application is successful.
             </p>
@@ -47,7 +47,7 @@ class QAE2014Forms
             <p>
               e.g. Leadership in the design and project management of biomethane gas-to-grid connections.
             </p>
-          }
+          )
           rows 2
           classes "word-max-strict"
           words_max 15
@@ -57,14 +57,14 @@ class QAE2014Forms
           classes "sub-question"
           sub_ref "B 1.2"
           required
-          context %{
+          context %(
             <p>
               Describe the product, service or business model itself.
               Explain any aspect(s) you think are innovative, and why you think they are innovative.
               Consider its uniqueness and the challenges you had to overcome.
               Also explain how it fits within the overall business i.e. is it your sole product?
             </p>
-          }
+          )
           rows 5
           words_max 800
         end
@@ -83,20 +83,16 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :innovation_external_contributors, "Please name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s)." do
+        textarea :innovation_external_contributors, 'Please name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s) or enter "N/A".' do
           ref "B 3"
           required
-          conditional :innovation_any_contributors, :yes
           rows 5
           words_max 500
         end
 
-        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation." do
+        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation. Or otherwise, how you identified a gap in the market." do
           ref "B 4"
           required
-          context %(
-            <p>Or otherwise, how you identified a gap in the market.</p>
-                    )
           rows 5
           words_max 500
         end
@@ -144,25 +140,25 @@ class QAE2014Forms
           required
           rows 5
           words_max 300
-          context %{
+          context %(
             <p>
               We ask this so that we can assess how outstanding your innovation is, compared to others in your field.
             </p>
-          }
+          )
         end
 
         options :innovations_grant_funding, "Have you received any grant funding to support your innovation?" do
           ref "B 10"
           required
           yes_no
-          context %{
+          context %(
             <p>
               We ask this in order to help us carry out due diligence if your application is shortlisted.
             </p>
-          }
+          )
         end
 
-        textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding." do
+        textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding" do
           classes "sub-question"
           sub_ref "B 10.1"
           required
@@ -176,9 +172,7 @@ class QAE2014Forms
           ref "B 11"
           context "
             <p>
-              Your innovation isn't eligible for this award if it was launched in the market
-              after #{AwardYear.start_trading_since(2)}
-              (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+              Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
             </p>
           "
           date_max AwardYear.start_trading_since(2)

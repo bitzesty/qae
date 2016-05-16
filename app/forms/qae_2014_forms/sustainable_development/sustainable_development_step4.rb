@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class QAE2014Forms
   class << self
     def development_step4
@@ -5,8 +6,7 @@ class QAE2014Forms
         header :complete_now_header, "" do
           context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate how they meet commonly accepted standards for corporate responsibility.
-              Applicants who are not able to demonstrate strong corporate social responsibility will not be successful.
+              All applicants for any Queen’s Award must demonstrate how they meet commonly accepted standards for corporate responsibility. Applicants who are not able to demonstrate strong corporate social responsibility will not be successful.
             </p>
             <p>
               The Declaration of Corporate Responsibility is a chance for you to outline your responsible business conduct, and its social, economic and environmental impact.
@@ -25,7 +25,7 @@ class QAE2014Forms
 
         header :declaration_and_corporate_responsibility_intro, "" do
           classes "application-notice help-notice"
-          context %{
+          context %(
             <p>
               You may have answered some of the questions in this section in other parts of the form.
             </p>
@@ -35,7 +35,7 @@ class QAE2014Forms
             <p>
               Please use this section to give us additional information about corporate responsibility that you have not covered elsewhere in the form and would like us to see.
             </p>
-          }
+          )
         end
 
         textarea :impact_on_society, "The impact of your business operations on society" do
@@ -96,13 +96,13 @@ class QAE2014Forms
           required
           context %(
             <p>
-              Do you have a code of conduct and/or employee policies? e.g. health and safety, training, staff welfare, whistleblowing and equal opportunities
+              Do you have a code of conduct and/or employee policies? e.g. health and safety, training, staff welfare, whistleblowing and equal opportunities.
             </p>
             <p>
-              Do you offer any special employment conditions? e.g. flexible working, extended maternity pay
+              Do you offer any special employment conditions? e.g. flexible working, extended maternity pay.
             </p>
             <p>
-              How do you keep your employees engaged? e.g. communication, assessments, incentives, opportunities for career development
+              How do you keep your employees engaged? e.g. communication, assessments, incentives, opportunities for career development.
             </p>
             <p>
               How are you training and developing your staff?

@@ -5,8 +5,7 @@ class QAE2014Forms
         header :company_information_header, "" do
           context %(
             <p>
-              We need this information to ensure we have some basic information about your organisation,
-              which will help us to undertake due diligence checks if your application is shortlisted.
+              We need this information to ensure we have some basic information about your organisation, which will help us to undertake due diligence checks if your application is shortlisted.
             </p>
           )
         end
@@ -39,9 +38,9 @@ class QAE2014Forms
         options :principal_business, "Does your organisation operate as a principal?" do
           required
           ref "A 3"
-          context %{
+          context %(
             <p>We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>
-          }
+          )
           yes_no
         end
 
@@ -286,7 +285,7 @@ class QAE2014Forms
                     )
         end
 
-        upload :org_chart, "Upload an organisational chart (optional)." do
+        upload :org_chart, "Upload an organisational chart (optional)" do
           ref "A 17"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>

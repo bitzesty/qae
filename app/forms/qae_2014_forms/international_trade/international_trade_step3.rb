@@ -4,13 +4,11 @@ class QAE2014Forms
     def trade_step3
       @trade_step3 ||= proc do
         header :commercial_success_info_block, "" do
-          context %{
+          context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
-              This section enables you to demonstrate the impact that your international trade activities had
-              on your organisation's financial performance.
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your international trade activities had on your organisation's financial performance.
             </p>
-          }
+          )
         end
 
         header :commercial_success_intro, "" do
@@ -31,9 +29,9 @@ class QAE2014Forms
           placeholder_preselected_condition :queen_award_holder_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
-                                            placeholder_text: %{
+                                            placeholder_text: %(
               As you currently hold a Queen's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
-            }
+            )
 
           financial_date_selector({
             "3 to 5" => "3",
@@ -41,23 +39,23 @@ class QAE2014Forms
           })
           default_option "6 plus"
           sub_category_question
-          context %{
+          context %(
             <p>
               Your answer here will determine whether you are assessed for outstanding
               growth (over three years) or continuous growth (over six years).
             </p>
-          }
+          )
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
-          context %{
+          context %(
             <p>
               If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.
               If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.
             </p>
-          }
+          )
           financial_date_pointer
         end
 
@@ -66,28 +64,31 @@ class QAE2014Forms
           sub_ref "C 2.1"
           required
           yes_no
-          context %{
+          context %(
             <p>
               We ask this so that we ensure we obtain all of the commercial figures we need to assess your application.
               You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3 or 6</span> full 12-month periods.
             </p>
-          }
+          )
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
+        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year" do
           classes "sub-question"
           sub_ref "C 2.2"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
+
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           conditional :trade_commercial_success, :true
           conditional :financial_year_date_changed, "yes"
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -96,7 +97,7 @@ class QAE2014Forms
           conditional :financial_year_date_changed, "yes"
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry" do
           classes "question-employee-min"
           ref "C 3"
           required
@@ -105,6 +106,9 @@ class QAE2014Forms
                     )
           type :number
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
+
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           employees_question
@@ -137,22 +141,22 @@ class QAE2014Forms
             </p>
             <ul>
               <li>
-                direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how etc.)
+                Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how etc.).
               </li>
               <li>
-                total export agency commissions
+                Total export agency commissions.
               </li>
               <li>
-                dividends remitted to the UK from direct overseas investments
+                Dividends remitted to the UK from direct overseas investments.
               </li>
               <li>
-                income from portfolio investment abroad remitted to the UK
+                Income from portfolio investment abroad remitted to the UK.
               </li>
               <li>
-                dividends on investments abroad not remitted to the UK
+                Dividends on investments abroad not remitted to the UK.
               </li>
               <li>
-                other earnings from overseas residents remitted to the UK
+                Other earnings from overseas residents remitted to the UK.
               </li>
             </ul>
             <p>
@@ -165,9 +169,11 @@ class QAE2014Forms
               If you haven't reached your latest year-end, please use estimates to complete this question.
             </p>
           )
+
           type :money
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           first_year_min_value "100000", "Cannot be less than £100,000"
           drop_block_conditional
         end
@@ -182,6 +188,7 @@ class QAE2014Forms
           context %(
             <p>Exclude VAT, overseas taxes and, where applicable, excise duties.</p>
                     )
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           drop_conditional :drops_in_turnover
         end
 
@@ -200,6 +207,7 @@ class QAE2014Forms
               Use a minus symbol to record any losses.
             </p>
           )
+          additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           drop_conditional :drops_in_turnover
         end
 

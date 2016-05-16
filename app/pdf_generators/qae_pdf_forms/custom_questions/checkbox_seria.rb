@@ -6,13 +6,17 @@ module QaePdfForms::CustomQuestions::CheckboxSeria
           p_o[0].to_s == option["type"].to_s
         end[1]
       end.join(", ")
-    else
-      "#{FormPdf::NOTHING_SELECTED} from #{checkbox_possible_ops_titles}!"
     end
 
     form_pdf.indent 7.mm do
-      form_pdf.font("Times-Roman") do
-        form_pdf.render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
+      if title.present?
+        form_pdf.font("Times-Roman") do
+          form_pdf.render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
+        end
+      else
+        checkbox_possible_ops.each do |key, value|
+          question_option_box value
+        end
       end
     end
   end

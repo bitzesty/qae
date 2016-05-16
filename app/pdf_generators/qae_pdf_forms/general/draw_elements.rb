@@ -100,7 +100,7 @@ module QaePdfForms::General::DrawElements
 
     move_down 15.mm
 
-    unless form_answer.urn.present?
+    if !form_answer.urn.present? || pdf_blank_mode
       render_intro_text
 
       move_down 15.mm
@@ -145,7 +145,7 @@ module QaePdfForms::General::DrawElements
       intro_text = %(
         This PDF version of the #{form_answer.award_type_full_name} Award #{form_answer.promotion? ? 'nomination' : 'application'} is for <b>reference only</b>.
 
-        <b>Please do not send in</b> this form to apply for this award. To apply for this award, complete this form online.
+        <b>Please do not send in</b> this form to apply for this award. To apply for this award, you have to complete the online form.
       )
 
       text_box intro_text,
@@ -155,22 +155,14 @@ module QaePdfForms::General::DrawElements
     end
   end
 
-  def render_answer_by_display(title, display)
-    render_standart_answer_block(title)
-  end
-
   def render_standart_answer_block(title)
-    title = title.present? ? title : FormPdf::UNDEFINED_TITLE
-
-    indent 7.mm do
-      font("Times-Roman") do
-        render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
+    if title.present?
+      indent 7.mm do
+        font("Times-Roman") do
+          render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
+        end
       end
     end
-  end
-
-  def render_no_answer_yet
-    render_standart_answer_block(FormPdf::UNDEFINED_TITLE)
   end
 
   def render_text(title, ops = {})
@@ -192,12 +184,6 @@ module QaePdfForms::General::DrawElements
     move_down 4.mm
     stroke_horizontal_line 0, 192.mm
     default_bottom_margin
-  end
-
-  def render_nothing_uploaded_message
-    font("Times-Roman") do
-      render_text "Nothing uploaded yet...", color: FormPdf::DEFAULT_ANSWER_COLOR
-    end
   end
 
   def current_host

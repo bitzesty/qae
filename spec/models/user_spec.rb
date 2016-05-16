@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User, :type => :model do
+RSpec.describe User, type: :model do
   let(:user) { build(:user) }
 
   it 'creates a new account for user' do

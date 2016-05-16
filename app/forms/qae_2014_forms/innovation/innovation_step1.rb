@@ -5,8 +5,7 @@ class QAE2014Forms
         header :company_information_header, "" do
           context %(
             <p>
-              We need this information to ensure we have some basic information about your organisation,
-              which will help us to undertake due diligence checks if your application is shortlisted.
+              We need this information to ensure we have some basic information about your organisation, which will help us to undertake due diligence checks if your application is shortlisted.
             </p>
           )
         end
@@ -31,22 +30,21 @@ class QAE2014Forms
         text :company_name, "Full/legal name of your organisation" do
           required
           ref "A 2"
-          context %{
+          context %(
             <p>
-              If applicable, include 'trading as',
-              or any other name your organisation uses/has used.
+              If applicable, include 'trading as', or any other name your organisation uses/has used.
             </P>
-          }
+          )
         end
 
         options :principal_business, "Does your organisation operate as a principal?" do
           required
           ref "A 3"
-          context %{
+          context %(
             <p>
               We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
             </p>
-          }
+          )
           yes_no
         end
 
@@ -89,9 +87,7 @@ class QAE2014Forms
           ref "A 5"
           context "
             <p>
-              Organisations that began trading after #{AwardYear.start_trading_since(2)}
-              aren't eligible for this award
-              (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+              Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
             </p>
           "
           date_max AwardYear.start_trading_since(2)
@@ -218,7 +214,7 @@ class QAE2014Forms
           # conditional :innovation_joint_contributors, :no
         end
 
-        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications" do
+        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications." do
           classes "sub-question"
           sub_ref "A 9.2"
           required
@@ -233,7 +229,7 @@ class QAE2014Forms
           yes_no
         end
 
-        textarea :innovation_license_terms, "Briefly describe the licensing arrangement." do
+        textarea :innovation_license_terms, "Briefly describe the licensing arrangement" do
           classes "sub-question"
           sub_ref "A 10.1"
           required
@@ -311,7 +307,7 @@ class QAE2014Forms
           conditional :has_parent_company, "yes"
         end
 
-        upload :org_chart, "Upload an organisational chart (optional)." do
+        upload :org_chart, "Upload an organisational chart (optional)" do
           ref "A 16"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>

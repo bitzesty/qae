@@ -1,15 +1,14 @@
+# -*- coding: utf-8 -*-
 class QAE2014Forms
   class << self
     def innovation_step3
       @innovation_step3 ||= proc do
         header :commercial_success_info_block, "" do
-          context %{
+          context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
-              This section enables you to demonstrate the impact that your innovation had on your
-              organisation's financial performance.
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your innovation had on your organisation's financial performance.
             </p>
-          }
+          )
         end
 
         header :commercial_success_intro, "" do
@@ -25,12 +24,12 @@ class QAE2014Forms
           classes "js-entry-period"
           ref "C 1"
           required
-          context %{
+          context %(
             <p>
               Your answer here will determine whether you are assessed for outstanding innovation
               (over two years) or continuous innovation (over five years).
             </p>
-          }
+          )
           option "2 to 4", "Outstanding Commercial Performance: innovation has improved commercial performance over 2 years"
           option "5 plus", "Outstanding Commercial Performance: innovation has improved commercial performance over 5 years"
           financial_date_selector({
@@ -41,7 +40,7 @@ class QAE2014Forms
           sub_category_question
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
           context %(
@@ -55,28 +54,31 @@ class QAE2014Forms
           sub_ref "C 2.1"
           required
           yes_no
-          context %{
+          context %(
             <p>
               We ask this so that we ensure we obtain all of the commercial figures we need to assess your application.
               You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
             </p>
-          }
+          )
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
+        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year" do
           classes "sub-question"
           sub_ref "C 2.2"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
+
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :yes
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -98,6 +100,7 @@ class QAE2014Forms
           by_year_condition :innovation_performance_years, "5 plus", 5
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
 
           employees_question
         end
@@ -115,9 +118,10 @@ class QAE2014Forms
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
             <p>
-              Please do not separate your figures with commas
+              Please do not separate your figures with commas.
             </p>
           )
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
         end
@@ -134,6 +138,7 @@ class QAE2014Forms
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
 
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -150,6 +155,7 @@ class QAE2014Forms
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
 
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -159,11 +165,12 @@ class QAE2014Forms
         turnover_exports_calculation :uk_sales, "Of which UK sales" do
           classes "sub-question"
           sub_ref "C 4.3"
-          context %(<p>This number is automatically calculated using your total turnover and export figures</p>)
+          context %(<p>This number is automatically calculated using your total turnover and export figures.</p>)
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
 
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
@@ -184,6 +191,9 @@ class QAE2014Forms
               Use a minus symbol to record any losses.
             </p>
           )
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -193,7 +203,14 @@ class QAE2014Forms
           classes "sub-question total-net-assets"
           sub_ref "C 4.5"
           required
-          context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>}
+          context %(
+            <p>
+              As per your balance sheet. Total assets (fixed and current),
+              less liabilities (current and long-term).
+            </p>
+          )
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
 
           type :money
           label ->(y) { "As at the end of year #{y}" }
@@ -210,6 +227,7 @@ class QAE2014Forms
           sub_ref "C 4.6"
           rows 5
           words_max 200
+
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_condition_parent
@@ -220,17 +238,17 @@ class QAE2014Forms
           required
           option :entire_business, "It's integral to the whole business"
           option :single_product_or_service, "It affects a single product/service"
-          context %{
+          context %(
             <p>
               It is important that we know whether or not your innovation is the key thing your business does, or forms part of a wider approach.
               This is so we can understand the value of your innovation in the context of your overall commercial performance.
             </p>
-          }
+          )
         end
 
         header :product_financials, "Innovation Financials" do
           ref "C 6"
-          context %{
+          context %(
             <p>
               If applicable, please provide your unit price, cost details and sales figures which explain the value of the innovation.
             </p>
@@ -246,7 +264,7 @@ class QAE2014Forms
             <p>
               Please do not separate your figures with commas.
             </p>
-          }
+          )
         end
 
         by_years :units_sold, "Number of innovative units/contracts sold (if applicable)" do
@@ -254,6 +272,8 @@ class QAE2014Forms
           sub_ref "C 6.1"
           type :number
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -264,6 +284,8 @@ class QAE2014Forms
           sub_ref "C 6.2"
           type :money
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -275,6 +297,8 @@ class QAE2014Forms
           context %(<p>Please enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -286,6 +310,8 @@ class QAE2014Forms
           context %(<p>Please enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
           drop_conditional :drops_in_sales
@@ -307,6 +333,8 @@ class QAE2014Forms
               If you haven't reached your latest year-end, please use estimates to complete this question.
             </p>
           )
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
@@ -328,6 +356,8 @@ class QAE2014Forms
               If you haven't reached your latest year-end, please use estimates to complete this question.
             </p>
           )
+
+          additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           type :money
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
@@ -361,11 +391,12 @@ class QAE2014Forms
         textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, please demonstrate clearly how and when in the future they will be delivered." do
           ref "C 8"
           required
-          context %{
+          context %(
             <p>
-              For example, new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
+              For example, new sales, cost savings, and their overall effect on turnover
+              and profitability, new investment secured, new orders secured.
             </p>
-          }
+          )
           rows 5
           words_max 300
         end
@@ -375,12 +406,11 @@ class QAE2014Forms
           required
           rows 5
           words_max 300
-          context %{
+          context %(
             <p>
-              This should include both capital purchases, and investments, grants, and loans received,
-              as well as the cost of staff time and other non cash resources.
+              This should include both capital purchases, and investments, grants, and loans received, as well as the cost of staff time and other non cash resources.
             </p>
-          }
+          )
         end
 
         textarea :roi_details, "How long did it take you to recover the investment indicated above? When and how did you achieve this?" do
@@ -389,12 +419,11 @@ class QAE2014Forms
           required
           rows 5
           words_max 500
-          context %{
+          context %(
             <p>
-              If your innovation is expected to recover its full costs in the future,
-              please explain how and when this will happen.
+              If your innovation is expected to recover its full costs in the future, please explain how and when this will happen.
             </p>
-          }
+          )
         end
       end
     end
