@@ -94,6 +94,6 @@ Rails.application.configure do
   #
   # Uncomment line below to hide PDF links:
   #
-  Rails.configuration.hide_pdf_links = true
+  # Rails.configuration.hide_pdf_links = true
   #
 end
