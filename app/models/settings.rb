@@ -35,6 +35,12 @@ class Settings < ActiveRecord::Base
       end
     end
 
+    def current_audit_certificates_deadline
+      Rails.cache.fetch("current_audit_certificates_deadline", expires_in: 1.minute) do
+        current.deadlines.audit_certificates_deadline
+      end
+    end
+
     def after_current_submission_deadline?
       deadline = current_submission_deadline.trigger_at
       DateTime.now >= deadline if deadline.present?

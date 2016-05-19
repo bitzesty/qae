@@ -56,6 +56,10 @@ class Deadline < ActiveRecord::Base
     where(kind: "buckingham_palace_media_information").first
   end
 
+  def self.audit_certificates_deadline
+    where(kind: "audit_certificates").first
+  end
+
   def passed?
     trigger_at && trigger_at < Time.zone.now
   end
