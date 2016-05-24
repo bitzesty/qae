@@ -75,7 +75,7 @@ class QAE2014Forms
             verified commercial figures before the specified deadline.
             <br>
             <br>
-            If verified figures are not provided by the deadline specified at short list stage, your entry will be rejected.
+            If verified figures are not provided by [AUDIT_CERTIFICATES_DEADLINE] specified at short list stage, your entry will be rejected.
           )
         end
 

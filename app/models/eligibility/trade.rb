@@ -13,7 +13,7 @@ class Eligibility::Trade < Eligibility
 
   validates :qae_for_trade_award_year,
             presence: true,
-            not_winner_in_last_year: true,
+            not_winner_in_last_two_years: true,
             if: proc {
               account.basic_eligibility.try(:current_holder) == "yes" &&
               current_holder_of_qae_for_trade? && (
