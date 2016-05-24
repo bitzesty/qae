@@ -568,9 +568,19 @@ jQuery ->
       else
         $("#trade-org-fulfilled-info").addClass("visuallyhidden")
 
+  trade_eligibility_not_eligible_message = (year_where_can_be_eligible) ->
+    year_where_can_be_awarded = year_where_can_be_eligible + 1
+
+    "<p>Unfortunately you cannot apply for International Trade award this year.</p>
+     <p>If your international trade continues to result in outstanding year on year growth, you can apply again in " +
+     year_where_can_be_eligible +
+     " for an award to be given in " +
+     year_where_can_be_awarded +
+     " (on outstanding short term growth over 3 years basis).</p>"
+
   # Show trade awarded info if it isn't 2010 (lowest year)
   if $(".trade-awarded-input").size() > 0
-    $(".trade-awarded-input").bind "change", ->
+    $(document).on "change", ".trade-awarded-input", (e) ->
       lowest_year = "9999"
       last_year = "2000"
       taInfo = $("#trade-awarded-info")
@@ -584,23 +594,28 @@ jQuery ->
           if parseInt(last_year) < parseInt(this_year)
             last_year = this_year
 
-      index_res = $(this).val().indexOf(lowest_year)
+      last_year_int = parseInt(last_year)
+      value_int = parseInt($(this).val())
+      not_eligible_years = [last_year_int, last_year_int - 1]
+      not_eligible_block = lyInfo.find(".application-notice")
 
-      if $(this).val() == last_year
+      if ($.inArray(value_int, not_eligible_years) >= 0)
+        not_eligible_block.html(trade_eligibility_not_eligible_message(value_int + 2))
+
         lyInfo.removeClass("visuallyhidden")
         taInfo.addClass("visuallyhidden")
-      else if $(this).val().length > 1 && (index_res == -1 || index_res == 0)
+      else if $(this).val().length > 1 && value_int > (last_year - 4) && value_int < (last_year_int - 1)
         taInfo.removeClass("visuallyhidden")
         lyInfo.addClass("visuallyhidden")
       else
         taInfo.addClass("visuallyhidden")
         lyInfo.addClass("visuallyhidden")
 
-      if $(this).val().length > 0 && $(this).val() != last_year
+      if $(this).val().length > 0 && value_int < (last_year_int - 1)
         $(".eligibility_qae_for_trade_award_year").removeClass("field-with-errors")
                                                   .find("span.error").remove();
 
-    $(".trade-awarded-input").trigger "change"
+  $(".trade-awarded-input").trigger "change"
 
   # Show the eligibility failure contact message
   if $("#basic-eligibility-failure-submit").size() > 0
