@@ -116,9 +116,6 @@ gem 'rails_12factor', '~> 0.0.3', group: :production
 
 gem 'puma', '~> 2.16.0'
 
-group :assets do
-end
-
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
