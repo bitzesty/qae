@@ -2,15 +2,10 @@ ENV["RAILS_ENV"] ||= "test"
 ENV["VIRUS_SCANNER_API_URL"] ||= "http://virus.scanner"
 ENV["VIRUS_SCANNER_API_KEY"] ||= "random_api_key"
 
-<<<<<<< HEAD
-require 'simplecov'
-require "codeclimate-test-reporter"
-SimpleCov.add_filter 'vendor'
-=======
 require "simplecov"
 require "codeclimate-test-reporter"
 SimpleCov.add_filter "vendor"
->>>>>>> master
+
 SimpleCov.formatters = []
 SimpleCov.start CodeClimate::TestReporter.configuration.profile
 
