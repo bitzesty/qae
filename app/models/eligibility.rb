@@ -4,7 +4,8 @@ class Eligibility < ActiveRecord::Base
   belongs_to :account
   belongs_to :form_answer
 
-  attr_accessor :current_step
+  attr_accessor :current_step,
+                :force_validate_now
 
   validate :current_step_validation
 

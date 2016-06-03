@@ -4,10 +4,17 @@ class Subsidiary
 
   include ActiveModel::Model
 
-  attr_reader :name, :location, :employees
+  attr_reader :name, :location, :employees, :description
 
   validates :name, :location, :employees, presence: true,
                                           length: { maximum: 100 }
+
+  # Should be 100 words maximum (limit + 10%).to_i + 1)
+  validates :description, presence: true, length: {
+    maximum: 111,
+    tokenizer: -> (str) { str.split },
+    message: "is too long (maximum is 100 words)"
+  }
 
   def initialize(attrs={})
     attrs.each do |key, value|

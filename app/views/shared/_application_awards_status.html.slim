@@ -17,28 +17,31 @@
 /* action:    Download PDF of your application
 
 ul.applications-list
-  - unless current_account.has_trade_award_in_this_year?
-    li
-      h3
-        ' International Trade Award
-      small
-        /' Unclear eligibility
-      .pull-right
+  li
+    h3
+      ' International Trade Award
+    small
+      ' You can only apply for one International Trade Award
+    .pull-right
+      - unless current_account.has_award_in_this_year?(:trade)
         = link_to "New application", apply_international_trade_award_path
+
   li
     h3
       ' Innovation Award
     small
-      /' Unclear eligibility
+      ' You can apply for more than one Innovation Award
     .pull-right
       = link_to "New application", apply_innovation_award_path
+
   li
     h3
       ' Sustainable Development Award
     small
-      /' Unclear eligibility
+      ' You can only apply for one Sustainable Development Award
     .pull-right
-      = link_to "New application", apply_sustainable_development_award_path
+      - unless current_account.has_award_in_this_year?(:development)
+        = link_to "New application", apply_sustainable_development_award_path
 
     /.application-notice.info-notice
       p

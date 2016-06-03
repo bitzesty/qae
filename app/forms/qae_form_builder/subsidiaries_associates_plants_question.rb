@@ -3,9 +3,13 @@ class QAEFormBuilder
   end
 
   class SubsidiariesAssociatesPlantsQuestionBuilder < QuestionBuilder
+    def details_words_max(value)
+      @q.details_words_max = value
+    end
   end
 
   class SubsidiariesAssociatesPlantsQuestion < Question
+    attr_accessor :details_words_max
   end
 
   class SubsidiariesAssociatesPlantsQuestionDecorator < QuestionDecorator

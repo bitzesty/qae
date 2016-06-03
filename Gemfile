@@ -75,7 +75,7 @@ gem 'prawn-table'
 gem 'nokogiri', '~> 1.6.0'
 
 # Error reporting
-group :bzstaging, :staging, :production do
+group :staging, :production do
   gem 'sentry-raven', github: 'getsentry/raven-ruby'
 end
 

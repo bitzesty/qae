@@ -1,7 +1,7 @@
 class Form::MaterialsBaseController < Form::BaseController
-
   # This controller handles saving of attachments and website links
   # This section is used in case if JS disabled
+  MAX_ATTACHMENTS = 3
 
   expose(:step) do
     @form.steps.detect { |s| s.opts[:id] == :add_website_address_documents_step }
@@ -28,9 +28,9 @@ class Form::MaterialsBaseController < Form::BaseController
   private
 
     def check_materials_limit
-      if existing_materials.count >= 4
+      if existing_materials.count >= MAX_ATTACHMENTS
         redirect_to form_form_answer_form_attachments_url(@form_answer),
-                    alert: "You can add up to 4 files or website addresses as maximum!"
+                    alert: "You can add up to #{MAX_ATTACHMENTS} files or website addresses as maximum!"
         return
       end
     end

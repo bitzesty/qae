@@ -10,7 +10,7 @@ class QAE2014Forms
     def innovation
       @innovation ||= QAEFormBuilder.build "Innovation Award Application" do
         step "Company Information",
-             "Company Info",
+             "Company Information",
              &QAE2014Forms.innovation_step1
 
         step "Your Innovation",
@@ -22,7 +22,7 @@ class QAE2014Forms
              &QAE2014Forms.innovation_step3
 
         step "Declaration of Corporate Responsibility",
-             "Corporate Responsibility",
+             "Declaration of Corporate Responsibility",
              &QAE2014Forms.innovation_step4
 
         step "Add Website Address/Documents",

@@ -15,3 +15,5 @@ certs/*
 
 .ruby-gemset
 sic_codes.csv
+config/secrets.yml
+coverage/*

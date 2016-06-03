@@ -1,0 +1,17 @@
+br
+
+fieldset.question-block
+  h2
+    = label_tag :nickname, "Please choose a reference for this application (optional):"
+
+  p.question-context
+    | If you have more than one innovation (and want them to be considered for an award), you will have to submit a separate application for each of them.
+    br
+    | You can create a reference, e.g. 'Fibre optic device' so that it helps you and your collaborators to distinguish between different innovation applications. It will appear on the Applications page. Once chosen, your reference is permanent.
+
+  .question-group
+    = text_field_tag :nickname, "", autocomplete: "off", type: "text", class: "big medium"
+
+    p.hint
+      | e.g. 'Fibre optic device'
+    .clear

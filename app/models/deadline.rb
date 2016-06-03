@@ -14,6 +14,7 @@ class Deadline < ActiveRecord::Base
     "buckingham_palace_attendees_invite",
     "buckingham_palace_confirm_press_book_notes",
     "buckingham_palace_media_information",
+    "buckingham_palace_reception_attendee_information_due_by",
     "audit_certificates"
   ]
 
@@ -53,6 +54,10 @@ class Deadline < ActiveRecord::Base
 
   def self.buckingham_palace_media_information
     where(kind: "buckingham_palace_media_information").first
+  end
+
+  def self.audit_certificates_deadline
+    where(kind: "audit_certificates").first
   end
 
   def passed?

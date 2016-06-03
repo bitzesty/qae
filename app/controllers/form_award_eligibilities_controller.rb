@@ -56,7 +56,9 @@ class FormAwardEligibilitiesController < ApplicationController
         @eligibility.pass!
       end
 
-      if params[:skipped] == "false"
+      check_passed_award_eligibility_after_changing_answer!
+
+      if params[:skipped] == "false" || !@award_eligibility.valid?
         set_steps_and_eligibilities
         setup_wizard
 
@@ -112,6 +114,20 @@ class FormAwardEligibilitiesController < ApplicationController
     else
       @eligibility = @award_eligibility
       self.steps = @award_eligibility.questions
+    end
+  end
+
+  def check_passed_award_eligibility_after_changing_answer!
+    if @basic_eligibility.passed? && @award_eligibility.passed?
+      # We need to check validations it in case if user changed answer
+      # after passing of validation
+      #
+      @award_eligibility.force_validate_now = true
+
+      # Mark eligibility as not passed in case if answer was changed
+      # and now eligibility is not valid!
+      #
+      @award_eligibility.update_column(:passed, false) if !@award_eligibility.valid?
     end
   end
 

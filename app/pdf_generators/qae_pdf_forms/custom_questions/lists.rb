@@ -21,7 +21,7 @@ module QaePdfForms::CustomQuestions::Lists
     "Details"
   ]
   TRADE_GOODS_AND_SERVICES_HEADERS = [
-    "Good/Service",
+    "Product/Service",
     "% of your total overseas trade"
   ]
   UNDEFINED_CELL_VALUE = "Undefined"
@@ -33,11 +33,30 @@ module QaePdfForms::CustomQuestions::Lists
       if list_rows.blank?
         form_pdf.default_bottom_margin
         render_word_limit
-        form_pdf.render_no_answer_yet
       end
     else
-      render_word_limit
-      form_pdf.render_no_answer_yet
+      if question.delegate_obj.is_a?(QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion)
+        render_by_trade_goods_question
+      else
+        render_word_limit
+      end
+    end
+  end
+
+  def render_by_trade_goods_question
+    TRADE_GOODS_AND_SERVICES_HEADERS.each_with_index do |header, i|
+      text = header
+
+      if question.delegate_obj.respond_to?(:words_max) &&
+          question.words_max.present? &&
+          urn_blank_or_pdf_blank_mode? &&
+          i == 0
+        text += " (word limit: #{question.words_max})"
+      end
+
+      form_pdf.default_bottom_margin
+      form_pdf.text "#{text}:",
+                    inline_format: true
     end
   end
 
@@ -91,7 +110,7 @@ module QaePdfForms::CustomQuestions::Lists
         position_date(prepared_item['start_month'], prepared_item['start_year']),
         position_date(prepared_item['end_month'], prepared_item['end_year']),
         prepared_item["ongoing"].to_s == "1" ? "yes" : "no",
-        prepared_item["details"].present? ? prepared_item["details"] : FormPdf::UNDEFINED_TITLE
+        prepared_item["details"]
       ]
     end
   end
@@ -107,8 +126,9 @@ module QaePdfForms::CustomQuestions::Lists
     if prepared_item["name"].present?
       [
         prepared_item["name"],
-        prepared_item["location"].present? ? prepared_item["location"] : FormPdf::UNDEFINED_TITLE,
-        prepared_item["employees"].present? ? prepared_item["employees"] : FormPdf::UNDEFINED_TITLE
+        prepared_item["location"],
+        prepared_item["employees"],
+        prepared_item["description"]
       ]
     end
   end

@@ -51,12 +51,8 @@ class Reports::PressBookList
       method: :employees
     },
     {
-      label: "BusinessSector",
-      method: :business_sector
-    },
-    {
-      label: "BusinessSectorOther",
-      method: :business_sector_other
+      label: "SIC code",
+      method: :sic_code
     },
     {
       label: "Address1",
@@ -97,11 +93,15 @@ class Reports::PressBookList
     {
       label: "QAOAgreedPressNote",
       method: :qao_agreed_press_note
+    },
+    {
+      label: "ConfirmedPalaceAttendees",
+      method: :palace_invite_submitted
     }
   ]
 
   def initialize(year)
-    @scope = year.form_answers.where(state: ["awarded", "recommended"]).order(:id).includes(:user)
+    @scope = year.form_answers.where(state: ["awarded", "recommended"]).order(:id).includes(:user, :palace_invite)
   end
 
   private

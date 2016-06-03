@@ -25,7 +25,7 @@
             - @feedbacks.each do |feedback|
               tr
                 td
-                  = feedback.created_at.strftime("%d/%m/%Y %H:%M")
+                  = feedback.created_at.strftime("%d/%m/%Y %-l:%M%P")
                 td
                   span.feedback-stars alt=feedback.rating.text title=feedback.rating.text
                     - feedback.rating.value.times do

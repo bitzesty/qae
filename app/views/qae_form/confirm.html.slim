@@ -35,12 +35,7 @@ header.page-header.group.page-header-wider
       .inner
         .form-download
           p
-            = link_to users_form_answer_path(@form_answer, format: :pdf)
-              ' Download a PDF of your
-              - if @form_answer.promotion?
-                ' nomination
-              - else
-                ' application
+            = render "qae_form/pdf_link"
 
         .application-notice.help-notice
           p
@@ -75,14 +70,11 @@ header.page-header.group.page-header-wider
           p All winning individuals and their nominators attend Buckingham Palace reception hosted by Her Majesty The Queen.
 
         - else
-          h3 December
+          h3 November
 
-          p We will contact you to let you know if you've been shortlisted.
+          p We will contact to let you know if you've been shortlisted.
 
-          p Shortlisted organisations are expected to:
-          ul
-            li complete the full Declaration of Corporate Responsibility (if not done so yet).
-            li provide an external accountant's certificate by early January (please note audited accounts are not required)
+          p If you are shortlisted you will need to get your commercial figures verified by an independent accountant and supply them to us by 18th of November (please note, audited accounts are not required).
 
           h3 March
           p Winning organisations are informed.

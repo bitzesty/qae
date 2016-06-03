@@ -2,9 +2,25 @@
 class Eligibility::Trade < Eligibility
   AWARD_NAME = 'International Trade'
 
+  validates :current_holder_of_qae_for_trade,
+            presence: true,
+            if: proc {
+              account.basic_eligibility.try(:current_holder) == "yes" && (
+                current_step == :current_holder_of_qae_for_trade ||
+                force_validate_now.present?
+              )
+            }, on: :update
+
   validates :qae_for_trade_award_year,
             presence: true,
-            if: proc { current_holder_of_qae_for_trade? && (!current_step || current_step == :qae_for_trade_award_year) }
+            not_winner_in_last_two_years: true,
+            if: proc {
+              account.basic_eligibility.try(:current_holder) == "yes" &&
+              current_holder_of_qae_for_trade? && (
+                current_step == :qae_for_trade_award_year ||
+                force_validate_now.present?
+              )
+            }, on: :update
 
   property :sales_above_100_000_pounds,
             values: %w[yes no skip],
@@ -36,6 +52,6 @@ class Eligibility::Trade < Eligibility
            values: (AwardYear.current.year - 5..AwardYear.current.year - 1).to_a.reverse + ["before_#{AwardYear.current.year - 5}"],
            accept: :not_nil_if_current_holder_of_qae_for_trade,
            label: "In which year did you receive the award?",
-           if: proc { account.basic_eligibility.current_holder == "yes" || current_holder_of_qae_for_trade? },
+           if: proc { account.basic_eligibility.current_holder == "yes" && current_holder_of_qae_for_trade? },
            allow_nil: true
 end

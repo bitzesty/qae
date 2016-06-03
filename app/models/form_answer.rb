@@ -276,6 +276,10 @@ class FormAnswer < ActiveRecord::Base
     account.collaborators_with(user)
   end
 
+  def palace_invite_submitted
+    palace_invite.try(:submitted) ? 'Yes' : 'No'
+  end
+
   private
 
   def nominator_full_name_from_document
@@ -342,7 +346,15 @@ class FormAnswer < ActiveRecord::Base
       validator = FormAnswerValidator.new(self)
 
       unless validator.valid?
-        errors.add(:base, "Answers invalid")
+
+        if Rails.env.test?
+          # Better output in Test env
+          # so that devs can easily detect the reasons of issues!
+          errors.add(:base, "Answers invalid! Errors: #{validator.errors.inspect}")
+        else
+          errors.add(:base, "Answers invalid")
+        end
+
         self.validator_errors = validator.errors
       end
     end

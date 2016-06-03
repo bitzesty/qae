@@ -14,10 +14,11 @@ describe "Eligibility forms" do
     it "process the eligibility form" do
       visit dashboard_path
       new_application("International Trade Award")
-      fill_in("nickname", with: "trade nick")
-      click_button("Save and start eligibility")
+      # fill_in("nickname", with: "trade nick")
+      click_button("Start eligibility questionnaire")
 
       form_choice([
+        "Yes",
         "Yes",
         "Yes",
         /Business/,
@@ -38,11 +39,11 @@ describe "Eligibility forms" do
     it "process the eligibility form" do
       visit dashboard_path
       new_application("Innovation Award")
-      fill_in("nickname", with: "innovation nick")
-      click_button("Save and start eligibility")
-      form_choice(["Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes"])
+      # fill_in("nickname", with: "innovation nick")
+      click_button("Save and start eligibility questionnaire")
+      form_choice(["Yes", "Yes", "Yes", /Business/, /Product/, "Yes", "No", "Yes"])
 
-      fill_in("How many innovative products/services/initiatives do you have?", with: 2)
+      fill_in("How many innovative products, services or business models do you have?", with: 2)
       click_button "Continue"
       form_choice("Yes")
       form_choice("Yes")
@@ -56,9 +57,10 @@ describe "Eligibility forms" do
     it "process the eligibility form" do
       visit dashboard_path
       new_application("Sustainable Development Award")
-      fill_in "nickname", with: "development nick"
-      click_button "Save and start eligibility"
+      # fill_in "nickname", with: "development nick"
+      click_button "Start eligibility questionnaire"
       form_choice([
+        "Yes",
         "Yes",
         "Yes",
         /Business/,

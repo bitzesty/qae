@@ -31,7 +31,8 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
     {
       "name" => item_params[:name],
       "location" => item_params[:location],
-      "employees" => item_params[:employees]
+      "employees" => item_params[:employees],
+      "description" => item_params[:description]
     }
   end
 
@@ -109,7 +110,8 @@ class Form::SubsidiariesController < Form::NonJsDynamicListsFormSectionControlle
     params.require(:subsidiary).permit(
       :name,
       :location,
-      :employees
+      :employees,
+      :description
     )
   end
 end

@@ -23,6 +23,13 @@
             p
               - if award.submitted?
                 ' Submitted
+
+                - if Rails.configuration.try(:hide_pdf_links).present?
+                  br
+                  | Your application will be available to download from 17th of May
+                - else
+                  = render "content_only/past_applications/download_pdf_link", award: award
+
               - else
                 ' In progress
                 / TODO fix progress percentage

@@ -41,7 +41,7 @@ Rails.application.routes.draw do
   get  "/new_innovation_form"                           => "form#new_innovation_form",                                    as: "new_innovation_form"
   get  "/new_international_trade_form"                  => "form#new_international_trade_form",                           as: "new_international_trade_form"
   get  "/new_sustainable_development_form"              => "form#new_sustainable_development_form",                       as: "new_sustainable_development_form"
-  get  "/new_enterprise_promotion_form"                 => "form#new_enterprise_promotion_form",                          as: "new_enterprise_promotion_form"
+
   get  "/form/:id"                                      => "form#edit_form",                                              as: "edit_form"
   post "/form/:id"                                      => "form#save",                                                   as: "save_form"
   post "/form/:id/attachments"                          => "form#add_attachment",                                         as: "attachments"
@@ -56,9 +56,6 @@ Rails.application.routes.draw do
 
   get "/apply_sustainable_development_award"            => "content_only#apply_sustainable_development_award",            as: "apply_sustainable_development_award"
   get "/award_info_development"                         => "content_only#award_info_development",                         as: "award_info_development"
-
-  get "/apply_enterprise_promotion_award"               => "content_only#apply_enterprise_promotion_award",               as: "apply_enterprise_promotion_award"
-  get "/award_info_promotion"                           => "content_only#award_info_promotion",                           as: "award_info_promotion"
 
   get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
 
@@ -189,8 +186,9 @@ Rails.application.routes.draw do
     resources :assessors
     resources :admins do
       collection do
-        # TODO: remove it once you fix issue with assessor access
+        # NOTE: debug abilities for Admin
         get :login_as_assessor
+        get :login_as_user
       end
     end
     resources :reports, only: [:show]

@@ -3,11 +3,19 @@ class QAE2014Forms
   class << self
     def development_step3
       @development_step3 ||= proc do
+        header :commercial_success_info_block, "" do
+          context %(
+            <p>
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your sustainable development had on your organisation's financial performance.
+            </p>
+          )
+        end
+
         header :commercial_success_intro, "" do
           classes "application-notice help-notice"
           context %(
             <p>
-              If shortlisted, figures provided must be capable of being verified by an independent, qualified, practising accountant or auditor.
+              If your application is shortlisted you will have to supply commercial figures verified by an independent accountant within a specified deadline.
             </p>
           )
         end
@@ -16,36 +24,54 @@ class QAE2014Forms
           classes "js-entry-period"
           ref "C 1"
           required
-          option "2 to 4", "Outstanding achievement over 2 years"
-          option "5 plus", "Continuous achievement over 5 years"
+          option "2 to 4", "Outstanding Sustainable Development: sustainable development has improved commercial performance over 2 years "
+          option "5 plus", "Continuous Sustainable Development: sustainable development has improved commercial performance over 5 years "
           financial_date_selector({
             "2 to 4" => "2",
             "5 plus" => "5"
           })
+          default_option "5 plus"
           sub_category_question
+          context %(
+            <p>
+              Your answer here will determine whether you are assessed for outstanding sustainable
+              development (over two years) or continuous sustainable development (over five years).
+            </p>
+          )
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
           context %(
-            <p>If you haven't reached/finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.</p>
+            <p>If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.</p>
                     )
           financial_date_pointer
         end
 
         options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
           classes "sub-question js-financial-year-change"
+          sub_ref "C 2.1"
           required
           yes_no
+          context %(
+            <p>
+              We ask this so that we ensure we obtain all of the commercial figures we need to assess your application.
+              You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
+            </p>
+          )
+          default_option "no"
         end
 
         by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
-          sub_ref "C 2.1"
+          sub_ref "C 2.2"
           required
           type :date
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
+
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
           conditional :development_performance_years, :true
@@ -54,7 +80,7 @@ class QAE2014Forms
 
         textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
-          sub_ref "C 2.2"
+          sub_ref "C 2.3"
           required
           rows 5
           words_max 100
@@ -66,10 +92,13 @@ class QAE2014Forms
           ref "C 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. Only include those on the payroll.</p>
+            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
                     )
           type :number
           label ->(y) { "Financial year #{y}" }
+
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
+
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
           conditional :development_performance_years, :true
@@ -79,14 +108,8 @@ class QAE2014Forms
         end
         # TODO: Min 2 - if less than 2 block - present 'you are not eligible' message
 
-        options :entry_relates_to, "My entry relates to" do
-          ref "C 4"
-          required
-          option :entire_business, "The entire business"
-          option :single_product_or_service, "A single product or service"
-        end
-
         header :company_financials, "Company Financials" do
+          ref "C 4"
           context %(
             <p>
               A parent company making a group entry should include the trading figures of all UK members of the group.
@@ -98,14 +121,15 @@ class QAE2014Forms
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
             <p>
-              Please do not separate your figures with commas
+              Please do not separate your figures with commas.
             </p>
           )
+
           conditional :development_performance_years, :true
         end
 
         by_years :total_turnover, "Total turnover" do
-          ref "C 5"
+          ref "C 4.1"
           required
           context %(
             <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
@@ -116,6 +140,7 @@ class QAE2014Forms
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
 
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -123,7 +148,7 @@ class QAE2014Forms
 
         by_years :exports, "Of which exports" do
           classes "sub-question"
-          sub_ref "C 5.1"
+          sub_ref "C 4.2"
           required
           context %(<p>Please enter '0' if you had none.</p>)
 
@@ -131,6 +156,7 @@ class QAE2014Forms
           label ->(y) { "Financial year #{y}" }
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -138,20 +164,29 @@ class QAE2014Forms
         end
 
         # UK sales = turnover - exports
-        turnover_exports_calculation :uk_sales, "UK Sales" do
+        turnover_exports_calculation :uk_sales, "Of which UK sales" do
+          classes "sub-question"
+          sub_ref "C 4.3"
           label ->(y) { "Financial year #{y}" }
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
           exports :exports
+
+          context %(
+            <p>
+              This number is automatically calculated using your total turnover and export figures.
+            </p>
+          )
         end
 
-        by_years :net_profit, "Net profit after tax but before dividends" do
+        by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
           classes "sub-question"
-          sub_ref "C 5.2"
+          sub_ref "C 4.4"
           required
 
           type :money
@@ -165,19 +200,25 @@ class QAE2014Forms
           )
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           drop_conditional :drops_in_turnover
         end
 
         by_years :total_net_assets, "Total net assets" do
           classes "sub-question total-net-assets"
-          sub_ref "C 5.3"
+          sub_ref "C 4.5"
           required
-          context %{<p>As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).</p>}
-
+          context %(
+            <p>
+              As per your balance sheet. Total assets (fixed and current),
+              less liabilities (current and long-term).
+            </p>
+          )
           type :money
           label ->(y) { "As at the end of year #{y}" }
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
           conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
@@ -186,7 +227,7 @@ class QAE2014Forms
 
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
-          sub_ref "C 5.4"
+          sub_ref "C 4.6"
           rows 5
           words_max 200
           conditional :development_performance_years, :true
@@ -194,101 +235,111 @@ class QAE2014Forms
           drop_condition_parent
         end
 
-        header :product_financials, "Product/Service Financials" do
-          ref "C 6"
+        options :entry_relates_to, "How does the sustainable development product, service or management approach that forms the basis of this application fit within the overall business?" do
+          ref "C 5"
+          required
+          option :entire_business, "It's integral to the whole business"
+          option :single_product_or_service, "It affects specific product, service or management approach"
           context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete these questions.</p>
-                    )
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
+            <p>
+              It is important that we know whether or not your sustainable development is the key thing your business does, or forms part of a wider approach.
+              This is so we can understand the commercial value of your sustainable development in the context of your overall commercial performance.
+            </p>
+          )
         end
 
-        by_years :units_sold, "Number of units/contracts sold" do
+        header :product_financials, "Sustainable Development Financials" do
+          ref "C 6"
+          context %(
+            <p>
+              If applicable, please provide your unit price, cost details and sales figures which explain the value of the sustainable development.
+            </p>
+            <p>
+              Some questions may not apply, please answer the ones that are applicable to your sustainable development.
+            </p>
+            <p>
+              If you haven't reached your latest year-end, please use estimates to complete this section.
+            </p>
+            <p>
+              You must enter actual financial figures in £ sterling (ignoring pennies).
+            </p>
+            <p>
+              Please do not separate your figures with commas.
+            </p>
+          )
+        end
+
+        by_years :units_sold, "Number of units/contracts sold (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.1"
-          required
           type :number
           label "..."
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales, "Sales" do
+        by_years :sales, "Sales (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.2"
-          required
           type :money
           label "..."
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_exports, "of which exports" do
+        by_years :sales_exports, "Of which exports (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.3"
           context %(<p>Please enter '0' if you had none.</p>)
-          required
           type :money
           label "..."
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_royalties, "of which royalties or licenses" do
+        by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.4"
           context %(<p>Please enter '0' if you had none.</p>)
-          required
           type :money
           label "..."
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
           drop_conditional :drops_in_sales
         end
 
-        textarea :drops_in_sales, "Explain any drop in sales or number of units sold." do
+        textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 6.5"
           rows 5
           words_max 300
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
           drop_condition_parent
         end
 
-        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract" do
-          required
+        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract (if applicable)" do
           sub_ref "C 6.6"
+          classes "sub-question"
           type :money
           label "..."
           context %(
             <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
                     )
+          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods." do
+        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.7"
-          required
           rows 5
           words_max 300
-          conditional :entry_relates_to, :single_product_or_service
-          conditional :development_performance_years, :true
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
@@ -309,25 +360,20 @@ class QAE2014Forms
           conditional :development_performance_years, :true
         end
 
-        textarea :financial_comments, "Additional comments (optional)" do
+        textarea :development_performance, "What cost savings have you or your customers' businesses made as a result of the introduction of the product, service or management approach?" do
           ref "C 8"
-          rows 5
-          words_max 100
-          conditional :development_performance_years, :true
-        end
-
-        textarea :development_performance, "Explain the cost savings you or your customers' businesses made as a result of the introduction of the product/service/management approach." do
-          ref "C 9"
           required
           context %(
-            <p>Use figures if known.</p>
-                    )
+            <p>
+              This is in addition to the sustainability impact you have already demonstrated in section B of this form. Please provide figures if known.
+            </p>
+          )
           rows 5
           words_max 300
         end
 
         textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach." do
-          ref "C 10"
+          ref "C 9"
           required
           context %(
             <p>
@@ -339,7 +385,7 @@ class QAE2014Forms
         end
 
         textarea :roi_details, "How long did it take you to break even? When and how was this achieved?" do
-          sub_ref "C 10.1"
+          sub_ref "C 9.1"
           classes "sub-question"
           required
           context %(

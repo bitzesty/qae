@@ -10,7 +10,7 @@ class QAE2014Forms
     def development
       @development ||= QAEFormBuilder.build "Sustainable Development Award Application" do
         step "Company Information",
-             "Company Info",
+             "Company Information",
              &QAE2014Forms.development_step1
 
         step "Your Sustainable Development",
@@ -22,7 +22,7 @@ class QAE2014Forms
              &QAE2014Forms.development_step3
 
         step "Declaration of Corporate Responsibility",
-             "Corporate Responsibility",
+             "Declaration of Corporate Responsibility",
              &QAE2014Forms.development_step4
 
         step "Add Website Address/Documents",

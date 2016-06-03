@@ -105,6 +105,11 @@ class ApplicationController < ActionController::Base
   end
   helper_method :submission_deadline
 
+  def audit_certificates_deadline
+    Settings.current_audit_certificates_deadline
+  end
+  helper_method :audit_certificates_deadline
+
   private
 
   def configure_permitted_parameters
@@ -170,4 +175,30 @@ class ApplicationController < ActionController::Base
   def user_for_paper_trail
     "USER:#{current_user.id}" if current_user.present?
   end
+
+  #
+  # Validate applications number per account - BEGIN
+  # used in multiple controllers
+  #
+
+  def check_trade_count_limit
+    check_applications_limit(:trade)
+  end
+
+  def check_development_count_limit
+    check_applications_limit(:development)
+  end
+
+  def check_applications_limit(type_of_award)
+    if current_account.has_award_in_this_year?(type_of_award)
+      redirect_to dashboard_url, flash: {
+        alert: "You can not submit more than one #{type_of_award} form per year!"
+      }
+    end
+  end
+
+  #
+  # Validate applications number per account - END
+  # used in multiple controllers
+  #
 end

@@ -3,297 +3,301 @@ class QAE2014Forms
   class << self
     def development_step2
       @development_step2 ||= proc do
-        context %(
-          <p>Please try to avoid using technical jargon in this section.</p>
-                )
-
-        options :my_entry_relates_to, "This entry relates to:" do
-          ref "B 1"
-          required
-          option "product service", "A product/service"
-          option "management approach", "A management approach"
-          option "both", "Both of the above"
+        header :development_b_section_header, "" do
+          context %(
+            <p>
+              This section gives you the opportunity to present the detail of your product, service or management approach and to give us the evidence about your activities, leadership and achievements that will enable us to assess your application.
+            </p>
+            <p>
+              Please try to avoid using technical jargon in this section.
+            </p>
+          )
         end
 
-        textarea :development_desc_short, "Briefly describe your product/service/management approach" do
-          classes "word-max-strict"
-          ref "B 2"
+        checkbox_seria :application_relate_to, "This entry relates to:" do
+          ref "B 1"
           required
           context %(
-            <p>e.g. Arts Company:  “Sustainable print marketing for arts and tourism”; Energy Company:  “Management and delivery of commercial and domestic projects to tackle fuel poverty, energy efficiency and carbon reduction”.</p>
-                    )
+            <p>Select all that apply.</p>
+          )
+          check_options [
+            ["product", "A product"],
+            ["service", "A service"],
+            ["management_approach", "A management approach"]
+          ]
+        end
+
+        textarea :development_management_approach_briefly, "Briefly describe your product, service or management approach" do
+          classes "word-max-strict"
+          ref "B 1.1"
+          required
+          context %(
+            <p>
+              If more than one, please make sure you cover all of them.
+            </p>
+            <p>
+              This will be used in publicity material if your application is successful.
+            </p>
+            <ul>
+              <li>
+                e.g. Working with organisations to produce the highest quality printed material with the lightest environmental impact.
+              </li>
+              <li>
+                e.g. Product and ingredient certification, business services and public awareness for fair and sustainable trade.
+              </li>
+              <li>
+                e.g. Own, manage and develop environmentally friendly commercial property, focused on UK retail and London offices.
+              </li>
+            </ul>
+          )
           rows 2
           words_max 15
         end
 
-        textarea :development_desc_long, "Summarise your product/service/management approach" do
-          ref "B 3"
+        textarea :development_desc_long, "Summarise your product, service or management approach" do
+          classes "word-max-strict"
+          ref "B 1.2"
           required
           context %(
-            <p>Include a brief description of its origin and development.</p>
-                    )
+            <p>
+              If more than one, please make sure you cover all of them. Include a brief description of its/their origin and development.
+            </p>
+          )
           rows 5
           words_max 500
         end
 
-        textarea :development_approach, "Describe how you manage the resources and/or relationships important to your product/service/management approach." do
+        textarea :development_desc_short, "Describe how you demonstrate leadership in terms of influencing staff and/or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers." do
+          classes "word-max-strict"
+          ref "B 2"
+          required
+          context %(
+            <p>
+              Please summarise any plans, policies, strategies, etc. that you have in place that demonstrate your leadership approach within your own organisation and which drive your relationships with your partners.
+            </p>
+
+            <p>
+              For example, you may wish to demonstrate how you:
+            </p>
+
+            <ul>
+              <li>
+                Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits, or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
+              </li>
+              <li>
+                Follow principles of good governance, openness and consultation with regards to customers, suppliers and staff.
+              </li>
+              <li>
+                Have embedded ethical business principles and, where appropriate, have actively opposed corruption and unfair practices or challenged those with a detrimental impact on the environment.
+              </li>
+              <li>
+                Systematically promote sustainable development  for example by using indicators, targets, policies and management processes to enable you to demonstrate and measure progress and success.
+              </li>
+              <li>
+                Take part in and commit to relevant accredited and verified schemes such as British Standards and ISO.
+              </li>
+              <li>
+                Create management innovation - e.g. develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
+              </li>
+            </ul>
+
+            <p>
+              Please specify the timescale over which your sustainable development performance has been or will be sustained.
+            </p>
+          )
+          rows 8
+          words_max 750
+        end
+
+        header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below." do
+          ref "B 3"
+          context %(
+            <p>
+              You should demonstrate outstanding performance in at least one area.
+              If your contribution is not outstanding in all areas, please describe the actions you are taking to improve outcomes in those areas.
+            </p>
+          )
+        end
+
+        textarea :environmental_contribution, "Explain how it contributes to environmental outcomes of sustainable development" do
+          required
+          classes "sub-question"
+          sub_ref "B 3.1"
+          context %(
+            <p>
+             'Environmental outcomes' means respecting the limits of the planet's environment, natural resources and biodiversity, including, where possible, improving the state of the environment.
+            </p>
+            <p>
+              For example, you might wish to demonstrate how you and your suppliers:
+            </p>
+            <ul>
+              <li>
+                Have adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
+              </li>
+              <li>
+                Reduce greenhouse gas emissions and reliance on fossil fuels.
+              </li>
+              <li>
+                Reduce the amount of waste generated.
+              </li>
+              <li>
+                Substitute material inputs for more environmentally sound alternatives.
+              </li>
+              <li>
+                Reduce energy and water consumption.
+              </li>
+              <li>
+                Protect or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
+              </li>
+              <li>
+                Participate in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
+              </li>
+              <li>
+                Undertake sustainable, i.e. green, procurement.
+              </li>
+            </ul>
+          )
+          rows 5
+          words_max 750
+        end
+
+        textarea :social_contribution, "Explain how it contributes to social outcomes of sustainable development" do
+          classes "sub-question"
+          sub_ref "B 3.2"
+          required
+          context %(
+            <p>
+              'Social outcomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
+            </p>
+            <p>
+              For example, you may wish to demonstrate how you:
+            </p>
+            <ul>
+              <li>
+                Create products and services that deliver social value, such as positive nutritional outcomes and health and wellbeing benefits, as well as market offers that in themselves help build sustainable communities.
+              </li>
+              <li>
+                Promote health and safety for your staff and supply chain, and at the very least meet British Standards or their equivalent, and influence others in the sector to do similar.
+              </li>
+              <li>
+                Promote the wellbeing of staff including helping them to deliver skills which will be of value both inside and outside work.
+              </li>
+              <li>
+                Support local communities for example through staff volunteering or sharing of resources, premises and expertise.
+              </li>
+              <li>
+                Engage with local schools, colleges and universities to help increase the life chances of young people.
+              </li>
+              <li>
+                Procure food that meets British or equivalent production standards and support a healthy balanced diet.
+              </li>
+              <li>
+                Conserve any parts of your environment with historic or cultural importance.
+              </li>
+            </ul>
+          )
+          rows 5
+          words_max 750
+        end
+
+        textarea :economic_contribution, "Explain how it contributes to economic outcomes of sustainable development" do
+          classes "sub-question"
+          sub_ref "B 3.3"
+          required
+          context %(
+            <p>
+             'Economic outcomes' means building a fair, sustainable economy which provides prosperity and opportunity for all, promotes innovation and encourages lifelong learning.
+            </p>
+            <p>
+              For example, you may wish to demonstrate how you:
+            </p>
+            <ul>
+              <li>
+                Have implemented sustainable development practices that have helped you to create jobs, especially amongst disadvantaged groups.
+              </li>
+              <li>
+                Have created procurement practices which support the local economy.
+              <li>
+                Encourage and enable staff in your organisation and supply chain to undertake learning and development to improve their skills and life chances, including through formal routes such as apprenticeships and informal on-the-job learning.
+              </li>
+              <li>
+                Are open to new concepts in sustainable development and are finding innovative ways to improve both sustainability and the bottom line.
+              </li>
+              <li>
+                Promote sustainable construction practices.
+              </li>
+            </ul>
+          )
+          rows 5
+          words_max 750
+        end
+
+        textarea :sector_leader_desc, "How does the information provided in previous answers demonstrate that you are showing sector-leading sustainability performance?" do
           ref "B 4"
           required
           context %(
-            <p>Please provide details of any plans, policies, strategies, etc. that you have in place to guide resource and relationship management. Please identify the roles, teams, departments, etc. responsible for the management of resources and/or relationships and how they achieve successful, sustainable management of these.</p>
+            <p>Can you benchmark this  performance against other comparable organisations?</p>
                     )
           rows 5
-          words_max 500
+          words_max 750
         end
 
-        header :provide_evidence_header, "Where possible, provide evidence of your product/service/management approach's contribution to each of the dimensions of sustainable development below. If your contribution is weak in any of them, describe the relevant actions taken to improve this." do
+        textarea :name_of_external_organization_or_individual, 'Please name the external organisation(s) or individual(s) that contributed to your product, service or management approach, and explain their contributions or enter "N/A".' do
           ref "B 5"
-        end
-
-        textarea :environmental_contribution, "Explain how it contributes to environmental dimensions of sustainable development." do
-          required
-          classes "sub-question"
-          context %(
-            <p>
-              'Environmental dimensions' means respecting the limits of the planet's environment, resources and biodiversity
-              <a href="#hidden-hint-0" class="hidden-link-for">
-                e.g. resources, efficiency, waste reduction and biological diversity/productivity.
-              </a>
-            </p>
-          )
-          hint "", %(
-            <h3>
-              Resources
-            </h3>
-            <p>
-              e.g. reducing use of fossil fuels, metals, aggregates and minerals, increasing use of renewable and recycled materials, generating or using renewable energy.
-            </p>
-
-            <h3>
-              Efficiency
-            </h3>
-            <p>
-              e.g. using materials (including water) and energy efficiently.
-            </p>
-
-            <h3>
-              Wastes, emissions and pollution
-            </h3>
-            <p>
-              e.g. reducing waste, reducing omissions of greenhouse gasesm ozone-depleters, toxic and radioactive substances, and persitent synthetics.
-            </p>
-
-            <h3>
-              Biological diversity and productivity
-            </h3>
-            <p>
-              e.g. protesting and enhancing native species and habitats, increasing use of sustainably managed sources.
-            </p>
-          )
-          rows 5
-          words_max 750
-        end
-
-        textarea :social_contribution, "Explain how it contributes to social dimensions of sustainable development." do
-          classes "sub-question"
-          required
-          context %(
-            <p>
-              'Social dimensions' means towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities
-              <a href="#hidden-hint-0" class="hidden-link-for">
-                e.g. health and safety, lifelong learning, and building strong communities.
-              </a>
-            </p>
-          )
-          hint "", %(
-            <h3>
-              Health, safety and support
-            </h3>
-            <p>
-              e.g. promoting health and safety in (global) supply chains, promoting skills support and activities to encourage healthy living, promoting access to work and services for people with special needs, contributing to local environment and infrastructure to improve safety and provide opportunities to be healthy.
-            </p>
-
-            <h3>
-              Social skills, participation and life-long learning
-            </h3>
-            <p>
-              e.g. encouraging people to be involved in sharing views and ideas and making decisions, promoting participation and employee development, increasing opportunities to learn critical skills, helping people to continue learning in their work and personal lives.
-            </p>
-
-            <h3>
-              Building strong communities
-            </h3>
-            <p>
-              e.g working in partnership with local communities, supporting community activity and volunteering, helping to reduce prejudice and promote understanding, sharing resources with community, voluntary, educational or charitable groups.
-            </p>
-          )
-          rows 5
-          words_max 750
-        end
-
-        textarea :economic_contribution, "Explain how it contributes to economic dimensions of sustainable development." do
-          classes "sub-question"
-          required
-          context %(
-            <p>
-              'Economic dimensions' means building a fair, sustainable economy which provides prosperity and opportunity for all
-              <a href="#hidden-hint-0" class="hidden-link-for">
-                e.g. productivity, socially useful activity, supporting local economies, considering sustainability when making financial and purchasing decisions.
-              </a>
-            </p>
-          )
-          hint "", %(
-            <h3>
-              Work, productive and socially useful activity
-            </h3>
-            <p>
-              e.g. creating jobs, helping people (long-term unemployed, disabled) who might otherwise be without work to contribute to society, and realise their potential.
-            </p>
-
-            <h3>
-              Finance and sustainable economy
-            </h3>
-            <p>
-              e.g. contributing to prosperity of wider local, regional and national economy, considering environmental and social impact when considering internal financial management systems and financial services bought, using purchase power to support local economy and organisations which are contributing to sustainable development.
-            </p>
-          )
-          rows 5
-          words_max 750
-        end
-
-        textarea :leadership_contribution, "Explain how it contributes to leadership dimensions of sustainable development." do
-          classes "sub-question"
-          required
-          context %(
-            <p>
-              'Leadership dimensions' means actively promoting effective, participative systems of governance in all levels of society
-              <a href="#hidden-hint-0" class="hidden-link-for">
-                e.g. promotion of sustainable development, increasing access to information, management innovation, ethical conduct.
-              </a>
-            </p>
-          )
-          hint "", %(
-            <h3>
-              Trust, access to formation, good governance and stakeholder relations
-            </h3>
-            <p>
-              e.g. improving flow of information to stakeholders, consulting with stakeholders to inform decisions, conducting ethical business and actively opposing corruption and unfair practices.
-            </p>
-
-            <h3>
-              Promotion of sustainable development
-            </h3>
-            <p>
-              e.g. using indicators, targets, policies and management processes that integrate business practices with sustainable development. Promoting sustainable development:
-            </p>
-            <ul>
-              <li>
-                to employees
-              </li>
-              <li>
-                through the supply chain
-              </li>
-              <li>
-                within the business sector
-              </li>
-              <li>
-                to local communities and to other stakeholders
-              </li>
-              <li>
-                in internional operations
-              </li>
-            </ul>
-
-            <h3>
-              Taking part in:
-            </h3>
-            <ul>
-              <li>
-                demonstration and pilot projects
-              </li>
-              <li>
-                accredited and verified schemes
-              </li>
-              <li>
-                benchmarking
-              </li>
-              <li>
-                business sector initiatives
-              </li>
-              <li>
-                local initiatives
-              </li>
-            </ul>
-
-            <h3>
-              Management innovation
-            </h3>
-            <p>
-              e.g. including sustainable development in organisation's missions and values, having process to address dilemmas and constraints on action in place, developing innovative ways to engage employees, local communities and stakeholders in sustainable development, developing ways to enhance the organisation's reputation by engaging with sustainable development, developing reawrds for employees with good environmental and social performance.
-            </p>
-          )
-          rows 5
-          words_max 750
-        end
-
-        textarea :sector_leader_desc, "Describe how you demonstrate sector-leading sustainability performance." do
-          ref "B 6"
-          required
-          context %(
-            <p>This can include describing how you benchmark your performance against others in your sector.</p>
-                    )
-          rows 5
-          words_max 750
-        end
-
-        textarea :name_of_external_organization_or_individual, "Please name the external organisation(s)/individual(s) that contributed to your product/service/management approach, and explain their contributions." do
-          ref "B 7"
           required
           rows 5
           words_max 500
-          conditional :external_contribute_to_sustainable_product, "yes"
         end
 
-        options :another_org_licensed, "Is the product/service/management approach under license from another organisation?" do
-          ref "B 8"
+        options :another_org_licensed, "Is the product, service or management approach under licence from another organisation?" do
+          ref "B 6"
           required
           yes_no
         end
 
-        textarea :licensing_agreement, "Briefly describe the licensing arrangement." do
+        textarea :licensing_agreement, "Briefly describe the licensing arrangement" do
           classes "sub-question"
-          sub_ref "B 8.1"
+          sub_ref "B 6.1"
           required
           rows 5
           words_max 100
           conditional :another_org_licensed, :yes
         end
 
-        options :grant_support, "Have you received any grant funding to support this product/service/management approach?" do
-          ref "B 9"
+        options :grant_support, "Have you received any grant funding to support this product, service or management approach?" do
+          ref "B 7"
           required
           yes_no
+          context %(
+            <p>
+              We ask this in order to help us carry out due diligence if your application is shortlisted.
+            </p>
+          )
         end
 
         textarea :grant_details, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
-          sub_ref "B 9.1"
+          sub_ref "B 7.1"
           required
           rows 5
           words_max 300
           conditional :grant_support, :yes
         end
 
-        number :innovation_years_by_applicant, "How long has the product/service/management approach been in commercial operation, production or progress?" do
-          ref "B 10"
+        date :development_was_launched_since, "Please select the date since when your product, service or management approach has been in commercial operation, production or in progress?" do
           required
-          max 100
-          unit " years"
-          style "small inline"
+          ref "B 8"
+          context "
+            <p>
+              You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award)
+            </p>
+          "
+          date_max AwardYear.start_trading_since(2)
         end
 
         textarea :development_additional_comments, "Additional comments (optional)" do
           classes "sub-question"
+          sub_ref "B 8.1"
           rows 5
           words_max 200
         end

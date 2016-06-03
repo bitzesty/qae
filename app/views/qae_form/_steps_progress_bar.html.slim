@@ -33,13 +33,14 @@
                      ' #{step_letters[step.index]}.
                    = step.short_title.html_safe
 
-    li.divider
-    li.step-past.step-download
-      = link_to users_form_answer_path(@form_answer, format: :pdf)
-        - if @form_answer.award_type == "promotion"
-          ' Download your nomination
-        - else
-          ' Download your application
+    - unless Rails.configuration.try(:hide_pdf_links).present?
+      li.divider
+      li.step-past.step-download
+        = link_to users_form_answer_path(@form_answer, format: :pdf)
+          - if @form_answer.award_type == "promotion"
+            ' Download your nomination
+          - else
+            ' Download your application
 
     li.divider
     li.sidebar-helpline

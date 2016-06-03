@@ -6,7 +6,7 @@ class ApplicationDecorator < Draper::Decorator
   end
 
   def created_at_timestamp
-    object.created_at.strftime("%d%m%Y_%H%M")
+    object.created_at.strftime("%d%m%Y_%-l:%M%P")
   end
 
   def self.collection_decorator_class

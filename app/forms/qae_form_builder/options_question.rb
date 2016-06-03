@@ -22,11 +22,19 @@ class QAEFormBuilder
     def sub_category_question
       @q.sub_category_question = true
     end
+
+    def default_option(option)
+      @q.default_option = option
+    end
   end
 
   class OptionsQuestion < Question
     attr_reader :options
-    attr_accessor :financial_date_selector, :sub_category_question, :ops_values
+
+    attr_accessor :financial_date_selector,
+                  :sub_category_question,
+                  :ops_values,
+                  :default_option
 
     def after_create
       @options = []

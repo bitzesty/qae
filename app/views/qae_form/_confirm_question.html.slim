@@ -1,4 +1,6 @@
 label.selectable.selectable-confirm
   input.js-trigger-autosave type="checkbox" name=question.input_name checked=!!question.input_value *possible_read_only_ops
-  - if question.text
-    == question.text 
+  - if question.key == :shortlisted_case_confirmation
+    == question.text.gsub("[AUDIT_CERTIFICATES_DEADLINE]", audit_certificates_deadline.decorate.formatted_trigger_time)
+  - elsif question.text
+    == question.text

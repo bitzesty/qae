@@ -42,16 +42,6 @@ describe FormFinancialPointer do
                       { value: "20", name: "net_profit_5of6" },
                       { value: "30", name: "net_profit_6of6" }
                     ]
-      },
-      {
-        total_imported_cost: [
-                               { value: "80", name: "total_imported_cost_1of6" },
-                               { value: "80", name: "total_imported_cost_2of6" },
-                               { value: "90", name: "total_imported_cost_3of6" },
-                               { value: "100", name: "total_imported_cost_4of6" },
-                               { value: "100", name: "total_imported_cost_5of6" },
-                               { value: "120", name: "total_imported_cost_6of6" }
-                             ]
       }
     ]
   end

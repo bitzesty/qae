@@ -22,7 +22,8 @@ class QAEFormBuilder
     attr_accessor :main_header,
                   :placeholder_preselected_conditions,
                   :options,
-                  :question_key
+                  :question_key,
+                  :default_option
 
     def after_create
       @placeholder_preselected_conditions = []
@@ -38,6 +39,10 @@ class QAEFormBuilder
     def placeholder_preselected_condition(q_key, options={})
       @q.question_key = q_key
       @q.placeholder_preselected_conditions << PlaceholderPreselectedCondition.new(q_key, options)
+    end
+
+    def default_option(option)
+      @q.default_option = option
     end
   end
 

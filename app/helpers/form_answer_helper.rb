@@ -62,20 +62,6 @@ module FormAnswerHelper
     ([["United Kingdom", "GB"], ["United States", "US"]] + Country.all).uniq
   end
 
-  def feedback_updated_by(form_answer)
-    feedback = form_answer.feedback
-    if feedback && feedback.authorable.present?
-      "Updated by: #{feedback.authorable.decorate.full_name} - #{format_date(feedback.updated_at)}"
-    end
-  end
-
-  def press_summary_updated_by(form_answer)
-    ps = form_answer.press_summary
-    if ps.present? && ps.authorable.present?
-      "Updated by #{ps.authorable.decorate.full_name} - #{format_date(ps.updated_at)}"
-    end
-  end
-
   def assessors_collection_for_bulk
     assessors = Assessor.available_for(category_picker.current_award_type).map { |a| [a.full_name, a.id] }
     [["Not Assigned", "not assigned"]] + assessors

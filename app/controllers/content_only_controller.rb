@@ -19,22 +19,23 @@ class ContentOnlyController < ApplicationController
                 only: [
                   :award_info_innovation,
                   :award_info_trade,
-                  :award_info_development,
-                  :award_info_promotion
+                  :award_info_development
                 ]
 
   before_action :get_collaborators,
                 only: [
                   :award_info_innovation,
                   :award_info_trade,
-                  :award_info_development,
-                  :award_info_promotion
+                  :award_info_development
                 ]
 
   before_action :restrict_access_if_admin_in_read_only_mode!,
                 only: [:dashboard]
 
   before_action :clean_flash, only: [:sign_up_complete]
+
+  before_action :check_trade_count_limit, only: :apply_international_trade_award
+  before_action :check_development_count_limit, only: :apply_sustainable_development_award
 
   expose(:form_answer) do
     current_user.form_answers.find(params[:id])
@@ -44,7 +45,7 @@ class ContentOnlyController < ApplicationController
     current_account.form_answers.submitted.past.group_by(&:award_year)
   end
 
-  expose(:winners_award_year) do
+  expose(:target_award_year) do
     if params[:award_year_id].present?
       AwardYear.find(params[:award_year_id])
     else
@@ -70,14 +71,14 @@ class ContentOnlyController < ApplicationController
   def award_winners_section
     @user_award_forms_submitted = user_award_forms.submitted
 
-    render "content_only/award_winners_section/#{winners_award_year.year}"
+    render "content_only/award_winners_section/#{target_award_year.year}"
   end
 
   private
 
   def user_award_forms
     current_account.form_answers
-                   .where(award_year: AwardYear.current)
+                   .where(award_year: target_award_year)
                    .order("award_type")
   end
 

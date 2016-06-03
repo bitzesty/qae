@@ -3,7 +3,8 @@ class PalaceInvite < ActiveRecord::Base
 
   has_many :palace_attendees, dependent: :destroy, autosave: true
 
-  validates :form_answer, presence: true
+  validates :form_answer_id, presence: true,
+                             uniqueness: true
 
   before_create :set_token
 

@@ -25,6 +25,13 @@ So that I provide a full list of attendees for Buckingham Palace reception
     invite = settings.deadlines.where(kind: "buckingham_palace_attendees_invite").first
     invite.update_column(:trigger_at, DateTime.new(Date.current.year, 7, 14, 18, 00))
 
+    attendees_info_due = settings.deadlines.where(
+      kind: "buckingham_palace_reception_attendee_information_due_by"
+    ).first
+    attendees_info_due.update_column(:trigger_at,
+      DateTime.new(Date.current.year, 5, 6, 00, 00)
+    )
+
     settings.reload
   end
 

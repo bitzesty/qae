@@ -21,7 +21,19 @@ div
         .form-download
           p
             = link_to "Queen's Awards for Enterprise Winners' Manual 2016 (PDF, 1.4MB)",
-                      static_s3_asset_path(2016, "Queen's Awards for Enterprise Winners Manual 2016.pdf"),
+                      static_s3_asset_path(2016, "Queen's Awards for Enterprise Winners' Manual 2016.pdf"),
+                      class: "thumbnail",
+                      target: "_blank"
+
+          p
+            ' Please do not publicise the information in the press book until
+            strong
+              => application_deadline_for_year(target_award_year, :buckingham_palace_attendees_details, "%d %B")
+            ' as it is under embargo.
+
+          p
+            = link_to "Queen's Awards for Enterprise Press Book 2016 (PDF, 5,8 MB)",
+                      static_s3_asset_path(2016, "Queen's Awards for Enterprise Press Book 2016.pdf"),
                       class: "thumbnail",
                       target: "_blank"
 
