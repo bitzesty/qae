@@ -35,8 +35,8 @@ module SendgridHelper
 
     def smtp_settings
       {
-        user_name: ENV['SENDGRID_USERNAME'],
-        password:  ENV['SENDGRID_PASSWORD']
+        user_name: (Rails.env.test? ? 'test_smtp_username' : ENV["SENDGRID_USERNAME"]),
+        password: (Rails.env.test? ? 'test_smtp_password' : ENV["SENDGRID_PASSWORD"])
       }
     end
 
