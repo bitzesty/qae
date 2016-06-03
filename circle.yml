@@ -2,9 +2,6 @@ dependencies:
   post:
     - curl -Ls https://install.convox.com/linux.zip > convox.zip
     - sudo unzip convox.zip -d /usr/local/bin
-database:
-  pre:
-    - cp .env.example .env
 test:
   post:
     - bundle exec bin/circle
