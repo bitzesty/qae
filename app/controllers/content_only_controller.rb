@@ -19,14 +19,16 @@ class ContentOnlyController < ApplicationController
                 only: [
                   :award_info_innovation,
                   :award_info_trade,
-                  :award_info_development
+                  :award_info_development,
+                  :award_info_mobility
                 ]
 
   before_action :get_collaborators,
                 only: [
                   :award_info_innovation,
                   :award_info_trade,
-                  :award_info_development
+                  :award_info_development,
+                  :award_info_mobility
                 ]
 
   before_action :restrict_access_if_admin_in_read_only_mode!,
@@ -61,6 +63,7 @@ class ContentOnlyController < ApplicationController
     @user_award_forms_trade = forms["trade"]
     @user_award_forms_innovation = forms["innovation"]
     @user_award_forms_development = forms["development"]
+    @user_award_forms_mobility = forms["mobility"]
     @user_award_forms_promotion = forms["promotion"]
 
     @user_award_forms_submitted = @user_award_forms.where(submitted: true)

@@ -23,6 +23,7 @@ class Assessor < ActiveRecord::Base
   validates :trade_role,
             :innovation_role,
             :development_role,
+            :mobility_role,
             :promotion_role,
             inclusion: {
               in: AVAILABLE_ROLES
@@ -93,7 +94,7 @@ class Assessor < ActiveRecord::Base
   end
 
   def lead_for_any_category?
-    ["trade", "innovation", "development", "promotion"].any? do |cat|
+    ["trade", "innovation", "development", "promotion", "mobility"].any? do |cat|
       get_role(cat) == "lead"
     end
   end
@@ -118,7 +119,7 @@ class Assessor < ActiveRecord::Base
 
   def categories
     out = {}
-    ["trade", "innovation", "development", "promotion"].each do |cat|
+    ["trade", "innovation", "development", "promotion", "mobility"].each do |cat|
       out[cat] = public_send(self.class.role_meth(cat))
     end
     out
@@ -129,7 +130,7 @@ class Assessor < ActiveRecord::Base
   end
 
   def assigned_categories_as(roles)
-    ["trade", "innovation", "development", "promotion"].map do |award|
+    ["trade", "innovation", "development", "promotion", "mobility"].map do |award|
       award if roles.include?(get_role(award).to_s)
     end.compact
   end
@@ -138,6 +139,7 @@ class Assessor < ActiveRecord::Base
     self.trade_role = nil if get_role("trade").blank?
     self.innovation_role = nil if get_role("innovation").blank?
     self.development_role = nil if get_role("development").blank?
+    self.mobility_role = nil if get_role("mobility").blank?
     self.promotion_role = nil if get_role("promotion").blank?
   end
 
