@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.3.0'
+
 gem 'rails', '4.2.5.2'
 
 # Security HTTP Headers
@@ -12,7 +14,7 @@ gem 'rack-ssl-enforcer'
 gem 'pg', '~> 0.17'
 
 # Track Changes
-gem 'paper_trail', github: 'airblade/paper_trail'
+gem 'paper_trail', '~> 4.1.0'
 
 # Envrioment variables
 gem 'dotenv-rails', '~> 1.0'
@@ -26,6 +28,9 @@ gem 'bootstrap-sass', '>= 3.3.3'
 gem 'govuk_frontend_toolkit', github: 'alphagov/govuk_frontend_toolkit_gem',
                               submodules: true
 gem 'govuk_template', '0.12.0'
+gem 'uglifier', '>= 1.3.0'
+
+# Autolinking in admin mass user mailer
 gem 'rails_autolink'
 
 # Decorators & Exposing named methods
@@ -82,7 +87,8 @@ gem "fog-aws"
 gem "vs_rails", github: "bitzesty/vs-rails"
 
 # Background jobs
-gem "shoryuken", github: "phstc/shoryuken", branch: "master"
+gem "sidekiq", "~> 4.1.1"
+gem "sidekiq-cron", "~> 0.4.2"
 
 # Redis
 gem 'redis-rails'
@@ -96,33 +102,22 @@ gem 'pg_search'
 
 # YAML/Hash loading
 gem 'active_hash'
-
-# CronJob Sceduler
-gem 'whenever'
-gem "virtus"
-gem "nilify_blanks"
-# DB locking
-gem "with_advisory_lock"
+gem 'virtus'
+gem 'nilify_blanks'
 
 # Monitoring
-gem "skylight"
 gem 'newrelic_rpm'
-
-# Lock sprockets
-# As 3.0.0 cause Capistrano error
-# DEBUG[0c9b1934] cp: cannot stat '/home/qae/application/releases/20150414085552/public/assets/manifest*': No such file or directory
-gem "sprockets", "2.12.3"
-gem "tilt", "~> 1.1"
 
 # We use it for sending API requests to Sendgrid in
 # AdvancedEmailValidator
 gem 'curb'
 
-group :assets do
-  gem 'uglifier', '>= 1.3.0'
-end
+gem 'rails_12factor', '~> 0.0.3', group: :production
+
+gem 'puma', '~> 2.16.0'
 
 group :test do
+  gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-webkit'
   gem 'capybara-screenshot'
@@ -133,31 +128,18 @@ group :test do
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
   gem 'codeclimate-test-reporter', require: nil
-  gem "timecop"
-  gem "webmock"
+  gem 'rspec_junit_formatter'
+  gem 'timecop'
+  gem 'webmock'
 end
 
 group :development do
-  gem 'capistrano', '~> 3.2.0'
-  gem 'capistrano-rails', '~> 1.1'
-  gem 'capistrano-rbenv'
-  gem 'slackistrano', require: false
   gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'rack-mini-profiler', require: false
-  gem 'passenger'
   gem 'binding_of_caller'
   gem 'rubocop', require: false
-end
-
-group :test, :development do
-  gem 'factory_girl_rails'
-  gem 'byebug'
-  gem "rspec_junit_formatter"
-end
-
-group :development, :staging do
   # When need to copy model with nested associations
   gem 'amoeba'
 end
