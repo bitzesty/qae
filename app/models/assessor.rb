@@ -100,7 +100,7 @@ class Assessor < ActiveRecord::Base
   end
 
   def lead_for_any_category?
-    ["trade", "innovation", "development", "promotion", "mobility"].any? do |cat|
+    FormAnswer::POSSIBLE_AWARDS.any? do |cat|
       get_role(cat) == "lead"
     end
   end
@@ -125,7 +125,8 @@ class Assessor < ActiveRecord::Base
 
   def categories
     out = {}
-    ["trade", "innovation", "development", "promotion", "mobility"].each do |cat|
+
+    FormAnswer::POSSIBLE_AWARDS.each do |cat|
       out[cat] = public_send(self.class.role_meth(cat))
     end
     out
@@ -136,17 +137,15 @@ class Assessor < ActiveRecord::Base
   end
 
   def assigned_categories_as(roles)
-    ["trade", "innovation", "development", "promotion", "mobility"].map do |award|
+    FormAnswer::POSSIBLE_AWARDS.map do |award|
       award if roles.include?(get_role(award).to_s)
     end.compact
   end
 
   def nil_if_blank
-    self.trade_role = nil if get_role("trade").blank?
-    self.innovation_role = nil if get_role("innovation").blank?
-    self.development_role = nil if get_role("development").blank?
-    self.mobility_role = nil if get_role("mobility").blank?
-    self.promotion_role = nil if get_role("promotion").blank?
+    FormAnswer::POSSIBLE_AWARDS.each do |award|
+      self.public_send("#{award}_role=", nil) if get_role(award).blank?
+    end
   end
 
   def self.leads_for(category)

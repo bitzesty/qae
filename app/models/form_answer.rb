@@ -32,6 +32,8 @@ class FormAnswer < ActiveRecord::Base
     "promotion" # Enterprise Promotion Award
   ]
 
+  BUSINESS_AWARD_TYPES = %w(trade innovation development mobility)
+
   AWARD_TYPE_FULL_NAMES = {
     "trade" => "International Trade",
     "innovation" => "Innovation",
@@ -118,7 +120,7 @@ class FormAnswer < ActiveRecord::Base
     scope :unsuccessful_applications, -> { submitted.where("state not in ('awarded', 'withdrawn')") }
     scope :submitted, -> { where(submitted: true) }
     scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
-    scope :business, -> { where(award_type: %w(trade innovation development mobility)) }
+    scope :business, -> { where(award_type: BUSINESS_AWARD_TYPES) }
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
 
@@ -264,7 +266,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def business?
-    %w(trade innovation development mobility).include?(award_type)
+    BUSINESS_AWARD_TYPES.include?(award_type)
   end
 
   def generate_pdf_version!
