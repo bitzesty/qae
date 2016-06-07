@@ -17,3 +17,5 @@ certs/*
 sic_codes.csv
 config/secrets.yml
 coverage/*
+.env.production
+.env.staging
