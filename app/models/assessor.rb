@@ -60,12 +60,18 @@ class Assessor < ActiveRecord::Base
     "#{category}_role"
   end
 
-  def applications_scope
+  def applications_scope(award_year = nil)
     c = assigned_categories_as(%w(lead))
     join = "LEFT OUTER JOIN assessor_assignments ON
     assessor_assignments.form_answer_id = form_answers.id"
 
-    out = FormAnswer.joins(join)
+    scope = if award_year
+      award_year.form_answers
+    else
+      FormAnswer
+    end
+
+    out = scope.joins(join)
     out.where("
       (award_type in (?) OR
       (assessor_assignments.position in (?) AND assessor_assignments.assessor_id = ?))

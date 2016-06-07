@@ -6,7 +6,7 @@ class AwardYear < ActiveRecord::Base
 
   after_create :create_settings
 
-  AVAILABLE_YEARS = [2016, 2017, 2018, 2019]
+  AVAILABLE_YEARS = [2016, 2017, 2018, 2019, 2020]
 
   scope :past, -> {
     where(year: past_years)
