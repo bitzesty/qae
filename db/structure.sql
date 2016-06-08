@@ -236,7 +236,8 @@ CREATE TABLE audit_certificates (
     reviewable_type character varying,
     reviewable_id integer,
     reviewed_at timestamp without time zone,
-    status integer
+    status integer,
+    attachment_scan_results character varying
 );
 
 
@@ -517,7 +518,8 @@ CREATE TABLE form_answer_attachments (
     attachable_type character varying,
     title character varying,
     restricted_to_admin boolean DEFAULT false,
-    question_key character varying
+    question_key character varying,
+    file_scan_results character varying
 );
 
 
@@ -937,7 +939,8 @@ CREATE TABLE support_letter_attachments (
     original_filename character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    support_letter_id integer
+    support_letter_id integer,
+    attachment_scan_results character varying
 );
 
 
@@ -3583,6 +3586,12 @@ INSERT INTO schema_migrations (version) VALUES ('20160222153821');
 INSERT INTO schema_migrations (version) VALUES ('20160222175452');
 
 INSERT INTO schema_migrations (version) VALUES ('20160224174712');
+
+INSERT INTO schema_migrations (version) VALUES ('20160302191539');
+
+INSERT INTO schema_migrations (version) VALUES ('20160302191611');
+
+INSERT INTO schema_migrations (version) VALUES ('20160302191628');
 
 INSERT INTO schema_migrations (version) VALUES ('20160310140650');
 

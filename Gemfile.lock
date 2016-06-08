@@ -600,6 +600,7 @@ DEPENDENCIES
   timecop
   turnip
   uglifier (>= 1.3.0)
+  vigilion
   vigilion-rails
   virtus
   webmock
