@@ -30,13 +30,24 @@ convox start -f docker-compose.yml.local
 docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
 ```
 
-### Deploying with convox
+### Deploying
+
+Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (master, staging, deployment).
+
+You can run a manual deploy if needed:
 
 ```
 convox switch bitzesty/qae
 
 convox deploy -a qae-dev
 ```
+
+You may also need to run a rake task for database migrations manually:
+
+```
+convox run web rake db:migrate -a qae-dev
+```
+
 
 #### Help
 
