@@ -137,7 +137,7 @@ class FormAnswerStatistics::Picker
     out = []
     not_e = scope.where(state: "not_eligible").count
     out << not_e
-    scope = scope.where.not(state: "not_eligible").where(submitted: false)
+    scope = scope.where.not(state: "not_eligible").where(submitted_at: nil)
     out << scope.where(fill_progress: 0).count
     range2 = scope.where("fill_progress > ? AND fill_progress < ?", 0, 0.25)
     out << range2.count

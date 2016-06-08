@@ -9,6 +9,25 @@ namespace :form_answers do
     FormAnswerUserSubmissionService.new(f).perform
   end
 
+  desc "Populate submitted_at"
+  task populate_submitted_at: :environment do
+    current_award_year_id = AwardYear.find_by_year(2017).id
+    current_time = Time.current
+    FormAnswer.where(submitted_at: nil).find_each do |f|
+      if f.award_year_id == current_award_year_id
+        if f.submitted
+          f.update_column(:submitted_at, current_time)
+          puts "[form answer] #{f.id} updating submitted_at with #{current_time}"
+        end
+      else
+        if f.submitted
+          f.update_column(:submitted_at, f.created_at)
+          puts "[form answer] #{f.id} updating submitted_at with #{f.created_at}"
+        end
+      end
+    end
+  end
+
   desc "populate hard copy PDF version for current award year applications"
   task populate_hard_copy_pdf_version_for_applications: :environment do
     not_updated_entries = []

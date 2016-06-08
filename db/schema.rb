@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328124213) do
+ActiveRecord::Schema.define(version: 20160607172315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -270,6 +270,7 @@ ActiveRecord::Schema.define(version: 20160328124213) do
     t.string   "user_email"
     t.boolean  "corp_responsibility_reviewed",  default: false
     t.string   "pdf_version"
+    t.datetime "submitted_at"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
