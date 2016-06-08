@@ -1,6 +1,6 @@
 Vigilion.configure do |config|
-  config.access_key_id = ENV["VIGILION_ACCESS_KEY_ID"]
-  config.secret_access_key = ENV["VIGILION_SECRET_ACCESS_KEY"]
+  config.access_key_id = ENV["VIGILION_ACCESS_KEY_ID"] || "Replace me"
+  config.secret_access_key = ENV["VIGILION_SECRET_ACCESS_KEY"] || "Replace me"
 
   # config.server_url = ENV["VIGILION_SERVER_URL"]
   # Integration strategy (default is :url)
