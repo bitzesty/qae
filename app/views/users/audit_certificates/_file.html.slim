@@ -1,13 +1,13 @@
 - if cert_exists
   - att_record = award.audit_certificate
 
-  - if att_record.scan.present?
-    - if att_record.scan.clean?
+  - if att_record.attachment_scan_results.present?
+    - if att_record.clean?
       = link_to "Uploaded Audit Certificate", att_record.attachment_url,
                 target: "_blank", class: "js-audit-certificate-title"
-    - elsif att_record.scan.status == "scanning"
+    - elsif att_record.attachment_scan_results == "scanning"
       | Uploaded Audit Certificate is scanning on viruses
-    - elsif att_record.scan.status == "infected"
+    - elsif att_record.attachment_scan_results == "infected"
       | Uploaded file has been blocked (virus detected), please remove.
     - else
       = link_to "Uploaded Audit Certificate", "",
