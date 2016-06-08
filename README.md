@@ -11,29 +11,31 @@
 
 ### Pre-requisites
 
-* Ruby 2.1.5
+* Ruby 2.3.0
 * Rails 4.2
 * Postgresql 9
 * Redis
-
-### NOTES
-
-Please, do not update Rails from 4.2.0 to 4.2.1 as it cause sprockets / capistrano conflict:
-```
-cp: cannot stat ‘/home/qae/application/releases/20150414082336/public/assets/manifest*’: No such file or directory
-cap aborted!
-SSHKit::Runner::ExecuteError: Exception while executing on host 95.138.174.112: cp exit status: 1
-cp stdout: Nothing written
-cp stderr: cp: cannot stat ‘/home/qae/application/releases/20150414082336/public/assets/manifest*’: No such file or directory
-```
-and to fix it we need to upgrade capistrano stuff (gems/ configuration) which can take more time.
-So probably let's put upgrade Rails  on hold for now.
 
 ### Running application
 
 ```
 ./bin/setup
 foreman start
+```
+
+### Running with convox
+
+```
+convox start -f docker-compose.yml.local
+docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
+```
+
+### Deploying with convox
+
+```
+convox switch bitzesty/qae
+
+convox deploy -a qae-dev
 ```
 
 #### Help
@@ -52,13 +54,6 @@ This means, that `hstore postgresql` extension needs to be installed:
 sudo apt-get install postgresql-contrib
 ```
 
-For passenger:
-OSX users you might need to install pcre headers:
-
-```
-brew install pcre
-```
-
 ## Profile mode in Development
 
 To enable [rack mini profiler](https://github.com/MiniProfiler/rack-mini-profiler)
@@ -66,17 +61,3 @@ in development mode set in .env:
 ```
 PROFILE_MODE=true
 ```
-
-## Users import
-```
-  rake users_import:import_from_csv FILEPATH="./spec/fixtures/users.csv"
-```
-
-## Hide Application's PDF links anythere on Applicant view
-
-Uncomment following line in config/environments/production.rb:
-```
-Rails.configuration.hide_pdf_links = true
-```
-and all PDF blocks on Applicant's view would be automatically replaced with
-maintenance messages and PDF links would be hidden.

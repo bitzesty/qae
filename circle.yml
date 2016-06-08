@@ -1,13 +1,32 @@
 dependencies:
-  bundler:
-    without: [development, deployment]
-database:
-  override:
-    - mv config/database.ci.yml config/database.yml
-    - cp .env.example .env
-    - cp config/secrets.yml.example config/secrets.yml
-    - bundle exec rake db:create
-    - bundle exec rake db:migrate
+  post:
+    - curl -Ls https://install.convox.com/linux.zip > convox.zip
+    - sudo unzip convox.zip -d /usr/local/bin
 test:
   post:
     - bundle exec bin/circle
+deployment:
+  dev:
+    branch: server-maintenance
+    commands:
+      - convox login console.convox.com
+      - convox switch bitzesty/qae
+      - convox deploy --app qae-dev:
+          timeout: 900
+      - convox run web rake db:migrate --app qae-dev
+  staging:
+    branch: staging
+    commands:
+      - convox login console.convox.com
+      - convox switch bitzesty/qae
+      - convox deploy --app qae-staging:
+          timeout: 900
+      - convox run web rake db:migrate --app qae-staging
+  production:
+    branch: production
+    commands:
+      - convox login console.convox.com
+      - convox switch bitzesty/qae
+      - convox deploy --app qae-production:
+          timeout: 900
+      - convox run web rake db:migrate --app qae-production

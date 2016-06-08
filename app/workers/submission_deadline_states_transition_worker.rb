@@ -1,9 +1,7 @@
 class SubmissionDeadlineStatesTransitionWorker
-  include Shoryuken::Worker
+  include Sidekiq::Worker
 
-  shoryuken_options queue: "#{Rails.env}_default", auto_delete: true
-
-  def perform(_sqs_msg)
+  def perform
     FormAnswerStateMachine.trigger_deadlines
   end
 end
