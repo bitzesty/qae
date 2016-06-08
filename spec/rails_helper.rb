@@ -5,6 +5,7 @@ ENV["VIRUS_SCANNER_API_KEY"] ||= "random_api_key"
 require "simplecov"
 require "codeclimate-test-reporter"
 SimpleCov.add_filter "vendor"
+
 SimpleCov.formatters = []
 SimpleCov.start CodeClimate::TestReporter.configuration.profile
 

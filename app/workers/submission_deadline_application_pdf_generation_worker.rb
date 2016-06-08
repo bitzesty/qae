@@ -1,9 +1,7 @@
 class SubmissionDeadlineApplicationPdfGenerationWorker
-  include Shoryuken::Worker
+  include Sidekiq::Worker
 
-  shoryuken_options queue: "#{Rails.env}_default", auto_delete: true
-
-  def perform(_sqs_msg)
+  def perform
     AwardYear.current.form_answers.submitted.find_each do |form_answer|
       ApplicationHardCopyPdfWorker.perform_async(form_answer.id)
     end

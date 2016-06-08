@@ -13,40 +13,12 @@ shared_context "download original pdf before deadline ends" do
     Settings.current_submission_deadline
   end
 
-  describe "Policies" do
-    describe "Submission not ended" do
-      before do
-        deadline.trigger_at = DateTime.now + 1.day
-        deadline.save!
-
-        visit target_url
-      end
-
-      it "should do not display download button" do
-        expect_to_see_no "Download original PDF before deadline"
-      end
-    end
-  end
 
   describe "Download" do
     before do
-      deadline.trigger_at = DateTime.now - 1.day
+      deadline.trigger_at = Time.zone.now - 1.day
       deadline.save!
     end
-
-    describe "Button displaying" do
-      before do
-        visit target_url
-      end
-
-      it "should display download button" do
-        expect(page).to have_link(
-          "Download original PDF before deadline",
-          form_answer.pdf_version.url
-        )
-      end
-    end
-
 
     describe "PDF content" do
       let(:registration_number_at_the_deadline) {
@@ -74,7 +46,7 @@ shared_context "download original pdf before deadline ends" do
         PaperTrail.enabled = true
 
         # Set current time to date before deadline
-        Timecop.freeze(DateTime.now - 2.days) do
+        Timecop.freeze(Time.zone.now - 2.days) do
           form_answer.reload
           form_answer.document["registration_number"] = registration_number_at_the_deadline
           form_answer.save!
