@@ -1,6 +1,4 @@
 ENV["RAILS_ENV"] ||= "test"
-ENV["VIRUS_SCANNER_API_URL"] ||= "http://virus.scanner"
-ENV["VIRUS_SCANNER_API_KEY"] ||= "random_api_key"
 
 require "simplecov"
 require "codeclimate-test-reporter"
@@ -16,6 +14,8 @@ require "capybara/rspec"
 require "shoulda/matchers"
 require "capybara-screenshot/rspec"
 require "webmock/rspec"
+
+Dotenv.overload('.env.test')
 
 WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true)
 
@@ -40,9 +40,6 @@ RSpec.configure do |config|
   config.infer_base_class_for_anonymous_controllers = false
 
   config.before :each do
-    stub_request(:post, /virus.scanner/).
-      to_return(status: 200, body: { id: "de401fdf-08b0-44a8-810b-20794c5c98c7" }.to_json)
-
     # SENDGRID RELATED STUBS - BEGIN
     stub_request(:get, "https://sendgrid.com/api/spamreports.get.json?api_key=test_smtp_password&api_user=test_smtp_username&email=test@example.com").
       to_return(status: 200, body: "", headers: {})
