@@ -51,7 +51,7 @@ Rails.application.routes.draw do
 
   get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
 
-  root to: Rails.env.production? ? redirect("https://www.gov.uk/apply-queens-award-enterprise ") : "content_only#dashboard"
+  root to: Rails.env.production? ? redirect("https://www.gov.uk/apply-queens-award-enterprise") : "content_only#dashboard"
 
   resource :account, only: :show do
     collection do
