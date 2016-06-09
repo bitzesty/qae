@@ -3,10 +3,13 @@ class QAE2014Forms
   class << self
     def mobility_step2
       @mobility_step2 ||= proc do
-        header :development_b_section_header, "" do
+        header :mobility_b_section_header, "" do
           context %(
             <p>
-              This section gives you the opportunity to present the detail of your product, service or management approach and to give us the evidence about your activities, leadership and achievements that will enable us to assess your application.
+              This section gives you the opportunity to present the detail of your social mobility programme and to give us the evidence on how your programme benefits the people and your organisation that will enable us to assess your application.
+            </p>
+            <p>
+              Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product.
             </p>
             <p>
               Please try to avoid using technical jargon in this section.
@@ -21,285 +24,280 @@ class QAE2014Forms
             <p>Select all that apply.</p>
           )
           check_options [
-            ["product", "A product"],
-            ["service", "A service"],
-            ["management_approach", "A management approach"]
+            ["mentoring", "A programme which provides careers advice, skills development or mentoring that prepare young people for the world of work and/or accessible structured work experience."],
+            ["career_opportunities_accessibility", "A programme which makes career opportunities more accessible by offering non-graduate routes such as traineeships or apprenticeships, or by reforming recruitment practices."],
+            ["workplace_fostering", "A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers."]
           ]
         end
 
-        textarea :development_management_approach_briefly, "Briefly describe your product, service or management approach" do
-          classes "word-max-strict"
-          ref "B 1.1"
+        regions :programme_regions, "In which regions does your programme have an impact?" do
+          classes "sub-question"
+          sub_ref "B 1.1"
+          required
+          context %(
+            <p>Select all that apply.</p>
+          )
+        end
+
+        textarea :mobility_desc_long, "Summarise your social mobility programme(s)" do
+          classes "sub-question"
+          sub_ref "B 1.2"
           required
           context %(
             <p>
-              If more than one, please make sure you cover all of them.
+              This is to help us understand the essence of your programme(s). The summary might be used in publicity material if your application is successful.
             </p>
-            <p>
-              This will be used in publicity material if your application is successful.
-            </p>
-            <ul>
-              <li>
-                e.g. Working with organisations to produce the highest quality printed material with the lightest environmental impact.
-              </li>
-              <li>
-                e.g. Product and ingredient certification, business services and public awareness for fair and sustainable trade.
-              </li>
-              <li>
-                e.g. Own, manage and develop environmentally friendly commercial property, focused on UK retail and London offices.
-              </li>
-            </ul>
           )
-          rows 2
+          rows 5
+          words_max 500
+        end
+
+        textarea :mobility_desc_short, "Briefly describe your social mobility programme(s)." do
+          classes "sub-question"
+          sub_ref "B 1.3"
+          required
+          context %(
+            <p>
+              This description will be used in publicity material if your application is successful.
+            </p>
+          )
           words_max 15
         end
 
-        textarea :development_desc_long, "Summarise your product, service or management approach" do
-          classes "word-max-strict"
-          ref "B 1.2"
+        textarea :provide_ceo_quote, "Provide a quote from the CEO that demonstrates support for the social mobility programme(s)." do
+          classes "sub-question"
+          sub_ref "B 1.4"
           required
+          classes "word-max-strict"
           context %(
             <p>
-              If more than one, please make sure you cover all of them. Include a brief description of its/their origin and development.
+              This quote might be used in publicity material if your application is successful.
             </p>
           )
           rows 5
-          words_max 500
+          words_max 100
         end
 
-        textarea :development_desc_short, "Describe how you demonstrate leadership in terms of influencing staff and/or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers." do
-          classes "word-max-strict"
+        textarea :business_cause, "What was the business case that motivated your organisation to provide the programme(s)?  What was the situation before the inception of this programme(s)?" do
+          required
           ref "B 2"
-          required
-          context %(
-            <p>
-              Please summarise any plans, policies, strategies, etc. that you have in place that demonstrate your leadership approach within your own organisation and which drive your relationships with your partners.
-            </p>
-
-            <p>
-              For example, you may wish to demonstrate how you:
-            </p>
-
-            <ul>
-              <li>
-                Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits, or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
-              </li>
-              <li>
-                Follow principles of good governance, openness and consultation with regards to customers, suppliers and staff.
-              </li>
-              <li>
-                Have embedded ethical business principles and, where appropriate, have actively opposed corruption and unfair practices or challenged those with a detrimental impact on the environment.
-              </li>
-              <li>
-                Systematically promote sustainable development  for example by using indicators, targets, policies and management processes to enable you to demonstrate and measure progress and success.
-              </li>
-              <li>
-                Take part in and commit to relevant accredited and verified schemes such as British Standards and ISO.
-              </li>
-              <li>
-                Create management innovation - e.g. develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
-              </li>
-            </ul>
-
-            <p>
-              Please specify the timescale over which your sustainable development performance has been or will be sustained.
-            </p>
-          )
-          rows 8
-          words_max 750
+          rows 5
+          words_max 250
         end
 
-        header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below." do
+        textarea :programme_cause, "Why did you choose this particular programme and how does it align with the core aims and values of your organisation?" do
+          classes "sub-question"
+          required
+          ref "B 2.1"
+          rows 5
+          words_max 250
+        end
+
+        textarea :objectives_and_kpis, "What impact did you set out to achieve with the programme in terms of your objectives and KPIs?" do
+          classes "sub-question"
+          required
+          sub_ref "B 2.2"
+          rows 5
+          words_max 250
+        end
+
+        textarea :investments_return_prediction, "How do you ensure that the programme(s) provides a good return on investment for your organisation?" do
           ref "B 3"
+          required
           context %(
             <p>
-              You should demonstrate outstanding performance in at least one area.
-              If your contribution is not outstanding in all areas, please describe the actions you are taking to improve outcomes in those areas.
+              How much is invested in the programme(s) - consider financial, human resource and in-kind investments? How does the scale of this investment compare with wider talent management activities?
             </p>
           )
+          rows 5
+          words_max 250
         end
 
-        textarea :environmental_contribution, "Explain how it contributes to environmental outcomes of sustainable development" do
-          required
+        textarea :investments_return_responsibility, "Who is ultimately responsible for the return on the investment from the programme?  What is the management structure to ensure the day-to-day management of programme(s) from board level down?" do
           classes "sub-question"
           sub_ref "B 3.1"
+          required
           context %(
             <p>
-             'Environmental outcomes' means respecting the limits of the planet's environment, natural resources and biodiversity, including, where possible, improving the state of the environment.
+              You may include chart(s) to make it easier for assessors to understand how your programme(s) is managed in section E.
             </p>
-            <p>
-              For example, you might wish to demonstrate how you and your suppliers:
-            </p>
-            <ul>
-              <li>
-                Have adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
-              </li>
-              <li>
-                Reduce greenhouse gas emissions and reliance on fossil fuels.
-              </li>
-              <li>
-                Reduce the amount of waste generated.
-              </li>
-              <li>
-                Substitute material inputs for more environmentally sound alternatives.
-              </li>
-              <li>
-                Reduce energy and water consumption.
-              </li>
-              <li>
-                Protect or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
-              </li>
-              <li>
-                Participate in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
-              </li>
-              <li>
-                Undertake sustainable, i.e. green, procurement.
-              </li>
-            </ul>
           )
           rows 5
-          words_max 750
+          words_max 250
         end
 
-        textarea :social_contribution, "Explain how it contributes to social outcomes of sustainable development" do
+        textarea :programme_kpis, "What are the KPIs related to the programme(s), how are they set and monitored? Are the KPIs being met and what happens if they are not met?" do
           classes "sub-question"
           sub_ref "B 3.2"
           required
-          context %(
-            <p>
-              'Social outcomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
-            </p>
-            <p>
-              For example, you may wish to demonstrate how you:
-            </p>
-            <ul>
-              <li>
-                Create products and services that deliver social value, such as positive nutritional outcomes and health and wellbeing benefits, as well as market offers that in themselves help build sustainable communities.
-              </li>
-              <li>
-                Promote health and safety for your staff and supply chain, and at the very least meet British Standards or their equivalent, and influence others in the sector to do similar.
-              </li>
-              <li>
-                Promote the wellbeing of staff including helping them to deliver skills which will be of value both inside and outside work.
-              </li>
-              <li>
-                Support local communities for example through staff volunteering or sharing of resources, premises and expertise.
-              </li>
-              <li>
-                Engage with local schools, colleges and universities to help increase the life chances of young people.
-              </li>
-              <li>
-                Procure food that meets British or equivalent production standards and support a healthy balanced diet.
-              </li>
-              <li>
-                Conserve any parts of your environment with historic or cultural importance.
-              </li>
-            </ul>
-          )
           rows 5
-          words_max 750
+          words_max 250
         end
 
-        textarea :economic_contribution, "Explain how it contributes to economic outcomes of sustainable development" do
-          classes "sub-question"
-          sub_ref "B 3.3"
-          required
-          context %(
-            <p>
-             'Economic outcomes' means building a fair, sustainable economy which provides prosperity and opportunity for all, promotes innovation and encourages lifelong learning.
-            </p>
-            <p>
-              For example, you may wish to demonstrate how you:
-            </p>
-            <ul>
-              <li>
-                Have implemented sustainable development practices that have helped you to create jobs, especially amongst disadvantaged groups.
-              </li>
-              <li>
-                Have created procurement practices which support the local economy.
-              <li>
-                Encourage and enable staff in your organisation and supply chain to undertake learning and development to improve their skills and life chances, including through formal routes such as apprenticeships and informal on-the-job learning.
-              </li>
-              <li>
-                Are open to new concepts in sustainable development and are finding innovative ways to improve both sustainability and the bottom line.
-              </li>
-              <li>
-                Promote sustainable construction practices.
-              </li>
-            </ul>
-          )
-          rows 5
-          words_max 750
-        end
-
-        textarea :sector_leader_desc, "How does the information provided in previous answers demonstrate that you are showing sector-leading sustainability performance?" do
+        textarea :programme_integration, "Describe how the programme is integrated into the overall business strategy, and what is the board level commitment to the future growth of the programme(s)." do
           ref "B 4"
           required
-          context %(
-            <p>Can you benchmark this  performance against other comparable organisations?</p>
-                    )
           rows 5
-          words_max 750
+          words_max 250
         end
 
-        textarea :name_of_external_organization_or_individual, 'Please name the external organisation(s) or individual(s) that contributed to your product, service or management approach, and explain their contributions or enter "N/A".' do
+        textarea :benefits_communication, "What mechanisms are in place to communicate the benefits of the programme(s) to key internal and external stakeholders?" do
+          classes "sub-question"
+          sub_ref "B 4.1"
+          required
+          context %(
+            <p>
+              You can include, or attach in section E of the form, newsletters, quotes or similar material to bring to life exactly how you communicate the value of your programme(s)
+            </p>
+          )
+          rows 5
+          words_max 250
+        end
+
+        textarea :organisation_culture_fosters, "Describe how your organisation’s culture fosters and supports the social mobility programme(s)." do
+          classes "sub-question"
+          sub_ref "B 4.2"
+          required
+          rows 5
+          words_max 250
+        end
+
+        textarea :programme_benefit_evidence, "Provide evidence on how does the programme(s) benefit people." do
           ref "B 5"
           required
+          context %(
+            <p>
+             You should demonstrate positive impacts in at least two of the following areas:
+            </p>
+            <ul>
+              <li>
+                Careers advice - helping people to make more informed choices by providing careers advice or information
+              </li>
+              <li>
+                Work placements - preparing people for the world of work through inspiring work experiences
+              <li>
+                Fairer recruitment - making your recruitment process fairer and more focused on attitude and aptitude
+              </li>
+              <li>
+                Accessible routes - broadening access to your job opportunities by creating accessible routes to employment - e.g. jobs for school leavers, quality traineeships or apprenticeships, graduate schemes
+              </li>
+              <li>
+                Early careers -  fostering a ‘youth-friendly’ culture in your workplace where young employees are invested in and developed to progress in their careers
+              </li>
+              <li>
+                Advancement - developing career paths to senior positions that are open to all
+              </li>
+            </ul>
+            <p>
+              If possible, use a balance of quantitative (numbers, figures etc.) and qualitative (comments, feedback from people, key stakeholders etc.) evidence.
+            </p>
+            <p>
+              Focus on what impact your activities have achieved to date, but include the longer term outcomes as well.
+            </p>
+          )
+          rows 8
+          words_max 700
+        end
+
+        textarea :employability_improvement_evidence, "Provide evidence on how your organisation improved the employability of your people and how it has raised their career aspirations and confidence." do
+          classes "sub-question"
+          sub_ref "B 5.1"
+          required
+          context %(
+            <p>
+              Improvements in employability could be as a result of teaching skills such as leadership, communications, team-work, resilience, etc.
+            </p>
+            <p>
+              If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
+            </p>
+            <p>
+              Focus on what impact your activities have achieved to date, but include the longer term outcomes as well.
+            </p>
+          )
           rows 5
           words_max 500
         end
 
-        options :another_org_licensed, "Is the product, service or management approach under licence from another organisation?" do
+        textarea :financial_benefits_evidence, "Provide evidence on how the programme(s) benefits your organisation financially." do
           ref "B 6"
           required
-          yes_no
+          context %(
+            <p>
+              Financial benefits may fall under two categories:
+            </p>
+            <ul>
+              <li>Savings - reduced recruitment costs, increases in retention.</li>
+              <li>Growth -  increased sales, access to new clients or markets or the development of new products</li>
+            </ul>
+            <p>
+              If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
+            </p>
+            <p>
+              You may find it helpful to articulate these benefits in terms of ‘before and after’.
+            </p>
+
+          )
+          rows 5
+          words_max 500
         end
 
-        textarea :licensing_agreement, "Briefly describe the licensing arrangement" do
+        textarea :non_financial_benefits_evidence, "Provide evidence on how the programme(s) benefits your organisation in ways other than financial." do
           classes "sub-question"
           sub_ref "B 6.1"
           required
-          rows 5
-          words_max 100
-          conditional :another_org_licensed, :yes
-        end
-
-        options :grant_support, "Have you received any grant funding to support this product, service or management approach?" do
-          ref "B 7"
-          required
-          yes_no
           context %(
             <p>
-              We ask this in order to help us carry out due diligence if your application is shortlisted.
+             For example, you may wish to demonstrate benefits in the following areas:
+            </p>
+            <ul>
+              <li>
+                Employee relations - improvements in employee motivation, well-being or satisfaction
+              </li>
+              <li>
+                Diversity - increased ability to access and attract a wider talent pool
+              <li>
+                Reputation -  increased positive perceptions of the organisation among key stakeholders - e.g. customers and the media
+              </li>
+              <li>
+                Collaboration -  best practices and learnings fed-back into other departments; increased cross-departmental collaboration
+              </li>
+            </ul>
+            <p>
+              The above are just examples - you can choose to demonstrate benefits in any other areas.
+            </p>
+            <p>
+              If possible, use a balance of quantitative (numbers, figures etc.) and qualitative (comments, feedback from people, key stakeholders etc.) evidence.
+            </p>
+            <p>
+              You may find it helpful to articulate these benefits in terms of ‘before and after’.
             </p>
           )
+          rows 8
+          words_max 500
         end
 
-        textarea :grant_details, "Please give details of date(s), source(s) and level(s) of funding." do
-          classes "sub-question"
-          sub_ref "B 7.1"
+        textarea :exemplary_evidence, "Provide evidence on what makes your social mobility programme(s) exemplary?" do
+          ref "B 7"
           required
-          rows 5
-          words_max 300
-          conditional :grant_support, :yes
-        end
-
-        date :development_was_launched_since, "Please select the date since when your product, service or management approach has been in commercial operation, production or in progress?" do
-          required
-          ref "B 8"
-          context "
+          context %(
             <p>
-              You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award)
+              For example, the programme may be exemplary as a result of:
             </p>
-          "
-          date_max AwardYear.start_trading_since(2)
-        end
-
-        textarea :development_additional_comments, "Additional comments (optional)" do
-          classes "sub-question"
-          sub_ref "B 8.1"
-          rows 5
-          words_max 200
+            <ul>
+              <li> An exemplary overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit and develop people.</li>
+              <li>Developing a unique or innovative social mobility programme.</li>
+              <li>Forming effective partnerships with charities, schools or Jobcentres.</li>
+              <li>Leading the way in your company by doing something that has never been done before.</li>
+            </ul>
+            <p>
+              The above are just examples - you can describe other reasons if more suitable.
+            </p>
+            <p>
+              If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
+            </p>
+          )
+          rows 8
+          words_max 800
         end
       end
     end

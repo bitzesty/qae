@@ -13,8 +13,8 @@ class QAE2014Forms
              "Company Information",
              &QAE2014Forms.mobility_step1
 
-        step "Your Sustainable Development",
-             "Your Sustainable Development",
+        step "Your Social Mobility",
+             "Your Social Mobility",
              &QAE2014Forms.mobility_step2
 
         step "Commercial Performance",
