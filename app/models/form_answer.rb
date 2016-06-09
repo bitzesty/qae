@@ -113,7 +113,7 @@ class FormAnswer < ActiveRecord::Base
     scope :not_shortlisted, -> { where(state: "not_recommended") }
     scope :winners, -> { where(state: "awarded") }
     scope :unsuccessful_applications, -> { submitted.where("state not in ('awarded', 'withdrawn')") }
-    scope :submitted, -> { where(submitted: true) }
+    scope :submitted, -> { where.not(submitted_at: nil) }
     scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
     scope :business, -> { where(award_type: %w(trade innovation development)) }
     scope :promotion, -> { where(award_type: "promotion") }
@@ -280,6 +280,10 @@ class FormAnswer < ActiveRecord::Base
     palace_invite.try(:submitted) ? 'Yes' : 'No'
   end
 
+  def submitted?
+    submitted_at.present?
+  end
+
   private
 
   def nominator_full_name_from_document
@@ -342,7 +346,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def validate_answers
-    if submitted && (current_step || submitted_changed?)
+    if submitted? && (current_step || (submitted_at_changed? && submitted_at_was.nil?))
       validator = FormAnswerValidator.new(self)
 
       unless validator.valid?
