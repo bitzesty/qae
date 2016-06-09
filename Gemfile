@@ -16,9 +16,6 @@ gem 'pg', '~> 0.17'
 # Track Changes
 gem 'paper_trail', '~> 5.1.0'
 
-# Envrioment variables
-gem 'dotenv-rails', '~> 1.0'
-
 # Assets & Templates
 gem 'slim-rails', '~> 3.0.1'
 gem 'coffee-rails', '~> 4.1.0'
@@ -74,9 +71,11 @@ gem 'prawn'
 gem 'prawn-table'
 gem 'nokogiri', '~> 1.6.0'
 
-# Error reporting
 group :staging, :production do
+  # Error reporting
   gem 'sentry-raven', github: 'getsentry/raven-ruby'
+  # Log to the STDOUT and dev/prod parity when delivering assets, 12factor.net
+  gem 'rails_12factor', '~> 0.0.3'
 end
 
 # Uploads
@@ -110,8 +109,6 @@ gem 'newrelic_rpm'
 # AdvancedEmailValidator
 gem 'curb'
 
-gem 'rails_12factor', '~> 0.0.3', group: :production
-
 gem 'puma', '~> 2.16.0'
 
 group :test do
@@ -140,4 +137,9 @@ group :development do
   gem 'rubocop', require: false
   # When need to copy model with nested associations
   gem 'amoeba'
+end
+
+group :development, :test do
+  # Enviroment variables
+  gem 'dotenv-rails'
 end
