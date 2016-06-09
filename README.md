@@ -13,8 +13,8 @@
 
 * Ruby 2.3.0
 * Rails 4.2
-* Postgresql 9
-* Redis
+* Postgresql 9.4
+* Redis 2.8
 
 ### Running application
 
@@ -23,7 +23,9 @@
 foreman start
 ```
 
-### Running with convox
+### Running with convox locally
+
+Install docker, and install convox
 
 ```
 convox start -f docker-compose.yml.local
