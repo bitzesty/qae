@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160607085426) do
+ActiveRecord::Schema.define(version: 20160607172315) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,15 +109,16 @@ ActiveRecord::Schema.define(version: 20160607085426) do
   add_index "assessors", ["unlock_token"], name: "index_assessors_on_unlock_token", unique: true, using: :btree
 
   create_table "audit_certificates", force: :cascade do |t|
-    t.integer  "form_answer_id",      null: false
+    t.integer  "form_answer_id",          null: false
     t.string   "attachment"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.text     "changes_description"
     t.string   "reviewable_type"
     t.integer  "reviewable_id"
     t.datetime "reviewed_at"
     t.integer  "status"
+    t.string   "attachment_scan_results"
   end
 
   add_index "audit_certificates", ["form_answer_id"], name: "index_audit_certificates_on_form_answer_id", using: :btree
@@ -215,6 +216,7 @@ ActiveRecord::Schema.define(version: 20160607085426) do
     t.string   "title"
     t.boolean  "restricted_to_admin", default: false
     t.string   "question_key"
+    t.string   "file_scan_results"
   end
 
   add_index "form_answer_attachments", ["form_answer_id"], name: "index_form_answer_attachments_on_form_answer_id", using: :btree
@@ -270,6 +272,7 @@ ActiveRecord::Schema.define(version: 20160607085426) do
     t.boolean  "corp_responsibility_reviewed",  default: false
     t.string   "pdf_version"
     t.integer  "mobility_eligibility_id"
+    t.datetime "submitted_at"
   end
 
   add_index "form_answers", ["account_id"], name: "index_form_answers_on_account_id", using: :btree
@@ -366,13 +369,14 @@ ActiveRecord::Schema.define(version: 20160607085426) do
   end
 
   create_table "support_letter_attachments", force: :cascade do |t|
-    t.integer  "user_id",           null: false
-    t.integer  "form_answer_id",    null: false
+    t.integer  "user_id",                 null: false
+    t.integer  "form_answer_id",          null: false
     t.string   "attachment"
     t.string   "original_filename"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
     t.integer  "support_letter_id"
+    t.string   "attachment_scan_results"
   end
 
   add_index "support_letter_attachments", ["form_answer_id"], name: "index_support_letter_attachments_on_form_answer_id", using: :btree
