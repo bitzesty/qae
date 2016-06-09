@@ -20,7 +20,7 @@ class QAE2014Forms
               chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip
             </p>
           )
-          max_attachments 3
+          max_attachments 5
           links
           description
         end

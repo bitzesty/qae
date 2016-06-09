@@ -31,8 +31,8 @@ class QAE2014Forms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses/has used.</p>
-                    )
+            <p>If applicable, include 'trading as', or any other name your organisation uses.  Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
+          )
         end
 
         options :principal_business, "Does your organisation operate as a principal?" do

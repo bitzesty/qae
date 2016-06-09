@@ -32,8 +32,8 @@ class QAE2014Forms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses/has used.</p>
-                    )
+            <p>If applicable, include 'trading as', or any other name your organisation uses.  Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
+          )
         end
 
         options :principal_business, "Does your organisation operate as a principal?" do
@@ -183,8 +183,7 @@ class QAE2014Forms
           rows 2
         end
 
-        options :external_contribute_to_sustainable_product,
-                "Did any external organisation(s) or individual(s) contribute to your sustainable product/service/management approach?" do
+        options :external_contribute_to_sustainable_product, "Did any external organisation(s) or individual(s) contribute to your social mobility programme?" do
           ref "A 9"
           required
           context %(
@@ -215,7 +214,7 @@ class QAE2014Forms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications." do
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this applications." do
           sub_ref "A 9.2"
           required
           words_max 200
