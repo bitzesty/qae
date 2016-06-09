@@ -14,7 +14,7 @@ gem 'rack-ssl-enforcer'
 gem 'pg', '~> 0.17'
 
 # Track Changes
-gem 'paper_trail', '~> 4.1.0'
+gem 'paper_trail', '~> 5.1.0'
 
 # Envrioment variables
 gem 'dotenv-rails', '~> 1.0'
