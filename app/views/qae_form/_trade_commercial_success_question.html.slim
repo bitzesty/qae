@@ -20,7 +20,7 @@
 
     label.selectable class=("display-none" if condition.present?)
       - if c.present?
-        input.js-trigger-autosave type="radio" name=question.input_name value=answer.value data-preselected-condition="#{c.question_suffix}_#{c.parent_question_answer_key}" checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s || question.default_option.to_s == answer.value.to_s) *possible_read_only_ops
+        input.js-trigger-autosave type="radio" name=question.input_name value=answer.value data-preselected-condition="#{c.question_suffix}_#{c.parent_question_answer_key}" checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) *possible_read_only_ops
       - else
-        input.js-trigger-autosave type="radio" name=question.input_name value=answer.value checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s || question.default_option.to_s == answer.value.to_s) *possible_read_only_ops
+        input.js-trigger-autosave type="radio" name=question.input_name value=answer.value checked=(answer.value.to_s == ((condition.present? ? condition.question_value : question.input_value) || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) *possible_read_only_ops
       = answer.text
