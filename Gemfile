@@ -118,7 +118,6 @@ group :test do
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'rspec-rails'
   gem 'turnip'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
@@ -142,4 +141,5 @@ end
 group :development, :test do
   # Enviroment variables
   gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 3.4'
 end
