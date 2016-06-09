@@ -95,9 +95,6 @@ gem "sidekiq-cron", "~> 0.4.2"
 gem 'redis-rails'
 gem 'redis-store'
 
-# Process manager
-gem 'foreman'
-
 # Text Search
 gem 'pg_search'
 
