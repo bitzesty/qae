@@ -31,7 +31,7 @@ class QAE2014Forms
             </p>
           )
           option "2 to 4", "Outstanding Commercial Performance: innovation has improved commercial performance over 2 years"
-          option "5 plus", "Outstanding Commercial Performance: innovation has improved commercial performance over 5 years"
+          option "5 plus", "Continuous Commercial Performance: innovation has improved commercial performance over 5 years"
           financial_date_selector({
             "2 to 4" => "2",
             "5 plus" => "5"
