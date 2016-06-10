@@ -65,6 +65,15 @@ FactoryGirl.define do
       )
     end
 
+    trait :mobility do
+      award_type "mobility"
+      document FormAnswer::DocumentParser.parse_json_document(
+        JSON.parse(
+          File.read(Rails.root.join("spec/fixtures/form_answer_mobility.json"))
+        )
+      )
+    end
+
     trait :promotion do
       award_type "promotion"
       document FormAnswer::DocumentParser.parse_json_document(

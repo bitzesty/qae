@@ -1,0 +1,81 @@
+header.page-header.group.page-header-over-sidebar
+  div
+    h1
+      ' Social Mobility Award Application
+
+.steps-progress-container.min-height-800
+  .steps-progress-content
+    .article-related-positioning-container
+      .article-container
+        article.group role="article"
+          .inner
+            .application-notice.help-notice.big-notice
+              p You are eligible to begin your application for a Social Mobility Award.
+
+            p The Queen’s Awards for Enterprise are highly competitive, and you will be assessed against other candidates.
+
+            h2 Before you begin:
+
+            = render "content_only/pdf_link"
+
+            - if @collaborators.any?
+              br
+              p
+                ' You have already added these people as collaborators:
+              ul
+                - @collaborators.each do |collaborator|
+                  li
+                    - if collaborator.first_name.present?
+                      = collaborator.full_name
+                    - else
+                      ' Anonymous
+            p
+              ' You can
+              = link_to account_collaborators_path(form_id: @form_answer.id)
+                - if @collaborators.any?
+                  | add more collaborators
+                - else
+                  | add a collaborator
+              '  to help you fill out this application, but be aware that
+              strong they are able to see and edit all of your applications
+              ' .
+
+            br
+
+            h2 What you will need:
+            h3 Section A: Company Info
+            p Basic information about your organisation and its structure.
+
+            h3 Section B: Your Social Mobility
+            p Detailed knowledge of your social mobility programme.
+
+            h3 Section C: Commercial Performance
+            p Detailed financial information.
+
+            br
+
+            h2 Application guidance:
+            ul
+              li
+                ' The deadline for submissions is
+                = submission_deadline.decorate.formatted_trigger_time
+                ' .
+              li Your information is only shared with those involved in the assessment process.
+              li Try to take full advantage of the word limits. However, the quality of your answer is more important than its length.
+              li All questions are mandatory unless stated otherwise.
+              li It can take up to 50 man-hours to complete the entry form, so you aren't expected to complete it in one sitting.
+              li You can skip questions and return to them later.
+              li Question numbers aren't always consecutive, as we show and hide different questions depending on your answers.
+              li Your answers are saved automatically as you go.
+
+            br
+
+            p#get-started.get-started.group
+              = link_to result_form_award_eligibility_url(form_id: @form_answer.id), class: "button", rel: "external"
+                ' Continue
+                / TODO if application is started
+                / ' Continue application
+                / - else
+                / ' Start application
+
+  = render "steps_progress_bar", cant_access_future: true

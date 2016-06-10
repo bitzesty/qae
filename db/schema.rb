@@ -100,6 +100,7 @@ ActiveRecord::Schema.define(version: 20160607172315) do
     t.string   "unlock_token"
     t.datetime "locked_at"
     t.string   "company"
+    t.string   "mobility_role"
   end
 
   add_index "assessors", ["confirmation_token"], name: "index_assessors_on_confirmation_token", unique: true, using: :btree
@@ -270,6 +271,7 @@ ActiveRecord::Schema.define(version: 20160607172315) do
     t.string   "user_email"
     t.boolean  "corp_responsibility_reviewed",  default: false
     t.string   "pdf_version"
+    t.integer  "mobility_eligibility_id"
     t.datetime "submitted_at"
   end
 

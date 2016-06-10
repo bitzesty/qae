@@ -28,13 +28,17 @@ class FormAnswer < ActiveRecord::Base
     "trade", # International Trade Award
     "innovation", # Innovation Award
     "development", # Sustainable Development Award
+    "mobility", # Social Mobility Award
     "promotion" # Enterprise Promotion Award
   ]
+
+  BUSINESS_AWARD_TYPES = %w(trade innovation development mobility)
 
   AWARD_TYPE_FULL_NAMES = {
     "trade" => "International Trade",
     "innovation" => "Innovation",
     "development" => "Sustainable Development",
+    "mobility" => "Social Mobility",
     "promotion" => "Enterprise Promotion"
   }
 
@@ -52,6 +56,7 @@ class FormAnswer < ActiveRecord::Base
     has_one :trade_eligibility, class_name: 'Eligibility::Trade', dependent: :destroy
     has_one :innovation_eligibility, class_name: 'Eligibility::Innovation', dependent: :destroy
     has_one :development_eligibility, class_name: 'Eligibility::Development', dependent: :destroy
+    has_one :mobility_eligibility, class_name: 'Eligibility::Mobility', dependent: :destroy
     has_one :promotion_eligibility, class_name: 'Eligibility::Promotion', dependent: :destroy
     has_one :audit_certificate, dependent: :destroy
     has_one :feedback, dependent: :destroy
@@ -115,7 +120,7 @@ class FormAnswer < ActiveRecord::Base
     scope :unsuccessful_applications, -> { submitted.where("state not in ('awarded', 'withdrawn')") }
     scope :submitted, -> { where.not(submitted_at: nil) }
     scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
-    scope :business, -> { where(award_type: %w(trade innovation development)) }
+    scope :business, -> { where(award_type: BUSINESS_AWARD_TYPES) }
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
 
@@ -261,7 +266,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def business?
-    %w(trade innovation development).include?(award_type)
+    BUSINESS_AWARD_TYPES.include?(award_type)
   end
 
   def generate_pdf_version!

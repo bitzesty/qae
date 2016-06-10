@@ -58,6 +58,7 @@ class Admin::AssessorsController < Admin::UsersController
              :trade_role,
              :innovation_role,
              :development_role,
+             :mobility_role,
              :promotion_role)
   end
 end

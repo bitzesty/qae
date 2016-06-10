@@ -1,0 +1,7 @@
+.question-group.question-required
+  ul.errors-container
+    - if @form_answer.validator_errors
+      li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+    .clear
+
+    = select_tag("#{question.key}", options_for_select(question.regions, question.entities), possible_read_only_ops.merge({name: "#{question.input_name}[]", class: "js-trigger-autosave required select2", include_blank: true, multiple: true}))

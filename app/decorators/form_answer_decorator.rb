@@ -5,6 +5,7 @@ class FormAnswerDecorator < ApplicationDecorator
   AWARD_TITLES = { "Innovation" => "Innovation",
                    "International Trade" => "Int'l Trade",
                    "Sustainable Development" => "Sust. Dev.",
+                   "Social Mobility" => "Soc. Mob.",
                    "Enterprise Promotion" => "QAEP",
                    "QAEP" => "QAEP"
                  }
