@@ -4,7 +4,7 @@ require "rails_helper"
 describe "Admin generates the CSV reports" do
   let!(:user) { create(:user, :completed_profile) }
 
-  let!(:trade) { create(:form_answer, :trade, user: user, submitted: true) }
+  let!(:trade) { create(:form_answer, :trade, user: user, submitted_at: Time.current) }
   let!(:innovation) { create(:form_answer, :innovation, user: user) }
   let!(:development) { create(:form_answer, :development, user: user, state: "awarded") }
   let!(:promotion) { create(:form_answer, :promotion, user: user) }

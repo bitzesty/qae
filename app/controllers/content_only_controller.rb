@@ -66,7 +66,7 @@ class ContentOnlyController < ApplicationController
     @user_award_forms_mobility = forms["mobility"]
     @user_award_forms_promotion = forms["promotion"]
 
-    @user_award_forms_submitted = @user_award_forms.where(submitted: true)
+    @user_award_forms_submitted = @user_award_forms.submitted
 
     set_unsuccessful_business_applications if Settings.unsuccessful_stage?
   end

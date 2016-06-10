@@ -8,6 +8,8 @@ FactoryGirl.define do
         )
       )
     end
+
+    attachment_scan_results "clean"
   end
 
   sequence :financial_data_sample do

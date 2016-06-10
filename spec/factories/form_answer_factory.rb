@@ -5,17 +5,17 @@ FactoryGirl.define do
     award_year_id { AwardYear.current.id }
 
     trait :submitted do
-      submitted true
+      submitted_at Time.current
       state "submitted"
     end
 
     trait :awarded do
-      submitted true
+      submitted_at Time.current
       state "awarded"
     end
 
     trait :recommended do
-      submitted true
+      submitted_at Time.current
       state "recommended"
     end
 
@@ -24,17 +24,17 @@ FactoryGirl.define do
     end
 
     trait :not_recommended do
-      submitted true
+      submitted_at Time.current
       state "not_recommended"
     end
 
     trait :not_awarded do
-      submitted true
+      submitted_at Time.current
       state "not_awarded"
     end
 
     trait :reserved do
-      submitted true
+      submitted_at Time.current
       state "reserved"
     end
 
@@ -92,14 +92,7 @@ FactoryGirl.define do
       audit_certificate
       award_type "development"
       state "submitted"
-      submitted true
-      after(:create) do |rec|
-        scan = rec.audit_certificate.build_scan(
-          uuid: SecureRandom.uuid,
-          status: "clean"
-        )
-        scan.save(validate: false)
-      end
+      submitted_at Time.current
     end
   end
 end

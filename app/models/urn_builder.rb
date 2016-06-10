@@ -8,7 +8,7 @@ class UrnBuilder
 
   def assign
     return if fa.urn
-    return unless fa.submitted
+    return unless fa.submitted?
     return unless fa.award_type
 
     sequence_attr = "urn_seq_promotion_#{award_year.year}" if fa.promotion?

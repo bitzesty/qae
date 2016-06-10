@@ -1,4 +1,4 @@
-if %w{bzstaging staging production}.include?(Rails.env)
+unless Rails.env.development? || Rails.env.test?
   Rails.application.configure do
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {

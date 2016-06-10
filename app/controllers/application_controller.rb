@@ -161,11 +161,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def need_authentication?
-    (Rails.env.staging? || Rails.env.production?) &&
-    (controller_name != "healthchecks" && controller_name != "scans")
-  end
-
   def load_award_year_and_settings
     if params[:year] && AwardYear::AVAILABLE_YEARS.include?(params[:year].to_i)
       @award_year = AwardYear.for_year(params[:year].to_i).first_or_create

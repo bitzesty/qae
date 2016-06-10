@@ -9,72 +9,21 @@ shared_context "download original pdf before deadline ends" do
     f
   end
 
-  let!(:deadline) do
-    Settings.current_submission_deadline
-  end
-
-  describe "Policies" do
-    describe "Submission not ended" do
-      before do
-        deadline.trigger_at = DateTime.now + 1.day
-        deadline.save!
-
-        visit target_url
-      end
-
-      it "should do not display download button" do
-        expect_to_see_no "Download original PDF before deadline"
-      end
-    end
-  end
-
   describe "Download" do
     before do
-      deadline.trigger_at = DateTime.now - 1.day
-      deadline.save!
+      Settings.current_submission_deadline.update(trigger_at: Time.zone.now - 1.day)
     end
-
-    describe "Button displaying" do
-      before do
-        visit target_url
-      end
-
-      it "should display download button" do
-        expect(page).to have_link(
-          "Download original PDF before deadline",
-          form_answer.pdf_version.url
-        )
-      end
-    end
-
 
     describe "PDF content" do
-      let(:registration_number_at_the_deadline) {
-        "1111111111".upcase
-      }
-
-      let(:registration_number_after_deadline) {
-        "2222222222".upcase
-      }
-
-      let(:original_form_answer) do
-        form_answer.original_form_answer
-      end
-
-      let(:pdf_generator) do
-        original_form_answer.decorate.pdf_generator
-      end
-
-      let(:pdf_content) do
-        PDF::Inspector::Text.analyze(pdf_generator.render).strings
-      end
+      let(:registration_number_at_the_deadline) { "1111111111" }
+      let(:registration_number_after_deadline) { "2222222222" }
 
       before do
         # Turn onn Papertrail
         PaperTrail.enabled = true
 
         # Set current time to date before deadline
-        Timecop.freeze(DateTime.now - 2.days) do
+        Timecop.freeze(Time.zone.now - 2.days) do
           form_answer.reload
           form_answer.document["registration_number"] = registration_number_at_the_deadline
           form_answer.save!
@@ -90,6 +39,10 @@ shared_context "download original pdf before deadline ends" do
       end
 
       it "should include main header information" do
+        original_form_answer = form_answer.original_form_answer
+        pdf_generator = original_form_answer.decorate.pdf_generator
+        pdf_content = PDF::Inspector::Text.analyze(pdf_generator.render).strings
+
         expect(pdf_content).to include(registration_number_at_the_deadline)
         expect(pdf_content).to_not include(registration_number_after_deadline)
       end

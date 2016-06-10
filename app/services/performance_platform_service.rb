@@ -125,7 +125,7 @@ class PerformancePlatformService
             .count
 
           cumulative_count = form_answers
-            .where("fill_progress IS NULL OR fill_progress >= 0 OR submitted = true")
+            .where("fill_progress IS NULL OR fill_progress >= 0 OR submitted_at IS NOT NULL")
             .where(award_type: award_type)
             .count
         when "1-24-percent"
@@ -135,7 +135,7 @@ class PerformancePlatformService
             .count
 
           cumulative_count = form_answers
-            .where("fill_progress > 0 OR submitted = true")
+            .where("fill_progress > 0 OR submitted_at IS NOT NULL")
             .where(award_type: award_type)
             .count
         when "25-49-percent"
@@ -145,7 +145,7 @@ class PerformancePlatformService
             .count
 
           cumulative_count = form_answers
-            .where("fill_progress >= 25 OR submitted = true")
+            .where("fill_progress >= 25 OR submitted_at IS NOT NULL")
             .where(award_type: award_type)
             .count
         when "50-74-percent"
@@ -155,7 +155,7 @@ class PerformancePlatformService
             .count
 
           cumulative_count = form_answers
-            .where("fill_progress >= 50 OR submitted = true")
+            .where("fill_progress >= 50 OR submitted_at IS NOT NULL")
             .where(award_type: award_type)
             .count
         when "75-99-percent"
@@ -165,12 +165,12 @@ class PerformancePlatformService
             .count
 
           cumulative_count = form_answers
-            .where("fill_progress >= 50 OR submitted = true")
+            .where("fill_progress >= 50 OR submitted_at IS NOT NULL")
             .where(award_type: award_type)
             .count
         when "100-percent"
           count = form_answers
-            .where("fill_progress = 100 OR submitted = true")
+            .where("fill_progress = 100 OR submitted_at IS NOT NULL")
             .where(award_type: award_type)
             .count
 

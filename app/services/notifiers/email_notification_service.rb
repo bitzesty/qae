@@ -46,7 +46,7 @@ class Notifiers::EmailNotificationService
   end
 
   def reminder_to_submit(award_year)
-    award_year.form_answers.business.where(submitted: false).each do |form_answer|
+    award_year.form_answers.business.where(submitted_at: nil).each do |form_answer|
       form_answer.collaborators.each do |collaborator|
         AccountMailers::ReminderToSubmitMailer.notify(
           form_answer.id,
