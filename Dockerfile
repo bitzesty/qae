@@ -20,11 +20,13 @@ WORKDIR /app
 # Cache bundler
 COPY Gemfile /app/Gemfile
 COPY Gemfile.lock /app/Gemfile.lock
-
-# Otherwise we need QT for capybara-webkit
-RUN bundle install --without test
+RUN bundle install --without development test --jobs 4
 
 # Copy the rest of the app
 COPY . /app
 
-RUN RAILS_ENV=production ONLY_ASSETS=true bundle exec rake assets:precompile
+ENV RAILS_ENV=production
+ENV ONLY_ASSETS=true
+ENV DATABASE_URL postgresql://localhost/dummy_url
+
+RUN bundle exec rake assets:precompile --trace
