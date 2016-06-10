@@ -1,6 +1,11 @@
 require "countries"
 
 module FormAnswerHelper
+  # This is a temporary method to disable social mobility award for users
+  def display_social_mobility?
+    ENV["DISPLAY_SOCIAL_MOBILITY_AWARD"] == "true"
+  end
+
   def application_flags(fa, subject = nil)
     comments = fa.comments
 
