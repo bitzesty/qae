@@ -1,0 +1,26 @@
+web: &web
+  build: .
+  command: bundle exec puma -C config/puma.rb
+  environment:
+    - RACK_ENV=production
+    - RAILS_ENV=production
+    - ASSET_HOST=temp
+    - MAILER_HOST=temp
+  ports:
+    - 80:3000
+    - 443:3000
+  links:
+    - database
+    - redis
+worker:
+  <<: *web
+  ports: []
+  command: bundle exec sidekiq -C config/sidekiq.yml
+redis:
+  image: convox/redis
+  ports:
+    - 6379
+database:
+  image: convox/postgres
+  ports:
+    - 5432
