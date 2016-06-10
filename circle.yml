@@ -7,7 +7,7 @@ test:
     - bundle exec bin/circle
 deployment:
   dev:
-    branch: server-maintenance
+    branch: master
     commands:
       - convox login console.convox.com
       - convox switch bitzesty/qae

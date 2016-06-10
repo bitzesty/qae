@@ -66,7 +66,7 @@ class FormAnswerStateMachine
     if permitted_states_with_deadline_constraint.include?(state) || !validate
       if transition_to state, meta
         if state == :submitted
-          object.update(submitted: true)
+          object.update(submitted_at: Time.current)
         end
 
         if state == :withdrawn
@@ -89,7 +89,7 @@ class FormAnswerStateMachine
     # in state machine and in `form_answers.submitted`
     meta = get_metadata(subject)
     transition_to :submitted, meta
-    object.update(submitted: true)
+    object.update(submitted_at: Time.current)
   end
 
   def assign_lead_verdict(verdict, subject)

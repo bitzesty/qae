@@ -6,7 +6,7 @@ describe "Admin sets up previous winnings" do
 
   before do
     Settings.current_submission_deadline.update(trigger_at: DateTime.now - 1.day)
-    form_answer.update(submitted: true)
+    form_answer.update(submitted_at: Time.current)
 
     login_admin(admin)
     visit admin_form_answer_path(form_answer)

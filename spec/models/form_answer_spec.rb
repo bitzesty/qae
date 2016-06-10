@@ -43,10 +43,10 @@ RSpec.describe FormAnswer, type: :model do
     end
 
     it "increments global counter, shared for all categories" do
-      form1 = create(:form_answer, :trade, submitted: true)
-      form2 = create(:form_answer, :innovation, submitted: true)
-      form3 = create(:form_answer, :promotion, submitted: true)
-      form4 = create(:form_answer, :development, submitted: true)
+      form1 = create(:form_answer, :trade, submitted_at: Time.current)
+      form2 = create(:form_answer, :innovation, submitted_at: Time.current)
+      form3 = create(:form_answer, :promotion, submitted_at: Time.current)
+      form4 = create(:form_answer, :development, submitted_at: Time.current)
 
       expect(form1.urn).to eq("QA0002/#{award_year}T")
       expect(form2.urn).to eq("QA0003/#{award_year}I")

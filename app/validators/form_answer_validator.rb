@@ -20,7 +20,7 @@ class FormAnswerValidator
       # else if form was submitted just now
       # we should validate entire form
 
-      if step.title.parameterize == current_step || form_answer.submitted_changed?
+      if step.title.parameterize == current_step || (form_answer.submitted_at_changed? && form_answer.submitted_at_was.nil?)
         step.questions.each do |q|
           if (errors = q.validate).any?
             @errors.merge!(errors)

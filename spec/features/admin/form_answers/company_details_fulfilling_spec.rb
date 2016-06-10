@@ -7,7 +7,7 @@ describe "Admin fulfills the company details" do
 
   before do
     login_admin(admin)
-    form_answer.update_column(:submitted, true)
+    form_answer.update_column(:submitted_at, Time.current)
     Settings.current_submission_deadline.update(trigger_at: DateTime.now - 1.day)
     visit admin_form_answer_path(form_answer)
   end

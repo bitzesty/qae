@@ -127,10 +127,10 @@ class FormController < ApplicationController
         redirected = params[:next_action] == "redirect"
 
         if submitted
-          @form_answer.submitted = true
+          @form_answer.submitted_at = Time.current
         end
 
-        submitted_was_changed = @form_answer.submitted_changed?
+        submitted_was_changed = @form_answer.submitted_at_changed? && @form_answer.submitted_at_was.nil?
         @form_answer.current_step = params[:current_step] || @form.steps.first.title.parameterize
 
         if params[:form].present? && @form_answer.eligible? && (saved = @form_answer.save)
@@ -164,10 +164,10 @@ class FormController < ApplicationController
 
       format.js do
         if submitted
-          @form_answer.submitted = true
+          @form_answer.submitted_at = Time.current
         end
 
-        submitted_was_changed = @form_answer.submitted_changed?
+        submitted_was_changed = @form_answer.submitted_at_changed? && @form_answer.submitted_at_was.nil?
 
         if params[:form].present? && @form_answer.eligible? && @form_answer.save
           if submitted_was_changed

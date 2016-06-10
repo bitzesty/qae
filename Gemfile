@@ -14,10 +14,7 @@ gem 'rack-ssl-enforcer'
 gem 'pg', '~> 0.17'
 
 # Track Changes
-gem 'paper_trail', '~> 4.1.0'
-
-# Envrioment variables
-gem 'dotenv-rails', '~> 1.0'
+gem 'paper_trail', '~> 5.1.0'
 
 # Assets & Templates
 gem 'slim-rails', '~> 3.0.1'
@@ -74,9 +71,11 @@ gem 'prawn'
 gem 'prawn-table'
 gem 'nokogiri', '~> 1.6.0'
 
-# Error reporting
 group :staging, :production do
+  # Error reporting
   gem 'sentry-raven', github: 'getsentry/raven-ruby'
+  # Log to the STDOUT and dev/prod parity when delivering assets, 12factor.net
+  gem 'rails_12factor', '~> 0.0.3'
 end
 
 # Uploads
@@ -90,13 +89,11 @@ gem 'vigilion-rails'
 # Background jobs
 gem "sidekiq", "~> 4.1.1"
 gem "sidekiq-cron", "~> 0.4.2"
+gem 'sinatra', require: nil
 
 # Redis
 gem 'redis-rails'
 gem 'redis-store'
-
-# Process manager
-gem 'foreman'
 
 # Text Search
 gem 'pg_search'
@@ -113,8 +110,6 @@ gem 'newrelic_rpm'
 # AdvancedEmailValidator
 gem 'curb'
 
-gem 'rails_12factor', '~> 0.0.3', group: :production
-
 gem 'puma', '~> 2.16.0'
 
 group :test do
@@ -124,7 +119,6 @@ group :test do
   gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'rspec-rails'
   gem 'turnip'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
@@ -143,4 +137,10 @@ group :development do
   gem 'rubocop', require: false
   # When need to copy model with nested associations
   gem 'amoeba'
+end
+
+group :development, :test do
+  # Enviroment variables
+  gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 3.4'
 end
