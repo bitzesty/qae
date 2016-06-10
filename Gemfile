@@ -89,6 +89,7 @@ gem 'vigilion-rails'
 # Background jobs
 gem "sidekiq", "~> 4.1.1"
 gem "sidekiq-cron", "~> 0.4.2"
+gem 'sinatra', require: nil
 
 # Redis
 gem 'redis-rails'
