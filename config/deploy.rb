@@ -24,7 +24,7 @@ set :scm, :git
 set :webserver, "passenger"
 
 set :rbenv_type, :user
-set :rbenv_ruby, '2.1.5'
+set :rbenv_ruby, '2.3.0'
 set :rbenv_roles, :all
 
 set :linked_files, %w(config/database.yml config/secrets.yml .env)
