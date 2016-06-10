@@ -1,18 +1,15 @@
-web:
+web: &web
   build: .
-  command: [bundle, exec, puma, -C, config/puma.rb]
+  command: bundle exec puma -C config/puma.rb
   environment:
     - RACK_ENV=production
     - RAILS_ENV=production
     - ASSET_HOST=temp
     - MAILER_HOST=temp
   ports:
-    - '80:3000'
-    - '443:3000'
-  volumes:
-    - .:/app
+    - 80:3000
+    - 443:3000
 worker:
-  build: .
-  command: [bundle, exec, sidekiq, -C, config/sidekiq.yml]
-  volumes:
-    - '.:/app'
+  <<: *web
+  ports: []
+  command: bundle exec sidekiq -C config/sidekiq.yml
