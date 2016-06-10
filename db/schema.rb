@@ -271,10 +271,7 @@ ActiveRecord::Schema.define(version: 20160607172315) do
     t.string   "user_email"
     t.boolean  "corp_responsibility_reviewed",  default: false
     t.string   "pdf_version"
-<<<<<<< HEAD
     t.integer  "mobility_eligibility_id"
-=======
->>>>>>> origin/master
     t.datetime "submitted_at"
   end
 
