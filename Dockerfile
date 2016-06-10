@@ -12,7 +12,6 @@ RUN apk add --update --no-cache \
     git \
     postgresql-client \
     postgresql-dev
-RUN bundle config build.nokogiri --use-system-libraries
 
 EXPOSE 3000
 
