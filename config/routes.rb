@@ -1,3 +1,5 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   resource :healthcheck, only: :show
 
@@ -17,6 +19,10 @@ Rails.application.routes.draw do
     verify_authy_installation: "/verify-installation"
   }
 
+  authenticate :admin do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+  
   devise_for :assessors
 
   get "/awards_for_organisations"                       => redirect("https://www.gov.uk/queens-awards-for-enterprise/business-awards")
