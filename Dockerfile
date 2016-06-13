@@ -1,5 +1,7 @@
 FROM ruby:2.3.1-alpine
 
+ENV SSL_CERT_DIR=/etc/ssl/certs
+
 RUN apk add --update --no-cache \
     ca-certificates \
     build-base \
