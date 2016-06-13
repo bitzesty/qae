@@ -159,6 +159,12 @@ module Reports::DataPickers::FormDocumentPicker
           "5 plus" => "#{attr_name}_5of5"
         }
       },
+      "mobility" => { # CHECK: delete if not needed
+        "development_performance_years" => {
+          "2 to 4" => "#{attr_name}_2of2",
+          "5 plus" => "#{attr_name}_5of5"
+        }
+      },
       "innovation" => {
         "innovation_performance_years" => {
           "2 to 4" => "#{attr_name}_2of2",
@@ -172,6 +178,7 @@ module Reports::DataPickers::FormDocumentPicker
     {
       "trade" => "trade_commercial_success",
       "development" => "development_performance_years",
+      "mobility" => "development_performance_years",
       "innovation" => "innovation_performance_years"
     }[obj.award_type]
   end
@@ -192,6 +199,11 @@ module Reports::DataPickers::FormDocumentPicker
         "2 to 4" => "Outstanding achievement over 2 years",
         "5 plus" => "Continuous achievement over 5 years"
       }
+    elsif mobility?
+      {
+        "2 to 4" => "Outstanding achievement over 2 years",
+        "5 plus" => "Continuous achievement over 5 years"
+      }
     else
       {}
     end[doc(subcategory_field_name)]
@@ -201,6 +213,8 @@ module Reports::DataPickers::FormDocumentPicker
     if innovation?
       doc "innovation_desc_short"
     elsif development?
+      doc "development_desc_short"
+    elsif mobility?
       doc "development_desc_short"
     else
       number_of_goods_and_services =  doc("trade_goods_amount").to_i

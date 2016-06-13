@@ -1,6 +1,10 @@
-FROM ruby:2.3.0-alpine
+FROM ruby:2.3.1-alpine
+
+ENV SSL_CERT_DIR=/etc/ssl/certs
+ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
 RUN apk add --update --no-cache \
+    ca-certificates \
     build-base \
     perl \
     curl \
@@ -12,6 +16,8 @@ RUN apk add --update --no-cache \
     git \
     postgresql-client \
     postgresql-dev
+
+RUN update-ca-certificates
 
 EXPOSE 3000
 
@@ -26,7 +32,6 @@ RUN bundle install --without development test --jobs 4
 COPY . /app
 
 ENV RAILS_ENV=production
-ENV ONLY_ASSETS=true
 ENV DATABASE_URL postgresql://localhost/dummy_url
 
-RUN bundle exec rake assets:precompile --trace
+RUN ONLY_ASSETS=true bundle exec rake assets:precompile --trace

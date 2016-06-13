@@ -39,6 +39,7 @@ Rails.application.routes.draw do
   get  "/new_innovation_form"                           => "form#new_innovation_form",                                    as: "new_innovation_form"
   get  "/new_international_trade_form"                  => "form#new_international_trade_form",                           as: "new_international_trade_form"
   get  "/new_sustainable_development_form"              => "form#new_sustainable_development_form",                       as: "new_sustainable_development_form"
+  get  "/new_social_mobility_form"                      => "form#new_social_mobility_form",                               as: "new_social_mobility_form"
 
   get  "/form/:id"                                      => "form#edit_form",                                              as: "edit_form"
   post "/form/:id"                                      => "form#save",                                                   as: "save_form"
@@ -54,6 +55,8 @@ Rails.application.routes.draw do
 
   get "/apply_sustainable_development_award"            => "content_only#apply_sustainable_development_award",            as: "apply_sustainable_development_award"
   get "/award_info_development"                         => "content_only#award_info_development",                         as: "award_info_development"
+  get "/apply_social_mobility_award"                    => "content_only#apply_social_mobility_award",                    as: "apply_social_mobility_award"
+  get "/award_info_mobility"                            => "content_only#award_info_mobility",                            as: "award_info_mobility"
 
   get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
 

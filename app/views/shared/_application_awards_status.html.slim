@@ -42,7 +42,12 @@ ul.applications-list
     .pull-right
       - unless current_account.has_award_in_this_year?(:development)
         = link_to "New application", apply_sustainable_development_award_path
-
-    /.application-notice.info-notice
-      p
-        ' In order to apply to Sustainability Development, your organisations needs to lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
+  - if display_social_mobility?
+    li
+      h3
+        ' Social Mobility Award
+      small
+        ' You can only apply for one Social Mobility Award
+      .pull-right
+        - unless current_account.has_award_in_this_year?(:mobility)
+          = link_to "New application", apply_social_mobility_award_path

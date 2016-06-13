@@ -23,6 +23,7 @@ class Assessor < ActiveRecord::Base
   validates :trade_role,
             :innovation_role,
             :development_role,
+            :mobility_role,
             :promotion_role,
             inclusion: {
               in: AVAILABLE_ROLES
@@ -59,12 +60,18 @@ class Assessor < ActiveRecord::Base
     "#{category}_role"
   end
 
-  def applications_scope
+  def applications_scope(award_year = nil)
     c = assigned_categories_as(%w(lead))
     join = "LEFT OUTER JOIN assessor_assignments ON
     assessor_assignments.form_answer_id = form_answers.id"
 
-    out = FormAnswer.joins(join)
+    scope = if award_year
+      award_year.form_answers
+    else
+      FormAnswer
+    end
+
+    out = scope.joins(join)
     out.where("
       (award_type in (?) OR
       (assessor_assignments.position in (?) AND assessor_assignments.assessor_id = ?))
@@ -93,7 +100,7 @@ class Assessor < ActiveRecord::Base
   end
 
   def lead_for_any_category?
-    ["trade", "innovation", "development", "promotion"].any? do |cat|
+    FormAnswer::POSSIBLE_AWARDS.any? do |cat|
       get_role(cat) == "lead"
     end
   end
@@ -118,7 +125,8 @@ class Assessor < ActiveRecord::Base
 
   def categories
     out = {}
-    ["trade", "innovation", "development", "promotion"].each do |cat|
+
+    FormAnswer::POSSIBLE_AWARDS.each do |cat|
       out[cat] = public_send(self.class.role_meth(cat))
     end
     out
@@ -129,16 +137,15 @@ class Assessor < ActiveRecord::Base
   end
 
   def assigned_categories_as(roles)
-    ["trade", "innovation", "development", "promotion"].map do |award|
+    FormAnswer::POSSIBLE_AWARDS.map do |award|
       award if roles.include?(get_role(award).to_s)
     end.compact
   end
 
   def nil_if_blank
-    self.trade_role = nil if get_role("trade").blank?
-    self.innovation_role = nil if get_role("innovation").blank?
-    self.development_role = nil if get_role("development").blank?
-    self.promotion_role = nil if get_role("promotion").blank?
+    FormAnswer::POSSIBLE_AWARDS.each do |award|
+      self.public_send("#{award}_role=", nil) if get_role(award).blank?
+    end
   end
 
   def self.leads_for(category)

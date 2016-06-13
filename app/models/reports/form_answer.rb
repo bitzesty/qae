@@ -135,24 +135,10 @@ class Reports::FormAnswer
   end
 
   def business_form?
-    obj.trade? || obj.innovation? || obj.development?
+    obj.business?
   end
 
-  def trade?
-    obj.trade?
-  end
-
-  def development?
-    obj.development?
-  end
-
-  def promotion?
-    obj.promotion?
-  end
-
-  def innovation?
-    obj.innovation?
-  end
+  delegate :trade?, :development?, :promotion?, :innovation?, :mobility?, to: :obj
 
   def bool(var)
     var ? "Yes" : "No"

@@ -7,5 +7,4 @@ class QAEFormBuilder
 
   class DropdownQuestion < OptionsQuestion
   end
-
 end

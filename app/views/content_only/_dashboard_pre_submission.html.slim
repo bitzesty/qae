@@ -8,6 +8,8 @@
           = render "current_applications", award_applications: @user_award_forms_trade
           = render "current_applications", award_applications: @user_award_forms_innovation
           = render "current_applications", award_applications: @user_award_forms_development
+          - if display_social_mobility?
+            = render "current_applications", award_applications: @user_award_forms_mobility
           / = render "current_applications", award_applications: @user_award_forms_promotion
 
           br

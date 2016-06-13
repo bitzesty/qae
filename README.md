@@ -11,7 +11,7 @@
 
 ### Pre-requisites
 
-* Ruby 2.3.0
+* Ruby 2.3.1
 * Rails 4.2
 * Postgresql 9.4
 * Redis 2.8

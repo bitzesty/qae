@@ -206,6 +206,69 @@ class AppraisalForm
     }
   }
 
+  MOBILITY = {
+    product_service_contribution: {
+      type: :rag,
+      label: "Product/service contribution:"
+    },
+    commercial_success: {
+      type: :rag,
+      label: "Commercial success:"
+    },
+    strategy: {
+      type: :rag,
+      label: "Strategy:"
+    },
+    environment: {
+      type: :non_rag,
+      label: "Environmental dimension:"
+    },
+    social: {
+      type: :non_rag,
+      label: "Social dimension:"
+    },
+    economic: {
+      type: :non_rag,
+      label: "Economic dimension:"
+    },
+    leadership_management: {
+      type: :non_rag,
+      label: "Leadership & management:"
+    },
+    environment_protection: {
+      type: :strengths,
+      label: "Environmental protection and management:"
+    },
+    benefiting_the_wilder_community: {
+      type: :strengths,
+      label: "Benefiting the wider community:"
+    },
+    sustainable_resource: {
+      type: :strengths,
+      label: "Sustainable resource use:"
+    },
+    economic_sustainability: {
+      type: :strengths,
+      label: "Economic sustainability:"
+    },
+    supporting_employees: {
+      type: :strengths,
+      label: "Supporting employees:"
+    },
+    internal_leadership: {
+      type: :strengths,
+      label: "Internal leadership & management:"
+    },
+    industry_sector: {
+      type: :strengths,
+      label: "Industry/sector leadership:"
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:"
+    }
+  }
+
   MODERATED = {
     verdict: {
       type: :verdict,

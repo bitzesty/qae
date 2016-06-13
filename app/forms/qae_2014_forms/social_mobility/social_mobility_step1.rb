@@ -1,7 +1,7 @@
 class QAE2014Forms
   class << self
-    def trade_step1
-      @trade_step1 ||= proc do
+    def mobility_step1
+      @mobility_step1 ||= proc do
         header :company_information_header, "" do
           context %(
             <p>
@@ -21,7 +21,8 @@ class QAE2014Forms
           classes "application-notice help-notice"
           context %(
             <p>
-              Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.
+              Where the form refers to your organisation,
+              please enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
@@ -39,7 +40,9 @@ class QAE2014Forms
           required
           ref "A 3"
           context %(
-            <p>We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.</p>
+            <p>
+              We recommend that you apply as a principal. A principal invoices its customers (or their buying agents) and is the body to receive those payments.
+            </p>
           )
           yes_no
         end
@@ -81,11 +84,12 @@ class QAE2014Forms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context "<p>
-            Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award
-            (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award).
-          </p>"
-          date_max AwardYear.start_trading_since(3)
+          context %(
+            <p>
+               Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+            </p>
+          )
+          date_max AwardYear.start_trading_since(2)
         end
 
         options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
@@ -109,36 +113,32 @@ class QAE2014Forms
           ((AwardYear.current.year - 5)..(AwardYear.current.year - 1)).each do |y|
             year y
           end
-
-          children_options_depends_on :category
-          dependable_values [:international_trade]
         end
 
         options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
           classes "sub-question"
           sub_ref "A 6.2"
-
-          option "yes", "Yes"
-          option "no", "No"
+          required
           conditional :queen_award_holder, :yes
+          yes_no
         end
 
         text :previous_business_name, "Name used previously" do
           classes "regular-question"
           sub_ref "A 6.3"
           required
-          conditional :queen_award_holder, :yes
           conditional :business_name_changed, :yes
+          conditional :queen_award_holder, :yes
         end
 
-        textarea :previous_business_ref_num, "Please provide your previous winning application reference number(s)" do
+        textarea :previous_business_ref_num, "Reference number(s) used previously" do
           classes "regular-question"
           sub_ref "A 6.4"
           required
+          conditional :business_name_changed, :yes
+          conditional :queen_award_holder, :yes
           rows 5
           words_max 100
-          conditional :queen_award_holder, :yes
-          conditional :business_name_changed, :yes
         end
 
         options :other_awards_won, "Have you won any other awards in the past?" do
@@ -151,15 +151,81 @@ class QAE2014Forms
           classes "sub-question"
           sub_ref "A 7.1"
           required
-          context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
+          context %(
+            <p>
+              If you can't fit all of your awards below, then choose those you're most proud of.
+            </p>
+                    )
           conditional :other_awards_won, :yes
           rows 5
           words_max 300
         end
 
+        options :part_of_joint_entry,
+                "Is this application part of a joint entry with any of the contributing organisation(s)?" do
+          ref "A 8"
+          required
+          context %(
+            <p>
+              If two or more organisations made a significant contribution to the product,
+              service or management approach then you should make a joint entry.
+              Each organisation should submit separate, cross-referenced, entry forms.
+            </p>
+          )
+          yes_no
+        end
+
+        textarea :part_of_joint_entry_names, "Please enter their name(s)" do
+          sub_ref "A 8.1"
+          required
+          conditional :part_of_joint_entry, "yes"
+          words_max 100
+          rows 2
+        end
+
+        options :external_contribute_to_sustainable_product, "Did any external organisation(s) or individual(s) contribute to your social mobility programme?" do
+          ref "A 9"
+          required
+          context %(
+            <p>
+              <strong>Excluding</strong> paid suppliers and consultants.
+            </p>
+                    )
+          yes_no
+        end
+
+        options :external_are_aware_about_award,
+                "Are they aware that you're applying for this award?" do
+          sub_ref "A 9.1"
+          required
+          option "yes", "Yes, they are all aware"
+          option "no", "No, they are not all aware"
+          conditional :external_contribute_to_sustainable_product, "yes"
+        end
+
+        header :external_organization_or_individual_info_header_no, "" do
+          classes "application-notice help-notice"
+          context %(
+            <p>
+              We recommend that you notify all the contributors to your product/service/management approach of this entry.
+            </p>
+          )
+          conditional :external_contribute_to_sustainable_product, "yes"
+          conditional :external_are_aware_about_award, "no"
+        end
+
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this applications." do
+          sub_ref "A 9.2"
+          required
+          words_max 200
+          conditional :external_contribute_to_sustainable_product, "yes"
+          conditional :external_are_aware_about_award, "no"
+          rows 3
+        end
+
         address :organization_address, "Trading address of your organisation" do
           required
-          ref "A 8"
+          ref "A 10"
           sub_fields([
             { building: "Building" },
             { street: "Street" },
@@ -172,121 +238,66 @@ class QAE2014Forms
 
         text :org_telephone, "Main telephone number" do
           required
-          ref "A 9"
+          ref "A 11"
           style "small"
         end
 
         text :website_url, "Website Address" do
-          ref "A 10"
+          ref "A 12"
           style "large"
           form_hint "e.g. www.example.com"
         end
 
         sic_code_dropdown :sic_code, "SIC code" do
           required
-          ref "A 11"
-        end
-
-        options :parent_group_entry, "Are you a parent company making a group entry?" do
-          classes "sub-question"
-          ref "A 12"
-          context %(
-            <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
-                    )
-          yes_no
-        end
-
-        options :pareent_group_excluding, "Are you excluding any members of your group from this application?" do
-          classes "sub-question"
-          sub_ref "A 12.1"
-          conditional :parent_group_entry, "yes"
-          yes_no
-        end
-
-        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application?" do
-          classes "sub-question"
-          sub_ref "A 12.2"
-          rows 5
-          words_max 150
-          conditional :parent_group_entry, "yes"
-          conditional :pareent_group_excluding, "yes"
-        end
-
-        options :has_parent_company, "Do you have a parent or a holding company?" do
           ref "A 13"
+        end
+
+        options :parent_or_a_holding_company, "Do you have a parent or a holding company?" do
+          required
+          ref "A 14"
           yes_no
         end
 
         text :parent_company, "Name of immediate parent company" do
+          required
           classes "sub-question"
-          sub_ref "A 13.1"
-          conditional :has_parent_company, "yes"
+          sub_ref "A 14.1"
+          conditional :parent_or_a_holding_company, :yes
         end
 
         country :parent_company_country, "Country of immediate parent company" do
+          required
           classes "regular-question"
-          sub_ref "A 13.2"
-          conditional :has_parent_company, "yes"
+          sub_ref "A 14.2"
+          conditional :parent_or_a_holding_company, :yes
         end
 
         options :parent_ultimate_control, "Does your immediate parent company have ultimate control?" do
+          required
           classes "sub-question"
-          sub_ref "A 13.3"
-          conditional :has_parent_company, "yes"
+          sub_ref "A 14.3"
           yes_no
+          conditional :parent_or_a_holding_company, :yes
         end
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
+          required
           classes "regular-question"
-          sub_ref "A 13.4"
-          conditional :has_parent_company, "yes"
+          sub_ref "A 14.4"
           conditional :parent_ultimate_control, :no
+          conditional :parent_or_a_holding_company, :yes
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
-          sub_ref "A 13.5"
-          conditional :has_parent_company, "yes"
-          conditional :parent_ultimate_control, :no
-        end
-
-        options :trading_figures, "Do you have any UK subsidiaries, associates or plants whose trading figures are included in this entry?" do
-          ref "A 14"
-          required
-          yes_no
-        end
-
-        subsidiaries_associates_plants :trading_figures_add, "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them." do
-          required
-          classes "sub-question"
-          sub_ref "A 14.1"
-          pdf_title "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them."
-          conditional :trading_figures, :yes
-          details_words_max 100
-        end
-
-        options :export_agent, "Are you an export agent/merchant/wholesaler?" do
-          ref "A 15"
-          required
-          yes_no
-          context %(
-            <p>
-              An export agent exports goods/services on behalf of another company in exchange for commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).
-            </p>
-          )
-        end
-
-        options :export_unit, "Are you an export unit?" do
-          ref "A 16"
-          required
-          yes_no
-          help "What is an export unit?", %(
-            <p>An export unit is a subsidiary or operating unit of a larger company that manages the company's export activities.</p>
-                    )
+          sub_ref "A 14.5"
+          conditional :parent_ultimate_control, :yes
+          conditional :parent_or_a_holding_company, :yes
         end
 
         upload :org_chart, "Upload an organisational chart (optional)" do
-          ref "A 17"
+          ref "A 15"
           context %(
             <p>You can submit files in all common formats, as long as they're less than 5mb each.</p>
                     )
