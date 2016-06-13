@@ -1,6 +1,7 @@
-FROM ruby:2.3.0-alpine
+FROM ruby:2.3.1-alpine
 
 RUN apk add --update --no-cache \
+    ca-certificates \
     build-base \
     perl \
     curl \
@@ -12,6 +13,8 @@ RUN apk add --update --no-cache \
     git \
     postgresql-client \
     postgresql-dev
+
+RUN update-ca-certificates
 
 EXPOSE 3000
 
