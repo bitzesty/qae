@@ -59,7 +59,6 @@ jQuery ->
       if i = turnoverValues.length
         growth = turnoverValues[i - 1] - turnoverValues[0]
         growthInPercents = (turnoverValues[i - 1] / turnoverValues[0] * 100 - 100).toFixed(2)
-        growthInPercents = (turnoverValues[i] / turnoverValues[0] * 100 - 100).toFixed(2)
 
         ($ 'tr.overall-growth td.value', overallBenchmarksTable).text(growth)
         ($ 'tr.overall-growth-in-percents td.value', overallBenchmarksTable).text(growthInPercents)
