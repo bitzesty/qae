@@ -20,7 +20,7 @@ class QAE2014Forms
           ])
         end
 
-        text :head_job_title, "Job title / Role in the organisation" do
+        text :head_job_title, "Job title / role in the organisation" do
           classes "sub-question"
           required
           form_hint %(
