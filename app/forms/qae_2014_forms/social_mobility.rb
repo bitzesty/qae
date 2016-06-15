@@ -14,7 +14,7 @@ class QAE2014Forms
              &QAE2014Forms.mobility_step1
 
         step "Your Social Mobility",
-             "Your Social Mobility",
+             "Your Social Mobility Programme(s)",
              &QAE2014Forms.mobility_step2
 
         step "Commercial Performance",
