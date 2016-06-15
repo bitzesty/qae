@@ -21,7 +21,7 @@ class QAE2014Forms
           classes "application-notice help-notice"
           context %(
             <p>
-              Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.
+              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
@@ -176,7 +176,7 @@ class QAE2014Forms
           style "small"
         end
 
-        text :website_url, "Website Address" do
+        text :website_url, "Website address" do
           ref "A 10"
           style "large"
           form_hint "e.g. www.example.com"

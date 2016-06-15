@@ -39,10 +39,11 @@ header.page-header.group.page-header-over-sidebar
             footer
               nav.pagination.no-border role="navigation" aria-label="Pagination"
                 ul.group
-                  li.previous.previous-alternate
-                    = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
-                      span class="pagination-label"
-                        ' Back
+                  - if current_user.completed_registration
+                    li.previous.previous-alternate
+                      = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
+                        span class="pagination-label"
+                          ' Back
 
                   li.submit
                     - unless current_user.completed_registration

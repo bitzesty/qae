@@ -3,7 +3,7 @@ class Eligibility::Mobility < Eligibility
 
   property :programme_validation,
             boolean: true,
-            label: "Do you have one or more of the following:",
+            label: "Do you have one or more social mobility programmes?",
             accept: :true
 
   property :programme_operation,
