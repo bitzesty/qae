@@ -8,6 +8,16 @@ $black-true: #000;
   font-weight: 700;
 }
 
+.regions-half {
+  float: left;
+  width: 50%;
+
+  @media (max-width: 640px) {
+    width: auto;
+    float: none;
+  }
+}
+
 // Question Context style
 .question-context {
   color: $grey-1;

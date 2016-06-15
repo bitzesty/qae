@@ -20,7 +20,7 @@ class QAEFormBuilder
 
   class RegionsQuestionDecorator < QuestionDecorator
     def regions
-      ::QAEFormBuilder::AddressQuestionDecorator::REGIONS
+      ::QAEFormBuilder::AddressQuestionDecorator::REGIONS.sort
     end
 
     def entities

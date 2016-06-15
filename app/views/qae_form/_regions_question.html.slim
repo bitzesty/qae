@@ -1,6 +1,8 @@
 .regions-checkboxes
-  - question.regions.each do |region|
-    label.selectable
-      = check_box_tag "#{question.input_name}[]", region, question.entities.include?(region), class: "js-trigger-autosave required"
-      = region
+  - question.regions.each_slice(question.regions.length / 2).each do |slice|
+    .regions-half
+      - slice.each do |region|
+        label.selectable
+          = check_box_tag "#{question.input_name}[]", region, question.entities.include?(region), class: "js-trigger-autosave required"
+          = region
   = hidden_field_tag "#{question.input_name}[]", ""
