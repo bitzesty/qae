@@ -1,12 +1,6 @@
-.question-group.question-required
-  ul.errors-container
-    - if @form_answer.validator_errors
-      li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
-    .clear
-
-    .regions-checkboxes
-      - question.regions.each do |region|
-        label.selectable
-          = check_box_tag "#{question.input_name}[]", region, question.entities.include?(region), class: "js-trigger-autosave required"
-          = region
-      = hidden_field_tag "#{question.input_name}[]", ""
+.regions-checkboxes
+  - question.regions.each do |region|
+    label.selectable
+      = check_box_tag "#{question.input_name}[]", region, question.entities.include?(region), class: "js-trigger-autosave required"
+      = region
+  = hidden_field_tag "#{question.input_name}[]", ""

@@ -13,8 +13,11 @@ class FormAnswer::DocumentParser
       end
 
       parsed_value = if parsed_value.is_a?(Array)
-        parsed_value.map { |el| JSON.parse(el) }
-
+        if parsed_value.any? { |el| el.include?("{") }
+          parsed_value.map { |el| JSON.parse(el) }
+        else # simple array, no need to parse it
+          parsed_value
+        end
       elsif parsed_value.is_a?(Hash)
         new_hash = {}
 
