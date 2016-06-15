@@ -11,10 +11,6 @@ test:
   <<: *common
   database: qae_test
 
-staging:
-  <<: *common
-  database: qae_staging
-
 production:
   <<: *common
   database: qae_production

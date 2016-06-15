@@ -71,13 +71,6 @@ gem 'prawn'
 gem 'prawn-table'
 gem 'nokogiri', '~> 1.6.0'
 
-group :staging, :production do
-  # Error reporting
-  gem 'sentry-raven', github: 'getsentry/raven-ruby'
-  # Log to the STDOUT and dev/prod parity when delivering assets, 12factor.net
-  gem 'rails_12factor', '~> 0.0.3'
-end
-
 # Uploads
 gem 'carrierwave'
 gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
@@ -112,22 +105,6 @@ gem 'curb'
 
 gem 'puma', '~> 2.16.0'
 
-group :test do
-  gem 'factory_girl_rails'
-  gem 'capybara'
-  gem 'capybara-webkit'
-  gem 'capybara-screenshot'
-  gem 'database_cleaner'
-  gem 'launchy'
-  gem 'turnip'
-  gem 'shoulda-matchers', require: false
-  gem 'pdf-inspector', require: 'pdf/inspector'
-  gem 'codeclimate-test-reporter', require: nil
-  gem 'rspec_junit_formatter'
-  gem 'timecop'
-  gem 'webmock'
-end
-
 group :development do
   gem 'pry'
   gem 'letter_opener'
@@ -143,4 +120,27 @@ group :development, :test do
   # Enviroment variables
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.4'
+end
+
+group :production do
+  # Error reporting
+  gem 'sentry-raven', github: 'getsentry/raven-ruby'
+  # Log to the STDOUT and dev/prod parity when delivering assets, 12factor.net
+  gem 'rails_12factor', '~> 0.0.3'
+end
+
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'capybara-screenshot'
+  gem 'database_cleaner'
+  gem 'launchy'
+  gem 'turnip'
+  gem 'shoulda-matchers', require: false
+  gem 'pdf-inspector', require: 'pdf/inspector'
+  gem 'codeclimate-test-reporter', require: nil
+  gem 'rspec_junit_formatter'
+  gem 'timecop'
+  gem 'webmock'
 end
