@@ -6,6 +6,7 @@ web: &web
     - RAILS_ENV=production
     - ASSET_HOST=temp
     - MAILER_HOST=temp
+    - SECRET_KEY_BASE=xxxxxxxxx
     - AWS_ACCESS_KEY_ID
     - AWS_SECRET_ACCESS_KEY
     - AWS_REGION
