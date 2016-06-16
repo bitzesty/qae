@@ -15,13 +15,6 @@ GIT
       jquery-ui-rails (~> 5.0)
       railties (>= 3.1)
 
-GIT
-  remote: git://github.com/getsentry/raven-ruby.git
-  revision: e3e0cf474c8b4bd0b548be0241dfdbe734d01795
-  specs:
-    sentry-raven (0.13.1)
-      faraday (>= 0.7.6)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -452,6 +445,8 @@ GEM
     safe_yaml (1.0.4)
     sass (3.4.9)
     secure_headers (2.0.0)
+    sentry-raven (1.1.0)
+      faraday (>= 0.7.6)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
     sidekiq (4.1.1)
@@ -596,7 +591,7 @@ DEPENDENCIES
   rspec_junit_formatter
   rubocop
   secure_headers
-  sentry-raven!
+  sentry-raven
   shoulda-matchers
   sidekiq (~> 4.1.1)
   sidekiq-cron (~> 0.4.2)
@@ -612,6 +607,9 @@ DEPENDENCIES
   virtus
   webmock
   wicked (~> 1.1)
+
+RUBY VERSION
+   ruby 2.3.1p112
 
 BUNDLED WITH
    1.12.5

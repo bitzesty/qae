@@ -10,7 +10,7 @@ module QaePdfForms::General::DrawElements
   ALERT_BIG_ICON = "icon-important-big-print.png"
 
   def attachment_path(attachment_file, link=false)
-    if  Rails.env.production?
+    if Rails.env.production?
       attachment_file.url
     elsif link
       "#{current_host}#{attachment_file.url}"
