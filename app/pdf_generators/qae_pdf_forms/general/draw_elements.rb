@@ -10,7 +10,7 @@ module QaePdfForms::General::DrawElements
   ALERT_BIG_ICON = "icon-important-big-print.png"
 
   def attachment_path(attachment_file, link=false)
-    if ENV["AWS_ACCESS_KEY_ID"]
+    if Rails.env.production?
       attachment_file.url
     elsif link
       "#{current_host}#{attachment_file.url}"
@@ -31,7 +31,7 @@ module QaePdfForms::General::DrawElements
   def path_to_attachment_file(attachment_file, link=false)
     file = attachment_icon(attachment_file)
 
-    if ENV["AWS_ACCESS_KEY_ID"]
+    if Rails.env.production?
       open(file)
     else
       file

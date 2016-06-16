@@ -31,7 +31,10 @@ RUN bundle install --without development test --jobs 4
 # Copy the rest of the app
 COPY . /app
 
-ENV RAILS_ENV=production
+ENV RAILS_ENV production
 ENV DATABASE_URL postgresql://localhost/dummy_url
+ENV AWS_ACCESS_KEY_ID dummy
+ENV AWS_SECRET_ACCESS_KEY dummy
 
-RUN ONLY_ASSETS=true bundle exec rake assets:precompile --trace
+
+RUN bundle exec rake assets:precompile --trace
