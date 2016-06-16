@@ -20,7 +20,7 @@ class QAE2014Forms
           ])
         end
 
-        text :head_job_title, "Job title / Role in the organisation" do
+        text :head_job_title, "Job title / role in the organisation" do
           classes "sub-question"
           required
           form_hint %(
@@ -76,7 +76,7 @@ class QAE2014Forms
             verified commercial figures before the specified deadline.
             <br>
             <br>
-            If verified figures are not provided by [AUDIT_CERTIFICATES_DEADLINE] specified at short list stage, your entry will be rejected.
+            If verified figures are not provided by [AUDIT_CERTIFICATES_DEADLINE], your entry will be rejected.
           )
         end
 

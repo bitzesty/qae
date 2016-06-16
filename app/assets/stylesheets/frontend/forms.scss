@@ -1,18 +1,21 @@
 $black-true: #000;
 
-// Sub question style
+.question-block h2,
+.regular-question h2,
 .sub-question h2 {
-  @include bold-19;
-}
-
-.sub-question.former-name h2 {
-  font-weight: 400;
-}
-
-// Regular question style
-.regular-question h2 {
   @include core-19;
   margin: 0;
+  font-weight: 700;
+}
+
+.regions-half {
+  float: left;
+  width: 50%;
+
+  @media (max-width: 640px) {
+    width: auto;
+    float: none;
+  }
 }
 
 // Question Context style
@@ -1184,6 +1187,7 @@ input[type="file"] {
 }
 
 .regular-question,
+.question-block,
 .sub-question {
   .steps {
     position: relative;

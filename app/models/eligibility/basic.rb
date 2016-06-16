@@ -14,7 +14,7 @@ class Eligibility::Basic < Eligibility
 
   property :has_management_and_two_employees,
             boolean: true,
-            label: "Does it have two or more full-time UK employees?",
+            label: "Does your organisation have two or more full-time UK employees?",
             accept: :true
 
   property :organization_kind,

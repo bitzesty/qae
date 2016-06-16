@@ -21,7 +21,7 @@ class QAE2014Forms
           classes "application-notice help-notice"
           context %(
             <p>
-              Where the form refers to your organisation, please enter the details of your division, branch or subsidiary.
+              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
@@ -157,7 +157,7 @@ class QAE2014Forms
           words_max 300
         end
 
-        options :innovation_joint_contributors, "Is this application part of a joint entry with any of the contributing organisation(s)?" do
+        options :innovation_joint_contributors, "Is this application part of a joint entry with any contributing organisation(s)?" do
           ref "A 8"
           required
           context %(
@@ -255,7 +255,7 @@ class QAE2014Forms
           style "small"
         end
 
-        text :website_url, "Website Address" do
+        text :website_url, "Website address" do
           ref "A 13"
           style "large"
           form_hint "e.g. www.example.com"

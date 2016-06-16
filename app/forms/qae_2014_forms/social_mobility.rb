@@ -13,7 +13,7 @@ class QAE2014Forms
              "Company Information",
              &QAE2014Forms.mobility_step1
 
-        step "Your Social Mobility",
+        step "Your Social Mobility Programme(s)",
              "Your Social Mobility",
              &QAE2014Forms.mobility_step2
 
