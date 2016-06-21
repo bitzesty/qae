@@ -258,6 +258,39 @@ ALTER SEQUENCE audit_certificates_id_seq OWNED BY audit_certificates.id;
 
 
 --
+-- Name: audit_logs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE audit_logs (
+    id integer NOT NULL,
+    subject_id integer,
+    subject_type character varying,
+    action_type character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: audit_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE audit_logs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: audit_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE audit_logs_id_seq OWNED BY audit_logs.id;
+
+
+--
 -- Name: award_years; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -2447,6 +2480,13 @@ ALTER TABLE ONLY audit_certificates ALTER COLUMN id SET DEFAULT nextval('audit_c
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY audit_logs ALTER COLUMN id SET DEFAULT nextval('audit_logs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY award_years ALTER COLUMN id SET DEFAULT nextval('award_years_id_seq'::regclass);
 
 
@@ -2649,6 +2689,14 @@ ALTER TABLE ONLY assessors
 
 ALTER TABLE ONLY audit_certificates
     ADD CONSTRAINT audit_certificates_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: audit_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY audit_logs
+    ADD CONSTRAINT audit_logs_pkey PRIMARY KEY (id);
 
 
 --
@@ -3609,4 +3657,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160604141333');
 INSERT INTO schema_migrations (version) VALUES ('20160607085426');
 
 INSERT INTO schema_migrations (version) VALUES ('20160607172315');
+
+INSERT INTO schema_migrations (version) VALUES ('20160621114955');
 
