@@ -6,10 +6,7 @@ class QAE2014Forms
         header :mobility_b_section_header, "" do
           context %(
             <p>
-              This section gives you the opportunity to present the detail of your social mobility programme and to give us the evidence on how your programme benefits the people and your organisation to enable us to assess your application.
-            </p>
-            <p>
-              If you have more than one social mobility programme, provide details for all of them.
+              This section gives you the opportunity to present the detail of your social mobility programme and to give us the evidence on how your programme benefits the people and your organisation that will enable us to assess your application.
             </p>
             <p>
               Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product.
@@ -24,7 +21,7 @@ class QAE2014Forms
           ref "B 1"
           required
           context %(
-            <p>Select all that apply</p>
+            <p>Select all that apply.</p>
           )
           check_options [
             ["mentoring", "A programme which provides careers advice, skills development or mentoring that prepare young people for the world of work and/or accessible structured work experience."],
@@ -33,29 +30,29 @@ class QAE2014Forms
           ]
         end
 
-        regions :programme_regions, "In which region(s) does your programme have an impact?" do
+        regions :programme_regions, "In which regions does your programme have an impact?" do
           classes "sub-question"
           sub_ref "B 1.1"
           required
           context %(
-            <p>Select all that apply</p>
+            <p>Select all that apply.</p>
           )
         end
 
-        textarea :mobility_desc_long, "Summarise your social mobility programme" do
+        textarea :mobility_desc_long, "Summarise your social mobility programme(s)." do
           classes "sub-question"
           sub_ref "B 1.2"
           required
           context %(
             <p>
-              This is to help us understand the essence of your programme. The summary might be used in publicity material if your application is successful.
+              This is to help us understand the essence of your programme(s). The summary might be used in publicity material if your application is successful.
             </p>
           )
           rows 5
           words_max 500
         end
 
-        textarea :mobility_desc_short, "Provide a one line description of your social mobility programme." do
+        textarea :mobility_desc_short, "Briefly describe your social mobility programme(s)." do
           classes "sub-question"
           sub_ref "B 1.3"
           required
@@ -67,7 +64,7 @@ class QAE2014Forms
           words_max 15
         end
 
-        textarea :provide_ceo_quote, "Provide a quote from the CEO that demonstrates support for the social mobility programme." do
+        textarea :provide_ceo_quote, "Provide a quote from the CEO that demonstrates support for the social mobility programme(s)." do
           classes "sub-question"
           sub_ref "B 1.4"
           required
@@ -81,7 +78,7 @@ class QAE2014Forms
           words_max 100
         end
 
-        textarea :business_cause, "What was the business case that motivated your organisation to provide the programme?  What was the situation before the inception of this programme?" do
+        textarea :business_cause, "What was the business case that motivated your organisation to provide the programme(s)?  What was the situation before the inception of this programme(s)?" do
           required
           ref "B 2"
           rows 5
@@ -104,32 +101,32 @@ class QAE2014Forms
           words_max 250
         end
 
-        textarea :investments_return_prediction, "How do you ensure that the programme provides a good return on investment for your organisation?" do
+        textarea :investments_return_prediction, "How do you ensure that the programme(s) provides a good return on investment for your organisation?" do
           ref "B 3"
           required
           context %(
             <p>
-              How much is invested in the programme - consider financial, human resource and in-kind investments? How does the scale of this investment compare with wider talent management activities?
+              How much is invested in the programme(s) - consider financial, human resource and in-kind investments? How does the scale of this investment compare with wider talent management activities?
             </p>
           )
           rows 5
           words_max 250
         end
 
-        textarea :investments_return_responsibility, "Who is ultimately responsible for the return on the investment from the programme?  What is the management structure to ensure the day-to-day management of the programme from board level down?" do
+        textarea :investments_return_responsibility, "Who is ultimately responsible for the return on the investment from the programme?  What is the management structure to ensure the day-to-day management of programme(s) from board level down?" do
           classes "sub-question"
           sub_ref "B 3.1"
           required
           context %(
             <p>
-              You may include chart to make it easier for assessors to understand how your programme is managed in section E.
+              You may include chart(s) to make it easier for assessors to understand how your programme(s) is managed in section E.
             </p>
           )
           rows 5
           words_max 250
         end
 
-        textarea :programme_kpis, "What are the KPIs related to the programme? How are they set and monitored? Are the KPIs being met and what happens if they are not met?" do
+        textarea :programme_kpis, "What are the KPIs related to the programme(s), how are they set and monitored? Are the KPIs being met and what happens if they are not met?" do
           classes "sub-question"
           sub_ref "B 3.2"
           required
@@ -137,27 +134,27 @@ class QAE2014Forms
           words_max 250
         end
 
-        textarea :programme_integration, "Describe how the programme is integrated into the overall business strategy, and what the board level commitment to the future growth of the programme is." do
+        textarea :programme_integration, "Describe how the programme is integrated into the overall business strategy, and what is the board level commitment to the future growth of the programme(s)." do
           ref "B 4"
           required
           rows 5
           words_max 250
         end
 
-        textarea :benefits_communication, "What mechanisms are in place to communicate the benefits of the programme to key internal and external stakeholders?" do
+        textarea :benefits_communication, "What mechanisms are in place to communicate the benefits of the programme(s) to key internal and external stakeholders?" do
           classes "sub-question"
           sub_ref "B 4.1"
           required
           context %(
             <p>
-              You can include in your answer below or attach in section E of the form newsletters, quotes or similar material to bring to life exactly how you communicate the value of your programme.
+              You can include, or attach in section E of the form, newsletters, quotes or similar material to bring to life exactly how you communicate the value of your programme(s)
             </p>
           )
           rows 5
           words_max 250
         end
 
-        textarea :organisation_culture_fosters, "Describe how your organisation’s culture fosters and supports the social mobility programme." do
+        textarea :organisation_culture_fosters, "Describe how your organisation’s culture fosters and supports the social mobility programme(s)." do
           classes "sub-question"
           sub_ref "B 4.2"
           required
@@ -165,7 +162,7 @@ class QAE2014Forms
           words_max 250
         end
 
-        textarea :programme_benefit_evidence, "Provide evidence on how the programme benefits people." do
+        textarea :programme_benefit_evidence, "Provide evidence on how does the programme(s) benefit people." do
           ref "B 5"
           required
           context %(
@@ -174,25 +171,25 @@ class QAE2014Forms
             </p>
             <ul>
               <li>
-                Careers advice - helping people to make more informed choices by providing careers advice or information;
+                Careers advice - helping people to make more informed choices by providing careers advice or information
               </li>
               <li>
-                Work placements - preparing people for the world of work through inspiring work experiences;
+                Work placements - preparing people for the world of work through inspiring work experiences
               <li>
-                Fairer recruitment - making your recruitment process fairer and more focused on attitude and aptitude;
+                Fairer recruitment - making your recruitment process fairer and more focused on attitude and aptitude
               </li>
               <li>
-                Accessible routes - broadening access to your job opportunities by creating accessible routes to employment - e.g. jobs for school leavers, quality traineeships or apprenticeships, graduate schemes;
+                Accessible routes - broadening access to your job opportunities by creating accessible routes to employment - e.g. jobs for school leavers, quality traineeships or apprenticeships, graduate schemes
               </li>
               <li>
-                Early careers -  fostering a ‘youth-friendly’ culture in your workplace where young employees are invested in and developed to progress in their careers;
+                Early careers -  fostering a ‘youth-friendly’ culture in your workplace where young employees are invested in and developed to progress in their careers
               </li>
               <li>
-                Advancement - developing career paths to senior positions that are open to all.
+                Advancement - developing career paths to senior positions that are open to all
               </li>
             </ul>
             <p>
-              If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
+              If possible, use a balance of quantitative (numbers, figures etc.) and qualitative (comments, feedback from people, key stakeholders etc.) evidence.
             </p>
             <p>
               Focus on what impact your activities have achieved to date, but include the longer term outcomes as well.
@@ -221,7 +218,7 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation financially." do
+        textarea :financial_benefits_evidence, "Provide evidence on how the programme(s) benefits your organisation financially." do
           ref "B 6"
           required
           context %(
@@ -229,8 +226,8 @@ class QAE2014Forms
               Financial benefits may fall under two categories:
             </p>
             <ul>
-              <li>Savings - reduced recruitment costs, increases in retention;</li>
-              <li>Growth -  increased sales, access to new clients or markets or the development of new products.</li>
+              <li>Savings - reduced recruitment costs, increases in retention.</li>
+              <li>Growth -  increased sales, access to new clients or markets or the development of new products</li>
             </ul>
             <p>
               If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
@@ -244,7 +241,7 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :non_financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation in ways other than financial." do
+        textarea :non_financial_benefits_evidence, "Provide evidence on how the programme(s) benefits your organisation in ways other than financial." do
           classes "sub-question"
           sub_ref "B 6.1"
           required
@@ -254,22 +251,22 @@ class QAE2014Forms
             </p>
             <ul>
               <li>
-                Employee relations - improvements in employee motivation, well-being or satisfaction;
+                Employee relations - improvements in employee motivation, well-being or satisfaction
               </li>
               <li>
-                Diversity - increased ability to access and attract a wider talent pool;
+                Diversity - increased ability to access and attract a wider talent pool
               <li>
-                Reputation -  increased positive perceptions of the organisation among key stakeholders - e.g. customers and the media;
+                Reputation -  increased positive perceptions of the organisation among key stakeholders - e.g. customers and the media
               </li>
               <li>
-                Collaboration -  best practices and learnings fed-back into other departments; increased cross-departmental collaboration.
+                Collaboration -  best practices and learnings fed-back into other departments; increased cross-departmental collaboration
               </li>
             </ul>
             <p>
-              The above are just examples - you can choose to demonstrate benefits in other areas.
+              The above are just examples - you can choose to demonstrate benefits in any other areas.
             </p>
             <p>
-              If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
+              If possible, use a balance of quantitative (numbers, figures etc.) and qualitative (comments, feedback from people, key stakeholders etc.) evidence.
             </p>
             <p>
               You may find it helpful to articulate these benefits in terms of ‘before and after’.
@@ -279,7 +276,7 @@ class QAE2014Forms
           words_max 500
         end
 
-        textarea :exemplary_evidence, "Provide evidence on what makes your social mobility programme exemplary?" do
+        textarea :exemplary_evidence, "Provide evidence on what makes your social mobility programme(s) exemplary?" do
           ref "B 7"
           required
           context %(
@@ -287,9 +284,9 @@ class QAE2014Forms
               For example, the programme may be exemplary as a result of:
             </p>
             <ul>
-              <li> An exemplary overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit and develop people;</li>
-              <li>Developing a unique or innovative social mobility programme;</li>
-              <li>Forming effective partnerships with charities, schools or Jobcentres;</li>
+              <li> An exemplary overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit and develop people.</li>
+              <li>Developing a unique or innovative social mobility programme.</li>
+              <li>Forming effective partnerships with charities, schools or Jobcentres.</li>
               <li>Leading the way in your company by doing something that has never been done before.</li>
             </ul>
             <p>
