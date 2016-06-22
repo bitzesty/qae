@@ -11,9 +11,9 @@
             th.sortable
               ' Date
             th.sortable
-              ' Rating
+              ' Subject
             th.sortable
-              ' Feedback
+              ' Action type
         tbody
           - if @audit_logs.none?
             tr
@@ -27,9 +27,9 @@
                 td
                   = audit_log.created_at.strftime("%d/%m/%Y %-l:%M%P")
                 td
-                  = audit_log.subject
+                  = audit_log.subject.email
                 td
-                  = audit_log.action_type
+                  = t("audit_logs.action_types.#{audit_log.action_type.gsub(/-/, '_')}")
 
 .row
   .col-xs-12.text-right
