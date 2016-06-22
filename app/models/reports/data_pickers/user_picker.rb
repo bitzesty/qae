@@ -63,6 +63,10 @@ module Reports::DataPickers::UserPicker
     obj.user.company_name
   end
 
+  def organisation_name
+    obj.company_or_nominee_name
+  end
+
   def qao_permission
     bool obj.user.subscribed_to_emails
   end

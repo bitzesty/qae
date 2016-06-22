@@ -42,7 +42,7 @@ class QAE2014Forms
           )
         end
 
-        textarea :mobility_desc_long, "Summarise your social mobility programme" do
+        textarea :mobility_desc_long, "Summarise your social mobility programme." do
           classes "sub-question"
           sub_ref "B 1.2"
           required
@@ -122,7 +122,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              You may include chart to make it easier for assessors to understand how your programme is managed in section E.
+              You may include chart(s) to make it easier for assessors to understand how your programme is managed in section E.
             </p>
           )
           rows 5

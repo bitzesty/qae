@@ -17,4 +17,3 @@ certs/*
 sic_codes.csv
 coverage/*
 .env.production
-.env.staging

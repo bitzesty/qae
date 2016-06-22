@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   authenticate :admin do
     mount Sidekiq::Web => '/sidekiq'
   end
-  
+
   devise_for :assessors
 
   get "/awards_for_organisations"                       => redirect("https://www.gov.uk/queens-awards-for-enterprise/business-awards")
@@ -60,7 +60,7 @@ Rails.application.routes.draw do
 
   get "/award_winners_section"                          => "content_only#award_winners_section",                          as: "award_winners_section"
 
-  root to: Rails.env.production? ? redirect("https://www.gov.uk/apply-queens-award-enterprise") : "content_only#dashboard"
+  root to: QAE.production? ? redirect("https://www.gov.uk/apply-queens-award-enterprise") : "content_only#dashboard"
 
   resource :account, only: :show do
     collection do

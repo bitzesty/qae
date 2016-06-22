@@ -39,7 +39,7 @@ class QAE2014Forms
           )
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
+        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
           ref "C 2"
           required
           context %(
@@ -55,7 +55,7 @@ class QAE2014Forms
           yes_no
           context %(
             <p>
-              We ask this so that we ensure we obtain all of the commercial figures we need to assess your application.
+              We ask this to obtain all of the commercial figures we need to assess your application.
               You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
             </p>
           )
@@ -252,7 +252,7 @@ class QAE2014Forms
           conditional :programme_performance_years, :true
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme(s)." do
+        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme." do
           ref "C 6"
           required
           context %(

@@ -29,7 +29,7 @@ class Reports::PalaceAttendeePointer
   end
 
   def organisation_company
-    form_answer_pointer.send(:company_name)
+    form_answer_pointer.send(:organisation_name)
   end
 
   def product_description
