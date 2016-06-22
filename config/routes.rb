@@ -252,6 +252,7 @@ Rails.application.routes.draw do
 
     resource :custom_email, only: [:show, :create]
     resource :users_feedback, only: [:show]
+    resources :audit_logs, only: :index
   end
 
   namespace :account do
