@@ -12,3 +12,5 @@
 
       ul
         li = render 'deadline_form', kind: 'audit_certificates'
+        - if display_social_mobility?
+          li = render 'deadline_form', kind: 'audit_certificates_social_mobility'

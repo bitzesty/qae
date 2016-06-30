@@ -106,11 +106,6 @@ class ApplicationController < ActionController::Base
   end
   helper_method :submission_deadline
 
-  def audit_certificates_deadline
-    Settings.current_audit_certificates_deadline
-  end
-  helper_method :audit_certificates_deadline
-
   private
 
   def configure_permitted_parameters

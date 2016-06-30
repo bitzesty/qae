@@ -15,7 +15,8 @@ class Deadline < ActiveRecord::Base
     "buckingham_palace_confirm_press_book_notes",
     "buckingham_palace_media_information",
     "buckingham_palace_reception_attendee_information_due_by",
-    "audit_certificates"
+    "audit_certificates",
+    "audit_certificates_social_mobility"
   ]
 
   enumerize :kind, in: AVAILABLE_DEADLINES, predicates: true
@@ -58,6 +59,10 @@ class Deadline < ActiveRecord::Base
 
   def self.audit_certificates_deadline
     where(kind: "audit_certificates").first
+  end
+
+  def self.audit_certificates_social_mobility_deadline
+    where(kind: "audit_certificates_social_mobility").first
   end
 
   def passed?

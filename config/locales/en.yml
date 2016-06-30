@@ -136,6 +136,7 @@ en:
     buckingham_palace_reception_attendee_information_due_by: Buckingham Palace reception attendee information due by
     buckingham_palace_attendees_invite: Buckingham Palace Reception on
     audit_certificates: Audit certificates due by
+    audit_certificates_social_mobility: Audit certificates for Social Mobility applications due by
 
   email_notification_headers:
     submission_started_notification: "Notify users that applications for the new Award year are open"
