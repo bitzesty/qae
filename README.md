@@ -50,6 +50,46 @@ You may also need to run a rake task for database migrations manually:
 convox run web rake db:migrate -a qae-dev
 ```
 
+#### Dev
+
+```
+convox deploy -a qae-dev
+convox run web rake db:migrate -a qae-dev
+```
+
+#### Staging
+
+```
+convox deploy -a qae-staging
+convox run web rake db:migrate -a qae-staging
+```
+
+#### Production
+
+```
+convox deploy -a qae-production
+convox run web rake db:migrate -a qae-production
+```
+
+#### Usefull commands
+
+##### Rails console
+
+```
+convox run web rails console -a <CONVOX_APP>
+```
+
+##### Logs
+
+```
+convox logs -a <CONVOX_APP>
+```
+
+##### Deploy without cache
+
+```
+convox deploy -a <CONVOX_APP> --no-cache
+```
 
 #### Help
 
