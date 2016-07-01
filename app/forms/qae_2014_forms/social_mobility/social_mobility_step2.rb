@@ -6,7 +6,7 @@ class QAE2014Forms
         header :mobility_b_section_header, "" do
           context %(
             <p>
-              This section gives you the opportunity to present details of your social mobility programme and gives us the evidence on how your programme benefits the your staff and your organization, to enable us to assess your application.
+              This section gives you the opportunity to present details of your social mobility programme and gives evidence on how your programme benefits your staff and your organisation, to enable us to assess your application.
             </p>
             <p>
               If you have more than one social mobility programme, provide details.
