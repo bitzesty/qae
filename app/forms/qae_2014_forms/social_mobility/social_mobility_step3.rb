@@ -24,8 +24,8 @@ class QAE2014Forms
           classes "js-entry-period"
           ref "C 1"
           required
-          option "2 to 4", "Outstanding Social Mobility: demonstrated successful social mobility programme(s) and commercial performance over 2 years"
-          option "5 plus", "Continuous Social Mobility: demonstrated successful social mobility programme(s) and commercial performance over 5 years"
+          option "2 to 4", "Outstanding Social Mobility Programme(s): demonstrated successful social mobility programme(s) and strong commercial performance over 2 years"
+          option "5 plus", "Continuous Social Mobility Programme(s): demonstrated continuously successful social mobility programme(s) and strong commercial performance over 5 years"
           financial_date_selector({
             "2 to 4" => "2",
             "5 plus" => "5"
@@ -145,47 +145,9 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        by_years :exports, "Of which exports" do
-          classes "sub-question"
-          sub_ref "C 4.2"
-          required
-          context %(<p>Please enter '0' if you had none.</p>)
-
-          type :money
-          label ->(y) { "Financial year #{y}" }
-          by_year_condition :programme_performance_years, "2 to 4", 2
-          by_year_condition :programme_performance_years, "5 plus", 5
-          additional_pdf_context I18n.t("pdf_texts.mobility.years_question_additional_context")
-
-          conditional :programme_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          drop_conditional :drops_in_turnover
-        end
-
-        # UK sales = turnover - exports
-        turnover_exports_calculation :uk_sales, "Of which UK sales" do
-          classes "sub-question"
-          sub_ref "C 4.3"
-          label ->(y) { "Financial year #{y}" }
-          by_year_condition :programme_performance_years, "2 to 4", 2
-          by_year_condition :programme_performance_years, "5 plus", 5
-          additional_pdf_context I18n.t("pdf_texts.mobility.years_question_additional_context")
-
-          conditional :programme_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          turnover :total_turnover
-          exports :exports
-
-          context %(
-            <p>
-              This number is automatically calculated using your total turnover and export figures.
-            </p>
-          )
-        end
-
         by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
           classes "sub-question"
-          sub_ref "C 4.4"
+          sub_ref "C 4.2"
           required
 
           type :money
@@ -205,7 +167,7 @@ class QAE2014Forms
 
         by_years :total_net_assets, "Total net assets" do
           classes "sub-question total-net-assets"
-          sub_ref "C 4.5"
+          sub_ref "C 4.3"
           required
           context %(
             <p>
@@ -224,9 +186,9 @@ class QAE2014Forms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
+        textarea :drops_in_turnover, "Explain any drops in turnover, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
-          sub_ref "C 4.6"
+          sub_ref "C 4.4"
           rows 5
           words_max 200
           conditional :programme_performance_years, :true
