@@ -38,7 +38,8 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def pdf_filename
-    "#{download_filename}.pdf"
+    timestamp = Time.zone.now.strftime("%d-%m-%Y_%-l-%M%P")
+    "#{object.award_type_full_name.gsub(" ", "_")}_Award_#{timestamp}.pdf"
   end
 
   def csv_filename
