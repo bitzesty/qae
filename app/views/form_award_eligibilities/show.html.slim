@@ -2,6 +2,7 @@
   - page_title = "Enterprise Promotion Award Nomination"
 - else
   - page_title =  "#{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award Application"
+  - page_title = "Promoting Opportunity Award (Through Social Mobility) Application" if @form_answer.award_type == "mobility"
 
 header.page-header.group.page-header-over-sidebar
   div

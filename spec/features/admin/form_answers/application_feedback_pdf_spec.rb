@@ -29,7 +29,7 @@ So that I can print and review application's feedback
     include_context "admin application feedback pdf download"
   end
 
-  describe "Social Mobility Award" do
+  describe "Promoting Opportunity Award" do
     let(:award_type) { :mobility }
     include_context "admin application feedback pdf download"
   end
