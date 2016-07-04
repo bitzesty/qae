@@ -1,6 +1,6 @@
 module QuestionTextHelper
   def interpolate_deadlines(text)
-    text.gsub(
+    text.to_s.gsub(
       "[AUDIT_CERTIFICATES_DEADLINE]",
       audit_certificates_deadline.decorate.formatted_trigger_time
     )
