@@ -207,61 +207,29 @@ class AppraisalForm
   }
 
   MOBILITY = {
-    product_service_contribution: {
+    mobility_organisation_aiming_to_achieve: {
       type: :rag,
-      label: "Product/service contribution:"
+      label: "Questions B2 – B2.2: What is the organisation aiming to achieve with the programme? (10%)"
     },
-    commercial_success: {
+    mobility_programme_provide_a_good: {
       type: :rag,
-      label: "Commercial success:"
+      label: "Questions B3 – B3.2: How does the programme provide a good return on investment? (15%)"
     },
-    strategy: {
+    mobility_embedded_is_the_programme: {
       type: :rag,
-      label: "Strategy:"
+      label: "Questions B4 – B4.2: How embedded is the programme, and how will it help the organisation grow? (15%)"
     },
-    environment: {
-      type: :non_rag,
-      label: "Environmental dimension:"
+    mobility_programme_benefit: {
+      type: :rag,
+      label: "Questions B5 – B5.1: How does the programme benefit people? (20%)"
     },
-    social: {
-      type: :non_rag,
-      label: "Social dimension:"
+    mobility_programme_benefit_the_organisation: {
+      type: :rag,
+      label: "Questions B6 – B6.1: How does the programme benefit the organisation? (20%)"
     },
-    economic: {
-      type: :non_rag,
-      label: "Economic dimension:"
-    },
-    leadership_management: {
-      type: :non_rag,
-      label: "Leadership & management:"
-    },
-    environment_protection: {
-      type: :strengths,
-      label: "Environmental protection and management:"
-    },
-    benefiting_the_wilder_community: {
-      type: :strengths,
-      label: "Benefiting the wider community:"
-    },
-    sustainable_resource: {
-      type: :strengths,
-      label: "Sustainable resource use:"
-    },
-    economic_sustainability: {
-      type: :strengths,
-      label: "Economic sustainability:"
-    },
-    supporting_employees: {
-      type: :strengths,
-      label: "Supporting employees:"
-    },
-    internal_leadership: {
-      type: :strengths,
-      label: "Internal leadership & management:"
-    },
-    industry_sector: {
-      type: :strengths,
-      label: "Industry/sector leadership:"
+    mobility_organisation_approach: {
+      type: :rag,
+      label: "Question B7: What makes the organisation's approach exemplary? (20%)"
     },
     verdict: {
       type: :verdict,
@@ -279,6 +247,8 @@ class AppraisalForm
   CASE_SUMMARY_METHODS = [
     :application_background_section_desc
   ]
+
+  ALL_FORMS = [TRADE, INNOVATION, PROMOTION, DEVELOPMENT, MOBILITY]
 
   def self.rate(key)
     "#{key}_rate"
@@ -307,9 +277,9 @@ class AppraisalForm
   end
 
   def self.all
-    forms = [TRADE, INNOVATION, PROMOTION, DEVELOPMENT]
     out = []
-    forms.each do |form|
+
+    ALL_FORMS.each do |form|
       form.each do |k, obj|
         out << rate(k).to_sym if [:strengths, :rag, :non_rag, :verdict].include?(obj[:type])
         # strengths doesn't have description
