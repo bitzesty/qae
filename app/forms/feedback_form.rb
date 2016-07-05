@@ -1,7 +1,8 @@
 class FeedbackForm
   def self.fields
-    keys = AppraisalForm::TRADE.keys + AppraisalForm::INNOVATION.keys
-    keys += AppraisalForm::PROMOTION.keys + AppraisalForm::DEVELOPMENT.keys
+    keys = AppraisalForm::ALL_FORMS.map do |form|
+      form.keys
+    end.flatten
 
     keys = filtered_fields(keys).uniq
 
