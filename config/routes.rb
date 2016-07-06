@@ -197,6 +197,10 @@ Rails.application.routes.draw do
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
 
     resources :form_answers do
+      collection do
+        get :awarded_trade_applications
+      end
+
       member do
         patch :remove_audit_certificate
       end
