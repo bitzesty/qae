@@ -1,7 +1,7 @@
 require "countries"
 
 module FormAnswerHelper
-  # This is a temporary method to disable social mobility award for users
+  # This is a temporary method to disable Promoting Opportunity Award for users
   def display_social_mobility?
     ENV["DISPLAY_SOCIAL_MOBILITY_AWARD"] == "true"
   end

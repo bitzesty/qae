@@ -3,13 +3,13 @@ th.filter
     = h.input :status,
               collection: FormAnswerStatus::AssessorFilter.options,
               label: false,
-              input_html: { multiple: true, class: 'if-js-hide' }
+              input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide' }
 
   = f.simple_fields_for [:filters, @search.filters] do |g|
     = g.input :sub_status,
               collection: FormAnswerStatus::AssessorFilter.sub_options,
               label: false,
-              input_html: { multiple: true, class: "if-js-hide" }
+              input_html: { multiple: true, class: "js-admin-filter-option if-js-hide" }
 
   .dropdown.if-no-js-hide
     button.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-expanded="true"

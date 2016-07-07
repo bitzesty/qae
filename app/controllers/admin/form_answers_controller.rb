@@ -9,6 +9,8 @@ class Admin::FormAnswersController < Admin::BaseController
     :remove_audit_certificate
   ]
 
+  skip_after_action :verify_authorized, only: [:awarded_trade_applications]
+
   expose(:financial_pointer) do
     FormFinancialPointer.new(@form_answer, {
       exclude_ignored_questions: true,
@@ -41,6 +43,16 @@ class Admin::FormAnswersController < Admin::BaseController
         render nothing: true
       end
     end
+  end
+
+  def awarded_trade_applications
+    @csv_data = AwardedTradeApplicationsCsv.run
+
+    send_data(
+      @csv_data.force_encoding(::Encoding::UTF_8),
+      filename: "awarded_trade_applications.csv",
+      type: 'text/csv; charset=Unicode(UTF-8); header=present'
+    )
   end
 
   private

@@ -45,9 +45,9 @@ ul.applications-list
   - if display_social_mobility?
     li
       h3
-        ' Social Mobility Award
+        ' Promoting Opportunity Award (through social mobility)
       small
-        ' You can only apply for one Social Mobility Award
+        ' You can only apply for one Promoting Opportunity Award
       .pull-right
         - unless current_account.has_award_in_this_year?(:mobility)
           = link_to "New application", apply_social_mobility_award_path

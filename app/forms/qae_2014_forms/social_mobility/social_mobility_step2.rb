@@ -6,10 +6,10 @@ class QAE2014Forms
         header :mobility_b_section_header, "" do
           context %(
             <p>
-              This section gives you the opportunity to present the detail of your social mobility programme and to give us the evidence on how your programme benefits the people and your organisation to enable us to assess your application.
+              This section gives you the opportunity to present details of your social mobility programme and gives evidence on how your programme benefits your staff and your organisation, to enable us to assess your application.
             </p>
             <p>
-              If you have more than one social mobility programme, provide details for all of them.
+              If you have more than one social mobility programme, provide details.
             </p>
             <p>
               Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product.
@@ -28,7 +28,7 @@ class QAE2014Forms
           )
           check_options [
             ["mentoring", "A programme which provides careers advice, skills development or mentoring that prepare young people for the world of work and/or accessible structured work experience."],
-            ["career_opportunities_accessibility", "A programme which makes career opportunities more accessible by offering non-graduate routes such as traineeships or apprenticeships, or by reforming recruitment practices."],
+            ["career_opportunities_accessibility", "A programme which makes career opportunities more accessible by offering non-graduate routes such as traineeships, apprenticeships or internships, or by reforming recruitment practices."],
             ["workplace_fostering", "A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers."]
           ]
         end
@@ -150,7 +150,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              You can include in your answer below or attach in section E of the form newsletters, quotes or similar material to bring to life exactly how you communicate the value of your programme.
+              You can include in your answer below or attach in section E: newsletters, quotes or similar material to bring to life exactly how you communicate the value of your programme.
             </p>
           )
           rows 5
@@ -177,18 +177,21 @@ class QAE2014Forms
                 Careers advice - helping people to make more informed choices by providing careers advice or information;
               </li>
               <li>
-                Work placements - preparing people for the world of work through inspiring work experiences;
+                Work placements - preparing people for the world of work through inspiring work experiences and internships;
               <li>
                 Fairer recruitment - making your recruitment process fairer and more focused on attitude and aptitude;
               </li>
               <li>
-                Accessible routes - broadening access to your job opportunities by creating accessible routes to employment - e.g. jobs for school leavers, quality traineeships or apprenticeships, graduate schemes;
+                Accessible routes - broadening access to your job opportunities by creating accessible routes to employment - e.g. providing careers advice and jobs for people leaving school, college or university; quality traineeships, internships or apprenticeships and graduate schemes;
               </li>
               <li>
                 Early careers -  fostering a ‘youth-friendly’ culture in your workplace where young employees are invested in and developed to progress in their careers;
               </li>
               <li>
                 Advancement - developing career paths to senior positions that are open to all.
+              </li>
+              <li>
+                Visible leadership and accountability - do you have leaders within the business championing social mobility and being role models? Are your managers accountable in that social mobility is part of their objectives?
               </li>
             </ul>
             <p>
