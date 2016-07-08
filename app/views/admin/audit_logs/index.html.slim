@@ -29,7 +29,11 @@
                 td
                   = audit_log.subject.email
                 td
-                  = t("audit_logs.action_types.#{audit_log.action_type.gsub(/-/, '_')}")
+                  - if audit_log.action_type != "download_form_answer"
+                    = t("audit_logs.action_types.#{audit_log.action_type.gsub(/-/, '_')}")
+                  - else
+                    = t("audit_logs.action_types.#{audit_log.action_type}", urn: audit_log.auditable.urn)
+
 
 .row
   .col-xs-12.text-right

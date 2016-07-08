@@ -4,4 +4,5 @@ class AuditLog < ActiveRecord::Base
   validates :action_type, presence: true
 
   belongs_to :subject, polymorphic: true
+  belongs_to :auditable, polymorphic: true
 end

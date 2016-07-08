@@ -111,8 +111,8 @@ class ApplicationController < ActionController::Base
   end
   helper_method :audit_certificates_deadline
 
-  def log_action action_type
-    AuditLog.create! subject: current_subject, action_type: action_type
+  def log_action(action_type)
+    AuditLog.create!(subject: current_subject, action_type: action_type)
   end
 
   private

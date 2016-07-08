@@ -267,7 +267,9 @@ CREATE TABLE audit_logs (
     subject_type character varying,
     action_type character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    auditable_id integer,
+    auditable_type character varying
 );
 
 
@@ -3659,4 +3661,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160607085426');
 INSERT INTO schema_migrations (version) VALUES ('20160607172315');
 
 INSERT INTO schema_migrations (version) VALUES ('20160621114955');
+
+INSERT INTO schema_migrations (version) VALUES ('20160708131227');
 
