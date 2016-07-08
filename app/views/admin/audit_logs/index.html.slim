@@ -32,7 +32,7 @@
                   - if audit_log.action_type != "download_form_answer"
                     = t("audit_logs.action_types.#{audit_log.action_type.gsub(/-/, '_')}")
                   - else
-                    = t("audit_logs.action_types.#{audit_log.action_type}", urn: audit_log.auditable.urn)
+                    = link_to t("audit_logs.action_types.#{audit_log.action_type}"), admin_form_answers_path(audit_log.auditable)
 
 
 .row
