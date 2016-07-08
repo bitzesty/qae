@@ -34,11 +34,10 @@ class Users::FormAnswersController < Users::BaseController
 
   def log_download_action
     if admin_in_read_only_mode?
-      # { warden.user.user.key => [[1], "$2a$10$KItas1NKsvunK0O5w9ioWu"] }
       subject = if admin_signed_in?
-        Admin.find(session["warden.user.admin.key"][0][0])
+        current_admin
       else
-        Assessor.find(session["warden.user.assessor.key"][0][0])
+        current_assessor
       end
 
       AuditLog.create!(subject: subject, action_type: "download_form_answer", auditable: form_answer)
