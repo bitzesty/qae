@@ -41,6 +41,9 @@ class FormAnswer < ActiveRecord::Base
     "mobility" => "Promoting Opportunity",
     "promotion" => "Enterprise Promotion"
   }
+  CURRENT_AWARD_TYPE_FULL_NAMES = AWARD_TYPE_FULL_NAMES.reject do |k, _|
+    k == "promotion"
+  end
 
   enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true
 

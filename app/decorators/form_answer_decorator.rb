@@ -1,7 +1,4 @@
 class FormAnswerDecorator < ApplicationDecorator
-
-  SELECT_BOX_LABELS = FormAnswer::AWARD_TYPE_FULL_NAMES.merge("promotion" => "QAEP")
-
   AWARD_TITLES = { "Innovation" => "Innovation",
                    "International Trade" => "Int'l Trade",
                    "Sustainable Development" => "Sust. Dev.",
