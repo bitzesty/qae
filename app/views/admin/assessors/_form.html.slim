@@ -130,17 +130,6 @@
                 collection: Assessor.roles,
                 include_blank: false,
                 label: false
-  .row
-    .col-md-2.col-sm-3
-      = f.label :promotion_role, FormAnswerDecorator::AWARD_TITLES["Enterprise Promotion"]
-    .col-md-2.col-sm-3
-      = f.input :promotion_role,
-                wrapper_html: { class: "form-group" },
-                input_html: { class: "form-control"},
-                as: :select,
-                collection: Assessor.roles,
-                include_blank: false,
-                label: false
 
   br
   .row
