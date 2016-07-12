@@ -8,7 +8,7 @@ require "qae_2014_forms/social_mobility/social_mobility_step6"
 class QAE2014Forms
   class << self
     def mobility
-      @mobility ||= QAEFormBuilder.build "Promoting Opportunity Award (Through Social Mobility) Application" do
+      @mobility ||= QAEFormBuilder.build "Promoting Opportunity Award (through social mobility) Application" do
         step "Company Information",
              "Company Information",
              &QAE2014Forms.mobility_step1
