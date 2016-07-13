@@ -175,3 +175,14 @@ en:
       years_question_additional_context: "If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over 2 years” in C1, you will only need to provide information for the last 2 years."
     mobility:
       years_question_additional_context: 'If you have selected "Outstanding Social Mobility Programme(s): demonstrated successful social mobility programme(s) and strong commercial performance over 2 years" in C1, you will only need to provide information for the last 2 years.'
+
+  audit_logs:
+    action_types:
+      registered_users: Registered users entry
+      cases_status: Cases status
+      entries_report: Entries report
+      press_book_list: Press book list
+      reception_buckingham_palace: Reception Buckingham Palace
+      feedbacks: Feedbacks
+      case_summaries: Case summaries
+      download_form_answer: Application PDF

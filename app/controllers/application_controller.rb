@@ -106,6 +106,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :submission_deadline
 
+  def log_action(action_type)
+    AuditLog.create!(subject: current_subject, action_type: action_type)
+  end
+
   private
 
   def configure_permitted_parameters

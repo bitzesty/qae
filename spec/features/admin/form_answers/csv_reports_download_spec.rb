@@ -13,6 +13,10 @@ describe "Admin downloads CSV reports" do
         link.click
         expect(page.response_headers["Content-Type"]).to eq("text/csv")
       end
+
+      log = AuditLog.last
+      expect(log.subject).to eq(admin)
+      expect(log.action_type).to eq("reception-buckingham-palace")
     end
   end
 end
