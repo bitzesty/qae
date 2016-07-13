@@ -1,5 +1,5 @@
 CarrierWave.configure do |config|
-  if %w{bzstaging staging production}.include?(Rails.env) && !ENV["ONLY_ASSETS"]
+  if Rails.env.production?
     config.fog_credentials = {
       provider: 'AWS',
       aws_access_key_id: ENV["AWS_ACCESS_KEY_ID"],

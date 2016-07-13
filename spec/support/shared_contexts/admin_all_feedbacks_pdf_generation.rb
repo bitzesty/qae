@@ -27,6 +27,12 @@ shared_context "admin all feedbacks pdf generation" do
       expect(page.response_headers["Content-Disposition"]).to include pdf_filename
       expect(page.response_headers["Content-Type"]).to be_eql "application/pdf"
     end
+
+    it "should create log entry" do
+      log = AuditLog.last
+      expect(log.subject).to eq(admin)
+      expect(log.action_type).to eq("feedbacks")
+    end
   end
 
   def feedback_document(award_type)

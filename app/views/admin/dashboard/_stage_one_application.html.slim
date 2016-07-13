@@ -39,7 +39,7 @@
               strong TOTAL
         tbody
           - completions = @statistics.applications_completions
-          - FormAnswer::AWARD_TYPE_FULL_NAMES.select { |k, _| k != "promotion" }.each do |slug, name|
+          - FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |slug, name|
             tr
               th = name
               - ar_size = completions[slug].size
@@ -56,12 +56,6 @@
             - completions["total"].each do |count|
               td
                 strong= count
-          tr.table-total
-            th
-              strong QAEP
-              - completions["promotion"].each do |count|
-                td
-                  strong= count
 
     br
 
@@ -77,7 +71,7 @@
             th Total
         tbody
           - submissions = @statistics.applications_submissions
-          - FormAnswer::AWARD_TYPE_FULL_NAMES.select { |k, _| k != "promotion" }.each do |slug, name|
+          - FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |slug, name|
             tr
               th = name
               - ar_size = submissions[slug].size
@@ -91,11 +85,5 @@
             th
               strong TOTAL
             - submissions["total"].each do |count|
-              td
-                strong= count
-          tr.table-total
-            th
-              strong QAEP
-            - submissions["promotion"].each do |count|
               td
                 strong= count

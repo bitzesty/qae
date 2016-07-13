@@ -28,7 +28,7 @@ class FormAnswer < ActiveRecord::Base
     "trade", # International Trade Award
     "innovation", # Innovation Award
     "development", # Sustainable Development Award
-    "mobility", # Social Mobility Award
+    "mobility", # Promoting Opportunity Award
     "promotion" # Enterprise Promotion Award
   ]
 
@@ -38,9 +38,12 @@ class FormAnswer < ActiveRecord::Base
     "trade" => "International Trade",
     "innovation" => "Innovation",
     "development" => "Sustainable Development",
-    "mobility" => "Social Mobility",
+    "mobility" => "Promoting Opportunity",
     "promotion" => "Enterprise Promotion"
   }
+  CURRENT_AWARD_TYPE_FULL_NAMES = AWARD_TYPE_FULL_NAMES.reject do |k, _|
+    k == "promotion"
+  end
 
   enumerize :award_type, in: POSSIBLE_AWARDS, predicates: true
 

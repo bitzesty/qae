@@ -21,7 +21,7 @@ class QAE2014Forms
           classes "application-notice help-notice"
           context %(
             <p>
-              Where the form refers to your organisation,
+              Where we refer to 'your organisation' in the form,
               please enter the details of your division, branch or subsidiary.
             </p>
           )
@@ -162,13 +162,12 @@ class QAE2014Forms
         end
 
         options :part_of_joint_entry,
-                "Is this application part of a joint entry with any of the contributing organisation(s)?" do
+                "Is this application part of a joint entry with any contributing organisation(s)?" do
           ref "A 8"
           required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the product,
-              service or management approach then you should make a joint entry.
+              If two or more organisations made a significant contribution to the social mobility programme then you should make a joint entry.
               Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
@@ -207,7 +206,7 @@ class QAE2014Forms
           classes "application-notice help-notice"
           context %(
             <p>
-              We recommend that you notify all the contributors to your product/service/management approach of this entry.
+              We recommend that you notify all the contributors to your social mobility programme relating to this entry.
             </p>
           )
           conditional :external_contribute_to_sustainable_product, "yes"
@@ -242,7 +241,7 @@ class QAE2014Forms
           style "small"
         end
 
-        text :website_url, "Website Address" do
+        text :website_url, "Website address" do
           ref "A 12"
           style "large"
           form_hint "e.g. www.example.com"
@@ -292,7 +291,7 @@ class QAE2014Forms
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
           classes "regular-question"
           sub_ref "A 14.5"
-          conditional :parent_ultimate_control, :yes
+          conditional :parent_ultimate_control, :no
           conditional :parent_or_a_holding_company, :yes
         end
 

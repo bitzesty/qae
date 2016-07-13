@@ -1,6 +1,7 @@
 class Admin::ReportsController < Admin::BaseController
   def show
     authorize :report, :show?
+    log_action params[:id]
 
     respond_to do |format|
       format.html

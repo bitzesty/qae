@@ -90,10 +90,10 @@ class AwardYear < ActiveRecord::Base
     # that's why we are pulling this date from current year (not current award year)
 
     def current_year_deadline(title)
-      find_by_year(Date.today.year).settings
-                                   .deadlines
-                                   .where(kind: title)
-                                   .first
+      closed.settings
+            .deadlines
+            .where(kind: title)
+            .first
     end
 
     def buckingham_palace_reception_deadline

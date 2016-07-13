@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   ensure_security_headers if ENV["ENSURE_SECURITY_HEADERS"]
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  before_filter :set_paper_trail_whodunnit
 
   self.responder = AppResponder
   respond_to :html
@@ -105,10 +106,9 @@ class ApplicationController < ActionController::Base
   end
   helper_method :submission_deadline
 
-  def audit_certificates_deadline
-    Settings.current_audit_certificates_deadline
+  def log_action(action_type)
+    AuditLog.create!(subject: current_subject, action_type: action_type)
   end
-  helper_method :audit_certificates_deadline
 
   private
 
@@ -189,10 +189,14 @@ class ApplicationController < ActionController::Base
     check_applications_limit(:development)
   end
 
+  def check_mobility_count_limit
+    check_applications_limit(:mobility)
+  end
+
   def check_applications_limit(type_of_award)
     if current_account.has_award_in_this_year?(type_of_award)
       redirect_to dashboard_url, flash: {
-        alert: "You can not submit more than one #{type_of_award} form per year!"
+        alert: "You can not submit more than one #{FormAnswer::AWARD_TYPE_FULL_NAMES[type_of_award.to_s]} form per year!"
       }
     end
   end

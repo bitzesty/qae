@@ -10,6 +10,7 @@ class FormController < ApplicationController
 
   before_action :check_trade_count_limit, only: :new_international_trade_form
   before_action :check_development_count_limit, only: :new_sustainable_development_form
+  before_action :check_mobility_count_limit, only: :new_social_mobility_form
 
   before_action :set_form_answer, except: [
     :new_innovation_form,

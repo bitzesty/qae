@@ -5,6 +5,7 @@ class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::SupporterLists
   include QaePdfForms::CustomQuestions::CheckboxSeria
   include FinancialTable
+  include QuestionTextHelper
 
   NOT_CURRENCY_QUESTION_KEYS = %w(employees)
   QUESTIONS_WITH_PDF_TITLES = %w(trading_figures_add)
@@ -343,9 +344,10 @@ class QaePdfForms::General::QuestionPointer
         end
       when QAEFormBuilder::ConfirmQuestion
         if q_visible? && humanized_answer.present?
-          form_pdf.render_standart_answer_block(question_checked_value_title)
+          question_text = interpolate_deadlines(question_checked_value_title)
+          form_pdf.render_standart_answer_block(question_text)
         else
-          question_option_box question.text
+          question_option_box interpolate_deadlines(question.text)
         end
       when QAEFormBuilder::ByYearsLabelQuestion
         form_pdf.indent 7.mm do

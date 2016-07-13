@@ -1,5 +1,4 @@
 class Users::FormAnswersController < Users::BaseController
-
   expose(:form_answer) do
     current_user.account
                 .form_answers
@@ -13,6 +12,8 @@ class Users::FormAnswersController < Users::BaseController
   before_action do
     allow_assessor_access!(form_answer)
   end
+
+  before_action :log_download_action, only: :show
 
   def show
     if can_render_pdf_on_fly?
@@ -31,6 +32,18 @@ class Users::FormAnswersController < Users::BaseController
 
   private
 
+  def log_download_action
+    if admin_in_read_only_mode?
+      subject = if admin_signed_in?
+        current_admin
+      else
+        current_assessor
+      end
+
+      AuditLog.create!(subject: subject, action_type: "download_form_answer", auditable: form_answer)
+    end
+  end
+
   def can_render_pdf_on_fly?
     !form_answer.submission_ended?
   end
@@ -39,8 +52,12 @@ class Users::FormAnswersController < Users::BaseController
     if form_answer.pdf_version.present?
       redirect_to form_answer.pdf_version.url
     else
-      redirect_to dashboard_path,
-                  notice: "PDF version for your application is not available!"
+      if !admin_in_read_only_mode?
+        redirect_to dashboard_path,
+                    notice: "PDF version for your application is not available!"
+      else
+        redirect_to :back, notice: "PDF version for your application is not available!"
+      end
     end
   end
 end

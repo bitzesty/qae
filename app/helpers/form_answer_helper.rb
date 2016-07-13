@@ -1,7 +1,7 @@
 require "countries"
 
 module FormAnswerHelper
-  # This is a temporary method to disable social mobility award for users
+  # This is a temporary method to disable Promoting Opportunity Award for users
   def display_social_mobility?
     ENV["DISPLAY_SOCIAL_MOBILITY_AWARD"] == "true"
   end
@@ -47,7 +47,7 @@ module FormAnswerHelper
   end
 
   def award_types_collection
-    FormAnswerDecorator::SELECT_BOX_LABELS.invert.to_a
+    FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.invert.to_a
   end
 
   def each_index_or_empty(collection, attrs, &block)

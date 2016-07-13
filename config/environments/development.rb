@@ -32,22 +32,12 @@ Rails.application.configure do
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
 
-  config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
-  config.action_mailer.asset_host = "http://localhost:3000/"
+  config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'], port: 3000 }
+  config.action_mailer.asset_host = "https://#{ENV['ASSET_HOST']}"
   config.action_mailer.delivery_method = :letter_opener
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
   # configure the devise email layout
   config.to_prepare { Devise::Mailer.layout "mailer" }
-
-  #
-  # Usefull env var allows you to hide any PDF links on Applicant's view
-  # for example in case if you are changing smth in PDF generators
-  # and it's on development mode!
-  #
-  # Uncomment line below to hide PDF links:
-  #
-  # Rails.configuration.hide_pdf_links = true
-  #
 end

@@ -1,20 +1,15 @@
-common: &common
+default: &default
   adapter: postgresql
   encoding: utf8
-  host: localhost
 
 development:
-  <<: *common
+  <<: *default
   database: qae_development
 
 test:
-  <<: *common
+  <<: *default
   database: qae_test
 
-staging:
-  <<: *common
-  database: qae_staging
-
 production:
-  <<: *common
-  database: qae_production
+  <<: *default
+  url: <%= ENV['DATABASE_URL'] %>
