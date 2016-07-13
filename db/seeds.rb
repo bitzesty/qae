@@ -23,7 +23,7 @@ unless Assessor.exists?
 end
 
 roles = ["lead", "regular", "none"]
-awards = ["trade", "innovation", "development", "promotion"]
+awards = ["trade", "innovation", "development", "promotion", "mobility"]
 
 awards.each do |award|
   roles.each do |role|

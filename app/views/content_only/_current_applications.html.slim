@@ -14,7 +14,8 @@
         tr
           td
             h4
-              = award.decorate.application_name
+              - app_name = award.decorate.application_name
+              = app_name == "Promoting Opportunity" ? "Social Mobility" : app_name
               br
               small
                 = award.award_type_full_name

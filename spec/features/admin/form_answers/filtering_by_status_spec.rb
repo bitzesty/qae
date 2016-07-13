@@ -13,7 +13,7 @@ describe "As Admin I want to filter applications", js: true do
     @forms << create(:form_answer, :trade, state: "not_submitted", sic_code: "1623")
     @forms << create(:form_answer, :trade, state: "application_in_progress")
     @forms << create(:form_answer, :development, state: "not_eligible")
-    @forms << create(:form_answer, :promotion, state: "application_in_progress")
+    @forms << create(:form_answer, :mobility, state: "application_in_progress")
 
     login_admin(admin)
     visit admin_form_answers_path

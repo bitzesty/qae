@@ -175,13 +175,23 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_items
+    c_widths = if @form_answer.mobility?
+      {
+        0 => 200,
+        1 => 467,
+        2 => 100
+      }
+    else
+      {
+        0 => 100,
+        1 => 567,
+        2 => 100
+      }
+    end
+
     pdf_doc.table(case_summaries_entries,
                   cell_style: { size: 12 },
-                  column_widths: {
-                    0 => 100,
-                    1 => 567,
-                    2 => 100
-                  }) do
+                  column_widths: c_widths) do
 
       values = cells.columns(2).rows(0..-1)
 
