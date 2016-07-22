@@ -32,6 +32,10 @@ convox start -f docker-compose.yml.local
 docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
 ```
 
+### Install Poxa on Local (in case if need to test collaborators multiaccess to form application)
+
+https://github.com/bitzesty/qae-poxa/blob/master/QAE_README.md#setup-on-local
+
 ### Deploying
 
 Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (master, staging, deployment).

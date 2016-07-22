@@ -75,7 +75,7 @@ class FormController < ApplicationController
       if params[:step] == "letters-of-support"
         redirect_to form_form_answer_supporters_path(@form_answer)
         return
-      elsif params[:step] == "add-website-address-documents"
+      elsif params[:step] == "add-website-address-documents" && params[:form_refresh].blank?
         redirect_to form_form_answer_form_attachments_url(@form_answer)
         return
       elsif params[:step] == "nominee-background"

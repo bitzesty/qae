@@ -344,6 +344,11 @@ GEM
     puma (2.16.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
+    pusher (0.15.2)
+      httpclient (~> 2.5)
+      multi_json (~> 1.0)
+      pusher-signature (~> 0.1.8)
+    pusher-signature (0.1.8)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
@@ -577,6 +582,7 @@ DEPENDENCIES
   pry
   puma (~> 2.16.0)
   pundit (~> 0.3)
+  pusher
   quiet_assets
   rack-mini-profiler
   rack-ssl-enforcer

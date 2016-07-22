@@ -92,7 +92,9 @@ class ApplicationController < ActionController::Base
   helper_method :submission_ended?
 
   def current_form_submission_ended?
-    @form_answer.submission_ended?
+    Rails.cache.fetch("form_submission_ended_#{@form_answer.id}", expires_in: 1.minute) do
+      @form_answer.submission_ended?
+    end
   end
   helper_method :current_form_submission_ended?
 

@@ -32,4 +32,9 @@ module FormHelper
   def text_words_count(text)
     text.to_s.split.count
   end
+
+  def application_collaborator_group_mode?
+    current_form_is_editable? &&
+    @form_answer.has_more_than_one_contributor?
+  end
 end

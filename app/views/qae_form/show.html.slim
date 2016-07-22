@@ -1,5 +1,9 @@
 - provide(:page_wrapper_class, "page-award-form #{'page-read-only-form' if current_form_is_not_editable?}")
 
+- if application_collaborator_group_mode?
+  - provide(:body_end) do
+    .js-collaborators-bar.hidden
+
 form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=save_form_url(@form_answer, next_step: next_step(@form, params[:step]), current_step: params[:step]) method="POST" data-attachments-url=attachments_url(@form_answer) novalidate=true
   input name="authenticity_token" type="hidden" value=form_authenticity_token
 
@@ -28,3 +32,7 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
       = render "qae_form/step_error"
 
     = render "qae_form/steps_progress_bar", current_step: params[:step]
+
+- if application_collaborator_group_mode?
+  = content_for(:javascript_code) do
+    | ApplicationCollaboratorsConnectionManager.init('#{@form_answer.id}', '#{Pusher.host}', #{Pusher.port}, '#{Pusher.key}', '#{Rails.env}', #{Time.now.utc.to_i});
