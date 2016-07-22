@@ -90,6 +90,11 @@ gem 'sinatra', require: nil
 gem 'redis-rails'
 gem 'redis-store'
 
+# We are using Pusher with Poxa server
+# for collaborators application edit stuff
+#
+gem "pusher"
+
 # Text Search
 gem 'pg_search'
 

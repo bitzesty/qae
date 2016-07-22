@@ -9,6 +9,7 @@
 #= require vendor/polyfills/bind
 #= require govuk/selection-buttons
 #= require libs/suchi/isOld.js
+#= require libs/pusher.min.js
 #= require govuk_toolkit
 #= require mobile
 #= require browser-check
@@ -274,22 +275,93 @@ jQuery ->
       autosave ->
         $(".qae-form").trigger("submit")
 
-  $(document).on "click", ".js-step-link", (e) ->
-    e.preventDefault()
-    if !$(this).hasClass("step-current")
-      autosave()
+  #
+  # In case if was attempt to submit and validation errors are present
+  # then we are passing validate_on_form_load option
+  # in order to show validation errors to user after redirection
+  #
+  if window.location.href.search("validate_on_form_load") > 0
+    validate()
 
-      current = $(this).attr("data-step")
-      if $(this).hasClass "js-next-link"
-        if $("body").hasClass("tried-submitting")
-          validate()
-      showAwardStep(current)
-      # Scroll to top
-      $("html, body").animate(
-        scrollTop: 0
-      , 0)
-      # Resize textareas that were previously hidden
-      resetResizeTextarea()
+  $(document).on "click", "a.js-step-link, .js-step-link button[type='submit']", (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+
+    current_step = if $(this).attr('data-step') isnt undefined
+      $(this).attr("data-step")
+    else
+      $(this).closest(".js-step-link").attr("data-step")
+
+    #
+    # Make a switch to next section if this is not same tab only
+    #
+    if current_step != $(".js-step-link.step-current").attr('data-step')
+
+      # If there are more than one one-time form collaborator
+      #
+      if ApplicationCollaboratorsGeneralRoomTracking.there_are_other_collaborators_here()
+        CollaboratorsLog.log("[COLLABORATOR MODE] ----------------------- ")
+        ApplicationCollaboratorsEditorBar.show_loading_bar()
+
+        #
+        # Getting url of next section to show
+        #
+        if $(this).prop("tagName") == "A"
+          redirect_url = $(this).attr("href")
+        else
+          redirect_url = $("li.js-step-link.step-current").next().find("a").attr('href')
+
+        #
+        # System will redirect normal (NON AJAX) request
+        # to "add-website-address-documents" step into related NON JS section
+        # so that we need to pass extra 'no_redirect' option in this case
+        #
+        redirect_url += "&form_refresh=true"
+
+        #
+        # In case if was attempt to submit and validation errors are present
+        # then we are passing validate_on_form_load option
+        # in order to show validation errors to user after redirection
+        #
+        if window.location.href.search("validate_on_form_load") > 0 ||
+           $(this).closest(".js-review-sections").length > 0 ||
+           $(this).hasClass("step-errors")
+          redirect_url += "&validate_on_form_load=true"
+
+        CollaboratorsLog.log("[COLLABORATOR MODE] ------------ redirect_url ----------- " + redirect_url)
+
+        if ApplicationCollaboratorsAccessManager.does_im_current_editor()
+          CollaboratorsLog.log("[COLLABORATOR MODE] -------------I'm EDITOR---------- SAVE AND REDIRECT")
+          # If I'm current editor
+          # -> then save form data and once it saved redirect me to proper section in a callback
+          #
+          save_form_data ->
+            window.location.href = redirect_url
+        else
+          CollaboratorsLog.log("[COLLABORATOR MODE] -------------I'm NOT EDITOR---------- REDIRECT TO TAB")
+          # If I'm not editor
+          # -> then just redirect to target section
+          #
+          window.location.href = redirect_url
+
+      else
+        CollaboratorsLog.log("[STANDART MODE] ----------------------- ")
+
+        autosave()
+
+        if $(this).hasClass "js-next-link"
+          if $("body").hasClass("tried-submitting")
+            validate()
+
+        showAwardStep(current_step)
+
+        # Scroll to top
+        $("html, body").animate(
+          scrollTop: 0
+        , 0)
+
+        # Resize textareas that were previously hidden
+        resetResizeTextarea()
 
   $(document).on "click", ".save-quit-link a", (e) ->
     if changesUnsaved
@@ -303,9 +375,9 @@ jQuery ->
       autosave ->
         window.location.href = link
 
-  autosave = (callback) ->
-    window.autosave_timer = null
+  save_form_data = (callback) ->
     url = $('form.qae-form').data('autosave-url')
+
     if url
       # Setting current_step_id to form as we updating only current section form_data (not whole form)
       $("#current_step_id").val($(".js-step-condition.step-current").attr("data-step"))
@@ -322,6 +394,23 @@ jQuery ->
           if callback isnt undefined
             callback()
       })
+
+  autosave = (callback) ->
+    window.autosave_timer = null
+    autosave_enabled = true
+
+    if ApplicationCollaboratorsGeneralRoomTracking.there_are_other_collaborators_here() &&
+       ApplicationCollaboratorsAccessManager.im_in_viewer_mode()
+      #
+      # If there are more than once collaborator for this form application
+      #    and I'm not in editor mode of current form section
+      #
+      # Then autosave request should be disabled
+      #
+      autosave_enabled = false
+
+    if autosave_enabled
+      save_form_data(callback)
     #TODO: indicators, error handlers?
 
   loseChangesMessage = "You have unsaved changes! If you leave the page now, some answers will be lost. Stay on the page for a minute in order for everything to be saved or use the buttons at the bottom of the page."
