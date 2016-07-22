@@ -91,7 +91,7 @@ module PressSummaryMixin
 
       format.js do
         if @press_summary.valid?
-          render json: { errors: [] }
+          render "shared/press_summaries/create"
         else
           render status: :unprocessable_entity,
                  json: { errors: @press_summary.errors.full_messages }
