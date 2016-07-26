@@ -252,10 +252,7 @@ class QAE2014Forms
           ref "C 6"
           context %(
             <p>
-              If applicable, please provide your unit price, cost details and sales figures which explain the value of the sustainable development.
-            </p>
-            <p>
-              Some questions may not apply, please answer the ones that are applicable to your sustainable development.
+              Some questions may not apply, especially if your sustainable development is a management approach. However, if your sustainable development is a product or service you should be able to answer most of these questions.
             </p>
             <p>
               If you haven't reached your latest year-end, please use estimates to complete this section.
@@ -269,7 +266,7 @@ class QAE2014Forms
           )
         end
 
-        by_years :units_sold, "Number of units/contracts sold (if applicable)" do
+        by_years :units_sold, "Number of units/contracts sold" do
           classes "sub-question"
           sub_ref "C 6.1"
           type :number
@@ -280,7 +277,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales, "Sales (if applicable)" do
+        by_years :sales, "Sales" do
           classes "sub-question"
           sub_ref "C 6.2"
           type :money
@@ -290,7 +287,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_exports, "Of which exports (if applicable)" do
+        by_years :sales_exports, "Of which exports" do
           classes "sub-question"
           sub_ref "C 6.3"
           context %(<p>Please enter '0' if you had none.</p>)
@@ -302,7 +299,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
+        by_years :sales_royalties, "Of which royalties or licences" do
           classes "sub-question"
           sub_ref "C 6.4"
           context %(<p>Please enter '0' if you had none.</p>)
@@ -314,7 +311,7 @@ class QAE2014Forms
           drop_conditional :drops_in_sales
         end
 
-        textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)" do
+        textarea :drops_in_sales, "Explain any drop in sales or number of units sold" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 6.5"
           rows 5
@@ -322,20 +319,18 @@ class QAE2014Forms
           drop_condition_parent
         end
 
-        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract (if applicable)" do
+        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract" do
           sub_ref "C 6.6"
           classes "sub-question"
           type :money
           label "..."
-          context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
+
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           by_year_condition :development_performance_years, "2 to 4", 2
           by_year_condition :development_performance_years, "5 plus", 5
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
+        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods" do
           classes "sub-question"
           sub_ref "C 6.7"
           rows 5

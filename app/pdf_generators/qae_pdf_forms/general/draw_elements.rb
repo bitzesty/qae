@@ -55,8 +55,7 @@ module QaePdfForms::General::DrawElements
     base_link_sceleton(
       attachment_path(attachment.file, true),
       attachment.original_filename.truncate(60),
-      description ? description : nil,
-      description_left_margin: 55)
+      description ? description : nil)
 
     move_down 5.mm
   end

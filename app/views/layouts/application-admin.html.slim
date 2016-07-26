@@ -67,6 +67,9 @@ html.no-js
                   li class=("active" if controller_name == "users_feedbacks")
                     = link_to "Feedback", admin_users_feedback_path
 
+                  li class=("active" if controller_name == "audit_logs")
+                    = link_to "Data Export Log", admin_audit_logs_path
+
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown
                     a.dropdown-toggle href="#" data-toggle="dropdown" role="button" aria-expanded="false"

@@ -6,7 +6,7 @@ class QAE2014Forms
           ref "E 1"
           context %(
             <p>
-              We can't guarantee these will be reviewed, so include any vital information within the form. It is also essential to reference these in your application to ensure the assessors are aware of them and can relate this information to the relevant questions.
+              We can't guarantee these will be reviewed, so include any vital information within the form. It is also essential to <strong>reference these in your application</strong> to ensure the assessors are aware of them and can relate this information to the relevant questions.
             </p>
             <p>You can upload files in all common formats, as long as they're less than 5mb each.</p>
             <p>You may link to videos, websites or other media you feel relevant.</p>
