@@ -20,13 +20,12 @@ class UpdateDeadlineService
 
     if deadline.submission_end? && trigger_at.present?
       if now >= trigger_at
-        ::SubmissionDeadlineStatesTransitionWorker.perform_async("#{deadline.id}_#{now}")
+        ::SubmissionDeadlineStatesTransitionWorker.perform_async
       end
 
-      # TODO: check this after migration to sidekiq
-      ::SubmissionDeadlineApplicationPdfGenerationWorker.set(
-        wait_until: trigger_at
-      ).perform_later
+      ::SubmissionDeadlineApplicationPdfGenerationWorker.perform_at(
+        trigger_at
+      )
     end
   end
 end

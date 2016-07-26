@@ -62,6 +62,7 @@ class QAE2014Forms
               Describe the product, service or business model itself.
               Explain any aspect(s) you think are innovative, and why you think they are innovative.
               Consider its uniqueness and the challenges you had to overcome.
+              Explain if and why your innovation is hard to copy, e.g. patents held, market position.
               Also explain how it fits within the overall business i.e. is it your sole product?
             </p>
           )

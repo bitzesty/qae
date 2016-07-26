@@ -47,7 +47,7 @@ module FormAnswerHelper
   end
 
   def award_types_collection
-    FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.invert.to_a
+    FormAnswer::AWARD_TYPE_FULL_NAMES.invert.to_a
   end
 
   def each_index_or_empty(collection, attrs, &block)

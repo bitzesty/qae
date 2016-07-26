@@ -3,8 +3,7 @@ class FormAnswerDecorator < ApplicationDecorator
                    "International Trade" => "Int'l Trade",
                    "Sustainable Development" => "Sust. Dev.",
                    "Promoting Opportunity" => "Prom. Opp.",
-                   "Enterprise Promotion" => "QAEP",
-                   "QAEP" => "QAEP"
+                   "Enterprise Promotion" => "Ent. Prom."
                  }
 
   def pdf_generator(pdf_blank_mode=false)

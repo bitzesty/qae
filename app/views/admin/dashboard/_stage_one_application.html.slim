@@ -56,6 +56,12 @@
             - completions["total"].each do |count|
               td
                 strong= count
+          tr.table-total
+            th
+              strong= FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
+              - completions["promotion"].each do |count|
+                td
+                  strong= count
 
     br
 
@@ -85,5 +91,11 @@
             th
               strong TOTAL
             - submissions["total"].each do |count|
+              td
+                strong= count
+          tr.table-total
+            th
+              strong= FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
+            - submissions["promotion"].each do |count|
               td
                 strong= count
