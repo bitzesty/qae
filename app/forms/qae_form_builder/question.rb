@@ -44,8 +44,11 @@ class QAEFormBuilder
     end
 
     def limit_with_buffer(limit)
-      # ATM we are using hard limits (0 allowance)
-      limit
+      if limit > 15
+        (limit + limit * 0.1).to_i + 1
+      else
+        limit
+      end
     end
   end
 
