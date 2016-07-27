@@ -71,6 +71,6 @@ class FinancialYearPointer
     day = "0" + day if day.size == 1
     month = "0" + month if month.size == 1
 
-    [day, month, year ]
+    [day, month, year]
   end
 end
