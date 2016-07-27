@@ -2,12 +2,16 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.5beta2
+-- Dumped by pg_dump version 9.5beta2
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -44,7 +48,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: accounts; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: accounts; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE accounts (
@@ -75,7 +79,7 @@ ALTER SEQUENCE accounts_id_seq OWNED BY accounts.id;
 
 
 --
--- Name: admins; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: admins; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE admins (
@@ -126,7 +130,7 @@ ALTER SEQUENCE admins_id_seq OWNED BY admins.id;
 
 
 --
--- Name: assessor_assignments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: assessor_assignments; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE assessor_assignments (
@@ -165,7 +169,7 @@ ALTER SEQUENCE assessor_assignments_id_seq OWNED BY assessor_assignments.id;
 
 
 --
--- Name: assessors; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: assessors; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE assessors (
@@ -220,7 +224,7 @@ ALTER SEQUENCE assessors_id_seq OWNED BY assessors.id;
 
 
 --
--- Name: audit_certificates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: audit_certificates; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE audit_certificates (
@@ -258,7 +262,7 @@ ALTER SEQUENCE audit_certificates_id_seq OWNED BY audit_certificates.id;
 
 
 --
--- Name: audit_logs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: audit_logs; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE audit_logs (
@@ -293,7 +297,7 @@ ALTER SEQUENCE audit_logs_id_seq OWNED BY audit_logs.id;
 
 
 --
--- Name: award_years; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: award_years; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE award_years (
@@ -324,7 +328,7 @@ ALTER SEQUENCE award_years_id_seq OWNED BY award_years.id;
 
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE comments (
@@ -361,7 +365,7 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
--- Name: deadlines; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: deadlines; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE deadlines (
@@ -395,7 +399,7 @@ ALTER SEQUENCE deadlines_id_seq OWNED BY deadlines.id;
 
 
 --
--- Name: draft_notes; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: draft_notes; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE draft_notes (
@@ -431,7 +435,7 @@ ALTER SEQUENCE draft_notes_id_seq OWNED BY draft_notes.id;
 
 
 --
--- Name: eligibilities; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: eligibilities; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE eligibilities (
@@ -466,7 +470,7 @@ ALTER SEQUENCE eligibilities_id_seq OWNED BY eligibilities.id;
 
 
 --
--- Name: email_notifications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: email_notifications; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE email_notifications (
@@ -500,7 +504,7 @@ ALTER SEQUENCE email_notifications_id_seq OWNED BY email_notifications.id;
 
 
 --
--- Name: feedbacks; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: feedbacks; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE feedbacks (
@@ -536,7 +540,7 @@ ALTER SEQUENCE feedbacks_id_seq OWNED BY feedbacks.id;
 
 
 --
--- Name: form_answer_attachments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: form_answer_attachments; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE form_answer_attachments (
@@ -575,7 +579,7 @@ ALTER SEQUENCE form_answer_attachments_id_seq OWNED BY form_answer_attachments.i
 
 
 --
--- Name: form_answer_progresses; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: form_answer_progresses; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE form_answer_progresses (
@@ -605,7 +609,7 @@ ALTER SEQUENCE form_answer_progresses_id_seq OWNED BY form_answer_progresses.id;
 
 
 --
--- Name: form_answer_transitions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: form_answer_transitions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE form_answer_transitions (
@@ -639,7 +643,7 @@ ALTER SEQUENCE form_answer_transitions_id_seq OWNED BY form_answer_transitions.i
 
 
 --
--- Name: form_answers; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: form_answers; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE form_answers (
@@ -657,7 +661,6 @@ CREATE TABLE form_answers (
     nominee_full_name character varying,
     user_full_name character varying,
     award_type_full_name character varying,
-    sic_code character varying,
     nickname character varying,
     financial_data hstore,
     accepted boolean DEFAULT false,
@@ -699,7 +702,7 @@ ALTER SEQUENCE form_answers_id_seq OWNED BY form_answers.id;
 
 
 --
--- Name: palace_attendees; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: palace_attendees; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE palace_attendees (
@@ -742,7 +745,7 @@ ALTER SEQUENCE palace_attendees_id_seq OWNED BY palace_attendees.id;
 
 
 --
--- Name: palace_invites; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: palace_invites; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE palace_invites (
@@ -776,7 +779,7 @@ ALTER SEQUENCE palace_invites_id_seq OWNED BY palace_invites.id;
 
 
 --
--- Name: press_summaries; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: press_summaries; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE press_summaries (
@@ -820,7 +823,7 @@ ALTER SEQUENCE press_summaries_id_seq OWNED BY press_summaries.id;
 
 
 --
--- Name: previous_wins; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: previous_wins; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE previous_wins (
@@ -853,7 +856,7 @@ ALTER SEQUENCE previous_wins_id_seq OWNED BY previous_wins.id;
 
 
 --
--- Name: scans; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: scans; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE scans (
@@ -890,7 +893,7 @@ ALTER SEQUENCE scans_id_seq OWNED BY scans.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE schema_migrations (
@@ -899,7 +902,7 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: settings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: settings; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE settings (
@@ -930,7 +933,7 @@ ALTER SEQUENCE settings_id_seq OWNED BY settings.id;
 
 
 --
--- Name: site_feedbacks; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: site_feedbacks; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE site_feedbacks (
@@ -962,7 +965,7 @@ ALTER SEQUENCE site_feedbacks_id_seq OWNED BY site_feedbacks.id;
 
 
 --
--- Name: support_letter_attachments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: support_letter_attachments; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE support_letter_attachments (
@@ -998,7 +1001,7 @@ ALTER SEQUENCE support_letter_attachments_id_seq OWNED BY support_letter_attachm
 
 
 --
--- Name: support_letters; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: support_letters; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE support_letters (
@@ -1043,7 +1046,7 @@ ALTER SEQUENCE support_letters_id_seq OWNED BY support_letters.id;
 
 
 --
--- Name: supporters; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: supporters; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE supporters (
@@ -2304,7 +2307,7 @@ CREATE SEQUENCE urn_seq_promotion_2065
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE users (
@@ -2377,7 +2380,7 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: version_associations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: version_associations; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE version_associations (
@@ -2408,7 +2411,7 @@ ALTER SEQUENCE version_associations_id_seq OWNED BY version_associations.id;
 
 
 --
--- Name: versions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: versions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE versions (
@@ -2654,7 +2657,7 @@ ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq':
 
 
 --
--- Name: accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY accounts
@@ -2662,7 +2665,7 @@ ALTER TABLE ONLY accounts
 
 
 --
--- Name: admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY admins
@@ -2670,7 +2673,7 @@ ALTER TABLE ONLY admins
 
 
 --
--- Name: assessor_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: assessor_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessor_assignments
@@ -2678,7 +2681,7 @@ ALTER TABLE ONLY assessor_assignments
 
 
 --
--- Name: assessors_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: assessors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessors
@@ -2686,7 +2689,7 @@ ALTER TABLE ONLY assessors
 
 
 --
--- Name: audit_certificates_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: audit_certificates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY audit_certificates
@@ -2694,7 +2697,7 @@ ALTER TABLE ONLY audit_certificates
 
 
 --
--- Name: audit_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: audit_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY audit_logs
@@ -2702,7 +2705,7 @@ ALTER TABLE ONLY audit_logs
 
 
 --
--- Name: award_years_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: award_years_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY award_years
@@ -2710,7 +2713,7 @@ ALTER TABLE ONLY award_years
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments
@@ -2718,7 +2721,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: deadlines_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: deadlines_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY deadlines
@@ -2726,7 +2729,7 @@ ALTER TABLE ONLY deadlines
 
 
 --
--- Name: draft_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: draft_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY draft_notes
@@ -2734,7 +2737,7 @@ ALTER TABLE ONLY draft_notes
 
 
 --
--- Name: eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY eligibilities
@@ -2742,7 +2745,7 @@ ALTER TABLE ONLY eligibilities
 
 
 --
--- Name: email_notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: email_notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY email_notifications
@@ -2750,7 +2753,7 @@ ALTER TABLE ONLY email_notifications
 
 
 --
--- Name: feedbacks_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: feedbacks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY feedbacks
@@ -2758,7 +2761,7 @@ ALTER TABLE ONLY feedbacks
 
 
 --
--- Name: form_answer_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: form_answer_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY form_answer_attachments
@@ -2766,7 +2769,7 @@ ALTER TABLE ONLY form_answer_attachments
 
 
 --
--- Name: form_answer_progresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: form_answer_progresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY form_answer_progresses
@@ -2774,7 +2777,7 @@ ALTER TABLE ONLY form_answer_progresses
 
 
 --
--- Name: form_answer_transitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: form_answer_transitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY form_answer_transitions
@@ -2782,7 +2785,7 @@ ALTER TABLE ONLY form_answer_transitions
 
 
 --
--- Name: form_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: form_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY form_answers
@@ -2790,7 +2793,7 @@ ALTER TABLE ONLY form_answers
 
 
 --
--- Name: palace_attendees_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: palace_attendees_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY palace_attendees
@@ -2798,7 +2801,7 @@ ALTER TABLE ONLY palace_attendees
 
 
 --
--- Name: palace_invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: palace_invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY palace_invites
@@ -2806,7 +2809,7 @@ ALTER TABLE ONLY palace_invites
 
 
 --
--- Name: press_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: press_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY press_summaries
@@ -2814,7 +2817,7 @@ ALTER TABLE ONLY press_summaries
 
 
 --
--- Name: previous_wins_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: previous_wins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY previous_wins
@@ -2822,7 +2825,7 @@ ALTER TABLE ONLY previous_wins
 
 
 --
--- Name: scans_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: scans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY scans
@@ -2830,7 +2833,7 @@ ALTER TABLE ONLY scans
 
 
 --
--- Name: settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY settings
@@ -2838,7 +2841,7 @@ ALTER TABLE ONLY settings
 
 
 --
--- Name: site_feedbacks_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: site_feedbacks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY site_feedbacks
@@ -2846,7 +2849,7 @@ ALTER TABLE ONLY site_feedbacks
 
 
 --
--- Name: support_letter_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: support_letter_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY support_letter_attachments
@@ -2854,7 +2857,7 @@ ALTER TABLE ONLY support_letter_attachments
 
 
 --
--- Name: support_letters_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: support_letters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY support_letters
@@ -2862,7 +2865,7 @@ ALTER TABLE ONLY support_letters
 
 
 --
--- Name: supporters_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: supporters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY supporters
@@ -2870,7 +2873,7 @@ ALTER TABLE ONLY supporters
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -2878,7 +2881,7 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: version_associations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: version_associations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY version_associations
@@ -2886,7 +2889,7 @@ ALTER TABLE ONLY version_associations
 
 
 --
--- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY versions
@@ -2894,357 +2897,357 @@ ALTER TABLE ONLY versions
 
 
 --
--- Name: index_accounts_on_owner_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_accounts_on_owner_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_accounts_on_owner_id ON accounts USING btree (owner_id);
 
 
 --
--- Name: index_admins_on_authy_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_admins_on_authy_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_admins_on_authy_id ON admins USING btree (authy_id);
 
 
 --
--- Name: index_admins_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_admins_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_admins_on_email ON admins USING btree (email);
 
 
 --
--- Name: index_admins_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_admins_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_admins_on_reset_password_token ON admins USING btree (reset_password_token);
 
 
 --
--- Name: index_admins_on_unlock_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_admins_on_unlock_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_admins_on_unlock_token ON admins USING btree (unlock_token);
 
 
 --
--- Name: index_assessor_assignments_on_assessor_id_and_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_assessor_assignments_on_assessor_id_and_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_assessor_assignments_on_assessor_id_and_form_answer_id ON assessor_assignments USING btree (assessor_id, form_answer_id);
 
 
 --
--- Name: index_assessor_assignments_on_form_answer_id_and_position; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_assessor_assignments_on_form_answer_id_and_position; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_assessor_assignments_on_form_answer_id_and_position ON assessor_assignments USING btree (form_answer_id, "position");
 
 
 --
--- Name: index_assessors_on_confirmation_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_assessors_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_assessors_on_confirmation_token ON assessors USING btree (confirmation_token);
 
 
 --
--- Name: index_assessors_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_assessors_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_assessors_on_email ON assessors USING btree (email);
 
 
 --
--- Name: index_assessors_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_assessors_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_assessors_on_reset_password_token ON assessors USING btree (reset_password_token);
 
 
 --
--- Name: index_assessors_on_unlock_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_assessors_on_unlock_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_assessors_on_unlock_token ON assessors USING btree (unlock_token);
 
 
 --
--- Name: index_audit_certificates_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_audit_certificates_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_audit_certificates_on_form_answer_id ON audit_certificates USING btree (form_answer_id);
 
 
 --
--- Name: index_award_years_on_year; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_award_years_on_year; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_award_years_on_year ON award_years USING btree (year);
 
 
 --
--- Name: index_comments_on_commentable_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_comments_on_commentable_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_comments_on_commentable_id ON comments USING btree (commentable_id);
 
 
 --
--- Name: index_comments_on_commentable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_comments_on_commentable_type; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_comments_on_commentable_type ON comments USING btree (commentable_type);
 
 
 --
--- Name: index_deadlines_on_settings_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_deadlines_on_settings_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_deadlines_on_settings_id ON deadlines USING btree (settings_id);
 
 
 --
--- Name: index_eligibilities_on_account_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_eligibilities_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_eligibilities_on_account_id ON eligibilities USING btree (account_id);
 
 
 --
--- Name: index_eligibilities_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_eligibilities_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_eligibilities_on_form_answer_id ON eligibilities USING btree (form_answer_id);
 
 
 --
--- Name: index_email_notifications_on_settings_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_email_notifications_on_settings_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_email_notifications_on_settings_id ON email_notifications USING btree (settings_id);
 
 
 --
--- Name: index_feedbacks_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_feedbacks_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_feedbacks_on_form_answer_id ON feedbacks USING btree (form_answer_id);
 
 
 --
--- Name: index_form_answer_attachments_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_form_answer_attachments_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_form_answer_attachments_on_form_answer_id ON form_answer_attachments USING btree (form_answer_id);
 
 
 --
--- Name: index_form_answer_progresses_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_form_answer_progresses_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_form_answer_progresses_on_form_answer_id ON form_answer_progresses USING btree (form_answer_id);
 
 
 --
--- Name: index_form_answer_transitions_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_form_answer_transitions_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_form_answer_transitions_on_form_answer_id ON form_answer_transitions USING btree (form_answer_id);
 
 
 --
--- Name: index_form_answer_transitions_on_sort_key_and_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_form_answer_transitions_on_sort_key_and_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_form_answer_transitions_on_sort_key_and_form_answer_id ON form_answer_transitions USING btree (sort_key, form_answer_id);
 
 
 --
--- Name: index_form_answers_on_account_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_form_answers_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_form_answers_on_account_id ON form_answers USING btree (account_id);
 
 
 --
--- Name: index_form_answers_on_award_year_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_form_answers_on_award_year_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_form_answers_on_award_year_id ON form_answers USING btree (award_year_id);
 
 
 --
--- Name: index_form_answers_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_form_answers_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_form_answers_on_user_id ON form_answers USING btree (user_id);
 
 
 --
--- Name: index_palace_attendees_on_palace_invite_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_palace_attendees_on_palace_invite_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_palace_attendees_on_palace_invite_id ON palace_attendees USING btree (palace_invite_id);
 
 
 --
--- Name: index_palace_invites_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_palace_invites_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_palace_invites_on_form_answer_id ON palace_invites USING btree (form_answer_id);
 
 
 --
--- Name: index_press_summaries_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_press_summaries_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_press_summaries_on_form_answer_id ON press_summaries USING btree (form_answer_id);
 
 
 --
--- Name: index_scans_on_uuid; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_scans_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_scans_on_uuid ON scans USING btree (uuid);
 
 
 --
--- Name: index_settings_on_award_year_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_settings_on_award_year_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_settings_on_award_year_id ON settings USING btree (award_year_id);
 
 
 --
--- Name: index_support_letter_attachments_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_support_letter_attachments_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_support_letter_attachments_on_form_answer_id ON support_letter_attachments USING btree (form_answer_id);
 
 
 --
--- Name: index_support_letter_attachments_on_support_letter_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_support_letter_attachments_on_support_letter_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_support_letter_attachments_on_support_letter_id ON support_letter_attachments USING btree (support_letter_id);
 
 
 --
--- Name: index_support_letter_attachments_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_support_letter_attachments_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_support_letter_attachments_on_user_id ON support_letter_attachments USING btree (user_id);
 
 
 --
--- Name: index_support_letters_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_support_letters_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_support_letters_on_form_answer_id ON support_letters USING btree (form_answer_id);
 
 
 --
--- Name: index_support_letters_on_supporter_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_support_letters_on_supporter_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_support_letters_on_supporter_id ON support_letters USING btree (supporter_id);
 
 
 --
--- Name: index_support_letters_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_support_letters_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_support_letters_on_user_id ON support_letters USING btree (user_id);
 
 
 --
--- Name: index_supporters_on_access_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_supporters_on_access_key; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_supporters_on_access_key ON supporters USING btree (access_key);
 
 
 --
--- Name: index_supporters_on_form_answer_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_supporters_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_supporters_on_form_answer_id ON supporters USING btree (form_answer_id);
 
 
 --
--- Name: index_supporters_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_supporters_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_supporters_on_user_id ON supporters USING btree (user_id);
 
 
 --
--- Name: index_users_on_account_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_on_account_id ON users USING btree (account_id);
 
 
 --
--- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
 
 
 --
--- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_unlock_token ON users USING btree (unlock_token);
 
 
 --
--- Name: index_version_associations_on_foreign_key; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_version_associations_on_foreign_key; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_version_associations_on_foreign_key ON version_associations USING btree (foreign_key_name, foreign_key_id);
 
 
 --
--- Name: index_version_associations_on_version_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_version_associations_on_version_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_version_associations_on_version_id ON version_associations USING btree (version_id);
 
 
 --
--- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_versions_on_item_type_and_item_id ON versions USING btree (item_type, item_id);
 
 
 --
--- Name: index_versions_on_transaction_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_versions_on_transaction_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_versions_on_transaction_id ON versions USING btree (transaction_id);
 
 
 --
--- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
@@ -3334,7 +3337,7 @@ ALTER TABLE ONLY support_letters
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20141124095215');
 
@@ -3663,4 +3666,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160607172315');
 INSERT INTO schema_migrations (version) VALUES ('20160621114955');
 
 INSERT INTO schema_migrations (version) VALUES ('20160708131227');
+
+INSERT INTO schema_migrations (version) VALUES ('20160727154722');
 
