@@ -85,6 +85,18 @@ convox run web rails console -a <CONVOX_APP>
 convox logs -a <CONVOX_APP>
 ```
 
+Filtering by key word and date.
+```
+convox logs -a qae-qev --filter=SubmissionDeadlineApplicationPdfGenerationWorker --since=27h
+```
+In this example it fetches logs for latest 27 h with keyword "SubmissionDeadlineApplicationPdfGenerationWorker"
+
+Better logs in Papertrail for QAE.
+
+https://papertrailapp.com
+
+Login in last pass
+
 ##### Deploy without cache
 
 ```
