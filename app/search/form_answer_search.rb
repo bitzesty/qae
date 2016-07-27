@@ -52,7 +52,7 @@ class FormAnswerSearch < Search
     value.each do |v|
       case v
       when "missing_sic_code"
-        out = out.where("sic_code IS NULL")
+        out = out.where("(form_answers.document #>> '{sic_code}') IS NULL")
       when "assessors_not_assigned"
         out = out.where(primary_assessor_id: nil, secondary_assessor_id: nil)
       when "primary_assessment_submitted"
