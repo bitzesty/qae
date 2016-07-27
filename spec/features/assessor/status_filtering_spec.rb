@@ -12,12 +12,21 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
       :form_answer,
       :development,
       state: "not_submitted",
-      sic_code: "1623")
+      document: { sic_code: "1623" })
 
     @forms << create(:form_answer, :trade, state: "application_in_progress")
     @forms << create(:form_answer, :development, state: "not_eligible")
     @forms << create(:form_answer, :promotion, state: "assessment_in_progress")
     @forms << create(:form_answer, :innovation, state: "assessment_in_progress")
+
+    # 0111 - is default sic_code, came from spec/fixtures/*.json
+    # as it is required field
+    # so that we are cleaning it up for last 3
+    #
+    @forms.last(4).map do |form|
+      form.document["sic_code"] = nil
+      form.save!(validate: false)
+    end
   end
 
   context "for multi tabs" do
@@ -47,6 +56,12 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
     context "development tab" do
       before do
         @forms << create(:form_answer, :development, state: "assessment_in_progress")
+
+        @forms.last(1).map do |form|
+          form.document["sic_code"] = nil
+          form.save!(validate: false)
+        end
+
         within ".nav-subnav" do
           find(".cat-sustainable-development").click
           expect(page).to have_selector("a", count: 2)
