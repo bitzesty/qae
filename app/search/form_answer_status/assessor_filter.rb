@@ -14,6 +14,10 @@ class FormAnswerStatus::AssessorFilter
       label: "Assessment in progress",
       states: [:assessment_in_progress]
     },
+    disqualified: {
+      label: "Disqualified - No Audit Certificate",
+      states: [:disqualified]
+    },
     recommended: {
       label: "Recommended",
       states: [:recommended]

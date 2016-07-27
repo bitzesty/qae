@@ -20,6 +20,7 @@ describe FormAnswerStateTransition do
         :recommended,
         :reserved,
         :not_recommended,
+        :disqualified,
         :awarded,
         :not_awarded,
         :withdrawn
@@ -38,6 +39,7 @@ describe FormAnswerStateTransition do
         :recommended,
         :reserved,
         :not_recommended,
+        :disqualified,
         :awarded
       ]
 

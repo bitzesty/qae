@@ -186,3 +186,18 @@ en:
       feedbacks: Feedbacks
       case_summaries: Case summaries
       download_form_answer: Application PDF
+  form_answers:
+    state:
+      eligibility_in_progress: Eligibility in progress
+      application_in_progress: Application in progress
+      submitted: Submitted
+      withdrawn: Withdrawn
+      not_eligible: Not eligible
+      not_submitted: Not submitted
+      assessment_in_progress: Assessment in progress
+      disqualified: Disqualified - No Audit Certificate
+      recommended: Recommended
+      reserved: Reserved
+      not_recommended: Not recommended
+      awarded: Awarded
+      not_awarded: Not awarded

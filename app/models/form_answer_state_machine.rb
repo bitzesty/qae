@@ -9,6 +9,7 @@ class FormAnswerStateMachine
     :not_eligible,
     :not_submitted,
     :assessment_in_progress,
+    :disqualified,
     :recommended,
     :reserved,
     :not_recommended,
@@ -29,6 +30,7 @@ class FormAnswerStateMachine
   state :not_eligible
   state :not_submitted
   state :assessment_in_progress
+  state :disqualified
   state :recommended
   state :reserved
   state :not_recommended
@@ -51,6 +53,16 @@ class FormAnswerStateMachine
 
       current_year.form_answers.in_progress.find_each do |fa|
         fa.state_machine.perform_transition("not_submitted")
+      end
+    end
+  end
+
+  def self.trigger_audit_deadlines
+    if Settings.after_current_audit_certificates_deadline?
+      current_year = Settings.current.award_year
+
+      current_year.form_answers.where(state: "assessment_in_progress").find_each do |fa|
+        fa.state_machine.perform_transition("disqualified")
       end
     end
   end
@@ -138,6 +150,7 @@ class FormAnswerStateMachine
         :recommended,
         :reserved,
         :not_recommended,
+        :disqualified,
         :awarded,
         :not_awarded,
         :withdrawn

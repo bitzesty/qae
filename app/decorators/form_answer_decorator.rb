@@ -115,6 +115,10 @@ class FormAnswerDecorator < ApplicationDecorator
     "#{object.state.dasherize[0..-2]}"
   end
 
+  def state_text
+    I18n.t(object.state.to_s, scope: "form_answers.state")
+  end
+
   def progress_text_short
     object.state.humanize
   end
