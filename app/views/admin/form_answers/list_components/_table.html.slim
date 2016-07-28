@@ -2,7 +2,7 @@ table.table.applications-table
   thead
     tr
       th.sortable
-        = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
+        = sort_link f, "Company", @search, :company_or_nominee_name, disabled: @search.query?
       th.sortable
         = sort_link f, "Reference", @search, :urn, disabled: @search.query?
       = render('admin/form_answers/list_components/award_type_header', f: f)

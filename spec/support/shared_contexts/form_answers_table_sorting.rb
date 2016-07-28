@@ -8,16 +8,16 @@ shared_context "form answers table sorting" do
     end
 
     context "by default" do
-      it "sorts by Company/Nominee column ascending" do
+      it "sorts by Company column ascending" do
         expect(column_values(header_position)).to eq(asc_company_names)
       end
     end
 
     it "sorts by Company/Nominee header" do
-      click_header("Company/Nominee")
+      click_header("Company")
       expect(column_values(header_position)).to eq(asc_company_names.reverse)
 
-      click_header("Company/Nominee")
+      click_header("Company")
       expect(column_values(header_position)).to eq(asc_company_names)
     end
   end
