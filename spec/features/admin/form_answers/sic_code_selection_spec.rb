@@ -22,7 +22,8 @@ describe "SIC Code selection", "
       end
     }.to change {
       form_answer.reload.sic_code
-    }.from(nil).to("1623")
+    }.from("0111").to("1623")
+    # 0111 - is default, came from spec/fixtures/*.json
 
     expect(page).to have_css("p", text: selected)
   end

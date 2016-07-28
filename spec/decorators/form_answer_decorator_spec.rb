@@ -6,7 +6,7 @@ describe FormAnswerDecorator do
 
   describe "#average_growth_for" do
     subject { described_class.new form_answer }
-    let(:form_answer) { build(:form_answer, sic_code: sic_code.code) }
+    let!(:form_answer) { build(:form_answer, document: { sic_code: sic_code.code }) }
     let(:year) { 1 }
 
     context "sic code present" do

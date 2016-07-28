@@ -110,7 +110,7 @@ class FormAnswer < ActiveRecord::Base
                              in: POSSIBLE_AWARDS
                            }
     validates_uniqueness_of :urn, allow_nil: true, allow_blank: true
-    validates :sic_code, format: { with: SICCode::REGEX }, allow_nil: true
+    validates :sic_code, format: { with: SICCode::REGEX }, allow_nil: true, allow_blank: true
     validate :validate_answers
   end
 
@@ -290,6 +290,18 @@ class FormAnswer < ActiveRecord::Base
 
   def submitted?
     submitted_at.present?
+  end
+
+  # SIC code helpers
+  #
+  def sic_code=(code)
+    if code.present?
+      document["sic_code"] = code
+    end
+  end
+
+  def sic_code
+    document["sic_code"]
   end
 
   private
