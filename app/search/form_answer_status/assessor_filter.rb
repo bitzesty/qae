@@ -57,6 +57,15 @@ class FormAnswerStatus::AssessorFilter
     secondary_assessment_submitted: {
       label: "Secondary Assessment submitted"
     },
+    primary_and_secondary_assessments_submitted: {
+      label: "Primary and Secondary Assessments submitted"
+    },
+    primary_assessment_not_submitted: {
+      label: "Primary Assessment not submitted"
+    },
+    secondary_assessment_not_submitted: {
+      label: "Secondary Assessment not submitted"
+    },
     missing_audit_certificate: {
       label: "Missing Audit Certificate"
     },
