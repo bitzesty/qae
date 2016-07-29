@@ -14,6 +14,9 @@ class FormAnswerStatus::AdminFilter
     secondary_assessment_submitted: {
       label: "Secondary Assessment submitted"
     },
+    recommendation_disperancy: {
+      label: "Recommendation discrepancy"
+    },
     primary_and_secondary_assessments_submitted: {
       label: "Primary and Secondary Assessments submitted"
     },

@@ -92,6 +92,11 @@ class FormAnswerSearch < Search
         out = out.joins(
           "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id"
         ).where("secondary_assignments.position = ? AND secondary_assignments.submitted_at IS NULL", AssessorAssignment.positions[:secondary])
+      when "recommendation_disperancy"
+        # both assessments should be submitted
+        out = primary_assessment_submitted(out)
+        out = secondary_assessment_submitted(out)
+        out = out.where("(secondary_assignments.document -> 'verdict_rate') != (primary_assignments.document -> 'verdict_rate')")
       end
     end
 

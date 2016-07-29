@@ -7,7 +7,7 @@ th.filter
 
   = f.simple_fields_for [:filters, @search.filters] do |g|
     = g.input :sub_status,
-              collection: FormAnswerStatus::AssessorFilter.sub_options,
+              collection: FormAnswerStatus::AssessorFilter.sub_options(current_assessor),
               label: false,
               input_html: { multiple: true, class: "js-admin-filter-option if-js-hide" }
 
@@ -32,7 +32,7 @@ th.filter
                 = option[:label]
 
         li.divider
-        - FormAnswerStatus::AssessorFilter.sub_options.each do |k, option|
+        - FormAnswerStatus::AssessorFilter.sub_options(current_assessor).each do |k, option|
           li.checkbox role="presentation"
             label data-value=k
               input type="checkbox"
