@@ -1,4 +1,7 @@
 - unless @form_answer.promotion?
+
+  - sic = @form_answer.sic_code_name
+
   - if user_can_edit(@form_answer, :sic_code)
     .form-group.sic-code class="#{'form-edit' if @form_answer.sic_code.blank?}"
       = simple_form_for [namespace_name, @form_answer],
@@ -12,8 +15,8 @@
 
           .form-value
             p
-              - if @form_answer.sic_code.present?
-                = @form_answer.sic_code_name
+              - if sic.present?
+                = sic
               - else
                 em.text-muted No SIC code assigned.
           .form-fields.form-block
@@ -38,7 +41,7 @@
         label.form-label SIC code
 
         p
-          - if @form_answer.sic_code.present?
-            = @form_answer.sic_code_name
+          - if sic.present?
+            = sic
           - else
             em.text-muted No SIC code assigned.
