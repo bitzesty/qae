@@ -6,6 +6,10 @@ default_schedule = {
   "trigger_audit_deadlines" => {
     "cron" => "0 * * * *",
     "class" => "Scheduled::AuditDeadlineWorker"
+  },
+  "trigger_submission_deadlines" => {
+    "cron" => "0 * * * *",
+    "class" => "Scheduled::SubmissionDeadlineWorker"
   }
 }
 

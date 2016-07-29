@@ -62,7 +62,9 @@ class FormAnswerStateMachine
       current_year = Settings.current.award_year
 
       current_year.form_answers.where(state: "assessment_in_progress").find_each do |fa|
-        fa.state_machine.perform_transition("disqualified")
+        if !fa.audit_certificate || fa.audit_certificate.attachment.blank?
+          fa.state_machine.perform_transition("disqualified")
+        end
       end
     end
   end
