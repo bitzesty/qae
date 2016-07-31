@@ -43,6 +43,15 @@ class Assessor < ActiveRecord::Base
                   }
 
   scope :by_email, -> { order(:email) }
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
+
+  FormAnswer::POSSIBLE_AWARDS.each do |award_category|
+    AVAILABLE_ROLES.each do |role|
+      scope "#{award_category}_#{role}", -> {
+        where("#{award_category}_role" => role)
+      }
+    end
+  end
 
   def self.roles
     [["Not Assigned", nil], ["Lead Assessor", "lead"], ["Assessor", "regular"]]
@@ -101,6 +110,12 @@ class Assessor < ActiveRecord::Base
 
   def lead_for_any_category?
     FormAnswer::POSSIBLE_AWARDS.any? do |cat|
+      get_role(cat) == "lead"
+    end
+  end
+
+  def lead_roles
+    FormAnswer::POSSIBLE_AWARDS.select do |cat|
       get_role(cat) == "lead"
     end
   end

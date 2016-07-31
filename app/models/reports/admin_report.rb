@@ -19,6 +19,8 @@ class Reports::AdminReport
       Reports::AllEntries.new(year).build
     when "reception-buckingham-palace"
       Reports::ReceptionBuckinghamPalaceReport.new(year).build
+    when "assessors-progress"
+      Reports::AssessorsProgressReport.new(year, params[:category]).build
     end
   end
 

@@ -172,7 +172,7 @@ Rails.application.routes.draw do
       patch :unlock, on: :member
     end
     resources :assessor_assignment_collections, only: [:create]
-    resources :reports, only: [:show]
+    resources :reports, only: [:index, :show]
   end
 
   namespace :admin do

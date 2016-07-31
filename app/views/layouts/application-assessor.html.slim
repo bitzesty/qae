@@ -51,7 +51,7 @@ html.no-js
                     = link_to "Applications", assessor_form_answers_path
                   - if current_subject.lead_for_any_category?
                     li
-                      = link_to "Case status report", assessor_report_path("cases-status", format: :csv, year: @award_year.year)
+                      = link_to "Reports", assessor_reports_path(year: @award_year.year)
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
                   li.dropdown

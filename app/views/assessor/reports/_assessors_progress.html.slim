@@ -1,0 +1,15 @@
+.well
+  h2
+    ' Assessor's Progress Report
+  ul.list-unstyled.list-actions
+    - FormAnswer::AWARD_TYPE_FULL_NAMES.select { |key, value| current_assessor.lead_roles.include?(key) }.each do |key, value|
+      li
+        .pull-right
+          = link_to assessor_report_path("assessors-progress", category: key, format: :csv, year: @award_year.year)
+            span.glyphicon.glyphicon-download-alt
+            span.visible-lg.visible-md
+              ' Download
+        = link_to assessor_report_path("assessors-progress", category: key, format: :csv, year: @award_year.year), class: "action-title"
+          span.glyphicon.glyphicon-file
+          = value
+  .clear
