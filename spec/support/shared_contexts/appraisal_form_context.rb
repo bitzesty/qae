@@ -71,14 +71,14 @@ def assert_rag_change(section_id, header_id)
   find("#{header_id} .panel-title a").click
 
   within section_id do
-    expect(page).to have_selector(rag, text: "Select RAG", count: 3)
+    expect(page).to have_selector(rag, text: "Select RAG", count: 4)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
 
     first(".btn-rag").click
     find(".dropdown-menu .rag-negative").click
 
-    expect(page).to have_selector(rag, text: "Select RAG", count: 2)
-    expect(page).to have_selector(rag, text: "Red", count: 1)
+    expect(page).to have_selector(rag, text: "Select RAG", count: 3)
+    expect(page).to have_selector(rag, text: "Weak (0-15)", count: 1)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
   end
 
@@ -88,8 +88,8 @@ def assert_rag_change(section_id, header_id)
   find("#{header_id} .panel-title a").click
 
   within section_id do
-    expect(page).to have_selector(rag, text: "Select RAG", count: 2)
-    expect(page).to have_selector(rag, text: "Red", count: 1)
+    expect(page).to have_selector(rag, text: "Select RAG", count: 3)
+    expect(page).to have_selector(rag, text: "Weak (0-15)", count: 1)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
   end
   visit show_path
