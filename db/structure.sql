@@ -145,7 +145,8 @@ CREATE TABLE assessor_assignments (
     editable_type character varying,
     editable_id integer,
     assessed_at timestamp without time zone,
-    locked_at timestamp without time zone
+    locked_at timestamp without time zone,
+    award_year_id integer
 );
 
 
@@ -516,7 +517,8 @@ CREATE TABLE feedbacks (
     updated_at timestamp without time zone NOT NULL,
     authorable_type character varying,
     authorable_id integer,
-    locked_at timestamp without time zone
+    locked_at timestamp without time zone,
+    award_year_id integer
 );
 
 
@@ -2939,6 +2941,13 @@ CREATE UNIQUE INDEX index_assessor_assignments_on_assessor_id_and_form_answer_id
 
 
 --
+-- Name: index_assessor_assignments_on_award_year_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessor_assignments_on_award_year_id ON assessor_assignments USING btree (award_year_id);
+
+
+--
 -- Name: index_assessor_assignments_on_form_answer_id_and_position; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3027,6 +3036,13 @@ CREATE INDEX index_eligibilities_on_form_answer_id ON eligibilities USING btree 
 --
 
 CREATE INDEX index_email_notifications_on_settings_id ON email_notifications USING btree (settings_id);
+
+
+--
+-- Name: index_feedbacks_on_award_year_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_feedbacks_on_award_year_id ON feedbacks USING btree (award_year_id);
 
 
 --
@@ -3294,6 +3310,14 @@ ALTER TABLE ONLY palace_attendees
 
 
 --
+-- Name: fk_rails_6ae522c6ce; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY feedbacks
+    ADD CONSTRAINT fk_rails_6ae522c6ce FOREIGN KEY (award_year_id) REFERENCES award_years(id);
+
+
+--
 -- Name: fk_rails_85a1d7f049; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3315,6 +3339,14 @@ ALTER TABLE ONLY press_summaries
 
 ALTER TABLE ONLY support_letter_attachments
     ADD CONSTRAINT fk_rails_abd43a0510 FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
+
+
+--
+-- Name: fk_rails_bed48e0ed5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assessor_assignments
+    ADD CONSTRAINT fk_rails_bed48e0ed5 FOREIGN KEY (award_year_id) REFERENCES award_years(id);
 
 
 --
@@ -3668,4 +3700,8 @@ INSERT INTO schema_migrations (version) VALUES ('20160621114955');
 INSERT INTO schema_migrations (version) VALUES ('20160708131227');
 
 INSERT INTO schema_migrations (version) VALUES ('20160727154722');
+
+INSERT INTO schema_migrations (version) VALUES ('20160731102944');
+
+INSERT INTO schema_migrations (version) VALUES ('20160731121716');
 

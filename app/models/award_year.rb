@@ -2,6 +2,8 @@ class AwardYear < ActiveRecord::Base
   validates :year, presence: true
 
   has_many :form_answers
+  has_many :assessor_assignments
+  has_many :feedbacks
   has_one :settings, inverse_of: :award_year, autosave: true
 
   after_create :create_settings

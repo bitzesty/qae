@@ -35,6 +35,8 @@ gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'
 
+gem 'hashie'
+
 # Rails 4 Responders
 gem 'responders', '~> 2.0'
 

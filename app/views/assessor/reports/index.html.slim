@@ -1,0 +1,9 @@
+.row
+  = render "layouts/admin_award_year"
+.clear
+br
+.row.clearfix
+  .show-sidebar
+    - if policy(:report).show?
+      = render "assessor/reports/case_status_report"
+      = render "assessor/reports/assessors_progress"
