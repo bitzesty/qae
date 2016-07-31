@@ -91,7 +91,7 @@ class Reports::DataPickers::AssessorProgressPicker
              ) As secondary_assessed
       FROM assessors
       WHERE assessors.confirmed_at IS NOT NULL
-            AND assessors.#{award_category}_role = 'regular'
+            AND assessors.#{award_category}_role IN ('lead', 'regular')
       ORDER BY assessors.id ASC
     eos
   end
