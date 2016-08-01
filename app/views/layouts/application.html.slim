@@ -138,3 +138,5 @@
   = javascript_include_tag 'application'
 
 = render :file => 'layouts/govuk_template'
+
+= javascript_tag "$(function() { #{yield(:javascript_code)} });" if content_for? :javascript_code

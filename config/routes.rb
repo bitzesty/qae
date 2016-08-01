@@ -90,6 +90,12 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :form_answers, only: [:show] do
+      resources :collaborator_access, only: [] do
+        collection do
+          get "auth/:section/:timestamp" => "collaborator_access#auth"
+        end
+      end
+
       resource :audit_certificate, only: [:show, :create]
       resource :support_letter_attachments, only: :create
       resources :supporters, only: [:create, :destroy]
