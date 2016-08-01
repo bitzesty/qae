@@ -130,6 +130,40 @@ ALTER SEQUENCE admins_id_seq OWNED BY admins.id;
 
 
 --
+-- Name: aggregated_award_year_pdfs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE aggregated_award_year_pdfs (
+    id integer NOT NULL,
+    award_year_id integer,
+    award_category character varying,
+    file character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    type character varying
+);
+
+
+--
+-- Name: aggregated_award_year_pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE aggregated_award_year_pdfs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: aggregated_award_year_pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE aggregated_award_year_pdfs_id_seq OWNED BY aggregated_award_year_pdfs.id;
+
+
+--
 -- Name: assessor_assignments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -305,7 +339,10 @@ CREATE TABLE award_years (
     id integer NOT NULL,
     year integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    form_data_hard_copies_state character varying,
+    case_summary_hard_copies_state character varying,
+    feedback_hard_copies_state character varying
 );
 
 
@@ -326,6 +363,38 @@ CREATE SEQUENCE award_years_id_seq
 --
 
 ALTER SEQUENCE award_years_id_seq OWNED BY award_years.id;
+
+
+--
+-- Name: case_summary_hard_copy_pdfs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE case_summary_hard_copy_pdfs (
+    id integer NOT NULL,
+    form_answer_id integer,
+    file character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: case_summary_hard_copy_pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE case_summary_hard_copy_pdfs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: case_summary_hard_copy_pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE case_summary_hard_copy_pdfs_id_seq OWNED BY case_summary_hard_copy_pdfs.id;
 
 
 --
@@ -505,6 +574,38 @@ ALTER SEQUENCE email_notifications_id_seq OWNED BY email_notifications.id;
 
 
 --
+-- Name: feedback_hard_copy_pdfs; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE feedback_hard_copy_pdfs (
+    id integer NOT NULL,
+    form_answer_id integer,
+    file character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: feedback_hard_copy_pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE feedback_hard_copy_pdfs_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: feedback_hard_copy_pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE feedback_hard_copy_pdfs_id_seq OWNED BY feedback_hard_copy_pdfs.id;
+
+
+--
 -- Name: feedbacks; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -680,7 +781,10 @@ CREATE TABLE form_answers (
     corp_responsibility_reviewed boolean DEFAULT false,
     pdf_version character varying,
     mobility_eligibility_id integer,
-    submitted_at timestamp without time zone
+    submitted_at timestamp without time zone,
+    form_data_hard_copy_generated boolean DEFAULT false,
+    case_summary_hard_copy_generated boolean DEFAULT false,
+    feedback_hard_copy_generated boolean DEFAULT false
 );
 
 
@@ -2466,6 +2570,13 @@ ALTER TABLE ONLY admins ALTER COLUMN id SET DEFAULT nextval('admins_id_seq'::reg
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY aggregated_award_year_pdfs ALTER COLUMN id SET DEFAULT nextval('aggregated_award_year_pdfs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY assessor_assignments ALTER COLUMN id SET DEFAULT nextval('assessor_assignments_id_seq'::regclass);
 
 
@@ -2501,6 +2612,13 @@ ALTER TABLE ONLY award_years ALTER COLUMN id SET DEFAULT nextval('award_years_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY case_summary_hard_copy_pdfs ALTER COLUMN id SET DEFAULT nextval('case_summary_hard_copy_pdfs_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
 
 
@@ -2530,6 +2648,13 @@ ALTER TABLE ONLY eligibilities ALTER COLUMN id SET DEFAULT nextval('eligibilitie
 --
 
 ALTER TABLE ONLY email_notifications ALTER COLUMN id SET DEFAULT nextval('email_notifications_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY feedback_hard_copy_pdfs ALTER COLUMN id SET DEFAULT nextval('feedback_hard_copy_pdfs_id_seq'::regclass);
 
 
 --
@@ -2675,6 +2800,14 @@ ALTER TABLE ONLY admins
 
 
 --
+-- Name: aggregated_award_year_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY aggregated_award_year_pdfs
+    ADD CONSTRAINT aggregated_award_year_pdfs_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: assessor_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2715,6 +2848,14 @@ ALTER TABLE ONLY award_years
 
 
 --
+-- Name: case_summary_hard_copy_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY case_summary_hard_copy_pdfs
+    ADD CONSTRAINT case_summary_hard_copy_pdfs_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2752,6 +2893,14 @@ ALTER TABLE ONLY eligibilities
 
 ALTER TABLE ONLY email_notifications
     ADD CONSTRAINT email_notifications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: feedback_hard_copy_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY feedback_hard_copy_pdfs
+    ADD CONSTRAINT feedback_hard_copy_pdfs_pkey PRIMARY KEY (id);
 
 
 --
@@ -2934,6 +3083,13 @@ CREATE UNIQUE INDEX index_admins_on_unlock_token ON admins USING btree (unlock_t
 
 
 --
+-- Name: index_aggregated_award_year_pdfs_on_award_year_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_aggregated_award_year_pdfs_on_award_year_id ON aggregated_award_year_pdfs USING btree (award_year_id);
+
+
+--
 -- Name: index_assessor_assignments_on_assessor_id_and_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2997,6 +3153,13 @@ CREATE UNIQUE INDEX index_award_years_on_year ON award_years USING btree (year);
 
 
 --
+-- Name: index_case_summary_hard_copy_pdfs_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_case_summary_hard_copy_pdfs_on_form_answer_id ON case_summary_hard_copy_pdfs USING btree (form_answer_id);
+
+
+--
 -- Name: index_comments_on_commentable_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3036,6 +3199,13 @@ CREATE INDEX index_eligibilities_on_form_answer_id ON eligibilities USING btree 
 --
 
 CREATE INDEX index_email_notifications_on_settings_id ON email_notifications USING btree (settings_id);
+
+
+--
+-- Name: index_feedback_hard_copy_pdfs_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_feedback_hard_copy_pdfs_on_form_answer_id ON feedback_hard_copy_pdfs USING btree (form_answer_id);
 
 
 --
@@ -3334,6 +3504,14 @@ ALTER TABLE ONLY press_summaries
 
 
 --
+-- Name: fk_rails_a450856684; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY aggregated_award_year_pdfs
+    ADD CONSTRAINT fk_rails_a450856684 FOREIGN KEY (award_year_id) REFERENCES award_years(id);
+
+
+--
 -- Name: fk_rails_abd43a0510; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3350,11 +3528,27 @@ ALTER TABLE ONLY assessor_assignments
 
 
 --
+-- Name: fk_rails_cf4e2cdfc6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY case_summary_hard_copy_pdfs
+    ADD CONSTRAINT fk_rails_cf4e2cdfc6 FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
+
+
+--
 -- Name: fk_rails_fae9e85e5f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY support_letters
     ADD CONSTRAINT fk_rails_fae9e85e5f FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
+
+
+--
+-- Name: fk_rails_fcea737d68; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY feedback_hard_copy_pdfs
+    ADD CONSTRAINT fk_rails_fcea737d68 FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
 
 
 --
@@ -3700,6 +3894,22 @@ INSERT INTO schema_migrations (version) VALUES ('20160621114955');
 INSERT INTO schema_migrations (version) VALUES ('20160708131227');
 
 INSERT INTO schema_migrations (version) VALUES ('20160727154722');
+
+INSERT INTO schema_migrations (version) VALUES ('20160728174708');
+
+INSERT INTO schema_migrations (version) VALUES ('20160728174732');
+
+INSERT INTO schema_migrations (version) VALUES ('20160729082206');
+
+INSERT INTO schema_migrations (version) VALUES ('20160729082616');
+
+INSERT INTO schema_migrations (version) VALUES ('20160729090515');
+
+INSERT INTO schema_migrations (version) VALUES ('20160729131756');
+
+INSERT INTO schema_migrations (version) VALUES ('20160729132247');
+
+INSERT INTO schema_migrations (version) VALUES ('20160729132552');
 
 INSERT INTO schema_migrations (version) VALUES ('20160731102944');
 
