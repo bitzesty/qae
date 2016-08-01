@@ -6,6 +6,14 @@ class AwardYear < ActiveRecord::Base
   has_many :feedbacks
   has_one :settings, inverse_of: :award_year, autosave: true
 
+  has_many :aggregated_case_summary_hard_copies, -> { where(type: "case_summary") },
+                                                 class_name: "AggregatedAwardYearPdf",
+                                                 dependent: :destroy
+
+  has_many :aggregated_feedback_hard_copies, -> { where(type: "feedback") },
+                                                 class_name: "AggregatedAwardYearPdf",
+                                                 dependent: :destroy
+
   after_create :create_settings
 
   AVAILABLE_YEARS = [2016, 2017, 2018, 2019, 2020]
@@ -16,6 +24,54 @@ class AwardYear < ActiveRecord::Base
 
   def current?
     self.year == self.class.current.year
+  end
+
+  #
+  # Setting up helper methods for hard-copy pdfs
+  # per Award category and PDF type (Case Summary or Feedback)
+  #
+  FormAnswer::POSSIBLE_AWARDS.each do |award_category|
+    AggregatedAwardYearPdf::TYPES.each do |pdf_type|
+      define_method("#{pdf_type}_#{award_category}_hard_copy_pdf") do
+        send("aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
+      end
+    end
+  end
+
+  AggregatedAwardYearPdf::TYPES_OF_GENERATING_HARD_COPIES.each do |type|
+    [ "started", "completed" ].each do |action|
+      define_method("#{type}_hard_copies_#{action}?") do
+        send("#{type}_hard_copies_state").to_s == action
+      end
+    end
+  end
+
+  def form_data_generation_can_be_started?
+    settings.after_current_submission_deadline? &&
+    !form_data_hard_copies_completed? &&
+    !form_data_hard_copies_started?
+  end
+
+  def case_summary_generation_can_be_started?
+    settings.winners_stage? &&
+    !case_summary_hard_copies_completed? &&
+    !case_summary_hard_copies_started?
+  end
+
+  def feedback_generation_can_be_started?
+    settings.unsuccessful_stage? &&
+    !feedback_hard_copies_completed? &&
+    !feedback_hard_copies_started?
+  end
+
+  def check_hard_copy_pdf_generation_status!(mode)
+    if form_answers.submitted.count == form_answers.hard_copy_generated(mode).count
+      update_column("#{mode}_hard_copies_state", "completed")
+    else
+      Raven.capture_exception(
+        "[HARD COPY GENERATION] ERROR with generation of #{mode} copies for #{year}!"
+      )
+    end
   end
 
   # +1 here is to match URN number of assosiated forms

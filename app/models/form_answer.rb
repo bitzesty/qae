@@ -68,6 +68,11 @@ class FormAnswer < ActiveRecord::Base
     has_one :palace_invite, dependent: :destroy
     has_one :form_answer_progress, dependent: :destroy
 
+    # PDF Hard Copies
+    #
+    has_one :case_summary_hard_copy_pdf, dependent: :destroy
+    has_one :feedback_hard_copy_pdf, dependent: :destroy
+
     belongs_to :primary_assessor, class_name: "Assessor", foreign_key: :primary_assessor_id
     belongs_to :secondary_assessor, class_name: "Assessor", foreign_key: :secondary_assessor_id
     has_many :form_answer_attachments, dependent: :destroy
@@ -130,6 +135,10 @@ class FormAnswer < ActiveRecord::Base
 
     scope :past, -> {
       where(award_year_id: AwardYear.past.pluck(:id)).order("award_type")
+    }
+
+    scope :hard_copy_generated, -> (mode) {
+      submitted.where("#{mode}_hard_copy_generated" => true)
     }
   end
 
@@ -273,9 +282,25 @@ class FormAnswer < ActiveRecord::Base
     BUSINESS_AWARD_TYPES.include?(award_type)
   end
 
+  #
+  # Hard Copy PDF generators - begin
+  #
+
   def generate_pdf_version!
-    ApplicationHardCopyPdfGenerator.new(self).run
+    HardCopyGenerators::FormDataGenerator.new(self).run
   end
+
+  def generate_case_summary_hard_copy_pdf!
+    HardCopyGenerators::CaseSummaryGenerator.new(self).run
+  end
+
+  def generate_feedback_hard_copy_pdf!
+    HardCopyGenerators::FeedbackGenerator.new(self).run
+  end
+
+  #
+  # Hard Copy PDF generators - end
+  #
 
   def unsuccessful_app?
     !awarded? && !withdrawn?
