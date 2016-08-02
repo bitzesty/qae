@@ -284,6 +284,10 @@ class FormAnswer < ActiveRecord::Base
     account.collaborators_with(user)
   end
 
+  def has_more_than_one_contributor?
+    collaborators.count > 1
+  end
+
   def palace_invite_submitted
     palace_invite.try(:submitted) ? 'Yes' : 'No'
   end

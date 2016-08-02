@@ -22,10 +22,10 @@ class UpdateDeadlineService
       if now >= trigger_at
         ::SubmissionDeadlineStatesTransitionWorker.perform_async
       end
+    end
 
-      ::SubmissionDeadlineApplicationPdfGenerationWorker.perform_at(
-        trigger_at
-      )
+    if deadline.audit_certificates? && trigger_at.present? && now >= trigger_at
+      ::DisqualifiedDeadlineStatesTransitionWorker.perform_async
     end
   end
 end

@@ -139,6 +139,14 @@
   }
 }
 
+.js-hint-visible-on-edit {
+  display: none;
+  color: gray;
+  font-style: italic;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
 .inline-form-view {
   margin-top: 15px;
 
@@ -223,7 +231,8 @@
       }
 
       .form-block,
-      .char-count {
+      .char-count,
+      .js-hint-visible-on-edit {
         display: block;
       }
 

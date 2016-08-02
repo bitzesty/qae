@@ -56,13 +56,9 @@ class FormAnswerSearch < Search
       when "assessors_not_assigned"
         out = out.where(primary_assessor_id: nil, secondary_assessor_id: nil)
       when "primary_assessment_submitted"
-        out = out.joins(
-          "JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id=form_answers.id"
-        ).where("primary_assignments.position = ? AND primary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:primary])
+        out = primary_assessment_submitted(out)
       when "secondary_assessment_submitted"
-        out = out.joins(
-          "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id"
-        ).where("secondary_assignments.position = ? AND secondary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:secondary])
+        out = secondary_assessment_submitted(out)
       when "missing_audit_certificate"
         out = out.joins(
           "LEFT OUTER JOIN audit_certificates ON audit_certificates.form_answer_id=form_answers.id"
@@ -85,8 +81,25 @@ class FormAnswerSearch < Search
         ).joins(
           "LEFT OUTER JOIN palace_attendees ON palace_attendees.palace_invite_id = palace_invites.id"
         ).where("palace_invites.id IS NULL OR palace_attendees.id IS NULL")
+      when "primary_and_secondary_assessments_submitted"
+        out = primary_assessment_submitted(out)
+        out = secondary_assessment_submitted(out)
+      when "primary_assessment_not_submitted"
+        out = out.joins(
+          "JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id=form_answers.id"
+        ).where("primary_assignments.position = ? AND primary_assignments.submitted_at IS NULL", AssessorAssignment.positions[:primary])
+      when "secondary_assessment_not_submitted"
+        out = out.joins(
+          "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id"
+        ).where("secondary_assignments.position = ? AND secondary_assignments.submitted_at IS NULL", AssessorAssignment.positions[:secondary])
+      when "recommendation_disperancy"
+        # both assessments should be submitted
+        out = primary_assessment_submitted(out)
+        out = secondary_assessment_submitted(out)
+        out = out.where("(secondary_assignments.document -> 'verdict_rate') != (primary_assignments.document -> 'verdict_rate')")
       end
     end
+
     out
   end
 
@@ -98,6 +111,18 @@ class FormAnswerSearch < Search
     else
       FormAnswerStatus::AssessorFilter
     end
+  end
+
+  def primary_assessment_submitted(scope)
+    scope.joins(
+      "JOIN assessor_assignments primary_assignments ON primary_assignments.form_answer_id=form_answers.id"
+    ).where("primary_assignments.position = ? AND primary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:primary])
+  end
+
+  def secondary_assessment_submitted(scope)
+    scope.joins(
+      "JOIN assessor_assignments secondary_assignments ON secondary_assignments.form_answer_id=form_answers.id"
+    ).where("secondary_assignments.position = ? AND secondary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:secondary])
   end
 
   def sort_order(desc = false)

@@ -14,6 +14,18 @@ class FormAnswerStatus::AdminFilter
     secondary_assessment_submitted: {
       label: "Secondary Assessment submitted"
     },
+    recommendation_disperancy: {
+      label: "Recommendation discrepancy"
+    },
+    primary_and_secondary_assessments_submitted: {
+      label: "Primary and Secondary Assessments submitted"
+    },
+    primary_assessment_not_submitted: {
+      label: "Primary Assessment not submitted"
+    },
+    secondary_assessment_not_submitted: {
+      label: "Secondary Assessment not submitted"
+    },
     missing_audit_certificate: {
       label: "Missing Audit Certificate"
     },
@@ -54,6 +66,10 @@ class FormAnswerStatus::AdminFilter
     assessment_in_progress: {
       label: "Assessment in progress",
       states: [:assessment_in_progress]
+    },
+    disqualified: {
+      label: "Disqualified - No Audit Certificate",
+      states: [:disqualified]
     },
     recommended: {
       label: "Recommended",

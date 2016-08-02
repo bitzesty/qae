@@ -32,6 +32,7 @@ class AssessorAssignment < ActiveRecord::Base
     belongs_to :assessor
     belongs_to :form_answer
     belongs_to :editable, polymorphic: true
+    belongs_to :award_year
   end
 
   begin :scopes
@@ -39,6 +40,8 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   around_save :notify_form_answer
+
+  before_create :set_award_year!
 
   store_accessor :document, *AppraisalForm.all
 
@@ -209,5 +212,9 @@ class AssessorAssignment < ActiveRecord::Base
       attribute = (primary? ? :primary_assessor_id : :secondary_assessor_id)
       form_answer.update(attribute => assessor_id)
     end
+  end
+
+  def set_award_year!
+    self.award_year = form_answer.award_year
   end
 end

@@ -57,6 +57,22 @@ describe FormAnswerStateMachine do
     end
   end
 
+  describe "#trigger_audit_deadlines" do
+    context "deadline expired" do
+      let!(:settings) { create(:settings, :expired_audit_submission_deadline, :expired_submission_deadlines) }
+      context "applications in progress" do
+        before { form_answer.update(state: "assessment_in_progress") }
+        it "automatically changes state to `disqualified`" do
+          expect {
+            FormAnswerStateMachine.trigger_audit_deadlines
+          }.to change {
+            form_answer.reload.state
+          }.from("assessment_in_progress").to("disqualified")
+        end
+      end
+    end
+  end
+
   describe "#perform_transition" do
     context "after the deadline" do
       let!(:settings) { create(:settings, :expired_submission_deadlines) }

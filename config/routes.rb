@@ -90,6 +90,12 @@ Rails.application.routes.draw do
 
   namespace :users do
     resources :form_answers, only: [:show] do
+      resources :collaborator_access, only: [] do
+        collection do
+          get "auth/:section/:timestamp" => "collaborator_access#auth"
+        end
+      end
+
       resource :audit_certificate, only: [:show, :create]
       resource :support_letter_attachments, only: :create
       resources :supporters, only: [:create, :destroy]
@@ -172,7 +178,7 @@ Rails.application.routes.draw do
       patch :unlock, on: :member
     end
     resources :assessor_assignment_collections, only: [:create]
-    resources :reports, only: [:show]
+    resources :reports, only: [:index, :show]
   end
 
   namespace :admin do

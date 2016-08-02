@@ -12,6 +12,8 @@ class Reports::AssessorReport
     case id
     when "cases-status"
       Reports::CasesStatusReport.new(year).build_for_lead(@current_subject)
+    when /assessors-progress/
+      Reports::AssessorsProgressReport.new(year, params[:category]).build
     end
   end
 end

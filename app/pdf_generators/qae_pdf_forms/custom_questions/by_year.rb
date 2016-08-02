@@ -18,15 +18,12 @@ module QaePdfForms::CustomQuestions::ByYear
       a.split("/")
     end
 
-    rows.map do |e|
-      e[1] = to_month(e[1])
-    end
     rows.push(latest_year_label)
 
     year_headers.each_with_index do |header_item, placement|
       form_pdf.default_bottom_margin
       if OMIT_COLON_KEYS.include?(question.key)
-        title = header_item
+        title = "#{header_item} #{ANSWER_FONT_START}#{rows[placement].join("/")}#{ANSWER_FONT_END}"
       else
         title = "#{header_item}: #{ANSWER_FONT_START}#{rows[placement].join(" ")}#{ANSWER_FONT_END}"
       end
@@ -118,6 +115,6 @@ module QaePdfForms::CustomQuestions::ByYear
     day = "0" + day if day.size == 1
     month = "0" + month if month.size == 1
 
-    [day, month, Date.today.year ]
+    [day, month, Date.today.year]
   end
 end

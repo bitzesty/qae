@@ -1,4 +1,9 @@
 class Assessor::ReportsController < Assessor::BaseController
+
+  def index
+    authorize :report, :show?
+  end
+
   def show
     authorize :report, :show?
     log_action params[:id]

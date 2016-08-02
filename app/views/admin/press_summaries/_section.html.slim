@@ -4,6 +4,10 @@
 = simple_form_for press_summary, url: url, remote: true, authenticity_token: true do |f|
   .form-group.press-summary-body-block
     label.form-label Body
+    .js-hint-visible-on-edit
+       | Please type, rather than copy from a word processor.
+       br
+       | This gets downloaded into a csv and most word processing tools add non-standard characters, leaving the information illegible.
     .form-value.no-js-update
       p = press_summary.body.presence || content_tag(:i, "No Press Book Notes has been added yet")
     .input.form-group

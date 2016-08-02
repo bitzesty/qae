@@ -41,6 +41,11 @@ class Settings < ActiveRecord::Base
       end
     end
 
+    def after_current_audit_certificates_deadline?
+      deadline = current_audit_certificates_deadline.trigger_at
+      DateTime.now >= deadline if deadline
+    end
+
     def after_current_submission_deadline?
       deadline = current_submission_deadline.trigger_at
       DateTime.now >= deadline if deadline.present?

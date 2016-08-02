@@ -32,4 +32,13 @@ FactoryGirl.define do
       settings.reload
     end
   end
+
+  trait :expired_audit_submission_deadline do
+    after(:create) do |settings|
+      start = settings.deadlines.where(kind: "audit_certificates").first
+      start.update_column(:trigger_at, Time.zone.now - 25.days)
+
+      settings.reload
+    end
+  end
 end

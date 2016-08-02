@@ -2,4 +2,4 @@
   ul.dropdown-menu.pull-right role="menu"
     - collection.each do |state|
       li.checkbox role="presentation"
-        = link_to state.to_s.humanize, "#", "data-state" => state.to_s, "data-label" => state.to_s.humanize
+        = link_to I18n.t(state, scope: "form_answers.state"), "#", "data-state" => state.to_s, "data-label" => I18n.t(state, scope: "form_answers.state")

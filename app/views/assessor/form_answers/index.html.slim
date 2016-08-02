@@ -4,7 +4,7 @@
   .col-md-4.col-sm-5.col-xs-12.pull-right
     .form-group.search-input
       = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search do |f|
-
+        = text_field_tag :year, @award_year.year, class: "visuallyhidden"
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = submit_tag :submit, class: 'search-submit'
 
@@ -21,6 +21,7 @@
 
 = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   = hidden_field_tag :award_type, category_picker.current_award_type
+  = text_field_tag :year, @award_year.year, class: "visuallyhidden"
 
   .row
     .col-xs-12
@@ -32,7 +33,7 @@
                 span.if-no-js-hide
                   = check_box_tag :check_all
             th.sortable
-              = sort_link f, "Company/Nominee", @search, :company_or_nominee_name, disabled: @search.query?
+              = sort_link f, "Company", @search, :company_or_nominee_name, disabled: @search.query?
             th.sortable
               = sort_link f, "Reference", @search, :urn, disabled: @search.query?
             = render("assessor/form_answers/status_header", f: f)

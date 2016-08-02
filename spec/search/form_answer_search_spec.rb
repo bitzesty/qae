@@ -88,5 +88,44 @@ describe FormAnswerSearch do
         expect(result.length).to be_zero
       end
     end
+
+    context "shows assessments with different verdicts" do
+      let(:primary_assessment) { form_answer.assessor_assignments.primary }
+      let(:secondary_assessment) { form_answer.assessor_assignments.secondary }
+      let(:assessment_document) do
+        {
+          verdict_desc: "4",
+          strategy_desc: "4",
+          strategy_rate: "average",
+          commercial_success_desc: "2",
+          commercial_success_rate: "average",
+          overseas_earnings_growth_desc: "1",
+          overseas_earnings_growth_rate: "average"
+        }
+      end
+
+      before do
+        primary_assessment.document = assessment_document.merge({verdict_rate: "average"})
+        primary_assessment.submitted_at = Time.current
+        secondary_assessment.document = assessment_document.merge({verdict_rate: "positive"})
+        secondary_assessment.submitted_at = Time.current
+
+        primary_assessment.save!
+        secondary_assessment.save!
+      end
+
+      it "shows applications with different verdicts" do
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["recommendation_disperancy"])
+        expect(result.length).to eq(1)
+      end
+
+      it "filters out applications with same verdicts" do
+        secondary_assessment.document = assessment_document.merge({verdict_rate: "average"})
+        secondary_assessment.save!
+
+        result = described_class.new(scope, admin).filter_by_sub_status(scope, ["recommendation_disperancy"])
+        expect(result.length).to be_zero
+      end
+    end
   end
 end

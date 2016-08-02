@@ -35,6 +35,8 @@ gem 'draper'
 gem 'decent_exposure'
 gem 'decent_decoration'
 
+gem 'hashie'
+
 # Rails 4 Responders
 gem 'responders', '~> 2.0'
 
@@ -87,6 +89,11 @@ gem 'sinatra', require: nil
 # Redis
 gem 'redis-rails'
 gem 'redis-store'
+
+# We are using Pusher with Poxa server
+# for collaborators application edit stuff
+#
+gem "pusher"
 
 # Text Search
 gem 'pg_search'
