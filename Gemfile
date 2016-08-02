@@ -89,7 +89,7 @@ gem 'redis-rails'
 gem 'redis-store'
 
 # Text Search
-gem 'pg_search'
+gem 'pg_search', "0.7.9"
 
 # YAML/Hash loading
 gem 'active_hash'

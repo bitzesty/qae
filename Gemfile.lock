@@ -571,7 +571,7 @@ DEPENDENCIES
   paper_trail (~> 5.1.0)
   pdf-inspector
   pg (~> 0.17)
-  pg_search
+  pg_search (= 0.7.9)
   prawn
   prawn-table
   pry
