@@ -117,7 +117,7 @@ class FormAnswerStatistics::Picker
 
   def submissions_query(scope, time_range)
     out = scope.joins(:form_answer_transitions)
-    out = out.where("form_answers.state = ?", "submitted")
+    out = out.at_post_submission_stage
     out = out.where("form_answer_transitions.to_state = ?", "submitted")
     out = out.where("form_answer_transitions.created_at > ?", time_range) if time_range
     out.group("form_answers.id")

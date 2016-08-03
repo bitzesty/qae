@@ -123,6 +123,7 @@ class FormAnswer < ActiveRecord::Base
     scope :unsuccessful_applications, -> { submitted.where("state not in ('awarded', 'withdrawn')") }
     scope :submitted, -> { where.not(submitted_at: nil) }
     scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
+    scope :at_post_submission_stage, -> { where(state: FormAnswerStateMachine::POST_SUBMISSION_STATES) }
     scope :business, -> { where(award_type: BUSINESS_AWARD_TYPES) }
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
