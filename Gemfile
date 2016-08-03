@@ -112,6 +112,9 @@ gem 'curb'
 
 gem 'puma', '~> 2.16.0'
 
+# speedup server boot time
+gem 'bootscale', require: false
+
 group :development do
   gem 'pry'
   gem 'letter_opener'
