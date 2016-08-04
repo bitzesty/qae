@@ -63,7 +63,7 @@ describe FormAnswerStatistics::Picker do
     describe "#applications_completions" do
       it "calculates proper stats" do
         populate_application_completions
-        expect(subject.applications_completions["trade"]).to eq([1, 1, 0, 1, 1, 0, 5])
+        expect(subject.applications_completions["trade"]).to eq([1, 1, 0, 1, 1, 0, 4])
       end
     end
   end
@@ -118,7 +118,7 @@ describe FormAnswerStatistics::Picker do
         Timecop.freeze(Date.today + 13.months) do
           populate_application_completions
         end
-        expect(subject.applications_completions["trade"]).to eq([1, 1, 0, 1, 1, 0, 5])
+        expect(subject.applications_completions["trade"]).to eq([1, 1, 0, 1, 1, 0, 4])
       end
     end
   end
