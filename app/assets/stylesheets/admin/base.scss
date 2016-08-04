@@ -207,6 +207,16 @@ table .ellipsis {
   .pull-right a {
     margin-left: 20px;
   }
+
+  .apps-navigation {
+    .link-prev {
+      float: left;
+    }
+
+    .link-next {
+      float: right;
+    }
+  }
 }
 
 .table-overflow-container {
