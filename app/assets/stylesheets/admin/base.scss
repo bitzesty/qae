@@ -226,6 +226,10 @@ table .ellipsis {
     width: 99.5%;
     margin-left: 1px;
   }
+
+  .not-eligible {
+    border-right: 2px solid $black;
+  }
 }
 
 .table {

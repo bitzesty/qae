@@ -53,9 +53,9 @@ class FormAnswerStatistics::Picker
 
   def applications_completions
     out = {}
-    out["total"] = [0,0,0,0,0,0,0,0]
+    out["total"] = [0,0,0,0,0,0,0]
     klass::POSSIBLE_AWARDS.each do |aw|
-      scope = fa_year_scope.where(award_type: aw).where("state != 'eligibility_in_progress'")
+      scope = fa_year_scope.where(award_type: aw).where(state: %w(application_in_progress not_eligible))
       out[aw] = collect_completion_ranges(scope)
       unless aw == "promotion"
         out[aw].each_with_index do |val, index|
@@ -147,8 +147,6 @@ class FormAnswerStatistics::Picker
     out << range4.count
     range5 = scope.where("fill_progress >= ? AND fill_progress < ?", 0.75, 1)
     out << range5.count
-    range6 = scope.where(fill_progress: 1)
-    out << range6.count
     out << scope.count + not_e
     out
   end

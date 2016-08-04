@@ -109,7 +109,6 @@ class QAEFormBuilder
     def count_questions meth
       questions.map { |q| q.send(meth) ? 1 : 0 }.reduce(:+)
     end
-
   end
 
   class StepBuilder
