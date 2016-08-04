@@ -154,7 +154,7 @@ class QAEFormBuilder
     def visible?(fetched_answers=nil)
       dc = delegate_obj.drop_condition_parent
       delegate_obj.conditions.
-        all?{|condition|
+        all? do |condition|
           question_value = condition.question_value
 
           parent_question_answer = if fetched_answers.present?
@@ -170,7 +170,7 @@ class QAEFormBuilder
           else
             parent_question_answer == question_value.to_s
           end
-        } &&
+        end &&
       (!dc || (dc.present? && has_drops?))
     end
 
@@ -180,8 +180,16 @@ class QAEFormBuilder
 
     def required_visible_filled?
       return false unless required_visible?
-      required_sub_fields.blank? ? !input_value.blank? :
-        required_sub_fields.all?{|s| !input_value(suffix: s.keys.first).blank?}
+
+      if required_sub_fields.blank?
+        if respond_to?(:active_fields)
+          active_fields.all? { |s| input_value(suffix: s).present? }
+        else
+          input_value.present?
+        end
+      else
+        required_sub_fields.all? { |s| input_value(suffix: s.keys.first).present? }
+      end
     end
 
     def escaped_title
