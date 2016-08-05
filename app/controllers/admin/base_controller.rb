@@ -42,10 +42,7 @@ class Admin::BaseController < ApplicationController
                   filename: pdf_hard_copy.original_filename,
                   type: "application/pdf"
       else
-        send_file(pdf_hard_copy.file.url,
-                  filename: pdf_hard_copy.original_filename,
-                  type: "application/pdf",
-                  disposition: 'attachment')
+        redirect_to pdf_hard_copy.file.url
       end
     else
       send_data pdf_data.render,
