@@ -18,10 +18,7 @@ class Admin::ReportsController < Admin::BaseController
                     filename: pdf.filename,
                     type: "application/pdf"
         else
-          send_file(pdf.data,
-                    filename: pdf.filename,
-                    type: "application/pdf",
-                    disposition: 'attachment')
+          redirect_to pdf.data
         end
       end
     end
