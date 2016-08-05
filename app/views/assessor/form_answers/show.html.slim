@@ -2,7 +2,12 @@
   .col-xs-12
     .page-header.page-header-nav
       = link_to "‹ Back to applications list", assessor_form_answers_path, class: "btn btn-link btn-lg"
-
+      .apps-navigation
+        - if !@form_paginator.first?
+          = link_to "‹ Previous application", assessor_form_answer_path(@form_paginator.prev_entry, search: params[:search], award_type: params[:aard_type]), class: "btn btn-link btn-lg link-prev"
+        - if !@form_paginator.last?
+          = link_to "Next application ›", assessor_form_answer_path(@form_paginator.next_entry, search: params[:search], award_type: params[:aard_type]), class: "btn btn-link btn-lg link-next"
+        .clear
 .row.inline-form-view
   .show-sidebar-container
     .show-sidebar
@@ -14,4 +19,3 @@
 
   .show-main-content.submitted-view
     = render "submitted_view"
-

@@ -30,4 +30,10 @@ class Admin < ActiveRecord::Base
   def lead_or_assigned?(*)
     true
   end
+
+  private
+
+  def min_password_score
+    3
+  end
 end

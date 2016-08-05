@@ -96,7 +96,7 @@ gem 'redis-store'
 gem "pusher"
 
 # Text Search
-gem 'pg_search'
+gem 'pg_search', "0.7.9"
 
 # YAML/Hash loading
 gem 'active_hash'
@@ -111,6 +111,9 @@ gem 'newrelic_rpm'
 gem 'curb'
 
 gem 'puma', '~> 2.16.0'
+
+# speedup server boot time
+gem 'bootscale', require: false
 
 group :development do
   gem 'pry'

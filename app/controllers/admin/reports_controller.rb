@@ -12,9 +12,14 @@ class Admin::ReportsController < Admin::BaseController
 
       format.pdf do
         pdf = resource.as_pdf
-        send_data pdf.data,
-                  filename: pdf.filename,
-                  type: "application/pdf"
+
+        if pdf[:hard_copy].blank? || Rails.env.development?
+          send_data pdf.data,
+                    filename: pdf.filename,
+                    type: "application/pdf"
+        else
+          redirect_to pdf.data
+        end
       end
     end
   end

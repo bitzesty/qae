@@ -6,6 +6,7 @@
 #= require Countable
 #= require moment.min
 #= require core
+#= require offline.min
 #= require vendor/polyfills/bind
 #= require govuk/selection-buttons
 #= require libs/suchi/isOld.js
@@ -29,6 +30,16 @@ jQuery ->
   # TODO: Refactor this later on
   validate = ->
     window.FormValidation.validate()
+
+  # Offline.js is not working properly in all browsers
+  # so we need to do a manual check
+  Offline.options = {requests: false}
+  offlineDelay = 3000;
+
+  setTimeout(retry = ->
+    Offline.check()
+    setTimeout(retry, offlineDelay)
+  , offlineDelay)
 
   $(document).on "submit", ".qae-form", (e) ->
     $("body").addClass("tried-submitting")
