@@ -7,14 +7,16 @@ class Admin::CaseSummariesController < Admin::BaseController
     form_answer.decorate.case_summaries_pdf_generator
   end
 
+  expose(:pdf_hard_copy) do
+    form_answer.case_summary_hard_copy_pdf
+  end
+
   def index
     authorize form_answer, :download_case_summary_pdf?
 
     respond_to do |format|
       format.pdf do
-        send_data pdf_data.render,
-                  filename: "application_case_summaries_#{form_answer.decorate.pdf_filename}",
-                  type: "application/pdf"
+        admin_conditional_pdf_response("case_summary")
       end
     end
   end

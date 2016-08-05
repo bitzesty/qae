@@ -7,7 +7,7 @@ class HardCopyPdfGenerators::Collection::CaseSummaryWorker
       year.update_column(:case_summary_hard_copies_state, 'started')
 
       # Schedule individual PDF generation worker per each FormAnswer entry
-      AwardYear.current.form_answers.submitted.find_each do |form_answer|
+      AwardYear.current.hard_copy_case_summary_scope.find_each do |form_answer|
         HardCopyPdfGenerators::CaseSummaryWorker.perform_async(form_answer.id)
       end
 

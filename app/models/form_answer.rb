@@ -129,6 +129,7 @@ class FormAnswer < ActiveRecord::Base
     scope :submitted, -> { where.not(submitted_at: nil) }
     scope :positive, -> { where(state: FormAnswerStateMachine::POSITIVE_STATES) }
     scope :at_post_submission_stage, -> { where(state: FormAnswerStateMachine::POST_SUBMISSION_STATES) }
+    scope :not_positive, -> { where(state: FormAnswerStateMachine::NOT_POSITIVE_STATES) }
     scope :business, -> { where(award_type: BUSINESS_AWARD_TYPES) }
     scope :promotion, -> { where(award_type: "promotion") }
     scope :in_progress, -> { where(state: ["eligibility_in_progress", "application_in_progress"]) }
@@ -296,6 +297,12 @@ class FormAnswer < ActiveRecord::Base
 
   def generate_feedback_hard_copy_pdf!
     HardCopyGenerators::FeedbackGenerator.new(self).run
+  end
+
+  def hard_copy_ready_for?(mode)
+    send("#{mode}_hard_copy_generated?") &&
+    send("#{mode}_hard_copy_pdf").present? &&
+    send("#{mode}_hard_copy_pdf").file.present?
   end
 
   #

@@ -6,11 +6,11 @@ class AwardYear < ActiveRecord::Base
   has_many :feedbacks
   has_one :settings, inverse_of: :award_year, autosave: true
 
-  has_many :aggregated_case_summary_hard_copies, -> { where(type: "case_summary") },
-                                                 class_name: "AggregatedAwardYearPdf",
-                                                 dependent: :destroy
+  has_many :aggregated_case_summary_hard_copies, -> { where(type_of_report: "case_summary") },
+                                                    class_name: "AggregatedAwardYearPdf",
+                                                    dependent: :destroy
 
-  has_many :aggregated_feedback_hard_copies, -> { where(type: "feedback") },
+  has_many :aggregated_feedback_hard_copies, -> { where(type_of_report: "feedback") },
                                                  class_name: "AggregatedAwardYearPdf",
                                                  dependent: :destroy
 
@@ -21,6 +21,16 @@ class AwardYear < ActiveRecord::Base
   scope :past, -> {
     where(year: past_years)
   }
+
+  #
+  # Update me every year!
+  #
+  CURRENT_YEAR_AWARDS = [
+    "trade", # International Trade Award
+    "innovation", # Innovation Award
+    "development", # Sustainable Development Award
+    "mobility", # Promoting Opportunity Award
+  ]
 
   def current?
     self.year == self.class.current.year
@@ -38,40 +48,90 @@ class AwardYear < ActiveRecord::Base
     end
   end
 
-  AggregatedAwardYearPdf::TYPES_OF_GENERATING_HARD_COPIES.each do |type|
-    [ "started", "completed" ].each do |action|
-      define_method("#{type}_hard_copies_#{action}?") do
-        send("#{type}_hard_copies_state").to_s == action
-      end
-    end
-  end
-
   def form_data_generation_can_be_started?
     settings.after_current_submission_deadline? &&
-    !form_data_hard_copies_completed? &&
-    !form_data_hard_copies_started?
+    form_data_hard_copies_state.nil?
   end
 
   def case_summary_generation_can_be_started?
     settings.winners_stage? &&
-    !case_summary_hard_copies_completed? &&
-    !case_summary_hard_copies_started?
+    case_summary_hard_copies_state.nil?
   end
 
   def feedback_generation_can_be_started?
     settings.unsuccessful_stage? &&
-    !feedback_hard_copies_completed? &&
-    !feedback_hard_copies_started?
+    feedback_hard_copies_state.nil?
   end
 
-  def check_hard_copy_pdf_generation_status!(mode)
-    if form_answers.submitted.count == form_answers.hard_copy_generated(mode).count
-      update_column("#{mode}_hard_copies_state", "completed")
+  def aggregated_case_summary_generation_can_be_started?
+    settings.winners_stage? &&
+    aggregated_case_summary_hard_copies_state.nil?
+  end
+
+  def aggregated_feedback_generation_can_be_started?
+    settings.unsuccessful_stage? &&
+    aggregated_feedback_hard_copies_state.nil?
+  end
+
+  def aggregated_hard_copies_completed?(type)
+    CURRENT_YEAR_AWARDS.all? do |award_category|
+      copy_record = send("#{type}_#{award_category}_hard_copy_pdf")
+      copy_record.present? && copy_record.file.present?
+    end
+  end
+
+  def check_aggregated_hard_copy_pdf_generation_status!(type)
+    if aggregated_hard_copies_completed?(type)
+      update_column("aggregated_#{type}_hard_copy_state", "completed")
     else
       Raven.capture_exception(
-        "[HARD COPY GENERATION] ERROR with generation of #{mode} copies for #{year}!"
+        "[#{ENV['MAILER_HOST']} | HARD COPY GENERATION] ERROR with generation of aggregated #{type} hard copy for #{year}!"
       )
+
+      false
     end
+  end
+
+  def check_hard_copy_pdf_generation_status!(type)
+    scope = send("hard_copy_#{type}_scope")
+
+    condition_rule = if type == "form_data"
+      scope.count == scope.hard_copy_generated(type).count
+    else
+      scope.count.count == scope.hard_copy_generated(type).count.count
+    end
+
+    if condition_rule
+      update_column("#{type}_hard_copies_state", "completed")
+    else
+      Raven.capture_exception(
+        "[#{ENV['MAILER_HOST']} | HARD COPY GENERATION] ERROR with generation of individual #{type} copies for #{year}!"
+      )
+
+      false
+    end
+  end
+
+  def hard_copy_case_summary_scope
+    form_answers.submitted
+                .positive
+                .joins(:assessor_assignments)
+                .group("form_answers.id")
+                .having("count(assessor_assignments) > 0")
+                .where("assessor_assignments.submitted_at IS NOT NULL AND assessor_assignments.position IN (3,4)")
+  end
+
+  def hard_copy_feedback_scope
+    form_answers.submitted
+                .not_positive
+                .joins(:feedback)
+                .group("form_answers.id")
+                .having("count(feedbacks) > 0")
+                .where("feedbacks.submitted = '1'")
+  end
+
+  def hard_copy_form_data_scope
+    form_answers.submitted
   end
 
   # +1 here is to match URN number of assosiated forms

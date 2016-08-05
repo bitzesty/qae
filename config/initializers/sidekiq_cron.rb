@@ -12,16 +12,24 @@ default_schedule = {
     "class" => "Scheduled::SubmissionDeadlineWorker"
   },
   "form_data_pdf_hard_copy_generation_service" => {
-    "cron" => "10 0 * * *",
+    "cron" => "30 0 * * *",
     "class" => "HardCopyPdfGenerators::Collection::FormDataWorker"
   },
   "case_summary_pdf_hard_copy_generation_service" => {
-    "cron" => "30 0 * * *",
+    "cron" => "30 2 * * *",
     "class" => "HardCopyPdfGenerators::Collection::CaseSummaryWorker"
   },
   "feedback_pdf_hard_copy_generation_service" => {
-    "cron" => "50 0 * * *",
+    "cron" => "30 4 * * *",
     "class" => "HardCopyPdfGenerators::Collection::FeedbackWorker"
+  },
+  "aggregated_case_summary_pdf_hard_copy_generation_service" => {
+    "cron" => "10 5 * * *",
+    "class" => "HardCopyPdfGenerators::Aggregated::CaseSummariesWorker"
+  },
+  "aggregated_feedback_pdf_hard_copy_generation_service" => {
+    "cron" => "30 5 * * *",
+    "class" => "HardCopyPdfGenerators::Aggregated::FeedbacksWorker"
   }
 }
 

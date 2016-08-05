@@ -36,4 +36,8 @@ class HardCopyGenerators::Base
   def tempfile_name
     "#{file_prefix}_#{form_answer.urn}_#{timestamp}_SEPARATOR".gsub("/", "_")
   end
+
+  def original_filename
+    "#{file_prefix}_#{form_answer.urn}.pdf"
+  end
 end

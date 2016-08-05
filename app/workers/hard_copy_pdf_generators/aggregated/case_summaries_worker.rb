@@ -1,7 +1,12 @@
 class HardCopyPdfGenerators::Aggregated::CaseSummariesWorker
   def perform
-    # TODO
+    year = AwardYear.current
 
-    HardCopyPdfGenerators::StatusCheckers::AggregatedCaseSummariesWorker.perform_async
+    if year.aggregated_case_summary_generation_can_be_started?
+      # Set status of generation process
+      year.update_column(:aggregated_case_summary_hard_copy_state, 'started')
+
+      HardCopyGenerators::AggregatedCaseSummaryGenerator.new.run
+    end
   end
 end

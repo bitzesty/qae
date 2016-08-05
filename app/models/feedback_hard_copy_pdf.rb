@@ -1,5 +1,9 @@
 class FeedbackHardCopyPdf < ActiveRecord::Base
   belongs_to :form_answer
 
-  mount_uploader :attachment, FormAnswerPdfVersionUploader
+  mount_uploader :file, FormAnswerPdfVersionUploader
+
+  validates :form_answer,
+            :file,
+            :original_filename, presence: true
 end

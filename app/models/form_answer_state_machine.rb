@@ -35,6 +35,11 @@ class FormAnswerStateMachine
     :not_awarded
   ]
 
+  NOT_POSITIVE_STATES = [
+    :not_recommended,
+    :not_awarded
+  ]
+
   state :eligibility_in_progress, initial: true
   state :application_in_progress
   state :submitted
