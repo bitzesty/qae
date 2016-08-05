@@ -140,7 +140,8 @@ CREATE TABLE aggregated_award_year_pdfs (
     file character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    type character varying
+    type_of_report character varying,
+    original_filename character varying
 );
 
 
@@ -342,7 +343,9 @@ CREATE TABLE award_years (
     updated_at timestamp without time zone NOT NULL,
     form_data_hard_copies_state character varying,
     case_summary_hard_copies_state character varying,
-    feedback_hard_copies_state character varying
+    feedback_hard_copies_state character varying,
+    aggregated_case_summary_hard_copy_state character varying,
+    aggregated_feedback_hard_copy_state character varying
 );
 
 
@@ -374,7 +377,8 @@ CREATE TABLE case_summary_hard_copy_pdfs (
     form_answer_id integer,
     file character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    original_filename character varying
 );
 
 
@@ -582,7 +586,8 @@ CREATE TABLE feedback_hard_copy_pdfs (
     form_answer_id integer,
     file character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    original_filename character varying
 );
 
 
@@ -3914,4 +3919,14 @@ INSERT INTO schema_migrations (version) VALUES ('20160729132552');
 INSERT INTO schema_migrations (version) VALUES ('20160731102944');
 
 INSERT INTO schema_migrations (version) VALUES ('20160731121716');
+
+INSERT INTO schema_migrations (version) VALUES ('20160802111557');
+
+INSERT INTO schema_migrations (version) VALUES ('20160804172537');
+
+INSERT INTO schema_migrations (version) VALUES ('20160804175341');
+
+INSERT INTO schema_migrations (version) VALUES ('20160804175513');
+
+INSERT INTO schema_migrations (version) VALUES ('20160804175527');
 

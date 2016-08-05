@@ -92,6 +92,51 @@ RSpec.describe FormAnswer, type: :model do
     end
   end
 
+  describe "#fill_progress" do
+    context "100% completed" do
+      it "populates correct fill progress for trade form on save" do
+        form_answer = create(:form_answer, :trade)
+        expect(form_answer.fill_progress).to eq(1)
+      end
+
+      it "populates correct fill progress for development form on save" do
+        form_answer = create(:form_answer, :development)
+        expect(form_answer.fill_progress).to eq(1)
+      end
+
+      it "populates correct fill progress for innovation form on save" do
+        form_answer = create(:form_answer, :innovation)
+        expect(form_answer.fill_progress).to eq(1)
+      end
+    end
+
+    context "not completed" do
+      it "populates correct fill progress for trade form on save" do
+        form_answer = create(:form_answer, :trade)
+        form_answer.document = form_answer.document.merge(principal_business: nil)
+        form_answer.save!
+
+        expect(form_answer.fill_progress.round(2)).to eq(0.98)
+      end
+
+      it "populates correct fill progress for development form on save" do
+        form_answer = create(:form_answer, :development)
+        form_answer.document = form_answer.document.merge(principal_business: nil)
+        form_answer.save!
+
+        expect(form_answer.fill_progress.round(2)).to eq(0.98)
+      end
+
+      it "populates correct fill progress for innovation form on save" do
+        form_answer = create(:form_answer, :innovation)
+        form_answer.document = form_answer.document.merge(principal_business: nil)
+        form_answer.save!
+
+        expect(form_answer.fill_progress.round(2)).to eq(0.98)
+      end
+    end
+  end
+
   describe "state helpers" do
     it "exposes the state as ? method" do
       expect(build(:form_answer, state: "not_awarded")).to be_not_awarded
