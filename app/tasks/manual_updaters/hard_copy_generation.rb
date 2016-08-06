@@ -5,11 +5,19 @@
 #
 # ManualUpdaters::HardCopyGeneration.case_summary_individual
 #
+# AwardYear.find_by(year: 2016).check_hard_copy_pdf_generation_status!("case_summary")
+#
 # ManualUpdaters::HardCopyGeneration.feedback_individual
+#
+# AwardYear.find_by(year: 2016).check_hard_copy_pdf_generation_status!("feedback")
 #
 # ManualUpdaters::HardCopyGeneration.case_summary_aggregated
 #
+# AwardYear.find_by(year: 2016).check_aggregated_hard_copy_pdf_generation_status!("case_summary")
+#
 # ManualUpdaters::HardCopyGeneration.feedback_aggregated
+#
+# AwardYear.find_by(year: 2016).check_aggregated_hard_copy_pdf_generation_status!("feedback")
 #
 
 module ManualUpdaters

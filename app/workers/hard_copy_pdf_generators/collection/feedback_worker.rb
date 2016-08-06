@@ -1,4 +1,5 @@
-class HardCopyPdfGenerators::Collection::FeedbackWorker
+class HardCopyPdfGenerators::Collection::FeedbackWorker < HardCopyPdfGenerators::BaseWorker
+
   def perform
     year = AwardYear.current
 
