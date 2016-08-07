@@ -49,28 +49,28 @@ class AwardYear < ActiveRecord::Base
   end
 
   def form_data_generation_can_be_started?
-    settings.after_current_submission_deadline? &&
+    Settings.after_current_submission_deadline? &&
     form_data_hard_copies_state.nil?
   end
 
   def case_summary_generation_can_be_started?
-    settings.winners_stage? &&
+    Settings.winners_stage? &&
     case_summary_hard_copies_state.nil?
   end
 
   def feedback_generation_can_be_started?
-    settings.unsuccessful_stage? &&
+    Settings.unsuccessful_stage? &&
     feedback_hard_copies_state.nil?
   end
 
   def aggregated_case_summary_generation_can_be_started?
-    settings.winners_stage? &&
-    aggregated_case_summary_hard_copies_state.nil?
+    Settings.winners_stage? &&
+    aggregated_case_summary_hard_copy_state.nil?
   end
 
   def aggregated_feedback_generation_can_be_started?
-    settings.unsuccessful_stage? &&
-    aggregated_feedback_hard_copies_state.nil?
+    Settings.unsuccessful_stage? &&
+    aggregated_feedback_hard_copy_state.nil?
   end
 
   def aggregated_hard_copies_completed?(type)

@@ -12,8 +12,6 @@ class HardCopyGenerators::AggregatedCaseSummaryGenerator < HardCopyGenerators::A
       AwardYear::CURRENT_YEAR_AWARDS.each do |award_category|
         new(award_category, award_year, "case_summary").run
       end
-
-      award_year.reload.check_aggregated_hard_copy_pdf_generation_status!("case_summary")
     end
   end
 
