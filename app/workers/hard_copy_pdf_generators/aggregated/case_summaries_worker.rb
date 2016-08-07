@@ -7,7 +7,10 @@ class HardCopyPdfGenerators::Aggregated::CaseSummariesWorker < HardCopyPdfGenera
       # Set status of generation process
       year.update_column(:aggregated_case_summary_hard_copy_state, 'started')
 
-      HardCopyGenerators::AggregatedCaseSummaryGenerator.new.run
+      HardCopyGenerators::AggregatedCaseSummaryGenerator.run(year)
     end
+
+    # Run check generation results scripe 1 hour later
+    HardCopyPdfGenerators::StatusCheckers::AggregatedCaseSummaryWorker.perform_at(1.hour.from_now)
   end
 end
