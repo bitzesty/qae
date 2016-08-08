@@ -9,3 +9,5 @@ Style/MethodDefParentheses:
   enabled: false
 Metrics/LineLength:
   Max: 120
+Metrics/MethodLength:
+  enabled: false
