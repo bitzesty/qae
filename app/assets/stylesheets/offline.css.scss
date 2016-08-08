@@ -1,0 +1,64 @@
+.offline-ui, .offline-ui *  {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.offline-ui {
+  display: none;
+  position: fixed;
+  background: white;
+  z-index: 2000;
+  margin: auto;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.offline-ui {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  font-family: "Helvetica Neue", sans-serif;
+  padding: 1em;
+  top: 1em;
+  width: 38em;
+  max-width: 100%;
+  overflow: hidden;
+}
+
+@media (max-width: 38em) {
+  .offline-ui {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    top: 0;
+  }
+}
+.offline-ui .offline-ui-content:before {
+  line-height: 1.25em;
+}
+
+.offline-ui .offline-ui-retry {
+  position: absolute;
+  right: 3em;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  color: inherit;
+  line-height: 3.5em;
+  height: 3.5em;
+  margin: auto;
+  padding: 0 1em;
+}
+
+.offline-ui.offline-ui-down {
+  -webkit-backface-visibility: hidden;
+  background: #ec8787;
+  color: #551313;
+}
