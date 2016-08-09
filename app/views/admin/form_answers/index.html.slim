@@ -7,6 +7,8 @@
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = submit_tag :submit, class: 'search-submit'
 
+  = render("admin/form_answers/list_components/status_top_filter.html.slim", f: f)
+
   - if @search.query?
     .well.search-text
       p

@@ -1,12 +1,13 @@
-.row
-  = render "layouts/admin_award_year"
-
-  .col-md-4.col-sm-5.col-xs-12.pull-right
-    .form-group.search-input
-      = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search do |f|
+= simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search do |f|
+  .row
+    = render "layouts/admin_award_year"
+    .col-md-4.col-sm-5.col-xs-12.pull-right
+      .form-group.search-input
         = text_field_tag :year, @award_year.year, class: "visuallyhidden"
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = submit_tag :submit, class: 'search-submit'
+
+  = render("assessor/form_answers/status_top_filter", f: f)
 
 - if @search.query?
   .well.search-text
@@ -36,7 +37,8 @@
               = sort_link f, "Company", @search, :company_or_nominee_name, disabled: @search.query?
             th.sortable
               = sort_link f, "Reference", @search, :urn, disabled: @search.query?
-            = render("assessor/form_answers/status_header", f: f)
+            th.sortable
+              = sort_link f, "Status", @search, :status, disabled: @search.query?
             = render("assessor/form_answers/assessor_header", f: f)
             th &nbsp;
             th.sortable
