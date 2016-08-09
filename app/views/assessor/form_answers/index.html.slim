@@ -38,7 +38,7 @@
             th.sortable
               = sort_link f, "Reference", @search, :urn, disabled: @search.query?
             th.sortable
-              = sort_link f, "Status", @search, :status, disabled: @search.query?
+              = sort_link f, "Status", @search, :state, disabled: @search.query?
             = render("assessor/form_answers/assessor_header", f: f)
             th &nbsp;
             th.sortable
