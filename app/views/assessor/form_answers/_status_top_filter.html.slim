@@ -1,5 +1,5 @@
 .row
-  .col-lg-3.col-md-4.col-sm-5.applications-filter
+  .col-lg-3.col-md-4.col-sm-5.applications-filter.status-filter
     = f.simple_fields_for [:filters, @search.filters] do |g|
       = g.input :status,
                 collection: FormAnswerStatus::AssessorFilter.options,
@@ -30,7 +30,7 @@
           button.btn.btn-block.btn-default. type="submit"
             ' Apply
 
-  .col-lg-5.col-md-7.col-sm-7.applications-filter
+  .col-lg-5.col-md-7.col-sm-7.applications-filter.sub-status-filter
     = f.simple_fields_for [:filters, @search.filters] do |h|
       = h.input :sub_status,
                 collection: FormAnswerStatus::AssessorFilter.sub_options(current_assessor),
