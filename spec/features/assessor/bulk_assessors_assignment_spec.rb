@@ -80,9 +80,9 @@ describe "Assessor assigns assessors", %(
 end
 
 def open_primary_select
-  page.execute_script("$('#assessor_assignment_collection_primary_assessor_id').select2('open');")
+  page.execute_script("$('#assessor_assignment_collection_primary_assessor_id').select2('open');");
 end
 
 def open_secondary_select
-  page.execute_script("$('#assessor_assignment_collection_secondary_assessor_id').select2('open');")
+  page.execute_script("$('#assessor_assignment_collection_secondary_assessor_id').select2('open');");
 end
