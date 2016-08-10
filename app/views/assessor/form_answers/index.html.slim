@@ -1,4 +1,4 @@
-= simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search do |f|
+= simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   .row
     = render "layouts/admin_award_year"
     .col-md-4.col-sm-5.col-xs-12.pull-right
@@ -9,18 +9,17 @@
 
   = render("assessor/form_answers/status_top_filter", f: f)
 
-- if @search.query?
-  .well.search-text
-    p
-      = "Search results for '#{@search.query}'"
-      small
-        = link_to "(Clear search)", assessor_form_answers_path, class: "btn btn-link"
+  - if @search.query?
+    .well.search-text
+      p
+        = "Search results for '#{@search.query}'"
+        small
+          = link_to "(Clear search)", assessor_form_answers_path, class: "btn btn-link"
 
-= render("assessor/form_answers/category_tabs")
+  = render("assessor/form_answers/category_tabs")
 
-= render("assessor/form_answers/bulk_assignment")
+  = render("assessor/form_answers/bulk_assignment")
 
-= simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   = hidden_field_tag :award_type, category_picker.current_award_type
   = text_field_tag :year, @award_year.year, class: "visuallyhidden"
 
