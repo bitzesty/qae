@@ -163,8 +163,8 @@ module CaseSummaryPdfs::General::DataPointer
     pdf_doc.table case_summaries_table_headers, row_colors: %w(FFFFFF),
                                                 cell_style: { size: 12, font_style: :bold },
                                                 column_widths: {
-                                                  0 => 650,
-                                                  1 => 117
+                                                  0 => 667,
+                                                  1 => 100
                                                 }
   end
 
@@ -179,14 +179,14 @@ module CaseSummaryPdfs::General::DataPointer
     c_widths = if @form_answer.mobility?
       {
         0 => 200,
-        1 => 450,
-        2 => 117
+        1 => 467,
+        2 => 100
       }
     else
       {
         0 => 100,
-        1 => 550,
-        2 => 117
+        1 => 567,
+        2 => 100
       }
     end
 

@@ -1,8 +1,8 @@
 class AppraisalForm
   RAG_OPTIONS = [
-    ["Weak (0-15)", "negative"],
-    ["Satisfactory (16-31)", "average"],
-    ["Exceptional (32-50)", "positive"]
+    %w(Red negative),
+    %w(Amber average),
+    %w(Green positive)
   ]
 
   STRENGTH_OPTIONS = [
@@ -88,210 +88,152 @@ class AppraisalForm
   TRADE = {
     overseas_earnings_growth: {
       type: :rag,
-      label: "Overseas earnings growth:",
-      position: 0
+      label: "Overseas earnings growth:"
+
     },
     commercial_success: {
       type: :rag,
-      label: "Commercial success:",
-      position: 1
+      label: "Commercial success:"
     },
     strategy: {
       type: :rag,
-      label: "Strategy:",
-      position: 2
-    },
-    strategy: {
-      type: :rag,
-      label: "Corporate social responsibility (section D):",
-      position: 3
+      label: "Strategy:"
     },
     verdict: {
       type: :verdict,
-      label: "Overall verdict:",
-      position: 4
+      label: "Overall verdict:"
     }
   }
 
   INNOVATION = {
     level_of_innovation: {
       type: :rag,
-      label: "Level of innovation:",
-      position: 0
+      label: "Level of innovation:"
     },
     extent_of_value_added: {
       type: :rag,
-      label: "Extent of value added:",
-      position: 1
+      label: "Extent of value added:"
     },
     impact_of_innovation: {
       type: :rag,
-      label: "Impact of innovation:",
-      position: 2
-    },
-    strategy: {
-      type: :rag,
-      label: "Corporate social responsibility (section D):",
-      position: 3
+      label: "Impact of innovation:"
     },
     verdict: {
       type: :verdict,
-      label: "Overall verdict:",
-      position: 4
+      label: "Overall verdict:"
     }
   }
 
   PROMOTION = {
     nature_of_activities: {
       type: :rag,
-      label: "Nature (breadth) of activities:",
-      position: 0
+      label: "Nature (breadth) of activities:"
     },
     impact_achievement: {
       type: :rag,
-      label: "Impact/achievement:",
-      position: 1
+      label: "Impact/achievement:"
     },
     level_of_support: {
       type: :rag,
-      label: "Level of support:",
-      position: 2
-    },
-    strategy: {
-      type: :rag,
-      label: "Corporate social responsibility (section D):",
-      position: 3
+      label: "Level of support:"
     },
     verdict: {
       type: :verdict,
-      label: "Overall verdict:",
-      position: 4
+      label: "Overall verdict:"
     }
   }
 
   DEVELOPMENT = {
     product_service_contribution: {
       type: :rag,
-      label: "Product/service contribution:",
-      position: 0
+      label: "Product/service contribution:"
     },
     commercial_success: {
       type: :rag,
-      label: "Commercial success:",
-      position: 1
+      label: "Commercial success:"
     },
     strategy: {
       type: :rag,
-      label: "Strategy:",
-      position: 2
+      label: "Strategy:"
     },
     environment: {
       type: :non_rag,
-      label: "Environmental dimension:",
-      position: 3
+      label: "Environmental dimension:"
     },
     social: {
       type: :non_rag,
-      label: "Social dimension:",
-      position: 4
+      label: "Social dimension:"
     },
     economic: {
       type: :non_rag,
-      label: "Economic dimension:",
-      position: 5
+      label: "Economic dimension:"
     },
     leadership_management: {
       type: :non_rag,
-      label: "Leadership & management:",
-      position: 6
-    },
-    strategy: {
-      type: :rag,
-      label: "Corporate social responsibility (section D):",
-      position: 7
+      label: "Leadership & management:"
     },
     environment_protection: {
       type: :strengths,
-      label: "Environmental protection and management:",
-      position: 8
+      label: "Environmental protection and management:"
     },
     benefiting_the_wilder_community: {
       type: :strengths,
-      label: "Benefiting the wider community:",
-      position: 9
+      label: "Benefiting the wider community:"
     },
     sustainable_resource: {
       type: :strengths,
-      label: "Sustainable resource use:",
-      position: 10
+      label: "Sustainable resource use:"
     },
     economic_sustainability: {
       type: :strengths,
-      label: "Economic sustainability:",
-      position: 11
+      label: "Economic sustainability:"
     },
     supporting_employees: {
       type: :strengths,
-      label: "Supporting employees:",
-      position: 12
+      label: "Supporting employees:"
     },
     internal_leadership: {
       type: :strengths,
-      label: "Internal leadership & management:",
-      position: 13
+      label: "Internal leadership & management:"
     },
     industry_sector: {
       type: :strengths,
-      label: "Industry/sector leadership:",
-      position: 14
+      label: "Industry/sector leadership:"
     },
     verdict: {
       type: :verdict,
-      label: "Overall verdict:",
-      position: 15
+      label: "Overall verdict:"
     }
   }
 
   MOBILITY = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
-      label: "Questions B2 – B2.2: What is the organisation aiming to achieve with the programme? (10%)",
-      position: 0
+      label: "Questions B2 – B2.2: What is the organisation aiming to achieve with the programme? (10%)"
     },
     mobility_programme_provide_a_good: {
       type: :rag,
-      label: "Questions B3 – B3.2: How does the programme provide a good return on investment? (15%)",
-      position: 1
+      label: "Questions B3 – B3.2: How does the programme provide a good return on investment? (15%)"
     },
     mobility_embedded_is_the_programme: {
       type: :rag,
-      label: "Questions B4 – B4.2: How embedded is the programme, and how will it help the organisation grow? (15%)",
-      position: 2
+      label: "Questions B4 – B4.2: How embedded is the programme, and how will it help the organisation grow? (15%)"
     },
     mobility_programme_benefit: {
       type: :rag,
-      label: "Questions B5 – B5.1: How does the programme benefit people? (20%)",
-      position: 3
+      label: "Questions B5 – B5.1: How does the programme benefit people? (20%)"
     },
     mobility_programme_benefit_the_organisation: {
       type: :rag,
-      label: "Questions B6 – B6.1: How does the programme benefit the organisation? (20%)",
-      position: 4
+      label: "Questions B6 – B6.1: How does the programme benefit the organisation? (20%)"
     },
     mobility_organisation_approach: {
       type: :rag,
-      label: "Question B7: What makes the organisation's approach exemplary? (20%)",
-      position: 5
-    },
-    strategy: {
-      type: :rag,
-      label: "Corporate social responsibility (section D):",
-      position: 6
+      label: "Question B7: What makes the organisation's approach exemplary? (20%)"
     },
     verdict: {
       type: :verdict,
-      label: "Overall verdict:",
-      position: 7
+      label: "Overall verdict:"
     }
   }
 
@@ -355,13 +297,11 @@ class AppraisalForm
     # Assessor assignment
     moderated = (f && f.object && f.object.position == "moderated")
 
-    list = if moderated
+    if moderated
       MODERATED
     else
       const_get(form_answer.public_send(meth).upcase)
     end
-
-    list.sort_by { |k, v| v[:position] }
   end
 
   def self.rates(form_answer, type)
