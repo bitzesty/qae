@@ -16,7 +16,11 @@
         - else
           span.urn-not-generated Not yet generated
     td = obj.award_type_short_name
-    td = obj.progress_text
+    td
+      - if !obj.submitted?
+        = obj.progress_text
+      - else
+        = obj.sic_code
     td
       - app_comments = application_comments(obj.comments)
       - if app_comments.present?
