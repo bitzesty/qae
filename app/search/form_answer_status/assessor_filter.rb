@@ -61,9 +61,6 @@ class FormAnswerStatus::AssessorFilter
     secondary_assessment_submitted: {
       label: "Secondary Assessment submitted"
     },
-    recommendation_disperancy: {
-      label: "Recommendation discrepancy"
-    },
     primary_and_secondary_assessments_submitted: {
       label: "Primary and Secondary Assessments submitted"
     },
@@ -72,6 +69,9 @@ class FormAnswerStatus::AssessorFilter
     },
     secondary_assessment_not_submitted: {
       label: "Secondary Assessment not submitted"
+    },
+    recommendation_disperancy: {
+      label: "Recommendation discrepancy"
     },
     missing_audit_certificate: {
       label: "Missing Audit Certificate"
