@@ -7,7 +7,10 @@
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = submit_tag :submit, class: 'search-submit'
 
-  = render("assessor/form_answers/status_top_filter", f: f)
+  = render "shared/form_answers/top_statuses_filters", f: f,
+                                                      options: FormAnswerStatus::AssessorFilter.options,
+                                                      sub_options: FormAnswerStatus::AssessorFilter.sub_options(current_assessor)
+
   = hidden_field_tag "search[sort]", params[:search][:sort]
   - #sort needs to be here because the sorting is done in the other form below, so in order not to break sorting, we need to duplicate it here
 
