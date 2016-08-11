@@ -1,7 +1,7 @@
 .row
   .col-xs-12
     .page-header.page-header-nav
-      = link_to "‹ Back to applications list", admin_form_answers_path, class: "btn btn-link btn-lg"
+      = link_to "‹ Back to applications list", admin_form_answers_path(params), class: "btn btn-link btn-lg"
       .apps-navigation
         - if !@form_paginator.first?
           = link_to "‹ Previous application", admin_form_answer_path(@form_paginator.prev_entry, search: params[:search]), class: "btn btn-link btn-lg link-prev"
