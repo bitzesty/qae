@@ -21,8 +21,9 @@ class FeedbackCreationService
     feedback.authorable = user
     feedback.document = {}
     primary_assignment = form_answer.assessor_assignments.primary
+    year = form_answer.award_year.year
 
-    AppraisalForm::DEVELOPMENT.each do |attr, val|
+    AppraisalForm.const_get("DEVELOPMENT_#{year}").each do |attr, val|
       next if val[:type] != :strengths
 
       feedback.document["#{attr}_rate"] = primary_assignment.document["#{attr}_rate"]

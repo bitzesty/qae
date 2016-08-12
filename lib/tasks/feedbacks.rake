@@ -11,7 +11,7 @@ namespace :feedbacks do
       feedback.authorable ||= primary_assignment.assessor
       feedback.document ||= {}
 
-      AppraisalForm::DEVELOPMENT.each do |attr, val|
+      AppraisalForm.const_get("DEVELOPMENT_#{feedback.award_year.year}").each do |attr, val|
         next if val[:type] != :strengths
 
         feedback.document["#{attr}_rate"] = primary_assignment.document["#{attr}_rate"]

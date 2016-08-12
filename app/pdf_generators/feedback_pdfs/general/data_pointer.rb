@@ -7,7 +7,9 @@ module FeedbackPdfs::General::DataPointer
   NEUTRAL_COLOR = "ECECEC"
 
   COLOR_LABELS.each do |label|
-    const_set("#{label.upcase}_LABELS", AppraisalForm.group_labels_by(label))
+    AppraisalForm::SUPPORTED_YEARS.each do |year|
+      const_set("#{label.upcase}_LABELS_#{year}", AppraisalForm.group_labels_by(year, label))
+    end
   end
 
   def undefined_value
@@ -25,7 +27,7 @@ module FeedbackPdfs::General::DataPointer
   end
 
   def feedback_entries
-    FeedbackForm.fields_for_award_type(form_answer.award_type).map do |key, value|
+    FeedbackForm.fields_for_award_type(form_answer).map do |key, value|
       if value[:type] != :strengths
         [
           value[:label].delete(":"),
@@ -37,7 +39,7 @@ module FeedbackPdfs::General::DataPointer
   end
 
   def strengths_entries
-    FeedbackForm.fields_for_award_type(form_answer.award_type).map do |key, value|
+    FeedbackForm.fields_for_award_type(form_answer).map do |key, value|
       if value[:type] == :strengths
         [
           value[:label].delete(":"),
@@ -63,6 +65,8 @@ module FeedbackPdfs::General::DataPointer
     })
 
     if form_answer.development?
+      year = form_answer.award_year.year
+
       pdf_doc.table(strengths_entries,
                     cell_style: { size: 12 },
                     column_widths: {
@@ -72,22 +76,22 @@ module FeedbackPdfs::General::DataPointer
         values = cells.columns(1).rows(0..-1)
 
         green_rags = values.filter do |cell|
-          POSITIVE_LABELS.include?(cell.content.to_s.strip)
+          FeedbackPdfs::Pointer.const_get("POSITIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
         end
         green_rags.background_color = POSITIVE_COLOR
 
         amber_rags = values.filter do |cell|
-          AVERAGE_LABELS.include?(cell.content.to_s.strip)
+          FeedbackPdfs::Pointer.const_get("AVERAGE_LABELS_#{year}").include?(cell.content.to_s.strip)
         end
         amber_rags.background_color = AVERAGE_COLOR
 
         red_rags = values.filter do |cell|
-          NEGATIVE_LABELS.include?(cell.content.to_s.strip)
+          FeedbackPdfs::Pointer.const_get("NEGATIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
         end
         red_rags.background_color = NEGATIVE_COLOR
 
         neutral_rags = values.filter do |cell|
-          NEUTRAL_LABELS.include?(cell.content.to_s.strip)
+          FeedbackPdfs::Pointer.const_get("NEUTRAL_LABELS_#{year}").include?(cell.content.to_s.strip)
         end
         neutral_rags.background_color = NEUTRAL_COLOR
       end
@@ -111,7 +115,7 @@ module FeedbackPdfs::General::DataPointer
 
   def rag(key)
     if data["#{key}_rate"].present?
-      val =  AppraisalForm::STRENGTH_OPTIONS.detect do |el|
+      val = AppraisalForm.const_get("STRENGTH_OPTIONS_#{form_answer.award_year.year}").detect do |el|
         el[1] == data["#{key}_rate"]
       end
 

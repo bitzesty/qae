@@ -16,11 +16,11 @@ describe "FeedbackPdfs::Base" do
   before do
     create :feedback, submitted: true,
                       form_answer: form_answer_trade,
-                      document: set_feedback_content(:trade)
+                      document: set_feedback_content(form_answer_trade)
 
     create :feedback, submitted: true,
                       form_answer: form_answer_innovation,
-                      document: set_feedback_content(:innovation)
+                      document: set_feedback_content(form_answer_innovation)
   end
 
   describe "#set_feedbacks" do
@@ -53,10 +53,10 @@ describe "FeedbackPdfs::Base" do
 
   private
 
-  def set_feedback_content(award_type)
+  def set_feedback_content(form_answer)
     res = {}
 
-    FeedbackForm.fields_for_award_type(award_type).each_with_index do |block, index|
+    FeedbackForm.fields_for_award_type(form_answer).each_with_index do |block, index|
       key = block[0]
       res["#{key}_strength"] = "#{index}_strength"
       res["#{key}_weakness"] = "#{index}_weakness"
