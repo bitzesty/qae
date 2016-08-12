@@ -1,4 +1,7 @@
 class Feedback < ActiveRecord::Base
+
+  has_paper_trail unless: Proc.new { |t| Rails.env.test? }
+
   belongs_to :form_answer
 
   store_accessor :document, FeedbackForm.fields

@@ -10,7 +10,7 @@ shared_context "admin application feedback pdf download" do
   let(:feedback_content) do
     res = {}
 
-    FeedbackForm.fields_for_award_type(form_answer.award_type).each do |key, value|
+    FeedbackForm.fields_for_award_type(form_answer).each do |key, value|
       res["#{key}_strength"] = "#{key} strength"
       res["#{key}_weakness"] = "#{key} weakness"
     end

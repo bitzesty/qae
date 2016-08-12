@@ -11,7 +11,7 @@
       - if policy(state).view_dropdown? && state.collection.present?
         .btn-group
           button.btn.btn-link.dropdown-toggle.state-toggle.if-no-js-hide type="button" data-toggle="dropdown" aria-expanded="false"
-            = @form_answer.state_text
+            = @form_answer.state_short_text
           = render("admin/form_answers/states_list", collection: state.collection, policy: policy(state).view_dropdown?)
 
           = simple_form_for([namespace_name, resource, state],
@@ -27,7 +27,7 @@
             = f.submit :update_state
       - else
         p.p-lg
-          = @form_answer.state_text
+          = @form_answer.state_short_text
 
   small
     = resource.last_state_updated_by

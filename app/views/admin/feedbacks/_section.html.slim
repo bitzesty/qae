@@ -3,7 +3,7 @@
 = simple_form_for feedback, url: url, remote: true, authenticity_token: true, html: { "data-type" => "json" } do |f|
   - if !form_answer.promotion?
     = render "admin/feedbacks/overall_feedback_field", f: f, feedback: feedback
-  - FeedbackForm.fields_for_award_type(form_answer.object.award_type).each do |feedback_field, feedback_field_value|
+  - FeedbackForm.fields_for_award_type(form_answer.object).each do |feedback_field, feedback_field_value|
     - if feedback_field_value[:type] == :strengths
       = render "admin/feedbacks/strength_field", field: feedback_field, value: feedback_field_value, feedback: feedback, f: f
     - else

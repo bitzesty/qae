@@ -7,8 +7,8 @@ describe FormPaginator do
   let!(:form_answer_3) { create(:form_answer) }
 
   before do
-    FormAnswer.all.each_with_index do |fa|
-      fa.update_column(:company_or_nominee_name, fa.id)
+    FormAnswer.all.each_with_index do |fa, index|
+      fa.update_column(:company_or_nominee_name, index)
     end
   end
 

@@ -9,7 +9,7 @@ shared_context "admin all feedbacks pdf generation" do
 
   let!(:feedback) do
     create :feedback, form_answer: form_answer,
-                      document: feedback_document(award_type),
+                      document: feedback_document,
                       submitted: true
   end
 
@@ -35,10 +35,10 @@ shared_context "admin all feedbacks pdf generation" do
     end
   end
 
-  def feedback_document(award_type)
+  def feedback_document
     res = {}
 
-    FeedbackForm.fields_for_award_type(award_type).each do |key, value|
+    FeedbackForm.fields_for_award_type(form_answer).each do |key, value|
       res["#{key}_strength"] = "#{key} strength"
       res["#{key}_weakness"] = "#{key} weakness"
     end
