@@ -360,7 +360,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              This is in addition to the sustainability impact you have already demonstrated in section B of this form. Please provide figures if known.
+              Please describe the cost savings and/or other benefits in addition to the sustainability impact you have already demonstrated in section B of this form. Please provide figures if known.
             </p>
           )
           rows 5
@@ -372,7 +372,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              Include all investments and reinvestments made both during and prior to your entry period. Also include the year(s) in which they were made.
+              Include all investments and reinvestments made both during and prior to your entry period, e.g. R&D. Also include the year(s) in which they were made.
             </p>
                     )
           rows 5
