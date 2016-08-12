@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 
-gem 'rails', '4.2.5.2'
+gem 'rails', '4.2.7.1'
 
 # Security HTTP Headers
 gem 'secure_headers'
@@ -17,6 +17,7 @@ gem 'pg', '~> 0.17'
 gem 'paper_trail', '~> 5.1.0'
 
 # Assets & Templates
+gem 'sprockets-rails', '~> 2.0'
 gem 'slim-rails', '~> 3.0.1'
 gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
