@@ -43,7 +43,7 @@ class FormAnswerStatistics::Picker
     in_progress << fa_year_scope.where(state: "application_in_progress").count
     out[:applications_in_progress] = { name: "Applications in progress", counters: in_progress }
 
-    submitted = collect_submission_ranges(fa_year_scope)
+    submitted = collect_submission_ranges(fa_year_scope.where.not(award_type: "promotion"))
     out[:applications_submitted] = {
       name: "Applications submitted",
       counters: submitted
