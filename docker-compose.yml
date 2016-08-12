@@ -11,6 +11,7 @@ web: &web
     - 443:3000
   labels:
     - convox.deployment.minimum=50
+    - convox.port.443.protocol=https
 worker:
   <<: *web
   ports: []
