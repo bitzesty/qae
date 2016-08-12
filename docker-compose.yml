@@ -9,6 +9,8 @@ web: &web
   ports:
     - 80:3000
     - 443:3000
+  labels:
+    - convox.deployment.minimum=50
 worker:
   <<: *web
   ports: []

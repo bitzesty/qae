@@ -119,6 +119,10 @@ class FormAnswerDecorator < ApplicationDecorator
     I18n.t(object.state.to_s, scope: "form_answers.state")
   end
 
+  def state_short_text
+    I18n.t(object.state.to_s, scope: "form_answers.state_short")
+  end
+
   def progress_text_short
     object.state.humanize
   end

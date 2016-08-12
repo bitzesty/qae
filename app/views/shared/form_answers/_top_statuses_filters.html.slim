@@ -1,0 +1,62 @@
+.row
+  .col-lg-3.col-md-4.col-sm-5.applications-filter.status-filter
+    = f.simple_fields_for [:filters, @search.filters] do |g|
+      = g.input :status,
+                collection: options,
+                label: false,
+                input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide'}
+    label.applications-filter__label
+      ' Status
+    .dropdown.if-no-js-hide
+      a.dropdown-toggle.btn.btn-block.btn-default href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+        span.text-filter
+          ' Status
+        span.caret-container
+          span.caret
+      ul.dropdown-menu role="menu"
+        li.checkbox role="presentation"
+          label data-value='select_all'
+            input type="checkbox"
+            span.label-contents
+              em Select all
+        - options.each do |k, option|
+          li.checkbox role="presentation"
+            label data-value=k
+              input type="checkbox"
+              span.label-contents
+                = option[:label]
+        li.divider
+        li.apply
+          button.btn.btn-block.btn-default. type="submit"
+            ' Apply
+
+  .col-lg-5.col-md-7.col-sm-7.applications-filter.sub-status-filter
+    = f.simple_fields_for [:filters, @search.filters] do |h|
+      = h.input :sub_status,
+                collection: sub_options,
+                label: false,
+                input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide'}
+    label.applications-filter__label
+      ' Post Submission Status
+    .dropdown.if-no-js-hide
+      a.dropdown-toggle.btn.btn-block.btn-default href="#" data-toggle="dropdown" role="button" aria-expanded="false"
+        span.text-filter
+          ' Post Submission Status
+        span.caret-container
+          span.caret
+      ul.dropdown-menu role="menu"
+        li.checkbox role="presentation"
+          label data-value='select_all'
+            input type="checkbox"
+            span.label-contentsall
+              em Select all
+        - sub_options.each do |k, option|
+          li.checkbox role="presentation"
+            label data-value=k
+              input type="checkbox"
+              span.label-contents
+                = option[:label]
+        li.divider
+        li.apply
+          button.btn.btn-block.btn-default. type="submit"
+            ' Apply

@@ -1,5 +1,4 @@
-class ApplicationHardCopyPdfWorker
-  include Sidekiq::Worker
+class HardCopyPdfGenerators::FormDataWorker  < HardCopyPdfGenerators::BaseWorker
 
   def perform(form_answer_id)
     form_answer = FormAnswer.find(form_answer_id)
