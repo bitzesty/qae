@@ -114,11 +114,15 @@ module CaseSummaryPdfs::General::DataPointer
   def rag_source(value)
     case value[:type]
     when :rag
-      AppraisalForm::RAG_OPTIONS
+      if value[:label].include?("Corporate social responsibility")
+        AppraisalForm.const_get("CSR_RAG_OPTIONS_#{@award_year.year}")
+      else
+        AppraisalForm.const_get("RAG_OPTIONS_#{@award_year.year}")
+      end
     when :verdict
-      AppraisalForm::VERDICT_OPTIONS
+      AppraisalForm.const_get("VERDICT_OPTIONS_#{@award_year.year}")
     when :strengths
-      AppraisalForm::STRENGTH_OPTIONS
+      AppraisalForm.const_get("STRENGTH_OPTIONS_#{@award_year.year}")
     end
   end
 
@@ -172,7 +176,9 @@ module CaseSummaryPdfs::General::DataPointer
   # but constants for current class are available
   # so, that we are setting them here
   COLOR_LABELS.each do |label|
-    const_set("#{label.upcase}_LABELS", AppraisalForm.group_labels_by(label))
+    AppraisalForm::SUPPORTED_YEARS.each do |year|
+      const_set("#{label.upcase}_LABELS_#{year}", AppraisalForm.group_labels_by(year, label))
+    end
   end
 
   def render_items
@@ -190,6 +196,8 @@ module CaseSummaryPdfs::General::DataPointer
       }
     end
 
+    year = @award_year.year
+
     pdf_doc.table(case_summaries_entries,
                   cell_style: { size: 12 },
                   column_widths: c_widths) do
@@ -197,22 +205,22 @@ module CaseSummaryPdfs::General::DataPointer
       values = cells.columns(2).rows(0..-1)
 
       green_rags = values.filter do |cell|
-        POSITIVE_LABELS.include?(cell.content.to_s.strip)
+        CaseSummaryPdfs::Pointer.const_get("POSITIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
       end
       green_rags.background_color = POSITIVE_COLOR
 
       amber_rags = values.filter do |cell|
-        AVERAGE_LABELS.include?(cell.content.to_s.strip)
+        CaseSummaryPdfs::Pointer.const_get("AVERAGE_LABELS_#{year}").include?(cell.content.to_s.strip)
       end
       amber_rags.background_color = AVERAGE_COLOR
 
       red_rags = values.filter do |cell|
-        NEGATIVE_LABELS.include?(cell.content.to_s.strip)
+        CaseSummaryPdfs::Pointer.const_get("NEGATIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
       end
       red_rags.background_color = NEGATIVE_COLOR
 
       neutral_rags = values.filter do |cell|
-        NEUTRAL_LABELS.include?(cell.content.to_s.strip)
+        CaseSummaryPdfs::Pointer.const_get("NEUTRAL_LABELS_#{year}").include?(cell.content.to_s.strip)
       end
       neutral_rags.background_color = NEUTRAL_COLOR
     end

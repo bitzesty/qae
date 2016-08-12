@@ -1,4 +1,7 @@
 class AssessorAssignment < ActiveRecord::Base
+
+  has_paper_trail unless: Proc.new { |t| Rails.env.test? }
+
   enum position: {
     primary: 0,
     secondary: 1,
@@ -143,7 +146,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def award_specific_attributes
-    struct.diff(form_answer.award_type, moderated?).each do |att|
+    struct.diff(form_answer, moderated?).each do |att|
       if public_send(att).present?
         errors.add(att, "cannot be present for this Award Type")
       end
@@ -152,7 +155,7 @@ class AssessorAssignment < ActiveRecord::Base
 
   def mandatory_fields_for_submitted
     return unless submitted?
-    struct.meths_for_award_type(form_answer.award_type, moderated?).each do |meth|
+    struct.meths_for_award_type(form_answer, moderated?).each do |meth|
       if public_send(meth).blank?
         errors.add(meth, "cannot be blank for submitted assessment")
       end

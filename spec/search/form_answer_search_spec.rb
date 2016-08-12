@@ -100,7 +100,9 @@ describe FormAnswerSearch do
           commercial_success_desc: "2",
           commercial_success_rate: "average",
           overseas_earnings_growth_desc: "1",
-          overseas_earnings_growth_rate: "average"
+          overseas_earnings_growth_rate: "average",
+          corporate_social_responsibility_desc: "testcsr",
+          corporate_social_responsibility_rate: "average"
         }
       end
 
