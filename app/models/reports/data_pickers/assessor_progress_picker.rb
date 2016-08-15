@@ -41,53 +41,71 @@ class Reports::DataPickers::AssessorProgressPicker
                SELECT
                COUNT(*)
                FROM assessor_assignments
+               INNER JOIN form_answers
+               ON form_answers.id = assessor_assignments.form_answer_id
                WHERE assessor_assignments.assessor_id = assessors.id
                      AND assessor_assignments.position = 0
                      AND assessor_assignments.award_year_id = #{award_year_id}
+                     AND form_answers.award_type = '#{award_category}'
              ) As primary_assigned,
              (
                SELECT
                COUNT(*)
                FROM assessor_assignments
+               INNER JOIN form_answers
+               ON form_answers.id = assessor_assignments.form_answer_id
                WHERE assessor_assignments.assessor_id = assessors.id
                      AND assessor_assignments.position = 0
                      AND assessor_assignments.award_year_id = #{award_year_id}
                      AND assessor_assignments.submitted_at IS NOT NULL
+                     AND form_answers.award_type = '#{award_category}'
              ) As primary_assessed,
              (
                SELECT
                COUNT(*)
                FROM assessor_assignments
+               INNER JOIN form_answers
+               ON form_answers.id = assessor_assignments.form_answer_id
                WHERE assessor_assignments.assessor_id = assessors.id
                      AND assessor_assignments.position = 4
                      AND assessor_assignments.award_year_id = #{award_year_id}
                      AND assessor_assignments.submitted_at IS NOT NULL
+                     AND form_answers.award_type = '#{award_category}'
              ) As primary_case_summary,
              (
                SELECT
                COUNT(*)
                FROM feedbacks
+               INNER JOIN form_answers
+               ON form_answers.id = feedbacks.form_answer_id
                WHERE feedbacks.authorable_id = assessors.id
                      AND feedbacks.authorable_type = 'Assessor'
                      AND feedbacks.award_year_id = #{award_year_id}
                      AND feedbacks.submitted = '1'
+                     AND form_answers.award_type = '#{award_category}'
              ) As primary_feedback,
              (
                SELECT
                COUNT(*)
                FROM assessor_assignments
+               INNER JOIN form_answers
+               ON form_answers.id = assessor_assignments.form_answer_id
                WHERE assessor_assignments.assessor_id = assessors.id
                      AND assessor_assignments.position = 1
                      AND assessor_assignments.award_year_id = #{award_year_id}
+                     AND form_answers.award_type = '#{award_category}'
              ) As secondary_assigned,
              (
                SELECT
                COUNT(*)
                FROM assessor_assignments
+               INNER JOIN form_answers
+               ON form_answers.id = assessor_assignments.form_answer_id
                WHERE assessor_assignments.assessor_id = assessors.id
                      AND assessor_assignments.position = 1
                      AND assessor_assignments.award_year_id = #{award_year_id}
                      AND assessor_assignments.submitted_at IS NOT NULL
+                     AND form_answers.award_type = '#{award_category}'
              ) As secondary_assessed
       FROM assessors
       WHERE assessors.confirmed_at IS NOT NULL
