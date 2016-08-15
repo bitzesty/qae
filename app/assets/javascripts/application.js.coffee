@@ -16,9 +16,13 @@
 #= require vendor/zxcvbn
 #= require vendor/jquery-debounce
 #= require_tree ./frontend
+#= require offline
 
 jQuery ->
   $("html").removeClass("no-js").addClass("js")
+
+  offlineCheck = new Offline
+  offlineCheck.start()
 
   # initialize Select dropdowns, if needed
   window.Select2Dropdowns.init()
