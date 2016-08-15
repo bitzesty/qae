@@ -370,75 +370,70 @@ class AppraisalForm
       label: "Commercial success:",
       position: 1
     },
-    strategy: {
-      type: :rag,
-      label: "Strategy:",
-      position: 2
-    },
     environment: {
       type: :non_rag,
       label: "Environmental dimension:",
-      position: 3
+      position: 2
     },
     social: {
       type: :non_rag,
       label: "Social dimension:",
-      position: 4
+      position: 3
     },
     economic: {
       type: :non_rag,
       label: "Economic dimension:",
-      position: 5
+      position: 4
     },
     leadership_management: {
       type: :non_rag,
       label: "Leadership & management:",
-      position: 6
+      position: 5
     },
     corporate_social_responsibility: {
       type: :rag,
       label: "Corporate social responsibility (section D):",
-      position: 7
+      position: 6
     },
     environment_protection: {
       type: :strengths,
       label: "Environmental protection and management:",
-      position: 8
+      position: 7
     },
     benefiting_the_wilder_community: {
       type: :strengths,
       label: "Benefiting the wider community:",
-      position: 9
+      position: 8
     },
     sustainable_resource: {
       type: :strengths,
       label: "Sustainable resource use:",
-      position: 10
+      position: 9
     },
     economic_sustainability: {
       type: :strengths,
       label: "Economic sustainability:",
-      position: 11
+      position: 10
     },
     supporting_employees: {
       type: :strengths,
       label: "Supporting employees:",
-      position: 12
+      position: 11
     },
     internal_leadership: {
       type: :strengths,
       label: "Internal leadership & management:",
-      position: 13
+      position: 12
     },
     industry_sector: {
       type: :strengths,
       label: "Industry/sector leadership:",
-      position: 14
+      position: 13
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 15
+      position: 14
     }
   }
 
