@@ -31,7 +31,7 @@
           .input-group
             = f.input :password,
                       wrapper_html: { class: 'form-group' },
-                      input_html: { class: 'form-control' },
+                      input_html: { class: 'form-control', "data-min-password-length" => "10" },
                       label: false
             span#password-result-span.input-group-addon
               i#password-result.glyphicon.glyphicon-ok
