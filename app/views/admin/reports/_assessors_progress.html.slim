@@ -3,13 +3,14 @@
     ' Assessor's Progress Report
   ul.list-unstyled.list-actions
     - FormAnswer::AWARD_TYPE_FULL_NAMES.each do |key, value|
+      - file_name = value.gsub(" ", "-").downcase
       li
         .pull-right
-          = link_to admin_report_path("assessors-progress-#{key}", category: key, format: :csv, year: @award_year.year)
+          = link_to admin_report_path("assessors-progress-#{file_name}", category: key, format: :csv, year: @award_year.year)
             span.glyphicon.glyphicon-download-alt
             span.visible-lg.visible-md
               ' Download
-        = link_to admin_report_path("assessors-progress-#{key}", category: key, format: :csv, year: @award_year.year), class: "action-title"
+        = link_to admin_report_path("assessors-progress-#{file_name}", category: key, format: :csv, year: @award_year.year), class: "action-title"
           span.glyphicon.glyphicon-file
           = value
   .clear
