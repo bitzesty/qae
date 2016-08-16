@@ -170,7 +170,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards environmental outcomes.
+              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards social outcomes.
             </p>
             <p>
               'Social outcomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
@@ -212,7 +212,7 @@ class QAE2014Forms
           required
           context %(
             <p>
-              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards environmental outcomes.
+              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards economic outcomes.
             </p>
             <p>
              'Economic outcomes' means building a fair, sustainable economy which provides prosperity and opportunity for all, promotes innovation and encourages lifelong learning.
