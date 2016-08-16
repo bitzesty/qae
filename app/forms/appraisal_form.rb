@@ -396,45 +396,10 @@ class AppraisalForm
       label: "Corporate social responsibility (section D):",
       position: 6
     },
-    environment_protection: {
-      type: :strengths,
-      label: "Environmental protection and management:",
-      position: 7
-    },
-    benefiting_the_wilder_community: {
-      type: :strengths,
-      label: "Benefiting the wider community:",
-      position: 8
-    },
-    sustainable_resource: {
-      type: :strengths,
-      label: "Sustainable resource use:",
-      position: 9
-    },
-    economic_sustainability: {
-      type: :strengths,
-      label: "Economic sustainability:",
-      position: 10
-    },
-    supporting_employees: {
-      type: :strengths,
-      label: "Supporting employees:",
-      position: 11
-    },
-    internal_leadership: {
-      type: :strengths,
-      label: "Internal leadership & management:",
-      position: 12
-    },
-    industry_sector: {
-      type: :strengths,
-      label: "Industry/sector leadership:",
-      position: 13
-    },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 14
+      position: 7
     }
   }
 
