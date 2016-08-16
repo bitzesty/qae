@@ -88,7 +88,15 @@ describe FormAnswerStateMachine do
     end
 
     context "feedback creation" do
-      let(:form_answer) { create(:form_answer, :development, :submitted, award_year: award_year) }
+      #
+      # In 2017 we removed Key Strengths for Sust.development form
+      # But for 2016 they should be
+      # So that we are creating form_answer on this test case for 2016
+      # as for 2017 this spec is not actual
+      #
+
+      let(:year_2016) { AwardYear.create!(year: 2016) }
+      let(:form_answer) { create(:form_answer, :development, :submitted, award_year: year_2016) }
       let(:assessment) { form_answer.assessor_assignments.primary }
       let(:assessor) { create(:assessor, :regular_for_all) }
       let!(:settings) { create(:settings, :expired_submission_deadlines) }

@@ -64,7 +64,7 @@ module FeedbackPdfs::General::DataPointer
       2 => 337
     })
 
-    if form_answer.development?
+    if form_answer.development? && strengths_entries.present?
       year = form_answer.award_year.year
 
       pdf_doc.table(strengths_entries,

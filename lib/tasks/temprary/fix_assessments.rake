@@ -58,4 +58,48 @@ namespace :db do
       entry.save!(validate: false)
     end
   end
+
+  desc "fix staging and dev sust dev assessments"
+  task fix_staging_dev_sust_dev_assessments: :environment do
+    entries = AssessorAssignment.where(award_year_id: AwardYear.find_by_year(2017)).select { |a| a.document != {} }
+
+    # Reject keys from development
+
+    keys_to_remove = [
+      "environment_protection",
+      "benefiting_the_wilder_community",
+      "sustainable_resource",
+      "economic_sustainability",
+      "supporting_employees",
+      "internal_leadership",
+      "industry_sector"
+    ]
+
+    development = entries.select { |e| e.form_answer.award_type == "development" }
+
+    development.each do |entry|
+      new_document = entry.document
+
+      keys_to_remove.each do |key|
+        new_document.reject! { |k, v| k == "#{key}_desc" || k == "#{key}_rate" }
+      end
+
+      entry.document = new_document
+      entry.save!(validate: false)
+
+      form = entry.form_answer
+      feedback = form.feedback
+
+      if feedback.present?
+        f_doc = feedback.document
+
+        keys_to_remove.each do |key|
+          f_doc.reject! { |k, v| k == "#{key}_desc" || k == "#{key}_rate" }
+        end
+
+        feedback.document = f_doc
+        feedback.save!(validate: false)
+      end
+    end
+  end
 end
