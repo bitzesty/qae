@@ -4,7 +4,7 @@
   ul.list-unstyled.list-actions
     - FormAnswer::AWARD_TYPE_FULL_NAMES.select { |key, value| current_assessor.lead_roles.include?(key) }.each do |key, value|
       - file_name = value.gsub(" ", "-").downcase
-      - year = "#{@award_year.year.to_s[2..-1]}/{(@award_year.year + 1).to_s[2..-1]}"
+      - year = "#{@award_year.year.to_s[2..-1]}/#{(@award_year.year + 1).to_s[2..-1]}"
       li
         .pull-right
           = link_to assessor_report_path("assessors-progress-#{file_name}-#{year}", category: key, format: :csv, year: @award_year.year)
