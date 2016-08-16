@@ -229,6 +229,17 @@ table .ellipsis {
 
   .not-eligible {
     border-right: 2px solid $black;
+    width: 75px;
+  }
+
+  .table-total {
+    width: 80px;
+  }
+
+  .apps-in-proggress {
+    td {
+      width: 70px;
+    }
   }
 }
 
