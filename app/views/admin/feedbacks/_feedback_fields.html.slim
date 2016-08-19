@@ -1,7 +1,7 @@
 strong = feedback_field_value[:label]
 .form-group class=feedback_field
-  label.form-label
-    - unless feedback.form_answer.development?
+  - unless feedback.form_answer.development?
+    label.form-label
       | Key strength
   .form-value.no-js-update
     p = feedback.public_send("#{feedback_field}_strength").presence || content_tag(:i, "No feedback has been added yet")
