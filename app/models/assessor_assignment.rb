@@ -48,6 +48,8 @@ class AssessorAssignment < ActiveRecord::Base
 
   store_accessor :document, *AppraisalForm.all
 
+  attr_accessor :submission_action
+
   def self.primary
     find_or_create_by(position: positions[:primary])
   end
@@ -154,7 +156,8 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def mandatory_fields_for_submitted
-    return unless submitted?
+    return if (!submitted? || !submission_action)
+
     struct.meths_for_award_type(form_answer, moderated?).each do |meth|
       if public_send(meth).blank?
         errors.add(meth, "cannot be blank for submitted assessment")
