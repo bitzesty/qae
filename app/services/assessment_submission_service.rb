@@ -9,6 +9,8 @@ class AssessmentSubmissionService
   delegate :form_answer, to: :resource
 
   def perform
+    resource.submission_action = true
+
     if resource.submitted?
       resubmit! if resource.case_summary?
     else

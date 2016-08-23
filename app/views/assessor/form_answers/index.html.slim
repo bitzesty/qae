@@ -1,12 +1,18 @@
-.row
-  = render "layouts/admin_award_year"
-
-  .col-md-4.col-sm-5.col-xs-12.pull-right
-    .form-group.search-input
-      = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search do |f|
+= simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search do |f|
+  .row
+    = render "layouts/admin_award_year"
+    .col-md-4.col-sm-5.col-xs-12.pull-right
+      .form-group.search-input
         = text_field_tag :year, @award_year.year, class: "visuallyhidden"
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = submit_tag :submit, class: 'search-submit'
+
+  = render "shared/form_answers/top_statuses_filters", f: f,
+                                                      options: FormAnswerStatus::AssessorFilter.options,
+                                                      sub_options: FormAnswerStatus::AssessorFilter.sub_options(current_assessor)
+
+  = hidden_field_tag "search[sort]", params[:search][:sort]
+  - #sort needs to be here because the sorting is done in the other form below, so in order not to break sorting, we need to duplicate it here
 
 - if @search.query?
   .well.search-text
@@ -17,11 +23,24 @@
 
 = render("assessor/form_answers/category_tabs")
 
+- # this bulk assignment form breaks the flow of the sorting + filtering forms, as the form needs to do a update somewhere else than the forms above and below. So you'll see some duplication of fields. Commented on them so no one removes them by accident
 = render("assessor/form_answers/bulk_assignment")
 
 = simple_form_for @search, url: assessor_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   = hidden_field_tag :award_type, category_picker.current_award_type
   = text_field_tag :year, @award_year.year, class: "visuallyhidden"
+
+  - # status filters need to be here because the filtering is done in the other form above, so in order not to break filtering, we need to duplicate it here
+  = f.simple_fields_for [:filters, @search.filters] do |h|
+    = h.input :status,
+              collection: FormAnswerStatus::AssessorFilter.options,
+              label: false,
+              input_html: { multiple: true, class: 'visuallyhidden'}
+
+    = h.input :sub_status,
+              collection: FormAnswerStatus::AssessorFilter.sub_options(current_assessor),
+              label: false,
+              input_html: { multiple: true, class: 'visuallyhidden'}
 
   .row
     .col-xs-12
@@ -36,7 +55,8 @@
               = sort_link f, "Company", @search, :company_or_nominee_name, disabled: @search.query?
             th.sortable
               = sort_link f, "Reference", @search, :urn, disabled: @search.query?
-            = render("assessor/form_answers/status_header", f: f)
+            th.sortable
+              = sort_link f, "Status", @search, :state, disabled: @search.query?
             = render("assessor/form_answers/assessor_header", f: f)
             th &nbsp;
             th.sortable

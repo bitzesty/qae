@@ -7,7 +7,7 @@ table.table.applications-table
         = sort_link f, "Reference", @search, :urn, disabled: @search.query?
       = render('admin/form_answers/list_components/award_type_header', f: f)
 
-      = render("admin/form_answers/list_components/award_status_header", f: f)
+      th.sortable SIC/Status
       th &nbsp;
       th.sortable
         = sort_link f, "Flag", @search, :flag, disabled: @search.query?

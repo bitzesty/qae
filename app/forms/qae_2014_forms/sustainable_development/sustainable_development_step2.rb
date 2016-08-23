@@ -113,7 +113,7 @@ class QAE2014Forms
           ref "B 3"
           context %(
             <p>
-              You should demonstrate outstanding performance in at least one area.
+              You should demonstrate good performance in all areas and outstanding performance in at least one area.
               If your contribution is not outstanding in all areas, please describe the actions you are taking to improve outcomes in those areas.
             </p>
           )
@@ -124,6 +124,9 @@ class QAE2014Forms
           classes "sub-question"
           sub_ref "B 3.1"
           context %(
+            <p>
+              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards environmental outcomes.
+            </p>
             <p>
              'Environmental outcomes' means respecting the limits of the planet's environment, natural resources and biodiversity, including, where possible, improving the state of the environment.
             </p>
@@ -167,6 +170,9 @@ class QAE2014Forms
           required
           context %(
             <p>
+              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards social outcomes.
+            </p>
+            <p>
               'Social outcomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
             </p>
             <p>
@@ -205,6 +211,9 @@ class QAE2014Forms
           sub_ref "B 3.3"
           required
           context %(
+            <p>
+              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards economic outcomes.
+            </p>
             <p>
              'Economic outcomes' means building a fair, sustainable economy which provides prosperity and opportunity for all, promotes innovation and encourages lifelong learning.
             </p>

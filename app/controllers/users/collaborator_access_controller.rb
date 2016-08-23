@@ -7,6 +7,10 @@ class Users::CollaboratorAccessController < Users::BaseController
     "#{current_user.id}-time-#{params[:timestamp]}"
   end
 
+  expose(:pusher_callback) do
+    params[:callback]
+  end
+
   def auth
     response = Pusher[params[:channel_name]].authenticate(
       params[:socket_id], {
@@ -21,7 +25,7 @@ class Users::CollaboratorAccessController < Users::BaseController
     )
 
     render(
-      text: params[:callback] + "(" + response.to_json + ")",
+      text: "#{pusher_callback}(#{response.to_json})",
       content_type: 'application/javascript'
     )
   end

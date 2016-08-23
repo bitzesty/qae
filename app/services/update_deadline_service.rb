@@ -18,10 +18,8 @@ class UpdateDeadlineService
     now = DateTime.now
     trigger_at = deadline.trigger_at
 
-    if deadline.submission_end? && trigger_at.present?
-      if now >= trigger_at
-        ::SubmissionDeadlineStatesTransitionWorker.perform_async
-      end
+    if deadline.submission_end? && trigger_at.present? && now >= trigger_at
+      ::SubmissionDeadlineStatesTransitionWorker.perform_async
     end
 
     if deadline.audit_certificates? && trigger_at.present? && now >= trigger_at

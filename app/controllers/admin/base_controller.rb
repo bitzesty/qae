@@ -34,4 +34,20 @@ class Admin::BaseController < ApplicationController
   def user_for_paper_trail
     "ADMIN:#{current_admin.id}" if current_admin.present?
   end
+
+  def admin_conditional_pdf_response(mode)
+    if form_answer.hard_copy_ready_for?(mode)
+      if Rails.env.development?
+        send_data pdf_hard_copy.file.read,
+                  filename: pdf_hard_copy.original_filename,
+                  type: "application/pdf"
+      else
+        redirect_to pdf_hard_copy.file.url
+      end
+    else
+      send_data pdf_data.render,
+                filename: "application_#{mode.pluralize}_#{form_answer.decorate.pdf_filename}",
+                type: "application/pdf"
+    end
+  end
 end

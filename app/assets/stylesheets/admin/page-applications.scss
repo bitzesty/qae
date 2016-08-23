@@ -1,5 +1,69 @@
 @import "mixins";
 
+.applications-filter {
+  margin-bottom: 20px;
+
+  .applications-filter__label {
+    display: inline-block;
+    text-transform: uppercase;
+    min-width: 120px;
+    text-align: right;
+    padding-right: 10px;
+    padding-top: 7px;
+    float: left;
+
+    @include screen-md-max {
+      text-align: left;
+    }
+
+    @include screen-sm-max {
+      min-width: 0;
+      padding-right: 20px;
+    }
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+    padding-right: 28px;
+    width: 142px;
+    vertical-align: bottom;
+
+    .dropdown-toggle {
+      text-align: left;
+      overflow: hidden;
+      max-width: 100%;
+      text-overflow: ellipsis;
+      line-height: 19px;
+    }
+
+    .caret-container {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: auto;
+      padding-right: 10px;
+      padding-left: 10px;
+      border-left: 1px solid #262626;
+      background: #1c1c1b;
+
+      .caret {
+        margin-top: 0.7em;
+        color: #fff;
+      }
+    }
+
+    .dropdown-menu {
+      min-width: 250px;
+      li.checkbox,
+      li.apply {
+        padding: 0 10px;
+      }
+    }
+  }
+}
+
 .search-text {
   margin-bottom: 30px;
   padding: 10px 15px;

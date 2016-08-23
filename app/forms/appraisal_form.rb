@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 class AppraisalForm
 
   #
@@ -371,22 +372,22 @@ class AppraisalForm
       position: 1
     },
     environment: {
-      type: :non_rag,
+      type: :rag,
       label: "Environmental dimension:",
       position: 2
     },
     social: {
-      type: :non_rag,
+      type: :rag,
       label: "Social dimension:",
       position: 3
     },
     economic: {
-      type: :non_rag,
+      type: :rag,
       label: "Economic dimension:",
       position: 4
     },
     leadership_management: {
-      type: :non_rag,
+      type: :rag,
       label: "Leadership & management:",
       position: 5
     },

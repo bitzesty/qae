@@ -20,7 +20,11 @@ class Reports::AdminReport
     when "reception-buckingham-palace"
       Reports::ReceptionBuckinghamPalaceReport.new(year).build
     when /assessors-progress/
-      Reports::AssessorsProgressReport.new(year, params[:category]).build
+      if FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
+        Reports::AssessorsProgressReport.new(year, params[:category]).build
+      else
+        raise ArgumentError, "Invalid category"
+      end
     end
   end
 
@@ -32,12 +36,28 @@ class Reports::AdminReport
       CaseSummaryPdfs::Base
     end
 
-    data = pdf_klass.new("all", nil, category: category, award_year: year)
+    attachment = year.send("#{id.singularize}_#{category}_hard_copy_pdf")
 
-    OpenStruct.new(
-      data: data.render,
-      filename: pdf_filename
-    )
+    if year.send("aggregated_#{id.singularize}_hard_copy_state").to_s == "completed" &&
+       attachment.present? &&
+       attachment.file.present?
+      # Render Hard Copy if it's generated for this year
+
+      OpenStruct.new(
+        hard_copy: true,
+        data: (Rails.env.development? ? attachment.file.read : attachment.file.url),
+        filename: attachment.original_filename
+      )
+    else
+      # Render dynamically
+
+      data = pdf_klass.new("all", nil, category: category, award_year: year)
+
+      OpenStruct.new(
+        data: data.render,
+        filename: pdf_filename
+      )
+    end
   end
 
   private

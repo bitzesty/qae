@@ -13,7 +13,11 @@ class Reports::AssessorReport
     when "cases-status"
       Reports::CasesStatusReport.new(year).build_for_lead(@current_subject)
     when /assessors-progress/
-      Reports::AssessorsProgressReport.new(year, params[:category]).build
+      if FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
+        Reports::AssessorsProgressReport.new(year, params[:category]).build
+      else
+        raise ArgumentError, "Invalid category"
+      end
     end
   end
 end

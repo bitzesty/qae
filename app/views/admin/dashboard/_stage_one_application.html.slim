@@ -7,7 +7,7 @@
           col width="200"
         thead
           tr
-            th &nbsp;
+            th Summary
             th Last 24h
             th Last 7 days
             th Total
@@ -22,21 +22,20 @@
     br
 
     .table-overflow-container
-      table.table.table-striped
+      table.table.table-striped.apps-in-proggress
         colgroup
           col width="200"
         thead
           tr
-            th Applications Completion
+            th Applications in progress
             th Not eligible
             th 0%
             th 1 - 24%
             th 25 - 49%
             th 50 - 74%
             th 75 - 99%
-            th 100%
             th.table-total
-              strong TOTAL
+              strong Total in progress
         tbody
           - completions = @statistics.applications_completions
           - FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |slug, name|
@@ -46,21 +45,23 @@
               - completions[slug].each_with_index do |count, index|
                 - if index + 1 == ar_size
                   td.table-total
-                    strong= count
+                    strong = count
+                - elsif index == 0
+                  td.not-eligible = count
                 - else
-                  td= count
+                  td = count
 
           tr.table-total
             th
               strong TOTAL
-            - completions["total"].each do |count|
-              td
+            - completions["total"].each_with_index do |count, index|
+              td class=(index == 0 ? "not-eligible" : "")
                 strong= count
           tr.table-total
             th
               strong= FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
-              - completions["promotion"].each do |count|
-                td
+              - completions["promotion"].each_with_index do |count, index|
+                td class=(index == 0 ? "not-eligible" : "")
                   strong= count
 
     br

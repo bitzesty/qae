@@ -43,7 +43,7 @@ class FormAnswerStatistics::Picker
     in_progress << fa_year_scope.where(state: "application_in_progress").count
     out[:applications_in_progress] = { name: "Applications in progress", counters: in_progress }
 
-    submitted = collect_submission_ranges(fa_year_scope)
+    submitted = collect_submission_ranges(fa_year_scope.where.not(award_type: "promotion"))
     out[:applications_submitted] = {
       name: "Applications submitted",
       counters: submitted
@@ -53,9 +53,9 @@ class FormAnswerStatistics::Picker
 
   def applications_completions
     out = {}
-    out["total"] = [0,0,0,0,0,0,0,0]
+    out["total"] = [0,0,0,0,0,0,0]
     klass::POSSIBLE_AWARDS.each do |aw|
-      scope = fa_year_scope.where(award_type: aw).where("state != 'eligibility_in_progress'")
+      scope = fa_year_scope.where(award_type: aw).where(state: %w(application_in_progress not_eligible))
       out[aw] = collect_completion_ranges(scope)
       unless aw == "promotion"
         out[aw].each_with_index do |val, index|
@@ -117,7 +117,7 @@ class FormAnswerStatistics::Picker
 
   def submissions_query(scope, time_range)
     out = scope.joins(:form_answer_transitions)
-    out = out.where("form_answers.state = ?", "submitted")
+    out = out.at_post_submission_stage
     out = out.where("form_answer_transitions.to_state = ?", "submitted")
     out = out.where("form_answer_transitions.created_at > ?", time_range) if time_range
     out.group("form_answers.id")
@@ -147,9 +147,7 @@ class FormAnswerStatistics::Picker
     out << range4.count
     range5 = scope.where("fill_progress >= ? AND fill_progress < ?", 0.75, 1)
     out << range5.count
-    range6 = scope.where(fill_progress: 1)
-    out << range6.count
-    out << scope.count + not_e
+    out << scope.count
     out
   end
 
