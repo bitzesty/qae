@@ -47,27 +47,27 @@ class Reports::RegisteredUsers
       method: :percentage_complete
     },
     {
-      label: "Section 1",
+      label: "Section A",
       method: :section1
     },
     {
-      label: "Section 2",
+      label: "Section B",
       method: :section2
     },
     {
-      label: "Section 3",
+      label: "Section C",
       method: :section3
     },
     {
-      label: "Section 4",
+      label: "Section D",
       method: :section4
     },
     {
-      label: "Section 5",
+      label: "Section E",
       method: :section5
     },
     {
-      label: "Section 6",
+      label: "Section F",
       method: :section6
     },
     {
