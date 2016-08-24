@@ -26,6 +26,7 @@ class QAE2014Forms
             ["service", "A service"],
             ["business_model", "A business model"]
           ]
+          application_type_question true
         end
 
         textarea :innovation_desc_short, "Briefly describe your innovative product, service or business model" do

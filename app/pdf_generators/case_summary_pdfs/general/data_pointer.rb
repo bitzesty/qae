@@ -14,47 +14,37 @@ module CaseSummaryPdfs::General::DataPointer
     FeedbackPdfs::Pointer::UNDEFINED_VALUE
   end
 
-  # EMPLOYEES BLOCK BEGIN
-
-  def employees_question
+  def current_awards_question
     all_questions.detect do |q|
-      q.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion) &&
-      q.employees_question.present?
+      q.delegate_obj.is_a?(QAEFormBuilder::QueenAwardHolderQuestion)
     end
   end
 
-  def employees_question_active_fields
-    employees_question.decorate(answers: filled_answers).active_fields
+  def organisation_type
+    filled_answers["organisation_type"].capitalize
   end
 
-  def employees_by_years
-    res = employees_question_active_fields.map do |field|
-      employees_year_entry(field)
-    end.compact
-
-    res.present? ? res.last : undefined_value
-  end
-
-  def employees_year_entry(field)
-    entry = filled_answers.detect do |k, _v|
-      k == "#{employees_question.key}_#{field}"
-    end
-
-    entry[1] if entry.present?
-  end
-
-  def employees
-    if employees_question.present?
-      employees_by_years
-    else
-      undefined_value
+  def application_type_question
+    all_questions.detect do |q|
+      q.delegate_obj.is_a?(QAEFormBuilder::CheckboxSeriaQuestion) &&
+      q.application_type_question.present?
     end
   end
 
-  # EMPLOYEES BLOCK END
+  def application_type_answer
+    filled_answers[application_type_question.key.to_s]
+  end
+
+  def application_type
+    application_type_answer.map do |option|
+      application_type_question.check_options.detect do |p_o|
+        p_o[0].to_s == option["type"].to_s
+      end[1]
+    end.join(" / ")
+  end
 
   def sic_code
-    form_answer.sic_code || undefined_value
+    form_answer.decorate.sic_code_name || undefined_value
   end
 
   def current_awards_question
@@ -139,14 +129,31 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_data!
-    pdf_doc.move_down 60.mm
-    render_application_background
+    if form_answer.trade?
+      render_financial_block(true)
+
+      pdf_doc.move_down 10.mm
+      render_application_background
+    else
+      pdf_doc.move_down y_coord('general_block').mm
+      render_application_background
+    end
 
     pdf_doc.move_down 10.mm
     render_case_summary_comments
 
+    render_financial_block(false) unless form_answer.trade?
+  end
+
+  def render_financial_block(trade_mode)
     if financial_pointer.present? && !financial_pointer.period_length.zero?
-      pdf_doc.move_down 10.mm
+      move_length = 10.mm
+
+      if trade_mode.present?
+        move_length = y_coord('general_block').mm
+      end
+
+      pdf_doc.move_down move_length
       render_financial_table
     end
   end
