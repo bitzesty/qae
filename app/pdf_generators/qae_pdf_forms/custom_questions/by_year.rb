@@ -84,11 +84,33 @@ module QaePdfForms::CustomQuestions::ByYear
       end
     else
       size = financial_table_headers.size
+      current_year_ended = year_ended?(financial_table_headers.last.split("/"))
+
       financial_table_headers.map.with_index do |item, index|
+        item = substract_year(item) unless current_year_ended
         item = "#{prefix} #{item}"
         size == (index.to_i + 1) && item.include?(FINANCIAL_YEAR_PREFIX) ? "#{item} (current)" : item
       end
     end
+  end
+
+  def year_ended?(date)
+    day, month, _year = date
+
+    begin
+      DateTime.new(Date.today.year, month.to_i, day.to_i) <= Settings.current_submission_deadline.reload.trigger_at.to_date
+    rescue ArgumentError # invalid date
+      true
+    end
+  end
+
+  def substract_year(date)
+    day, month, year = date.split("/")
+
+    year = year.to_i
+    year -= 1
+
+    [day, month, year].join("/")
   end
 
   def active_fields
@@ -105,16 +127,20 @@ module QaePdfForms::CustomQuestions::ByYear
 
   def latest_year_label(with_month_check = true)
     day = form_pdf.filled_answers["financial_year_date_day"].to_s
-
+    month_number = form_pdf.filled_answers["financial_year_date_month"]
     month = if with_month_check
-      to_month(form_pdf.filled_answers["financial_year_date_month"])
+      to_month(month_number)
     else
-      form_pdf.filled_answers["financial_year_date_month"]
+      month_number
     end.to_s
+
+    year = Date.today.year
+
+    year -= 1 unless year_ended?([day, month_number])
 
     day = "0" + day if day.size == 1
     month = "0" + month if month.size == 1
 
-    [day, month, Date.today.year]
+    [day, month, year]
   end
 end
