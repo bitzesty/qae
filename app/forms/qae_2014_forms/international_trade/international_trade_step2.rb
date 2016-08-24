@@ -73,6 +73,7 @@ class QAE2014Forms
             ["products", "Products"],
             ["services", "Services"]
           ]
+          application_type_question true
         end
 
         dropdown :trade_goods_amount, "How many types of products/services make up your international trade?" do
