@@ -25,6 +25,7 @@ class QAE2014Forms
             ["service", "A service"],
             ["management_approach", "A management approach"]
           ]
+          application_type_question true
         end
 
         textarea :development_management_approach_briefly, "Briefly describe your product, service or management approach" do
