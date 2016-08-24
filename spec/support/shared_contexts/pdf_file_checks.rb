@@ -51,6 +51,7 @@ shared_context "pdf file checks" do
   end
 
   before do
+    create(:settings, :submission_deadlines)
     form_answer
   end
 
