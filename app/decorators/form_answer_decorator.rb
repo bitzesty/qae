@@ -420,4 +420,22 @@ class FormAnswerDecorator < ApplicationDecorator
   def secondary_assessment_submitted?
     object.assessor_assignments.secondary.submitted?
   end
+
+  def dashboard_status
+    if object.submitted?
+      if object.state == "assessment_in_progress"
+        if object.assessors.any?
+          object.assessors.map { |a| a.full_name }.join(", ")
+        else
+          "Assessors are not assigned"
+        end
+      elsif object.state != "submitted"
+        state_text
+      else
+        object.sic_code
+      end
+    else
+      progress_text
+    end
+  end
 end
