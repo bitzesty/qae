@@ -352,7 +352,7 @@ window.FormValidation =
     last_val = 0
 
     $.each question.find(".currency-input input"), (index, el) ->
-      if $(el).val()
+      if $(el).val() && (!$(el).closest(".conditional-question").length || $(el).closest(".conditional-question").hasClass("show-question"))
         value = parseFloat $(el).val()
         if value < last_val
           drop = true
