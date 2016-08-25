@@ -137,10 +137,10 @@ jQuery ->
       fy_year = new Date().getFullYear()
 
     # Conditional latest year
-    # If from October to December -> then previous year
-    # If from January to September -> then current year
-    if fy_month >= 9 && fy_day >= 3
-      fy_year = parseInt(fy_year) - 1
+    # If from 3rd of September to December -> then previous year
+    # If from January to 2nd of September -> then current year
+    if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 3) || parseInt(fy_month, 10) > 9
+      fy_year = parseInt(fy_year, 10) - 1
 
     # Updates the latest changed financial year input
     fy_latest_changed_input.find("input.js-fy-day").val(fy_day)

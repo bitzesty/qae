@@ -10,10 +10,6 @@ shared_context "download original pdf before deadline ends" do
   end
 
   describe "Download" do
-    before do
-      Settings.current_submission_deadline.update(trigger_at: Time.zone.now - 1.day)
-    end
-
     describe "PDF content" do
       let(:registration_number_at_the_deadline) { "1111111111" }
       let(:registration_number_after_deadline) { "2222222222" }
