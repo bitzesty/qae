@@ -275,7 +275,7 @@ window.FormValidation =
 
         value = subq.val().toString()
 
-        if not value.match(@numberRegex)
+        if not $.trim(value).match(@numberRegex)
           @log_this(question, "validateMoneyByYears", "Not a valid currency value")
           @appendMessage(err_container, "Not a valid currency value")
           @addErrorClass(question)
