@@ -19,7 +19,7 @@ tbody
         - else
           span.urn-not-generated Not yet generated
 
-      td = obj.state_text
+      td = obj.dashboard_status
       td.td-assessment-submitted
         - if obj.primary_assessment_submitted?
           span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
