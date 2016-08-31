@@ -29,8 +29,8 @@ class FormAnswerSearch < Search
       .order("flags_count #{sort_order(desc)}")
   end
 
-  def sort_by_sic_status
-    # TODO
+  def sort_by_sic_code(scoped_results, desc = false)
+    scoped_results.order("(form_answers.document #>> '{sic_code}') #{sort_order(desc)}")
   end
 
   def sort_by_primary_assessor_name(scoped_results, desc = false)

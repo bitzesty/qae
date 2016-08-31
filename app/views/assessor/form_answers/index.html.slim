@@ -55,7 +55,10 @@
               = sort_link f, "Company", @search, :company_or_nominee_name, disabled: @search.query?
             th.sortable
               = sort_link f, "Reference", @search, :urn, disabled: @search.query?
-            th = "SIC/Status"
+            th
+              | Status
+            th.sortable
+              = sort_link f, "SIC Code", @search, :sic_code, disabled: @search.query?
             = render("assessor/form_answers/assessor_header", f: f)
             th &nbsp;
             th.sortable

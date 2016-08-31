@@ -17,6 +17,7 @@
           span.urn-not-generated Not yet generated
     td = obj.award_type_short_name
     td = obj.dashboard_status
+    td = obj.sic_code
     td
       - app_comments = application_comments(obj.comments)
       - if app_comments.present?
