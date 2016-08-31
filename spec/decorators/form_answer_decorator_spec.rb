@@ -59,11 +59,6 @@ describe FormAnswerDecorator do
       expect(described_class.new(form_answer).dashboard_status).to eq("Application in progress...11%")
     end
 
-    it "returns SIC code once application is submitted" do
-      form_answer = create(:form_answer, :trade, :submitted)
-      expect(described_class.new(form_answer).dashboard_status).to eq(form_answer.sic_code)
-    end
-
     it "warns that assessors are not assigned if assessment is in progress and assessors are not assigned yet" do
       form_answer = create(:form_answer, :trade, :submitted, state: "assessment_in_progress")
       expect(described_class.new(form_answer).dashboard_status).to eq("Assessors are not assigned")
