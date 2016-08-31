@@ -429,7 +429,7 @@ class FormAnswerDecorator < ApplicationDecorator
         else
           "Assessors are not assigned"
         end
-      elsif object.state != "submitted"
+      else
         state_text
       end
     else
