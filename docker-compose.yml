@@ -9,6 +9,12 @@ web: &web
   labels:
     - convox.port.443.protocol=https
     - convox.deployment.minimum=50
+    #
+    # Had to comment in these lines as they are break dev server
+    #
+    # - convox.health.path=/healthcheck
+    # - convox.health.port=3000
+    # - convox.health.timeout=3
   ports:
     - 80:3000
     - 443:3000
