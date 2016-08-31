@@ -21,7 +21,7 @@ class QAEFormBuilder
       last = nil
       active_fields.each do |f|
         v = input_value(suffix: f).to_f
-        return true if last && v < last
+        return true if (last && v < last) || v < 0
         last = v
       end
       false
