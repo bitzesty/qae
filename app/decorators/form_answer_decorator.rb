@@ -431,8 +431,6 @@ class FormAnswerDecorator < ApplicationDecorator
         end
       elsif object.state != "submitted"
         state_text
-      else
-        object.sic_code
       end
     else
       progress_text
