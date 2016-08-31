@@ -29,6 +29,10 @@ class FormAnswerSearch < Search
       .order("flags_count #{sort_order(desc)}")
   end
 
+  def sort_by_sic_status
+    # TODO
+  end
+
   def sort_by_primary_assessor_name(scoped_results, desc = false)
     scoped_results
       .joins("LEFT OUTER JOIN assessors on form_answers.primary_assessor_id = assessors.id")
