@@ -41,13 +41,21 @@ module FinancialTable
       corrected_result << if entry.size == 6 && (index + 1) != res.size
         year = last_year - (res.size - (index + 1))
         entry += year.to_s
-        entry
+        fix_day_month_format(entry)
       else
-        entry
+        fix_day_month_format(entry)
       end
     end
 
     corrected_result
+  end
+
+  def fix_day_month_format(date)
+    parts = date.split("/")
+    day = parts[0].rjust(2, "0")
+    month = parts[1].rjust(2, "0")
+
+    "#{day}/#{month}/#{parts[2]}"
   end
 
   def financial_table_pointer_headers
