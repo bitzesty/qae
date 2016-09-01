@@ -404,6 +404,73 @@ window.FormValidation =
       console.log("  [" + validator + "]: " + message)
       console.log "-----------------------------"
 
+  hook_individual_validations: ->
+    self = @
+
+    $(document).on "change", ".question-block input, .question-block select, .question-block textarea", ->
+      self.validate_individual_question($(@).closest(".question-block"))
+
+  validate_individual_question: (question) ->
+    if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
+      # console.log "validateRequiredQuestion"
+      @validateRequiredQuestion(question)
+
+    if question.hasClass("question-number")
+      # console.log "validateNumber"
+      @validateNumber(question)
+
+    if question.hasClass("question-money-by-years")
+      # console.log "validateMoneyByYears"
+      @validateMoneyByYears(question)
+
+    if question.hasClass("question-date-by-years") &&
+       question.find(".show-question").length == (question.find(".js-conditional-question").length - 1)
+      # console.log "validateDateByYears"
+      @validateDateByYears(question)
+
+    if question.find(".match").length
+      # console.log "validateMatchQuestion"
+      @validateMatchQuestion(question)
+
+    if question.hasClass("question-date-max")
+      # console.log "validateMaxDate"
+      @validateMaxDate(question)
+
+    if question.hasClass("question-date-min")
+      # console.log "validateMinDate"
+      @validateMinDate(question)
+
+    if question.hasClass("question-date-between")
+      # console.log "validateBetweenDate"
+      @validateBetweenDate(question)
+
+    if question.hasClass("question-employee-min") &&
+       question.find(".show-question").length > 0
+      # console.log "validateEmployeeMin"
+      @validateEmployeeMin(question)
+
+    if question.hasClass("question-current-awards") &&
+       question.find(".show-question").length > 0
+      # console.log "validateCurrentAwards"
+      @validateCurrentAwards(question)
+
+    if question.find(".validate-date-start-end").size() > 0
+      # console.log "validateDateStartEnd"
+      @validateDateStartEnd(question)
+
+    if question.hasClass("js-conditional-drop-block-answer")
+      # console.log "validateDropBlockCondition"
+      @validateDropBlockCondition(question)
+
+    if question.hasClass("question-support-requests") ||
+       question.hasClass("question-support-uploads")
+      # console.log "validateSupportLetters"
+      @validateSupportLetters(question)
+
+    if question.find(".js-by-trade-goods-and-services-amount").length
+      # console.log "validateGoodsServicesPercentage"
+      @validateGoodsServicesPercentage(question)
+
   validate: ->
     @clearAllErrors()
 
@@ -412,65 +479,7 @@ window.FormValidation =
       # console.log "----"
       # console.log question.find("h2").text()
 
-      if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
-        # console.log "validateRequiredQuestion"
-        @validateRequiredQuestion(question)
-
-      if question.hasClass("question-number")
-        # console.log "validateNumber"
-        @validateNumber(question)
-
-      if question.hasClass("question-money-by-years")
-        # console.log "validateMoneyByYears"
-        @validateMoneyByYears(question)
-
-      if question.hasClass("question-date-by-years") &&
-         question.find(".show-question").length == (question.find(".js-conditional-question").length - 1)
-        # console.log "validateDateByYears"
-        @validateDateByYears(question)
-
-      if question.find(".match").length
-        # console.log "validateMatchQuestion"
-        @validateMatchQuestion(question)
-
-      if question.hasClass("question-date-max")
-        # console.log "validateMaxDate"
-        @validateMaxDate(question)
-
-      if question.hasClass("question-date-min")
-        # console.log "validateMinDate"
-        @validateMinDate(question)
-
-      if question.hasClass("question-date-between")
-        # console.log "validateBetweenDate"
-        @validateBetweenDate(question)
-
-      if question.hasClass("question-employee-min") &&
-         question.find(".show-question").length > 0
-        # console.log "validateEmployeeMin"
-        @validateEmployeeMin(question)
-
-      if question.hasClass("question-current-awards") &&
-         question.find(".show-question").length > 0
-        # console.log "validateCurrentAwards"
-        @validateCurrentAwards(question)
-
-      if question.find(".validate-date-start-end").size() > 0
-        # console.log "validateDateStartEnd"
-        @validateDateStartEnd(question)
-
-      if question.hasClass("js-conditional-drop-block-answer")
-        # console.log "validateDropBlockCondition"
-        @validateDropBlockCondition(question)
-
-      if question.hasClass("question-support-requests") ||
-         question.hasClass("question-support-uploads")
-        # console.log "validateSupportLetters"
-        @validateSupportLetters(question)
-
-      if question.find(".js-by-trade-goods-and-services-amount").length
-        # console.log "validateGoodsServicesPercentage"
-        @validateGoodsServicesPercentage(question)
+      @validate_individual_question(question)
 
       #console.log @validates
 
