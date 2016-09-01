@@ -90,6 +90,11 @@ class Reports::FormAnswer
     @obj.document["sic_code"]
   end
 
+  def sic_code_description
+    res = @obj.decorate.sic_code_name
+    res.present? ? res.split("-").last.strip : ""
+  end
+
   def first_assessor
     @obj.primary_assessor.try(:full_name)
   end
