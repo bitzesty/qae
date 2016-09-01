@@ -47,7 +47,7 @@ module FinancialTable
       end
     end
 
-    corrected_result
+    corrected_result.map { |string_date| Date.parse(string_date).strftime("%d/%m/%Y") }
   end
 
   def financial_table_pointer_headers
