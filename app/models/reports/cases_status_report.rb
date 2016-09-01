@@ -19,6 +19,10 @@ class Reports::CasesStatusReport
       method: :sic_code
     },
     {
+      label: "SIC code description",
+      method: :sic_code_description
+    },
+    {
       label: "FirstAssessor",
       method: :first_assessor
     },
