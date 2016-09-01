@@ -445,6 +445,7 @@ jQuery ->
   $(document).debounce "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "textarea.js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
+  $(document).debounce "focusout", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
 
   updateUploadListVisiblity = (list, button, max) ->
     list_elements = list.find("li")

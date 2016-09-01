@@ -15,6 +15,10 @@ class Reports::CasesStatusReport
       method: :company_or_nominee_name
     },
     {
+      label: "SIC Code",
+      method: :sic_code
+    },
+    {
       label: "FirstAssessor",
       method: :first_assessor
     },

@@ -372,17 +372,17 @@ class AppraisalForm
       position: 1
     },
     environment: {
-      type: :rag,
+      type: :non_rag,
       label: "Environmental dimension:",
       position: 2
     },
     social: {
-      type: :rag,
+      type: :non_rag,
       label: "Social dimension:",
       position: 3
     },
     economic: {
-      type: :rag,
+      type: :non_rag,
       label: "Economic dimension:",
       position: 4
     },
