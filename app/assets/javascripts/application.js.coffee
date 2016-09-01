@@ -424,7 +424,7 @@ jQuery ->
   window.onbeforeunload = ->
     console.log("beforeunload-----------------1")
     if !$(".page-read-only-form").length
-      console.log("beforeunload-----------------1.1")
+      console.log("beforeunload-----------------1.1 " + changesUnsaved)
       if changesUnsaved then loseChangesMessage else undefined
 
   if window.addEventListener isnt undefined
@@ -432,7 +432,7 @@ jQuery ->
       console.log("beforeunload-----------------2")
       return undefined unless changesUnsaved
 
-      console.log("beforeunload-----------------2.1")
+      console.log("beforeunload-----------------2.1" + changesUnsaved)
 
       e.returnValue = loseChangesMessage
       loseChangesMessage
