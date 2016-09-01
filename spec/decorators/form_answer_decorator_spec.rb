@@ -52,4 +52,44 @@ describe FormAnswerDecorator do
       end
     end
   end
+
+  describe "#dashboard_status" do
+    it "returns fill progress when application is not submitted" do
+     form_answer = create(:form_answer, state: "application_in_progress", document: { sic_code:  SICCode.first.code })
+      expect(described_class.new(form_answer).dashboard_status).to eq("Application in progress...11%")
+    end
+
+    it "warns that assessors are not assigned if assessment is in progress and assessors are not assigned yet" do
+      form_answer = create(:form_answer, :trade, :submitted, state: "assessment_in_progress")
+      expect(described_class.new(form_answer).dashboard_status).to eq("Assessors are not assigned")
+    end
+
+    it "returns assessors' names if assessment is in progress and assessors are assigned" do
+      assessor1 = create(:assessor, :regular_for_all, first_name: "Jon", last_name: "Snow")
+      assessor2 = create(:assessor, :regular_for_all, first_name: "Ramsay", last_name: "Snow")
+
+      form_answer = create(:form_answer, :trade, :submitted, state: "assessment_in_progress")
+
+      primary = form_answer.assessor_assignments.primary
+      secondary = form_answer.assessor_assignments.secondary
+
+      primary.assessor = assessor1
+      secondary.assessor = assessor2
+      primary.save
+      secondary.save
+
+      expect(described_class.new(form_answer).dashboard_status).to eq("Jon Snow, Ramsay Snow")
+    end
+
+    it "returns application state after assessment is ended" do
+      form_answer = create(:form_answer, :trade, :submitted, state: "not_recommended")
+      expect(described_class.new(form_answer).dashboard_status).to eq("Not recommended")
+
+      form_answer.update_column(:state, "not_awarded")
+      expect(described_class.new(form_answer).dashboard_status).to eq("Not awarded")
+
+      form_answer.update_column(:state, "disqualified")
+      expect(described_class.new(form_answer).dashboard_status).to eq("Disqualified - No Audit Certificate")
+    end
+  end
 end
