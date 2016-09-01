@@ -1834,8 +1834,16 @@ table .ellipsis {
   background-image: image-url("icon-download.png");
   background-size: 15px 16px;
 
+  &.black {
+    background-image: image-url("icon-download-black.png");
+  }
+
   @include is-retina {
     background-image: image-url("icon-download@2.png");
+
+    &.black {
+      background-image: image-url("icon-download-black@2.png");
+    }
   }
 }
 
