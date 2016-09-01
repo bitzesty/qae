@@ -372,6 +372,10 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::TextareaQuestion
         title = q_visible? && humanized_answer.present? ? humanized_answer : ""
 
+        if question.key == :drops_in_turnover && !(q_visible? && humanized_answer.present?)
+          drop_conditional_hint
+        end
+
         form_pdf.default_bottom_margin
         render_word_limit
 
@@ -387,6 +391,11 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.render_standart_answer_block(title)
       end
     end
+  end
+
+  def drop_conditional_hint
+    form_pdf.render_text "Answer this question if you have any dips or losses in  C...",
+                         style: :italic
   end
 
   def render_queen_award_holder
