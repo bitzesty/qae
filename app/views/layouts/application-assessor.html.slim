@@ -50,7 +50,7 @@ html.no-js
                   li class=('active' if controller_name == 'form_answers')
                     = link_to "Applications", assessor_form_answers_path
                   - if current_subject.lead_for_any_category?
-                    li
+                    li class=('active' if controller_name == 'reports')
                       = link_to "Reports", assessor_reports_path(year: @award_year.year)
 
                 ul.nav.navbar-nav.navbar-right role="navigation"
