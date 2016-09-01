@@ -86,6 +86,10 @@ class Reports::FormAnswer
     end.join(",")
   end
 
+  def sic_code
+    @obj.document["sic_code"]
+  end
+
   def first_assessor
     @obj.primary_assessor.try(:full_name)
   end
