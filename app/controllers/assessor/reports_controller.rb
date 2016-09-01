@@ -14,6 +14,18 @@ class Assessor::ReportsController < Assessor::BaseController
       format.csv do
         send_data resource.as_csv, type: "text/csv"
       end
+
+      format.pdf do
+        pdf = Reports::AdminReport.new(params[:id], @award_year, params).as_pdf
+
+        if pdf[:hard_copy].blank? || Rails.env.development?
+          send_data pdf.data,
+                    filename: pdf.filename,
+                    type: "application/pdf"
+        else
+          redirect_to pdf.data
+        end
+      end
     end
   end
 
