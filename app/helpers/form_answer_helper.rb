@@ -32,7 +32,7 @@ module FormAnswerHelper
   end
 
   def user_can_edit(form, item)
-    policy(form).update_item?(item) && form.submitted_and_after_the_deadline?
+    policy(form).update_item?(item)
   end
 
   def application_comments(comments)

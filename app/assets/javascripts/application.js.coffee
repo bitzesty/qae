@@ -34,6 +34,8 @@ jQuery ->
   validate = ->
     window.FormValidation.validate()
 
+  window.FormValidation.hook_individual_validations()
+
   $(document).on "submit", ".qae-form", (e) ->
     $("body").addClass("tried-submitting")
     if not validate()
@@ -63,14 +65,13 @@ jQuery ->
 
   # Remove validation error after changing the value
   $(".question-block input, .question-block select, .question-block textarea").change () ->
-    if $("body").hasClass("tried-submitting")
-      if $(this).closest(".question-financial").size() > 0
-        if $(this).closest("label").find(".errors-container li").size() > 0
-          $(this).closest("label").find(".errors-container").empty()
-      else
-        if $(this).closest(".question-block").find(".errors-container li").size() > 0
-          $(this).closest(".question-block").find(".errors-container").empty()
-      $(this).closest(".question-has-errors").removeClass("question-has-errors")
+    if $(this).closest(".question-financial").size() > 0
+      if $(this).closest("label").find(".errors-container li").size() > 0
+        $(this).closest("label").find(".errors-container").empty()
+    else
+      if $(this).closest(".question-block").find(".errors-container li").size() > 0
+        $(this).closest(".question-block").find(".errors-container").empty()
+    $(this).closest(".question-has-errors").removeClass("question-has-errors")
   $(".supporters-list input").change ->
     $(this).closest("label").find(".errors-container").empty()
     $(this).closest(".question-has-errors").removeClass("question-has-errors")
@@ -105,7 +106,7 @@ jQuery ->
 
     $(".js-conditional-drop-answer[data-drop-question='#{drop_question}']").each () ->
       drop_answers = $(this).closest(".js-conditional-drop-answer")
-      last_val = 0
+      last_val = Math.log(0) # -Infinity
 
       drop_answers.find("input").each () ->
         if $(this).val()
