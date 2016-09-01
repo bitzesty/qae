@@ -25,7 +25,14 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def update_item?(item)
-    admin? || ((subject.lead?(record) || subject.primary?(record)) && [:previous_wins, :sic_code].include?(item))
+    admin_or_lead_or_primary = admin? || (subject.lead?(record) ||
+                               subject.primary?(record))
+
+    if item.in? [:previous_wins, :sic_code]
+      admin_or_lead_or_primary
+    else
+      admin_or_lead_or_primary && record.submitted_and_after_the_deadline?
+    end
   end
 
   def can_update_by_admin_lead_and_primary_assessors?
