@@ -123,6 +123,11 @@ This means, that `hstore postgresql` extension needs to be installed:
 sudo apt-get install postgresql-contrib
 ```
 
+## Check Cron schedule on live
+
+https://www.queens-awards-enterprise.service.gov.uk/sidekiq/cron
+
+
 ## Profile mode in Development
 
 To enable [rack mini profiler](https://github.com/MiniProfiler/rack-mini-profiler)
