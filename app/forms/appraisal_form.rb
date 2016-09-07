@@ -444,45 +444,25 @@ class AppraisalForm
   MOBILITY_2017 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
-      label: "Questions B2 – B2.2: What is the organisation aiming to achieve with the programme? (10%)",
+      label: "What are you doing? (10% max) - Questions B2-B2.2",
       position: 0
     },
     mobility_programme_provide_a_good: {
       type: :rag,
-      label: "Questions B3 – B3.2: How does the programme provide a good return on investment? (15%)",
+      label: "How do you do it? (30% max) - Questions B3-B4.2",
       position: 1
     },
     mobility_embedded_is_the_programme: {
       type: :rag,
-      label: "Questions B4 – B4.2: How embedded is the programme, and how will it help the organisation grow? (15%)",
+      label: "What have you achieved? (60% max) - Questions B5-B7",
       position: 2
-    },
-    mobility_programme_benefit: {
-      type: :rag,
-      label: "Questions B5 – B5.1: How does the programme benefit people? (20%)",
-      position: 3
-    },
-    mobility_programme_benefit_the_organisation: {
-      type: :rag,
-      label: "Questions B6 – B6.1: How does the programme benefit the organisation? (20%)",
-      position: 4
-    },
-    mobility_organisation_approach: {
-      type: :rag,
-      label: "Question B7: What makes the organisation's approach exemplary? (20%)",
-      position: 5
-    },
-    corporate_social_responsibility: {
-      type: :rag,
-      label: "Corporate social responsibility (section D):",
-      position: 6
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 7
+      position: 3
     }
-  }
+  }.freeze
 
   MODERATED_2016 = {
     verdict: {
