@@ -32,7 +32,9 @@ convox start -f docker-compose.yml.local
 docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
 ```
 
-### Install Poxa on Local (in case if need to test collaborators multiaccess to form application)
+### Install Poxa
+
+If you need to test collaborators editing the application at the same time, install poxa. 
 
 https://github.com/bitzesty/qae-poxa/blob/master/QAE_README.md#setup-on-local
 
@@ -122,6 +124,11 @@ This means, that `hstore postgresql` extension needs to be installed:
 ```
 sudo apt-get install postgresql-contrib
 ```
+
+## Check Cron schedule on live
+
+https://www.queens-awards-enterprise.service.gov.uk/sidekiq/cron
+
 
 ## Profile mode in Development
 
