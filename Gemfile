@@ -116,7 +116,6 @@ gem 'puma', '~> 2.16.0'
 gem 'bootscale', require: false
 
 group :development do
-  gem 'pry'
   gem 'letter_opener'
   gem 'quiet_assets'
   gem 'rack-mini-profiler', require: false
@@ -130,6 +129,7 @@ group :development, :test do
   # Enviroment variables
   gem 'dotenv-rails'
   gem 'rspec-rails', '~> 3.4'
+  gem "pry-byebug"
 end
 
 group :production do
@@ -143,7 +143,6 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
   gem 'capybara-webkit'
-  gem 'capybara-screenshot'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'turnip'
