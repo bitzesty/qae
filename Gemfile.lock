@@ -82,6 +82,7 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
     builder (3.2.2)
+    byebug (9.0.4)
     capybara (2.7.1)
       addressable
       mime-types (>= 1.16)
@@ -99,7 +100,7 @@ GEM
       mime-types (>= 1.16)
     codeclimate-test-reporter (0.4.3)
       simplecov (>= 0.7.1, < 1.0.0)
-    coderay (1.1.0)
+    coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.0)
@@ -336,10 +337,13 @@ GEM
       pdf-core (~> 0.4.0)
       ttfunk (~> 1.4.0)
     prawn-table (0.2.1)
-    pry (0.10.1)
+    pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
+      pry (~> 0.10)
     puma (2.16.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
@@ -578,7 +582,7 @@ DEPENDENCIES
   pg_search (= 0.7.9)
   prawn
   prawn-table
-  pry
+  pry-byebug
   puma (~> 2.16.0)
   pundit (~> 0.3)
   pusher
