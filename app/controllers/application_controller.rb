@@ -175,7 +175,11 @@ class ApplicationController < ActionController::Base
   end
 
   def user_for_paper_trail
-    "USER:#{current_user.id}" if current_user.present?
+    if current_admin.present? && current_admin.superadmin?
+      "ADMIN:#{current_admin.id}"
+    elsif current_user.present?
+      "USER:#{current_user.id}"
+    end
   end
 
   #
