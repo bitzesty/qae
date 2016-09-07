@@ -457,10 +457,15 @@ class AppraisalForm
       label: "What have you achieved? (60% max) - Questions B5-B7",
       position: 2
     },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Corporate social responsibility (section D):",
+      position: 3
+    },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 3
+      position: 4
     }
   }.freeze
 

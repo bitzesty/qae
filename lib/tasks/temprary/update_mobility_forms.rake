@@ -19,7 +19,7 @@ namespace :db do
     ]
 
     mobility_appraisals.each do |entry|
-      clean_doc = a.document.reject { |key| key.in?(appraisals_removed_keys) }
+      clean_doc = entry.document.reject { |key| key.in?(appraisals_removed_keys) }
       entry.document = clean_doc
       entry.save!(validate: false)
     end
