@@ -8,6 +8,7 @@ class Admin::FormAnswersController < Admin::BaseController
     :update_financials,
     :remove_audit_certificate
   ]
+  before_action :load_versions, only: :show
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]
 
@@ -64,5 +65,9 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def resource
     @form_answer ||= load_resource
+  end
+
+  def load_versions
+    @versions = FormAnswerVersionsDispatcher.new(@form_answer).versions
   end
 end

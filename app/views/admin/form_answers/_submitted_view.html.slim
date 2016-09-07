@@ -57,3 +57,13 @@
               = render "section_press_summary"
             - if show_palace_attendees_subsection?
               = render "section_palace_attendees"
+
+  .panel.panel-default.panel-parent
+    .panel-heading#logs-heading role="tab"
+      h4.panel-title
+        a data-toggle="collapse" data-parent="#submitted-application-parent" href="#section-logs" aria-expanded="true" aria-controls="section-logs"
+          ' Audit Log
+    #section-logs.section-application-info.panel-collapse.collapse role="tabpanel" aria-labelledby="logs-heading"
+      .panel-body
+        - @versions.reverse_each do |version|
+          p #{version.event} on #{version.created_at} by #{version.whodunnit}
