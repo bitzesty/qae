@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/alphagov/govuk_frontend_toolkit_gem.git
-  revision: 1468967b5ce5dfab3371969e65d8aa28327e4802
-  submodules: true
-  specs:
-    govuk_frontend_toolkit (3.1.0)
-      rails (>= 3.1.0)
-      sass (>= 3.2.0)
-
-GIT
   remote: git://github.com/bitzesty/jquery.fileupload-rails.git
   revision: 6039f52bfa8b1f4d02c19c1c9883c9a3336f8950
   specs:
@@ -265,6 +256,9 @@ GEM
       json
       multi_json
       request_store (>= 1.0)
+    govuk_frontend_toolkit (3.1.0)
+      rails (>= 3.1.0)
+      sass (>= 3.2.0)
     govuk_template (0.12.0)
       rails (>= 3.1)
     hashery (2.1.1)
@@ -564,7 +558,7 @@ DEPENDENCIES
   fog
   fog-aws
   gon
-  govuk_frontend_toolkit!
+  govuk_frontend_toolkit (~> 3.1.0)
   govuk_template (= 0.12.0)
   hashie
   jbuilder (~> 2.0)
