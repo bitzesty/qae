@@ -31,8 +31,25 @@ feature "Admin view application", js: true do
 
     application_window = window_opened_by { click_link("Edit application") }
     within_window application_window do
-      save_and_open_page
-      save_and_open_screenshot
+      expect(page).to have_current_path edit_form_path(application)
+      expect(find_field("form[company_name]").value).to eq("Bitzesty")
+    end
+  end
+
+  scenario "As a superadmin I can edit the application even when submission is due date" do
+    Settings.current_submission_start_deadline.update(trigger_at: 1.day.ago)
+    Settings.current_submission_deadline.update(trigger_at: 1.day.ago)
+
+    application = create_application
+    login_admin(create(:admin, superadmin: true))
+
+    visit admin_form_answer_path(application)
+
+    expect(page).to have_content("View application")
+    expect(page).to have_content("Edit application")
+
+    application_window = window_opened_by { click_link("Edit application") }
+    within_window application_window do
       expect(page).to have_current_path edit_form_path(application)
       expect(find_field("form[company_name]").value).to eq("Bitzesty")
     end
