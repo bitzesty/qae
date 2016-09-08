@@ -12,7 +12,6 @@ require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
 require "capybara/rspec"
 require "shoulda/matchers"
-require "capybara-screenshot/rspec"
 require "webmock/rspec"
 
 Dotenv.overload('.env.test')
@@ -23,7 +22,6 @@ WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true)
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
 Capybara.javascript_driver = :webkit
-Capybara::Screenshot.webkit_options = { width: 1024, height: 768 }
 
 ActiveRecord::Migration.check_pending!
 ActiveRecord::Migration.maintain_test_schema!

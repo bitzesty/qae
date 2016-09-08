@@ -1,13 +1,4 @@
 GIT
-  remote: git://github.com/alphagov/govuk_frontend_toolkit_gem.git
-  revision: 1468967b5ce5dfab3371969e65d8aa28327e4802
-  submodules: true
-  specs:
-    govuk_frontend_toolkit (3.1.0)
-      rails (>= 3.1.0)
-      sass (>= 3.2.0)
-
-GIT
   remote: git://github.com/bitzesty/jquery.fileupload-rails.git
   revision: 6039f52bfa8b1f4d02c19c1c9883c9a3336f8950
   specs:
@@ -82,18 +73,16 @@ GEM
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
     builder (3.2.2)
-    capybara (2.4.4)
+    byebug (9.0.4)
+    capybara (2.7.1)
+      addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-screenshot (1.0.4)
-      capybara (>= 1.0, < 3)
-      colored
-      launchy
-    capybara-webkit (1.3.1)
-      capybara (>= 2.0.2, < 2.5.0)
+    capybara-webkit (1.11.1)
+      capybara (>= 2.3.0, < 2.8.0)
       json
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -102,7 +91,7 @@ GEM
       mime-types (>= 1.16)
     codeclimate-test-reporter (0.4.3)
       simplecov (>= 0.7.1, < 1.0.0)
-    coderay (1.1.0)
+    coderay (1.1.1)
     coercible (1.0.0)
       descendants_tracker (~> 0.0.1)
     coffee-rails (4.1.0)
@@ -112,7 +101,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.9.1.1)
-    colored (1.2)
     concurrent-ruby (1.0.2)
     connection_pool (2.2.0)
     countries (0.9.3)
@@ -265,6 +253,9 @@ GEM
       json
       multi_json
       request_store (>= 1.0)
+    govuk_frontend_toolkit (3.1.0)
+      rails (>= 3.1.0)
+      sass (>= 3.2.0)
     govuk_template (0.12.0)
       rails (>= 3.1)
     hashery (2.1.1)
@@ -340,10 +331,13 @@ GEM
       pdf-core (~> 0.4.0)
       ttfunk (~> 1.4.0)
     prawn-table (0.2.1)
-    pry (0.10.1)
+    pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.0)
+      byebug (~> 9.0)
+      pry (~> 0.10)
     puma (2.16.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
@@ -543,7 +537,6 @@ DEPENDENCIES
   bootscale
   bootstrap-sass (>= 3.3.3)
   capybara
-  capybara-screenshot
   capybara-webkit
   carrierwave
   codeclimate-test-reporter
@@ -564,7 +557,7 @@ DEPENDENCIES
   fog
   fog-aws
   gon
-  govuk_frontend_toolkit!
+  govuk_frontend_toolkit (~> 3.1.0)
   govuk_template (= 0.12.0)
   hashie
   jbuilder (~> 2.0)
@@ -583,7 +576,7 @@ DEPENDENCIES
   pg_search (= 0.7.9)
   prawn
   prawn-table
-  pry
+  pry-byebug
   puma (~> 2.16.0)
   pundit (~> 0.3)
   pusher
