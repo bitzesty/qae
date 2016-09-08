@@ -75,11 +75,6 @@ class Admin::FormAnswersController < Admin::BaseController
   end
 
   def load_versions
-    #
-    # It's not production ready yet!
-    #
-    unless Rails.env.production?
-      @versions = FormAnswerVersionsDispatcher.new(@form_answer).versions
-    end
+    @versions = FormAnswerVersionsDispatcher.new(@form_answer).versions
   end
 end
