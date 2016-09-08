@@ -20,6 +20,10 @@ class FormAnswerPolicy < ApplicationPolicy
     admin? || assessor?
   end
 
+  def edit?
+    admin? && subject.superadmin?
+  end
+
   def update?
     admin? || subject.lead?(record)
   end

@@ -8,6 +8,7 @@ class Admin::FormAnswersController < Admin::BaseController
     :update_financials,
     :remove_audit_certificate
   ]
+  before_action :load_versions, only: :show
 
   skip_after_action :verify_authorized, only: [:awarded_trade_applications]
 
@@ -26,6 +27,13 @@ class Admin::FormAnswersController < Admin::BaseController
     @form_answers = @search.results.group("form_answers.id")
                                    .page(params[:page])
                                    .includes(:comments)
+  end
+
+  def edit
+    authorize resource
+    sign_in(@form_answer.user, bypass: true)
+    session[:admin_in_read_only_mode] = false
+    redirect_to edit_form_path(resource)
   end
 
   def remove_audit_certificate
@@ -64,5 +72,14 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def resource
     @form_answer ||= load_resource
+  end
+
+  def load_versions
+    #
+    # It's not production ready yet!
+    #
+    unless Rails.env.production?
+      @versions = FormAnswerVersionsDispatcher.new(@form_answer).versions
+    end
   end
 end

@@ -106,7 +106,8 @@ CREATE TABLE admins (
     authy_enabled boolean DEFAULT false,
     failed_attempts integer DEFAULT 0 NOT NULL,
     unlock_token character varying,
-    locked_at timestamp without time zone
+    locked_at timestamp without time zone,
+    superadmin boolean DEFAULT false
 );
 
 
@@ -3929,4 +3930,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160804175341');
 INSERT INTO schema_migrations (version) VALUES ('20160804175513');
 
 INSERT INTO schema_migrations (version) VALUES ('20160804175527');
+
+INSERT INTO schema_migrations (version) VALUES ('20160906174550');
 

@@ -210,6 +210,8 @@ Rails.application.routes.draw do
 
       member do
         patch :remove_audit_certificate
+        patch :update_financials
+        get :review
       end
 
       resources :form_answer_state_transitions, only: [:create]
@@ -227,7 +229,6 @@ Rails.application.routes.draw do
 
         get :download_pdf, on: :collection
       end
-
       resources :press_summaries, only: [:create, :update] do
         member do
           post :approve
@@ -237,14 +238,7 @@ Rails.application.routes.draw do
         end
       end
       resources :case_summaries, only: [:index]
-
       resources :draft_notes, only: [:create, :update]
-
-      member do
-        patch :update_financials
-        get :review
-      end
-
       resources :review_corp_responsibility, only: [:create]
       resources :collaborators, only: [:create], module: "form_answers" do
         get :search, on: :collection
