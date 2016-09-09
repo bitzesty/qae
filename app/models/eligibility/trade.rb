@@ -66,6 +66,8 @@ class Eligibility::Trade < Eligibility
   end
 
   def application_holder_of_an_award?
-    form_answer && form_answer.form_basic_eligibility.current_holder == "yes"
+    form_answer &&
+    form_answer.form_basic_eligibility.present? &&
+    form_answer.form_basic_eligibility.current_holder == "yes"
   end
 end
