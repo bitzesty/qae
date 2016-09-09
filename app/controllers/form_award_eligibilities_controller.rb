@@ -46,6 +46,8 @@ class FormAwardEligibilitiesController < ApplicationController
     @eligibility.current_step = step
     @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
     if @eligibility.update(eligibility_params)
+      @award_eligibility.force_validate_now = true
+
       if @eligibility.any_error_yet?
         @form_answer.state_machine.perform_simple_transition("not_eligible")
       else
