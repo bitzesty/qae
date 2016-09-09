@@ -29,10 +29,19 @@ filterApplicationsDropdowns = () ->
       $(this).find("label[data-value='select_all'] input").attr('checked', 'checked')
       $(this).closest(".dropdown").find(".text-filter").text("All")
 
+  $(document).on "click", ".applications-filter .dropdown-toggle", (e) ->
+    $(".applications-filter .dropdown").removeClass("open")
+
+    $(@).parent().addClass("open")
+
+  $(document).on "click", (e) ->
+    if $(e.target).closest(".dropdown").length is 0
+      $(".applications-filter .dropdown").removeClass("open")
+
   # On clicking the dropbox filters
-  $(document).on "click", ".applications-filter .dropdown-menu li label", (e) ->
+  $(document).on "change", ".applications-filter .dropdown-menu li input[type='checkbox']", (e) ->
     e.stopPropagation()
-    selected_label = $(this).attr("data-value")
+    selected_label = $(this).closest("label").attr("data-value")
 
     if selected_label == "select_all"
       # Select all
