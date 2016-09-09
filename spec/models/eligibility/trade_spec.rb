@@ -2,9 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Eligibility::Trade, type: :model do
   let(:account) { FactoryGirl.create(:account) }
-  before do
-    create :basic_eligibility, account: account
-  end
+  before { create :basic_eligibility, account: account }
 
   context 'answers storage' do
     it 'saves and reads answers' do
@@ -59,9 +57,21 @@ RSpec.describe Eligibility::Trade, type: :model do
                                           :growth_over_the_last_three_years])
     end
 
-    it 'does not return QAE expiery date if account is not a QAE holder' do
-      eligibility.current_holder_of_qae_for_trade = false
+    it "Does not return holder award questions" do
+      expect(eligibility.questions).not_to include(:current_holder_of_qae_for_trade)
       expect(eligibility.questions).not_to include(:qae_for_trade_award_year)
+    end
+
+    it "Returns question for current holder of an Award for International Trade" do
+      account.basic_eligibility.update(current_holder: "yes")
+      expect(eligibility.questions).to include(:current_holder_of_qae_for_trade)
+    end
+
+    it "Returns question for year of the Award for International Trade" do
+      account.basic_eligibility.update(current_holder: "yes")
+      eligibility.current_holder_of_qae_for_trade = true
+
+      expect(eligibility.questions).to include(:qae_for_trade_award_year)
     end
   end
 end
