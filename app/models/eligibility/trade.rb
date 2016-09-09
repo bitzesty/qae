@@ -5,7 +5,7 @@ class Eligibility::Trade < Eligibility
   validates :current_holder_of_qae_for_trade,
             presence: true,
             if: proc {
-              account.basic_eligibility.try(:current_holder) == "yes" && (
+              current_holder_of_an_award? && (
                 current_step == :current_holder_of_qae_for_trade ||
                 force_validate_now.present?
               )
@@ -15,7 +15,7 @@ class Eligibility::Trade < Eligibility
             presence: true,
             not_winner_in_last_two_years: true,
             if: proc {
-              account.basic_eligibility.try(:current_holder) == "yes" &&
+              current_holder_of_an_award? &&
               current_holder_of_qae_for_trade? && (
                 current_step == :qae_for_trade_award_year ||
                 force_validate_now.present?
@@ -46,12 +46,26 @@ class Eligibility::Trade < Eligibility
             label: "Are you a current holder of a Queen's Award for International Trade?",
             boolean: true,
             accept: :all,
-            if: proc { account.basic_eligibility.current_holder == "yes" || (form_answer && form_answer.form_basic_eligibility.current_holder == "yes") }
+            if: proc { current_holder_of_an_award? }
 
   property :qae_for_trade_award_year,
            values: (AwardYear.current.year - 5..AwardYear.current.year - 1).to_a.reverse + ["before_#{AwardYear.current.year - 5}"],
            accept: :not_nil_if_current_holder_of_qae_for_trade,
            label: "In which year did you receive the award?",
-           if: proc { account.basic_eligibility.current_holder == "yes" && current_holder_of_qae_for_trade? },
+           if: proc { current_holder_of_an_award? && current_holder_of_qae_for_trade? },
            allow_nil: true
+
+  private
+
+  def current_holder_of_an_award?
+    account_holder_of_an_award? || application_holder_of_an_award?
+  end
+
+  def account_holder_of_an_award?
+    account.basic_eligibility.current_holder == "yes"
+  end
+
+  def application_holder_of_an_award?
+    form_answer && form_answer.form_basic_eligibility.current_holder == "yes"
+  end
 end
