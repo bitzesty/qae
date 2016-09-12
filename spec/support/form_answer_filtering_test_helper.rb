@@ -8,28 +8,34 @@ module FormAnswerFilteringTestHelper
   def click_status_option(val)
     within ".applications-filter.status-filter" do
       find(".dropdown-toggle").click
-      within ".dropdown-menu" do
-        button = first("li.apply button")
+
+      expect(page).to have_selector('.status-filter .dropdown.open', visible: true)
+      expect(page).to have_selector('.status-filter li.apply button', visible: true)
+
+      within ".status-filter .dropdown-menu" do
+        button = find("li.apply button")
         all("li").each do |li|
           content = li.first(".label-contents")
           if content
-            li.first("label").click && button.click && return if content.text.to_s == val
+            li.first("label input").click && button.click && return if content.text.to_s == val
           end
         end
       end
     end
 
-    find("body").click
-
     within ".applications-filter.sub-status-filter" do
       expect(page).to have_selector(".dropdown-toggle")
       find(".dropdown-toggle").click
-      within ".dropdown-menu" do
-        button = first("li.apply button")
+
+      expect(page).to have_selector('.sub-status-filter .dropdown.open', visible: true)
+      expect(page).to have_selector('.sub-status-filter li.apply button', visible: true)
+
+      within ".sub-status-filter .dropdown-menu" do
+        button = find("li.apply button")
         all("li").each do |li|
           content = li.first(".label-contents")
           if content
-            li.first("label").click && button.click && return if content.text.to_s == val
+            li.first("label input").click && button.click && return if content.text.to_s == val
           end
         end
       end
