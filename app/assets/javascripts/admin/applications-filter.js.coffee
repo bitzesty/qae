@@ -29,12 +29,17 @@ filterApplicationsDropdowns = () ->
       $(this).find("label[data-value='select_all'] input").attr('checked', 'checked')
       $(this).closest(".dropdown").find(".text-filter").text("All")
 
-  $(document).on "click", ".applications-filter .dropdown-toggle", (e) ->
-    $(".applications-filter .dropdown").removeClass("open")
+  $(".applications-filter .dropdown-toggle").on "click", (e) ->
+    e.preventDefault()
+    e.stopPropagation()
 
-    $(@).parent().addClass("open")
+    if $(@).parent().hasClass("open")
+      $(@).parent().removeClass("open")
+    else
+      $(".applications-filter .dropdown").not($(@).parent()).removeClass("open")
+      $(@).parent().addClass("open")
 
-  $(document).on "click", (e) ->
+  $("html").on "click", (e) ->
     if $(e.target).closest(".dropdown").length is 0
       $(".applications-filter .dropdown").removeClass("open")
 
