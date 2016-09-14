@@ -6,8 +6,9 @@ module DashboardHelper
     )
 
     !Settings.after_current_submission_deadline? ||
-    show_winners ||
-    Settings.unsuccessful_stage? ||
-    past_applications.present?
+      Settings.after_shortlisting_stage? ||
+      show_winners ||
+      Settings.unsuccessful_stage? ||
+      past_applications.present?
   end
 end
