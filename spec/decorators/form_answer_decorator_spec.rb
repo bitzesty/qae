@@ -92,4 +92,42 @@ describe FormAnswerDecorator do
       expect(described_class.new(form_answer).dashboard_status).to eq("Disqualified - No Audit Certificate")
     end
   end
+
+  describe "#application_background" do
+    it "returns the trade_goods_briefly value if is type trade" do
+      document = {trade_goods_briefly: "International Trade"}
+      form = build(:form_answer, :trade, document: document)
+
+      decorated_app = described_class.new(form)
+
+      expect(decorated_app.application_background).to eq("International Trade")
+    end
+
+    it "returns the trade_goods_briefly value if is type innovation" do
+      document = {innovation_desc_short: "Innovation"}
+      form = build(:form_answer, :innovation, document: document)
+
+      decorated_app = described_class.new(form)
+
+      expect(decorated_app.application_background).to eq("Innovation")
+    end
+
+    it "returns the trade_goods_briefly value if is type development" do
+      document = {development_management_approach_briefly: "Development"}
+      form = build(:form_answer, :development, document: document)
+
+      decorated_app = described_class.new(form)
+
+      expect(decorated_app.application_background).to eq("Development")
+    end
+
+    it "returns the trade_goods_briefly value if is type mobility" do
+      document = {mobility_desc_short: "Mobility"}
+      form = build(:form_answer, :mobility, document: document)
+
+      decorated_app = described_class.new(form)
+
+      expect(decorated_app.application_background).to eq("Mobility")
+    end
+  end
 end

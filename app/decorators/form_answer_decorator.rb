@@ -413,6 +413,19 @@ class FormAnswerDecorator < ApplicationDecorator
     document["mobility_desc_short"]
   end
 
+  def application_background
+    case award_type
+    when "trade"
+      document["trade_goods_briefly"]
+    when "innovation"
+      document["innovation_desc_short"]
+    when "development"
+      document["development_management_approach_briefly"]
+    when "mobility"
+      document["mobility_desc_short"]
+    end
+  end
+
   def primary_assessor_full_name
     object.assessors.primary.try(:full_name) || "Not Assigned"
   end
