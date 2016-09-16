@@ -13,7 +13,7 @@
             - if @form_answer.innovation?
               p = @form_answer.innovation_desc_short
             - if @form_answer.development?
-              p = @form_answer.development_desc_short
+              p = @form_answer.development_management_approach_briefly
             - if @form_answer.trade? && @form_answer.document["trade_goods_and_services_explanations"].present?
               ul.list-unstyled.good-services-list
                 - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
@@ -59,8 +59,10 @@
         label.form-label Description of goods/services
         - if @form_answer.innovation?
           p = @form_answer.innovation_desc_short
+        - if @form_answer.mobility?
+          p = @form_answer.mobility_desc_short
         - if @form_answer.development?
-          p = @form_answer.development_desc_short
+          p = @form_answer.development_management_approach_briefly
         - if @form_answer.trade? && @form_answer.document["trade_goods_and_services_explanations"].present?
           ul.list-unstyled.good-services-list
             - @form_answer.document["trade_goods_and_services_explanations"].each_with_index do |service, index|
