@@ -45,7 +45,7 @@ class Users::FormAnswersController < Users::BaseController
   end
 
   def can_render_pdf_on_fly?
-    !form_answer.submission_ended?
+    !form_answer.submitted? || !form_answer.submission_ended?
   end
 
   def render_hard_copy_pdf
