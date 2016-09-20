@@ -45,7 +45,27 @@ class Users::FormAnswersController < Users::BaseController
   end
 
   def can_render_pdf_on_fly?
-    !form_answer.submitted? || !form_answer.submission_ended?
+    #
+    # Render PDF on fly only if:
+    #
+    # 1) 'Download blank PDF'
+    #
+    # 2) Submission IS NOT ended for current application award year
+    #
+    # 3) Submission IS ended for current application award year,
+    #    but application is not submitted and
+    #    application's award year equal current award year (because
+    #    PDF formatting changes from year to year and we can' generate
+    #    PDF on fly for previous award years)
+    #
+
+    pdf_blank_mode ||
+    !form_answer.submission_ended? ||
+    (
+      form_answer.submission_ended? &&
+      !form_answer.submitted? &&
+      form_answer.award_year_id == AwardYear.current.id
+    )
   end
 
   def render_hard_copy_pdf
