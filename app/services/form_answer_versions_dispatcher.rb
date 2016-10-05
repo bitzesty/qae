@@ -20,7 +20,16 @@ class FormAnswerVersionsDispatcher
 
   def get_full_name(whodunnit_key)
     klass, id = whodunnit_key.split(":")
-    klass.capitalize.constantize.find(id).decorate.full_name
+    user = klass.capitalize.constantize.find_by_id(id)
+
+    # if user is destroyed we don't update versions' whodunnit keys
+    # this helps to avoid 404 errors on the application page
+    # and display "N/A" for such users
+    if user
+      user.decorate.full_name
+    else
+      nil
+    end
   end
 
   class Version
@@ -40,8 +49,11 @@ class FormAnswerVersionsDispatcher
     end
 
     def whodunnit
-      return "N/A" unless version.whodunnit
-      whodunnit_hash[version.whodunnit]
+      if version.whodunnit && whodunnit_hash[version.whodunnit]
+        whodunnit_hash[version.whodunnit]
+      else
+        "N/A"
+      end
     end
   end
 end
