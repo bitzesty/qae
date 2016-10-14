@@ -15,7 +15,8 @@ RUN apk add --update --no-cache \
     libxslt-dev \
     git \
     postgresql-client \
-    postgresql-dev
+    postgresql-dev \
+    postgresql
 
 RUN update-ca-certificates
 
