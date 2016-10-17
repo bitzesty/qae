@@ -42,11 +42,11 @@ class FormPaginator
   end
 
   def first?
-    position == 0
+    !position || position == 0
   end
 
   def last?
-    position == ids.count - 1
+    !position || position == ids.count - 1
   end
 
   private
