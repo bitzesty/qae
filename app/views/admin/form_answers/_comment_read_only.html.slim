@@ -1,7 +1,7 @@
 .comment class="#{'comment-flagged' if comment_read_only.flagged?}"
   .comment-header
     h3
-      = comment_read_only.author_email
+      = comment.authorable.present? ? comment.author_email : "Author deleted"
 
   .comment-content
     = qae_simple_format comment_read_only.body
