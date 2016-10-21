@@ -21,6 +21,8 @@ module AdminHelper
     if author.present?
       base = author.email
       base += " (deleted account)" if author.deleted?
+
+      base
     else
       "Author deleted"
     end
