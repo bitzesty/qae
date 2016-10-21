@@ -33,6 +33,13 @@ class Admin::AdminsController < Admin::UsersController
     respond_with :admin, @resource, location: admin_admins_path
   end
 
+  def destroy
+    authorize @resource, :destroy?
+    @resource.soft_delete!
+
+    respond_with :admin, @resource, location: admin_admins_path
+  end
+
   # NOTE: debug abilities for Admin - BEGIN
   def login_as_assessor
     authorize Admin, :index?
