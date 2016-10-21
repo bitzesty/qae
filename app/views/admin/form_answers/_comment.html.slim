@@ -14,7 +14,8 @@
 
   .comment-header
     h3
-      = comment.author_email
+      = comment_author(comment)
+
       span.pull-right.if-no-js-hide
         - if comment.author?(current_subject)
           = link_to "#", class: "link-delete-comment"

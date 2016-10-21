@@ -42,6 +42,8 @@ class Assessor < ActiveRecord::Base
                     }
                   }
 
+  default_scope { where(deleted: false) }
+
   scope :by_email, -> { order(:email) }
   scope :confirmed, -> { where.not(confirmed_at: nil) }
 
@@ -51,6 +53,10 @@ class Assessor < ActiveRecord::Base
         where("#{award_category}_role" => role)
       }
     end
+  end
+
+  def active_for_authentication?
+    super && !deleted?
   end
 
   def self.roles
@@ -134,6 +140,10 @@ class Assessor < ActiveRecord::Base
 
   def secondary?(form_answer)
     form_answer.assessor_assignments.secondary.assessor_id == id
+  end
+
+  def soft_delete!
+    update_column(:deleted, true)
   end
 
   private
