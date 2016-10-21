@@ -237,7 +237,8 @@ CREATE TABLE assessors (
     unlock_token character varying,
     locked_at timestamp without time zone,
     company character varying,
-    mobility_role character varying
+    mobility_role character varying,
+    deleted boolean DEFAULT false
 );
 
 
@@ -3932,4 +3933,6 @@ INSERT INTO schema_migrations (version) VALUES ('20160804175513');
 INSERT INTO schema_migrations (version) VALUES ('20160804175527');
 
 INSERT INTO schema_migrations (version) VALUES ('20160906174550');
+
+INSERT INTO schema_migrations (version) VALUES ('20161021111201');
 

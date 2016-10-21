@@ -36,7 +36,8 @@ class Admin::AssessorsController < Admin::UsersController
 
   def destroy
     authorize @resource, :destroy?
-    @resource.destroy
+    @resource.soft_delete!
+
     respond_with :admin, @resource, location: admin_assessors_path
   end
 

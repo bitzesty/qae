@@ -15,6 +15,10 @@ class Comment < ActiveRecord::Base
     authorable == subject
   end
 
+  def author
+    authorable_type.constantize.unscoped.where(id: authorable_id).first
+  end
+
   def self.admin
     where(section: 0).order(created_at: :desc)
   end

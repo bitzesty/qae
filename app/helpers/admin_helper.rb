@@ -14,4 +14,15 @@ module AdminHelper
       ""
     end
   end
+
+  def comment_author(entry)
+    author = entry.author
+
+    if author.present?
+      base = author.email
+      base += " (deleted account)" if author.deleted?
+    else
+      "Author deleted"
+    end
+  end
 end
