@@ -1,19 +1,17 @@
-- applications = FormAnswerDecorator.decorate_collection(award_applications.where(state: FormAnswerTransition::POSSIBLE_STATES_BEFORE_SHORTLISED_STAGE))
-- if applications.present?
-  - applications.each do |award|
-    .container-split.award-list
-      .content-left
-        h3
-          = award.application_name
-          small
-            = award.award_type_full_name
-            '  Award
-      .content-right.content-offset-24
-        p
-          ' Your
-          - link_name = award.promotion? ? "nomination" : "application"
-          => link_to link_name, edit_form_url(award.id)
-          / ' is currently being assessed.
-      .clear
-  br
-  br
+- applications = FormAnswerDecorator.decorate_collection(award_applications)
+- applications.each do |award|
+  .container-split.award-list
+    .content-left
+      h3
+        = award.application_name
+        small
+          = award.award_type_full_name
+          '  Award
+    .content-right.content-offset-24
+      p
+        ' Your
+        - link_name = award.promotion? ? "nomination" : "application"
+        => link_to link_name, edit_form_url(award.id)
+    .clear
+br
+br
