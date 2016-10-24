@@ -12,6 +12,8 @@ class Admin < ActiveRecord::Base
 
   has_many :form_answer_attachments, as: :attachable
 
+  default_scope { where(deleted: false) }
+
   pg_search_scope :basic_search,
                   against: [
                     :first_name,
@@ -29,6 +31,14 @@ class Admin < ActiveRecord::Base
 
   def lead_or_assigned?(*)
     true
+  end
+
+  def active_for_authentication?
+    super && !deleted?
+  end
+
+  def soft_delete!
+    update_column(:deleted, true)
   end
 
   private
