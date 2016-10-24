@@ -5,17 +5,16 @@
 - elsif Settings.current_registrations_open_on?
   = render "content_only/info_messages/registrations_open_on"
 
-- if show_applications?
-  header.page-header.group
-    div
-      h1
-        ' Applications
+header.page-header.group
+  div
+    h1
+      ' Applications
 
-  - if Settings.after_current_submission_deadline?
-    .dashboard-post-submission
-      = render "dashboard_post_submission"
-  - else
-    .dashboard-pre-submission
-      = render "dashboard_pre_submission"
+- if Settings.after_current_submission_deadline?
+  .dashboard-post-submission
+    = render "dashboard_post_submission"
+- else
+  .dashboard-pre-submission
+    = render "dashboard_pre_submission"
 
-  = render "dashboard_past_applications" if past_applications.present?
+= render "dashboard_past_applications" if past_applications.present?
