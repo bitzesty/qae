@@ -15,7 +15,7 @@ module PdfAuditCertificates::General::SharedElements
   def render_certificate_info
     title = "THE QUEEN'S AWARDS FOR ENTERPRISE #{form_answer.award_year.year}: VERIFICATION OF COMMERCIAL FIGURES"
     render_text_box(title, 147, align: :center)
-    render_text_box(form_answer.award_type_full_name.upcase, 142, align: :center) # FIX
+    render_text_box(form_answer.award_type_full_name.upcase, 142, align: :center)
   end
 
   def render_recipients_info
