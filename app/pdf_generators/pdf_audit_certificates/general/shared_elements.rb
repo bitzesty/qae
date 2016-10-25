@@ -5,30 +5,36 @@ module PdfAuditCertificates::General::SharedElements
 
   def render_main_header
     render_certificate_info
+    render_recipients_info
     render_company_info
     render_urn
 
-    move_down 22.mm
+    move_down 32.mm
   end
 
   def render_certificate_info
-    title = "THE QUEEN'S AWARDS FOR ENTERPRISE #{form_answer.award_year.year}: AUDITOR'S CERTIFICATE"
-    render_text_box(title, 147)
+    title = "THE QUEEN'S AWARDS FOR ENTERPRISE #{form_answer.award_year.year}: VERIFICATION OF COMMERCIAL FIGURES"
+    render_text_box(title, 147, align: :center)
+    render_text_box(form_answer.award_type_full_name.upcase, 142, align: :center)
+  end
+
+  def render_recipients_info
+    render_text_box("TO: The Queens Award’s Office, The Department for Business, Energy & Industrial Strategy", 132)
   end
 
   def render_company_info
-    render_text_box("COMPANY NAME: #{form_answer.company_name}", 137)
+    render_text_box("COMPANY NAME: #{form_answer.company_name}", 127)
   end
 
   def render_urn
-    render_text_box("QA REF: #{form_answer.urn}", 132)
+    render_text_box("QA REF: #{form_answer.urn}", 122)
   end
 
   def render_base_paragraph
-    p1 = %{This certificate should confirm all the figures quoted in the table below, or as amended in the revised table on page 2. By completing this certificate, you are confirming that you have carried out such work as you consider necessary to confirm the relevant figures and that the applicant has complied with the accounting standards applicable to the applicant status in preparing the entry.}
+    p1 = %{We have performed the work agreed with #{form_answer.company_name} in line with the requirements set out in the document “Queen’s Awards for Enterprise: #{form_answer.award_type_full_name} #{form_answer.award_year.year}” which constitutes the application form for the award.}
     render_text_line(p1, 2, { leading: 2 })
 
-    p2 = "If you tick option 1, then you should only complete the signatory and company details below. If you tick option 2, you should complete the signatory and company details below and revise the figures in the table on page 2 of this form, initial and provide an explanation of the changes. This certificate should be completed in writing on a printed copy of this document. Please return the completed certificate to your client."
+    p2 = "Our work was carried out solely to assist your process for considering #{form_answer.company_name} for a Queen’s Awards for Enterprise. We have reviewed the figures provided by #{form_answer.company_name} in section C of the application form.  We have used the guidance in section C of the application form of the as our own guidance in terms of the information that #{form_answer.company_name} should have provided. "
     render_text_line(p2, 2, { leading: 2 })
   end
 
@@ -223,6 +229,7 @@ module PdfAuditCertificates::General::SharedElements
   ###################################
 
   def render_user_filling_block
+    render_text_line("From:", 1, style: :bold)
     b1 = %{Signed ..................................................................................................................}
     render_text_line(b1, 1)
 
@@ -274,8 +281,16 @@ module PdfAuditCertificates::General::SharedElements
     render_text_line(opt2, 6, default_list_ops)
   end
 
+  def render_options_list
+    render_options(
+      "Option 1 - We confirm that, in our opinion, the entry correctly states the information required and that the applicable accounting standards have been complied with.",
+      "Option 2 - We confirm that, in our opinion, the entry, as revised by the included Schedule and explanation of the changes (included on the next page), correctly states the information required and that the applicable accounting standards have been complied with."
+    )
+  end
+
+
   def render_footer_note
-    title = %{Note for applicants/auditors: The submission of this Auditor's Certificate to The Queen's Awards Office (QAO) provides authority for the QAO to verify the information contained in it with the above-named auditor.}
+    title = %{Note for applicants/auditors: This submission to the Queen's Awards Office (QAO) provides authority for the QAO to verify the information contained in it with the above-named auditor.}
     text_box title, default_text_ops.merge({
       at: [0.mm, 10.mm]
     })
@@ -286,9 +301,9 @@ module PdfAuditCertificates::General::SharedElements
     move_down margin.mm
   end
 
-  def render_text_box(title, top)
+  def render_text_box(title, top, options = {})
     text_box title,
-             default_text_header_ops.merge(at: [0.mm, top.mm + DEFAULT_OFFSET])
+             default_text_header_ops.merge(at: [0.mm, top.mm + DEFAULT_OFFSET]).merge(options)
   end
 
   def default_text_header_ops

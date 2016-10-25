@@ -2,7 +2,7 @@
 ul.list-unstyled.list-actions
   - if policy(resource).download_audit_certificate_pdf?
     li
-      = link_to "View/print Audit Certificate", [url_namespace, @form_answer, @form_answer.audit_certificate], target: "_blank"
+      = link_to "View/print Verification of Commercial Figures", [url_namespace, @form_answer, @form_answer.audit_certificate], target: "_blank"
 
       - if policy(resource).remove_audit_certificate?
         small.pull-right

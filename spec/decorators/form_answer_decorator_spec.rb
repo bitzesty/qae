@@ -89,7 +89,7 @@ describe FormAnswerDecorator do
       expect(described_class.new(form_answer).dashboard_status).to eq("Not awarded")
 
       form_answer.update_column(:state, "disqualified")
-      expect(described_class.new(form_answer).dashboard_status).to eq("Disqualified - No Audit Certificate")
+      expect(described_class.new(form_answer).dashboard_status).to eq("Disqualified - No Verification of Commercial Figures")
     end
   end
 
