@@ -27,10 +27,10 @@ class FormAnswerStatus::AdminFilter
       label: "Recommendation discrepancy"
     },
     missing_audit_certificate: {
-      label: "Missing Audit Certificate"
+      label: "Missing Verification of Commercial Figures"
     },
     audit_certificate_not_reviewed: {
-      label: "Audit Certificate - not reviewed yet"
+      label: "Verification of Commercial Figures - not reviewed yet"
     },
     missing_feedback: {
       label: "Missing Feedback"
@@ -68,7 +68,7 @@ class FormAnswerStatus::AdminFilter
       states: [:assessment_in_progress]
     },
     disqualified: {
-      label: "Disqualified - No Audit Certificate",
+      label: "Disqualified - No Verification of Commercial Figures",
       states: [:disqualified]
     },
     recommended: {

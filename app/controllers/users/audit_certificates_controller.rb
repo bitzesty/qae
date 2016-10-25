@@ -21,7 +21,7 @@ class Users::AuditCertificatesController < Users::BaseController
       format.html
       format.pdf do
         send_data pdf_data.render,
-                  filename: "audit_certificate_#{form_answer.decorate.pdf_filename}",
+                  filename: "verification_of_commercial_figures_#{form_answer.decorate.pdf_filename}",
                   type: "application/pdf"
       end
     end
@@ -40,7 +40,7 @@ class Users::AuditCertificatesController < Users::BaseController
       format.html do
         if saved
           redirect_to users_form_answer_audit_certificate_url(form_answer),
-                      notice: "Audit Certificate successfully uploaded!"
+                      notice: "Verification of Commercial Figures successfully uploaded!"
         else
           render :show
         end
