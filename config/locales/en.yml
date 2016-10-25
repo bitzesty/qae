@@ -135,7 +135,7 @@ en:
     buckingham_palace_confirm_press_book_notes: Press Book Entry confirmation due by
     buckingham_palace_reception_attendee_information_due_by: Buckingham Palace reception attendee information due by
     buckingham_palace_attendees_invite: Buckingham Palace Reception on
-    audit_certificates: Audit certificates due by
+    audit_certificates: Verification of Commercial Figures due by
 
   email_notification_headers:
     submission_started_notification: "Notify users that applications for the new Award year are open"
@@ -147,8 +147,8 @@ en:
     buckingham_palace_invite: "WINNERS : Buckingham Palace Invite to all winning business applicants"
     unsuccessful_notification: "UNSUCCESSFUL: Email notification to unsuccessful Business categories Registered Account holder."
     unsuccessful_ep_notification: "UNSUCCESSFUL: Email notification of unsuccessful QAEP nominations."
-    shortlisted_notifier: "SHORTLISTED : Email notifying shortlisted applicants of their success, including audit certificate instructions."
-    shortlisted_audit_certificate_reminder: "SHORTLISTED : Reminder to submit audit certificates (for shortlisted applicants who have not yet done so)."
+    shortlisted_notifier: "SHORTLISTED : Email notifying shortlisted applicants of their success, including Verification of Commercial Figures instructions."
+    shortlisted_audit_certificate_reminder: "SHORTLISTED : Reminder to submit Verification of Commercial Figures (for shortlisted applicants who have not yet done so)."
     not_shortlisted_notifier: "NOT SHORTLISTED : Email notifying unsuccessful applicants."
 
   custom_login_messages:
@@ -195,7 +195,7 @@ en:
       not_eligible: Not eligible
       not_submitted: Not submitted
       assessment_in_progress: Assessment in progress
-      disqualified: Disqualified - No Audit Certificate
+      disqualified: Disqualified - No Verification of Commercial Figures
       recommended: Recommended
       reserved: Reserved
       not_recommended: Not recommended

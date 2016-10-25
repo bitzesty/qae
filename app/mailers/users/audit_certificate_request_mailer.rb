@@ -5,7 +5,7 @@ class Users::AuditCertificateRequestMailer < ApplicationMailer
     @deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
     @deadline = @deadline.trigger_at.strftime("%d/%m/%Y")
 
-    @subject = "Queen's Awards for Enterprise: Reminder to submit your Audit Certificate"
+    @subject = "Queen's Awards for Enterprise: Reminder to submit your Verification of Commercial Figures"
     mail to: @recipient.email, subject: @subject
   end
 end

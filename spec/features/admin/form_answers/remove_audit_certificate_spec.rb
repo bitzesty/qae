@@ -1,10 +1,10 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-describe "Admin: ability to remove Audit Certificate", %q{
+describe "Admin: ability to remove Verification of Commercial Figures", %q{
 As an Admin
-I want to have ability to delete the auditors certificate in case the user has uploaded it in error
-So that User can re-upload Audit Certificate
+I want to have ability to delete the Verification of Commercial Figures in case the user has uploaded it in error
+So that User can re-upload Verification of Commercial Figures
 } do
 
   let!(:form_answer) do
@@ -24,7 +24,7 @@ So that User can re-upload Audit Certificate
         visit target_url
       end
 
-      it "should not allow to remove Audit Certificate" do
+      it "should not allow to remove Verification of Commercial Figures" do
         expect(page).to_not have_selector(:css, "a.js-remove-audit-certificate-link")
       end
     end
@@ -41,7 +41,7 @@ So that User can re-upload Audit Certificate
         visit target_url
       end
 
-      it "should not allow to remove Audit Certificate" do
+      it "should not allow to remove Verification of Commercial Figures" do
         expect(page).to_not have_selector(:css, "a.js-remove-audit-certificate-link")
       end
     end
@@ -56,7 +56,7 @@ So that User can re-upload Audit Certificate
       visit admin_form_answer_path(form_answer)
     end
 
-    xit "should remove Audit Certificate" do
+    it "should remove Verification of Commercial Figures" do
       expect(form_answer.audit_certificate.present?).to be_truthy
 
       find(".js-remove-audit-certificate-link").click

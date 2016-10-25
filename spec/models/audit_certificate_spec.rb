@@ -10,7 +10,7 @@ RSpec.describe AuditCertificate, type: :model do
       it { should validate_presence_of field_name }
     end
 
-    describe "Form answer should have just one Audit Certificate" do
+    describe "Form answer should have just one Verification of Commercial Figures" do
       let!(:form_answer) { create(:form_answer) }
       let!(:audit_certificate) { create(:audit_certificate, form_answer: form_answer) }
 
