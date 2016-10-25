@@ -43,7 +43,7 @@ class Admin::FormAnswersController < Admin::BaseController
 
     respond_to do |format|
       format.html do
-        flash.notice = "Audit Certificate successfully removed"
+        flash.notice = "Verification of Commercial Figures successfully removed"
         redirect_to admin_form_answer_url(@form_answer)
       end
       format.js do

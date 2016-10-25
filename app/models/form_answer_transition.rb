@@ -1,15 +1,6 @@
 class FormAnswerTransition < ActiveRecord::Base
   include Statesman::Adapters::ActiveRecordTransition
 
-  POSSIBLE_STATES_BEFORE_SHORTLISED_STAGE = [
-    "assessment_in_progress",
-    "submitted",
-    "not_submitted",
-    "application_in_progress",
-    "reserved",
-    "recommended"
-  ]
-
   belongs_to :form_answer, inverse_of: :form_answer_transitions
 
   def transitable

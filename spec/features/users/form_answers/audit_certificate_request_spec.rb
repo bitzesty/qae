@@ -1,9 +1,9 @@
 require 'rails_helper'
 include Warden::Test::Helpers
 
-describe "Audit Certificate", %q{
+describe "Verification of Commercial Figures", %q{
 As a User
-I want to be able to download an Audit Certificate
+I want to be able to download an Verification of Commercial Figures
 So that I can check, complete it and then upload it to application
 } do
 
@@ -22,23 +22,23 @@ So that I can check, complete it and then upload it to application
     login_as user
   end
 
-  describe "Visit Audit Certificate details page" do
+  describe "Visit Verification of Commercial Figures details page" do
     before do
       visit users_form_answer_audit_certificate_url(form_answer)
     end
 
     it "should render page" do
-      expect_to_see "Audit Certificate"
+      expect_to_see "Verification of Commercial Figures"
       expect(page).to have_link(
-        "this audit certificate",
+        "this Verification of Commercial Figures",
         href: users_form_answer_audit_certificate_url(form_answer, format: :pdf)
       )
     end
   end
 
-  describe "Download Audit Certificate prefilled with my financial data" do
+  describe "Download Verification of Commercial Figures prefilled with my financial data" do
     let(:audit_certificate_filename) do
-      "audit_certificate_#{form_answer.decorate.pdf_filename}"
+      "verification_of_commercial_figures_#{form_answer.decorate.pdf_filename}"
     end
 
     before do
