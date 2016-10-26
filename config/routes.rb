@@ -107,7 +107,6 @@ Rails.application.routes.draw do
         get :failure
         post :update_acceptance
       end
-      resource :declaration_of_responsibility, only: [:edit, :update]
       resource :palace_invite, only: [:edit, :update]
     end
     resources :form_answer_feedbacks, only: [:show]
