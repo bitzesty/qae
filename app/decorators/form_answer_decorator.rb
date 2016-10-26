@@ -172,14 +172,6 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
-  def full_dcr_selected?
-    object.document["corp_responsibility_form"].to_s == "complete_now"
-  end
-
-  def short_dcr_selected?
-    object.document["corp_responsibility_form"].to_s == "declare_now"
-  end
-
   def awarded?
     object.state == "awarded"
   end

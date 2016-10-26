@@ -27,25 +27,6 @@
         p Please review the actions below to complete your shortlisted application.
         ul.post-dashboard-actions
           li
-            - if award.full_dcr_selected?
-              | Declaration of Corporate Responsibility
-            - else
-              = link_to "Declaration of Corporate Responsibility",
-                        edit_users_form_answer_declaration_of_responsibility_path(award)
-
-            span.award-info
-              span.pull-right
-                ' Due by
-                = application_deadline_short(:audit_certificates)
-              - if award.full_dcr_selected?
-                span.label-status.label-status-green
-                  ' Complete
-              - else
-                = link_to edit_users_form_answer_declaration_of_responsibility_path(award)
-                  span.label-status.label-status-red
-                    ' Incomplete
-
-          li
             = link_to "Verification of Commercial Figures", users_form_answer_audit_certificate_url(award)
             span.award-info
               span.pull-right
