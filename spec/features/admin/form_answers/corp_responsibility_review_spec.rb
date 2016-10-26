@@ -50,80 +50,42 @@ describe "Corp responsibility Review" do
     end
   end
 
-  describe "Review" do
-    describe "Not Completed DCR" do
-      let!(:not_completed_form_answer) do
-        f = create(:form_answer, :trade, :recommended)
-        f.document["corp_responsibility_form"] = "declare_now"
-        f.save!
-
-        f
-      end
-
+  describe "Review", js: true do
+    let!(:form_answer) { create(:form_answer, :trade, :recommended) }
+    describe "Mark as Reviewed" do
       before do
-        visit admin_form_answer_path(not_completed_form_answer)
+        visit admin_form_answer_path(form_answer)
       end
 
-      it "should display DCR" do
+      it "should allow to mark as reviewed" do
         within("#corp-responsibility-section") do
-          expect_to_see "Declaration of Corporate Responsibility"
-          expect_to_see "Incomplete"
+          expect_to_see "DECLARATION OF CORPORATE RESPONSIBILITY"
+
+          find("a[aria-controls='corp-responsibility']").click
+
+          expect_to_see "Not reviewed"
           expect_to_see_no "Reviewed"
-        end
-      end
-    end
 
-    describe "Completed DCR", js: true do
-      describe "Mark as Reviewed" do
-        let!(:completed_form_answer) do
-          f = create(:form_answer, :trade, :recommended)
-          f.document["corp_responsibility_form"] = "complete_now"
-          f.save!
+          click_link "Edit"
 
-          f
-        end
+          first("input[type='checkbox']").set(true)
 
-        before do
-          visit admin_form_answer_path(completed_form_answer)
-        end
+          click_link "Save"
+          wait_for_ajax
 
-        it "should allow to mark as reviewed" do
-          within("#corp-responsibility-section") do
-            expect_to_see "DECLARATION OF CORPORATE RESPONSIBILITY"
+          expect_to_see "Reviewed"
+          expect_to_see_no "Not reviewed"
 
-            find("a[aria-controls='corp-responsibility']").click
-
-            expect_to_see "Complete"
-            expect_to_see "Not reviewed"
-            expect_to_see_no "Reviewed"
-
-            click_link "Edit"
-
-            first("input[type='checkbox']").set(true)
-
-            click_link "Save"
-            wait_for_ajax
-
-            expect_to_see "Reviewed"
-            expect_to_see_no "Not reviewed"
-
-            expect(completed_form_answer.reload.corp_responsibility_reviewed).to be_truthy
-          end
+          expect(form_answer.reload.corp_responsibility_reviewed).to be_truthy
         end
       end
 
       describe "Unmark as Reviewed" do
-        let!(:reviewed_form_answer) do
-          f = create(:form_answer, :trade, :recommended)
-          f.document["corp_responsibility_form"] = "complete_now"
-          f.corp_responsibility_reviewed = true
-          f.save!
-
-          f
-        end
-
         before do
-          visit admin_form_answer_path(reviewed_form_answer)
+          form_answer.corp_responsibility_reviewed = true
+          form_answer.save!
+
+          visit admin_form_answer_path(form_answer)
         end
 
         it "should allow to mark as not reviewed" do
@@ -132,7 +94,6 @@ describe "Corp responsibility Review" do
 
             find("a[aria-controls='corp-responsibility']").click
 
-            expect_to_see "Complete"
             expect_to_see "Reviewed"
             expect_to_see_no "Not reviewed"
 
@@ -146,7 +107,7 @@ describe "Corp responsibility Review" do
             expect_to_see "Not reviewed"
             expect_to_see_no "Reviewed"
 
-            expect(reviewed_form_answer.reload.corp_responsibility_reviewed).to be_falsey
+            expect(form_answer.reload.corp_responsibility_reviewed).to be_falsey
           end
         end
       end
