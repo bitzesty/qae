@@ -70,6 +70,7 @@ class MailRenderer
     assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     assigns[:deadline] = deadline_str("audit_certificates")
+    assigns[:deadline_time] = "midday"
 
     render(assigns, "users/audit_certificate_request_mailer/notify")
   end
