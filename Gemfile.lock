@@ -6,6 +6,13 @@ GIT
       jquery-ui-rails (~> 5.0)
       railties (>= 3.1)
 
+GIT
+  remote: git@github.com:prawnpdf/prawn-table.git
+  revision: d1bedb772e9d4319297a9a021c4ab30546fa0324
+  branch: hb_split_table_rows_refactor_1
+  specs:
+    prawn-table (0.1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -330,7 +337,6 @@ GEM
     prawn (1.3.0)
       pdf-core (~> 0.4.0)
       ttfunk (~> 1.4.0)
-    prawn-table (0.2.1)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -575,7 +581,7 @@ DEPENDENCIES
   pg (~> 0.17)
   pg_search (= 0.7.9)
   prawn
-  prawn-table
+  prawn-table!
   pry-byebug
   puma (~> 2.16.0)
   pundit (~> 0.3)

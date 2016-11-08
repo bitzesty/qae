@@ -101,6 +101,10 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
+  def remove_empty_lines(value)
+    value.gsub(/\n+|\r+/, "\n").squeeze("\n").strip
+  end
+
   def rag_source(value)
     case value[:type]
     when :rag
@@ -206,6 +210,7 @@ module CaseSummaryPdfs::General::DataPointer
     year = @award_year.year
 
     pdf_doc.table(case_summaries_entries,
+                  split_cells_across_pages: true,
                   cell_style: { size: 12 },
                   column_widths: c_widths) do
 

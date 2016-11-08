@@ -70,7 +70,7 @@ gem 'enumerize', '~> 0.8'
 
 # PDF generation
 gem 'prawn'
-gem 'prawn-table'
+gem 'prawn-table', git: "git@github.com:prawnpdf/prawn-table.git", branch: "hb_split_table_rows_refactor_1"
 gem 'nokogiri', '~> 1.6.0'
 
 # Uploads
