@@ -73,19 +73,6 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
-  #
-  # Table version of displaying of Case Summary comments
-  # let's leave it here for now
-  #
-  # def application_background_table_items
-  #   [
-  #     [
-  #       "Application background",
-  #       data["application_background_section_desc"]
-  #     ]
-  #   ]
-  # end
-
   def case_summaries_table_headers
     [
       [
@@ -162,17 +149,6 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
-  #
-  # Table version of displaying of Case Summary comments
-  # let's leave it here for now
-  #
-  # def render_application_background
-  #   render_table(application_background_table_items, {
-  #     0 => 100,
-  #     1 => 667
-  #   })
-  # end
-
   def render_application_background
     pdf_doc.stroke_horizontal_rule
     pdf_doc.move_down 7.mm
@@ -188,19 +164,6 @@ module CaseSummaryPdfs::General::DataPointer
     render_items
   end
 
-  #
-  # Table version of displaying of Case Summary comments
-  # let's leave it here for now
-  #
-  # def render_case_summaries_header
-  #   pdf_doc.table case_summaries_table_headers, row_colors: %w(FFFFFF),
-  #                                               cell_style: { size: 12, font_style: :bold },
-  #                                               column_widths: {
-  #                                                 0 => 650,
-  #                                                 1 => 117
-  #                                               }
-  # end
-
   def render_case_summaries_header
     pdf_doc.text "Case summary comments", header_text_properties.merge({size: 13})
   end
@@ -213,55 +176,6 @@ module CaseSummaryPdfs::General::DataPointer
       const_set("#{label.upcase}_LABELS_#{year}", AppraisalForm.group_labels_by(year, label))
     end
   end
-
-  #
-  # Table version of displaying of Case Summary comments
-  # let's leave it here for now
-  #
-  # def render_items
-  #   c_widths = if @form_answer.mobility?
-  #     {
-  #       0 => 200,
-  #       1 => 450,
-  #       2 => 117
-  #     }
-  #   else
-  #     {
-  #       0 => 100,
-  #       1 => 550,
-  #       2 => 117
-  #     }
-  #   end
-
-  #   year = @award_year.year
-
-  #   pdf_doc.table(case_summaries_entries,
-  #                 cell_style: { size: 12 },
-  #                 column_widths: c_widths) do
-
-  #     values = cells.columns(2).rows(0..-1)
-
-  #     green_rags = values.filter do |cell|
-  #       CaseSummaryPdfs::Pointer.const_get("POSITIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
-  #     end
-  #     green_rags.background_color = POSITIVE_COLOR
-
-  #     amber_rags = values.filter do |cell|
-  #       CaseSummaryPdfs::Pointer.const_get("AVERAGE_LABELS_#{year}").include?(cell.content.to_s.strip)
-  #     end
-  #     amber_rags.background_color = AVERAGE_COLOR
-
-  #     red_rags = values.filter do |cell|
-  #       CaseSummaryPdfs::Pointer.const_get("NEGATIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
-  #     end
-  #     red_rags.background_color = NEGATIVE_COLOR
-
-  #     neutral_rags = values.filter do |cell|
-  #       CaseSummaryPdfs::Pointer.const_get("NEUTRAL_LABELS_#{year}").include?(cell.content.to_s.strip)
-  #     end
-  #     neutral_rags.background_color = NEUTRAL_COLOR
-  #   end
-  # end
 
   def render_items
     year = @award_year.year
