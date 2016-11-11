@@ -73,14 +73,14 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
-  def application_background_table_items
-    [
-      [
-        "Application background",
-        data["application_background_section_desc"]
-      ]
-    ]
-  end
+  # def application_background_table_items
+  #   [
+  #     [
+  #       "Application background",
+  #       data["application_background_section_desc"]
+  #     ]
+  #   ]
+  # end
 
   def case_summaries_table_headers
     [
@@ -139,7 +139,7 @@ module CaseSummaryPdfs::General::DataPointer
       render_application_background
     end
 
-    pdf_doc.move_down 10.mm
+    pdf_doc.move_down 7.mm
     render_case_summary_comments
 
     render_financial_block(false) unless form_answer.trade?
@@ -147,7 +147,7 @@ module CaseSummaryPdfs::General::DataPointer
 
   def render_financial_block(trade_mode)
     if financial_pointer.present? && !financial_pointer.period_length.zero?
-      move_length = 10.mm
+      move_length = 3.mm
 
       if trade_mode.present?
         move_length = y_coord('general_block').mm
@@ -158,11 +158,21 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
+  # def render_application_background
+  #   render_table(application_background_table_items, {
+  #     0 => 100,
+  #     1 => 667
+  #   })
+  # end
+
   def render_application_background
-    render_table(application_background_table_items, {
-      0 => 100,
-      1 => 667
-    })
+    pdf_doc.stroke_horizontal_rule
+    pdf_doc.move_down 7.mm
+    pdf_doc.text "Application background", header_text_properties.merge({size: 13})
+    pdf_doc.move_down 5.mm
+    pdf_doc.text data["application_background_section_desc"], header_text_properties.merge({style: :normal})
+    pdf_doc.move_down 7.mm
+    pdf_doc.stroke_horizontal_rule
   end
 
   def render_case_summary_comments
@@ -170,13 +180,17 @@ module CaseSummaryPdfs::General::DataPointer
     render_items
   end
 
+  # def render_case_summaries_header
+  #   pdf_doc.table case_summaries_table_headers, row_colors: %w(FFFFFF),
+  #                                               cell_style: { size: 12, font_style: :bold },
+  #                                               column_widths: {
+  #                                                 0 => 650,
+  #                                                 1 => 117
+  #                                               }
+  # end
+
   def render_case_summaries_header
-    pdf_doc.table case_summaries_table_headers, row_colors: %w(FFFFFF),
-                                                cell_style: { size: 12, font_style: :bold },
-                                                column_widths: {
-                                                  0 => 650,
-                                                  1 => 117
-                                                }
+    pdf_doc.text "Case summary comments", header_text_properties.merge({size: 13})
   end
 
   # Classes and methods are not available inside pdf_doc.table below (Prawn::Table)
@@ -188,48 +202,79 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
-  def render_items
-    c_widths = if @form_answer.mobility?
-      {
-        0 => 200,
-        1 => 450,
-        2 => 117
-      }
-    else
-      {
-        0 => 100,
-        1 => 550,
-        2 => 117
-      }
-    end
+  # def render_items
+  #   c_widths = if @form_answer.mobility?
+  #     {
+  #       0 => 200,
+  #       1 => 450,
+  #       2 => 117
+  #     }
+  #   else
+  #     {
+  #       0 => 100,
+  #       1 => 550,
+  #       2 => 117
+  #     }
+  #   end
 
+  #   year = @award_year.year
+
+  #   pdf_doc.table(case_summaries_entries,
+  #                 cell_style: { size: 12 },
+  #                 column_widths: c_widths) do
+
+  #     values = cells.columns(2).rows(0..-1)
+
+  #     green_rags = values.filter do |cell|
+  #       CaseSummaryPdfs::Pointer.const_get("POSITIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
+  #     end
+  #     green_rags.background_color = POSITIVE_COLOR
+
+  #     amber_rags = values.filter do |cell|
+  #       CaseSummaryPdfs::Pointer.const_get("AVERAGE_LABELS_#{year}").include?(cell.content.to_s.strip)
+  #     end
+  #     amber_rags.background_color = AVERAGE_COLOR
+
+  #     red_rags = values.filter do |cell|
+  #       CaseSummaryPdfs::Pointer.const_get("NEGATIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
+  #     end
+  #     red_rags.background_color = NEGATIVE_COLOR
+
+  #     neutral_rags = values.filter do |cell|
+  #       CaseSummaryPdfs::Pointer.const_get("NEUTRAL_LABELS_#{year}").include?(cell.content.to_s.strip)
+  #     end
+  #     neutral_rags.background_color = NEUTRAL_COLOR
+  #   end
+  # end
+
+  def render_items
     year = @award_year.year
 
-    pdf_doc.table(case_summaries_entries,
-                  cell_style: { size: 12 },
-                  column_widths: c_widths) do
+    pdf_doc.move_down 5.mm
 
-      values = cells.columns(2).rows(0..-1)
+    case_summaries_entries.each_with_index do |entry, index|
 
-      green_rags = values.filter do |cell|
-        CaseSummaryPdfs::Pointer.const_get("POSITIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
+      if index > 0
+        pdf_doc.stroke_horizontal_rule
+        pdf_doc.move_down 5.mm
       end
-      green_rags.background_color = POSITIVE_COLOR
 
-      amber_rags = values.filter do |cell|
-        CaseSummaryPdfs::Pointer.const_get("AVERAGE_LABELS_#{year}").include?(cell.content.to_s.strip)
-      end
-      amber_rags.background_color = AVERAGE_COLOR
+      pdf_doc.text entry[0], header_text_properties
 
-      red_rags = values.filter do |cell|
-        CaseSummaryPdfs::Pointer.const_get("NEGATIVE_LABELS_#{year}").include?(cell.content.to_s.strip)
-      end
-      red_rags.background_color = NEGATIVE_COLOR
+      pdf_doc.text entry[2], header_text_properties.merge({color: color_by_value(entry[2], year)})
 
-      neutral_rags = values.filter do |cell|
-        CaseSummaryPdfs::Pointer.const_get("NEUTRAL_LABELS_#{year}").include?(cell.content.to_s.strip)
+      pdf_doc.move_down 5.mm
+
+      pdf_doc.text entry[1], header_text_properties.merge({style: :normal})
+      pdf_doc.move_down 5.mm
+    end
+  end
+
+  def color_by_value(val, year)
+    COLOR_LABELS.map do |label|
+      if CaseSummaryPdfs::Pointer.const_get("#{label.upcase}_LABELS_#{year}").include?(val)
+        return self.class.const_get("#{label.upcase}_COLOR")
       end
-      neutral_rags.background_color = NEUTRAL_COLOR
     end
   end
 
@@ -241,7 +286,9 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_financial_section_header
-    pdf_doc.text "Financial Summary", header_text_properties
+    pdf_doc.stroke_horizontal_rule
+    pdf_doc.move_down 10.mm
+    pdf_doc.text "Financial Summary", header_text_properties.merge({size: 13})
     pdf_doc.move_down 5.mm
   end
 
@@ -311,7 +358,7 @@ module CaseSummaryPdfs::General::DataPointer
   end
 
   def render_financial_benchmarks
-    pdf_doc.move_down 10.mm
+    pdf_doc.move_down 5.mm
     render_financial_table_header
     render_base_growth_table
 
