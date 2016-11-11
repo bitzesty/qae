@@ -73,6 +73,10 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
+  #
+  # Table version of displaying of Case Summary comments
+  # let's leave it here for now
+  #
   # def application_background_table_items
   #   [
   #     [
@@ -158,6 +162,10 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
+  #
+  # Table version of displaying of Case Summary comments
+  # let's leave it here for now
+  #
   # def render_application_background
   #   render_table(application_background_table_items, {
   #     0 => 100,
@@ -180,6 +188,10 @@ module CaseSummaryPdfs::General::DataPointer
     render_items
   end
 
+  #
+  # Table version of displaying of Case Summary comments
+  # let's leave it here for now
+  #
   # def render_case_summaries_header
   #   pdf_doc.table case_summaries_table_headers, row_colors: %w(FFFFFF),
   #                                               cell_style: { size: 12, font_style: :bold },
@@ -202,6 +214,10 @@ module CaseSummaryPdfs::General::DataPointer
     end
   end
 
+  #
+  # Table version of displaying of Case Summary comments
+  # let's leave it here for now
+  #
   # def render_items
   #   c_widths = if @form_answer.mobility?
   #     {
