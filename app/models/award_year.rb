@@ -42,8 +42,19 @@ class AwardYear < ActiveRecord::Base
   #
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AggregatedAwardYearPdf::TYPES.each do |pdf_type|
-      define_method("#{pdf_type}_#{award_category}_hard_copy_pdf") do
-        send("aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
+      if award_category == "trade" && pdf_type == "case_summary"
+        ["3", "6"].map do |i|
+          define_method("#{pdf_type}_#{award_category}_#{i}_hard_copy_pdf") do
+            send("aggregated_#{pdf_type}_hard_copies").find_by(
+              award_category: award_category,
+              sub_type: i
+            )
+          end
+        end
+      else
+        define_method("#{pdf_type}_#{award_category}_hard_copy_pdf") do
+          send("aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
+        end
       end
     end
   end
@@ -75,8 +86,15 @@ class AwardYear < ActiveRecord::Base
 
   def aggregated_hard_copies_completed?(type)
     CURRENT_YEAR_AWARDS.all? do |award_category|
-      copy_record = send("#{type}_#{award_category}_hard_copy_pdf")
-      copy_record.present? && copy_record.file.present?
+      if award_category == "trade" && type == "case_summary"
+        ["3", "6"].all? do |i|
+          copy_record = send("#{type}_#{award_category}_#{i}_hard_copy_pdf")
+          copy_record.present? && copy_record.file.present?
+        end
+      else
+        copy_record = send("#{type}_#{award_category}_hard_copy_pdf")
+        copy_record.present? && copy_record.file.present?
+      end
     end
   end
 

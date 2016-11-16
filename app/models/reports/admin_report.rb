@@ -36,7 +36,10 @@ class Reports::AdminReport
       CaseSummaryPdfs::Base
     end
 
-    attachment = year.send("#{id.singularize}_#{category}_hard_copy_pdf")
+    sub_type = ""
+    sub_type = "_#{params[:years_mode]}" if category == "trade" && id == "case_summaries"
+
+    attachment = year.send("#{id.singularize}_#{category}#{sub_type}_hard_copy_pdf")
 
     if year.send("aggregated_#{id.singularize}_hard_copy_state").to_s == "completed" &&
        attachment.present? &&
