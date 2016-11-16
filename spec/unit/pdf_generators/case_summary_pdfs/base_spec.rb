@@ -43,7 +43,8 @@ describe "CaseSummaryPdfs::Base" do
       trade_case_summaries = CaseSummaryPdfs::Base.new(
         "all", nil, {
           category: "trade",
-          award_year: award_year
+          award_year: award_year,
+          years_mode: "3"
         }
       ).set_form_answers
        .map(&:id)

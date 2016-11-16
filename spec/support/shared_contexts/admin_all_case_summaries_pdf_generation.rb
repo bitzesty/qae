@@ -33,7 +33,11 @@ shared_context "admin all case summaries pdf generation" do
 
   describe "Download PDF" do
     before do
-      visit admin_report_path("case_summaries", category: award_type, format: :pdf)
+      ops = {category: award_type, format: :pdf}
+      # For trade category it would have year depends links ('3 years' and '6 years')
+      ops[:years_mode] = '3' if award_type == :trade
+
+      visit admin_report_path("case_summaries", ops)
     end
 
     it "should generate pdf" do
