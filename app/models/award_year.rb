@@ -42,20 +42,22 @@ class AwardYear < ActiveRecord::Base
   #
   FormAnswer::POSSIBLE_AWARDS.each do |award_category|
     AggregatedAwardYearPdf::TYPES.each do |pdf_type|
-      if award_category == "trade" && pdf_type == "case_summary"
-        ["3", "6"].map do |i|
-          define_method("#{pdf_type}_#{award_category}_#{i}_hard_copy_pdf") do
-            send("aggregated_#{pdf_type}_hard_copies").find_by(
-              award_category: award_category,
-              sub_type: i
-            )
-          end
-        end
-      else
-        define_method("#{pdf_type}_#{award_category}_hard_copy_pdf") do
-          send("aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
-        end
+      define_method("#{pdf_type}_#{award_category}_hard_copy_pdf") do
+        send("aggregated_#{pdf_type}_hard_copies").find_by(award_category: award_category)
       end
+    end
+  end
+
+  #
+  # For trade category Case summary would have 2 hard copies
+  # for '3 to 5' and '6 plus' years
+  #
+  ["3", "6"].map do |i|
+    define_method("case_summary_trade_#{i}_hard_copy_pdf") do
+      send("aggregated_case_summary_hard_copies").find_by(
+        award_category: 'trade',
+        sub_type: i
+      )
     end
   end
 

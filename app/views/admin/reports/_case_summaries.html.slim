@@ -3,7 +3,8 @@
     ' Case Summaries
   ul.list-unstyled.list-actions
     - FormAnswer::AWARD_TYPE_FULL_NAMES.each do |key, value|
-      - if key == "trade"
+      / For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
+      - if key == "trade" && @award_year.year != 2016
         = render 'admin/reports/case_summary_link', key: key, value: value, years_mode: 3
         = render 'admin/reports/case_summary_link', key: key, value: value, years_mode: 6
       - else

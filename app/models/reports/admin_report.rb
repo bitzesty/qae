@@ -37,7 +37,12 @@ class Reports::AdminReport
     end
 
     sub_type = ""
-    sub_type = "_#{params[:years_mode]}" if category == "trade" && id == "case_summaries"
+    if category == "trade" &&
+       id == "case_summaries" &&
+       year.year != 2016
+       # For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
+      sub_type = "_#{params[:years_mode]}"
+    end
 
     attachment = year.send("#{id.singularize}_#{category}#{sub_type}_hard_copy_pdf")
 
@@ -60,7 +65,7 @@ class Reports::AdminReport
 
       OpenStruct.new(
         data: data.render,
-        filename: pdf_filename
+        filename: pdf_filename(sub_type)
       )
     end
   end
@@ -71,8 +76,10 @@ class Reports::AdminReport
     params[:category] if ::FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
   end
 
-  def pdf_filename
+  def pdf_filename(sub_type)
+    sub_type = "#{sub_type}_years" if sub_type.present?
+
     pdf_timestamp = Time.zone.now.strftime("%e_%b_%Y_at_%-l:%M%P")
-    "#{::FormAnswer::AWARD_TYPE_FULL_NAMES[params[:category]]}_award_#{id}_#{pdf_timestamp}.pdf"
+    "#{::FormAnswer::AWARD_TYPE_FULL_NAMES[params[:category]]}_award#{sub_type}_#{id}_#{pdf_timestamp}.pdf"
   end
 end
