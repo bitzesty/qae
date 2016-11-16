@@ -50,8 +50,10 @@ class Reports::AdminReport
       )
     else
       # Render dynamically
+      ops = {category: category, award_year: year}
+      ops[:years_mode] = params[:years_mode] if category == "trade"
 
-      data = pdf_klass.new("all", nil, category: category, award_year: year)
+      data = pdf_klass.new("all", nil, ops)
 
       OpenStruct.new(
         data: data.render,

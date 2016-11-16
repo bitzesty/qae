@@ -1,0 +1,11 @@
+- link_ops = {category: key, format: :pdf, year: @award_year.year}
+- link_ops[:years_mode] = years_mode if key == "trade"
+
+li
+  = link_to assessor_report_path("case_summaries", link_ops), class: "action-title", target: admin_conditional_aggregated_pdf_link_target(@award_year, 'case_summary')
+    span.glyphicon.glyphicon-download-alt.black
+    span.visible-lg.visible-md
+    - if key == "trade"
+      = "#{value} (#{years_mode} years)"
+    - else
+      = value
