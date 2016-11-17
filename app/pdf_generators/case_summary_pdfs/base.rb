@@ -38,16 +38,23 @@ class CaseSummaryPdfs::Base < ReportPdfBase
   end
 
   def set_form_answers
-    @form_answers = FormAnswer.positive
-                              .includes(:lead_or_primary_assessor_assignments)
-                              .for_award_type(options[:category])
-                              .joins(:assessor_assignments)
-                              .group("form_answers.id")
-                              .having("count(assessor_assignments) > 0")
-                              .where("assessor_assignments.submitted_at IS NOT NULL AND assessor_assignments.position IN (3,4)")
-                              .order("form_answers.award_year_id, form_answers.document #>> '{sic_code}'")
-                              .group("form_answers.id")
-                              .where("form_answers.award_year_id =?", award_year.id)
+    scope = FormAnswer.positive
+                      .includes(:lead_or_primary_assessor_assignments)
+                      .for_award_type(options[:category])
+                      .joins(:assessor_assignments)
+                      .group("form_answers.id")
+                      .having("count(assessor_assignments) > 0")
+                      .where("assessor_assignments.submitted_at IS NOT NULL AND assessor_assignments.position IN (3,4)")
+                      .order("form_answers.award_year_id, form_answers.document #>> '{sic_code}'")
+                      .group("form_answers.id")
+                      .where("form_answers.award_year_id =?", award_year.id)
+
+    if options[:category] == "trade"
+      years_mode = options[:years_mode].to_s == '3' ? '3 to 5' : '6 plus'
+      scope = scope.where("form_answers.document #>> '{trade_commercial_success}' = '#{years_mode}'")
+    end
+
+    @form_answers = scope
   end
 
   def render_item(form_answer)
