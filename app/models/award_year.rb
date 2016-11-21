@@ -48,6 +48,19 @@ class AwardYear < ActiveRecord::Base
     end
   end
 
+  #
+  # For trade category Case summary would have 2 hard copies
+  # for '3 to 5' and '6 plus' years
+  #
+  ["3", "6"].map do |i|
+    define_method("case_summary_trade_#{i}_hard_copy_pdf") do
+      send("aggregated_case_summary_hard_copies").find_by(
+        award_category: 'trade',
+        sub_type: i
+      )
+    end
+  end
+
   def form_data_generation_can_be_started?
     Settings.after_current_submission_deadline? &&
     form_data_hard_copies_state.nil?
@@ -75,8 +88,15 @@ class AwardYear < ActiveRecord::Base
 
   def aggregated_hard_copies_completed?(type)
     CURRENT_YEAR_AWARDS.all? do |award_category|
-      copy_record = send("#{type}_#{award_category}_hard_copy_pdf")
-      copy_record.present? && copy_record.file.present?
+      if award_category == "trade" && type == "case_summary"
+        ["3", "6"].all? do |i|
+          copy_record = send("#{type}_#{award_category}_#{i}_hard_copy_pdf")
+          copy_record.present? && copy_record.file.present?
+        end
+      else
+        copy_record = send("#{type}_#{award_category}_hard_copy_pdf")
+        copy_record.present? && copy_record.file.present?
+      end
     end
   end
 

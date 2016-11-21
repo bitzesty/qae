@@ -18,14 +18,26 @@ So that I can print and review application case summaries
       visit admin_dashboard_index_path
     end
 
-    it "should be links to download feedbacks" do
+    it "should be links to download case summaries" do
       FormAnswer::AWARD_TYPE_FULL_NAMES.each do |award_type, value|
-        if award_type != "promotion"
+        ops = {
+          id: "case_summaries",
+          category: award_type, format: :pdf,
+          year: AwardYear.current.year
+        }
+
+        if award_type == "trade"
+          [3, 6].map do |i|
+            expect(page).to have_link('Download',
+              href: admin_report_path(
+                ops.merge({years_mode: i})
+              )
+            )
+          end
+        else
           expect(page).to have_link('Download',
             href: admin_report_path(
-              id: "feedbacks",
-              category: award_type, format: :pdf,
-              year: AwardYear.current.year
+              ops
             )
           )
         end
