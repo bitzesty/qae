@@ -67,10 +67,6 @@ class Reports::CasesStatusReport
       method: :ac_checked
     },
     {
-      label: "DCRChecked",
-      method: :dcr_checked
-    },
-    {
       label: "CaseSummaryStatus",
       method: :case_summary_status
     },

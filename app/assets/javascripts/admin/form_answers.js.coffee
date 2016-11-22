@@ -13,7 +13,6 @@ ready = ->
   handleCompanyDetailsForm()
   handleWinnersForm()
   handleReviewAuditCertificate()
-  handleReviewCorpResponsibility()
   handleRemovingOfAuditCertificate()
 
   # Move the attach document button
@@ -390,39 +389,6 @@ handleReviewAuditCertificate = ->
 
   $(".edit-review-audit").on "click", (e) ->
     $(".save-review-audit").show()
-
-handleReviewCorpResponsibility = ->
-  $("form.corp-responsibility-review").on "click", ".save-corp-responsibility", (e) ->
-    e.preventDefault()
-
-    $("form.corp-responsibility-review").submit()
-    $("form.corp-responsibility-review .form-fields").hide()
-    $("form.corp-responsibility-review.form-actions").hide()
-    $(".edit-corp-responsibility").show()
-
-    if $("input[name='form_answer[corp_responsibility_reviewed]']").is(':checked')
-      state_text = "Reviewed"
-    else
-      state_text = "Not reviewed"
-
-    $(".js-corp-responsibility-status").text(state_text)
-
-    return false
-
-  $(".edit-corp-responsibility").on "click", (e) ->
-    $(this).hide()
-    $("form.corp-responsibility-review .form-fields").show()
-    $("form.corp-responsibility-review.form-actions").show()
-    $(".save-corp-responsibility").show()
-
-    return false
-
-  $(".js-corp-responsibility-form-cancel-link").on "click", (e) ->
-    $("form.corp-responsibility-review .form-fields").hide()
-    $("form.corp-responsibility-review.form-actions").hide()
-    $(".edit-corp-responsibility").show()
-
-    return false
 
 handleRemovingOfAuditCertificate = ->
   $(document).on "click", ".js-remove-audit-certificate-link", (e) ->
