@@ -247,10 +247,6 @@ module Reports::DataPickers::FormDocumentPicker
     end
   end
 
-  def dcr_checked
-    bool(obj.corp_responsibility_reviewed?)
-  end
-
   def immediate_parent_name
     doc_including_hidden("parent_company")
   end

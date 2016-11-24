@@ -170,15 +170,15 @@ Rails.application.routes.draw do
         get :review
       end
       resources :draft_notes, only: [:create, :update]
-
-      resources :review_corp_responsibility, only: [:create]
     end
+
     resources :assessor_assignments, only: [:update]
+    resources :assessor_assignment_collections, only: [:create]
+    resources :reports, only: [:index, :show]
+
     resources :assessment_submissions, only: [:create] do
       patch :unlock, on: :member
     end
-    resources :assessor_assignment_collections, only: [:create]
-    resources :reports, only: [:index, :show]
   end
 
   namespace :admin do

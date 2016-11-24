@@ -203,31 +203,6 @@ class FormAnswerDecorator < ApplicationDecorator
     object.financial_data && object.financial_data["updated_at"]
   end
 
-  def corp_responsibility_reviewed_changes
-    @corp_responsibility_reviewed_changes ||= object.versions.select do |v|
-      v["object_changes"].present? &&
-      v["object_changes"]["corp_responsibility_reviewed"].present?
-    end.last
-  end
-
-  def corp_responsibility_reviewed_updated_by
-    version = corp_responsibility_reviewed_changes
-
-    if version.present? && version.whodunnit.present?
-      user_class, user_id = version.whodunnit.split(":")
-      user_class.capitalize
-                .constantize
-                .find(user_id)
-                .decorate
-                .full_name
-    end
-  end
-
-  def corp_responsibility_reviewed_updated_at
-    version = corp_responsibility_reviewed_changes
-    version.created_at if version.present?
-  end
-
   def lead_assessors
     award_leads = Assessor.leads_for(object.award_type)
 
