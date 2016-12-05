@@ -81,7 +81,9 @@ describe FormAnswerStatistics::Picker do
         fa2 = create(:form_answer)
         fa2.state_machine.perform_transition(:submitted, nil, false)
 
-        Timecop.freeze(Date.today + 13.months) do
+        date = Date.today.month == 12? Date.today + 12.months : Date.today + 12.months
+
+        Timecop.freeze(date) do
           2.times do
             fa1 = create(:form_answer)
             fa1.state_machine.perform_transition(:not_eligible, nil, false)
@@ -102,7 +104,8 @@ describe FormAnswerStatistics::Picker do
         fa1 = create(:form_answer, :trade)
         fa1.state_machine.perform_transition(:submitted, nil, false)
 
-        Timecop.freeze(Date.today + 13.months) do
+        date = Date.today.month == 12? Date.today + 12.months : Date.today + 12.months
+        Timecop.freeze(date) do
           fa2 = create(:form_answer, :trade)
           fa2.state_machine.perform_transition(:submitted, nil, false)
           fa3 = create(:form_answer, :trade)
@@ -115,7 +118,9 @@ describe FormAnswerStatistics::Picker do
     describe "#applications_completions" do
       it "calculates proper stats" do
         expect(subject.applications_completions["trade"]).to eq([0, 0, 0, 0, 0, 0, 0])
-        Timecop.freeze(Date.today + 13.months) do
+
+        date = Date.today.month == 12? Date.today + 12.months : Date.today + 12.months
+        Timecop.freeze(date) do
           populate_application_completions
         end
         expect(subject.applications_completions["trade"]).to eq([1, 1, 0, 1, 1, 0, 4])
