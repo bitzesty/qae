@@ -159,8 +159,8 @@ module Reports::DataPickers::FormDocumentPicker
           "5 plus" => "#{attr_name}_5of5"
         }
       },
-      "mobility" => { # CHECK: delete if not needed
-        "development_performance_years" => {
+      "mobility" => {
+        "programme_performance_years" => {
           "2 to 4" => "#{attr_name}_2of2",
           "5 plus" => "#{attr_name}_5of5"
         }
