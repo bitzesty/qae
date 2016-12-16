@@ -110,7 +110,11 @@ gem 'newrelic_rpm'
 # AdvancedEmailValidator
 gem 'curb'
 
+# Web server
 gem 'puma', '~> 2.16.0'
+
+# Log formatting
+gem 'lograge'
 
 # speedup server boot time
 gem 'bootscale', require: false

@@ -282,6 +282,10 @@ GEM
       addressable (~> 2.3)
     letter_opener (1.3.0)
       launchy (~> 2.2)
+    lograge (0.4.1)
+      actionpack (>= 4, < 5.1)
+      activesupport (>= 4, < 5.1)
+      railties (>= 4, < 5.1)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
     mail (2.6.4)
@@ -567,6 +571,7 @@ DEPENDENCIES
   kaminari (~> 0.16)
   launchy
   letter_opener
+  lograge
   newrelic_rpm
   nilify_blanks
   nokogiri (~> 1.6.0)
