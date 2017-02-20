@@ -213,7 +213,7 @@ module Reports::DataPickers::FormDocumentPicker
     if innovation?
       doc "innovation_desc_short"
     elsif development?
-      doc "development_desc_short"
+      doc "development_management_approach_briefly"
     elsif mobility?
       doc "development_desc_short"
     else
