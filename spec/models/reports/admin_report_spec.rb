@@ -18,7 +18,7 @@ describe Reports::AdminReport do
     end
 
     describe "press book list" do
-      let(:press_summary) { create(:press_summary) }
+      let(:press_summary) { create(:press_summary, submitted: true) }
 
       before do
         press_summary.form_answer.update!(state: "awarded")
