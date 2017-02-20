@@ -20,7 +20,10 @@ class Reports::FormAnswer
     @case_summary = pick_assignment("case_summary")
 
     @secondary_assessor = @obj.secondary_assessor
-    @press_summary = @obj.press_summary if @obj.awarded?
+
+    if @obj.press_summary.present? && @obj.press_summary.submitted?
+      @press_summary = @obj.press_summary
+    end
   end
 
   def question_visible?(question_key)
