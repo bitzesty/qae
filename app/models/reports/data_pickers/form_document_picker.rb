@@ -215,7 +215,7 @@ module Reports::DataPickers::FormDocumentPicker
     elsif development?
       doc "development_management_approach_briefly"
     elsif mobility?
-      doc "development_desc_short"
+      doc "mobility_desc_short"
     else
       number_of_goods_and_services =  doc("trade_goods_amount").to_i
       service_json = doc "trade_goods_and_services_explanations"
