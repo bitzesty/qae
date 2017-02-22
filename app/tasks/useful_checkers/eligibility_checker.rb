@@ -28,29 +28,57 @@ module UsefulCheckers
     end
 
     def run
+      puts ""
+
       self.wrong_trade_apps = trade_apps.select do |app|
         !app.eligible?
       end
 
-      puts "[TRADE]                    #{wrong_trade_apps.count} #{wrong_trade_apps.map(&:id)}"
+      puts "[TRADE]                    #{wrong_trade_apps.count}"
+      puts ""
+
+      wrong_trade_apps.map do |app|
+        puts "   [#{app.id} | #{app.urn}] STATE: #{app.state}, SUBMITTED: #{app.submitted?}"
+      end
+
+      puts ""
 
       self.wrong_innovation_apps = innovation_apps.select do |app|
         !app.eligible?
       end
 
-      puts "[INNOVATION]                    #{wrong_innovation_apps.count} #{wrong_innovation_apps.map(&:id)}"
+      puts "[INNOVATION]                    #{wrong_innovation_apps.count}"
+      puts ""
+
+      wrong_innovation_apps.map do |app|
+        puts "   [#{app.id} | #{app.urn}] STATE: #{app.state}, SUBMITTED: #{app.submitted?}"
+      end
+
+      puts ""
 
       self.wrong_development_apps = development_apps.select do |app|
         !app.eligible?
       end
 
-      puts "[DEVELOPMENT]                    #{wrong_development_apps.count} #{wrong_development_apps.map(&:id)}"
+      puts "[DEVELOPMENT]                    #{wrong_development_apps.count}"
+      puts ""
+
+      wrong_development_apps.map do |app|
+        puts "   [#{app.id} | #{app.urn}] STATE: #{app.state}, SUBMITTED: #{app.submitted?}"
+      end
+      puts ""
 
       self.wrong_mobility_apps = mobility_apps.select do |app|
         !app.eligible?
       end
 
-      puts "[MOBILITY]                    #{wrong_mobility_apps.count} #{mobility_apps.map(&:id)}"
+      puts "[MOBILITY]                    #{wrong_mobility_apps.count}"
+      puts ""
+
+      wrong_mobility_apps.map do |app|
+        puts "   [#{app.id} | #{app.urn}] STATE: #{app.state}, SUBMITTED: #{app.submitted?}"
+      end
+      puts ""
     end
   end
 end
