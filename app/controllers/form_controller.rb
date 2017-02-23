@@ -24,6 +24,16 @@ class FormController < ApplicationController
   ]
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
 
+  before_action :check_eligibility!, only: [
+    :create,
+    :destroy,
+    :edit_form,
+    :save,
+    :update,
+    :add_attachment,
+    :submit_confirm
+  ]
+
   before_action do
     allow_assessor_access!(@form_answer)
   end
@@ -328,5 +338,15 @@ class FormController < ApplicationController
                .reject { |m| m == "File This field cannot be blank" }
                .join(", ")
                .gsub("File ", "")
+  end
+
+  def check_eligibility!
+    e = @form_answer.eligibility
+    e.force_validate_now = true
+
+    unless e.valid?
+      redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
+      return false
+    end
   end
 end
