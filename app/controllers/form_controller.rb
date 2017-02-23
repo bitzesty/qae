@@ -111,6 +111,7 @@ class FormController < ApplicationController
         if holder == "yes" && @form_answer.trade?
           eligibility_holder = @form_answer.trade_eligibility.current_holder_of_qae_for_trade?
           year = @form_answer.trade_eligibility.qae_for_trade_award_year
+
           if year.to_i < AwardYear.current.year - 5 || !eligibility_holder
             @form_answer.document = @form_answer.document.merge(queen_award_holder: "no")
           else
@@ -118,10 +119,11 @@ class FormController < ApplicationController
             @form_answer.document = @form_answer.document.merge(queen_award_holder_details: details)
           end
         end
+
+        @form_answer.save unless admin_in_read_only_mode?
       end
 
       if this_form_eligible?
-        @form_answer.save unless admin_in_read_only_mode?
         @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
         gon.push base_year: @form_answer.award_year.year - 1
 
@@ -344,7 +346,7 @@ class FormController < ApplicationController
   end
 
   def check_eligibility!
-    unless this_form_eligible?
+    if @form_answer.eligibility.present? && !this_form_eligible?
       redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
       return false
     end
