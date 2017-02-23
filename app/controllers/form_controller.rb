@@ -27,7 +27,6 @@ class FormController < ApplicationController
   before_action :check_eligibility!, only: [
     :create,
     :destroy,
-    :edit_form,
     :save,
     :update,
     :add_attachment,
@@ -121,11 +120,15 @@ class FormController < ApplicationController
         end
       end
 
-      @form_answer.save unless admin_in_read_only_mode?
-      @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
-      gon.push base_year: @form_answer.award_year.year - 1
+      if this_form_eligible?
+        @form_answer.save unless admin_in_read_only_mode?
+        @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+        gon.push base_year: @form_answer.award_year.year - 1
 
-      render template: "qae_form/show"
+        render template: "qae_form/show"
+      else
+        redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
+      end
     else
       redirect_to form_award_eligibility_url(form_id: @form_answer.id)
     end
@@ -341,12 +344,16 @@ class FormController < ApplicationController
   end
 
   def check_eligibility!
-    e = @form_answer.eligibility
-    e.force_validate_now = true
-
-    unless e.valid?
+    unless this_form_eligible?
       redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
       return false
     end
+  end
+
+  def this_form_eligible?
+    e = @form_answer.eligibility
+    e.force_validate_now = true
+
+    e.valid?
   end
 end
