@@ -24,6 +24,15 @@ class FormController < ApplicationController
   ]
   before_action :check_if_deadline_ended!, only: [:update, :save, :add_attachment]
 
+  before_action :check_eligibility!, only: [
+    :create,
+    :destroy,
+    :save,
+    :update,
+    :add_attachment,
+    :submit_confirm
+  ]
+
   before_action do
     allow_assessor_access!(@form_answer)
   end
@@ -102,6 +111,7 @@ class FormController < ApplicationController
         if holder == "yes" && @form_answer.trade?
           eligibility_holder = @form_answer.trade_eligibility.current_holder_of_qae_for_trade?
           year = @form_answer.trade_eligibility.qae_for_trade_award_year
+
           if year.to_i < AwardYear.current.year - 5 || !eligibility_holder
             @form_answer.document = @form_answer.document.merge(queen_award_holder: "no")
           else
@@ -109,13 +119,18 @@ class FormController < ApplicationController
             @form_answer.document = @form_answer.document.merge(queen_award_holder_details: details)
           end
         end
+
+        @form_answer.save unless admin_in_read_only_mode?
       end
 
-      @form_answer.save unless admin_in_read_only_mode?
-      @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
-      gon.push base_year: @form_answer.award_year.year - 1
+      if this_form_eligible?
+        @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
+        gon.push base_year: @form_answer.award_year.year - 1
 
-      render template: "qae_form/show"
+        render template: "qae_form/show"
+      else
+        redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
+      end
     else
       redirect_to form_award_eligibility_url(form_id: @form_answer.id)
     end
@@ -328,5 +343,19 @@ class FormController < ApplicationController
                .reject { |m| m == "File This field cannot be blank" }
                .join(", ")
                .gsub("File ", "")
+  end
+
+  def check_eligibility!
+    if @form_answer.eligibility.present? && !this_form_eligible?
+      redirect_to form_award_eligibility_url(form_id: @form_answer.id, force_validate_now: true)
+      return false
+    end
+  end
+
+  def this_form_eligible?
+    e = @form_answer.eligibility
+    e.force_validate_now = true
+
+    e.valid?
   end
 end
