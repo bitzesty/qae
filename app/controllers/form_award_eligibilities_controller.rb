@@ -33,6 +33,13 @@ class FormAwardEligibilitiesController < ApplicationController
         step = @award_eligibility.questions.first
       end
 
+      if step.blank? && params[:force_validate_now].present?
+        @award_eligibility.force_validate_now = true
+        @award_eligibility.valid?
+
+        step = @award_eligibility.errors.keys.first
+      end
+
       if step
         redirect_to action: :show, form_id: @form_answer.id, id: step, skipped: false
         return
