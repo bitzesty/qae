@@ -7,7 +7,13 @@ module PressSummaryMixin
   end
 
   def create
-    @press_summary = @form_answer.build_press_summary(press_summary_params)
+    if @form_answer.press_summary.present?
+      @press_summary = @form_answer.press_summary
+      @press_summary.attributes = press_summary_params
+    else
+      @press_summary = @form_answer.build_press_summary(press_summary_params)
+    end
+
     authorize @press_summary, :create?
 
     @press_summary.authorable = current_subject
@@ -66,7 +72,14 @@ module PressSummaryMixin
   end
 
   def press_summary_params
-    params.require(:press_summary).permit(:body, :name, :phone_number, :email)
+    params.require(:press_summary).permit(
+      :body,
+      :name,
+      :phone_number,
+      :email,
+      :contact_details_update,
+      :body_update
+    )
   end
 
   def load_form_answer
