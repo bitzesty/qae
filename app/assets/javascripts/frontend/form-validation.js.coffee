@@ -95,6 +95,7 @@ window.FormValidation =
       subquestions = question.find(".js-by-trade-goods-and-services-amount .js-conditional-question.show-question .question-group")
     else
       subquestions = question.find(".question-group .question-group")
+
     if subquestions.length
       for subquestion in subquestions
         if not @validateSingleQuestion($(subquestion))
@@ -484,3 +485,20 @@ window.FormValidation =
       #console.log @validates
 
     return @validates
+
+  validate_step: ->
+    @validates = true
+
+    current_step = $(".js-step-link.step-current").attr("data-step")
+
+    step_container = $(".article-container[data-step='" + current_step + "']")
+
+    step_container.find(".question-has-errors").removeClass("question-has-errors")
+    step_container.find(".errors-container").empty()
+    $(".steps-progress-bar .js-step-link[data-step='" + current_step + "']").removeClass("step-errors")
+
+    for _q in step_container.find(".question-block")
+      question = $(_q)
+
+      @validate_individual_question(question)
+
