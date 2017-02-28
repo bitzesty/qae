@@ -50,7 +50,7 @@ class QAE2014Forms
         confirm :agree_being_contacted_by_department_of_business, "" do
           sub_ref "F 3.1"
           text %(
-            I am happy to be contacted by the Department for Business, Innovation and Skills.
+            I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.
           )
           show_ref_always true
         end
