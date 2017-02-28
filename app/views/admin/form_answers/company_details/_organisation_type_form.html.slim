@@ -40,4 +40,5 @@
       .form-container
         label.form-label = title
         p
-          = @form_answer.organisation_type.capitalize
+          - if @form_answer.organisation_type.present?
+            = @form_answer.organisation_type.capitalize
