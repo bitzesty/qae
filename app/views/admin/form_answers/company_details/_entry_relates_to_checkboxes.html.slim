@@ -1,4 +1,5 @@
 - if @form_answer.send("#{awards[0]}?") && options_available(AppraisalFormHelper.const_get("ENTRY_RELATES_TO_#{awards[0].upcase}_OPS")) || @form_answer.send("#{awards[1]}?") && options_available(AppraisalFormHelper.const_get("ENTRY_RELATES_TO_#{awards[1].upcase}_OPS"))
+  - name = awards[0] == "innovation" ? "application_relate_to_header" : "application_relate_to"
   - values = awards[0] == "innovation" ? @form_answer.document["application_relate_to_header"] : @form_answer.document["application_relate_to"]
 
   - @check_options.each_with_index do |check_option, placement|
@@ -6,5 +7,5 @@
 
     .form-control
       label
-        input type="checkbox" name="form_answer[data_attributes][application_relate_to_header][#{placement}][type]" value="#{check_option[0]}" checked=('checked' if value_selected)
+        input type="checkbox" name="form_answer[data_attributes][#{name}}][#{placement}][type]" value="#{check_option[0]}" checked=('checked' if value_selected)
         |  #{check_option[1]}

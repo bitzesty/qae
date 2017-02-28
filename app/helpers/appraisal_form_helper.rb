@@ -11,7 +11,10 @@ module AppraisalFormHelper
     {"workplace_fostering" => "A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers."}
   ]
 
-  COMPANY_ORGANISATION_TYPES = ["company", "charity"]
+  COMPANY_ORGANISATION_TYPES = [
+    ["Company", "company"],
+    ["Charity", "charity"]
+  ]
 
   ENTRY_RELATES_TO_TRADE_OPS = ["products", "services"]
   ENTRY_RELATES_TO_INNOVATION_OPS = ["product", "service", "business_model"]

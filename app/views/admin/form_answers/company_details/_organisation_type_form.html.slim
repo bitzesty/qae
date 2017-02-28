@@ -18,11 +18,14 @@
               - else
                 em.text-muted No organisation type added.
           .form-fields.form-block
-            = f.simple_fields_for(:data) do |f|
-              = f.input :organisation_type,
-                        collection: AppraisalFormHelper::COMPANY_ORGANISATION_TYPES,
-                        label: false,
-                        input_html: { class: "form-control" }
+            .row
+              .col-xs-6.col-md-6
+                = f.simple_fields_for(:data) do |f|
+                  = f.input :organisation_type,
+                            collection: AppraisalFormHelper::COMPANY_ORGANISATION_TYPES,
+                            label: false,
+                            input_html: { class: "form-control" },
+                            include_blank: false
             .form-actions.text-right
               = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
               = f.submit "Save", class: "btn btn-primary pull-right"
