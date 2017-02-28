@@ -1,0 +1,40 @@
+- title = "Organisation type"
+
+- unless @form_answer.promotion?
+  - if user_can_edit(@form_answer, :organisation_type)
+    .form-group class="#{'form-edit' if @form_answer.organisation_type.blank?}"
+      = simple_form_for [namespace_name, resource],
+                        remote: true,
+                        authenticity_token: true, html: { "data-type" => "html" } do |f|
+        = hidden_field_tag :section, "organisation_type"
+
+        .form-container
+          label.form-label = title
+
+          .form-value
+            p
+              - if @form_answer.organisation_type.present?
+                = @form_answer.organisation_type.capitalize
+              - else
+                em.text-muted No organisation type added.
+          .form-fields.form-block
+            = f.simple_fields_for(:data) do |f|
+              = f.input :organisation_type,
+                        collection: AppraisalFormHelper::COMPANY_ORGANISATION_TYPES,
+                        label: false,
+                        input_html: { class: "form-control" }
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary pull-right"
+          .clear
+
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
+  - else
+    .form-group
+      .form-container
+        label.form-label = title
+        p
+          = @form_answer.organisation_type.capitalize

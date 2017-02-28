@@ -1,0 +1,10 @@
+- if @form_answer.send("#{awards[0]}?") && options_available(AppraisalFormHelper.const_get("ENTRY_RELATES_TO_#{awards[0].upcase}_OPS")) || @form_answer.send("#{awards[1]}?") && options_available(AppraisalFormHelper.const_get("ENTRY_RELATES_TO_#{awards[1].upcase}_OPS"))
+  - values = awards[0] == "innovation" ? @form_answer.document["application_relate_to_header"] : @form_answer.document["application_relate_to"]
+
+  - @check_options.each_with_index do |check_option, placement|
+    - value_selected = values.is_a?(Array) && values.detect { |el| el['type'].to_s == check_option[0].to_s }
+
+    .form-control
+      label
+        input type="checkbox" name="form_answer[data_attributes][application_relate_to_header][#{placement}][type]" value="#{check_option[0]}" checked=('checked' if value_selected)
+        |  #{check_option[1]}

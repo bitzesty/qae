@@ -393,6 +393,20 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
+  def organisation_type
+    document["organisation_type"]
+  end
+
+  def this_entry_relates_to
+    source_value = if document["application_relate_to"].present?
+      document["application_relate_to"]
+    elsif document["application_relate_to_header"].present?
+      document["application_relate_to_header"]
+    end
+
+    source_value.map(&:values).flatten if source_value.present?
+  end
+
   def primary_assessor_full_name
     object.assessors.primary.try(:full_name) || "Not Assigned"
   end

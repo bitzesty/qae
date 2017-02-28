@@ -1,0 +1,5 @@
+- AppraisalFormHelper::ENTRY_RELATES_TO_OPTIONS.each do |item|
+  - @form_answer.this_entry_relates_to.each do |value|
+    - if value == item.keys.join(" ")
+      li
+        = item.values.join(" ")

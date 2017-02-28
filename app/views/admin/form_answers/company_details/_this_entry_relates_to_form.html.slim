@@ -1,0 +1,41 @@
+- title = "This entry relates to"
+
+- unless @form_answer.promotion?
+  - if user_can_edit(@form_answer, :this_entry_relates_to)
+    .form-group class="#{'form-edit' if @form_answer.this_entry_relates_to.blank?}"
+      = simple_form_for [namespace_name, resource],
+                        remote: true,
+                        authenticity_token: true, html: { "data-type" => "html" } do |f|
+        = hidden_field_tag :section, "this_entry_relates_to"
+
+        .form-container
+          label.form-label = title
+
+          .form-value
+            p
+              - if @form_answer.this_entry_relates_to.present?
+                ul
+                  = render "admin/form_answers/company_details/entry_relates_to_value"
+              - else
+                em.text-muted No "this entry relates to" added.
+
+          .form-fields.form-block
+            = render "admin/form_answers/company_details/entry_relates_to_checkboxes", awards: ["innovation", "trade"]
+            = render "admin/form_answers/company_details/entry_relates_to_checkboxes", awards: ["development", "mobility"]
+
+            .form-actions.text-right
+              = link_to "Cancel", "#", class: "btn btn-default form-cancel-link if-no-js-hide"
+              = f.submit "Save", class: "btn btn-primary pull-right"
+          .clear
+
+          = link_to "#", class: "form-edit-link pull-right"
+            span.glyphicon.glyphicon-pencil
+            ' Edit
+          .clear
+  - else
+    .form-group
+      .form-container
+        label.form-label = title
+        p
+          ul
+            = render "admin/form_answers/company_details/entry_relates_to_value"
