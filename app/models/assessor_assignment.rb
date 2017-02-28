@@ -23,7 +23,6 @@ class AssessorAssignment < ActiveRecord::Base
       validate_rate :verdict
     end
 
-    validate :submitted_at_immutability
     validate :assessor_existence
     validate :assessor_assignment_to_category
     validates :assessor_id,
@@ -183,14 +182,6 @@ class AssessorAssignment < ActiveRecord::Base
 
   def struct
     AppraisalForm
-  end
-
-  def submitted_at_immutability
-    return if new_record?
-
-    if !case_summary? && submitted_at_changed? && submitted_at_was.present?
-      errors.add(:submitted_at, "cannot be re-submitted")
-    end
   end
 
   def assessor_existence
