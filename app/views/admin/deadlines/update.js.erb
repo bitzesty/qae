@@ -1,6 +1,7 @@
 wrapper = $("#deadline-" + "<%= @deadline.id %>");
 
 <% if @deadline.valid? %>
+  $("form.edit_deadline", wrapper).trigger("ajax:saved");
   $(".form-value", wrapper).removeClass("hidden");
   $(".deadline-form", wrapper).addClass("hidden");
   $(".edit-deadline", wrapper).removeClass("hidden");
