@@ -19,7 +19,7 @@ describe "Admin withdraws the application", js: true do
         find(".state-toggle").click
       end
 
-      all("li.checkbox").detect { |l| l.text == "Withdrawn" }.click
+      all("li.checkbox").detect { |l| l.text == "Withdrawn/Ineligible" }.click
       wait_for_ajax
       expect(form_answer.reload.state).to eq("withdrawn")
     end

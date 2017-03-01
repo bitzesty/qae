@@ -5,7 +5,6 @@ class AssessorAssignmentPolicy < ApplicationPolicy
 
   def submit?
     return true if admin?
-    return false unless assessor?
     lead? || primary?
   end
 
@@ -24,13 +23,11 @@ class AssessorAssignmentPolicy < ApplicationPolicy
   def can_be_re_submitted?
     !record.locked? &&
     submit? &&
-    record.submitted? &&
-    record.case_summary?
+    record.submitted?
   end
 
   def can_unlock?
     record.locked? &&
-    record.case_summary? &&
     (admin? || (assessor? && lead?))
   end
 end

@@ -12,7 +12,7 @@ class AssessmentSubmissionService
     resource.submission_action = true
 
     if resource.submitted?
-      resubmit! if resource.case_summary?
+      resubmit!
     else
       if submit_assessment
         populate_case_summary

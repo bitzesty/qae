@@ -79,19 +79,6 @@ describe AssessorAssignment do
     end
   end
 
-  describe "submitted_at immutability" do
-    it "allows to set up submitted_at only once" do
-      obj = build(:assessor_assignment)
-      obj.submitted_at = DateTime.now
-      obj.valid?
-      expect(obj.errors).to_not include(:submitted_at)
-      obj.save(validate: false)
-      obj.submitted_at = DateTime.now - 1.day
-      obj.valid?
-      expect(obj.errors.keys).to include(:submitted_at)
-    end
-  end
-
   describe "#visible_for?" do
     let(:assessor1) { create(:assessor, :regular_for_all) }
     let(:assessor2) { create(:assessor, :regular_for_all) }

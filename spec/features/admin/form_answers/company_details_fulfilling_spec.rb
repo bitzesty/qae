@@ -32,7 +32,7 @@ describe "Admin fulfills the company details" do
 
   it "can see the edit buttons" do
     within ".company-details-forms" do
-      expect(page).to have_selector("input[type='submit']", count: 11)
+      expect(page).to have_selector("input[type='submit']", count: 13)
     end
   end
 end

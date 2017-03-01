@@ -1,6 +1,6 @@
 The MIT License (MIT)
 
-Copyright (C) 2014 Crown Copyright (Department for Business, Innovation & Skills)
+Copyright (C) 2014 Crown Copyright (Department for Business, Energy & Industrial Strategy)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of
 this software and associated documentation files (the "Software"), to deal in

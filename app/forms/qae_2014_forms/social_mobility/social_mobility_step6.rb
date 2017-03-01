@@ -51,7 +51,7 @@ class QAE2014Forms
           sub_ref "F 3.1"
           show_ref_always true
           text %(
-            I am happy to be contacted by the Department for Business, Innovation and Skills.
+            I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.
           )
         end
 
