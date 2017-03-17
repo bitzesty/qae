@@ -1,57 +1,57 @@
-' Congratulations on winning a Queen's Award in
+' Congratulations on winning a Queen's Award for Enterprise:
 => @form_answer.award_type_full_name
-=> "#{@form_answer.award_year.year}"
-= "[#{@form_answer.urn}]"
+=> @form_answer.award_year.year
 
 = "Dear #{@name},"
 
-' I am delighted to inform you that Her Majesty The Queen has been graciously pleased to approve the Prime Minister's recommendation that your organisation should receive a Queen's Award for Enterprise in
+' I am delighted to inform you that Her Majesty The Queen has approved the Prime Minister's recommendation that your company should receive a Queen's Award for Enterprise in the
 => @form_answer.award_type_full_name
-' this year. We have also informed the Head of your organisation by email.
+| category this year. We have also informed the Head of your organisation by email.
 
-' If you are a Collaborator please liaise with the account holder.
+| If you are a Collaborator please liaise with the account holder.
 
-' Please read this email carefully as it contains important information about actions you need to do now.
+| Please read this email carefully as it contains important information about actions you need to do now.
 
-' The Award will be conferred on
+| Embargo/ Announcement
+
+| The Award will be conferred on
 = @deadline.try :strftime, "%A %d %B %Y"
-' , Her Majesty's birthday. Although you can make arrangements for publicity now,
-
-' there is a strict embargo preventing public announcement or publication of any Awards information until
-= @deadline.try :strftime, "%H.%M hrs on %d %B %Y"
-' . You must not make any announcement about your Award, either to employees or outside your organisation, before this date.
-
-' Under the terms of the embargo we will provide information to the media of the winners at
-=< @media_deadline
-' , and the list of winners will be published in the Supplement to the London Gazette on
+|, Her Majesty's birthday. Although you can make arrangements for publicity now,
+' there is a strict embargo preventing public announcement or publication of any Awards information until 00.01 hrs on
 = @deadline.try :strftime, "%d %B %Y"
-' .
+| . You must not make any announcement about your Award, either to employees or outside your organisation, before this date.
 
-' Approve your Press Book entry
+| Under the terms of the embargo we will provide information to the media of the Winners on
+=< @media_deadline
+|. The list of Winners will then be published in the Supplement to the London Gazette on
+=< @deadline.try :strftime, "%d %B %Y"
+|. You may be contacted by the press regarding your Award however this will still be under embargo conditions.
+
+| How to approve your Press Book entry
 
 => link_to "Log in here", dashboard_url
-' to access the Winners' Dashboard to:
-
-' - check the Press Book entry (a factual account of why you have won the Award and not a promotional press opportunity)
-' - check the other details for your organisation are correct
-' - provide details of a contact for press enquiries
+| to access the Winners' Dashboard in order to:
+  * check the Press Book entry (a factual account of why you have won the Award and not a promotional press opportunity);
+  * check the other details for your organisation are correct; and
+  * provide details of a contact for press enquiries.
 
 ' Then click the "Submit" button by
-
 = @book_notes_deadline
-' . If you do not respond by the deadline we will use the proposed text together with the contact details that we already hold.
+|. If you do not respond by the deadline we will use the proposed text together with the contact details that we already hold.
 
-' A link to the Winners' Resources to gain access to The Queen's Awards emblems and Winners' Manual is also on your online account.
-' By accepting the Award, you agree to the terms and conditions set out in the Winners' Manual.
+| A link to the Winners' Resources to gain access to The Queen's Awards emblems and Winners' Manual is also on your online account.
 
-' An invitation to HM The Queen's Reception at Buckingham Palace on
+| By accepting the Award, you agree to the terms and conditions set out in the Winners' Manual.
+
+| The Queen's Reception
+
+' The Queen will hold a Reception at Buckingham Palace on the evening of
 => @attendees_invite_date
-' will be sent in due course.
+| to which 2 of your company will be invited. Within this necessary limited number, you should please endeavour to make your nominations representative of the company as a whole. We will contact you closer to the time to confirm attendees.
 
 ' Congratulations once again on your Award.
 
-' Yours sincerely
-
-' Nichola Bruno
-
-' The Secretary, The Queen's Awards for Enterprise
+' Yours sincerely,
+' Olivia Morrell
+' The Secretary
+' The Queen's Awards Office

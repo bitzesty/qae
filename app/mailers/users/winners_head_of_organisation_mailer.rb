@@ -15,7 +15,7 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     deadlines = Settings.current.deadlines
 
     @media_deadline =
-      deadlines.buckingham_palace_media_information.strftime("%H.%M on %A %d %B %Y")
+      deadlines.buckingham_palace_media_information.strftime("%A %d %B %Y")
     @end_of_embargo_date =
       deadlines.end_of_embargo.strftime("%-d %B %Y")
     @end_of_embargo_datetime =
