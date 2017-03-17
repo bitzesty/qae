@@ -1,5 +1,5 @@
 - winners = FormAnswerDecorator.decorate_collection(@user_award_forms_submitted).select{ |app| app.awarded? }
-- any_promotion_winner = winners.select{ |app| app.promotion? }.any?
+- any_promotion_winner = winners.select{ |app| app.mobility? }.any?
 - any_innovation_winner = winners.select{ |app| app.innovation? }.any?
 - any_trade_winner = winners.select{ |app| app.trade? }.any?
 - any_development_winner = winners.select{ |app| app.development? }.any?
@@ -25,127 +25,90 @@ div
                       class: "thumbnail",
                       target: "_blank"
 
-          p
-            ' Please do not publicise the information in the press book until
-            strong
-              => application_deadline_for_year(target_award_year, :buckingham_palace_attendees_details, "%d %B")
-            ' as it is under embargo.
-
-          p
-            = link_to "Queen's Awards for Enterprise Press Book 2017 (PDF, 5,8 MB)",
-                      static_s3_asset_path(2017, "Queen's Awards for Enterprise Press Book 2017.pdf"),
-                      class: "thumbnail",
-                      target: "_blank"
-
         h2 Download The Queen's Awards for Enterprise 2017 Emblems in various formats
 
-        - if true || any_promotion_winner
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2017 Emblem (PNG, 282KB)",
+                      static_s3_asset_path(2017, "Queen's Awards for Enterprise 2017 Emblem.png"),
+                      target: "_blank"
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2017 Emblem (PSD, 1.4MB)",
+                      static_s3_asset_path(2017, "Queen's Awards for Enterprise 2017 Emblem.psd"),
+                      target: "_blank"
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2017 Emblem: 12mm (PNG, 261KB)",
+                      static_s3_asset_path(2017, "Queen's Awards for Enterprise 2017 Emblem: 12mm.png"),
+                      target: "_blank"
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2017 Emblem: 12mm (PSD, 1.3MB)",
+                      static_s3_asset_path(2017, "Queen's Awards for Enterprise 2017 Emblem: 12mm.psd"),
+                      target: "_blank"
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2017 Emblem: under 12mm (PNG, 201KB)",
+                      static_s3_asset_path(2017, "Queen's Awards for Enterprise 2017 Emblem: under 12mm.png"),
+                      target: "_blank"
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2017 Emblem: under 12mm (PSD, 1.0MB)",
+                      static_s3_asset_path(2017, "Queen's Awards for Enterprise 2017 Emblem: under 12mm.psd"),
+                      target: "_blank"
+
+        - if any_promotion_winner
           .form-download
             p
-              = link_to "Queen's Awards for Enterprise 2017 Emblem (PNG, 656KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise 2017 Emblem.png"),
+              = link_to "Queen's Awards for Enterprise: Promoting Opportunity 2017 Emblem (PNG, 291KB)",
+                        static_s3_asset_path(2017, "Queen's Awards for Enterprise: Promoting Opportunity 2017 Emblem.png"),
                         target: "_blank"
 
             p
-              = link_to "Queen's Awards for Enterprise 2017 Emblem (JPG, 519KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise 2017 Emblem.jpg"),
+              = link_to "Queen's Awards for Enterprise: Promoting Opportunity 2017 Emblem (PSD, 1.5MB)",
+                        static_s3_asset_path(2017, "Queen's Awards for Enterprise: Promoting Opportunity 2017 Emblem.psd"),
                         target: "_blank"
 
-            p
-              = link_to "Queen's Awards for Enterprise 2017 Emblem - black on white (EPS, 641KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise 2017 Emblem - black on white.eps"),
-                        class: "thumbnail",
-                        target: "_blank"
-
-            p
-              = link_to "Queen's Awards for Enterprise 2017 Emblem - black on white (JPG, 266KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise 2017 Emblem - black on white.jpg"),
-                        target: "_blank"
-
-            p
-              = link_to "Queen's Awards for Enterprise 2017 Emblem - white on black (JPG, 834KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise 2017 Emblem - white on black.jpg"),
-                        target: "_blank"
-
-        - if true || any_innovation_winner
+        - if any_innovation_winner
           .form-download
             p
-              = link_to "Queen's Awards for Enterprise: Innovation 2017 Emblem (EPS, 686KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Innovation 2017 Emblem.eps"),
+              = link_to "Queen's Awards for Enterprise: Innovation 2017 Emblem (PNG, 286KB)",
+                        static_s3_asset_path(2017, "Queen's Awards for Enterprise: Innovation 2017 Emblem.png"),
                         target: "_blank"
 
             p
-              = link_to "Queen's Awards for Enterprise: Innovation 2017 Emblem (JPG, 555KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Innovation 2017 Emblem.jpg"),
+              = link_to "Queen's Awards for Enterprise: Innovation 2017 Emblem (PSD, 1.4MB)",
+                        static_s3_asset_path(2017, "Queen's Awards for Enterprise: Innovation 2017 Emblem.psd"),
                         target: "_blank"
 
-            p
-              = link_to "Queen's Awards for Enterprise: Innovation 2017 Emblem - black on white (EPS, 683KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Innovation 2017 Emblem - black on white.eps"),
-                        target: "_blank"
-
-            p
-              = link_to "Queen's Awards for Enterprise: Innovation 2017 Emblem - black on white (JPG, 283KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Innovation 2017 Emblem - black on white.jpg"),
-                        target: "_blank"
-
-            p
-              = link_to "Queen's Awards for Enterprise: Innovation 2017 Emblem - white on black (JPG, 889KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Innovation 2017 Emblem - white on black.jpg"),
-                        target: "_blank"
-
-        - if true || any_trade_winner
+        - if any_trade_winner
           .form-download
             p
-              = link_to "Queen's Awards for Enterprise: International Trade 2017 Emblem (EPS, 698KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise International Trade 2017 Emblem.eps"),
+              = link_to "Queen's Awards for Enterprise: International Trade 2017 Emblem (PNG, 291KB)",
+                        static_s3_asset_path(2017, "Queen's Awards for Enterprise: International Trade 2017 Emblem.png"),
                         target: "_blank"
 
             p
-              = link_to "Queen's Awards for Enterprise: International Trade 2017 Emblem (JPG, 574KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise International Trade 2017 Emblem.jpg"),
+              = link_to "Queen's Awards for Enterprise: International Trade 2017 Emblem (PSD, 1.5MB)",
+                        static_s3_asset_path(2017, "Queen's Awards for Enterprise: International Trade 2017 Emblem.psd"),
                         target: "_blank"
 
-            p
-              = link_to "Queen's Awards for Enterprise: International Trade 2017 Emblem - black on white (EPS, 693KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise International Trade 2017 Emblem - black on white.eps"),
-                        target: "_blank"
-
-            p
-              = link_to "Queen's Awards for Enterprise: International Trade 2017 Emblem - black on white (JPG, 291KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise International Trade 2017 Emblem - black on white.jpg"),
-                        target: "_blank"
-
-            p
-              = link_to "Queen's Awards for Enterprise: International Trade 2017 Emblem - white on black (JPG, 327KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise International Trade 2017 Emblem - white on black.jpg"),
-                        target: "_blank"
-
-        - if true || any_development_winner
+        - if any_development_winner
           .form-download
             p
-              = link_to "Queen's Awards for Enterprise: Sustainable Development 2017 Emblem (EPS, 754KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Sustainable Development 2017 Emblem.eps"),
+              = link_to "Queen's Awards for Enterprise: Sustainable Development 2017 Emblem (PNG, 291KB)",
+                        static_s3_asset_path(2017, "Queen's Awards for Enterprise: Sustainable Development 2017 Emblem.png"),
                         target: "_blank"
 
             p
-              = link_to "Queen's Awards for Enterprise: Sustainable Development 2017 Emblem (JPG, 601KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Sustainable Development 2017 Emblem.jpg"),
-                        target: "_blank"
-
-            p
-              = link_to "Queen's Awards for Enterprise: Sustainable Development 2017 Emblem - black on white (EPS, 749KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Sustainable Development 2017 Emblem - black on white.eps"),
-                        target: "_blank"
-
-            p
-              = link_to "Queen's Awards for Enterprise: Sustainable Development 2017 Emblem - black on white (JPG, 307KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Sustainable Development 2017 Emblem- black on white.jpg"),
-                        target: "_blank"
-
-            p
-              = link_to "Queen's Awards for Enterprise: Sustainable Development 2017 Emblem - white on black (JPG, 951KB)",
-                        static_s3_asset_path(2017, "Queen's Award for Enterprise Sustainable Development 2017 Emblem - white on black.jpg"),
+              = link_to "Queen's Awards for Enterprise: Sustainable Development 2017 Emblem (PSD, 1.5MB)",
+                        static_s3_asset_path(2017, "Queen's Awards for Enterprise: Sustainable Development 2017 Emblem.psd"),
                         target: "_blank"
 
         footer
