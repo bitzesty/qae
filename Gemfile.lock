@@ -166,7 +166,7 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
-    faraday (0.9.2)
+    faraday (0.11.0)
       multipart-post (>= 1.2, < 3)
     faraday-detailed_logger (2.1.1)
       faraday (~> 0.8)
@@ -518,6 +518,11 @@ GEM
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    vigilion (1.0.4)
+      addressable (~> 2)
+      faraday
+      faraday-detailed_logger
+      faraday_middleware
     vigilion-rails (1.0.2)
       rails (>= 4.2.0)
       vigilion (~> 1.0.3)
@@ -618,7 +623,7 @@ DEPENDENCIES
   timecop
   turnip
   uglifier (>= 1.3.0)
-  vigilion!
+  vigilion (~> 1.0.4)
   vigilion-rails (~> 1.0.2)
   virtus
   webmock
