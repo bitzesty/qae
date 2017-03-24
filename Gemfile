@@ -78,7 +78,7 @@ gem 'carrierwave'
 gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
 gem "fog"
 gem "fog-aws"
-gem 'vigilion'
+gem 'vigilion', github: "vigilion/vigilion-ruby", branch: "add-supporting-of-encoded-urls-of-scanned-attachments"
 gem 'vigilion-rails', '~> 1.0.2'
 
 # Background jobs
