@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   end
 
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable
+         :recoverable, :trackable, :validatable, :confirmable,
+         :zxcvbnable, :lockable, :timeoutable
 
   attr_accessor :agreed_with_privacy_policy
   attr_accessor :current_password
@@ -138,6 +138,10 @@ class User < ActiveRecord::Base
 
   def new_member?
     created_at > 3.days.ago
+  end
+
+  def timeout_in
+    30.minutes
   end
 
   private
