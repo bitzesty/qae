@@ -7,7 +7,7 @@ describe AccountMailers::ReminderToSubmitMailer do
   let!(:deadline) do
     d = Settings.current_submission_deadline
     d.update(trigger_at: Time.current)
-    d.trigger_at.strftime("%d/%m/%Y")
+    d.trigger_at.strftime("%H.%M hrs on %d %B %Y")
   end
 
   let(:mail) {
