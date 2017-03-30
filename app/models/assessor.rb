@@ -8,8 +8,8 @@ class Assessor < ActiveRecord::Base
   # to specific category (award type), they act per specific form answer.
 
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable
+         :recoverable, :trackable, :validatable, :confirmable,
+         :zxcvbnable, :lockable, :timeoutable
 
   validates :first_name, :last_name, presence: true
   has_many :form_answer_attachments, as: :attachable
@@ -144,6 +144,10 @@ class Assessor < ActiveRecord::Base
 
   def soft_delete!
     update_column(:deleted, true)
+  end
+
+  def timeout_in
+    30.minutes
   end
 
   private

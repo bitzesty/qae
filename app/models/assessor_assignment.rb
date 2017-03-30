@@ -23,7 +23,6 @@ class AssessorAssignment < ActiveRecord::Base
       validate_rate :verdict
     end
 
-    validate :submitted_at_immutability
     validate :assessor_existence
     validate :assessor_assignment_to_category
     validates :assessor_id,
@@ -88,11 +87,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def editable_for?(subject)
-    role_allow_to_edit?(subject) &&
-    (
-      !case_summary? ||
-      (case_summary? && !locked?) # Case Summary can be updated only if it's not locked
-    )
+    role_allow_to_edit?(subject)
   end
 
   def role_allow_to_edit?(subject)
@@ -133,18 +128,20 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def primary_assessor_can_edit?(subject)
-    (
-      (case_summary? && !locked?) ||
-      !submitted?
-    ) &&
+    not_submitted_or_not_locked? &&
     (primary? || case_summary?) &&
     subject.primary?(form_answer)
   end
 
   def secondary_assessor_can_edit?(subject)
-    !submitted? &&
+    not_submitted_or_not_locked? &&
     secondary? &&
     subject.secondary?(form_answer)
+  end
+
+  def not_submitted_or_not_locked?
+    !submitted? ||
+    (submitted? && !locked?)
   end
 
   def award_specific_attributes
@@ -183,14 +180,6 @@ class AssessorAssignment < ActiveRecord::Base
 
   def struct
     AppraisalForm
-  end
-
-  def submitted_at_immutability
-    return if new_record?
-
-    if !case_summary? && submitted_at_changed? && submitted_at_was.present?
-      errors.add(:submitted_at, "cannot be re-submitted")
-    end
   end
 
   def assessor_existence

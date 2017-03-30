@@ -53,6 +53,17 @@ body {
   }
 }
 
+.staging-banner {
+  background: #ff5346;
+  padding: 0.5em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  top: -40px;
+}
+
 .container {
   .lte-ie8 & {
     max-width: 1170px;

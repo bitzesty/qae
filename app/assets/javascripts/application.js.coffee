@@ -299,6 +299,9 @@ jQuery ->
     else
       $(this).closest(".js-step-link").attr("data-step")
 
+    if $(this).attr('type') == 'submit'
+      window.FormValidation.validate_step()
+
     #
     # Make a switch to next section if this is not same tab only
     #

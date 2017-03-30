@@ -96,7 +96,7 @@ class FormAnswerStatus::AdminFilter
       ]
     },
     withdrawn: {
-      label: "Withdrawn",
+      label: "Withdrawn/Ineligible",
       states: [
         :withdrawn
       ]

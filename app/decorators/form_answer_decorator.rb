@@ -77,22 +77,38 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def data_attributes=(attributes)
     object.document.merge! attributes.except(*array_keys)
-    # arrays needs special treatment
-    # it only works for array of hashes.
-    # If you had to update something else, you would need to refactor
+
     array_keys.each do |key|
       if attributes.has_key? key
-        new_array = attributes[key]
-        old_array = object.document[key]
+        result = {}
 
-        new_array.each do |index, value|
-          if index.to_i < old_array.length
-            old_array[index.to_i].merge! value
-          else
-            old_array << value
+        attributes.each do |k, v|
+          if v.is_a?(Hash)
+            v.values.each do |value|
+              result[k] ||= []
+
+              if value.is_a?(Hash)
+                result[k] << value
+              end
+            end
           end
         end
-        old_array.reject!{|i| i.include? "_destroy" }
+
+        old_array = object.document[key]
+        new_array = result[key]
+
+        if new_array.any? {|h| h.keys == ["type"]}
+          object.document.merge! result
+        else
+          new_array.each_with_index do |value, index|
+            if index.to_i < old_array.length
+              old_array[index.to_i].merge! value
+            else
+              old_array << value
+            end
+          end
+          old_array.reject!{|i| i.include? "_destroy" }
+        end
       end
     end
   end
@@ -391,6 +407,20 @@ class FormAnswerDecorator < ApplicationDecorator
     when "mobility"
       document["mobility_desc_short"]
     end
+  end
+
+  def organisation_type
+    document["organisation_type"]
+  end
+
+  def this_entry_relates_to
+    source_value = if document["application_relate_to"].present?
+      document["application_relate_to"]
+    elsif document["application_relate_to_header"].present?
+      document["application_relate_to_header"]
+    end
+
+    source_value.map(&:values).flatten if source_value.present?
   end
 
   def primary_assessor_full_name

@@ -29,6 +29,15 @@
   }
 }
 
+.staging-banner {
+  background: #ff5346;
+  padding: 0.5em;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold;
+  color: #fff;
+}
+
 // Fix the smart answers previous answers link text
 .previous-answers .restart a {
   white-space: nowrap;
@@ -719,7 +728,7 @@ article .help-notice ul {
 
 // Pagination style applied to buttons
 // And adapted for button
-// https://github.com/alphagov/static/blob/726ffb04b01bad019affd0ef2f2aef78873ef0ae/app/assets/stylesheets/helpers/_publisher.scss 
+// https://github.com/alphagov/static/blob/726ffb04b01bad019affd0ef2f2aef78873ef0ae/app/assets/stylesheets/helpers/_publisher.scss
 .pagination li {
   button {
     background-color: transparent;
@@ -771,7 +780,7 @@ article .help-notice ul {
       content: " ";
     }
   }
-  
+
   &.next button {
     padding: 0.75em 3em 0.75em 0;
     text-align: right;

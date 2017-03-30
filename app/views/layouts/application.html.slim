@@ -83,6 +83,7 @@
 
 - content_for :content do
   = render "shared/offline_message"
+  = render "shared/staging_banner"
 
   #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?} #{'layout-dev' if Rails.env.development?}"
@@ -123,7 +124,7 @@
             ' Need help? Ring us on
             strong 020 7215 6880
             ' . Alternatively, email us at
-            = link_to "queensawards@bis.gsi.gov.uk", "mailto:queensawards@bis.gsi.gov.uk"
+            = link_to "queensawards@beis.gov.uk", "mailto:queensawards@beis.gov.uk"
 
 - content_for :footer_support_links do
   h2.visuallyhidden Support links
