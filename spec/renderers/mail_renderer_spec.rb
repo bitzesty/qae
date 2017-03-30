@@ -49,7 +49,7 @@ describe MailRenderer do
       rendered = described_class.new.reminder_to_submit
       expect(rendered).to match("Jon Doe")
       expect(rendered).to match(link)
-      expect(rendered).to match(deadline_str)
+      expect(rendered).to match(deadline_str("%H.%M hrs on %d %B %Y"))
     end
   end
 
