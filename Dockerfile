@@ -3,8 +3,7 @@ FROM convox/rails
 ENV SSL_CERT_DIR=/etc/ssl/certs
 ENV SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
 
-RUN apk add --update --no-cache \
-    ca-certificates \
+RUN apt-get update && apt-get install -y ca-certificates \
     build-base \
     perl \
     curl \
