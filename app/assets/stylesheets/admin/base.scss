@@ -924,14 +924,11 @@ table .ellipsis {
     background-position: right center;
     background-size: 10px 6px;
     color: $black;
+    background-image: image-url("icon-arrow-sort-down-grey.png");
+    text-decoration: none;
 
-    &:hover {
-      background-image: image-url("icon-arrow-sort-down-grey.png");
-      text-decoration: none;
-
-      @include is-retina {
-        background-image: image-url("icon-arrow-sort-down-grey@2.png");
-      }
+    @include is-retina {
+      background-image: image-url("icon-arrow-sort-down-grey@2.png");
     }
 
     &.ordered {
