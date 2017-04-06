@@ -21,16 +21,9 @@ tbody
 
       td = obj.dashboard_status
       td = obj.sic_code
-      td.td-assessment-submitted
-        - if obj.primary_assessment_submitted?
-          span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
 
       td.td-primary-name
         = obj.primary_assessor_full_name
-
-      td.td-assessment-submitted
-        - if obj.secondary_assessment_submitted?
-          span.icon-check alt="Appraisal submitted" title="Appraisal submitted"
 
       td.td-secondary-name
         = obj.secondary_assessor_full_name
