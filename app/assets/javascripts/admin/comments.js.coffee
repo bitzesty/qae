@@ -3,22 +3,41 @@ ready = ->
     that = $(this)
     e.preventDefault()
     $.ajax
-      url: $(this).attr('action'),
-      type: 'POST',
-      data: $(this).serialize(),
-      dataType: 'HTML',
-      success: (data)->
+      url: $(this).attr('action')
+      type: 'POST'
+      data: $(this).serialize()
+      dataType: 'HTML'
+      success: (data) ->
         that.parents(".comments-container").find("textarea").val("")
         that.parents(".comments-container").find(".comment-insert").after(data)
         that.find("input[type='checkbox']").prop("checked", false)
         that.find(".comment-actions").removeClass("comment-flagged")
+        numberWrapper = that.closest(".panel").find(".panel-heading .comments-number")
+        if numberWrapper.find(".number").length
+          currentNumber = parseInt(numberWrapper.find(".number").html())
+
+          numberWrapper.find(".number").html("#{currentNumber + 1}")
+        else
+          numberWrapper.html("(<span class='number'>1</span>)")
+
 
   $('body').on 'submit', '.destroy-comment', (e) ->
     e.preventDefault()
     $.ajax
-      url: $(this).attr('action'),
+      url: $(this).attr('action')
       type: 'DELETE'
-    $(this).parents('.comment').remove()
+      success: () =>
+        numberWrapper = $(@).closest(".panel").find(".panel-heading .comments-number")
+        if numberWrapper.find(".number").length
+          currentNumber = parseInt(numberWrapper.find(".number").html())
+          currentNumber = currentNumber - 1
+
+          if currentNumber > 0
+            numberWrapper.find(".number").html("#{currentNumber}")
+          else
+            numberWrapper.html("")
+
+        $(@).parents('.comment').remove()
 
   toggleFlagged()
   deleteCommentAlert()
