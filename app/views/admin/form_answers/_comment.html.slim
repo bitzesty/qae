@@ -1,4 +1,4 @@
-.form-container.comment class="#{'comment-flagged' if comment.flagged?}"
+.form-container.comment.show-comment class="#{'comment-flagged' if comment.flagged?}" data-signature="Updated by #{comment.author.decorate.full_name} - #{l(comment.created_at, format: :date_at_time)}"
   .overlay-delete
     .overlay-content
       - if comment.author?(current_subject)
