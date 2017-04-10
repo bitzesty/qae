@@ -7,4 +7,6 @@ input name="form[#{question.key}][array]" value="true" type="hidden"
 
   label.selectable.qae-form-checkbox-seria-question-item
     input.js-trigger-autosave type="checkbox" id=question.input_name(suffix: "type_#{placement}") name="#{question.input_name}[#{placement}][type]" value="#{check_option[0]}" checked=('checked' if value_selected) *possible_read_only_ops
-    = check_option[1]
+    
+    label for=question.input_name(suffix: "type_#{placement}")
+      = check_option[1]
