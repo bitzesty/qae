@@ -10,54 +10,121 @@ span.selectable {
   clear: left;
   position: relative;
 
-  background: $panel-colour;
-  border: 1px solid $panel-colour;
-  padding: (18px $gutter $gutter-half $gutter*1.5);
-  margin-top: 10px;
-  margin-bottom: 10px;
-
-  cursor: pointer; // Encourage clicking on block labels
+  padding: 0 0 0 38px;
+  margin-bottom: $gutter-one-third;
 
   @include media(tablet) {
     float: left;
-    margin-top: 5px;
-    margin-bottom: 5px;
   }
 
-  &:hover {
-    border-color: $black;
-  }
-
-  // Position checkbox within label, to allow text to wrap
+  // Absolutely position inputs within label, to allow text to wrap
   input {
     position: absolute;
-    top: 18px;
-    left: $gutter-half;
     cursor: pointer;
+    left: 0;
+    top: -7px;
+    width: 38px;
+    height: 38px;
+    z-index: 1;
+
+    // IE8 doesn’t support pseudoelements, so we don’t want to hide native elements there.
+    @if ($is-ie == false) or ($ie-version == 9) {
+      top: 0;
+      margin: 0;
+      opacity: 0 !important;
+    }
   }
 
-  // Use inline, to sit block labels next to each other
-  .inline & {
-    clear: none;
-    margin-right: $gutter-half;
+  label {
+    cursor: pointer;
+    padding: 8px $gutter-one-third 9px 12px;
+    display: block;
+
+    // remove 300ms pause on mobile
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+
+    @include media(tablet) {
+      float: left;
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
   }
 
-  // Only if JavaScript is enabled
-  .js-enabled & {
-    // Remove focus styles from radio and checkbox inputs
-    input:focus {
-      outline: none;
-    }
+  [type=radio] + label::before {
+    content: "";
+    border: 2px solid;
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -2px;
+    left: 0;
+    @include border-radius(50%);
+  }
 
-    // Add selected state to block labels
-    &.selected {
-      background: $white;
-      border-color: $black;
-    }
+  [type=radio] + label::after {
+    content: "";
+    border: 8px solid;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 7px;
+    left: 9px;
+    @include border-radius(50%);
+    @include opacity(0);
+  }
 
-    // Add focus styles to block labels
-    &.focused {
-      outline: 3px solid $yellow;
-    }
+  [type=checkbox] + label::before {
+    content: "";
+    border: 2px solid;
+    background: transparent;
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: -2px;
+    left: 0;
+  }
+
+  [type=checkbox] + label::after {
+    content: "";
+    border: solid;
+    border-width: 0 0 4px 4px;
+    background: transparent;
+    width: 14px;
+    height: 6px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    -moz-transform: rotate(-45deg); // Firefox 15 compatibility
+    -o-transform: rotate(-45deg); // Opera 12.0 compatibility
+    -webkit-transform: rotate(-45deg); // Safari 8 compatibility
+    -ms-transform: rotate(-45deg); // IE9 compatibility
+    transform: rotate(-45deg);
+    @include opacity(0);
+  }
+
+  // Focused state
+  [type=radio]:focus + label::before {
+    @include box-shadow(0 0 0 4px $focus-colour);
+  }
+
+  [type=checkbox]:focus + label::before {
+    @include box-shadow(0 0 0 3px $focus-colour);
+  }
+
+  // Selected state
+  input:checked + label::after {
+    @include opacity(1);
+  }
+
+  // Disabled state
+  input:disabled + label {
+    @include opacity(0.5);
+  }
+
+  &:last-child,
+  &:last-of-type {
+    margin-bottom: 0;
   }
 }
