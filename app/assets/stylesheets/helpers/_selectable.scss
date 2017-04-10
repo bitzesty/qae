@@ -58,7 +58,7 @@ span.selectable {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 0;
+    top: -2px;
     left: 0;
     @include border-radius(50%);
   }
@@ -69,7 +69,7 @@ span.selectable {
     width: 0;
     height: 0;
     position: absolute;
-    top: 9px;
+    top: 7px;
     left: 9px;
     @include border-radius(50%);
     @include opacity(0);
@@ -82,7 +82,7 @@ span.selectable {
     width: 30px;
     height: 30px;
     position: absolute;
-    top: 0;
+    top: -2px;
     left: 0;
   }
 
@@ -94,7 +94,7 @@ span.selectable {
     width: 14px;
     height: 6px;
     position: absolute;
-    top: 10px;
+    top: 8px;
     left: 8px;
     -moz-transform: rotate(-45deg); // Firefox 15 compatibility
     -o-transform: rotate(-45deg); // Opera 12.0 compatibility
