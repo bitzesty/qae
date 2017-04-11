@@ -387,8 +387,6 @@ input[type="file"] {
     }
 
     &.selectable {
-      @include core-16;
-
       .lte-ie7 & {
         width: 85%;
       }

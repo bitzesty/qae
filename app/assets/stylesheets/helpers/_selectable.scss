@@ -55,21 +55,21 @@ span.selectable {
     content: "";
     border: 2px solid;
     background: transparent;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     position: absolute;
-    top: -2px;
+    top: 0;
     left: 0;
     @include border-radius(50%);
   }
 
   [type=radio] + label::after {
     content: "";
-    border: 8px solid;
+    border: 10px solid;
     width: 0;
     height: 0;
     position: absolute;
-    top: 7px;
+    top: 9px;
     left: 9px;
     @include border-radius(50%);
     @include opacity(0);
@@ -79,22 +79,22 @@ span.selectable {
     content: "";
     border: 2px solid;
     background: transparent;
-    width: 30px;
-    height: 30px;
+    width: 34px;
+    height: 34px;
     position: absolute;
-    top: -2px;
+    top: 0;
     left: 0;
   }
 
   [type=checkbox] + label::after {
     content: "";
     border: solid;
-    border-width: 0 0 4px 4px;
+    border-width: 0 0 5px 5px;
     background: transparent;
-    width: 14px;
-    height: 6px;
+    width: 17px;
+    height: 7px;
     position: absolute;
-    top: 8px;
+    top: 10px;
     left: 8px;
     -moz-transform: rotate(-45deg); // Firefox 15 compatibility
     -o-transform: rotate(-45deg); // Opera 12.0 compatibility
