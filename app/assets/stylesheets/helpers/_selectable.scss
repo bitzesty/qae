@@ -11,7 +11,7 @@ span.selectable {
   position: relative;
 
   padding: 0 0 0 38px;
-  margin-bottom: $gutter-half;
+  margin-bottom: $gutter-one-third;
 
   @include media(tablet) {
     float: left;
@@ -23,8 +23,8 @@ span.selectable {
     cursor: pointer;
     left: 0;
     top: -7px;
-    width: 38px;
-    height: 38px;
+    width: 30px;
+    height: 30px;
     z-index: 1;
 
     // IE8 doesn’t support pseudoelements, so we don’t want to hide native elements there.
@@ -55,8 +55,8 @@ span.selectable {
     content: "";
     border: 2px solid;
     background: transparent;
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 0;
     left: 0;
@@ -65,7 +65,7 @@ span.selectable {
 
   [type=radio] + label::after {
     content: "";
-    border: 10px solid;
+    border: 8px solid;
     width: 0;
     height: 0;
     position: absolute;
@@ -79,8 +79,8 @@ span.selectable {
     content: "";
     border: 2px solid;
     background: transparent;
-    width: 34px;
-    height: 34px;
+    width: 30px;
+    height: 30px;
     position: absolute;
     top: 0;
     left: 0;
@@ -89,13 +89,13 @@ span.selectable {
   [type=checkbox] + label::after {
     content: "";
     border: solid;
-    border-width: 0 0 5px 5px;
+    border-width: 0 0 4px 4px;
     background: transparent;
-    width: 17px;
-    height: 7px;
+    width: 13px;
+    height: 5px;
     position: absolute;
     top: 10px;
-    left: 8px;
+    left: 9px;
     -moz-transform: rotate(-45deg); // Firefox 15 compatibility
     -o-transform: rotate(-45deg); // Opera 12.0 compatibility
     -webkit-transform: rotate(-45deg); // Safari 8 compatibility
