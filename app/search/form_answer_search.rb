@@ -22,10 +22,8 @@ class FormAnswerSearch < Search
     q = "form_answers.*,
       (COUNT(comments.id)) AS flags_count"
     scoped_results.select(q)
-      .joins("LEFT OUTER JOIN comments on comments.commentable_id=form_answers.id")
+      .joins("LEFT OUTER JOIN comments on (comments.commentable_id=form_answers.id) AND ((comments.section = '#{section}' AND comments.commentable_type = 'FormAnswer' AND flagged = true) OR comments.section IS NULL)")
       .group("form_answers.id")
-      .where("(comments.section =? AND comments.commentable_type=? AND flagged =?)
-        OR comments.section IS NULL", section, "FormAnswer", true)
       .order("flags_count #{sort_order(desc)}")
   end
 
