@@ -20,6 +20,15 @@ ready = ->
         else
           numberWrapper.html("(<span class='number'>1</span>)")
 
+        commentWrapper = that.parents(".comments-container").find(".show-comment").first()
+
+        signatureWrapper = that.closest(".panel").find(".panel-heading .signature")
+
+        if commentWrapper.data("signature")
+          signatureWrapper.html(commentWrapper.data("signature"))
+        else
+          signatureWrapper.html("")
+
 
   $('body').on 'submit', '.destroy-comment', (e) ->
     e.preventDefault()
@@ -37,7 +46,16 @@ ready = ->
           else
             numberWrapper.html("")
 
+        commentWrapper = $($(@).closest(".panel").find(".comments-container .show-comment")[1])
+        signatureWrapper = $(@).closest(".panel").find(".panel-heading .signature")
+
+        if commentWrapper.length && commentWrapper.data("signature")
+          signatureWrapper.html(commentWrapper.data("signature"))
+        else
+          signatureWrapper.html("")
+
         $(@).parents('.comment').remove()
+
 
   toggleFlagged()
   deleteCommentAlert()

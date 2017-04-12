@@ -9,6 +9,11 @@
             span.number
               = @form_answer.comments.critical.count
             | )
+        small
+          span.signature
+            - if @form_answer.comments.critical.any?
+              - last_comment = @form_answer.comments.critical.first
+              = "Updated by #{last_comment.author.decorate.full_name} - #{l(last_comment.created_at, format: :date_at_time)}"
 
   #section-critical-comments.section-critical-comments.panel-collapse.collapse role="tabpanel" aria-labelledby="critical-comments-heading"
     .panel-body
