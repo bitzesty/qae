@@ -90,8 +90,7 @@ class Assessor < ActiveRecord::Base
     out.where("
       (award_type in (?) OR
       (assessor_assignments.position in (?) AND assessor_assignments.assessor_id = ?))
-      AND state NOT IN (?)
-    ", c, [0, 1], id, "withdrawn")
+    ", c, [0, 1], id)
   end
 
   def full_name
