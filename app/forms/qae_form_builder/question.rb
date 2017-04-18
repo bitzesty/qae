@@ -7,6 +7,8 @@ class QAEFormBuilder
       "InnovationFinancialYearDateQuestion",
       "ByYearsQuestion",
       "ByYearsLabelQuestion",
+      "MobilityByYearsQuestion",
+      "MobilityByYearsLabelQuestion",
       "UserInfoQuestion",
       "AwardHolderQuestion",
       "SupportersQuestion",
