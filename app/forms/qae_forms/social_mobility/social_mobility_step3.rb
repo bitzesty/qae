@@ -39,7 +39,7 @@ class QAEForms
           )
         end
 
-        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
+        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date" do
           ref "C 2"
           required
           context %(
@@ -62,7 +62,7 @@ class QAEForms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
+        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year" do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -77,7 +77,7 @@ class QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -86,7 +86,7 @@ class QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry" do
           classes "question-employee-min"
           ref "C 3"
           required
@@ -186,7 +186,7 @@ class QAEForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, total net assets and net profits, as well as any losses made." do
+        textarea :drops_in_turnover, "Explain any drops in turnover, total net assets and net profits, as well as any losses made" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.4"
           rows 5
@@ -204,7 +204,7 @@ class QAEForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
+        textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders" do
           classes "sub-question"
           sub_ref "C 5.1"
           required
@@ -214,7 +214,7 @@ class QAEForms
           conditional :programme_performance_years, :true
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme." do
+        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme" do
           ref "C 6"
           required
           context %(

@@ -47,7 +47,7 @@ class QAEForms
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
+        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made" do
           classes "sub-question"
           sub_ref "A 3.1"
           required
@@ -63,7 +63,7 @@ class QAEForms
           option "charity", "Charity"
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
+        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'" do
           required
           ref "A 4.1"
           context %(
@@ -72,7 +72,7 @@ class QAEForms
           style "small"
         end
 
-        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
+        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'" do
           required
           ref "A 4.2"
           context %(
@@ -213,7 +213,7 @@ class QAEForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this applications." do
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this applications" do
           sub_ref "A 9.2"
           required
           words_max 200

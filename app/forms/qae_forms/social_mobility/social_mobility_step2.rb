@@ -43,7 +43,7 @@ class QAEForms
           )
         end
 
-        textarea :mobility_desc_long, "Summarise your social mobility programme." do
+        textarea :mobility_desc_long, "Summarise your social mobility programme" do
           classes "sub-question"
           sub_ref "B 1.2"
           required
@@ -56,7 +56,7 @@ class QAEForms
           words_max 500
         end
 
-        textarea :mobility_desc_short, "Provide a one line description of your social mobility programme." do
+        textarea :mobility_desc_short, "Provide a one line description of your social mobility programme" do
           classes "sub-question"
           sub_ref "B 1.3"
           required
@@ -68,7 +68,7 @@ class QAEForms
           words_max 15
         end
 
-        textarea :provide_ceo_quote, "Provide a quote from the CEO that demonstrates support for the social mobility programme." do
+        textarea :provide_ceo_quote, "Provide a quote from the CEO that demonstrates support for the social mobility programme" do
           classes "sub-question"
           sub_ref "B 1.4"
           required
@@ -138,7 +138,7 @@ class QAEForms
           words_max 250
         end
 
-        textarea :programme_integration, "Describe how the programme is integrated into the overall business strategy, and what the board level commitment to the future growth of the programme is." do
+        textarea :programme_integration, "Describe how the programme is integrated into the overall business strategy, and what the board level commitment to the future growth of the programme is" do
           ref "B 4"
           required
           rows 5
@@ -158,7 +158,7 @@ class QAEForms
           words_max 250
         end
 
-        textarea :organisation_culture_fosters, "Describe how your organisation’s culture fosters and supports the social mobility programme." do
+        textarea :organisation_culture_fosters, "Describe how your organisation’s culture fosters and supports the social mobility programme" do
           classes "sub-question"
           sub_ref "B 4.2"
           required
@@ -166,7 +166,7 @@ class QAEForms
           words_max 250
         end
 
-        textarea :programme_benefit_evidence, "Provide evidence on how the programme benefits people." do
+        textarea :programme_benefit_evidence, "Provide evidence on how the programme benefits people" do
           ref "B 5"
           required
           context %(
@@ -206,7 +206,7 @@ class QAEForms
           words_max 700
         end
 
-        textarea :employability_improvement_evidence, "Provide evidence on how your organisation improved the employability of your people and how it has raised their career aspirations and confidence." do
+        textarea :employability_improvement_evidence, "Provide evidence on how your organisation improved the employability of your people and how it has raised their career aspirations and confidence" do
           classes "sub-question"
           sub_ref "B 5.1"
           required
@@ -225,7 +225,7 @@ class QAEForms
           words_max 500
         end
 
-        textarea :financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation financially." do
+        textarea :financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation financially" do
           ref "B 6"
           required
           context %(
@@ -248,7 +248,7 @@ class QAEForms
           words_max 500
         end
 
-        textarea :non_financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation in ways other than financial." do
+        textarea :non_financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation in ways other than financial" do
           classes "sub-question"
           sub_ref "B 6.1"
           required
