@@ -45,7 +45,7 @@ class QAEFormBuilder
         allowed_params[question.key] = form_data[question.key]
 
         question_possible_sub_keys(question).each do |sub_question_key|
-          allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion)
+          allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::MobilityByYearsQuestion)
             # Sometimes users can input commas, we are stripping them
             form_data[sub_question_key].to_s.delete(",")
           else
@@ -99,6 +99,18 @@ class QAEFormBuilder
         end.flatten
       end
 
+      if question.delegate_obj.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::MobilityByYearsQuestion)
+        sub_question_keys += (1..3).map do |y|
+          if question.delegate_obj.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestion)
+            [:day, :month, :year].map do |i|
+              "#{y}of3#{i}"
+            end
+          else
+            "#{y}of3"
+          end
+        end.flatten
+      end
+
       sub_question_keys.flatten
                        .uniq
                        .map { |s| "#{question.key}_#{s}" }
@@ -129,8 +141,8 @@ class QAEFormBuilder
     end
 
     def method_missing(meth, *args, &block)
-      klass_builder = QAEFormBuilder.const_get( "#{meth.to_s.camelize}QuestionBuilder" ) rescue nil
-      klass = QAEFormBuilder.const_get( "#{meth.to_s.camelize}Question" ) rescue nil
+      klass_builder = QAEFormBuilder.const_get("#{meth.to_s.camelize}QuestionBuilder") rescue nil
+      klass = QAEFormBuilder.const_get("#{meth.to_s.camelize}Question") rescue nil
 
       if klass_builder && klass && args.length >= 2 && args.length <= 3
         id, title, opts = args

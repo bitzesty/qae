@@ -6,7 +6,7 @@ class QAEForms
         header :commercial_success_info_block, "" do
           context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your international trade activities had on your organisation's financial performance.
+              In order to be eligible for this Award, your business must demonstrate financial stability and growth for the last 3 years.
             </p>
           )
         end
