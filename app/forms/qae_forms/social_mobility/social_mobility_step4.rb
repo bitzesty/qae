@@ -82,9 +82,7 @@ class QAEForms
               Outline your selection criteria, if any, with regard to potential suppliers'/partners'/contractors' economic, social and environmental performance.
             </p>
             <p>
-              For example, do you encourage best practice or require them to meet your own standards? To what extent are you succeeding?
-              How proactive are you at encouraging your supply chain to source British goods/products/services?
-              Do you mentor businesses in your supply chain – if so how?
+              For example, do you encourage best practice or require them to meet your own standards? To what extent are you succeeding? How proactive are you at encouraging your supply chain to source British goods/products/services? Do you mentor businesses in your supply chain – if so how?
             </p>
           )
           rows 5

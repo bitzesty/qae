@@ -52,7 +52,7 @@ class QAEForms
           sub_ref "A 3.1"
           required
           conditional :principal_business, :no
-          words_max 200
+          words_max 100
           rows 5
         end
 
@@ -92,10 +92,13 @@ class QAEForms
           date_max AwardYear.start_trading_since(2)
         end
 
-        options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
+        options :queen_award_holder, "Are you a current Queen's Award holder from #{AwardYear.award_holder_range}?" do
           required
           ref "A 6"
           yes_no
+          context %(
+            <p>If you have received a Queen's Award in any category between #{AwardYear.current.year - 5} and #{AwardYear.current.year - 1}, you are deemed a current award holder.</p>
+          )
           option "i_dont_know", "I don't know"
           classes "queen-award-holder"
         end
@@ -158,7 +161,7 @@ class QAEForms
                     )
           conditional :other_awards_won, :yes
           rows 5
-          words_max 300
+          words_max 250
         end
 
         options :part_of_joint_entry,
@@ -167,8 +170,7 @@ class QAEForms
           required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the social mobility programme then you should make a joint entry.
-              Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the social mobility programme then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
           yes_no

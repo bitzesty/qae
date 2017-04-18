@@ -39,7 +39,7 @@ class QAEForms
           )
         end
 
-        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date" do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
           context %(
@@ -62,7 +62,7 @@ class QAEForms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year" do
+        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year" do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -190,7 +190,7 @@ class QAEForms
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.4"
           rows 5
-          words_max 200
+          words_max 100
           conditional :programme_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_condition_parent
@@ -209,7 +209,7 @@ class QAEForms
           sub_ref "C 5.1"
           required
           rows 5
-          words_max 400
+          words_max 250
           conditional :product_estimated_figures, :yes
           conditional :programme_performance_years, :true
         end
@@ -223,7 +223,7 @@ class QAEForms
             </p>
                     )
           rows 5
-          words_max 500
+          words_max 400
         end
 
         textarea :roi_details, "How long did it take you to break even? When and how was this achieved?" do
