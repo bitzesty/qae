@@ -21,8 +21,7 @@ class QAEForms
           classes "application-notice help-notice"
           context %(
             <p>
-              Where we refer to 'your organisation' in the form,
-              please enter the details of your division, branch or subsidiary.
+              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
@@ -32,7 +31,7 @@ class QAEForms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses.  Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
           )
         end
 
@@ -86,7 +85,7 @@ class QAEForms
           ref "A 5"
           context %(
             <p>
-               Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+               Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award.
             </p>
           )
           date_max AwardYear.start_trading_since(2)

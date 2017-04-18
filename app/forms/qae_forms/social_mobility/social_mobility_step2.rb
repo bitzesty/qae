@@ -105,7 +105,7 @@ class QAEForms
           words_max 250
         end
 
-        textarea :investments_return_prediction, "How do you ensure that the programme provides a good return on investment for your organisation?" do
+        textarea :investments_return_prediction, "How do you ensure that the programme provides a good return on investment for your organisation, financially or otherwise?" do
           ref "B 3"
           required
           context %(
@@ -135,12 +135,15 @@ class QAEForms
           sub_ref "B 3.2"
           required
           rows 5
-          words_max 250
+          words_max 400
         end
 
         textarea :programme_integration, "Describe how the programme is integrated into the overall business strategy, and what the board/ senior management level commitment to the future growth of the programme is" do
           ref "B 4"
           required
+          context %(
+            <p>Provide a vision of what your organisation wants to do in terms of the programme, as well as evidence of how you have gone about integrating the programme to date.</p>
+          )
           rows 5
           words_max 250
         end
@@ -258,81 +261,48 @@ class QAEForms
           words_max 500
         end
 
-        textarea :financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation financially" do
+        textarea :financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation financially or otherwise" do
           ref "B 6"
           required
           context %(
-            <p>
-              Financial benefits may fall under two categories:
-            </p>
+            <p><strong>Financial benefits</strong> may fall under two categories:</p>
             <ul>
               <li>Savings - reduced recruitment costs, increases in retention;</li>
               <li>Growth - increased sales, access to new clients or markets or the development of new products.</li>
             </ul>
-            <p>
-              If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
-            </p>
-            <p>
-              You may find it helpful to articulate these benefits in terms of ‘before and after’.
-            </p>
 
+            <p>If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.</p>
+
+            <p>You may find it helpful to articulate these benefits in terms of ‘before and after’.</p>
+
+            <p><strong>Other benefits</strong> may be demonstrated in the following ways:</p>
+
+            <ul>
+              <li>Employee relations - improvements in employee motivation, well-being or satisfaction;</li>
+              <li>Diversity - increased ability to access and attract a wider talent pool;</li>
+              <li>Reputation - increased positive perceptions of the organisation among key stakeholders - e.g. customers and the media;</li>
+              <li>Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.</li>
+            </ul>
+
+            <p>Describe how would your business be affected if this social mobility programme had never been introduced?</p>
+            <p>The above are just examples - you can choose to demonstrate benefits in other areas.</p>
+            <p>If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.</p>
+            <p>You may find it helpful to articulate these benefits in terms of ‘before and after’.</p>
           )
           pdf_context %(
-            <p>
-              Financial benefits may fall under two categories:
-            </p>
+            <p><strong>Financial benefits</strong> may fall under two categories:</p>
             <p>
               \u2022 Savings - reduced recruitment costs, increases in retention;
 
               \u2022 Growth - increased sales, access to new clients or markets or the development of new products.
             </p>
-            <p>
-              If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
-            </p>
-            <p>
-              You may find it helpful to articulate these benefits in terms of ‘before and after’.
-            </p>
 
-          )
-          rows 5
-          words_max 500
-        end
+            <p>If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.</p>
 
-        textarea :non_financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation in ways other than financial" do
-          classes "sub-question"
-          sub_ref "B 6.1"
-          required
-          context %(
-            <p>
-             For example, you may wish to demonstrate benefits in the following areas:
-            </p>
-            <ul>
-              <li>
-                Employee relations - improvements in employee motivation, well-being or satisfaction;
-              </li>
-              <li>
-                Diversity - increased ability to access and attract a wider talent pool;
-              <li>
-                Reputation - increased positive perceptions of the organisation among key stakeholders - e.g. customers and the media;
-              </li>
-              <li>
-                Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.
-              </li>
-            </ul>
-            <p>
-              The above are just examples - you can choose to demonstrate benefits in other areas.
-            </p>
-            <p>
-              If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
-            </p>
-            <p>
-              You may find it helpful to articulate these benefits in terms of ‘before and after’.
-            </p>
-          )
-          pdf_context %(
-            <p>
-             For example, you may wish to demonstrate benefits in the following areas:
-            </p>
+            <p>You may find it helpful to articulate these benefits in terms of ‘before and after’.</p>
+
+            <p></strong>Other benefits</strong> may be demonstrated in the following ways:</p>
+
             <p>
               \u2022 Employee relations - improvements in employee motivation, well-being or satisfaction;
 
@@ -342,17 +312,13 @@ class QAEForms
 
               \u2022 Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.
             </p>
-            <p>
-              The above are just examples - you can choose to demonstrate benefits in other areas.
-            </p>
-            <p>
-              If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.
-            </p>
-            <p>
-              You may find it helpful to articulate these benefits in terms of ‘before and after’.
-            </p>
+
+            <p>Describe how would your business be affected if this social mobility programme had never been introduced?</p>
+            <p>The above are just examples - you can choose to demonstrate benefits in other areas.</p>
+            <p>If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.</p>
+            <p>You may find it helpful to articulate these benefits in terms of ‘before and after’.</p>
           )
-          rows 8
+          rows 5
           words_max 750
         end
 
@@ -364,7 +330,7 @@ class QAEForms
               For example, the programme may be exemplary as a result of:
             </p>
             <ul>
-              <li> An exemplary overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit and develop people;</li>
+              <li>An exemplary overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit and develop people;</li>
               <li>Developing a unique or innovative social mobility programme;</li>
               <li>Forming effective partnerships with charities, schools or job centres;</li>
               <li>Leading the way in your company by doing something that has never been done before.</li>
