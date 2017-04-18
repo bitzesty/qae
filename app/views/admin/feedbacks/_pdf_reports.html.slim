@@ -3,6 +3,8 @@
     ' Feedback
   ul.list-unstyled.list-actions
     - FormAnswer::AWARD_TYPE_FULL_NAMES.each do |key, value|
+      - next if key.to_s == "promotion" && hide_promotion?
+
       li
         .pull-right
           = link_to admin_report_path("feedbacks", category: key, format: :pdf, year: @award_year.year), target: admin_conditional_aggregated_pdf_link_target(@award_year, 'feedback')

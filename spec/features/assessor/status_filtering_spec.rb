@@ -16,7 +16,7 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
 
     @forms << create(:form_answer, :trade, state: "application_in_progress")
     @forms << create(:form_answer, :development, state: "not_eligible")
-    @forms << create(:form_answer, :promotion, state: "assessment_in_progress")
+    @forms << create(:form_answer, :mobility, state: "assessment_in_progress")
     @forms << create(:form_answer, :innovation, state: "assessment_in_progress")
 
     # 0111 - is default sic_code, came from spec/fixtures/*.json
@@ -33,16 +33,16 @@ describe "As Lead Assessor I want to filter applications by state", js: true do
     # if assessor assigned to many categories sees the applications grouped by
     # these categories, not applicable for the admin
 
-    let!(:assessor) { create(:assessor, :lead_for_development_promotion) }
+    let!(:assessor) { create(:assessor, :lead_for_development_mobility) }
     before do
       login_as(assessor, scope: :assessor)
       visit assessor_form_answers_path
     end
 
-    context "promotion tab" do
+    context "mobility tab" do
       before do
         within ".nav-subnav" do
-          find(".cat-enterprise-promotion").click
+          find(".cat-promoting-opportunity").click
         end
       end
       it "filters by status" do
