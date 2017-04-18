@@ -6,9 +6,7 @@ class QAEForms
         header :your_internation_trade_header, "" do
           context %(
             <p>
-              This section gives you the opportunity to present the detail of your products or services
-              that you export and to give us the evidence of their commercial impact on your business
-              that will enable us to assess your application.
+              This section gives you the opportunity to present the detail of your products or services that you export and to give us the evidence of their commercial impact on your business that will enable us to assess your application.
             </p>
             <p>
               Please try to avoid using technical jargon in this section.
@@ -52,8 +50,7 @@ class QAEForms
               This summary will be used in publicity material if your application is successful.
             </p>
             <p>
-              e.g. Design and manufacture of contract fabrics for commercial interiors.
-              Design and manufacture of mass passenger transport fabrics.
+              e.g. Design and manufacture of contract fabrics for commercial interiors. Design and manufacture of mass passenger transport fabrics.
             </p>
             <p>
               e.g. Musical heritage tours and events, exploring popular music history by theme, genre or specific artist.
@@ -112,13 +109,12 @@ class QAEForms
           conditional :trade_goods_amount, :true
         end
 
-        textarea :trade_plans_desc, "Describe your international and domestic trading strategies (plans), their vision/objectives for the future, their method of implementation, and how your actual performance compared to the plans set out." do
+        textarea :trade_plans_desc, "Describe your international and domestic trading strategies (plans), their vision/objectives for the future, their method of implementation, and how your actual performance compared to the plans set out" do
           ref "B 3"
           required
           context %(
             <p>
-              Include for example: your overseas market structure, comparisons between domestic and international strategies, treatment of different markets (linking to top performing markets), market research, market development, routes to market, after sales and technical advice,
-              activities to sustain/grow markets, staff language training, export practices, overseas distributors, inward/outward trade missions, trade fairs and visits to existing/potential markets. Make sure you explain how your actual performance compares to your planned performance.
+              Include for example: your overseas market structure, comparisons between domestic and international strategies, treatment of different markets (linking to top performing markets), market research, market development, routes to market, after sales and technical advice, activities to sustain/grow markets, staff language training, export practices, overseas distributors, inward/outward trade missions, trade fairs and visits to existing/potential markets. Make sure you explain how your actual performance compares to your planned performance.
             </p>
           )
           rows 5
@@ -129,10 +125,7 @@ class QAEForms
           ref "B 4"
           context %(
             <p>
-              If applicable, demonstrate why penetration of a particular market represents a
-              significant achievement: for example are you the first, leading, fastest growing
-              UK exporter to an overseas market? How does your performance compare with other
-              companies operating in your sector or overseas market?
+              If applicable, demonstrate why penetration of a particular market represents a significant achievement: for example are you the first, leading, fastest growing UK exporter to an overseas market? How does your performance compare with other companies operating in your sector or overseas market?
             </p>
           )
         end
@@ -143,8 +136,7 @@ class QAEForms
           classes "sub-question"
           context %(
             <p>
-              Include evidence of how you segment and manage geographical regions to demonstrate
-              your company’s focus. Please supply market share information.
+              Include evidence of how you segment and manage geographical regions to demonstrate your company’s focus. Please supply market share information.
             </p>
           )
           rows 5
@@ -156,7 +148,7 @@ class QAEForms
           sub_ref "B 4.2"
           required
           rows 5
-          words_max 200
+          words_max 100
         end
 
         textarea :identify_new_overseas, "Identify new overseas markets established during your period of entry, and their contribution to total overseas sales" do
@@ -164,10 +156,10 @@ class QAEForms
           sub_ref "B 4.3"
           required
           rows 5
-          words_max 300
+          words_max 250
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade in products or services, and how you overcame them." do
+        textarea :trade_factors, "Describe any special challenges affecting your trade in products or services, and how you overcame them" do
           ref "B 5"
           required
           rows 5
@@ -186,12 +178,12 @@ class QAEForms
           ]
         end
 
-        textarea :operate_model_benefits, "Please explain your franchise and/or other business model(s) and rationale for this. Describe the benefits this brings to the UK." do
+        textarea :operate_model_benefits, "Please explain your franchise and/or other business model(s) and rationale for this. Describe the benefits this brings to the UK" do
           classes "sub-question"
           sub_ref "B 6.1"
           required
           rows 5
-          words_max 500
+          words_max 300
         end
 
         options :received_grant, "Did you receive any grant funding to support this product/service?" do
@@ -210,7 +202,7 @@ class QAEForms
           sub_ref "B 7.1"
           required
           rows 5
-          words_max 300
+          words_max 200
           conditional :received_grant, "yes"
         end
       end
