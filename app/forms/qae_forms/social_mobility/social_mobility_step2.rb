@@ -131,6 +131,11 @@ class QAEForms
         textarea :programme_kpis, "What are the KPIs related to the programme? How are they set and monitored? Are the KPIs being met and what happens if they are not met?" do
           classes "sub-question"
           sub_ref "B 3.2"
+          context %(
+            <p>What impact did you set out to achieve with the programme in terms of your objectives and KPIs.</p>
+
+            <p>State what quantifiable measures were used to evaluate the success of the programme.</p>
+          )
           required
           rows 5
           words_max 400
@@ -259,7 +264,7 @@ class QAEForms
           words_max 500
         end
 
-        textarea :financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation financially or otherwise" do
+        textarea :financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation" do
           ref "B 6"
           required
           context %(

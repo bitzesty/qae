@@ -6,7 +6,7 @@ class QAEForms
         header :commercial_success_info_block, "" do
           context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your social mobility programme(s) had on your organisation's financial performance.
+              In order to be eligible for this Award, your business must demonstrate financial stability and growth for the last 3 years.
             </p>
             <p>
               <strong>If you haven't reached your latest year-end, please use estimates to complete this section.</strong>
@@ -32,7 +32,7 @@ class QAEForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>3</span> year entry period?" do
+        options :financial_year_date_changed, "Did your year-end date change during the <span class='js-entry-period-subtext'>3</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 1.1"
           required

@@ -148,13 +148,13 @@ class QAEForms
           words_max 400
         end
 
-        textarea :innovation_competitors, "Who offers similar or different products, services or business models that compete with yours?" do
+        textarea :innovation_competitors, "Who offers similar or different products, services or business models that compete with yours? Explain how your innovation differs from other offers in your field, including direct competitors and those that offer alternative solutions" do
           ref "B 10"
           required
           rows 5
           words_max 250
           context %(
-            <p>Who offers similar or different products, services or business models that compete with yours? Explain how your innovation differs from other offers in your field, including direct competitors and those that offer alternative solutions.</p>
+            <p>We ask this so that we can assess how outstanding your innovation is, compared to others in your field.</p>
           )
         end
 

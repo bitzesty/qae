@@ -28,14 +28,14 @@ class QAEForms
           words_max 500
         end
 
-        textarea :trade_overall_importance, "Explain the overall importance of exporting to your company" do
+        textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction" do
           sub_ref "B 1.2"
           required
           rows 5
           words_max 500
         end
 
-        textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction" do
+        textarea :trade_overall_importance, "Explain the overall importance of exporting to your company" do
           sub_ref "B 1.3"
           required
           rows 5

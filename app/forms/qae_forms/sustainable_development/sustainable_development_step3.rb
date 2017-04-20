@@ -245,10 +245,12 @@ class QAEForms
           ref "C 6"
           context %(
             <p>If applicable, please provide your unit price, cost details and sales figures  to help us understand the value of your sustainable development.</p>
+
             <p>Some questions may not apply, please answer the ones that are applicable to your sustainable development.</p>
+
             <p>You must enter actual financial figures in £ sterling (ignoring pennies).</p>
+
             <p>Please do not separate your figures with commas.</p>
-            <p>Please note C6 is just a heading for the following subquestions.</p>
           )
         end
 
