@@ -60,54 +60,67 @@ class QAEForms
           required
           context %(
             <p>
-              Describe the product, service or business model itself.
-              Explain any aspect(s) you think are innovative, and why you think they are innovative.
-              Consider its uniqueness and the challenges you had to overcome.
-              Explain if and why your innovation is hard to copy, e.g. patents held, market position.
-              Also explain how it fits within the overall business i.e. is it your sole product?
+              Describe the product, service or business model itself. Explain any aspect(s) you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Explain if and why your innovation is hard to copy, e.g. patents held, market position. Also explain how it fits within the overall business i.e. is it your sole product?
             </p>
           )
           rows 5
-          words_max 800
+          words_max 750
         end
 
-        options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
+        options :innovation_hold_existing_patent, "Do you hold the existing patent for this innovation?" do
           ref "B 2"
           required
           yes_no
         end
 
-        textarea :innovation_other_countries_it_was_developed, "Please describe in what other countries (and by what parties) was it developed. Please estimate what proportion of the innovation was developed there." do
+        options :innovation_hold_existing_patent_details, "Please provide details of the patent. If you do not have a patent, please explain the reasons why" do
           sub_ref "B 2.1"
+          required
+          context %(
+            <p>Include patent number.</p>
+          )
+          rows 5
+          words_max 100
+        end
+
+
+        options :innovation_conceived_and_developed, "Was the whole of your innovation conceived and developed in the UK?" do
+          ref "B 3"
+          required
+          yes_no
+        end
+
+        textarea :innovation_other_countries_it_was_developed, "Please describe in what other countries (and by what parties) was it developed. Please estimate what proportion of the innovation was developed there" do
+          sub_ref "B 3.1"
           required
           conditional :innovation_conceived_and_developed, :no
           rows 5
-          words_max 500
+          words_max 400
         end
 
         textarea :innovation_external_contributors, 'Please name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s) or enter "N/A".' do
-          ref "B 3"
-          required
-          rows 5
-          words_max 500
-        end
-
-        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation. Or otherwise, how you identified a gap in the market." do
           ref "B 4"
           required
           rows 5
-          words_max 500
+          words_max 400
         end
 
-        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior problems, and any difficulties you overcame in achieving these solutions." do
+        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation. Or otherwise, how you identified a gap in the market" do
           ref "B 5"
           required
           rows 5
-          words_max 800
+          words_max 500
+        end
+
+        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior problems, and any difficulties you overcame in achieving these solutions" do
+          ref "B 6"
+          required
+          rows 5
+          words_max 750
         end
 
         textarea :innovation_befits_details_business, "How does the innovation benefit your business?" do
-          ref "B 6"
+          ref "B 7"
           required
           context %(
             <p>
@@ -115,11 +128,11 @@ class QAEForms
             </p>
           )
           rows 5
-          words_max 500
+          words_max 400
         end
 
         textarea :innovation_befits_details_customers, "Does the innovation benefit your customers and, if so, how?" do
-          ref "B 7"
+          ref "B 8"
           required
           context %(
             <p>
@@ -127,30 +140,28 @@ class QAEForms
             </p>
           )
           rows 5
-          words_max 500
+          words_max 400
         end
 
         textarea :beyond_your_immediate_customers, "Beyond your immediate customers, does the innovation bring benefit to others, and if so how and to whom?" do
-          ref "B 8"
-          required
-          rows 5
-          words_max 500
-        end
-
-        textarea :innovation_competitors, "Who offers similar or different products, services or business models that compete with yours?" do
           ref "B 9"
           required
           rows 5
-          words_max 300
+          words_max 400
+        end
+
+        textarea :innovation_competitors, "Who offers similar or different products, services or business models that compete with yours?" do
+          ref "B 10"
+          required
+          rows 5
+          words_max 250
           context %(
-            <p>
-              We ask this so that we can assess how outstanding your innovation is, compared to others in your field.
-            </p>
+            <p>Who offers similar or different products, services or business models that compete with yours? Explain how your innovation differs from other offers in your field, including direct competitors and those that offer alternative solutions.</p>
           )
         end
 
         options :innovations_grant_funding, "Have you received any grant funding to support your innovation?" do
-          ref "B 10"
+          ref "B 11"
           required
           yes_no
           context %(
@@ -162,16 +173,16 @@ class QAEForms
 
         textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding" do
           classes "sub-question"
-          sub_ref "B 10.1"
+          sub_ref "B 11.1"
           required
           conditional :innovations_grant_funding, :yes
           rows 5
-          words_max 300
+          words_max 250
         end
 
         date :innovation_was_launched_in_the_market, "Please select the date when your innovation was launched in the market" do
           required
-          ref "B 11"
+          ref "B 12"
           context "
             <p>
               Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
@@ -181,7 +192,7 @@ class QAEForms
         end
 
         textarea :innovation_additional_comments, "Additional comments (optional)" do
-          ref "B 12"
+          ref "B 13"
           rows 5
           words_max 200
           context %(

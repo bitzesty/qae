@@ -31,7 +31,7 @@ class QAEForms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses.  Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
           )
         end
 
@@ -46,12 +46,12 @@ class QAEForms
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
+        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made" do
           classes "sub-question"
           sub_ref "A 3.1"
           required
           conditional :principal_business, :no
-          words_max 200
+          words_max 100
           rows 5
         end
 
@@ -62,7 +62,7 @@ class QAEForms
           option "charity", "Charity"
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
+        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'" do
           required
           ref "A 4.1"
           context %(
@@ -71,7 +71,7 @@ class QAEForms
           style "small"
         end
 
-        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
+        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'" do
           required
           ref "A 4.2"
           context %(
@@ -154,7 +154,7 @@ class QAEForms
           context "<p>If you can't fit all of your awards below, then choose those you're most proud of.</p>"
           conditional :other_awards_won, :yes
           rows 5
-          words_max 300
+          words_max 250
         end
 
         options :innovation_joint_contributors, "Is this application part of a joint entry with any contributing organisation(s)?" do
@@ -212,7 +212,7 @@ class QAEForms
           # conditional :innovation_joint_contributors, :no
         end
 
-        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications." do
+        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications" do
           classes "sub-question"
           sub_ref "A 9.2"
           required
