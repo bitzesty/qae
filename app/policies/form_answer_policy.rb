@@ -21,7 +21,8 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def edit?
-    admin? && subject.superadmin?
+    deadline = record.award_year.settings.winners_email_notification.try(:trigger_at)
+    admin? && subject.superadmin? && (!deadline.present? || DateTime.now <= deadline)
   end
 
   def update?

@@ -8,6 +8,11 @@
 /* buttons! */
 .button{
   @include button;
+  font-size: 19px;
+
+  @include media-down(mobile) {
+    font-size: 16px;
+  }
 }
 
 .button,
@@ -75,7 +80,7 @@
 /* get started buttons */
 .get-started {
   margin:1.5em 0 0 0;
-  
+
   .destination {
     @include core-14;
     color: $text-colour;
@@ -100,7 +105,7 @@ input{
     min-width: 8em;
     margin: 0 0.5em;
     padding: 0.25em;
-  
+
     @include ie-lte(7) {
       width:8em;
     }
@@ -119,4 +124,3 @@ input{
     }
   }
 }
-

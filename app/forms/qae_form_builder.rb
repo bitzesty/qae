@@ -29,6 +29,8 @@ require "qae_form_builder/user_info_question"
 
 require "qae_form_builder/by_years_label_question"
 require "qae_form_builder/by_years_question"
+require "qae_form_builder/mobility_by_years_label_question"
+require "qae_form_builder/mobility_by_years_question"
 require "qae_form_builder/innovation_financial_year_date_question"
 require "qae_form_builder/confirm_question"
 require "qae_form_builder/checkbox_seria_question"

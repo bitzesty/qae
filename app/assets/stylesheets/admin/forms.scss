@@ -1,0 +1,9 @@
+.selectable-group {
+  input[type='checkbox'],
+  input[type='radio'] {
+    margin-left: 0;
+    top: 15px;
+    left: 15px;
+    z-index: 999;
+  }
+}

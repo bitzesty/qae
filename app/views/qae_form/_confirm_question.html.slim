@@ -1,6 +1,8 @@
-label.selectable.selectable-confirm
-  input.js-trigger-autosave type="checkbox" name=question.input_name checked=!!question.input_value *possible_read_only_ops
-  - if question.key == :shortlisted_case_confirmation
-    == interpolate_deadlines question.text
-  - elsif question.text
-    == question.text
+.selectable-confirm-wrapper
+  label.selectable
+    input.js-trigger-autosave type="checkbox" name=question.input_name id="q_#{question.key}" checked=!!question.input_value *possible_read_only_ops
+    label for="q_#{question.key}"
+      - if question.key == :shortlisted_case_confirmation
+        == interpolate_deadlines question.text
+      - elsif question.text
+        == question.text

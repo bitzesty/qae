@@ -98,7 +98,11 @@ module FinancialTable
   end
 
   def financial_date_selector_value
-    filled_answers[financial_date_selector.key.to_s]
+    if mobility_question?
+      "3"
+    else
+      filled_answers[financial_date_selector.key.to_s]
+    end
   end
 
   def financial_date_pointer
@@ -124,12 +128,23 @@ module FinancialTable
 
   def financial_years_number
     if financial_date_selector_value.present?
-      financial_date_selector.ops_values[financial_date_selector_value]
+      if mobility_question?
+        "3"
+      else
+        financial_date_selector.ops_values[financial_date_selector_value]
+      end
     elsif financial_pointer.period_length.present? && financial_pointer.period_length > 0
       financial_pointer.period_length
     else
       # If not selected yet, render last option as default
       financial_date_selector.ops_values.values.last
     end
+  end
+
+  def mobility_question?
+    question.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestionDecorator) ||
+      question.is_a?(QAEFormBuilder::MobilityByYearsQuestionDecorator) ||
+      question.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestion) ||
+      question.is_a?(QAEFormBuilder::MobilityByYearsQuestion)
   end
 end

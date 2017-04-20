@@ -6,6 +6,10 @@ module FormAnswerHelper
     ENV["DISPLAY_SOCIAL_MOBILITY_AWARD"] == "true"
   end
 
+  def hide_promotion?
+    !params[:year] || params[:year].to_i >= 2017
+  end
+
   def application_flags(fa, subject = nil)
     comments = fa.comments
 
@@ -46,8 +50,14 @@ module FormAnswerHelper
     output.html_safe
   end
 
-  def award_types_collection
-    FormAnswer::AWARD_TYPE_FULL_NAMES.invert.to_a
+  def award_types_collection(year)
+    FormAnswer::AWARD_TYPE_FULL_NAMES.invert.select do |k, v|
+      if year.present? && year.to_i <= 2016
+        true
+      else
+        v != "promotion"
+      end
+    end.to_a
   end
 
   def each_index_or_empty(collection, attrs, &block)

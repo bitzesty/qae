@@ -1,7 +1,7 @@
 th.filter
   = f.simple_fields_for [:filters, @search.filters] do |f|
     = f.input :award_type,
-              collection: award_types_collection,
+              collection: award_types_collection(params[:year]),
               label: false,
               input_html: { multiple: true, class: 'js-admin-filter-option if-js-hide'}
 
@@ -18,7 +18,7 @@ th.filter
           span.label-contents
             em Select all
       li.divider
-      - award_types_collection.each do |key,v|
+      - award_types_collection(params[:year]).each do |key,v|
         li.checkbox role="presentation"
           label data-value=v
             input type="checkbox"

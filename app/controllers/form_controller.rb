@@ -1,4 +1,4 @@
-require "qae_2014_forms"
+require "qae_forms"
 
 class FormController < ApplicationController
   before_action :authenticate_user!, :check_account_completion, :check_deadlines

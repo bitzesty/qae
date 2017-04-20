@@ -1,7 +1,9 @@
 class AuditCertificate < ActiveRecord::Base
-
   mount_uploader :attachment, AuditCertificateUploader
   scan_file      :attachment
+
+  include ::InfectedFileCleaner
+  clean_after_scan :attachment
 
   begin :associations
     belongs_to :form_answer
@@ -12,6 +14,7 @@ class AuditCertificate < ActiveRecord::Base
     validates :form_answer_id, uniqueness: true,
                                presence: true
     validates :attachment, presence: true,
+                           on: :create,
                            file_size: {
                              maximum: 5.megabytes.to_i
                            }

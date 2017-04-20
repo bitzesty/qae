@@ -3,6 +3,18 @@
     h4.panel-title
       a data-toggle="collapse" data-parent="#panel-application-info" href="#section-admin-comments" aria-expanded="true" aria-controls="section-admin-comments"
         ' Admin Comments
+        span.comments-number
+          - if @form_answer.comments.admin.any?
+            | (
+            span.number
+              = @form_answer.comments.admin.count
+            | )
+        small
+          span.signature
+            - if @form_answer.comments.admin.any?
+              - last_comment = @form_answer.comments.admin.first
+              = "Updated by #{last_comment.author.decorate.full_name} - #{l(last_comment.created_at, format: :date_at_time)}"
+
   #section-admin-comments.section-admin-comments.panel-collapse.collapse role="tabpanel" aria-labelledby="admin-comments-heading"
     .panel-body
       .comments-container data-comment-form=new_admin_form_answer_comment_path(@form_answer)
