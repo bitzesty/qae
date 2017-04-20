@@ -2,7 +2,7 @@ class QAEForms
   class << self
     def innovation_step5
       @innovation_step5 ||= proc do
-        upload :innovation_materials, "If there is additional material you feel would help us to assess your entry then you can add up to 3 files or website addresses here." do
+        upload :innovation_materials, "If there is additional material you feel would help us to assess your entry then you can add up to 3 files or website addresses here" do
           ref "E 1"
           context %(
             <p>
@@ -11,7 +11,7 @@ class QAEForms
             <p>You can upload files in all common formats, as long as they're less than 5mb each.</p>
             <p>You may link to videos, websites or other media you feel relevant.</p>
             <p>We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.</p>
-                    )
+          )
           hint "What are the allowed file formats?", %(
             <p>
               You can upload any of the following file formats:

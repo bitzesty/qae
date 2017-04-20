@@ -8,6 +8,9 @@ class QAEForms
             <p>
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your innovation had on your organisation's financial performance.
             </p>
+            <p>
+              <strong>If you haven't reached your latest year-end, please use estimates to complete this section.</strong>
+            </p>
           )
         end
 
@@ -26,8 +29,7 @@ class QAEForms
           required
           context %(
             <p>
-              Your answer here will determine whether you are assessed for outstanding innovation
-              (over two years) or continuous innovation (over five years).
+              Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).
             </p>
           )
           option "2 to 4", "Outstanding Commercial Performance: innovation has improved commercial performance over 2 years"
@@ -40,12 +42,12 @@ class QAEForms
           sub_category_question
         end
 
-        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
+        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date" do
           ref "C 2"
           required
           context %(
             <p>If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.</p>
-                    )
+          )
           financial_date_pointer
         end
 
@@ -56,8 +58,7 @@ class QAEForms
           yes_no
           context %(
             <p>
-              We ask this to obtain all of the commercial figures we need to assess your application.
-              You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
+              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
             </p>
           )
           default_option "no"
@@ -87,13 +88,13 @@ class QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry" do
           classes "question-employee-min"
           ref "C 3"
           required
           context %(
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
-                    )
+          )
           type :number
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
@@ -112,9 +113,6 @@ class QAEForms
               A parent company making a group entry should include the trading figures of all UK members of the group.
             </p>
             <p>
-              If you haven't reached your latest year-end, please use estimates to complete this section.
-            </p>
-            <p>
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
             <p>
@@ -129,9 +127,6 @@ class QAEForms
         by_years :total_turnover, "Total turnover" do
           ref "C 4.1"
           required
-          context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -205,8 +200,7 @@ class QAEForms
           required
           context %(
             <p>
-              As per your balance sheet. Total assets (fixed and current),
-              less liabilities (current and long-term).
+              As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).
             </p>
           )
 
@@ -222,7 +216,7 @@ class QAEForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
+        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.6"
           rows 5
@@ -240,8 +234,7 @@ class QAEForms
           option :single_product_or_service, "It affects a single product/service"
           context %(
             <p>
-              It is important that we know whether or not your innovation is the key thing your business does, or forms part of a wider approach.
-              This is so we can understand the value of your innovation in the context of your overall commercial performance.
+              It is important that we know whether or not your innovation is the key thing your business does, or forms part of a wider approach. This is so we can understand the value of your innovation in the context of your overall commercial performance.
             </p>
           )
         end
@@ -249,22 +242,15 @@ class QAEForms
         header :product_financials, "Innovation Financials" do
           ref "C 6"
           context %(
-            <p>
-              Some questions may not apply, especially if your innovation is a business model. However if your innovation is a product or service you should be able to answer most of these questions.
-            </p>
-            <p>
-              If you haven't reached your latest year-end, please use estimates to complete this section.
-            </p>
-            <p>
-              You must enter actual financial figures in £ sterling (ignoring pennies).
-            </p>
-            <p>
-              Please do not separate your figures with commas.
-            </p>
+            <p>If applicable, please provide your unit price, cost details and sales figures to help us understand the value of the innovation.</p>
+            <p>Some questions may not apply, please answer the ones that are applicable to your innovation.</p>
+            <p>You must enter actual financial figures in £ sterling (ignoring pennies).</p>
+            <p>Please do not separate your figures with commas.</p>
+            <p>Please note C6 is just a heading for the following subquestions.</p>
           )
         end
 
-        by_years :units_sold, "Number of innovative units/contracts sold" do
+        by_years :units_sold, "Number of innovative units/contracts sold (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.1"
           type :number
@@ -276,7 +262,7 @@ class QAEForms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales, "Sales of your innovative product/service" do
+        by_years :sales, "Sales of your innovative product/service (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.2"
           type :money
@@ -288,7 +274,7 @@ class QAEForms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_exports, "Of which exports" do
+        by_years :sales_exports, "Of which exports (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.3"
           context %(<p>Please enter '0' if you had none.</p>)
@@ -301,7 +287,7 @@ class QAEForms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_royalties, "Of which royalties or licences" do
+        by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.4"
           context %(<p>Please enter '0' if you had none.</p>)
@@ -314,15 +300,15 @@ class QAEForms
           drop_conditional :drops_in_sales
         end
 
-        textarea :drops_in_sales, "Explain any drop in sales or number of units sold" do
+        textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 6.5"
           rows 5
-          words_max 300
+          words_max 250
           drop_condition_parent
         end
 
-        by_years :avg_unit_price, "Average unit selling price/contract value" do
+        by_years :avg_unit_price, "Average unit selling price/contract value (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.6"
           context %(
@@ -338,17 +324,19 @@ class QAEForms
           by_year_condition :innovation_performance_years, "5 plus", 5
         end
 
-        textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods" do
+        textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.7"
           rows 5
-          words_max 300
+          words_max 250
         end
 
-        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract" do
+        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.8"
-
+          context %(
+            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+          )
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -356,11 +344,11 @@ class QAEForms
           by_year_condition :innovation_performance_years, "5 plus", 5
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods" do
+        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.9"
           rows 5
-          words_max 300
+          words_max 250
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
@@ -370,7 +358,7 @@ class QAEForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :product_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
+        textarea :product_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders" do
           classes "sub-question"
           sub_ref "C 7.1"
           rows 5
@@ -380,24 +368,23 @@ class QAEForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, please demonstrate clearly how and when in the future they will be delivered." do
+        textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, please demonstrate clearly how and when in the future they will be delivered" do
           ref "C 8"
           required
           context %(
             <p>
-              For example, new sales, cost savings, and their overall effect on turnover
-              and profitability, new investment secured, new orders secured.
+              For example, new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
             </p>
           )
           rows 5
-          words_max 300
+          words_max 250
         end
 
-        textarea :investments_details, "Please enter details of all your investments in the innovation. Include all investments made both during and prior to your entry period. Also include the year(s) in which they were made." do
+        textarea :investments_details, "Please enter details of all your investments in the innovation. Include all investments made both during and prior to your entry period. Also include the year(s) in which they were made" do
           ref "C 9"
           required
           rows 5
-          words_max 300
+          words_max 250
           context %(
             <p>
               This should include both capital purchases, and investments, grants, and loans received, as well as the cost of staff time and other non cash resources.
@@ -410,7 +397,7 @@ class QAEForms
           sub_ref "C 9.1"
           required
           rows 5
-          words_max 500
+          words_max 250
           context %(
             <p>
               If your innovation is expected to recover its full costs in the future, please explain how and when this will happen.

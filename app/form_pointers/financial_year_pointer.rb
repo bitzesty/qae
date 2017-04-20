@@ -25,6 +25,10 @@ class FinancialYearPointer
       fetch_year_labels
     when QAEFormBuilder::ByYearsQuestion
       fetch_years
+    when QAEFormBuilder::MobilityByYearsLabelQuestion
+      fetch_mobility_year_labels
+    when QAEFormBuilder::MobilityByYearsQuestion
+      fetch_mobility_years
     end
   end
 
@@ -33,6 +37,20 @@ class FinancialYearPointer
   end
 
   def fetch_years
+    active_fields.map do |field|
+      value = entry(field).to_s.delete(",")
+      {
+        value: value.present? ? value : FormFinancialPointer::IN_PROGRESS,
+        name: "#{key}_#{field}"
+      }
+    end
+  end
+
+  def fetch_mobility_year_labels
+    entries.push(latest_year_label)
+  end
+
+  def fetch_mobility_years
     active_fields.map do |field|
       value = entry(field).to_s.delete(",")
       {

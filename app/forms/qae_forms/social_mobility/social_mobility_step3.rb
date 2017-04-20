@@ -8,6 +8,9 @@ class QAEForms
             <p>
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your social mobility programme(s) had on your organisation's financial performance.
             </p>
+            <p>
+              <strong>If you haven't reached your latest year-end, please use estimates to complete this section.</strong>
+            </p>
           )
         end
 
@@ -25,7 +28,7 @@ class QAEForms
           required
           context %(
             <p>If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.</p>
-                    )
+          )
           financial_date_pointer
         end
 
@@ -69,7 +72,7 @@ class QAEForms
           required
           context %(
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
-                    )
+          )
           type :number
           label ->(y) { "Financial year #{y}" }
 
@@ -88,9 +91,6 @@ class QAEForms
               A parent company making a group entry should include the trading figures of all UK members of the group.
             </p>
             <p>
-              If you haven't reached your latest year-end, please use estimates to complete this section.
-            </p>
-            <p>
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
             <p>
@@ -102,9 +102,6 @@ class QAEForms
         mobility_by_years :total_turnover, "Total turnover" do
           ref "C 3.1"
           required
-          context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -137,8 +134,7 @@ class QAEForms
           required
           context %(
             <p>
-              As per your balance sheet. Total assets (fixed and current),
-              less liabilities (current and long-term).
+              As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).
             </p>
           )
           type :money
@@ -181,7 +177,7 @@ class QAEForms
             <p>
               Include all investments and reinvestments made both during and prior to your entry period. Also include the year(s) in which they were made.
             </p>
-                    )
+          )
           rows 5
           words_max 400
         end
@@ -194,7 +190,7 @@ class QAEForms
             <p>
               'Breaking even' is when you reach a point where profits are equal to all costs (capital and operating).
             </p>
-                    )
+          )
           rows 5
           words_max 500
         end

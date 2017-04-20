@@ -109,9 +109,7 @@ class QAEForms
           ref "B 3"
           required
           context %(
-            <p>
-              How much is invested in the programme - consider financial, human resource and in-kind investments? How does the scale of this investment compare with wider talent management activities?
-            </p>
+            <p>How much is invested in the programme - consider human resource, in-kind investments and financial? How does the scale of this investment compare with wider talent management activities?</p>
           )
           rows 5
           words_max 250
@@ -265,44 +263,24 @@ class QAEForms
           ref "B 6"
           required
           context %(
-            <p><strong>Financial benefits</strong> may fall under two categories:</p>
-            <ul>
-              <li>Savings - reduced recruitment costs, increases in retention;</li>
-              <li>Growth - increased sales, access to new clients or markets or the development of new products.</li>
-            </ul>
-
-            <p>If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.</p>
-
-            <p>You may find it helpful to articulate these benefits in terms of ‘before and after’.</p>
-
-            <p><strong>Other benefits</strong> may be demonstrated in the following ways:</p>
-
+            <p>Benefits can be demonstrated in many areas, below are some examples:</p>
             <ul>
               <li>Employee relations - improvements in employee motivation, well-being or satisfaction;</li>
               <li>Diversity - increased ability to access and attract a wider talent pool;</li>
               <li>Reputation - increased positive perceptions of the organisation among key stakeholders - e.g. customers and the media;</li>
               <li>Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.</li>
             </ul>
-
-            <p>Describe how would your business be affected if this social mobility programme had never been introduced?</p>
-            <p>The above are just examples - you can choose to demonstrate benefits in other areas.</p>
+            <p>Financial benefits may fall under two categories:</p>
+            <ul>
+              <li>Savings - reduced recruitment costs, increases in retention;</li>
+              <li>Growth - increased sales, access to new clients or markets or the development of new products.</li>
+            </ul>
             <p>If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.</p>
             <p>You may find it helpful to articulate these benefits in terms of ‘before and after’.</p>
+            <p>Describe how would your business be affected if this social mobility programme had never been introduced?</p>
           )
           pdf_context %(
-            <p><strong>Financial benefits</strong> may fall under two categories:</p>
-            <p>
-              \u2022 Savings - reduced recruitment costs, increases in retention;
-
-              \u2022 Growth - increased sales, access to new clients or markets or the development of new products.
-            </p>
-
-            <p>If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.</p>
-
-            <p>You may find it helpful to articulate these benefits in terms of ‘before and after’.</p>
-
-            <p></strong>Other benefits</strong> may be demonstrated in the following ways:</p>
-
+            <p>Benefits can be demonstrated in many areas, below are some examples:</p>
             <p>
               \u2022 Employee relations - improvements in employee motivation, well-being or satisfaction;
 
@@ -312,11 +290,15 @@ class QAEForms
 
               \u2022 Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.
             </p>
+            <p>Financial benefits may fall under two categories:</p>
+            <p>
+              \u2022 Savings - reduced recruitment costs, increases in retention;
 
-            <p>Describe how would your business be affected if this social mobility programme had never been introduced?</p>
-            <p>The above are just examples - you can choose to demonstrate benefits in other areas.</p>
+              \u2022 Growth - increased sales, access to new clients or markets or the development of new products.
+            </p>
             <p>If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.</p>
             <p>You may find it helpful to articulate these benefits in terms of ‘before and after’.</p>
+            <p>Describe how would your business be affected if this social mobility programme had never been introduced?</p>
           )
           rows 5
           words_max 750

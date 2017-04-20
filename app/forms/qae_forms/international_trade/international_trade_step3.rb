@@ -8,6 +8,9 @@ class QAEForms
             <p>
               In order to be eligible for this Award, your business must demonstrate financial stability and growth for the last 3 years.
             </p>
+            <p>
+              <strong>If you haven't reached your latest year-end, please use estimates to complete this section.</strong>
+            </p>
           )
         end
 
@@ -100,7 +103,7 @@ class QAEForms
           required
           context %(
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
-                    )
+          )
           type :number
           label ->(y) { "Financial year #{y}" }
 
@@ -116,9 +119,6 @@ class QAEForms
           context %(
             <p>
               A parent company making a group entry should include the trading figures of all UK members of the group.
-            </p>
-            <p>
-              If you haven't reached your latest year-end, please use estimates to complete this section.
             </p>
             <p>
               You must enter actual financial figures in £ sterling (ignoring pennies).
@@ -162,9 +162,6 @@ class QAEForms
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
-            <p>
-              If you haven't reached your latest year-end, please use estimates to complete this question.
-            </p>
           )
 
           pdf_context %(
@@ -189,9 +186,6 @@ class QAEForms
             </p>
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
-            </p>
-            <p>
-              If you haven't reached your latest year-end, please use estimates to complete this question.
             </p>
           )
 
@@ -225,9 +219,6 @@ class QAEForms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %(
-            <p>
-              If you haven't reached your latest year-end, please use estimates to complete this question.
-            </p>
             <p>
               Use a minus symbol to record any losses.
             </p>

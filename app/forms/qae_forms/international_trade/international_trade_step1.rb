@@ -31,7 +31,7 @@ class QAEForms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses.  Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
           )
         end
 
@@ -65,7 +65,7 @@ class QAEForms
           ref "A 4.1"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-                    )
+          )
           style "small"
         end
 
@@ -74,7 +74,7 @@ class QAEForms
           ref "A 4.2"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-                    )
+          )
           style "small"
         end
 
@@ -82,8 +82,7 @@ class QAEForms
           required
           ref "A 5"
           context "<p>
-            Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award
-            (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award).
+            Organisations that began trading after #{AwardYear.start_trading_since(3)} aren't eligible for this award (or #{AwardYear.start_trading_since(6)} if you are applying for the six-year award).
           </p>"
           date_max AwardYear.start_trading_since(3)
         end
@@ -195,7 +194,7 @@ class QAEForms
           ref "A 12"
           context %(
             <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
-                    )
+          )
           yes_no
         end
 
@@ -285,14 +284,14 @@ class QAEForms
           yes_no
           help "What is an export unit?", %(
             <p>An export unit is a subsidiary or operating unit of a larger company that manages the company's export activities.</p>
-                    )
+          )
         end
 
         upload :org_chart, "Upload an organisational chart" do
           ref "A 17"
           context %(
             <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
-                    )
+          )
           hint "What are the allowed file formats?", %(
             <p>
               You can upload any of the following file formats:
