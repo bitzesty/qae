@@ -83,15 +83,17 @@ class QAEForms
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context %(
-            <p>
-               Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
-            </p>
-          )
+          context -> do
+            %(
+              <p>
+                Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+              </p>
+            )
+          end
           date_max AwardYear.start_trading_since(2)
         end
 
-        options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
+        options :queen_award_holder, -> { "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" } do
           required
           ref "A 6"
           yes_no

@@ -405,11 +405,13 @@ class QAEForms
         date :development_was_launched_since, "Please select the date since when your product, service or management approach has been in commercial operation, production or in progress?" do
           required
           ref "B 8"
-          context "
-            <p>
-              You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award)
-            </p>
-          "
+          context -> do
+            %(
+              <p>
+                You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award)
+              </p>
+            )
+          end
           date_max AwardYear.start_trading_since(2)
         end
 

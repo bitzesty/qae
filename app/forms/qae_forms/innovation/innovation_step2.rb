@@ -181,11 +181,14 @@ class QAEForms
         date :innovation_was_launched_in_the_market, "Please select the date when your innovation was launched in the market" do
           required
           ref "B 12"
-          context %(
-            <p>
-              Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
-            </p>
-          )
+          context -> do
+            %(
+              <p>
+                Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+              </p>
+            )
+          end
+
           date_max AwardYear.start_trading_since(2)
         end
 
