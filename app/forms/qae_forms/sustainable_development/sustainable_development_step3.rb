@@ -8,6 +8,9 @@ class QAEForms
             <p>
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your sustainable development had on your organisation's financial performance.
             </p>
+            <p>
+              <strong>If you haven't reached your latest year-end, please use estimates to complete this section.</strong>
+            </p>
           )
         end
 
@@ -34,8 +37,7 @@ class QAEForms
           sub_category_question
           context %(
             <p>
-              Your answer here will determine whether you are assessed for outstanding sustainable
-              development (over two years) or continuous sustainable development (over five years).
+              Your answer here will determine whether you are assessed for outstanding sustainable development (over two years) or continuous sustainable development (over five years).
             </p>
           )
         end
@@ -56,8 +58,7 @@ class QAEForms
           yes_no
           context %(
             <p>
-              We ask this to obtain all of the commercial figures we need to assess your application.
-              You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
+              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
             </p>
           )
           default_option "no"
@@ -115,9 +116,6 @@ class QAEForms
               A parent company making a group entry should include the trading figures of all UK members of the group.
             </p>
             <p>
-              If you haven't reached your latest year-end, please use estimates to complete this section.
-            </p>
-            <p>
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
             <p>
@@ -131,9 +129,6 @@ class QAEForms
         by_years :total_turnover, "Total turnover" do
           ref "C 4.1"
           required
-          context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
-                    )
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -253,7 +248,6 @@ class QAEForms
           context %(
             <p>If applicable, please provide your unit price, cost details and sales figures  to help us understand the value of your sustainable development.</p>
             <p>Some questions may not apply, please answer the ones that are applicable to your sustainable development.</p>
-            <p>If you haven't reached your latest year-end, please use estimates to complete this section.</p>
             <p>You must enter actual financial figures in £ sterling (ignoring pennies).</p>
             <p>Please do not separate your figures with commas.</p>
             <p>Please note C6 is just a heading for the following subquestions.
