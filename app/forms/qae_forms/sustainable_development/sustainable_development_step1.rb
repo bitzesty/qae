@@ -21,8 +21,7 @@ class QAEForms
           classes "application-notice help-notice"
           context %(
             <p>
-              Where we refer to 'your organisation' in the form,
-              please enter the details of your division, branch or subsidiary.
+              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
@@ -32,7 +31,7 @@ class QAEForms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses.  Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
           )
         end
 
@@ -47,12 +46,12 @@ class QAEForms
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
+        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made" do
           classes "sub-question"
           sub_ref "A 3.1"
           required
           conditional :principal_business, :no
-          words_max 200
+          words_max 100
           rows 5
         end
 
@@ -63,7 +62,7 @@ class QAEForms
           option "charity", "Charity"
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
+        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'" do
           required
           ref "A 4.1"
           context %(
@@ -72,7 +71,7 @@ class QAEForms
           style "small"
         end
 
-        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
+        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'" do
           required
           ref "A 4.2"
           context %(
@@ -158,7 +157,7 @@ class QAEForms
                     )
           conditional :other_awards_won, :yes
           rows 5
-          words_max 300
+          words_max 250
         end
 
         options :part_of_joint_entry,
@@ -215,7 +214,7 @@ class QAEForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications." do
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications" do
           sub_ref "A 9.2"
           required
           words_max 200

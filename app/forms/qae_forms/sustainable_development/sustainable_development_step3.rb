@@ -40,7 +40,7 @@ class QAEForms
           )
         end
 
-        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
           context %(
@@ -63,7 +63,7 @@ class QAEForms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
+        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year" do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -78,7 +78,7 @@ class QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -87,7 +87,7 @@ class QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry" do
           classes "question-employee-min"
           ref "C 3"
           required
@@ -225,7 +225,7 @@ class QAEForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
+        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.6"
           rows 5
@@ -251,22 +251,16 @@ class QAEForms
         header :product_financials, "Sustainable Development Financials" do
           ref "C 6"
           context %(
-            <p>
-              Some questions may not apply, especially if your sustainable development is a management approach. However, if your sustainable development is a product or service you should be able to answer most of these questions.
-            </p>
-            <p>
-              If you haven't reached your latest year-end, please use estimates to complete this section.
-            </p>
-            <p>
-              You must enter actual financial figures in £ sterling (ignoring pennies).
-            </p>
-            <p>
-              Please do not separate your figures with commas.
-            </p>
+            <p>If applicable, please provide your unit price, cost details and sales figures  to help us understand the value of your sustainable development.</p>
+            <p>Some questions may not apply, please answer the ones that are applicable to your sustainable development.</p>
+            <p>If you haven't reached your latest year-end, please use estimates to complete this section.</p>
+            <p>You must enter actual financial figures in £ sterling (ignoring pennies).</p>
+            <p>Please do not separate your figures with commas.</p>
+            <p>Please note C6 is just a heading for the following subquestions.
           )
         end
 
-        by_years :units_sold, "Number of units/contracts sold" do
+        by_years :units_sold, "Number of units/contracts sold (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.1"
           type :number
@@ -277,7 +271,7 @@ class QAEForms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales, "Sales" do
+        by_years :sales, "Sales (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.2"
           type :money
@@ -287,7 +281,7 @@ class QAEForms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_exports, "Of which exports" do
+        by_years :sales_exports, "Of which exports (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.3"
           context %(<p>Please enter '0' if you had none.</p>)
@@ -299,7 +293,7 @@ class QAEForms
           drop_conditional :drops_in_sales
         end
 
-        by_years :sales_royalties, "Of which royalties or licences" do
+        by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.4"
           context %(<p>Please enter '0' if you had none.</p>)
@@ -311,15 +305,15 @@ class QAEForms
           drop_conditional :drops_in_sales
         end
 
-        textarea :drops_in_sales, "Explain any drop in sales or number of units sold" do
+        textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 6.5"
           rows 5
-          words_max 300
+          words_max 250
           drop_condition_parent
         end
 
-        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract" do
+        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract (if applicable)" do
           sub_ref "C 6.6"
           classes "sub-question"
           type :money
@@ -330,11 +324,11 @@ class QAEForms
           by_year_condition :development_performance_years, "5 plus", 5
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods" do
+        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.7"
           rows 5
-          words_max 300
+          words_max 250
         end
 
         options :product_estimated_figures, "Are any of the figures used on this page estimates?" do
@@ -345,12 +339,12 @@ class QAEForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
+        textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders" do
           classes "sub-question"
           sub_ref "C 7.1"
           required
           rows 5
-          words_max 400
+          words_max 250
           conditional :product_estimated_figures, :yes
           conditional :development_performance_years, :true
         end
@@ -364,19 +358,17 @@ class QAEForms
             </p>
           )
           rows 5
-          words_max 300
+          words_max 250
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach." do
+        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach" do
           ref "C 9"
           required
           context %(
-            <p>
-              Include all investments and reinvestments made both during and prior to your entry period, e.g. R&D. Also include the year(s) in which they were made.
-            </p>
+            <p>Include all investments and reinvestments made both during and prior to your entry period. Also include the year(s) in which they were made.</p>
                     )
           rows 5
-          words_max 500
+          words_max 400
         end
 
         textarea :roi_details, "How long did it take you to break even? When and how was this achieved?" do
@@ -389,7 +381,7 @@ class QAEForms
             </p>
                     )
           rows 5
-          words_max 500
+          words_max 250
         end
       end
     end

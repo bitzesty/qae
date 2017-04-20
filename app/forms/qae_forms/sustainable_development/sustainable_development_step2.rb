@@ -68,7 +68,7 @@ class QAEForms
           words_max 500
         end
 
-        textarea :development_desc_short, "Describe how you demonstrate leadership in terms of influencing staff and/or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers." do
+        textarea :development_desc_short, "Describe how you demonstrate leadership in terms of influencing staff and/or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers" do
           classes "word-max-strict"
           ref "B 2"
           required
@@ -101,16 +101,18 @@ class QAEForms
                 Create management innovation - e.g. develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
               </li>
             </ul>
-
             <p>
               Please specify the timescale over which your sustainable development performance has been or will be sustained.
+            </p>
+            <p>
+              Wherever relevant, please mention if there is publicly available information demonstrating your commitment. We expect you to publicly demonstrate your commitment to sustainable development via website or other publicity material, alongside information on what you are doing in terms of sustainable development. You can provide evidence of this in section E.”
             </p>
           )
           rows 8
           words_max 750
         end
 
-        header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below." do
+        header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below" do
           ref "B 3"
           context %(
             <p>
@@ -125,9 +127,6 @@ class QAEForms
           classes "sub-question"
           sub_ref "B 3.1"
           context %(
-            <p>
-              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards environmental outcomes.
-            </p>
             <p>
              'Environmental outcomes' means respecting the limits of the planet's environment, natural resources and biodiversity, including, where possible, improving the state of the environment.
             </p>
@@ -171,9 +170,6 @@ class QAEForms
           required
           context %(
             <p>
-              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards social outcomes.
-            </p>
-            <p>
               'Social outcomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
             </p>
             <p>
@@ -213,9 +209,6 @@ class QAEForms
           required
           context %(
             <p>
-              Also summarise any plans, policies, strategies, etc. that you have in place that contribute towards economic outcomes.
-            </p>
-            <p>
              'Economic outcomes' means building a fair, sustainable economy which provides prosperity and opportunity for all, promotes innovation and encourages lifelong learning.
             </p>
             <p>
@@ -246,8 +239,9 @@ class QAEForms
           ref "B 4"
           required
           context %(
-            <p>Can you benchmark this  performance against other comparable organisations?</p>
-                    )
+            <p>Can you benchmark this performance against other comparable organisations?</p>
+            <p>What have you done to address and overcome the most important sustainable development challenges that are specific to your sector?</p>
+          )
           rows 5
           words_max 750
         end
@@ -256,7 +250,7 @@ class QAEForms
           ref "B 5"
           required
           rows 5
-          words_max 500
+          words_max 400
         end
 
         options :another_org_licensed, "Is the product, service or management approach under licence from another organisation?" do
@@ -285,12 +279,12 @@ class QAEForms
           )
         end
 
-        textarea :grant_details, "Please give details of date(s), source(s) and level(s) of funding." do
+        textarea :grant_details, "Please give details of date(s), source(s) and level(s) of funding" do
           classes "sub-question"
           sub_ref "B 7.1"
           required
           rows 5
-          words_max 300
+          words_max 250
           conditional :grant_support, :yes
         end
 
