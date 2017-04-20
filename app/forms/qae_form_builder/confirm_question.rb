@@ -9,7 +9,14 @@ class QAEFormBuilder
   end
 
   class ConfirmQuestion < Question
-    attr_accessor :text
-  end
+    attr_writer :text
 
+    def text
+      if @text.respond_to?(:call)
+        @text.call
+      else
+        @text
+      end
+    end
+  end
 end
