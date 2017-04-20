@@ -73,7 +73,7 @@ class QAEForms
           yes_no
         end
 
-        options :innovation_hold_existing_patent_details, "Please provide details of the patent. If you do not have a patent, please explain the reasons why" do
+        textarea :innovation_hold_existing_patent_details, "Please provide details of the patent. If you do not have a patent, please explain the reasons why" do
           sub_ref "B 2.1"
           required
           context %(
