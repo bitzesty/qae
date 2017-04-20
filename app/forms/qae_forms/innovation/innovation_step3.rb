@@ -42,7 +42,7 @@ class QAEForms
           sub_category_question
         end
 
-        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date" do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
           context %(
@@ -64,7 +64,7 @@ class QAEForms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year" do
+        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year" do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -243,10 +243,12 @@ class QAEForms
           ref "C 6"
           context %(
             <p>If applicable, please provide your unit price, cost details and sales figures to help us understand the value of the innovation.</p>
+
             <p>Some questions may not apply, please answer the ones that are applicable to your innovation.</p>
+
             <p>You must enter actual financial figures in £ sterling (ignoring pennies).</p>
+
             <p>Please do not separate your figures with commas.</p>
-            <p>Please note C6 is just a heading for the following subquestions.</p>
           )
         end
 
