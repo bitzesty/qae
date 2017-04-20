@@ -192,7 +192,7 @@ class QAEForms
           yes_no
           context %(
             <p>
-             We ask this in order to help us carry out due diligence if your application is shortlisted.
+              We ask this in order to help us carry out due diligence if your application is shortlisted.
             </p>
           )
         end

@@ -103,7 +103,7 @@ class QAEForms
           required
           context %(
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
-                    )
+          )
           type :number
           label ->(y) { "Financial year #{y}" }
 

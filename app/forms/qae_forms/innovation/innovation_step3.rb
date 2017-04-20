@@ -47,7 +47,7 @@ class QAEForms
           required
           context %(
             <p>If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.</p>
-                    )
+          )
           financial_date_pointer
         end
 
@@ -58,8 +58,7 @@ class QAEForms
           yes_no
           context %(
             <p>
-              We ask this to obtain all of the commercial figures we need to assess your application.
-              You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
+              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
             </p>
           )
           default_option "no"
@@ -95,7 +94,7 @@ class QAEForms
           required
           context %(
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
-                    )
+          )
           type :number
           label ->(y) { "Financial year #{y}" }
           by_year_condition :innovation_performance_years, "2 to 4", 2
@@ -201,8 +200,7 @@ class QAEForms
           required
           context %(
             <p>
-              As per your balance sheet. Total assets (fixed and current),
-              less liabilities (current and long-term).
+              As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).
             </p>
           )
 
@@ -236,8 +234,7 @@ class QAEForms
           option :single_product_or_service, "It affects a single product/service"
           context %(
             <p>
-              It is important that we know whether or not your innovation is the key thing your business does, or forms part of a wider approach.
-              This is so we can understand the value of your innovation in the context of your overall commercial performance.
+              It is important that we know whether or not your innovation is the key thing your business does, or forms part of a wider approach. This is so we can understand the value of your innovation in the context of your overall commercial performance.
             </p>
           )
         end
@@ -376,8 +373,7 @@ class QAEForms
           required
           context %(
             <p>
-              For example, new sales, cost savings, and their overall effect on turnover
-              and profitability, new investment secured, new orders secured.
+              For example, new sales, cost savings, and their overall effect on turnover and profitability, new investment secured, new orders secured.
             </p>
           )
           rows 5

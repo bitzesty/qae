@@ -67,7 +67,7 @@ class QAEForms
           ref "A 4.1"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-                    )
+          )
           style "small"
         end
 
@@ -76,18 +76,18 @@ class QAEForms
           ref "A 4.2"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-                    )
+          )
           style "small"
         end
 
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context "
+          context %(
             <p>
               Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
             </p>
-          "
+          )
           date_max AwardYear.start_trading_since(2)
         end
 
@@ -162,9 +162,7 @@ class QAEForms
           required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the product,
-              service or business model then you should make a joint entry.
-              Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the product, service or business model then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
           yes_no
@@ -181,14 +179,6 @@ class QAEForms
         options :innovation_any_contributors, "Did any external organisation(s) or individual(s) contribute to your innovation?" do
           ref "A 9"
           required
-          # context %(
-          #   <p>
-          #     <strong>
-          #       Excluding
-          #     </strong>
-          #     suppliers and consultants.
-          #   </p>
-          # )
           yes_no
         end
 
@@ -197,7 +187,6 @@ class QAEForms
           sub_ref "A 9.1"
           required
           conditional :innovation_any_contributors, :yes
-          # conditional :innovation_joint_contributors, :no
           option :yes, "Yes, they are all aware"
           option :no, "No, they are not all aware"
         end
@@ -206,10 +195,9 @@ class QAEForms
           classes "application-notice help-notice"
           context %(
             <p>We recommend that you notify all the contributors to your innovation of this entry.</p>
-                    )
+          )
           conditional :innovation_any_contributors, :yes
           conditional :innovation_contributors_aware, :no
-          # conditional :innovation_joint_contributors, :no
         end
 
         textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications" do
@@ -309,7 +297,7 @@ class QAEForms
           ref "A 16"
           context %(
             <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
-                    )
+          )
           hint "What are the allowed file formats?", %(
             <p>
               You can upload any of the following file formats:

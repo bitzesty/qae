@@ -5,12 +5,10 @@ class QAEForms
         header :innovation_b_section_header, "" do
           context %(
             <p>
-              This section gives you the opportunity to present the detail of your innovation and
-              to give us the evidence of its commercial impact on your business that will enable us to assess your application.
+              This section gives you the opportunity to present the detail of your innovation and to give us the evidence of its commercial impact on your business that will enable us to assess your application.
             </p>
             <p>
-              Please avoid using technical language in this section of the application form.
-              We need to understand what your innovation is without having any specific knowledge of your industry.
+              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
             </p>
           )
         end
@@ -183,11 +181,11 @@ class QAEForms
         date :innovation_was_launched_in_the_market, "Please select the date when your innovation was launched in the market" do
           required
           ref "B 12"
-          context "
+          context %(
             <p>
               Your innovation isn't eligible for this award if it was launched in the market after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
             </p>
-          "
+          )
           date_max AwardYear.start_trading_since(2)
         end
 
@@ -197,7 +195,7 @@ class QAEForms
           words_max 200
           context %(
             <p>Please use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
-                    )
+          )
         end
       end
     end

@@ -281,17 +281,21 @@ class QAEForms
           )
           pdf_context %(
             <p>Benefits can be demonstrated in many areas, below are some examples:</p>
-            <ul>
-              <li>Employee relations - improvements in employee motivation, well-being or satisfaction;</li>
-              <li>Diversity - increased ability to access and attract a wider talent pool;</li>
-              <li>Reputation - increased positive perceptions of the organisation among key stakeholders - e.g. customers and the media;</li>
-              <li>Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.</li>
-            </ul>
+            <p>
+              \u2022 Employee relations - improvements in employee motivation, well-being or satisfaction;
+
+              \u2022 Diversity - increased ability to access and attract a wider talent pool;
+
+              \u2022 Reputation - increased positive perceptions of the organisation among key stakeholders - e.g. customers and the media;
+
+              \u2022 Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.
+            </p>
             <p>Financial benefits may fall under two categories:</p>
-            <ul>
-              <li>Savings - reduced recruitment costs, increases in retention;</li>
-              <li>Growth - increased sales, access to new clients or markets or the development of new products.</li>
-            </ul>
+            <p>
+              \u2022 Savings - reduced recruitment costs, increases in retention;
+
+              \u2022 Growth - increased sales, access to new clients or markets or the development of new products.
+            </p>
             <p>If possible, use a balance of quantitative (numbers, figures, etc.) and qualitative (comments, feedback from people, key stakeholders, etc.) evidence.</p>
             <p>You may find it helpful to articulate these benefits in terms of ‘before and after’.</p>
             <p>Describe how would your business be affected if this social mobility programme had never been introduced?</p>

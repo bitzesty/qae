@@ -67,7 +67,7 @@ class QAEForms
           ref "A 4.1"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-                    )
+          )
           style "small"
         end
 
@@ -157,7 +157,7 @@ class QAEForms
             <p>
               If you can't fit all of your awards below, then choose those you're most proud of.
             </p>
-                    )
+          )
           conditional :other_awards_won, :yes
           rows 5
           words_max 250
@@ -190,7 +190,7 @@ class QAEForms
             <p>
               <strong>Excluding</strong> paid suppliers and consultants.
             </p>
-                    )
+          )
           yes_no
         end
 
@@ -300,7 +300,7 @@ class QAEForms
           ref "A 15"
           context %(
             <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
-                    )
+          )
           hint "What are the allowed file formats?", %(
             <p>
               You can upload any of the following file formats:

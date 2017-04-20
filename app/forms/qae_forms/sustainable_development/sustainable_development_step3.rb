@@ -47,7 +47,7 @@ class QAEForms
           required
           context %(
             <p>If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.</p>
-                    )
+          )
           financial_date_pointer
         end
 
@@ -94,7 +94,7 @@ class QAEForms
           required
           context %(
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
-                    )
+          )
           type :number
           label ->(y) { "Financial year #{y}" }
 
@@ -205,8 +205,7 @@ class QAEForms
           required
           context %(
             <p>
-              As per your balance sheet. Total assets (fixed and current),
-              less liabilities (current and long-term).
+              As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).
             </p>
           )
           type :money
@@ -237,8 +236,7 @@ class QAEForms
           option :single_product_or_service, "It affects specific product, service or management approach"
           context %(
             <p>
-              It is important that we know whether or not your sustainable development is the key thing your business does, or forms part of a wider approach.
-              This is so we can understand the commercial value of your sustainable development in the context of your overall commercial performance.
+              It is important that we know whether or not your sustainable development is the key thing your business does, or forms part of a wider approach. This is so we can understand the commercial value of your sustainable development in the context of your overall commercial performance.
             </p>
           )
         end
@@ -250,7 +248,7 @@ class QAEForms
             <p>Some questions may not apply, please answer the ones that are applicable to your sustainable development.</p>
             <p>You must enter actual financial figures in £ sterling (ignoring pennies).</p>
             <p>Please do not separate your figures with commas.</p>
-            <p>Please note C6 is just a heading for the following subquestions.
+            <p>Please note C6 is just a heading for the following subquestions.</p>
           )
         end
 
@@ -360,7 +358,7 @@ class QAEForms
           required
           context %(
             <p>Include all investments and reinvestments made both during and prior to your entry period. Also include the year(s) in which they were made.</p>
-                    )
+          )
           rows 5
           words_max 400
         end
@@ -373,7 +371,7 @@ class QAEForms
             <p>
               'Breaking even' is when you reach a point where profits are equal to all costs (capital and operating).
             </p>
-                    )
+          )
           rows 5
           words_max 250
         end

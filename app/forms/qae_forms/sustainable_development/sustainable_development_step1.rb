@@ -67,7 +67,7 @@ class QAEForms
           ref "A 4.1"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-                    )
+          )
           style "small"
         end
 
@@ -76,7 +76,7 @@ class QAEForms
           ref "A 4.2"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-                    )
+          )
           style "small"
         end
 
@@ -166,9 +166,7 @@ class QAEForms
           required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the product,
-              service or management approach then you should make a joint entry.
-              Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the product, service or management approach then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
           yes_no
@@ -300,7 +298,7 @@ class QAEForms
           ref "A 15"
           context %(
             <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
-                    )
+          )
           hint "What are the allowed file formats?", %(
             <p>
               You can upload any of the following file formats:
