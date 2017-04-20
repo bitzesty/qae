@@ -19,7 +19,7 @@ So that I can print and review application case summaries
     end
 
     it "should be links to download case summaries" do
-      FormAnswer::AWARD_TYPE_FULL_NAMES.each do |award_type, value|
+      FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |award_type, value|
         ops = {
           id: "case_summaries",
           category: award_type, format: :pdf,
@@ -61,7 +61,7 @@ So that I can print and review application case summaries
   end
 
   describe "Enterprise Promotion Award" do
-    let(:award_type) { :promotion }
+    let(:award_type) { :mobility }
     include_context "admin all case summaries pdf generation"
   end
 end

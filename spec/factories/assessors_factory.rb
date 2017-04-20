@@ -34,9 +34,9 @@ FactoryGirl.define do
       innovation_role "lead"
     end
 
-    trait :lead_for_development_promotion do
+    trait :lead_for_development_mobility do
       development_role "lead"
-      promotion_role "lead"
+      mobility_role "lead"
     end
 
     trait :regular_for_all do
