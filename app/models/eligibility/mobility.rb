@@ -13,7 +13,7 @@ class Eligibility::Mobility < Eligibility
 
   property :programme_commercial_success,
             boolean: true,
-            label: "Has the programme(s) benefited your organisation financially or otherwise?",
-            hint: "For example, it has improved your reputation or led to savings in the business.",
+            label: "Has the programme(s) benefited your organisation?",
+            hint: "For example, it has improved your reputation, employee relations, diversity, collaboration or led to savings or growth in the business.",
             accept: :true
 end

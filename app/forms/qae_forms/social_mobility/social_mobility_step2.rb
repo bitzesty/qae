@@ -97,25 +97,17 @@ class QAEForms
           words_max 250
         end
 
-        textarea :objectives_and_kpis, "What impact did you set out to achieve with the programme in terms of your objectives and KPIs?" do
-          classes "sub-question"
-          required
-          sub_ref "B 2.2"
-          rows 5
-          words_max 250
-        end
-
         textarea :investments_return_prediction, "How do you ensure that the programme provides a good return on investment for your organisation, financially or otherwise?" do
           ref "B 3"
           required
           context %(
-            <p>How much is invested in the programme - consider human resource, in-kind investments and financial? How does the scale of this investment compare with wider talent management activities?</p>
+            <p>How much is invested in the programme - consider financial, human resource or in-kind investment. How does the scale of this investment compare with wider talent management activities?</p>
           )
           rows 5
           words_max 250
         end
 
-        textarea :investments_return_responsibility, "Who is ultimately responsible for the return on the investment from the programme?  What is the management structure to ensure the day-to-day management of the programme from board level down?" do
+        textarea :investments_return_responsibility, "Who is ultimately responsible for the success of the programme? What is the management structure to ensure the day-to-day management of the programme from board level down?" do
           classes "sub-question"
           sub_ref "B 3.1"
           required
