@@ -13,7 +13,7 @@ class Eligibility::Mobility < Eligibility
 
   property :programme_commercial_success,
             boolean: true,
-            label: "Has the programme(s) had a positive impact on your commercial success?",
-            hint: "Commercial success means financial success in terms of savings or growth and might also include non-financial factors, e.g. reputation, employee relations.",
+            label: "Has the programme(s) benefited your organisation financially or otherwise?",
+            hint: "For example, it has improved your reputation or led to savings in the business.",
             accept: :true
 end
