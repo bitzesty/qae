@@ -146,17 +146,17 @@ class MailRenderer
     assigns[:name] = "Mr Smith"
 
     reception_date = AwardYear.buckingham_palace_reception_date
-    reception_date = DateTime.new(Date.current.year, 7, 14, 18, 00) if reception_date.blank?
+    reception_date = DateTime.new(Date.current.year, 7, 11, 18, 00) if reception_date.blank?
 
     assigns[:reception_date] = reception_date.strftime(
-      "%A %d %B at %-l:%M%P"
+      "%A #{reception_date.day.ordinalize} %B %Y"
     )
 
     palace_attendees_due = AwardYear.buckingham_palace_reception_attendee_information_due_by
     palace_attendees_due = DateTime.new(Date.current.year, 5, 6, 00, 00) if palace_attendees_due.blank?
 
     assigns[:palace_attendees_due] = palace_attendees_due.strftime(
-      "%A%e %B"
+      "%A #{palace_attendees_due.day.ordinalize} %B %Y"
     )
 
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/invite")

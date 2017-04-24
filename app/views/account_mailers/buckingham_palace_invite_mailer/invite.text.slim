@@ -1,25 +1,28 @@
-' An invitation to The Queen’s Awards for Enterprise reception at Buckingham Palace
-
 = "Dear #{@name},"
 
-| Each year, HM The Queen invites two representatives per winning entity to an evening reception at Buckingham Palace.
-
-| This year’s reception will take place on
-=< @reception_date
+' The Queen's Awards for Enterprise Reception Buckingham Palace,
+= @reception_date
 | .
 
+' Her Majesty The Queen will hold a Reception for The Queen’s Awards for Enterprise Winners at Buckingham Palace, on the evening of
+= @reception_date
+' , to which two of your Company Representatives will be invited.
+' Within this necessary limited number, you should please endeavour to make your nominations representative of the company as a whole. Sadly this number cannot be increased.
 
-| Please
-=<> link_to "log in here", dashboard_url
-| to access the Winners' Dashboard to view the 'Palace Attendees' page and provide details of the two representatives you wish to attend The Queen’s Awards for Enterprise reception.
+| Submission of Guest Details
 
-| Please ensure you click the "Confirm Attendees" button by midday on
-=< @palace_attendees_due
+' In order to submit the details of your two guests, please login
+=> link_to "here", dashboard_url
+' to access the Winners’ Dashboard and click on the ‘palace attendees’ button (currently marked as incomplete). From there you will be able to enter all the required information; please click save to ensure we receive your details. Please ensure the address details are those of the guest and not of the person or agent submitting the details.
+
+' I would be grateful if you could provide the requested information no later than
+= @palace_attendees_due
 | .
 
-' Congratulations once again on your Award.
+' Congratulations once again on your award and please don’t hesitate to contact us should you have any queries.
 
 ' Yours sincerely
 
-' Nichola Bruno
-' The Secretary, The Queen's Awards for Enterprise
+
+' Olivia Morrell
+' Head of the Queen’s Awards Office

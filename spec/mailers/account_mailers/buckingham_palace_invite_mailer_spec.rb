@@ -52,7 +52,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
     it "renders the body" do
       expect(mail.html_part.decoded).to match(account_holder_name)
       expect(mail.html_part.decoded).to have_link(
-        "log in here",
+        "here",
         href: dashboard_url
       )
     end
