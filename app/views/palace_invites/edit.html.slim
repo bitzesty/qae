@@ -13,4 +13,5 @@ div
 
         br
 
-        = render 'form'
+        - if !@invite.submitted?
+          = render 'form'
