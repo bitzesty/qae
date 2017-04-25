@@ -1,6 +1,6 @@
-= simple_form_for invite_form, as: :palace_invite, url: users_form_answer_palace_invite_url(invite.form_answer_id), html: { class: 'qae-form', method: :patch } do |f|
+= simple_form_for @invite_form, as: :palace_invite, url: palace_invite_url(id: @invite.token), html: { class: 'qae-form', method: :patch } do |f|
 
-  - invite_form.build_palace_attendee if invite_form.palace_attendees.none?
+  - @invite_form.build_palace_attendee if @invite_form.palace_attendees.none?
 
   fieldset.question-block.question-group
     ul.list-add data-need-to-clear-example=true data-add-limit="2" data-default=1
@@ -53,6 +53,6 @@
             = ff.input :additional_info, as: :text, input_html: { rows: 5 }, label: "Additional Information e.g. Wheelchair user"
 
     = link_to "+ Add Attendee", "#",
-              class: "button button-add js-button-add #{'visuallyhidden' if invite_form.invite.palace_attendees.count == 2 || invite_form.palace_attendees.count == 2}"
+              class: "button button-add js-button-add #{'visuallyhidden' if @invite_form.invite.palace_attendees.count == 2 || @invite_form.palace_attendees.count == 2}"
 
   = render 'actions', f: f

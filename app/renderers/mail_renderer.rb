@@ -141,9 +141,9 @@ class MailRenderer
   def buckingham_palace_invite
     assigns = {}
 
-    assigns[:token] = "secret"
     assigns[:form_answer] = form_answer
-    assigns[:name] = "Mr Smith"
+    assigns[:name] = "John Smith"
+    assigns[:token] = "securetoken"
 
     reception_date = AwardYear.buckingham_palace_reception_date
     reception_date = DateTime.new(Date.current.year, 7, 11, 18, 00) if reception_date.blank?

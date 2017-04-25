@@ -2,12 +2,12 @@ require "rails_helper"
 include Warden::Test::Helpers
 
 describe "Palace Attendees", %q{
-As a Applicant
+As a head of organization
 I want to be able to setup Palace attendees details
 So that I provide a full list of attendees for Buckingham Palace reception
 } do
 
-  let!(:user) do
+  let(:user) do
     create :user, :completed_profile, role: "account_admin"
   end
 
@@ -49,26 +49,22 @@ So that I provide a full list of attendees for Buckingham Palace reception
     s
   end
 
-  before do
-    login_as(user, scope: :user)
-  end
-
   describe "Access" do
     describe "Should be buckingham palace invites stage" do
       it "should reject applicant with access denied message" do
         visit dashboard_path
         expect(page).to_not have_link("Palace Attendees")
 
-        visit edit_users_form_answer_palace_invite_path(form_answer)
-        expect_to_see "Access denied!"
+        visit edit_palace_invite_path(id: palace_invite.token)
+        expect(page).to have_no_content("Buckingham Palace Attendees")
 
         settings.email_notifications.create!(
           kind: "buckingham_palace_invite",
           trigger_at: DateTime.now - 1.year
         )
 
-        visit dashboard_path
-        expect(page).to have_link("Palace Attendees")
+        visit edit_palace_invite_path(id: palace_invite.token)
+        expect(page).to have_content("Buckingham Palace Attendees")
       end
     end
 
@@ -80,16 +76,12 @@ So that I provide a full list of attendees for Buckingham Palace reception
         )
         palace_invite.submitted = true
         palace_invite.save!
-
-        visit dashboard_path
       end
 
       it "should reject applicant with access denied message" do
+        visit edit_palace_invite_path(id: palace_invite.token)
         expect_to_see "Palace Attendees"
-        expect(page).to_not have_link("Palace Attendees")
-
-        visit edit_users_form_answer_palace_invite_path(form_answer)
-        expect_to_see "Access denied!"
+        expect(page).to have_no_content("Save")
       end
     end
   end
@@ -101,7 +93,7 @@ So that I provide a full list of attendees for Buckingham Palace reception
         trigger_at: DateTime.now - 1.year
       )
 
-      visit edit_users_form_answer_palace_invite_path(form_answer)
+      visit edit_palace_invite_path(id: palace_invite.token)
     end
 
     let(:title) { "MyTitle" }
@@ -117,10 +109,9 @@ So that I provide a full list of attendees for Buckingham Palace reception
 
         expect {
           click_on "Confirm Attendees"
-        }.to_not change {
+        }.not_to change {
           palace_invite.reload.submitted
         }
-
 
         expect_to_see "This field cannot be blank"
         expect_to_see_no "Palace Attendees details are successfully submitted!"
