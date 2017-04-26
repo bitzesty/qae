@@ -1,0 +1,24 @@
+.js-financial-conditional data-first-year-min-value=question.first_year_min_value data-first-year-min-validation-message=question.first_year_validation_message
+  .by-years-wrapper
+    .if-js-hide
+      label
+        strong
+          = "If you had growth in the last 3 years"
+    .row
+      - (1..3).each do |y|
+        div class="span-financial span-4"
+          label for=question.input_name(suffix: "#{y}of3")
+            span.js-year-end.show-default data-year="#{y}of3"
+              span.js-year-default
+                ' Financial year
+                = y
+                - if y == 3
+                  '  (current)
+              span.js-year-text
+          ul.errors-container
+          .clear
+          span class="#{'currency-input' if question.type == :money}"
+            - if question.type == :money
+              span.currency-unit £
+            input.small.js-trigger-autosave.js-form-financial-data type="text" name=question.input_name(suffix: "#{y}of3") value=question.input_value(suffix: "#{y}of3").to_s.delete(",") id=question.input_name(suffix: "#{y}of3") autocomplete="off" *possible_read_only_ops
+    .clear

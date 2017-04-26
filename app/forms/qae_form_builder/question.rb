@@ -7,6 +7,8 @@ class QAEFormBuilder
       "InnovationFinancialYearDateQuestion",
       "ByYearsQuestion",
       "ByYearsLabelQuestion",
+      "MobilityByYearsQuestion",
+      "MobilityByYearsLabelQuestion",
       "UserInfoQuestion",
       "AwardHolderQuestion",
       "SupportersQuestion",
@@ -437,12 +439,27 @@ class QAEFormBuilder
       self.after_create if self.respond_to?(:after_create)
     end
 
+    def context
+      if @context.respond_to?(:call)
+        @context.call
+      else
+        @context
+      end
+    end
+
+    def title
+      if @title.respond_to?(:call)
+        @title.call
+      else
+        @title
+      end
+    end
+
     def decorate options = {}
       kls_name = self.class.name.split('::').last
       kls = QAEFormBuilder.const_get "#{kls_name}Decorator" rescue nil
       (kls || QuestionDecorator).new self, options
     end
-
 
     def form
       step.form

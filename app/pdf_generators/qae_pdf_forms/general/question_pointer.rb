@@ -43,6 +43,8 @@ class QaePdfForms::General::QuestionPointer
     QAEFormBuilder::UploadQuestion,
     QAEFormBuilder::ByYearsLabelQuestion,
     QAEFormBuilder::ByYearsQuestion,
+    QAEFormBuilder::MobilityByYearsLabelQuestion,
+    QAEFormBuilder::MobilityByYearsQuestion,
     QAEFormBuilder::SupportersQuestion,
     QAEFormBuilder::TextareaQuestion,
     QAEFormBuilder::TextQuestion
@@ -349,11 +351,11 @@ class QaePdfForms::General::QuestionPointer
         else
           question_option_box interpolate_deadlines(question.text)
         end
-      when QAEFormBuilder::ByYearsLabelQuestion
+      when QAEFormBuilder::ByYearsLabelQuestion, QAEFormBuilder::MobilityByYearsLabelQuestion
         form_pdf.indent 7.mm do
           render_years_labels_table
         end
-      when QAEFormBuilder::ByYearsQuestion, QAEFormBuilder::TurnoverExportsCalculationQuestion
+      when QAEFormBuilder::ByYearsQuestion, QAEFormBuilder::TurnoverExportsCalculationQuestion, QAEFormBuilder::MobilityByYearsQuestion
         render_years_table
       when QAEFormBuilder::QueenAwardHolderQuestion
         if humanized_answer.present?

@@ -130,16 +130,11 @@ class Notifiers::EmailNotificationService
     award_year.form_answers.business.winners.each do |form_answer|
 
       invite = PalaceInvite.where(
-        email: form_answer.user.email,
+        email: form_answer.decorate.head_email,
         form_answer_id: form_answer.id
       ).first_or_create
 
-      form_answer.collaborators.each do |collaborator|
-        AccountMailers::BuckinghamPalaceInviteMailer.invite(
-          invite.id,
-          collaborator.id
-        ).deliver_later!
-      end
+      AccountMailers::BuckinghamPalaceInviteMailer.invite(form_answer.id).deliver_later!
     end
   end
 

@@ -48,6 +48,50 @@ describe AssessmentSubmissionService do
       expect(form_answer.reload.state).to eq("not_recommended")
     end
   end
+
+  context "feedback pre-population" do
+    let(:assessment) { form_answer.assessor_assignments.primary }
+
+    before do
+      assessment.assessor = assessor
+
+      assessment.document = {
+        overseas_earnings_growth_desc: "Good",
+        overseas_earnings_growth_rate: "positive",
+        commercial_success_desc: "Mild",
+        commercial_success_rate: "average",
+        strategy_desc: "Good",
+        strategy_rate: "positive",
+        corporate_social_responsibility_desc: "Bad",
+        corporate_social_responsibility_rate: "negative",
+        verdict_desc: "Mild",
+        verdict_rate: "average"
+      }
+
+      assessment.save!
+    end
+
+    it "pre-populates feedback" do
+      subject.perform
+
+      feedback = form_answer.feedback
+      expect(feedback).to be
+
+      expected_document = {
+        "overseas_earnings_growth_strength" => "Good",
+        "overseas_earnings_growth_weakness" => "",
+        "commercial_success_weakness" => "Mild",
+        "commercial_success_strength" => "",
+        "strategy_strength" => "Good",
+        "strategy_weakness" => "",
+        "corporate_social_responsibility_weakness" => "Bad",
+        "corporate_social_responsibility_strength" => "",
+        "overall_summary" => "Mild"
+      }
+
+      expect(feedback.document).to eq(expected_document)
+    end
+  end
 end
 
 def expect_to_submit

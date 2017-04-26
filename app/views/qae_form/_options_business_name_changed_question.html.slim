@@ -7,5 +7,6 @@
       - klass << " hidden"
 
   label.selectable class=klass
-    input.js-trigger-autosave type="radio" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s) *possible_read_only_ops
-    = answer.text
+    input.js-trigger-autosave type="radio" id="#{question.input_name}_#{answer.value}" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s) *possible_read_only_ops
+      label for="#{question.input_name}_#{answer.value}"
+        = answer.text

@@ -1,10 +1,12 @@
 class FormAnswerAttachment < ActiveRecord::Base
-
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
 
   mount_uploader :file, FormAnswerAttachmentUploader
   scan_file      :file
+
+  include ::InfectedFileCleaner
+  clean_after_scan :file
 
   scope :uploaded_by_user, -> { where attachable_type: "User" }
   scope :uploaded_not_by_user, -> { where.not(attachable_type: "User") }
@@ -26,6 +28,7 @@ class FormAnswerAttachment < ActiveRecord::Base
   begin :validations
     validates :form_answer_id, presence: true
     validates :file, presence: true,
+                     on: :create,
                      file_size: {
                        maximum: 5.megabytes.to_i
                      }

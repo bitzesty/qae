@@ -162,6 +162,7 @@ jQuery ->
   # Update the financial year labels
   updateYearEnd = () ->
     $(".js-financial-conditional .js-year-end").removeClass("show-default")
+
     if $(".js-financial-year-change input:checked").val() == "no"
       # Year end hasn't changed, auto select the year
       fy_latest_changed_input = $(".js-financial-year")
@@ -180,13 +181,14 @@ jQuery ->
           $(this).find(".js-year-text").text("#{pre_text} #{fy_latest_day}/#{fy_latest_month}/#{year}")
     else
       # Year has changed, use what they've inputted
-      $(".js-financial-conditional > .js-conditional-question").each ->
+      $(".js-financial-conditional > .by-years-wrapper").each ->
         all_years_value = true
         $(this).find(".js-year-end").each ->
           fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".date-input")
           fy_day = fy_input.find(".js-fy-day").val()
           fy_month = fy_input.find(".js-fy-month").val()
           fy_year = fy_input.find(".js-fy-year").val()
+
           if !fy_day || !fy_month || !fy_year
             all_years_value = false
         if !all_years_value

@@ -1,4 +1,4 @@
-require 'qae_2014_forms'
+require 'qae_forms'
 
 class FormAnswer < ActiveRecord::Base
   include PgSearch
@@ -167,7 +167,7 @@ class FormAnswer < ActiveRecord::Base
   end
 
   def award_form
-    QAE2014Forms.public_send(award_type) if award_type.present?
+    QAEForms.public_send(award_type) if award_type.present?
   end
 
   def eligibility

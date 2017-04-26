@@ -119,7 +119,7 @@ describe Notifiers::EmailNotificationService do
       }.by(1)
 
       last_invite = PalaceInvite.last
-      expect(last_invite.email).to be_eql account_holder.email
+      expect(last_invite.email).to be_eql form_answer.decorate.head_email
       expect(last_invite.form_answer_id).to be_eql form_answer.id
 
       expect(current_notification.reload).to be_sent

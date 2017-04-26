@@ -333,6 +333,20 @@ input[type="file"] {
   margin-top: 0.2em;
 }
 
+.selectable-confirm-wrapper {
+  padding: 1em;
+  border-radius: 5px;
+  background-color: #D5E8F3;
+  border: 1px solid  #CBCBCB;
+
+  &:after {
+    content: " ";
+    display: table;
+    clear: both;
+    zoom: 1;
+  }
+}
+
 .question-block h2 {
   margin-bottom: 0.6em;
 
@@ -373,8 +387,6 @@ input[type="file"] {
     }
 
     &.selectable {
-      @include core-16;
-
       .lte-ie7 & {
         width: 85%;
       }
@@ -385,7 +397,7 @@ input[type="file"] {
         padding: 19px;
         padding-left: 45px;
         background-color: #D5E8F3;
-        border-width: solid 1px #CBCBCB;
+        border: 1px solid  #CBCBCB;
         border-radius: 4px;
 
         input[type="checkbox"] {
@@ -405,18 +417,18 @@ input[type="file"] {
     }
   }
 
-  span.selectable {
-    padding: 0;
-
-    .lte-ie7 & {
-      width: 85%;
-    }
-
-    label {
-      display: block;
-      padding: 18px 30px 15px 45px;
-    }
-  }
+  // span.selectable {
+  //   padding: 0;
+  //
+  //   .lte-ie7 & {
+  //     width: 85%;
+  //   }
+  //
+  //   label {
+  //     display: block;
+  //     padding: 18px 30px 15px 45px;
+  //   }
+  // }
 
   input,
   select,
