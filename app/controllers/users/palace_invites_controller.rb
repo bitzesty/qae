@@ -23,7 +23,7 @@ class Users::PalaceInvitesController < Users::BaseController
         redirect_to dashboard_url
       else
         flash.notice = "Attendee details have been successfully updated"
-        redirect_to edit_users_form_answer_palace_invite_url(form_answer)
+        redirect_to edit_palace_invite_url(form_answer)
       end
     else
       render :edit
