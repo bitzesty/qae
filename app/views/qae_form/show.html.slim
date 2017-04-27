@@ -4,7 +4,17 @@
   - provide(:body_end) do
     .js-collaborators-bar.hidden
 
+// Don't think that this textarea is smth wrong
+// We use it in order to fix CKeditor plugins issue
+// CKeditor in version 4 doesn't apply plugins init for first
+// textarea in list
+// so that first textarea in form would not be inited with 'wordscount' and 'onchange' plugins
+//
+.hidden
+  textarea.js-ckeditor
+
 form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=save_form_url(@form_answer, next_step: next_step(@form, params[:step]), current_step: params[:step]) method="POST" data-attachments-url=attachments_url(@form_answer) novalidate=true
+
   input name="authenticity_token" type="hidden" value=form_authenticity_token
 
   = hidden_field_tag :current_step_id, (params[:step].present? ? params[:step] : @form.steps.first.title.parameterize)
