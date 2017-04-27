@@ -942,6 +942,13 @@ jQuery ->
           editor.config.wordcount =
             maxWordCount: element.data('word-max')
 
+      CKEDITOR.on 'instanceReady', (event) ->
+        console.log('instanceReady')
+        target_id = event.editor.name
+
+        spinner = $("#" + target_id).closest(".question-group").find(".js-ckeditor-spinner-block")
+        spinner.addClass('hidden')
+
     for i of CKEDITOR.instances
       instance = CKEDITOR.instances[i]
 
