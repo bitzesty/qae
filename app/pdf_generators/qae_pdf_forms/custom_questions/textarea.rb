@@ -125,7 +125,7 @@ module QaePdfForms::CustomQuestions::Textarea
         wysywyg_handle_ul_tag(key, i)
 
       elsif wysywyg_is_it_tag?(i, 'ol')
-        wysywyg_handle_ol_tag(key, i)
+        wysywyg_handle_ol_tag(i)
 
       elsif wysywyg_list_ending_tag?(i)
         wysywyg_handle_list_ending_tag
@@ -197,7 +197,7 @@ module QaePdfForms::CustomQuestions::Textarea
     end
   end
 
-  def wysywyg_handle_ol_tag(key, i)
+  def wysywyg_handle_ol_tag(i)
     li_style = styles_picker(@styles)
     print_pdf(@string.join(""), li_style)
 
