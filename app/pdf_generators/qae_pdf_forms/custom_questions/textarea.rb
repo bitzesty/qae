@@ -128,7 +128,7 @@ module QaePdfForms::CustomQuestions::Textarea
         wysywyg_handle_ol_tag(key, i)
 
       elsif wysywyg_list_ending_tag?(i)
-        wysywyg_handle_list_ending_tag(key)
+        wysywyg_handle_list_ending_tag
 
       elsif i == "</li>"
         @li_counter += 1
@@ -145,7 +145,7 @@ module QaePdfForms::CustomQuestions::Textarea
     @string
   end
 
-  def wysywyg_handle_list_ending_tag(key)
+  def wysywyg_handle_list_ending_tag
     @keys_history.pop
     @counter = @ns_history.last
     @ns_history.pop
