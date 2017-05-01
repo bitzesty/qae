@@ -1,2 +1,15 @@
-textarea.js-trigger-autosave.js-char-count rows=question.rows data-word-max=question.words_max name=question.input_name id="q_#{question.key}" *possible_read_only_ops
+/ Add .js-char-count class to textarea if you want to return standart
+/ application counter blocks
+/
+/ textarea.js-trigger-autosave.js-char-count.js-ckeditor
+/
+
+.if-no-js-hide
+  .js-ckeditor-spinner-block
+    = image_tag "textarea_spinner.gif"
+    span
+      | Loading Editor ...
+
+textarea.js-trigger-autosave.js-ckeditor rows=question.rows data-word-max=question.words_max name=question.input_name id="q_#{question.key}" *possible_read_only_ops
   = question.input_value
+

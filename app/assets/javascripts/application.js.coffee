@@ -3,6 +3,8 @@
 #= require jquery.iframe-transport
 #= require jquery.fileupload
 #= require select2.full.min
+#= require ckeditor/init
+#= require ./ckeditor/config.js
 #= require Countable
 #= require moment.min
 #= require core
@@ -450,7 +452,7 @@ jQuery ->
   $(document).debounce "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
-  $(document).debounce "keyup", "textarea.js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
+  $(document).debounce "change", "textarea.js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "focusout", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
 
   updateUploadListVisiblity = (list, button, max) ->
@@ -920,3 +922,46 @@ jQuery ->
     $(".js-press-comment-feeback").removeClass("section-confirmed")
     if $(".js-press-comment-correct input:checked").val() == "true"
       $(".js-press-comment-feeback").addClass("section-confirmed")
+
+  #
+  # Init WYSYWYG editor for QAE Form textareas - begin
+  #
+  if $('.js-ckeditor').length > 0
+
+    $('.js-ckeditor').each (index) ->
+
+      CKEDITOR.replace this,
+        toolbar: 'mini'
+        height: 200
+
+      CKEDITOR.on 'instanceCreated', (event) ->
+        editor = event.editor
+        element = editor.element
+
+        editor.on 'configLoaded', ->
+          editor.config.wordcount =
+            maxWordCount: element.data('word-max')
+
+      CKEDITOR.on 'instanceReady', (event) ->
+        console.log('instanceReady')
+        target_id = event.editor.name
+
+        spinner = $("#" + target_id).closest(".question-group").find(".js-ckeditor-spinner-block")
+        spinner.addClass('hidden')
+
+    for i of CKEDITOR.instances
+      instance = CKEDITOR.instances[i]
+
+      instance.on 'change', (event) ->
+        target_id = event.editor.name
+        element = CKEDITOR.instances[target_id]
+
+        element.updateElement()
+        raiseChangesFlag()
+
+        $("#" + target_id).trigger("change")
+
+        return
+  #
+  # Init WYSYWYG editor for QAE Form textareas - end
+  #
