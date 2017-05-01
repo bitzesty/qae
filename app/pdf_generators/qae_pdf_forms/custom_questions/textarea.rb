@@ -128,7 +128,7 @@ module QaePdfForms::CustomQuestions::Textarea
         wysywyg_handle_ol_tag(key, i)
 
       elsif wysywyg_list_ending_tag?(i)
-        wysywyg_handle_list_ending_tag(key, i)
+        wysywyg_handle_list_ending_tag(key)
 
       elsif i == "</li>"
         @li_counter += 1
@@ -145,7 +145,7 @@ module QaePdfForms::CustomQuestions::Textarea
     @string
   end
 
-  def wysywyg_handle_list_ending_tag(key, i)
+  def wysywyg_handle_list_ending_tag(key)
     @keys_history.pop
     @counter = @ns_history.last
     @ns_history.pop
@@ -168,12 +168,9 @@ module QaePdfForms::CustomQuestions::Textarea
         (@li_counter - 1).times do
           @styles.pop
         end
-
-        @li_counter = 0
-      else
-        @li_counter = 0
       end
 
+      @li_counter = 0
       @string = []
     end
 
@@ -207,8 +204,7 @@ module QaePdfForms::CustomQuestions::Textarea
     @ns_history << @counter
     @counter = 0
     @string = []
-    key = "<ol>"
-    @keys_history << key
+    @keys_history << "<ol>"
 
     @styles << if wysywyg_get_style_values(i).present?
       wysywyg_get_style_values(i)
