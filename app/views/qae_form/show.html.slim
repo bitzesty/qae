@@ -43,6 +43,13 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
 
     = render "qae_form/steps_progress_bar", current_step: params[:step]
 
+= javascript_include_tag "/ckeditor/ckeditor.js"
+
+/ = #javascript_include_tag *Dir[Rails.root.join("public/javascripts/ckeditor/**/*.js")]
+
+= content_for(:javascript_code) do
+  | TextareaWysywygSupport.init();
+
 - if application_collaborator_group_mode?
   = content_for(:javascript_code) do
     | ApplicationCollaboratorsConnectionManager.init('#{@form_answer.id}', '#{Pusher.host}', #{Pusher.port}, '#{Pusher.key}', '#{Rails.env}', #{Time.now.utc.to_i});

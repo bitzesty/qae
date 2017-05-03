@@ -19,5 +19,3 @@ Rails.application.config.assets.precompile += [
   "application-ie8.css",
   "application-ie9.css"
 ]
-
-Rails.application.config.assets.precompile += %w( ckeditor/* )

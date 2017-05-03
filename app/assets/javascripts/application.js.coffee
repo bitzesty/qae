@@ -3,8 +3,6 @@
 #= require jquery.iframe-transport
 #= require jquery.fileupload
 #= require select2.full.min
-#= require ckeditor/init
-#= require ./ckeditor/config.js
 #= require Countable
 #= require moment.min
 #= require core
@@ -276,10 +274,10 @@ jQuery ->
       # Setting current_step_id to form as we updating only current section form_data (not whole form)
       $("#current_step_id").val(step)
 
-  changesUnsaved = false
+  window.changesUnsaved = false
 
   $(".qae-form").on "submit", (e) ->
-    if changesUnsaved
+    if window.changesUnsaved
       e.preventDefault()
       e.stopPropagation()
 
@@ -378,7 +376,7 @@ jQuery ->
         resetResizeTextarea()
 
   $(document).on "click", ".save-quit-link a", (e) ->
-    if changesUnsaved
+    if window.changesUnsaved
       e.preventDefault()
       e.stopPropagation()
 
@@ -404,7 +402,7 @@ jQuery ->
         type: 'POST'
         dataType: 'json'
         success: ->
-          changesUnsaved = false
+          window.changesUnsaved = false
           if callback isnt undefined
             callback()
       })
@@ -431,11 +429,11 @@ jQuery ->
 
   window.onbeforeunload = ->
     if !$(".page-read-only-form").length
-      if changesUnsaved then loseChangesMessage else undefined
+      if window.changesUnsaved then loseChangesMessage else undefined
 
   if window.addEventListener isnt undefined
     window.addEventListener "beforeunload", (e) ->
-      return undefined unless changesUnsaved
+      return undefined unless window.changesUnsaved
 
       e.returnValue = loseChangesMessage
       loseChangesMessage
@@ -444,7 +442,7 @@ jQuery ->
     window.autosave_timer ||= setTimeout( autosave, 1000 )
 
   raiseChangesFlag = ->
-    changesUnsaved = true
+    window.changesUnsaved = true
 
   debounceTime = 20000
   $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
@@ -922,46 +920,3 @@ jQuery ->
     $(".js-press-comment-feeback").removeClass("section-confirmed")
     if $(".js-press-comment-correct input:checked").val() == "true"
       $(".js-press-comment-feeback").addClass("section-confirmed")
-
-  #
-  # Init WYSYWYG editor for QAE Form textareas - begin
-  #
-  if $('.js-ckeditor').length > 0
-
-    $('.js-ckeditor').each (index) ->
-
-      CKEDITOR.replace this,
-        toolbar: 'mini'
-        height: 200
-
-      CKEDITOR.on 'instanceCreated', (event) ->
-        editor = event.editor
-        element = editor.element
-
-        editor.on 'configLoaded', ->
-          editor.config.wordcount =
-            maxWordCount: element.data('word-max')
-
-      CKEDITOR.on 'instanceReady', (event) ->
-        console.log('instanceReady')
-        target_id = event.editor.name
-
-        spinner = $("#" + target_id).closest(".question-group").find(".js-ckeditor-spinner-block")
-        spinner.addClass('hidden')
-
-    for i of CKEDITOR.instances
-      instance = CKEDITOR.instances[i]
-
-      instance.on 'change', (event) ->
-        target_id = event.editor.name
-        element = CKEDITOR.instances[target_id]
-
-        element.updateElement()
-        raiseChangesFlag()
-
-        $("#" + target_id).trigger("change")
-
-        return
-  #
-  # Init WYSYWYG editor for QAE Form textareas - end
-  #
