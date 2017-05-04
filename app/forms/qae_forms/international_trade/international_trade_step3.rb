@@ -6,7 +6,10 @@ class QAEForms
         header :commercial_success_info_block, "" do
           context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your international trade activities had on your organisation's financial performance.
+              In order to be eligible for this Award, your business must demonstrate financial stability and growth for the last 3 years.
+            </p>
+            <p>
+              <strong>If you haven't reached your latest year-end, please use estimates to complete this section.</strong>
             </p>
           )
         end
@@ -41,19 +44,17 @@ class QAEForms
           sub_category_question
           context %(
             <p>
-              Your answer here will determine whether you are assessed for outstanding
-              growth (over three years) or continuous growth (over six years).
+              Your answer here will determine whether you are assessed for outstanding growth (over three years) or continuous growth (over six years).
             </p>
           )
         end
 
-        innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
           ref "C 2"
           required
           context %(
             <p>
-              If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application.
-              If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.
+              If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.
             </p>
           )
           financial_date_pointer
@@ -66,14 +67,13 @@ class QAEForms
           yes_no
           context %(
             <p>
-              We ask this to obtain all of the commercial figures we need to assess your application.
-              You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3 or 6</span> full 12-month periods.
+              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3 or 6</span> full 12-month periods.
             </p>
           )
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year" do
+        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year" do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -103,7 +103,7 @@ class QAEForms
           required
           context %(
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
-                    )
+          )
           type :number
           label ->(y) { "Financial year #{y}" }
 
@@ -119,9 +119,6 @@ class QAEForms
           context %(
             <p>
               A parent company making a group entry should include the trading figures of all UK members of the group.
-            </p>
-            <p>
-              If you haven't reached your latest year-end, please use estimates to complete this section.
             </p>
             <p>
               You must enter actual financial figures in £ sterling (ignoring pennies).
@@ -165,8 +162,30 @@ class QAEForms
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
+          )
+
+          pdf_context %(
             <p>
-              If you haven't reached your latest year-end, please use estimates to complete this question.
+              Please include only:
+            </p>
+            <p>
+              \u2022 Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how etc.).
+
+              \u2022 Total export agency commissions.
+
+              \u2022 Dividends remitted to the UK from direct overseas investments.
+
+              \u2022 Income from portfolio investment abroad remitted to the UK.
+
+              \u2022 Dividends on investments abroad not remitted to the UK.
+
+              \u2022 Other earnings from overseas residents remitted to the UK.
+            </p>
+            <p>
+              If applicable include your sales to and the sales by, your overseas branches or subsidiaries. For products /services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
+            </p>
+            <p>
+              The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
             </p>
           )
 
@@ -201,9 +220,6 @@ class QAEForms
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %(
             <p>
-              If you haven't reached your latest year-end, please use estimates to complete this question.
-            </p>
-            <p>
               Use a minus symbol to record any losses.
             </p>
           )
@@ -211,11 +227,11 @@ class QAEForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in total turnover or net profit, and any losses made. Sustained or unexplained losses may lead to the entry being rejected." do
+        textarea :drops_in_turnover, "Explain any drops in total turnover or net profit, and any losses made. Sustained or unexplained losses may lead to the entry being rejected" do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.4"
           rows 5
-          words_max 500
+          words_max 300
           drop_condition_parent
         end
       end

@@ -51,10 +51,6 @@ ul.question-context,
     position: relative;
   }
 
-  &.control-label {
-    padding-left: $gutter-two-thirds;
-  }
-
   .checkbox {
     position: absolute;
     top: 0;
@@ -1517,4 +1513,22 @@ select.js-trigger-autosave.select2.sic_code-selector {
   margin: 0 auto;
   background-color: #FFFAFA;
   border-radius: 0 0 5px 0;
+}
+
+.js-ckeditor-spinner-block {
+  overflow: hidden;
+  margin-bottom: 10px;
+
+  img {
+    float: left;
+  }
+
+  span {
+    float: left;
+    display: block;
+    color: rgb(111, 119, 123);
+    margin-bottom: 0px;
+    padding-top: 10px;
+    margin-left: 10px;
+  }
 }

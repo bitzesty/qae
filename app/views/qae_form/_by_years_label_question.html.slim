@@ -1,6 +1,6 @@
 .js-financial-year-changed-dates
   - for c in question.by_year_conditions
-    .js-conditional-question.js-fy-entry-container data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
+    .js-conditional-question.js-fy-entry-container.by-years-wrapper data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
       .if-js-hide
         label
           strong

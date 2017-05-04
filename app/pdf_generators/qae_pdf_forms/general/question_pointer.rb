@@ -4,6 +4,7 @@ class QaePdfForms::General::QuestionPointer
   include QaePdfForms::CustomQuestions::Lists
   include QaePdfForms::CustomQuestions::SupporterLists
   include QaePdfForms::CustomQuestions::CheckboxSeria
+  include QaePdfForms::CustomQuestions::Textarea
   include FinancialTable
   include QuestionTextHelper
 
@@ -43,6 +44,8 @@ class QaePdfForms::General::QuestionPointer
     QAEFormBuilder::UploadQuestion,
     QAEFormBuilder::ByYearsLabelQuestion,
     QAEFormBuilder::ByYearsQuestion,
+    QAEFormBuilder::MobilityByYearsLabelQuestion,
+    QAEFormBuilder::MobilityByYearsQuestion,
     QAEFormBuilder::SupportersQuestion,
     QAEFormBuilder::TextareaQuestion,
     QAEFormBuilder::TextQuestion
@@ -349,11 +352,11 @@ class QaePdfForms::General::QuestionPointer
         else
           question_option_box interpolate_deadlines(question.text)
         end
-      when QAEFormBuilder::ByYearsLabelQuestion
+      when QAEFormBuilder::ByYearsLabelQuestion, QAEFormBuilder::MobilityByYearsLabelQuestion
         form_pdf.indent 7.mm do
           render_years_labels_table
         end
-      when QAEFormBuilder::ByYearsQuestion, QAEFormBuilder::TurnoverExportsCalculationQuestion
+      when QAEFormBuilder::ByYearsQuestion, QAEFormBuilder::TurnoverExportsCalculationQuestion, QAEFormBuilder::MobilityByYearsQuestion
         render_years_table
       when QAEFormBuilder::QueenAwardHolderQuestion
         if humanized_answer.present?
@@ -378,8 +381,7 @@ class QaePdfForms::General::QuestionPointer
 
         form_pdf.default_bottom_margin
         render_word_limit
-
-        form_pdf.render_standart_answer_block(title)
+        render_wysywyg_content
       when *LIST_TYPES
         form_pdf.indent 7.mm do
           render_list

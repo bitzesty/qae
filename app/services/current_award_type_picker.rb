@@ -26,7 +26,13 @@ class CurrentAwardTypePicker
     lead_categories = current_subject.categories_as_lead
     regular_categories = current_subject.applications_scope.pluck(:award_type).uniq
 
-    (lead_categories + regular_categories).uniq.each_with_index.map do |category, index|
+    categories = lead_categories + regular_categories
+
+    if !params[:year].present? || params[:year].to_i > 2016
+      categories -= ["promotion"]
+    end
+
+    categories.uniq.each_with_index.map do |category, index|
       AwardCategory.new(slug: category, first_element: index == 0)
     end
   end

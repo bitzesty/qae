@@ -21,8 +21,7 @@ class QAEForms
           classes "application-notice help-notice"
           context %(
             <p>
-              Where we refer to 'your organisation' in the form,
-              please enter the details of your division, branch or subsidiary.
+              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
@@ -32,7 +31,7 @@ class QAEForms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses.  Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
           )
         end
 
@@ -47,12 +46,12 @@ class QAEForms
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
+        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made" do
           classes "sub-question"
           sub_ref "A 3.1"
           required
           conditional :principal_business, :no
-          words_max 200
+          words_max 100
           rows 5
         end
 
@@ -63,38 +62,45 @@ class QAEForms
           option "charity", "Charity"
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
+        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'" do
           required
           ref "A 4.1"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-                    )
+          )
           style "small"
         end
 
-        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
+        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'" do
           required
           ref "A 4.2"
           context %(
             <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
-                    )
+          )
           style "small"
         end
 
         date :started_trading, "Date started trading" do
           required
           ref "A 5"
-          context %(
-            <p>
-               Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
-            </p>
-          )
+          context -> do
+            %(
+              <p>
+                Organisations that began trading after #{AwardYear.start_trading_since(2)} aren't eligible for this award (or #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
+              </p>
+            )
+          end
           date_max AwardYear.start_trading_since(2)
         end
 
-        options :queen_award_holder, "Are you a current Queen's Award holder (#{AwardYear.award_holder_range})?" do
+        options :queen_award_holder, -> { "Are you a current Queen's Award holder from #{AwardYear.award_holder_range}?" } do
           required
           ref "A 6"
+          context -> do
+            %(
+              <p>If you have received a Queen's Award in any category between #{AwardYear.current.year - 5} and #{AwardYear.current.year - 1}, you are deemed a current award holder.</p>
+            )
+          end
           yes_no
           option "i_dont_know", "I don't know"
           classes "queen-award-holder"
@@ -158,7 +164,7 @@ class QAEForms
                     )
           conditional :other_awards_won, :yes
           rows 5
-          words_max 300
+          words_max 250
         end
 
         options :part_of_joint_entry,
@@ -167,9 +173,7 @@ class QAEForms
           required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the product,
-              service or management approach then you should make a joint entry.
-              Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the product, service or management approach then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
           yes_no
@@ -215,7 +219,7 @@ class QAEForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications." do
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications" do
           sub_ref "A 9.2"
           required
           words_max 200
@@ -301,7 +305,7 @@ class QAEForms
           ref "A 15"
           context %(
             <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
-                    )
+          )
           hint "What are the allowed file formats?", %(
             <p>
               You can upload any of the following file formats:

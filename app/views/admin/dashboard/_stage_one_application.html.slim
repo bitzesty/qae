@@ -57,12 +57,13 @@
             - completions["total"].each_with_index do |count, index|
               td class=(index == 0 ? "not-eligible" : "")
                 strong= count
-          tr.table-total
-            th
-              strong= FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
-              - completions["promotion"].each_with_index do |count, index|
-                td class=(index == 0 ? "not-eligible" : "")
-                  strong= count
+          - unless hide_promotion?
+            tr.table-total
+              th
+                strong= FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
+                - completions["promotion"].each_with_index do |count, index|
+                  td class=(index == 0 ? "not-eligible" : "")
+                    strong= count
 
     br
 
@@ -94,9 +95,10 @@
             - submissions["total"].each do |count|
               td
                 strong= count
-          tr.table-total
-            th
-              strong= FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
-            - submissions["promotion"].each do |count|
-              td
-                strong= count
+          - unless hide_promotion?
+            tr.table-total
+              th
+                strong= FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
+              - submissions["promotion"].each do |count|
+                td
+                  strong= count

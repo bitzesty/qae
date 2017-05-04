@@ -70,9 +70,7 @@ class QAEForms
               Outline your selection criteria, if any, with regard to potential suppliers'/partners'/contractors' economic, social and environmental performance.
             </p>
             <p>
-              For example, do you encourage best practice or require them to meet your own standards? To what extent are you succeeding?
-              How proactive are you at encouraging your supply chain to source British goods/products/services?
-              Do you mentor businesses in your supply chain – if so how?
+              For example, do you encourage best practice or require them to meet your own standards? To what extent are you succeeding? How proactive are you at encouraging your supply chain to source British goods/products/services? Do you mentor businesses in your supply chain – if so how?
             </p>
           )
           rows 5
@@ -93,8 +91,7 @@ class QAEForms
               How do you keep your employees engaged? e.g. communication, assessments, incentives, opportunities for career development.
             </p>
             <p>
-              How are you training and developing your staff?
-              Do you encourage/support them to learn new skills and gain new qualifications?
+              How are you training and developing your staff? Do you encourage/support them to learn new skills and gain new qualifications?
             </p>
             <p>
               Do you take on apprentices, and if so, how many?

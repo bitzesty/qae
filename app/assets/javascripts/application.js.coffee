@@ -162,6 +162,7 @@ jQuery ->
   # Update the financial year labels
   updateYearEnd = () ->
     $(".js-financial-conditional .js-year-end").removeClass("show-default")
+
     if $(".js-financial-year-change input:checked").val() == "no"
       # Year end hasn't changed, auto select the year
       fy_latest_changed_input = $(".js-financial-year")
@@ -180,13 +181,14 @@ jQuery ->
           $(this).find(".js-year-text").text("#{pre_text} #{fy_latest_day}/#{fy_latest_month}/#{year}")
     else
       # Year has changed, use what they've inputted
-      $(".js-financial-conditional > .js-conditional-question").each ->
+      $(".js-financial-conditional > .by-years-wrapper").each ->
         all_years_value = true
         $(this).find(".js-year-end").each ->
           fy_input = $(".js-financial-year-changed-dates .js-year-end[data-year='#{$(this).attr("data-year")}']").closest(".js-fy-entries").find(".date-input")
           fy_day = fy_input.find(".js-fy-day").val()
           fy_month = fy_input.find(".js-fy-month").val()
           fy_year = fy_input.find(".js-fy-year").val()
+
           if !fy_day || !fy_month || !fy_year
             all_years_value = false
         if !all_years_value
@@ -272,10 +274,10 @@ jQuery ->
       # Setting current_step_id to form as we updating only current section form_data (not whole form)
       $("#current_step_id").val(step)
 
-  changesUnsaved = false
+  window.changesUnsaved = false
 
   $(".qae-form").on "submit", (e) ->
-    if changesUnsaved
+    if window.changesUnsaved
       e.preventDefault()
       e.stopPropagation()
 
@@ -374,7 +376,7 @@ jQuery ->
         resetResizeTextarea()
 
   $(document).on "click", ".save-quit-link a", (e) ->
-    if changesUnsaved
+    if window.changesUnsaved
       e.preventDefault()
       e.stopPropagation()
 
@@ -400,7 +402,7 @@ jQuery ->
         type: 'POST'
         dataType: 'json'
         success: ->
-          changesUnsaved = false
+          window.changesUnsaved = false
           if callback isnt undefined
             callback()
       })
@@ -427,11 +429,11 @@ jQuery ->
 
   window.onbeforeunload = ->
     if !$(".page-read-only-form").length
-      if changesUnsaved then loseChangesMessage else undefined
+      if window.changesUnsaved then loseChangesMessage else undefined
 
   if window.addEventListener isnt undefined
     window.addEventListener "beforeunload", (e) ->
-      return undefined unless changesUnsaved
+      return undefined unless window.changesUnsaved
 
       e.returnValue = loseChangesMessage
       loseChangesMessage
@@ -440,7 +442,7 @@ jQuery ->
     window.autosave_timer ||= setTimeout( autosave, 1000 )
 
   raiseChangesFlag = ->
-    changesUnsaved = true
+    window.changesUnsaved = true
 
   debounceTime = 20000
   $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
@@ -448,7 +450,7 @@ jQuery ->
   $(document).debounce "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
-  $(document).debounce "keyup", "textarea.js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
+  $(document).debounce "change", "textarea.js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "focusout", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
 
   updateUploadListVisiblity = (list, button, max) ->

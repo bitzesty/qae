@@ -99,6 +99,8 @@
 "innovation_desc_short": "11",
 "product_estimates_use": "",
 "started_trading_month": "09",
+"innovation_hold_existing_patent": "yes",
+"innovation_hold_existing_patent_details": "kappa",
 "innovation_was_launched_in_the_market_day": "01",
 "innovation_was_launched_in_the_market_month": "09",
 "innovation_was_launched_in_the_market_year": "2011",
