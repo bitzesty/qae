@@ -138,11 +138,15 @@ en:
     audit_certificates: Verification of Commercial Figures due by
 
   deadline_help_messages:
-    buckingham_palace_attendees_details: Award winners announcment date
-    buckingham_palace_confirm_press_book_notes: Winners' press book entry confirmation date
-    buckingham_palace_reception_attendee_information_due_by: Winners' Buckingham Palace reception details confirmation
-    buckingham_palace_attendees_invite: Buckingham Palace Reception date
-    audit_certificates: Verification of Commercial Figures due by
+    registrations_open_on: "This date marks the start of the new award year, and will update the website accordingly. New users will be able to register and current users will be able to log in to edit their account details, but they will not yet be able to start any applications"
+    submission_start: "This date is when the applications for the current award year become available."
+    submission_end: "Applicants will no longer be able to edit or submit their applications after this date. This date will be pulled into the Reminder to submit the applications email."
+    buckingham_palace_attendees_details: "This date marks the end of the the embargo preventing winners publicly announcing their success. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
+    buckingham_palace_media_information: "QAO will provide the press book information to the media on this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
+    buckingham_palace_confirm_press_book_notes: "Winners will not be able to make comments or changes to their press release after this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
+    buckingham_palace_reception_attendee_information_due_by: "Winners will not be able to submit attendees details after this date. This date will be pulled into the Buckingham Palace Invite email - to heads of winning organisations only."
+    buckingham_palace_attendees_invite: "This date will be pulled into the email notifying all winning business applicants of their success, the email to the heads of organisations and the Buckingham Palace Invite email."
+    audit_certificates: "Shortlisted applicants will have up until this date to submit their Verification of Commercial Figures. This date will be pulled into the email notifying shortlisted applicants of their success, and the reminder to submit Verification of Commercial Figures email."
 
   email_notification_headers:
     submission_started_notification: "Notify users that applications for the new Award year are open"
