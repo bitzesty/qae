@@ -1,0 +1,12 @@
+- if !palace_invite.submitted?
+  .pull-right
+    = simple_form_for([:submit, namespace_name, palace_invite],
+      remote: true,
+      authenticity_token: true,
+      method: :post) do |f|
+
+      = f.submit "Submit", class: "btn btn-primary"
+      .clear
+- else
+  .feedback-holder.alert.alert-success
+    ' Palace attendees submitted

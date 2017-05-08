@@ -143,6 +143,12 @@ Rails.application.routes.draw do
   namespace :assessor do
     root to: "form_answers#index"
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
+    resources :palace_invites, only: [] do
+      member do
+        post :submit
+      end
+    end
+
     resources :review_audit_certificates, only: [:create]
 
     resources :form_answers do
@@ -202,6 +208,11 @@ Rails.application.routes.draw do
     resources :reports, only: [:show]
     resources :review_audit_certificates, only: [:create]
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
+    resources :palace_invites, only: [] do
+      member do
+        post :submit
+      end
+    end
 
     resources :form_answers do
       collection do
