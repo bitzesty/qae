@@ -27,28 +27,28 @@ describe FormAnswerDecorator do
   describe "#last_state_updated_by" do
     it "Returns the person and time of who made the last transition" do
 
-      Timecop.freeze(DateTime.new(2015, 2, 6, 8, 30)) do
+      Timecop.freeze(DateTime.new(Date.current.year, 2, 6, 8, 30)) do
         form_answer = create(:form_answer).decorate
         form_answer.state_machine.submit(form_answer.user)
-        expect(form_answer.last_state_updated_by).to eq("Updated by John Doe -  6 Feb 2015 at 8:30am")
+        expect(form_answer.last_state_updated_by).to eq("Updated by John Doe -  6 Feb #{Date.current.year} at 8:30am")
       end
     end
   end
 
   describe "#feedback_updated_by" do
     it "Returns the person and time of who made the feedback" do
-      Timecop.freeze(DateTime.new(2015, 2, 6, 8, 30)) do
+      Timecop.freeze(DateTime.new(Date.current.year, 2, 6, 8, 30)) do
         form_answer = create(:feedback, authorable: user).form_answer.decorate
-        expect(form_answer.feedback_updated_by).to eq("Updated by: John Doe -  6 Feb 2015 at 8:30am")
+        expect(form_answer.feedback_updated_by).to eq("Updated by: John Doe -  6 Feb #{Date.current.year} at 8:30am")
       end
     end
   end
 
   describe "#press_summary" do
     it "Returns the person and time of who made the last transition" do
-      Timecop.freeze(DateTime.new(2015, 2, 6, 8, 30)) do
+      Timecop.freeze(DateTime.new(Date.current.year, 2, 6, 8, 30)) do
         form_answer = create(:press_summary, authorable: user).form_answer.decorate
-        expect(form_answer.press_summary_updated_by).to eq("Updated by John Doe -  6 Feb 2015 at 8:30am")
+        expect(form_answer.press_summary_updated_by).to eq("Updated by John Doe -  6 Feb #{Date.current.year} at 8:30am")
       end
     end
   end
