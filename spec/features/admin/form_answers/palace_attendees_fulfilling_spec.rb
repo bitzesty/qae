@@ -23,7 +23,7 @@ describe "Admin fulfills the Palace Attendees" do
             field_values << val
             input.set(val)
           end
-          find("input[type='submit']").click
+          click_button "Save"
         end
       end
     end
@@ -43,7 +43,7 @@ describe "Admin fulfills the Palace Attendees" do
             input.set(val)
           end
         end
-        find("input[type='submit']").click
+        click_button "Save"
         wait_for_ajax
       end
       visit admin_form_answer_path(form_answer)
