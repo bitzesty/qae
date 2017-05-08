@@ -20,6 +20,11 @@ class PalaceInvite < ActiveRecord::Base
     self
   end
 
+  def submit!
+    self.submitted = true
+    save
+  end
+
   def attendees_limit
     if form_answer.promotion?
       1 # nominator
