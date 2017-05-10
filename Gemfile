@@ -25,7 +25,7 @@ gem 'jquery-ui-rails'
 gem 'bootstrap-sass', '>= 3.3.3'
 gem 'govuk_frontend_toolkit', '~> 3.1.0'
 gem 'govuk_template', '0.12.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 2.7.2'
 
 # Autolinking in admin mass user mailer
 gem 'rails_autolink'
@@ -122,7 +122,7 @@ gem 'bootscale', require: false
 group :development do
   gem 'letter_opener'
   gem 'quiet_assets'
-  gem 'rack-mini-profiler', require: false
+  gem 'rack-mini-profiler', '>= 0.10.1', require: false
   gem 'binding_of_caller'
   gem 'rubocop', require: false
   # When need to copy model with nested associations
