@@ -88,7 +88,14 @@ class AwardYears::V2018::QAEForms
               </p>
             )
           end
-          date_max AwardYear.start_trading_since(3)
+
+          dynamic_date_max(
+            dates: {
+              "3 to 5" => AwardYear.start_trading_since(3),
+              "6 plus" => AwardYear.start_trading_since(6)
+            },
+            conditional: :trade_commercial_success
+          )
         end
 
         options :queen_award_holder, -> { "Are you a current Queen's Award holder from #{AwardYear.award_holder_range}?" } do

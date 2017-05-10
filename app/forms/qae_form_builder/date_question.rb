@@ -30,6 +30,25 @@ class QAEFormBuilder
         end
       end
 
+      result = process_dynamic_dates(date, result)
+
+      result
+    end
+
+    def process_dynamic_dates(date, result)
+      return result if !question.delegate_obj.dynamic_date_max || !date
+
+      settings = question.delegate_obj.dynamic_date_max
+
+      if (key = answers[settings[:conditional].to_s]).present?
+        date_max = Date.parse(settings[:dates][key]) rescue nil
+
+        if date_max && date > date_max
+          result[question.hash_key] ||= ""
+          result[question.hash_key] << " Date should be less than #{date_max.strftime('%d/%m/%Y')}."
+        end
+      end
+
       result
     end
   end
@@ -48,6 +67,7 @@ class QAEFormBuilder
     def fieldset_classes
       result = super
       result << 'question-date-max' if delegate_obj.date_max
+      result << 'question-dynamic-date-max' if delegate_obj.dynamic_date_max
       result << 'question-date-min' if delegate_obj.date_min
       result << 'question-date-between' if delegate_obj.date_between
       result
@@ -58,9 +78,13 @@ class QAEFormBuilder
       result['date-max'] = delegate_obj.date_max if delegate_obj.date_max
       result['date-min'] = delegate_obj.date_min if delegate_obj.date_min
       result['date-between'] = delegate_obj.date_between.join(',') if delegate_obj.date_between
+
+      if delegate_obj.dynamic_date_max
+        result['dynamic-date-max'] = delegate_obj.dynamic_date_max.to_json
+      end
+
       result
     end
-
   end
 
   class DateQuestionBuilder < QuestionBuilder
@@ -68,21 +92,25 @@ class QAEFormBuilder
       @q.date = true
     end
 
-    def date_max date
+    def date_max(date)
       @q.date_max = date
     end
 
-    def date_min (date)
+    def dynamic_date_max(hash)
+      @q.dynamic_date_max = hash
+    end
+
+    def date_min(date)
       @q.date_min = date
     end
 
-    def date_between (date1, date2)
+    def date_between(date1, date2)
       @q.date_between = [date1, date2]
     end
   end
 
   class DateQuestion < Question
-    attr_accessor :date_max, :date_min, :date_between, :date
+    attr_accessor :date_max, :date_min, :date_between, :date, :dynamic_date_max
 
     def initialize step, key, title, opts={}
       super
@@ -90,9 +118,8 @@ class QAEFormBuilder
       @date = false
       @date_min = false
       @date_max = false
+      @dynamic_date_max = false
       @date_between = false
     end
-
   end
-
 end

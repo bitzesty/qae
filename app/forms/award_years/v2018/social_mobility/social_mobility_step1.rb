@@ -90,7 +90,7 @@ class AwardYears::V2018::QAEForms
               </p>
             )
           end
-          date_max AwardYear.start_trading_since(2)
+          date_max AwardYear.start_trading_since(3)
         end
 
         options :queen_award_holder, -> { "Are you a current Queen's Award holder from #{AwardYear.award_holder_range}?" } do

@@ -137,6 +137,40 @@ window.FormValidation =
       @log_this(question, "validateMaxDate", "Date cannot be after #{expDate}")
       @addErrorMessage(question, "Date cannot be after #{expDate}")
 
+  validateDynamicMaxDate: (question) ->
+    val = question.find("input[type='text']").val()
+
+    questionYear = parseInt(question.find(".js-date-input-year").val())
+    questionMonth = parseInt(question.find(".js-date-input-month").val())
+    questionDay = parseInt(question.find(".js-date-input-day").val())
+    questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
+
+    if not val
+      return
+
+    if !$(".js-entry-period input:checked").length
+      return
+
+    entryPeriodVal = $(".js-entry-period input:checked").val()
+
+    if !entryPeriodVal
+      return
+
+    settings = question.data("dynamic-date-max")
+
+    expDate = settings.dates[entryPeriodVal]
+
+    diff = @compareDateInDays(questionDate, expDate)
+
+    if not @toDate(questionDate).isValid()
+      @log_this(question, "validateMaxDate", "Not a valid date")
+      @addErrorMessage(question, "Not a valid date")
+      return
+
+    if diff > 0
+      @log_this(question, "validateMaxDate", "Date cannot be after #{expDate}")
+      @addErrorMessage(question, "Date cannot be after #{expDate}")
+
   validateMinDate: (question) ->
     val = question.find("input[type='text']").val()
 
@@ -437,6 +471,9 @@ window.FormValidation =
       # console.log "validateMaxDate"
       @validateMaxDate(question)
 
+    if question.hasClass("question-dynamic-date-max")
+      @validateDynamicMaxDate(question)
+
     if question.hasClass("question-date-min")
       # console.log "validateMinDate"
       @validateMinDate(question)
@@ -501,4 +538,3 @@ window.FormValidation =
       question = $(_q)
 
       @validate_individual_question(question)
-
