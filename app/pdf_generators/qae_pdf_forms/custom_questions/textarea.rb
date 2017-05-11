@@ -4,7 +4,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
   MAIN_CONTENT_BLOCKS = ["p"] + LIST_TAGS
 
-  SUPPORTED_TAGS = MAIN_CONTENT_BLOCKS + ["li", "a", "em", "strong", "text"]
+  SUPPORTED_TAGS = MAIN_CONTENT_BLOCKS + ["li", "a", "em", "strong", "text", "br"]
 
   def render_wysywyg_content
     if display_wysywyg_q?
