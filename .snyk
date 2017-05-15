@@ -7,7 +7,7 @@ ignore:
         reason: None given
         expires: '2017-06-09T12:30:08.169Z'
   SNYK-RUBY-NOKOGIRI-20299:
-    - '* > nokogiri@1.6.8':
-        reason: None given
+    - '*':
+        reason: an application using Nokogiri needs to be opt into the DTDLOAD option and opt out of the NONET option in order to be vulnerable
         expires: '2017-06-09T12:30:08.169Z'
 patch: {}
