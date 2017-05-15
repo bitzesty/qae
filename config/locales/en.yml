@@ -159,7 +159,7 @@ en:
     winners_notification: "WINNERS : Email notifying all winning business applicants of their success & requesting their confirmation of their Press Book entry."
     winners_reminder_to_submit:" WINNERS : Reminder to submit *palace reception attendee details* (for winning applicants who haven't submitted yet)."
     winners_head_of_organisation_notification: "WINNERS : Success email to the 'Head of Organisation' of the Business categories Winner."
-    buckingham_palace_invite: "WINNERS : Buckingham Palace Invite - to heads of winning organisations only"
+    buckingham_palace_invite: "WINNERS : Buckingham Palace Invite - to heads of winning organisations only."
     unsuccessful_notification: "UNSUCCESSFUL: Email notification to unsuccessful Business categories Registered Account holder."
     unsuccessful_ep_notification: "UNSUCCESSFUL: Email notification of unsuccessful QAEP nominations."
     shortlisted_notifier: "SHORTLISTED : Email notifying shortlisted applicants of their success, including Verification of Commercial Figures instructions."
