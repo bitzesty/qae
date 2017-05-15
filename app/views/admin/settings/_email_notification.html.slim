@@ -4,8 +4,15 @@
 .panel-section id="email_notification_#{kind}"
   p
     = I18n.t("email_notification_headers.#{kind}")
+
+    span.email-notification-help
+      - if (help_message = t("email_notification_help_messages.#{kind}", default: "")).present?
+        span.glyphicon-info-sign.help-message
+          span.help-message-text
+            = help_message
+
   p
-    = link_to "View email example", "#", class: "link-email-example if-no-js-hide"
+  = link_to "View email example", "#", class: "link-email-example if-no-js-hide"
   .email-example.well
     = MailRenderer.new.public_send(kind)
 

@@ -42,7 +42,11 @@
     margin-right: 10px;
   }
 
-  .deadline-help {
+  .email-notification-help {
+    margin-left: 10px;
+  }
+
+  .deadline-help, .email-notification-help {
     font-style: italic;
     display: inline-block;
     position: relative;
