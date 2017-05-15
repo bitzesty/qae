@@ -148,10 +148,10 @@ en:
     buckingham_palace_attendees_invite: "This date will be pulled into the email notifying all winning business applicants of their success, the email to the heads of organisations and the Buckingham Palace Invite email."
     audit_certificates: "Shortlisted applicants will have up until this date to submit their Verification of Commercial Figures. This date will be pulled into the email notifying shortlisted applicants of their success, and the reminder to submit Verification of Commercial Figures email."
   email_notification_help_messages:
-    shortlisted_notifier: "Shortlisted stage start (date when we start displaying shortlisted/unsuccessful applications on the dashboard)"
-    winners_notification: "Winners stage start (date we start displaying winners on the dashboard)"
-    unsuccessful_notification: "Unsuccessful stage start (date we start displaying Unsuccessful apps on the dashboard)"
-    buckingham_palace_invite: "Palace invites stage start (allows users to add their Palace invite info)"
+    shortlisted_notifier: "Shortlisted stage start (shortlisted/unsuccessful applications are displayed on the homepage)"
+    winners_notification: "Winners stage start (winning applications are displayed on the homepage and allows users to update their Press Book entry)"
+    unsuccessful_notification: "Unsuccessful stage start (Unsuccessful applications are displayed on the homepage)"
+    buckingham_palace_invite: "Palace invites stage start (allows users to add their Palace invite details on the homepage)"
   email_notification_headers:
     submission_started_notification: "Notify users that applications for the new Award year are open"
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
