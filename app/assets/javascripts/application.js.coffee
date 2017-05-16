@@ -34,7 +34,7 @@ jQuery ->
   validate = ->
     window.FormValidation.validate()
 
-  window.FormValidation.hook_individual_validations()
+  window.FormValidation.hookIndividualValidations()
 
   $(document).on "submit", ".qae-form", (e) ->
     $("body").addClass("tried-submitting")
@@ -302,7 +302,7 @@ jQuery ->
       $(this).closest(".js-step-link").attr("data-step")
 
     if $(this).attr('type') == 'submit'
-      window.FormValidation.validate_step()
+      window.FormValidation.validateStep()
 
     #
     # Make a switch to next section if this is not same tab only
@@ -848,8 +848,10 @@ jQuery ->
       $(this).text(new_text)
   if $(".js-entry-period input:checked").size() > 0
     replaceEntryPeriodText()
+
   $(".js-entry-period input").change () ->
     replaceEntryPeriodText()
+    FormValidation.validateStep("step-company-information")
 
   # Auto tab on date input entry
   #$(".date-input input").on 'keyup', (e) ->
