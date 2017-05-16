@@ -12,7 +12,8 @@
             = help_message
 
   p
-  = link_to "View email example", "#", class: "link-email-example if-no-js-hide"
+    = link_to "View email example", "#", class: "link-email-example if-no-js-hide"
+
   .email-example.well
     = MailRenderer.new.public_send(kind)
 
