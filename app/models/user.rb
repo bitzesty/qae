@@ -141,7 +141,7 @@ class User < ActiveRecord::Base
   end
 
   def timeout_in
-    30.minutes
+    24.hours
   end
 
   private
