@@ -405,6 +405,10 @@ jQuery ->
           changesUnsaved = false
           if callback isnt undefined
             callback()
+        error: (e) ->
+          # tricking onbeforereload
+          window.changesUnsaved = false
+          window.location.reload()
       })
 
   autosave = (callback) ->
