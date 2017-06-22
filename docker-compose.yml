@@ -1,24 +1,28 @@
-web: &web
-  build: .
-  command: bundle exec puma -C config/puma.rb
-  environment:
-    - RACK_ENV=production
-    - RAILS_ENV=production
-    - ASSET_HOST=temp
-    - MAILER_HOST=temp
-  labels:
-    - convox.port.443.protocol=https
-    - convox.deployment.minimum=50
-    #
-    # Had to comment in these lines as they are break dev server
-    #
-    # - convox.health.path=/healthcheck
-    # - convox.health.port=3000
-    # - convox.health.timeout=3
-  ports:
-    - 80:3000
-    - 443:3000
-worker:
-  <<: *web
-  ports: []
-  command: bundle exec sidekiq -C config/sidekiq.yml
+version: "2"
+services:
+  web:
+    build:
+      context: .
+    command: bundle exec puma -C config/puma.rb
+    environment:
+      - PORT=3000
+      - SECRET_KEY_BASE=PLACEHOLDERSECRETBASEKEY
+      - RAILS_SERVE_STATIC_FILES=enabled
+      - LANG=en_US.UTF-8
+      - RAILS_ENV=production
+      - RACK_ENV=production
+    labels:
+      - convox.port.443.protocol=https
+      - convox.deployment.minimum=50
+    ports:
+      - 80:3000/tcp
+      - 443:3000/tcp
+  worker:
+    build:
+      context: .
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    environment:
+      - SECRET_KEY_BASE=PLACEHOLDERSECRETBASEKEY
+      - LANG=en_US.UTF-8
+      - RAILS_ENV=production
+      - RACK_ENV=production
