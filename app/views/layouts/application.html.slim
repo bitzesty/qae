@@ -4,28 +4,31 @@
   = stylesheet_link_tag "application.css"
   /[if IE 6]
     = stylesheet_link_tag "application-ie6.css"
-    script
-      var ieVersion = 6;
+    script type="text/javascript"
+      | var ieVersion = 6;
   /[if IE 7]
     = stylesheet_link_tag "application-ie7.css"
-    script
-      var ieVersion = 7;
+    script type="text/javascript"
+      | var ieVersion = 7;
   /[if IE 8]
     = stylesheet_link_tag "application-ie8.css"
-    script
-      var ieVersion = 8;
+    script type="text/javascript"
+      | var ieVersion = 8;
   /[if IE 9]
     = stylesheet_link_tag "application-ie9.css"
-    script
-      var ieVersion = 9;
+    script type="text/javascript"
+      | var ieVersion = 9;
 
   - if ENV["GOOGLE_ANALYTICS_ID"].present?
     / Google Analytics
-    script
+    script type="text/javascript"
       | (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
       | ga('create', '#{ENV["GOOGLE_ANALYTICS_ID"]}', 'auto');
       | ga('set', 'anonymizeIp', true);
       | ga('send', 'pageview');
+
+      - if current_user
+        | ga('set', 'userId', '#{current_user.id}');
 
   = csrf_meta_tags
 
