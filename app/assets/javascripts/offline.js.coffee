@@ -3,8 +3,12 @@ class Offline
     @offlineUi = $(".offline-ui")
 
   start: =>
-    window.addEventListener('offline', @updateOnlineStatus)
-    window.addEventListener('online', @updateOnlineStatus)
+    if window.addEventListener
+      window.addEventListener('offline', @updateOnlineStatus)
+      window.addEventListener('online', @updateOnlineStatus)
+    else
+      window.attachEvent('onoffline', @updateOnlineStatus)
+      window.attachEvent('ononline', @updateOnlineStatus)
 
   updateOnlineStatus: =>
     if navigator.onLine
