@@ -4,20 +4,20 @@
   = stylesheet_link_tag "application.css"
   /[if IE 6]
     = stylesheet_link_tag "application-ie6.css"
-    script
-      var ieVersion = 6;
+    script type="text/javascript"
+      | var ieVersion = 6;
   /[if IE 7]
     = stylesheet_link_tag "application-ie7.css"
-    script
-      var ieVersion = 7;
+    script type="text/javascript"
+      | var ieVersion = 7;
   /[if IE 8]
     = stylesheet_link_tag "application-ie8.css"
-    script
-      var ieVersion = 8;
+    script type="text/javascript"
+      | var ieVersion = 8;
   /[if IE 9]
     = stylesheet_link_tag "application-ie9.css"
-    script
-      var ieVersion = 9;
+    script type="text/javascript"
+      | var ieVersion = 9;
 
   - if ENV["GOOGLE_ANALYTICS_ID"].present?
     / Google Analytics
