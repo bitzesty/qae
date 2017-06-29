@@ -1,4 +1,4 @@
-class Eligibility::Trade::NotWinnerInLastTwoYearsValidator < ActiveModel::EachValidator
+class Eligibility::Trade::NotALastYearWinnerValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     record.errors.add(
       attribute,
@@ -6,9 +6,8 @@ class Eligibility::Trade::NotWinnerInLastTwoYearsValidator < ActiveModel::EachVa
     ) unless self.class.valid_year?(value)
   end
 
-  ##
-  # must not be winner of last 2 years
+  # must not be winner last year
   def self.valid_year?(value)
-    value.to_i < (Date.today.year - 1)
+    value.to_i < Date.today.year
   end
 end
