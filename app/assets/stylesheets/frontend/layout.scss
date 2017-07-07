@@ -121,10 +121,10 @@
   h2,
   h3,
   .steps-progress-bar {
-    margin-left: 32px;
+    margin-left: 48px;
 
     @media (max-width: 1131px) {
-      margin-left: 0;
+      margin-left: 16px;
     }
   }
 }
@@ -135,7 +135,7 @@ header.page-header div {
   padding-bottom: 1em;
 
   h1 {
-    @include heading-36;
+    @include heading-48;
     font-weight: bold;
   }
 }
