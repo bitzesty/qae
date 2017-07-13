@@ -15,6 +15,7 @@
 #= require browser-check
 #= require vendor/zxcvbn
 #= require vendor/jquery-debounce
+#= require js.cookie
 #= require_tree ./frontend
 #= require offline
 
