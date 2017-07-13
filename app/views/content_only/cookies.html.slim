@@ -85,9 +85,36 @@ header.page-header.page-header-large.group
             td These help us identify how you use GOV.UK so we can make the site better
             td 4 months
 
+      h3 User ID
       p
-        ' You can
-        = link_to "opt out of Google Analytics cookies.", "https://tools.google.com/dlpage/gaoptout", rel: "external"
+        ' When you first register on the QAE site a unique user ID (an alphanumeric string) will be assigned to you. We use this user ID to identify you when you sign in to your account.
+      p
+        ' If you are signed in, we may use your user ID in combination with Google Analytics to track and analyse the pages of the site that you visit. We do this only to better understand how you use the site, with a view to offering improvements for all users of the service.
+      p
+        .hidden-hint
+          span.hidden-link
+            | I want to opt out of Google Analytics cookies
+          span.hidden-content
+            p.hint
+              | If you opt out, weʼll set a QAE cookie to remember your decision.
+            table
+              thead
+                tr
+                  th Name
+                  th Purpose
+                  th Expires
+              tbody
+                tr
+                  td gaoptout
+                  td This allows us to make sure Google Analytics cookies are turned off when you visit our service in future.
+                  td 10 years
+
+            label.hint
+              => check_box_tag "ga-optout-input", "1"
+              | Opt out and delete Google Analytics cookies from my browser
+            br
+
+            = button_tag "Save", class: "button", id: "ga-optout"
 
       h3 Our introductory message
 
@@ -187,7 +214,7 @@ header.page-header.page-header-large.group
             td Saves a message to remember if you've taken the survey or dismissed it
             td 4 months
 
-      p 
+      p
         ' We use
         = link_to "SurveyMonkey", "http://www.surveymonkey.com/", rel: "external"
         '  to collect responses to the survey. If you take part, SurveyMonkey will save extra cookies to your computer to track your progress through it.
