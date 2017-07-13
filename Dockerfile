@@ -19,4 +19,4 @@ ENV DATABASE_URL postgresql://localhost/dummy_url
 ENV AWS_ACCESS_KEY_ID dummy
 ENV AWS_SECRET_ACCESS_KEY dummy
 
-RUN rake assets:precompile --trace
+RUN bundle exec rake assets:precompile --trace
