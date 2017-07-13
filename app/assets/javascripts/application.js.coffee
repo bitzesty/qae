@@ -703,22 +703,22 @@ jQuery ->
 
       last_year_int = parseInt(last_year)
       value_int = parseInt($(this).val())
-      not_eligible_years = [last_year_int, last_year_int - 1]
+      not_eligible_years = [last_year_int]
       not_eligible_block = lyInfo.find(".application-notice")
 
       if ($.inArray(value_int, not_eligible_years) >= 0)
-        not_eligible_block.html(trade_eligibility_not_eligible_message(value_int + 2))
+        not_eligible_block.html(trade_eligibility_not_eligible_message(value_int + 1))
 
         lyInfo.removeClass("visuallyhidden")
         taInfo.addClass("visuallyhidden")
-      else if $(this).val().length > 1 && value_int > (last_year - 4) && value_int < (last_year_int - 1)
+      else if $(this).val().length > 1 && value_int > (last_year - 4) && value_int < last_year_int
         taInfo.removeClass("visuallyhidden")
         lyInfo.addClass("visuallyhidden")
       else
         taInfo.addClass("visuallyhidden")
         lyInfo.addClass("visuallyhidden")
 
-      if $(this).val().length > 0 && value_int < (last_year_int - 1)
+      if $(this).val().length > 0 && value_int < last_year_int
         $(".eligibility_qae_for_trade_award_year").removeClass("field-with-errors")
                                                   .find("span.error").remove();
 

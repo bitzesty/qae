@@ -18,7 +18,9 @@ window.TextareaWysywygSupport =
 
           editor.on 'configLoaded', ->
             editor.config.wordcount =
-              maxWordCount: element.data('word-max')
+              maxWordCount: element.data('word-max'),
+              showParagraphs: false,
+              showWordCount: true
 
         CKEDITOR.on 'instanceReady', (event) ->
           target_id = event.editor.name
