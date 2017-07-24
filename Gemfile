@@ -27,6 +27,7 @@ gem 'govuk_frontend_toolkit', '~> 3.1.0'
 gem 'govuk_template', '0.12.0'
 gem 'uglifier', '>= 2.7.2'
 gem 'js_cookie_rails', '~> 2.1'
+gem 'ckeditor'
 
 # Autolinking in admin mass user mailer
 gem 'rails_autolink'

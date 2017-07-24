@@ -1,5 +1,4 @@
 CKEDITOR.editorConfig = function (config) {
-  config.language = 'en';
   config.toolbar_mini = [
     {name: "clipboard", items: ["Cut", "Copy", "PasteText", "-", "Undo", "Redo"]},
     {name: "basicstyles", items: ["Bold", "Italic",  "-", "RemoveFormat"]},
