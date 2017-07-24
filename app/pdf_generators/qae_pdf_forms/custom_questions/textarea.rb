@@ -60,7 +60,10 @@ module QaePdfForms::CustomQuestions::Textarea
 
     if tag_abbr == "<p>"
       lines_style = styles_picker(wysywyg_get_style_values(line).split(", "))
-      print_pdf(wysywyg_get_values_content(line).join(""), lines_style)
+      content = wysywyg_get_values_content(line).join("")
+      content = content.gsub("<br>", "").gsub("</br>", "")
+
+      print_pdf(content, lines_style)
 
     elsif wysywyg_list_leading_tag?(tag_abbr)
       wysywyg_print_lists(tag_abbr, line)
