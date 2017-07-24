@@ -8,6 +8,9 @@ window.TextareaWysywygSupport =
 
       $('.js-ckeditor').each (index) ->
 
+        spacer = $("<div class='js-ckeditor-spacer'></div>")
+        spacer.insertBefore($(this).parent().find(".hint"))
+
         CKEDITOR.replace this,
           toolbar: 'mini'
           height: 200
