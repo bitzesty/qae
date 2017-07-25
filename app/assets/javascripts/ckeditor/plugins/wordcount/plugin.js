@@ -56,7 +56,7 @@ CKEDITOR.plugins.add("wordcount", {
 
         // Default Config
         var defaultConfig = {
-            showParagraphs: true,
+            showParagraphs: false,
             showWordCount: true,
             showCharCount: false,
             countSpacesAsChars: false,
