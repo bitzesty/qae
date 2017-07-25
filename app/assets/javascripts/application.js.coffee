@@ -937,6 +937,9 @@ jQuery ->
 
     $('.js-ckeditor').each (index) ->
 
+      spacer = $("<div class='js-ckeditor-spacer'></div>")
+      spacer.insertAfter($(this).parent().find(".hint"))
+
       CKEDITOR.replace this,
         toolbar: 'mini'
         height: 200
@@ -950,7 +953,6 @@ jQuery ->
             maxWordCount: element.data('word-max')
 
       CKEDITOR.on 'instanceReady', (event) ->
-        console.log('instanceReady')
         target_id = event.editor.name
 
         spinner = $("#" + target_id).closest(".question-group").find(".js-ckeditor-spinner-block")

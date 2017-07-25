@@ -651,6 +651,21 @@ header.page-header aside .inner {
       border: none;
     }
   }
+
+  .highlighted-event {
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-top: 2em;
+
+    p {
+      line-height: 1.2;
+      @include core-19;
+
+      em {
+        font-size: 1.45em;
+      }
+    }
+  }
 }
 
 .steps-progress-content {

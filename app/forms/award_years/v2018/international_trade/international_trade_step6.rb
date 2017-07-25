@@ -8,7 +8,7 @@ class AwardYears::V2018::QAEForms
 
         text :head_of_bussines_title, "Title" do
           required
-          classes "regular-question"
+          classes "sub-question"
           style "tiny"
         end
 
