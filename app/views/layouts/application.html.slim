@@ -133,7 +133,7 @@
       = link_to "The Queen's Awards Office", "http://blogs.bis.gov.uk/queensawards/"
 
 - content_for :body_end do
-  /[if gt IE 8 | !IE ]
+  - if should_enable_js?
     = include_gon
     = javascript_include_tag 'application'
 
@@ -152,5 +152,6 @@
 
 = render :file => 'layouts/govuk_template'
 
-/[if gt IE 8 | !IE ]
+- if should_enable_js?
   = javascript_tag "$(function() { #{yield(:javascript_code)} });" if content_for? :javascript_code
+

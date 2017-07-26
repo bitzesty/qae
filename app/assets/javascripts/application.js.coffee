@@ -936,6 +936,7 @@ jQuery ->
   if $('.js-ckeditor').length > 0
 
     $('.js-ckeditor').each (index) ->
+      group = $(this).closest(".question-group")
 
       CKEDITOR.replace this,
         toolbar: 'mini'
@@ -950,10 +951,9 @@ jQuery ->
             maxWordCount: element.data('word-max')
 
       CKEDITOR.on 'instanceReady', (event) ->
-        console.log('instanceReady')
         target_id = event.editor.name
 
-        spinner = $("#" + target_id).closest(".question-group").find(".js-ckeditor-spinner-block")
+        spinner = group.find(".js-ckeditor-spinner-block")
         spinner.addClass('hidden')
 
     for i of CKEDITOR.instances

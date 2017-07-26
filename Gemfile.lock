@@ -80,6 +80,7 @@ GEM
     bootstrap-sass (3.3.3)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.2.19)
+    browser (2.4.0)
     builder (3.2.3)
     byebug (9.0.4)
     capybara (2.7.1)
@@ -551,6 +552,7 @@ DEPENDENCIES
   binding_of_caller
   bootscale
   bootstrap-sass (>= 3.3.3)
+  browser
   capybara
   capybara-webkit
   carrierwave
