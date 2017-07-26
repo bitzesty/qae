@@ -58,8 +58,6 @@ class MailRenderer
 
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
-    assigns[:days_before_submission] = "N"
-    assigns[:deadline] = deadline_str("submission_end", "%H.%M hrs on %d %B %Y")
 
     render(assigns, "account_mailers/reminder_to_submit_mailer/notify")
   end

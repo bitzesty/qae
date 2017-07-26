@@ -47,9 +47,7 @@ describe MailRenderer do
     it "renders e-mail" do
       link = "http://www.queens-awards-enterprise.service.gov.uk/form/0"
       rendered = described_class.new.reminder_to_submit
-      expect(rendered).to match("Jon Doe")
       expect(rendered).to match(link)
-      expect(rendered).to match(deadline_str("%H.%M hrs on %d %B %Y"))
     end
   end
 

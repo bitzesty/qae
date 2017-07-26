@@ -1,22 +1,17 @@
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  = "Dear #{@user.full_name},"
+  | Dear Queen’s Award applicant,
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Don't forget you only have
-  => t(:days, count: @days_before_submission)
-  ' to submit your application for a Queen’s Award for Enterprise before the deadline at
-  = @deadline
-  '
+  ' This is a reminder that there is only 1 month left to submit your application for a Queen’s Award for Enterprise before the deadline at noon on Friday 1 September 2017.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Being awarded a Queen’s Award for Enterprise can enhance your worldwide profile and create new business opportunities. It can also help you attract and keep the best staff, gain an edge over your competitors and ultimately have a huge impact where it counts – your bottom line.
-
-
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Over the last 50 years, hundreds have seen their businesses grow with this royal seal of approval – companies such as Dyson, Brompton Bicycle and Boots.
+  ' Make sure your business gets the recognition it deserves. Winning a Queen’s Award can increase staff morale, bring worldwide recognition, provide excellent marketing opportunities and boost turnover.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  = link_to "Continue and submit your application on The Queen’s Awards for Enterprise website",
+  = image_tag "QAE_reminder_mailer_1.jpeg", alt: "GOV.UK", border: "0"
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  = link_to "Visit the Queen’s Awards for Enterprise website to continue and submit your application",
             edit_form_url(id: @form_answer.id)
 
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
