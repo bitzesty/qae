@@ -75,5 +75,5 @@ html.no-js
     #site-footer
       .footer-container
 
-    /[if gt IE 8 | !IE ]
+    - if should_enable_js?
       = javascript_include_tag 'twofactor'
