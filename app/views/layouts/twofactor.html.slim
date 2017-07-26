@@ -75,4 +75,5 @@ html.no-js
     #site-footer
       .footer-container
 
-    = javascript_include_tag 'twofactor'
+    /[if gt IE 8 | !IE ]
+      = javascript_include_tag 'twofactor'
