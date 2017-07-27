@@ -25,3 +25,10 @@
       span.helpline-space
       ' Alternatively, email us at
       = link_to "queensawards@beis.gov.uk", "mailto:queensawards@beis.gov.uk"
+
+    - if submission_deadline && submission_deadline.trigger_at
+      li
+        .highlighted-event
+          p
+            ' Submission deadline
+            em = submission_deadline.decorate.formatted_trigger_time

@@ -1,11 +1,16 @@
 $black-true: #000;
 
 .question-block h2,
-.regular-question h2,
-.sub-question h2 {
+.regular-question h2 {
   @include core-24;
   margin: 0;
   font-weight: 700;
+}
+
+.sub-question h2 {
+  margin: 0;
+  font-weight: 400;
+  @include core-19;
 }
 
 .regions-half {
@@ -533,8 +538,9 @@ input[type="file"] {
 
   &.large {
     @include core-24($line-height: (16 / 24));
-    padding: 0.45em 0.5em 0.45em 0.5em;
+    padding: 0.45em 0.5em 0.35em 0.5em;
     display: inline-block;
+    line-height: 1;
 
     /* IE6 adds its own side padding so requires no extra */
     @include ie(6) {
@@ -1012,13 +1018,19 @@ input[type="file"] {
       height: auto;
       margin: 0.2em 0 0.5em 0;
     }
+
+    button {
+      position: relative;
+      top: -3px;
+    }
   }
 
   .button {
     @include button;
     @include core-24($line-height: (16 / 24));
-    padding: 0.45em 0.5em 0.45em 0.5em;
+    padding: 0.45em 0.5em 0.35em 0.5em;
     display: inline-block;
+    line-height: 1;
 
     /* IE6 adds its own side padding so requires no extra */
     @include ie(6) {
@@ -1177,7 +1189,7 @@ input[type="file"] {
 // Numbered steps for form sections
 // Taken from https://github.com/alphagov/calculators/blob/9181624cc9e00a079bea2141a650321f7183b6d0/app/assets/stylesheets/calculators/child_benefit.scss
 .question-block .steps {
-  float: left;
+  display: inline-block;
   width: auto;
   min-width: 13px;
   height: 27px;
@@ -1193,9 +1205,12 @@ input[type="file"] {
   line-height: 30px;
   text-align: center;
 
+  &:after {
+    content: " ";
+    display: block;
+  }
+
   @media (max-width: 640px) {
-    position: relative;
-    top: -0.5em;
     font-size: 15px;
     height: 23px;
     line-height: 26px;
@@ -1207,8 +1222,7 @@ input[type="file"] {
 .question-block,
 .sub-question {
   .steps {
-    position: relative;
-    top: -4px;
+    margin: 10px 0 5px;
 
     @media (max-width: 640px) {
       position: relative;
@@ -1330,5 +1344,5 @@ select.js-trigger-autosave.select2.sic_code-selector {
 }
 
 .js-ckeditor-spacer {
-  height: 10px;
+  height: 7px;
 }
