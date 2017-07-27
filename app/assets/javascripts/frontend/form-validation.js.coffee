@@ -27,9 +27,9 @@ window.FormValidation =
       $(".steps-progress-bar .js-step-link[data-step=#{page.attr('data-step')}]").addClass("step-errors")
       $(".js-review-sections").empty()
       $(".steps-progress-bar .step-errors a").each ->
-        step_link = $(this).parent().html()
-        step_link = step_link.replace("step-errors", "").replace("step-current", "")
-        $(".js-review-sections").append("<li>#{step_link}</li>")
+        stepLink = $(this).parent().html()
+        stepLink = stepLink.replace("step-errors", "").replace("step-current", "")
+        $(".js-review-sections").append("<li>#{stepLink}</li>")
 
       # uncheck confirmation of entry
       $(".question-block[data-answer='entry_confirmation-confirmation-of-entry'] input[type='checkbox']").prop("checked", false)
@@ -50,9 +50,9 @@ window.FormValidation =
   toDate: (str) ->
     moment(str, "DD/MM/YYYY")
 
-  compareDateInDays: (_d1, _d2) ->
-    date = @toDate(_d1)
-    expected = @toDate(_d2)
+  compareDateInDays: (date1, date2) ->
+    date = @toDate(date1)
+    expected = @toDate(date2)
 
     date.diff(expected, "days")
 
@@ -99,19 +99,19 @@ window.FormValidation =
     if subquestions.length
       for subquestion in subquestions
         if not @validateSingleQuestion($(subquestion))
-          @log_this(question, "validateRequiredQuestion", "This field is required")
+          @logThis(question, "validateRequiredQuestion", "This field is required")
           @addErrorMessage($(subquestion), "This field is required")
     else
       if not @validateSingleQuestion(question)
-        @log_this(question, "validateRequiredQuestion", "This field is required")
+        @logThis(question, "validateRequiredQuestion", "This field is required")
         @addErrorMessage(question, "This field is required")
 
   validateMatchQuestion: (question) ->
     q = question.find(".match")
-    match_name = q.data("match")
+    matchName = q.data("match")
 
-    if q.val() isnt $("input[name='#{match_name}']").val()
-      @log_this(question, "validateMatchQuestion", "Emails don't match")
+    if q.val() isnt $("input[name='#{matchName}']").val()
+      @logThis(question, "validateMatchQuestion", "Emails don't match")
       @addErrorMessage(question, "Emails don't match")
 
   validateMaxDate: (question) ->
@@ -129,12 +129,46 @@ window.FormValidation =
     diff = @compareDateInDays(questionDate, expDate)
 
     if not @toDate(questionDate).isValid()
-      @log_this(question, "validateMaxDate", "Not a valid date")
+      @logThis(question, "validateMaxDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
 
     if diff > 0
-      @log_this(question, "validateMaxDate", "Date cannot be after #{expDate}")
+      @logThis(question, "validateMaxDate", "Date cannot be after #{expDate}")
+      @addErrorMessage(question, "Date cannot be after #{expDate}")
+
+  validateDynamicMaxDate: (question) ->
+    val = question.find("input[type='text']").val()
+
+    questionYear = parseInt(question.find(".js-date-input-year").val())
+    questionMonth = parseInt(question.find(".js-date-input-month").val())
+    questionDay = parseInt(question.find(".js-date-input-day").val())
+    questionDate = "#{questionDay}/#{questionMonth}/#{questionYear}"
+
+    if not val
+      return
+
+    if !$(".js-entry-period input:checked").length
+      return
+
+    entryPeriodVal = $(".js-entry-period input:checked").val()
+
+    if !entryPeriodVal
+      return
+
+    settings = question.data("dynamic-date-max")
+
+    expDate = settings.dates[entryPeriodVal]
+
+    diff = @compareDateInDays(questionDate, expDate)
+
+    if not @toDate(questionDate).isValid()
+      @logThis(question, "validateMaxDate", "Not a valid date")
+      @addErrorMessage(question, "Not a valid date")
+      return
+
+    if diff > 0
+      @logThis(question, "validateMaxDate", "Date cannot be after #{expDate}")
       @addErrorMessage(question, "Date cannot be after #{expDate}")
 
   validateMinDate: (question) ->
@@ -152,12 +186,12 @@ window.FormValidation =
     diff = @compareDateInDays(questionDate, expDate)
 
     if not @toDate(questionDate).isValid()
-      @log_this(question, "validateMinDate", "Not a valid date")
+      @logThis(question, "validateMinDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
 
     if diff > 0
-      @log_this(question, "validateMinDate", "Date cannot be before #{expDate}")
+      @logThis(question, "validateMinDate", "Date cannot be before #{expDate}")
       @addErrorMessage(question, "Date cannot be before #{expDate}")
 
   validateBetweenDate: (question) ->
@@ -178,12 +212,12 @@ window.FormValidation =
     diffEnd = @compareDateInDays(questionDate, expDateEnd)
 
     if not @toDate(questionDate).isValid()
-      @log_this(question, "validateBetweenDate", "Not a valid date")
+      @logThis(question, "validateBetweenDate", "Not a valid date")
       @addErrorMessage(question, "Not a valid date")
       return
 
     if diffStart < 0 or diffEnd > 0
-      @log_this(question, "validateBetweenDate", "Date should be between #{expDateStart} and #{expDateEnd}")
+      @logThis(question, "validateBetweenDate", "Date should be between #{expDateStart} and #{expDateEnd}")
       @addErrorMessage(question, "Date should be between #{expDateStart} and #{expDateEnd}")
 
   validateNumber: (question) ->
@@ -193,20 +227,20 @@ window.FormValidation =
       return
 
     if not val.val().toString().match(@numberRegex) && val.val().toString().toLowerCase().trim() != "n/a"
-      @log_this(question, "validateNumber", "Not a valid number")
+      @logThis(question, "validateNumber", "Not a valid number")
       @addErrorMessage(question, "Not a valid number")
 
   validateEmployeeMin: (question) ->
     for subquestion in question.find("input")
-      shown_question = true
+      shownQuestion = true
       for conditional in $(subquestion).parents('.js-conditional-question')
         if !$(conditional).hasClass('show-question')
-          shown_question = false
+          shownQuestion = false
 
-      if shown_question
+      if shownQuestion
         subq = $(subquestion)
         if not subq.val() and question.hasClass("question-required")
-          @log_this(question, "validateEmployeeMin", "This field is required")
+          @logThis(question, "validateEmployeeMin", "This field is required")
           @appendMessage(subq.closest(".span-financial"), "This field is required")
           @addErrorClass(question)
           continue
@@ -214,61 +248,61 @@ window.FormValidation =
           continue
 
         if not subq.val().toString().match(@numberRegex)
-          @log_this(question, "validateEmployeeMin", "Not a valid number")
+          @logThis(question, "validateEmployeeMin", "Not a valid number")
           @appendMessage(subq.closest(".span-financial"), "Not a valid number")
           @addErrorClass(question)
         else
-          subq_list = subq.closest(".row").find(".span-financial")
-          subq_index = subq_list.index(subq.closest(".span-financial"))
+          subqList = subq.closest(".row").find(".span-financial")
+          subqIndex = subqList.index(subq.closest(".span-financial"))
 
-          if subq_index == subq_list.size() - 1
-            employee_limit = 2
+          if subqIndex == subqList.size() - 1
+            employeeLimit = 2
           else
-            employee_limit = 1
+            employeeLimit = 1
 
-          if parseInt(subq.val()) < employee_limit
-            @log_this(question, "validateEmployeeMin", "Minimum of #{employee_limit} employees")
-            @appendMessage(subq.closest(".span-financial"), "Minimum of #{employee_limit} employees")
+          if parseInt(subq.val()) < employeeLimit
+            @logThis(question, "validateEmployeeMin", "Minimum of #{employeeLimit} employees")
+            @appendMessage(subq.closest(".span-financial"), "Minimum of #{employeeLimit} employees")
             @addErrorClass(question)
 
   validateCurrentAwards: (question) ->
     for subquestion in question.find(".list-add li")
-      error_text = ""
+      errorText = ""
       $(subquestion).find("select, input, textarea").each ->
         if !$(this).val()
-          field_name = $(this).data("dependable-option-siffix")
-          field_name = field_name[0].toUpperCase() + field_name.slice(1)
-          field_error = "#{field_name} can't be blank. "
-          error_text += field_error
-      if error_text
-        @log_this(question, "validateCurrentAwards", error_text)
-        @appendMessage($(subquestion), error_text)
+          fieldName = $(this).data("dependable-option-siffix")
+          fieldName = fieldName[0].toUpperCase() + fieldName.slice(1)
+          fieldError = "#{fieldName} can't be blank. "
+          errorText += fieldError
+      if errorText
+        @logThis(question, "validateCurrentAwards", errorText)
+        @appendMessage($(subquestion), errorText)
         @addErrorClass(question)
 
   validateMoneyByYears: (question) ->
-    input_cells_counter = 0
+    inputCellsCounter = 0
 
     # Checking if question has min value for first year
-    financial_conditional_block = question.find(".js-financial-conditional").first()
-    first_year_min_value = financial_conditional_block.data("first-year-min-value")
-    if typeof(first_year_min_value) != typeof(undefined)
-      first_year_min_validation = true
+    financialConditionalBlock = question.find(".js-financial-conditional").first()
+    firstYearMinValue = financialConditionalBlock.data("first-year-min-value")
+    if typeof(firstYearMinValue) != typeof(undefined)
+      firstYearMinValidation = true
 
     for subquestion in question.find("input")
       subq = $(subquestion)
-      err_container = subq.closest(".span-financial")
+      errContainer = subq.closest(".span-financial")
 
-      shown_question = true
+      shownQuestion = true
       for conditional in $(subquestion).parents('.js-conditional-question')
         if !$(conditional).hasClass('show-question')
-          shown_question = false
+          shownQuestion = false
 
-      if shown_question
-        input_cells_counter += 1
+      if shownQuestion
+        inputCellsCounter += 1
 
         if not subq.val() and question.hasClass("question-required")
-          @log_this(question, "validateMoneyByYears", "This field is required")
-          @appendMessage(err_container, "This field is required")
+          @logThis(question, "validateMoneyByYears", "This field is required")
+          @appendMessage(errContainer, "This field is required")
           @addErrorClass(question)
           continue
         else if not subq.val()
@@ -277,46 +311,46 @@ window.FormValidation =
         value = subq.val().toString()
 
         if not $.trim(value).match(@numberRegex)
-          @log_this(question, "validateMoneyByYears", "Not a valid currency value")
-          @appendMessage(err_container, "Not a valid currency value")
+          @logThis(question, "validateMoneyByYears", "Not a valid currency value")
+          @appendMessage(errContainer, "Not a valid currency value")
           @addErrorClass(question)
         else
           # if value is valid currency and it's first cell and
           # and question has min value for first year value
           # and value less than min value
-          if input_cells_counter == 1 && first_year_min_validation && (value < first_year_min_value)
-            message = financial_conditional_block.data("first-year-min-validation-message")
-            @log_this(question, "validateMoneyByYears", message)
-            @appendMessage(err_container, message)
+          if inputCellsCounter == 1 && firstYearMinValidation && (value < firstYearMinValue)
+            message = financialConditionalBlock.data("first-year-min-validation-message")
+            @logThis(question, "validateMoneyByYears", message)
+            @appendMessage(errContainer, message)
             @addErrorClass(question)
 
   validateDateByYears: (question) ->
 
-    for subquestion_block in question.find(".js-fy-entry-container.show-question .date-input")
-      subq = $(subquestion_block)
-      q_parent = subq.closest(".js-fy-entries")
-      errors_container = q_parent.find(".errors-container").html()
+    for subquestionBlock in question.find(".js-fy-entry-container.show-question .date-input")
+      subq = $(subquestionBlock)
+      qParent = subq.closest(".js-fy-entries")
+      errorsContainer = qParent.find(".errors-container").html()
 
       day = subq.find("input.js-fy-day").val()
       month = subq.find("input.js-fy-month").val()
       year = subq.find("input.js-fy-year").val()
 
       if (not day or not month or not year)
-        if question.hasClass("question-required") && errors_container.length < 1
-          @appendMessage(q_parent, "This field is required")
+        if question.hasClass("question-required") && errorsContainer.length < 1
+          @appendMessage(qParent, "This field is required")
           @addErrorClass(question)
       else
-        complex_date_string = day + "/" + month + "/" + year
-        date = @toDate(complex_date_string)
+        complexDateString = day + "/" + month + "/" + year
+        date = @toDate(complexDateString)
 
         if not date.isValid()
-          @log_this(question, "validateDateByYears", "Not a valid date")
-          @appendMessage(q_parent, "Not a valid date")
+          @logThis(question, "validateDateByYears", "Not a valid date")
+          @appendMessage(qParent, "Not a valid date")
           @addErrorClass(question)
 
   validateDateStartEnd: (question) ->
     if question.find(".validate-date-start-end").length > 0
-      root_this = @
+      rootThis = @
       question.find(".validate-date-start-end").each () ->
         # Whether we need to validate if date is ongoing
         if $(this).find(".validate-date-end input[disabled]").size() == 0
@@ -328,19 +362,19 @@ window.FormValidation =
           endMonth = parseInt($(this).find(".validate-date-end .js-date-input-month").val())
           endDate = "01/#{endMonth}/#{endYear}"
 
-          diff = root_this.compareDateInDays(startDate, endDate)
+          diff = rootThis.compareDateInDays(startDate, endDate)
 
-          if not root_this.toDate(startDate).isValid()
-            root_this.log_this(question, "validateDateStartEnd", "Not a valid date")
-            root_this.addErrorMessage($(this).find(".validate-date-start").closest("span"), "Not a valid date")
+          if not rootThis.toDate(startDate).isValid()
+            rootThis.logThis(question, "validateDateStartEnd", "Not a valid date")
+            rootThis.addErrorMessage($(this).find(".validate-date-start").closest("span"), "Not a valid date")
 
-          else if not root_this.toDate(endDate).isValid()
-            root_this.log_this(question, "validateDateStartEnd", "Not a valid date")
-            root_this.addErrorMessage($(this).find(".validate-date-end").closest("span"), "Not a valid date")
+          else if not rootThis.toDate(endDate).isValid()
+            rootThis.logThis(question, "validateDateStartEnd", "Not a valid date")
+            rootThis.addErrorMessage($(this).find(".validate-date-end").closest("span"), "Not a valid date")
 
           else if diff > 0
-            root_this.log_this(question, "validateDateStartEnd", "Start date cannot be after end date")
-            root_this.addErrorMessage($(this), "Start date cannot be after end date")
+            rootThis.logThis(question, "validateDateStartEnd", "Start date cannot be after end date")
+            rootThis.addErrorMessage($(this), "Start date cannot be after end date")
 
         return
 
@@ -350,27 +384,27 @@ window.FormValidation =
       return
 
     drop = false
-    last_val = 0
+    lastVal = 0
 
     $.each question.find(".currency-input input"), (index, el) ->
       if $(el).val() && (!$(el).closest(".conditional-question").length || $(el).closest(".conditional-question").hasClass("show-question"))
         value = parseFloat $(el).val()
-        if value < last_val
+        if value < lastVal
           drop = true
-        last_val = value
+        lastVal = value
 
     if drop
-      error_message = "Sorry, you are not eligible. \
+      errorMessage = "Sorry, you are not eligible. \
       You must have constant growth in overseas sales for the entire entry period to be eligible \
       for a Queen's Award for Enterprise: International Trade."
-      @log_this(question, "validateDropBlockCondition", error_message)
-      @addErrorMessage(question, error_message)
+      @logThis(question, "validateDropBlockCondition", errorMessage)
+      @addErrorMessage(question, errorMessage)
       return
 
   validateSupportLetters: (question) ->
-    letters_received = $(".js-support-letter-received").size()
-    if letters_received < 2
-      @log_this(question, "validateSupportLetters", "You need to request or upload at least 2 letters of support")
+    lettersReceived = $(".js-support-letter-received").size()
+    if lettersReceived < 2
+      @logThis(question, "validateSupportLetters", "You need to request or upload at least 2 letters of support")
       @appendMessage(question, "You need to request or upload at least 2 letters of support")
       @addErrorClass(question)
 
@@ -385,33 +419,33 @@ window.FormValidation =
         missingOverseasTradeValue = true
     if !missingOverseasTradeValue
       if totalOverseasTradePercentage != 100
-        @log_this(question, "validateGoodsServicesPercentage", "% of your total overseas trade should add up to 100")
+        @logThis(question, "validateGoodsServicesPercentage", "% of your total overseas trade should add up to 100")
         @appendMessage(question, "% of your total overseas trade should add up to 100")
         @addErrorClass(question)
 
   # It's for easy debug of validation errors
   # As it really tricky to find out the validation which blocks form
   # and do not display any error massage on form
-  log_this: (question, validator, message) ->
-    step_data = question.closest(".js-step-condition").data("step")
-    step_title = $.trim($("a.js-step-link[data-step='#{step_data}']").text())
-    q_ref = $.trim(question.find("h2 span.visuallyhidden").text())
-    q_title = $.trim(question.find("h2").first().text())
+  logThis: (question, validator, message) ->
+    stepData = question.closest(".js-step-condition").data("step")
+    stepTitle = $.trim($("a.js-step-link[data-step='#{stepData}']").text())
+    qRef = $.trim(question.find("h2 span.visuallyhidden").text())
+    qTitle = $.trim(question.find("h2").first().text())
 
     if typeof console != "undefined"
       console.log "-----------------------------"
-      console.log("[STEP]: " + step_title)
-      console.log("  [QUESTION] " + q_ref + ": "+ q_title)
+      console.log("[STEP]: " + stepTitle)
+      console.log("  [QUESTION] " + qRef + ": "+ qTitle)
       console.log("  [" + validator + "]: " + message)
       console.log "-----------------------------"
 
-  hook_individual_validations: ->
+  hookIndividualValidations: ->
     self = @
 
     $(document).on "change", ".question-block input, .question-block select, .question-block textarea", ->
-      self.validate_individual_question($(@).closest(".question-block"))
+      self.validateIndividualQuestion($(@).closest(".question-block"))
 
-  validate_individual_question: (question) ->
+  validateIndividualQuestion: (question) ->
     if question.hasClass("question-required") and not question.hasClass("question-date-by-years") and not question.hasClass("question-money-by-years")
       # console.log "validateRequiredQuestion"
       @validateRequiredQuestion(question)
@@ -436,6 +470,9 @@ window.FormValidation =
     if question.hasClass("question-date-max")
       # console.log "validateMaxDate"
       @validateMaxDate(question)
+
+    if question.hasClass("question-dynamic-date-max")
+      @validateDynamicMaxDate(question)
 
     if question.hasClass("question-date-min")
       # console.log "validateMinDate"
@@ -475,30 +512,28 @@ window.FormValidation =
   validate: ->
     @clearAllErrors()
 
-    for _q in $(".question-block")
-      question = $(_q)
+    for question in $(".question-block")
+      question = $(question)
       # console.log "----"
       # console.log question.find("h2").text()
 
-      @validate_individual_question(question)
+      @validateIndividualQuestion(question)
 
       #console.log @validates
 
     return @validates
 
-  validate_step: ->
+  validateStep: (step = null) ->
     @validates = true
 
-    current_step = $(".js-step-link.step-current").attr("data-step")
+    currentStep = step || $(".js-step-link.step-current").attr("data-step")
 
-    step_container = $(".article-container[data-step='" + current_step + "']")
+    stepContainer = $(".article-container[data-step='" + currentStep + "']")
 
-    step_container.find(".question-has-errors").removeClass("question-has-errors")
-    step_container.find(".errors-container").empty()
-    $(".steps-progress-bar .js-step-link[data-step='" + current_step + "']").removeClass("step-errors")
+    stepContainer.find(".question-has-errors").removeClass("question-has-errors")
+    stepContainer.find(".errors-container").empty()
+    $(".steps-progress-bar .js-step-link[data-step='" + currentStep + "']").removeClass("step-errors")
 
-    for _q in step_container.find(".question-block")
-      question = $(_q)
-
-      @validate_individual_question(question)
-
+    for question in stepContainer.find(".question-block")
+      question = $(question)
+      @validateIndividualQuestion(question)

@@ -34,6 +34,8 @@ class Users::AuditCertificatesController < Users::BaseController
       if form_answer.assessors.primary.present?
         Assessors::GeneralMailer.audit_certificate_uploaded(form_answer.id).deliver_later!
       end
+
+      Users::AuditCertificateMailer.notify(form_answer.id, current_user.id).deliver_later!
     end
 
     respond_to do |format|

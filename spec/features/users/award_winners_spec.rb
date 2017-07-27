@@ -41,25 +41,15 @@ describe "award winners section" do
     visit award_winners_section_path
   end
 
-  describe "see current year's submissions" do
-    let(:award_str) do
-      current_form_answer.award_type_full_name
-    end
-    it {
-      expect(page).to have_content(
-        "#{award_str} #{AwardYear.current.year} Emblem"
-      )
-    }
+  it "see current year's submissions" do
+    expect(page).to have_content(
+      "#{current_form_answer.award_type_full_name} #{AwardYear.current.year} Emblem"
+    )
   end
 
-  describe "don't see other year's submissions" do
-    let(:award_str) do
-      old_form_answer.award_type_full_name
-    end
-    it {
-      expect(page).to_not have_content(
-        "#{award_str} #{AwardYear.current.year} Emblem"
-      )
-    }
+  it "don't see other year's submissions" do
+    expect(page).to_not have_content(
+      "#{old_form_answer.award_type_full_name} #{AwardYear.current.year} Emblem"
+    )
   end
 end

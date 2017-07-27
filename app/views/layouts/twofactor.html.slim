@@ -75,4 +75,5 @@ html.no-js
     #site-footer
       .footer-container
 
-    = javascript_include_tag 'twofactor'
+    - if should_enable_js?
+      = javascript_include_tag 'twofactor'

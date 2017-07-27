@@ -73,6 +73,13 @@ class ApplicationController < ActionController::Base
   end
   helper_method :current_account
 
+  def should_enable_js?
+    browser = Browser.new(request.env['HTTP_USER_AGENT'], accept_language: "en-gb")
+
+    !browser.ie? || browser.ie?([">8"])
+  end
+  helper_method :should_enable_js?
+
   protected
 
   def settings
