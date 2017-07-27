@@ -9,7 +9,7 @@ class AwardYears::V2018::QAEForms
 
         text :user_info_title, "Title" do
           required
-          classes "regular-question"
+          classes "sub-question"
           style "tiny"
         end
 

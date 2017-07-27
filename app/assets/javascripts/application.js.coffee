@@ -938,6 +938,9 @@ jQuery ->
     $('.js-ckeditor').each (index) ->
       group = $(this).closest(".question-group")
 
+      spacer = $("<div class='js-ckeditor-spacer'></div>")
+      spacer.insertAfter($(this).parent().find(".hint"))
+
       CKEDITOR.replace this,
         toolbar: 'mini'
         height: 200
