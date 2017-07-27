@@ -936,6 +936,7 @@ jQuery ->
   if $('.js-ckeditor').length > 0
 
     $('.js-ckeditor').each (index) ->
+      group = $(this).closest(".question-group")
 
       spacer = $("<div class='js-ckeditor-spacer'></div>")
       spacer.insertAfter($(this).parent().find(".hint"))
@@ -955,7 +956,7 @@ jQuery ->
       CKEDITOR.on 'instanceReady', (event) ->
         target_id = event.editor.name
 
-        spinner = $("#" + target_id).closest(".question-group").find(".js-ckeditor-spinner-block")
+        spinner = group.find(".js-ckeditor-spinner-block")
         spinner.addClass('hidden')
 
     for i of CKEDITOR.instances
