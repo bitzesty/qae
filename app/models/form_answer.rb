@@ -1,4 +1,4 @@
-require 'qae_forms'
+require 'award_years/v2018/qae_forms'
 
 class FormAnswer < ActiveRecord::Base
   include PgSearch
@@ -166,8 +166,32 @@ class FormAnswer < ActiveRecord::Base
     end
   end
 
+
+  # FormAnswer#award_form
+  # fetches relevant award form for the application's award year if available
+  # else uses form for the current award year
+  #
+  # for the test environment uses current or previous year
   def award_form
-    QAEForms.public_send(award_type) if award_type.present?
+    if award_year.present?
+      form_class = if self.class.const_defined?(award_form_class_name(award_year.year))
+        self.class.const_get(award_form_class_name(award_year.year))
+      elsif self.class.const_defined?(award_form_class_name(AwardYear.current.year))
+        self.class.const_get(award_form_class_name(AwardYear.current.year))
+      elsif Rails.env.test?
+        year = Date.current.year
+        puts year
+        if self.class.const_defined?(award_form_class_name(year + 1))
+          self.class.const_get(award_form_class_name(year + 1))
+        else
+          self.class.const_get(award_form_class_name(year))
+        end
+      else
+        raise ArgumentError, "Can not find award form for the application"
+      end
+
+      form_class.public_send(award_type) if award_type.present?
+    end
   end
 
   def eligibility
@@ -419,5 +443,9 @@ class FormAnswer < ActiveRecord::Base
         self.validator_errors = validator.errors
       end
     end
+  end
+
+  def award_form_class_name(year)
+    "::AwardYears::V#{year}::QAEForms"
   end
 end

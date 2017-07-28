@@ -81,7 +81,7 @@
       margin-bottom: $gutter-one-third;
 
       p {
-        @include core-16;
+        @include core-19;
       }
     }
   }
@@ -320,10 +320,6 @@ $status-green: #3b816f;
       position: static;
     }
   }
-}
-
-.submit-corp-declaration {
-  margin-left: 10px;
 }
 
 .save-press-summary-button, .save-palace-attendees-button {

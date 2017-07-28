@@ -166,7 +166,7 @@ module QaePdfForms::General::DrawElements
 
   def render_text(title, ops = {})
     default_bottom_margin
-    text title, ops
+    text title, ops.merge!({inline_format: true})
   end
 
   def render_table(table_lines)

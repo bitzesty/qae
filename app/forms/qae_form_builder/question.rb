@@ -17,10 +17,11 @@ class QAEFormBuilder
       "ByTradeGoodsAndServicesLabelQuestion"
     ]
 
-    attr_reader :question
+    attr_reader :question, :answers
 
-    def initialize(question)
+    def initialize(question, answers = {})
       @question = question
+      @answers = answers
     end
 
     def errors
@@ -136,7 +137,7 @@ class QAEFormBuilder
         question_class = delegate_obj.class.name.demodulize
         validator_class = "QAEFormBuilder::#{question_class}Validator".constantize
 
-        validator = validator_class.new(self)
+        validator = validator_class.new(self, answers)
         errors.merge!(validator.errors)
 
         errors.merge!(error)

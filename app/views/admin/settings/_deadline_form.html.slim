@@ -18,3 +18,9 @@
       .clear
 
   = link_to "Edit", "#", class: "edit-deadline if-no-js-hide"
+
+  span.deadline-help
+    - if deadline.help_message.present?
+      span.glyphicon-info-sign.help-message
+        .help-message-text
+          = deadline.help_message

@@ -29,12 +29,53 @@
   .form-value,
   .date-time-text {
     display: inline-block;
-    width: 35em;
+    width: 39em;
 
     @include screen-sm-max {
       display: inline;
       width: auto;
       margin-right: 10px;
+    }
+  }
+
+  .edit-deadline {
+    margin-right: 10px;
+  }
+
+  .email-notification-help {
+    margin-left: 10px;
+  }
+
+  .deadline-help, .email-notification-help {
+    font-style: italic;
+    display: inline-block;
+    position: relative;
+
+    .help-message {
+      position: absolute;
+      top: -13px;
+      left: 0;
+      width: 15px;
+      height: 15px;
+      display: inline-block;
+
+      &:hover .help-message-text {
+        visibility: visible;
+      }
+
+      .help-message-text {
+        position: absolute;
+        z-index: 1;
+        top: -5px;
+        left: 105%;
+        visibility: hidden;
+        background-color: #fff;
+        text-align: center;
+        padding: 5px;
+        width: 300px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
     }
   }
 

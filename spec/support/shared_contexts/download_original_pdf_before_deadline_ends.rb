@@ -2,11 +2,7 @@ require 'rails_helper'
 
 shared_context "download original pdf before deadline ends" do
   let!(:form_answer) do
-    f = create(:form_answer, :trade, :submitted)
-    f.document["corp_responsibility_form"] = "declare_now"
-    f.save!
-
-    f
+    create(:form_answer, :trade, :submitted)
   end
 
   describe "Download" do

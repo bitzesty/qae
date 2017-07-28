@@ -3,6 +3,8 @@
 #= require jquery.iframe-transport
 #= require jquery.fileupload
 #= require select2.full.min
+#= require ckeditor/init
+#= require ./ckeditor/config.js
 #= require Countable
 #= require moment.min
 #= require core
@@ -15,6 +17,7 @@
 #= require browser-check
 #= require vendor/zxcvbn
 #= require vendor/jquery-debounce
+#= require js.cookie
 #= require_tree ./frontend
 #= require offline
 
@@ -34,7 +37,7 @@ jQuery ->
   validate = ->
     window.FormValidation.validate()
 
-  window.FormValidation.hook_individual_validations()
+  window.FormValidation.hookIndividualValidations()
 
   $(document).on "submit", ".qae-form", (e) ->
     $("body").addClass("tried-submitting")
@@ -302,7 +305,7 @@ jQuery ->
       $(this).closest(".js-step-link").attr("data-step")
 
     if $(this).attr('type') == 'submit'
-      window.FormValidation.validate_step()
+      window.FormValidation.validateStep()
 
     #
     # Make a switch to next section if this is not same tab only
@@ -459,7 +462,7 @@ jQuery ->
   $(document).debounce "keyup", "input[type='number'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "input[type='url'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "keyup", "input[type='tel'].js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
-  $(document).debounce "keyup", "textarea.js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
+  $(document).debounce "change", "textarea.js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
   $(document).debounce "focusout", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
 
   updateUploadListVisiblity = (list, button, max) ->
@@ -857,8 +860,10 @@ jQuery ->
       $(this).text(new_text)
   if $(".js-entry-period input:checked").size() > 0
     replaceEntryPeriodText()
+
   $(".js-entry-period input").change () ->
     replaceEntryPeriodText()
+    FormValidation.validateStep("step-company-information")
 
   # Auto tab on date input entry
   #$(".date-input input").on 'keyup', (e) ->
@@ -929,3 +934,49 @@ jQuery ->
     $(".js-press-comment-feeback").removeClass("section-confirmed")
     if $(".js-press-comment-correct input:checked").val() == "true"
       $(".js-press-comment-feeback").addClass("section-confirmed")
+
+  #
+  # Init WYSYWYG editor for QAE Form textareas - begin
+  #
+  if $('.js-ckeditor').length > 0
+
+    $('.js-ckeditor').each (index) ->
+      group = $(this).closest(".question-group")
+
+      spacer = $("<div class='js-ckeditor-spacer'></div>")
+      spacer.insertAfter($(this).parent().find(".hint"))
+
+      CKEDITOR.replace this,
+        toolbar: 'mini'
+        height: 200
+
+      CKEDITOR.on 'instanceCreated', (event) ->
+        editor = event.editor
+        element = editor.element
+
+        editor.on 'configLoaded', ->
+          editor.config.wordcount =
+            maxWordCount: element.data('word-max')
+
+      CKEDITOR.on 'instanceReady', (event) ->
+        target_id = event.editor.name
+
+        spinner = group.find(".js-ckeditor-spinner-block")
+        spinner.addClass('hidden')
+
+    for i of CKEDITOR.instances
+      instance = CKEDITOR.instances[i]
+
+      instance.on 'change', (event) ->
+        target_id = event.editor.name
+        element = CKEDITOR.instances[target_id]
+
+        element.updateElement()
+        raiseChangesFlag()
+
+        $("#" + target_id).trigger("change")
+
+        return
+  #
+  # Init WYSYWYG editor for QAE Form textareas - end
+  #

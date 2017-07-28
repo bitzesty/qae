@@ -25,7 +25,9 @@ gem 'jquery-ui-rails'
 gem 'bootstrap-sass', '>= 3.3.3'
 gem 'govuk_frontend_toolkit', '~> 3.1.0'
 gem 'govuk_template', '0.12.0'
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 2.7.2'
+gem 'js_cookie_rails', '~> 2.1'
+gem 'ckeditor', github: 'galetahub/ckeditor'
 
 # Autolinking in admin mass user mailer
 gem 'rails_autolink'
@@ -71,7 +73,7 @@ gem 'enumerize', '~> 0.8'
 # PDF generation
 gem 'prawn'
 gem 'prawn-table'
-gem 'nokogiri', '~> 1.6.0'
+gem 'nokogiri', '~> 1.7'
 
 # Uploads
 gem 'carrierwave'
@@ -119,10 +121,12 @@ gem 'lograge'
 # speedup server boot time
 gem 'bootscale', require: false
 
+gem 'browser'
+
 group :development do
   gem 'letter_opener'
   gem 'quiet_assets'
-  gem 'rack-mini-profiler', require: false
+  gem 'rack-mini-profiler', '>= 0.10.1', require: false
   gem 'binding_of_caller'
   gem 'rubocop', require: false
   # When need to copy model with nested associations
