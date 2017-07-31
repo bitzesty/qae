@@ -14,4 +14,5 @@ CKEDITOR.editorConfig = function (config) {
   };
 
   config.removePlugins = 'elementspath';
+  config.disableNativeSpellChecker = false;
 }
