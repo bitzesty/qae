@@ -13,5 +13,6 @@ CKEDITOR.editorConfig = function (config) {
     showWordCount: true
   };
 
-  config.removePlugins = 'elementspath';
+  config.removePlugins = 'elementspath,contextmenu,liststyle,tabletools,tableselection';
+  config.disableNativeSpellChecker = false;
 }
