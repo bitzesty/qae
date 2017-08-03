@@ -97,12 +97,24 @@ module QaePdfForms::General::DrawElements
       render_company_name unless pdf_blank_mode.present?
     end
 
-    move_down 15.mm
-
     if !form_answer.urn.present? || pdf_blank_mode
+      move_down 6.mm
       render_intro_text
+      move_down 2.mm
+    end
 
-      move_down 15.mm
+    render_submission_deadline_block
+
+    move_down 7.mm
+  end
+
+  def render_submission_deadline_block(indent_value=0)
+    title = Settings.submission_deadline_title
+
+    if title.present?
+      indent indent_value.mm do
+        render_text(title, style: :bold)
+      end
     end
   end
 

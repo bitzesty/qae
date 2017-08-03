@@ -59,5 +59,7 @@ class FormPdf < Prawn::Document
                                             form_pdf: self,
                                             step: step).render!
     end
+
+    render_submission_deadline_block(32)
   end
 end
