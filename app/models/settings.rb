@@ -109,6 +109,11 @@ class Settings < ActiveRecord::Base
         current.email_notifications.not_awarded.first.try(:trigger_at)
       end
     end
+
+    def submission_deadline_title
+      formatted_datetime = current_submission_deadline.strftime("%d %b %Y at %H:%M%P")
+      "Submission deadline: #{formatted_datetime}"
+    end
   end
 
   def winners_email_notification
