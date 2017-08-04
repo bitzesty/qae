@@ -39,13 +39,21 @@ module QaePdfForms::CustomQuestions::Textarea
 
   def this_is_wysywyg_content?
     SUPPORTED_TAGS.any? do |tag|
-      humanized_answer.include?("<#{tag}>")
+      humanized_answer.include?("<#{tag}")
     end
   end
 
   def wysywyg_entries
+    cont = Nokogiri::HTML(humanized_answer)
+    cont.xpath('//@style').remove
+    prepared_html = cont.children
+                        .css("body")
+                        .to_html
+                        .gsub('<body>', '')
+                        .gsub('</body>', '')
+
     Nokogiri::HTML.parse(
-      humanized_answer
+      prepared_html
     ).children[1]
      .children[0]
      .children
