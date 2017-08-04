@@ -15,4 +15,8 @@ CKEDITOR.editorConfig = function (config) {
 
   config.removePlugins = 'elementspath,contextmenu,liststyle,tabletools,tableselection';
   config.disableNativeSpellChecker = false;
+
+  config.allowedContent = 'h1 h2 h3 p blockquote strong em i ul ol li;' +
+                          'a[!href];' +
+                          'img(left,right)[!src,alt,width,height];';
 }
