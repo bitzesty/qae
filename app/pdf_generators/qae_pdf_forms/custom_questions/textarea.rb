@@ -44,16 +44,8 @@ module QaePdfForms::CustomQuestions::Textarea
   end
 
   def wysywyg_entries
-    cont = Nokogiri::HTML(humanized_answer)
-    cont.xpath('//@style').remove
-    prepared_html = cont.children
-                        .css("body")
-                        .to_html
-                        .gsub('<body>', '')
-                        .gsub('</body>', '')
-
     Nokogiri::HTML.parse(
-      prepared_html
+      humanized_answer
     ).children[1]
      .children[0]
      .children
@@ -70,7 +62,6 @@ module QaePdfForms::CustomQuestions::Textarea
       lines_style = styles_picker(wysywyg_get_style_values(line).split(", "))
       content = wysywyg_get_values_content(line).join("")
       content = content.gsub("<br>", "").gsub("</br>", "")
-
       print_pdf(content, lines_style)
 
     elsif wysywyg_list_leading_tag?(tag_abbr)
@@ -254,6 +245,9 @@ module QaePdfForms::CustomQuestions::Textarea
   end
 
   def styles_picker(arr)
+    if arr.to_s.include?(";")
+      arr = arr[0].split(";").map(&:strip)
+    end
     arr = Array.wrap(arr)
 
     styles = { inline_format: true,
@@ -320,11 +314,23 @@ module QaePdfForms::CustomQuestions::Textarea
             ending_tag = "#{ending_tag}</u>"
           end
 
-          content << ending_tag
+          content << sanitize_content(ending_tag)
         end
       end
     end
 
     content
+  end
+
+  def sanitize_content(content)
+    content = Nokogiri::HTML(content)
+    content.xpath('//@style')
+           .remove
+
+    content.children
+          .css("body")
+          .to_html
+          .gsub('<body>', '')
+          .gsub('</body>', '')
   end
 end
