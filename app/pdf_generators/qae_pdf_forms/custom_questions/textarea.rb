@@ -244,16 +244,16 @@ module QaePdfForms::CustomQuestions::Textarea
     end
   end
 
-  def styles_picker(arr)
-    if arr.to_s.include?(";")
-      arr = arr[0].split(";").map(&:strip)
+  def styles_picker(style_options)
+    if style_options.to_s.include?(";")
+      style_options = style_options[0].split(";").map(&:strip)
     end
-    arr = Array.wrap(arr)
+    style_options = Array.wrap(style_options)
 
     styles = { inline_format: true,
                        color: FormPdf::DEFAULT_ANSWER_COLOR }
-    if arr.present?
-      margin_list = arr.select do |el|
+    if style_options.present?
+      margin_list = style_options.select do |el|
         el.include?("margin-left")
       end.map! do |el|
         el.split(":").second.strip.gsub!("px", "").to_i
@@ -261,7 +261,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
       styles[:indent_paragraphs] = margin_list.sum
 
-      arr.select do |el|
+      style_options.select do |el|
         el.include?("text-align")
       end.uniq.map! do |el|
         styles[:align] = el.split(":").second.strip.to_sym
