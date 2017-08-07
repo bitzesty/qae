@@ -9,8 +9,6 @@ window.TextareaCkeditorIeCallback =
     if (old_ie > -1) || (new_ie > -1)
       ms_ie = true;
 
-    alert('ms_ie: ' + ms_ie)
-
     if ms_ie
       waitCKEDITOR = setInterval((->
         if window.CKEDITOR
