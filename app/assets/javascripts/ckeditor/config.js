@@ -15,4 +15,14 @@ CKEDITOR.editorConfig = function (config) {
 
   config.removePlugins = 'elementspath,contextmenu,liststyle,tabletools,tableselection';
   config.disableNativeSpellChecker = false;
+
+  config.allowedContent = {
+    'h1 h2 h3 blockquote p ul ol li a em i strong text br': true,
+    'h1 h2 h3 blockquote p ul ol li a em i strong': {
+      styles: 'text-align'
+    },
+    a: {
+      attributes: '!href'
+    },
+  }
 }

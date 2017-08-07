@@ -938,6 +938,7 @@ jQuery ->
   #
   # Init WYSYWYG editor for QAE Form textareas - begin
   #
+
   if $('.js-ckeditor').length > 0
 
     $('.js-ckeditor').each (index) ->
@@ -977,6 +978,9 @@ jQuery ->
         $("#" + target_id).trigger("change")
 
         return
+
+    TextareaCkeditorIeCallback.init()
+
   #
   # Init WYSYWYG editor for QAE Form textareas - end
   #

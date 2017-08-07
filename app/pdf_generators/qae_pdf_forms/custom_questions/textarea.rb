@@ -39,7 +39,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
   def this_is_wysywyg_content?
     SUPPORTED_TAGS.any? do |tag|
-      humanized_answer.include?("<#{tag}>")
+      humanized_answer.include?("<#{tag}")
     end
   end
 
@@ -62,7 +62,6 @@ module QaePdfForms::CustomQuestions::Textarea
       lines_style = styles_picker(wysywyg_get_style_values(line).split(", "))
       content = wysywyg_get_values_content(line).join("")
       content = content.gsub("<br>", "").gsub("</br>", "")
-
       print_pdf(content, lines_style)
 
     elsif wysywyg_list_leading_tag?(tag_abbr)
@@ -245,13 +244,16 @@ module QaePdfForms::CustomQuestions::Textarea
     end
   end
 
-  def styles_picker(arr)
-    arr = Array.wrap(arr)
+  def styles_picker(style_options)
+    if style_options.to_s.include?(";")
+      style_options = style_options[0].split(";").map(&:strip)
+    end
+    style_options = Array.wrap(style_options)
 
     styles = { inline_format: true,
                        color: FormPdf::DEFAULT_ANSWER_COLOR }
-    if arr.present?
-      margin_list = arr.select do |el|
+    if style_options.present?
+      margin_list = style_options.select do |el|
         el.include?("margin-left")
       end.map! do |el|
         el.split(":").second.strip.gsub!("px", "").to_i
@@ -259,7 +261,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
       styles[:indent_paragraphs] = margin_list.sum
 
-      arr.select do |el|
+      style_options.select do |el|
         el.include?("text-align")
       end.uniq.map! do |el|
         styles[:align] = el.split(":").second.strip.to_sym
@@ -312,11 +314,23 @@ module QaePdfForms::CustomQuestions::Textarea
             ending_tag = "#{ending_tag}</u>"
           end
 
-          content << ending_tag
+          content << sanitize_content(ending_tag)
         end
       end
     end
 
     content
+  end
+
+  def sanitize_content(content)
+    content = Nokogiri::HTML(content)
+    content.xpath('//@style')
+           .remove
+
+    content.children
+          .css("body")
+          .to_html
+          .gsub('<body>', '')
+          .gsub('</body>', '')
   end
 end
