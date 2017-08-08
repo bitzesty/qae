@@ -396,7 +396,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def drop_conditional_hint
-    form_pdf.render_text "Answer this question if you have any dips or losses in  C...",
+    form_pdf.render_text "Answer this question if you have any dips or losses in turnover, total net assets and net profits",
                          style: :italic
   end
 
