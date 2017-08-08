@@ -52,8 +52,6 @@ class AwardYears::V2018::QAEForms
           type :date
           label ->(y) { "Financial year #{y}" }
 
-          additional_pdf_context I18n.t("pdf_texts.mobility.years_question_additional_context")
-
           conditional :financial_year_date_changed, :yes
         end
 
@@ -75,8 +73,6 @@ class AwardYears::V2018::QAEForms
           )
           type :number
           label ->(y) { "Financial year #{y}" }
-
-          additional_pdf_context I18n.t("pdf_texts.mobility.years_question_additional_context")
 
           conditional :financial_year_date_changed, :true
 
@@ -106,7 +102,6 @@ class AwardYears::V2018::QAEForms
           type :money
           label ->(y) { "Financial year #{y}" }
 
-          additional_pdf_context I18n.t("pdf_texts.mobility.years_question_additional_context")
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
@@ -124,7 +119,6 @@ class AwardYears::V2018::QAEForms
             </p>
           )
           conditional :financial_year_date_changed, :true
-          additional_pdf_context I18n.t("pdf_texts.mobility.years_question_additional_context")
           drop_conditional :drops_in_turnover
         end
 
@@ -139,7 +133,6 @@ class AwardYears::V2018::QAEForms
           )
           type :money
           label ->(y) { "As at the end of year #{y}" }
-          additional_pdf_context I18n.t("pdf_texts.mobility.years_question_additional_context")
 
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
