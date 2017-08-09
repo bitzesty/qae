@@ -5,6 +5,10 @@ dependencies:
 test:
   post:
     - bundle exec bin/circle
+  pre:
+    - RAILS_ENV=test bundle exec rake db:create db:migrate
+  override:
+    - RAILS_ENV=test bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
 deployment:
   dev:
     branch: master
