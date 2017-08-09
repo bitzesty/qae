@@ -8,6 +8,8 @@ module QaePdfForms::CustomQuestions::Textarea
     "li", "a", "em", "strong", "text", "br"
   ]
 
+  POSSIBLE_TEXT_ALIGN_VALUES = [:left, :center, :right, :justify]
+
   def render_wysywyg_content
     if display_wysywyg_q?
       if this_is_wysywyg_content?
@@ -264,7 +266,14 @@ module QaePdfForms::CustomQuestions::Textarea
       style_options.select do |el|
         el.include?("text-align")
       end.uniq.map! do |el|
-        styles[:align] = el.split(":").second.strip.to_sym
+        parsed_align_value = el.split(":")
+                               .second
+                               .strip
+                               .to_sym
+
+        if POSSIBLE_TEXT_ALIGN_VALUES.include?(parsed_align_value)
+          styles[:align] = parsed_align_value
+        end
       end
     end
 
@@ -328,9 +337,9 @@ module QaePdfForms::CustomQuestions::Textarea
            .remove
 
     content.children
-          .css("body")
-          .to_html
-          .gsub('<body>', '')
-          .gsub('</body>', '')
+           .css("body")
+           .to_html
+           .gsub('<body>', '')
+           .gsub('</body>', '')
   end
 end
