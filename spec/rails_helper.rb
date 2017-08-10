@@ -22,6 +22,10 @@ WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true)
 # Require all support files.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
+options = { js_errors: false }
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, options)
+end
 Capybara.javascript_driver = :poltergeist
 
 ActiveRecord::Migration.check_pending!
