@@ -10,17 +10,24 @@ describe "Assessor feedback management" do
   end
 
   describe "feedback submission" do
-    it "submits feedback", js: true do
+    before do
       visit assessor_form_answer_path(form_answer)
       find("#feedback-heading a").click
 
       within "#section-feedback .level_of_innovation" do
         find("a.form-edit-link").click
+      end
+    end
+
+    it "submits feedback", js: true do
+      within "#section-feedback .level_of_innovation" do
         fill_in "feedback[level_of_innovation_strength]", with: "Feedback 101"
         click_link "Save"
 
-        expect(page).to have_selector(".form-value", text: "Feedback 101")
+        wait_for_ajax
       end
+
+      expect(page).to have_selector(".form-value", text: "Feedback 101")
     end
   end
 
@@ -32,13 +39,15 @@ describe "Assessor feedback management" do
       feedback.save!
 
       form_answer.reload
+
+      visit assessor_form_answer_path(form_answer)
+      find("#feedback-heading a").click
     end
 
     it "unlocks submitted feedback", js: true do
-      visit assessor_form_answer_path(form_answer)
-      find("#feedback-heading a").click
       expect(page).to have_selector(".feedback-holder", text: "Feedback Submitted")
       click_button "Unlock"
+      wait_for_ajax
 
       expect(page).to have_no_selector(".feedback-holder", text: "Feedback Submitted")
     end
