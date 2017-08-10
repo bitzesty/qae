@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe FormAnswer, type: :model do
+RSpec.describe FormAnswer, type: :model, skip_ci: true do
   describe "associations" do
     it { should belong_to(:user) }
   end

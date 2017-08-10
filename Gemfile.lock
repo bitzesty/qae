@@ -90,15 +90,13 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.11.1)
-      capybara (>= 2.3.0, < 2.8.0)
-      json
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
     climate_control (0.2.0)
+    cliver (0.3.2)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
     codeclimate-test-reporter (0.4.3)
@@ -342,6 +340,10 @@ GEM
       activerecord (>= 3.1)
       activesupport (>= 3.1)
       arel
+    poltergeist (1.16.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      websocket-driver (>= 0.2.0)
     powerpack (0.1.0)
     prawn (1.3.0)
       pdf-core (~> 0.4.0)
@@ -536,6 +538,9 @@ GEM
     webmock (1.21.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
+    websocket-driver (0.6.5)
+      websocket-extensions (>= 0.1.0)
+    websocket-extensions (0.1.2)
     wicked (1.1.0)
       rails (>= 3.0.7)
     xpath (2.0.0)
@@ -554,7 +559,6 @@ DEPENDENCIES
   bootstrap-sass (>= 3.3.3)
   browser
   capybara
-  capybara-webkit
   carrierwave
   ckeditor!
   codeclimate-test-reporter
@@ -594,6 +598,7 @@ DEPENDENCIES
   pdf-inspector
   pg (~> 0.17)
   pg_search (= 0.7.9)
+  poltergeist
   prawn
   prawn-table
   pry-byebug
