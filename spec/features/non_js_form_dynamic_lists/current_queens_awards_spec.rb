@@ -5,7 +5,7 @@ describe "Non JS | Dynamic Lists | Current Queen's Awards", %q{
 As a User
 I want to be able to add Current Queen's Awards I hold
 So that I can fill form completelly even if Javascript is turned off
-} do
+}, skip_ci: true do
 
   include_context "non js form base"
 

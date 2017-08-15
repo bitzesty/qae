@@ -3,7 +3,12 @@ class QAEFormBuilder
     def errors
       result = super
 
-      length = question.input_value && question.input_value.split(" ").length
+      length = ActionView::Base.full_sanitizer.sanitize(
+        question.input_value.to_s
+      ).split(" ")
+       .reject do |a|
+        a.blank?
+      end.length
 
       limit = question.delegate_obj.words_max
 

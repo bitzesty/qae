@@ -13,7 +13,7 @@ describe "Assessor submits appraisal form", %(
 
   it_behaves_like "successful appraisal form edition"
 
-  describe "Form submission" do
+  describe "Form submission", skip_ci: true do
     let!(:form_answer) { create(:form_answer, :trade) }
 
     before do

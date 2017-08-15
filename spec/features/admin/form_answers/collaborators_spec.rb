@@ -27,15 +27,6 @@ So that they can collaborate applications
 
   describe "Add new Collaborator" do
     describe "Invalid Attempts", js: true do
-      it "handle request without query string" do
-        find("a[aria-controls='section-company-details']").click
-
-        within(".admin-search-collaborators-form") do
-          first("input[type='submit']").click
-          expect_to_see("Nothing found!")
-        end
-      end
-
       describe "Attempt to add person, which is already associated with another account which has application" do
         let!(:user_associated_with_another_account) do
           create :user,
@@ -56,7 +47,6 @@ So that they can collaborate applications
 
           within(".admin-search-collaborators-form") do
             fill_in "search[query]", with: "plicant with acc"
-
             first("input[type='submit']").click
 
             within(".js-admin-search-collaborators-results-box") do
@@ -78,7 +68,6 @@ So that they can collaborate applications
 
         within(".admin-search-collaborators-form") do
           fill_in "search[query]", with: email.to_s[2..-2]
-
           first("input[type='submit']").click
 
           within(".js-admin-search-collaborators-results-box") do

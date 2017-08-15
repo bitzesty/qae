@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe FormPaginator do
+describe FormPaginator, skip_ci: true do
   let(:user) { create(:admin) }
   let!(:form_answer_1) { create(:form_answer) }
   let!(:form_answer_2) { create(:form_answer) }
