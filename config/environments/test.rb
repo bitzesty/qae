@@ -42,5 +42,10 @@ Rails.application.configure do
   config.after_initialize do
     PaperTrail.enabled = false
   end
+
+  if ENV['RAILS_DISABLE_TEST_LOG']
+    config.logger = Logger.new(nil)
+    config.log_level = :fatal
+  end
 end
 

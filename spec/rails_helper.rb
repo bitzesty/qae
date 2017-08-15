@@ -13,6 +13,7 @@ require "rspec/rails"
 require "capybara/rspec"
 require "shoulda/matchers"
 require "webmock/rspec"
+require 'capybara/poltergeist'
 
 Dotenv.overload('.env.test')
 
@@ -21,7 +22,18 @@ WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true)
 # Require all support files.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
-Capybara.javascript_driver = :webkit
+options = {
+  js_errors: false,
+  timeout: 240,
+  phantomjs_options: [
+    '--load-images=no',
+    '--ignore-ssl-errors=yes'
+  ]
+}
+Capybara.register_driver :poltergeist do |app|
+  Capybara::Poltergeist::Driver.new(app, options)
+end
+Capybara.javascript_driver = :poltergeist
 
 ActiveRecord::Migration.check_pending!
 ActiveRecord::Migration.maintain_test_schema!

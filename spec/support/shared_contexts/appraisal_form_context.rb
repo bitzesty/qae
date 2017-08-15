@@ -19,7 +19,7 @@ shared_context "successful appraisal form edition" do
     end
   end
 
-  describe "Description change" do
+  describe "Description change", skip_ci: true do
     let(:text) { "textareatext123" }
 
     it "updates the description" do
@@ -37,7 +37,7 @@ shared_context "successful appraisal form edition" do
     end
   end
 
-  describe "Overall verdict change" do
+  describe "Overall verdict change", skip_ci: true do
     it "updates verdict" do
       assert_verdict_change(primary, primary_header)
       assert_verdict_change(secondary, secondary_header)
