@@ -14,7 +14,7 @@ class QAEFormBuilder
 
       if limit_with_buffer(limit) && length && length > limit_with_buffer(limit)
         result[question.hash_key] ||= ""
-        result[question.hash_key] << " Exeeded #{limit} words limit."
+        result[question.hash_key] << " Exceeded #{limit} words limit."
       end
 
       result
