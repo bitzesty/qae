@@ -67,10 +67,10 @@ header.page-header.group.page-header-over-sidebar
         = render "previous_answers"
 
         - if (!step || step.to_s == "wicked_finish")
-          .eligibility-continue-button
-            = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
-
-          - unless @form_answer.eligible?
+          - if @form_answer.eligible?
+            .eligibility-continue-button
+              = link_to "Continue", [:award_info, @form_answer.award_type, form_id: @form_answer.id], class: "button medium"
+          - else
             footer
               nav.pagination.no-border role="navigation" aria-label="Pagination"
                 ul.group
