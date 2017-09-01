@@ -11,8 +11,14 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
     else
       $(".js-options-with-dependent-child-select").trigger("change")
 
+    # otherwise it's always true on page load
+    # when user triggers this method manually
+    # this var will be set to true in the callback
+    window.changesUnsaved = false
+
   $(document).on "change", ".queen-award-holder input", ->
     changeTradeQuestion()
+    window.changesUnsaved = true
 
   $(document).on "change input", ".js-options-with-dependent-child-select", ->
     dependable_key = $(this).attr("data-parent-option-dependable-key")
