@@ -37,6 +37,8 @@ jQuery ->
   validate = ->
     window.FormValidation.validate()
 
+  window.changesUnsaved = false
+
   window.FormValidation.hookIndividualValidations()
 
   $(document).on "submit", ".qae-form", (e) ->
@@ -277,10 +279,8 @@ jQuery ->
       # Setting current_step_id to form as we updating only current section form_data (not whole form)
       $("#current_step_id").val(step)
 
-  changesUnsaved = false
-
   $(".qae-form").on "submit", (e) ->
-    if changesUnsaved
+    if window.changesUnsaved
       e.preventDefault()
       e.stopPropagation()
 
@@ -379,7 +379,7 @@ jQuery ->
         resetResizeTextarea()
 
   $(document).on "click", ".save-quit-link a", (e) ->
-    if changesUnsaved
+    if window.changesUnsaved
       e.preventDefault()
       e.stopPropagation()
 
@@ -405,7 +405,7 @@ jQuery ->
         type: 'POST'
         dataType: 'json'
         success: ->
-          changesUnsaved = false
+          window.changesUnsaved = false
           if callback isnt undefined
             callback()
         error: (e) ->
@@ -436,11 +436,11 @@ jQuery ->
 
   window.onbeforeunload = ->
     if !$(".page-read-only-form").length
-      if changesUnsaved then loseChangesMessage else undefined
+      if window.changesUnsaved then loseChangesMessage else undefined
 
   if window.addEventListener isnt undefined
     window.addEventListener "beforeunload", (e) ->
-      return undefined unless changesUnsaved
+      return undefined unless window.changesUnsaved
 
       e.returnValue = loseChangesMessage
       loseChangesMessage
@@ -449,7 +449,7 @@ jQuery ->
     window.autosave_timer ||= setTimeout( autosave, 1000 )
 
   raiseChangesFlag = ->
-    changesUnsaved = true
+    window.changesUnsaved = true
 
   debounceTime = 20000
   $(document).debounce "change", ".js-trigger-autosave", triggerAutosave, debounceTime, raiseChangesFlag
