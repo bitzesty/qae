@@ -4,7 +4,10 @@ namespace :form_answers do
   task :force_submit, [:id] => [:environment] do |t, args|
     f = FormAnswer.find(args[:id])
     f.submitted = true
-    f.save
+    f.submitted_at = Time.current
+    f.save!
+    f.reload
+
     f.state_machine.submit(f.user)
     FormAnswerUserSubmissionService.new(f).perform
   end
