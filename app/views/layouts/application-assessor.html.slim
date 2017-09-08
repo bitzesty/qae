@@ -70,6 +70,7 @@ html.no-js
                                   destroy_assessor_session_path,
                                   method: :delete
           = render "shared/staging_banner"
+          = render "shared/non_js_banner"
 
         #main-container
           .container
@@ -89,3 +90,4 @@ html.no-js
 
     - if should_enable_js?
       = javascript_include_tag 'application-admin'
+      = javascript_tag "$(function() { AdminAssessorAutomatedPollingOfSession.init('assessor'); });"
