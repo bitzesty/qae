@@ -186,6 +186,10 @@ Rails.application.routes.draw do
     resources :assessment_submissions, only: [:create] do
       patch :unlock, on: :member
     end
+
+    scope format: true, constraints: { format: 'json' } do
+      resource :session_checks, only: [:show]
+    end
   end
 
   namespace :admin do
@@ -269,6 +273,10 @@ Rails.application.routes.draw do
     resource :custom_email, only: [:show, :create]
     resource :users_feedback, only: [:show]
     resources :audit_logs, only: :index
+
+    scope format: true, constraints: { format: 'json' } do
+      resource :session_checks, only: [:show]
+    end
   end
 
   namespace :account do
