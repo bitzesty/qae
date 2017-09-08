@@ -15,4 +15,4 @@ window.AdminAssessorAutomatedPollingOfSession =
           return
         dataType: 'json'
       return
-    ), 10000
+    ), 60000
