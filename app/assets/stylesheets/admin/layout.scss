@@ -64,6 +64,15 @@ body {
   top: -40px;
 }
 
+.admin-assessor-js-status-banner {
+  position: relative;
+  top: -40px;
+  padding: 0.5em;
+  text-align: center;
+  background-color: #fff2d3;
+  color: #0b0c0c;
+}
+
 .container {
   .lte-ie8 & {
     max-width: 1170px;

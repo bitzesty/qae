@@ -112,6 +112,9 @@
                   div class="#{kind}"
                     = flash[kind]
 
+        - if params[:session_expired].present?
+          = render "shared/session_expired_message"
+
         - if landing_page?
           #global-breadcrumb.header-context
             ol.group role="navigation" aria-label="breadcrumbs"
