@@ -1,10 +1,16 @@
 namespace :form_answers do
 
+  #
+  # bundle exec rake form_answers:force_submit[FORM_ANSWER_ID]
+  #
   desc "Force submit an application"
   task :force_submit, [:id] => [:environment] do |t, args|
     f = FormAnswer.find(args[:id])
     f.submitted = true
-    f.save
+    f.submitted_at = Time.current
+    f.save!
+    f.reload
+
     f.state_machine.submit(f.user)
     FormAnswerUserSubmissionService.new(f).perform
   end
