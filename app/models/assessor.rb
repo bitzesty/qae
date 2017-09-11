@@ -9,7 +9,7 @@ class Assessor < ActiveRecord::Base
 
   devise :database_authenticatable,
          :recoverable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable #, :timeoutable
+         :zxcvbnable, :lockable, :timeoutable
 
   validates :first_name, :last_name, presence: true
   has_many :form_answer_attachments, as: :attachable
@@ -147,17 +147,7 @@ class Assessor < ActiveRecord::Base
   end
 
   def timeout_in
-    if Rails.env.development? ||
-       ENV['ASSET_HOST'].to_s == "dev.queens-awards-enterprise.service.gov.uk" ||
-       ENV['ASSET_HOST'].to_s == "assets2.queens-awards-enterprise.service.gov.uk"
-
-      # On dev and staging server for now we are gonna set 3 minutes for testing purposes
-      # Once mister Tom will test it - I will remove this case!
-
-      3.minutes
-    else
-      30.minutes
-    end
+    30.minutes
   end
 
   private
