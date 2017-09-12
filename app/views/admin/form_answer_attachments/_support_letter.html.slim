@@ -7,7 +7,7 @@ li.form_answer_attachment
                 target: "_blank", class: "action-title"
         span.glyphicon.glyphicon-file
         = sl_attachment.original_filename
-    - elsif sl_attachment.pending? || sl_attachment.scanning?
+    - elsif %w(pending scanning).include?(sl_attachment.attachment_scan_results.to_s)
       span.glyphicon.glyphicon-file
       = "Scanning of '#{sl_attachment.original_filename}' file"
     - else
