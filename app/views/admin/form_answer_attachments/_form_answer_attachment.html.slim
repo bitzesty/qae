@@ -20,8 +20,8 @@
 
     - elsif form_answer_attachment.file_scan_results.to_s == "infected"
       span.glyphicon.glyphicon-file
-      = "Not passed virus scanner check (#{form_answer_attachment.decorate.display_name})"
+      = "Failed virus scanner check (#{form_answer_attachment.decorate.display_name})"
 
     - else
       span.glyphicon.glyphicon-file
-      = "Scanning of '#{form_answer_attachment.decorate.display_name}' file"
+      = "Scanning '#{form_answer_attachment.decorate.display_name}' file"

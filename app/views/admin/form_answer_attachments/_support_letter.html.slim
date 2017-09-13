@@ -10,11 +10,11 @@ li.form_answer_attachment
 
     - elsif sl_attachment.attachment_scan_results.to_s == "infected"
       span.glyphicon.glyphicon-file
-      = "Not passed virus scanner check (#{sl_attachment.original_filename})"
+      = "Failed virus scanner check (#{sl_attachment.original_filename})"
 
     - else
       span.glyphicon.glyphicon-file
-      = "Scanning of '#{sl_attachment.original_filename}' file"
+      = "Scanning '#{sl_attachment.original_filename}' file"
 
   - else
     = link_to [namespace_name, support_letter.form_answer, support_letter],
