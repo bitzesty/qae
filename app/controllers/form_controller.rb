@@ -158,6 +158,15 @@ class FormController < ApplicationController
           if submitted_was_changed
             @form_answer.state_machine.submit(current_user)
             FormAnswerUserSubmissionService.new(@form_answer).perform
+
+            if @form_answer.submission_ended?
+              #
+              # If submission period ended and Admin makes manual submission
+              # then we need to generate Hard Copy PDF file
+              # as it required for all submitted applications after submission deadline.
+              #
+              HardCopyPdfGenerators::FormDataWorker.perform_async(@form_answer.id, true)
+            end
           end
         end
 

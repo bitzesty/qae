@@ -1,13 +1,21 @@
 li.form_answer_attachment
   - if support_letter.support_letter_attachment.present?
-    - if support_letter.support_letter_attachment.clean?
+    - sl_attachment = support_letter.support_letter_attachment
+
+    - if sl_attachment.clean?
       = link_to [namespace_name, support_letter.form_answer, support_letter],
                 target: "_blank", class: "action-title"
         span.glyphicon.glyphicon-file
-        = support_letter.support_letter_attachment.original_filename
+        = sl_attachment.original_filename
+
+    - elsif sl_attachment.attachment_scan_results.to_s == "infected"
+      span.glyphicon.glyphicon-file
+      = "Failed virus scanner check (#{sl_attachment.original_filename})"
+
     - else
       span.glyphicon.glyphicon-file
-      = "Not passed virus scanner check (#{support_letter.support_letter_attachment.original_filename})"
+      = "Scanning '#{sl_attachment.original_filename}' file"
+
   - else
     = link_to [namespace_name, support_letter.form_answer, support_letter],
               target: "_blank",

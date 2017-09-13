@@ -4,10 +4,12 @@ class HardCopyGenerators::Base
               :pdf,
               :tempfile_name,
               :timestamp,
-              :tmpfile
+              :tmpfile,
+              :use_latest_version
 
-  def initialize(form_answer)
+  def initialize(form_answer, use_latest_version=false)
     @form_answer = form_answer
+    @use_latest_version = use_latest_version
     @timestamp = Time.zone.now.strftime('%d_%b_%Y_%H_%M')
 
     set_pdf!

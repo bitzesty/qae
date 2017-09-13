@@ -11,6 +11,10 @@ class UrnBuilder
     return unless fa.submitted?
     return unless fa.award_type
 
+    fa.urn = generate_urn
+  end
+
+  def generate_urn
     sequence_attr = "urn_seq_promotion_#{award_year.year}" if fa.promotion?
     sequence_attr ||= "urn_seq_#{award_year.year}"
 
@@ -26,6 +30,6 @@ class UrnBuilder
     }[fa.award_type]
     generated_urn += "#{award_year.year.to_s[2..-1]}#{suffix}"
 
-    fa.urn = generated_urn
+    generated_urn
   end
 end

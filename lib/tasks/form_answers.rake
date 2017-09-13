@@ -5,14 +5,8 @@ namespace :form_answers do
   #
   desc "Force submit an application"
   task :force_submit, [:id] => [:environment] do |t, args|
-    f = FormAnswer.find(args[:id])
-    f.submitted = true
-    f.submitted_at = Time.current
-    f.save!
-    f.reload
-
-    f.state_machine.submit(f.user)
-    FormAnswerUserSubmissionService.new(f).perform
+    form_answer = FormAnswer.find(args[:id])
+    ::ManualUpdaters::SubmitApplication.new(form_answer).run!
   end
 
   desc "Populate submitted_at"
