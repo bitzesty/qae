@@ -165,7 +165,7 @@ class FormController < ApplicationController
               # then we need to generate Hard Copy PDF file
               # as it required for all submitted applications after submission deadline.
               #
-              HardCopyPdfGenerators::FormDataWorker.perform_async(@form_answer.id)
+              HardCopyPdfGenerators::FormDataWorker.perform_async(@form_answer.id, true)
             end
           end
         end

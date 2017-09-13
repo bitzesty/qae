@@ -7,8 +7,13 @@
 
 class HardCopyGenerators::FormDataGenerator < HardCopyGenerators::Base
   def set_pdf!
-    @pdf = form_answer.original_form_answer
-                      .decorate
+    form_record = if use_latest_version.present?
+      form_answer
+    else
+      form_answer.original_form_answer
+    end
+
+    @pdf = form_record.decorate
                       .pdf_generator
   end
 

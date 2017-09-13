@@ -315,6 +315,10 @@ class FormAnswer < ActiveRecord::Base
     HardCopyGenerators::FormDataGenerator.new(self).run
   end
 
+  def generate_pdf_version_from_latest_doc!
+    HardCopyGenerators::FormDataGenerator.new(self, true).run
+  end
+
   def generate_case_summary_hard_copy_pdf!
     HardCopyGenerators::CaseSummaryGenerator.new(self).run
   end
