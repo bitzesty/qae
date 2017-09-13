@@ -7,7 +7,7 @@
 
 class HardCopyGenerators::FormDataGenerator < HardCopyGenerators::Base
   def set_pdf!
-    form_record = if use_latest_version.present?
+    form_record = if use_latest_version
       form_answer
     else
       form_answer.original_form_answer
