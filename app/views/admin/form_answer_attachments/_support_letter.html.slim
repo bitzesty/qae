@@ -7,12 +7,15 @@ li.form_answer_attachment
                 target: "_blank", class: "action-title"
         span.glyphicon.glyphicon-file
         = sl_attachment.original_filename
-    - elsif %w(pending scanning).include?(sl_attachment.attachment_scan_results.to_s)
+
+    - elsif sl_attachment.attachment_scan_results.to_s == "infected"
       span.glyphicon.glyphicon-file
-      = "Scanning of '#{sl_attachment.original_filename}' file"
+      = "Failed virus scanner check (#{sl_attachment.original_filename})"
+
     - else
       span.glyphicon.glyphicon-file
-      = "Not passed virus scanner check (#{sl_attachment.original_filename})"
+      = "Scanning '#{sl_attachment.original_filename}' file"
+
   - else
     = link_to [namespace_name, support_letter.form_answer, support_letter],
               target: "_blank",
