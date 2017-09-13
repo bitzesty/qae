@@ -17,9 +17,11 @@
       = link_to [namespace_name, form_answer_attachment.form_answer,form_answer_attachment], target: "_blank", class: "action-title"
         span.glyphicon.glyphicon-file
         = form_answer_attachment.decorate.display_name
-    - elsif %w(pending scanning).include?(form_answer_attachment.file_scan_results.to_s)
-      span.glyphicon.glyphicon-file
-      = "Scanning of '#{form_answer_attachment.decorate.display_name}' file"
-    - else
+
+    - elsif form_answer_attachment.file_scan_results.to_s == "infected"
       span.glyphicon.glyphicon-file
       = "Not passed virus scanner check (#{form_answer_attachment.decorate.display_name})"
+
+    - else
+      span.glyphicon.glyphicon-file
+      = "Scanning of '#{form_answer_attachment.decorate.display_name}' file"
