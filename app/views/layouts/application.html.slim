@@ -148,6 +148,7 @@
         |   ga('create', '#{ENV["GOOGLE_ANALYTICS_ID"]}', 'auto');
         - if current_user
           | ga('set', 'userId', '#{current_user.id}');
+          | ga('set', 'dimension1', '#{current_user.id}');
         |   ga('set', 'anonymizeIp', true);
         |   ga('send', 'pageview');
         | }
