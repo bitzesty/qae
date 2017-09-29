@@ -8,21 +8,23 @@ class Reports::FormAnswer
               :award_form,
               :financial_data
 
-  def initialize(form_answer)
+  def initialize(form_answer, limited_access=false)
     @obj = form_answer
     @answers = ActiveSupport::HashWithIndifferentAccess.new(obj.document)
     @award_form = form_answer.award_form.decorate(answers: answers)
     @financial_data = form_answer.financial_data || {}
 
-    @moderated = pick_assignment("moderated")
-    @primary = pick_assignment("primary")
-    @secondary = pick_assignment("secondary")
-    @case_summary = pick_assignment("case_summary")
+    unless limited_access
+      @moderated = pick_assignment("moderated")
+      @primary = pick_assignment("primary")
+      @secondary = pick_assignment("secondary")
+      @case_summary = pick_assignment("case_summary")
 
-    @secondary_assessor = @obj.secondary_assessor
+      @secondary_assessor = @obj.secondary_assessor
 
-    if @obj.press_summary.present? && @obj.press_summary.submitted?
-      @press_summary = @obj.press_summary
+      if @obj.press_summary.present? && @obj.press_summary.submitted?
+        @press_summary = @obj.press_summary
+      end
     end
   end
 
@@ -143,11 +145,11 @@ class Reports::FormAnswer
   end
 
   def category
-    obj.class::AWARD_TYPE_FULL_NAMES[obj.award_type]
+    @category ||= obj.class::AWARD_TYPE_FULL_NAMES[obj.award_type]
   end
 
   def business_form?
-    obj.business?
+    @business_form ||= obj.business?
   end
 
   delegate :trade?, :development?, :promotion?, :innovation?, :mobility?, to: :obj
