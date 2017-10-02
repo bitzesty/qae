@@ -428,6 +428,10 @@ jQuery ->
       #
       autosave_enabled = false
 
+    # Assessor viewing form, autosave should be disabled
+    if $(".page-read-only-form").length > 0
+      autosave_enabled = false
+
     if autosave_enabled
       save_form_data(callback)
     #TODO: indicators, error handlers?
