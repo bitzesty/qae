@@ -24,7 +24,11 @@ module AdminHelper
 
       base
     else
-      "Author deleted"
+      "Written by author who is no longer active"
     end
+  end
+
+  def message_author_name(author)
+    author.present? ? author.decorate.full_name : 'author who is no longer active'
   end
 end
