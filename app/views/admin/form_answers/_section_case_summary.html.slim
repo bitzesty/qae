@@ -10,7 +10,7 @@
               | This will be presented to the panel members and is used when making the final decision
             - if assessment.editable.present?
               small
-                = "Updated by #{assessment.editable.decorate.full_name} - #{format_date(assessment.updated_at)}"
+                = "Updated by #{message_author_name(assessment.editable)} - #{format_date(assessment.updated_at)}"
       .panel-collapse.collapse role="tabpanel" aria-labelledby="case-summary-heading-#{assessment.position}" id="section-case-summary-#{assessment.position}" class="section-case-summary-#{assessment.position}"
 
         .panel-body
