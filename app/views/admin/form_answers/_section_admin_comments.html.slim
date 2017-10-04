@@ -13,7 +13,7 @@
           span.signature
             - if @form_answer.comments.admin.any?
               - last_comment = @form_answer.comments.admin.first
-              = "Updated by #{last_comment.author.decorate.full_name} - #{l(last_comment.created_at, format: :date_at_time)}"
+              = "Updated by #{message_author_name(last_comment.author)} - #{l(last_comment.created_at, format: :date_at_time)}"
 
   #section-admin-comments.section-admin-comments.panel-collapse.collapse role="tabpanel" aria-labelledby="admin-comments-heading"
     .panel-body
