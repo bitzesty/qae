@@ -200,6 +200,10 @@ Devise.setup do |config|
   #   manager.default_strategies(scope: :user).unshift :some_external_strategy
   # end
 
+  config.warden do |manager|
+    manager.failure_app = QaeFailureApp
+  end
+
   # ==> Devise Authy Authentication Extension
   # How long should the user's device be remembered for.
   # config.authy_remember_device = 1.month
