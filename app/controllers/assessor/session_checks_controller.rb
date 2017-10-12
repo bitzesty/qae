@@ -4,6 +4,6 @@ class Assessor::SessionChecksController < ActionController::Base
   private
 
   def namespace
-    "assessors"
+    ASSESSOR_NAMESPACE
   end
 end
