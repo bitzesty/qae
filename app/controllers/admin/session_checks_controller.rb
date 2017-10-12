@@ -4,6 +4,6 @@ class Admin::SessionChecksController < ActionController::Base
   private
 
   def namespace
-    "admins"
+    ADMIN_NAMESPACE
   end
 end
