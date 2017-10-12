@@ -68,7 +68,7 @@ class MailRenderer
     assigns[:recipient] = dummy_user("Jane", "Doe", "Jane's Company")
     assigns[:form_answer] = form_answer
     assigns[:deadline] = deadline_str("audit_certificates")
-    assigns[:deadline_time] = "midday"
+    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
 
     render(assigns, "users/audit_certificate_request_mailer/notify")
   end
@@ -86,7 +86,9 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:company_name] = "Massive Dynamic"
 
-    assigns[:deadline] = deadline_str("audit_certificates")
+
+    assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
+    assigns[:deadline_date] = deadline_str("audit_certificates")
 
     assigns[:award_type_full_name] = "Innovation"
 

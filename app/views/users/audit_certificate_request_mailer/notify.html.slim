@@ -2,27 +2,36 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@recipient.full_name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' We're emailing to remind you that you have until
-  =<> @deadline_time
-  => @deadline
+  ' We are emailing to remind you that you have until
+  strong
+    =<> @deadline_time
+  ' on
+  strong
+    => @deadline
   ' to
   = link_to "upload your completed Verification of Commercial Figures here.", users_form_answer_audit_certificate_url(@form_answer)
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0; text-align: center;"
-  => "We"
-  span style="text-decoration: underline;"
-    | cannot
-  =< "extend this deadline."
+  strong
+    ' We
+    span style="text-decoration: underline;"
+      | cannot
+    =< "extend this deadline."
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' If you don't submit your Verification of Commercial Figures before the deadline, we will not have sufficient information to assess your application and it will most likely be withdrawn.
+  ' If you do not submit your Verification of Commercial Figures before the deadline, we will not have sufficient information to assess your application and it will most likely be withdrawn.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' You can
   = link_to "download a blank copy of the Verification of Commercial Figures here.", users_form_answer_audit_certificate_url(@form_answer, format: :pdf)
 
 p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  ' Thank you,
+  strong
+    | Thank you,
   br
   br
-  ' The Queen's Awards Office
+  strong
+    | Olivia Morrell
+  br
+  strong
+    | Head of Queen’s Awards Office

@@ -6,7 +6,7 @@ class Users::AuditCertificateRequestMailer < ApplicationMailer
     @trigger_at = @deadline.trigger_at
     @deadline = @trigger_at.strftime("%d/%m/%Y")
 
-    @deadline_time = @trigger_at.strftime("%-l:%M%P")
+    @deadline_time = @trigger_at.strftime("%H:%M")
     @deadline_time = "midnight" if midnight?
     @deadline_time = "midday" if midday?
 
