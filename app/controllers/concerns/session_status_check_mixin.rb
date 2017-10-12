@@ -1,6 +1,9 @@
 module SessionStatusCheckMixin
   extend ActiveSupport::Concern
 
+  ADMIN_NAMESPACE = "admins".freeze
+  ASSESSOR_NAMESPACE = "assessors".freeze
+
   included do
     protect_from_forgery with: :exception
     ensure_security_headers if ENV["ENSURE_SECURITY_HEADERS"]
@@ -23,11 +26,10 @@ module SessionStatusCheckMixin
   end
 
   def session_is_valid?
-    if namespace == "admins"
+    if namespace == ADMIN_NAMESPACE
       admin_signed_in?
-    elsif namespace == "assessors"
+    elsif namespace == ASSESSOR_NAMESPACE
       assessor_signed_in?
     end
   end
 end
-
