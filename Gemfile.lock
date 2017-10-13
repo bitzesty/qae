@@ -9,6 +9,7 @@ GIT
 GIT
   remote: git://github.com/galetahub/ckeditor.git
   revision: 752bca97f78e5c5df3fbd876e51a06918da804e2
+  ref: 752bca97f78e5c5df3fbd876e51a06918da804e2
   specs:
     ckeditor (4.2.4)
       cocaine
