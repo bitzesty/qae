@@ -76,12 +76,12 @@ gem 'prawn-table'
 gem 'nokogiri', '~> 1.8.1'
 
 # Uploads
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.2'
 gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
 gem "fog"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
-gem 'vigilion-rails', '~> 1.0.2'
+gem 'vigilion-rails', github: "vigilion/vigilion-rails", branch: "update-gems"
 
 # Background jobs
 gem "sidekiq", "~> 4.1.1"
