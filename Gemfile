@@ -76,7 +76,7 @@ gem 'prawn-table'
 gem 'nokogiri', '~> 1.8.1'
 
 # Uploads
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.2'
 gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
 gem "fog"
 gem "fog-aws"
