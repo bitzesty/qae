@@ -27,7 +27,7 @@ gem 'govuk_frontend_toolkit', '~> 3.1.0'
 gem 'govuk_template', '0.12.0'
 gem 'uglifier', '>= 2.7.2'
 gem 'js_cookie_rails', '~> 2.1'
-gem 'ckeditor', github: 'galetahub/ckeditor'
+gem 'ckeditor', github: 'galetahub/ckeditor', ref: "752bca97f78e5c5df3fbd876e51a06918da804e2"
 
 # Autolinking in admin mass user mailer
 gem 'rails_autolink'
@@ -76,12 +76,12 @@ gem 'prawn-table'
 gem 'nokogiri', '~> 1.8.1'
 
 # Uploads
-gem 'carrierwave'
+gem 'carrierwave', '~> 1.2'
 gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
 gem "fog"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
-gem 'vigilion-rails', '~> 1.0.2'
+gem 'vigilion-rails', github: "vigilion/vigilion-rails", branch: "update-gems"
 
 # Background jobs
 gem "sidekiq", "~> 4.1.1"

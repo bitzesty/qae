@@ -63,7 +63,7 @@ RSpec.describe SupportLetterAttachment, type: :model do
       it "should allow to upload files with allowed extensions" do
         expect(attachment_with_wrong_extension_file.valid?).to be_falsey
         expect(attachment_with_wrong_extension_file.errors.full_messages).to include(
-          "Attachment You are not allowed to upload \"log\" files, allowed types: #{FileUploader.new.extension_white_list.join(", ")}"
+          "Attachment You are not allowed to upload \"log\" files, allowed types: #{FileUploader.new.extension_whitelist.join(", ")}"
         )
       end
 
@@ -73,4 +73,3 @@ RSpec.describe SupportLetterAttachment, type: :model do
     end
   end
 end
-
