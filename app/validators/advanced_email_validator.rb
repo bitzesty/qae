@@ -1,3 +1,5 @@
+require 'resolv'
+
 class AdvancedEmailValidator < ActiveModel::Validator
   def validate(record)
     parsed = Mail::Address.new(record.email)
