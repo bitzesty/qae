@@ -106,7 +106,7 @@ gem 'virtus'
 gem 'nilify_blanks'
 
 # Monitoring
-gem 'newrelic_rpm'
+gem 'skylight'
 
 # We use it for sending API requests to Sendgrid in
 # AdvancedEmailValidator
