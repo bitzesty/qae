@@ -29,7 +29,7 @@ tbody
         = obj.secondary_assessor_full_name
 
       td
-        - app_comments = application_comments(obj.comments)
+        - app_comments = application_comments(obj.comments_count)
         - if app_comments.present?
           = link_to polymorphic_url([:assessor, obj], search: params[:search]) do
             = app_comments
