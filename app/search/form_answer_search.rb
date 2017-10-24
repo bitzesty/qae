@@ -20,9 +20,9 @@ class FormAnswerSearch < Search
     section = Comment.sections[section]
 
     q = "form_answers.*,
-      (COUNT(comments.id)) AS flags_count"
+      (COUNT(flagged_comments.id)) AS flags_count"
     scoped_results.select(q)
-      .joins("LEFT OUTER JOIN comments on (comments.commentable_id=form_answers.id) AND ((comments.section = '#{section}' AND comments.commentable_type = 'FormAnswer' AND flagged = true) OR comments.section IS NULL)")
+      .joins("LEFT OUTER JOIN comments  AS flagged_comments on (flagged_comments.commentable_id=form_answers.id) AND ((flagged_comments.section = '#{section}' AND flagged_comments.commentable_type = 'FormAnswer' AND flagged_comments.flagged = true) OR flagged_comments.section IS NULL)")
       .group("form_answers.id")
       .order("flags_count #{sort_order(desc)}")
   end
