@@ -1,4 +1,5 @@
-- FormAnswerDecorator.decorate_collection(@form_answers).each do |obj|
+- @form_answers.each do |form_answer|
+  - obj = form_answer.decorate
   tr
     td.td-title
       - unless obj.company_or_nominee_name.nil?
@@ -19,7 +20,7 @@
     td = obj.dashboard_status
     td = obj.sic_code
     td
-      - app_comments = application_comments(obj.comments)
+      - app_comments = application_comments(obj.comments_count)
       - if app_comments.present?
         = link_to polymorphic_url([namespace_name, obj], search: params[:search])
           = app_comments

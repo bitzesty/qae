@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FormAnswerDecorator < ApplicationDecorator
   AWARD_TITLES = { "Innovation" => "Innovation",
                    "International Trade" => "Int'l Trade",
@@ -5,6 +7,9 @@ class FormAnswerDecorator < ApplicationDecorator
                    "Promoting Opportunity" => "Prom. Opp.",
                    "Enterprise Promotion" => "Ent. Prom."
                  }
+
+  NOT_ASSIGNED = "Not Assigned"
+  ASSESSORS_NOT_ASSIGNED = "Assessors are not assigned"
 
   def pdf_generator(pdf_blank_mode=false)
     "QaePdfForms::Awards2016::#{object.award_type.capitalize}::Base".constantize.new(object, pdf_blank_mode)
@@ -424,11 +429,11 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def primary_assessor_full_name
-    object.assessors.primary.try(:full_name) || "Not Assigned"
+    object.assessors.primary.try(:full_name) || NOT_ASSIGNED
   end
 
   def secondary_assessor_full_name
-    object.assessors.secondary.try(:full_name) || "Not Assigned"
+    object.assessors.secondary.try(:full_name) || NOT_ASSIGNED
   end
 
   def primary_assessment_submitted?
@@ -443,9 +448,9 @@ class FormAnswerDecorator < ApplicationDecorator
     if object.submitted?
       if object.state == "assessment_in_progress"
         if object.assessors.any?
-          object.assessors.map { |a| a.full_name }.join(", ")
+          object.assessors.pluck(:first_name, :last_name).map { |first_name, last_name| "#{first_name} #{last_name}" }.join(", ")
         else
-          "Assessors are not assigned"
+          ASSESSORS_NOT_ASSIGNED
         end
       else
         state_text

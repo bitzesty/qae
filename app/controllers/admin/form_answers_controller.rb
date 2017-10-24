@@ -24,9 +24,10 @@ class Admin::FormAnswersController < Admin::BaseController
     authorize :form_answer, :index?
     @search = FormAnswerSearch.new(@award_year.form_answers, current_admin).search(params[:search])
     @search.ordered_by = "company_or_nominee_name" unless @search.ordered_by
-    @form_answers = @search.results.group("form_answers.id")
-                                   .page(params[:page])
-                                   .includes(:comments)
+    @form_answers = @search.results
+                      .with_comments_counters
+                      .group("form_answers.id")
+                      .page(params[:page])
   end
 
   def edit

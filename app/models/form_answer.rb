@@ -141,6 +141,13 @@ class FormAnswer < ActiveRecord::Base
     scope :hard_copy_generated, -> (mode) {
       submitted.where("#{mode}_hard_copy_generated" => true)
     }
+
+    scope :with_comments_counters, -> {
+      select("form_answers.*, COUNT(DISTINCT(comments.id)) AS comments_count, COUNT(DISTINCT(flagged_admin_comments.id)) AS flagged_admin_comments_count, COUNT(DISTINCT(flagged_critical_comments.id)) AS flagged_critical_comments_count")
+        .joins("LEFT OUTER JOIN comments ON comments.commentable_id = form_answers.id AND comments.commentable_type = 'FormAnswer'")
+        .joins("LEFT OUTER JOIN comments AS flagged_admin_comments ON flagged_admin_comments.commentable_id = form_answers.id AND flagged_admin_comments.commentable_type = 'FormAnswer' AND flagged_admin_comments.flagged IS true AND flagged_admin_comments.section = 0")
+        .joins("LEFT OUTER JOIN comments AS flagged_critical_comments ON flagged_critical_comments.commentable_id = form_answers.id AND flagged_critical_comments.commentable_type = 'FormAnswer' AND flagged_critical_comments.flagged IS true AND flagged_critical_comments.section = 1")
+    }
   end
 
   begin :callbacks
