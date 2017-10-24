@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require "countries"
 
 module FormAnswerHelper
@@ -11,12 +13,19 @@ module FormAnswerHelper
   end
 
   def application_flags(fa, subject = nil)
-    comments = fa.comments
-
-    c_size = comments.select do |c|
-      main = c.main_for?(current_subject)
-      (subject ? main : !main) && c.flagged?
-    end.size
+    comments_count = if subject
+      if current_subject.is_a?(Admin)
+        fa.flagged_admin_comments_count
+      else
+        fa.flagged_critical_comments_count
+      end
+    else
+      if current_subject.is_a?(Admin)
+        fa.flagged_critical_comments_count
+      else
+        fa.flagged_admin_comments_count
+      end
+    end
 
     current_user_class = current_subject.model_name.to_s.parameterize
 
@@ -26,10 +35,10 @@ module FormAnswerHelper
       current_user_class == "admin" ? "icon-flag-assessor" : "icon-flag-admin"
     end
 
-    if c_size > 0
+    if comments_count > 0
       content_tag :span, class: "icon-flagged #{flag_type}" do
         content_tag :span, class: "flag-count" do
-          c_size.to_s
+          comments_count.to_s
         end
       end
     end
@@ -39,13 +48,11 @@ module FormAnswerHelper
     policy(form).update_item?(item)
   end
 
-  def application_comments(comments)
-    visible_comments = comments
-
-    return unless visible_comments.present?
+  def application_comments(comments_count)
+    return unless comments_count > 0
 
     output = "<span class='icon-comment'>Comments: <span class='comment-count'>"
-    output += "#{visible_comments.size}"
+    output += "#{comments_count}"
     output += "</span></span>"
     output.html_safe
   end

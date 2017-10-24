@@ -672,9 +672,11 @@ header.page-header aside .inner {
   margin: 0;
   margin-left: 272px;
   padding-right: 32px;
+  min-height: 1020px;
 
   @media (max-width: 990px) {
     margin-left: 0;
+    min-height: 0;
   }
 
   @media (max-width: 640px) {
