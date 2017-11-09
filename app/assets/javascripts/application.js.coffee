@@ -285,7 +285,7 @@ jQuery ->
       e.stopPropagation()
 
       autosave ->
-        $(".qae-form").trigger("submit")
+        $(".steps-progress-content .step-current button[type='submit']").click()
 
   #
   # In case if was attempt to submit and validation errors are present
