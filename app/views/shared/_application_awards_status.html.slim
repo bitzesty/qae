@@ -24,7 +24,7 @@ ul.applications-list
       ' You can only apply for one International Trade Award
     .pull-right
       - unless current_account.has_award_in_this_year?(:trade)
-        = link_to "New application", apply_international_trade_award_path
+        = link_to "New application", apply_international_trade_award_path, "aria-label" => "New International Trade Award application"
 
   li
     h3
@@ -32,7 +32,7 @@ ul.applications-list
     small
       ' You can apply for multiple Innovation Awards
     .pull-right
-      = link_to "New application", apply_innovation_award_path
+      = link_to "New application", apply_innovation_award_path, "aria-label" => "New Innovation Award application"
 
   li
     h3
@@ -41,7 +41,7 @@ ul.applications-list
       ' You can only apply for one Sustainable Development Award
     .pull-right
       - unless current_account.has_award_in_this_year?(:development)
-        = link_to "New application", apply_sustainable_development_award_path
+        = link_to "New application", apply_sustainable_development_award_path, "aria-label" => "New Sustainable Development Award application"
   - if display_social_mobility?
     li
       h3
@@ -50,4 +50,4 @@ ul.applications-list
         ' You can only apply for one Promoting Opportunity Award
       .pull-right
         - unless current_account.has_award_in_this_year?(:mobility)
-          = link_to "New application", apply_social_mobility_award_path
+          = link_to "New application", apply_social_mobility_award_path, "aria-label" => "New Promoting Opportunity Award application"

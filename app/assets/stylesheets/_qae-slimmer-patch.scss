@@ -51,6 +51,10 @@ article {
 
 fieldset {
   margin: 0 2px;
+
+  legend {
+    @extend h3;
+  }
 }
 
 input[type="radio"],

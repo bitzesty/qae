@@ -7,5 +7,5 @@
   p.question-context
     ' Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product.
 
-  = f.input :programme_validation, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  = f.input :programme_validation, as: :radio_buttons, item_wrapper_class: 'selectable', wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }, label_html: { class: 'visuallyhidden' }
 span.clear

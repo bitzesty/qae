@@ -1,3 +1,4 @@
+div role="radiogroup" aria-labelledby="q_#{question.key}"
 - for answer in question.options do
   label.selectable
     input.js-trigger-autosave type="radio" id="#{question.input_name}_#{answer.value}" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s || (question.input_value.blank? && question.default_option.to_s == answer.value.to_s)) *possible_read_only_ops

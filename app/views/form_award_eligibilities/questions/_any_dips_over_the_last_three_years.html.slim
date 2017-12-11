@@ -6,5 +6,5 @@
   ul.question-context
     li Outstanding year on year growth in the last 3 years with no dips
     li Continuous year on year growth in the last 6 years with no dips
-  = f.input :any_dips_over_the_last_three_years, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  = f.input :any_dips_over_the_last_three_years, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }, wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }
 span.clear

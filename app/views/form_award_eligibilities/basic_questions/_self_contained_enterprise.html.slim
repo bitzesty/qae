@@ -1,5 +1,5 @@
 .question-body
   p.question-context
     ' A self-contained unit is under its own management and markets its own products or services.
-  = f.input :self_contained_enterprise, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  = f.input :self_contained_enterprise, as: :radio_buttons, wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
   span.clear
