@@ -90,7 +90,7 @@ gem 'sinatra', require: nil
 
 # Redis
 gem 'redis-rails'
-gem 'redis-store'
+gem 'redis-store', "~> 1.4"
 
 # We are using Pusher with Poxa server
 # for collaborators application edit stuff
