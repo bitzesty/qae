@@ -60,6 +60,8 @@ jQuery ->
   # Adds click event to links
   $(document).on "click", ".hidden-hint a", (e) ->
     e.preventDefault()
+    e.stopPropagation()
+    
     $(this).closest(".hidden-hint").toggleClass("show-hint")
 
   $(document).on "click", ".hidden-link-for", (e) ->
@@ -748,6 +750,7 @@ jQuery ->
   # Clicking `+ Add` on certain questions add fields
   $(document).on "click", ".question-block .js-button-add", (e) ->
     e.preventDefault()
+    e.stopPropagation()
 
     if !$(this).hasClass("read-only")
       question = $(this).closest(".question-block")

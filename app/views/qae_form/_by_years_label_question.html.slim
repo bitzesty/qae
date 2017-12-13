@@ -1,32 +1,33 @@
-.js-financial-year-changed-dates
-  - for c in question.by_year_conditions
-    .js-conditional-question.js-fy-entry-container.by-years-wrapper data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
-      .if-js-hide
-        label
-          strong
-            = "If you had growth in the last #{c.years} years"
-      .row
-        - (1..c.years).each do |y|
-          .span-4.js-fy-entries class="#{'fy-latest' if y == c.years}"
-            span.js-year-end.show-default data-year="#{y}of#{c.years}"
-              span.js-year-default
-                = question.format_label(y)
-                - if y == c.years
-                  '  (current)
-            br
-            ul.errors-container
-            .clear
-            .date-input
-              span.date-input-field
-                label for=question.input_name(suffix: "#{y}of#{c.years}day")
-                  ' Day
-                input.js-trigger-autosave.tiny.js-fy-day type="text" name=question.input_name(suffix: "#{y}of#{c.years}day") value=question.input_value(suffix: "#{y}of#{c.years}day") id=question.input_name(suffix: "#{y}of#{c.years}day") maxlength=2 autocomplete="off" *possible_read_only_ops
-              span.date-input-field
-                label for=question.input_name(suffix: "#{y}of#{c.years}month")
-                  ' Month
-                input.js-trigger-autosave.tiny.js-fy-month type="text" name=question.input_name(suffix: "#{y}of#{c.years}month") value=question.input_value(suffix: "#{y}of#{c.years}month") id=question.input_name(suffix: "#{y}of#{c.years}month") maxlength=2 autocomplete="off" *possible_read_only_ops
-              span.date-input-field
-                label for=question.input_name(suffix: "#{y}of#{c.years}year")
-                  ' Year
-                input.js-trigger-autosave.small.js-fy-year type="text" name=question.input_name(suffix: "#{y}of#{c.years}year") value=question.input_value(suffix: "#{y}of#{c.years}year") id=question.input_name(suffix: "#{y}of#{c.years}year") maxlength=4 autocomplete="off" *possible_read_only_ops
-      .clear
+div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
+  .js-financial-year-changed-dates
+    - for c in question.by_year_conditions
+      .js-conditional-question.js-fy-entry-container.by-years-wrapper data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
+        .if-js-hide
+          label
+            strong
+              = "If you had growth in the last #{c.years} years"
+        .row
+          - (1..c.years).each do |y|
+            .span-4.js-fy-entries class="#{'fy-latest' if y == c.years}"
+              span.js-year-end.show-default data-year="#{y}of#{c.years}"
+                span.js-year-default
+                  = question.format_label(y)
+                  - if y == c.years
+                    '  (current)
+              br
+              ul.errors-container
+              .clear
+              .date-input
+                span.date-input-field
+                  label for=question.input_name(suffix: "#{y}of#{c.years}day")
+                    ' Day
+                  input.js-trigger-autosave.tiny.js-fy-day type="text" name=question.input_name(suffix: "#{y}of#{c.years}day") value=question.input_value(suffix: "#{y}of#{c.years}day") id=question.input_name(suffix: "#{y}of#{c.years}day") maxlength=2 autocomplete="off" *possible_read_only_ops
+                span.date-input-field
+                  label for=question.input_name(suffix: "#{y}of#{c.years}month")
+                    ' Month
+                  input.js-trigger-autosave.tiny.js-fy-month type="text" name=question.input_name(suffix: "#{y}of#{c.years}month") value=question.input_value(suffix: "#{y}of#{c.years}month") id=question.input_name(suffix: "#{y}of#{c.years}month") maxlength=2 autocomplete="off" *possible_read_only_ops
+                span.date-input-field
+                  label for=question.input_name(suffix: "#{y}of#{c.years}year")
+                    ' Year
+                  input.js-trigger-autosave.small.js-fy-year type="text" name=question.input_name(suffix: "#{y}of#{c.years}year") value=question.input_value(suffix: "#{y}of#{c.years}year") id=question.input_name(suffix: "#{y}of#{c.years}year") maxlength=4 autocomplete="off" *possible_read_only_ops
+        .clear

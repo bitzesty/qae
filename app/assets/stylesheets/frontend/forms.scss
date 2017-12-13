@@ -1,5 +1,13 @@
 $black-true: #000;
 
+legend {
+  margin: 0 !important;
+
+  h2 {
+    margin-bottom: 0 !important;
+  }
+}
+
 .question-block h2,
 .regular-question h2 {
   @include core-24;

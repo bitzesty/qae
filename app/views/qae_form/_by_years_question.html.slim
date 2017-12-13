@@ -1,4 +1,4 @@
-.js-financial-conditional data-first-year-min-value=question.first_year_min_value data-first-year-min-validation-message=question.first_year_validation_message
+.js-financial-conditional data-first-year-min-value=question.first_year_min_value data-first-year-min-validation-message=question.first_year_validation_message  aria-labelledby="q_#{question.key}_label" id="q_#{question.key}" role="group"
   - for c in question.by_year_conditions
     .js-conditional-question.by-years-wrapper data-question=question.step.form[c.question_key].parameterized_title data-value=c.question_value
       .if-js-hide

@@ -101,6 +101,19 @@ class QAEFormBuilder
       options[:suffix] ? "#{delegate_obj.key}_#{options[:suffix]}" : delegate_obj.key
     end
 
+    def label_as_legend?
+      type = delegate_obj.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase
+
+      legend_types = [
+        "header_question",
+        "turnover_exports_calculation_question",
+        "options_question",
+        "options_business_name_changed_question"
+      ]
+
+      legend_types.include?(type)
+    end
+
     def fieldset_classes
       result = ["question-block",
        "js-conditional-answer"]
