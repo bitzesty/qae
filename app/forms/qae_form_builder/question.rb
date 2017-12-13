@@ -108,7 +108,10 @@ class QAEFormBuilder
         "header_question",
         "turnover_exports_calculation_question",
         "options_question",
-        "options_business_name_changed_question"
+        "options_business_name_changed_question",
+        "regions_question",
+        "trade_commercial_success_question",
+        "checkbox_seria_question"
       ]
 
       legend_types.include?(type)
