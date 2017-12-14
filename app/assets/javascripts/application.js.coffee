@@ -789,7 +789,7 @@ jQuery ->
           question.find(".list-add").find("li:last-child input").prop("disabled", false)
 
           idx = question.find(".list-add").find("> li").length
-          
+
           question.find(".list-add").find("li:last-child .remove-link").attr("aria-label", "Remove " + ordinal(idx) + " " + entity)
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)
@@ -965,14 +965,13 @@ jQuery ->
       CKEDITOR.replace this,
         toolbar: 'mini'
         height: 200
+        wordcount:
+          maxWordCount: $(this).data('word-max')
 
       CKEDITOR.on 'instanceCreated', (event) ->
         editor = event.editor
         element = editor.element
 
-        editor.on 'configLoaded', ->
-          editor.config.wordcount =
-            maxWordCount: element.data('word-max')
 
       CKEDITOR.on 'instanceReady', (event) ->
         target_id = event.editor.name
