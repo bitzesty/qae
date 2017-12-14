@@ -108,4 +108,4 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
         span.clear
 
-= link_to "+ Add subsidiary, associate or plant", new_form_form_answer_subsidiaries_url(@form_answer.id), class: "button button-add", "aria-label" => "Add subsidiary, associate or plant"
+= link_to "+ Add subsidiary, associate or plant", new_form_form_answer_subsidiaries_url(@form_answer.id), class: "button button-add js-button-add", "aria-label" => "Add subsidiary, associate or plant", "data-entity" => "subsidiary"

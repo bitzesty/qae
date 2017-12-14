@@ -10,7 +10,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
     - if question.entities.none?
       = render 'qae_form/award_fields', question: question, award: {}, index: 0
 
-a.button.button-add.js-button-add.if-no-js-hide href="#" *possible_read_only_ops
+a.button.button-add.js-button-add.if-no-js-hide href="#" data-entity="Award/Personal honour" *possible_read_only_ops
   | + Add another Award/Personal honour
 
-= link_to "+ Add Award/Personal honour", new_form_form_answer_awards_url(@form_answer.id, question.award_years_present ? {holder: true} : {}), class: "button button-add if-js-hide"
+= link_to "+ Add Award/Personal honour", new_form_form_answer_awards_url(@form_answer.id, question.award_years_present ? {holder: true} : {}), class: "button button-add if-js-hide",  "data-entity" => "Award/Personal honour"

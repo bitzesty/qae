@@ -21,6 +21,14 @@
 #= require_tree ./frontend
 #= require offline
 
+ordinal = (n) ->
+  switch n
+    when 1 then n + "st"
+    when 2 then n + "nd"
+    when 3 then n + "rd"
+    else n + "th"
+
+
 jQuery ->
   $("html").removeClass("no-js").addClass("js")
 
@@ -61,7 +69,7 @@ jQuery ->
   $(document).on "click", ".hidden-hint a", (e) ->
     e.preventDefault()
     e.stopPropagation()
-    
+
     $(this).closest(".hidden-hint").toggleClass("show-hint")
 
   $(document).on "click", ".hidden-link-for", (e) ->
@@ -753,6 +761,7 @@ jQuery ->
     e.stopPropagation()
 
     if !$(this).hasClass("read-only")
+      entity = $(this).data("entity")
       question = $(this).closest(".question-block")
       add_eg = question.find(".js-add-example").html()
 
@@ -778,6 +787,10 @@ jQuery ->
 
           question.find(".list-add").append("<li class='js-add-example js-list-item'>#{add_eg}</li>")
           question.find(".list-add").find("li:last-child input").prop("disabled", false)
+
+          idx = question.find(".list-add").find("> li").length
+          
+          question.find(".list-add").find("li:last-child .remove-link").attr("aria-label", "Remove " + ordinal(idx) + " " + entity)
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)
             question.find(".list-add li.js-list-item:last .errors-container").empty()

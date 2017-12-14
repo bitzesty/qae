@@ -84,9 +84,10 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
         span.clear
 
-a.button.button-add.js-button-add.if-no-js-hide href="#" aria-label="Add another award" *possible_read_only_ops
+a.button.button-add.js-button-add.if-no-js-hide href="#" aria-label="Add another award" data-entity="award" *possible_read_only_ops
   | + Add another award
 
 = link_to "+ Add award", new_form_form_answer_current_queens_awards_url(@form_answer.id),
                          class: "button button-add if-js-hide",
-                         "aria-label" => "Add award"
+                         "aria-label" => "Add award",
+                         "data-entity" => "award"
