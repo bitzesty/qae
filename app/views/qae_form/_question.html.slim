@@ -17,9 +17,6 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
           - unless question.title.blank?
             h2
               == question.title
-
-            /- unless question.required
-              '  (optional)
       - else
         label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
           - if question.ref || question.sub_ref
@@ -29,9 +26,6 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
           - unless question.title.blank?
             h2
               == question.title
-
-            /- unless question.required
-              '  (optional)
       
     - else
       - if question.ref || question.sub_ref
@@ -64,13 +58,7 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
     .clear
 
     .question-group
-      / - if question.title != "" && !question.show_ref_always.present?
-      /   label for="q_#{question.key}" 
-      /     span.visuallyhidden
-      /       = question.title
-      /       /- unless question.required
-      /         '  (optional)
-      = render partial: "qae_form/#{question.delegate_obj.class.name.split('::').last.gsub!(/(.)([A-Z])/,'\1_\2').downcase}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
+      = render partial: "qae_form/#{question.delegate_obj.class.name.split('::').last.underscore}", object: question, as: 'question', locals: {answers: answers, attachments: attachments}
       span.hint = question.form_hint
       .clear
 

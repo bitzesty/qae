@@ -22,12 +22,20 @@
 #= require offline
 
 ordinal = (n) ->
-  switch n
-    when 1 then n + "st"
-    when 2 then n + "nd"
-    when 3 then n + "rd"
-    else n + "th"
+  nHundreds = n % 100
+  nDecimal = n % 10
 
+  if nHundreds in [11, 12, 13]
+    return n + "th"
+  else
+    if nDecimal is 1
+      return n + "st"
+    else if nDecimal is 2
+      return n + "nd"
+    else if nDecimal is 3
+      return n + "rd"
+
+    return n + "th"
 
 jQuery ->
   $("html").removeClass("no-js").addClass("js")
