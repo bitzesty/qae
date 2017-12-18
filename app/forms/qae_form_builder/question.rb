@@ -102,7 +102,7 @@ class QAEFormBuilder
     end
 
     def label_as_legend?
-      type = delegate_obj.class.name.split('::').last.underscore
+      type = delegate_obj.class.name.demodulize.underscore
 
       legend_types = [
         "header_question",
