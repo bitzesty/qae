@@ -29,16 +29,6 @@
   - unless landing_page?
     ' with-proposition
 
-- content_for :body_start do
-  .browser_warning
-    ' We are currently in the beta phase and currently this browser is not supported
-    br
-    ' Please use
-    = link_to "Chrome", "http://www.google.com/chrome/", target: "_blank"
-    '  or
-    = link_to "Firefox", "https://www.mozilla.org/firefox/", target: "_blank"
-    '  to continue browsing this site
-
 - content_for :cookie_message do
   .outer-block
     .inner-block
@@ -79,6 +69,14 @@
         input.submit type="submit" value="Search"
 
 - content_for :content do
+  .browser_warning
+    ' We are currently in the beta phase and currently this browser is not supported
+    br
+    ' Please use
+    = link_to "Chrome", "http://www.google.com/chrome/", target: "_blank"
+    '  or
+    = link_to "Firefox", "https://www.mozilla.org/firefox/", target: "_blank"
+    '  to continue browsing this site
   = render "shared/offline_message"
   = render "shared/staging_banner"
 

@@ -1,16 +1,21 @@
 footer
-  nav.pagination.no-border class="#{'pagination-alternative' unless step.next}" role="navigation" aria-label="Pagination"
+  nav.pagination.no-border class="#{'pagination-alternative' unless step.next}" role="navigation" aria-label="Pagination for step #{step.index + 1}"
     ul.group
       - if step.previous
         li.previous.previous-alternate.js-step-link data-step="step-#{step.previous.title.parameterize}"
-          = link_to edit_form_url(step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part" do
+          = link_to edit_form_url(step: step.previous.title.parameterize), rel: "prev", title: "Navigate to previous part", "aria-label" => "Back to #{step.previous.title}" do
             span.pagination-label
               | Back
             /span class="pagination-part-title"
               = step.previous.title
       - else
         li.previous.previous-alternate
-          = link_to [:award_info, @form_answer.award_type, form_id: @form_answer.id], rel: "prev", title: "Navigate to previous part" do
+          - aria_label = "Back to step " + step.index.to_s
+          
+          - if step.index == 0
+            - aria_label = "Back to Application Information page"
+          
+          = link_to [:award_info, @form_answer.award_type, form_id: @form_answer.id], rel: "prev", title: aria_label, "aria-label" => aria_label do
             span.pagination-label
               | Back
 

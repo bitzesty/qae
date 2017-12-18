@@ -1,4 +1,4 @@
-.date-input
+.date-input role="group" aria-labelledby="q_#{question.key}_label" id="q_#{question.key}"
   label.date-input-field
     ' Day
     input.js-trigger-autosave.tiny.js-date-input-day type="text" name=question.input_name(suffix: 'day') value=question.input_value(suffix: 'day') maxlength=2 autocomplete="off" *possible_read_only_ops

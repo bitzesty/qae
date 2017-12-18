@@ -46,16 +46,18 @@
   .clear
 
   .if-no-js-hide
-    span.button.button-add *possible_read_only_ops
+    span.button.button-add aria-label="Upload" data-entity="file" *possible_read_only_ops
       span
         | + Upload
       input.fileinput-button.js-file-upload type="file" name="form[file]" id="q_#{question.key}" *possible_read_only_ops data-question-key=question.key
     - if question.links
       | &nbsp;
-      a.button.button-add.js-file-upload data-add-link="1" href="#" *possible_read_only_ops
+      a.button.button-add.js-file-upload data-add-link="1" href="#" aria-label="Add website address" data-entity="website address" *possible_read_only_ops
         | + Add website address
 
   - if question.key == :org_chart && @form_answer.document["org_chart"].blank?
     .if-js-hide
       = link_to "+ Upload", new_form_form_answer_organisational_chart_url(@form_answer.id),
-                            class: "button button-add"
+                            class: "button button-add",
+                            "aria-label" => "Upload",
+                            "data-entity" => "organisational chart"

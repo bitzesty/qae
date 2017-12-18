@@ -8,5 +8,5 @@
       | taken place in disadvantaged or deprived communities
     li
       | benefitted young people or under-represented groups
-  = f.input :contribution_is_outside_requirements_of_activity, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  = f.input :contribution_is_outside_requirements_of_activity, as: :radio_buttons, wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
 span.clear

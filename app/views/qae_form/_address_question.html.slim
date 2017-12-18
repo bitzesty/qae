@@ -1,52 +1,53 @@
-- question.rendering_sub_fields.each do |sub_field_block|
-  - sub_field_key = sub_field_block[0]
-  - sub_field_title = sub_field_block[1]
+div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
+  - question.rendering_sub_fields.each do |sub_field_block|
+    - sub_field_key = sub_field_block[0]
+    - sub_field_title = sub_field_block[1]
 
-  - case sub_field_key
-  - when :building
-    .question-group
-      label for="q_#{question.key}_line_1"
-        ' Building and
-      label for="q_#{question.key}_line_2"
-        ' street
-      ul.errors-container
-        - if @form_answer.validator_errors
-          li = @form_answer.validator_errors[question.hash_key(suffix: "building")]
-          li = @form_answer.validator_errors[question.hash_key(suffix: "street")]
-      .clear
-
-      input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'building') value=question.input_value(suffix: 'building') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops
-      input.large.js-trigger-autosave type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
-  - when :country
-    .question-group
-      label
-        ' Country
-        = country_select(question.step.form.form_name, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value(suffix: 'country')}, possible_read_only_ops.merge({name: question.input_name(suffix: 'country'), class: 'js-trigger-autosave required'}))
+    - case sub_field_key
+    - when :building
+      .question-group
+        label for="q_#{question.key}_line_1"
+          ' Building and
+        label for="q_#{question.key}_line_2"
+          ' street
         ul.errors-container
           - if @form_answer.validator_errors
-            li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+            li = @form_answer.validator_errors[question.hash_key(suffix: "building")]
+            li = @form_answer.validator_errors[question.hash_key(suffix: "street")]
         .clear
 
-  - when :region
-    .question-group.question-required
-      label
-        ' Region
-        ul.errors-container
-          - if @form_answer.validator_errors
-            li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
-        .clear
+        input.large.js-trigger-autosave.required type="text" name=question.input_name(suffix: 'building') value=question.input_value(suffix: 'building') autocomplete="off"  id="q_#{question.key}_line_1" *possible_read_only_ops
+        input.large.js-trigger-autosave type="text" name=question.input_name(suffix: 'street') value=question.input_value(suffix: 'street') autocomplete="off" id="q_#{question.key}_line_2" *possible_read_only_ops
+    - when :country
+      .question-group
+        label
+          ' Country
+          = country_select(question.step.form.form_name, "#{question.key}_country", {priority_countries: ["GB", "US"], selected: question.input_value(suffix: 'country')}, possible_read_only_ops.merge({name: question.input_name(suffix: 'country'), class: 'js-trigger-autosave required'}))
+          ul.errors-container
+            - if @form_answer.validator_errors
+              li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+          .clear
 
-        = select_tag("#{question.key}_region", options_for_select(question.regions, question.input_value(suffix: "region")), possible_read_only_ops.merge({name: question.input_name(suffix: 'region'), class: "js-trigger-autosave required select2", include_blank: true}))
+    - when :region
+      .question-group.question-required
+        label id="#{question.key}_region_label" for="#{question.key}_region"
+          ' Region
+          ul.errors-container
+            - if @form_answer.validator_errors
+              li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+          .clear
 
-  - else
-    .question-group
-      label
-        = sub_field_title
-        ul.errors-container
-          - if @form_answer.validator_errors
-            li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
-        .clear
+          = select_tag("#{question.key}_region", options_for_select(question.regions, question.input_value(suffix: "region")), possible_read_only_ops.merge({name: question.input_name(suffix: 'region'), class: "js-trigger-autosave required select2", include_blank: true}))
 
-        - klass = "#{sub_field_title.parameterize == 'postcode' ? 'small' : 'medium'}"
-        - klass <<(QAEFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
-        input.js-trigger-autosave class=klass type="text" name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops
+    - else
+      .question-group
+        label
+          = sub_field_title
+          ul.errors-container
+            - if @form_answer.validator_errors
+              li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
+          .clear
+
+          - klass = "#{sub_field_title.parameterize == 'postcode' ? 'small' : 'medium'}"
+          - klass <<(QAEFormBuilder::AddressQuestionValidator::NO_VALIDATION_SUB_FIELDS.exclude?(sub_field_key) ? " required" : " not-required")
+          input.js-trigger-autosave class=klass type="text" name=question.input_name(suffix: sub_field_key) value=question.input_value(suffix: sub_field_key) autocomplete="off" *possible_read_only_ops

@@ -1,9 +1,5 @@
 - if award_applications && award_applications.any?
-  table.applications-table
-    colgroup
-      col width="300"
-      col width="150"
-      col width="250"
+  table.applications-table.current-applications-table
     tbody
       /tr
         td colspan="3"
@@ -37,17 +33,10 @@
                 / = award.decorate.fill_progress_in_percents
                 / '  completed
           td.pull-right
+            - name = award.award_type == "promotion" ? "nomination" : "application"
+            - award_name = award.award_type_full_name + " Award"
+            
             - if award.submitted?
-              = link_to edit_form_path(award.id)
-                ' Edit
-                - if award.award_type == "promotion"
-                  ' nomination
-                - else
-                  ' application
+              = link_to "Edit #{name}", edit_form_path(award.id), "aria-label" => "Edit #{award_name} #{name}"
             - else
-              = link_to edit_form_path(award.id)
-                ' Continue
-                - if award.award_type == "promotion"
-                  ' nomination
-                - else
-                  ' application
+              = link_to "Continue #{name}", edit_form_path(award.id), "aria-label" => "Continue #{award_name} #{name}"

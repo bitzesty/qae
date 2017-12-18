@@ -1,5 +1,13 @@
 $black-true: #000;
 
+legend {
+  margin: 0 !important;
+
+  h2 {
+    margin-bottom: 0 !important;
+  }
+}
+
 .question-block h2,
 .regular-question h2 {
   @include core-24;
@@ -27,7 +35,8 @@ $black-true: #000;
 .question-context {
   color: $grey-1;
 
-  .application-notice & {
+  .application-notice &,
+  .add-collaborator-box & {
     color: $black;
   }
 }
@@ -685,6 +694,10 @@ input[type="file"] {
   color: $grey-1;
   text-align: right;
 
+  .list-add & {
+    color: darken($grey-1, 10%);
+  }
+
   .char-over & {
     color: $error-colour;
   }
@@ -849,6 +862,7 @@ input[type="file"] {
 
   &:focus {
     outline: none;
+    border-color: $black;
   }
 
   &:active {

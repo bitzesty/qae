@@ -21,6 +21,22 @@
 #= require_tree ./frontend
 #= require offline
 
+ordinal = (n) ->
+  nHundreds = n % 100
+  nDecimal = n % 10
+
+  if nHundreds in [11, 12, 13]
+    return n + "th"
+  else
+    if nDecimal is 1
+      return n + "st"
+    else if nDecimal is 2
+      return n + "nd"
+    else if nDecimal is 3
+      return n + "rd"
+
+    return n + "th"
+
 jQuery ->
   $("html").removeClass("no-js").addClass("js")
 
@@ -60,6 +76,8 @@ jQuery ->
   # Adds click event to links
   $(document).on "click", ".hidden-hint a", (e) ->
     e.preventDefault()
+    e.stopPropagation()
+
     $(this).closest(".hidden-hint").toggleClass("show-hint")
 
   $(document).on "click", ".hidden-link-for", (e) ->
@@ -748,8 +766,10 @@ jQuery ->
   # Clicking `+ Add` on certain questions add fields
   $(document).on "click", ".question-block .js-button-add", (e) ->
     e.preventDefault()
+    e.stopPropagation()
 
     if !$(this).hasClass("read-only")
+      entity = $(this).data("entity")
       question = $(this).closest(".question-block")
       add_eg = question.find(".js-add-example").html()
 
@@ -775,6 +795,10 @@ jQuery ->
 
           question.find(".list-add").append("<li class='js-add-example js-list-item'>#{add_eg}</li>")
           question.find(".list-add").find("li:last-child input").prop("disabled", false)
+
+          idx = question.find(".list-add").find("> li").length
+
+          question.find(".list-add").find("li:last-child .remove-link").attr("aria-label", "Remove " + ordinal(idx) + " " + entity)
           clear_example = question.find(".list-add").attr("data-need-to-clear-example")
           if (typeof(clear_example) != typeof(undefined) && clear_example != false)
             question.find(".list-add li.js-list-item:last .errors-container").empty()
@@ -949,14 +973,13 @@ jQuery ->
       CKEDITOR.replace this,
         toolbar: 'mini'
         height: 200
+        wordcount:
+          maxWordCount: $(this).data('word-max')
 
       CKEDITOR.on 'instanceCreated', (event) ->
         editor = event.editor
         element = editor.element
 
-        editor.on 'configLoaded', ->
-          editor.config.wordcount =
-            maxWordCount: element.data('word-max')
 
       CKEDITOR.on 'instanceReady', (event) ->
         target_id = event.editor.name

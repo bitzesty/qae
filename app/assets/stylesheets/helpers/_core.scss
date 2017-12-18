@@ -7,6 +7,10 @@ body {
   }
 }
 
+a:link {
+  color: #005798;
+}
+
 #wrapper {
   background-color: $white;
   @include ie-lte(7) {
