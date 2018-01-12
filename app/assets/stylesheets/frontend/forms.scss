@@ -3,6 +3,10 @@ $black-true: #000;
 legend {
   margin: 0 !important;
 
+  &.light {
+    font-weight: 400;
+  }
+
   h2 {
     margin-bottom: 0 !important;
   }

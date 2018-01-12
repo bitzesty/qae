@@ -1,8 +1,8 @@
 = render "shared/non_js_dynamic_list_redirect_warning", add_message: "Add Award/Personal honour"
 
 div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
+  input name="form[#{question.key}][array]" value="true" type="hidden" *possible_read_only_ops
   ul.list-add data-need-to-clear-example=true data-add-limit="10" data-default=1 id="non_js_#{question.key}-list-question"
-    input name="form[#{question.key}][array]" value="true" type="hidden" *possible_read_only_ops
 
     - question.entities.each_with_index do |award, index|
       = render 'qae_form/award_fields', question: question, award: award, index: index
