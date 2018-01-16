@@ -128,7 +128,7 @@ group :development do
   gem 'quiet_assets'
   gem 'rack-mini-profiler', '>= 0.10.1', require: false
   gem 'binding_of_caller'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.52', require: false
   # When need to copy model with nested associations
   gem 'amoeba'
 end
