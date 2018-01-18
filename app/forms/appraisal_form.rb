@@ -4,7 +4,7 @@ class AppraisalForm
   #
   # THIS NEED TO BE UPDATED EACH YEAR
   #
-  SUPPORTED_YEARS = [2016, 2017, 2018]
+  SUPPORTED_YEARS = [2016, 2017, 2018, 2019]
 
   RAG_OPTIONS_2016 = [
     %w(Red negative),
@@ -24,6 +24,12 @@ class AppraisalForm
     %w(Green positive)
   ]
 
+  RAG_OPTIONS_2019 = [
+    %w(Red negative),
+    %w(Amber average),
+    %w(Green positive)
+  ]
+
   CSR_RAG_OPTIONS_2016 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
@@ -37,6 +43,12 @@ class AppraisalForm
   ]
 
   CSR_RAG_OPTIONS_2018 = [
+    ["Weak (0-15)", "negative"],
+    ["Satisfactory (16-31)", "average"],
+    ["Exceptional (32-50)", "positive"]
+  ]
+
+  CSR_RAG_OPTIONS_2019 = [
     ["Weak (0-15)", "negative"],
     ["Satisfactory (16-31)", "average"],
     ["Exceptional (32-50)", "positive"]
@@ -63,6 +75,13 @@ class AppraisalForm
     ["Key Strength", "positive"]
   ]
 
+  STRENGTH_OPTIONS_2019 = [
+    ["Insufficient Information Supplied", "neutral"],
+    ["Priority Focus for Development", "negative"],
+    ["Positive - Scope for Ongoing Development", "average"],
+    ["Key Strength", "positive"]
+  ]
+
   VERDICT_OPTIONS_2016 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
@@ -76,6 +95,12 @@ class AppraisalForm
   ]
 
   VERDICT_OPTIONS_2018 = [
+    ["Not Recommended", "negative"],
+    ["Reserved", "average"],
+    ["Recommended", "positive"]
+  ]
+
+  VERDICT_OPTIONS_2019 = [
     ["Not Recommended", "negative"],
     ["Reserved", "average"],
     ["Recommended", "positive"]
@@ -233,6 +258,34 @@ class AppraisalForm
     }
   }
 
+  TRADE_2019 = {
+    overseas_earnings_growth: {
+      type: :rag,
+      label: "Overseas earnings growth:",
+      position: 0
+    },
+    commercial_success: {
+      type: :rag,
+      label: "Commercial success:",
+      position: 1
+    },
+    strategy: {
+      type: :rag,
+      label: "Strategy:",
+      position: 2
+    },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Corporate social responsibility (section D):",
+      position: 3
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 4
+    }
+  }
+
   INNOVATION_2016 = {
     level_of_innovation: {
       type: :rag,
@@ -312,6 +365,34 @@ class AppraisalForm
     }
   }
 
+  INNOVATION_2019 = {
+    level_of_innovation: {
+      type: :rag,
+      label: "Level of innovation:",
+      position: 0
+    },
+    extent_of_value_added: {
+      type: :rag,
+      label: "Extent of value added:",
+      position: 1
+    },
+    impact_of_innovation: {
+      type: :rag,
+      label: "Impact of innovation:",
+      position: 2
+    },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Corporate social responsibility (section D):",
+      position: 3
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 4
+    }
+  }
+
   PROMOTION_2016 = {
     nature_of_activities: {
       type: :rag,
@@ -364,6 +445,34 @@ class AppraisalForm
   }
 
   PROMOTION_2018 = {
+    nature_of_activities: {
+      type: :rag,
+      label: "Nature (breadth) of activities:",
+      position: 0
+    },
+    impact_achievement: {
+      type: :rag,
+      label: "Impact/achievement:",
+      position: 1
+    },
+    level_of_support: {
+      type: :rag,
+      label: "Level of support:",
+      position: 2
+    },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Corporate social responsibility (section D):",
+      position: 3
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 4
+    }
+  }
+
+  PROMOTION_2019 = {
     nature_of_activities: {
       type: :rag,
       label: "Nature (breadth) of activities:",
@@ -555,6 +664,49 @@ class AppraisalForm
     }
   }
 
+  DEVELOPMENT_2019 = {
+    product_service_contribution: {
+      type: :rag,
+      label: "Product/service contribution:",
+      position: 0
+    },
+    commercial_success: {
+      type: :rag,
+      label: "Commercial success:",
+      position: 1
+    },
+    environment: {
+      type: :non_rag,
+      label: "Environmental dimension:",
+      position: 2
+    },
+    social: {
+      type: :non_rag,
+      label: "Social dimension:",
+      position: 3
+    },
+    economic: {
+      type: :non_rag,
+      label: "Economic dimension:",
+      position: 4
+    },
+    leadership_management: {
+      type: :rag,
+      label: "Leadership & management:",
+      position: 5
+    },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Corporate social responsibility (section D):",
+      position: 6
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 7
+    }
+  }
+
   MOBILITY_2016 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
@@ -649,6 +801,34 @@ class AppraisalForm
     }
   }.freeze
 
+  MOBILITY_2019 = {
+    mobility_organisation_aiming_to_achieve: {
+      type: :rag,
+      label: "What are you doing? (10% max) - Questions B2-B2.2",
+      position: 0
+    },
+    mobility_programme_provide_a_good: {
+      type: :rag,
+      label: "How do you do it? (30% max) - Questions B3-B4.2",
+      position: 1
+    },
+    mobility_embedded_is_the_programme: {
+      type: :rag,
+      label: "What have you achieved? (60% max) - Questions B5-B7",
+      position: 2
+    },
+    corporate_social_responsibility: {
+      type: :rag,
+      label: "Corporate social responsibility (section D):",
+      position: 3
+    },
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:",
+      position: 4
+    }
+  }.freeze
+
   MODERATED_2016 = {
     verdict: {
       type: :verdict,
@@ -670,6 +850,13 @@ class AppraisalForm
     }
   }
 
+  MODERATED_2019 = {
+    verdict: {
+      type: :verdict,
+      label: "Overall verdict:"
+    }
+  }
+
   CASE_SUMMARY_METHODS_2016 = [
     :application_background_section_desc
   ]
@@ -682,9 +869,14 @@ class AppraisalForm
     :application_background_section_desc
   ]
 
+  CASE_SUMMARY_METHODS_2019 = [
+    :application_background_section_desc
+  ]
+
   ALL_FORMS_2016 = [TRADE_2016, INNOVATION_2016, PROMOTION_2016, DEVELOPMENT_2016, MOBILITY_2016]
   ALL_FORMS_2017 = [TRADE_2017, INNOVATION_2017, PROMOTION_2017, DEVELOPMENT_2017, MOBILITY_2017]
   ALL_FORMS_2018 = [TRADE_2018, INNOVATION_2018, PROMOTION_2018, DEVELOPMENT_2018, MOBILITY_2018]
+  ALL_FORMS_2019 = [TRADE_2019, INNOVATION_2019, PROMOTION_2019, DEVELOPMENT_2019, MOBILITY_2019]
 
   def self.rate(key)
     "#{key}_rate"
