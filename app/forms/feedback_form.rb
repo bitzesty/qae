@@ -35,7 +35,7 @@ class FeedbackForm
   end
 
   def self.strength_options_for(feedback, field)
-    year = feedback.award_year.year
+    year = (feedback.award_year || feedback.form_answer.award_year).year
 
     options = AppraisalForm.const_get("STRENGTH_OPTIONS_#{year}")
 
