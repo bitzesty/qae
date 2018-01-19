@@ -15,7 +15,9 @@ So that I provide a full list of attendees for Buckingham Palace reception
     create :form_answer, :innovation, :awarded, user: user
   end
 
-  let!(:award_year) { AwardYear.current }
+  let!(:award_year) do
+    create(:award_year)
+  end
 
   let!(:year_settings) do
     settings = award_year.settings

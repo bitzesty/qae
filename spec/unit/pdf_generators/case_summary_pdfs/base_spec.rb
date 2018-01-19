@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 describe "CaseSummaryPdfs::Base" do
-  let!(:award_year) { AwardYear.current }
+  let!(:award_year) do
+    create :award_year
+  end
 
   let!(:form_answer_current_year_innovation) do
     FactoryGirl.create :form_answer, :recommended, :innovation, award_year: award_year
