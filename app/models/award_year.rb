@@ -161,7 +161,7 @@ class AwardYear < ActiveRecord::Base
 
   def self.current
     Rails.cache.fetch "current_award_year", expires_in: 1.minute do
-      return where(year: DateTime.now.year).first_or_create if mock_current_year?
+      return where(year: DateTime.now.year + 1).first_or_create if mock_current_year?
       now = DateTime.now
       deadline = AwardYear.where(year: now.year + 1)
                           .first_or_create
