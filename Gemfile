@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.0'
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.10'
 
 # Security HTTP Headers
 gem 'secure_headers'
