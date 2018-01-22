@@ -50,7 +50,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'gon'
 
 # User authentication & authorization
-gem 'devise', '~> 3.4'
+gem 'devise', '~> 4.4'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
@@ -65,7 +65,7 @@ gem 'wicked', '~> 1.1'
 gem 'statesman'
 
 # Form & Data helpers
-gem 'simple_form', '~> 3.1'
+gem 'simple_form', '~> 3.5'
 gem 'country_select'
 gem 'email_validator'
 gem 'enumerize', '~> 0.8'
