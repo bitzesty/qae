@@ -156,7 +156,7 @@ group :test do
   gem 'turnip'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
-  gem 'codeclimate-test-reporter', require: nil
+  gem 'codeclimate-test-reporter', '0.6.0', require: nil
   gem 'rspec_junit_formatter'
   gem 'timecop'
   gem 'webmock'
