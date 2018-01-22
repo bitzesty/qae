@@ -123,16 +123,18 @@ class ApplicationController < ActionController::Base
   private
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) do |u|
-      u.permit(
+    devise_parameter_sanitizer.permit(
+      :sign_up,
+      keys: [
         :email,
         :password,
         :password_confirmation,
         :agreed_with_privacy_policy
-      )
-    end
-    devise_parameter_sanitizer.for(:account_update) do |u|
-      u.permit(
+      ]
+    )
+    devise_parameter_sanitizer.permit(
+      :account_update,
+      keys: [
         :email,
         :current_password,
         :password,
@@ -153,8 +155,8 @@ class ApplicationController < ActionController::Base
         :prefered_method_of_contact,
         :subscribed_to_emails,
         :agree_being_contacted_by_department_of_business
-      )
-    end
+      ]
+    )
   end
 
   def check_account_completion

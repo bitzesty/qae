@@ -32,7 +32,7 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def edit
     authorize resource
-    sign_in(@form_answer.user, bypass: true)
+    bypass_sign_in(@form_answer.user)
     session[:admin_in_read_only_mode] = false
     redirect_to edit_form_path(resource)
   end
