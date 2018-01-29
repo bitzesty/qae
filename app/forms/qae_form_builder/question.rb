@@ -111,7 +111,8 @@ class QAEFormBuilder
         "options_business_name_changed_question",
         "regions_question",
         "trade_commercial_success_question",
-        "checkbox_seria_question"
+        "checkbox_seria_question",
+        "confirm_question"
       ]
 
       legend_types.include?(type)

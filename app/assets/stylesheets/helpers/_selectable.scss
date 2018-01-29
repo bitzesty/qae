@@ -3,8 +3,7 @@
 
 //scoped to label to reduce the possibility of class name clash
 //scoped to span for rails collection tag
-label.selectable,
-span.selectable {
+.selectable {
   display: block;
   float: none;
   clear: left;

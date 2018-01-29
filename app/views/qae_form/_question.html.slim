@@ -4,12 +4,12 @@
   - if question.header_context
     == question.header_context
 
-fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=("question-has-errors" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
-  = condition_divs question do
+= condition_divs question do
+  fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=("question-has-errors" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
     - ref = question.ref ? question.ref : question.sub_ref
     - if question.title != "" || question.show_ref_always.present?
       - if question.label_as_legend?
-        legend aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
+        legend aria-label="#{ref.to_s.gsub(' ', '-')} #{question.title.blank? ? '' : ':' + question.title}"
           - if question.ref || question.sub_ref
             span class="steps step-#{ref.to_s.parameterize} #{'if-js-hide' if question.sub_ref && !question.display_sub_ref_on_js_form}"
               span.todo

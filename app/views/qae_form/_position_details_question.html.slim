@@ -1,5 +1,5 @@
+input name="form[position_details][array]" value="true" type="hidden" *possible_read_only_ops
 ul.list-add.positions data-default=1
-  input name="form[position_details][array]" value="true" type="hidden" *possible_read_only_ops
 
   - question.entities.each_with_index do |position, index|
     = render 'qae_form/position_fields', position: position, index: index, question: question

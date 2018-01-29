@@ -1,7 +1,7 @@
 - question.regions.each_slice(question.regions.length / 2).each do |slice|
   .regions-half
     - slice.each do |region|
-      label.selectable
+      .selectable
         = check_box_tag "#{question.input_name}[]", region, question.entities.include?(region), class: "js-trigger-autosave required", id: "#{question.input_name}_#{region}"
         label for="#{question.input_name}_#{region}"
           = region
