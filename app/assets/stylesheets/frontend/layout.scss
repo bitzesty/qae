@@ -669,6 +669,7 @@ header.page-header aside .inner {
     padding-left: 1em;
     padding-right: 1em;
     margin-top: 2em;
+    max-width: 200px;
 
     p {
       line-height: 1.2;
@@ -676,7 +677,12 @@ header.page-header aside .inner {
 
       em {
         font-size: 1.265em;
+        display: block;
       }
+    }
+
+    @media (max-width: 990px) {
+      margin-top: 0;
     }
   }
 }

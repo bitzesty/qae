@@ -828,6 +828,10 @@ input[type="file"] {
   cursor: pointer;
   overflow: hidden;
 
+  &.onfocus {
+    outline: 3px solid $focus-colour;
+  }
+
   &,
   &:link,
   &:hover,

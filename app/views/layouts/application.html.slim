@@ -40,13 +40,14 @@
   - unless landing_page?
     .header-proposition
       .content
-        - if current_admin || current_user || current_assessor
-          span.if-no-js-hide
-            = link_to "Menu", "#proposition-links", class: "js-header-toggle menu"
         nav#proposition-menu
           a#proposition-name href="/"
             ' Queen's Awards for Enterprise
+          
           - if current_user && !current_admin && !current_assessor
+            span.if-no-js-hide
+              = link_to "Menu", "#proposition-links", class: "js-header-toggle menu"
+            
             ul#proposition-links
               - if current_user.try(:completed_registration)
                 li
@@ -82,7 +83,7 @@
 
   #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?} #{'layout-dev' if Rails.env.development?}"
-      main#content.group class="#{yield :page_content_class}" role="main"
+      main#content.group class="#{yield :page_content_class}"
         .phase-banner
           p
             strong.phase-tag
