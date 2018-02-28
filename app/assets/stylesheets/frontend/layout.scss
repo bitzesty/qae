@@ -7,7 +7,9 @@
 // Fix the .visuallyhidden class from overflowing body
 .visuallyhidden {
   position: absolute !important;
-  top: -9999px !important;
+  // don't add top back in here
+  // if the element is focusable for some reason, it will jump to the top
+  // so at least this way scroll stays where it is
   left: -9999px !important;
 }
 

@@ -23,5 +23,5 @@
                 - sales_value = "-"
               span.js-sales-value data-year="#{y}of#{c.years}" data-turnover=question.turnover_question data-exports=question.exports_question
                 = sales_value
-              input.small.js-trigger-autosave.visuallyhidden type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=sales_value id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
+              input.small.js-trigger-autosave.visuallyhidden tabindex="-1" type="text" name=question.input_name(suffix: "#{y}of#{c.years}") value=sales_value id=question.input_name(suffix: "#{y}of#{c.years}") autocomplete="off" *possible_read_only_ops
       .clear
