@@ -19,6 +19,13 @@ footer
             span.pagination-label
               | Back
 
+      - if current_form_is_editable?
+        li.save-quit-link
+          span.if-js-hide
+            = button_tag "Save and come back later", class: "save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
+          span.if-no-js-hide
+            = link_to "Save and come back later", dashboard_url, class: "js-save-and-come-back"
+
       - if step.next
         li.submit.js-next-link.js-step-link data-step="step-#{step.next.title.parameterize}"
           - opts = possible_read_only_ops
@@ -32,10 +39,3 @@ footer
           li.submit.qae-form
             button type="submit" name="submit" value="true" class="button #{step.submit.style.presence}"
               = step.submit.text
-
-      - if current_form_is_editable?
-        li.save-quit-link
-          span.if-js-hide
-            = button_tag "Save and come back later", class: "save-quit-link btn", value: "redirect", name: "next_action", type: "submit", data: { url: dashboard_url }
-          span.if-no-js-hide
-            = link_to "Save and come back later", dashboard_url, class: "js-save-and-come-back"

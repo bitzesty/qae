@@ -3,5 +3,5 @@
   - if children_conditions.present?
     ul.conditional-hint
       - children_conditions.each do |child_condition|
-        li aria-live="polite"
+        li
           = question.conditional_hint(child_condition, questions_with_references)

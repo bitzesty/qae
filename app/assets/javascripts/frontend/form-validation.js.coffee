@@ -16,7 +16,7 @@ window.FormValidation =
     @validates = false
 
   appendMessage: (container, message) ->
-    container.find(".errors-container").first().append("<li aria-live='polite'>#{message}</li>")
+    container.find(".errors-container").first().append("<li>#{message}</li>")
     @validates = false
 
   addErrorClass: (container) ->
