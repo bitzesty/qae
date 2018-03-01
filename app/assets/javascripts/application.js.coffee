@@ -541,6 +541,12 @@ jQuery ->
     has_filename = !!wrapper.data('filename')
     is_link = !!$el.data('add-link')
 
+    $el.on "focus", ->
+      button.addClass("onfocus")
+
+    $el.on "blur", ->
+      button.removeClass("onfocus")
+
     progress_all = (e, data) ->
       # TODO
 

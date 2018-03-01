@@ -4,6 +4,10 @@
   a {
     &:focus {
       color: #005798;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 999999;
     }
   }
 }
@@ -63,6 +67,12 @@
 
     &:hover {
       background-color: darken($mainstream-brand, 5%);
+    }
+  }
+
+  a.menu {
+    &:focus {
+      color: #000;
     }
   }
 
