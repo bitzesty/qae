@@ -1,6 +1,5 @@
+- name = award.promotion? ? "nomination" : "application"
+- award_name = award.award_type_full_name + " Award"
 p
-  = link_to users_form_answer_path(award, format: :pdf), "target" => "_blank" do
-    - if award.promotion?
-      ' Download your nomination
-    - else
-      ' Download your application
+  = link_to users_form_answer_path(award, format: :pdf), "target" => "_blank", "aria-label" => "Download your #{award_name} #{name}" do
+    = "Download your #{name}"

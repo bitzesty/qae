@@ -29,16 +29,6 @@
   - unless landing_page?
     ' with-proposition
 
-- content_for :body_start do
-  .browser_warning
-    ' We are currently in the beta phase and currently this browser is not supported
-    br
-    ' Please use
-    = link_to "Chrome", "http://www.google.com/chrome/", target: "_blank"
-    '  or
-    = link_to "Firefox", "https://www.mozilla.org/firefox/", target: "_blank"
-    '  to continue browsing this site
-
 - content_for :cookie_message do
   .outer-block
     .inner-block
@@ -50,13 +40,14 @@
   - unless landing_page?
     .header-proposition
       .content
-        - if current_admin || current_user || current_assessor
-          span.if-no-js-hide
-            = link_to "Menu", "#proposition-links", class: "js-header-toggle menu"
         nav#proposition-menu
           a#proposition-name href="/"
             ' Queen's Awards for Enterprise
+          
           - if current_user && !current_admin && !current_assessor
+            span.if-no-js-hide
+              = link_to "Menu", "#proposition-links", class: "js-header-toggle menu"
+            
             ul#proposition-links
               - if current_user.try(:completed_registration)
                 li
@@ -79,12 +70,20 @@
         input.submit type="submit" value="Search"
 
 - content_for :content do
+  .browser_warning
+    ' We are currently in the beta phase and currently this browser is not supported
+    br
+    ' Please use
+    = link_to "Chrome", "http://www.google.com/chrome/", target: "_blank"
+    '  or
+    = link_to "Firefox", "https://www.mozilla.org/firefox/", target: "_blank"
+    '  to continue browsing this site
   = render "shared/offline_message"
   = render "shared/staging_banner"
 
   #wrapper.guide.smart-answer.answer class="#{yield :page_wrapper_class}"
     #QAE class="#{'admin-mode' if admin_in_read_only_mode?} #{'layout-dev' if Rails.env.development?}"
-      main#content.group class="#{yield :page_content_class}" role="main"
+      main#content.group class="#{yield :page_content_class}"
         .phase-banner
           p
             strong.phase-tag

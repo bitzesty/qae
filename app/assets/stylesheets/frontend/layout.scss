@@ -7,7 +7,9 @@
 // Fix the .visuallyhidden class from overflowing body
 .visuallyhidden {
   position: absolute !important;
-  top: -9999px !important;
+  // don't add top back in here
+  // if the element is focusable for some reason, it will jump to the top
+  // so at least this way scroll stays where it is
   left: -9999px !important;
 }
 
@@ -390,6 +392,12 @@ header.page-header div {
   @media (min-width: 990px) {
     position: relative;
   }
+
+  #proposition-name {
+    &:focus {
+      background: transparent;
+    }
+  }
 }
 #global-header {
   position: relative;
@@ -545,10 +553,6 @@ header.page-header aside .inner {
     }
   }
 
-  a {
-    text-decoration: none;
-  }
-
   li {
     @include core-19;
     display: block;
@@ -559,10 +563,15 @@ header.page-header aside .inner {
     &,
     a {
       color: $grey-1;
+      text-decoration: none;
     }
 
     a:visited {
       color: $grey-1 !important;
+    }
+
+    a:focus {
+      color: $black !important;
     }
 
     > a,
@@ -610,6 +619,12 @@ header.page-header aside .inner {
       margin-bottom: $gutter-one-sixth;
       border-top: 1px solid $border-colour;
     }
+
+    &.sidebar-helpline {
+      a {
+        text-decoration: underline;
+      }
+    }
   }
 
   .text-black {
@@ -656,14 +671,20 @@ header.page-header aside .inner {
     padding-left: 1em;
     padding-right: 1em;
     margin-top: 2em;
+    max-width: 200px;
 
     p {
       line-height: 1.2;
-      @include core-19;
+      @include core-24;
 
       em {
-        font-size: 1.45em;
+        font-size: 1.265em;
+        display: block;
       }
+    }
+
+    @media (max-width: 990px) {
+      margin-top: 0;
     }
   }
 }
@@ -834,6 +855,7 @@ article .help-notice ul {
 // IE6 browser warning banner
 .browser_warning {
   display: none;
+  visibility: hidden;
   padding: 1.5em 5px;
   background: #333;
   color: $white;
@@ -844,6 +866,7 @@ article .help-notice ul {
 
   .lte-ie6 & {
     display: block;
+    visibility: visible;
   }
 
   a {

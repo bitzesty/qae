@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.5.0'
 
-gem 'rails', '4.2.7.1'
+gem 'rails', '4.2.10'
 
 # Security HTTP Headers
 gem 'secure_headers'
@@ -50,7 +50,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'gon'
 
 # User authentication & authorization
-gem 'devise', '~> 3.4'
+gem 'devise', '~> 4.4'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
@@ -65,7 +65,7 @@ gem 'wicked', '~> 1.1'
 gem 'statesman'
 
 # Form & Data helpers
-gem 'simple_form', '~> 3.1'
+gem 'simple_form', '~> 3.5'
 gem 'country_select'
 gem 'email_validator'
 gem 'enumerize', '~> 0.8'
@@ -128,7 +128,7 @@ group :development do
   gem 'quiet_assets'
   gem 'rack-mini-profiler', '>= 0.10.1', require: false
   gem 'binding_of_caller'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.52', require: false
   # When need to copy model with nested associations
   gem 'amoeba'
 end
@@ -156,7 +156,7 @@ group :test do
   gem 'turnip'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
-  gem 'codeclimate-test-reporter', require: nil
+  gem 'codeclimate-test-reporter', '0.6.0', require: nil
   gem 'rspec_junit_formatter'
   gem 'timecop'
   gem 'webmock'

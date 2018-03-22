@@ -1,4 +1,21 @@
 @import '_shims';
+
+#skiplink-container {
+  a {
+    &:focus {
+      color: #005798;
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 999999;
+    }
+  }
+}
+
+#logo:focus {
+  background: transparent;
+}
+
 #global-header {
   .header-wrapper .header-global .site-search {
     @extend %contain-floats;
@@ -50,6 +67,12 @@
 
     &:hover {
       background-color: darken($mainstream-brand, 5%);
+    }
+  }
+
+  a.menu {
+    &:focus {
+      color: #000;
     }
   }
 

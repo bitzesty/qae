@@ -3,5 +3,6 @@
     = @eligibility.class.hint(step)
   - collection = @eligibility.class.innovative_product.options
   - collection.reject! { |opts| opts.last == 'skip' } if controller_name == 'form_award_eligibilities'
-  = f.input :innovative_product, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }, collection: collection
+  = f.input :innovative_product, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }, wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }, collection: collection
+
 span.clear

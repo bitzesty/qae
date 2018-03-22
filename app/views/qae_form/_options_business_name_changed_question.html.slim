@@ -6,7 +6,8 @@
     - if @form_answer.document["queen_award_holder"] == "yes"
       - klass << " hidden"
 
-  label.selectable class=klass
-    input.js-trigger-autosave type="radio" id="#{question.input_name}_#{answer.value}" name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s) *possible_read_only_ops
-      label for="#{question.input_name}_#{answer.value}"
+  .selectable class=klass
+    input.js-trigger-autosave type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}"  name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s) *possible_read_only_ops
+      label for="#{question.input_name}_#{answer.value.to_s.parameterize}"
         = answer.text
+      

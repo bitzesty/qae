@@ -1,4 +1,8 @@
 .question-body
   p.question-context == @eligibility.class.hint(step)
-  = f.input question, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  = f.input question, 
+    as: :radio_buttons, 
+    item_wrapper_class: 'selectable', 
+    wrapper_html: { role: "radiogroup", "id" => "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" },
+    label_html: { class: 'visuallyhidden' }
 span.clear

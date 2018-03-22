@@ -1,7 +1,14 @@
+machine:
+  pre:
+    - sudo rm -rf /home/travis
+    - sudo ln -s /home/ubuntu /home/travis
+  ruby:
+    version: 2.5.0
 dependencies:
   post:
     - curl -Ls https://install.convox.com/linux.zip > convox.zip
     - sudo unzip convox.zip -d /usr/local/bin
+    - gem update --system
 test:
   post:
     - bundle exec bin/circle

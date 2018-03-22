@@ -43,7 +43,7 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include UserStepDefinitions, type: :feature
   config.include ExpectationHelper, type: :feature
-  config.include Devise::TestHelpers, type: :controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
 
   config.raise_error_for_unimplemented_steps = true
   config.use_transactional_fixtures = false

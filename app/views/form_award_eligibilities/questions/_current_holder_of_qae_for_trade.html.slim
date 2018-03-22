@@ -1,3 +1,3 @@
 .question-body
-  = f.input :current_holder_of_qae_for_trade, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  = f.input :current_holder_of_qae_for_trade, as: :radio_buttons, item_wrapper_class: 'selectable', wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }, label_html: { class: 'visuallyhidden' }
 span.clear
