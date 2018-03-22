@@ -4,8 +4,8 @@
   - if question.header_context
     == question.header_context
 
-= condition_divs question do
-  fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=("question-has-errors" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
+fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=("question-has-errors" if @form_answer.validator_errors && @form_answer.validator_errors[question.hash_key])
+  = condition_divs question do
     - ref = question.ref ? question.ref : question.sub_ref
     - if question.title != "" || question.show_ref_always.present?
       - if question.label_as_legend?
@@ -26,7 +26,7 @@
           - unless question.title.blank?
             h2
               == question.title
-      
+
     - else
       - if question.ref || question.sub_ref
         .if-js-hide
