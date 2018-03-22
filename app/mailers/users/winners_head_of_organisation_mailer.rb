@@ -21,7 +21,7 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @press_book_entry_datetime =
       deadlines.buckingham_palace_confirm_press_book_notes.strftime("%H:%M hours on %d %B %Y")
 
-    @subject = "[Queen's Awards for Enterprise] Important information about your Queen's Award Entry!"
+    @subject = "Important information about your Queen's Award Entry!"
 
     mail to: @head_email, subject: @subject
   end
