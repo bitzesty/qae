@@ -129,6 +129,11 @@ class MailRenderer
     assigns[:end_of_embargo_date] = deadline_str("buckingham_palace_attendees_details", "%-d %B %Y")
     assigns[:press_book_entry_datetime] = deadline_str("buckingham_palace_confirm_press_book_notes", "%H:%M hours on %d %B %Y")
 
+    assigns[:media_deadline] = deadline_str(
+      "buckingham_palace_media_information",
+      "%A %d %B %Y"
+    )
+
     render(assigns, "users/winners_head_of_organisation_mailer/notify")
   end
 
