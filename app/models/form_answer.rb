@@ -1,4 +1,5 @@
 require 'award_years/v2018/qae_forms'
+require 'award_years/v2019/qae_forms'
 
 class FormAnswer < ActiveRecord::Base
   include PgSearch
@@ -187,7 +188,6 @@ class FormAnswer < ActiveRecord::Base
         self.class.const_get(award_form_class_name(AwardYear.current.year))
       elsif Rails.env.test?
         year = Date.current.year
-        puts year
         if self.class.const_defined?(award_form_class_name(year + 1))
           self.class.const_get(award_form_class_name(year + 1))
         else

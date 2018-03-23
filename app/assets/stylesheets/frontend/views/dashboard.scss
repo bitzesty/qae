@@ -131,15 +131,11 @@
       padding: 0.1em 1em;
 
       p {
-        @include core-16;
+        @include core-24;
 
         em {
           margin-bottom: 0;
-          font-size: 2.4em;
-
-          &:first-child {
-            font-size: 1.9em;
-          }
+          font-size: 1.265em;
         }
       }
     }

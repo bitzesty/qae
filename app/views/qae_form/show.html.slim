@@ -4,15 +4,6 @@
   - provide(:body_end) do
     .js-collaborators-bar.hidden
 
-// Don't think that this textarea is smth wrong
-// We use it in order to fix CKeditor plugins issue
-// CKeditor in version 4 doesn't apply plugins init for first
-// textarea in list
-// so that first textarea in form would not be inited with 'wordscount' and 'onchange' plugins
-//
-.hidden
-  textarea.js-ckeditor
-
 form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=save_form_url(@form_answer, next_step: next_step(@form, params[:step]), current_step: params[:step]) method="POST" data-attachments-url=attachments_url(@form_answer) novalidate=true
 
   input name="authenticity_token" type="hidden" value=form_authenticity_token
@@ -25,6 +16,8 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
         = @form.title
 
   .steps-progress-container.min-height-800
+    = render "qae_form/steps_progress_bar", current_step: params[:step]
+    
     .steps-progress-content
       - if @form_answer.promotion? && @form_answer.validator_errors && @form_answer.validator_errors["supporters"].present?
         article.group role="article"
@@ -40,8 +33,6 @@ form.qae-form.award-form data-autosave-url=save_form_url(@form_answer) action=sa
       = render partial: 'qae_form/step', collection: @form.steps, locals: {form: @form, answers: (HashWithIndifferentAccess.new(@form_answer.document || {})), attachments: HashWithIndifferentAccess.new(@attachments)}
 
       = render "qae_form/step_error"
-
-    = render "qae_form/steps_progress_bar", current_step: params[:step]
 
 - if application_collaborator_group_mode?
   = content_for(:javascript_code) do

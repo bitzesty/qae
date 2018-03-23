@@ -1,5 +1,5 @@
 .selectable-confirm-wrapper
-  label.selectable
+  .selectable
     input.js-trigger-autosave type="checkbox" name=question.input_name id="q_#{question.key}" checked=!!question.input_value *possible_read_only_ops
     label for="q_#{question.key}"
       - if question.key == :shortlisted_case_confirmation

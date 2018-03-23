@@ -1,5 +1,5 @@
+input name="form[#{question.key}][array]" value="true" type="hidden" *possible_read_only_ops
 ul.list-add.supporters-list data-need-to-clear-example=true data-add-limit=question.limit data-attachments-url=(users_form_answer_support_letter_attachments_path(@form_answer)) data-example-has-file-field=true
-  input name="form[#{question.key}][array]" value="true" type="hidden" *possible_read_only_ops
   = render 'qae_form/supporter_fields_placeholder', question: question
   - if question.entities.present?
     - if question.entities.count < question.default.to_i

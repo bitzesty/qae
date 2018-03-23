@@ -1,4 +1,4 @@
 .question-body
   p.question-context
-  = f.input :do_you_file_company_tax_returns, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  = f.input :do_you_file_company_tax_returns, as: :radio_buttons, item_wrapper_class: 'selectable', wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, label_html: { class: 'visuallyhidden' }
   span.clear

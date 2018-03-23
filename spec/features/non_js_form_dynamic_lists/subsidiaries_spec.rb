@@ -65,7 +65,7 @@ So that I can fill form completelly even if Javascript is turned off
 
     it "should allow to add another" do
       within("fieldset[data-answer='trading_figures_add-enter-the-name-location-and-amount-of-uk-employees-fte-full-time-equivalent-for-each-of-the-uk-subsidiaries-included-in-this-application-and-the-reason-why-you-are-including-them']") do
-        first(".button-add.if-js-hide").click
+        first(".button-add").click
       end
       expect_to_see "Add subsidiary, associate or plant"
 
@@ -145,7 +145,7 @@ So that I can fill form completelly even if Javascript is turned off
 
     it "should allow to remove existing" do
       within("li[non-js-attribute=#{second_item[:name]}]") do
-        first('a.remove-link.if-js-hide').click
+        first('a.remove-link').click
       end
 
       expect_to_see "Are you sure?"

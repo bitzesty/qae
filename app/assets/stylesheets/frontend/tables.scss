@@ -1,0 +1,25 @@
+// Defines widths of table columns across the application
+
+.current-applications-table {
+  th,td {
+    &:nth-child(1) {
+      width: 300px;
+    }
+
+    &:nth-child(2) {
+      width: 150px;
+    }
+
+    &:nth-child(3) {
+      width: 250px;
+    }
+  }
+}
+
+.eligibility-previous-answers {
+  th,td {
+    &:nth-child(1) {
+      width: 320px;
+    }
+  }
+}

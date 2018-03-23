@@ -14,5 +14,5 @@
 
   br
 
-  = f.input :nominee_contributes_to_promotion_of_business_enterprise, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
+  = f.input :nominee_contributes_to_promotion_of_business_enterprise, as: :radio_buttons, item_wrapper_class: 'selectable', wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }, label_html: { class: 'visuallyhidden' }
 span.clear

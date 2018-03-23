@@ -14,18 +14,17 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
 
     deadlines = Settings.current.deadlines
 
-    @media_deadline =
-      deadlines.buckingham_palace_media_information.strftime("%A %d %B %Y")
+    @end_of_embargo_day =
+      deadlines.end_of_embargo.strftime("%A %-d %B %Y")
     @end_of_embargo_date =
       deadlines.end_of_embargo.strftime("%-d %B %Y")
-    @end_of_embargo_datetime =
-      deadlines.end_of_embargo.strftime("%H.%M hrs on %-d %B %Y")
     @press_book_entry_datetime =
-      deadlines.buckingham_palace_confirm_press_book_notes.strftime("%H.%M hrs on %d %B %Y")
-    @attendees_invite_date =
-      deadlines.buckingham_palace_attendees_invite.strftime("%A %d %B %Y")
+      deadlines.buckingham_palace_confirm_press_book_notes.strftime("%H:%M hours on %d %B %Y")
 
-    @subject = "[Queen's Awards for Enterprise] Important information about your Queen's Award Entry!"
+    @media_deadline = deadlines.where(kind: "buckingham_palace_media_information").first
+    @media_deadline = @media_deadline.try(:strftime, "%A %d %B %Y")
+
+    @subject = "Important information about your Queen's Award Entry!"
 
     mail to: @head_email, subject: @subject
   end

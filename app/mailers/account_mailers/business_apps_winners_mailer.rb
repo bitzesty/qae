@@ -15,10 +15,7 @@ class AccountMailers::BusinessAppsWinnersMailer < AccountMailers::BaseMailer
     @media_deadline = @media_deadline.try :strftime, "%A %d %B %Y"
 
     @book_notes_deadline = deadlines.where(kind: "buckingham_palace_confirm_press_book_notes").first
-    @book_notes_deadline = @book_notes_deadline.try :strftime, "%H.%M hrs on %d %B %Y"
-
-    @attendees_invite_date = deadlines.where(kind: "buckingham_palace_attendees_invite").first
-    @attendees_invite_date = @attendees_invite_date.try :strftime, "%A %d %B %Y"
+    @book_notes_deadline = @book_notes_deadline.try :strftime, "%A %d %B %Y"
 
     subject = "Important information about your Queen’s Award"
     mail to: collaborator.email, subject: subject

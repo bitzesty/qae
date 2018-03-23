@@ -1,5 +1,17 @@
 $black-true: #000;
 
+legend {
+  margin: 0 !important;
+
+  &.light {
+    font-weight: 400;
+  }
+
+  h2 {
+    margin-bottom: 0 !important;
+  }
+}
+
 .question-block h2,
 .regular-question h2 {
   @include core-24;
@@ -27,7 +39,8 @@ $black-true: #000;
 .question-context {
   color: $grey-1;
 
-  .application-notice & {
+  .application-notice &,
+  .add-collaborator-box & {
     color: $black;
   }
 }
@@ -685,6 +698,10 @@ input[type="file"] {
   color: $grey-1;
   text-align: right;
 
+  .list-add & {
+    color: darken($grey-1, 10%);
+  }
+
   .char-over & {
     color: $error-colour;
   }
@@ -811,6 +828,10 @@ input[type="file"] {
   cursor: pointer;
   overflow: hidden;
 
+  &.onfocus {
+    outline: 3px solid $focus-colour;
+  }
+
   &,
   &:link,
   &:hover,
@@ -849,6 +870,7 @@ input[type="file"] {
 
   &:focus {
     outline: none;
+    border-color: $black;
   }
 
   &:active {
@@ -891,6 +913,10 @@ input[type="file"] {
 .pagination {
   &.no-border {
     border: none;
+  }
+
+  ul {
+    text-align: right !important;
   }
 
   li a:hover,
@@ -971,16 +997,18 @@ input[type="file"] {
   // Save and quit link next to form submit
   li.save-quit-link {
     width: 42%;
-    float: right;
+    display: inline-block;
     text-align: right;
+    float: none;
 
     @media (max-width: 740px) {
       width: 100%;
+      display: block;
       margin-top: 1em;
-      float: none;
     }
 
     .lte-ie7 & {
+      float:left;
       width: 45%;
       margin-right: 10px;
     }
@@ -1000,15 +1028,18 @@ input[type="file"] {
   }
 
   li.submit {
-    float: right;
+    display: inline-block;
+    text-align: right;
     margin-top: 1em;
+    float: none;
 
     @media (max-width: 740px) {
-      width: 100%;
-      float: none;
+      width: 100% !important;
+      display: block;
     }
 
     .lte-ie7 & {
+      float: right;
       max-width: 100%;
     }
 
