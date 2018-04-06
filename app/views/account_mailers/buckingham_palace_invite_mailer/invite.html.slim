@@ -1,6 +1,3 @@
-p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  = "Dear #{@name},"
-
 p style="font-weight: 700; font-size: 19px; text-decoration: underline; line-height: 1.315789474; margin: 30px 0 30px 0; text-align: center;"
   | The Queen's Awards for Enterprise Reception
   br
@@ -8,23 +5,38 @@ p style="font-weight: 700; font-size: 19px; text-decoration: underline; line-hei
   = @reception_date
   | .
 
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  = "Dear #{@name},"
+
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Her Majesty The Queen will hold a Reception for The Queen’s Awards for Enterprise Winners at Buckingham Palace, on the evening of
+  ' HRH The Prince of Wales will hold a Reception for The Queen’s Awards for Enterprise winners at Buckingham Palace, on the evening of
   = @reception_date
-  ' , to which two of your Company Representatives will be invited.
-  strong
-    ' Within this necessary limited number, you should please endeavour to make your nominations representative of the company as a whole.
-  ' Sadly this number cannot be increased.
+  ', to which two of your company representatives will be invited. Unfortunately this number cannot be increased.
+
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' Both of your nominations
+  u
+    | must
+  '  be employed representatives of the company.
+
+p style="font-weight: 700; font-size: 19px;; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' IMPORTANT NOTICE: Please do not publicise the date of this event in advance.
 
 p style="font-weight: 700; font-size: 19px; text-decoration: underline; line-height: 1.315789474; margin: 30px 0 30px 0; text-align: center;"
   | Submission of Guest Details
 
+
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' In order to submit the details of your two guests, please login
   => link_to "here", edit_palace_invite_url(id: @token)
-  ' to access the Winners’ Dashboard and click on the ‘palace attendees’ button (currently marked as incomplete). From there you will be able to enter all the required information; please click save to ensure we receive your details.
-  strong
-    ' Please ensure the address details are those of the guest and not of the person or agent submitting the details.
+  ' to access the Winners’ Dashboard and click on the ‘Palace attendees’ button (currently marked as incomplete). From there you will be able to enter all the required information; please click ‘save’ to ensure we receive your details.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' Please ensure the address details are those of the guests and
+  u
+    | not
+  '  of the person or agent submitting the details.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' I would be grateful if you could provide the requested information no later than
@@ -32,7 +44,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | .
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Congratulations once again on your award and please don’t hesitate to contact us should you have any queries.
+  ' Congratulations once again on your Award and please don’t hesitate to contact us should you have any queries.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Yours sincerely,

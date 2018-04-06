@@ -11,7 +11,7 @@ class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
     @reception_date = reception_date.try(:strftime, "%A #{reception_date.day.ordinalize} %B %Y")
 
     palace_attendees_due = AwardYear.buckingham_palace_reception_attendee_information_due_by
-    @palace_attendees_due = palace_attendees_due.try(:strftime, "%A #{palace_attendees_due.day.ordinalize} %B %Y")
+    @palace_attendees_due = palace_attendees_due.try(:strftime, "%H:%M on %A #{palace_attendees_due.day.ordinalize} %B %Y")
 
 
     subject = "An invitation to HM The Queen's Reception at Buckingham Palace"

@@ -1,28 +1,29 @@
+' The Queen's Awards for Enterprise Reception
+' Buckingham Palace, #{@reception_date}.
+
 = "Dear #{@name},"
 
-' The Queen's Awards for Enterprise Reception Buckingham Palace,
+' HRH The Prince of Wales will hold a Reception for The Queen’s Awards for Enterprise winners at Buckingham Palace, on the evening of
 = @reception_date
-| .
+', to which two of your company representatives will be invited. Unfortunately this number cannot be increased.
 
-' Her Majesty The Queen will hold a Reception for The Queen’s Awards for Enterprise Winners at Buckingham Palace, on the evening of
-= @reception_date
-' , to which two of your Company Representatives will be invited.
-' Within this necessary limited number, you should please endeavour to make your nominations representative of the company as a whole. Sadly this number cannot be increased.
 
-| Submission of Guest Details
+' Both of your nominations must be employed representatives of the company.
 
-' In order to submit the details of your two guests, please login
-=> link_to "here", edit_palace_invite_url(id: @token)
-' to access the Winners’ Dashboard and click on the ‘palace attendees’ button (currently marked as incomplete). From there you will be able to enter all the required information; please click save to ensure we receive your details. Please ensure the address details are those of the guest and not of the person or agent submitting the details.
+' IMPORTANT NOTICE: Please do not publicise the date of this event in advance.
 
-' I would be grateful if you could provide the requested information no later than
-= @palace_attendees_due
-| .
 
-' Congratulations once again on your award and please don’t hesitate to contact us should you have any queries.
+' Submission of Guest Details
+
+' In order to submit the details of your two guests, please login here #{edit_palace_invite_url(id: @token)}
+' to access the Winners’ Dashboard and click on the ‘Palace attendees’ button (currently marked as incomplete). From there you will be able to enter all the required information; please click ‘save’ to ensure we receive your details.
+
+' Please ensure the address details are those of the guests and not of the person or agent submitting the details.
+
+' I would be grateful if you could provide the requested information no later than #{@palace_attendees_due}.
+
+' Congratulations once again on your Award and please don’t hesitate to contact us should you have any queries.
 
 ' Yours sincerely,
-
-
 ' Olivia Morrell
 ' Head of the Queen’s Awards Office
