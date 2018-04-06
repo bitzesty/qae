@@ -106,8 +106,8 @@ class MailRenderer
       "%A %d %B %Y"
     )
     assigns[:book_notes_deadline] = deadline_str(
-      "buckingham_palace_reception_attendee_information_due_by",
-      "%H:%M on %A %d %B %Y"
+      "buckingham_palace_confirm_press_book_notes",
+      "%A %d %B %Y"
     )
 
     render(assigns, "account_mailers/business_apps_winners_mailer/notify")
@@ -155,7 +155,7 @@ class MailRenderer
     palace_attendees_due = DateTime.new(Date.current.year, 5, 6, 00, 00) if palace_attendees_due.blank?
 
     assigns[:palace_attendees_due] = palace_attendees_due.strftime(
-      "%A #{palace_attendees_due.day.ordinalize} %B %Y"
+      "%H:%M on %A #{palace_attendees_due.day.ordinalize} %B %Y"
     )
 
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/invite")
