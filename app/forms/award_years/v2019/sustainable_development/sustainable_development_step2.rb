@@ -71,13 +71,15 @@ class AwardYears::V2019::QAEForms
           words_max 15
         end
 
-        textarea :development_desc_long, "Summarise your product, service or management approach" do
+        textarea :development_desc_long, "Summarise your product, service or management approach specifically in relation to your core business and any practices followed which are as a result of the operations or requirements of the wider organisation / parent company. <br/ > <br/ > Please note: If you are applying for a management approach only, the sustainability of your product/service will also be taken into account.
+" do
           classes "word-max-strict"
           ref "B 1.2"
           required
           context %(
             <p>
               If more than one, please make sure you cover all of them. Include a brief description of its/their origin and development.
+
             </p>
           )
           rows 5
@@ -174,32 +176,88 @@ class AwardYears::V2019::QAEForms
              'Environmental outcomes' means respecting the limits of the planet's environment, natural resources and biodiversity, including, where possible, improving the state of the environment.
             </p>
             <p>
-              For example, you might wish to demonstrate how you and your suppliers:
+              When explaining your contribution to the environmental outcomes of sustainable development, you may find it helpful to consider:
             </p>
             <ul>
               <li>
-                Have adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
+                The Government’s goals in the 25 Year Environment Plan to improve the environment within a generation.
               </li>
               <li>
-                Reduce greenhouse gas emissions and reliance on fossil fuels.
+                The goal of demonstrating leadership on cleaner economic growth, as set out in the Government’s Clean Growth Strategy and Industrial Strategy.
+              </li>
+            </ul>
+
+            <p>
+              Your sustainable development activity might be activity which helps to deliver:
+            </p>
+
+            <ul>
+              <li>
+                Clean air.
               </li>
               <li>
-                Reduce the amount of waste generated.
+                Clean and plentiful water.
               </li>
               <li>
-                Substitute material inputs for more environmentally sound alternatives.
+                Mitigations and adaptions to climate change.
               </li>
               <li>
-                Reduce energy and water consumption.
+                More efficient use of energy and reduced reliance on high carbon energy sources.
               </li>
               <li>
-                Protect or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
+                Thriving plants and wildlife.
               </li>
               <li>
-                Participate in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
+                A reduced risk of harm from environmental hazards such as flooding and drought.
               </li>
               <li>
-                Undertake sustainable, i.e. green, procurement.
+                A more sustainable and efficient use of resources from nature.
+              </li>
+              <li>
+                Enhanced beauty, heritage and engagement with the natural environment.
+              </li>
+              <li>
+                Reduced waste and increased recycling.
+              </li>
+              <li>
+                Management of exposure to chemicals.
+              </li>
+              <li>
+                Improvements to biosecurity.
+              </li>
+            </ul>
+
+            <p>
+              For example, you might wish to demonstrate how you and your suppliers have:
+            </p>
+
+            <ul>
+              <li>
+                Adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
+              </li>
+              <li>
+                Reduced greenhouse gas emissions, through greater energy efficiency and reduced reliance on fossil fuels.
+              </li>
+              <li>
+                Reduced the amount of waste generated and reduced the environmental impact of outputs.
+              </li>
+              <li>
+                Substituted material inputs for more environmentally sound alternatives.
+              </li>
+              <li>
+                Reduced water consumption.
+              </li>
+              <li>
+                Taken action to encourage customers or the public to reduce their water, energy or other consumption habits, for example by using less plastic.
+              </li>
+              <li>
+                Protected or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
+              </li>
+              <li>
+                Participated in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
+              </li>
+              <li>
+                Undertaken sustainable, for example green, procurement.
               </li>
             </ul>
           )
@@ -209,26 +267,62 @@ class AwardYears::V2019::QAEForms
              'Environmental outcomes' means respecting the limits of the planet's environment, natural resources and biodiversity, including, where possible, improving the state of the environment.
             </p>
             <p>
-              For example, you might wish to demonstrate how you and your suppliers:
+              When explaining your contribution to the environmental outcomes of sustainable development, you may find it helpful to consider:
             </p>
             <p>
-              \u2022 Have adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
+              \u2022 The Government’s goals in the 25 Year Environment Plan to improve the environment within a generation.
 
-              \u2022 Reduce greenhouse gas emissions and reliance on fossil fuels.
+              \u2022 The goal of demonstrating leadership on cleaner economic growth, as set out in the Government’s Clean Growth Strategy and Industrial Strategy.
+            </p>
+            <p>
+              Your sustainable development activity might be activity which helps to deliver:
+            </p>
+            <p>
+              \u2022 Clean air.
 
-              \u2022 Reduce the amount of waste generated.
+              \u2022 Clean and plentiful water.
 
-              \u2022 Substitute material inputs for more environmentally sound alternatives.
+              \u2022 Mitigations and adaptions to climate change.
 
-              \u2022 Reduce energy and water consumption.
+              \u2022 More efficient use of energy and reduced reliance on high carbon energy sources.
 
-              \u2022 Protect or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
+              \u2022 Thriving plants and wildlife.
 
-              \u2022 Participate in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
+              \u2022 A reduced risk of harm from environmental hazards such as flooding and drought.
 
-              \u2022 Undertake sustainable, i.e. green, procurement.
+              \u2022 A more sustainable and efficient use of resources from nature.
+
+              \u2022 Enhanced beauty, heritage and engagement with the natural environment.
+
+              \u2022 Reduced waste and increased recycling.
+
+              \u2022 Management of exposure to chemicals.
+
+              \u2022 Improvements to biosecurity.
+            </p>
+            <p>
+              For example, you might wish to demonstrate how you and your suppliers have:
+            </p>
+            <p>
+              \u2022 Adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
+
+              \u2022 Reduced greenhouse gas emissions, through greater energy efficiency and reduced reliance on fossil fuels.
+
+              \u2022 Reduced the amount of waste generated and reduced the environmental impact of outputs.
+
+              \u2022 Substituted material inputs for more environmentally sound alternatives.
+
+              \u2022 Reduced water consumption.
+
+              \u2022 Taken action to encourage customers or the public to reduce their water, energy or other consumption habits, for example by using less plastic.
+
+              \u2022 Protected or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
+
+              \u2022 Participated in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
+              \u2022 Undertaken sustainable, for example green, procurement.
             </p>
           )
+
           rows 5
           words_max 750
         end
@@ -309,16 +403,26 @@ class AwardYears::V2019::QAEForms
             </p>
             <ul>
               <li>
+              </li>
+                Have maximised the economic benefits or grown your business while reducing or eliminating your greenhouse gas emissions and reliance on fossil fuels.
+              </li>
+              <li>
+                Have encouraged businesses in your supply chain to reduce their carbon footprint and reliance on fossil fuels.
+              </li>
+              <li>
                 Have implemented sustainable development practices that have helped you to create jobs, especially amongst disadvantaged groups.
               </li>
               <li>
                 Have created procurement practices which support the local economy.
               </li>
               <li>
+                Have articulated the business case for your organisation to assess, address and report on natural capital risks and opportunities in your operations and supply chains.
+              </li>
+              <li>
                 Encourage and enable staff in your organisation and supply chain to undertake learning and development to improve their skills and life chances, including through formal routes such as apprenticeships and informal on-the-job learning.
               </li>
               <li>
-                Are open to new concepts in sustainable development and are finding innovative ways to improve both sustainability and the bottom line.
+                Are open to new concepts in sustainable development and are finding innovative ways to improve both sustainability and the bottom line, and how you have facilitated environmental or low carbon entrepreneurialism or innovation either as an organisation or in your supply chains.
               </li>
               <li>
                 Promote sustainable construction practices.
@@ -334,13 +438,19 @@ class AwardYears::V2019::QAEForms
               For example, you may wish to demonstrate how you:
             </p>
             <p>
+              \u2022 Have maximised the economic benefits or grown your business while reducing or eliminating your greenhouse gas emissions and reliance on fossil fuels.
+
+              \u2022 Have encouraged businesses in your supply chain to reduce their carbon footprint and reliance on fossil fuels.
+
               \u2022 Have implemented sustainable development practices that have helped you to create jobs, especially amongst disadvantaged groups.
 
               \u2022 Have created procurement practices which support the local economy.
 
+              \u2022 Have articulated the business case for your organisation to assess, address and report on natural capital risks and opportunities in your operations and supply chains.
+
               \u2022 Encourage and enable staff in your organisation and supply chain to undertake learning and development to improve their skills and life chances, including through formal routes such as apprenticeships and informal on-the-job learning.
 
-              \u2022 Are open to new concepts in sustainable development and are finding innovative ways to improve both sustainability and the bottom line.
+              \u2022 Are open to new concepts in sustainable development and are finding innovative ways to improve both sustainability and the bottom line, and how you have facilitated environmental or low carbon entrepreneurialism or innovation either as an organisation or in your supply chains.
 
               \u2022 Promote sustainable construction practices.
             </p>
@@ -355,6 +465,8 @@ class AwardYears::V2019::QAEForms
           context %(
             <p>Can you benchmark this performance against other comparable organisations?</p>
             <p>What have you done to address and overcome the most important sustainable development challenges that are specific to your sector?</p>
+            <p>Have you pioneered the development of new natural capital markets – for example, in exploring how more revenue streams could be generated to make natural capital assets investable?</p>
+            <p>Have any of your operations or sustainability innovations resulted in UK becoming an international leader in providing knowledge-based goods and services?</p>
           )
           rows 5
           words_max 750
