@@ -8,7 +8,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
   end
 
   expose(:input_name) do
-    "queen_award_holder_details"
+    "applied_for_queen_awards_details"
   end
 
   expose(:section_folder_name) do
@@ -27,6 +27,10 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
     question.years
   end
 
+  expose(:outcomes) do
+    question.outcomes
+  end
+
   expose(:item_class) do
     CurrentQueensAward
   end
@@ -38,7 +42,8 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
   expose(:created_item_ops) do
     {
       "category" => item_params[:category],
-      "year" => item_params[:year]
+      "year" => item_params[:year],
+      "outcome" => item_params[:outcome]
     }
   end
 
@@ -47,7 +52,8 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
       @form_answer.id,
       current_queens_award: {
         category: item.category,
-        year: item.year
+        year: item.year,
+        outcome: item.outcome
       }
     )
   end
@@ -58,6 +64,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
   def create
     self.item = item_class.new(categories,
                                years,
+                               outcomes,
                                item_params)
 
     if item.valid?
@@ -92,6 +99,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
   def edit
     self.item = item_class.new(categories,
                                years,
+                               outcomes,
                                item_params)
   end
 
@@ -123,7 +131,8 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
   def item_params
     params.require(:current_queens_award).permit(
       :category,
-      :year
+      :year,
+      :outcome
     )
   end
 end

@@ -7,7 +7,7 @@ describe "Admin generates the CSV reports" do
   let!(:trade) { create(:form_answer, :trade, user: user, submitted_at: Time.current) }
   let!(:innovation) { create(:form_answer, :innovation, user: user) }
   let!(:development) { create(:form_answer, :development, user: user, state: "awarded") }
-  let!(:promotion) { create(:form_answer, :promotion, user: user) }
+  let!(:mobility) { create(:form_answer, :mobility, user: user) }
 
   let(:output) do
     csv = Reports::AdminReport.new(id, AwardYear.current).as_csv

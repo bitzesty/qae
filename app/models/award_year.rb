@@ -222,7 +222,7 @@ class AwardYear < ActiveRecord::Base
   end
 
   class << self
-    # so Buckingham Palace Reception date
+    # Buckingham Palace Reception date
     # is usually 14th July
     # so new award year would be already started
     # that's why we are pulling this date from current year (not current award year)

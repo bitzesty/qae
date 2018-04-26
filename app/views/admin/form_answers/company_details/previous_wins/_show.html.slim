@@ -1,9 +1,10 @@
 label.form-label Previous winnings
 
 .form-value
-  - if @form_answer.document["queen_award_holder_details"].any?
+  - wins = @form_answer.previous_wins
+  - if wins.any?
     ul
-      - @form_answer.document["queen_award_holder_details"].each do |win|
+      - wins.each do |win|
         li
           span= "#{PreviousWin::CATEGORIES.select{ |key, value| value == win["category"]}.try(:first).try(:first)} #{win["year"]}"
   - else
