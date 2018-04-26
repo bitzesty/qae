@@ -1,3 +1,4 @@
+# coding: utf-8
 class AwardYears::V2019::QAEForms
   class << self
     def trade_step1
@@ -98,32 +99,29 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        options :queen_award_holder, -> { "Are you a current Queen's Award holder from #{AwardYear.award_holder_range}?" } do
+        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
-          context -> do
-            %(
-              <p>If you have received a Queen's Award in any category between #{AwardYear.current.year - 5} and #{AwardYear.current.year - 1}, you are deemed a current award holder.</p>
-            )
-          end
           yes_no
-          option "i_dont_know", "I don't know"
           classes "queen-award-holder"
         end
 
-        queen_award_holder :queen_award_holder_details, "List The Queen's Award(s) you currently hold" do
+        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years" do
           classes "sub-question question-current-awards"
           sub_ref "A 6.1"
 
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
 
           category :innovation, "Innovation"
           category :international_trade, "International Trade"
           category :sustainable_development, "Sustainable Development"
 
-          ((AwardYear.current.year - 5)..(AwardYear.current.year - 1)).each do |y|
+          ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
             year y
           end
+
+          outcome "won", "Won"
+          outcome "did_not_win", "Did not win"
 
           children_options_depends_on :category
           dependable_values [:international_trade]
@@ -135,14 +133,14 @@ class AwardYears::V2019::QAEForms
 
           option "yes", "Yes"
           option "no", "No"
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
         end
 
         text :previous_business_name, "Name used previously" do
           classes "regular-question"
           sub_ref "A 6.3"
           required
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
           conditional :business_name_changed, :yes
         end
 
@@ -152,7 +150,7 @@ class AwardYears::V2019::QAEForms
           required
           rows 5
           words_max 100
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
           conditional :business_name_changed, :yes
         end
 

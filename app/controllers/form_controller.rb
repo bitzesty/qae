@@ -99,7 +99,7 @@ class FormController < ApplicationController
         current_account.basic_eligibility.current_holder.presence || "no"
       end
 
-      if @form_answer.document["queen_award_holder"].blank?
+      if @form_answer.document["applied_for_queen_awards"].blank?
         holder = if @form_answer.trade?
           eligibility_holder = @form_answer.trade_eligibility.current_holder_of_qae_for_trade?
           eligibility_holder ? "yes" : "no"
@@ -107,17 +107,17 @@ class FormController < ApplicationController
           queen_award_holder
         end
 
-        @form_answer.document = @form_answer.document.merge(queen_award_holder: holder)
+        @form_answer.document = @form_answer.document.merge(applied_for_queen_awards: holder)
 
         if holder == "yes" && @form_answer.trade?
           eligibility_holder = @form_answer.trade_eligibility.current_holder_of_qae_for_trade?
           year = @form_answer.trade_eligibility.qae_for_trade_award_year
 
           if year.to_i < AwardYear.current.year - 5 || !eligibility_holder
-            @form_answer.document = @form_answer.document.merge(queen_award_holder: "no")
+            @form_answer.document = @form_answer.document.merge(applied_for_queen_awards: "no")
           else
-            details = [{ category: "international_trade", year: year.to_s }]
-            @form_answer.document = @form_answer.document.merge(queen_award_holder_details: details)
+            details = [{ category: "international_trade", year: year.to_s, outcome: "won" }]
+            @form_answer.document = @form_answer.document.merge(applied_for_queen_awards_details: details)
           end
         end
 
