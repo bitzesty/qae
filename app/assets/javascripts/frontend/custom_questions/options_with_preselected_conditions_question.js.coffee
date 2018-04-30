@@ -54,7 +54,6 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
       if award_category == "international_trade" && parseInt(award_year) >= threshold_year && applied && won
         trade_award_and_above_threshold_year = true
 
-    console.log trade_award_and_above_threshold_year
     # Show C1 question based on this condition
     if trade_award_and_above_threshold_year
       # Show the correct content
@@ -63,7 +62,6 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
       dependable_controls.addClass "display-none"
 
       # And set selected value for related control
-      console.log dependable_children_div_block
       related_ui_control = dependable_children_div_block.find(".selectable input[data-preselected-condition]")
       related_ui_control.click()
     else

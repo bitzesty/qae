@@ -17,8 +17,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
       kind: "buckingham_palace_reception_attendee_information_due_by"
     ).first
     attendees_info_due.update_column(:trigger_at,
-      DateTime.new(
-Date.current.year, 5, 6, 00, 00)
+      DateTime.new(Date.current.year, 5, 6, 00, 00)
     )
 
     settings.reload

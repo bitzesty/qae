@@ -79,7 +79,6 @@ class AwardYears::V2019::QAEForms
           context %(
             <p>
               If more than one, please make sure you cover all of them. Include a brief description of its/their origin and development.
-
             </p>
           )
           rows 5
@@ -94,11 +93,9 @@ class AwardYears::V2019::QAEForms
             <p>
               Please summarise any plans, policies, strategies, etc. that you have in place that demonstrate your leadership approach within your own organisation and which drive your relationships with your partners.
             </p>
-
             <p>
               For example, you may wish to demonstrate how you:
             </p>
-
             <ul>
               <li>
                 Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits, or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
@@ -186,11 +183,9 @@ class AwardYears::V2019::QAEForms
                 The goal of demonstrating leadership on cleaner economic growth, as set out in the Government’s Clean Growth Strategy and Industrial Strategy.
               </li>
             </ul>
-
             <p>
               Your sustainable development activity might be activity which helps to deliver:
             </p>
-
             <ul>
               <li>
                 Clean air.
@@ -226,11 +221,9 @@ class AwardYears::V2019::QAEForms
                 Improvements to biosecurity.
               </li>
             </ul>
-
             <p>
               For example, you might wish to demonstrate how you and your suppliers have:
             </p>
-
             <ul>
               <li>
                 Adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
@@ -319,6 +312,7 @@ class AwardYears::V2019::QAEForms
               \u2022 Protected or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
 
               \u2022 Participated in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
+
               \u2022 Undertaken sustainable, for example green, procurement.
             </p>
           )
