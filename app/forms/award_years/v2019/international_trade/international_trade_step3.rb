@@ -29,7 +29,7 @@ class AwardYears::V2019::QAEForms
           required
           option "3 to 5", "Outstanding Short Term Growth: international trade has resulted in outstanding year on year growth in the last 3 years with no dips"
           option "6 plus", "Outstanding Continuous Growth: international trade has resulted in continuous year on year growth in the last 6 years with no dips"
-          placeholder_preselected_condition :queen_award_holder_details,
+          placeholder_preselected_condition :applied_for_queen_awards_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
                                             placeholder_text: %(

@@ -2,15 +2,15 @@ require 'rails_helper'
 
 describe "FeedbackPdfs::Base" do
   let!(:award_year) do
-    create :award_year
+    AwardYear.current
   end
 
   let!(:form_answer_innovation) do
-    FactoryGirl.create :form_answer, :submitted, :innovation, award_year: award_year
+    FactoryGirl.create :form_answer, :submitted, :innovation
   end
 
   let!(:form_answer_trade) do
-    FactoryGirl.create :form_answer, :submitted, :trade, award_year: award_year
+    FactoryGirl.create :form_answer, :submitted, :trade
   end
 
   before do

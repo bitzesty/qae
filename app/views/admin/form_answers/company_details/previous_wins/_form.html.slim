@@ -9,23 +9,25 @@
 
     .input.form-group.form-fields.form-block
       ul.list-add
-        - each_index_or_empty(@form_answer.document["queen_award_holder_details"], {"category" => nil, "year" => nil }) do |win, index|
+        - wins = @form_answer.previous_wins
+        - each_index_or_empty(wins, {"category" => nil, "year" => nil }) do |win, index|
           li.well.duplicatable-nested-form
+            = hidden_field_tag "form_answer[data_attributes][applied_for_queen_awards_details][#{index}][outcome]", "won"
             .pull-right
               = link_to "Remove", "#", class: "if-no-js-hide remove-link"
               .remove-section.if-js-hide
-                = check_box_tag "form_answer[data_attributes][queen_award_holder_details][#{index}][_destroy]"
+                = check_box_tag "form_answer[data_attributes][applied_for_queen_awards_details][#{index}][_destroy]"
 
             .row
               .col-sm-5
                 .input.select.required
-                  = select_tag "form_answer[data_attributes][queen_award_holder_details][#{index}][category]",
+                  = select_tag "form_answer[data_attributes][applied_for_queen_awards_details][#{index}][category]",
                     options_for_select(PreviousWin::CATEGORIES, win["category"]),
                     { include_blank: "",
                       class: "select required form-control" }
               .col-sm-2
                 .input.select.required
-                  = select_tag "form_answer[data_attributes][queen_award_holder_details][#{index}][year]",
+                  = select_tag "form_answer[data_attributes][applied_for_queen_awards_details][#{index}][year]",
                     options_for_select(PreviousWin.available_years, win["year"]),
                     { include_blank: "",
                       class: "select required form-control" }

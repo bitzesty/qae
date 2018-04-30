@@ -23,6 +23,7 @@ describe "Admin sets up previous winnings" do
       end
       within ".previous-wins-form" do
         expect(page).to have_selector(".well", count: 1)
+        expect(page).to have_content("Innovation")
       end
     end
   end
@@ -31,9 +32,9 @@ describe "Admin sets up previous winnings" do
     let!(:form_answer) do
       form = create(:form_answer, :trade)
 
-      form.document["queen_award_holder_details"] = [
-        {"category"=>"international_trade", "year"=>"2015"},
-        {"category"=>"international_trade", "year"=>"2015"}
+      form.document["applied_for_queen_awards_details"] = [
+        {"category"=>"international_trade", "year"=>"2015", "outcome" => "won"},
+        {"category"=>"international_trade", "year"=>"2015", "outcome" => "won"}
       ]
       form.update_column(:document, form.document)
 

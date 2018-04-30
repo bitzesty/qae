@@ -76,6 +76,7 @@ FactoryGirl.define do
 
     trait :promotion do
       award_type "promotion"
+      award_year_id { AwardYear.where(year: 2018).first_or_create.id }
       document FormAnswer::DocumentParser.parse_json_document(
         JSON.parse(
           File.read(Rails.root.join("spec/fixtures/form_answer_promotion.json"))

@@ -11,8 +11,8 @@ class QAEFormBuilder
       "MobilityByYearsLabelQuestion",
       "UserInfoQuestion",
       "AwardHolderQuestion",
+      "QueenAwardApplicationsQuestion",
       "SupportersQuestion",
-      "AwardHolderQuestion",
       "SubsidiariesAssociatesPlantsQuestion",
       "ByTradeGoodsAndServicesLabelQuestion"
     ]

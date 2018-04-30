@@ -154,6 +154,7 @@ describe Notifiers::EmailNotificationService do
     end
 
     it "triggers current notification" do
+      pending "EP forms are not present for 2019"
       mailer = double(deliver_later!: true)
       expect(AccountMailers::PromotionLettersOfSupportReminderMailer).to receive(:notify).with(
         form_answer.id,
@@ -191,6 +192,8 @@ describe Notifiers::EmailNotificationService do
     let(:form_answer) { create(:form_answer, :promotion, :submitted, state: "not_awarded") }
 
     it "triggers current notification" do
+      pending "EP forms are not present for 2019"
+
       mailer = double(deliver_later!: true)
       expect(AccountMailers::UnsuccessfulFeedbackMailer).to receive(:ep_notify).with(
         form_answer.id,

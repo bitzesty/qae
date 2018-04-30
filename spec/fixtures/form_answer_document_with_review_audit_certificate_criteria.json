@@ -57,7 +57,7 @@
  "financial_comments":"",
  "partners_relations":"",
  "principal_business":"yes",
- "queen_award_holder":"no",
+ "applied_for_queen_awards":"no",
  "sales_exports_1of2":"",
  "sales_exports_1of5":"",
  "sales_exports_2of2":"",
@@ -148,8 +148,7 @@
  "head_of_business_last_name":"asdasd",
  "organization_address_building":"sda",
  "organization_address_postcode":"asdsad",
- "queen_award_holder_details":
-  "[\"{\\\"category\\\":\\\"\\\",\\\"year\\\":\\\"\\\"}\"]",
+ "applied_for_queen_awards_details": "[\"{\\\"category\\\":\\\"\\\",\\\"year\\\":\\\"\\\",\\\"outcome\\\":\\\"\\\"}\"]",
  "financial_year_date_changed":"no",
  "head_of_business_first_name":"asdasd",
  "head_of_bussines_title_other":"",
