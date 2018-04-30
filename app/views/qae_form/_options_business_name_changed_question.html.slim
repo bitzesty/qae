@@ -3,11 +3,10 @@
   - if answer.value == "first"
     - klass = "business-name-changed-first-option"
 
-    - if @form_answer.document["queen_award_holder"] == "yes"
+    - if question.conditions.all? { |c| @form_answer.document[c.question_key.to_s] == c.question_value.to_s }
       - klass << " hidden"
 
   .selectable class=klass
     input.js-trigger-autosave type="radio" id="#{question.input_name}_#{answer.value.to_s.parameterize}"  name=question.input_name value=answer.value checked=(answer.value.to_s == (question.input_value || '').to_s) *possible_read_only_ops
       label for="#{question.input_name}_#{answer.value.to_s.parameterize}"
         = answer.text
-      

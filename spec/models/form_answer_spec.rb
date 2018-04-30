@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe FormAnswer, type: :model, skip_ci: true do
+RSpec.describe FormAnswer, type: :model do
   describe "associations" do
     it { should belong_to(:user) }
   end
@@ -54,7 +54,7 @@ RSpec.describe FormAnswer, type: :model, skip_ci: true do
   context "URN" do
     before do
       FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_#{AwardYear.current.year} RESTART")
-      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_promotion_#{AwardYear.current.year} RESTART")
+      FormAnswer.connection.execute("ALTER SEQUENCE urn_seq_promotion_2018 RESTART")
     end
 
     let!(:form_answer) do
@@ -80,7 +80,7 @@ RSpec.describe FormAnswer, type: :model, skip_ci: true do
 
       expect(form1.urn).to eq("QA0002/#{award_year}T")
       expect(form2.urn).to eq("QA0003/#{award_year}I")
-      expect(form3.urn).to eq("QA0001/#{award_year}EP")
+      expect(form3.urn).to eq("QA0001/18EP")
       expect(form4.urn).to eq("QA0004/#{award_year}S")
     end
   end

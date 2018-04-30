@@ -68,12 +68,15 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def current_queens_award_holder
-    awards = doc("queen_award_holder_details")
+    awards = obj.previous_wins
     return if !awards || awards.empty?
 
     categories = PreviousWin::CATEGORIES.invert
 
-    awards.map do |award|
+    awards.select do |award|
+      # this is to support reports for pre and post 2019 awards
+      award["outcome"] == "won" || award["outcome"].nil?
+    end.map do |award|
       category = categories[award["category"]]
       year = award["year"]
 

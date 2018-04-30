@@ -376,6 +376,16 @@ class FormAnswer < ActiveRecord::Base
     document["sic_code"]
   end
 
+  def previous_wins
+    if document["applied_for_queen_awards_details"]
+      document["applied_for_queen_awards_details"].select { |a| a["outcome"] == "won" }
+    elsif document["queen_award_holder_details"]
+      document["queen_award_holder_details"]
+    else
+      []
+    end
+  end
+
   private
 
   def nominator_full_name_from_document
@@ -404,7 +414,11 @@ class FormAnswer < ActiveRecord::Base
     if award_type == "promotion"
       questions_that_dont_count = []
     else
-      questions_that_dont_count = [:company_name, :queen_award_holder]
+      questions_that_dont_count = if award_year.year <= 2019
+        [:company_name]
+      else
+        [:company_name, :queen_award_holder]
+      end
     end
 
     progress_hash = HashWithIndifferentAccess.new(document || {}).except(*questions_that_dont_count)

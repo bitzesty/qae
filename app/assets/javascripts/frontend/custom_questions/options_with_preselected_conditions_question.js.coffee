@@ -1,3 +1,5 @@
+$.fn.reverse = [].reverse;
+
 window.OptionsWithPreselectedConditionsQuestion = init: ->
   do changeTradeQuestion = ->
     dependable_children_div_block = $(".js-options-with-parent-dependency[data-depends-on='queen_award_holder_details']")
@@ -24,30 +26,36 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
     dependable_key = $(this).attr("data-parent-option-dependable-key")
     dependable_children_div_block = $(".js-options-with-parent-dependency[data-depends-on=" + dependable_key + "]")
     dependable_controls = dependable_children_div_block.find(".selectable")
-    awarded = $(".queen-award-holder input:checked").val() == "yes"
+    applied = $(".queen-award-holder input:checked").val() == "yes"
 
-    trade_award_and_not_lowest_year = false
+    trade_award_and_above_threshold_year = false
 
-    # Get award year the current - 5 (lowest_year)
-    lowest_year = "9999"
+    # Get award year the current - 5 (threshold_year)
+    highest_year = "0"
+
     year_options = $(this).closest("li").find("[data-dependable-option-siffix='year'] option")
-    year_options.each ->
+    year_options.reverse().each ->
+      won = $(this).closest("li").find("[data-dependable-option-siffix='outcome']").val() == "won"
+
       if $(this).attr("value") != ""
-        if parseInt(lowest_year) > parseInt($(this).attr("value"))
-          lowest_year = $(this).attr("value")
+        if parseInt(highest_year) < parseInt($(this).attr("value"))
+          highest_year = $(this).attr("value")
+
+    threshold_year = parseInt(highest_year) - 5
 
     # Go through each current award
     # tests to see if one is trade
-    # with an award year that's not the current - 5 (lowest_year)
+    # with an award year that's not the current - 5 (threshold_year)
     $(this).closest(".list-add").find("li").each ->
       award_category = $(this).find("[data-dependable-option-siffix='category']").val()
       award_year = $(this).find("[data-dependable-option-siffix='year']").val()
+      won = $(this).closest("li").find("[data-dependable-option-siffix='outcome']").val() == "won"
 
-      if award_category == "international_trade" && award_year != lowest_year && awarded
-        trade_award_and_not_lowest_year = true
+      if award_category == "international_trade" && parseInt(award_year) >= threshold_year && applied && won
+        trade_award_and_above_threshold_year = true
 
     # Show C1 question based on this condition
-    if trade_award_and_not_lowest_year
+    if trade_award_and_above_threshold_year
       # Show the correct content
       dependable_children_div_block.find("h2 [data-preselected-condition]").removeClass "display-none"
       dependable_children_div_block.find("h2 [data-preselected-condition='default']").addClass "display-none"

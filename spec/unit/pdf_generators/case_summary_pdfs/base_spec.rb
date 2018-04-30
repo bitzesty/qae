@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "CaseSummaryPdfs::Base" do
   let!(:award_year) do
-    create :award_year
+    AwardYear.current
   end
 
   let!(:form_answer_current_year_innovation) do

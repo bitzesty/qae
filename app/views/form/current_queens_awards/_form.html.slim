@@ -13,5 +13,10 @@ li
           = f.input :year, collection: years,
                            input_html: { class: "form-control tiny" },
                            prompt: "Year Awarded"
+
+        .span-6
+          = f.input :outcome, collection: outcomes,
+                           input_html: { class: "form-control tiny" },
+                           prompt: "Outcome"
         .span-12
           = f.submit "Save", class: "button button-alt"
