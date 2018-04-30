@@ -6,7 +6,7 @@ class AwardYears::V2019::QAEForms
         header :development_b_section_header, "" do
           context %(
             <p>
-              This section gives you the opportunity to present the detail of your product, service or management approach and to give us the evidence about your activities, leadership and achievements that will enable us to assess your application.
+              This section enables you to present the details of your product, service or management approach and to give us the evidence about your activities, leadership and achievements that will allow us to assess your application.
             </p>
             <p>
               Please try to avoid using technical jargon in this section.
@@ -28,7 +28,7 @@ class AwardYears::V2019::QAEForms
           application_type_question true
         end
 
-        textarea :development_management_approach_briefly, "Briefly describe your product, service or management approach" do
+        textarea :development_management_approach_briefly, "Briefly describe your product, service or management approach." do
           classes "word-max-strict"
           ref "B 1.1"
           required
@@ -39,15 +39,18 @@ class AwardYears::V2019::QAEForms
             <p>
               This will be used in publicity material if your application is successful.
             </p>
+            <p>
+              For example:
+            </p>
             <ul>
               <li>
-                e.g. Working with organisations to produce the highest quality printed material with the lightest environmental impact.
+                Working with organisations to produce the highest quality printed material with the lightest environmental impact.
               </li>
               <li>
-                e.g. Product and ingredient certification, business services and public awareness for fair and sustainable trade.
+                Product and ingredient certification, business services and public awareness for fair and sustainable trade.
               </li>
               <li>
-                e.g. Own, manage and develop environmentally friendly commercial property, focused on UK retail and London offices.
+                Own, manage and develop an environmentally friendly commercial property, focused on UK retail offices.
               </li>
             </ul>
           )
@@ -60,32 +63,37 @@ class AwardYears::V2019::QAEForms
               This will be used in publicity material if your application is successful.
             </p>
             <p>
-              \u2022 e.g. Working with organisations to produce the highest quality printed material with the lightest environmental impact.
+              For example:
+            </p>
+            <p>
+              \u2022 Working with organisations to produce the highest quality printed material with the lightest environmental impact.
 
-              \u2022 e.g. Product and ingredient certification, business services and public awareness for fair and sustainable trade.
+              \u2022 Product and ingredient certification, business services and public awareness for fair and sustainable trade.
 
-              \u2022 e.g. Own, manage and develop environmentally friendly commercial property, focused on UK retail and London offices.
+              \u2022 Own, manage and develop an environmentally friendly commercial property, focused on UK retail offices.
             </p>
           )
           rows 2
           words_max 15
         end
 
-        textarea :development_desc_long, "Summarise your product, service or management approach specifically in relation to your core business and any practices followed which are as a result of the operations or requirements of the wider organisation / parent company. <br/ > <br/ > Please note: If you are applying for a management approach only, the sustainability of your product/service will also be taken into account.
-" do
+        textarea :development_desc_long, "Summarise your product, service or management approach specifically concerning your core business, and any practices followed as a result of the operations or requirements of the wider organisation/parent company." do
           classes "word-max-strict"
           ref "B 1.2"
           required
           context %(
             <p>
-              If more than one, please make sure you cover all of them. Include a brief description of its/their origin and development.
+              <strong>Please note: If you are applying for a management approach only, the sustainability of your product/service will also be taken into account.</strong>
+            </p>
+            <p>
+              If more than one product, service or management approach, please make sure you cover all of them. Include a brief description of their origin and development.
             </p>
           )
           rows 5
           words_max 500
         end
 
-        textarea :development_desc_short, "Describe how you demonstrate leadership in terms of influencing staff and/or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers" do
+        textarea :development_desc_short, "Describe how you demonstrate leadership regarding influencing staff or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers." do
           classes "word-max-strict"
           ref "B 2"
           required
@@ -180,11 +188,11 @@ class AwardYears::V2019::QAEForms
                 The Government’s goals in the 25 Year Environment Plan to improve the environment within a generation.
               </li>
               <li>
-                The goal of demonstrating leadership on cleaner economic growth, as set out in the Government’s Clean Growth Strategy and Industrial Strategy.
+                The goal of demonstrating leadership on cleaner economic growth as set out in the Government’s Clean Growth Strategy and Industrial Strategy.
               </li>
             </ul>
             <p>
-              Your sustainable development activity might be activity which helps to deliver:
+              Your sustainable development activity might be an activity which helps to deliver:
             </p>
             <ul>
               <li>
@@ -203,10 +211,10 @@ class AwardYears::V2019::QAEForms
                 Thriving plants and wildlife.
               </li>
               <li>
-                A reduced risk of harm from environmental hazards such as flooding and drought.
+                Reduced risk of harm from environmental hazards such as flooding and drought.
               </li>
               <li>
-                A more sustainable and efficient use of resources from nature.
+                More sustainable and efficient use of resources from nature.
               </li>
               <li>
                 Enhanced beauty, heritage and engagement with the natural environment.
@@ -226,7 +234,7 @@ class AwardYears::V2019::QAEForms
             </p>
             <ul>
               <li>
-                Adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
+                Adopted innovative new business models. For example, more ‘circular’ approaches to resource management, reverse logistics or shifting from sales to leasing models.
               </li>
               <li>
                 Reduced greenhouse gas emissions, through greater energy efficiency and reduced reliance on fossil fuels.
@@ -241,16 +249,16 @@ class AwardYears::V2019::QAEForms
                 Reduced water consumption.
               </li>
               <li>
-                Taken action to encourage customers or the public to reduce their water, energy or other consumption habits, for example by using less plastic.
+                Taken action to encourage customers or the public to reduce their water, energy or other consumption habits, for example, by using less plastic.
               </li>
               <li>
                 Protected or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
               </li>
               <li>
-                Participated in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
+                Participated in external activities with environmental benefits – for example, supporting local environmental groups, influencing your sector.
               </li>
               <li>
-                Undertaken sustainable, for example green, procurement.
+                Undertaken sustainable, for example - green, procurement.
               </li>
             </ul>
           )
@@ -265,10 +273,10 @@ class AwardYears::V2019::QAEForms
             <p>
               \u2022 The Government’s goals in the 25 Year Environment Plan to improve the environment within a generation.
 
-              \u2022 The goal of demonstrating leadership on cleaner economic growth, as set out in the Government’s Clean Growth Strategy and Industrial Strategy.
+              \u2022 The goal of demonstrating leadership on cleaner economic growth as set out in the Government’s Clean Growth Strategy and Industrial Strategy.
             </p>
             <p>
-              Your sustainable development activity might be activity which helps to deliver:
+              Your sustainable development activity might be an activity which helps to deliver:
             </p>
             <p>
               \u2022 Clean air.
@@ -281,9 +289,9 @@ class AwardYears::V2019::QAEForms
 
               \u2022 Thriving plants and wildlife.
 
-              \u2022 A reduced risk of harm from environmental hazards such as flooding and drought.
+              \u2022 Reduced risk of harm from environmental hazards such as flooding and drought.
 
-              \u2022 A more sustainable and efficient use of resources from nature.
+              \u2022 More sustainable and efficient use of resources from nature.
 
               \u2022 Enhanced beauty, heritage and engagement with the natural environment.
 
@@ -297,7 +305,7 @@ class AwardYears::V2019::QAEForms
               For example, you might wish to demonstrate how you and your suppliers have:
             </p>
             <p>
-              \u2022 Adopted innovative new business models, e.g. more ‘circular’ approaches to resource management, e.g. reverse logistics or shifting from sales to leasing models, etc.
+              \u2022 Adopted innovative new business models. For example, more ‘circular’ approaches to resource management, reverse logistics or shifting from sales to leasing models.
 
               \u2022 Reduced greenhouse gas emissions, through greater energy efficiency and reduced reliance on fossil fuels.
 
@@ -307,13 +315,13 @@ class AwardYears::V2019::QAEForms
 
               \u2022 Reduced water consumption.
 
-              \u2022 Taken action to encourage customers or the public to reduce their water, energy or other consumption habits, for example by using less plastic.
+              \u2022 Taken action to encourage customers or the public to reduce their water, energy or other consumption habits, for example, by using less plastic.
 
               \u2022 Protected or enhance the physical environment and its biodiversity on sites that you occupy, those of your supply chain or in your local community.
 
-              \u2022 Participated in external activities with environmental benefits, e.g. supporting local environmental groups, influencing your sector.
+              \u2022 Participated in external activities with environmental benefits – for example, supporting local environmental groups, influencing your sector.
 
-              \u2022 Undertaken sustainable, for example green, procurement.
+              \u2022 Undertaken sustainable, for example - green, procurement.
             </p>
           )
 
@@ -327,14 +335,14 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              'Social outcomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
+              'Social outcomes’ means working towards the needs of people in the present and future communities, promoting well-being, cohesion and equal opportunities.
             </p>
             <p>
               For example, you may wish to demonstrate how you:
             </p>
             <ul>
               <li>
-                Create products and services that deliver social value, such as positive nutritional outcomes and health and wellbeing benefits, as well as market offers that in themselves help build sustainable communities.
+                Create products and services that deliver social value, such as positive nutritional outcomes and health and wellbeing benefits, as well as market-offers that in themselves help build sustainable communities.
               </li>
               <li>
                 Promote health and safety for your staff and supply chain, and at the very least meet British Standards or their equivalent, and influence others in the sector to do similar.
@@ -343,41 +351,41 @@ class AwardYears::V2019::QAEForms
                 Promote the wellbeing of staff including helping them to deliver skills which will be of value both inside and outside work.
               </li>
               <li>
-                Support local communities for example through staff volunteering or sharing of resources, premises and expertise.
+                Support local communities - for example, through staff volunteering or sharing of resources, premises and expertise.
               </li>
               <li>
                 Engage with local schools, colleges and universities to help increase the life chances of young people.
               </li>
               <li>
-                Procure food that meets British or equivalent production standards and support a healthy balanced diet.
+                Procure food that meets British or equivalent production standards, and support a healthy balanced diet.
               </li>
               <li>
-                Conserve any parts of your environment with historic or cultural importance.
+                Conserve any parts of your environment with historical or cultural importance.
               </li>
             </ul>
           )
 
           pdf_context %(
             <p>
-              'Social outcomes’ means working towards the needs of people in present and future communities, promoting wellbeing, cohesion and equal opportunities.
+              'Social outcomes’ means working towards the needs of people in the present and future communities, promoting well-being, cohesion and equal opportunities.
             </p>
             <p>
               For example, you may wish to demonstrate how you:
             </p>
             <p>
-              \u2022 Create products and services that deliver social value, such as positive nutritional outcomes and health and wellbeing benefits, as well as market offers that in themselves help build sustainable communities.
+              \u2022 Create products and services that deliver social value, such as positive nutritional outcomes and health and wellbeing benefits, as well as market-offers that in themselves help build sustainable communities.
 
               \u2022 Promote health and safety for your staff and supply chain, and at the very least meet British Standards or their equivalent, and influence others in the sector to do similar.
 
               \u2022 Promote the wellbeing of staff including helping them to deliver skills which will be of value both inside and outside work.
 
-              \u2022 Support local communities for example through staff volunteering or sharing of resources, premises and expertise.
+              \u2022 Support local communities - for example, through staff volunteering or sharing of resources, premises and expertise.
 
               \u2022 Engage with local schools, colleges and universities to help increase the life chances of young people.
 
-              \u2022 Procure food that meets British or equivalent production standards and support a healthy balanced diet.
+              \u2022 Procure food that meets British or equivalent production standards, and support a healthy balanced diet.
 
-              \u2022 Conserve any parts of your environment with historic or cultural importance.
+              \u2022 Conserve any parts of your environment with historical or cultural importance.
             </p>
           )
           rows 5
@@ -460,7 +468,7 @@ class AwardYears::V2019::QAEForms
             <p>Can you benchmark this performance against other comparable organisations?</p>
             <p>What have you done to address and overcome the most important sustainable development challenges that are specific to your sector?</p>
             <p>Have you pioneered the development of new natural capital markets – for example, in exploring how more revenue streams could be generated to make natural capital assets investable?</p>
-            <p>Have any of your operations or sustainability innovations resulted in UK becoming an international leader in providing knowledge-based goods and services?</p>
+            <p>Have any of your operations or sustainability innovations resulted in the UK becoming an international leader in providing knowledge-based goods and services?</p>
           )
           rows 5
           words_max 750
@@ -479,7 +487,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :licensing_agreement, "Briefly describe the licensing arrangement" do
+        textarea :licensing_agreement, "Briefly describe the licensing arrangement." do
           classes "sub-question"
           sub_ref "B 6.1"
           required
@@ -514,7 +522,7 @@ class AwardYears::V2019::QAEForms
           context -> do
             %(
               <p>
-                You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award)
+                You are not eligible for this award if it’s after #{AwardYear.start_trading_since(2)} (or after #{AwardYear.start_trading_since(5)} if you are applying for the five-year award).
               </p>
             )
           end

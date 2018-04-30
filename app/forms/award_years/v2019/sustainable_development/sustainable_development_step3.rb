@@ -27,8 +27,8 @@ class AwardYears::V2019::QAEForms
           classes "js-entry-period"
           ref "C 1"
           required
-          option "2 to 4", "Outstanding Sustainable Development: sustainable development has improved commercial performance over 2 years "
-          option "5 plus", "Continuous Sustainable Development: sustainable development has improved commercial performance over 5 years "
+          option "2 to 4", "Outstanding Sustainable Development: sustainable development has improved commercial performance over two years"
+          option "5 plus", "Continuous Sustainable Development: sustainable development has improved commercial performance over five years"
           financial_date_selector({
             "2 to 4" => "2",
             "5 plus" => "5"
@@ -42,7 +42,7 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
+        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
           ref "C 2"
           required
           context %(
@@ -205,7 +205,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).
+              As per your balance sheet. Total assets (fixed and current) minus liabilities (current and long-term).
             </p>
           )
           type :money
@@ -343,7 +343,7 @@ class AwardYears::V2019::QAEForms
           conditional :development_performance_years, :true
         end
 
-        textarea :development_performance, "What cost savings have you or your customers' businesses made as a result of the introduction of the product, service or management approach?" do
+        textarea :development_performance, "What cost-savings have you or your customers' businesses made as a result of the introduction of the product, service or management approach?" do
           ref "C 8"
           required
           context %(
@@ -359,7 +359,7 @@ class AwardYears::V2019::QAEForms
           ref "C 9"
           required
           context %(
-            <p>Include all investments and reinvestments made both during and prior to your entry period. Also include the year(s) in which they were made.</p>
+            <p>Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.</p>
           )
           rows 5
           words_max 400

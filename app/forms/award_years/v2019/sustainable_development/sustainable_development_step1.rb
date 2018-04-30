@@ -178,7 +178,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the product, service or management approach then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the product, service or management approach, then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
           yes_no
@@ -238,7 +238,7 @@ class AwardYears::V2019::QAEForms
           ref "A 10"
           context %(
             <p>
-              Please check the region your district belongs to on <a href="https://www.gbmaps.com/downloadpostcodemap.htm" target="_blank">GBMaps website</a>
+              Please check the region your district belongs to on <a href="https://www.gbmaps.com/downloadpostcodemap.htm" target="_blank">GBMaps website</a>.
             </p>
           )
           sub_fields([
@@ -318,10 +318,7 @@ class AwardYears::V2019::QAEForms
           )
           hint "What are the allowed file formats?", %(
             <p>
-              You can upload any of the following file formats:
-            </p>
-            <p>
-              chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip
+              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
           max_attachments 1
