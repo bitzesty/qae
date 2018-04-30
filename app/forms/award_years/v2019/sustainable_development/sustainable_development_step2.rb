@@ -99,14 +99,14 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              Please summarise any plans, policies, strategies, etc. that you have in place that demonstrate your leadership approach within your own organisation and which drive your relationships with your partners.
+              Please summarise any plans, policies, strategies that you have in place that demonstrate your leadership approach within your organisation and which drive your relationships with your partners.
             </p>
             <p>
               For example, you may wish to demonstrate how you:
             </p>
             <ul>
               <li>
-                Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits, or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
+                Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits (above), or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
               </li>
               <li>
                 Follow principles of good governance, openness and consultation with regards to customers, suppliers and staff.
@@ -115,48 +115,42 @@ class AwardYears::V2019::QAEForms
                 Have embedded ethical business principles and, where appropriate, have actively opposed corruption and unfair practices or challenged those with a detrimental impact on the environment.
               </li>
               <li>
-                Systematically promote sustainable development  for example by using indicators, targets, policies and management processes to enable you to demonstrate and measure progress and success.
+                Systematically promote sustainable development - for example, by using indicators, targets, policies and management processes to enable you to demonstrate and measure progress and success.
               </li>
               <li>
                 Take part in and commit to relevant accredited and verified schemes such as British Standards and ISO.
               </li>
               <li>
-                Create management innovation - e.g. develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
+                Create management innovation. For example, develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
               </li>
             </ul>
             <p>
               Please specify the timescale over which your sustainable development performance has been or will be sustained.
             </p>
-            <p>
-              Wherever relevant, please mention if there is publicly available information demonstrating your commitment. We expect you to publicly demonstrate your commitment to sustainable development via website or other publicity material, alongside information on what you are doing in terms of sustainable development. You can provide evidence of this in section E.”
-            </p>
           )
 
           pdf_context %(
             <p>
-              Please summarise any plans, policies, strategies, etc. that you have in place that demonstrate your leadership approach within your own organisation and which drive your relationships with your partners.
+              Please summarise any plans, policies, strategies that you have in place that demonstrate your leadership approach within your organisation and which drive your relationships with your partners.
             </p>
             <p>
               For example, you may wish to demonstrate how you:
             </p>
             <p>
-              \u2022 Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits, or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
+              \u2022 Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits (above), or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
 
               \u2022 Follow principles of good governance, openness and consultation with regards to customers, suppliers and staff.
 
               \u2022 Have embedded ethical business principles and, where appropriate, have actively opposed corruption and unfair practices or challenged those with a detrimental impact on the environment.
 
-              \u2022 Systematically promote sustainable development  for example by using indicators, targets, policies and management processes to enable you to demonstrate and measure progress and success.
+              \u2022 Systematically promote sustainable development - for example, by using indicators, targets, policies and management processes to enable you to demonstrate and measure progress and success.
 
               \u2022 Take part in and commit to relevant accredited and verified schemes such as British Standards and ISO.
 
-              \u2022 Create management innovation - e.g. develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
+              \u2022 Create management innovation. For example, develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
             </p>
             <p>
               Please specify the timescale over which your sustainable development performance has been or will be sustained.
-            </p>
-            <p>
-              Wherever relevant, please mention if there is publicly available information demonstrating your commitment. We expect you to publicly demonstrate your commitment to sustainable development via website or other publicity material, alongside information on what you are doing in terms of sustainable development. You can provide evidence of this in section E.”
             </p>
           )
           rows 8
