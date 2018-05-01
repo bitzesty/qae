@@ -29,7 +29,6 @@ class AwardYears::V2019::QAEForms
             </p>
           )
           rows 5
-          words_max 100
         end
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
