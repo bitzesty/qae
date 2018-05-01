@@ -460,8 +460,11 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>Can you benchmark this performance against other comparable organisations?</p>
+
             <p>What have you done to address and overcome the most important sustainable development challenges that are specific to your sector?</p>
+
             <p>Have you pioneered the development of new natural capital markets – for example, in exploring how more revenue streams could be generated to make natural capital assets investable?</p>
+
             <p>Have any of your operations or sustainability innovations resulted in the UK becoming an international leader in providing knowledge-based goods and services?</p>
           )
           rows 5
