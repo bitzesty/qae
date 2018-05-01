@@ -266,6 +266,8 @@ window.FormValidation =
             @addErrorClass(question)
 
   validateCurrentAwards: (question) ->
+    $(".errors-container", question).empty()
+
     for subquestion in question.find(".list-add li")
       errorText = ""
       $(subquestion).find("select, input, textarea").each ->
