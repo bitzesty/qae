@@ -4,7 +4,7 @@
 = render "shared/non_js_dynamic_list_redirect_warning", add_message: "Add award"
 
 div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
-  input name="form[queen_award_holder_details][array]" value="true" type="hidden" *possible_read_only_ops
+  input name="form[applied_for_queen_awards_details][array]" value="true" type="hidden" *possible_read_only_ops
   ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 id="non_js_#{question.key}-list-question"
 
     - question.entities.each_with_index do |award, index|
@@ -35,7 +35,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
         label
           span.visuallyhidden Category
           span.if-no-js-hide
-            select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+            select.inline.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
               option value=""
                 ' Category
               - question.categories.each do |category|
@@ -48,7 +48,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
         label
           span.visuallyhidden Year
           span.if-no-js-hide
-            select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+            select.inline.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
               option value=""
                 ' Year
               - question.years.each do |year|
@@ -62,7 +62,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
         label
           span.visuallyhidden Outcome (Won/Did not win)
           span.if-no-js-hide
-            select.inline.js-trigger-autosave name="form[queen_award_holder_details][#{index}][outcome]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="outcome" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+            select.inline.js-trigger-autosave name="form[applied_for_queen_awards_details][#{index}][outcome]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="outcome" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
               option value=""
                 ' Outcome (Won/Did not win)
               - question.outcomes.each do |outcome|
@@ -81,7 +81,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
         label
           span.visuallyhidden Category
-          select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+          select.inline.js-trigger-autosave name="form[applied_for_queen_awards_details][0][category]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="category" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
             option value=""
               ' Category
             - question.categories.each do |category|
@@ -90,7 +90,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
         label
           span.visuallyhidden Year
-          select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+          select.inline.js-trigger-autosave name="form[applied_for_queen_awards_details][0][year]" data-dependable-option-siffix="year" data-parent-option-dependable-key=question.key class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
             option value=""
               ' Year
             - question.years.each do |year|
@@ -100,7 +100,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
         label
           span.visuallyhidden Outcome (Won/Did not win)
-          select.inline.js-trigger-autosave name="form[queen_award_holder_details][0][outcome]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="outcome" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
+          select.inline.js-trigger-autosave name="form[applied_for_queen_awards_details][0][outcome]" data-dependable-values=dependable_values data-parent-option-dependable-key=question.key data-dependable-option-siffix="outcome" class=("js-options-with-dependent-child-select" if children_depends_on.present?) *possible_read_only_ops
             option value=""
               ' Outcome (Won/Did not win)
             - question.outcomes.each do |outcome|

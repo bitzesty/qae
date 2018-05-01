@@ -236,7 +236,7 @@ class AwardYears::V2019::QAEForms
         address :organization_address, "Trading address of your organisation" do
           required
           ref "A 10"
-          context %(
+          region_context %(
             <p>
               Please check the region your district belongs to on <a href="https://www.gbmaps.com/downloadpostcodemap.htm" target="_blank">GBMaps website</a>.
             </p>
