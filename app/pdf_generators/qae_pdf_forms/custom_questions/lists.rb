@@ -1,6 +1,7 @@
 module QaePdfForms::CustomQuestions::Lists
   LIST_TYPES = [
     QAEFormBuilder::AwardHolderQuestion,
+    QAEFormBuilder::QueenAwardApplicationsQuestion,
     QAEFormBuilder::PositionDetailsQuestion,
     QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
   ]
@@ -8,6 +9,11 @@ module QaePdfForms::CustomQuestions::Lists
     "Award/personal honour title",
     "Year",
     "Details"
+  ]
+  AWARD_APPLICATIONS_LIST_HEADERS = [
+    "Award",
+    "Year",
+    "Outcome"
   ]
   NOMINATION_AWARD_LIST_HEADERS = [
     "Award/personal honour title",
@@ -68,6 +74,8 @@ module QaePdfForms::CustomQuestions::Lists
       else
         NOMINATION_AWARD_LIST_HEADERS
       end
+    when QAEFormBuilder::QueenAwardApplicationsQuestion
+      AWARD_APPLICATIONS_LIST_HEADERS
     when QAEFormBuilder::PositionDetailsQuestion
       POSITION_LIST_HEADERS
     when QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion
@@ -84,6 +92,17 @@ module QaePdfForms::CustomQuestions::Lists
         prepared_item["year"]
       ]
     end
+  end
+
+  def award_applications_query_conditions(item)
+    category = item["category"].presence && QaePdfForms::General::QuestionPointer::PREVIOUS_AWARDS[item["category"]]
+    outcome = item["outcome"].presence && question.outcomes.detect { |o| o.value == item["outcome"] }.try(:text)
+
+    [
+      item["category"],
+      item["year"],
+      item["outcome"]
+    ]
   end
 
   def award_holder_query_conditions(prepared_item)
@@ -151,6 +170,8 @@ module QaePdfForms::CustomQuestions::Lists
           case question.delegate_obj
           when QAEFormBuilder::AwardHolderQuestion
             award_holder_query_conditions(item)
+          when QAEFormBuilder::QueenAwardApplicationsQuestion
+            award_applications_query_conditions(item)
           when QAEFormBuilder::QueenAwardHolderQuestion
             queen_award_holder_query_conditions(item)
           when QAEFormBuilder::PositionDetailsQuestion

@@ -38,6 +38,7 @@ class QaePdfForms::General::QuestionPointer
   BLOCK_QUESTIONS = [
     QAEFormBuilder::AwardHolderQuestion,
     QAEFormBuilder::QueenAwardHolderQuestion,
+    QAEFormBuilder::QueenAwardApplicationsQuestion,
     QAEFormBuilder::PositionDetailsQuestion,
     QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion,
     QAEFormBuilder::ByTradeGoodsAndServicesLabelQuestion,
@@ -364,6 +365,12 @@ class QaePdfForms::General::QuestionPointer
         else
           render_queen_award_holder_header
         end
+      when QAEFormBuilder::QueenAwardApplicationsQuestion
+        if humanized_answer.present?
+          render_queen_award_applications
+        else
+          render_queen_award_applications_header
+        end
       when QAEFormBuilder::SubsidiariesAssociatesPlantsQuestion
         if humanized_answer.present?
           render_subsidiaries_plants
@@ -415,6 +422,29 @@ class QaePdfForms::General::QuestionPointer
         end
       end
     end
+  end
+
+  def render_queen_award_applications
+    if q_visible?
+      render_queen_award_applications_header
+
+      if list_rows.present?
+        form_pdf.indent 7.mm do
+          form_pdf.font("Times-Roman") do
+            list_rows.each do |award|
+              outcome = question.outcomes.detect { |o| o.value == award[2] }.try(:text)
+
+              form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]} - #{outcome}",
+                                   color: FormPdf::DEFAULT_ANSWER_COLOR
+            end
+          end
+        end
+      end
+    end
+  end
+
+  def render_queen_award_applications_header
+    form_pdf.render_text "Year Awarded - Category - Outcome"
   end
 
   def render_queen_award_holder_header
