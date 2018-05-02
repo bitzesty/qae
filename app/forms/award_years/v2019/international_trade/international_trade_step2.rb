@@ -8,6 +8,9 @@ class AwardYears::V2019::QAEForms
             <p>
               This section enables you to present the detail of your products or services that you export and to give us the evidence of their commercial impact on your business that will allow us to assess your application.
             </p>
+            <p>
+              Please avoid using technical language in this section.
+            </p>
           )
         end
 
@@ -93,7 +96,7 @@ class AwardYears::V2019::QAEForms
             </p>
           )
           additional_pdf_context %(
-            You will need to complete this information for each product or service depending on your answer for question B2.1
+            You will need to complete this information for each product or service depending on your answer to question B2.1
           )
           rows 2
           words_max 15

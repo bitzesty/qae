@@ -99,8 +99,6 @@ class AwardYears::V2019::QAEForms
           ref "C 3"
           required
           context %(
-            <p>If you have selected “Outstanding Short-term Growth: international trade has resulted in outstanding year on year growth in the last three years with no dips” in C1, you will only need to provide information for the last three years.</p>
-
             <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.</p>
           )
           type :number
@@ -216,13 +214,15 @@ class AwardYears::V2019::QAEForms
           by_year_condition :trade_commercial_success, "3 to 5", 3
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %(
-            <p>Exclude VAT, overseas taxes and, where applicable, excise duties.</p>
+            <p>
+              Exclude VAT, overseas taxes and, where applicable, excise duties.
+            </p>
                     )
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
           drop_conditional :drops_in_turnover
         end
 
-        by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
+        by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)" do
           classes "sub-question"
           sub_ref "C 4.3"
           required
@@ -231,6 +231,9 @@ class AwardYears::V2019::QAEForms
           by_year_condition :trade_commercial_success, "6 plus", 6
           context %(
             <p>
+              If you haven't reached your latest year-end, use estimates to complete this question.
+            </p>
+            <p>
               Use a minus symbol to record any losses.
             </p>
           )
@@ -238,7 +241,7 @@ class AwardYears::V2019::QAEForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in total turnover or net profit, and any losses made. Sustained or unexplained losses may lead to the entry being rejected" do
+        textarea :drops_in_turnover, "Explain any drops in the total turnover or net profit, and any losses made. Sustained or unexplained losses may lead to the entry being rejected." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.4"
           rows 5
