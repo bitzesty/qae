@@ -134,7 +134,7 @@ jQuery ->
       drop_answers.find("input").each () ->
         if $(this).val()
           value = parseFloat $(this).val()
-          if value < last_val
+          if value < last_val || value < 0
             drop = true
           last_val = value
 
