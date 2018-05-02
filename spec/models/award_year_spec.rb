@@ -140,6 +140,31 @@ describe AwardYear do
       end
     end
   end
+
+  describe ".start_trading_since" do
+    it "returns 03/09/20XX date for award years before 2019" do
+      Timecop.freeze(Date.new(2016, 5, 22)) do
+        clean_settings
+        expect(described_class.start_trading_since(1)).to eq("03/09/2015")
+      end
+    end
+
+    it "returns 17/09/20XX date for award years after 2019" do
+      Timecop.freeze(Date.new(2018, 5, 22)) do
+        clean_settings
+        expect(described_class.start_trading_since(1)).to eq("17/09/2017")
+      end
+    end
+
+    it "returns actual submission deadline date if it's set up after 2019" do
+      Timecop.freeze(Date.new(2018, 5, 22)) do
+        clean_settings
+        deadline = Settings.current_submission_deadline
+        deadline.update_column(:trigger_at, Date.new(2019, 10, 22))
+        expect(described_class.start_trading_since(1)).to eq("22/10/2017")
+      end
+    end
+  end
 end
 
 def clean_settings
