@@ -6,10 +6,7 @@ class AwardYears::V2019::QAEForms
         header :commercial_success_info_block, "" do
           context %(
             <p>
-              In order to be eligible for this Award, your business must demonstrate financial stability and growth for the last 3 years.
-            </p>
-            <p>
-              <strong>If you haven't reached your latest year-end, please use estimates to complete this section.</strong>
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your international trade activities had on your organisation's financial performance.
             </p>
           )
         end
@@ -18,17 +15,17 @@ class AwardYears::V2019::QAEForms
           classes "application-notice help-notice"
           context %(
             <p>
-              If your application is shortlisted you will have to supply commercial figures verified by an independent accountant within a specified deadline.
+              You can provide estimated figures for now but, should you be shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
         end
 
-        trade_commercial_success :trade_commercial_success, "How you would describe the impact of your international trade activities on your organisation's financial performance?" do
+        trade_commercial_success :trade_commercial_success, "How would you describe the impact of your international trade activities on your organisation's financial performance?" do
           classes "js-entry-period"
           ref "C 1"
           required
-          option "3 to 5", "Outstanding Short Term Growth: international trade has resulted in outstanding year on year growth in the last 3 years with no dips"
-          option "6 plus", "Outstanding Continuous Growth: international trade has resulted in continuous year on year growth in the last 6 years with no dips"
+          option "3 to 5", "Outstanding Short-term Growth: international trade has resulted in outstanding year on year growth in the last three years with no dips"
+          option "6 plus", "Outstanding Continuous Growth: international trade has resulted in continuous year on year growth in the last six years with no dips"
           placeholder_preselected_condition :applied_for_queen_awards_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
@@ -49,7 +46,7 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
+        innovation_financial_year_date :financial_year_date, "Enter your financial year end date." do
           ref "C 2"
           required
           context %(
@@ -60,7 +57,7 @@ class AwardYears::V2019::QAEForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> year) entry period?" do
+        options :financial_year_date_changed, "Did your year-end date change during your (<span class='js-entry-period-subtext'>3 or 6</span> years) entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
@@ -73,7 +70,7 @@ class AwardYears::V2019::QAEForms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year" do
+        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -88,7 +85,7 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, "yes"
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -97,12 +94,14 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, "yes"
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry" do
+        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
           classes "question-employee-min"
           ref "C 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
+            <p>If you have selected “Outstanding Short-term Growth: international trade has resulted in outstanding year on year growth in the last three years with no dips” in C1, you will only need to provide information for the last three years.</p>
+
+            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents.</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -121,10 +120,13 @@ class AwardYears::V2019::QAEForms
               A parent company making a group entry should include the trading figures of all UK members of the group.
             </p>
             <p>
+              If you haven't reached your latest year-end, use estimates to complete this section.
+            </p>
+            <p>
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
             <p>
-              Please do not separate your figures with commas
+              Do not separate your figures with commas.
             </p>
           )
         end
@@ -134,11 +136,11 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              Please include only:
+              Include only:
             </p>
             <ul>
               <li>
-                Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how etc.).
+                Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how).
               </li>
               <li>
                 Total export agency commissions.
@@ -157,19 +159,25 @@ class AwardYears::V2019::QAEForms
               </li>
             </ul>
             <p>
-              If applicable include your sales to and the sales by, your overseas branches or subsidiaries. For products /services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
+              If applicable, include your sales to and the sales by your overseas branches or subsidiaries. For products/services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
             </p>
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
+            </p>
+            <p>
+              If you haven't reached your latest year-end, use estimates to complete this question.
             </p>
           )
 
           pdf_context %(
             <p>
-              Please include only:
+              If you have selected “Outstanding Short-term Growth: international trade has resulted in outstanding year on year growth in the last three years with no dips” in C1, you will only need to provide information for the last three years.
             </p>
             <p>
-              \u2022 Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how etc.).
+              Include only:
+            </p>
+            <p>
+              \u2022 Direct overseas sales of all products and services (including income from royalties, licence fees, provision of know-how).
 
               \u2022 Total export agency commissions.
 
@@ -182,10 +190,13 @@ class AwardYears::V2019::QAEForms
               \u2022 Other earnings from overseas residents remitted to the UK.
             </p>
             <p>
-              If applicable include your sales to and the sales by, your overseas branches or subsidiaries. For products /services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
+              If applicable, include your sales to and the sales by your overseas branches or subsidiaries. For products/services which you sell/invoice to them and they sell/invoice on, include only their mark-up, if any, over the price paid to you.
             </p>
             <p>
               The products/services must have been shipped/provided and the customer invoiced, but you need not have received payment within the year concerned. Omit unfulfilled orders and payments received in advance of export.
+            </p>
+            <p>
+              If you haven't reached your latest year-end, use estimates to complete this question.
             </p>
           )
 
