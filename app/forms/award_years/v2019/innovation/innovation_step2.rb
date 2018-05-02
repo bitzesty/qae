@@ -5,7 +5,7 @@ class AwardYears::V2019::QAEForms
         header :innovation_b_section_header, "" do
           context %(
             <p>
-              This section gives you the opportunity to present the detail of your innovation and to give us the evidence of its commercial impact on your business that will enable us to assess your application.
+              This section enables you to present the detail of your innovation and to give us the evidence of its commercial impact on your business that will allow us to assess your application.
             </p>
             <p>
               Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
@@ -35,16 +35,38 @@ class AwardYears::V2019::QAEForms
               This summary will be used in publicity material if your application is successful.
             </p>
             <p>
-              e.g. Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
+              For example:
+            </p>
+            <ul>
+              <li>
+                Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
+              </li>
+              <li>
+                Innovative software testing tool to improve the efficiency and quality of software.
+              </li>
+              <li>
+                Innovative person-centred, non-medical home care for the elderly.
+              </li>
+              <li>
+                Leadership in the design and project management of biomethane gas-to-grid connections.
+              </li>
+            </ul>
+          )
+          pdf_context %(
+            <p>
+              This summary will be used in publicity material if your application is successful.
             </p>
             <p>
-              e.g. Innovative software testing tool to improve the efficiency and quality of software.
+              For example:
             </p>
             <p>
-              e.g. Innovative person centred, non-medical home care for the elderly.
-            </p>
-            <p>
-              e.g. Leadership in the design and project management of biomethane gas-to-grid connections.
+              \u2022 Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
+
+              \u2022 Innovative software testing tool to improve the efficiency and quality of software.
+
+              \u2022 Innovative person-centred, non-medical home care for the elderly.
+
+              \u2022 Leadership in the design and project management of biomethane gas-to-grid connections.
             </p>
           )
           rows 2
@@ -58,7 +80,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              Describe the product, service or business model itself. Explain any aspect(s) you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Explain if and why your innovation is hard to copy, e.g. patents held, market position. Also explain how it fits within the overall business i.e. is it your sole product?
+              Describe the product, service or business model itself. Explain any aspect(s) that you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Explain if and why your innovation is hard to copy, for example, patents held, market position. Also explain how it fits within the overall business, for example, is it your sole product.
             </p>
           )
           rows 5
@@ -71,7 +93,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :innovation_hold_existing_patent_details, "Please provide details of the patent. If you do not have a patent, please explain the reasons why" do
+        textarea :innovation_hold_existing_patent_details, "Provide details of the patent. If you do not have a patent, please explain the reasons why not." do
           sub_ref "B 2.1"
           required
           context %(
@@ -88,7 +110,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :innovation_other_countries_it_was_developed, "Please describe in what other countries (and by what parties) was it developed. Please estimate what proportion of the innovation was developed there" do
+        textarea :innovation_other_countries_it_was_developed, "Describe in what other countries (and by what parties) it was developed. Estimate what proportion of the innovation was developed there." do
           sub_ref "B 3.1"
           required
           conditional :innovation_conceived_and_developed, :no
@@ -96,21 +118,21 @@ class AwardYears::V2019::QAEForms
           words_max 400
         end
 
-        textarea :innovation_external_contributors, 'Please name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s) or enter "N/A".' do
+        textarea :innovation_external_contributors, 'Name any external organisation(s)/individual(s) that contributed to your innovation, and explain their contribution(s) or enter "N/A".' do
           ref "B 4"
           required
           rows 5
           words_max 400
         end
 
-        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation. Or otherwise, how you identified a gap in the market" do
+        textarea :innovation_context, "Describe the market conditions that led to the creation of your innovation. Or otherwise, how you identified a gap in the market. " do
           ref "B 5"
           required
           rows 5
           words_max 500
         end
 
-        textarea :innovation_overcomes_issues, "Discuss the degree to which your innovation solves prior problems, and any difficulties you overcame in achieving these solutions" do
+        textarea :innovation_overcomes_issues, "Describe the degree to which your innovation solves previous problems, and any difficulties you overcame in achieving these solutions." do
           ref "B 6"
           required
           rows 5
@@ -122,7 +144,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              e.g. increased efficiency, reduction in costs, design / production / marketing / distribution improvements, better after-sales support, reduced downtime or increased reliability. <strong>You will have the opportunity to include more details of the financial benefits to your organisation in the Commercial Performance section of the form</strong>.
+              For example, increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. You will have the opportunity to include more details of the financial benefits to your organisation in the Commercial Performance section of the form.
             </p>
           )
           rows 5
@@ -134,7 +156,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              e.g. increased efficiency, reduction in costs, design / production / marketing / distribution improvements, better after-sales support, reduced downtime or increased reliability. <strong>Please quantify if possible</strong>. You can also include testimonials to support your claim.
+              For example,  increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. Please quantify if possible. You can also include testimonials to support your claim.
             </p>
           )
           rows 5
@@ -148,7 +170,7 @@ class AwardYears::V2019::QAEForms
           words_max 400
         end
 
-        textarea :innovation_competitors, "Who offers similar or different products, services or business models that compete with yours? Explain how your innovation differs from other offers in your field, including direct competitors and those that offer alternative solutions" do
+        textarea :innovation_competitors, "Who offers similar or different products, services or business models that compete with yours? Explain how your innovation differs from other offers in your field, including direct competitors and those that offer alternative solutions." do
           ref "B 10"
           required
           rows 5
@@ -164,12 +186,12 @@ class AwardYears::V2019::QAEForms
           yes_no
           context %(
             <p>
-              We ask this in order to help us carry out due diligence if your application is shortlisted.
+              We ask this to help us carry out due diligence if your application is shortlisted.
             </p>
           )
         end
 
-        textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding" do
+        textarea :innovation_grant_funding_sources, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
           sub_ref "B 11.1"
           required
@@ -178,7 +200,7 @@ class AwardYears::V2019::QAEForms
           words_max 250
         end
 
-        date :innovation_was_launched_in_the_market, "Please select the date when your innovation was launched in the market" do
+        date :innovation_was_launched_in_the_market, "Select the date when your innovation was launched in the market." do
           required
           ref "B 12"
           context -> do
@@ -197,7 +219,7 @@ class AwardYears::V2019::QAEForms
           rows 5
           words_max 200
           context %(
-            <p>Please use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
+            <p>Use this box to explain if your innovation was launched by someone else, or any other unusual circumstances.</p>
           )
         end
       end
