@@ -69,10 +69,9 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :provide_ceo_quote, "Provide a quote from the CEO that demonstrates support for the social mobility programme" do
-          classes "sub-question"
+          classes "sub-question word-max-strict"
           sub_ref "B 1.4"
           required
-          classes "word-max-strict"
           context %(
             <p>
               This quote might be used in publicity material if your application is successful.
@@ -287,7 +286,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              If possible, use a balance of quantitative (for example, numbers and figures)and qualitative (for example, comments, feedback from people, key stakeholders) evidence.
+              If possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence.
             </p>
             <p>
               You may find it helpful to articulate these benefits by describing before and after.
@@ -367,9 +366,10 @@ class AwardYears::V2019::QAEForms
 
         textarea :possible_development_without_the_programme, "Provide an assessment of what would have happened to your organisation if you had not developed your social mobility programme." do
           ref "B 6.1"
+          classes "sub-question"
           required
           context %(
-            <p>Consider how your organisation would be different now or in the future if you had not created your social mobility programme. You might want to consider your relationships with key customers or suppliers or how you would have acquired staff members.</p>
+            <p>Consider how your organisation would be different now or in the future if you <strong>had not</strong> created your social mobility programme. You might want to consider your relationships with key customers or suppliers or how you would have acquired staff members.</p>
           )
           rows 5
           words_max 250
@@ -377,6 +377,7 @@ class AwardYears::V2019::QAEForms
 
         textarea :long_term_plans_for_promoting_oportunities, "What are your long-term plans for ensuring your organisation continues to promote opportunities for those from disadvantaged backgrounds, beyond any initiatives you already have in place?" do
           ref "B 6.2"
+          classes "sub-question"
           required
           rows 5
           words_max 250

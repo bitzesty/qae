@@ -68,7 +68,7 @@ class AwardYears::V2019::QAEForms
           sub_ref "C 2.3"
           required
           rows 5
-          words_max 100
+          words_max 50
           conditional :financial_year_date_changed, :yes
         end
 
@@ -105,6 +105,7 @@ class AwardYears::V2019::QAEForms
         end
 
         mobility_by_years :total_turnover, "Total turnover" do
+          classes "sub-question"
           ref "C 4.1"
           required
           context %(
@@ -155,11 +156,6 @@ class AwardYears::V2019::QAEForms
         textarea :drops_in_turnover, "Explain any drops in turnover, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.4"
-          context %(
-            <p>
-              Answer this question if you have any dips or losses in C.4.2.
-            </p>
-          )
           rows 5
           words_max 100
           conditional :financial_year_date_changed, :true
