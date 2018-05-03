@@ -22,7 +22,7 @@ class AwardYears::V2019::QAEForms
           classes "application-notice help-notice"
           context %(
             <p>
-              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
+              Where the form refers to your organisation, enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
@@ -45,7 +45,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made" do
+        textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made" do
           classes "sub-question"
           sub_ref "A 3.1"
           required
@@ -61,20 +61,20 @@ class AwardYears::V2019::QAEForms
           option "charity", "Charity"
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'" do
+        text :registration_number, "Provide your company or charity registration number or enter 'N/A'" do
           required
           ref "A 4.1"
           context %(
-            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
+            <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
           style "small"
         end
 
-        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'" do
+        text :vat_registration_number, "Provide your VAT registration number or enter 'N/A" do
           required
           ref "A 4.2"
           context %(
-            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
+            <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
           style "small"
         end
@@ -144,7 +144,7 @@ class AwardYears::V2019::QAEForms
           conditional :business_name_changed, :yes
         end
 
-        textarea :previous_business_ref_num, "Please provide your previous winning application reference number(s)" do
+        textarea :previous_business_ref_num, "Provide your previous winning application reference number(s)" do
           classes "regular-question"
           sub_ref "A 6.4"
           required
@@ -221,7 +221,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application?" do
+        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
           classes "sub-question"
           sub_ref "A 12.2"
           rows 5
@@ -274,7 +274,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        subsidiaries_associates_plants :trading_figures_add, "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them" do
+        subsidiaries_associates_plants :trading_figures_add, "Enter the name, location and amount of UK employees (FTE - full-time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them." do
           required
           classes "sub-question"
           sub_ref "A 14.1"
@@ -289,7 +289,7 @@ class AwardYears::V2019::QAEForms
           yes_no
           context %(
             <p>
-              An export agent exports goods/services on behalf of another company in exchange for commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).
+              An export agent exports goods/services on behalf of another company in exchange for a commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).
             </p>
           )
         end
@@ -310,10 +310,7 @@ class AwardYears::V2019::QAEForms
           )
           hint "What are the allowed file formats?", %(
             <p>
-              You can upload any of the following file formats:
-            </p>
-            <p>
-              chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip
+              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
           max_attachments 1

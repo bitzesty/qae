@@ -18,6 +18,9 @@ class AwardYear < ActiveRecord::Base
 
   AVAILABLE_YEARS = [2016, 2017, 2018, 2019, 2020]
 
+  DEFAULT_FINANCIAL_DEADLINE_DAY = 17
+  DEFAULT_FINANCIAL_DEADLINE_MONTH = 9
+
   scope :past, -> {
     where(year: past_years)
   }
@@ -249,7 +252,19 @@ class AwardYear < ActiveRecord::Base
     end
 
     def start_trading_since(years_number=3)
-      Date.new(AwardYear.current.year - 1 - years_number, 9, 3).strftime("%d/%m/%Y")
+      if AwardYear.current.year < 2019
+        Date.new(AwardYear.current.year - 1 - years_number, 9, 3).strftime("%d/%m/%Y")
+      else
+        day = DEFAULT_FINANCIAL_DEADLINE_DAY
+        month = DEFAULT_FINANCIAL_DEADLINE_MONTH
+
+        if (deadline = Settings.current_submission_deadline) && deadline.trigger_at
+          day = deadline.trigger_at.day
+          month = deadline.trigger_at.month
+        end
+
+        Date.new(AwardYear.current.year - 1 - years_number, month, day).strftime("%d/%m/%Y")
+      end
     end
   end
 end

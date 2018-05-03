@@ -20,7 +20,7 @@ class AwardYears::V2019::QAEForms
           ])
         end
 
-        text :head_job_title, "Job title / role in the organisation" do
+        text :head_job_title, "Job title/role in the organisation" do
           classes "sub-question"
           required
           form_hint %(
@@ -44,7 +44,7 @@ class AwardYears::V2019::QAEForms
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
           ref "F 3"
           text %(
-            I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).
+            I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, other info).
           )
         end
 
@@ -64,7 +64,7 @@ class AwardYears::V2019::QAEForms
               By ticking this box, I submit an entry for consideration for The Queen's Awards for Enterprise #{AwardYear.current.year}. I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
               <br>
               <br>
-              I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office in relation to this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
+              I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
             )
           end
         end
@@ -74,10 +74,10 @@ class AwardYears::V2019::QAEForms
           required
           show_ref_always true
           text %(
-            By ticking this box, you agree that if your application is shortlisted you will supply verified commercial figures before the specified deadline.
+            By ticking this box, you agree that if your application is shortlisted, you will supply commercial figures verified by an independent accountant before the specified November deadline.
             <br>
             <br>
-            If verified figures are not provided by [AUDIT_CERTIFICATES_DEADLINE], your entry will be rejected.
+            If verified figures are not provided by the specified November deadline at shortlist stage, your entry will be rejected.
           )
         end
 
