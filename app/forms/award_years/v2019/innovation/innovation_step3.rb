@@ -6,10 +6,7 @@ class AwardYears::V2019::QAEForms
         header :commercial_success_info_block, "" do
           context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your innovation had on your organisation's financial performance.
-            </p>
-            <p>
-              <strong>If you haven't reached your latest year-end, please use estimates to complete this section.</strong>
+              All applicants for a Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your innovation had on your organisation's financial performance.
             </p>
           )
         end
@@ -32,8 +29,8 @@ class AwardYears::V2019::QAEForms
               Your answer here will determine whether you are assessed for outstanding innovation (over two years) or continuous innovation (over five years).
             </p>
           )
-          option "2 to 4", "Outstanding Commercial Performance: innovation has improved commercial performance over 2 years"
-          option "5 plus", "Continuous Commercial Performance: innovation has improved commercial performance over 5 years"
+          option "2 to 4", "Outstanding Commercial Performance: innovation has improved commercial performance over two years"
+          option "5 plus", "Continuous Commercial Performance: innovation has improved commercial performance over five years"
           financial_date_selector({
             "2 to 4" => "2",
             "5 plus" => "5"
@@ -42,7 +39,7 @@ class AwardYears::V2019::QAEForms
           sub_category_question
         end
 
-        innovation_financial_year_date :financial_year_date, "Please enter your financial year end date" do
+        innovation_financial_year_date :financial_year_date, "Enter your financial year end date." do
           ref "C 2"
           required
           context %(
@@ -58,13 +55,13 @@ class AwardYears::V2019::QAEForms
           yes_no
           context %(
             <p>
-              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
+              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers two or five full 12-month periods.
             </p>
           )
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year" do
+        by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -79,7 +76,7 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -88,12 +85,12 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry" do
+        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
           classes "question-employee-min"
           ref "C 3"
           required
           context %(
-            <p>You can use the number of full-time employees at the year-end, or the average for the 12 month period. Part-time employees should be expressed in full-time equivalents. </p>
+            <p>You can use the number of full-time employees at the year-end, or the average for the 12-month period. Part-time employees should be expressed in full-time equivalents.</p>
           )
           type :number
           label ->(y) { "Financial year #{y}" }
@@ -116,7 +113,7 @@ class AwardYears::V2019::QAEForms
               You must enter actual financial figures in £ sterling (ignoring pennies).
             </p>
             <p>
-              Please do not separate your figures with commas.
+              Do not separate your figures with commas.
             </p>
           )
 
@@ -143,7 +140,7 @@ class AwardYears::V2019::QAEForms
           classes "sub-question"
           sub_ref "C 4.2"
           required
-          context %(<p>Please enter '0' if you had none.</p>)
+          context %(<p>Enter '0' if you had none.</p>)
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -172,7 +169,7 @@ class AwardYears::V2019::QAEForms
           exports :exports
         end
 
-        by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
+        by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)" do
           classes "sub-question"
           sub_ref "C 4.4"
           required
@@ -200,7 +197,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              As per your balance sheet. Total assets (fixed and current), less liabilities (current and long-term).
+              As per your balance sheet. Total assets (fixed and current) minus liabilities (current and long-term).
             </p>
           )
 
@@ -216,7 +213,7 @@ class AwardYears::V2019::QAEForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made" do
+        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.6"
           rows 5
@@ -234,7 +231,7 @@ class AwardYears::V2019::QAEForms
           option :single_product_or_service, "It affects a single product/service"
           context %(
             <p>
-              It is important that we know whether or not your innovation is the key thing your business does, or forms part of a wider approach. This is so we can understand the value of your innovation in the context of your overall commercial performance.
+              It is important that we know whether or not your innovation is the key thing your business does or forms part of a wider approach. This is so we can understand the value of your innovation in the context of your overall commercial performance.
             </p>
           )
         end
@@ -242,13 +239,15 @@ class AwardYears::V2019::QAEForms
         header :product_financials, "Innovation Financials" do
           ref "C 6"
           context %(
-            <p>If applicable, please provide your unit price, cost details and sales figures to help us understand the value of the innovation.</p>
-
-            <p>Some questions may not apply, please answer the ones that are applicable to your innovation.</p>
-
-            <p>You must enter actual financial figures in £ sterling (ignoring pennies).</p>
-
-            <p>Please do not separate your figures with commas.</p>
+            <p>
+              If applicable, provide your unit price, cost details and sales figures to help us understand the value of the innovation.
+            </p>
+            <p>
+              Some questions may not apply, answer the ones that are applicable to your innovation.
+            </p>
+            <p>
+              You must enter actual financial figures in £ sterling (ignoring pennies). Do not separate your figures with commas.
+            </p>
           )
         end
 
@@ -279,7 +278,7 @@ class AwardYears::V2019::QAEForms
         by_years :sales_exports, "Of which exports (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.3"
-          context %(<p>Please enter '0' if you had none.</p>)
+          context %(<p>Enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
 
@@ -292,7 +291,7 @@ class AwardYears::V2019::QAEForms
         by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.4"
-          context %(<p>Please enter '0' if you had none.</p>)
+          context %(<p>Enter '0' if you had none.</p>)
           type :money
           label ->(y) { "Financial year #{y}" }
 
@@ -302,7 +301,7 @@ class AwardYears::V2019::QAEForms
           drop_conditional :drops_in_sales
         end
 
-        textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)" do
+        textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 6.5"
           rows 5
@@ -326,7 +325,7 @@ class AwardYears::V2019::QAEForms
           by_year_condition :innovation_performance_years, "5 plus", 5
         end
 
-        textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods (if applicable)" do
+        textarea :avg_unit_price_desc, "Explain your unit selling prices/contract values, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
           sub_ref "C 6.7"
           rows 5
@@ -337,7 +336,7 @@ class AwardYears::V2019::QAEForms
           classes "sub-question"
           sub_ref "C 6.8"
           context %(
-            <p>If you haven't reached your latest year-end, please use estimates to complete this question.</p>
+            <p>If you haven't reached your latest year-end, use estimates to complete this question.</p>
           )
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           type :money
@@ -346,7 +345,7 @@ class AwardYears::V2019::QAEForms
           by_year_condition :innovation_performance_years, "5 plus", 5
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
+        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
           sub_ref "C 6.9"
           rows 5
@@ -360,7 +359,7 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :product_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders" do
+        textarea :product_estimates_use, "Explain your use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
           sub_ref "C 7.1"
           rows 5
@@ -370,7 +369,7 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, please demonstrate clearly how and when in the future they will be delivered" do
+        textarea :innovation_performance, "Describe how, when, and to what extent the innovation has improved the commercial performance of your business. If further improvements are still anticipated, clearly demonstrate how and when in the future they will be delivered." do
           ref "C 8"
           required
           context %(
@@ -382,14 +381,14 @@ class AwardYears::V2019::QAEForms
           words_max 250
         end
 
-        textarea :investments_details, "Please enter details of all your investments in the innovation. Include all investments made both during and prior to your entry period. Also include the year(s) in which they were made" do
+        textarea :investments_details, "Enter details of all your investments in the innovation. Include all investments made both during and before your entry period. Also, include the year(s) in which they were made." do
           ref "C 9"
           required
           rows 5
           words_max 250
           context %(
             <p>
-              This should include both capital purchases, and investments, grants, and loans received, as well as the cost of staff time and other non cash resources.
+              This should include both capital purchases, and investments, grants, and loans received, as well as the cost of staff time and other non-cash resources.
             </p>
           )
         end
@@ -402,7 +401,7 @@ class AwardYears::V2019::QAEForms
           words_max 250
           context %(
             <p>
-              If your innovation is expected to recover its full costs in the future, please explain how and when this will happen.
+              If your innovation is expected to recover its full costs in the future, explain how and when this will happen.
             </p>
           )
         end
