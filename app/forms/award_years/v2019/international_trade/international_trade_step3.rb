@@ -169,9 +169,6 @@ class AwardYears::V2019::QAEForms
 
           pdf_context %(
             <p>
-              If you have selected “Outstanding Short-term Growth: international trade has resulted in outstanding year on year growth in the last three years with no dips” in C1, you will only need to provide information for the last three years.
-            </p>
-            <p>
               Include only:
             </p>
             <p>
