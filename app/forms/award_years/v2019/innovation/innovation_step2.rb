@@ -39,16 +39,16 @@ class AwardYears::V2019::QAEForms
             </p>
             <ul>
               <li>
-                Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
+                “Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.”
               </li>
               <li>
-                Innovative software testing tool to improve the efficiency and quality of software.
+                “Innovative software testing tool to improve the efficiency and quality of software.”
               </li>
               <li>
-                Innovative person-centred, non-medical home care for the elderly.
+                “Innovative person-centred, non-medical home care for the elderly.”
               </li>
               <li>
-                Leadership in the design and project management of biomethane gas-to-grid connections.
+                “Leadership in the design and project management of biomethane gas-to-grid connections.”
               </li>
             </ul>
           )
@@ -60,13 +60,13 @@ class AwardYears::V2019::QAEForms
               For example:
             </p>
             <p>
-              \u2022 Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.
+              \u2022 “Fibre optic device to reproducibly modify the amplitude, direction or frequency of laser light.”
 
-              \u2022 Innovative software testing tool to improve the efficiency and quality of software.
+              \u2022 “Innovative software testing tool to improve the efficiency and quality of software.”
 
-              \u2022 Innovative person-centred, non-medical home care for the elderly.
+              \u2022 “Innovative person-centred, non-medical home care for the elderly.”
 
-              \u2022 Leadership in the design and project management of biomethane gas-to-grid connections.
+              \u2022 “Leadership in the design and project management of biomethane gas-to-grid connections.”
             </p>
           )
           rows 2
@@ -156,7 +156,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              For example,  increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. Please quantify if possible. You can also include testimonials to support your claim.
+              For example, increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. Please quantify if possible. You can also include testimonials to support your claim.
             </p>
           )
           rows 5
