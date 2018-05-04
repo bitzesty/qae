@@ -63,7 +63,7 @@ class AwardYears::V2019::QAEForms
           option "charity", "Charity"
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'" do
+        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
           required
           ref "A 4.1"
           context %(
@@ -72,7 +72,7 @@ class AwardYears::V2019::QAEForms
           style "small"
         end
 
-        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'" do
+        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
           required
           ref "A 4.2"
           context %(

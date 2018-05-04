@@ -45,7 +45,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made" do
+        textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made." do
           classes "sub-question"
           sub_ref "A 3.1"
           required
@@ -61,8 +61,9 @@ class AwardYears::V2019::QAEForms
           option "charity", "Charity"
         end
 
-        text :registration_number, "Provide your company or charity registration number or enter 'N/A'" do
+        text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
           required
+          classes "sub-question"
           ref "A 4.1"
           context %(
             <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
@@ -70,8 +71,9 @@ class AwardYears::V2019::QAEForms
           style "small"
         end
 
-        text :vat_registration_number, "Provide your VAT registration number or enter 'N/A" do
+        text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
           required
+          classes "sub-question"
           ref "A 4.2"
           context %(
             <p>If you're an unregistered subsidiary, enter your parent company's number.</p>

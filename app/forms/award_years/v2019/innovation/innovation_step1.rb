@@ -108,7 +108,7 @@ class AwardYears::V2019::QAEForms
           classes "queen-award-holder"
         end
 
-        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years" do
+        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "A 6.1"
 
@@ -212,7 +212,7 @@ class AwardYears::V2019::QAEForms
           conditional :innovation_contributors_aware, :no
         end
 
-        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this applications." do
+        textarea :innovation_contributors_why_organisations, "Explain why external organisations or individuals that contributed to your innovation are not all aware of this application." do
           classes "sub-question"
           sub_ref "A 9.2"
           required

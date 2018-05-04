@@ -156,7 +156,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              For example,  increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. Please quantify if possible. You can also include testimonials to support your claim.
+              For example, increased efficiency, reduction in costs, design/production/marketing/distribution improvements, better after-sales support, reduced downtime or increased reliability. Please quantify if possible. You can also include testimonials to support your claim.
             </p>
           )
           rows 5
