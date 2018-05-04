@@ -112,35 +112,8 @@ class AwardYears::V2019::QAEForms
           words_max 250
         end
 
-        textarea :employees_relations, "Relations with employees" do
-          ref "D 3"
-          required
-          context %(
-            <p>
-              Do you have a code of conduct or employee policies? For example, health and safety, training, staff welfare, whistleblowing and equal opportunities.
-            </p>
-            <p>
-              Do you offer any special employment conditions? For example, flexible working, extended maternity pay.
-            </p>
-            <p>
-              How do you keep your employees engaged? For example, communication, assessments, incentives, opportunities for career development.
-            </p>
-            <p>
-              How are you training and developing your staff?
-            </p>
-            <p>
-              Do you encourage/support them to learn new skills and gain new qualifications?
-            </p>
-            <p>
-              Do you take on apprentices, and if so, how many?
-            </p>
-          )
-          rows 5
-          words_max 250
-        end
-
         textarea :partners_relations, "Relations with customers and suppliers" do
-          ref "D 4"
+          ref "D 3"
           required
           context %(
             <p>
@@ -164,7 +137,7 @@ class AwardYears::V2019::QAEForms
         end
 
         confirm :declaration_of_corporate_responsibility, "" do
-          sub_ref "D 5"
+          sub_ref "D 4"
           required
           show_ref_always true
           text "I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise."
