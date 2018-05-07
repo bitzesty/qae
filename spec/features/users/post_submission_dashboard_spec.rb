@@ -3,6 +3,7 @@ include Warden::Test::Helpers
 
 describe  "User sees the post submission dashboard" do
   let(:user) { create(:user, :completed_profile) }
+  let!(:settings) { create(:settings, :submission_deadlines, award_year_id: AwardYear.current.id) }
   let!(:form_answer) { create(:form_answer, :with_audit_certificate, user: user) }
 
   before do
@@ -16,7 +17,8 @@ describe  "User sees the post submission dashboard" do
       expect(page).to have_content"Edit application"
       expect(page).to have_content("Current Applications")
 
-      settings = create(:settings, :expired_submission_deadlines)
+      settings.destroy
+      settings = create(:settings, :expired_submission_deadlines, award_year_id: AwardYear.current.id)
       form_answer.update_column(:state, "reserved")
 
       visit dashboard_path
