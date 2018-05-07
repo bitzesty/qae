@@ -5,10 +5,11 @@
 - elsif Settings.current_registrations_open_on?
   = render "content_only/info_messages/registrations_open_on"
 
-header.page-header.group
-  div
-    h1
-      ' Applications
+- if Settings.after_current_submission_deadline_start? || past_applications.present?
+  header.page-header.group
+    div
+      h1
+        ' Applications
 
 - if Settings.after_current_submission_deadline?
   .dashboard-post-submission
