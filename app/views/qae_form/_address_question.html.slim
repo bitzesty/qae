@@ -37,6 +37,10 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
               li = @form_answer.validator_errors[question.hash_key(suffix: sub_field_key)]
           .clear
 
+          - if question.region_context.present?
+            span.question-context.question-debug
+              == question.region_context
+
           = select_tag("#{question.key}_region", options_for_select(question.regions, question.input_value(suffix: "region")), possible_read_only_ops.merge({name: question.input_name(suffix: 'region'), class: "js-trigger-autosave required select2", include_blank: true}))
 
     - else

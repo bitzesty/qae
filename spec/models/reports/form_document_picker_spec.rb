@@ -4,6 +4,8 @@ describe Reports::DataPickers::FormDocumentPicker do
   let(:dummy_class) do
     klass = Class.new do
       include Reports::DataPickers::FormDocumentPicker
+
+      def obj; end
     end
   end
 
@@ -11,30 +13,34 @@ describe Reports::DataPickers::FormDocumentPicker do
     let(:subject) { dummy_class.new }
 
     it "returns nil if no awards were entered" do
-      allow(subject).to receive(:doc)
-        .with("queen_award_holder_details").and_return(nil)
+      expect(subject).to receive(:obj).and_return(double(previous_wins: nil))
       expect(subject.current_queens_award_holder).to be_nil
 
-      allow(subject).to receive(:doc)
-        .with("queen_award_holder_details").and_return([])
+      allow(subject).to receive(:obj).and_return(double(previous_wins: []))
       expect(subject.current_queens_award_holder).to be_nil
     end
 
     it "returns list of awards" do
-      year_1, year_2 = PreviousWin.available_years
+      year_1, year_2, year_3 = PreviousWin.available_years
       awards = [
                 {
                   "category" => "innovation",
-                  "year" => year_1
+                  "year" => year_1,
+                  "outcome" => "won"
                 },
                 {
                   "category" => "",
-                  "year" => year_2
+                  "year" => year_2,
+                  "outcome" => "won"
+                },
+                {
+                  "category" => "trade",
+                  "year" => year_3,
+                  "outcome" => "did_not_win"
                 }
       ]
 
-      allow(subject).to receive(:doc)
-        .with("queen_award_holder_details").and_return(awards)
+      allow(subject).to receive(:obj).and_return(double(previous_wins: awards))
       expected = "Innovation #{year_1}, #{year_2}"
 
       expect(subject.current_queens_award_holder).to eq(expected)

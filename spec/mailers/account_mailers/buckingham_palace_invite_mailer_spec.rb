@@ -6,6 +6,7 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
   let!(:year) do
     create(:award_year)
   end
+
   let!(:year_settings) do
     settings = year.settings
 
@@ -23,7 +24,14 @@ describe AccountMailers::BuckinghamPalaceInviteMailer do
   end
 
   let!(:form_answer) do
-    create :form_answer, :awarded, :innovation, user: user, award_year: year
+    fa = build(:form_answer, :awarded, :innovation, user: user, award_year: year)
+
+    # this field is no longer used in 2019 awards, but we're using closed award year here
+    # can be simplified when 2020 awards kick in
+    fa.document.merge!("queen_award_holder" => "no")
+    fa.save
+
+    fa
   end
 
   let!(:palace_invite) do

@@ -6,22 +6,72 @@ class AwardYears::V2019::QAEForms
         header :complete_now_header, "" do
           context %(
             <p>
-              All applicants for any Queen’s Award must demonstrate how they meet commonly accepted standards for corporate responsibility. Applicants who are not able to demonstrate strong corporate social responsibility will not be successful.
+              All applicants for a Queen’s Award for Enterprise must demonstrate how they meet commonly accepted standards for corporate responsibility. <strong>Applicants who are not able to demonstrate corporate social responsibility will not be successful.</strong>
             </p>
             <p>
-              The Declaration of Corporate Responsibility is a chance for you to outline your responsible business conduct, and its social, economic and environmental impact.
+              The Declaration of Corporate Responsibility is a chance for you to show your responsible business conduct and its social, economic and environmental impact.
             </p>
             <p>
-              You don't have to demonstrate strength in all of the areas below.
+              You should demonstrate:
+            </p>
+            <ul>
+              <li>
+                how your business impacts on your local community and society in general;
+              </li>
+              <li>
+                how it impacts on the environment and initiatives you take to limit such impact;
+              </li>
+              <li>
+                how you work to support and develop your employees;
+              </li>
+              <li>
+                what steps you take to ensure you deal ethically with both your suppliers and customers.
+              </li>
+            </ul>
+            <p>
+              We recognise that for many smaller companies the extent to which they can deliver high impact Corporate Responsibility may be limited. Given this, please answer the questions in a way that best suits your organisation.
             </p>
             <p>
-              The guidance notes below each section are not exhaustive. Answer the questions in a way that best suits your organisation.
+              The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place.
+            </p>
+          )
+
+          pdf_context %(
+            <p>
+              All applicants for a Queen’s Award for Enterprise must demonstrate how they meet commonly accepted standards for corporate responsibility. <b>Applicants who are not able to demonstrate corporate social responsibility will not be successful.</b>
             </p>
             <p>
-              If you can give quantitative evidence of your initiatives/improvement/success, then do so.
+              The Declaration of Corporate Responsibility is a chance for you to show your responsible business conduct and its social, economic and environmental impact.
             </p>
             <p>
-              If you have too many initiatives, just outline the ones you think are most relevant/important.
+              You should demonstrate:
+            </p>
+            <p>
+              \u2022 how your business impacts on your local community and society in general;
+
+              \u2022 how it impacts on the environment and initiatives you take to limit such impact;
+
+              \u2022 how you work to support and develop your employees;
+
+              \u2022 what steps you take to ensure you deal ethically with both your suppliers and customers.
+            </p>
+            <p>
+              We recognise that for many smaller companies the extent to which they can deliver high impact Corporate Responsibility may be limited. Given this, please answer the questions in a way that best suits your organisation.
+            </p>
+            <p>
+              The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place.
+            </p>
+          )
+        end
+
+        header :declaration_and_corporate_responsibility_intro, "" do
+          classes "application-notice help-notice"
+          context %(
+            <p>
+              You may have answered some of the questions in this section in other parts of the form. If you believe this is the case, you do not need to repeat the information, but make it clear by referencing other parts of the form.
+            </p>
+            <p>
+              Please use this section to give us additional information about corporate responsibility that you have not covered elsewhere in the form and would like us to see.
             </p>
           )
         end
@@ -41,7 +91,7 @@ class AwardYears::V2019::QAEForms
             </p>
           )
           rows 5
-          words_max 500
+          words_max 250
         end
 
         textarea :impact_on_environment, "The environmental impact of your business operations" do
@@ -49,78 +99,72 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              Describe any environmental considerations within your business e.g. energy efficiency strategies, recycling policies, emissions reduction policies.
+              Describe any environmental considerations within your business. For example, energy efficiency strategies, recycling policies, emissions reduction policies.
             </p>
             <p>
               State if and how you undertake environmental impact assessments of major projects.
             </p>
             <p>
-              Are environmental considerations and efficient use of resources built into your business/products/services?
+              How are environmental considerations and efficient use of resources built into your business/ products/ services?
             </p>
           )
           rows 5
-          words_max 500
+          words_max 250
         end
 
-        textarea :partners_relations, "Relations with suppliers, partners and contractors" do
+        textarea :employees_relations, "Relations with employees" do
           ref "D 3"
           required
           context %(
             <p>
-              Outline your selection criteria, if any, with regard to potential suppliers'/partners'/contractors' economic, social and environmental performance.
+              Do you have a code of conduct or employee policies? For example, health and safety, training, staff welfare, whistleblowing and equal opportunities.
             </p>
             <p>
-              For example, do you encourage best practice or require them to meet your own standards? To what extent are you succeeding? How proactive are you at encouraging your supply chain to source British goods/products/services? Do you mentor businesses in your supply chain – if so how?
-            </p>
-          )
-          rows 5
-          words_max 500
-        end
-
-        textarea :employees_relations, "Relations with employees" do
-          ref "D 4"
-          required
-          context %(
-            <p>
-              Do you have a code of conduct and/or employee policies? e.g. health and safety, training, staff welfare, whistleblowing and equal opportunities.
+              Do you offer any special employment conditions? For example, flexible working, extended maternity pay.
             </p>
             <p>
-              Do you offer any special employment conditions? e.g. flexible working, extended maternity pay.
+              How do you keep your employees engaged? For example, communication, assessments, incentives, opportunities for career development.
             </p>
             <p>
-              How do you keep your employees engaged? e.g. communication, assessments, incentives, opportunities for career development.
+              How are you training and developing your staff?
             </p>
             <p>
-              How are you training and developing your staff? Do you encourage/support them to learn new skills and gain new qualifications?
+              Do you encourage/support them to learn new skills and gain new qualifications?
             </p>
             <p>
               Do you take on apprentices, and if so, how many?
             </p>
           )
           rows 5
-          words_max 500
+          words_max 250
         end
 
-        textarea :customers_relations, "Relations with customers" do
-          ref "D 5"
+        textarea :partners_relations, "Relations with customers and suppliers" do
+          ref "D 4"
           required
           context %(
             <p>
-              What proportion of your sales consist of repeat purchases?
+              How do you encourage your suppliers to meet ethical standards?
             </p>
             <p>
-              How do you measure customer satisfaction, and what have been the results?
+              To what extent are you sourcing or encouraging your supply chain to source UK goods and services?
+            </p>
+            <p>
+              By what criteria do you select clients and ensure they are appropriate for your services?
+            </p>
+            <p>
+              How do you measure customer satisfaction and what have been the results?
             </p>
             <p>
               By what criteria do you select clients and ensure they are appropriate for your services?
             </p>
           )
           rows 5
-          words_max 500
+          words_max 250
         end
 
         confirm :declaration_of_corporate_responsibility, "" do
-          sub_ref "D 6"
+          sub_ref "D 5"
           required
           show_ref_always true
           text "I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise."

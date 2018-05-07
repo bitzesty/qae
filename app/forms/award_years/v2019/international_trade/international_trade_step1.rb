@@ -1,3 +1,4 @@
+# coding: utf-8
 class AwardYears::V2019::QAEForms
   class << self
     def trade_step1
@@ -21,7 +22,7 @@ class AwardYears::V2019::QAEForms
           classes "application-notice help-notice"
           context %(
             <p>
-              Where we refer to 'your organisation' in the form, please enter the details of your division, branch or subsidiary.
+              Where the form refers to your organisation, enter the details of your division, branch or subsidiary.
             </p>
           )
           conditional :applying_for, "division branch subsidiary"
@@ -44,7 +45,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made" do
+        textarea :invoicing_unit_relations, "Explain your relationship with the invoicing unit, and the arrangements made." do
           classes "sub-question"
           sub_ref "A 3.1"
           required
@@ -60,20 +61,22 @@ class AwardYears::V2019::QAEForms
           option "charity", "Charity"
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'" do
+        text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
           required
+          classes "sub-question"
           ref "A 4.1"
           context %(
-            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
+            <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
           style "small"
         end
 
-        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'" do
+        text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
           required
+          classes "sub-question"
           ref "A 4.2"
           context %(
-            <p>If you're an unregistered subsidiary, please enter your parent company's number.</p>
+            <p>If you're an unregistered subsidiary, enter your parent company's number.</p>
           )
           style "small"
         end
@@ -98,32 +101,29 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        options :queen_award_holder, -> { "Are you a current Queen's Award holder from #{AwardYear.award_holder_range}?" } do
+        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
-          context -> do
-            %(
-              <p>If you have received a Queen's Award in any category between #{AwardYear.current.year - 5} and #{AwardYear.current.year - 1}, you are deemed a current award holder.</p>
-            )
-          end
           yes_no
-          option "i_dont_know", "I don't know"
           classes "queen-award-holder"
         end
 
-        queen_award_holder :queen_award_holder_details, "List The Queen's Award(s) you currently hold" do
+        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years" do
           classes "sub-question question-current-awards"
           sub_ref "A 6.1"
 
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
 
           category :innovation, "Innovation"
           category :international_trade, "International Trade"
           category :sustainable_development, "Sustainable Development"
 
-          ((AwardYear.current.year - 5)..(AwardYear.current.year - 1)).each do |y|
+          ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
             year y
           end
+
+          outcome "won", "Won"
+          outcome "did_not_win", "Did not win"
 
           children_options_depends_on :category
           dependable_values [:international_trade]
@@ -135,24 +135,24 @@ class AwardYears::V2019::QAEForms
 
           option "yes", "Yes"
           option "no", "No"
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
         end
 
         text :previous_business_name, "Name used previously" do
           classes "regular-question"
           sub_ref "A 6.3"
           required
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
           conditional :business_name_changed, :yes
         end
 
-        textarea :previous_business_ref_num, "Please provide your previous winning application reference number(s)" do
+        textarea :previous_business_ref_num, "Provide your previous winning application reference number(s)" do
           classes "regular-question"
           sub_ref "A 6.4"
           required
           rows 5
           words_max 100
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
           conditional :business_name_changed, :yes
         end
 
@@ -175,6 +175,11 @@ class AwardYears::V2019::QAEForms
         address :organization_address, "Trading address of your organisation" do
           required
           ref "A 8"
+          region_context %(
+            <p>
+              Please check the region your district belongs to on <a href="https://www.gbmaps.com/downloadpostcodemap.htm" target="_blank">GBMaps website</a>.
+            </p>
+          )
           sub_fields([
             { building: "Building" },
             { street: "Street" },
@@ -218,7 +223,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application?" do
+        textarea :pareent_group_why_excluding_members, "Please explain why you are excluding any members of your group from this application." do
           classes "sub-question"
           sub_ref "A 12.2"
           rows 5
@@ -271,7 +276,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        subsidiaries_associates_plants :trading_figures_add, "Enter the name, location and amount of UK employees (FTE - full time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them" do
+        subsidiaries_associates_plants :trading_figures_add, "Enter the name, location and amount of UK employees (FTE - full-time equivalent) for each of the UK subsidiaries included in this application and the reason why you are including them." do
           required
           classes "sub-question"
           sub_ref "A 14.1"
@@ -286,7 +291,7 @@ class AwardYears::V2019::QAEForms
           yes_no
           context %(
             <p>
-              An export agent exports goods/services on behalf of another company in exchange for commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).
+              An export agent exports goods/services on behalf of another company in exchange for a commission. An export merchant buys merchandise to sell on at a higher price (sometimes rebranding/repacking in the process).
             </p>
           )
         end
@@ -307,10 +312,7 @@ class AwardYears::V2019::QAEForms
           )
           hint "What are the allowed file formats?", %(
             <p>
-              You can upload any of the following file formats:
-            </p>
-            <p>
-              chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip
+              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
           max_attachments 1

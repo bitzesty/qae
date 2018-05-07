@@ -1,3 +1,4 @@
+# coding: utf-8
 class AwardYears::V2019::QAEForms
   class << self
     def mobility_step1
@@ -31,7 +32,7 @@ class AwardYears::V2019::QAEForms
           required
           ref "A 2"
           context %(
-            <p>If applicable, include 'trading as', or any other name your organisation uses/has used. Please note, if successful, we will use this name on any award materials - e.g. award certificates.</p>
+            <p>If applicable, include 'trading as', or any other name your organisation uses. Please note, if successful, we will use this name on any award materials – for example, award certificates.</p>
           )
         end
 
@@ -93,39 +94,36 @@ class AwardYears::V2019::QAEForms
           date_max AwardYear.start_trading_since(3)
         end
 
-        options :queen_award_holder, -> { "Are you a current Queen's Award holder from #{AwardYear.award_holder_range}?" } do
+        options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
           required
           ref "A 6"
           yes_no
-          context -> do
-            %(
-              <p>If you have received a Queen's Award in any category between #{AwardYear.current.year - 5} and #{AwardYear.current.year - 1}, you are deemed a current award holder.</p>
-            )
-          end
-          option "i_dont_know", "I don't know"
           classes "queen-award-holder"
         end
 
-        queen_award_holder :queen_award_holder_details, "List The Queen's Award(s) you currently hold" do
+        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years" do
           classes "sub-question question-current-awards"
           sub_ref "A 6.1"
 
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
 
           category :innovation, "Innovation"
           category :international_trade, "International Trade"
           category :sustainable_development, "Sustainable Development"
 
-          ((AwardYear.current.year - 5)..(AwardYear.current.year - 1)).each do |y|
+          ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
             year y
           end
+
+          outcome "won", "Won"
+          outcome "did_not_win", "Did not win"
         end
 
         options_business_name_changed :business_name_changed, "Have you changed the name of your organisation since your last entry?" do
           classes "sub-question"
           sub_ref "A 6.2"
           required
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
           yes_no
         end
 
@@ -134,7 +132,7 @@ class AwardYears::V2019::QAEForms
           sub_ref "A 6.3"
           required
           conditional :business_name_changed, :yes
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
         end
 
         textarea :previous_business_ref_num, "Reference number(s) used previously" do
@@ -142,7 +140,7 @@ class AwardYears::V2019::QAEForms
           sub_ref "A 6.4"
           required
           conditional :business_name_changed, :yes
-          conditional :queen_award_holder, :yes
+          conditional :applied_for_queen_awards, :yes
           rows 5
           words_max 100
         end
@@ -159,7 +157,7 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              If you can't fit all of your awards below, then choose those you're most proud of.
+              If you can't fit all your awards below, then choose those you're most proud of.
             </p>
           )
           conditional :other_awards_won, :yes
@@ -173,7 +171,10 @@ class AwardYears::V2019::QAEForms
           required
           context %(
             <p>
-              If two or more organisations made a significant contribution to the social mobility programme then you should make a joint entry. Each organisation should submit separate, cross-referenced, entry forms.
+              If two or more organisations made a significant contribution to the social mobility programme, then you should make a joint entry.
+            </p>
+            <p>
+              Each organisation should submit separate, cross-referenced, entry forms.
             </p>
           )
           yes_no
@@ -218,7 +219,7 @@ class AwardYears::V2019::QAEForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this applications" do
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this application." do
           sub_ref "A 9.2"
           required
           words_max 200
@@ -230,6 +231,11 @@ class AwardYears::V2019::QAEForms
         address :organization_address, "Trading address of your organisation" do
           required
           ref "A 10"
+          region_context %(
+            <p>
+              Please check the region your district belongs to on <a href="https://www.gbmaps.com/downloadpostcodemap.htm" target="_blank">GBMaps website</a>.
+            </p>
+          )
           sub_fields([
             { building: "Building" },
             { street: "Street" },
@@ -307,10 +313,7 @@ class AwardYears::V2019::QAEForms
           )
           hint "What are the allowed file formats?", %(
             <p>
-              You can upload any of the following file formats:
-            </p>
-            <p>
-              chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip
+              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
             </p>
           )
           max_attachments 1

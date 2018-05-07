@@ -183,11 +183,11 @@ en:
 
   pdf_texts:
     innovation:
-      years_question_additional_context: "If you have selected “Outstanding Commercial Performance: innovation has improved commercial performance over 2 years” in C1, you will only need to provide information for the last 2 years."
+      years_question_additional_context: "If you have selected “Outstanding Commercial Performance: innovation has improved commercial performance over two years” in C1, you will only need to provide information for the last two years."
     trade:
-      years_question_additional_context: "If you have selected “Outstanding Short Term Growth: international trade has resulted in outstanding year on year growth in the last 3 years with no dips” in C1, you will only need to provide information for the last 3 years."
+      years_question_additional_context: "If you have selected “Outstanding Short-term Growth: international trade has resulted in outstanding year on year growth in the last three years with no dips” in C1, you will only need to provide information for the last three years."
     development:
-      years_question_additional_context: "If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over 2 years” in C1, you will only need to provide information for the last 2 years."
+      years_question_additional_context: "If you have selected “Outstanding Sustainable Development: sustainable development has improved commercial performance over two years” in C1, you will only need to provide information for the last two years."
 
   audit_logs:
     action_types:

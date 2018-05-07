@@ -71,16 +71,20 @@ class QAEFormBuilder
   end
 
   class AddressQuestionBuilder < QuestionBuilder
-    def countries countries
+    def countries(countries)
       @q.countries = countries
     end
 
-    def sub_fields fields
+    def sub_fields(fields)
       @q.sub_fields = fields
+    end
+
+    def region_context(region_context)
+      @q.region_context = region_context
     end
   end
 
   class AddressQuestion < Question
-    attr_accessor :countries, :sub_fields
+    attr_accessor :countries, :sub_fields, :region_context
   end
 end
