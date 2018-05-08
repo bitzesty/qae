@@ -17,6 +17,7 @@
 #= require browser-check
 #= require vendor/zxcvbn
 #= require vendor/jquery-debounce
+#= require vendor/details.polyfill.js
 #= require js.cookie
 #= require_tree ./frontend
 #= require offline
@@ -38,6 +39,8 @@ ordinal = (n) ->
     return n + "th"
 
 jQuery ->
+  GOVUK.details.init();
+
   $("html").removeClass("no-js").addClass("js")
 
   offlineCheck = new Offline
