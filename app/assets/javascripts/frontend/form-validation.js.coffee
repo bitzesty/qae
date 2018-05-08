@@ -9,6 +9,15 @@ window.FormValidation =
     $(".errors-container").empty()
     $(".steps-progress-bar .js-step-link").removeClass("step-errors")
 
+  clearErrors: (container) ->
+    if container.closest(".question-financial").size() > 0
+      if container.closest("label").find(".errors-container li").size() > 0
+        container.closest("label").find(".errors-container").empty()
+    else
+      if container.closest(".question-block").find(".errors-container li").size() > 0
+        container.closest(".question-block").find(".errors-container").empty()
+    container.closest(".question-has-errors").removeClass("question-has-errors")
+
   addErrorMessage: (question, message) ->
     @appendMessage(question, message)
     @addErrorClass(question)
@@ -445,6 +454,8 @@ window.FormValidation =
     self = @
 
     $(document).on "change", ".question-block input, .question-block select, .question-block textarea", ->
+      self.clearErrors $(this)
+
       self.validateIndividualQuestion($(@).closest(".question-block"))
 
   validateIndividualQuestion: (question) ->
