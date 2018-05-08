@@ -106,6 +106,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
   def update
     self.item = item_class.new(categories,
                                years,
+                               outcomes,
                                item_params)
 
     if item.valid?
