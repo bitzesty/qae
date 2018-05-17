@@ -64,7 +64,7 @@ class AwardYears::V2019::QAEForms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year" do
+        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year." do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -79,7 +79,7 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -319,7 +319,7 @@ class AwardYears::V2019::QAEForms
           by_year_condition :development_performance_years, "5 plus", 5
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
+        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
           sub_ref "C 6.7"
           rows 5

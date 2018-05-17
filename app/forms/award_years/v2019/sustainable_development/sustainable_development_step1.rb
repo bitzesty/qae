@@ -138,7 +138,7 @@ class AwardYears::V2019::QAEForms
         end
 
         text :previous_business_name, "Name used previously" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 6.3"
           required
           conditional :business_name_changed, :yes
@@ -146,7 +146,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :previous_business_ref_num, "Reference number(s) used previously" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 6.4"
           required
           conditional :business_name_changed, :yes
@@ -186,7 +186,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :part_of_joint_entry_names, "Please enter their name(s)" do
+        textarea :part_of_joint_entry_names, "Please enter their name(s)." do
           classes "sub-question"
           sub_ref "A 8.1"
           required
@@ -209,6 +209,7 @@ class AwardYears::V2019::QAEForms
 
         options :external_are_aware_about_award,
                 "Are they aware that you're applying for this award?" do
+          classes "sub-question"
           sub_ref "A 9.1"
           required
           option "yes", "Yes, they are all aware"
@@ -288,7 +289,6 @@ class AwardYears::V2019::QAEForms
         country :parent_company_country, "Country of immediate parent company" do
           classes "sub-question"
           required
-          classes "regular-question"
           sub_ref "A 14.2"
           conditional :parent_or_a_holding_company, :yes
         end
