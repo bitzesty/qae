@@ -131,6 +131,7 @@ class AwardYears::V2019::QAEForms
 
         by_years :overseas_sales, "Total overseas sales" do
           ref "C 4.1"
+          classes "sub-question"
           required
           context %(
             <p>
