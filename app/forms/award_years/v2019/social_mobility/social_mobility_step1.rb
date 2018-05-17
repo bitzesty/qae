@@ -47,7 +47,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made" do
+        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
           classes "sub-question"
           sub_ref "A 3.1"
           required
@@ -64,6 +64,7 @@ class AwardYears::V2019::QAEForms
         end
 
         text :registration_number, "Please provide your company or charity registration number or enter 'N/A'" do
+          classes "sub-question"
           required
           ref "A 4.1"
           context %(
@@ -73,6 +74,7 @@ class AwardYears::V2019::QAEForms
         end
 
         text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'" do
+          classes "sub-question"
           required
           ref "A 4.2"
           context %(
@@ -101,7 +103,7 @@ class AwardYears::V2019::QAEForms
           classes "queen-award-holder"
         end
 
-        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years" do
+        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "A 6.1"
 
@@ -129,7 +131,7 @@ class AwardYears::V2019::QAEForms
         end
 
         text :previous_business_name, "Name used previously" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 6.3"
           required
           conditional :business_name_changed, :yes
@@ -137,7 +139,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :previous_business_ref_num, "Reference number(s) used previously" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 6.4"
           required
           conditional :business_name_changed, :yes
@@ -152,7 +154,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :other_awards_desc, "Please describe them" do
+        textarea :other_awards_desc, "Please describe them." do
           classes "sub-question"
           sub_ref "A 7.1"
           required
@@ -182,6 +184,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :part_of_joint_entry_names, "Please enter their name(s)" do
+          classes "sub-question"
           sub_ref "A 8.1"
           required
           conditional :part_of_joint_entry, "yes"
@@ -203,6 +206,7 @@ class AwardYears::V2019::QAEForms
         options :external_are_aware_about_award,
                 "Are they aware that you're applying for this award?" do
           sub_ref "A 9.1"
+          classes "sub-question"
           required
           option "yes", "Yes, they are all aware"
           option "no", "No, they are not all aware"
@@ -221,6 +225,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your social mobility programme are not all aware of this application." do
+          classes "sub-question"
           sub_ref "A 9.2"
           required
           words_max 200
@@ -279,7 +284,7 @@ class AwardYears::V2019::QAEForms
 
         country :parent_company_country, "Country of immediate parent company" do
           required
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 14.2"
           conditional :parent_or_a_holding_company, :yes
         end
@@ -294,20 +299,20 @@ class AwardYears::V2019::QAEForms
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
           required
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 14.4"
           conditional :parent_ultimate_control, :no
           conditional :parent_or_a_holding_company, :yes
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 14.5"
           conditional :parent_ultimate_control, :no
           conditional :parent_or_a_holding_company, :yes
         end
 
-        upload :org_chart, "Upload an organisational chart (optional)" do
+        upload :org_chart, "Upload an organisational chart (optional)." do
           ref "A 15"
           context %(
             <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
