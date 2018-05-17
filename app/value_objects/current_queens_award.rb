@@ -21,7 +21,7 @@ class CurrentQueensAward
   def initialize(categories, years, outcomes, attrs={})
     @categories = categories.map { |c| [c.value] }.flatten.map(&:to_s)
     @years = years.map(&:to_s)
-    @outcomes = outcomes.map { |o| [outcomes.value, o.text] }
+    @outcomes = outcomes.map { |o| [o.value, o.text] }
 
     attrs.each do |key, value|
       instance_variable_set("@#{key}", value.to_s.strip)

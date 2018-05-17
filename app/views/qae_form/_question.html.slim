@@ -45,11 +45,12 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
         == help.text
 
     - question.hint.each_with_index do |help, index|
-      div.hidden-hint class="hidden-hint-#{index}"
+      details
         - if help.title.present?
-          span.hidden-link
-            = help.title.html_safe
-        span.hidden-content
+          summary
+            span.summary
+              = help.title.html_safe
+        .panel.panel-border-narrow
           == help.text
 
     ul.errors-container
