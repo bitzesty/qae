@@ -29,7 +29,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :development_management_approach_briefly, "Briefly describe your product, service or management approach." do
-          classes "word-max-strict"
+          classes "sub-question word-max-strict"
           ref "B 1.1"
           required
           context %(
@@ -78,7 +78,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :development_desc_long, "Summarise your product, service or management approach specifically concerning your core business, and any practices followed as a result of the operations or requirements of the wider organisation/parent company." do
-          classes "word-max-strict"
+          classes "sub-question word-max-strict"
           ref "B 1.2"
           required
           context %(
@@ -157,7 +157,7 @@ class AwardYears::V2019::QAEForms
           words_max 750
         end
 
-        header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below" do
+        header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below." do
           ref "B 3"
           context %(
             <p>
@@ -166,7 +166,7 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        textarea :environmental_contribution, "Explain how it contributes to environmental outcomes of sustainable development" do
+        textarea :environmental_contribution, "Explain how it contributes to environmental outcomes of sustainable development." do
           required
           classes "sub-question"
           sub_ref "B 3.1"
@@ -323,7 +323,7 @@ class AwardYears::V2019::QAEForms
           words_max 750
         end
 
-        textarea :social_contribution, "Explain how it contributes to social outcomes of sustainable development" do
+        textarea :social_contribution, "Explain how it contributes to social outcomes of sustainable development." do
           classes "sub-question"
           sub_ref "B 3.2"
           required
@@ -386,7 +386,7 @@ class AwardYears::V2019::QAEForms
           words_max 750
         end
 
-        textarea :economic_contribution, "Explain how it contributes to economic outcomes of sustainable development" do
+        textarea :economic_contribution, "Explain how it contributes to economic outcomes of sustainable development." do
           classes "sub-question"
           sub_ref "B 3.3"
           required
@@ -504,7 +504,7 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        textarea :grant_details, "Please give details of date(s), source(s) and level(s) of funding" do
+        textarea :grant_details, "Please give details of date(s), source(s) and level(s) of funding." do
           classes "sub-question"
           sub_ref "B 7.1"
           required
