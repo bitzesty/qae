@@ -63,7 +63,7 @@ class AwardYears::V2019::QAEForms
           option "charity", "Charity"
         end
 
-        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'" do
+        text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
           classes "sub-question"
           required
           ref "A 4.1"
@@ -73,7 +73,7 @@ class AwardYears::V2019::QAEForms
           style "small"
         end
 
-        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'" do
+        text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
           classes "sub-question"
           required
           ref "A 4.2"
@@ -183,7 +183,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :part_of_joint_entry_names, "Please enter their name(s)" do
+        textarea :part_of_joint_entry_names, "Please enter their name(s)." do
           classes "sub-question"
           sub_ref "A 8.1"
           required
