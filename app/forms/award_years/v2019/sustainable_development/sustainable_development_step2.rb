@@ -399,7 +399,6 @@ class AwardYears::V2019::QAEForms
             </p>
             <ul>
               <li>
-              </li>
                 Have maximised the economic benefits or grown your business while reducing or eliminating your greenhouse gas emissions and reliance on fossil fuels.
               </li>
               <li>
