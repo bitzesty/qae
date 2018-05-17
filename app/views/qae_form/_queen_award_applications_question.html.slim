@@ -77,6 +77,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
     - if question.entities.none?
       li.js-add-example.if-no-js-hide
+        ul.errors-container
         = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
 
         label

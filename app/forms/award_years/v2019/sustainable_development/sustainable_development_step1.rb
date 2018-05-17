@@ -119,6 +119,7 @@ class AwardYears::V2019::QAEForms
           category :innovation, "Innovation"
           category :international_trade, "International Trade"
           category :sustainable_development, "Sustainable Development"
+          category :social_mobility, "Promoting Opportunity"
 
           ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
             year y

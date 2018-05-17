@@ -15,7 +15,7 @@ li
                            prompt: "Year Awarded"
 
         .span-6
-          = f.input :outcome, collection: outcomes,
+          = f.input :outcome, collection: outcomes.map { |c| [c.text, c.value] },
                            input_html: { class: "form-control tiny" },
                            prompt: "Outcome"
         .span-12
