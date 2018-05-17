@@ -14,6 +14,91 @@ class AwardYears::V2019::QAEForms
             <p>
               Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach programmes.
             </p>
+            <details>
+              <summary><span class="summary">Please read more about social mobility programmes that are eligible for The Queen's Awards for Enterprise.</span></summary>
+
+              <div class="panel panel-border-narrow">
+
+                <p>
+                  Socio-economic background is a set of social and economic circumstances from which a person has come.
+                </p>
+
+                <p>
+                  Socio-economic status is a person's current social and economic circumstances.
+                </p>
+
+                <p>
+                  Social mobility is a measure of the ability to move from lower socio-economic background to higher socio-economic status.
+                </p>
+
+                <p>
+                  We classify people as being from a lower or higher socio-economic background based on these variables:
+                </p>
+
+                <ol>
+                  <li>
+                    The National Statistics Socio-economic classification (NS-SEC) of parent's occupation. This is based on the type of job the main or highest income earner in the household had as their main job when the person was 14.
+                  </li>
+                  <li>
+                    Whether they were receiving free school meals.
+                  </li>
+                  <li>
+                    The highest level of qualifications achieved by either parent(s) or guardian(s) by the time the person was 18.
+                  </li>
+                  <li>
+                    The type of school the person attended.
+                  </li>
+                </ol>
+                <p>
+                  We are looking to recognise those who are going above and beyond their core day-to-day business, acting to improve social mobility within their company locally or nationally, accessing and retaining talent regardless of socio-economic background.
+                </p>
+
+                <p>
+                  Please note, an award is unlikely to be granted to a social enterprise, learning provider or charity whose main purpose is to deliver social mobility programmes either for itself or on behalf of other organisations. This is because we are seeking to reward and encourage companies to address social mobility challenges within their organisations, despite this not being their sole objective.
+                </p>
+
+                <p>
+                  Applicants must be able to demonstrate at least two of the following:
+                </p>
+
+                <p>
+                  Accessible routes - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes.
+                </p>
+
+                <p>
+                  Careers advice – provide careers advice or information to help people make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.
+                </p>
+
+                <p>
+                  Work placements - preparing people for the world of work through inspiring work experiences and internships;
+                </p>
+
+                <p>
+                  Fairer recruitment - widening your recruitment pool and making your recruitment       process fairer by assessing potential skills rather than background - social-economic    or academic. For example, by removing applicant's name or school names from CVs, providing unconscious bias training for recruitment assessors.
+                </p>
+
+                <p>
+                  Early careers - fostering a 'youth-friendly' culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers;
+                </p>
+
+                <p>
+                  Advancement - developing career paths to senior positions that are open to all and track the progress of employees from non-graduate routes.
+                </p>
+
+                <p>
+                  Advocacy and leadership - demonstrate strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.
+                </p>
+
+                <p>
+                  You must provide evidence of how your programme has increased social mobility and real evidence of what the outcomes are for the participants.
+                </p>
+
+                <p>
+                  For example, if you have a programme for prisoners or ex-offenders, include details on what proportion of those on the programme come from disadvantaged backgrounds.  If you are offering work placements or work experience, include statistics on what percentage of those people then go on into full-time employment, either within your company or the sector.
+                </p>
+              </div>
+
+            </details>
             <p>
               Please try to avoid using technical jargon in this section.
             </p>
@@ -43,7 +128,7 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        textarea :mobility_desc_long, "Summarise your social mobility programme" do
+        textarea :mobility_desc_long, "Summarise your social mobility programme." do
           classes "sub-question"
           sub_ref "B 1.2"
           required
@@ -68,7 +153,7 @@ class AwardYears::V2019::QAEForms
           words_max 15
         end
 
-        textarea :provide_ceo_quote, "Provide a quote from the CEO that demonstrates support for the social mobility programme" do
+        textarea :provide_ceo_quote, "Provide a quote from the CEO that demonstrates support for the social mobility programme." do
           classes "sub-question word-max-strict"
           sub_ref "B 1.4"
           required
@@ -177,13 +262,13 @@ class AwardYears::V2019::QAEForms
               <li>
                 <strong>Careers advice</strong> – provide careers advice or information to help people make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.
               <li>
-                <strong>Work placements</strong> - preparing people for the world of work through inspiring work experiences and internships;
+                <strong>Work placements</strong> - preparing people for the world of work through inspiring work experiences and internships.
               </li>
               <li>
                 <strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic. For example, by removing applicant’s name or school names from CVs, providing unconscious bias training for recruitment assessors.
               </li>
               <li>
-                <strong>Early careers</strong> - fostering a ‘youth-friendly’ culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers;
+                <strong>Early careers</strong> - fostering a ‘youth-friendly’ culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers.
               </li>
               <li>
                 <strong>Advancement</strong> - developing career paths to senior positions that are open to all and track the progress of employees from non-graduate routes.
@@ -193,7 +278,7 @@ class AwardYears::V2019::QAEForms
               </li>
             </ul>
             <p>
-              Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example - comments, feedback from people, key stakeholders) evidence to support your application.
+              Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence to support your application.
             </p>
             <p>
               Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
@@ -209,18 +294,18 @@ class AwardYears::V2019::QAEForms
 
               \u2022 Careers advice – provide careers advice or information to help people make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.
 
-              \u2022 Work placements - preparing people for the world of work through inspiring work experiences and internships;
+              \u2022 Work placements - preparing people for the world of work through inspiring work experiences and internships.
 
               \u2022 Fairer recruitment - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic. For example, by removing applicant’s name or school names from CVs, providing unconscious bias training for recruitment assessors.
 
-              \u2022 Early careers - fostering a ‘youth-friendly’ culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers;
+              \u2022 Early careers - fostering a ‘youth-friendly’ culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers.
 
               \u2022 Advancement - developing career paths to senior positions that are open to all and track the progress of employees from non-graduate routes.
 
               \u2022 Advocacy and leadership - demonstrate strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.
             </p>
             <p>
-              Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example - comments, feedback from people, key stakeholders) evidence to support your application.
+              Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence to support your application.
             </p>
             <p>
               Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
@@ -281,7 +366,7 @@ class AwardYears::V2019::QAEForms
           words_max 250
         end
 
-        textarea :financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation" do
+        textarea :financial_benefits_evidence, "Provide evidence on how the programme benefits your organisation." do
           ref "B 6"
           required
           context %(
@@ -364,7 +449,7 @@ class AwardYears::V2019::QAEForms
           words_max 750
         end
 
-        textarea :possible_development_without_the_programme, "Provide an assessment of what would have happened to your organisation if you had not developed your social mobility programme." do
+        textarea :possible_development_without_the_programme, "Provide an assessment of what would have happened to your organisation if you <strong>had not</strong> developed your social mobility programme." do
           ref "B 6.1"
           classes "sub-question"
           required
@@ -383,7 +468,7 @@ class AwardYears::V2019::QAEForms
           words_max 250
         end
 
-        textarea :exemplary_evidence, "Provide evidence of what makes your social mobility programme exemplary?" do
+        textarea :exemplary_evidence, "Provide evidence of what makes your social mobility programme exemplary." do
           ref "B 7"
           required
           context %(

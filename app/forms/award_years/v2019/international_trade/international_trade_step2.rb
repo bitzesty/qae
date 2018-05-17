@@ -14,7 +14,7 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        textarea :trade_business_as_a_whole, "Describe your business as a whole" do
+        textarea :trade_business_as_a_whole, "Describe your business as a whole." do
           sub_ref "B 1"
           required
           rows 5
@@ -22,6 +22,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :trade_brief_history, "Provide a brief history of your company, corporate targets and direction." do
+          classes "sub-question"
           sub_ref "B 1.1"
           required
           rows 5
@@ -29,6 +30,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :trade_overall_importance, "Explain the overall importance of exporting to your company." do
+          classes "sub-question"
           sub_ref "B 1.2"
           required
           rows 5
@@ -36,6 +38,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :trade_goods_briefly, "Briefly describe all products or services that you sell internationally." do
+          classes "sub-question"
           sub_ref "B 1.3"
           required
           context %(
@@ -70,6 +73,7 @@ class AwardYears::V2019::QAEForms
         end
 
         dropdown :trade_goods_amount, "How many types of products/services make up your international trade?" do
+          classes "sub-question"
           ref "B 2.1"
           required
           context %(
@@ -155,7 +159,7 @@ class AwardYears::V2019::QAEForms
           words_max 250
         end
 
-        textarea :trade_factors, "Describe any special challenges affecting your trade in products or services, and how you overcame them" do
+        textarea :trade_factors, "Describe any special challenges affecting your trade in products or services, and how you overcame them." do
           ref "B 5"
           required
           rows 5

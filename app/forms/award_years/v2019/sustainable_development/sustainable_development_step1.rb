@@ -47,7 +47,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made" do
+        textarea :invoicing_unit_relations, "Please explain your relationship with the invoicing unit, and the arrangements made." do
           classes "sub-question"
           sub_ref "A 3.1"
           required
@@ -64,6 +64,7 @@ class AwardYears::V2019::QAEForms
         end
 
         text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
+          classes "sub-question"
           required
           ref "A 4.1"
           context %(
@@ -73,6 +74,7 @@ class AwardYears::V2019::QAEForms
         end
 
         text :vat_registration_number, "Please provide your VAT registration number or enter 'N/A'." do
+          classes "sub-question"
           required
           ref "A 4.2"
           context %(
@@ -108,7 +110,7 @@ class AwardYears::V2019::QAEForms
           classes "queen-award-holder"
         end
 
-        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years" do
+        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "A 6.1"
 
@@ -117,6 +119,7 @@ class AwardYears::V2019::QAEForms
           category :innovation, "Innovation"
           category :international_trade, "International Trade"
           category :sustainable_development, "Sustainable Development"
+          category :social_mobility, "Promoting Opportunity"
 
           ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
             year y
@@ -158,7 +161,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :other_awards_desc, "Please describe them" do
+        textarea :other_awards_desc, "Please describe them." do
           classes "sub-question"
           sub_ref "A 7.1"
           required
@@ -172,8 +175,7 @@ class AwardYears::V2019::QAEForms
           words_max 250
         end
 
-        options :part_of_joint_entry,
-                "Is this application part of a joint entry with any contributing organisation(s)?" do
+        options :part_of_joint_entry, "Is this application part of a joint entry with any contributing organisation(s)?" do
           ref "A 8"
           required
           context %(
@@ -185,6 +187,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :part_of_joint_entry_names, "Please enter their name(s)" do
+          classes "sub-question"
           sub_ref "A 8.1"
           required
           conditional :part_of_joint_entry, "yes"
@@ -224,7 +227,8 @@ class AwardYears::V2019::QAEForms
           conditional :external_are_aware_about_award, "no"
         end
 
-        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications" do
+        textarea :why_external_organisations_contributed_your_nomination, "Explain why external organisations or individuals that contributed to your sustainable development are not all aware of this applications." do
+          classes "sub-question"
           sub_ref "A 9.2"
           required
           words_max 200
@@ -282,6 +286,7 @@ class AwardYears::V2019::QAEForms
         end
 
         country :parent_company_country, "Country of immediate parent company" do
+          classes "sub-question"
           required
           classes "regular-question"
           sub_ref "A 14.2"
@@ -298,14 +303,14 @@ class AwardYears::V2019::QAEForms
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
           required
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 14.4"
           conditional :parent_ultimate_control, :no
           conditional :parent_or_a_holding_company, :yes
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 14.5"
           conditional :parent_ultimate_control, :no
           conditional :parent_or_a_holding_company, :yes

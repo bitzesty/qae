@@ -108,7 +108,7 @@ class AwardYears::V2019::QAEForms
           classes "queen-award-holder"
         end
 
-        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years" do
+        queen_award_applications :applied_for_queen_awards_details, "List the Queen’s awards you have applied for in the last 10 years." do
           classes "sub-question question-current-awards"
           sub_ref "A 6.1"
 
@@ -117,6 +117,7 @@ class AwardYears::V2019::QAEForms
           category :innovation, "Innovation"
           category :international_trade, "International Trade"
           category :sustainable_development, "Sustainable Development"
+          category :social_mobility, "Promoting Opportunity"
 
           ((AwardYear.current.year - 10)..(AwardYear.current.year - 1)).each do |y|
             year y
@@ -139,15 +140,15 @@ class AwardYears::V2019::QAEForms
         end
 
         text :previous_business_name, "Name used previously" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 6.3"
           required
           conditional :applied_for_queen_awards, :yes
           conditional :business_name_changed, :yes
         end
 
-        textarea :previous_business_ref_num, "Provide your previous winning application reference number(s)" do
-          classes "regular-question"
+        textarea :previous_business_ref_num, "Provide your previous winning application reference number(s)." do
+          classes "sub-question"
           sub_ref "A 6.4"
           required
           rows 5
@@ -162,7 +163,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :other_awards_desc, "Please describe them" do
+        textarea :other_awards_desc, "Please describe them." do
           classes "sub-question"
           sub_ref "A 7.1"
           required
@@ -208,7 +209,6 @@ class AwardYears::V2019::QAEForms
         end
 
         options :parent_group_entry, "Are you a parent company making a group entry?" do
-          classes "sub-question"
           ref "A 12"
           context %(
             <p>A 'group entry' is when you are applying on behalf of multiple divisions/branches/subsidiaries under your control.</p>
@@ -244,7 +244,7 @@ class AwardYears::V2019::QAEForms
         end
 
         country :parent_company_country, "Country of immediate parent company" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 13.2"
           conditional :has_parent_company, "yes"
         end
@@ -305,7 +305,7 @@ class AwardYears::V2019::QAEForms
           )
         end
 
-        upload :org_chart, "Upload an organisational chart" do
+        upload :org_chart, "Upload an organisational chart." do
           ref "A 17"
           context %(
             <p>You can submit a file in any common format, as long as it is less than 5mb.</p>
