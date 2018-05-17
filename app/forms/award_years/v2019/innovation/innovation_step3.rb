@@ -124,6 +124,7 @@ class AwardYears::V2019::QAEForms
         by_years :total_turnover, "Total turnover" do
           ref "C 4.1"
           required
+          classes "sub-question"
 
           type :money
           label ->(y) { "Financial year #{y}" }
