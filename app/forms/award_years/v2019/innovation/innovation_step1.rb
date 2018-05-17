@@ -64,6 +64,7 @@ class AwardYears::V2019::QAEForms
         end
 
         text :registration_number, "Provide your company or charity registration number or enter 'N/A'." do
+          classes "sub-question"
           required
           ref "A 4.1"
           context %(
@@ -73,6 +74,7 @@ class AwardYears::V2019::QAEForms
         end
 
         text :vat_registration_number, "Provide your VAT registration number or enter 'N/A'." do
+          classes "sub-question"
           required
           ref "A 4.2"
           context %(
@@ -160,7 +162,7 @@ class AwardYears::V2019::QAEForms
           yes_no
         end
 
-        textarea :other_awards_desc, "Please describe them" do
+        textarea :other_awards_desc, "Please describe them." do
           classes "sub-question"
           sub_ref "A 7.1"
           required
@@ -286,7 +288,7 @@ class AwardYears::V2019::QAEForms
 
         country :parent_company_country, "Country of immediate parent company" do
           sub_ref "A 15.2"
-          classes "regular-question"
+          classes "sub-question"
           conditional :has_parent_company, "yes"
         end
 
@@ -298,14 +300,14 @@ class AwardYears::V2019::QAEForms
         end
 
         text :ultimate_control_company, "Name of organisation with ultimate control" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 15.4"
           conditional :parent_ultimate_control, :no
           conditional :has_parent_company, "yes"
         end
 
         country :ultimate_control_company_country, "Country of organisation with ultimate control" do
-          classes "regular-question"
+          classes "sub-question"
           sub_ref "A 15.5"
           conditional :parent_ultimate_control, :no
           conditional :has_parent_company, "yes"
