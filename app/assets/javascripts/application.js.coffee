@@ -17,6 +17,7 @@
 #= require browser-check
 #= require vendor/zxcvbn
 #= require vendor/jquery-debounce
+#= require vendor/details.polyfill.js
 #= require js.cookie
 #= require_tree ./frontend
 #= require offline
@@ -38,6 +39,8 @@ ordinal = (n) ->
     return n + "th"
 
 jQuery ->
+  GOVUK.details.init();
+
   $("html").removeClass("no-js").addClass("js")
 
   offlineCheck = new Offline
@@ -86,15 +89,6 @@ jQuery ->
     hidden_link = $(this).closest(".question-block").find("."+link_href)
     hidden_link.toggleClass("show-hint")
 
-  # Remove validation error after changing the value
-  $(".question-block input, .question-block select, .question-block textarea").change () ->
-    if $(this).closest(".question-financial").size() > 0
-      if $(this).closest("label").find(".errors-container li").size() > 0
-        $(this).closest("label").find(".errors-container").empty()
-    else
-      if $(this).closest(".question-block").find(".errors-container li").size() > 0
-        $(this).closest(".question-block").find(".errors-container").empty()
-    $(this).closest(".question-has-errors").removeClass("question-has-errors")
   $(".supporters-list input").change ->
     $(this).closest("label").find(".errors-container").empty()
     $(this).closest(".question-has-errors").removeClass("question-has-errors")
@@ -322,8 +316,7 @@ jQuery ->
     else
       $(this).closest(".js-step-link").attr("data-step")
 
-    if $(this).attr('type') == 'submit'
-      window.FormValidation.validateStep()
+    window.FormValidation.validateStep()
 
     #
     # Make a switch to next section if this is not same tab only

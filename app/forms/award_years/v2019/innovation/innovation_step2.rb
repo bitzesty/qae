@@ -27,7 +27,7 @@ class AwardYears::V2019::QAEForms
           application_type_question true
         end
 
-        textarea :innovation_desc_short, "Briefly describe your innovative product, service or business model" do
+        textarea :innovation_desc_short, "Briefly describe your innovative product, service or business model." do
           ref "B 1.1"
           required
           context %(
@@ -70,11 +70,11 @@ class AwardYears::V2019::QAEForms
             </p>
           )
           rows 2
-          classes "word-max-strict"
+          classes "sub-question word-max-strict"
           words_max 15
         end
 
-        textarea :innovation_desc_long, "Summarise your innovative product, service or business model" do
+        textarea :innovation_desc_long, "Summarise your innovative product, service or business model." do
           classes "sub-question"
           sub_ref "B 1.2"
           required
@@ -94,6 +94,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :innovation_hold_existing_patent_details, "Provide details of the patent. If you do not have a patent, please explain the reasons why not." do
+          classes "sub-question"
           sub_ref "B 2.1"
           required
           context %(
@@ -111,6 +112,7 @@ class AwardYears::V2019::QAEForms
         end
 
         textarea :innovation_other_countries_it_was_developed, "Describe in what other countries (and by what parties) it was developed. Estimate what proportion of the innovation was developed there." do
+          classes "sub-question"
           sub_ref "B 3.1"
           required
           conditional :innovation_conceived_and_developed, :no

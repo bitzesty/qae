@@ -13,7 +13,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
           - errors = @form_answer.validator_errors
           - if errors && errors[question.key] && errors[question.key][index]
             li = errors[question.key][index]
-        
+
         - remove_title = ""
         - if award["category"].blank? && award["year"].blank?
           - remove_title = ordinal(index + 1) + " award"
@@ -62,6 +62,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
     - if question.entities.none?
       li.js-add-example.if-no-js-hide
+        ul.errors-container
         = link_to "Remove", "#", class: "remove-link js-remove-link #{'read_only' if admin_in_read_only_mode?}"
 
         label

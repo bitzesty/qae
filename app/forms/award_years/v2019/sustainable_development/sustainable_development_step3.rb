@@ -64,7 +64,7 @@ class AwardYears::V2019::QAEForms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year" do
+        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year." do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -79,7 +79,7 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed" do
+        textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
           classes "sub-question"
           sub_ref "C 2.3"
           required
@@ -88,7 +88,7 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry" do
+        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
           classes "question-employee-min"
           ref "C 3"
           required
@@ -129,6 +129,7 @@ class AwardYears::V2019::QAEForms
         by_years :total_turnover, "Total turnover" do
           ref "C 4.1"
           required
+          classes "sub-question"
 
           type :money
           label ->(y) { "Financial year #{y}" }
@@ -219,7 +220,7 @@ class AwardYears::V2019::QAEForms
           drop_conditional :drops_in_turnover
         end
 
-        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made" do
+        textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.6"
           rows 5
@@ -318,7 +319,7 @@ class AwardYears::V2019::QAEForms
           by_year_condition :development_performance_years, "5 plus", 5
         end
 
-        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)" do
+        textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
           classes "sub-question"
           sub_ref "C 6.7"
           rows 5
@@ -333,7 +334,7 @@ class AwardYears::V2019::QAEForms
           conditional :financial_year_date_changed, :true
         end
 
-        textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders" do
+        textarea :product_estimates_use, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
           classes "sub-question"
           sub_ref "C 7.1"
           required
@@ -355,7 +356,7 @@ class AwardYears::V2019::QAEForms
           words_max 250
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach" do
+        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach." do
           ref "C 9"
           required
           context %(
