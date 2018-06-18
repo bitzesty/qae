@@ -117,7 +117,7 @@ GEM
       countries (~> 0.9, >= 0.9.3)
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
-    crass (1.0.3)
+    crass (1.0.4)
     curb (0.8.8)
     currencies (0.4.2)
     database_cleaner (1.5.3)
@@ -363,7 +363,7 @@ GEM
       actionpack (>= 4, < 5.1)
       activesupport (>= 4, < 5.1)
       railties (>= 4, < 5.1)
-    loofah (2.1.1)
+    loofah (2.2.2)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     mail (2.7.0)
@@ -380,7 +380,7 @@ GEM
     nilify_blanks (1.2.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-    nokogiri (1.8.1)
+    nokogiri (1.8.3)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     paper_trail (5.1.1)
@@ -431,10 +431,10 @@ GEM
     pusher-signature (0.1.8)
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
-    rack (1.6.8)
+    rack (1.6.10)
     rack-mini-profiler (0.10.2)
       rack (>= 1.2.0)
-    rack-protection (1.5.3)
+    rack-protection (1.5.5)
       rack
     rack-ssl-enforcer (0.2.8)
     rack-test (0.6.3)
@@ -456,8 +456,8 @@ GEM
       activesupport (>= 4.2.0, < 5.0)
       nokogiri (~> 1.6)
       rails-deprecated_sanitizer (>= 1.0.1)
-    rails-html-sanitizer (1.0.3)
-      loofah (~> 2.0)
+    rails-html-sanitizer (1.0.4)
+      loofah (~> 2.2, >= 2.2.2)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -670,7 +670,7 @@ DEPENDENCIES
   letter_opener
   lograge
   nilify_blanks
-  nokogiri (~> 1.8.1)
+  nokogiri (~> 1.8.2)
   paper_trail (~> 5.1.0)
   pdf-inspector
   pg (~> 0.17)
@@ -686,7 +686,7 @@ DEPENDENCIES
   rack-mini-profiler (>= 0.10.1)
   rack-ssl-enforcer
   rails (= 4.2.10)
-  rails-html-sanitizer
+  rails-html-sanitizer (~> 1.0.4)
   rails_12factor (~> 0.0.3)
   rails_autolink
   redis-rails
@@ -719,4 +719,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.0
+   1.16.2
