@@ -2,7 +2,7 @@ module QaePdfForms::CustomQuestions::Textarea
 
   LIST_TAGS = ["ul", "ol"]
 
-  MAIN_CONTENT_BLOCKS = ["p"] + LIST_TAGS
+  MAIN_CONTENT_BLOCKS = LIST_TAGS + ["p"]
 
   SUPPORTED_TAGS = MAIN_CONTENT_BLOCKS + [
     "li", "a", "em", "strong", "text", "br"
@@ -308,7 +308,7 @@ module QaePdfForms::CustomQuestions::Textarea
           {"<" + t_name + ">" => {style: wysywyg_get_style(baby)}}
         when "a"
           "<u><link href=#{links_href(baby)}>"
-        when "text"
+        when "text", "p"
           baby.text
         else
           "<" + t_name + ">"
