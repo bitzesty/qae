@@ -13,7 +13,7 @@ class User < ActiveRecord::Base
          :zxcvbnable, :lockable, :timeoutable
 
   attr_accessor :agreed_with_privacy_policy
-  attr_accessor :current_password
+  attr_accessor :current_password, :skip_password_validation
 
   validates :agreed_with_privacy_policy, acceptance: { allow_nil: false, accept: '1' }, on: :create
 
@@ -166,5 +166,10 @@ class User < ActiveRecord::Base
     full_name_changed = first_name_changed? || last_name_changed?
     yield
     form_answers.each { |f| f.update_attributes(user_full_name: full_name) } if full_name_changed
+  end
+
+  def password_required?
+    return false if skip_password_validation
+    super
   end
 end
