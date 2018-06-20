@@ -35,7 +35,7 @@ module FormAnswerAttachmentsContext
 
   def show
     authorize resource, :show?
-    send_data resource.file.read, filename: resource.filename, disposition: "inline"
+    send_data resource.file.read, filename: resource.filename, disposition: "attachment"
   end
 
   def destroy
