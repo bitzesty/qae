@@ -289,10 +289,11 @@ module CaseSummaryPdfs::General::DataPointer
 
   def render_financial_benchmarks
     pdf_doc.move_down 5.mm
-    render_financial_table_header
-    render_base_growth_table if @form_answer.trade?
+    # Removed due to lack of data
+    # render_financial_table_header
+    # render_base_growth_table if @form_answer.trade?
 
-    pdf_doc.move_down 10.mm
+    # pdf_doc.move_down 10.mm
     render_overall_growth_table
   end
 

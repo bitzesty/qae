@@ -10,7 +10,6 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
               :year_rows,
               :date_rows,
               :financial_metrics_by_years,
-              :growth_overseas_earnings_list,
               :sales_exported_list,
               :average_growth_for_list,
               :overall_growth,
@@ -89,7 +88,6 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
   end
 
   def set_financial_benchmarks
-    @growth_overseas_earnings_list = formatter_metrics financial_pointer.growth_overseas_earnings_list
     @sales_exported_list = formatter_metrics financial_pointer.sales_exported_list
     @average_growth_for_list = formatter_metrics financial_pointer.average_growth_for_list
     @overall_growth = formatted_uk_sales_value financial_pointer.overall_growth

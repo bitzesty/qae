@@ -146,8 +146,9 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_financial_benchmarks
-    move_down 3.mm
-    render_financial_benchmarks_by_years if form_answer.trade?
+    # Removed due to lack of data
+    # move_down 3.mm
+    # render_financial_benchmarks_by_years if form_answer.trade?
     move_down 3.mm
     render_financial_overall_benchmarks
   end
