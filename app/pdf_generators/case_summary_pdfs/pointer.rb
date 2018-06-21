@@ -13,7 +13,6 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
               :growth_overseas_earnings_list,
               :sales_exported_list,
               :average_growth_for_list,
-              :growth_in_total_turnover_list,
               :overall_growth,
               :overall_growth_in_percents
 
@@ -93,7 +92,6 @@ class CaseSummaryPdfs::Pointer < ReportPdfFormAnswerPointerBase
     @growth_overseas_earnings_list = formatter_metrics financial_pointer.growth_overseas_earnings_list
     @sales_exported_list = formatter_metrics financial_pointer.sales_exported_list
     @average_growth_for_list = formatter_metrics financial_pointer.average_growth_for_list
-    @growth_in_total_turnover_list = formatter_metrics financial_pointer.growth_in_total_turnover_list
     @overall_growth = formatted_uk_sales_value financial_pointer.overall_growth
     @overall_growth_in_percents = formatted_uk_sales_value financial_pointer.overall_growth_in_percents
   end
