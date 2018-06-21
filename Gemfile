@@ -43,7 +43,7 @@ gem 'hashie'
 gem 'responders', '~> 2.0'
 
 # Rails 4 sanitizer
-gem 'rails-html-sanitizer'
+gem 'rails-html-sanitizer', '~> 1.0.4'
 
 # JSON
 gem 'jbuilder', '~> 2.0'
@@ -73,7 +73,7 @@ gem 'enumerize', '~> 0.8'
 # PDF generation
 gem 'prawn'
 gem 'prawn-table'
-gem 'nokogiri', '~> 1.8.1'
+gem 'nokogiri', '~> 1.8.2'
 
 # Uploads
 gem 'carrierwave', '~> 1.2'
