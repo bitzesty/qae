@@ -22,7 +22,8 @@ class Users::FormAnswersController < Users::BaseController
           pdf = form_answer.decorate.pdf_generator(pdf_blank_mode)
           send_data pdf.render,
                     filename: form_answer.decorate.pdf_filename,
-                    type: "application/pdf"
+                    type: "application/pdf",
+                    disposition: 'attachment'
         end
       end
     else
