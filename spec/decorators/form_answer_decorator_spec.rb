@@ -94,8 +94,8 @@ describe FormAnswerDecorator do
   end
 
   describe "#application_background" do
-    it "returns the trade_goods_briefly value if is type trade" do
-      document = {trade_goods_briefly: "International Trade"}
+    it "returns the trade_goods_and_services_explanations value if is type trade" do
+      document = {trade_goods_and_services_explanations: "International Trade"}
       form = build(:form_answer, :trade, document: document)
 
       decorated_app = described_class.new(form)
