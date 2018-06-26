@@ -7,7 +7,7 @@ class Admin::ReportsController < Admin::BaseController
       format.html
 
       format.csv do
-        send_data resource.as_csv, type: "text/csv"
+        send_data resource.as_csv, type: "text/csv", disposition: 'attachment'
       end
 
       format.pdf do
@@ -16,7 +16,8 @@ class Admin::ReportsController < Admin::BaseController
         if pdf[:hard_copy].blank? || Rails.env.development?
           send_data pdf.data,
                     filename: pdf.filename,
-                    type: "application/pdf"
+                    type: "application/pdf",
+                    disposition: 'attachment'
         else
           redirect_to pdf.data
         end
