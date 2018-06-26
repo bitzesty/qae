@@ -99,12 +99,6 @@ $(function() {
     }
     $passwordField.parent().parent().prepend('<input type="hidden" id="password-strength-score" name="password-strength-score" value=""/>');
 
-    if ($(".js-admin-strict-password-form").length > 0) {
-      passphrase_boundary = 3;
-    } else {
-      passphrase_boundary = 2;
-    }
-
     new GOVUK.passwordStrengthIndicator({
       password_field: $passwordField,
       password_strength_guidance: $('#password-guidance'),
@@ -112,7 +106,7 @@ $(function() {
       password_confirmation_guidance: $('#password-confirmation-guidance'),
       email_field: $emailField,
 
-      strong_passphrase_boundary: passphrase_boundary,
+      strong_passphrase_boundary: 3,
       min_password_length: $passwordField.data('min-password-length'),
 
       update_indicator: function(guidance, strengthScore) {
