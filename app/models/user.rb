@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   validates_with AdvancedEmailValidator, unless: "Rails.env.test? || Rails.env.development?"
 
   begin :associations
-    has_many :form_answers, dependent: :destroy
+    has_many :form_answers
     has_many :feedbacks, through: :form_answers,
                          class_name: "Feedback",
                          source: :feedback
