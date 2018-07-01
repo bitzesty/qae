@@ -39,7 +39,7 @@ describe "Interactors::AddCollaborator" do
       clear_enqueued_jobs
     end
 
-    it "should generate new User account, send welcome email and add person to collaborators" do
+    it "should generate new User account without password and add person to collaborators" do
       expect {
         add_collaborator_interactor.run
       }.to change {
@@ -47,12 +47,11 @@ describe "Interactors::AddCollaborator" do
       }.by(1)
 
       expect(account.reload.users.count).to be_eql 2
+      expect(account.users.last.encrypted_password).to be_blank
 
       expect(new_regular_admin.email).to be_eql new_user_email
       expect(new_regular_admin.account_id).to be_eql account.id
       expect(new_regular_admin.role).to be_eql role
-
-      expect(enqueued_jobs.size).to be_eql(1)
     end
   end
 
