@@ -71,19 +71,17 @@ module QaePdfForms::General::DrawElements
 
   def base_link_sceleton(url, filename, description=nil, ops = {})
     indent (ops[:description_left_margin] || 0) do
-      font("Times-Roman") do
-        formatted_text [{
-                          text: filename,
-                          link: url,
-                          styles: [:underline]
-                        }]
+      formatted_text [{
+                        text: filename,
+                        link: url,
+                        styles: [:underline]
+                      }]
 
-        move_down 3.mm
+      move_down 3.mm
 
-        if description.present?
-          text description,
-               color: FormPdf::DEFAULT_ANSWER_COLOR
-        end
+      if description.present?
+        text description,
+             color: FormPdf::DEFAULT_ANSWER_COLOR
       end
     end
   end
@@ -169,9 +167,7 @@ module QaePdfForms::General::DrawElements
   def render_standart_answer_block(title)
     if title.present?
       indent 7.mm do
-        font("Times-Roman") do
-          render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
-        end
+        render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
       end
     end
   end

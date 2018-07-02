@@ -78,15 +78,14 @@ describe 'API' do
       xhr :post, account_collaborators_path, collaborator: create_params
     end
 
-    it "should generate new user, add him to collaborators and send him welcome email" do
+    it "should generate new user without password and add him to collaborators" do
       expect(User.count).to be_eql 2
       expect(account.reload.users.count).to be_eql 2
+      expect(account.users.last.encrypted_password).to be_empty
 
       expect(new_regular_admin.email).to be_eql new_user_email
       expect(new_regular_admin.account_id).to be_eql account.id
       expect(new_regular_admin.role).to be_eql role
-
-      expect(enqueued_jobs.size).to be_eql(1)
     end
   end
 
