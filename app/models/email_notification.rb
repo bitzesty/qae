@@ -2,11 +2,7 @@ class EmailNotification < ActiveRecord::Base
   extend Enumerize
   include FormattedTime::DateTimeFor
 
-  date_time_for :trigger_at
-
-  belongs_to :settings
-
-  enumerize :kind, in: [
+  NOTIFICATION_KINDS = [
                          :submission_started_notification,
                          :reminder_to_submit,
                          :ep_reminder_support_letters,
@@ -19,6 +15,12 @@ class EmailNotification < ActiveRecord::Base
                          :winners_head_of_organisation_notification,
                          :buckingham_palace_invite
                        ]
+
+  date_time_for :trigger_at
+
+  belongs_to :settings
+
+  enumerize :kind, in: NOTIFICATION_KINDS
 
   validates :kind, :trigger_at, presence: true
 
