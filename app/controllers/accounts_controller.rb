@@ -74,6 +74,7 @@ class AccountsController < ApplicationController
       redirect_to dashboard_path
     else
       @active_step = 5
+      flash.alert = 'Error updating your password'
       current_user.reload
       render :password_settings
     end
