@@ -13,7 +13,8 @@ class Admin::AuditCertificatesController < Admin::BaseController
       format.pdf do
         send_data pdf_data.render,
                   filename: "audit_certificate_#{@form_answer.decorate.pdf_filename}",
-                  type: "application/pdf"
+                  type: "application/pdf",
+                  disposition: 'attachment'
       end
     end
   end

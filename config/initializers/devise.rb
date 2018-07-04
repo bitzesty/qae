@@ -215,5 +215,5 @@ Devise.setup do |config|
   # config.authy_remember_device = 1.month
 
   # default devise_zxcvbn minimum password score
-  config.min_password_score = 2
+  config.min_password_score = 3
 end

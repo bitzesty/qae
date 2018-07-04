@@ -21,7 +21,8 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
         pdf = form_answer.feedbacks_pdf_generator
         send_data pdf.render,
                   filename: "application_feedback_#{form_answer.pdf_filename}",
-                  type: "application/pdf"
+                  type: "application/pdf",
+                  disposition: 'attachment'
       end
     end
   end

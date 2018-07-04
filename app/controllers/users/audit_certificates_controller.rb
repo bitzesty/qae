@@ -22,7 +22,8 @@ class Users::AuditCertificatesController < Users::BaseController
       format.pdf do
         send_data pdf_data.render,
                   filename: "verification_of_commercial_figures_#{form_answer.decorate.pdf_filename}",
-                  type: "application/pdf"
+                  type: "application/pdf",
+                  disposition: 'attachment'
       end
     end
   end

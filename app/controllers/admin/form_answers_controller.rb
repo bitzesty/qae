@@ -59,7 +59,8 @@ class Admin::FormAnswersController < Admin::BaseController
     send_data(
       @csv_data.force_encoding(::Encoding::UTF_8),
       filename: "awarded_trade_applications.csv",
-      type: 'text/csv; charset=Unicode(UTF-8); header=present'
+      type: 'text/csv; charset=Unicode(UTF-8); header=present',
+      disposition: 'attachment'
     )
   end
 

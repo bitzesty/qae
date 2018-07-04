@@ -415,11 +415,9 @@ class QaePdfForms::General::QuestionPointer
 
       if list_rows.present?
         form_pdf.indent 7.mm do
-          form_pdf.font("Times-Roman") do
-            list_rows.each do |award|
-              form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
-                                   color: FormPdf::DEFAULT_ANSWER_COLOR
-            end
+          list_rows.each do |award|
+            form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]}",
+                                 color: FormPdf::DEFAULT_ANSWER_COLOR
           end
         end
       end
@@ -432,13 +430,11 @@ class QaePdfForms::General::QuestionPointer
 
       if list_rows.present?
         form_pdf.indent 7.mm do
-          form_pdf.font("Times-Roman") do
-            list_rows.each do |award|
-              outcome = question.outcomes.detect { |o| o.value == award[2] }.try(:text)
+          list_rows.each do |award|
+            outcome = question.outcomes.detect { |o| o.value == award[2] }.try(:text)
 
-              form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]} - #{outcome}",
-                                   color: FormPdf::DEFAULT_ANSWER_COLOR
-            end
+            form_pdf.render_text "#{award[1]} - #{PREVIOUS_AWARDS[award[0].to_s]} - #{outcome}",
+                                 color: FormPdf::DEFAULT_ANSWER_COLOR
           end
         end
       end
@@ -627,11 +623,8 @@ class QaePdfForms::General::QuestionPointer
         render_info_about_conditional_parent
       end
     end
-
-    form_pdf.font("Times-Roman") do
-      form_pdf.render_text (q_visible? ? sub_answer : ""),
-                           color: FormPdf::DEFAULT_ANSWER_COLOR
-    end
+    form_pdf.render_text (q_visible? ? sub_answer : ""),
+                         color: FormPdf::DEFAULT_ANSWER_COLOR
   end
 
   def question_option_title

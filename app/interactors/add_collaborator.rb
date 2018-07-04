@@ -6,8 +6,6 @@ class AddCollaborator
               :email,
               :success,
               :new_user,
-              :generated_password,
-              :devise_confirmation_token,
               :errors
 
   def initialize(current_user, account, params)
@@ -20,11 +18,8 @@ class AddCollaborator
 
   def run
     if valid? && collaborator.valid?
-      persist!
-
-      if success?
-        send_collaboration_email!
-      end
+      collaborator.account = account
+      @success = collaborator.save
     end
 
     self
@@ -49,21 +44,8 @@ class AddCollaborator
     @new_user = true
     user = User.new(params)
     user.agreed_with_privacy_policy = '1'
-    user.password = set_generated_password
-
+    user.skip_password_validation = true
     user
-  end
-
-  def persist!
-    collaborator.account = account
-
-    if collaborator.new_record?
-      collaborator.skip_confirmation_notification!
-      collaborator.send(:generate_confirmation_token!)
-      @devise_confirmation_token = collaborator.instance_variable_get("@raw_confirmation_token")
-    end
-
-    @success = collaborator.save
   end
 
   def send_collaboration_email!
@@ -73,10 +55,6 @@ class AddCollaborator
       new_user,
       generated_password,
       devise_confirmation_token).deliver_later!
-  end
-
-  def set_generated_password
-    @generated_password = SecureRandom.urlsafe_base64(14)
   end
 
   def success?

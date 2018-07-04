@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   post "/csp_report_uri", to: "csp_report_uri#report"
 
   devise_for :users, controllers: {
-    registrations: "users/registrations"
+    registrations: "users/registrations",
+    confirmations: "users/confirmations"
   }
 
   devise_for :admins, controllers: {

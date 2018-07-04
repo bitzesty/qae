@@ -404,7 +404,7 @@ class FormAnswerDecorator < ApplicationDecorator
   def application_background
     case award_type
     when "trade"
-      document["trade_goods_briefly"]
+      document["trade_goods_and_services_explanations"]
     when "innovation"
       document["innovation_desc_short"]
     when "development"
