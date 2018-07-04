@@ -24,12 +24,13 @@
       h3.first-h3
         ' Collaborator's full name
       = f.input :title, input_html: { class: "big tiny", autocomplete: "off"}
-      = f.input :first_name, input_html: { class: 'big medium', autocomplete: "off"}
-      = f.input :last_name, input_html: { class: 'big medium', autocomplete: "off"}
+      = f.input :first_name, required: true, input_html: { class: 'big medium', autocomplete: "off"}
+      = f.input :last_name, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
+      = f.input :job_title, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
 
     fieldset
       h3 = f.label :phone_number, label: "Telephone number"
-      = f.input :phone_number, input_html: { class: 'big small', autocomplete: "off"}, label: false
+      = f.input :phone_number, required: true, input_html: { class: 'big small', autocomplete: "off"}, label: false
 
     fieldset
       h3 = f.label :email
