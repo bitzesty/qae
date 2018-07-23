@@ -22,6 +22,7 @@ deployment:
     commands:
       - convox login console.convox.com
       - convox switch bitzesty/qae
+      - convox -v
       - convox deploy --app qae-dev:
           timeout: 900
       - convox run web rake db:migrate --app qae-dev
@@ -30,6 +31,7 @@ deployment:
     commands:
       - convox login console.convox.com
       - convox switch bitzesty/qae
+      - convox -v
       - convox deploy --app qae-staging:
           timeout: 900
       - convox run web rake db:migrate --app qae-staging
@@ -38,6 +40,7 @@ deployment:
     commands:
       - convox login console.convox.com
       - convox switch bitzesty/qae
+      - convox -v
       - convox deploy --app qae-production:
           timeout: 900
       - convox run web rake db:migrate --app qae-production
