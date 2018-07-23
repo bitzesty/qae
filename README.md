@@ -23,6 +23,8 @@
 foreman start
 ```
 
+If you're running this on your local dev setup, start redis first before starting the application with `foreman start`
+
 ### Running with convox locally
 
 Install docker, and install convox
