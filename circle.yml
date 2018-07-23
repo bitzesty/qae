@@ -6,8 +6,6 @@ machine:
     version: 2.5.0
 dependencies:
   post:
-    - curl -Ls https://install.convox.com/linux.zip > convox.zip
-    - sudo unzip convox.zip -d /usr/local/bin
     - gem update --system
 test:
   post:
@@ -20,6 +18,8 @@ deployment:
   dev:
     branch: master
     commands:
+      - curl -Ls https://install.convox.com/linux.zip > convox.zip
+      - sudo unzip convox.zip -d /usr/local/bin
       - convox login console.convox.com
       - convox switch bitzesty/qae
       - convox -v
@@ -29,6 +29,8 @@ deployment:
   staging:
     branch: staging
     commands:
+      - curl -Ls https://install.convox.com/linux.zip > convox.zip
+      - sudo unzip convox.zip -d /usr/local/bin
       - convox login console.convox.com
       - convox switch bitzesty/qae
       - convox -v
@@ -38,6 +40,8 @@ deployment:
   production:
     branch: production
     commands:
+      - curl -Ls https://install.convox.com/linux.zip > convox.zip
+      - sudo unzip convox.zip -d /usr/local/bin
       - convox login console.convox.com
       - convox switch bitzesty/qae
       - convox -v
