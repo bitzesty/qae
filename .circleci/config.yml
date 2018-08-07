@@ -2,7 +2,19 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.5-node
     steps:
       - checkout
-      - run: echo "A first hello"
+
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
+      - run: RAILS_ENV=test bundle exec rake db:create db:migrate
+      - run: RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
+      - run: bundle exec bin/circle
