@@ -684,6 +684,7 @@ DEPENDENCIES
   pusher
   quiet_assets
   rack-mini-profiler (>= 0.10.1)
+  rack-protection (= 1.5.5)
   rack-ssl-enforcer
   rails (= 4.2.10)
   rails-html-sanitizer (~> 1.0.4)
