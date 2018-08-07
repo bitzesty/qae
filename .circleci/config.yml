@@ -1,55 +1,65 @@
 version: 2
 jobs:
   build:
-    pre:
-      - sudo rm -rf /home/travis
-      - sudo ln -s /home/ubuntu /home/travis
+    docker:
+      - image: circleci/ruby:2.5-node-browsers
+        environment:
+          RAILS_ENV: test
+          RACK_ENV: test
+      - image: circleci/postgres:9.6.2-alpine
+      - image: redis:3.2.7
+    steps:
+      steps:
+        - checkout
+        - run:
+            name: Install gems
+            command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without=development deployment
+        - run:
+            name: Wait for DB
+            command: dockerize -wait tcp://localhost:5432 -timeout 1m
+        - run:
+            name: Wait for redis
+            command: dockerize -wait tcp://localhost:6379 -timeout 1m
+        - run:
+            name: Load DB schema
+            command: bundle exec rake db:create db:schema:load --trace
+        - run:
+            name: Run RSpec
+            command: bundle exec rspec spec --tag '~skip_on_ci' --backtrace spec --format progress
+  install-convox:
     docker:
       - image: circleci/ruby:2.5-node-browsers
     steps:
       - run:
           name: Download convox
-          command: curl -Ls https://install.convox.com/linux.zip > convox.zip
+          command: curl -Ls https://convox.com/cli/linux/convox > /tmp/convox
       - run:
           name: Install convox
-          command: sudo unzip convox.zip -d /usr/local/bin
+          command: sudo mv /tmp/convox /usr/local/bin/convox
+      - run:
+          name: Set convox permissions
+          command: sudo chmod 755 /usr/local/bin/convox
       - run:
           name: Login to convox
           command: convox login console.convox.com
       - run:
-          name: Select the convox rack for qae
+          name: Select the convox rack for QAE
           command: convox switch bitzesty/qae
       - run:
           name: Print convox version
           command: convox -v
-
-  test:
-    docker:
-      - image: circleci/ruby:2.5-node-browsers
-    steps:
-      - run: RAILS_ENV=test bundle exec rake db:create db:migrate
-      - run: RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
-      - run: bundle exec bin/circle
-
   convox-deploy-dev:
     docker:
       - image: circleci/ruby:2.5-node-browsers
-    filters:
-      branches:
-        only: master
     steps:
       - run:
           name: Convox deploy
           command: convox deploy --app qae-dev
           no_output_timeout: 900s
       - run: convox run web rake db:migrate --app qae-dev
-
   convox-deploy-staging:
     docker:
       - image: circleci/ruby:2.5-node-browsers
-    filters:
-      branches:
-        only: staging
     steps:
       - run:
           name: Convox deploy
@@ -60,9 +70,6 @@ jobs:
   convox-deploy-production:
     docker:
       - image: circleci/ruby:2.5-node-browsers
-    filters:
-      branches:
-        only: production
     steps:
       - run:
           name: Convox deploy
@@ -72,30 +79,36 @@ jobs:
 
 workflows:
   version: 2
-  deploy-dev:
+  build-and-deploy:
     jobs:
       - build
-      - test:
-        requires:
-          - build
+      - install-convox:
+          requires:
+            - build
+          filters:
+            branches:
+              only:
+                - master
+                - staging
+                - production
       - convox-deploy-dev:
-        requires:
-          - test
-  deploy-staging:
-    jobs:
-      - build
-      - test:
-        requires:
-          - build
+          requires:
+            - build
+            - install-convox
+          filters:
+            branches:
+              only: master
       - convox-deploy-staging:
-        requires:
-          - test
-  deploy-production:
-    jobs:
-      - build
-      - test:
-        requires:
-          - build
+          requires:
+            - build
+            - install-convox
+          filters:
+            branches:
+              only: staging
       - convox-deploy-production:
-        requires:
-          - test
+          requires:
+            - build
+            - install-convox
+          filters:
+            branches:
+              only: production
