@@ -12,11 +12,8 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install missing libs
-          command: sudo apt-get install libssl-dev
-      - run:
-          name: Install gems
-          command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without=development deployment
+          name: Install gems and missing libs
+          command: sudo apt-get install libssl1.0-dev && bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without=development deployment
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
