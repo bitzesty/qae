@@ -1,17 +1,30 @@
 version: 2
 jobs:
   build:
+    parallelism: 1
     working_directory: ~/qae
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
         environment:
+          BUNDLE_JOBS: 3
+          BUNDLE_RETRY: 3
+          BUNDLE_PATH: vendor/bundle
           PGHOST: 127.0.0.1
           RAILS_ENV: test
           RACK_ENV: test
       - image: circleci/postgres:9.6.2-alpine
+        environment:
+          POSTGRES_USER: qae-ruby
+          POSTGRES_DB: circle_ruby_test
+          POSTGRES_PASSWORD: ""
       - image: redis:3.2.7
     steps:
       - checkout
+
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
       - run:
           name: Install gems and missing libs
           command: sudo apt-get install libssl1.0-dev && bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without=development deployment
@@ -23,7 +36,9 @@ jobs:
           command: dockerize -wait tcp://localhost:6379 -timeout 1m
       - run:
           name: Load DB schema
-          command: bundle exec rake db:create db:schema:load --trace
+          command: |
+            cp config/database.yml.ci config/database.yml
+            bin/rails db:schema:load --trace
       - run:
           name: Run RSpec
           command: bundle exec rspec spec --tag '~skip_on_ci' --backtrace spec --format progress
