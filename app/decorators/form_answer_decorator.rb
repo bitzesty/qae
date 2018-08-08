@@ -446,7 +446,7 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def dashboard_status(user_type = "")
     if object.submitted?
-      if user_type.downcase == "admin" && object.state == "assessment_in_progress"
+      if user_type.casecmp("admin").zero? && object.state == "assessment_in_progress"
         assessment_in_progress_status
       else
         state_text
@@ -460,10 +460,10 @@ class FormAnswerDecorator < ApplicationDecorator
 
   def assessment_in_progress_status
     if object.assessors.any?
-      object.assessors.pluck(:first_name, :last_name).map { |first_name, last_name| "#{first_name} #{last_name}" }.join(", ")
+      names_list = object.assessors.pluck(:first_name, :last_name)
+      names_list.map { |first_name, last_name| "#{first_name} #{last_name}" }.join(", ")
     else
       ASSESSORS_NOT_ASSIGNED
     end
   end
-
 end
