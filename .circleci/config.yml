@@ -14,9 +14,8 @@ jobs:
           RACK_ENV: test
       - image: circleci/postgres:9.6.2-alpine
         environment:
-          POSTGRES_USER: qae-ruby
+          POSTGRES_USER: root
           POSTGRES_DB: circle_ruby_test
-          POSTGRES_PASSWORD: ""
       - image: redis:3.2.7
     steps:
       - checkout
@@ -25,24 +24,32 @@ jobs:
       - run:
           name: Which bundler?
           command: bundle -v
+
       - run:
           name: Install gems and missing libs
           command: sudo apt-get install libssl1.0-dev && bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs=4 --retry=3 --without=development deployment
-      - run: sudo apt-get install postgresql-client-9.6
+
+      - run: sudo apt install -y postgresql-client || true
+
       - run:
           name: Wait for DB
           command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
       - run:
           name: Wait for redis
           command: dockerize -wait tcp://localhost:6379 -timeout 1m
+
       - run:
           name: Load DB schema
           command: |
             cp config/database.yml.ci config/database.yml
-            bundle exec rake db:create db:structure:load --trace
+            bundle exec rake db:create
+            bundle exec rake db:structure:load
+
       - run:
           name: Run RSpec
           command: bundle exec rspec spec --tag '~skip_on_ci' --backtrace spec --format progress
+
   install-convox:
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
