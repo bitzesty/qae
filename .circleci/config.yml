@@ -22,10 +22,6 @@ jobs:
           name: Which bundler?
           command: bundle -v
 
-      - run:
-          name: Install libs
-          command: sudo apt-get install libssl1.0-dev
-
       # Restore bundle cache
       - restore_cache:
           keys:
