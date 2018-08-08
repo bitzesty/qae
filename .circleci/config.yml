@@ -1,101 +1,20 @@
 version: 2
 jobs:
   build:
-    pre:
-      - sudo rm -rf /home/travis
-      - sudo ln -s /home/ubuntu /home/travis
     docker:
-      - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.5.0-node-browsers
     steps:
-      - run:
-          name: Download convox
-          command: curl -Ls https://install.convox.com/linux.zip > convox.zip
-      - run:
-          name: Install convox
-          command: sudo unzip convox.zip -d /usr/local/bin
-      - run:
-          name: Login to convox
-          command: convox login console.convox.com
-      - run:
-          name: Select the convox rack for qae
-          command: convox switch bitzesty/qae
-      - run:
-          name: Print convox version
-          command: convox -v
+      - checkout
 
-  test:
-    docker:
-      - image: circleci/ruby:2.5-node-browsers
-    steps:
+      # Which version of bundler?
+      - run:
+          name: Which bundler?
+          command: bundle -v
+
+      - run:
+          name: Bundle Install
+          command: bundle check || bundle install
+
       - run: RAILS_ENV=test bundle exec rake db:create db:migrate
       - run: RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
       - run: bundle exec bin/circle
-
-  convox-deploy-dev:
-    docker:
-      - image: circleci/ruby:2.5-node-browsers
-    filters:
-      branches:
-        only: master
-    steps:
-      - run:
-          name: Convox deploy
-          command: convox deploy --app qae-dev
-          no_output_timeout: 900s
-      - run: convox run web rake db:migrate --app qae-dev
-
-  convox-deploy-staging:
-    docker:
-      - image: circleci/ruby:2.5-node-browsers
-    filters:
-      branches:
-        only: staging
-    steps:
-      - run:
-          name: Convox deploy
-          command: convox deploy --app qae-staging
-          no_output_timeout: 900s
-      - run: convox run web rake db:migrate --app qae-staging
-
-  convox-deploy-production:
-    docker:
-      - image: circleci/ruby:2.5-node-browsers
-    filters:
-      branches:
-        only: production
-    steps:
-      - run:
-          name: Convox deploy
-          command: convox deploy --app qae-production
-          no_output_timeout: 900s
-      - run: convox run web rake db:migrate --app qae-production
-
-workflows:
-  version: 2
-  deploy-dev:
-    jobs:
-      - build
-      - test:
-        requires:
-          - build
-      - convox-deploy-dev:
-        requires:
-          - test
-  deploy-staging:
-    jobs:
-      - build
-      - test:
-        requires:
-          - build
-      - convox-deploy-staging:
-        requires:
-          - test
-  deploy-production:
-    jobs:
-      - build
-      - test:
-        requires:
-          - build
-      - convox-deploy-production:
-        requires:
-          - test
