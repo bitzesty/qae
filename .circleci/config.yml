@@ -38,7 +38,7 @@ jobs:
           name: Load DB schema
           command: |
             cp config/database.yml.ci config/database.yml
-            bin/rails db:schema:load --trace
+            bundle exec rake db:create db:schema:load --trace
       - run:
           name: Run RSpec
           command: bundle exec rspec spec --tag '~skip_on_ci' --backtrace spec --format progress
