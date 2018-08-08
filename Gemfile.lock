@@ -421,7 +421,7 @@ GEM
       byebug (~> 9.0)
       pry (~> 0.10)
     public_suffix (3.0.1)
-    puma (2.16.0)
+    puma (3.11.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     pusher (0.15.2)
@@ -679,7 +679,7 @@ DEPENDENCIES
   prawn
   prawn-table
   pry-byebug
-  puma (~> 2.16.0)
+  puma (= 3.11.0)
   pundit (~> 0.3)
   pusher
   quiet_assets
@@ -720,4 +720,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.2
+   1.16.3

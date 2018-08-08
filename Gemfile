@@ -114,7 +114,7 @@ gem 'skylight'
 gem 'curb'
 
 # Web server
-gem 'puma', '~> 2.16.0'
+gem 'puma', '3.11.0'
 
 # Log formatting
 gem 'lograge'
