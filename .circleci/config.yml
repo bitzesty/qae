@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.5.0-node-browsers
         environment:
           RAILS_ENV: test
           RACK_ENV: test
@@ -27,7 +27,7 @@ jobs:
           command: bundle exec rspec spec --tag '~skip_on_ci' --backtrace spec --format progress
   install-convox:
     docker:
-      - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.5.0-node-browsers
     steps:
       - checkout
       - run:
@@ -50,7 +50,7 @@ jobs:
           command: convox -v
   convox-deploy-dev:
     docker:
-      - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.5.0-node-browsers
     steps:
       - checkout
       - run:
@@ -60,7 +60,7 @@ jobs:
       - run: convox run web rake db:migrate --app qae-dev
   convox-deploy-staging:
     docker:
-      - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.5.0-node-browsers
     steps:
       - checkout
       - run:
@@ -71,7 +71,7 @@ jobs:
 
   convox-deploy-production:
     docker:
-      - image: circleci/ruby:2.5-node-browsers
+      - image: circleci/ruby:2.5.0-node-browsers
     steps:
       - run:
           name: Convox deploy
