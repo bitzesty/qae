@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    parallelism: 1
     working_directory: ~/qae
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
