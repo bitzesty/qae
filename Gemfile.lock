@@ -380,7 +380,7 @@ GEM
     nilify_blanks (1.2.0)
       activerecord (>= 3.0.0)
       activesupport (>= 3.0.0)
-    nokogiri (1.8.3)
+    nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
     paper_trail (5.1.1)
@@ -421,7 +421,7 @@ GEM
       byebug (~> 9.0)
       pry (~> 0.10)
     public_suffix (3.0.1)
-    puma (2.16.0)
+    puma (3.11.0)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     pusher (0.15.2)
@@ -670,7 +670,7 @@ DEPENDENCIES
   letter_opener
   lograge
   nilify_blanks
-  nokogiri (~> 1.8.2)
+  nokogiri (~> 1.8.4)
   paper_trail (~> 5.1.0)
   pdf-inspector
   pg (~> 0.17)
@@ -679,7 +679,7 @@ DEPENDENCIES
   prawn
   prawn-table
   pry-byebug
-  puma (~> 2.16.0)
+  puma (= 3.11.0)
   pundit (~> 0.3)
   pusher
   quiet_assets
@@ -720,4 +720,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.2
+   1.16.3
