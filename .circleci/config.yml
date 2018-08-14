@@ -16,11 +16,6 @@ jobs:
     steps:
       - checkout
 
-      # Which version of bundler?
-      - run:
-          name: Which bundler?
-          command: bundle -v
-
       # Restore bundle cache
       - restore_cache:
           keys:
