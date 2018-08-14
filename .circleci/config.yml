@@ -48,14 +48,14 @@ jobs:
           command: dockerize -wait tcp://localhost:6379 -timeout 1m
 
       - run:
-          name: Migrate data
+          name: Create & Migrate data
           command: |
             RAILS_ENV=test bundle exec rake db:create
             RAILS_ENV=test bundle exec rake db:migrate
 
       - run:
           name: Run RSpec
-          command: RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec --tag '~skip_on_ci' --backtrace spec --format progress
+          command: RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
 
   install-convox:
     docker:
