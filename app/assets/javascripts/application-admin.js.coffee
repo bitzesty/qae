@@ -5,6 +5,7 @@
 #= require jquery.fileupload
 #= require select2.full.min
 #= require Countable
+#= require ./frontend/admin_assessor_local_storage
 #= require ./frontend/password-strength-indicator
 #= require ./frontend/textarea-autoResize
 #= require ./frontend/text-character-count
