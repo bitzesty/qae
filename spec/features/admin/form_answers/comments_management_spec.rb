@@ -43,7 +43,7 @@ I want to be able to view, create and destroy the comments per application.
     expect(page).to have_css(".comment-content", text: "body")
   end
 
-  describe "adding flags", js: true do
+  describe "adding flags", js: true, skip_ci: true do
     context "Admin comments" do
       it "adds flag to created comment" do
         first("#admin-comments-heading a").click
