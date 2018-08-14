@@ -51,11 +51,11 @@ jobs:
       - run:
           name: Run RSpec
           command: RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
-
-  install-convox:
+  convox-deploy-dev:
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
     steps:
+      - checkout
       - run:
           name: Download convox
           command: curl -Ls https://convox.com/cli/linux/convox > /tmp/convox
@@ -74,10 +74,6 @@ jobs:
       - run:
           name: Print convox version
           command: convox -v
-  convox-deploy-dev:
-    docker:
-      - image: circleci/ruby:2.5.0-node-browsers
-    steps:
       - run:
           name: Convox deploy
           command: convox deploy --app qae-dev
@@ -87,6 +83,25 @@ jobs:
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
     steps:
+      - checkout
+      - run:
+          name: Download convox
+          command: curl -Ls https://convox.com/cli/linux/convox > /tmp/convox
+      - run:
+          name: Install convox
+          command: sudo mv /tmp/convox /usr/local/bin/convox
+      - run:
+          name: Set convox permissions
+          command: sudo chmod 755 /usr/local/bin/convox
+      - run:
+          name: Login to convox
+          command: convox login console.convox.com
+      - run:
+          name: Select the convox rack for QAE
+          command: convox switch bitzesty/qae
+      - run:
+          name: Print convox version
+          command: convox -v
       - run:
           name: Convox deploy
           command: convox deploy --app qae-staging
@@ -97,6 +112,25 @@ jobs:
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
     steps:
+      - checkout
+      - run:
+          name: Download convox
+          command: curl -Ls https://convox.com/cli/linux/convox > /tmp/convox
+      - run:
+          name: Install convox
+          command: sudo mv /tmp/convox /usr/local/bin/convox
+      - run:
+          name: Set convox permissions
+          command: sudo chmod 755 /usr/local/bin/convox
+      - run:
+          name: Login to convox
+          command: convox login console.convox.com
+      - run:
+          name: Select the convox rack for QAE
+          command: convox switch bitzesty/qae
+      - run:
+          name: Print convox version
+          command: convox -v
       - run:
           name: Convox deploy
           command: convox deploy --app qae-production
@@ -108,33 +142,21 @@ workflows:
   build-and-deploy:
     jobs:
       - build
-      - install-convox:
-          requires:
-            - build
-          filters:
-            branches:
-              only:
-                - master
-                - staging
-                - production
       - convox-deploy-dev:
           requires:
             - build
-            - install-convox
           filters:
             branches:
               only: master
       - convox-deploy-staging:
           requires:
             - build
-            - install-convox
           filters:
             branches:
               only: staging
       - convox-deploy-production:
           requires:
             - build
-            - install-convox
           filters:
             branches:
               only: production
