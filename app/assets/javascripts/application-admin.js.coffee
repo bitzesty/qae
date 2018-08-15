@@ -16,6 +16,10 @@
 #= require vendor/jquery-debounce
 #= require clean-paste
 
+# crypt.io: secures browser storage with the SJCL crypto library
+#= require vendor/sjcl
+#= require vendor/crypt.io.min
+
 $(document).ready(() ->
   $("html").removeClass("no-js").addClass("js")
   ($ ".timepicker").timePicker()

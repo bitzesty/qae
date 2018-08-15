@@ -1,4 +1,5 @@
 - form = AppraisalForm.rag_options_for(f.object, section)
+
 - editable = f.object.editable_for?(current_subject)
 
 .form-group.rag-section class="#{'form-edit' if f.object.public_send(section.desc).blank? && editable} form-#{section.label.parameterize}"
