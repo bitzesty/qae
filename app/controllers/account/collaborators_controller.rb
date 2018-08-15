@@ -84,6 +84,7 @@ class Account::CollaboratorsController < Account::BaseController
       :title,
       :first_name,
       :last_name,
+      :job_title,
       :phone_number,
       :email,
       :role,

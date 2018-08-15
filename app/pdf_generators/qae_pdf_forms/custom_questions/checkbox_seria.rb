@@ -10,9 +10,7 @@ module QaePdfForms::CustomQuestions::CheckboxSeria
 
     form_pdf.indent 7.mm do
       if title.present?
-        form_pdf.font("Times-Roman") do
-          form_pdf.render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
-        end
+        form_pdf.render_text title, color: FormPdf::DEFAULT_ANSWER_COLOR
       else
         checkbox_possible_ops.each do |key, value|
           question_option_box value

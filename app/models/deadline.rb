@@ -74,5 +74,6 @@ class Deadline < ActiveRecord::Base
     Rails.cache.clear("current_settings")
     Rails.cache.clear("current_award_year")
     Rails.cache.clear("#{kind.value}_deadline")
+    Rails.cache.clear("#{kind}_deadline_#{settings.award_year.year}")
   end
 end
