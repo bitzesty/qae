@@ -24,7 +24,7 @@
                   em.text-muted No draft notes added yet.
             = f.input :content,
                       wrapper_html: { class: "form-group" },
-                      input_html: { class: "form-control", rows: 10 },
+                      input_html: { class: "form-control", rows: 10, "data-behavior" => "autosave", "data-autosave-key" => "new-content" },
                       as: :text,
                       label: false
 
