@@ -73,7 +73,7 @@ gem 'enumerize', '~> 0.8'
 # PDF generation
 gem 'prawn'
 gem 'prawn-table'
-gem 'nokogiri', '~> 1.8.2'
+gem 'nokogiri', '~> 1.8.4'
 
 # Uploads
 gem 'carrierwave', '~> 1.2'
@@ -87,6 +87,7 @@ gem 'vigilion-rails', '~> 1.0.5'
 gem "sidekiq", "~> 4.1.1"
 gem "sidekiq-cron", "~> 0.4.2"
 gem 'sinatra', require: nil
+gem "rack-protection", "1.5.5" # Sinatra's dependency
 
 # Redis
 gem 'redis-rails'
@@ -113,7 +114,7 @@ gem 'skylight'
 gem 'curb'
 
 # Web server
-gem 'puma', '~> 2.16.0'
+gem 'puma', '3.11.0'
 
 # Log formatting
 gem 'lograge'

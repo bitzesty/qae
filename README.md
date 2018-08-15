@@ -23,6 +23,8 @@
 foreman start
 ```
 
+If you're running this on your local dev setup, start redis first before starting the application with `foreman start`
+
 ### Running with convox locally
 
 Install docker, and install convox
@@ -116,7 +118,6 @@ If you see the following error:
 ```
 ActiveRecord::StatementInvalid: PG::UndefinedFile: ERROR:  could not open extension control file "/usr/share/postgresql/9.3/extension/hstore.control": No such file or directory
 : CREATE EXTENSION IF NOT EXISTS "hstore"
-
 ```
 
 This means, that `hstore postgresql` extension needs to be installed:

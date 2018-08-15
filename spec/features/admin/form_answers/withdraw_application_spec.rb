@@ -1,7 +1,7 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Admin withdraws the application", js: true do
+describe "Admin withdraws the application", js: true, skip_ci: true do
   let!(:admin) { create(:admin) }
   let!(:form_answer) { create(:form_answer) }
 
