@@ -1,5 +1,4 @@
 - form = AppraisalForm.rag_options_for(f.object, section)
-
 - editable = f.object.editable_for?(current_subject)
 
 .form-group.rag-section class="#{'form-edit' if f.object.public_send(section.desc).blank? && editable} form-#{section.label.parameterize}"
@@ -37,7 +36,7 @@
 
     = f.input section.desc,
               wrapper_html: { class: 'form-group' },
-              input_html: { class: 'form-control js-char-count', rows: 5, "data-word-max" => (@form_answer.promotion? ? 1500 : 1200) },
+              input_html: { class: 'form-control js-char-count', rows: 5, "data-word-max" => (@form_answer.promotion? ? 1500 : 1200), "data-behavior" => "autosave", "data-autosave-key" => "#{f.object.id}-#{section.desc}" },
               as: :text,
               label: false
 

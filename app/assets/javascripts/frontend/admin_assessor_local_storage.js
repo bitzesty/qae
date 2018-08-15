@@ -5,6 +5,22 @@ if (AALS !== undefined) {
 }
 
 var AALS = (function() {
+
+  var init = function() {
+    $('[data-behavior="autosave"]').keypress(function(){
+      var key = $(this).data("autosave-key");
+      setItem(key, $(this).val());
+    });
+
+    $('[data-behavior="autosave"]').each(function(){
+      var key = $(this).data("autosave-key");
+      var value = getItem(key);
+      if(value) {
+        $(this).val(value);
+      }
+    });
+  };
+
   var setItem = function(key, value) {
     return localStorage.setItem(key, value);
   };
@@ -17,20 +33,14 @@ var AALS = (function() {
     return localStorage.removeItem(key);
   };
 
-  return { "setItem": setItem, "getItem": getItem };
+  return { "init": init, "setItem": setItem, "getItem": getItem };
 })();
 
 $(document).ready(function() {
-  if (typeof(Storage) == "undefined") {
+  if (typeof(Storage) !== "undefined") {
+    AALS.init();
+  } else {
     console.log('Sorry! No Web Storage support');
-  }
-
-  $('#assessor_assignment_corporate_social_responsibility_desc').keypress(function(){
-    AALS.setItem('assessor_assignment_corporate_social_responsibility_desc', $('#assessor_assignment_corporate_social_responsibility_desc').val());
-  });
-
-  if (AALS.getItem('assessor_assignment_corporate_social_responsibility_desc')) {
-    $('#assessor_assignment_corporate_social_responsibility_desc').val(AALS.getItem('assessor_assignment_corporate_social_responsibility_desc'));
   }
 });
 
