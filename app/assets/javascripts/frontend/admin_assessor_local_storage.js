@@ -5,14 +5,16 @@ if (AALS !== undefined) {
 }
 
 var AALS = (function() {
+  var storage = cryptio;
 
   var init = function() {
-    $('[data-behavior="autosave"]').keypress(function(){
+    $('[data-behavior="autosave"]').keyup(function() {
       var key = $(this).data("autosave-key");
+      console.log($(this).val());
       setItem(key, $(this).val());
     });
 
-    $('[data-behavior="autosave"]').each(function(){
+    $('[data-behavior="autosave"]').each(function() {
       var key = $(this).data("autosave-key");
       var value = getItem(key);
       if(value) {
@@ -22,18 +24,26 @@ var AALS = (function() {
   };
 
   var setItem = function(key, value) {
-    return localStorage.setItem(key, value);
+    storage.set(key, value, function(err, results){
+      if(err) throw err;
+      console.log(results);
+    });
   };
 
   var getItem = function(key) {
-    return localStorage.getItem(key);
+    var item;
+    storage.get(key, function(err, results) {
+      item = results;
+    });
+
+    return item;
   };
 
   var removeItem = function(key) {
     return localStorage.removeItem(key);
   };
 
-  return { "init": init, "setItem": setItem, "getItem": getItem };
+  return { "init": init };
 })();
 
 $(document).ready(function() {

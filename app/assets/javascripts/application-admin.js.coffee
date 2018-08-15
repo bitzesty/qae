@@ -5,6 +5,11 @@
 #= require jquery.fileupload
 #= require select2.full.min
 #= require Countable
+
+# crypt.io: secures browser storage with the SJCL crypto library
+#= require vendor/sjcl
+#= require vendor/crypt.io.min
+
 #= require ./frontend/admin_assessor_local_storage
 #= require ./frontend/password-strength-indicator
 #= require ./frontend/textarea-autoResize
@@ -16,9 +21,6 @@
 #= require vendor/jquery-debounce
 #= require clean-paste
 
-# crypt.io: secures browser storage with the SJCL crypto library
-#= require vendor/sjcl
-#= require vendor/crypt.io.min
 
 $(document).ready(() ->
   $("html").removeClass("no-js").addClass("js")
