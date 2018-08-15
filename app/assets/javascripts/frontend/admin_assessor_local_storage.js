@@ -10,7 +10,6 @@ var AALS = (function() {
   var init = function() {
     $('[data-behavior="autosave"]').keyup(function() {
       var key = $(this).data("autosave-key");
-      console.log($(this).val());
       setItem(key, $(this).val());
     });
 
@@ -26,7 +25,6 @@ var AALS = (function() {
   var setItem = function(key, value) {
     storage.set(key, value, function(err, results){
       if(err) throw err;
-      console.log(results);
     });
   };
 
