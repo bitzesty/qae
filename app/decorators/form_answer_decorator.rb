@@ -444,19 +444,26 @@ class FormAnswerDecorator < ApplicationDecorator
     object.assessor_assignments.secondary.submitted?
   end
 
-  def dashboard_status
+  def dashboard_status(user_type = "")
     if object.submitted?
-      if object.state == "assessment_in_progress"
-        if object.assessors.any?
-          object.assessors.pluck(:first_name, :last_name).map { |first_name, last_name| "#{first_name} #{last_name}" }.join(", ")
-        else
-          ASSESSORS_NOT_ASSIGNED
-        end
+      if user_type.casecmp("admin").zero? && object.state == "assessment_in_progress"
+        assessment_in_progress_status
       else
         state_text
       end
     else
       progress_text
+    end
+  end
+
+  private
+
+  def assessment_in_progress_status
+    if object.assessors.any?
+      names_list = object.assessors.pluck(:first_name, :last_name)
+      names_list.map { |first_name, last_name| "#{first_name} #{last_name}" }.join(", ")
+    else
+      ASSESSORS_NOT_ASSIGNED
     end
   end
 end
