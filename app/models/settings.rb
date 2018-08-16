@@ -35,6 +35,13 @@ class Settings < ActiveRecord::Base
       end
     end
 
+    def winner_notification_date
+      Rails.cache.fetch("winners_notification", expires_in: 1.minute) do
+        notification_date = current.winners_email_notification.trigger_at
+        notification_date.present? ? notification_date.trigger_at : nil
+      end
+    end
+
     def current_audit_certificates_deadline
       Rails.cache.fetch("current_audit_certificates_deadline", expires_in: 1.minute) do
         current.deadlines.audit_certificates_deadline
