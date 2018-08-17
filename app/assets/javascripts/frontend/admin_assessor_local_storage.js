@@ -13,6 +13,7 @@ var AALS = (function() {
       var key = scopeKey + "-" + autosaveKey;
 
       setItem(key, $(this).val());
+      remainingSpace();
     });
 
     $('[data-behavior="autosave"]').each(function() {
@@ -50,7 +51,22 @@ var AALS = (function() {
     var scopeKey  = $('body').data("user-scope-id");
     key = scopeKey + "-" + key;
 
-    return localStorage.removeItem(key);
+    return window.localStorage.removeItem(key);
+  };
+
+  var remainingSpace = function(){
+    var allStrings = '';
+
+    for(var key in window.localStorage){
+      if(window.localStorage.hasOwnProperty(key)){
+        allStrings += window.localStorage[key];
+      }
+    }
+    currentSpace = allStrings ? 3 + ((allStrings.length*16)/(8*1024)) : 0;
+
+    if (4850 < currentSpace) {
+      alert("Please save your data! Memory is limited for autosave!");
+    }
   };
 
   return { "init": init, "removeItem": removeItem };
