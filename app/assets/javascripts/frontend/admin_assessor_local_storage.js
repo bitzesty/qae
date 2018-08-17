@@ -13,7 +13,6 @@ var AALS = (function() {
       var key = scopeKey + "-" + autosaveKey;
 
       setItem(key, $(this).val());
-      remainingSpace();
     });
 
     $('[data-behavior="autosave"]').each(function() {
@@ -62,11 +61,9 @@ var AALS = (function() {
         allStrings += window.localStorage[key];
       }
     }
-    currentSpace = allStrings ? 3 + ((allStrings.length*16)/(8*1024)) : 0;
 
-    if (4850 < currentSpace) {
-      alert("Please save your data! Memory is limited for autosave!");
-    }
+    // This returns size in KB
+    return allStrings ? 3 + ((allStrings.length*16)/(8*1024)) : 0;
   };
 
   return { "init": init, "removeItem": removeItem };
