@@ -164,6 +164,7 @@ ready = ->
     formGroup = link.closest(".form-group")
     form = formGroup.closest("form")
     area = formGroup.find("textarea:visible")
+    AALS.removeItem(area.data("autosave-key"));
     formGroup.removeClass("form-edit")
 
     if formGroup.find(".form-value p[data-for]").length > 0 # use manual mapping
