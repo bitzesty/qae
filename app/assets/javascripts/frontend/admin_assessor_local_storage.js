@@ -8,13 +8,19 @@ var AALS = (function() {
   var storage = cryptio;
 
   var init = function() {
+    var scopeKey    = $('body').data("user-scope-id");
+
     $('[data-behavior="autosave"]').keyup(function() {
-      var key = $(this).data("autosave-key");
+      var autosaveKey = $(this).data("autosave-key");
+      var key = scopeKey + "-" + autosaveKey;
+
       setItem(key, $(this).val());
     });
 
     $('[data-behavior="autosave"]').each(function() {
-      var key = $(this).data("autosave-key");
+      var autosaveKey = $(this).data("autosave-key");
+      var key = scopeKey + "-" + autosaveKey;
+
       var value = getItem(key);
       if(value) {
         $(this).val(value);
