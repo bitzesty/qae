@@ -54,19 +54,18 @@ var AALS = (function() {
   };
 
   var remainingSpace = function(){
-    var allStrings = '';
+    var _lsTotal = 0, _xLen, _x;
+    var totalKB = 0;
+    var totalMB = 0;
 
-    for(var key in window.localStorage){
-      if(window.localStorage.hasOwnProperty(key)){
-        allStrings += window.localStorage[key];
-      }
+    for (_x in localStorage) {
+      _xLen = (((localStorage[_x].length || 0) + (_x.length || 0)) * 2);
+      _lsTotal += _xLen;
     }
 
-    // This returns size in KB
-    return allStrings ? 3 + ((allStrings.length*16)/(8*1024)) : 0;
+    totalKB = (_lsTotal / 1024).toFixed(2);
+    totalMB = (totalKB / 1024).toFixed(2);
   };
-
-  return { "init": init, "removeItem": removeItem };
 })();
 
 $(document).ready(function() {
