@@ -1,4 +1,4 @@
-// AALSLS => Admin Asessor Local Storage
+// AALS => Admin Asessor Local Storage
 
 if (AALS !== undefined) {
   window.alert("AALS is alreday defined");
@@ -6,18 +6,18 @@ if (AALS !== undefined) {
 
 var AALS = (function() {
   var init = function() {
-    var scopeKey = $('body').data("user-scope-id");
+    var autosaveToken = $('body').data("autosave-token");
 
     $('[data-behavior="autosave"]').keyup(function() {
       var autosaveKey = $(this).data("autosave-key");
-      var key = scopeKey + "-" + autosaveKey;
+      var key = autosaveToken + "-" + autosaveKey;
 
       setItem(key, $(this).val());
     });
 
     $('[data-behavior="autosave"]').each(function() {
       var autosaveKey = $(this).data("autosave-key");
-      var key = scopeKey + "-" + autosaveKey;
+      var key = autosaveToken + "-" + autosaveKey;
 
       var value = getItem(key);
 
@@ -46,9 +46,9 @@ var AALS = (function() {
     return item;
   };
 
-  var removeItem = function(key) {
-    var scopeKey  = $('body').data("user-scope-id");
-    key = scopeKey + "-" + key;
+  var removeItem = function(autosaveKey) {
+    var autosaveToken  = $('body').data("autosave-token");
+    key = autosaveToken + "-" + autosaveKey;
 
     return window.localStorage.removeItem(key);
   };
