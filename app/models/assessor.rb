@@ -20,6 +20,8 @@ class Assessor < ActiveRecord::Base
 
   before_validation :nil_if_blank
 
+  before_create :set_autosave_token
+
   validates :trade_role,
             :innovation_role,
             :development_role,
@@ -179,5 +181,16 @@ class Assessor < ActiveRecord::Base
 
   def self.leads_for(category)
     where(role_meth(category) => "lead")
+  end
+
+  def set_autosave_token
+    self.autosave_token = generate_token
+  end
+
+  def generate_token
+    loop do
+      token = SecureRandom.hex(10)
+      break token unless User.where(autosave_token: token).exists?
+    end
   end
 end

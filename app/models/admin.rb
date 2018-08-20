@@ -14,6 +14,8 @@ class Admin < ActiveRecord::Base
 
   default_scope { where(deleted: false) }
 
+  before_create :set_autosave_token
+
   pg_search_scope :basic_search,
                   against: [
                     :first_name,
@@ -49,5 +51,16 @@ class Admin < ActiveRecord::Base
 
   def min_password_score
     3
+  end
+
+  def set_autosave_token
+    self.autosave_token = generate_token
+  end
+
+  def generate_token
+    loop do
+      token = SecureRandom.hex(10)
+      break token unless User.where(autosave_token: token).exists?
+    end
   end
 end

@@ -66,6 +66,8 @@ var AALS = (function() {
     totalKB = (_lsTotal / 1024).toFixed(2);
     totalMB = (totalKB / 1024).toFixed(2);
   };
+
+  return { "init": init, "removeItem": removeItem };
 })();
 
 $(document).ready(function() {
