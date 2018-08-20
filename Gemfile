@@ -132,7 +132,7 @@ group :development do
   gem 'rubocop', '~> 0.52', require: false
   # When need to copy model with nested associations
   gem 'amoeba'
-  # for usings RailsPanel Chrome extension
+  # for RailsPanel Chrome extension
   gem 'meta_request'
 end
 
