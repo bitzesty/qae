@@ -21,7 +21,6 @@
 #= require vendor/jquery-debounce
 #= require clean-paste
 
-
 $(document).ready(() ->
   $("html").removeClass("no-js").addClass("js")
   ($ ".timepicker").timePicker()

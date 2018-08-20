@@ -8,7 +8,6 @@ var LS = (function() {
   var init = function() {
     var autosaveToken = $('body').data("autosave-token");
 
-
     $('[data-behavior="autosave"]').keyup(function() {
       var autosaveKey = $(this).data("autosave-key");
       var key = autosaveToken + "-" + autosaveKey;
@@ -29,7 +28,6 @@ var LS = (function() {
 
       if(value) {
         $(this).val(value);
-        $("[data-autosave-key='" + autosaveKey + "']").parents('.panel.panel-parent').css({border: "2px solid red"});
       }
     });
   };
@@ -58,7 +56,6 @@ var LS = (function() {
     key = autosaveToken + "-" + autosaveKey;
 
     window.localStorage.removeItem(key);
-    $("[data-autosave-key='" + autosaveKey + "']").parents('.panel.panel-parent').css({border: "none"});
   };
 
   var remainingSpace = function(){
