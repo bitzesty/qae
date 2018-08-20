@@ -57,7 +57,8 @@ var LS = (function() {
     var autosaveToken  = $('body').data("autosave-token");
     key = autosaveToken + "-" + autosaveKey;
 
-    return window.localStorage.removeItem(key);
+    window.localStorage.removeItem(key);
+    $("[data-autosave-key='" + autosaveKey + "']").parents('.panel.panel-parent').css({border: "none"});
   };
 
   var remainingSpace = function(){
