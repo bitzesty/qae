@@ -10,7 +10,7 @@
 #= require vendor/sjcl
 #= require vendor/crypt.io.min
 
-#= require ./frontend/admin_assessor_local_storage
+#= require ./frontend/local_storage
 #= require ./frontend/password-strength-indicator
 #= require ./frontend/textarea-autoResize
 #= require ./frontend/text-character-count
