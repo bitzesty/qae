@@ -60,7 +60,7 @@ class Admin < ActiveRecord::Base
   def generate_token
     loop do
       token = SecureRandom.hex(10)
-      break token unless User.where(autosave_token: token).exists?
+      break token unless self.class.where(autosave_token: token).exists?
     end
   end
 end
