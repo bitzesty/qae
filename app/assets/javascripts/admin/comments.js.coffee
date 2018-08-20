@@ -8,7 +8,7 @@ ready = ->
       data: $(this).serialize()
       dataType: 'HTML'
       success: (data) ->
-        AALS.removeItem(that.parents(".comments-container").find("textarea").data("autosave-key"));
+        LS.removeItem(that.parents(".comments-container").find("textarea").data("autosave-key"));
         that.parents(".comments-container").find("textarea").val("")
         that.parents(".comments-container").find(".comment-insert").after(data)
         that.find("input[type='checkbox']").prop("checked", false)

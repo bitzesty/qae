@@ -29,6 +29,7 @@ var LS = (function() {
 
       if(value) {
         $(this).val(value);
+        $("[data-autosave-key='" + autosaveKey + "']").parents('.panel.panel-parent').css({border: "2px solid red"});
       }
     });
   };
