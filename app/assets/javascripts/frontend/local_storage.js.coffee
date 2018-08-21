@@ -62,6 +62,8 @@ if window.LS != undefined
     item
 
   removeItem = (autosaveKey) ->
+    return if typeof Storage == 'undefined'
+
     autosaveToken = $('body').data('autosave-token')
     key = autosaveToken + '-' + autosaveKey
     window.localStorage.removeItem key
