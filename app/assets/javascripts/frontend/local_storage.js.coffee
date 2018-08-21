@@ -1,7 +1,7 @@
 # LS => Local Storage
 
 if window.LS != undefined
-  window.alert 'LS is alreday defined'
+  window.alert 'LS is already defined'
 
  window.LS = do ->
   init = ->
