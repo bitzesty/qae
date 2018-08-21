@@ -1,5 +1,6 @@
 class Admin < ActiveRecord::Base
   include PgSearch
+  include AutosaveTokenGeneration
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -13,8 +14,6 @@ class Admin < ActiveRecord::Base
   has_many :form_answer_attachments, as: :attachable
 
   default_scope { where(deleted: false) }
-
-  before_create :set_autosave_token
 
   pg_search_scope :basic_search,
                   against: [
@@ -51,16 +50,5 @@ class Admin < ActiveRecord::Base
 
   def min_password_score
     3
-  end
-
-  def set_autosave_token
-    self.autosave_token = generate_token
-  end
-
-  def generate_token
-    loop do
-      token = SecureRandom.hex(10)
-      break token unless self.class.where(autosave_token: token).exists?
-    end
   end
 end

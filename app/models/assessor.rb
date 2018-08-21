@@ -1,5 +1,6 @@
 class Assessor < ActiveRecord::Base
   include PgSearch
+  include AutosaveTokenGeneration
 
   AVAILABLE_ROLES = ["lead", "regular"]
   # lead - created & assigned to Admin to specific categories
@@ -19,8 +20,6 @@ class Assessor < ActiveRecord::Base
            through: :assessor_assignments
 
   before_validation :nil_if_blank
-
-  before_create :set_autosave_token
 
   validates :trade_role,
             :innovation_role,
@@ -181,16 +180,5 @@ class Assessor < ActiveRecord::Base
 
   def self.leads_for(category)
     where(role_meth(category) => "lead")
-  end
-
-  def set_autosave_token
-    self.autosave_token = generate_token
-  end
-
-  def generate_token
-    loop do
-      token = SecureRandom.hex(10)
-      break token unless self.class.where(autosave_token: token).exists?
-    end
   end
 end
