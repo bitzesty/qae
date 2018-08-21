@@ -8,14 +8,14 @@ namespace :autosave_token do
     admins = Admin.where(autosave_token: nil)
     admins.find_each do |admin|
       admin.send(:set_autosave_token)
-      admin.save!
+      admin.save(validate: false)
       puts "created for admin #{admin.id}"
     end
 
     assessors = Assessor.where(autosave_token: nil)
     assessors.find_each do |assessor|
       assessor.send(:set_autosave_token)
-      assessor.save!
+      assessor.save(validate: false)
       puts "created for assessor #{assessor.id}"
     end
 
