@@ -81,11 +81,12 @@ if window.LS != undefined
 
     lsTotalInKB = (lsTotal / 1024).toFixed(2)
     lsTotalInMB = (lsTotalInKB / 1024).toFixed(2)
-    return
+    return lsTotalInMB
 
   {
     'init': init
-    'removeItem': removeItem
+    'removeItem': removeItem,
+    'remainingSpace': remainingSpace
   }
 
 $(document).ready ->
