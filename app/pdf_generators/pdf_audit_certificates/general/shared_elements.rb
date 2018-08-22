@@ -162,9 +162,9 @@ module PdfAuditCertificates::General::SharedElements
     # ]
 
     rows = [
-        benchmarks_row("growth_overseas_earnings"),
-        benchmarks_row("sales_exported"),
-        benchmarks_row("average_growth_for")
+      benchmarks_row("growth_overseas_earnings"),
+      benchmarks_row("sales_exported"),
+      benchmarks_row("average_growth_for")
     ]
 
     table rows, table_default_ops(:main_table)

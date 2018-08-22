@@ -299,9 +299,9 @@ module CaseSummaryPdfs::General::DataPointer
 
   def render_base_growth_table
     rows = [
-        @growth_overseas_earnings_list.unshift("% Growth overseas earnings"),
-        @sales_exported_list.unshift("% Sales exported"),
-        @average_growth_for_list.unshift("% Sector average growth")
+      @growth_overseas_earnings_list.unshift("% Growth overseas earnings"),
+      @sales_exported_list.unshift("% Sales exported"),
+      @average_growth_for_list.unshift("% Sector average growth")
     ]
 
     pdf_doc.table(rows,
