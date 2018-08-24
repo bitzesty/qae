@@ -167,9 +167,9 @@ ready = ->
 
     if area.length > 1
       for _area in area
-        LS.removeItem($(_area).data("autosave-key"));
+        LS.removeItem($(_area).data("autosave-key"))
     else
-      LS.removeItem(area.data("autosave-key"));
+      LS.removeItem(area.data("autosave-key"))
 
     formGroup.removeClass("form-edit")
 

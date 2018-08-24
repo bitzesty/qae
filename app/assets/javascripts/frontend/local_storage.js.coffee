@@ -3,7 +3,7 @@
 if window.LS != undefined
   window.alert 'LS is already defined'
 
- window.LS = do ->
+window.LS = do ->
   init = ->
     autosaveToken = $('body').data('autosave-token')
 
