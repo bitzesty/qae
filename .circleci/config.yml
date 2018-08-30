@@ -44,7 +44,7 @@ jobs:
       - run:
           name: Create database and laod schema
           command: |
-            RAILS_ENV=test bundle exec rake db:create db:schema:load
+            RAILS_ENV=test bundle exec rake db:create db:structure:load
 
       - run:
           name: Run RSpec
