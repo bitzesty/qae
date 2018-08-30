@@ -55,6 +55,8 @@ jobs:
               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
       - store_test_results:
           path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
 
   convox-deploy-dev:
     docker:
