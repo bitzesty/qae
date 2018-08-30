@@ -1,7 +1,6 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/qae
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
         environment:
@@ -54,10 +53,18 @@ jobs:
               --format RspecJunitFormatter --out /tmp/test-results/rspec.xml \
               --format progress \
               $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
       - store_test_results:
           path: /tmp/test-results
       - store_artifacts:
           path: /tmp/test-results
+
+      - store_artifacts:
+          path: coverage/.resultset.json
+          prefix: coverage # must be called coverage to be picked up by the report_coverage script
+      - deploy:
+          name: Merge and copy coverage data
+          command: bundle exec report_coverage
 
   convox-deploy-dev:
     docker:
