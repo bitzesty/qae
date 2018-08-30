@@ -42,7 +42,7 @@ jobs:
           command: dockerize -wait tcp://localhost:6379 -timeout 1m
 
       - run:
-          name: Create database and laod schema
+          name: Create database and load structure
           command: |
             RAILS_ENV=test bundle exec rake db:create db:structure:load
 
