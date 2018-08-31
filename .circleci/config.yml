@@ -1,17 +1,17 @@
 version: 2
 jobs:
   build:
-    working_directory: ~/qae
     docker:
       - image: circleci/ruby:2.5.0-node-browsers
         environment:
           PGHOST: 127.0.0.1
           PGUSER: root
-      - image: circleci/postgres:9.6.2-alpine
+      - image: circleci/postgres:9.6.9-alpine-ram
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: circle_ruby_test
       - image: redis:3.2.7
+    parallelism: 2
     steps:
       - checkout
 
@@ -42,17 +42,33 @@ jobs:
           command: dockerize -wait tcp://localhost:6379 -timeout 1m
 
       - run:
-          name: Create & Migrate data
+          name: Create database and load structure
           command: |
-            RAILS_ENV=test bundle exec rake db:create
-            RAILS_ENV=test bundle exec rake db:migrate
+            RAILS_ENV=test bundle exec rake db:create db:structure:load
 
       - run:
           name: Run RSpec
-          command: RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --backtrace spec --format progress
+          command: |
+              RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' \
+              --format RspecJunitFormatter --out /tmp/test-results/rspec.xml \
+              --format progress \
+              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+
+      - store_test_results:
+          path: /tmp/test-results
+      - store_artifacts:
+          path: /tmp/test-results
+
+      - store_artifacts:
+          path: coverage/.resultset.json
+          prefix: coverage # must be called coverage to be picked up by the report_coverage script
+      - deploy:
+          name: Merge and copy coverage data
+          command: bundle exec report_coverage
+
   convox-deploy-dev:
     docker:
-      - image: circleci/ruby:2.5.0-node-browsers
+      - image: circleci/buildpack-deps:stretch-curl
     steps:
       - checkout
       - run:
@@ -80,7 +96,7 @@ jobs:
       - run: convox run web rake db:migrate --app qae-dev
   convox-deploy-staging:
     docker:
-      - image: circleci/ruby:2.5.0-node-browsers
+      - image: circleci/buildpack-deps:stretch-curl
     steps:
       - checkout
       - run:
@@ -109,7 +125,7 @@ jobs:
 
   convox-deploy-production:
     docker:
-      - image: circleci/ruby:2.5.0-node-browsers
+      - image: circleci/buildpack-deps:stretch-curl
     steps:
       - checkout
       - run:

@@ -1,5 +1,6 @@
 class Admin < ActiveRecord::Base
   include PgSearch
+  include AutosaveTokenGeneration
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
