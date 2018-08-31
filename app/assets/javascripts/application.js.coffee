@@ -155,9 +155,9 @@ jQuery ->
       fy_year = new Date().getFullYear()
 
     # Conditional latest year
-    # If from 3rd of September to December -> then previous year
-    # If from January to 2nd of September -> then current year
-    if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 3) || parseInt(fy_month, 10) > 9
+    # If from 12th of September to December -> then previous year
+    # If from January to 12th of September -> then current year
+    if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 13) || parseInt(fy_month, 10) > 9
       fy_year = parseInt(fy_year, 10) - 1
 
     # Updates the latest changed financial year input
