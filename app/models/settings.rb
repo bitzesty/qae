@@ -37,8 +37,7 @@ class Settings < ActiveRecord::Base
 
     def winner_notification_date
       Rails.cache.fetch("winners_notification", expires_in: 1.minute) do
-        notification_date = current.winners_email_notification.trigger_at
-        notification_date.present? ? notification_date.trigger_at : nil
+        current.winners_email_notification.try(:trigger_at).presence
       end
     end
 
