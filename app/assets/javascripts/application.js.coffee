@@ -174,6 +174,9 @@ jQuery ->
     fy_latest_changed_input.find("input").attr("disabled", "disabled")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)
 
+    # We should change the last year date regardless if it's present or not
+    fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
+
     updateYearEnd()
 
   # Update the financial year labels
