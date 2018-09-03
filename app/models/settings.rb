@@ -35,6 +35,12 @@ class Settings < ActiveRecord::Base
       end
     end
 
+    def winner_notification_date
+      Rails.cache.fetch("winners_notification", expires_in: 1.minute) do
+        current.winners_email_notification.try(:trigger_at).presence
+      end
+    end
+
     def current_audit_certificates_deadline
       Rails.cache.fetch("current_audit_certificates_deadline", expires_in: 1.minute) do
         current.deadlines.audit_certificates_deadline
