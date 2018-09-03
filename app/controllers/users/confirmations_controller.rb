@@ -4,8 +4,11 @@ class Users::ConfirmationsController < Devise::ConfirmationsController
   # The path used after confirmation.
   def after_confirmation_path_for(resource_name, resource)
     if resource.is_a?(User) && resource.encrypted_password.blank?
-      sign_in(resource, scope: resource_name)
-      password_settings_account_path
+      token, encoded_token = Devise.token_generator.generate(resource.class, :reset_password_token)
+      resource.update_attributes(reset_password_token: encoded_token,
+                                 reset_password_sent_at: Time.current)
+
+      edit_user_password_path(reset_password_token: token)
     else
       super(resource_name, resource)
     end
