@@ -6,7 +6,7 @@ jobs:
         environment:
           PGHOST: 127.0.0.1
           PGUSER: root
-      - image: circleci/postgres:9.6.9-alpine-ram
+      - image: circleci/postgres:9.6-alpine-ram
         environment:
           POSTGRES_USER: root
           POSTGRES_DB: circle_ruby_test
@@ -25,7 +25,11 @@ jobs:
           name: Bundle install
           command: bundle check --path=vendor/bundle || bundle install --path=vendor/bundle --jobs 4 --retry 3
 
-      - run: sudo apt install -y postgresql-client || true
+      - run:
+          name: Install PostgreSQL Client
+          command: |
+            sudo apt-get update
+            sudo apt-get install -y postgresql-client
 
       # Store bundle cache
       - save_cache:
@@ -42,9 +46,9 @@ jobs:
           command: dockerize -wait tcp://localhost:6379 -timeout 1m
 
       - run:
-          name: Create database and load structure
+          name: Create & Migrate data
           command: |
-            RAILS_ENV=test bundle exec rake db:create db:structure:load
+            RAILS_ENV=test bundle exec rake db:create db:migrate
 
       - run:
           name: Run RSpec
