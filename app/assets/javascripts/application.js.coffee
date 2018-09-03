@@ -155,9 +155,9 @@ jQuery ->
       fy_year = new Date().getFullYear()
 
     # Conditional latest year
-    # If from 3rd of September to December -> then previous year
-    # If from January to 2nd of September -> then current year
-    if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 3) || parseInt(fy_month, 10) > 9
+    # If from 12th of September to December -> then previous year
+    # If from January to 12th of September -> then current year
+    if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 13) || parseInt(fy_month, 10) > 9
       fy_year = parseInt(fy_year, 10) - 1
 
     # Updates the latest changed financial year input
@@ -173,6 +173,9 @@ jQuery ->
 
     fy_latest_changed_input.find("input").attr("disabled", "disabled")
     $(".js-financial-year-changed-dates").attr("data-year", fy_year)
+
+    # We should change the last year date regardless if it's present or not
+    fy_latest_changed_input.find("input.js-fy-year").val(fy_year)
 
     updateYearEnd()
 
