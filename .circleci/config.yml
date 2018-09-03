@@ -11,7 +11,7 @@ jobs:
           POSTGRES_USER: root
           POSTGRES_DB: circle_ruby_test
       - image: redis:3.2.7
-    parallelism: 2
+    parallelism: 1
     steps:
       - checkout
 
@@ -55,8 +55,7 @@ jobs:
           command: |
               RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' \
               --format RspecJunitFormatter --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $(circleci tests glob "spec/**/*_spec.rb" | circleci tests split --split-by=timings)
+              --format progress
 
       - store_test_results:
           path: /tmp/test-results
