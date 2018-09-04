@@ -196,7 +196,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root to: "dashboard#index"
     resources :dashboard, only: [:index]
-    resources :users do
+    resources :users, except: [:destroy] do
       member do
         patch :resend_confirmation_email
         patch :unlock
