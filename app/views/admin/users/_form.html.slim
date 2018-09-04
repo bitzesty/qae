@@ -49,9 +49,6 @@
 
     br
     .clearfix
-      - if action_name == "edit" && policy(resource).destroy?
-        = link_to "Delete", admin_user_path(resource), data: { method: :delete, confirm: "Are you sure?" }, class: "btn btn-danger btn-md pull-left"
-
       .pull-right
         = link_to "Cancel",
                   admin_users_path,
