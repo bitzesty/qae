@@ -146,8 +146,9 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_financial_benchmarks
-    move_down 3.mm
-    render_financial_benchmarks_by_years
+    # Removed due to lack of data
+    # move_down 3.mm
+    # render_financial_benchmarks_by_years if form_answer.trade?
     move_down 3.mm
     render_financial_overall_benchmarks
   end
@@ -160,19 +161,11 @@ module PdfAuditCertificates::General::SharedElements
     #   benchmark_by_years_table_headers
     # ]
 
-    rows = []
-
-    rows += if form_answer.trade?
-      [
-        benchmarks_row("growth_overseas_earnings"),
-        benchmarks_row("sales_exported"),
-        benchmarks_row("average_growth_for")
-      ]
-    else
-      [
-        benchmarks_row("growth_in_total_turnover")
-      ]
-    end
+    rows = [
+      benchmarks_row("growth_overseas_earnings"),
+      benchmarks_row("sales_exported"),
+      benchmarks_row("average_growth_for")
+    ]
 
     table rows, table_default_ops(:main_table)
   end

@@ -1,49 +1,6 @@
 / Trade: %growth overseas, %sales exported, sector advantage, overall growth (abs and %)
 / Innovation: %growth in total turnover, overall growth (abs and %)
 / Sus. dev.:  %growth in total turnover, overall growth (abs and %)
-
-.form-group.table-overflow-container
-  table.table.table-striped#financial-benchmarks
-    colgroup
-      col width="300"
-
-    thead
-      tr
-        th &nbsp;
-
-        - financial_pointer.period_length.times do |i|
-          th = "Year #{i + 1}"
-
-    tbody
-      - if @form_answer.trade?
-        tr.exports-growth
-          th
-            = t('.growth_overseas_earnings')
-
-          - financial_pointer.growth_overseas_earnings_list.each do |entry|
-            td.value = formatted_uk_sales_value(entry)
-        tr.exports-percentage
-          th
-            = t('.sales_exported')
-
-          - financial_pointer.sales_exported_list.each do |entry|
-            td.value = formatted_uk_sales_value(entry)
-        tr.sector-average-growth
-          th
-            = t('.average_growth_for')
-
-          - financial_pointer.average_growth_for_list.each do |entry|
-            td = formatted_uk_sales_value(entry)
-      - else
-        tr.turnover-growth
-          th
-            = t('.growth_in_total_turnover')
-
-          - financial_pointer.growth_in_total_turnover_list.each do |entry|
-            td.value = formatted_uk_sales_value(entry)
-
-  label.avg-growth-legend = @form_answer.average_growth_legend([1,2,3])
-
 .form-group.table-overflow-container
   table.table.table-striped#overall-financial-benchmarks
     colgroup
