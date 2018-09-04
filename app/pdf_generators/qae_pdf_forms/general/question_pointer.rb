@@ -8,10 +8,10 @@ class QaePdfForms::General::QuestionPointer
   include FinancialTable
   include QuestionTextHelper
 
-  NOT_CURRENCY_QUESTION_KEYS = %w(employees)
-  QUESTIONS_WITH_PDF_TITLES = %w(trading_figures_add)
-  SKIP_HEADER_HINT_KEYS = %w(head_of_bussines_header)
-  RENDER_INLINE_KEYS = %w(head_of_bussines_title)
+  NOT_CURRENCY_QUESTION_KEYS = %w(employees).freeze
+  QUESTIONS_WITH_PDF_TITLES = %w(trading_figures_add).freeze
+  SKIP_HEADER_HINT_KEYS = %w(head_of_bussines_header).freeze
+  RENDER_INLINE_KEYS = %w(head_of_bussines_title).freeze
 
   attr_reader :form_pdf,
               :form_answer,
@@ -34,8 +34,8 @@ class QaePdfForms::General::QuestionPointer
                       "social_mobility" => "Promoting Opportunity"
                     }
 
-  ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>"
-  ANSWER_FONT_END = "</color>"
+  ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>".freeze
+  ANSWER_FONT_END = "</color>".freeze
 
   BLOCK_QUESTIONS = [
     QAEFormBuilder::AwardHolderQuestion,
