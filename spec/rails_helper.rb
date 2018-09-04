@@ -5,7 +5,9 @@ require "codeclimate-test-reporter"
 SimpleCov.add_filter "vendor"
 
 SimpleCov.formatters = []
-SimpleCov.start CodeClimate::TestReporter.configuration.profile
+SimpleCov.start 'rails' do
+  add_filter '/spec/'
+end
 
 require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)

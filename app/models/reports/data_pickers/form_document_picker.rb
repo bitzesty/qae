@@ -213,21 +213,17 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def product_service
-    if innovation?
-      doc "innovation_desc_short"
+    service = if innovation?
+      doc("innovation_desc_short")
     elsif development?
-      doc "development_management_approach_briefly"
+      doc("development_management_approach_briefly")
     elsif mobility?
-      doc "mobility_desc_short"
+      doc("mobility_desc_short")
     else
-      number_of_goods_and_services =  doc("trade_goods_amount").to_i
-      service_json = doc "trade_goods_and_services_explanations"
-      if service_json
-        (service_json || [])[0..(number_of_goods_and_services - 1)].map do |service|
-          service["desc_short"]
-        end.select(&:present?).join(",")
-      end
+      doc("trade_goods_briefly")
     end
+
+    ActionView::Base.full_sanitizer.sanitize(service)
   end
 
   def date_started_trading
