@@ -34,8 +34,8 @@ class QaePdfForms::General::QuestionPointer
                       "social_mobility" => "Promoting Opportunity"
                     }
 
-  ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>"
-  ANSWER_FONT_END = "</font></color>"
+  ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>"
+  ANSWER_FONT_END = "</color>"
 
   BLOCK_QUESTIONS = [
     QAEFormBuilder::AwardHolderQuestion,
