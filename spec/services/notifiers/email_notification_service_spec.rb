@@ -53,6 +53,20 @@ describe Notifiers::EmailNotificationService do
 
       expect(current_notification.reload).to be_sent
     end
+
+    context "with already submitted certificate" do
+      let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
+
+      it "triggers current notification" do
+        expect(Notifiers::Shortlist::AuditCertificateRequest).not_to receive(:new)
+
+        expect(FormAnswer).to receive(:shortlisted) { [form_answer] }
+
+        described_class.run
+
+        expect(current_notification.reload).to be_sent
+      end
+    end
   end
 
   context "not_shortlisted_notifier" do
@@ -126,23 +140,42 @@ describe Notifiers::EmailNotificationService do
     end
   end
 
-  context "reminder_to_submit" do
+  describe "#reminder_to_submit" do
     let(:kind) { "reminder_to_submit" }
+    let(:mailer) { double(deliver_later!: true) }
 
-    let(:form_answer) do
-      create(:form_answer, :trade)
+    context "for not submitted aplications" do
+      let(:form_answer) do
+        create(:form_answer, :trade)
+      end
+
+      it "triggers current notification" do
+        expect(AccountMailers::ReminderToSubmitMailer).to receive(:notify).with(
+          form_answer.id,
+          user.id
+        ) { mailer }
+
+        described_class.run
+
+        expect(current_notification.reload).to be_sent
+      end
     end
 
-    it "triggers current notification" do
-      mailer = double(deliver_later!: true)
-      expect(AccountMailers::ReminderToSubmitMailer).to receive(:notify).with(
-        form_answer.id,
-        user.id
-      ) { mailer }
+    context "for submitted aplications" do
+      let(:form_answer) do
+        create(:form_answer, :trade, :submitted)
+      end
 
-      described_class.run
+      it "does not send email notification" do
+        expect(AccountMailers::ReminderToSubmitMailer).not_to receive(:notify).with(
+          form_answer.id,
+          user.id
+        ) { mailer }
 
-      expect(current_notification.reload).to be_sent
+        described_class.run
+
+        expect(current_notification.reload).to be_sent
+      end
     end
   end
 
