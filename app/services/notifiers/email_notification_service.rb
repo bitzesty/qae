@@ -134,7 +134,9 @@ class Notifiers::EmailNotificationService
         form_answer_id: form_answer.id
       ).first_or_create
 
-      AccountMailers::BuckinghamPalaceInviteMailer.invite(form_answer.id).deliver_later!
+      unless invite.submitted?
+        AccountMailers::BuckinghamPalaceInviteMailer.invite(form_answer.id).deliver_later!
+      end
     end
   end
 

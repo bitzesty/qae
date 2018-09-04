@@ -126,6 +126,9 @@ describe Notifiers::EmailNotificationService do
     let!(:account_holder) { form_answer.account.owner }
 
     it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(AccountMailers::BuckinghamPalaceInviteMailer).to receive(:invite).with(form_answer.id) { mailer }
+
       expect {
         described_class.run
       }.to change {
@@ -137,6 +140,25 @@ describe Notifiers::EmailNotificationService do
       expect(last_invite.form_answer_id).to be_eql form_answer.id
 
       expect(current_notification.reload).to be_sent
+    end
+
+    context "for an application with submitted attendees details" do
+      it "does not send an invite" do
+        create(:palace_invite,
+               email: form_answer.decorate.head_email,
+               form_answer: form_answer,
+               submitted: true)
+
+        expect(AccountMailers::BuckinghamPalaceInviteMailer).not_to receive(:invite)
+
+        expect {
+          described_class.run
+        }.not_to change {
+          PalaceInvite.count
+        }
+
+        expect(current_notification.reload).to be_sent
+      end
     end
   end
 
