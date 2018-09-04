@@ -1,17 +1,17 @@
 module QaePdfForms::CustomQuestions::ByYear
-  YEAR_LABELS = %w(day month year)
-  FINANCIAL_YEAR_PREFIX = "Financial year"
-  YEAR_ENDING_IN_PREFIX = "Year ending in"
-  AS_AT_DATE_PREFIX = "As at"
+  YEAR_LABELS = %w(day month year).freeze
+  FINANCIAL_YEAR_PREFIX = "Financial year".freeze
+  YEAR_ENDING_IN_PREFIX = "Year ending in".freeze
+  AS_AT_DATE_PREFIX = "As at".freeze
   AS_AT_DATE_PREFIX_QUESTION_KEYS = [
     :total_net_assets
-  ]
-  ANSWER_FONT_START = "<font name='Times-Roman'><color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>"
-  ANSWER_FONT_END = "</font></color>"
+  ].freeze
+  ANSWER_FONT_START = "<color rgb='#{FormPdf::DEFAULT_ANSWER_COLOR}'>".freeze
+  ANSWER_FONT_END = "</color>".freeze
   CALCULATED_FINANCIAL_DATA = [
     :uk_sales
-  ]
-  OMIT_COLON_KEYS = [:financial_year_changed_dates]
+  ].freeze
+  OMIT_COLON_KEYS = [:financial_year_changed_dates].freeze
 
   def render_years_labels_table
     rows = financial_table_changed_dates_headers.map do |a|
