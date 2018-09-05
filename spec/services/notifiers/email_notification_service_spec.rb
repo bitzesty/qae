@@ -42,10 +42,11 @@ describe Notifiers::EmailNotificationService do
     let(:form_answer) { create(:form_answer, :trade, :submitted) }
 
     it "triggers current notification" do
-      service = double
-      expect(service).to receive(:run)
-      expect(Notifiers::Shortlist::AuditCertificateRequest).to receive(:new)
-        .with(form_answer) { service }
+      mailer = double(deliver_later!: true)
+      expect(Users::AuditCertificateRequestMailer).to receive(:notify).with(
+        form_answer.id,
+        user.id
+      ) { mailer }
 
       expect(FormAnswer).to receive(:shortlisted) { [form_answer] }
 
