@@ -1,5 +1,5 @@
 class Users::AuditCertificateRequestMailer < ApplicationMailer
-  def notify(user_id, form_answer_id)
+  def notify(form_answer_id, user_id)
     @form_answer = FormAnswer.find(form_answer_id).decorate
     @recipient = User.find(user_id).decorate
     @deadline = Settings.current.deadlines.where(kind: "audit_certificates").first
