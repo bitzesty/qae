@@ -38,10 +38,10 @@ class Notifiers::EmailNotificationService
     collaborator_data = []
 
     award_year.form_answers.promotion.includes(:support_letters).each do |form_answer|
-      if form_answer.support_letters.count < 2
-        form_answer.collaborators.each do |collaborator|
-          collaborator_data << {form_answer_id: form_answer.id, collaborator_id: collaborator.id}
-        end
+      next unless form_answer.support_letters.count < 2
+
+      form_answer.collaborators.each do |collaborator|
+        collaborator_data << { form_answer_id: form_answer.id, collaborator_id: collaborator.id }
       end
     end
 
@@ -73,10 +73,10 @@ class Notifiers::EmailNotificationService
     collaborator_data = []
 
     award_year.form_answers.business.shortlisted.each do |form_answer|
-      if !form_answer.audit_certificate
-        form_answer.collaborators.each do |collaborator|
-          collaborator_data << {form_answer_id: form_answer.id, collaborator_id: collaborator.id}
-        end
+      next if form_answer.audit_certificate
+
+      form_answer.collaborators.each do |collaborator|
+        collaborator_data << { form_answer_id: form_answer.id, collaborator_id: collaborator.id }
       end
     end
 
@@ -146,7 +146,7 @@ class Notifiers::EmailNotificationService
 
     scope.each do |form_answer|
       form_answer.collaborators.each do |collaborator|
-        collaborator_data << {form_answer_id: form_answer.id, collaborator_id: collaborator.id}
+        collaborator_data << { form_answer_id: form_answer.id, collaborator_id: collaborator.id }
       end
     end
 
