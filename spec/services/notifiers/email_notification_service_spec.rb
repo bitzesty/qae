@@ -42,16 +42,31 @@ describe Notifiers::EmailNotificationService do
     let(:form_answer) { create(:form_answer, :trade, :submitted) }
 
     it "triggers current notification" do
-      service = double
-      expect(service).to receive(:run)
-      expect(Notifiers::Shortlist::AuditCertificateRequest).to receive(:new)
-        .with(form_answer) { service }
+      mailer = double(deliver_later!: true)
+      expect(Users::AuditCertificateRequestMailer).to receive(:notify).with(
+        form_answer.id,
+        user.id
+      ) { mailer }
 
       expect(FormAnswer).to receive(:shortlisted) { [form_answer] }
 
       described_class.run
 
       expect(current_notification.reload).to be_sent
+    end
+
+    context "with already submitted certificate" do
+      let!(:certificate) { create(:audit_certificate, form_answer: form_answer) }
+
+      it "triggers current notification" do
+        expect(Users::AuditCertificateRequestMailer).not_to receive(:notify)
+
+        expect(FormAnswer).to receive(:shortlisted) { [form_answer] }
+
+        described_class.run
+
+        expect(current_notification.reload).to be_sent
+      end
     end
   end
 
@@ -112,6 +127,9 @@ describe Notifiers::EmailNotificationService do
     let!(:account_holder) { form_answer.account.owner }
 
     it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+      expect(AccountMailers::BuckinghamPalaceInviteMailer).to receive(:invite).with(form_answer.id) { mailer }
+
       expect {
         described_class.run
       }.to change {
@@ -124,25 +142,63 @@ describe Notifiers::EmailNotificationService do
 
       expect(current_notification.reload).to be_sent
     end
+
+    context "for an application with submitted attendees details" do
+      it "does not send an invite" do
+        create(:palace_invite,
+               email: form_answer.decorate.head_email,
+               form_answer: form_answer,
+               submitted: true)
+
+        expect(AccountMailers::BuckinghamPalaceInviteMailer).not_to receive(:invite)
+
+        expect {
+          described_class.run
+        }.not_to change {
+          PalaceInvite.count
+        }
+
+        expect(current_notification.reload).to be_sent
+      end
+    end
   end
 
-  context "reminder_to_submit" do
+  describe "#reminder_to_submit" do
     let(:kind) { "reminder_to_submit" }
+    let(:mailer) { double(deliver_later!: true) }
 
-    let(:form_answer) do
-      create(:form_answer, :trade)
+    context "for not submitted aplications" do
+      let(:form_answer) do
+        create(:form_answer, :trade)
+      end
+
+      it "triggers current notification" do
+        expect(AccountMailers::ReminderToSubmitMailer).to receive(:notify).with(
+          form_answer.id,
+          user.id
+        ) { mailer }
+
+        described_class.run
+
+        expect(current_notification.reload).to be_sent
+      end
     end
 
-    it "triggers current notification" do
-      mailer = double(deliver_later!: true)
-      expect(AccountMailers::ReminderToSubmitMailer).to receive(:notify).with(
-        form_answer.id,
-        user.id
-      ) { mailer }
+    context "for submitted aplications" do
+      let(:form_answer) do
+        create(:form_answer, :trade, :submitted)
+      end
 
-      described_class.run
+      it "does not send email notification" do
+        expect(AccountMailers::ReminderToSubmitMailer).not_to receive(:notify).with(
+          form_answer.id,
+          user.id
+        ) { mailer }
 
-      expect(current_notification.reload).to be_sent
+        described_class.run
+
+        expect(current_notification.reload).to be_sent
+      end
     end
   end
 

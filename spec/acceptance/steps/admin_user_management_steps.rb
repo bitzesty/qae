@@ -23,23 +23,10 @@ step "I edit user" do
   click_button "Save"
 end
 
-step "I delete user" do
-  step "I go to user management page"
-  find(".link-edit-user").click
-
-  click_link 'Delete'
-end
-
 step "I should see user in the list" do
   step "I go to user management page"
 
   expect(page).to have_link('user@example.com')
-end
-
-step "I should not see user in the list" do
-  step "I go to user management page"
-
-  expect(page).to have_no_link('user@example.com')
 end
 
 step "a not confirmed user exists" do

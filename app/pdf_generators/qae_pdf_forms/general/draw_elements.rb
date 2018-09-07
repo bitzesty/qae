@@ -3,11 +3,11 @@ require 'open-uri'
 
 module QaePdfForms::General::DrawElements
   DEFAULT_OFFSET = 110.mm
-  IMAGES_PATH = "#{Rails.root}/app/assets/images/"
-  LOGO_ICON = "logo-pdf.png"
-  ATTACHMENT_ICON = "icon-attachment.png"
-  ALERT_ICON = "icon-important-print.png"
-  ALERT_BIG_ICON = "icon-important-big-print.png"
+  IMAGES_PATH = "#{Rails.root}/app/assets/images/".freeze
+  LOGO_ICON = "logo-pdf.png".freeze
+  ATTACHMENT_ICON = "icon-attachment.png".freeze
+  ALERT_ICON = "icon-important-print.png".freeze
+  ALERT_BIG_ICON = "icon-important-big-print.png".freeze
 
   def attachment_path(attachment_file, link=false)
     if Rails.env.production?
