@@ -9,28 +9,28 @@ module QaePdfForms::CustomQuestions::Lists
     "Award/personal honour title",
     "Year",
     "Details"
-  ]
+  ].freeze
   AWARD_APPLICATIONS_LIST_HEADERS = [
     "Award",
     "Year",
     "Outcome"
-  ]
+  ].freeze
   NOMINATION_AWARD_LIST_HEADERS = [
     "Award/personal honour title",
     "Details"
-  ]
+  ].freeze
   POSITION_LIST_HEADERS = [
     "Name",
     "Start Date",
     "End Date",
     "Ongoing",
     "Details"
-  ]
+  ].freeze
   TRADE_GOODS_AND_SERVICES_HEADERS = [
     "Product/Service",
     "% of your total overseas trade"
-  ]
-  UNDEFINED_CELL_VALUE = "Undefined"
+  ].freeze
+  UNDEFINED_CELL_VALUE = "Undefined".freeze
 
   def render_list
     if q_visible? && humanized_answer.present?

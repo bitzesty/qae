@@ -1,12 +1,13 @@
+# coding: utf-8
 module QaePdfForms::CustomQuestions::Textarea
 
-  LIST_TAGS = ["ul", "ol"]
+  LIST_TAGS = ["ul", "ol"].freeze
 
-  MAIN_CONTENT_BLOCKS = LIST_TAGS + ["p"]
+  MAIN_CONTENT_BLOCKS = (LIST_TAGS + ["p"]).freeze
 
   SUPPORTED_TAGS = MAIN_CONTENT_BLOCKS + [
     "li", "a", "em", "strong", "text", "br"
-  ]
+  ].freeze
 
   POSSIBLE_TEXT_ALIGN_VALUES = [:left, :center, :right, :justify]
 

@@ -7,7 +7,7 @@
     - if feedback_field_value[:type] == :strengths
       = render "admin/feedbacks/strength_field", field: feedback_field, value: feedback_field_value, feedback: feedback, f: f
     - else
-      = render "admin/feedbacks/feedback_fields", feedback_field: feedback_field, feedback_field_value: feedback_field_value, feedback: feedback, f: f
+      = render "admin/feedbacks/feedback_fields", form_answer: form_answer, feedback_field: feedback_field, feedback_field_value: feedback_field_value, feedback: feedback, f: f
 
 br
 br

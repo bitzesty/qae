@@ -69,7 +69,7 @@ class AccountsController < ApplicationController
   def update_password_settings
     current_user.set_step(5)
 
-    if update_password
+    if current_user.update_with_password(password_settings_params)
       flash.notice = 'Your account details were successfully saved'
       redirect_to dashboard_path
     else
@@ -81,15 +81,6 @@ class AccountsController < ApplicationController
   end
 
   private
-
-
-  def update_password
-    if current_user.encrypted_password.blank?
-      current_user.update_attributes(password_settings_params)
-    else
-      current_user.update_with_password(password_settings_params)
-    end
-  end
 
   def correspondent_details_params
     params.require(:user).permit(

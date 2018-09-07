@@ -1,11 +1,11 @@
 .DS_Store
 .bundle
-log/*.log
-log/*.pid
-tmp/**/*
-vendor/bundle
+/log/*.log
+/log/*.pid
+/tmp/**/*
+/vendor/bundle
 rspec.watchr
-public/uploads/*
+/public/uploads/*
 .pgpass
 certs/*
 .env

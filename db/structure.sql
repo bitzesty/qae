@@ -2,13 +2,15 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.6
--- Dumped by pg_dump version 9.5.6
+-- Dumped from database version 9.5.12
+-- Dumped by pg_dump version 10.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
 SET row_security = off;
@@ -41,8 +43,6 @@ CREATE EXTENSION IF NOT EXISTS hstore WITH SCHEMA public;
 COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs';
 
 
-SET search_path = public, pg_catalog;
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
@@ -51,7 +51,7 @@ SET default_with_oids = false;
 -- Name: accounts; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE accounts (
+CREATE TABLE public.accounts (
     id integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -63,7 +63,7 @@ CREATE TABLE accounts (
 -- Name: accounts_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE accounts_id_seq
+CREATE SEQUENCE public.accounts_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -75,14 +75,14 @@ CREATE SEQUENCE accounts_id_seq
 -- Name: accounts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE accounts_id_seq OWNED BY accounts.id;
+ALTER SEQUENCE public.accounts_id_seq OWNED BY public.accounts.id;
 
 
 --
 -- Name: admins; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE admins (
+CREATE TABLE public.admins (
     id integer NOT NULL,
     email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
@@ -108,7 +108,8 @@ CREATE TABLE admins (
     unlock_token character varying,
     locked_at timestamp without time zone,
     superadmin boolean DEFAULT false,
-    deleted boolean DEFAULT false
+    deleted boolean DEFAULT false,
+    autosave_token character varying
 );
 
 
@@ -116,7 +117,7 @@ CREATE TABLE admins (
 -- Name: admins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE admins_id_seq
+CREATE SEQUENCE public.admins_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -128,14 +129,14 @@ CREATE SEQUENCE admins_id_seq
 -- Name: admins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE admins_id_seq OWNED BY admins.id;
+ALTER SEQUENCE public.admins_id_seq OWNED BY public.admins.id;
 
 
 --
 -- Name: aggregated_award_year_pdfs; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE aggregated_award_year_pdfs (
+CREATE TABLE public.aggregated_award_year_pdfs (
     id integer NOT NULL,
     award_year_id integer,
     award_category character varying,
@@ -152,7 +153,7 @@ CREATE TABLE aggregated_award_year_pdfs (
 -- Name: aggregated_award_year_pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE aggregated_award_year_pdfs_id_seq
+CREATE SEQUENCE public.aggregated_award_year_pdfs_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -164,21 +165,21 @@ CREATE SEQUENCE aggregated_award_year_pdfs_id_seq
 -- Name: aggregated_award_year_pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE aggregated_award_year_pdfs_id_seq OWNED BY aggregated_award_year_pdfs.id;
+ALTER SEQUENCE public.aggregated_award_year_pdfs_id_seq OWNED BY public.aggregated_award_year_pdfs.id;
 
 
 --
 -- Name: assessor_assignments; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE assessor_assignments (
+CREATE TABLE public.assessor_assignments (
     id integer NOT NULL,
     form_answer_id integer NOT NULL,
     assessor_id integer,
     "position" integer DEFAULT 0 NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    document hstore,
+    document public.hstore,
     submitted_at timestamp without time zone,
     editable_type character varying,
     editable_id integer,
@@ -192,7 +193,7 @@ CREATE TABLE assessor_assignments (
 -- Name: assessor_assignments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE assessor_assignments_id_seq
+CREATE SEQUENCE public.assessor_assignments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -204,14 +205,14 @@ CREATE SEQUENCE assessor_assignments_id_seq
 -- Name: assessor_assignments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE assessor_assignments_id_seq OWNED BY assessor_assignments.id;
+ALTER SEQUENCE public.assessor_assignments_id_seq OWNED BY public.assessor_assignments.id;
 
 
 --
 -- Name: assessors; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE assessors (
+CREATE TABLE public.assessors (
     id integer NOT NULL,
     email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
@@ -240,7 +241,8 @@ CREATE TABLE assessors (
     locked_at timestamp without time zone,
     company character varying,
     mobility_role character varying,
-    deleted boolean DEFAULT false
+    deleted boolean DEFAULT false,
+    autosave_token character varying
 );
 
 
@@ -248,7 +250,7 @@ CREATE TABLE assessors (
 -- Name: assessors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE assessors_id_seq
+CREATE SEQUENCE public.assessors_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -260,14 +262,14 @@ CREATE SEQUENCE assessors_id_seq
 -- Name: assessors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE assessors_id_seq OWNED BY assessors.id;
+ALTER SEQUENCE public.assessors_id_seq OWNED BY public.assessors.id;
 
 
 --
 -- Name: audit_certificates; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE audit_certificates (
+CREATE TABLE public.audit_certificates (
     id integer NOT NULL,
     form_answer_id integer NOT NULL,
     attachment character varying,
@@ -278,7 +280,8 @@ CREATE TABLE audit_certificates (
     reviewable_id integer,
     reviewed_at timestamp without time zone,
     status integer,
-    attachment_scan_results character varying
+    attachment_scan_results character varying,
+    cached_filename character varying
 );
 
 
@@ -286,7 +289,7 @@ CREATE TABLE audit_certificates (
 -- Name: audit_certificates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE audit_certificates_id_seq
+CREATE SEQUENCE public.audit_certificates_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -298,14 +301,14 @@ CREATE SEQUENCE audit_certificates_id_seq
 -- Name: audit_certificates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE audit_certificates_id_seq OWNED BY audit_certificates.id;
+ALTER SEQUENCE public.audit_certificates_id_seq OWNED BY public.audit_certificates.id;
 
 
 --
 -- Name: audit_logs; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE audit_logs (
+CREATE TABLE public.audit_logs (
     id integer NOT NULL,
     subject_id integer,
     subject_type character varying,
@@ -321,7 +324,7 @@ CREATE TABLE audit_logs (
 -- Name: audit_logs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE audit_logs_id_seq
+CREATE SEQUENCE public.audit_logs_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -333,14 +336,14 @@ CREATE SEQUENCE audit_logs_id_seq
 -- Name: audit_logs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE audit_logs_id_seq OWNED BY audit_logs.id;
+ALTER SEQUENCE public.audit_logs_id_seq OWNED BY public.audit_logs.id;
 
 
 --
 -- Name: award_years; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE award_years (
+CREATE TABLE public.award_years (
     id integer NOT NULL,
     year integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
@@ -357,7 +360,7 @@ CREATE TABLE award_years (
 -- Name: award_years_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE award_years_id_seq
+CREATE SEQUENCE public.award_years_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -369,14 +372,14 @@ CREATE SEQUENCE award_years_id_seq
 -- Name: award_years_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE award_years_id_seq OWNED BY award_years.id;
+ALTER SEQUENCE public.award_years_id_seq OWNED BY public.award_years.id;
 
 
 --
 -- Name: case_summary_hard_copy_pdfs; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE case_summary_hard_copy_pdfs (
+CREATE TABLE public.case_summary_hard_copy_pdfs (
     id integer NOT NULL,
     form_answer_id integer,
     file character varying,
@@ -390,7 +393,7 @@ CREATE TABLE case_summary_hard_copy_pdfs (
 -- Name: case_summary_hard_copy_pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE case_summary_hard_copy_pdfs_id_seq
+CREATE SEQUENCE public.case_summary_hard_copy_pdfs_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -402,14 +405,14 @@ CREATE SEQUENCE case_summary_hard_copy_pdfs_id_seq
 -- Name: case_summary_hard_copy_pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE case_summary_hard_copy_pdfs_id_seq OWNED BY case_summary_hard_copy_pdfs.id;
+ALTER SEQUENCE public.case_summary_hard_copy_pdfs_id_seq OWNED BY public.case_summary_hard_copy_pdfs.id;
 
 
 --
 -- Name: comments; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE comments (
+CREATE TABLE public.comments (
     id integer NOT NULL,
     commentable_id integer NOT NULL,
     commentable_type character varying NOT NULL,
@@ -427,7 +430,7 @@ CREATE TABLE comments (
 -- Name: comments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE comments_id_seq
+CREATE SEQUENCE public.comments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -439,14 +442,14 @@ CREATE SEQUENCE comments_id_seq
 -- Name: comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
+ALTER SEQUENCE public.comments_id_seq OWNED BY public.comments.id;
 
 
 --
 -- Name: deadlines; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE deadlines (
+CREATE TABLE public.deadlines (
     id integer NOT NULL,
     kind character varying,
     trigger_at timestamp without time zone,
@@ -461,7 +464,7 @@ CREATE TABLE deadlines (
 -- Name: deadlines_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE deadlines_id_seq
+CREATE SEQUENCE public.deadlines_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -473,14 +476,14 @@ CREATE SEQUENCE deadlines_id_seq
 -- Name: deadlines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE deadlines_id_seq OWNED BY deadlines.id;
+ALTER SEQUENCE public.deadlines_id_seq OWNED BY public.deadlines.id;
 
 
 --
 -- Name: draft_notes; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE draft_notes (
+CREATE TABLE public.draft_notes (
     id integer NOT NULL,
     content text,
     notable_type character varying NOT NULL,
@@ -497,7 +500,7 @@ CREATE TABLE draft_notes (
 -- Name: draft_notes_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE draft_notes_id_seq
+CREATE SEQUENCE public.draft_notes_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -509,17 +512,17 @@ CREATE SEQUENCE draft_notes_id_seq
 -- Name: draft_notes_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE draft_notes_id_seq OWNED BY draft_notes.id;
+ALTER SEQUENCE public.draft_notes_id_seq OWNED BY public.draft_notes.id;
 
 
 --
 -- Name: eligibilities; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE eligibilities (
+CREATE TABLE public.eligibilities (
     id integer NOT NULL,
     account_id integer,
-    answers hstore,
+    answers public.hstore,
     passed boolean,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
@@ -532,7 +535,7 @@ CREATE TABLE eligibilities (
 -- Name: eligibilities_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE eligibilities_id_seq
+CREATE SEQUENCE public.eligibilities_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -544,14 +547,14 @@ CREATE SEQUENCE eligibilities_id_seq
 -- Name: eligibilities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE eligibilities_id_seq OWNED BY eligibilities.id;
+ALTER SEQUENCE public.eligibilities_id_seq OWNED BY public.eligibilities.id;
 
 
 --
 -- Name: email_notifications; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE email_notifications (
+CREATE TABLE public.email_notifications (
     id integer NOT NULL,
     kind character varying,
     sent boolean,
@@ -566,7 +569,7 @@ CREATE TABLE email_notifications (
 -- Name: email_notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE email_notifications_id_seq
+CREATE SEQUENCE public.email_notifications_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -578,14 +581,14 @@ CREATE SEQUENCE email_notifications_id_seq
 -- Name: email_notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE email_notifications_id_seq OWNED BY email_notifications.id;
+ALTER SEQUENCE public.email_notifications_id_seq OWNED BY public.email_notifications.id;
 
 
 --
 -- Name: feedback_hard_copy_pdfs; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE feedback_hard_copy_pdfs (
+CREATE TABLE public.feedback_hard_copy_pdfs (
     id integer NOT NULL,
     form_answer_id integer,
     file character varying,
@@ -599,7 +602,7 @@ CREATE TABLE feedback_hard_copy_pdfs (
 -- Name: feedback_hard_copy_pdfs_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE feedback_hard_copy_pdfs_id_seq
+CREATE SEQUENCE public.feedback_hard_copy_pdfs_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -611,18 +614,18 @@ CREATE SEQUENCE feedback_hard_copy_pdfs_id_seq
 -- Name: feedback_hard_copy_pdfs_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE feedback_hard_copy_pdfs_id_seq OWNED BY feedback_hard_copy_pdfs.id;
+ALTER SEQUENCE public.feedback_hard_copy_pdfs_id_seq OWNED BY public.feedback_hard_copy_pdfs.id;
 
 
 --
 -- Name: feedbacks; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE feedbacks (
+CREATE TABLE public.feedbacks (
     id integer NOT NULL,
     form_answer_id integer,
     submitted boolean DEFAULT false,
-    document hstore,
+    document public.hstore,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     authorable_type character varying,
@@ -636,7 +639,7 @@ CREATE TABLE feedbacks (
 -- Name: feedbacks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE feedbacks_id_seq
+CREATE SEQUENCE public.feedbacks_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -648,14 +651,14 @@ CREATE SEQUENCE feedbacks_id_seq
 -- Name: feedbacks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE feedbacks_id_seq OWNED BY feedbacks.id;
+ALTER SEQUENCE public.feedbacks_id_seq OWNED BY public.feedbacks.id;
 
 
 --
 -- Name: form_answer_attachments; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE form_answer_attachments (
+CREATE TABLE public.form_answer_attachments (
     id integer NOT NULL,
     form_answer_id integer,
     file text,
@@ -667,7 +670,8 @@ CREATE TABLE form_answer_attachments (
     title character varying,
     restricted_to_admin boolean DEFAULT false,
     question_key character varying,
-    file_scan_results character varying
+    file_scan_results character varying,
+    cached_filename character varying
 );
 
 
@@ -675,7 +679,7 @@ CREATE TABLE form_answer_attachments (
 -- Name: form_answer_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE form_answer_attachments_id_seq
+CREATE SEQUENCE public.form_answer_attachments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -687,16 +691,16 @@ CREATE SEQUENCE form_answer_attachments_id_seq
 -- Name: form_answer_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE form_answer_attachments_id_seq OWNED BY form_answer_attachments.id;
+ALTER SEQUENCE public.form_answer_attachments_id_seq OWNED BY public.form_answer_attachments.id;
 
 
 --
 -- Name: form_answer_progresses; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE form_answer_progresses (
+CREATE TABLE public.form_answer_progresses (
     id integer NOT NULL,
-    sections hstore,
+    sections public.hstore,
     form_answer_id integer NOT NULL
 );
 
@@ -705,7 +709,7 @@ CREATE TABLE form_answer_progresses (
 -- Name: form_answer_progresses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE form_answer_progresses_id_seq
+CREATE SEQUENCE public.form_answer_progresses_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -717,14 +721,14 @@ CREATE SEQUENCE form_answer_progresses_id_seq
 -- Name: form_answer_progresses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE form_answer_progresses_id_seq OWNED BY form_answer_progresses.id;
+ALTER SEQUENCE public.form_answer_progresses_id_seq OWNED BY public.form_answer_progresses.id;
 
 
 --
 -- Name: form_answer_transitions; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE form_answer_transitions (
+CREATE TABLE public.form_answer_transitions (
     id integer NOT NULL,
     to_state character varying NOT NULL,
     metadata text DEFAULT '{}'::text,
@@ -739,7 +743,7 @@ CREATE TABLE form_answer_transitions (
 -- Name: form_answer_transitions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE form_answer_transitions_id_seq
+CREATE SEQUENCE public.form_answer_transitions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -751,14 +755,14 @@ CREATE SEQUENCE form_answer_transitions_id_seq
 -- Name: form_answer_transitions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE form_answer_transitions_id_seq OWNED BY form_answer_transitions.id;
+ALTER SEQUENCE public.form_answer_transitions_id_seq OWNED BY public.form_answer_transitions.id;
 
 
 --
 -- Name: form_answers; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE form_answers (
+CREATE TABLE public.form_answers (
     id integer NOT NULL,
     user_id integer,
     created_at timestamp without time zone,
@@ -774,7 +778,7 @@ CREATE TABLE form_answers (
     user_full_name character varying,
     award_type_full_name character varying,
     nickname character varying,
-    financial_data hstore,
+    financial_data public.hstore,
     accepted boolean DEFAULT false,
     company_details_updated_at timestamp without time zone,
     award_year_id integer NOT NULL,
@@ -801,7 +805,7 @@ CREATE TABLE form_answers (
 -- Name: form_answers_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE form_answers_id_seq
+CREATE SEQUENCE public.form_answers_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -813,14 +817,14 @@ CREATE SEQUENCE form_answers_id_seq
 -- Name: form_answers_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE form_answers_id_seq OWNED BY form_answers.id;
+ALTER SEQUENCE public.form_answers_id_seq OWNED BY public.form_answers.id;
 
 
 --
 -- Name: palace_attendees; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE palace_attendees (
+CREATE TABLE public.palace_attendees (
     id integer NOT NULL,
     title character varying,
     first_name character varying,
@@ -844,7 +848,7 @@ CREATE TABLE palace_attendees (
 -- Name: palace_attendees_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE palace_attendees_id_seq
+CREATE SEQUENCE public.palace_attendees_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -856,14 +860,14 @@ CREATE SEQUENCE palace_attendees_id_seq
 -- Name: palace_attendees_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE palace_attendees_id_seq OWNED BY palace_attendees.id;
+ALTER SEQUENCE public.palace_attendees_id_seq OWNED BY public.palace_attendees.id;
 
 
 --
 -- Name: palace_invites; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE palace_invites (
+CREATE TABLE public.palace_invites (
     id integer NOT NULL,
     email character varying,
     form_answer_id integer,
@@ -878,7 +882,7 @@ CREATE TABLE palace_invites (
 -- Name: palace_invites_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE palace_invites_id_seq
+CREATE SEQUENCE public.palace_invites_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -890,14 +894,14 @@ CREATE SEQUENCE palace_invites_id_seq
 -- Name: palace_invites_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE palace_invites_id_seq OWNED BY palace_invites.id;
+ALTER SEQUENCE public.palace_invites_id_seq OWNED BY public.palace_invites.id;
 
 
 --
 -- Name: press_summaries; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE press_summaries (
+CREATE TABLE public.press_summaries (
     id integer NOT NULL,
     form_answer_id integer NOT NULL,
     body text,
@@ -922,7 +926,7 @@ CREATE TABLE press_summaries (
 -- Name: press_summaries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE press_summaries_id_seq
+CREATE SEQUENCE public.press_summaries_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -934,14 +938,14 @@ CREATE SEQUENCE press_summaries_id_seq
 -- Name: press_summaries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE press_summaries_id_seq OWNED BY press_summaries.id;
+ALTER SEQUENCE public.press_summaries_id_seq OWNED BY public.press_summaries.id;
 
 
 --
 -- Name: previous_wins; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE previous_wins (
+CREATE TABLE public.previous_wins (
     id integer NOT NULL,
     form_answer_id integer NOT NULL,
     category character varying,
@@ -955,7 +959,7 @@ CREATE TABLE previous_wins (
 -- Name: previous_wins_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE previous_wins_id_seq
+CREATE SEQUENCE public.previous_wins_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -967,14 +971,14 @@ CREATE SEQUENCE previous_wins_id_seq
 -- Name: previous_wins_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE previous_wins_id_seq OWNED BY previous_wins.id;
+ALTER SEQUENCE public.previous_wins_id_seq OWNED BY public.previous_wins.id;
 
 
 --
 -- Name: scans; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE scans (
+CREATE TABLE public.scans (
     id integer NOT NULL,
     uuid character varying NOT NULL,
     filename character varying,
@@ -992,7 +996,7 @@ CREATE TABLE scans (
 -- Name: scans_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE scans_id_seq
+CREATE SEQUENCE public.scans_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1004,14 +1008,14 @@ CREATE SEQUENCE scans_id_seq
 -- Name: scans_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE scans_id_seq OWNED BY scans.id;
+ALTER SEQUENCE public.scans_id_seq OWNED BY public.scans.id;
 
 
 --
 -- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE schema_migrations (
+CREATE TABLE public.schema_migrations (
     version character varying NOT NULL
 );
 
@@ -1020,7 +1024,7 @@ CREATE TABLE schema_migrations (
 -- Name: settings; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE settings (
+CREATE TABLE public.settings (
     id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -1032,7 +1036,7 @@ CREATE TABLE settings (
 -- Name: settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE settings_id_seq
+CREATE SEQUENCE public.settings_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1044,14 +1048,14 @@ CREATE SEQUENCE settings_id_seq
 -- Name: settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE settings_id_seq OWNED BY settings.id;
+ALTER SEQUENCE public.settings_id_seq OWNED BY public.settings.id;
 
 
 --
 -- Name: site_feedbacks; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE site_feedbacks (
+CREATE TABLE public.site_feedbacks (
     id integer NOT NULL,
     rating integer,
     comment text,
@@ -1064,7 +1068,7 @@ CREATE TABLE site_feedbacks (
 -- Name: site_feedbacks_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE site_feedbacks_id_seq
+CREATE SEQUENCE public.site_feedbacks_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1076,14 +1080,14 @@ CREATE SEQUENCE site_feedbacks_id_seq
 -- Name: site_feedbacks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE site_feedbacks_id_seq OWNED BY site_feedbacks.id;
+ALTER SEQUENCE public.site_feedbacks_id_seq OWNED BY public.site_feedbacks.id;
 
 
 --
 -- Name: support_letter_attachments; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE support_letter_attachments (
+CREATE TABLE public.support_letter_attachments (
     id integer NOT NULL,
     user_id integer NOT NULL,
     form_answer_id integer NOT NULL,
@@ -1092,7 +1096,8 @@ CREATE TABLE support_letter_attachments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     support_letter_id integer,
-    attachment_scan_results character varying
+    attachment_scan_results character varying,
+    cached_filename character varying
 );
 
 
@@ -1100,7 +1105,7 @@ CREATE TABLE support_letter_attachments (
 -- Name: support_letter_attachments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE support_letter_attachments_id_seq
+CREATE SEQUENCE public.support_letter_attachments_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1112,14 +1117,14 @@ CREATE SEQUENCE support_letter_attachments_id_seq
 -- Name: support_letter_attachments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE support_letter_attachments_id_seq OWNED BY support_letter_attachments.id;
+ALTER SEQUENCE public.support_letter_attachments_id_seq OWNED BY public.support_letter_attachments.id;
 
 
 --
 -- Name: support_letters; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE support_letters (
+CREATE TABLE public.support_letters (
     id integer NOT NULL,
     supporter_id integer,
     body text,
@@ -1145,7 +1150,7 @@ CREATE TABLE support_letters (
 -- Name: support_letters_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE support_letters_id_seq
+CREATE SEQUENCE public.support_letters_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1157,14 +1162,14 @@ CREATE SEQUENCE support_letters_id_seq
 -- Name: support_letters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE support_letters_id_seq OWNED BY support_letters.id;
+ALTER SEQUENCE public.support_letters_id_seq OWNED BY public.support_letters.id;
 
 
 --
 -- Name: supporters; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE supporters (
+CREATE TABLE public.supporters (
     id integer NOT NULL,
     form_answer_id integer,
     email character varying,
@@ -1182,7 +1187,7 @@ CREATE TABLE supporters (
 -- Name: supporters_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE supporters_id_seq
+CREATE SEQUENCE public.supporters_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1194,14 +1199,14 @@ CREATE SEQUENCE supporters_id_seq
 -- Name: supporters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE supporters_id_seq OWNED BY supporters.id;
+ALTER SEQUENCE public.supporters_id_seq OWNED BY public.supporters.id;
 
 
 --
 -- Name: urn_seq_2015; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2015
+CREATE SEQUENCE public.urn_seq_2015
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1213,7 +1218,7 @@ CREATE SEQUENCE urn_seq_2015
 -- Name: urn_seq_2016; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2016
+CREATE SEQUENCE public.urn_seq_2016
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1225,7 +1230,7 @@ CREATE SEQUENCE urn_seq_2016
 -- Name: urn_seq_2017; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2017
+CREATE SEQUENCE public.urn_seq_2017
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1237,7 +1242,7 @@ CREATE SEQUENCE urn_seq_2017
 -- Name: urn_seq_2018; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2018
+CREATE SEQUENCE public.urn_seq_2018
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1249,7 +1254,7 @@ CREATE SEQUENCE urn_seq_2018
 -- Name: urn_seq_2019; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2019
+CREATE SEQUENCE public.urn_seq_2019
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1261,7 +1266,7 @@ CREATE SEQUENCE urn_seq_2019
 -- Name: urn_seq_2020; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2020
+CREATE SEQUENCE public.urn_seq_2020
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1273,7 +1278,7 @@ CREATE SEQUENCE urn_seq_2020
 -- Name: urn_seq_2021; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2021
+CREATE SEQUENCE public.urn_seq_2021
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1285,7 +1290,7 @@ CREATE SEQUENCE urn_seq_2021
 -- Name: urn_seq_2022; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2022
+CREATE SEQUENCE public.urn_seq_2022
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1297,7 +1302,7 @@ CREATE SEQUENCE urn_seq_2022
 -- Name: urn_seq_2023; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2023
+CREATE SEQUENCE public.urn_seq_2023
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1309,7 +1314,7 @@ CREATE SEQUENCE urn_seq_2023
 -- Name: urn_seq_2024; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2024
+CREATE SEQUENCE public.urn_seq_2024
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1321,7 +1326,7 @@ CREATE SEQUENCE urn_seq_2024
 -- Name: urn_seq_2025; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2025
+CREATE SEQUENCE public.urn_seq_2025
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1333,7 +1338,7 @@ CREATE SEQUENCE urn_seq_2025
 -- Name: urn_seq_2026; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2026
+CREATE SEQUENCE public.urn_seq_2026
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1345,7 +1350,7 @@ CREATE SEQUENCE urn_seq_2026
 -- Name: urn_seq_2027; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2027
+CREATE SEQUENCE public.urn_seq_2027
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1357,7 +1362,7 @@ CREATE SEQUENCE urn_seq_2027
 -- Name: urn_seq_2028; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2028
+CREATE SEQUENCE public.urn_seq_2028
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1369,7 +1374,7 @@ CREATE SEQUENCE urn_seq_2028
 -- Name: urn_seq_2029; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2029
+CREATE SEQUENCE public.urn_seq_2029
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1381,7 +1386,7 @@ CREATE SEQUENCE urn_seq_2029
 -- Name: urn_seq_2030; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2030
+CREATE SEQUENCE public.urn_seq_2030
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1393,7 +1398,7 @@ CREATE SEQUENCE urn_seq_2030
 -- Name: urn_seq_2031; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2031
+CREATE SEQUENCE public.urn_seq_2031
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1405,7 +1410,7 @@ CREATE SEQUENCE urn_seq_2031
 -- Name: urn_seq_2032; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2032
+CREATE SEQUENCE public.urn_seq_2032
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1417,7 +1422,7 @@ CREATE SEQUENCE urn_seq_2032
 -- Name: urn_seq_2033; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2033
+CREATE SEQUENCE public.urn_seq_2033
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1429,7 +1434,7 @@ CREATE SEQUENCE urn_seq_2033
 -- Name: urn_seq_2034; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2034
+CREATE SEQUENCE public.urn_seq_2034
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1441,7 +1446,7 @@ CREATE SEQUENCE urn_seq_2034
 -- Name: urn_seq_2035; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2035
+CREATE SEQUENCE public.urn_seq_2035
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1453,7 +1458,7 @@ CREATE SEQUENCE urn_seq_2035
 -- Name: urn_seq_2036; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2036
+CREATE SEQUENCE public.urn_seq_2036
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1465,7 +1470,7 @@ CREATE SEQUENCE urn_seq_2036
 -- Name: urn_seq_2037; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2037
+CREATE SEQUENCE public.urn_seq_2037
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1477,7 +1482,7 @@ CREATE SEQUENCE urn_seq_2037
 -- Name: urn_seq_2038; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2038
+CREATE SEQUENCE public.urn_seq_2038
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1489,7 +1494,7 @@ CREATE SEQUENCE urn_seq_2038
 -- Name: urn_seq_2039; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2039
+CREATE SEQUENCE public.urn_seq_2039
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1501,7 +1506,7 @@ CREATE SEQUENCE urn_seq_2039
 -- Name: urn_seq_2040; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2040
+CREATE SEQUENCE public.urn_seq_2040
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1513,7 +1518,7 @@ CREATE SEQUENCE urn_seq_2040
 -- Name: urn_seq_2041; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2041
+CREATE SEQUENCE public.urn_seq_2041
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1525,7 +1530,7 @@ CREATE SEQUENCE urn_seq_2041
 -- Name: urn_seq_2042; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2042
+CREATE SEQUENCE public.urn_seq_2042
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1537,7 +1542,7 @@ CREATE SEQUENCE urn_seq_2042
 -- Name: urn_seq_2043; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2043
+CREATE SEQUENCE public.urn_seq_2043
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1549,7 +1554,7 @@ CREATE SEQUENCE urn_seq_2043
 -- Name: urn_seq_2044; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2044
+CREATE SEQUENCE public.urn_seq_2044
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1561,7 +1566,7 @@ CREATE SEQUENCE urn_seq_2044
 -- Name: urn_seq_2045; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2045
+CREATE SEQUENCE public.urn_seq_2045
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1573,7 +1578,7 @@ CREATE SEQUENCE urn_seq_2045
 -- Name: urn_seq_2046; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2046
+CREATE SEQUENCE public.urn_seq_2046
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1585,7 +1590,7 @@ CREATE SEQUENCE urn_seq_2046
 -- Name: urn_seq_2047; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2047
+CREATE SEQUENCE public.urn_seq_2047
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1597,7 +1602,7 @@ CREATE SEQUENCE urn_seq_2047
 -- Name: urn_seq_2048; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2048
+CREATE SEQUENCE public.urn_seq_2048
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1609,7 +1614,7 @@ CREATE SEQUENCE urn_seq_2048
 -- Name: urn_seq_2049; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2049
+CREATE SEQUENCE public.urn_seq_2049
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1621,7 +1626,7 @@ CREATE SEQUENCE urn_seq_2049
 -- Name: urn_seq_2050; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2050
+CREATE SEQUENCE public.urn_seq_2050
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1633,7 +1638,7 @@ CREATE SEQUENCE urn_seq_2050
 -- Name: urn_seq_2051; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2051
+CREATE SEQUENCE public.urn_seq_2051
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1645,7 +1650,7 @@ CREATE SEQUENCE urn_seq_2051
 -- Name: urn_seq_2052; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2052
+CREATE SEQUENCE public.urn_seq_2052
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1657,7 +1662,7 @@ CREATE SEQUENCE urn_seq_2052
 -- Name: urn_seq_2053; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2053
+CREATE SEQUENCE public.urn_seq_2053
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1669,7 +1674,7 @@ CREATE SEQUENCE urn_seq_2053
 -- Name: urn_seq_2054; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2054
+CREATE SEQUENCE public.urn_seq_2054
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1681,7 +1686,7 @@ CREATE SEQUENCE urn_seq_2054
 -- Name: urn_seq_2055; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2055
+CREATE SEQUENCE public.urn_seq_2055
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1693,7 +1698,7 @@ CREATE SEQUENCE urn_seq_2055
 -- Name: urn_seq_2056; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2056
+CREATE SEQUENCE public.urn_seq_2056
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1705,7 +1710,7 @@ CREATE SEQUENCE urn_seq_2056
 -- Name: urn_seq_2057; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2057
+CREATE SEQUENCE public.urn_seq_2057
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1717,7 +1722,7 @@ CREATE SEQUENCE urn_seq_2057
 -- Name: urn_seq_2058; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2058
+CREATE SEQUENCE public.urn_seq_2058
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1729,7 +1734,7 @@ CREATE SEQUENCE urn_seq_2058
 -- Name: urn_seq_2059; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2059
+CREATE SEQUENCE public.urn_seq_2059
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1741,7 +1746,7 @@ CREATE SEQUENCE urn_seq_2059
 -- Name: urn_seq_2060; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2060
+CREATE SEQUENCE public.urn_seq_2060
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1753,7 +1758,7 @@ CREATE SEQUENCE urn_seq_2060
 -- Name: urn_seq_2061; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2061
+CREATE SEQUENCE public.urn_seq_2061
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1765,7 +1770,7 @@ CREATE SEQUENCE urn_seq_2061
 -- Name: urn_seq_2062; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2062
+CREATE SEQUENCE public.urn_seq_2062
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1777,7 +1782,7 @@ CREATE SEQUENCE urn_seq_2062
 -- Name: urn_seq_2063; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2063
+CREATE SEQUENCE public.urn_seq_2063
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1789,7 +1794,7 @@ CREATE SEQUENCE urn_seq_2063
 -- Name: urn_seq_2064; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2064
+CREATE SEQUENCE public.urn_seq_2064
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1801,7 +1806,7 @@ CREATE SEQUENCE urn_seq_2064
 -- Name: urn_seq_2065; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_2065
+CREATE SEQUENCE public.urn_seq_2065
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1813,7 +1818,7 @@ CREATE SEQUENCE urn_seq_2065
 -- Name: urn_seq_promotion_2015; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2015
+CREATE SEQUENCE public.urn_seq_promotion_2015
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1825,7 +1830,7 @@ CREATE SEQUENCE urn_seq_promotion_2015
 -- Name: urn_seq_promotion_2016; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2016
+CREATE SEQUENCE public.urn_seq_promotion_2016
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1837,7 +1842,7 @@ CREATE SEQUENCE urn_seq_promotion_2016
 -- Name: urn_seq_promotion_2017; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2017
+CREATE SEQUENCE public.urn_seq_promotion_2017
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1849,7 +1854,7 @@ CREATE SEQUENCE urn_seq_promotion_2017
 -- Name: urn_seq_promotion_2018; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2018
+CREATE SEQUENCE public.urn_seq_promotion_2018
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1861,7 +1866,7 @@ CREATE SEQUENCE urn_seq_promotion_2018
 -- Name: urn_seq_promotion_2019; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2019
+CREATE SEQUENCE public.urn_seq_promotion_2019
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1873,7 +1878,7 @@ CREATE SEQUENCE urn_seq_promotion_2019
 -- Name: urn_seq_promotion_2020; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2020
+CREATE SEQUENCE public.urn_seq_promotion_2020
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1885,7 +1890,7 @@ CREATE SEQUENCE urn_seq_promotion_2020
 -- Name: urn_seq_promotion_2021; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2021
+CREATE SEQUENCE public.urn_seq_promotion_2021
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1897,7 +1902,7 @@ CREATE SEQUENCE urn_seq_promotion_2021
 -- Name: urn_seq_promotion_2022; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2022
+CREATE SEQUENCE public.urn_seq_promotion_2022
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1909,7 +1914,7 @@ CREATE SEQUENCE urn_seq_promotion_2022
 -- Name: urn_seq_promotion_2023; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2023
+CREATE SEQUENCE public.urn_seq_promotion_2023
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1921,7 +1926,7 @@ CREATE SEQUENCE urn_seq_promotion_2023
 -- Name: urn_seq_promotion_2024; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2024
+CREATE SEQUENCE public.urn_seq_promotion_2024
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1933,7 +1938,7 @@ CREATE SEQUENCE urn_seq_promotion_2024
 -- Name: urn_seq_promotion_2025; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2025
+CREATE SEQUENCE public.urn_seq_promotion_2025
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1945,7 +1950,7 @@ CREATE SEQUENCE urn_seq_promotion_2025
 -- Name: urn_seq_promotion_2026; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2026
+CREATE SEQUENCE public.urn_seq_promotion_2026
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1957,7 +1962,7 @@ CREATE SEQUENCE urn_seq_promotion_2026
 -- Name: urn_seq_promotion_2027; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2027
+CREATE SEQUENCE public.urn_seq_promotion_2027
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1969,7 +1974,7 @@ CREATE SEQUENCE urn_seq_promotion_2027
 -- Name: urn_seq_promotion_2028; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2028
+CREATE SEQUENCE public.urn_seq_promotion_2028
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1981,7 +1986,7 @@ CREATE SEQUENCE urn_seq_promotion_2028
 -- Name: urn_seq_promotion_2029; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2029
+CREATE SEQUENCE public.urn_seq_promotion_2029
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1993,7 +1998,7 @@ CREATE SEQUENCE urn_seq_promotion_2029
 -- Name: urn_seq_promotion_2030; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2030
+CREATE SEQUENCE public.urn_seq_promotion_2030
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2005,7 +2010,7 @@ CREATE SEQUENCE urn_seq_promotion_2030
 -- Name: urn_seq_promotion_2031; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2031
+CREATE SEQUENCE public.urn_seq_promotion_2031
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2017,7 +2022,7 @@ CREATE SEQUENCE urn_seq_promotion_2031
 -- Name: urn_seq_promotion_2032; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2032
+CREATE SEQUENCE public.urn_seq_promotion_2032
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2029,7 +2034,7 @@ CREATE SEQUENCE urn_seq_promotion_2032
 -- Name: urn_seq_promotion_2033; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2033
+CREATE SEQUENCE public.urn_seq_promotion_2033
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2041,7 +2046,7 @@ CREATE SEQUENCE urn_seq_promotion_2033
 -- Name: urn_seq_promotion_2034; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2034
+CREATE SEQUENCE public.urn_seq_promotion_2034
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2053,7 +2058,7 @@ CREATE SEQUENCE urn_seq_promotion_2034
 -- Name: urn_seq_promotion_2035; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2035
+CREATE SEQUENCE public.urn_seq_promotion_2035
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2065,7 +2070,7 @@ CREATE SEQUENCE urn_seq_promotion_2035
 -- Name: urn_seq_promotion_2036; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2036
+CREATE SEQUENCE public.urn_seq_promotion_2036
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2077,7 +2082,7 @@ CREATE SEQUENCE urn_seq_promotion_2036
 -- Name: urn_seq_promotion_2037; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2037
+CREATE SEQUENCE public.urn_seq_promotion_2037
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2089,7 +2094,7 @@ CREATE SEQUENCE urn_seq_promotion_2037
 -- Name: urn_seq_promotion_2038; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2038
+CREATE SEQUENCE public.urn_seq_promotion_2038
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2101,7 +2106,7 @@ CREATE SEQUENCE urn_seq_promotion_2038
 -- Name: urn_seq_promotion_2039; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2039
+CREATE SEQUENCE public.urn_seq_promotion_2039
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2113,7 +2118,7 @@ CREATE SEQUENCE urn_seq_promotion_2039
 -- Name: urn_seq_promotion_2040; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2040
+CREATE SEQUENCE public.urn_seq_promotion_2040
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2125,7 +2130,7 @@ CREATE SEQUENCE urn_seq_promotion_2040
 -- Name: urn_seq_promotion_2041; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2041
+CREATE SEQUENCE public.urn_seq_promotion_2041
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2137,7 +2142,7 @@ CREATE SEQUENCE urn_seq_promotion_2041
 -- Name: urn_seq_promotion_2042; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2042
+CREATE SEQUENCE public.urn_seq_promotion_2042
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2149,7 +2154,7 @@ CREATE SEQUENCE urn_seq_promotion_2042
 -- Name: urn_seq_promotion_2043; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2043
+CREATE SEQUENCE public.urn_seq_promotion_2043
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2161,7 +2166,7 @@ CREATE SEQUENCE urn_seq_promotion_2043
 -- Name: urn_seq_promotion_2044; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2044
+CREATE SEQUENCE public.urn_seq_promotion_2044
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2173,7 +2178,7 @@ CREATE SEQUENCE urn_seq_promotion_2044
 -- Name: urn_seq_promotion_2045; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2045
+CREATE SEQUENCE public.urn_seq_promotion_2045
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2185,7 +2190,7 @@ CREATE SEQUENCE urn_seq_promotion_2045
 -- Name: urn_seq_promotion_2046; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2046
+CREATE SEQUENCE public.urn_seq_promotion_2046
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2197,7 +2202,7 @@ CREATE SEQUENCE urn_seq_promotion_2046
 -- Name: urn_seq_promotion_2047; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2047
+CREATE SEQUENCE public.urn_seq_promotion_2047
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2209,7 +2214,7 @@ CREATE SEQUENCE urn_seq_promotion_2047
 -- Name: urn_seq_promotion_2048; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2048
+CREATE SEQUENCE public.urn_seq_promotion_2048
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2221,7 +2226,7 @@ CREATE SEQUENCE urn_seq_promotion_2048
 -- Name: urn_seq_promotion_2049; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2049
+CREATE SEQUENCE public.urn_seq_promotion_2049
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2233,7 +2238,7 @@ CREATE SEQUENCE urn_seq_promotion_2049
 -- Name: urn_seq_promotion_2050; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2050
+CREATE SEQUENCE public.urn_seq_promotion_2050
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2245,7 +2250,7 @@ CREATE SEQUENCE urn_seq_promotion_2050
 -- Name: urn_seq_promotion_2051; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2051
+CREATE SEQUENCE public.urn_seq_promotion_2051
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2257,7 +2262,7 @@ CREATE SEQUENCE urn_seq_promotion_2051
 -- Name: urn_seq_promotion_2052; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2052
+CREATE SEQUENCE public.urn_seq_promotion_2052
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2269,7 +2274,7 @@ CREATE SEQUENCE urn_seq_promotion_2052
 -- Name: urn_seq_promotion_2053; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2053
+CREATE SEQUENCE public.urn_seq_promotion_2053
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2281,7 +2286,7 @@ CREATE SEQUENCE urn_seq_promotion_2053
 -- Name: urn_seq_promotion_2054; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2054
+CREATE SEQUENCE public.urn_seq_promotion_2054
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2293,7 +2298,7 @@ CREATE SEQUENCE urn_seq_promotion_2054
 -- Name: urn_seq_promotion_2055; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2055
+CREATE SEQUENCE public.urn_seq_promotion_2055
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2305,7 +2310,7 @@ CREATE SEQUENCE urn_seq_promotion_2055
 -- Name: urn_seq_promotion_2056; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2056
+CREATE SEQUENCE public.urn_seq_promotion_2056
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2317,7 +2322,7 @@ CREATE SEQUENCE urn_seq_promotion_2056
 -- Name: urn_seq_promotion_2057; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2057
+CREATE SEQUENCE public.urn_seq_promotion_2057
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2329,7 +2334,7 @@ CREATE SEQUENCE urn_seq_promotion_2057
 -- Name: urn_seq_promotion_2058; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2058
+CREATE SEQUENCE public.urn_seq_promotion_2058
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2341,7 +2346,7 @@ CREATE SEQUENCE urn_seq_promotion_2058
 -- Name: urn_seq_promotion_2059; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2059
+CREATE SEQUENCE public.urn_seq_promotion_2059
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2353,7 +2358,7 @@ CREATE SEQUENCE urn_seq_promotion_2059
 -- Name: urn_seq_promotion_2060; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2060
+CREATE SEQUENCE public.urn_seq_promotion_2060
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2365,7 +2370,7 @@ CREATE SEQUENCE urn_seq_promotion_2060
 -- Name: urn_seq_promotion_2061; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2061
+CREATE SEQUENCE public.urn_seq_promotion_2061
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2377,7 +2382,7 @@ CREATE SEQUENCE urn_seq_promotion_2061
 -- Name: urn_seq_promotion_2062; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2062
+CREATE SEQUENCE public.urn_seq_promotion_2062
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2389,7 +2394,7 @@ CREATE SEQUENCE urn_seq_promotion_2062
 -- Name: urn_seq_promotion_2063; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2063
+CREATE SEQUENCE public.urn_seq_promotion_2063
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2401,7 +2406,7 @@ CREATE SEQUENCE urn_seq_promotion_2063
 -- Name: urn_seq_promotion_2064; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2064
+CREATE SEQUENCE public.urn_seq_promotion_2064
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2413,7 +2418,7 @@ CREATE SEQUENCE urn_seq_promotion_2064
 -- Name: urn_seq_promotion_2065; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE urn_seq_promotion_2065
+CREATE SEQUENCE public.urn_seq_promotion_2065
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2425,7 +2430,7 @@ CREATE SEQUENCE urn_seq_promotion_2065
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE users (
+CREATE TABLE public.users (
     id integer NOT NULL,
     email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
@@ -2479,7 +2484,7 @@ CREATE TABLE users (
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE users_id_seq
+CREATE SEQUENCE public.users_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2491,14 +2496,14 @@ CREATE SEQUENCE users_id_seq
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE users_id_seq OWNED BY users.id;
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
 -- Name: version_associations; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE version_associations (
+CREATE TABLE public.version_associations (
     id integer NOT NULL,
     version_id integer,
     foreign_key_name character varying NOT NULL,
@@ -2510,7 +2515,7 @@ CREATE TABLE version_associations (
 -- Name: version_associations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE version_associations_id_seq
+CREATE SEQUENCE public.version_associations_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2522,14 +2527,14 @@ CREATE SEQUENCE version_associations_id_seq
 -- Name: version_associations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE version_associations_id_seq OWNED BY version_associations.id;
+ALTER SEQUENCE public.version_associations_id_seq OWNED BY public.version_associations.id;
 
 
 --
 -- Name: versions; Type: TABLE; Schema: public; Owner: -
 --
 
-CREATE TABLE versions (
+CREATE TABLE public.versions (
     id integer NOT NULL,
     item_type character varying NOT NULL,
     item_id integer NOT NULL,
@@ -2546,7 +2551,7 @@ CREATE TABLE versions (
 -- Name: versions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
-CREATE SEQUENCE versions_id_seq
+CREATE SEQUENCE public.versions_id_seq
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2558,501 +2563,501 @@ CREATE SEQUENCE versions_id_seq
 -- Name: versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
 --
 
-ALTER SEQUENCE versions_id_seq OWNED BY versions.id;
+ALTER SEQUENCE public.versions_id_seq OWNED BY public.versions.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: accounts id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY accounts ALTER COLUMN id SET DEFAULT nextval('accounts_id_seq'::regclass);
+ALTER TABLE ONLY public.accounts ALTER COLUMN id SET DEFAULT nextval('public.accounts_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: admins id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY admins ALTER COLUMN id SET DEFAULT nextval('admins_id_seq'::regclass);
+ALTER TABLE ONLY public.admins ALTER COLUMN id SET DEFAULT nextval('public.admins_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: aggregated_award_year_pdfs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY aggregated_award_year_pdfs ALTER COLUMN id SET DEFAULT nextval('aggregated_award_year_pdfs_id_seq'::regclass);
+ALTER TABLE ONLY public.aggregated_award_year_pdfs ALTER COLUMN id SET DEFAULT nextval('public.aggregated_award_year_pdfs_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: assessor_assignments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY assessor_assignments ALTER COLUMN id SET DEFAULT nextval('assessor_assignments_id_seq'::regclass);
+ALTER TABLE ONLY public.assessor_assignments ALTER COLUMN id SET DEFAULT nextval('public.assessor_assignments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: assessors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY assessors ALTER COLUMN id SET DEFAULT nextval('assessors_id_seq'::regclass);
+ALTER TABLE ONLY public.assessors ALTER COLUMN id SET DEFAULT nextval('public.assessors_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: audit_certificates id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY audit_certificates ALTER COLUMN id SET DEFAULT nextval('audit_certificates_id_seq'::regclass);
+ALTER TABLE ONLY public.audit_certificates ALTER COLUMN id SET DEFAULT nextval('public.audit_certificates_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: audit_logs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY audit_logs ALTER COLUMN id SET DEFAULT nextval('audit_logs_id_seq'::regclass);
+ALTER TABLE ONLY public.audit_logs ALTER COLUMN id SET DEFAULT nextval('public.audit_logs_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: award_years id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY award_years ALTER COLUMN id SET DEFAULT nextval('award_years_id_seq'::regclass);
+ALTER TABLE ONLY public.award_years ALTER COLUMN id SET DEFAULT nextval('public.award_years_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: case_summary_hard_copy_pdfs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY case_summary_hard_copy_pdfs ALTER COLUMN id SET DEFAULT nextval('case_summary_hard_copy_pdfs_id_seq'::regclass);
+ALTER TABLE ONLY public.case_summary_hard_copy_pdfs ALTER COLUMN id SET DEFAULT nextval('public.case_summary_hard_copy_pdfs_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
+ALTER TABLE ONLY public.comments ALTER COLUMN id SET DEFAULT nextval('public.comments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: deadlines id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY deadlines ALTER COLUMN id SET DEFAULT nextval('deadlines_id_seq'::regclass);
+ALTER TABLE ONLY public.deadlines ALTER COLUMN id SET DEFAULT nextval('public.deadlines_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: draft_notes id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY draft_notes ALTER COLUMN id SET DEFAULT nextval('draft_notes_id_seq'::regclass);
+ALTER TABLE ONLY public.draft_notes ALTER COLUMN id SET DEFAULT nextval('public.draft_notes_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: eligibilities id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY eligibilities ALTER COLUMN id SET DEFAULT nextval('eligibilities_id_seq'::regclass);
+ALTER TABLE ONLY public.eligibilities ALTER COLUMN id SET DEFAULT nextval('public.eligibilities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: email_notifications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY email_notifications ALTER COLUMN id SET DEFAULT nextval('email_notifications_id_seq'::regclass);
+ALTER TABLE ONLY public.email_notifications ALTER COLUMN id SET DEFAULT nextval('public.email_notifications_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: feedback_hard_copy_pdfs id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY feedback_hard_copy_pdfs ALTER COLUMN id SET DEFAULT nextval('feedback_hard_copy_pdfs_id_seq'::regclass);
+ALTER TABLE ONLY public.feedback_hard_copy_pdfs ALTER COLUMN id SET DEFAULT nextval('public.feedback_hard_copy_pdfs_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: feedbacks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY feedbacks ALTER COLUMN id SET DEFAULT nextval('feedbacks_id_seq'::regclass);
+ALTER TABLE ONLY public.feedbacks ALTER COLUMN id SET DEFAULT nextval('public.feedbacks_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: form_answer_attachments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY form_answer_attachments ALTER COLUMN id SET DEFAULT nextval('form_answer_attachments_id_seq'::regclass);
+ALTER TABLE ONLY public.form_answer_attachments ALTER COLUMN id SET DEFAULT nextval('public.form_answer_attachments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: form_answer_progresses id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY form_answer_progresses ALTER COLUMN id SET DEFAULT nextval('form_answer_progresses_id_seq'::regclass);
+ALTER TABLE ONLY public.form_answer_progresses ALTER COLUMN id SET DEFAULT nextval('public.form_answer_progresses_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: form_answer_transitions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY form_answer_transitions ALTER COLUMN id SET DEFAULT nextval('form_answer_transitions_id_seq'::regclass);
+ALTER TABLE ONLY public.form_answer_transitions ALTER COLUMN id SET DEFAULT nextval('public.form_answer_transitions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: form_answers id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY form_answers ALTER COLUMN id SET DEFAULT nextval('form_answers_id_seq'::regclass);
+ALTER TABLE ONLY public.form_answers ALTER COLUMN id SET DEFAULT nextval('public.form_answers_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: palace_attendees id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY palace_attendees ALTER COLUMN id SET DEFAULT nextval('palace_attendees_id_seq'::regclass);
+ALTER TABLE ONLY public.palace_attendees ALTER COLUMN id SET DEFAULT nextval('public.palace_attendees_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: palace_invites id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY palace_invites ALTER COLUMN id SET DEFAULT nextval('palace_invites_id_seq'::regclass);
+ALTER TABLE ONLY public.palace_invites ALTER COLUMN id SET DEFAULT nextval('public.palace_invites_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: press_summaries id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY press_summaries ALTER COLUMN id SET DEFAULT nextval('press_summaries_id_seq'::regclass);
+ALTER TABLE ONLY public.press_summaries ALTER COLUMN id SET DEFAULT nextval('public.press_summaries_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: previous_wins id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY previous_wins ALTER COLUMN id SET DEFAULT nextval('previous_wins_id_seq'::regclass);
+ALTER TABLE ONLY public.previous_wins ALTER COLUMN id SET DEFAULT nextval('public.previous_wins_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: scans id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY scans ALTER COLUMN id SET DEFAULT nextval('scans_id_seq'::regclass);
+ALTER TABLE ONLY public.scans ALTER COLUMN id SET DEFAULT nextval('public.scans_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: settings id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY settings ALTER COLUMN id SET DEFAULT nextval('settings_id_seq'::regclass);
+ALTER TABLE ONLY public.settings ALTER COLUMN id SET DEFAULT nextval('public.settings_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: site_feedbacks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY site_feedbacks ALTER COLUMN id SET DEFAULT nextval('site_feedbacks_id_seq'::regclass);
+ALTER TABLE ONLY public.site_feedbacks ALTER COLUMN id SET DEFAULT nextval('public.site_feedbacks_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: support_letter_attachments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY support_letter_attachments ALTER COLUMN id SET DEFAULT nextval('support_letter_attachments_id_seq'::regclass);
+ALTER TABLE ONLY public.support_letter_attachments ALTER COLUMN id SET DEFAULT nextval('public.support_letter_attachments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: support_letters id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY support_letters ALTER COLUMN id SET DEFAULT nextval('support_letters_id_seq'::regclass);
+ALTER TABLE ONLY public.support_letters ALTER COLUMN id SET DEFAULT nextval('public.support_letters_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: supporters id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY supporters ALTER COLUMN id SET DEFAULT nextval('supporters_id_seq'::regclass);
+ALTER TABLE ONLY public.supporters ALTER COLUMN id SET DEFAULT nextval('public.supporters_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: version_associations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY version_associations ALTER COLUMN id SET DEFAULT nextval('version_associations_id_seq'::regclass);
+ALTER TABLE ONLY public.version_associations ALTER COLUMN id SET DEFAULT nextval('public.version_associations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: versions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY versions ALTER COLUMN id SET DEFAULT nextval('versions_id_seq'::regclass);
+ALTER TABLE ONLY public.versions ALTER COLUMN id SET DEFAULT nextval('public.versions_id_seq'::regclass);
 
 
 --
--- Name: accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: accounts accounts_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY accounts
+ALTER TABLE ONLY public.accounts
     ADD CONSTRAINT accounts_pkey PRIMARY KEY (id);
 
 
 --
--- Name: admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: admins admins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY admins
+ALTER TABLE ONLY public.admins
     ADD CONSTRAINT admins_pkey PRIMARY KEY (id);
 
 
 --
--- Name: aggregated_award_year_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: aggregated_award_year_pdfs aggregated_award_year_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY aggregated_award_year_pdfs
+ALTER TABLE ONLY public.aggregated_award_year_pdfs
     ADD CONSTRAINT aggregated_award_year_pdfs_pkey PRIMARY KEY (id);
 
 
 --
--- Name: assessor_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: assessor_assignments assessor_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY assessor_assignments
+ALTER TABLE ONLY public.assessor_assignments
     ADD CONSTRAINT assessor_assignments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: assessors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: assessors assessors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY assessors
+ALTER TABLE ONLY public.assessors
     ADD CONSTRAINT assessors_pkey PRIMARY KEY (id);
 
 
 --
--- Name: audit_certificates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: audit_certificates audit_certificates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY audit_certificates
+ALTER TABLE ONLY public.audit_certificates
     ADD CONSTRAINT audit_certificates_pkey PRIMARY KEY (id);
 
 
 --
--- Name: audit_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: audit_logs audit_logs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY audit_logs
+ALTER TABLE ONLY public.audit_logs
     ADD CONSTRAINT audit_logs_pkey PRIMARY KEY (id);
 
 
 --
--- Name: award_years_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: award_years award_years_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY award_years
+ALTER TABLE ONLY public.award_years
     ADD CONSTRAINT award_years_pkey PRIMARY KEY (id);
 
 
 --
--- Name: case_summary_hard_copy_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: case_summary_hard_copy_pdfs case_summary_hard_copy_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY case_summary_hard_copy_pdfs
+ALTER TABLE ONLY public.case_summary_hard_copy_pdfs
     ADD CONSTRAINT case_summary_hard_copy_pdfs_pkey PRIMARY KEY (id);
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY comments
+ALTER TABLE ONLY public.comments
     ADD CONSTRAINT comments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: deadlines_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: deadlines deadlines_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY deadlines
+ALTER TABLE ONLY public.deadlines
     ADD CONSTRAINT deadlines_pkey PRIMARY KEY (id);
 
 
 --
--- Name: draft_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: draft_notes draft_notes_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY draft_notes
+ALTER TABLE ONLY public.draft_notes
     ADD CONSTRAINT draft_notes_pkey PRIMARY KEY (id);
 
 
 --
--- Name: eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: eligibilities eligibilities_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY eligibilities
+ALTER TABLE ONLY public.eligibilities
     ADD CONSTRAINT eligibilities_pkey PRIMARY KEY (id);
 
 
 --
--- Name: email_notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: email_notifications email_notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY email_notifications
+ALTER TABLE ONLY public.email_notifications
     ADD CONSTRAINT email_notifications_pkey PRIMARY KEY (id);
 
 
 --
--- Name: feedback_hard_copy_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: feedback_hard_copy_pdfs feedback_hard_copy_pdfs_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY feedback_hard_copy_pdfs
+ALTER TABLE ONLY public.feedback_hard_copy_pdfs
     ADD CONSTRAINT feedback_hard_copy_pdfs_pkey PRIMARY KEY (id);
 
 
 --
--- Name: feedbacks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: feedbacks feedbacks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY feedbacks
+ALTER TABLE ONLY public.feedbacks
     ADD CONSTRAINT feedbacks_pkey PRIMARY KEY (id);
 
 
 --
--- Name: form_answer_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: form_answer_attachments form_answer_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY form_answer_attachments
+ALTER TABLE ONLY public.form_answer_attachments
     ADD CONSTRAINT form_answer_attachments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: form_answer_progresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: form_answer_progresses form_answer_progresses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY form_answer_progresses
+ALTER TABLE ONLY public.form_answer_progresses
     ADD CONSTRAINT form_answer_progresses_pkey PRIMARY KEY (id);
 
 
 --
--- Name: form_answer_transitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: form_answer_transitions form_answer_transitions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY form_answer_transitions
+ALTER TABLE ONLY public.form_answer_transitions
     ADD CONSTRAINT form_answer_transitions_pkey PRIMARY KEY (id);
 
 
 --
--- Name: form_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: form_answers form_answers_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY form_answers
+ALTER TABLE ONLY public.form_answers
     ADD CONSTRAINT form_answers_pkey PRIMARY KEY (id);
 
 
 --
--- Name: palace_attendees_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: palace_attendees palace_attendees_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY palace_attendees
+ALTER TABLE ONLY public.palace_attendees
     ADD CONSTRAINT palace_attendees_pkey PRIMARY KEY (id);
 
 
 --
--- Name: palace_invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: palace_invites palace_invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY palace_invites
+ALTER TABLE ONLY public.palace_invites
     ADD CONSTRAINT palace_invites_pkey PRIMARY KEY (id);
 
 
 --
--- Name: press_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: press_summaries press_summaries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY press_summaries
+ALTER TABLE ONLY public.press_summaries
     ADD CONSTRAINT press_summaries_pkey PRIMARY KEY (id);
 
 
 --
--- Name: previous_wins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: previous_wins previous_wins_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY previous_wins
+ALTER TABLE ONLY public.previous_wins
     ADD CONSTRAINT previous_wins_pkey PRIMARY KEY (id);
 
 
 --
--- Name: scans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: scans scans_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY scans
+ALTER TABLE ONLY public.scans
     ADD CONSTRAINT scans_pkey PRIMARY KEY (id);
 
 
 --
--- Name: settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: settings settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY settings
+ALTER TABLE ONLY public.settings
     ADD CONSTRAINT settings_pkey PRIMARY KEY (id);
 
 
 --
--- Name: site_feedbacks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: site_feedbacks site_feedbacks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY site_feedbacks
+ALTER TABLE ONLY public.site_feedbacks
     ADD CONSTRAINT site_feedbacks_pkey PRIMARY KEY (id);
 
 
 --
--- Name: support_letter_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: support_letter_attachments support_letter_attachments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY support_letter_attachments
+ALTER TABLE ONLY public.support_letter_attachments
     ADD CONSTRAINT support_letter_attachments_pkey PRIMARY KEY (id);
 
 
 --
--- Name: support_letters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: support_letters support_letters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY support_letters
+ALTER TABLE ONLY public.support_letters
     ADD CONSTRAINT support_letters_pkey PRIMARY KEY (id);
 
 
 --
--- Name: supporters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: supporters supporters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY supporters
+ALTER TABLE ONLY public.supporters
     ADD CONSTRAINT supporters_pkey PRIMARY KEY (id);
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY users
+ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 
 --
--- Name: version_associations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: version_associations version_associations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY version_associations
+ALTER TABLE ONLY public.version_associations
     ADD CONSTRAINT version_associations_pkey PRIMARY KEY (id);
 
 
 --
--- Name: versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: versions versions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY versions
+ALTER TABLE ONLY public.versions
     ADD CONSTRAINT versions_pkey PRIMARY KEY (id);
 
 
@@ -3060,512 +3065,512 @@ ALTER TABLE ONLY versions
 -- Name: index_accounts_on_owner_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_accounts_on_owner_id ON accounts USING btree (owner_id);
+CREATE INDEX index_accounts_on_owner_id ON public.accounts USING btree (owner_id);
 
 
 --
 -- Name: index_admins_on_authy_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_admins_on_authy_id ON admins USING btree (authy_id);
+CREATE INDEX index_admins_on_authy_id ON public.admins USING btree (authy_id);
 
 
 --
 -- Name: index_admins_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_admins_on_email ON admins USING btree (email);
+CREATE UNIQUE INDEX index_admins_on_email ON public.admins USING btree (email);
 
 
 --
 -- Name: index_admins_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_admins_on_reset_password_token ON admins USING btree (reset_password_token);
+CREATE UNIQUE INDEX index_admins_on_reset_password_token ON public.admins USING btree (reset_password_token);
 
 
 --
 -- Name: index_admins_on_unlock_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_admins_on_unlock_token ON admins USING btree (unlock_token);
+CREATE UNIQUE INDEX index_admins_on_unlock_token ON public.admins USING btree (unlock_token);
 
 
 --
 -- Name: index_aggregated_award_year_pdfs_on_award_year_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_aggregated_award_year_pdfs_on_award_year_id ON aggregated_award_year_pdfs USING btree (award_year_id);
+CREATE INDEX index_aggregated_award_year_pdfs_on_award_year_id ON public.aggregated_award_year_pdfs USING btree (award_year_id);
 
 
 --
 -- Name: index_assessor_assignments_on_assessor_id_and_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_assessor_assignments_on_assessor_id_and_form_answer_id ON assessor_assignments USING btree (assessor_id, form_answer_id);
+CREATE UNIQUE INDEX index_assessor_assignments_on_assessor_id_and_form_answer_id ON public.assessor_assignments USING btree (assessor_id, form_answer_id);
 
 
 --
 -- Name: index_assessor_assignments_on_award_year_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_assessor_assignments_on_award_year_id ON assessor_assignments USING btree (award_year_id);
+CREATE INDEX index_assessor_assignments_on_award_year_id ON public.assessor_assignments USING btree (award_year_id);
 
 
 --
 -- Name: index_assessor_assignments_on_form_answer_id_and_position; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_assessor_assignments_on_form_answer_id_and_position ON assessor_assignments USING btree (form_answer_id, "position");
+CREATE UNIQUE INDEX index_assessor_assignments_on_form_answer_id_and_position ON public.assessor_assignments USING btree (form_answer_id, "position");
 
 
 --
 -- Name: index_assessors_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_assessors_on_confirmation_token ON assessors USING btree (confirmation_token);
+CREATE UNIQUE INDEX index_assessors_on_confirmation_token ON public.assessors USING btree (confirmation_token);
 
 
 --
 -- Name: index_assessors_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_assessors_on_email ON assessors USING btree (email);
+CREATE UNIQUE INDEX index_assessors_on_email ON public.assessors USING btree (email);
 
 
 --
 -- Name: index_assessors_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_assessors_on_reset_password_token ON assessors USING btree (reset_password_token);
+CREATE UNIQUE INDEX index_assessors_on_reset_password_token ON public.assessors USING btree (reset_password_token);
 
 
 --
 -- Name: index_assessors_on_unlock_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_assessors_on_unlock_token ON assessors USING btree (unlock_token);
+CREATE UNIQUE INDEX index_assessors_on_unlock_token ON public.assessors USING btree (unlock_token);
 
 
 --
 -- Name: index_audit_certificates_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_audit_certificates_on_form_answer_id ON audit_certificates USING btree (form_answer_id);
+CREATE INDEX index_audit_certificates_on_form_answer_id ON public.audit_certificates USING btree (form_answer_id);
 
 
 --
 -- Name: index_award_years_on_year; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_award_years_on_year ON award_years USING btree (year);
+CREATE UNIQUE INDEX index_award_years_on_year ON public.award_years USING btree (year);
 
 
 --
 -- Name: index_case_summary_hard_copy_pdfs_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_case_summary_hard_copy_pdfs_on_form_answer_id ON case_summary_hard_copy_pdfs USING btree (form_answer_id);
+CREATE INDEX index_case_summary_hard_copy_pdfs_on_form_answer_id ON public.case_summary_hard_copy_pdfs USING btree (form_answer_id);
 
 
 --
 -- Name: index_comments_on_commentable_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_comments_on_commentable_id ON comments USING btree (commentable_id);
+CREATE INDEX index_comments_on_commentable_id ON public.comments USING btree (commentable_id);
 
 
 --
 -- Name: index_comments_on_commentable_type; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_comments_on_commentable_type ON comments USING btree (commentable_type);
+CREATE INDEX index_comments_on_commentable_type ON public.comments USING btree (commentable_type);
 
 
 --
 -- Name: index_deadlines_on_settings_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_deadlines_on_settings_id ON deadlines USING btree (settings_id);
+CREATE INDEX index_deadlines_on_settings_id ON public.deadlines USING btree (settings_id);
 
 
 --
 -- Name: index_eligibilities_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_eligibilities_on_account_id ON eligibilities USING btree (account_id);
+CREATE INDEX index_eligibilities_on_account_id ON public.eligibilities USING btree (account_id);
 
 
 --
 -- Name: index_eligibilities_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_eligibilities_on_form_answer_id ON eligibilities USING btree (form_answer_id);
+CREATE INDEX index_eligibilities_on_form_answer_id ON public.eligibilities USING btree (form_answer_id);
 
 
 --
 -- Name: index_email_notifications_on_settings_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_email_notifications_on_settings_id ON email_notifications USING btree (settings_id);
+CREATE INDEX index_email_notifications_on_settings_id ON public.email_notifications USING btree (settings_id);
 
 
 --
 -- Name: index_feedback_hard_copy_pdfs_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_feedback_hard_copy_pdfs_on_form_answer_id ON feedback_hard_copy_pdfs USING btree (form_answer_id);
+CREATE INDEX index_feedback_hard_copy_pdfs_on_form_answer_id ON public.feedback_hard_copy_pdfs USING btree (form_answer_id);
 
 
 --
 -- Name: index_feedbacks_on_award_year_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_feedbacks_on_award_year_id ON feedbacks USING btree (award_year_id);
+CREATE INDEX index_feedbacks_on_award_year_id ON public.feedbacks USING btree (award_year_id);
 
 
 --
 -- Name: index_feedbacks_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_feedbacks_on_form_answer_id ON feedbacks USING btree (form_answer_id);
+CREATE INDEX index_feedbacks_on_form_answer_id ON public.feedbacks USING btree (form_answer_id);
 
 
 --
 -- Name: index_form_answer_attachments_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_form_answer_attachments_on_form_answer_id ON form_answer_attachments USING btree (form_answer_id);
+CREATE INDEX index_form_answer_attachments_on_form_answer_id ON public.form_answer_attachments USING btree (form_answer_id);
 
 
 --
 -- Name: index_form_answer_progresses_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_form_answer_progresses_on_form_answer_id ON form_answer_progresses USING btree (form_answer_id);
+CREATE UNIQUE INDEX index_form_answer_progresses_on_form_answer_id ON public.form_answer_progresses USING btree (form_answer_id);
 
 
 --
 -- Name: index_form_answer_transitions_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_form_answer_transitions_on_form_answer_id ON form_answer_transitions USING btree (form_answer_id);
+CREATE INDEX index_form_answer_transitions_on_form_answer_id ON public.form_answer_transitions USING btree (form_answer_id);
 
 
 --
 -- Name: index_form_answer_transitions_on_sort_key_and_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_form_answer_transitions_on_sort_key_and_form_answer_id ON form_answer_transitions USING btree (sort_key, form_answer_id);
+CREATE UNIQUE INDEX index_form_answer_transitions_on_sort_key_and_form_answer_id ON public.form_answer_transitions USING btree (sort_key, form_answer_id);
 
 
 --
 -- Name: index_form_answers_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_form_answers_on_account_id ON form_answers USING btree (account_id);
+CREATE INDEX index_form_answers_on_account_id ON public.form_answers USING btree (account_id);
 
 
 --
 -- Name: index_form_answers_on_award_year_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_form_answers_on_award_year_id ON form_answers USING btree (award_year_id);
+CREATE INDEX index_form_answers_on_award_year_id ON public.form_answers USING btree (award_year_id);
 
 
 --
 -- Name: index_form_answers_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_form_answers_on_user_id ON form_answers USING btree (user_id);
+CREATE INDEX index_form_answers_on_user_id ON public.form_answers USING btree (user_id);
 
 
 --
 -- Name: index_palace_attendees_on_palace_invite_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_palace_attendees_on_palace_invite_id ON palace_attendees USING btree (palace_invite_id);
+CREATE INDEX index_palace_attendees_on_palace_invite_id ON public.palace_attendees USING btree (palace_invite_id);
 
 
 --
 -- Name: index_palace_invites_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_palace_invites_on_form_answer_id ON palace_invites USING btree (form_answer_id);
+CREATE INDEX index_palace_invites_on_form_answer_id ON public.palace_invites USING btree (form_answer_id);
 
 
 --
 -- Name: index_press_summaries_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_press_summaries_on_form_answer_id ON press_summaries USING btree (form_answer_id);
+CREATE INDEX index_press_summaries_on_form_answer_id ON public.press_summaries USING btree (form_answer_id);
 
 
 --
 -- Name: index_scans_on_uuid; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_scans_on_uuid ON scans USING btree (uuid);
+CREATE UNIQUE INDEX index_scans_on_uuid ON public.scans USING btree (uuid);
 
 
 --
 -- Name: index_settings_on_award_year_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_settings_on_award_year_id ON settings USING btree (award_year_id);
+CREATE UNIQUE INDEX index_settings_on_award_year_id ON public.settings USING btree (award_year_id);
 
 
 --
 -- Name: index_support_letter_attachments_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_support_letter_attachments_on_form_answer_id ON support_letter_attachments USING btree (form_answer_id);
+CREATE INDEX index_support_letter_attachments_on_form_answer_id ON public.support_letter_attachments USING btree (form_answer_id);
 
 
 --
 -- Name: index_support_letter_attachments_on_support_letter_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_support_letter_attachments_on_support_letter_id ON support_letter_attachments USING btree (support_letter_id);
+CREATE INDEX index_support_letter_attachments_on_support_letter_id ON public.support_letter_attachments USING btree (support_letter_id);
 
 
 --
 -- Name: index_support_letter_attachments_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_support_letter_attachments_on_user_id ON support_letter_attachments USING btree (user_id);
+CREATE INDEX index_support_letter_attachments_on_user_id ON public.support_letter_attachments USING btree (user_id);
 
 
 --
 -- Name: index_support_letters_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_support_letters_on_form_answer_id ON support_letters USING btree (form_answer_id);
+CREATE INDEX index_support_letters_on_form_answer_id ON public.support_letters USING btree (form_answer_id);
 
 
 --
 -- Name: index_support_letters_on_supporter_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_support_letters_on_supporter_id ON support_letters USING btree (supporter_id);
+CREATE INDEX index_support_letters_on_supporter_id ON public.support_letters USING btree (supporter_id);
 
 
 --
 -- Name: index_support_letters_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_support_letters_on_user_id ON support_letters USING btree (user_id);
+CREATE INDEX index_support_letters_on_user_id ON public.support_letters USING btree (user_id);
 
 
 --
 -- Name: index_supporters_on_access_key; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_supporters_on_access_key ON supporters USING btree (access_key);
+CREATE INDEX index_supporters_on_access_key ON public.supporters USING btree (access_key);
 
 
 --
 -- Name: index_supporters_on_form_answer_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_supporters_on_form_answer_id ON supporters USING btree (form_answer_id);
+CREATE INDEX index_supporters_on_form_answer_id ON public.supporters USING btree (form_answer_id);
 
 
 --
 -- Name: index_supporters_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_supporters_on_user_id ON supporters USING btree (user_id);
+CREATE INDEX index_supporters_on_user_id ON public.supporters USING btree (user_id);
 
 
 --
 -- Name: index_users_on_account_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_users_on_account_id ON users USING btree (account_id);
+CREATE INDEX index_users_on_account_id ON public.users USING btree (account_id);
 
 
 --
 -- Name: index_users_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_confirmation_token ON users USING btree (confirmation_token);
+CREATE UNIQUE INDEX index_users_on_confirmation_token ON public.users USING btree (confirmation_token);
 
 
 --
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
+CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
 
 
 --
 -- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING btree (reset_password_token);
 
 
 --
 -- Name: index_users_on_unlock_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_unlock_token ON users USING btree (unlock_token);
+CREATE UNIQUE INDEX index_users_on_unlock_token ON public.users USING btree (unlock_token);
 
 
 --
 -- Name: index_version_associations_on_foreign_key; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_version_associations_on_foreign_key ON version_associations USING btree (foreign_key_name, foreign_key_id);
+CREATE INDEX index_version_associations_on_foreign_key ON public.version_associations USING btree (foreign_key_name, foreign_key_id);
 
 
 --
 -- Name: index_version_associations_on_version_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_version_associations_on_version_id ON version_associations USING btree (version_id);
+CREATE INDEX index_version_associations_on_version_id ON public.version_associations USING btree (version_id);
 
 
 --
 -- Name: index_versions_on_item_type_and_item_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_versions_on_item_type_and_item_id ON versions USING btree (item_type, item_id);
+CREATE INDEX index_versions_on_item_type_and_item_id ON public.versions USING btree (item_type, item_id);
 
 
 --
 -- Name: index_versions_on_transaction_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_versions_on_transaction_id ON versions USING btree (transaction_id);
+CREATE INDEX index_versions_on_transaction_id ON public.versions USING btree (transaction_id);
 
 
 --
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (version);
+CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
 
 
 --
--- Name: fk_rails_0f5a0025a7; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: support_letter_attachments fk_rails_0f5a0025a7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY support_letter_attachments
-    ADD CONSTRAINT fk_rails_0f5a0025a7 FOREIGN KEY (user_id) REFERENCES users(id);
-
-
---
--- Name: fk_rails_20f2c914c7; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY supporters
-    ADD CONSTRAINT fk_rails_20f2c914c7 FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE ONLY public.support_letter_attachments
+    ADD CONSTRAINT fk_rails_0f5a0025a7 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
--- Name: fk_rails_40aaf5af73; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: supporters fk_rails_20f2c914c7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY palace_invites
-    ADD CONSTRAINT fk_rails_40aaf5af73 FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
-
-
---
--- Name: fk_rails_5e975fee43; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY support_letter_attachments
-    ADD CONSTRAINT fk_rails_5e975fee43 FOREIGN KEY (support_letter_id) REFERENCES support_letters(id);
+ALTER TABLE ONLY public.supporters
+    ADD CONSTRAINT fk_rails_20f2c914c7 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
--- Name: fk_rails_6019307b8c; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: palace_invites fk_rails_40aaf5af73; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY palace_attendees
-    ADD CONSTRAINT fk_rails_6019307b8c FOREIGN KEY (palace_invite_id) REFERENCES palace_invites(id);
-
-
---
--- Name: fk_rails_6ae522c6ce; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY feedbacks
-    ADD CONSTRAINT fk_rails_6ae522c6ce FOREIGN KEY (award_year_id) REFERENCES award_years(id);
+ALTER TABLE ONLY public.palace_invites
+    ADD CONSTRAINT fk_rails_40aaf5af73 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
 
 
 --
--- Name: fk_rails_85a1d7f049; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: support_letter_attachments fk_rails_5e975fee43; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY feedbacks
-    ADD CONSTRAINT fk_rails_85a1d7f049 FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
-
-
---
--- Name: fk_rails_9087c6fe61; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY press_summaries
-    ADD CONSTRAINT fk_rails_9087c6fe61 FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
+ALTER TABLE ONLY public.support_letter_attachments
+    ADD CONSTRAINT fk_rails_5e975fee43 FOREIGN KEY (support_letter_id) REFERENCES public.support_letters(id);
 
 
 --
--- Name: fk_rails_a450856684; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: palace_attendees fk_rails_6019307b8c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY aggregated_award_year_pdfs
-    ADD CONSTRAINT fk_rails_a450856684 FOREIGN KEY (award_year_id) REFERENCES award_years(id);
-
-
---
--- Name: fk_rails_abd43a0510; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY support_letter_attachments
-    ADD CONSTRAINT fk_rails_abd43a0510 FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
+ALTER TABLE ONLY public.palace_attendees
+    ADD CONSTRAINT fk_rails_6019307b8c FOREIGN KEY (palace_invite_id) REFERENCES public.palace_invites(id);
 
 
 --
--- Name: fk_rails_bed48e0ed5; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: feedbacks fk_rails_6ae522c6ce; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY assessor_assignments
-    ADD CONSTRAINT fk_rails_bed48e0ed5 FOREIGN KEY (award_year_id) REFERENCES award_years(id);
-
-
---
--- Name: fk_rails_cf4e2cdfc6; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY case_summary_hard_copy_pdfs
-    ADD CONSTRAINT fk_rails_cf4e2cdfc6 FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
+ALTER TABLE ONLY public.feedbacks
+    ADD CONSTRAINT fk_rails_6ae522c6ce FOREIGN KEY (award_year_id) REFERENCES public.award_years(id);
 
 
 --
--- Name: fk_rails_fae9e85e5f; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: feedbacks fk_rails_85a1d7f049; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY support_letters
-    ADD CONSTRAINT fk_rails_fae9e85e5f FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
-
-
---
--- Name: fk_rails_fcea737d68; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY feedback_hard_copy_pdfs
-    ADD CONSTRAINT fk_rails_fcea737d68 FOREIGN KEY (form_answer_id) REFERENCES form_answers(id);
+ALTER TABLE ONLY public.feedbacks
+    ADD CONSTRAINT fk_rails_85a1d7f049 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
 
 
 --
--- Name: fk_rails_fe9ef772b4; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: press_summaries fk_rails_9087c6fe61; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY support_letters
-    ADD CONSTRAINT fk_rails_fe9ef772b4 FOREIGN KEY (user_id) REFERENCES users(id);
+ALTER TABLE ONLY public.press_summaries
+    ADD CONSTRAINT fk_rails_9087c6fe61 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+
+
+--
+-- Name: aggregated_award_year_pdfs fk_rails_a450856684; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.aggregated_award_year_pdfs
+    ADD CONSTRAINT fk_rails_a450856684 FOREIGN KEY (award_year_id) REFERENCES public.award_years(id);
+
+
+--
+-- Name: support_letter_attachments fk_rails_abd43a0510; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.support_letter_attachments
+    ADD CONSTRAINT fk_rails_abd43a0510 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+
+
+--
+-- Name: assessor_assignments fk_rails_bed48e0ed5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessor_assignments
+    ADD CONSTRAINT fk_rails_bed48e0ed5 FOREIGN KEY (award_year_id) REFERENCES public.award_years(id);
+
+
+--
+-- Name: case_summary_hard_copy_pdfs fk_rails_cf4e2cdfc6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.case_summary_hard_copy_pdfs
+    ADD CONSTRAINT fk_rails_cf4e2cdfc6 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+
+
+--
+-- Name: support_letters fk_rails_fae9e85e5f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.support_letters
+    ADD CONSTRAINT fk_rails_fae9e85e5f FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+
+
+--
+-- Name: feedback_hard_copy_pdfs fk_rails_fcea737d68; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.feedback_hard_copy_pdfs
+    ADD CONSTRAINT fk_rails_fcea737d68 FOREIGN KEY (form_answer_id) REFERENCES public.form_answers(id);
+
+
+--
+-- Name: support_letters fk_rails_fe9ef772b4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.support_letters
+    ADD CONSTRAINT fk_rails_fe9ef772b4 FOREIGN KEY (user_id) REFERENCES public.users(id);
 
 
 --
@@ -3941,4 +3946,8 @@ INSERT INTO schema_migrations (version) VALUES ('20161021111201');
 INSERT INTO schema_migrations (version) VALUES ('20161021140457');
 
 INSERT INTO schema_migrations (version) VALUES ('20161116104612');
+
+INSERT INTO schema_migrations (version) VALUES ('20170401215454');
+
+INSERT INTO schema_migrations (version) VALUES ('20180820050136');
 

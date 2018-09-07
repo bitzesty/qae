@@ -1,5 +1,6 @@
 class Assessor < ActiveRecord::Base
   include PgSearch
+  include AutosaveTokenGeneration
 
   AVAILABLE_ROLES = ["lead", "regular"]
   # lead - created & assigned to Admin to specific categories
