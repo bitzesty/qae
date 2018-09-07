@@ -94,13 +94,7 @@ class AwardYears::V2019::QAEForms
             )
           end
 
-          dynamic_date_max(
-            dates: {
-              "2 to 4" => AwardYear.start_trading_since(2),
-              "5 plus" => AwardYear.start_trading_since(5)
-            },
-            conditional: :development_performance_years
-          )
+          date_max AwardYear.start_trading_since(2)
         end
 
         options :applied_for_queen_awards, "In the last ten years have you applied, whether you have won or not, for a Queen’s Awards for Enterprise award in any category?" do
