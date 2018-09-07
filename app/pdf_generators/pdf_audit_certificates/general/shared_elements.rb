@@ -166,7 +166,8 @@ module PdfAuditCertificates::General::SharedElements
       [
         benchmarks_row("growth_overseas_earnings"),
         benchmarks_row("sales_exported"),
-        benchmarks_row("average_growth_for")
+        # removing this until SIC codes are updated
+        # benchmarks_row("average_growth_for")
       ]
     else
       [

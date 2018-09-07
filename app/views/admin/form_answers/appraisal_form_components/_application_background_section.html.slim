@@ -12,9 +12,10 @@
       .clear
     = f.input :application_background_section_desc,
               wrapper_html: { class: "form-group" },
-              input_html: { class: "form-control", 
-                            rows: 10, 
-                            value: f.object.application_background_section_desc.presence || resource.application_background },
+              input_html: { class: "form-control",
+                            rows: 10,
+                            value: f.object.application_background_section_desc.presence || resource.application_background,
+                            "data-behavior" => "autosave", "data-autosave-key" => "#{@form_answer.id}-#{f.object.id}-application_background_section_desc" },
               as: :text,
               label: false
 

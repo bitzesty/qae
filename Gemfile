@@ -132,6 +132,8 @@ group :development do
   gem 'rubocop', '~> 0.52', require: false
   # When need to copy model with nested associations
   gem 'amoeba'
+  # for RailsPanel Chrome extension
+  gem 'meta_request'
 end
 
 group :development, :test do
@@ -157,7 +159,7 @@ group :test do
   gem 'turnip'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
-  gem 'codeclimate-test-reporter', '0.6.0', require: nil
+  gem 'codeclimate_circle_ci_coverage'
   gem 'rspec_junit_formatter'
   gem 'timecop'
   gem 'webmock'

@@ -301,7 +301,8 @@ module CaseSummaryPdfs::General::DataPointer
       [
         @growth_overseas_earnings_list.unshift("% Growth overseas earnings"),
         @sales_exported_list.unshift("% Sales exported"),
-        @average_growth_for_list.unshift("% Sector average growth")
+        # Removing this until SIC codes are updated
+        # @average_growth_for_list.unshift("% Sector average growth")
       ]
     else
       [

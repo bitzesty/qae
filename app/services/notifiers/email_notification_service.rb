@@ -123,7 +123,9 @@ class Notifiers::EmailNotificationService
         form_answer_id: form_answer.id
       ).first_or_create
 
-      form_answer_ids << form_answer.id
+      unless invite.submitted?
+        form_answer_ids << form_answer.id
+      end
     end
 
     form_answer_ids.each do |form_answer_id|

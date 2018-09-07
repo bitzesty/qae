@@ -5,6 +5,12 @@
 #= require jquery.fileupload
 #= require select2.full.min
 #= require Countable
+
+# crypt.io: secures browser storage with the SJCL crypto library
+#= require vendor/sjcl
+#= require vendor/crypt.io.min
+
+#= require ./frontend/local_storage
 #= require ./frontend/password-strength-indicator
 #= require ./frontend/textarea-autoResize
 #= require ./frontend/text-character-count

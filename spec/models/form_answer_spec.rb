@@ -15,13 +15,13 @@ RSpec.describe FormAnswer, type: :model do
         .in_array(FormAnswer::POSSIBLE_AWARDS)
     end
 
-    it "validates dynamic dates" do
+    it "validates A5 date" do
       form_answer = create(:form_answer, :trade)
       form_answer.submitted_at = Time.zone.now
 
       form_answer.document = form_answer.document.merge(started_trading_day: "2",
                                                         started_trading_month: 12,
-                                                        started_trading_year: Date.current.year - 4,
+                                                        started_trading_year: Date.current.year - 2,
                                                         trade_commercial_success: "6 plus")
       expect(form_answer).to be_invalid
 
@@ -30,19 +30,6 @@ RSpec.describe FormAnswer, type: :model do
                                                         started_trading_year: Date.current.year - 7,
                                                         trade_commercial_success: "6 plus")
       expect(form_answer).to be_valid
-
-
-      form_answer.document = form_answer.document.merge(started_trading_day: "2",
-                                                        started_trading_month: 12,
-                                                        started_trading_year: Date.current.year - 4,
-                                                        trade_commercial_success: "3 to 5")
-      expect(form_answer).to be_valid
-
-      form_answer.document = form_answer.document.merge(started_trading_day: "2",
-                                                        started_trading_month: 12,
-                                                        started_trading_year: Date.current.year - 2,
-                                                        trade_commercial_success: "3 to 5")
-      expect(form_answer).to be_invalid
     end
   end
 

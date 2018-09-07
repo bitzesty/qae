@@ -40,13 +40,6 @@ class Admin::UsersController < Admin::BaseController
     respond_with :admin, @resource, location: admin_users_path
   end
 
-  def destroy
-    authorize @resource, :destroy?
-
-    @resource.destroy
-    respond_with :admin, @resource
-  end
-
   def resend_confirmation_email
     authorize @resource, :update?
 
