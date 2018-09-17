@@ -9,9 +9,6 @@ jobs:
           PGUSER: root
       - image: circleci/postgres:9.6-alpine-ram
         command: -c fsync=off -c full_page_writes=off
-        network_mode: host
-        volumes:
-          - "/dev/shm/pg_${PG_PORT}:/var/lib/postgresql/data"
         environment:
           PG_PORT: 5432
           POSTGRES_USER: root
