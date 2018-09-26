@@ -1,0 +1,32 @@
+image: circleci/ruby:2.5.0-node-browsers
+cache:
+  paths:
+    - vendor/bundle
+
+services:
+  - name: circleci/postgres:9.6-alpine-ram
+    alias: postgres
+    command: -c fsync=off -c full_page_writes=off
+  - name: redis:3.2.7
+
+variables:
+  BUNDLE_PATH: vendor/bundle
+  DISABLE_SPRING: 1
+  PGHOST: 127.0.0.1
+  PGUSER: root
+  POSTGRES_DB: circle_ruby_test
+  PG_PORT: 5432
+
+before_script:
+  - sudo apt-get update
+  - sudo apt-get install -y postgresql-client
+  - bundle install --jobs 4 --retry 3
+  - RAILS_ENV=test bundle exec rake db:create db:migrate
+
+stages:
+  - test
+
+Tests:
+  stage: test
+  script:
+    - RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --format RspecJunitFormatter --out /tmp/test-results/rspec.xml --format progress
