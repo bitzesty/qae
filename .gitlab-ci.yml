@@ -1,13 +1,15 @@
-image: circleci/ruby:2.5.0-node-browsers
+image:
+  name: circleci/ruby:2.5.0-node-browsers
+
+services:
+- name: redis:3.2.7
+- name: circleci/postgres:9.6-alpine-ram
+  alias: postgres
+  command: -c fsync=off -c full_page_writes=off
+
 cache:
   paths:
     - vendor/bundle
-
-services:
-  - name: circleci/postgres:9.6-alpine-ram
-    alias: postgres
-    command: -c fsync=off -c full_page_writes=off
-  - name: redis:3.2.7
 
 variables:
   BUNDLE_PATH: vendor/bundle
