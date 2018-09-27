@@ -58,9 +58,8 @@ deploy_dev:
     - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
     - mv /tmp/convox /usr/local/bin/convox
     - chmod 755 /usr/local/bin/convox
-    - convox login
-    - convox deploy --app qae-dev
-    - convox run web rake db:migrate --app qae-dev
+    - convox deploy --app qae-dev --rack bitzesty/qae
+    - convox run web rake db:migrate --app qae-dev --rack bitzesty/qae
   environment:
     name: dev
     url: https://dev.queens-awards-enterprise.service.gov.uk/
@@ -73,9 +72,8 @@ deploy_staging:
     - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
     - mv /tmp/convox /usr/local/bin/convox
     - chmod 755 /usr/local/bin/convox
-    - convox login
-    - convox deploy --app qae-staging
-    - convox run web rake db:migrate --app qae-staging
+    - convox deploy --app qae-staging --rack bitzesty/qae
+    - convox run web rake db:migrate --app qae-staging --rack bitzesty/qae
   environment:
     name: dev
     url: https://staging.queens-awards-enterprise.service.gov.uk/
@@ -88,9 +86,8 @@ deploy_production:
     - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
     - mv /tmp/convox /usr/local/bin/convox
     - chmod 755 /usr/local/bin/convox
-    - convox login
-    - convox deploy --app qae-production
-    - convox run web rake db:migrate --app qae-production
+    - convox deploy --app qae-production --rack bitzesty/qae
+    - convox run web rake db:migrate --app qae-production --rack bitzesty/qae
   environment:
     name: production
     url: https://www.queens-awards-enterprise.service.gov.uk/
