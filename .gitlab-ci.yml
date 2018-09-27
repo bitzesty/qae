@@ -56,8 +56,8 @@ deploy_dev:
   stage: deploy
   script:
     - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
-    - sudo mv /tmp/convox /usr/local/bin/convox
-    - sudo chmod 755 /usr/local/bin/convox
+    - mv /tmp/convox /usr/local/bin/convox
+    - chmod 755 /usr/local/bin/convox
     - convox -v
     - convox deploy --app qae-dev
     - convox run web rake db:migrate --app qae-dev
@@ -71,8 +71,8 @@ deploy_staging:
   stage: deploy
   script:
     - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
-    - sudo mv /tmp/convox /usr/local/bin/convox
-    - sudo chmod 755 /usr/local/bin/convox
+    - mv /tmp/convox /usr/local/bin/convox
+    - chmod 755 /usr/local/bin/convox
     - convox -v
     - convox deploy --app qae-staging
     - convox run web rake db:migrate --app qae-staging
@@ -86,8 +86,8 @@ deploy_production:
   stage: deploy
   script:
     - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
-    - sudo mv /tmp/convox /usr/local/bin/convox
-    - sudo chmod 755 /usr/local/bin/convox
+    - mv /tmp/convox /usr/local/bin/convox
+    - chmod 755 /usr/local/bin/convox
     - convox -v
     - convox deploy --app qae-production
     - convox run web rake db:migrate --app qae-production
