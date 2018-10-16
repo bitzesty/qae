@@ -8,6 +8,7 @@ unless Admin.exists?
   }
 
   Admin.create!(admin_args)
+  p "========Admin created========"
 end
 
 unless Assessor.exists?
@@ -20,6 +21,7 @@ unless Assessor.exists?
   }
 
   Assessor.create!(assessor_args)
+  p "========Assessor created========"
 end
 
 roles = ["lead", "regular", "none"]
@@ -31,7 +33,6 @@ awards.each do |award|
       email: "#{role}-assessor-#{award}@example.com",
       first_name: "#{role}-assessor",
       last_name: "#{award}",
-      confirmed_at: DateTime.now
     }
     role_args = {
       "#{award}_role" => (role == "none" ? nil : role)
@@ -41,6 +42,8 @@ awards.each do |award|
 
     a = Assessor.where(assessor_args).first_or_initialize
     a.password = "^#ur9EkLm@1W"
+    a.confirmed_at ||= DateTime.now
     a.save!
   end
 end
+p "========Other assessors created========"
