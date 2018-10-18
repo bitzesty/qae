@@ -12,8 +12,10 @@ certs/*
 
 *.swp
 *.swo
+.idea
 
 .ruby-gemset
 sic_codes.csv
 coverage/*
 .env.production
+.env.development

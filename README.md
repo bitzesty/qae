@@ -1,11 +1,9 @@
-[![Circle CI](https://circleci.com/gh/bitzesty/qae.svg?style=svg)](https://circleci.com/gh/bitzesty/qae)
-[![Code Climate](https://codeclimate.com/repos/547de5166956803114000f02/badges/123ad2d3eeebb6bf1ce1/gpa.svg)](https://codeclimate.com/repos/547de5166956803114000f02/feed)
-[![Test Coverage](https://codeclimate.com/repos/547de5166956803114000f02/badges/123ad2d3eeebb6bf1ce1/coverage.svg)](https://codeclimate.com/repos/547de5166956803114000f02/feed)
-
 ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) Queen's Awards for Enterprise
 ---------------------------
 
 "QAE" is the application which powers the application process for The Queen's Awards for Enterprise.
+
+Copy on Github is a **read only** mirror.
 
 ## Setup
 
@@ -36,13 +34,13 @@ docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
 
 ### Install Poxa
 
-If you need to test collaborators editing the application at the same time, install poxa. 
+If you need to test collaborators editing the application at the same time, install poxa.
 
 https://github.com/bitzesty/qae-poxa/blob/master/QAE_README.md#setup-on-local
 
 ### Deploying
 
-Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (master, staging, deployment).
+Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (master, staging, production).
 
 You can run a manual deploy if needed:
 

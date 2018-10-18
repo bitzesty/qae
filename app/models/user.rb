@@ -154,10 +154,6 @@ class User < ActiveRecord::Base
     @current_step && @current_step >= 2
   end
 
-  def password_required?
-    new_record? ? super : false
-  end
-
   def create_account
     self.account = Account.create(owner: self) unless account
   end
