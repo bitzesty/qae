@@ -43,6 +43,35 @@ div
                       class: "thumbnail",
                       target: "_blank"
 
+
+        br
+        br
+
+        .form-download
+          - if any_promotion_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem OPP (JPG, 395KB)",
+                      static_s3_asset_path(2019, "QA Emblem OPP 2019.jpg"),
+                      target: "_blank"
+
+          - if any_innovation_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem Innovation (JPG, 377KB)",
+                      static_s3_asset_path(2019, "QA Emblem Innovation 2019.jpg"),
+                      target: "_blank"
+
+          - if any_trade_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem IT (JPG, 390KB)",
+                      static_s3_asset_path(2019, "QA Emblem IT 2019.jpg"),
+                      target: "_blank"
+
+          - if any_development_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem SD (JPG, 398KB)",
+                      static_s3_asset_path(2019, "QA Emblem SD 2019.jpg"),
+                      target: "_blank"    
+
         h2 Download The Queen's Awards for Enterprise 2019 Emblems in various formats
 
         .form-download
@@ -146,33 +175,6 @@ div
 
 
 
-        - if any_promotion_winner
-          .form-download
-            p
-              = link_to "Queen's Awards for Enterprise 2019 Emblem OPP (JPG, 395KB)",
-                      static_s3_asset_path(2019, "QA Emblem OPP 2019.jpg"),
-                      target: "_blank"
-
-        - if any_innovation_winner
-          .form-download
-            p
-              = link_to "Queen's Awards for Enterprise 2019 Emblem Innovation (JPG, 377KB)",
-                      static_s3_asset_path(2019, "QA Emblem Innovation 2019.jpg"),
-                      target: "_blank"
-
-        - if any_trade_winner
-          .form-download
-            p
-              = link_to "Queen's Awards for Enterprise 2019 Emblem IT (JPG, 390KB)",
-                    static_s3_asset_path(2019, "QA Emblem IT 2019.jpg"),
-                    target: "_blank"
-
-        - if any_development_winner
-          .form-download
-            p
-              = link_to "Queen's Awards for Enterprise 2019 Emblem SD (JPG, 398KB)",
-                      static_s3_asset_path(2019, "QA Emblem SD 2019.jpg"),
-                      target: "_blank"
 
         footer
           nav.pagination.no-border aria-label="Pagination" role="navigation"
