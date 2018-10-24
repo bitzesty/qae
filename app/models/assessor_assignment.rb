@@ -140,8 +140,7 @@ class AssessorAssignment < ActiveRecord::Base
   end
 
   def not_submitted_or_not_locked?
-    !submitted? ||
-    (submitted? && !locked?)
+    !submitted? || (submitted? && !locked?)
   end
 
   def award_specific_attributes

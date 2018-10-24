@@ -22,4 +22,30 @@ RSpec.describe Deadline do
       expect(deadline).not_to be_passed
     end
   end
+
+  describe 'class methods' do
+    it ".with_states_to_trigger should filter correctly" do
+      time = Time.now
+      target = Deadline.where(kind: "submission_end", states_triggered_at: nil).where("trigger_at < ?", time).to_sql
+      expect(target).to eq Deadline.with_states_to_trigger(time).to_sql
+    end
+
+    it ".end_of_embargo should return correct result" do
+      deadline = build(:deadline)
+      allow(Deadline).to receive(:where).with(kind: "buckingham_palace_attendees_details") {[deadline]}
+      expect(Deadline.end_of_embargo).to eq deadline
+    end
+
+    it ".buckingham_palace_attendees_invite should return correct result" do
+      deadline = build(:deadline)
+      allow(Deadline).to receive(:where).with(kind: "buckingham_palace_attendees_invite") {[deadline]}
+      expect(Deadline.buckingham_palace_attendees_invite).to eq deadline
+    end
+
+    it ".buckingham_palace_media_information should return correct result" do
+      deadline = build(:deadline)
+      allow(Deadline).to receive(:where).with(kind: "buckingham_palace_media_information") {[deadline]}
+      expect(Deadline.buckingham_palace_media_information).to eq deadline
+    end
+  end
 end

@@ -40,17 +40,18 @@ class UsersImport::Builder
     { saved: saved, not_saved: not_saved }
   end
 
-  def self.send_mailing
-    User.where(imported: true).each do |user|
-      raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
-      user.reset_password_token = hashed_token
-      user.reset_password_sent_at = Time.now.utc
-      if user.save
-        sleep(0.2)
-        Users::ImportMailer.notify_about_release(user.id, raw_token).deliver_later!
-      end
-    end
-  end
+  # TODO  not being used, can be removed
+  # def self.send_mailing
+  #   User.where(imported: true).each do |user|
+  #     raw_token, hashed_token = Devise.token_generator.generate(User, :reset_password_token)
+  #     user.reset_password_token = hashed_token
+  #     user.reset_password_sent_at = Time.now.utc
+  #     if user.save
+  #       sleep(0.2)
+  #       Users::ImportMailer.notify_about_release(user.id, raw_token).deliver_later!
+  #     end
+  #   end
+  # end
 
   private
 

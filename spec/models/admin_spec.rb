@@ -16,4 +16,25 @@ RSpec.describe Admin, type: :model do
       expect(admin.autosave_token).not_to be nil
     end
   end
+
+  describe "lead?" do
+    it 'should return true' do
+      expect(Admin.new.lead?).to be_truthy
+    end
+  end
+
+  describe "primary?" do
+    it 'should return true' do
+      expect(Admin.new.primary?).to be_truthy
+    end
+  end
+  
+  describe "soft_delete!" do
+    it 'should set deleted' do
+      admin = create(:admin)
+      admin.soft_delete!
+      expect(admin.deleted.present?).to be_truthy
+    end
+  end
+
 end

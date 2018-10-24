@@ -17,6 +17,14 @@ describe AssessorsImport::Builder do
       end
     end
 
+     context 'save failed' do
+      it 'return not_saved' do
+        allow_any_instance_of(Assessor).to receive(:save) {false}
+        response = subject.process
+        expect(response[:not_saved]).not_to be_empty
+      end
+    end
+
     context 'with emails already used by accessors' do
       before do
         subject.process

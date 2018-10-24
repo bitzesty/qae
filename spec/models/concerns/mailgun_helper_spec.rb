@@ -4,7 +4,4 @@ RSpec.describe MailgunHelper do
   describe '#email_valid?' do
 
   end
-
-  describe 
-
 end

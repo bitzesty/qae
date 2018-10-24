@@ -7,6 +7,7 @@ shared_examples "date_time_for" do |field|
   it "returns seconds of beginning of day" do
     subject.public_send("#{field}=", Time.zone.local(2012, 9, 6, 1, 30))
     expect(subject.public_send("formatted_#{field}_time")).to eq("01:30")
+    expect(subject.public_send("formatted_#{field}_date")).to eq("06/09/2012")
   end
 
   it "returns Time" do

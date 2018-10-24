@@ -37,8 +37,9 @@ class Eligibility < ActiveRecord::Base
     @questions
   end
 
+  # should be defined in subclasses
   def self.award_name
-    const_get(:AWARD_NAME)
+    ""
   end
 
   def self.property(name, options = {})
