@@ -254,6 +254,7 @@ class FormAnswer < ActiveRecord::Base
     true
   end
 
+  # TODO  not being used, can be removed
   # def need_to_save_version?
   #   versions.count < 1 || (
   #     whodunnit.present? && (
@@ -267,24 +268,25 @@ class FormAnswer < ActiveRecord::Base
     PaperTrail.whodunnit
   end
 
-  def its_admin_or_assessor_action?
-    ["ADMIN", "ASSESSOR"].any? do |namespace|
-      whodunnit.include?(namespace)
-    end
-  end
-
-  def its_user_action?
-    whodunnit.include?("USER")
-  end
-
-  def no_latest_version_or_it_was_less_than_day_ago?
-    last_version = versions.where(whodunnit: whodunnit).last
-
-    last_version.blank? || (
-      last_version.present? &&
-      last_version.created_at < (Time.zone.now - 15.minutes)
-    )
-  end
+  # TODO  not being used, can be removed
+  # def its_admin_or_assessor_action?
+  #   ["ADMIN", "ASSESSOR"].any? do |namespace|
+  #     whodunnit.include?(namespace)
+  #   end
+  # end
+  #
+  # def its_user_action?
+  #   whodunnit.include?("USER")
+  # end
+  #
+  # def no_latest_version_or_it_was_less_than_day_ago?
+  #   last_version = versions.where(whodunnit: whodunnit).last
+  #
+  #   last_version.blank? || (
+  #     last_version.present? &&
+  #     last_version.created_at < (Time.zone.now - 15.minutes)
+  #   )
+  # end
 
   def submission_end_date
     award_year.settings

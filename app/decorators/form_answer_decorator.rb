@@ -126,8 +126,6 @@ class FormAnswerDecorator < ApplicationDecorator
     company_or_nominee_name
   end
 
-  def
-
   def nominee_title
     object.nominee_title ? object.nominee_title : document["nominee_title"]
   end

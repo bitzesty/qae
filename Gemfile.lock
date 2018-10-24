@@ -530,6 +530,9 @@ GEM
       rspec-expectations (~> 3.4.0)
       rspec-mocks (~> 3.4.0)
       rspec-support (~> 3.4.0)
+    rspec-sidekiq (3.0.3)
+      rspec-core (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.4.1)
     rspec_junit_formatter (0.2.3)
       builder (< 4)
@@ -705,6 +708,7 @@ DEPENDENCIES
   redis-store (~> 1.4)
   responders (~> 2.0)
   rspec-rails (~> 3.4)
+  rspec-sidekiq
   rspec_junit_formatter
   rubocop (~> 0.52)
   secure_headers

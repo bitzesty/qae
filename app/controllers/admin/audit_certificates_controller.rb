@@ -9,7 +9,6 @@ class Admin::AuditCertificatesController < Admin::BaseController
     authorize form_answer, :can_download_initial_audit_certificate_pdf?
 
     respond_to do |format|
-      format.html
       format.pdf do
         send_data pdf_data.render,
                   filename: "audit_certificate_#{@form_answer.decorate.pdf_filename}",

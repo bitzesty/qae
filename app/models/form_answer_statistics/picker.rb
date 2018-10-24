@@ -5,19 +5,6 @@ class FormAnswerStatistics::Picker
     @year = year
   end
 
-  def registered_users
-    out = {}
-
-    c = count_with_year(User.where(created_at: (Time.now - 24.hours)..Time.now))
-    out[:last_24h] = c
-
-    c = count_with_year(User.where(created_at: (Time.now - 7.days)..Time.now))
-    out[:last_7_days] = c
-
-    out[:total_so_far] = User.where(created_at: year.user_creation_range).count
-    out
-  end
-
   def applications_table
     out = {}
     registered_users = []
