@@ -4,9 +4,23 @@ require "simplecov"
 require "codeclimate-test-reporter"
 SimpleCov.add_filter "vendor"
 
-SimpleCov.formatters = []
+# SimpleCov.formatters = []
+#
+class LineFilter < SimpleCov::Filter
+  def matches?(source_file)
+    source_file.lines.count < filter_argument
+  end
+end
+
 SimpleCov.start 'rails' do
   add_filter '/spec/'
+  add_filter "/lib/tasks/"
+  add_filter "/app/forms/award_years/"
+  add_filter "/app/pdf_generators/"
+  add_filter "/app/tasks/"
+  add_filter do |source_file|
+    source_file.filename =~ /app\/controllers/ && source_file.lines.count < 8
+  end
 end
 
 require "spec_helper"

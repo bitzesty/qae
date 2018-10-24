@@ -4,10 +4,6 @@ class User < ActiveRecord::Base
 
   POSSIBLE_ROLES = %w(account_admin regular)
 
-  def after_initialize
-    @current_step = 0
-  end
-
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable, :confirmable,
          :zxcvbnable, :lockable, :timeoutable

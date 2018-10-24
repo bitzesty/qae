@@ -30,6 +30,14 @@ class Admin < ActiveRecord::Base
     true
   end
 
+  def primary?(*)
+    true
+  end
+
+  def secondary?(*)
+    true
+  end
+
   def lead_or_assigned?(*)
     true
   end

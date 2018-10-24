@@ -74,4 +74,11 @@ RSpec.describe Eligibility::Basic, type: :model do
       expect(eligibility.questions).not_to include(:industry)
     end
   end
+
+  describe '#skipped?' do
+    it 'should return false' do
+      eligibility = Eligibility::Basic.new(account: account)
+      expect(eligibility.skipped?).to be_falsey
+    end
+  end
 end
