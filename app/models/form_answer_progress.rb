@@ -1,4 +1,4 @@
-class FormAnswerProgress < ActiveRecord::Base
+class FormAnswerProgress < ApplicationRecord
   belongs_to :form_answer
 
   validates :form_answer_id, presence: true

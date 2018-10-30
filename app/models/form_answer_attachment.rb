@@ -1,4 +1,4 @@
-class FormAnswerAttachment < ActiveRecord::Base
+class FormAnswerAttachment < ApplicationRecord
   belongs_to :form_answer
   belongs_to :attachable, polymorphic: true
 

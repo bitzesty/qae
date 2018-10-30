@@ -1,7 +1,7 @@
 require 'award_years/v2018/qae_forms'
 require 'award_years/v2019/qae_forms'
 
-class FormAnswer < ActiveRecord::Base
+class FormAnswer < ApplicationRecord
   include PgSearch
   extend Enumerize
   include FormAnswerStatesHelper

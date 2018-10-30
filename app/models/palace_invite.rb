@@ -1,4 +1,4 @@
-class PalaceInvite < ActiveRecord::Base
+class PalaceInvite < ApplicationRecord
   belongs_to :form_answer
 
   has_many :palace_attendees, dependent: :destroy, autosave: true

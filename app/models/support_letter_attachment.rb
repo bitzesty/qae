@@ -1,4 +1,4 @@
-class SupportLetterAttachment < ActiveRecord::Base
+class SupportLetterAttachment < ApplicationRecord
   mount_uploader :attachment, FormAnswerAttachmentUploader
   scan_file :attachment
 

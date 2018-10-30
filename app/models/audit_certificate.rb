@@ -1,4 +1,4 @@
-class AuditCertificate < ActiveRecord::Base
+class AuditCertificate < ApplicationRecord
   mount_uploader :attachment, AuditCertificateUploader
   scan_file      :attachment
 
