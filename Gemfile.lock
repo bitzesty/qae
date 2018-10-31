@@ -338,6 +338,10 @@ GEM
     nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
     orm_adapter (0.5.0)
+    paper_trail (5.1.1)
+      activerecord (>= 3.0, < 6.0)
+      activesupport (>= 3.0, < 6.0)
+      request_store (~> 1.1)
     parallel (1.12.1)
     parser (2.4.0.2)
       ast (~> 2.3)
@@ -423,6 +427,8 @@ GEM
     redis (3.3.5)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
+    request_store (1.4.1)
+      rack (>= 1.4)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -561,6 +567,7 @@ DEPENDENCIES
   letter_opener
   meta_request
   nokogiri (~> 1.8.4)
+  paper_trail (~> 5.1.0)
   pdf-inspector
   pg (~> 0.17)
   poltergeist
