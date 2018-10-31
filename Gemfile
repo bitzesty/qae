@@ -17,9 +17,9 @@ gem 'pg', '~> 0.17'
 gem 'paper_trail', '~> 5.1.0'
 
 # Assets & Templates
-gem 'sprockets-rails', '~> 2.0'
+gem 'sprockets-rails', '>= 2.0.0'
 gem 'slim-rails', '3.1.0'
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '4.2.2'
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'bootstrap-sass', '>= 3.3.3'
@@ -126,7 +126,6 @@ gem 'browser'
 
 group :development do
   gem 'letter_opener'
-  gem 'quiet_assets'
   gem 'rack-mini-profiler', '>= 0.10.1', require: false
   gem 'binding_of_caller'
   gem 'rubocop', '~> 0.52', require: false
@@ -139,7 +138,7 @@ end
 group :development, :test do
   # Enviroment variables
   gem 'dotenv-rails'
-  gem 'rspec-rails', '~> 3.4'
+  gem 'rspec-rails', '3.5'
   gem "pry-byebug"
 end
 
@@ -156,11 +155,11 @@ group :test do
   gem 'poltergeist'
   gem 'database_cleaner'
   gem 'launchy'
-  gem 'turnip'
+  gem 'turnip', '3.0.0'
   gem 'shoulda-matchers', require: false
   gem 'pdf-inspector', require: 'pdf/inspector'
   gem 'codeclimate_circle_ci_coverage'
-  gem 'rspec_junit_formatter'
+  gem 'rspec_junit_formatter', '0.3.0'
   gem 'timecop'
   gem 'webmock'
   gem 'rspec-sidekiq'
