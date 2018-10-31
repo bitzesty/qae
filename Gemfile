@@ -86,8 +86,8 @@ gem 'vigilion-rails', '~> 1.0.5'
 # Background jobs
 gem "sidekiq", "~> 4.1.1"
 gem "sidekiq-cron", "~> 0.4.2"
-gem 'sinatra', require: nil
-gem "rack-protection", "1.5.5" # Sinatra's dependency
+gem 'sinatra', '2.0.0', require: nil
+gem "rack-protection"
 
 # Redis
 gem 'redis-rails'
