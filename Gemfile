@@ -18,7 +18,7 @@ gem 'pg', '~> 0.17'
 
 # Assets & Templates
 gem 'sprockets-rails', '~> 2.0'
-gem 'slim-rails', '3.1.0'
+# gem 'slim-rails', '3.1.0'
 # gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # gem 'jquery-ui-rails'
