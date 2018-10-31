@@ -14,7 +14,7 @@ gem 'rack-ssl-enforcer'
 gem 'pg', '~> 0.17'
 
 # Track Changes
-gem 'paper_trail', '~> 5.1.0'
+# gem 'paper_trail', '~> 5.1.0'
 
 # Assets & Templates
 gem 'sprockets-rails', '~> 2.0'
