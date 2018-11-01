@@ -1,5 +1,5 @@
 class Users::PressSummariesController < Users::BaseController
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, raise: false
 
   before_action :check_deadline, :load_press_summary, except: [:success, :failure]
   before_action :check_promotion_award_acceptance,

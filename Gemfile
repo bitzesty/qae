@@ -50,7 +50,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'gon'
 
 # User authentication & authorization
-gem 'devise', '~> 4.4'
+gem 'devise', '4.4.0'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
