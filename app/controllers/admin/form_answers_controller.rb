@@ -1,7 +1,7 @@
 class Admin::FormAnswersController < Admin::BaseController
   include FormAnswerMixin
 
-  before_filter :load_resource, only: [
+  before_action :load_resource, only: [
     :review,
     :show,
     :update,

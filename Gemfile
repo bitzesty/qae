@@ -11,7 +11,7 @@ gem 'secure_headers', '2.0.0'
 gem 'rack-ssl-enforcer'
 
 # PostgreSQL
-gem 'pg', '~> 0.17'
+gem 'pg', '0.20'
 
 # Track Changes
 gem 'paper_trail', '~> 5.1.0'
@@ -71,8 +71,8 @@ gem 'email_validator'
 gem 'enumerize', '~> 0.8'
 
 # PDF generation
-gem 'prawn'
-gem 'prawn-table'
+gem 'prawn', '1.3.0'
+gem 'prawn-table', '0.2.1'
 gem 'nokogiri', '~> 1.8.4'
 
 # Uploads
@@ -105,9 +105,6 @@ gem 'pg_search', "0.7.9"
 gem 'active_hash'
 gem 'virtus'
 gem 'nilify_blanks'
-
-# Monitoring
-gem 'skylight'
 
 # We use it for sending API requests to Sendgrid in
 # AdvancedEmailValidator

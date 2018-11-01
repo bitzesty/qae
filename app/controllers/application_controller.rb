@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   ensure_security_headers if ENV["ENSURE_SECURITY_HEADERS"]
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :set_paper_trail_whodunnit
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_paper_trail_whodunnit
 
   self.responder = AppResponder
   respond_to :html
