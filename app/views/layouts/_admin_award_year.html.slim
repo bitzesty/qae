@@ -13,4 +13,4 @@
         ul.dropdown-menu.dropdown-menu-right
           - AwardYear.admin_switch.each do |year, label|
             li class="#{'active' if label == current_year_text}"
-              = link_to label, url_for(params.merge(year: year))
+              = link_to label, url_for(params.permit(:controller, :action).merge(year: year))
