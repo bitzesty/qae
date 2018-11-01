@@ -17,7 +17,9 @@ Rails.application.config.assets.precompile += [
   "application-ie6.css",
   "application-ie7.css",
   "application-ie8.css",
-  "application-ie9.css"
+  "application-ie9.css",
 ]
 
 Rails.application.config.assets.precompile += %w( ckeditor/* )
+Rails.application.config.assets.precompile += %w( favicon.ico )
+Rails.application.config.assets.precompile += %w( *.png )

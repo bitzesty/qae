@@ -13,10 +13,6 @@ class ApplicationController < ActionController::Base
   self.responder = AppResponder
   respond_to :html
 
-  decent_configuration do
-    strategy DecentExposure::StrongParametersStrategy
-  end
-
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
       custom_redirect_url = session[:custom_redirect]
