@@ -81,7 +81,7 @@ gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
 gem "fog"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
-gem 'vigilion-rails', '~> 1.0.5'
+gem 'vigilion-rails', github: "mechanicles/vigilion-rails", branch: "no-raise-error-if-method-is-not-already-in-filter"
 
 # Background jobs
 gem "sidekiq", "~> 4.1.1"

@@ -15,6 +15,15 @@ GIT
       cocaine
       orm_adapter (~> 0.5.0)
 
+GIT
+  remote: git://github.com/mechanicles/vigilion-rails.git
+  revision: d36fb03607c96c6e61d74c1e1b24a5dfc2864db1
+  branch: no-raise-error-if-method-is-not-already-in-filter
+  specs:
+    vigilion-rails (1.0.5)
+      rails (>= 4.2.0)
+      vigilion (~> 1.0.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -677,9 +686,6 @@ GEM
       faraday
       faraday-detailed_logger
       faraday_middleware
-    vigilion-rails (1.0.5)
-      rails (>= 4.2.0)
-      vigilion (~> 1.0.4)
     virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
@@ -789,7 +795,7 @@ DEPENDENCIES
   turnip (= 3.0.0)
   uglifier (>= 2.7.2)
   vigilion (~> 1.0.4)
-  vigilion-rails (~> 1.0.5)
+  vigilion-rails!
   virtus
   webmock
   wicked (~> 1.1)
