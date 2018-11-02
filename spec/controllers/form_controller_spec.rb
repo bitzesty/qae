@@ -23,7 +23,7 @@ describe FormController do
     create :basic_eligibility, account: account
 
     sign_in user
-    described_class.skip_before_action :check_basic_eligibility, :check_award_eligibility, :check_account_completion
+    described_class.skip_before_action :check_basic_eligibility, :check_award_eligibility, :check_account_completion, raise: false
   end
 
   it 'sends email after submission' do

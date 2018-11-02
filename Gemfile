@@ -62,7 +62,7 @@ gem 'kaminari', '~> 0.16'
 gem 'wicked', '~> 1.1'
 
 # Statemachine
-gem 'statesman', '1.3.1'
+gem 'statesman', '3.5.0'
 
 # Form & Data helpers
 gem 'simple_form', '~> 3.5'
