@@ -11,7 +11,7 @@ gem 'secure_headers', '2.0.0'
 gem 'rack-ssl-enforcer'
 
 # PostgreSQL
-gem 'pg', '0.20'
+gem 'pg', '~> 0.20'
 
 # Track Changes
 gem 'paper_trail', '~> 5.1.0'
@@ -62,7 +62,7 @@ gem 'kaminari', '~> 0.16'
 gem 'wicked', '~> 1.1'
 
 # Statemachine
-gem 'statesman'
+gem 'statesman', '2.0.1'
 
 # Form & Data helpers
 gem 'simple_form', '~> 3.5'
