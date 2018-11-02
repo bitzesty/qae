@@ -137,6 +137,7 @@ group :development, :test do
   gem 'dotenv-rails'
   gem 'rspec-rails', '3.5'
   gem "pry-byebug"
+  gem 'rails-controller-testing'
 end
 
 group :production do

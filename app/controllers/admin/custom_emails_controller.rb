@@ -6,7 +6,12 @@ class Admin::CustomEmailsController < Admin::BaseController
 
   def create
     authorize :custom_email, :create?
-    custom_email_form_attributes = params[:custom_email_form].merge(admin_id: current_admin.id)
+    custom_email_form_attributes = if params[:custom_email_form].present?
+                                     params[:custom_email_form].merge(admin_id: current_admin.id)
+                                   else
+                                     {}
+                                   end
+
     @form = CustomEmailForm.new(custom_email_form_attributes)
     if @form.valid?
       CustomEmailWorker.perform_async(custom_email_form_attributes)
