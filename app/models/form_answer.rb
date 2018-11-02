@@ -477,7 +477,7 @@ class FormAnswer < ActiveRecord::Base
     "::AwardYears::V#{year}::QAEForms"
   end
 
-   def self.transition_class
+  def self.transition_class
     FormAnswerTransition
   end
 
