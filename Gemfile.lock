@@ -593,7 +593,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
-    statesman (1.1.0)
+    statesman (1.2.0)
     temple (0.7.5)
     thor (0.20.0)
     thread_safe (0.3.6)
@@ -721,7 +721,7 @@ DEPENDENCIES
   skylight
   slim-rails (~> 3.0.1)
   sprockets-rails (~> 2.0)
-  statesman
+  statesman (= 1.2.0)
   timecop
   turnip
   uglifier (>= 2.7.2)
@@ -735,4 +735,4 @@ RUBY VERSION
    ruby 2.5.0p0
 
 BUNDLED WITH
-   1.16.3
+   1.16.4

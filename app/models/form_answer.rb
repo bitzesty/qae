@@ -2,6 +2,7 @@ require 'award_years/v2018/qae_forms'
 require 'award_years/v2019/qae_forms'
 
 class FormAnswer < ActiveRecord::Base
+  include Statesman::Adapters::ActiveRecordQueries
   include PgSearch
   extend Enumerize
   include FormAnswerStatesHelper
@@ -167,7 +168,7 @@ class FormAnswer < ActiveRecord::Base
   begin :state_machine
     delegate :current_state, :trigger!, :available_events, to: :state_machine
     delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
-      to: :state_machine
+             to: :state_machine
 
     def state_machine
       @state_machine ||= FormAnswerStateMachine.new(self, transition_class: FormAnswerTransition)
@@ -474,5 +475,13 @@ class FormAnswer < ActiveRecord::Base
 
   def award_form_class_name(year)
     "::AwardYears::V#{year}::QAEForms"
+  end
+
+   def self.transition_class
+    FormAnswerTransition
+  end
+
+  def self.initial_state
+    FormAnswerStateMachine.initial_state
   end
 end
