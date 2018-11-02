@@ -36,7 +36,7 @@ RSpec.describe Form::AwardsController do
   describe "PUT update" do
     it "should update a resource" do
       allow_any_instance_of(Award).to receive(:valid?) {true}
-      put :update, id: '000', form_answer_id: form_answer.id, award: { details: {} }
+      put :update, id: '000', form_answer_id: form_answer.id, award: { title1: 'title2' }
       expect(response).to redirect_to edit_form_url(form_answer, step: 'test', anchor: "non_js_nomination_awards-list-question")
     end
   end
