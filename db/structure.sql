@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.0
+-- Dumped from database version 9.5.14
 -- Dumped by pg_dump version 10.5
 
 SET statement_timeout = 0;
@@ -169,6 +169,18 @@ ALTER SEQUENCE public.aggregated_award_year_pdfs_id_seq OWNED BY public.aggregat
 
 
 --
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
 -- Name: assessor_assignments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -280,8 +292,7 @@ CREATE TABLE public.audit_certificates (
     reviewable_id integer,
     reviewed_at timestamp without time zone,
     status integer,
-    attachment_scan_results character varying,
-    cached_filename character varying
+    attachment_scan_results character varying
 );
 
 
@@ -670,8 +681,7 @@ CREATE TABLE public.form_answer_attachments (
     title character varying,
     restricted_to_admin boolean DEFAULT false,
     question_key character varying,
-    file_scan_results character varying,
-    cached_filename character varying
+    file_scan_results character varying
 );
 
 
@@ -735,7 +745,8 @@ CREATE TABLE public.form_answer_transitions (
     sort_key integer NOT NULL,
     form_answer_id integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    most_recent boolean NOT NULL
 );
 
 
@@ -1096,8 +1107,7 @@ CREATE TABLE public.support_letter_attachments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     support_letter_id integer,
-    attachment_scan_results character varying,
-    cached_filename character varying
+    attachment_scan_results character varying
 );
 
 
@@ -2822,6 +2832,14 @@ ALTER TABLE ONLY public.aggregated_award_year_pdfs
 
 
 --
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
 -- Name: assessor_assignments assessor_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3262,6 +3280,13 @@ CREATE INDEX index_form_answer_transitions_on_form_answer_id ON public.form_answ
 --
 
 CREATE UNIQUE INDEX index_form_answer_transitions_on_sort_key_and_form_answer_id ON public.form_answer_transitions USING btree (sort_key, form_answer_id);
+
+
+--
+-- Name: index_form_answer_transitions_parent_most_recent; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_form_answer_transitions_parent_most_recent ON public.form_answer_transitions USING btree (form_answer_id, most_recent) WHERE most_recent;
 
 
 --
@@ -3947,7 +3972,9 @@ INSERT INTO schema_migrations (version) VALUES ('20161021140457');
 
 INSERT INTO schema_migrations (version) VALUES ('20161116104612');
 
-INSERT INTO schema_migrations (version) VALUES ('20170401215454');
-
 INSERT INTO schema_migrations (version) VALUES ('20180820050136');
+
+INSERT INTO schema_migrations (version) VALUES ('20181102125508');
+
+INSERT INTO schema_migrations (version) VALUES ('20181102125923');
 
