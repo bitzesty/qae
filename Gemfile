@@ -65,9 +65,8 @@ gem 'wicked', '~> 1.1'
 gem 'statesman', '3.5.0'
 
 # Form & Data helpers
-gem 'simple_form', '~> 3.5'
-gem 'countries', require: 'countries/global'
-gem 'country_select'
+gem 'simple_form', '3.5.0'
+gem 'country_select', '2.1.0'
 gem 'email_validator'
 gem 'enumerize', '~> 0.8'
 
@@ -136,7 +135,7 @@ end
 group :development, :test do
   # Enviroment variables
   gem 'dotenv-rails'
-  gem 'rspec-rails', '3.5'
+  gem 'rspec-rails'
   gem "pry-byebug"
   gem 'rails-controller-testing'
 end
