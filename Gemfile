@@ -66,6 +66,7 @@ gem 'statesman', '3.5.0'
 
 # Form & Data helpers
 gem 'simple_form', '~> 3.5'
+gem 'countries', require: 'countries/global'
 gem 'country_select'
 gem 'email_validator'
 gem 'enumerize', '~> 0.8'
