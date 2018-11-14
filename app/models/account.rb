@@ -18,7 +18,7 @@ class Account < ApplicationRecord
   end
 
   def collaborators_with(user)
-    users.confirmed.unshift(user).uniq
+    users.confirmed.to_a.prepend(user).uniq
   end
 
   def collaborators_without(user)
