@@ -152,7 +152,7 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara', '2.7.1'
   gem 'poltergeist'
-  gem 'database_cleaner'
+  gem 'database_cleaner', '1.5.3'
   gem 'launchy'
   gem 'turnip', '3.0.0'
   gem 'shoulda-matchers', require: false
