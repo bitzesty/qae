@@ -46,6 +46,7 @@ gem 'responders', '~> 2.0'
 gem 'rails-html-sanitizer', '~> 1.0.4'
 
 # JSON
+gem 'json', '1.8.6'
 gem 'jbuilder', '~> 2.0'
 gem 'gon'
 
@@ -71,14 +72,14 @@ gem 'email_validator'
 gem 'enumerize', '~> 0.8'
 
 # PDF generation
-gem 'prawn', '1.3.0'
-gem 'prawn-table', '0.2.1'
+gem 'prawn'
+gem 'prawn-table'
 gem 'nokogiri', '~> 1.8.4'
 
 # Uploads
 gem 'carrierwave', '~> 1.2'
-gem "jquery.fileupload-rails", github: "bitzesty/jquery.fileupload-rails"
-gem "fog"
+gem 'jquery.fileupload-rails', github: 'bitzesty/jquery.fileupload-rails'
+gem 'fog', "1.41.0"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
 gem 'vigilion-rails', github: "mechanicles/vigilion-rails", branch: "no-raise-error-if-method-is-not-already-in-filter"
