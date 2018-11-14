@@ -3,7 +3,7 @@ module FormAnswerMixin
     check_rigths_by_updating_options
 
     resource.assign_attributes(allowed_params.except(:data_attributes))
-    resource.data_attributes = allowed_params[:data_attributes].except(:id) if allowed_params[:data_attributes]
+    resource.data_attributes = allowed_params[:data_attributes].to_h.except(:id) if allowed_params[:data_attributes]
     resource.company_details_updated_at = DateTime.now
     resource.company_details_editable = current_subject
 
