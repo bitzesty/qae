@@ -3,15 +3,15 @@
   tr
     td.td-title
       - unless obj.company_or_nominee_name.nil?
-        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]) do
+        = link_to polymorphic_url([namespace_name, obj], search: params.permit.to_h[:search], award_type: params.permit.to_h[:award_type]) do
           span.ellipsis
             = obj.company_or_nominee_name
       - else
-        = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type]) do
+        = link_to polymorphic_url([namespace_name, obj], search: params.permit.to_h[:search], award_type: params.permit.to_h[:award_type]) do
           em
             ' Not found
     td
-      = link_to polymorphic_url([namespace_name, obj], search: params[:search], award_type: params[:award_type])
+      = link_to polymorphic_url([namespace_name, obj], search: params.permit.to_h[:search], award_type: params.permit.to_h[:award_type])
         - if obj.urn.present?
           = obj.urn
         - else

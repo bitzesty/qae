@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.0'
 
-gem 'rails', '5.0.2'
+gem 'rails', '~> 5.1'
 
 # Security HTTP Headers
 gem 'secure_headers', '2.0.0'
@@ -57,7 +57,7 @@ gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
 
 # Pagenation
-gem 'kaminari', '0.16.1'
+gem 'kaminari'
 
 # step-by-step wizard
 gem 'wicked', '~> 1.1'
@@ -66,10 +66,10 @@ gem 'wicked', '~> 1.1'
 gem 'statesman', '3.5.0'
 
 # Form & Data helpers
-gem 'simple_form', '3.5.0'
+gem 'simple_form'
 gem 'country_select', '2.1.0'
 gem 'email_validator'
-gem 'enumerize', '~> 0.8'
+gem 'enumerize'
 
 # PDF generation
 gem 'prawn'
@@ -82,7 +82,7 @@ gem 'jquery.fileupload-rails', github: 'bitzesty/jquery.fileupload-rails'
 gem 'fog', "1.41.0"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
-gem 'vigilion-rails', github: "mechanicles/vigilion-rails", branch: "no-raise-error-if-method-is-not-already-in-filter"
+gem 'vigilion-rails', github: "mechanicles/vigilion-rails", ref: "d149da396ef553f6959236c43960db97b6bbac36"
 
 # Background jobs
 gem "sidekiq", "~> 4.1.1"
@@ -115,7 +115,7 @@ gem 'curb', '0.8.8'
 gem 'puma', '3.11.0'
 
 # Log formatting
-gem 'lograge', '0.4.1'
+gem 'lograge'
 
 # speedup server boot time
 gem 'bootscale', require: false
