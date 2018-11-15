@@ -24,21 +24,21 @@ RSpec.describe Admin::AdminsController do
 
   describe "POST create" do
     it "should create a resource" do
-      post :create, admin: FactoryGirl.attributes_for(:admin)
+      post :create, params: { admin: FactoryGirl.attributes_for(:admin) }
       expect(response).to redirect_to admin_admins_url
       expect(Admin.count).to eq 2
     end
   end
   describe "GET edit" do
     it "renders the  template" do
-      get :edit, id: admin.id
+      get :edit, params: { id: admin.id }
       expect(response).to render_template("edit")
     end
   end
 
   describe "PUT update" do
     it "should update a resource" do
-      put :update, id: admin.id, admin: { first_name: "changed first name" }
+      put :update, params: { id: admin.id, admin: { first_name: "changed first name" } }
       expect(response).to redirect_to admin_admins_url
       expect(Admin.first.first_name).to eq "changed first name"
     end
@@ -47,7 +47,7 @@ RSpec.describe Admin::AdminsController do
   describe "Delete destroy" do
     it "should destroy a resource" do
       to_be_deleted = create(:admin)
-      delete :destroy, id: to_be_deleted.id
+      delete :destroy, params: { id: to_be_deleted.id }
       expect(response).to redirect_to admin_admins_url
       expect(Admin.count).to eq 1
     end
@@ -56,7 +56,7 @@ RSpec.describe Admin::AdminsController do
   describe "GET login_as_assessor" do
     it "should login_as_assessor" do
       assessor = create(:assessor)
-      get :login_as_assessor, email: assessor.email
+      get :login_as_assessor, params: { email: assessor.email }
       expect(response).to redirect_to assessor_root_path
     end
   end
@@ -64,7 +64,7 @@ RSpec.describe Admin::AdminsController do
   describe "GET login_as_user" do
     it "should login_as_user" do
       user = create(:user)
-      get :login_as_user, email: user.email
+      get :login_as_user, params: { email: user.email }
       expect(response).to redirect_to dashboard_url
     end
   end
