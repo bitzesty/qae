@@ -652,7 +652,7 @@ GEM
       faraday
       faraday-detailed_logger
       faraday_middleware
-    virtus (1.0.4)
+    virtus (1.0.5)
       axiom-types (~> 0.1)
       coercible (~> 1.0)
       descendants_tracker (~> 0.0, >= 0.0.3)
@@ -763,7 +763,7 @@ DEPENDENCIES
   uglifier (>= 2.7.2)
   vigilion (~> 1.0.4)
   vigilion-rails!
-  virtus (= 1.0.4)
+  virtus
   webmock (= 3.3.0)
   wicked (~> 1.1)
 

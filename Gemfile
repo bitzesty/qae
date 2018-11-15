@@ -104,7 +104,7 @@ gem 'pg_search', "0.7.9"
 
 # YAML/Hash loading
 gem 'active_hash'
-gem 'virtus', '1.0.4'
+gem 'virtus'
 gem 'nilify_blanks'
 
 # We use it for sending API requests to Sendgrid in
