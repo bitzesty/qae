@@ -13,10 +13,18 @@ RSpec.describe Admin::FormAnswerStateTransitionsController do
   describe "POST create" do
     it "should create a resource" do
       allow_any_instance_of(AssessmentSubmissionService).to receive(:perform) {}
-      post :create, params: { form_answer_id: form_answer.id , form_answer_state_transition: {state: 'recommended' } }
+      post :create, params: {
+        form_answer_id: form_answer.id ,
+        form_answer_state_transition: { state: 'recommended' }
+      }
+
       expect(response).to redirect_to [:admin, form_answer]
 
-      xhr :post, :create, params: { form_answer_id: form_answer.id , form_answer_state_transition: {state: 'recommended' } }
+      post :create, params: {
+        form_answer_id: form_answer.id,
+        form_answer_state_transition: { state: 'recommended' }
+      }, xhr: true
+
       expect(response).to render_template(:partial => 'admin/form_answers/_states_list')
     end
   end

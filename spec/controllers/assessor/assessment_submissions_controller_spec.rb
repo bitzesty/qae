@@ -17,7 +17,7 @@ RSpec.describe Assessor::AssessmentSubmissionsController do
       post :create, params: { assessment_id: assessor_assignment.id }
       expect(response).to redirect_to [:assessor, assessor_assignment.form_answer]
 
-      post :create, assessment_id: assessor_assignment.id, format: :json
+      post :create, params: { assessment_id: assessor_assignment.id }, format: :json
       expect(response.content_type).to eq('application/json')
     end
   end

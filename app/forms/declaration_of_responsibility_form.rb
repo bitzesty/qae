@@ -53,8 +53,8 @@ class DeclarationOfResponsibilityForm
 
   ATTRIBUTES.each do |attr_name|
     define_method("words_in_#{attr_name}") do
-      if self.public_send("#{attr_name}").split.size > 500
-        self.errors.add(attr_name, "is too long (maximum is 500 words)")
+      if public_send("#{attr_name}").split.size > 500
+        errors.add(attr_name, "is too long (maximum is 500 words)")
       end
     end
   end
