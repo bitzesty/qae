@@ -1,4 +1,4 @@
-class ChangeFormAnswerAwardYearDefaultValue < ActiveRecord::Migration
+class ChangeFormAnswerAwardYearDefaultValue < ActiveRecord::Migration[4.2]
   def up
     change_column :form_answers, :award_year, :integer, default: nil, null: true
   end

@@ -1,4 +1,4 @@
-class AddImportAttributesToUsers < ActiveRecord::Migration
+class AddImportAttributesToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :address_line1, :string
     add_column :users, :address_line2, :string

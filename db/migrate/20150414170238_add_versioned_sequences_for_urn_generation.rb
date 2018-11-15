@@ -1,4 +1,4 @@
-class AddVersionedSequencesForUrnGeneration < ActiveRecord::Migration
+class AddVersionedSequencesForUrnGeneration < ActiveRecord::Migration[4.2]
   def up
     execute "DROP SEQUENCE urn_seq_promotion;"
     execute "DROP SEQUENCE urn_seq;"

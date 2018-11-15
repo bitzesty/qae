@@ -1,4 +1,4 @@
-class CreateAssessorAssignments < ActiveRecord::Migration
+class CreateAssessorAssignments < ActiveRecord::Migration[4.2]
   def change
     create_table :assessor_assignments do |t|
       t.integer :form_answer_id, null: false

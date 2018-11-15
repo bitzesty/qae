@@ -1,4 +1,4 @@
-class AddFirstNameLastNameEmailPhoneNumberToPressSummaries < ActiveRecord::Migration
+class AddFirstNameLastNameEmailPhoneNumberToPressSummaries < ActiveRecord::Migration[4.2]
   def change
     add_column :press_summaries, :first_name, :string
     add_column :press_summaries, :last_name, :string

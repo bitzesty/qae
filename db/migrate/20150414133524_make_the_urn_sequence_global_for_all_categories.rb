@@ -1,4 +1,4 @@
-class MakeTheUrnSequenceGlobalForAllCategories < ActiveRecord::Migration
+class MakeTheUrnSequenceGlobalForAllCategories < ActiveRecord::Migration[4.2]
   def up
     execute 'DROP SEQUENCE "urn_seq_trade";'
     execute 'DROP SEQUENCE "urn_seq_innovation";'

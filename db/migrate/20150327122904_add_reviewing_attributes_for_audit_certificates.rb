@@ -1,4 +1,4 @@
-class AddReviewingAttributesForAuditCertificates < ActiveRecord::Migration
+class AddReviewingAttributesForAuditCertificates < ActiveRecord::Migration[4.2]
   def change
     add_column :audit_certificates, :changes_description, :text
     add_column :audit_certificates, :reviewable_type, :string

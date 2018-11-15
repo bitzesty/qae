@@ -1,4 +1,4 @@
-class MoveNomineeTitleToFormAnswers < ActiveRecord::Migration
+class MoveNomineeTitleToFormAnswers < ActiveRecord::Migration[4.2]
   def change
     remove_column :company_details, :nominee_title, :string
     add_column :form_answers, :nominee_title, :string

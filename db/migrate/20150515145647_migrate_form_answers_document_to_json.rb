@@ -1,4 +1,4 @@
-class MigrateFormAnswersDocumentToJson < ActiveRecord::Migration
+class MigrateFormAnswersDocumentToJson < ActiveRecord::Migration[4.2]
   def up
     rename_column :form_answers, :document, :hstore_document
     add_column :form_answers, :document, :json
