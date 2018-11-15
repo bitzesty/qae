@@ -16,12 +16,11 @@ class DeclarationOfResponsibilityForm
 
   attr_accessor *ATTRIBUTES
 
-  validates *ATTRIBUTES,
-            length: {
-              maximum: 551,
-              tokenizer: -> (str) { str.split },
-              message: "is too long (maximum is 500 words)"
-            }
+  ATTRIBUTES.each do |attr_name|
+    class_eval <<-EVAL, __FILE__, __LINE__+1
+      validate :words_in_#{attr_name}, if: Proc.new { |m| m.public_send("#{attr_name}").present? }
+    EVAL
+  end
 
   def initialize(form_answer)
     @form_answer = form_answer
@@ -48,5 +47,15 @@ class DeclarationOfResponsibilityForm
 
   def persisted?
     false
+  end
+
+  private
+
+  ATTRIBUTES.each do |attr_name|
+    define_method("words_in_#{attr_name}") do
+      if self.public_send("#{attr_name}").split.size > 500
+        self.errors.add(attr_name, "is too long (maximum is 500 words)")
+      end
+    end
   end
 end
