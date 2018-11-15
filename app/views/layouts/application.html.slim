@@ -43,11 +43,11 @@
         nav#proposition-menu
           a#proposition-name href="/"
             ' Queen's Awards for Enterprise
-          
+
           - if current_user && !current_admin && !current_assessor
             span.if-no-js-hide
               = link_to "Menu", "#proposition-links", class: "js-header-toggle menu"
-            
+
             ul#proposition-links
               - if current_user.try(:completed_registration)
                 li

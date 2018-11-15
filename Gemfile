@@ -48,7 +48,7 @@ gem 'rails-html-sanitizer', '~> 1.0.4'
 # JSON
 gem 'json', '1.8.6'
 gem 'jbuilder', '~> 2.0'
-gem 'gon', '6.0.1'
+gem 'gon'
 
 # User authentication & authorization
 gem 'devise', '4.4.0'

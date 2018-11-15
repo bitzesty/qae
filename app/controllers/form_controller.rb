@@ -95,7 +95,7 @@ class FormController < ApplicationController
 
       if this_form_eligible?
         @form = @form_answer.award_form.decorate(answers: HashWithIndifferentAccess.new(@form_answer.document))
-        gon.push base_year: @form_answer.award_year.year - 1
+        gon.base_year = @form_answer.award_year.year - 1
 
         render template: "qae_form/show"
       else
