@@ -81,7 +81,8 @@ module FormAnswerHelper
   end
 
   def country_collection
-    ([["United Kingdom", "GB"], ["United States", "US"]] + ISO3166::Country.all).uniq
+    ([["United Kingdom of Great Britain and Northern Ireland", "GB"], ["United States of America", "US"]] +
+     ISO3166::Country.all.map { |c| [c.name, c.alpha2] }).uniq
   end
 
   def assessors_collection_for_bulk
