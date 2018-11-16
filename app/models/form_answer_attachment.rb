@@ -15,13 +15,12 @@ class FormAnswerAttachment < ApplicationRecord
   attr_accessor :non_js_creation, :description
   # Should be 100 words maximum (limit + 10%).to_i + 1)
   validates :description, presence: true,
-                          length: {
-                            maximum: 111,
-                            tokenizer: -> (str) { str.split },
-                            message: "is too long (maximum is 100 words)"
-                          },
                           on: :create,
-                          if: "self.non_js_creation.present?"
+                          if: -> { non_js_creation.present? }
+
+  validate :words_in_description, on: :create,
+                                  if: -> { description.present? && non_js_creation.present }
+
   validate :question_key_correctness
   # Used for NON JS implementation - end
 
@@ -62,6 +61,12 @@ class FormAnswerAttachment < ApplicationRecord
       if self.class.where(question_key: question_key, form_answer_id: form_answer_id).count > 0
         errors.add(:base, "Maximum amount of these kind of files reached.")
       end
+    end
+  end
+
+  def words_in_description
+    if description.split.size > 100
+      errors.add(:description, message: "is too long (maximum is 100 words)")
     end
   end
 end
