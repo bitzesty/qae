@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.5.0'
 
-gem 'rails', '~> 5.1'
+gem 'rails', '~> 5.2'
 
 # Security HTTP Headers
 gem 'secure_headers', '2.0.0'
@@ -51,7 +51,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'gon'
 
 # User authentication & authorization
-gem 'devise', '4.4.0'
+gem 'devise'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
@@ -131,6 +131,7 @@ group :development do
   gem 'amoeba', '3.0.0'
   # for RailsPanel Chrome extension
   gem 'meta_request'
+  gem 'listen'
 end
 
 group :development, :test do

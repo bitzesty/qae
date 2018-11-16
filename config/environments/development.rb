@@ -12,26 +12,26 @@ Rails.application.configure do
   # Show full error reports.
   config.consider_all_requests_local = true
 
-  # # Enable/disable caching. By default caching is disabled.
-  # if Rails.root.join('tmp/caching-dev.txt').exist?
-  #   config.action_controller.perform_caching = true
+  # Enable/disable caching. By default caching is disabled.
+  # Run rails dev:cache to toggle caching.
+  if Rails.root.join('tmp', 'caching-dev.txt').exist?
+    config.action_controller.perform_caching = true
 
-  #   config.cache_store = :memory_store
-  #   config.public_file_server.headers = {
-  #     'Cache-Control' => 'public, max-age=172800'
-  #   }
-  # else
-  #   config.action_controller.perform_caching = false
+    config.cache_store = :memory_store
+    config.public_file_server.headers = {
+      'Cache-Control' => "public, max-age=#{2.days.to_i}"
+    }
+  else
+    config.action_controller.perform_caching = false
 
-  #   config.cache_store = :null_store
-  # end
+    config.cache_store = :null_store
+  end
 
-  config.action_controller.perform_caching = true
+  # Store uploaded files on the local file system (see config/storage.yml for options)
+  config.active_storage.service = :local
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-
-  config.action_mailer.perform_caching = false
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -41,6 +41,9 @@ Rails.application.configure do
 
   # Do not compress assets.
   config.assets.compress = false
+
+  # Highlight code that triggered database queries in logs.
+  config.active_record.verbose_query_logs = true
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
@@ -64,10 +67,10 @@ Rails.application.configure do
   # configure the devise email layout
   config.to_prepare { Devise::Mailer.layout "mailer" }
 
-  # Use an evented file watcher to asynchronously detect changes in source code,
-  # routes, locales, etc. This feature depends on the listen gem.
-  # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-
   # Configure Rails.logger to log to both STDOUT and development.log file.
   config.log_level = :debug
+
+  # Use an evented file watcher to asynchronously detect changes in source code,
+  # routes, locales, etc. This feature depends on the listen gem.
+  config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 end
