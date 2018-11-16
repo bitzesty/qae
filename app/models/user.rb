@@ -16,26 +16,26 @@ class User < ApplicationRecord
   validates :role, :account, presence: true
 
   # First step validations
-  validates :title, presence: true, if: :first_step?
-  validates :first_name, presence: true, if: :first_step?
-  validates :last_name, presence: true, if: :first_step?
-  validates :job_title, presence: true, if: :first_step?
-  validates :phone_number, presence: true, if: :first_step?
+  validates :title, presence: true, if: -> { first_step? }
+  validates :first_name, presence: true, if: -> { first_step? }
+  validates :last_name, presence: true, if: -> { first_step? }
+  validates :job_title, presence: true, if: -> { first_step? }
+  validates :phone_number, presence: true, if: -> { first_step? }
   validates :password, confirmation: true
 
   validates :phone_number, length: {
     minimum: 7,
     maximum: 20,
     message: "This is not a valid telephone number"
-  }, if: :first_step?
+  }, if: -> { first_step? }
 
   validates :company_phone_number, length: {
     minimum: 7,
     maximum: 20,
     message: "This is not a valid telephone number"
-  }, allow_blank: true, if: :second_step?
+  }, allow_blank: true, if: -> { second_step? }
 
-  validates_with AdvancedEmailValidator, unless: "Rails.env.test? || Rails.env.development?"
+  validates_with AdvancedEmailValidator, unless: -> { Rails.env.test? || Rails.env.development? }
 
   begin :associations
     has_many :form_answers

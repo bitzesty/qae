@@ -140,7 +140,7 @@ GEM
     crass (1.0.4)
     curb (0.8.8)
     currencies (0.4.2)
-    database_cleaner (1.5.3)
+    database_cleaner (1.6.1)
     debug_inspector (0.0.3)
     decent_decoration (0.1.0)
       decent_exposure (~> 3.0)
@@ -703,7 +703,7 @@ DEPENDENCIES
   coffee-rails (= 4.2.2)
   country_select (= 2.1.0)
   curb (= 0.8.8)
-  database_cleaner (= 1.5.3)
+  database_cleaner (= 1.6.1)
   decent_decoration
   decent_exposure
   devise (= 4.4.0)
