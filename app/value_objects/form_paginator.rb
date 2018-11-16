@@ -5,6 +5,7 @@ class FormPaginator
     @form_answer = form_answer
     @user = user
     @params = full_params[:search] || FormAnswerSearch::DEFAULT_SEARCH
+    @params.permit!
 
     base_scope = if user.is_a?(Assessor)
       assessors_scope = user.applications_scope(award_year)

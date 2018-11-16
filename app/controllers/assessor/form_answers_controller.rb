@@ -25,6 +25,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
         status: FormAnswerStatus::AssessorFilter::checked_options.invert.values
       }
     }
+    params[:search].permit!
     scope = current_assessor.applications_scope(@award_year)
 
     if params[:search][:query].blank? && category_picker.show_award_tabs_for_assessor?

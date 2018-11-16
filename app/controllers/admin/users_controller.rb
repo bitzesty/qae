@@ -3,6 +3,8 @@ class Admin::UsersController < Admin::BaseController
 
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
+    params[:search].permit!
+
     authorize User, :index?
 
     @search = UserSearch.new(User.all).search(params[:search])
