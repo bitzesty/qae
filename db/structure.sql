@@ -1,10 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 9.5.14
--- Dumped by pg_dump version 10.5
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -253,7 +246,7 @@ CREATE TABLE public.assessors (
     locked_at timestamp without time zone,
     company character varying,
     mobility_role character varying,
-    deleted boolean DEFAULT false,
+    deleted boolean DEFAULT true,
     autosave_token character varying
 );
 
