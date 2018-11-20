@@ -10,7 +10,6 @@ class QAEFormBuilder
       question.trade_goods_and_services.each_with_index do |entity, index|
         if index + 1 <= question.answers["trade_goods_amount"].to_i
           question.required_sub_fields_list.each do |attr|
-            next unless entity.is_a?(Hash)
             if !entity[attr].present?
               result[question.key] ||= {}
               result[question.key][index] ||= ""

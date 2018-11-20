@@ -40,9 +40,9 @@ class QAEFormBuilder
 
     def allowed_questions_params_list(form_data)
       allowed_params = {}
-
+      form_data = form_data.dup.permit!
       questions.each do |question|
-        allowed_params[question.key] = form_data[question.key]
+        allowed_params[question.key] = hashify_params(form_data[question.key])
 
         question_possible_sub_keys(question).each do |sub_question_key|
           allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::MobilityByYearsQuestion)
@@ -54,7 +54,7 @@ class QAEFormBuilder
         end
 
         if question.delegate_obj.is_a?(QAEFormBuilder::UploadQuestion) &&
-          form_data[question.key].nil?
+            hashify_params(form_data[question.key]).nil?
           # This code handles case when user removes all attachments / links
           # from Form: Add Website Address/Documents section
           # As in this case params wouldn't have empty hash {}
@@ -68,6 +68,10 @@ class QAEFormBuilder
       end
 
       allowed_params
+    end
+
+    def hashify_params(params)
+      params.is_a?(ActionController::Parameters) ? params.to_h : params
     end
 
     def question_possible_sub_keys(question)
