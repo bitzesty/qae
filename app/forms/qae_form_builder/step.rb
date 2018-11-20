@@ -40,7 +40,7 @@ class QAEFormBuilder
 
     def allowed_questions_params_list(form_data)
       allowed_params = {}
-      form_data = form_data.permit!
+      form_data = form_data.dup.permit!
       questions.each do |question|
         allowed_params[question.key] = hashify_params(form_data[question.key])
 
