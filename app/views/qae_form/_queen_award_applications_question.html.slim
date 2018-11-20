@@ -9,7 +9,7 @@ div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label
 
     - question.entities.each_with_index do |award, index|
       - puts "**" * 30
-      - puts question.entities.first
+      - puts question.entities.inspect
       - puts award.inspect
       - puts index.inspect
 
