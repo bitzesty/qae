@@ -85,8 +85,8 @@ gem 'vigilion', '~> 1.0.4'
 gem 'vigilion-rails', github: "mechanicles/vigilion-rails", ref: "d149da396ef553f6959236c43960db97b6bbac36"
 
 # Background jobs
-gem "sidekiq", "~> 4.1.1"
-gem "sidekiq-cron", "~> 0.4.2"
+gem "sidekiq", "~> 4.2"
+gem "sidekiq-cron", "~> 1.0"
 gem 'sinatra', '2.0.0', require: nil
 gem "rack-protection"
 
