@@ -19,7 +19,8 @@ module InfectedFileCleaner
           end
         end
 
-        # alias_method_chain :on_scan_#{file_attr_name}, :cleanup
+        alias_method :on_scan_#{file_attr_name}_without_cleanup, :on_scan_#{file_attr_name}
+        alias_method :on_scan_#{file_attr_name}, :on_scan_#{file_attr_name}_with_cleanup
       EVAL
     end
   end

@@ -82,7 +82,7 @@ gem 'jquery.fileupload-rails', github: 'bitzesty/jquery.fileupload-rails'
 gem 'fog', "1.41.0"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
-gem 'vigilion-rails', github: "mechanicles/vigilion-rails", ref: "d149da396ef553f6959236c43960db97b6bbac36"
+gem 'vigilion-rails'
 
 # Background jobs
 gem "sidekiq", "~> 4.2"
