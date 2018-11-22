@@ -87,7 +87,7 @@ class Form::OrganisationalChartsController < Form::MaterialsBaseController
     respond_to do |format|
       format.html do
         if request.xhr?
-          render nothing: true
+          head :ok
         else
           redirect_to edit_form_url(id: @form_answer.id, step: "company-information")
         end

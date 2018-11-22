@@ -8,7 +8,7 @@ module ReviewAuditCertificatesMixin
     @review_audit_certificate.save
 
     respond_to do |format|
-      format.js { render(nothing: true) }
+      format.js { head :ok }
       format.html do
         redirect_to [namespace_name, @review_audit_certificate.form_answer]
       end

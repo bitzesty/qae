@@ -49,7 +49,7 @@ class Admin::FormAnswersController < Admin::BaseController
         redirect_to admin_form_answer_url(@form_answer)
       end
       format.js do
-        render nothing: true
+        head :ok
       end
     end
   end

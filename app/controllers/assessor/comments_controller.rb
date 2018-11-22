@@ -15,7 +15,7 @@ class Assessor::CommentsController < Assessor::BaseController
             render partial: "admin/form_answers/comment",
                    locals: { comment: @comment, resource: form_answer }
           else
-            render nothing: true
+            head :ok
           end
         else
           redirect_to assessor_form_answer_path(form_answer)
@@ -30,7 +30,7 @@ class Assessor::CommentsController < Assessor::BaseController
 
     respond_to do |format|
       format.html { redirect_to([namespace_name, form_answer]) }
-      format.js { render nothing: true }
+      format.js { head :ok }
     end
   end
 
