@@ -71,8 +71,8 @@ class FormAnswerPolicy < ApplicationPolicy
   def download_audit_certificate_pdf?
     (admin? || subject.lead_or_assigned?(record)) &&
     record.audit_certificate.present? &&
-    record.audit_certificate.attachment.present? &&
-    record.audit_certificate.clean?
+    record.audit_certificate.attachment.present?
+    # && record.audit_certificate.clean?
   end
 
   def remove_audit_certificate?

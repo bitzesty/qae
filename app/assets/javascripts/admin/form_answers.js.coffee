@@ -22,7 +22,14 @@ ready = ->
     $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
     $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach document</span>")
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
-    $(".attachment-link", wrapper).prependTo("#new_form_answer_attachment")
+    $(".attachment-link", wrapper).prependTo("#application-attachment-form .new_form_answer_attachment")
+
+    wrapper = $("#audit-certificate-form")
+    $(".attachment-link", wrapper).removeClass("if-js-hide")
+    $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
+    $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach audit certificate</span>")
+    $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
+    $(".attachment-link", wrapper).prependTo("#audit-certificate-form .new_audit_certificate")
 
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".form-group").removeClass("form-edit")
@@ -34,9 +41,11 @@ ready = ->
     else
       div = "<div><label>Changes made</label><p class='control-label'>#{area.val()}</p></div>"
       $(this).find(".form-value").html(div)
+
   $("#new_review_audit_certificate").on "click", ".save-review-audit", (e) ->
     e.preventDefault()
     $("#new_review_audit_certificate").submit()
+
   $(".edit-review-audit").on "click", (e) ->
     $(".save-review-audit").show()
 
@@ -47,6 +56,7 @@ ready = ->
     form.find("option[value='#{state}']").prop("selected", true)
     $(".section-applicant-status .dropdown-toggle").text($(this).data("label"))
     form.submit()
+
   $("#new_form_answer_state_transition").on "ajax:success", (e, data, status, xhr) ->
     $(".section-applicant-status .dropdown-menu").replaceWith(data)
     if data == ""
@@ -72,23 +82,30 @@ ready = ->
 
     form.find(".errors-holder").text(errors)
 
-  $("#new_form_answer_attachment").on "fileuploadsubmit", (e, data) ->
+  $("#application-attachment-form .new_form_answer_attachment").on "fileuploadsubmit", (e, data) ->
     data.formData =
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
-      "form_answer_attachment[title]": $("#form_answer_attachment_title").val()
-      "form_answer_attachment[restricted_to_admin]": $("#form_answer_attachment_restricted_to_admin").prop("checked")
+      "form_answer_attachment[title]": $("#application-attachment-form .attachment-title").val()
+      "form_answer_attachment[restricted_to_admin]": $("#application-attachment-form .restricted_to_admin").prop("checked")
+
+  $("#audit-certificate-form .new_audit_certificate").on "fileuploadsubmit", (e, data) ->
+    data.formData =
+      authenticity_token: $("meta[name='csrf-token']").attr("content")
+      format: "js"
+      "form_answer_attachment[title]": $("#audit-certificate-form .attachment-title").val()
+      "form_answer_attachment[restricted_to_admin]": $("#audit-certificate-form .restricted_to_admin").prop("checked")
 
   if $("html").hasClass("lte-ie7")
     $(".attachment-link", $("#application-attachment-form")).removeClass("if-js-hide")
   else
     do initializeFileUpload = ->
-      $("#new_form_answer_attachment").fileupload
+      $("#application-attachment-form .new_form_answer_attachment").fileupload
         autoUpload: false
         dataType: "html"
         forceIframeTransport: true
         add: (e, data) ->
-          newForm = $("#new_form_answer_attachment")
+          newForm = $("#application-attachment-form .new_form_answer_attachment")
           $(".attachment-title").val(data.files[0].name)
           newForm.closest(".sidebar-section").addClass("show-attachment-form")
           newForm.find(".btn-submit").focus().blur()
@@ -104,7 +121,7 @@ ready = ->
             moveAttachDocumentButton()
             initializeFileUpload()
           else
-            form = $("#new_form_answer_attachment")
+            form = $("#application-attachment-form .new_form_answer_attachment")
             sidebarSection = form.closest(".sidebar-section")
             sidebarSection.find(".document-list .p-empty").addClass("visuallyhidden")
             sidebarSection.find(".document-list ul").append(result.text())
@@ -114,13 +131,44 @@ ready = ->
 
           $("#attachment-buffer").empty()
 
+  if $("html").hasClass("lte-ie7")
+    $(".attachment-link", $("#audit-certificate-form")).removeClass("if-js-hide")
+  else
+    do initializeFileUpload = ->
+      $("#audit-certificate-form .new_audit_certificate").fileupload
+        autoUpload: false
+        dataType: "html"
+        forceIframeTransport: true
+        add: (e, data) ->
+          newForm = $("#audit-certificate-form .new_audit_certificate")
+          newForm.closest(".sidebar-section").addClass("show-attachment-form")
+          newForm.find(".btn-submit").focus().blur()
+          newForm.find(".btn-submit").unbind("click").on "click", (e) ->
+            e.preventDefault()
+            data.submit()
+        success: (result, textStatus, jqXHR) ->
+          result = $($.parseHTML(result))
+          $("audit-certificate-buffer").append(result.text())
+
+          if $("#form-audit_certificate-valid", $("#audit-certificate-buffer")).length
+            $("audit-certificate-form").html(result.text())
+            moveAttachDocumentButton()
+            initializeFileUpload()
+          else
+            form = $("#audit-certificate-form .new_audit_certificate")
+            sidebarSection = form.closest(".sidebar-section")
+            sidebarSection.find(".document-list").append(result.text())
+            sidebarSection.removeClass("show-attachment-form")
+
+          $("#audit-certificate-buffer").empty()
+
     moveAttachDocumentButton()
 
   $(document).on "click", ".js-attachment-form .btn-cancel", (e) ->
     e.preventDefault()
     $(this).closest(".sidebar-section").removeClass("show-attachment-form")
-    $("#new_form_answer_attachment .errors").empty()
-    $("#new_form_answer_attachment").removeClass("uploaded-file")
+    $(".new_form_answer_attachment .errors").empty()
+    $(".new_form_answer_attachment").removeClass("uploaded-file")
     $("#form_answer_attachment_title").val(null)
     $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
 
