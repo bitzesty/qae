@@ -1,8 +1,6 @@
 class Admin::AuditCertificatesController < Admin::BaseController
   include AuditCertificateContext
 
-  skip_after_action :verify_authorized
-
   expose(:pdf_data) do
     form_answer.decorate.pdf_audit_certificate_generator
   end

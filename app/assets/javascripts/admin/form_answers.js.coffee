@@ -22,14 +22,14 @@ ready = ->
     $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
     $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach document</span>")
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
-    $(".attachment-link", wrapper).prependTo("#application-attachment-form .new_form_answer_attachment")
+    $(".attachment-link", wrapper).prependTo("#new_form_answer_attachment")
 
     wrapper = $("#audit-certificate-form")
     $(".attachment-link", wrapper).removeClass("if-js-hide")
     $(".attachment-link", wrapper).addClass("btn btn-default btn-block btn-attachment")
     $(".attachment-link", wrapper).prepend("<span class='btn-title'>Attach audit certificate</span>")
     $(".attachment-link", wrapper).prepend("<span class='glyphicon glyphicon-paperclip'></span>")
-    $(".attachment-link", wrapper).prependTo("#audit-certificate-form .new_audit_certificate")
+    $(".attachment-link", wrapper).prependTo("#new_audit_certificate")
 
   $("#new_review_audit_certificate").on "ajax:success", (e, data, status, xhr) ->
     $(this).find(".form-group").removeClass("form-edit")
@@ -82,14 +82,14 @@ ready = ->
 
     form.find(".errors-holder").text(errors)
 
-  $("#application-attachment-form .new_form_answer_attachment").on "fileuploadsubmit", (e, data) ->
+  $("#new_form_answer_attachment").on "fileuploadsubmit", (e, data) ->
     data.formData =
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
       "form_answer_attachment[title]": $("#application-attachment-form .attachment-title").val()
-      "form_answer_attachment[restricted_to_admin]": $("#application-attachment-form .restricted_to_admin").prop("checked")
+      "form_answer_attachment[restricted_to_admin]": $("#form_answer_attachment_restricted_to_admin").prop("checked")
 
-  $("#audit-certificate-form .new_audit_certificate").on "fileuploadsubmit", (e, data) ->
+  $("#new_audit_certificate").on "fileuploadsubmit", (e, data) ->
     data.formData =
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
@@ -100,12 +100,12 @@ ready = ->
     $(".attachment-link", $("#application-attachment-form")).removeClass("if-js-hide")
   else
     do initializeFileUpload = ->
-      $("#application-attachment-form .new_form_answer_attachment").fileupload
+      $("#new_form_answer_attachment").fileupload
         autoUpload: false
         dataType: "html"
         forceIframeTransport: true
         add: (e, data) ->
-          newForm = $("#application-attachment-form .new_form_answer_attachment")
+          newForm = $("#new_form_answer_attachment")
           $(".attachment-title").val(data.files[0].name)
           newForm.closest(".sidebar-section").addClass("show-attachment-form")
           newForm.find(".btn-submit").focus().blur()
@@ -121,7 +121,7 @@ ready = ->
             moveAttachDocumentButton()
             initializeFileUpload()
           else
-            form = $("#application-attachment-form .new_form_answer_attachment")
+            form = $("#new_form_answer_attachment")
             sidebarSection = form.closest(".sidebar-section")
             sidebarSection.find(".document-list .p-empty").addClass("visuallyhidden")
             sidebarSection.find(".document-list ul").append(result.text())
@@ -135,12 +135,12 @@ ready = ->
     $(".attachment-link", $("#audit-certificate-form")).removeClass("if-js-hide")
   else
     do initializeFileUpload = ->
-      $("#audit-certificate-form .new_audit_certificate").fileupload
+      $("#new_audit_certificate").fileupload
         autoUpload: false
         dataType: "html"
         forceIframeTransport: true
         add: (e, data) ->
-          newForm = $("#audit-certificate-form .new_audit_certificate")
+          newForm = $("#new_audit_certificate")
           newForm.closest(".sidebar-section").addClass("show-attachment-form")
           newForm.find(".btn-submit").focus().blur()
           newForm.find(".btn-submit").unbind("click").on "click", (e) ->
@@ -155,7 +155,7 @@ ready = ->
             moveAttachDocumentButton()
             initializeFileUpload()
           else
-            form = $("#audit-certificate-form .new_audit_certificate")
+            form = $("#new_audit_certificate")
             sidebarSection = form.closest(".sidebar-section")
             sidebarSection.find(".document-list").append(result.text())
             sidebarSection.removeClass("show-attachment-form")

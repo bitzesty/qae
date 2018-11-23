@@ -1,9 +1,9 @@
 class AuditCertificate < ActiveRecord::Base
   mount_uploader :attachment, AuditCertificateUploader
-  # scan_file      :attachment
+  scan_file      :attachment
 
-  # include ::InfectedFileCleaner
-  #clean_after_scan :attachment
+  include ::InfectedFileCleaner
+  clean_after_scan :attachment
 
   begin :associations
     belongs_to :form_answer

@@ -3,7 +3,7 @@
 / whether file was saved or not
 .span
   = hidden_field_tag "valid", "false", id: "form-audit_certificate-valid"
-= form_for [namespace_name, form_answer, audit_certificate], html: { class: "new_audit_certificate", multipart: true } do |form|
+= form_for [namespace_name, form_answer, audit_certificate], html: { multipart: true } do |form|
   .well.js-attachment-form
     h3 Attach document
 
