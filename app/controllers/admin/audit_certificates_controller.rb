@@ -38,15 +38,14 @@ class Admin::AuditCertificatesController < Admin::BaseController
         format.js do
           render  partial: "admin/form_answers/docs/post_shortlisting_docs",
             locals: {
-            resource: form_answer.decorate,
-            form_answer: form_answer
+            resource: form_answer.decorate
           },
           content_type: "text/plain"
         end
       else
         format.html do
           redirect_to [namespace_name, form_answer],
-            alert: service.errors
+            alert: audit_certificate.errors.full_messages.join(", ")
         end
         format.js do
           render json: audit_certificate,

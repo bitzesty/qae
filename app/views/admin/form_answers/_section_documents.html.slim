@@ -23,9 +23,9 @@
       h2
         ' Post Shortlisting Docs
       .document-list
-        = render "admin/form_answers/docs/post_shortlisting_docs", form_answer: @form_answer, resource: resource
+        = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
 
-      - if @form_answer.audit_certificate.blank?
+      - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
         br
         #audit-certificate-form
           = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: @form_answer.build_audit_certificate

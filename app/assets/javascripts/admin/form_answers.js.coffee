@@ -86,7 +86,7 @@ ready = ->
     data.formData =
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
-      "form_answer_attachment[title]": $("form_answer_attachment_title").val()
+      "form_answer_attachment[title]": $("#form_answer_attachment_title").val()
       "form_answer_attachment[restricted_to_admin]": $("#form_answer_attachment_restricted_to_admin").prop("checked")
 
   $("#new_audit_certificate").on "fileuploadsubmit", (e, data) ->
@@ -165,8 +165,8 @@ ready = ->
   $(document).on "click", ".js-attachment-form .btn-cancel", (e) ->
     e.preventDefault()
     $(this).closest(".sidebar-section").removeClass("show-attachment-form")
-    $("#new_form_answer_attachmen .errors").empty()
-    $("#new_form_answer_attachmen").removeClass("uploaded-file")
+    $("#new_form_answer_attachment .errors").empty()
+    $("#new_form_answer_attachment").removeClass("uploaded-file")
     $("#form_answer_attachment_title").val(null)
     $("#form_answer_attachment_restricted_to_admin").prop("checked", false)
 
