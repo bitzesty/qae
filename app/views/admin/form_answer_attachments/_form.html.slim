@@ -3,7 +3,7 @@
 / whether file was saved or not
 .span
   = hidden_field_tag "valid", "false", id: "form-answer-attachment-valid"
-= form_for [namespace_name, form_answer, form_answer_attachment], html: { class: "new_form_answer_attachment", multipart: true } do |form|
+= form_for [namespace_name, form_answer, form_answer_attachment], html: { multipart: true } do |form|
   .well.js-attachment-form
     h3 Attach document
 
@@ -21,7 +21,7 @@
       - if current_subject.is_a?(Admin)
         .checkbox
           label
-            = form.check_box :restricted_to_admin, class: "restricted_to_admin"
+            = form.check_box :restricted_to_admin
 
             ' Only admin can view this document
 
