@@ -38,7 +38,7 @@ class Admin::AuditCertificatesController < Admin::BaseController
         format.js do
           render  partial: "admin/form_answers/docs/post_shortlisting_docs",
             locals: {
-            resource: form_answer,
+            resource: form_answer.decorate,
             form_answer: form_answer
           },
           content_type: "text/plain"
