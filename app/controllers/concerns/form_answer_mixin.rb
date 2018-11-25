@@ -3,7 +3,7 @@ module FormAnswerMixin
     check_rigths_by_updating_options
 
     resource.assign_attributes(allowed_params.except(:data_attributes))
-    resource.data_attributes = allowed_params[:data_attributes].to_h.except(:id) if allowed_params[:data_attributes]
+    resource.data_attributes = allowed_params[:data_attributes].except(:id) if allowed_params[:data_attributes]
     resource.company_details_updated_at = DateTime.now
     resource.company_details_editable = current_subject
 
@@ -79,6 +79,7 @@ module FormAnswerMixin
 
   def allowed_params
     ops = params.require(:form_answer).permit!
+    ops = ops.to_h
 
     ops.reject! do |k, v|
       (k.to_sym == :company_or_nominee_name || k.to_sym == :nominee_title) &&
