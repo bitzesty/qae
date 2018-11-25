@@ -37,5 +37,6 @@ module Qae
     config.cache_store = :memory_store
     config.active_record.schema_format = :sql
     config.active_job.queue_adapter = :sidekiq
+    config.action_view.automatically_disable_submit_tag = false
   end
 end
