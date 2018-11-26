@@ -22,7 +22,13 @@
     .sidebar-section
       h2
         ' Post Shortlisting Docs
-      = render "admin/form_answers/docs/post_shortlisting_docs"
+      .document-list
+        = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
+
+      - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
+        br
+        #audit-certificate-form
+          = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: @form_answer.build_audit_certificate
 
   / TODO Only appears for EP but for now we need to think more on it
   /.sidebar-section
@@ -43,4 +49,6 @@
     #application-attachment-form
       = render "admin/form_answer_attachments/form", form_answer: @form_answer, form_answer_attachment: @form_answer.form_answer_attachments.build
 
+
+#audit-certificate-buffer
 #attachment-buffer
