@@ -2,7 +2,7 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.14
+-- Dumped from database version 10.0
 -- Dumped by pg_dump version 10.5
 
 SET statement_timeout = 0;
@@ -292,7 +292,8 @@ CREATE TABLE public.audit_certificates (
     reviewable_id integer,
     reviewed_at timestamp without time zone,
     status integer,
-    attachment_scan_results character varying
+    attachment_scan_results character varying,
+    cached_filename character varying
 );
 
 
@@ -681,7 +682,8 @@ CREATE TABLE public.form_answer_attachments (
     title character varying,
     restricted_to_admin boolean DEFAULT false,
     question_key character varying,
-    file_scan_results character varying
+    file_scan_results character varying,
+    cached_filename character varying
 );
 
 
@@ -1107,7 +1109,8 @@ CREATE TABLE public.support_letter_attachments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     support_letter_id integer,
-    attachment_scan_results character varying
+    attachment_scan_results character varying,
+    cached_filename character varying
 );
 
 
@@ -3971,6 +3974,8 @@ INSERT INTO schema_migrations (version) VALUES ('20161021111201');
 INSERT INTO schema_migrations (version) VALUES ('20161021140457');
 
 INSERT INTO schema_migrations (version) VALUES ('20161116104612');
+
+INSERT INTO schema_migrations (version) VALUES ('20170401215454');
 
 INSERT INTO schema_migrations (version) VALUES ('20180820050136');
 
