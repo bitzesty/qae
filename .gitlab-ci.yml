@@ -12,6 +12,7 @@ services:
     alias: postgres
 
 stages:
+  - test
   - deploy
 
 test:
@@ -54,6 +55,20 @@ code_quality:
   artifacts:
     paths: [gl-code-quality-report.json]
 
+deploy_dev:
+  stage: deploy
+  script:
+    - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
+    - mv /tmp/convox /usr/local/bin/convox
+    - chmod 755 /usr/local/bin/convox
+    - convox deploy --app qae-staging --rack bitzesty/qae
+    - convox run web rake db:migrate --app qae-dev --rack bitzesty/qae
+  environment:
+    name: dev
+    url: https://staging.queens-awards-enterprise.service.gov.uk/
+  only:
+    - master
+
 deploy_staging:
   stage: deploy
   script:
@@ -66,7 +81,7 @@ deploy_staging:
     name: dev
     url: https://staging.queens-awards-enterprise.service.gov.uk/
   only:
-    - master
+    - staging
 
 deploy_production:
   stage: deploy
