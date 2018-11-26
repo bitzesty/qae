@@ -49,7 +49,7 @@ deploy_staging:
     name: dev
     url: https://staging.queens-awards-enterprise.service.gov.uk/
   only:
-    - staging
+    - master
 
 deploy_production:
   stage: deploy
