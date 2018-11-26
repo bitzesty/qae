@@ -17,7 +17,26 @@ stages:
 
 test:
   stage: test
-
+  before_script:
+    - apt-get update -qy
+    - apt-get install -y postgresql-client
+    - apt-get install -y nodejs
+    - wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
+    - tar xvjf $PHANTOM_JS.tar.bz2
+    - mv $PHANTOM_JS /usr/local/share
+    - ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
+    - phantomjs --version
+    - bundle install --jobs 4 --retry 3 --path vendor
+    - RAILS_ENV=test bundle exec rake db:create db:migrate
+  script:
+    - RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/models/account_spec.rb --tag '~skip_ci' --format RspecJunitFormatter --out rspec.xml --format progress
+  artifacts:
+    reports:
+      junit: rspec.xml
+  cache:
+    key: gems-cache
+    paths:
+      - vendor/ruby
 
 code_quality:
   image: docker:stable
@@ -36,6 +55,19 @@ code_quality:
   artifacts:
     paths: [gl-code-quality-report.json]
 
+#deploy_dev:
+#  stage: deploy
+#  script:
+#    - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
+#    - mv /tmp/convox /usr/local/bin/convox
+#    - chmod 755 /usr/local/bin/convox
+#    - convox deploy --app qae-dev --rack bitzesty/qae
+#    - convox run web rake db:migrate --app qae-dev --rack bitzesty/qae
+#  environment:
+#    name: dev
+#    url: https://dev.queens-awards-enterprise.service.gov.uk/
+#  only:
+#    - master
 
 deploy_staging:
   stage: deploy
