@@ -12,30 +12,12 @@ services:
     alias: postgres
 
 stages:
-  deploy
+  - test
+  - deploy
 
 test:
   stage: test
-  before_script:
-    - apt-get update -qy
-    - apt-get install -y postgresql-client
-    - apt-get install -y nodejs
-    - wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
-    - tar xvjf $PHANTOM_JS.tar.bz2
-    - mv $PHANTOM_JS /usr/local/share
-    - ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
-    - phantomjs --version
-    - bundle install --jobs 4 --retry 3 --path vendor
-    - RAILS_ENV=test bundle exec rake db:create db:migrate
-  script:
-    - RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --format RspecJunitFormatter --out rspec.xml --format progress
-  artifacts:
-    reports:
-      junit: rspec.xml
-  cache:
-    key: gems-cache
-    paths:
-      - vendor/ruby
+
 
 code_quality:
   image: docker:stable
@@ -67,7 +49,7 @@ deploy_staging:
     name: dev
     url: https://staging.queens-awards-enterprise.service.gov.uk/
   only:
-    - master
+    - staging
 
 deploy_production:
   stage: deploy
