@@ -12,7 +12,6 @@ services:
     alias: postgres
 
 stages:
-  - code_quality
   - deploy
 
 test:
