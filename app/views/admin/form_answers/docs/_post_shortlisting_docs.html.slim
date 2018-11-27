@@ -1,7 +1,7 @@
 - if policy(resource).has_access_to_post_shortlisting_docs?
   - url_namespace = admin_signed_in? ? :admin : :assessor
   ul.list-unstyled.list-actions
-    - if policy(resource).download_audit_certificate_pdf?
+    - if resource.object.audit_certificate.present? && resource.object.audit_certificate.clean?
       li
         = link_to "View/print Verification of Commercial Figures", [url_namespace, resource.object, resource.object.audit_certificate], target: "_blank"
 
@@ -17,6 +17,9 @@
                 span.glyphicon.glyphicon-remove
                 span.visible-lg.visible-md
                   ' Remove
+    - elsif resource.object.audit_certificate.present? && resource.object.audit_certificate.attachment_scan_results.blank?
+      li style="color:green"
+        ' Uploading/Scanning Verification of Commercial Figures. Refresh page after sometime...
 
     - if policy(resource).download_case_summary_pdf?
       li
