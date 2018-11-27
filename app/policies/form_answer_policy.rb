@@ -75,6 +75,11 @@ class FormAnswerPolicy < ApplicationPolicy
     (Rails.env.development? || record.audit_certificate.clean?)
   end
 
+  def create_audit_certificate_pdf?
+    admin? || subject.lead_or_assigned?(record)
+    (record.audit_certificate.nil? || record.audit_certificate.attachment.nil?)
+  end
+
   def remove_audit_certificate?
     admin? && record.audit_certificate.present?
   end
