@@ -446,7 +446,6 @@ handleReviewAuditCertificate = ->
 handleRemovingOfAuditCertificate = ->
   $(document).on "click", ".js-remove-audit-certificate-link", (e) ->
     $(this).closest("form").submit()
-    $(this).closest("li").remove()
     return false
 
 $(document).ready(ready)
