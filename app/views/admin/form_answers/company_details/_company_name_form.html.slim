@@ -1,5 +1,5 @@
 - account_name = @form_answer.promotion? ? "Nominee name" : "Company name"
-- if user_can_edit(@form_answer, :company_name)
+- if user_can_edit_company(@form_answer)
   .form-group
     = simple_form_for [namespace_name, @form_answer],
                       remote: true,
