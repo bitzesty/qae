@@ -122,6 +122,9 @@ gem 'bootscale', require: false
 
 gem 'browser', '2.4.0'
 
+# Simple colored logging
+gem 'shog'
+
 group :development do
   gem 'letter_opener'
   gem 'rack-mini-profiler', '>= 0.10.1', require: false
