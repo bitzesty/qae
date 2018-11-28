@@ -3,11 +3,10 @@ class PressSummary < ActiveRecord::Base
 
   validates :form_answer, :token, presence: true
   validates :body, presence: true, unless: :contact_details_update?
-  validates :name,
-            :email,
-            :phone_number, presence: true,
-                           if: :applicant_submitted?,
-                           unless: :body_update?
+  validates :name, :email, :phone_number,
+            presence: true,
+            unless: proc {|c| c.body_update.present?},
+            if: :applicant_submitted?
 
   before_validation :set_token, on: :create
 
@@ -27,9 +26,5 @@ class PressSummary < ActiveRecord::Base
 
   def contact_details_update?
     contact_details_update.present?
-  end
-
-  def body_update?
-    body_update.present?
   end
 end

@@ -4,6 +4,16 @@ RSpec.describe Eligibility::Trade, type: :model do
   let(:account) { FactoryGirl.create(:account) }
   before { create :basic_eligibility, account: account }
 
+  context "validation" do
+    it "should validate current_holder_of_qae_for_trade" do
+      eligibility = Eligibility::Trade.create(account: account)
+      eligibility.current_holder_of_qae_for_trade = nil
+      eligibility.force_validate_now = true
+      allow_any_instance_of(Eligibility).to receive(:current_step) {:current_holder_of_qae_for_trade}
+      eligibility.save
+      expect(eligibility.errors[:current_holder_of_qae_for_trade].present?).to be_truthy
+    end
+  end
   context 'answers storage' do
     it 'saves and reads answers' do
       eligibility = Eligibility::Trade.new(account: account)

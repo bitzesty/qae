@@ -390,6 +390,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def hashed_columns(arr)
+    arr ||= []
     Hash[arr.map.with_index { |x, i| [i, x] }]
   end
 

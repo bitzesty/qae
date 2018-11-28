@@ -62,7 +62,7 @@ gem 'kaminari', '~> 0.16'
 gem 'wicked', '~> 1.1'
 
 # Statemachine
-gem 'statesman'
+gem 'statesman', '1.3.1'
 
 # Form & Data helpers
 gem 'simple_form', '~> 3.5'
@@ -163,4 +163,5 @@ group :test do
   gem 'rspec_junit_formatter'
   gem 'timecop'
   gem 'webmock'
+  gem 'rspec-sidekiq'
 end

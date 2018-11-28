@@ -169,6 +169,18 @@ ALTER SEQUENCE public.aggregated_award_year_pdfs_id_seq OWNED BY public.aggregat
 
 
 --
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
 -- Name: assessor_assignments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -735,7 +747,8 @@ CREATE TABLE public.form_answer_transitions (
     sort_key integer NOT NULL,
     form_answer_id integer NOT NULL,
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    most_recent boolean NOT NULL
 );
 
 
@@ -2822,6 +2835,14 @@ ALTER TABLE ONLY public.aggregated_award_year_pdfs
 
 
 --
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
 -- Name: assessor_assignments assessor_assignments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3262,6 +3283,13 @@ CREATE INDEX index_form_answer_transitions_on_form_answer_id ON public.form_answ
 --
 
 CREATE UNIQUE INDEX index_form_answer_transitions_on_sort_key_and_form_answer_id ON public.form_answer_transitions USING btree (sort_key, form_answer_id);
+
+
+--
+-- Name: index_form_answer_transitions_parent_most_recent; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_form_answer_transitions_parent_most_recent ON public.form_answer_transitions USING btree (form_answer_id, most_recent) WHERE most_recent;
 
 
 --
@@ -3950,4 +3978,8 @@ INSERT INTO schema_migrations (version) VALUES ('20161116104612');
 INSERT INTO schema_migrations (version) VALUES ('20170401215454');
 
 INSERT INTO schema_migrations (version) VALUES ('20180820050136');
+
+INSERT INTO schema_migrations (version) VALUES ('20181102125508');
+
+INSERT INTO schema_migrations (version) VALUES ('20181102125923');
 

@@ -1,15 +1,6 @@
 class Assessor::CommentsController < Assessor::BaseController
   helper_method :form_answer
 
-  def new
-    @comment = form_answer.comments.build(section: "critical")
-    authorize @comment, :create?
-
-    respond_to do |format|
-      format.html { render :new, layout: false }
-    end
-  end
-
   def create
     @comment = form_answer.comments.build(create_params)
     authorize @comment, :create?

@@ -2,6 +2,7 @@ require 'award_years/v2018/qae_forms'
 require 'award_years/v2019/qae_forms'
 
 class FormAnswer < ActiveRecord::Base
+  include Statesman::Adapters::ActiveRecordQueries
   include PgSearch
   extend Enumerize
   include FormAnswerStatesHelper
@@ -167,7 +168,7 @@ class FormAnswer < ActiveRecord::Base
   begin :state_machine
     delegate :current_state, :trigger!, :available_events, to: :state_machine
     delegate :can_transition_to?, :transition_to!, :transition_to, :current_state,
-      to: :state_machine
+             to: :state_machine
 
     def state_machine
       @state_machine ||= FormAnswerStateMachine.new(self, transition_class: FormAnswerTransition)
@@ -254,6 +255,7 @@ class FormAnswer < ActiveRecord::Base
     true
   end
 
+  # TODO  not being used, can be removed
   # def need_to_save_version?
   #   versions.count < 1 || (
   #     whodunnit.present? && (
@@ -267,24 +269,25 @@ class FormAnswer < ActiveRecord::Base
     PaperTrail.whodunnit
   end
 
-  def its_admin_or_assessor_action?
-    ["ADMIN", "ASSESSOR"].any? do |namespace|
-      whodunnit.include?(namespace)
-    end
-  end
-
-  def its_user_action?
-    whodunnit.include?("USER")
-  end
-
-  def no_latest_version_or_it_was_less_than_day_ago?
-    last_version = versions.where(whodunnit: whodunnit).last
-
-    last_version.blank? || (
-      last_version.present? &&
-      last_version.created_at < (Time.zone.now - 15.minutes)
-    )
-  end
+  # TODO  not being used, can be removed
+  # def its_admin_or_assessor_action?
+  #   ["ADMIN", "ASSESSOR"].any? do |namespace|
+  #     whodunnit.include?(namespace)
+  #   end
+  # end
+  #
+  # def its_user_action?
+  #   whodunnit.include?("USER")
+  # end
+  #
+  # def no_latest_version_or_it_was_less_than_day_ago?
+  #   last_version = versions.where(whodunnit: whodunnit).last
+  #
+  #   last_version.blank? || (
+  #     last_version.present? &&
+  #     last_version.created_at < (Time.zone.now - 15.minutes)
+  #   )
+  # end
 
   def submission_end_date
     award_year.settings
@@ -472,5 +475,13 @@ class FormAnswer < ActiveRecord::Base
 
   def award_form_class_name(year)
     "::AwardYears::V#{year}::QAEForms"
+  end
+
+  def self.transition_class
+    FormAnswerTransition
+  end
+
+  def self.initial_state
+    FormAnswerStateMachine.initial_state
   end
 end
