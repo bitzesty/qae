@@ -18,17 +18,16 @@
       ' Application & Supporting Docs
     = render "admin/form_answers/docs/application_and_supporting_docs"
 
-  - if policy(resource).has_access_to_post_shortlisting_docs?
-    .sidebar-section
-      h2
-        ' Post Shortlisting Docs
-      .document-list
-        = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
+  .sidebar-section
+    h2
+      ' Post Shortlisting Docs
+    .document-list
+      = render "admin/form_answers/docs/post_shortlisting_docs", resource: resource
 
-      - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
-        br
-        #audit-certificate-form
-          = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: @form_answer.build_audit_certificate
+    - if @form_answer.audit_certificate.blank? && Settings.after_shortlisting_stage?
+      br
+      #audit-certificate-form
+        = render "admin/audit_certificate/form", form_answer: @form_answer, audit_certificate: @form_answer.build_audit_certificate
 
   / TODO Only appears for EP but for now we need to think more on it
   /.sidebar-section

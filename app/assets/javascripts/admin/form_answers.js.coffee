@@ -93,6 +93,7 @@ ready = ->
     data.formData =
       authenticity_token: $("meta[name='csrf-token']").attr("content")
       format: "js"
+      "audit_certificate[attachment]": $("#audit_certificate_attachment").val()
 
   if $("html").hasClass("lte-ie7")
     $(".attachment-link", $("#application-attachment-form")).removeClass("if-js-hide")
@@ -104,7 +105,7 @@ ready = ->
         forceIframeTransport: true
         add: (e, data) ->
           newForm = $("#new_form_answer_attachment")
-          $(".attachment-title").val(data.files[0].name)
+          $("#new_form_answer_attachment .attachment-title").val(data.files[0].name)
           newForm.closest(".sidebar-section").addClass("show-attachment-form")
           newForm.find(".btn-submit").focus().blur()
           newForm.find(".btn-submit").unbind("click").on "click", (e) ->
@@ -139,6 +140,7 @@ ready = ->
         forceIframeTransport: true
         add: (e, data) ->
           newForm = $("#new_audit_certificate")
+          $("#audit-certificate-form .attachment-title").val(data.files[0].name)
           newForm.closest(".sidebar-section").addClass("show-attachment-form")
           newForm.find(".btn-submit").focus().blur()
           newForm.find(".btn-submit").unbind("click").on "click", (e) ->
@@ -146,16 +148,16 @@ ready = ->
             data.submit()
         success: (result, textStatus, jqXHR) ->
           result = $($.parseHTML(result))
-          $("audit-certificate-buffer").append(result.text())
+          $("#audit-certificate-buffer").append(result.text())
 
           if $("#form-audit_certificate-valid", $("#audit-certificate-buffer")).length
-            $("audit-certificate-form").html(result.text())
+            $("#audit-certificate-form").html(result.text())
             moveAttachDocumentButton()
             initializeFileUpload()
           else
             form = $("#new_audit_certificate")
             sidebarSection = form.closest(".sidebar-section")
-            sidebarSection.find(".document-list").append(result.text())
+            sidebarSection.find(".document-list").html(result.text())
             sidebarSection.removeClass("show-attachment-form")
 
           $("#audit-certificate-buffer").empty()
@@ -446,7 +448,6 @@ handleReviewAuditCertificate = ->
 handleRemovingOfAuditCertificate = ->
   $(document).on "click", ".js-remove-audit-certificate-link", (e) ->
     $(this).closest("form").submit()
-    $(this).closest("li").remove()
     return false
 
 $(document).ready(ready)
