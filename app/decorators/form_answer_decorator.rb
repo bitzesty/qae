@@ -384,32 +384,34 @@ class FormAnswerDecorator < ApplicationDecorator
   end
 
   def innovation_desc_short
-    document["innovation_desc_short"]
+   sanitize_html document["innovation_desc_short"]
   end
 
   def development_desc_short
-    document["development_desc_short"]
+    sanitize_html document["development_desc_short"]
   end
 
   def development_management_approach_briefly
-    document["development_management_approach_briefly"]
+    sanitize_html document["development_management_approach_briefly"]
   end
 
   def mobility_desc_short
-    document["mobility_desc_short"]
+    sanitize_html document["mobility_desc_short"]
   end
 
   def application_background
-    case award_type
-    when "trade"
-      document["trade_goods_briefly"]
-    when "innovation"
-      document["innovation_desc_short"]
-    when "development"
-      document["development_management_approach_briefly"]
-    when "mobility"
-      document["mobility_desc_short"]
-    end
+    app_background = case award_type
+                     when "trade"
+                       document["trade_goods_briefly"]
+                     when "innovation"
+                       document["innovation_desc_short"]
+                     when "development"
+                       document["development_management_approach_briefly"]
+                     when "mobility"
+                       document["mobility_desc_short"]
+                     end
+
+    sanitize_html app_background
   end
 
   def organisation_type
@@ -463,5 +465,13 @@ class FormAnswerDecorator < ApplicationDecorator
     else
       ASSESSORS_NOT_ASSIGNED
     end
+  end
+
+  def html_full_sanitizer
+    @html_full_sanitizer ||= Rails::Html::FullSanitizer.new
+  end
+
+  def sanitize_html(str)
+    html_full_sanitizer.sanitize(str)
   end
 end
