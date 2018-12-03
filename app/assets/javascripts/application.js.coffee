@@ -154,12 +154,11 @@ jQuery ->
     else
       fy_year = new Date().getFullYear()
 
-    if $("[data-award-type]").data("awardType") == "mobility"
-      # Conditional latest year
-      # If from 12th of September to December -> then previous year
-      # If from January to 12th of September -> then current year
-      if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 13) || parseInt(fy_month, 10) > 9
-        fy_year = parseInt(fy_year, 10) - 1
+    # Conditional latest year
+    # If from 12th of September to December -> then previous year
+    # If from January to 12th of September -> then current year
+    if (parseInt(fy_month, 10) == 9 && parseInt(fy_day, 10) >= 13) || parseInt(fy_month, 10) > 9
+      fy_year = parseInt(fy_year, 10) - 1
 
     # Updates the latest changed financial year input
     fy_latest_changed_input.find("input.js-fy-day").val(fy_day)
