@@ -149,6 +149,14 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def subcategory_suffix(attr_name)
+    mobility_2017_change = {}
+
+    if obj.award_year.year > 2017
+      mobility_2017_change = {
+        "mobility" => "#{attr_name}_3of3"
+      }
+    end
+
     {
       "trade" => {
         "trade_commercial_success" => {
@@ -174,7 +182,7 @@ module Reports::DataPickers::FormDocumentPicker
           "5 plus" => "#{attr_name}_5of5"
         }
       }
-    }[obj.award_type]
+    }.merge(mobility_2017_change)[obj.award_type]
   end
 
   def subcategory_field_name
@@ -187,29 +195,36 @@ module Reports::DataPickers::FormDocumentPicker
   end
 
   def sub_category
-    if trade?
-      {
-        "3 to 5" => "Outstanding growth in the last 3 years",
-        "6 plus" => "Continuous growth in the last 6 years"
-      }
-    elsif innovation?
-      {
-        "2 to 4" => "Outstanding performance improvements in the last 2 years",
-        "5 plus" => "Steady performance improvements in the last 5 years"
-      }
-    elsif development?
-      {
-        "2 to 4" => "Outstanding achievement over 2 years",
-        "5 plus" => "Continuous achievement over 5 years"
-      }
-    elsif mobility?
-      {
-        "2 to 4" => "Outstanding achievement over 2 years",
-        "5 plus" => "Continuous achievement over 5 years"
-      }
+    if mobility?
+      # We removed option to choose a period in 2017
+      if obj.award_year.year <= 2017
+        {
+          "2 to 4" => "Outstanding achievement over 2 years",
+          "5 plus" => "Continuous achievement over 5 years"
+        }[doc(subcategory_field_name)]
+      else
+        "Outstanding achievement over 3 years"
+      end
     else
-      {}
-    end[doc(subcategory_field_name)]
+      if trade?
+        {
+          "3 to 5" => "Outstanding growth in the last 3 years",
+          "6 plus" => "Continuous growth in the last 6 years"
+        }
+      elsif innovation?
+        {
+          "2 to 4" => "Outstanding performance improvements in the last 2 years",
+          "5 plus" => "Steady performance improvements in the last 5 years"
+        }
+      elsif development?
+        {
+          "2 to 4" => "Outstanding achievement over 2 years",
+          "5 plus" => "Continuous achievement over 5 years"
+        }
+      else
+        {}
+      end[doc(subcategory_field_name)]
+    end
   end
 
   def product_service
@@ -238,8 +253,14 @@ module Reports::DataPickers::FormDocumentPicker
 
   def collect_final_value_from_doc(meth)
     if meth
-      b = doc meth.keys.first
-      target_key = meth.values.first[b]
+      target_key = nil
+
+      if !(obj.award_year.year <= 2017) && mobility?
+        target_key = meth
+      else
+        range = doc(meth.keys.first)
+        target_key = meth.values.first[range]
+      end
 
       amended_value = financial_data[target_key]
       amended_value.present? ? amended_value : doc(target_key)
