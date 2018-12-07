@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.0
--- Dumped by pg_dump version 10.5
+-- Dumped from database version 9.5.12
+-- Dumped by pg_dump version 10.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -166,18 +166,6 @@ CREATE SEQUENCE public.aggregated_award_year_pdfs_id_seq
 --
 
 ALTER SEQUENCE public.aggregated_award_year_pdfs_id_seq OWNED BY public.aggregated_award_year_pdfs.id;
-
-
---
--- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.ar_internal_metadata (
-    key character varying NOT NULL,
-    value character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
 
 
 --
@@ -2832,14 +2820,6 @@ ALTER TABLE ONLY public.admins
 
 ALTER TABLE ONLY public.aggregated_award_year_pdfs
     ADD CONSTRAINT aggregated_award_year_pdfs_pkey PRIMARY KEY (id);
-
-
---
--- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.ar_internal_metadata
-    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
 
 
 --
