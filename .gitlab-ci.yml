@@ -67,7 +67,7 @@ deploy_dev:
     name: dev
     url: https://dev.queens-awards-enterprise.service.gov.uk/
   only:
-    - upgrade-to-rails-5
+    - master
 
 deploy_staging:
   stage: deploy
