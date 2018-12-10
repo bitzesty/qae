@@ -13,13 +13,13 @@ RSpec.describe Form::AwardsController do
 
   describe "GET new" do
     it "renders the new template" do
-      get :new, form_answer_id: form_answer.id
+      get :new, params: { form_answer_id: form_answer.id }
       expect(response).to render_template("new")
     end
   end
   describe "GET edit" do
     it "renders the edit template" do
-      get :edit, id: '000', form_answer_id: form_answer.id, award: { title: 'title', year: Date.today.year }
+      get :edit, params: { id: '000', form_answer_id: form_answer.id, award: { title: 'title', year: Date.today.year } }
       expect(response).to render_template("edit")
     end
   end
@@ -27,7 +27,7 @@ RSpec.describe Form::AwardsController do
   describe "POST create" do
     it "should create a resource" do
       allow_any_instance_of(Award).to receive(:valid?) {true}
-      post :create, form_answer_id: form_answer.id, award: { title: 'title', year: Date.today.year }
+      post :create, params: { form_answer_id: form_answer.id, award: { title: 'title', year: Date.today.year } }
       expect(response).to redirect_to edit_form_url(form_answer, step: 'test', anchor: "non_js_nomination_awards-list-question")
       expect(form_answer.reload.document.present?).to be_truthy
     end
@@ -36,7 +36,7 @@ RSpec.describe Form::AwardsController do
   describe "PUT update" do
     it "should update a resource" do
       allow_any_instance_of(Award).to receive(:valid?) {true}
-      put :update, id: '000', form_answer_id: form_answer.id, award: { details: {} }
+      put :update, params: { id: '000', form_answer_id: form_answer.id, award: { title1: 'title2' } }
       expect(response).to redirect_to edit_form_url(form_answer, step: 'test', anchor: "non_js_nomination_awards-list-question")
     end
   end
@@ -44,7 +44,7 @@ RSpec.describe Form::AwardsController do
   describe "Delete destroy" do
     it "should destroy a resource" do
       allow_any_instance_of(FormAnswer).to receive(:set_progress) {true}
-      delete :destroy, id: '000', form_answer_id: form_answer.id
+      delete :destroy, params: { id: '000', form_answer_id: form_answer.id }
       expect(response).to redirect_to edit_form_url(form_answer, step: 'test', anchor: "non_js_nomination_awards-list-question")
       expect(form_answer.reload.document.present?).to be_truthy
     end

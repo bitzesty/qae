@@ -15,7 +15,7 @@ module PalaceAttendeesMixin
       palace_attendee = palace_invite.palace_attendees.create(create_params)
       render_attendee_form(palace_attendee, palace_invite)
     else
-      render nothing: true
+      head :ok
     end
   end
 
@@ -33,7 +33,7 @@ module PalaceAttendeesMixin
     palace_attendee.destroy
     respond_to do |format|
       format.html { redirect_to [namespace_name, form_answer] }
-      format.js { render nothing: true }
+      format.js { head :ok }
     end
   end
 

@@ -1,4 +1,4 @@
-class CreateFormAnswerAttachments < ActiveRecord::Migration
+class CreateFormAnswerAttachments < ActiveRecord::Migration[4.2]
   def change
   create_table :form_answer_attachments do |t|
   t.integer 'form_answer_id'

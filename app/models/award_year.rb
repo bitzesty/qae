@@ -1,4 +1,4 @@
-class AwardYear < ActiveRecord::Base
+class AwardYear < ApplicationRecord
   validates :year, presence: true
 
   has_many :form_answers

@@ -1,4 +1,4 @@
-class AddAdvancedHardCopyGenerationStatesToFormAnswers < ActiveRecord::Migration
+class AddAdvancedHardCopyGenerationStatesToFormAnswers < ActiveRecord::Migration[4.2]
   def change
     rename_column :form_answers, :hard_copy_generated, :form_data_hard_copy_generated
 

@@ -1,4 +1,4 @@
-class AddConfirmableDeviseFieldsToAssessors < ActiveRecord::Migration
+class AddConfirmableDeviseFieldsToAssessors < ActiveRecord::Migration[4.2]
   def change
     change_table(:assessors) do |t|
       t.string :confirmation_token

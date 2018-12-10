@@ -1,4 +1,4 @@
-class CaseSummaryHardCopyPdf < ActiveRecord::Base
+class CaseSummaryHardCopyPdf < ApplicationRecord
   belongs_to :form_answer
 
   mount_uploader :file, FormAnswerPdfVersionUploader

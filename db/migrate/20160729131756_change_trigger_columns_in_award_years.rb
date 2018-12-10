@@ -1,4 +1,4 @@
-class ChangeTriggerColumnsInAwardYears < ActiveRecord::Migration
+class ChangeTriggerColumnsInAwardYears < ActiveRecord::Migration[4.2]
   def change
     remove_column :award_years, :form_data_hard_copies_generated
     remove_column :award_years, :case_summary_hard_copies_generated

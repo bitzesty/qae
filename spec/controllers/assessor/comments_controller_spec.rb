@@ -13,7 +13,7 @@ RSpec.describe Assessor::CommentsController do
 
   describe "POST create" do
     it "should create a resource" do
-      post :create, form_answer_id: form_answer.id, comment: FactoryGirl.attributes_for(:comment, section: "critical")
+      post :create, params: { form_answer_id: form_answer.id, comment: FactoryGirl.attributes_for(:comment, section: "critical") }
       expect(response).to redirect_to assessor_form_answer_path(form_answer)
       expect(Comment.count).to eq 2
     end
@@ -21,7 +21,7 @@ RSpec.describe Assessor::CommentsController do
 
   describe "PUT update" do
     it "should update a resource" do
-      put :update, id: comment.id, form_answer_id: form_answer.id, comment: { flagged: false }
+      put :update, params: { id: comment.id, form_answer_id: form_answer.id, comment: { flagged: false } }
       expect(response).to redirect_to assessor_form_answer_path(form_answer)
       expect(Comment.first.flagged).to be_falsey
     end
@@ -30,7 +30,7 @@ RSpec.describe Assessor::CommentsController do
   describe "Delete destroy" do
     it "should destroy a resource" do
       allow_any_instance_of(Comment).to receive(:author?) {true}
-      delete :destroy, id: comment.id, form_answer_id: form_answer.id
+      delete :destroy, params: { id: comment.id, form_answer_id: form_answer.id }
       expect(response).to redirect_to assessor_form_answer_path(form_answer)
       expect(Comment.count).to eq 0
     end

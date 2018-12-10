@@ -43,9 +43,11 @@ module FormAnswersBasePointer
 
   def answer_based_on_type(key, value)
     if key.to_s.include?("country")
-      ISO3166::Country.countries.select do |country|
-        country[1] == value.strip
-      end[0][0]
+      contries = ISO3166::Country.countries.select do |country|
+        country.alpha2 == value.strip
+      end
+
+      contries.first.alpha2
     else
       value
     end

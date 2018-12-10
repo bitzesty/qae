@@ -1,8 +1,10 @@
 class Admin::UsersController < Admin::BaseController
-  before_filter :find_resource, except: [:index, :new, :create]
+  before_action :find_resource, except: [:index, :new, :create]
 
   def index
     params[:search] ||= UserSearch::DEFAULT_SEARCH
+    params[:search].permit!
+
     authorize User, :index?
 
     @search = UserSearch.new(User.all).search(params[:search])

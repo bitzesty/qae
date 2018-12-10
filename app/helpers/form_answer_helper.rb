@@ -48,6 +48,10 @@ module FormAnswerHelper
     policy(form).update_item?(item)
   end
 
+  def user_can_edit_company(form)
+    policy(form).update_company?
+  end
+
   def application_comments(comments_count)
     return unless comments_count > 0
 
@@ -81,7 +85,8 @@ module FormAnswerHelper
   end
 
   def country_collection
-    ([["United Kingdom", "GB"], ["United States", "US"]] + Country.all).uniq
+    ([["United Kingdom of Great Britain and Northern Ireland", "GB"], ["United States of America", "US"]] +
+     ISO3166::Country.all.map { |c| [c.name, c.alpha2] }).uniq
   end
 
   def assessors_collection_for_bulk

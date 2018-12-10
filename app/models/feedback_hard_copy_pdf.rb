@@ -1,4 +1,4 @@
-class FeedbackHardCopyPdf < ActiveRecord::Base
+class FeedbackHardCopyPdf < ApplicationRecord
   belongs_to :form_answer
 
   mount_uploader :file, FormAnswerPdfVersionUploader

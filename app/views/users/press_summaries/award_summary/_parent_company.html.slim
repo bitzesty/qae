@@ -8,4 +8,4 @@ p
 
   - if award.parent_company_country.present?
     br
-    = Country.find_country_by_alpha2(award.parent_company_country).try(:name)
+    = ISO3166::Country.find_country_by_alpha2(award.parent_company_country).try(:name)

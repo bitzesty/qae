@@ -1,7 +1,7 @@
 require 'award_years/v2018/qae_forms'
 require 'award_years/v2019/qae_forms'
 
-class FormAnswer < ActiveRecord::Base
+class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
   include PgSearch
   extend Enumerize
@@ -83,7 +83,7 @@ class FormAnswer < ActiveRecord::Base
     has_many :supporters, dependent: :destroy, autosave: true
     has_many :support_letters, dependent: :destroy
     has_many :comments, as: :commentable, dependent: :destroy
-    has_many :form_answer_transitions
+    has_many :form_answer_transitions, autosave: false
     has_many :assessor_assignments, dependent: :destroy
     has_many :lead_or_primary_assessor_assignments,
              -> { where.not(submitted_at: nil)

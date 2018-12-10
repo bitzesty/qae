@@ -1,4 +1,4 @@
-class EmailNotification < ActiveRecord::Base
+class EmailNotification < ApplicationRecord
   extend Enumerize
   include FormattedTime::DateTimeFor
 

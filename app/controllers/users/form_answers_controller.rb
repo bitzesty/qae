@@ -77,7 +77,8 @@ class Users::FormAnswersController < Users::BaseController
         redirect_to dashboard_path,
                     notice: "PDF version for your application is not available!"
       else
-        redirect_to :back, notice: "PDF version for your application is not available!"
+        flash[:notice] = "PDF version for your application is not available!"
+        redirect_back(fallback_location: root_path)
       end
     end
   end

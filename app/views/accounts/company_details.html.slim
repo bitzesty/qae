@@ -15,10 +15,6 @@ header.page-header.group.page-header-over-sidebar
     .article-container.sic-code
       article.group role="article"
         .inner
-          p If you're nominating an individual for the Enterprise Promotion award, this section is optional.
-
-          br
-
           = simple_form_for current_user, url: update_company_details_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
             = render "form_company_details", f: f
 

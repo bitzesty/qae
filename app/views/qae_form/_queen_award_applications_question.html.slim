@@ -6,7 +6,6 @@
 div role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
   input name="form[applied_for_queen_awards_details][array]" value="true" type="hidden" *possible_read_only_ops
   ul.list-add data-add-limit="10" data-need-to-clear-example=true data-default=1 id="non_js_#{question.key}-list-question"
-
     - question.entities.each_with_index do |award, index|
       li.js-add-example non-js-attribute="#{award["category"]}_#{award['year']}"
         ul.errors-container

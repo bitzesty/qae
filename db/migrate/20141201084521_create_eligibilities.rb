@@ -1,4 +1,4 @@
-class CreateEligibilities < ActiveRecord::Migration
+class CreateEligibilities < ActiveRecord::Migration[4.2]
   def change
     create_table :eligibilities do |t|
       t.references :user, index: true

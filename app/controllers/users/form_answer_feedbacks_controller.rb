@@ -10,7 +10,7 @@ class Users::FormAnswerFeedbacksController < Users::BaseController
   # and use own handler
   #
 
-  skip_before_action :authenticate_user!
+  skip_before_action :authenticate_user!, raise: false
   before_action :require_logged_in_user!
 
   before_action :require_application_to_have_a_feedback!

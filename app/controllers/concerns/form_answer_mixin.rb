@@ -79,6 +79,7 @@ module FormAnswerMixin
 
   def allowed_params
     ops = params.require(:form_answer).permit!
+    ops = ops.to_h
 
     ops.reject! do |k, v|
       (k.to_sym == :company_or_nominee_name || k.to_sym == :nominee_title) &&
@@ -113,6 +114,6 @@ module FormAnswerMixin
       updated_at: Time.zone.now,
       updated_by_id: pundit_user.id,
       updated_by_type: pundit_user.class
-    }.merge(params[:financial_data])
+    }.merge(params[:financial_data].permit!)
   end
 end

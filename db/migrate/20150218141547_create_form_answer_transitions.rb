@@ -1,4 +1,4 @@
-class CreateFormAnswerTransitions < ActiveRecord::Migration
+class CreateFormAnswerTransitions < ActiveRecord::Migration[4.2]
   def change
     create_table :form_answer_transitions do |t|
       t.string :to_state, null: false

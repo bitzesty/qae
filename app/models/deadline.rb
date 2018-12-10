@@ -1,4 +1,4 @@
-class Deadline < ActiveRecord::Base
+class Deadline < ApplicationRecord
   extend Enumerize
   include FormattedTime::DateTimeFor
 

@@ -1,4 +1,4 @@
-class Account < ActiveRecord::Base
+class Account < ApplicationRecord
   has_many :users, dependent: :destroy
   has_many :form_answers, dependent: :nullify
 
@@ -18,7 +18,7 @@ class Account < ActiveRecord::Base
   end
 
   def collaborators_with(user)
-    users.confirmed.unshift(user).uniq
+    users.confirmed.to_a.prepend(user).uniq
   end
 
   def collaborators_without(user)

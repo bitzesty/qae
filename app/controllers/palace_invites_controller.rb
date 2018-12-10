@@ -4,7 +4,7 @@ class PalaceInvitesController < ApplicationController
 
   def update
     if palace_invite_attributes.present? &&
-      @invite_form.update(palace_invite_attributes.merge({submitted: params[:submit].present?}))
+      @invite_form.update(palace_invite_attributes.to_h.merge({submitted: params[:submit].present?}))
 
       if @invite.submitted?
         flash.notice = "Palace Attendees details are successfully submitted!"

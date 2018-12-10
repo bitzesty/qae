@@ -1,4 +1,4 @@
-class Assessor < ActiveRecord::Base
+class Assessor < ApplicationRecord
   include PgSearch
   include AutosaveTokenGeneration
 

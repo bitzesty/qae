@@ -54,6 +54,7 @@ class QAEFormBuilder
     def preselected_condition
       placeholder_preselected_conditions.detect do |c|
         linked_answers.any? do |a|
+          a.is_a?(Hash) &&
           a["category"] == "international_trade" &&
             a["year"].to_i > (AwardYear.current.year - 5) &&
             a["outcome"] == "won"

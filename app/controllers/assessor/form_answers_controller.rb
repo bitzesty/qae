@@ -1,7 +1,7 @@
 class Assessor::FormAnswersController < Assessor::BaseController
   include FormAnswerMixin
 
-  before_filter :load_resource, only: [:update_financials]
+  before_action :load_resource, only: [:update_financials]
 
   expose(:financial_pointer) do
     FormFinancialPointer.new(@form_answer, {
@@ -25,6 +25,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
         status: FormAnswerStatus::AssessorFilter::checked_options.invert.values
       }
     }
+    params[:search].permit!
     scope = current_assessor.applications_scope(@award_year)
 
     if params[:search][:query].blank? && category_picker.show_award_tabs_for_assessor?

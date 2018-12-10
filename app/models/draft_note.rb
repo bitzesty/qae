@@ -1,4 +1,4 @@
-class DraftNote < ActiveRecord::Base
+class DraftNote < ApplicationRecord
   validates :notable_type,
             :notable_id,
             :authorable_type,

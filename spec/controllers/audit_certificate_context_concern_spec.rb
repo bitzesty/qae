@@ -25,7 +25,7 @@ describe AuditCertificateContext, type: :controller do
 
       allow(FormAnswer).to receive(:find) {form_answer}
       allow_any_instance_of(FormAnswer).to receive(:audit_certificate).and_return(audit_certificate)
-      get :show, form_answer_id: form_answer.id
+      get :show, params: { form_answer_id: form_answer.id }
       expect(response).to redirect_to audit_certificate.attachment_url
     end
   end

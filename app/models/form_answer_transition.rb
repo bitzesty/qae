@@ -1,4 +1,4 @@
-class FormAnswerTransition < ActiveRecord::Base
+class FormAnswerTransition < ApplicationRecord
   include Statesman::Adapters::ActiveRecordTransition
 
   belongs_to :form_answer, inverse_of: :form_answer_transitions
