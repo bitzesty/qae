@@ -12,7 +12,7 @@ RSpec.describe Admin::SupportLettersController do
 
   describe "GET show" do
     it "check  status" do
-      get :show, form_answer_id: form_answer.id, id: support_letter.id
+      get :show, params: { form_answer_id: form_answer.id, id: support_letter.id }
       expect(response.code).to eq "200"
       expect(response).to render_template("admin/support_letters/show")
     end

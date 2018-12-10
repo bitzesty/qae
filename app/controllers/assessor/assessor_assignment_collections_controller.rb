@@ -8,7 +8,7 @@ class Assessor::AssessorAssignmentCollectionsController < Assessor::BaseControll
     respond_to do |format|
       format.html do
         flash[:error] = @assessor_assignment_collection.errors.full_messages.to_sentence
-        redirect_to :back
+        redirect_back(fallback_location: root_path)
       end
     end
   end

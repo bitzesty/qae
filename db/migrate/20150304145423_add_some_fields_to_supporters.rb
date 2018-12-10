@@ -1,4 +1,4 @@
-class AddSomeFieldsToSupporters < ActiveRecord::Migration
+class AddSomeFieldsToSupporters < ActiveRecord::Migration[4.2]
   def change
     add_column :supporters, :first_name, :string
     add_column :supporters, :last_name, :string

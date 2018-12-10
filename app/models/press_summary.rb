@@ -1,4 +1,4 @@
-class PressSummary < ActiveRecord::Base
+class PressSummary < ApplicationRecord
   belongs_to :form_answer
 
   validates :form_answer, :token, presence: true

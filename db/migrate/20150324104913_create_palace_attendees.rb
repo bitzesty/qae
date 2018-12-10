@@ -1,4 +1,4 @@
-class CreatePalaceAttendees < ActiveRecord::Migration
+class CreatePalaceAttendees < ActiveRecord::Migration[4.2]
   def change
     create_table :palace_attendees do |t|
       t.string :title

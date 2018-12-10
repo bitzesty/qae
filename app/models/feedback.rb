@@ -1,4 +1,4 @@
-class Feedback < ActiveRecord::Base
+class Feedback < ApplicationRecord
 
   has_paper_trail unless: Proc.new { |t| Rails.env.test? }
 

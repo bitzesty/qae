@@ -1,4 +1,4 @@
-class ChangeSentDefaultValue < ActiveRecord::Migration
+class ChangeSentDefaultValue < ActiveRecord::Migration[4.2]
   def up
     change_column :email_notifications, :sent, :boolean, default: false
   end

@@ -36,8 +36,14 @@ class FormAnswerPolicy < ApplicationPolicy
     if item.in? [:previous_wins, :sic_code]
       admin_or_lead_or_primary
     else
-      admin_or_lead_or_primary && record.submitted_and_after_the_deadline?
+      admin_or_lead_or_primary &&
+          record.submitted_and_after_the_deadline? &&
+          update?
     end
+  end
+
+  def update_company?
+    CompanyDetailPolicy.new(subject, record).can_manage_company_name?
   end
 
   def can_update_by_admin_lead_and_primary_assessors?

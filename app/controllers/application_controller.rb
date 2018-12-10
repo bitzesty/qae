@@ -3,19 +3,15 @@ require "app_responder"
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
+  protect_from_forgery with: :exception, prepend: true
 
   ensure_security_headers if ENV["ENSURE_SECURITY_HEADERS"]
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
-  before_filter :set_paper_trail_whodunnit
+  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_paper_trail_whodunnit
 
   self.responder = AppResponder
   respond_to :html
-
-  decent_configuration do
-    strategy DecentExposure::StrongParametersStrategy
-  end
 
   def after_sign_in_path_for(resource)
     if resource.is_a?(User)
@@ -42,7 +38,8 @@ class ApplicationController < ActionController::Base
   def restrict_access_if_admin_in_read_only_mode!
     if admin_in_read_only_mode?
       if request.referer
-        redirect_to :back, alert: "You have no permissions!"
+        flash[:alert] = "You have no permissions!"
+        redirect_back(fallback_location: root_path)
       else
         render text: "You have no permissions!"
       end
@@ -59,7 +56,8 @@ class ApplicationController < ActionController::Base
           end
         end
         if request.referer
-          redirect_to :back, alert: "You have no permissions!"
+          flash[:alert] = "You have no permissions!"
+          redirect_back(fallback_location: root_path)
         else
           render text: "You have no permissions!"
         end

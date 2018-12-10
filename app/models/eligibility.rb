@@ -1,4 +1,4 @@
-class Eligibility < ActiveRecord::Base
+class Eligibility < ApplicationRecord
   extend Enumerize
 
   belongs_to :account

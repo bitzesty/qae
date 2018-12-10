@@ -13,17 +13,17 @@ RSpec.describe Admin::AssessmentSubmissionsController do
   describe "POST create" do
     it "should create a resource" do
       allow_any_instance_of(AssessmentSubmissionService).to receive(:perform) {}
-      post :create, assessment_id: assessor_assignment.id
+      post :create, params: { assessment_id: assessor_assignment.id }
       expect(response).to redirect_to [:admin, assessor_assignment.form_answer]
 
-      post :create, assessment_id: assessor_assignment.id, format: :json
+      post :create, params: { assessment_id: assessor_assignment.id }, format: :json
       expect(response.content_type).to eq('application/json')
     end
   end
 
   describe "PATCH unlonk" do
     it "should unlock a resource" do
-      patch :unlock, id: assessor_assignment.id, assessment_id: assessor_assignment.id
+      patch :unlock, params: { id: assessor_assignment.id, assessment_id: assessor_assignment.id }
       expect(response).to redirect_to [:admin, assessor_assignment.form_answer]
       expect(assessor_assignment.reload.locked_at).to be_nil
     end

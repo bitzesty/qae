@@ -1,4 +1,4 @@
-class FormAnswerSubmitted < ActiveRecord::Migration
+class FormAnswerSubmitted < ActiveRecord::Migration[4.2]
   def up
     add_column :form_answers, :submitted, :boolean
     execute 'CREATE SEQUENCE "urn_seq_trade";'

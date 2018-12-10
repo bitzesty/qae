@@ -1,4 +1,4 @@
-class CreateSupporters < ActiveRecord::Migration
+class CreateSupporters < ActiveRecord::Migration[4.2]
   def change
     create_table :supporters do |t|
       t.references :form_answer, index: true

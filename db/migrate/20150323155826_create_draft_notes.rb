@@ -1,4 +1,4 @@
-class CreateDraftNotes < ActiveRecord::Migration
+class CreateDraftNotes < ActiveRecord::Migration[4.2]
   def change
     create_table :draft_notes do |t|
       t.text :content

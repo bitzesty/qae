@@ -1,4 +1,4 @@
-require File.expand_path('../boot', __FILE__)
+require_relative 'boot'
 
 require 'rails/all'
 
@@ -24,12 +24,11 @@ module Qae
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
 
-    # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-
-    config.autoload_paths += Dir["#{config.root}/lib/**/"]
-
-    config.autoload_paths += %W( #{config.root}/app/forms/ #{config.root}/app/search/ )
+    #NOTE: This works like Rails 4. For Rails 5, we can use
+    # `config.eager_load_paths << Rails.root.join('lib')` but still it is not recommended for Threadsafty.
+    # Need to take look in to it.
+    config.enable_dependency_loading = true
+    config.autoload_paths << Rails.root.join('lib')
 
     config.generators do |g|
       g.test_framework :rspec
@@ -38,5 +37,6 @@ module Qae
     config.cache_store = :memory_store
     config.active_record.schema_format = :sql
     config.active_job.queue_adapter = :sidekiq
+    config.action_view.automatically_disable_submit_tag = false
   end
 end

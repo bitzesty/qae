@@ -1,4 +1,4 @@
-class CreateFormAnswerProgresses < ActiveRecord::Migration
+class CreateFormAnswerProgresses < ActiveRecord::Migration[4.2]
   def change
     create_table :form_answer_progresses do |t|
       t.hstore :sections

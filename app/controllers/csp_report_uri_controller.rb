@@ -7,6 +7,6 @@ class CspReportUriController < ApplicationController
   protect_from_forgery except: [:report]
 
   def report
-    render status: :ok, nothing: true
+    head :ok
   end
 end

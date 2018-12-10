@@ -1,4 +1,4 @@
-class AssessorAssignment < ActiveRecord::Base
+class AssessorAssignment < ApplicationRecord
 
   has_paper_trail unless: Proc.new { |t| Rails.env.test? }
 

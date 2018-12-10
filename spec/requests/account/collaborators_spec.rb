@@ -55,7 +55,7 @@ describe 'API' do
 
   describe "GET /account/collaborators/new" do
     before do
-      xhr :get, new_account_collaborator_path
+      get new_account_collaborator_path, xhr: true
     end
 
     it do
@@ -75,7 +75,7 @@ describe 'API' do
 
     before do
       clear_enqueued_jobs
-      xhr :post, account_collaborators_path, collaborator: create_params
+      post account_collaborators_path, params: { collaborator: create_params }, xhr: true
     end
 
     it "should generate new user without password and add him to collaborators" do
@@ -99,7 +99,7 @@ describe 'API' do
 
     before do
       clear_enqueued_jobs
-      xhr :delete, account_collaborator_path(existing_collaborator)
+      delete account_collaborator_path(existing_collaborator), xhr: true
     end
 
     it "should remove user from collaborators, but do not remove user account" do

@@ -1,4 +1,4 @@
-class AddEditablePolymorphicAssociationToAssessorAssignments < ActiveRecord::Migration
+class AddEditablePolymorphicAssociationToAssessorAssignments < ActiveRecord::Migration[4.2]
   def change
     add_column :assessor_assignments,
                :editable_type,

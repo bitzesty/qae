@@ -1,4 +1,4 @@
-class AggregatedAwardYearPdf < ActiveRecord::Base
+class AggregatedAwardYearPdf < ApplicationRecord
 
   TYPES = %w(case_summary feedback)
 

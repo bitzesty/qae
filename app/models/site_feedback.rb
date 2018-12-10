@@ -1,4 +1,4 @@
-class SiteFeedback < ActiveRecord::Base
+class SiteFeedback < ApplicationRecord
   extend Enumerize
 
   enumerize :rating, in: { very_satisfied: 5,

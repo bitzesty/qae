@@ -1,4 +1,4 @@
-class PalaceAttendee < ActiveRecord::Base
+class PalaceAttendee < ApplicationRecord
   belongs_to :palace_invite
 
   validates :palace_invite,

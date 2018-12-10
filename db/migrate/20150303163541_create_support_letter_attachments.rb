@@ -1,4 +1,4 @@
-class CreateSupportLetterAttachments < ActiveRecord::Migration
+class CreateSupportLetterAttachments < ActiveRecord::Migration[4.2]
   def change
     create_table :support_letter_attachments do |t|
       t.references :user, null: false, index: true

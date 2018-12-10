@@ -1,4 +1,4 @@
-class CreatePressSummaries < ActiveRecord::Migration
+class CreatePressSummaries < ActiveRecord::Migration[4.2]
   def change
     create_table :press_summaries do |t|
       t.references :form_answer, index: true, null: false

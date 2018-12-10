@@ -88,7 +88,7 @@ class Users::AuditCertificatesController < Users::BaseController
 
   def check_if_audit_certificate_already_exist!
     if audit_certificate.present? && audit_certificate.persisted?
-      render nothing: true
+      head :ok
       return
     end
   end

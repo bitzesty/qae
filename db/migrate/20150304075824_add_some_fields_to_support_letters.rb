@@ -1,4 +1,4 @@
-class AddSomeFieldsToSupportLetters < ActiveRecord::Migration
+class AddSomeFieldsToSupportLetters < ActiveRecord::Migration[4.2]
   def change
     add_reference :support_letters, :user, index: true
     add_foreign_key :support_letters, :users

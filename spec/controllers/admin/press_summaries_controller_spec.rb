@@ -13,7 +13,7 @@ RSpec.describe Admin::PressSummariesController do
   describe "POST create" do
     it "should create a resource" do
       press_summary.destroy
-      post :create, form_answer_id: form_answer.id, press_summary: FactoryGirl.attributes_for(:press_summary)
+      post :create, params: { form_answer_id: form_answer.id, press_summary: FactoryGirl.attributes_for(:press_summary) }
       expect(response).to redirect_to [:admin, form_answer]
       expect(PressSummary.count).to eq 1
     end
@@ -21,7 +21,7 @@ RSpec.describe Admin::PressSummariesController do
 
   describe "PUT update" do
     it "should update a resource" do
-      put :update, id: press_summary.id, form_answer_id: form_answer.id, press_summary: { name: "changed  name" }
+      put :update, params: { id: press_summary.id, form_answer_id: form_answer.id, press_summary: { name: "changed  name" } }
       expect(response).to redirect_to [:admin, form_answer]
       expect(PressSummary.first.name).to eq "changed  name"
     end
@@ -29,14 +29,14 @@ RSpec.describe Admin::PressSummariesController do
 
   describe "Post approve" do
     it "should approve a resource" do
-      post :approve, id: press_summary.id, form_answer_id: form_answer.id
+      post :approve, params: { id: press_summary.id, form_answer_id: form_answer.id }
       expect(response).to redirect_to [:admin, form_answer]
       expect(press_summary.reload.approved?).to be_truthy
     end
   end
   describe "Post submit" do
     it "should submit a resource" do
-      post :submit, id: press_summary.id, form_answer_id: form_answer.id
+      post :submit, params: { id: press_summary.id, form_answer_id: form_answer.id }
       expect(response).to redirect_to [:admin, form_answer]
       expect(press_summary.reload.submitted?).to be_truthy
     end
@@ -44,7 +44,7 @@ RSpec.describe Admin::PressSummariesController do
   describe "Post unlock" do
     it "should unlock a resource" do
       allow_any_instance_of(PressSummaryPolicy).to receive(:unlock?) {true}
-      post :unlock, id: press_summary.id, form_answer_id: form_answer.id
+      post :unlock, params: { id: press_summary.id, form_answer_id: form_answer.id }
       expect(response).to redirect_to [:admin, form_answer]
       expect(press_summary.reload.submitted?).to be_falsey
     end
@@ -53,7 +53,7 @@ RSpec.describe Admin::PressSummariesController do
   describe "Post signoff" do
     it "should signoff a resource" do
       allow_any_instance_of(PressSummaryPolicy).to receive(:admin_signoff?) {true}
-      post :signoff, id: press_summary.id, form_answer_id: form_answer.id
+      post :signoff, params: { id: press_summary.id, form_answer_id: form_answer.id }
       expect(response).to redirect_to [:admin, form_answer]
       expect(press_summary.reload.admin_sign_off?).to be_truthy
     end
