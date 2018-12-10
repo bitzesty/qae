@@ -10,13 +10,13 @@ RSpec.describe SupportLettersController, type: :controller do
     end
 
     it "renders 404 if access key is invalid" do
-      get :show, access_key: "hack"
+      get :show, params: { access_key: "hack" }
 
       expect(response.status).to eq(404)
     end
 
     it "renders 200 if access key is valid" do
-      get :show, access_key: supporter.access_key
+      get :show, params: { access_key: supporter.access_key }
 
       expect(response.status).to eq(200)
     end

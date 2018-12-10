@@ -1,4 +1,4 @@
-class AddAccountFieldsToUsers < ActiveRecord::Migration
+class AddAccountFieldsToUsers < ActiveRecord::Migration[4.2]
   def change
     add_column :users, :title, :string
     add_column :users, :first_name, :string

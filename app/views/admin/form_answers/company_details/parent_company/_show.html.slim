@@ -9,7 +9,7 @@ label.form-label Parent companies
 .form-value
   p
     - if @form_answer.parent_company_country.present?
-      = Country.find_country_by_alpha2(@form_answer.parent_company_country).try(:name)
+      = ISO3166::Country.find_country_by_alpha2(@form_answer.parent_company_country).try(:name)
     - else
       em.text-muted Country of immediate Parent company not added.
 - if @form_answer.parent_ultimate_control == "no"
@@ -22,7 +22,7 @@ label.form-label Parent companies
   .form-value
     p
       - if @form_answer.ultimate_control_company_country.present?
-        = Country.find_country_by_alpha2(@form_answer.ultimate_control_company_country).try(:name)
+        = ISO3166::Country.find_country_by_alpha2(@form_answer.ultimate_control_company_country).try(:name)
       - else
         em.text-muted Country of organisation with ultimate control not added.
 

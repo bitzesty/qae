@@ -1,4 +1,4 @@
-class AddNominationAddressFieldsToCompanyDetails < ActiveRecord::Migration
+class AddNominationAddressFieldsToCompanyDetails < ActiveRecord::Migration[4.2]
   def change
     add_column :company_details, :nominee_organisation,         :string
     add_column :company_details, :nominee_position,             :string

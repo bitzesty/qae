@@ -1,4 +1,4 @@
-class AddDocumentToFormAnswers < ActiveRecord::Migration
+class AddDocumentToFormAnswers < ActiveRecord::Migration[4.2]
   def up
     add_column :form_answers, :document, :hstore
   end

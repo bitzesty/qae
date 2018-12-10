@@ -1,4 +1,4 @@
-class Settings < ActiveRecord::Base
+class Settings < ApplicationRecord
   self.table_name = "settings"
 
   has_many :deadlines, dependent: :destroy

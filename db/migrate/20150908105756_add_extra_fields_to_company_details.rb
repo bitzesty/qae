@@ -1,4 +1,4 @@
-class AddExtraFieldsToCompanyDetails < ActiveRecord::Migration
+class AddExtraFieldsToCompanyDetails < ActiveRecord::Migration[4.2]
   def change
     add_column :company_details, :registration_number,              :string
     add_column :company_details, :date_started_trading,             :string

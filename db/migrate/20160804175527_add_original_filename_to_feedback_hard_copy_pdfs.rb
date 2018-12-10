@@ -1,4 +1,4 @@
-class AddOriginalFilenameToFeedbackHardCopyPdfs < ActiveRecord::Migration
+class AddOriginalFilenameToFeedbackHardCopyPdfs < ActiveRecord::Migration[4.2]
   def change
     add_column :feedback_hard_copy_pdfs, :original_filename, :string
   end

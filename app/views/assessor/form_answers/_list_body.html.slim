@@ -5,7 +5,7 @@ tbody
         td = check_box_tag :check, obj.id, false, class: "form-answer-check"
 
       td.td-title
-        = link_to polymorphic_url([namespace_name, obj], search: params[:search]) do
+        = link_to polymorphic_url([namespace_name, obj], search: params.permit[:search]) do
           - unless obj.company_or_nominee_name.nil?
             span.ellipsis
               = obj.company_or_nominee_name
@@ -15,7 +15,7 @@ tbody
 
       td
         - if obj.urn.present?
-          = link_to obj.urn, polymorphic_url([namespace_name, obj], search: params[:search])
+          = link_to obj.urn, polymorphic_url([namespace_name, obj], search: params.permit[:search])
         - else
           span.urn-not-generated Not yet generated
 
@@ -31,7 +31,7 @@ tbody
       td
         - app_comments = application_comments(obj.comments_count)
         - if app_comments.present?
-          = link_to polymorphic_url([:assessor, obj], search: params[:search]) do
+          = link_to polymorphic_url([:assessor, obj], search: params.permit[:search]) do
             = app_comments
 
       td.td-flags

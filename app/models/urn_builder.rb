@@ -18,7 +18,7 @@ class UrnBuilder
     sequence_attr = "urn_seq_promotion_#{award_year.year}" if fa.promotion?
     sequence_attr ||= "urn_seq_#{award_year.year}"
 
-    next_seq = fa.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.sanitize(sequence_attr)})")
+    next_seq = fa.class.connection.select_value("SELECT nextval(#{ActiveRecord::Base.connection.quote(sequence_attr)})")
 
     generated_urn = "QA#{sprintf('%.4d', next_seq)}/"
     suffix = {

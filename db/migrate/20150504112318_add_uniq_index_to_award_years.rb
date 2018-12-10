@@ -1,4 +1,4 @@
-class AddUniqIndexToAwardYears < ActiveRecord::Migration
+class AddUniqIndexToAwardYears < ActiveRecord::Migration[4.2]
   def up
     add_index :award_years, :year, unique: true
     remove_index :settings, :award_year_id

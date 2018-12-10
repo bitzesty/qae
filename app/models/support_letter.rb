@@ -1,4 +1,4 @@
-class SupportLetter < ActiveRecord::Base
+class SupportLetter < ApplicationRecord
   begin :associations
     belongs_to :supporter
     belongs_to :form_answer

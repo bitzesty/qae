@@ -7,8 +7,8 @@ class Admin::BaseController < ApplicationController
   before_action :authenticate_admin!, :load_award_year_and_settings
   after_action :verify_authorized
 
-  skip_before_action :authenticate_user!
-  skip_before_action :restrict_access_if_admin_in_read_only_mode!
+  skip_before_action :authenticate_user!, raise: false
+  skip_before_action :restrict_access_if_admin_in_read_only_mode!, raise: false
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 

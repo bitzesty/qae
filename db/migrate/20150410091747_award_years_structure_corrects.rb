@@ -1,4 +1,4 @@
-class AwardYearsStructureCorrects < ActiveRecord::Migration
+class AwardYearsStructureCorrects < ActiveRecord::Migration[4.2]
   def up
     # Clean up existing Settings
     Settings.destroy_all

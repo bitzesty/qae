@@ -1,4 +1,4 @@
-class RemoveEligibilityAndBasicEligibilityFromFormAnswers < ActiveRecord::Migration
+class RemoveEligibilityAndBasicEligibilityFromFormAnswers < ActiveRecord::Migration[4.2]
   def up
     remove_column :form_answers, :eligibility
     remove_column :form_answers, :basic_eligibility

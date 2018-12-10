@@ -1,4 +1,4 @@
-class AddTypeToEligibilities < ActiveRecord::Migration
+class AddTypeToEligibilities < ActiveRecord::Migration[4.2]
   def change
     add_column :eligibilities, :type, :string
   end

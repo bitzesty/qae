@@ -1,4 +1,4 @@
-class ChangeTypeForAssessorsColumnsInFormAnswers < ActiveRecord::Migration
+class ChangeTypeForAssessorsColumnsInFormAnswers < ActiveRecord::Migration[4.2]
   def change
     remove_column :form_answers, :primary_assessor_not_assigned, :boolean, default: true
     remove_column :form_answers, :secondary_assessor_not_assigned, :boolean, default: true

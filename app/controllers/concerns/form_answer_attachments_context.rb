@@ -45,7 +45,7 @@ module FormAnswerAttachmentsContext
     respond_to do |format|
       format.html do
         if request.xhr?
-          render nothing: true
+          head :ok
         else
           redirect_to [namespace_name, form_answer]
         end

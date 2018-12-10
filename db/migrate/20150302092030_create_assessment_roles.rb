@@ -1,4 +1,4 @@
-class CreateAssessmentRoles < ActiveRecord::Migration
+class CreateAssessmentRoles < ActiveRecord::Migration[4.2]
   def change
     create_table :assessment_roles do |t|
       t.integer :assessor_id, null: false

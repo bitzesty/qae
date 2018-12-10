@@ -1,6 +1,7 @@
 class Admin::AssessorsController < Admin::UsersController
   def index
     params[:search] ||= AssessorSearch::DEFAULT_SEARCH
+    params[:search].permit!
     authorize :assessor, :index?
 
     @search = AssessorSearch.new(Assessor.all).

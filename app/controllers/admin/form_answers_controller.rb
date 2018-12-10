@@ -1,7 +1,7 @@
 class Admin::FormAnswersController < Admin::BaseController
   include FormAnswerMixin
 
-  before_filter :load_resource, only: [
+  before_action :load_resource, only: [
     :review,
     :show,
     :update,
@@ -21,6 +21,7 @@ class Admin::FormAnswersController < Admin::BaseController
 
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
+    params[:search].permit!
     authorize :form_answer, :index?
     @search = FormAnswerSearch.new(@award_year.form_answers, current_admin).search(params[:search])
     @search.ordered_by = "company_or_nominee_name" unless @search.ordered_by
@@ -48,7 +49,7 @@ class Admin::FormAnswersController < Admin::BaseController
         redirect_to admin_form_answer_url(@form_answer)
       end
       format.js do
-        render nothing: true
+        head :ok
       end
     end
   end

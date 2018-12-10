@@ -106,11 +106,11 @@ describe "Assessors Progress Reports CSV" do
   # "Total Assessed"
 
   let(:expected_first_entry_data) {
-    [first_assessor.id.to_s, first_assessor.full_name, first_assessor.email, 3, 2, 1, 1, 5, 3, 8, 5]
+    [first_assessor.id, first_assessor.full_name, first_assessor.email, 3, 2, 1, 1, 5, 3, 8, 5]
   }
 
   let(:expected_second_entry_data) {
-    [second_assessor.id.to_s, second_assessor.full_name, second_assessor.email, 4, 1, 3, 2, 4, 2, 8, 3]
+    [second_assessor.id, second_assessor.full_name, second_assessor.email, 4, 1, 3, 2, 4, 2, 8, 3]
   }
 
   it "should render proper data" do

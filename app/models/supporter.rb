@@ -1,6 +1,6 @@
 require 'securerandom'
 
-class Supporter < ActiveRecord::Base
+class Supporter < ApplicationRecord
   begin :associations
     belongs_to :form_answer
     belongs_to :user
