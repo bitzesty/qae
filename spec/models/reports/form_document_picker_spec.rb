@@ -120,6 +120,7 @@ describe Reports::DataPickers::FormDocumentPicker do
         expect(subject.principal_address2).to eq 2
       end
     end
+
     context "principal_address3" do
       it 'should return correct value' do
         allow(subject).to receive(:business_form?).and_return(true)
@@ -130,6 +131,7 @@ describe Reports::DataPickers::FormDocumentPicker do
         expect(subject.principal_address3).to eq 2
       end
     end
+
     context "principal_address4" do
       it 'should return correct value' do
         allow(subject).to receive(:business_form?).and_return(true)
@@ -140,6 +142,7 @@ describe Reports::DataPickers::FormDocumentPicker do
         expect(subject.principal_address4).to eq 2
       end
     end
+
     context "sub_category" do
       it 'should return nil' do
         allow(subject).to receive(:trade?).and_return(false)
@@ -152,6 +155,5 @@ describe Reports::DataPickers::FormDocumentPicker do
         expect(subject.sub_category).to be_nil
       end
     end
-
   end
 end
