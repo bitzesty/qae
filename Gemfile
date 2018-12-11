@@ -4,9 +4,6 @@ ruby '2.5.0'
 
 gem 'rails', '~> 5.2'
 
-# Security HTTP Headers
-gem 'secure_headers'
-
 # SSL redirect
 gem 'rack-ssl-enforcer'
 
