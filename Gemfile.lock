@@ -604,7 +604,7 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    secure_headers (2.0.0)
+    secure_headers (6.0.0)
     sentry-raven (2.7.4)
       faraday (>= 0.7.6, < 1.0)
     shog (0.2.1)
@@ -774,7 +774,7 @@ DEPENDENCIES
   rspec-sidekiq
   rspec_junit_formatter (= 0.2.3)
   rubocop (~> 0.52)
-  secure_headers (= 2.0.0)
+  secure_headers
   sentry-raven
   shog
   shoulda-matchers
