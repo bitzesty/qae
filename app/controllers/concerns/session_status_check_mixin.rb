@@ -6,7 +6,6 @@ module SessionStatusCheckMixin
 
   included do
     protect_from_forgery with: :exception
-    ensure_security_headers if ENV["ENSURE_SECURITY_HEADERS"]
 
     prepend_before_action :skip_timeout, only: [:show]
   end
