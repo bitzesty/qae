@@ -49,7 +49,7 @@ module FormAnswerHelper
   end
 
   def user_can_edit_company(form)
-    policy(form).update_company?
+    policy(form).update_company? && form.submitted_and_after_the_deadline?
   end
 
   def application_comments(comments_count)
