@@ -29,7 +29,7 @@ test:
     - bundle install --jobs 4 --retry 3 --path vendor
     - RAILS_ENV=test bundle exec rake db:create db:migrate
   script:
-    - RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/models/user_spec.rb --tag '~skip_ci' --format RspecJunitFormatter --out rspec.xml --format progress
+    - RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --format RspecJunitFormatter --out rspec.xml --format progress
   artifacts:
     reports:
       junit: rspec.xml
