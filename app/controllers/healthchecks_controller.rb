@@ -11,5 +11,6 @@ class HealthchecksController < ApplicationController
     else
       render text: "success"
     end
+    return true
   end
 end
