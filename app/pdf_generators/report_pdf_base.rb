@@ -17,7 +17,7 @@ class ReportPdfBase < Prawn::Document
     @mode = mode
     @form_answer = form_answer
     @options = options
-
+    set_font!
     @award_year = if mode == "singular"
       form_answer.award_year
     else
@@ -25,6 +25,10 @@ class ReportPdfBase < Prawn::Document
     end
 
     generate!
+  end
+
+  def set_font!
+    @pdf_doc.font_families.update( "Helvetica" => { normal: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s, bold: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s, italic: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s, bold_italic: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s } )
   end
 
   def generate!
