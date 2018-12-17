@@ -28,7 +28,7 @@ class ReportPdfBase < Prawn::Document
   end
 
   def set_font!
-    @pdf_doc.font_families.update( "Helvetica" => { normal: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s, bold: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s, italic: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s, bold_italic: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s } )
+    @pdf_doc.font_families.update( "Helvetica" => { normal: Rails.root.join('app', 'assets/fonts', 'Helvetica_Regular.ttf').to_s, bold: Rails.root.join('app', 'assets/fonts', 'Helvetica_Regular.ttf').to_s, italic: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s, bold_italic: Rails.root.join('app', 'assets/fonts', 'Helvetica_Neue_W01_66_Medium_It.ttf').to_s } )
   end
 
   def generate!
