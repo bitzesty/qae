@@ -7,10 +7,9 @@ class HealthchecksController < ApplicationController
       error = ex.message
     end
     if error
-      render text: "error: #{error}"
+      render plain: "error: #{error}"
     else
-      render text: "success"
+      render plain: "success"
     end
-    return true
   end
 end
