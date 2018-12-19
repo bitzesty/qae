@@ -3,7 +3,7 @@ image:
 
 variables:
   POSTGRES_DB: qae_test
-  DATABASE_URL: "postgresql://postgres:postgres@postgres:5432/$POSTGRES_DB"
+  DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/$POSTGRES_DB"
   PHANTOM_JS: phantomjs-2.1.1-linux-x86_64
 
 services:
@@ -19,14 +19,14 @@ test:
   stage: test
   before_script:
     - apt-get update -qy
-    - apt-get install -y postgresql-client
+    - apt-get install -y postgresql postgresql-client
     - apt-get install -y nodejs
     - wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
     - tar xvjf $PHANTOM_JS.tar.bz2
     - mv $PHANTOM_JS /usr/local/share
     - ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
     - phantomjs --version
-    - bundle install --jobs 4 --retry 3 --path vendor
+    - bundle install --path vendor/bundler --jobs=4 --retry=3
     - RAILS_ENV=test bundle exec rake db:create db:migrate
   script:
     - RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/ --tag '~skip_ci' --format RspecJunitFormatter --out rspec.xml --format progress
@@ -36,7 +36,7 @@ test:
   cache:
     key: gems-cache
     paths:
-      - vendor/ruby
+      - vendor/bundler
 
 code_quality:
   image: docker:stable
@@ -46,6 +46,7 @@ code_quality:
   services:
     - docker:stable-dind
   script:
+    - export DOCKER_HOST=tcp://localhost:2375
     - export SP_VERSION=$(echo "$CI_SERVER_VERSION" | sed 's/^\([0-9]*\)\.\([0-9]*\).*/\1-\2-stable/')
     - docker run
         --env SOURCE_CODE="$PWD"
