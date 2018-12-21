@@ -198,7 +198,14 @@ class FormAnswer < ApplicationRecord
         raise ArgumentError, "Can not find award form for the application"
       end
 
-      form_class.public_send(award_type) if award_type.present?
+      if award_type.present?
+        if form_class.respond_to?(award_type)
+          form_class.public_send(award_type)
+        else
+          form_class = self.class.const_get(award_form_class_name(2018))
+          form_class.public_send(award_type)
+        end
+      end
     end
   end
 
