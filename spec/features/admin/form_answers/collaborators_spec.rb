@@ -59,7 +59,7 @@ So that they can collaborate applications
       end
     end
 
-    describe "Success Add to Collaborators", js: true do
+    describe "Success Add to Collaborators", skip_ci: true, js: true do
       let(:email) { generate(:email) }
       let!(:user) { create(:user, email: email) }
 
