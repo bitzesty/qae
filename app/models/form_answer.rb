@@ -181,6 +181,11 @@ class FormAnswer < ApplicationRecord
   # else uses form for the current award year
   #
   # for the test environment uses current or previous year
+  #
+  # The older year's awards have different award types which was removed from the recent years
+  # e.g. promotion.
+  # So if the form_class of requested year doesn't implement requested award type, it will fallback to oldest award year
+  #
   def award_form
     if award_year.present?
       form_class = if self.class.const_defined?(award_form_class_name(award_year.year))
@@ -198,7 +203,12 @@ class FormAnswer < ApplicationRecord
         raise ArgumentError, "Can not find award form for the application"
       end
 
-      form_class.public_send(award_type) if award_type.present?
+      if award_type.present?
+        unless form_class.respond_to?(award_type)
+          form_class = self.class.const_get(award_form_class_name(2018))
+        end
+        form_class.public_send(award_type)
+      end
     end
   end
 
