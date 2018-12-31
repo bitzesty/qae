@@ -51,6 +51,7 @@ Capybara.register_driver :poltergeist do |app|
   Capybara::Poltergeist::Driver.new(app, options)
 end
 Capybara.javascript_driver = :poltergeist
+Capybara.default_max_wait_time = 5
 
 ActiveRecord::Migration.check_pending!
 

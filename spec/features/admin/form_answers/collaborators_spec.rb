@@ -47,7 +47,7 @@ So that they can collaborate applications
 
           within(".admin-search-collaborators-form") do
             fill_in "search[query]", with: "plicant with acc"
-            first("input[type='submit']").click
+            first("input[type='submit']").trigger(:click)
 
             within(".js-admin-search-collaborators-results-box") do
               expect_to_see(user_associated_with_another_account.first_name)
@@ -64,11 +64,11 @@ So that they can collaborate applications
       let!(:user) { create(:user, email: email) }
 
       it "should add user to collaborators with regular role" do
-        find("a[aria-controls='section-company-details']").click
+        find("a[aria-controls='section-company-details']").trigger(:click)
 
         within(".admin-search-collaborators-form") do
           fill_in "search[query]", with: email.to_s[2..-2]
-          first("input[type='submit']").click
+          first("input[type='submit']").trigger(:click)
 
           within(".js-admin-search-collaborators-results-box") do
             expect_to_see(user.email)

@@ -202,27 +202,6 @@ describe Notifiers::EmailNotificationService do
     end
   end
 
-  context "ep_reminder_support_letters" do
-    let(:kind) { "ep_reminder_support_letters" }
-
-    let(:form_answer) do
-      create(:form_answer, :promotion)
-    end
-
-    it "triggers current notification" do
-      pending "EP forms are not present for 2019"
-      mailer = double(deliver_later!: true)
-      expect(AccountMailers::PromotionLettersOfSupportReminderMailer).to receive(:notify).with(
-        form_answer.id,
-        user.id
-      ) { mailer }
-
-      described_class.run
-
-      expect(current_notification.reload).to be_sent
-    end
-  end
-
   context "unsuccessful_notification" do
     let(:kind) { "unsuccessful_notification" }
 
@@ -232,26 +211,6 @@ describe Notifiers::EmailNotificationService do
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
       expect(AccountMailers::UnsuccessfulFeedbackMailer).to receive(:notify).with(
-        form_answer.id,
-        user.id
-      ) { mailer }
-
-      described_class.run
-
-      expect(current_notification.reload).to be_sent
-    end
-  end
-
-  context "unsuccessful_ep_notification" do
-    let(:kind) { "unsuccessful_ep_notification" }
-
-    let(:form_answer) { create(:form_answer, :promotion, :submitted, state: "not_awarded") }
-
-    it "triggers current notification" do
-      pending "EP forms are not present for 2019"
-
-      mailer = double(deliver_later!: true)
-      expect(AccountMailers::UnsuccessfulFeedbackMailer).to receive(:ep_notify).with(
         form_answer.id,
         user.id
       ) { mailer }

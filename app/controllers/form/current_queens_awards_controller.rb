@@ -83,6 +83,7 @@ class Form::CurrentQueensAwardsController < Form::NonJsDynamicListsFormSectionCo
   def confirm_deletion
     self.item = item_class.new(categories,
                                years,
+                               [],
                                item_params)
   end
 

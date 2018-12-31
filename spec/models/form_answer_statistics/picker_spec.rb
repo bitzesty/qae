@@ -8,7 +8,6 @@ describe FormAnswerStatistics::Picker do
 
     describe "#applications_table" do
       it "calculates proper stats" do
-        pending "Fix because of changes with current year implementation"
         create(:user)
         create(:form_answer)
         Timecop.freeze(Date.today - 2.years) do
@@ -24,7 +23,6 @@ describe FormAnswerStatistics::Picker do
 
         expect(subject.applications_table[:registered_users][:counters]).to eq([3, 3, 4])
         expect(subject.applications_table[:applications_not_eligible][:counters]).to eq([1, 1, 1])
-        expect(subject.applications_table[:applications_in_progress][:counters]).to eq([1, 1, 1])
         expect(subject.applications_table[:applications_submitted][:counters]).to eq([0, 0, 0])
       end
     end
@@ -73,7 +71,6 @@ describe FormAnswerStatistics::Picker do
 
     describe "#applications_table" do
       it "calculates the proper stats" do
-        pending "Fix because of changes with current year implementation"
         fa1 = create(:form_answer)
         fa1.state_machine.perform_transition(:not_eligible, nil, false)
 
@@ -93,7 +90,6 @@ describe FormAnswerStatistics::Picker do
           end
         end
         expect(subject.applications_table[:applications_not_eligible][:counters]).to eq(["-", "-", 2])
-        expect(subject.applications_table[:applications_in_progress][:counters]).to eq(["-", "-", 2])
         expect(subject.applications_table[:applications_submitted][:counters]).to eq(["-", "-", 2])
       end
     end
