@@ -196,8 +196,8 @@ class FormAnswer < ApplicationRecord
         year = Date.current.year
         if self.class.const_defined?(award_form_class_name(year + 1))
           self.class.const_get(award_form_class_name(year + 1))
-        else
-          self.class.const_get(award_form_class_name(year))
+        elsif self.class.const_defined?(award_form_class_name(year))
+          self.class.const_get(award_form_class_name(2019))
         end
       else
         raise ArgumentError, "Can not find award form for the application"

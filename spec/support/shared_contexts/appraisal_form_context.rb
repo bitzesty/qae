@@ -126,47 +126,49 @@ end
 def assert_multiple_description_change(section_id, header_id)
   text = "should NOT be saved"
   text2 = "should be saved"
+  sleep(0.5)
+  find("#{header_id} .panel-title a").trigger(:click)
 
-  find("#{header_id} .panel-title a").click
   within section_id do
     unless section_id == moderated
       fill_in("assessor_assignment_level_of_innovation_desc", with: text)
     end
 
     fill_in("assessor_assignment_verdict_desc", with: text2)
-    all(".form-save-link").last.click
+    all(".form-save-link").last.trigger(:click)
+
   end
 
   sleep(0.5)
   visit show_path
-  find("#{header_id} .panel-title a").click
+  sleep(0.5)
+  find("#{header_id} .panel-title a").trigger(:click)
 
   within section_id do
-    expect(page).to have_selector(".form-value p", text: text2, count: 1)
-    expect(page).to have_selector(".form-value p", text: text, count: 0)
-    all(".form-edit-link").last.click
-    expect(page).to have_selector("textarea", text: text2)
+    expect(page).to have_content(text2)
+
+    all(".form-edit-link").last.trigger(:click)
+
+    expect(page.find("#assessor_assignment_verdict_desc").text).to eq  text2
   end
 end
 
 def assert_verdict_change(section_id, header_id)
-  find("#{header_id} .panel-title a").click
+  find("#{header_id} .panel-title a").trigger(:click)
 
   within section_id do
     expect(page).to have_selector(".rag-text", text: "Select verdict", count: 1)
-    all(".btn-rag").last.click
-    find(".dropdown-menu .rag-positive").click
+    all(".btn-rag").last.trigger(:click)
+    find(".dropdown-menu .rag-positive a").trigger(:click)
   end
 
   sleep(0.5)
   visit show_path
-  page.find("#{header_id} .panel-title a").click
-
+  page.find("#{header_id} .panel-title a").trigger(:click)
   within section_id do
     expect(page).to_not have_selector(".rag-text", text: "Select verdict")
-    expect(page).to have_selector(".rag-text", text: "Recommended", count: 1)
+    expect(page).to have_content "Recommended"
   end
-  visit show_path
 end
 
 def show_path

@@ -12,10 +12,10 @@ describe "Assessor feedback management", skip_ci: true do
   describe "feedback submission" do
     before do
       visit assessor_form_answer_path(form_answer)
-      find("#feedback-heading a").click
+      find("#feedback-heading a").trigger(:click)
 
       within "#section-feedback .level_of_innovation" do
-        find("a.form-edit-link").click
+        find("a.form-edit-link").trigger(:click)
       end
     end
 
@@ -43,15 +43,17 @@ describe "Assessor feedback management", skip_ci: true do
 
     before do
       visit assessor_form_answer_path(form_answer)
-      find("#feedback-heading a").click
+      find("#feedback-heading a").trigger(:click)
     end
 
     it "unlocks submitted feedback", js: true do
       expect(page).to have_selector(".feedback-holder", text: "Feedback Submitted")
-      click_button "Unlock"
-      wait_for_ajax
-
-      expect(feedback.reload.locked_at).to be_nil
+      expect {
+        find(:button, "Unlock").trigger(:click)
+        sleep 3
+      }.to change {
+        feedback.reload.locked_at
+      }
     end
   end
 end

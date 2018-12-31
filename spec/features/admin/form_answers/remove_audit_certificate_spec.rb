@@ -56,13 +56,18 @@ So that User can re-upload Verification of Commercial Figures
       visit admin_form_answer_path(form_answer)
     end
 
-    xit "should remove Verification of Commercial Figures" do
+    it "should remove Verification of Commercial Figures" do
       expect(form_answer.audit_certificate.present?).to be_truthy
 
-      find(".js-remove-audit-certificate-link").click
       wait_for_ajax
 
-      expect(form_answer.reload.audit_certificate.present?).to be_falsey
+      expect {
+        find(".js-remove-audit-certificate-link").trigger(:click)
+
+        sleep 3
+      }.to change {
+        form_answer.reload.audit_certificate
+      }
     end
   end
 end

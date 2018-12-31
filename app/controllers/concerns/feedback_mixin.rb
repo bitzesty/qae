@@ -46,7 +46,6 @@ module FeedbackMixin
   def unlock
     authorize @feedback, :unlock?
     @feedback.locked_at = nil
-
     save_and_render_submit("unlocked")
   end
 
