@@ -7,23 +7,33 @@ describe FormAnswerStatistics::Picker do
     let(:award_year) { AwardYear.current }
 
     describe "#applications_table" do
-      it "calculates proper stats" do
-        create(:user)
-        create(:form_answer)
-        Timecop.freeze(Date.today - 2.years) do
+      it "calculates proper stats", :aggregate_failures do
+        current_date = DateTime.new(2018, 10, 31)
+
+        Timecop.freeze(current_date) do
+          create(:user)
+          create(:form_answer)
+        end
+
+        Timecop.freeze(current_date - 2.years) do
           fa = create(:form_answer)
           fa.state_machine.perform_transition(:submitted, nil, false)
         end
 
-        fa1 = create(:form_answer, :trade)
-        fa1.state_machine.perform_transition(:not_eligible, nil, false)
-        Timecop.freeze(Date.today - 1.month) do
+        Timecop.freeze(current_date) do
+          fa1 = create(:form_answer, :trade)
+          fa1.state_machine.perform_transition(:not_eligible, nil, false)
+        end
+
+        Timecop.freeze(current_date - 2.month) do
           create(:user)
         end
 
-        expect(subject.applications_table[:registered_users][:counters]).to eq([3, 3, 4])
-        expect(subject.applications_table[:applications_not_eligible][:counters]).to eq([1, 1, 1])
-        expect(subject.applications_table[:applications_submitted][:counters]).to eq([0, 0, 0])
+        Timecop.freeze(current_date) do
+          expect(subject.applications_table[:registered_users][:counters]).to eq([3, 3, 4])
+          expect(subject.applications_table[:applications_not_eligible][:counters]).to eq([1, 1, 1])
+          expect(subject.applications_table[:applications_submitted][:counters]).to eq([0, 0, 0])
+        end
       end
     end
 

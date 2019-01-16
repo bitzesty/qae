@@ -72,14 +72,5 @@ So that I see
                         )
       end
     end
-
-    # describe "Unsuccessful Applications" do
-    #   let!(:past_unsuccessful_form_answer) do
-    #     create(:form_answer, :innovation,
-    #                          :not_awarded,
-    #                          award_year: previous_award_year,
-    #                          user: user)
-    #   end
-    # end
   end
 end
