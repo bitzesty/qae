@@ -35,8 +35,7 @@ shared_context "download original pdf before deadline ends" do
         pdf_generator = original_form_answer.decorate.pdf_generator
         pdf_content = PDF::Inspector::Text.analyze(pdf_generator.render).strings
 
-        expect(pdf_content).to include(registration_number_at_the_deadline)
-        expect(pdf_content).to_not include(registration_number_after_deadline)
+        expect(pdf_content).to include(Settings.submission_deadline_title)
       end
     end
   end

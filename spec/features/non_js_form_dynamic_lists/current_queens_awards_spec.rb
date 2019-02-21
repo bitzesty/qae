@@ -29,7 +29,7 @@ So that I can fill form completelly even if Javascript is turned off
            :innovation,
            user: user,
            account: account,
-           document: { company_name: "Bitzesty", queen_award_holder_details: awards }
+           document: { company_name: "Bitzesty", applied_for_queen_awards: "yes", applied_for_queen_awards_details: awards }
   end
 
   let!(:basic_eligibility) do
@@ -62,7 +62,8 @@ So that I can fill form completelly even if Javascript is turned off
     end
 
     it "should display existing items in list" do
-      within("#non_js_queen_award_holder_details-list-question") do
+      within("#non_js_applied_for_queen_awards_details-list-question") do
+
         awards.each do |award|
           expect(page).to have_selector(
             "li[non-js-attribute=#{item_entry(award)}]", count: 1
@@ -72,7 +73,7 @@ So that I can fill form completelly even if Javascript is turned off
     end
 
     it "should allow to add another" do
-      within("fieldset[data-answer=queen_award_holder_details-list-the-queen-s-award-s-you-currently-hold]") do
+      within("fieldset[data-answer=applied_for_queen_awards_details-list-the-queen-s-awards-you-have-applied-for-in-the-last-10-years]") do
         click_link "+ Add award"
       end
       expect_to_see "Add Award"
@@ -89,6 +90,7 @@ So that I can fill form completelly even if Javascript is turned off
 
       select new_award_category_name, from: "Category"
       select new_award_category_year, from: "Year"
+      select "Won", from: "Outcome"
 
       expect {
         click_button "Save"
@@ -96,7 +98,7 @@ So that I can fill form completelly even if Javascript is turned off
         form_answer.reload.document
       }
 
-      within("#non_js_queen_award_holder_details-list-question") do
+      within("#non_js_applied_for_queen_awards_details-list-question") do
         awards.each do |award|
           expect(page).to have_selector(
             "li[non-js-attribute=#{item_entry(award)}]", count: 1
@@ -117,6 +119,7 @@ So that I can fill form completelly even if Javascript is turned off
 
       select new_award_category_name, from: "Category"
       select new_award_category_year, from: "Year"
+      select "Won", from: "Outcome"
 
       expect {
         click_button "Save"
@@ -124,7 +127,7 @@ So that I can fill form completelly even if Javascript is turned off
         form_answer.reload.document
       }
 
-      within("#non_js_queen_award_holder_details-list-question") do
+      within("#non_js_applied_for_queen_awards_details-list-question") do
         expect(page).to have_selector(
           "li[non-js-attribute=#{item_entry(first_award)}]", count: 1
         )
@@ -141,7 +144,7 @@ So that I can fill form completelly even if Javascript is turned off
 
     it "should allow to remove existing" do
       within("li[non-js-attribute=#{second_award[:category]}_#{second_award[:year]}]") do
-        first('a.remove-link.if-js-hide').click
+        first('a.remove-link.js-remove-link').click
       end
 
       expect_to_see "Are you sure?"
@@ -152,7 +155,7 @@ So that I can fill form completelly even if Javascript is turned off
         form_answer.reload.document
       }
 
-      within("#non_js_queen_award_holder_details-list-question") do
+      within("#non_js_applied_for_queen_awards_details-list-question") do
         expect(page).to have_selector(
           "li[non-js-attribute=#{item_entry(first_award)}]", count: 1
         )
