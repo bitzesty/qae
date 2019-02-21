@@ -38,6 +38,7 @@ module FeedbackMixin
   def submit
     authorize @feedback, :submit?
     @feedback.submitted = true
+    @feedback.authorable = current_subject
     @feedback.locked_at = Time.zone.now
 
     save_and_render_submit("submitted")
