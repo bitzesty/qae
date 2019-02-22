@@ -210,4 +210,10 @@ namespace :form_answers do
 
     puts "#{i} form answers were updated"
   end
+
+  desc "Migrates data for trade application from 6 to 3 years"
+  task :downgrade_trade_to_3_years, [:id] => [:environment] do |t, args|
+    form_answer = FormAnswer.find(args[:id])
+    ManualUpdaters::TradeAwardDowngrader.new(form_answer).run!
+  end
 end

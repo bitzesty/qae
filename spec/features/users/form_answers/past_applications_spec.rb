@@ -65,18 +65,12 @@ So that I see
         visit dashboard_path
       end
 
-      xit "should display past successful applications" do
+      it "should display past successful applications" do
         # save_and_open_page
+        expect(page).to have_selector(
+                            "div.dashboard-post-submission", count: 1
+                        )
       end
     end
-
-    # describe "Unsuccessful Applications" do
-    #   let!(:past_unsuccessful_form_answer) do
-    #     create(:form_answer, :innovation,
-    #                          :not_awarded,
-    #                          award_year: previous_award_year,
-    #                          user: user)
-    #   end
-    # end
   end
 end

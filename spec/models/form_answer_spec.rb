@@ -1,9 +1,11 @@
 require "rails_helper"
 
 RSpec.describe FormAnswer, type: :model do
-  let(:form_answer) {build(:form_answer)}
+  let(:award_year) { create(:award_year, year: 2019) }
+  let(:form_answer) { build(:form_answer) }
+
   describe "associations" do
-    it {should belong_to(:user)}
+    it { should belong_to(:user) }
   end
 
   describe 'class methods & scopes ' do
@@ -206,24 +208,24 @@ RSpec.describe FormAnswer, type: :model do
   describe "#fill_progress" do
     context "100% completed" do
       it "populates correct fill progress for trade form on save" do
-        form_answer = create(:form_answer, :trade)
+        form_answer = create(:form_answer, :trade, award_year: award_year)
         expect(form_answer.fill_progress).to eq(1)
       end
 
       it "populates correct fill progress for development form on save" do
-        form_answer = create(:form_answer, :development)
+        form_answer = create(:form_answer, :development, award_year: award_year)
         expect(form_answer.fill_progress).to eq(1)
       end
 
       it "populates correct fill progress for innovation form on save" do
-        form_answer = create(:form_answer, :innovation)
+        form_answer = create(:form_answer, :innovation, award_year: award_year)
         expect(form_answer.fill_progress).to eq(1)
       end
     end
 
     context "not completed" do
       it "populates correct fill progress for trade form on save" do
-        form_answer = create(:form_answer, :trade)
+        form_answer = create(:form_answer, :trade, award_year: award_year)
         form_answer.document = form_answer.document.merge(principal_business: nil)
         form_answer.save!
 
@@ -231,7 +233,7 @@ RSpec.describe FormAnswer, type: :model do
       end
 
       it "populates correct fill progress for development form on save" do
-        form_answer = create(:form_answer, :development)
+        form_answer = create(:form_answer, :development, award_year: award_year)
         form_answer.document = form_answer.document.merge(principal_business: nil)
         form_answer.save!
 
@@ -239,7 +241,7 @@ RSpec.describe FormAnswer, type: :model do
       end
 
       it "populates correct fill progress for innovation form on save" do
-        form_answer = create(:form_answer, :innovation)
+        form_answer = create(:form_answer, :innovation, award_year: award_year)
         form_answer.document = form_answer.document.merge(principal_business: nil)
         form_answer.save!
 

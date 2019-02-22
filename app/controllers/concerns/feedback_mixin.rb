@@ -38,6 +38,7 @@ module FeedbackMixin
   def submit
     authorize @feedback, :submit?
     @feedback.submitted = true
+    @feedback.authorable = current_subject
     @feedback.locked_at = Time.zone.now
 
     save_and_render_submit("submitted")
@@ -46,7 +47,6 @@ module FeedbackMixin
   def unlock
     authorize @feedback, :unlock?
     @feedback.locked_at = nil
-
     save_and_render_submit("unlocked")
   end
 
