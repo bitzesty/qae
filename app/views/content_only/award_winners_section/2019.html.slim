@@ -25,156 +25,105 @@ div
                       class: "thumbnail",
                       target: "_blank"
 
-        h2 Download The 2019 Queen's Awards power point presentation
+        h2 Download The Queen's Awards Stakeholders Toolkit 2020
 
         .form-download
           p
-            = link_to "Queen's Awards presentation 2019 (PPTX, 2.1MB)",
-                      static_s3_asset_path(2019, "QAE_2019_Presentation.pptx"),
+            = link_to "Queen's Awards Stakeholders Toolkit (PPTX, 2.8MB)",
+                      static_s3_asset_path(2019, "Stakeholders_toolkit_2020.pptx"),
                       class: "thumbnail",
                       target: "_blank"
-
-        h2 Download The 2019 Queen's Awards Press and Social Media guide
-
-        .form-download
-          p
-            = link_to "Queen's Awards 2019 Press and Social Media Guide (PDF, 411KB)",
-                      static_s3_asset_path(2019, "Queen’s Awards 2019 - Press and Social media guide.pdf"),
-                      class: "thumbnail",
-                      target: "_blank"
-
-
-        br
-        br
-
-        .form-download
-          - if any_promotion_winner
-            p
-              = link_to "Queen's Awards for Enterprise 2019 Emblem OPP (JPG, 395KB)",
-                      static_s3_asset_path(2019, "QA Emblem OPP 2019.jpg"),
-                      target: "_blank"
-
-          - if any_innovation_winner
-            p
-              = link_to "Queen's Awards for Enterprise 2019 Emblem Innovation (JPG, 377KB)",
-                      static_s3_asset_path(2019, "QA Emblem Innovation 2019.jpg"),
-                      target: "_blank"
-
-          - if any_trade_winner
-            p
-              = link_to "Queen's Awards for Enterprise 2019 Emblem IT (JPG, 390KB)",
-                      static_s3_asset_path(2019, "QA Emblem IT 2019.jpg"),
-                      target: "_blank"
-
-          - if any_development_winner
-            p
-              = link_to "Queen's Awards for Enterprise 2019 Emblem SD (JPG, 398KB)",
-                      static_s3_asset_path(2019, "QA Emblem SD 2019.jpg"),
-                      target: "_blank"    
 
         h2 Download The Queen's Awards for Enterprise 2019 Emblems in various formats
 
         .form-download
+          - if any_promotion_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem OPP (PNG, 97KB)",
+                      static_s3_asset_path(2019, "QA_PO_2019.png"),
+                      target: "_blank"
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem OPP (EPS, 5.9MB)",
+                      static_s3_asset_path(2019, "QA_PO_2019.eps"),
+                      target: "_blank"
+
+          - if any_innovation_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem Innovation (PNG, 93KB)",
+                      static_s3_asset_path(2019, "QA_Inn_2019.png"),
+                      target: "_blank"
+
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem Innovation (EPS, 5.9MB)",
+                      static_s3_asset_path(2019, "QA_Inn_2019.eps"),
+                      target: "_blank"
+
+          - if any_trade_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem IT (PNG, 95KB)",
+                      static_s3_asset_path(2019, "QA_IT.png"),
+                      target: "_blank"
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem IT (EPS, 5.9MB)",
+                      static_s3_asset_path(2019, "QA_IT_2019.eps"),
+                      target: "_blank"
+
+          - if any_development_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem SD (PNG, 99KB)",
+                      static_s3_asset_path(2019, "QA_SD_2019.png"),
+                      target: "_blank"
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem SD (EPS, 5.9MB)",
+                      static_s3_asset_path(2019, "QA_SD_2019.eps"),
+                      target: "_blank"
+
+        .form-download
           p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Black Legend (EPS, 5.2MB)",
-                      static_s3_asset_path(2019, "QA__black_legend.eps"),
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Black (EPS, 4.9MB)",
+                      static_s3_asset_path(2019, "QA_black_2019.eps"),
                       target: "_blank"
 
           p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Black Legend (PNG, 560KB)",
-                      static_s3_asset_path(2019, "QA__black_legend.png"),
-                      target: "_blank"
-
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Black (EPS, 4.5MB)",
-                      static_s3_asset_path(2019, "QA__black.eps"),
-                      target: "_blank"
-
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Black (PNG, 480KB)",
-                      static_s3_asset_path(2019, "QA__black.png"),
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Black (PNG, 77KB)",
+                      static_s3_asset_path(2019, "QA_black_2019.png"),
                       target: "_blank"
 
 
         .form-download
           p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Blue Legend (EPS, 5.2MB)",
-                      static_s3_asset_path(2019, "QA__blue_legend.eps"),
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Blue (EPS, 4.9MB)",
+                      static_s3_asset_path(2019, "QA_blue_2019.eps"),
                       target: "_blank"
 
           p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Blue Legend (PNG, 553KB)",
-                      static_s3_asset_path(2019, "QA__blue_legend.png"),
-                      target: "_blank"
-
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Blue (EPS, 4.5MB)",
-                      static_s3_asset_path(2019, "QA__blue.eps"),
-                      target: "_blank"
-
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Blue (PNG, 473KB)",
-                      static_s3_asset_path(2019, "QA__blue.png"),
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Blue (PNG, 76KB)",
+                      static_s3_asset_path(2019, "QA_blue_2019.png"),
                       target: "_blank"
 
 
         .form-download
           p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Gold Legend (EPS, 5.2MB)",
-                      static_s3_asset_path(2019, "QA__gold_legend.eps"),
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Gold (EPS, 4.9MB)",
+                      static_s3_asset_path(2019, "QA_gold_2019.eps"),
                       target: "_blank"
 
           p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Gold Legend (PNG, 555KB)",
-                      static_s3_asset_path(2019, "QA__gold_legend.png"),
-                      target: "_blank"
-
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Gold (EPS, 4.4MB)",
-                      static_s3_asset_path(2019, "QA__gold.eps"),
-                      target: "_blank"
-
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Gold (PNG, 471KB)",
-                      static_s3_asset_path(2019, "QA__gold.png"),
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Gold (PNG, 76KB)",
+                      static_s3_asset_path(2019, "QA_gold_2019.png"),
                       target: "_blank"
 
 
         .form-download
           p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: White Legend (EPS, 5.2MB)",
-                      static_s3_asset_path(2019, "QA__white_legend.eps"),
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: White (EPS, 4.9MB)",
+                      static_s3_asset_path(2019, "QA_white_2019.eps"),
                       target: "_blank"
 
           p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: White Legend (PNG, 512KB)",
-                      static_s3_asset_path(2019, "QA__white_legend.png"),
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: White (PNG, 71KB)",
+                      static_s3_asset_path(2019, "QA_white_2019.png"),
                       target: "_blank"
-
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: White (EPS, 4.5MB)",
-                      static_s3_asset_path(2019, "QA__white.eps"),
-                      target: "_blank"
-
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: White (PNG, 439KB)",
-                      static_s3_asset_path(2019, "QA__white.png"),
-                      target: "_blank"
-
-
-        .form-download
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: Blank (EPS, 6.9MB)",
-                      static_s3_asset_path(2019, "QA_.eps"),
-                      target: "_blank"
-
-          p
-            = link_to "Queen's Awards for Enterprise 2019 Emblem: White Legend (AI, 343KB)",
-                      static_s3_asset_path(2019, "QA_real_vector_and_png.ai"),
-                      target: "_blank"
-
-
-
 
         footer
           nav.pagination.no-border aria-label="Pagination" role="navigation"
