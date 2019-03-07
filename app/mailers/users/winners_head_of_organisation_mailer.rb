@@ -19,7 +19,7 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
     @end_of_embargo_date =
       deadlines.end_of_embargo.strftime("%-d %B %Y")
     @press_book_entry_datetime =
-      deadlines.buckingham_palace_confirm_press_book_notes.strftime("%H:%M hours on %d %B %Y")
+      deadlines.buckingham_palace_confirm_press_book_notes.strftime("%d %B %Y")
 
     @media_deadline = deadlines.where(kind: "buckingham_palace_media_information").first
     @media_deadline = @media_deadline.try(:strftime, "%A %d %B %Y")
