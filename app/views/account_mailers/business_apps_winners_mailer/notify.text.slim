@@ -1,6 +1,6 @@
 ' Congratulations on winning a Queen's Award for Enterprise:
 => @form_answer.award_type_full_name
-=> "#{@form_answer.award_year.year}"
+=> @form_answer.award_year.year
 
 = "Dear #{@name},"
 
@@ -15,33 +15,34 @@
 | Embargo/ Announcement
 
 ' The Award will be announced publicly on
-= @deadline.try :strftime, "%A %d %B %Y"
-', Her Majesty's birthday. Although you can make arrangements for publicity now, and we would encourage you to do so, there is a strict embargo preventing public announcement or publication of any Awards information until 01:00hrs on
+= @deadline.try :strftime, "%d %B %Y"
+'. Although you can make arrangements for publicity now, and we would encourage you to do so,
+'  there is a strict embargo preventing public announcement or publication of any Awards information until 01:00hrs on
 = @deadline.try :strftime, "%d %B %Y"
 | . You must not make any announcement about your Award, either to employees or outside your organisation, before this date.
 
 | Under the terms of the embargo, we will provide information including a list of winners and their press contact details, to the media on
 =< @media_deadline
-' . The list of winners will then be published in the supplement to the London Gazette. Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them however this will still be under embargo conditions. You are also permitted to approach your own press contacts to arrange coverage around your Award; please, however, make it clear to anyone you approach in the media, that they cannot publish anything until
+' . The list of winners will then be published in the supplement to the London Gazette. Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them however this will still be under embargo conditions. You are also permitted to approach your own press contacts to arrange coverage around your Award; please, however,
+| make it clear to anyone you approach in the media, that they cannot publish anything until
 =< @deadline.try :strftime, "%d %B %Y"
 |.
 
 | How to approve your Press Book entry
 
-= "Log in here #{dashboard_url}"
+=> "Log in here #{dashboard_url}"
 ' to access the Winners' Dashboard in order to:
-
 | * check the Press Book entry (a factual account of why you have won the Award and not a promotional press opportunity);
 | * check the other details for your organisation are correct; and,
 | * provide details of a contact for press enquiries.
 
-' Then click the "Submit" button by noon on
+' Then click the "Submit" button by 12:00 noon on
 =< @book_notes_deadline
-|. If you do not respond by the deadline we will use the proposed text together with the contact details that we already hold.
+| . If you do not respond by the deadline we will use the proposed text together with the contact details that we already hold.
 
-| On your online account, you will also have access to the Queen’s Awards 2018 emblems and the Winners’ Manual, which provides all relevant information about your award and the use of the emblem for marketing / promotion.
+| On your online account, you will also have access to the Queen's Awards 2019 emblems and the Winners' Manual, which provides all relevant information about your award and the use of the emblem for marketing / promotion.
 
-| By accepting the Award, you agree to the terms and conditions set out in the Winners' Manual.
+| By accepting the Award, you agree to the terms set out in the Winners' Manual.
 
 | The Buckingham Palace Reception
 
@@ -50,6 +51,7 @@
 ' Congratulations once again on your Award.
 
 ' Yours sincerely,
-| Olivia Morrell
+
+| Nichola Bruno
 | The Secretary
 | The Queen's Awards Office
