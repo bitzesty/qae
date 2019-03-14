@@ -210,7 +210,9 @@ Rails.application.routes.draw do
         get :login_as_user
       end
     end
-    resources :reports, only: [:show]
+    resources :reports, only: [:show] do
+      get :import_csv_into_ms_excel_guide_pdf, on: :collection
+    end
     resources :review_audit_certificates, only: [:create]
     resources :palace_attendees, only: [:new, :create, :update, :destroy]
     resources :palace_invites, only: [] do

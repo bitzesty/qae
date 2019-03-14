@@ -6,6 +6,7 @@ br
   .show-sidebar-container
     .show-sidebar
       = render "csv_reports"
+
       - if policy(:report).show?
         = render "admin/feedbacks/pdf_reports"
         = render "admin/reports/case_summaries"
