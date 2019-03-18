@@ -51,9 +51,9 @@ gem 'gon'
 
 # User authentication & authorization
 gem 'devise', '~> 4.7'
-gem 'devise-authy'
+gem 'devise-authy', '>= 1.10.0'
 gem 'pundit', '~> 0.3'
-gem 'devise_zxcvbn'
+gem 'devise_zxcvbn', '>= 4.4.1'
 gem 'devise-security', github: "rusllonrails/devise-security", branch: "V_0_13_0_with_skip_limitable_patch"
 
 # GOV.UK Notify support (for mailers)
