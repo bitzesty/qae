@@ -132,6 +132,9 @@ group :development do
   # for RailsPanel Chrome extension
   gem 'meta_request'
   gem 'listen'
+
+  # Fixes https://github.com/rails/rails/issues/26658#issuecomment-255590071
+  gem 'rb-readline'
 end
 
 group :development, :test do

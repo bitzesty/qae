@@ -52,4 +52,10 @@
       = link_to admin_report_path("reception-buckingham-palace", class: "action-title", format: :csv, year: @award_year.year)
         span.glyphicon.glyphicon-file
         ' Reception Buckingham Palace
+
+    li
+      = link_to import_csv_into_ms_excel_guide_pdf_admin_reports_url(format: :pdf), target: "_blank" do
+        span.glyphicon.glyphicon-file
+        ' Import CSV into MS Excel Guide
+
   .clear
