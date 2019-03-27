@@ -156,7 +156,7 @@ class MailRenderer
     palace_attendees_due = DateTime.new(Date.current.year, 5, 6, 00, 00) if palace_attendees_due.blank?
 
     assigns[:palace_attendees_due] = palace_attendees_due.strftime(
-      "%H:%M on %A #{palace_attendees_due.day.ordinalize} %B %Y"
+      "%A, #{palace_attendees_due.day.ordinalize} %B %Y"
     )
 
     render(assigns, "account_mailers/buckingham_palace_invite_mailer/invite")
