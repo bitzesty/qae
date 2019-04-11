@@ -701,10 +701,6 @@ input[type="file"] {
   .list-add & {
     color: darken($grey-1, 10%);
   }
-
-  .char-over & {
-    color: $error-colour;
-  }
 }
 
 // Show/hide conditional questions
