@@ -34,7 +34,7 @@ window.ApplicationCollaboratorsConnectionManager =
       wsHost: window.pusher_host,
       wsPort: window.pusher_port,
       authTransport: 'jsonp',
-      authEndpoint: "/users/form_answers/" + window.form_id + "/collaborator_access/auth/" + window.pusher_section + "/" + timestamp
+      authEndpoint: "/users/form_answers/" + window.form_id + "/collaborator_access/auth/" + window.pusher_section + "/" + timestamp + ".js"
     }
 
     # Use encryption on live and staging
