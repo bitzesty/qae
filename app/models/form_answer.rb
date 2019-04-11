@@ -1,5 +1,6 @@
 require 'award_years/v2018/qae_forms'
 require 'award_years/v2019/qae_forms'
+require 'award_years/v2020/qae_forms'
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
@@ -197,7 +198,7 @@ class FormAnswer < ApplicationRecord
         if self.class.const_defined?(award_form_class_name(year + 1))
           self.class.const_get(award_form_class_name(year + 1))
         elsif self.class.const_defined?(award_form_class_name(year))
-          self.class.const_get(award_form_class_name(2019))
+          self.class.const_get(award_form_class_name(year))
         end
       else
         raise ArgumentError, "Can not find award form for the application"
