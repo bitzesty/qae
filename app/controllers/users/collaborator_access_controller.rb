@@ -3,8 +3,6 @@ class Users::CollaboratorAccessController < Users::BaseController
   # stop rails CSRF protection for pusher authentication
   protect_from_forgery except: :auth
 
-  respond_to :js
-
   expose(:user_id) do
     "#{current_user.id}-time-#{params[:timestamp]}"
   end
@@ -26,13 +24,9 @@ class Users::CollaboratorAccessController < Users::BaseController
       }
     )
 
-    respond_to do |format|
-      format.js do
-        render(
-          text: "#{pusher_callback}(#{response.to_json})",
-          content_type: 'application/javascript'
-        )
-      end
-    end
+    render(
+      plain: "#{pusher_callback}(#{response.to_json})",
+      content_type: 'application/javascript'
+    )
   end
 end
