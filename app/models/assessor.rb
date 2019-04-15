@@ -10,7 +10,7 @@ class Assessor < ApplicationRecord
 
   devise :database_authenticatable,
          :recoverable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable, :timeoutable
+         :zxcvbnable, :lockable, :timeoutable, :session_limitable
 
   validates :first_name, :last_name, presence: true
   has_many :form_answer_attachments, as: :attachable

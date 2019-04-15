@@ -52,6 +52,7 @@ gem 'devise'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
+gem 'devise-security'
 
 # Pagenation
 gem 'kaminari'
