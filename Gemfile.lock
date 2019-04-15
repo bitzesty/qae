@@ -155,6 +155,9 @@ GEM
     devise-authy (1.10.0)
       authy (>= 2.7.2)
       devise (>= 3.0.0)
+    devise-security (0.13.0)
+      devise (>= 4.2.0, < 5.0)
+      rails (>= 4.2.0, < 6.0)
     devise_zxcvbn (4.4.1)
       devise
       zxcvbn-js (~> 4.4.1)
@@ -722,6 +725,7 @@ DEPENDENCIES
   decent_exposure
   devise
   devise-authy
+  devise-security
   devise_zxcvbn
   dotenv-rails
   draper
