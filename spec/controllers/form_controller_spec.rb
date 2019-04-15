@@ -12,14 +12,9 @@ describe FormController do
            award_year: award_year
   end
 
-  let!(:settings) { Settings.current }
+  let!(:settings) { create(:settings, :submission_deadlines) }
 
   before do
-    start = settings.deadlines.where(kind: "submission_start").first
-    start.update_column(:trigger_at, Time.zone.now - 20.days)
-    finish = settings.deadlines.where(kind: "submission_end").first
-    finish.update_column(:trigger_at, Time.zone.now + 20.days)
-
     create :basic_eligibility, account: account
 
     sign_in user
@@ -63,6 +58,52 @@ describe FormController do
              :mobility,
              user: user
       expect(get :new_social_mobility_form).to redirect_to(dashboard_url)
+    end
+  end
+
+  context "individual deadlines" do
+    describe '#new_international_trade_form' do
+      it "allows to create an application if trade start deadline has past" do
+        expect(get :new_international_trade_form).to redirect_to(edit_form_url(FormAnswer.where(award_type: 'trade').last))
+      end
+
+      it "does not allow to create an application if trade start deadline has not past" do
+        Settings.current.deadlines.trade_submission_start.update_column(:trigger_at, Time.zone.now + 1.day)
+        expect(get :new_international_trade_form).to redirect_to(dashboard_url)
+      end
+    end
+
+    describe '#new_social_mobility_form' do
+      it "allows to create an application if mobility deadline has past" do
+        expect(get :new_social_mobility_form).to redirect_to(edit_form_url(FormAnswer.where(award_type: 'mobility').last))
+      end
+
+      it "does not allow to create an application if mobility start deadline has not past" do
+        Settings.current.deadlines.mobility_submission_start.update_column(:trigger_at, Time.zone.now + 1.day)
+        expect(get :new_social_mobility_form).to redirect_to(dashboard_url)
+      end
+    end
+
+    describe '#new_sustainable_development_form' do
+      it "allows to create an application if trade development deadline has past" do
+        expect(get :new_sustainable_development_form).to redirect_to(edit_form_url(FormAnswer.where(award_type: 'development').last))
+      end
+
+      it "does not allow to create an application if development start deadline has not past" do
+        Settings.current.deadlines.development_submission_start.update_column(:trigger_at, Time.zone.now + 1.day)
+        expect(get :new_sustainable_development_form).to redirect_to(dashboard_url)
+      end
+    end
+
+    describe '#new_innovation_form' do
+      it "allows to create an application if innovation start deadline has past" do
+        expect(get :new_innovation_form).to redirect_to(edit_form_url(FormAnswer.where(award_type: 'innovation').last))
+      end
+
+      it "does not allow to create an application if innovation start deadline has not past" do
+        Settings.current.deadlines.innovation_submission_start.update_column(:trigger_at, Time.zone.now + 1.day)
+        expect(get :new_innovation_form).to redirect_to(dashboard_url)
+      end
     end
   end
 end

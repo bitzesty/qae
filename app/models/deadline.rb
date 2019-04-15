@@ -1,3 +1,5 @@
+require "concerns/formatted_time/date_time_for"
+
 class Deadline < ApplicationRecord
   extend Enumerize
   include FormattedTime::DateTimeFor
@@ -8,6 +10,10 @@ class Deadline < ApplicationRecord
 
   AVAILABLE_DEADLINES = [
     "registrations_open_on",
+    "innovation_submission_start",
+    "trade_submission_start",
+    "development_submission_start",
+    "mobility_submission_start",
     "submission_start",
     "submission_end",
     "buckingham_palace_attendees_details",
@@ -18,46 +24,62 @@ class Deadline < ApplicationRecord
     "audit_certificates"
   ]
 
+  SUBMISSION_START_DEADLINES = [
+    "innovation_submission_start",
+    "trade_submission_start",
+    "development_submission_start",
+    "mobility_submission_start"
+  ]
+
   enumerize :kind, in: AVAILABLE_DEADLINES, predicates: true
   validates :kind, presence: true
 
   after_save :clear_cache
+  after_save :update_email_notifications
   after_destroy :clear_cache
 
-  def self.with_states_to_trigger(time = DateTime.now)
-    where(kind: "submission_end", states_triggered_at: nil).where("trigger_at < ?", time)
-  end
+  class << self
+    def with_states_to_trigger(time = DateTime.now)
+      where(kind: "submission_end", states_triggered_at: nil).where("trigger_at < ?", time)
+    end
 
-  def self.registrations_open_on
-    where(kind: "registrations_open_on").first
-  end
+    def registrations_open_on
+      where(kind: "registrations_open_on").first
+    end
 
-  def self.submission_end
-    where(kind: "submission_end")
-  end
+    def submission_end
+      where(kind: "submission_end")
+    end
 
-  def self.submission_start
-    where(kind: "submission_start").first
-  end
+    def submission_start
+      where(kind: "submission_start").first
+    end
 
-  def self.end_of_embargo
-    where(kind: "buckingham_palace_attendees_details").first
-  end
+    %w(innovation trade mobility development).each do |award|
+      define_method "#{award}_submission_start" do
+        where(kind: "#{award}_submission_start").first
+      end
+    end
 
-  def self.buckingham_palace_confirm_press_book_notes
-    where(kind: "buckingham_palace_confirm_press_book_notes").first
-  end
+    def end_of_embargo
+      where(kind: "buckingham_palace_attendees_details").first
+    end
 
-  def self.buckingham_palace_attendees_invite
-    where(kind: "buckingham_palace_attendees_invite").first
-  end
+    def buckingham_palace_confirm_press_book_notes
+      where(kind: "buckingham_palace_confirm_press_book_notes").first
+    end
 
-  def self.buckingham_palace_media_information
-    where(kind: "buckingham_palace_media_information").first
-  end
+    def buckingham_palace_attendees_invite
+      where(kind: "buckingham_palace_attendees_invite").first
+    end
 
-  def self.audit_certificates_deadline
-    where(kind: "audit_certificates").first
+    def buckingham_palace_media_information
+      where(kind: "buckingham_palace_media_information").first
+    end
+
+    def audit_certificates_deadline
+      where(kind: "audit_certificates").first
+    end
   end
 
   def passed?
@@ -75,5 +97,17 @@ class Deadline < ApplicationRecord
     Rails.cache.clear("current_award_year")
     Rails.cache.clear("#{kind.value}_deadline")
     Rails.cache.clear("#{kind}_deadline_#{settings.award_year.year}")
+
+    if SUBMISSION_START_DEADLINES.include?(kind.to_s)
+      Rails.cache.clear("submission_start_deadlines")
+    end
+  end
+
+  def update_email_notifications
+    if SUBMISSION_START_DEADLINES.include?(kind.to_s) && trigger_at
+      notification = settings.email_notifications.where(kind: "#{kind}ed_notification").first_or_initialize
+      notification.trigger_at = trigger_at
+      notification.save!
+    end
   end
 end

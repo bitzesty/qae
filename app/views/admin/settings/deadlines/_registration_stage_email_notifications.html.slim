@@ -5,4 +5,11 @@
         ' Email notification
   #section-registration-stage-email-notifications.section-appraisal-form.section-registration-stage-email-notifications.panel-collapse.collapse.in role="tabpanel" aria-labelledby="registration-stage-email-notifications-heading"
     .panel-body
-      = render 'email_notification', kind: 'submission_started_notification'
+      .panel-section id="submission_started_email_notification"
+        p Notify users that applications for the new Award year are open
+
+        p
+          = link_to "View email example", "#", class: "link-email-example if-no-js-hide"
+
+        .email-example.well
+          = MailRenderer.new.submission_started_notification

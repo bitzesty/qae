@@ -17,32 +17,36 @@
 /* action:    Download PDF of your application
 
 ul.applications-list
-  li
-    h3
-      ' International Trade Award
-    small
-      ' You can only apply for one International Trade Award
-    .pull-right
-      - unless current_account.has_award_in_this_year?(:trade)
-        = link_to "New application", apply_international_trade_award_path, "aria-label" => "New International Trade Award application"
+  - if trade_submission_started?
+    li
+      h3
+        ' International Trade Award
+      small
+        ' You can only apply for one International Trade Award
+      .pull-right
+        - unless current_account.has_award_in_this_year?(:trade)
+          = link_to "New application", apply_international_trade_award_path, "aria-label" => "New International Trade Award application"
 
-  li
-    h3
-      ' Innovation Award
-    small
-      ' You can apply for multiple Innovation Awards
-    .pull-right
-      = link_to "New application", apply_innovation_award_path, "aria-label" => "New Innovation Award application"
+  - if innovation_submission_started?
+    li
+      h3
+        ' Innovation Award
+      small
+        ' You can apply for multiple Innovation Awards
+      .pull-right
+        = link_to "New application", apply_innovation_award_path, "aria-label" => "New Innovation Award application"
 
-  li
-    h3
-      ' Sustainable Development Award
-    small
-      ' You can only apply for one Sustainable Development Award
-    .pull-right
-      - unless current_account.has_award_in_this_year?(:development)
-        = link_to "New application", apply_sustainable_development_award_path, "aria-label" => "New Sustainable Development Award application"
-  - if display_social_mobility?
+  - if development_submission_started?
+    li
+      h3
+        ' Sustainable Development Award
+      small
+        ' You can only apply for one Sustainable Development Award
+      .pull-right
+        - unless current_account.has_award_in_this_year?(:development)
+          = link_to "New application", apply_sustainable_development_award_path, "aria-label" => "New Sustainable Development Award application"
+
+  - if display_social_mobility? && mobility_submission_started?
     li
       h3
         ' Promoting Opportunity Award (through social mobility)

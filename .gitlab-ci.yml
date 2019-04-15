@@ -2,6 +2,7 @@ image:
   name: ruby:2.5.0
 
 variables:
+  DISPLAY_SOCIAL_MOBILITY_AWARD: "true"
   POSTGRES_DB: qae_test
   DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/$POSTGRES_DB"
   PHANTOM_JS: phantomjs-2.1.1-linux-x86_64

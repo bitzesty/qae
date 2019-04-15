@@ -5,11 +5,11 @@ describe Users::SubmissionStartedNotificationMailer do
   let(:user) { create(:user) }
 
   let(:subject) do
-    "Queen's Awards for Enterprise Reminder: applications for the new Award year are open"
+    "Notification: applications for International Trade Award are open"
   end
 
   let(:mail) do
-    Users::SubmissionStartedNotificationMailer.notify(user.id)
+    Users::SubmissionStartedNotificationMailer.notify(user.id, "trade")
   end
 
   describe "#notify" do

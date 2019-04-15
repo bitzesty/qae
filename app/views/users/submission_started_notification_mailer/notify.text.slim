@@ -1,8 +1,6 @@
 = "Dear #{@user.decorate.full_name},"
 
-| We're emailing to remind you that applications for the Awards round for the Queen's Awards for Enterprise
-=<> AwardYear.current.year
-| are now open.
+= "We are delighted to inform you that the applications for Queen’s Awards for #{@award_type} are now open."
 
 | If you would like to enter, please
 =<> link_to "log in", new_user_session_url

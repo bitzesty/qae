@@ -129,6 +129,10 @@ en:
   deadline_messages:
     registrations_open_on: Registrations open on
     submission_start: Submission period starts on
+    innovation_submission_start: Innovation submission period starts on
+    trade_submission_start: International Trade submission period starts on
+    development_submission_start: Sustainable Development submission period starts on
+    mobility_submission_start: Promoting Opportunity submission period starts on
     submission_end: Submission period closes on
     buckingham_palace_attendees_details: HM The Queen's Birthday (end of embargo)
     buckingham_palace_media_information: QAO provides information to the media of the winners on
@@ -140,6 +144,10 @@ en:
   deadline_help_messages:
     registrations_open_on: "This date marks the start of the new award year, and will update the website accordingly. New users will be able to register and current users will be able to log in to edit their account details, but they will not yet be able to start any applications"
     submission_start: "This date is when the applications for the current award year become available."
+    innovation_submission_start: "This date is when the applications for the Innovation award of the current award year become available."
+    trade_submission_start: "This date is when the applications for the International Trade award of the current award year become available."
+    development_submission_start: "This date is when the applications for the Sustainable Development award of the current award year become available."
+    mobility_submission_start: "This date is when the applications for the Promoting Opportunity award of the current award year become available."
     submission_end: "Applicants will no longer be able to edit or submit their applications after this date. This date will be pulled into the Reminder to submit the applications email."
     buckingham_palace_attendees_details: "This date marks the end of the the embargo preventing winners publicly announcing their success. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."
     buckingham_palace_media_information: "QAO will provide the press book information to the media on this date. This date will be pulled into the email notifying all winning business applicants of their success, and the email to the heads of organisations."

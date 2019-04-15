@@ -48,4 +48,29 @@ RSpec.describe Deadline do
       expect(Deadline.buckingham_palace_media_information).to eq deadline
     end
   end
+
+  context "submission start deadlines" do
+    it "should create corresponding email notification for a deadline if trigger_at is set" do
+      deadline = create(:deadline, kind: "trade_submission_start", trigger_at: nil)
+
+      expect {
+        deadline.update_attributes(trigger_at: DateTime.new(2017, 10, 21, 14, 41))
+      }.to change {
+        deadline.settings.reload.email_notifications.count
+      }.by(1)
+      notification = deadline.settings.email_notifications.last
+
+      expect(notification.trigger_at).to eq(DateTime.new(2017, 10, 21, 14, 41))
+      expect(notification.kind).to eq("trade_submission_started_notification")
+    end
+
+    it "should not create corresponding email notification for a deadline if trigger_at is not set" do
+      deadline = build(:deadline, kind: "trade_submission_start", trigger_at: nil)
+      expect {
+        deadline.save
+      }.not_to change {
+        deadline.settings.reload.email_notifications.count
+      }
+    end
+  end
 end
