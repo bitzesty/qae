@@ -38,14 +38,14 @@
             - nick = award.nickname.present? ? " (#{award.nickname})" : ""
             - action = award.submitted? ? "Edit" : "Continue"
             - aria_label = "#{action} #{award_name} #{name}"
-            
+
             - if award.award_type == "innovation"
               - if award.nickname.present?
                 - aria_label = "#{action} #{award_name} (#{award.nickname}) #{name}"
               - else
                 - row = ordinal(index + 1)
                 - aria_label = "#{row} row - #{action} #{award_name} #{name}"
-            
+
             - if award.submitted?
               = link_to "Edit #{name}", edit_form_path(award.id), "aria-label" => aria_label
             - else

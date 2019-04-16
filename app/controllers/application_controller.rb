@@ -76,6 +76,18 @@ class ApplicationController < ActionController::Base
   end
   helper_method :should_enable_js?
 
+  %w(innovation trade mobility development).each do |award|
+    define_method "#{award}_submission_started?" do
+      public_send("#{award}_submission_started_deadline").passed?
+    end
+    helper_method "#{award}_submission_started?"
+
+    define_method "#{award}_submission_started_deadline" do
+      Settings.public_send("current_#{award}_submission_start_deadline")
+    end
+    helper_method "#{award}_submission_started_deadline"
+  end
+
   protected
 
   def settings
@@ -85,9 +97,13 @@ class ApplicationController < ActionController::Base
   end
 
   def submission_started?
-    submission_started_deadline.passed?
+    submission_started_deadlines.any?(&:passed?)
   end
   helper_method :submission_started?
+
+  def submission_started_deadlines
+    Settings.current_submission_start_deadlines
+  end
 
   def submission_ended?
     submission_deadline.passed?

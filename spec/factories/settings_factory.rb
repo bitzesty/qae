@@ -13,8 +13,10 @@ FactoryGirl.define do
 
   trait :submission_deadlines do
     after(:create) do |settings|
-      start = settings.deadlines.where(kind: "submission_start").first
-      start.update_column(:trigger_at, Time.zone.now - 20.days)
+      %w(innovation trade mobility development).each do |award|
+        settings.deadlines.where(kind: "#{award}_submission_start").first.update_column(:trigger_at, Time.zone.now - 20.days)
+      end
+
       finish = settings.deadlines.where(kind: "submission_end").first
       finish.update_column(:trigger_at, Time.zone.now + 20.days)
 

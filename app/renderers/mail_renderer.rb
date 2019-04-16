@@ -13,6 +13,7 @@ class MailRenderer
     assigns = {}
 
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+    assigns[:award_type] = "International Trade"
 
     render(assigns, "users/submission_started_notification_mailer/notify")
   end
