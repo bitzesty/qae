@@ -5,10 +5,33 @@ class AwardYears::V2020::QAEForms
       @trade_step3 ||= proc do
         header :commercial_success_info_block, "" do
           context %(
+            <h3>About this section</h3>    
+            <p> 
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
+            </p>  
+            <h3>Small organisations</h3>
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your international trade activities had on your organisation's financial performance.
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can. 
+            </p>
+            <h3>Estimated figures</h3>
+            <p>
+              You will have to submit data for your latest financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
+          pdf_context_with_header_blocks [
+            [:bold, "About this section"],
+            [:normal, %(
+              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
+            )],
+            [:bold, "Small organisations"],
+            [:normal, %(
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can. 
+            )],
+            [:bold, "Estimated figures"],
+            [:normal, %(
+              You will have to submit data for your latest financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+            )]
+          ]
         end
 
         header :commercial_success_intro, "" do
@@ -24,8 +47,8 @@ class AwardYears::V2020::QAEForms
           classes "js-entry-period"
           ref "C 1"
           required
-          option "3 to 5", "Outstanding Short-term Growth: international trade has resulted in outstanding year on year growth in the last three years with no dips"
-          option "6 plus", "Outstanding Continuous Growth: international trade has resulted in continuous year on year growth in the last six years with no dips"
+          option "3 to 5", "Outstanding Short Term Growth: a steep year on year growth over three years"
+          option "6 plus", "Outstanding Continued Growth: a substantial year on year growth over six years"
           placeholder_preselected_condition :applied_for_queen_awards_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
@@ -51,7 +74,7 @@ class AwardYears::V2020::QAEForms
           required
           context %(
             <p>
-              If you haven't reached or finalised your latest year-end yet, please enter it anyway and use financial estimates to complete your application. If shortlisted, these figures will need to be verified by an independent accountant within a specified deadline.
+              You will have to submit data for your latest financial year that falls before #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
           financial_date_pointer
@@ -114,19 +137,35 @@ class AwardYears::V2020::QAEForms
         header :company_financials, "Company Financials" do
           ref "C 4"
           context %(
+            <h3>Group entries</h3>
             <p>
               A parent company making a group entry should include the trading figures of all UK members of the group.
             </p>
+
+            <h3>Estimated figures</h3>
             <p>
-              If you haven't reached your latest year-end, use estimates to complete this section.
+              If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
+
+            <h3>Figures - format</h3>
             <p>
-              You must enter actual financial figures in £ sterling (ignoring pennies).
-            </p>
-            <p>
-              Do not separate your figures with commas.
+              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
             </p>
           )
+          pdf_context_with_header_blocks [
+            [:bold, "Group entries"],
+            [:normal, %(
+              A parent company making a group entry should include the trading figures of all UK members of the group.
+            )],
+            [:bold, "Estimated figures"],
+            [:normal, %(
+              If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+            )],
+            [:bold, "Figures - format"],
+            [:normal, %(
+              You must enter financial figures in pounds sterling (£). Round the figures to the nearest pound (do not enter pennies). Do not separate your figures with commas.
+            )]
+          ]
         end
 
         by_years :overseas_sales, "Total overseas sales" do
@@ -217,7 +256,7 @@ class AwardYears::V2020::QAEForms
             </p>
                     )
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
-          drop_conditional :drops_in_turnover
+          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)" do
@@ -236,15 +275,66 @@ class AwardYears::V2020::QAEForms
             </p>
           )
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
-          drop_conditional :drops_in_turnover
+          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
-        textarea :drops_in_turnover, "Explain any drops in the total turnover or net profit, and any losses made. Sustained or unexplained losses may lead to the entry being rejected." do
+        textarea :drops_in_turnover, "Explain any drops in the total turnover or net profit, and any losses made." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.4"
+          context %(
+            <p>
+              Sustained or unexplained drops or losses may lead to the entry being rejected.
+            </p>
+          )
           rows 5
           words_max 300
           drop_condition_parent
+        end
+
+        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
+          classes "sub-question js-conditional-drop-question"
+          sub_ref "C 4.5"
+          context %(
+            <p>
+              If you are reporting drops or losses, to consider your application, we require an explanation of how your business is financially viable.
+            </p>
+          )
+          rows 5
+          words_max 300
+          drop_condition_parent
+        end
+
+        textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
+          classes "sub-question"
+          sub_ref "C 4.6"
+          required
+          context %(
+            <p>
+              This information is particularly useful when ascertaining your company’s financial viability, especially when you have drops in total turnover and losses.
+            </p>
+          )
+          rows 5
+          words_max 300
+        end
+
+        options :are_any_of_the_figures_used_estimates, "Are any of the figures used on this page estimates?" do
+          ref "C 5"
+          required
+          context %(
+            <p>
+              If you haven't reached or finalised your latest year-end yet, it is acceptable to use estimated figures. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+            </p>
+          )
+          yes_no
+        end
+
+        textarea :explan_the_use_of_estimates, "Explain the use of estimates, and how much of these are actual receipts or firm orders." do
+          classes "sub-question"
+          sub_ref "C 5.1"
+          required
+          conditional :are_any_of_the_figures_used_estimates, :yes
+          rows 5
+          words_max 250
         end
       end
     end
