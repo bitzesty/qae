@@ -123,14 +123,20 @@ class QAEFormBuilder
        "js-conditional-answer"]
       result << delegate_obj.classes if delegate_obj.classes
       result << "question-required" if delegate_obj.required
-      result << "js-conditional-drop-answer" if delegate_obj.drop_condition
+      result << "js-conditional-drop-answer" if delegate_obj.drop_condition.present?
       result << "js-conditional-drop-block-answer" if delegate_obj.drop_block_condition
       result
     end
 
     def fieldset_data_hash
       result = {answer: delegate_obj.parameterized_title}
-      result['drop-question'] = delegate_obj.form[delegate_obj.drop_condition].parameterized_title if delegate_obj.drop_condition
+
+      if delegate_obj.drop_condition.present?
+        result['drop-question'] = Array.wrap(delegate_obj.drop_condition).map do |k| 
+          delegate_obj.form[k].parameterized_title
+        end.join(',')
+      end
+
       result
     end
 
@@ -138,7 +144,7 @@ class QAEFormBuilder
       if delegate_obj.drop_condition_parent.present?
         step.questions.select do |q|
           q.drop_condition.present? &&
-          q.drop_condition == key
+          Array.wrap(q.drop_condition).include?(key)
         end.any? do |q|
           q.has_drops?
         end
@@ -348,6 +354,10 @@ class QAEFormBuilder
       @q.pdf_context = text
     end
 
+    def pdf_context_with_header_blocks text
+      @q.pdf_context_with_header_blocks = text
+    end
+
     def additional_pdf_context text
       @q.additional_pdf_context = text
     end
@@ -392,8 +402,19 @@ class QAEFormBuilder
       @q.conditions << QuestionCondition.new(@q.key, key, value)
     end
 
-    def drop_conditional key
-      @q.drop_condition = key.to_s.to_sym
+    #
+    # Use of drop_conditional:
+    #
+    # can be used just 1 key, like:
+    #
+    #   drop_conditional :drops_in_sales
+    #
+    # or can be used multiple parent conditional keys, like:
+    #
+    #   drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
+    #
+    def drop_conditional(keys)
+      @q.drop_condition = keys
     end
 
     def drop_block_conditional
@@ -424,6 +445,7 @@ class QAEFormBuilder
                   :pdf_title,
                   :context,
                   :pdf_context,
+                  :pdf_context_with_header_blocks,
                   :additional_pdf_context,
                   :opts,
                   :required,
