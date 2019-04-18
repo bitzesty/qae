@@ -5,10 +5,118 @@ class AwardYears::V2020::QAEForms
       @innovation_step1 ||= proc do
         header :company_information_header, "" do
           context %(
+            <h3>About this section</h3>
             <p>
-              We need this information to ensure we have some basic information about your organisation, which will help us to undertake due diligence checks if your application is shortlisted.
+              We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
+            </p>
+            <p>
+              <a href='#' class='js-form-expandable-content-link' data-ref='js-company-step-view-gov-departments-and-agencies'>View Government Departments and Agencies we undertake due diligence checks with ></a>
+              <ul class='js-company-step-view-gov-departments-and-agencies hidden'>
+                <li>Biotechnology & Biological Sciences Research Council</li>
+                <li>Charity Commission</li>
+                <li>Companies House</li>
+                <li>Competition and Markets Authority</li> 
+                <li>Crown Commercial Service</li>
+                <li>Department for Business, Energy and Industrial Strategy</li>
+                <li>Department for Communities and Local Government</li>
+                <li>Department for Culture Media & Sport</li>
+                <li>Department for Education</li>
+                <li>Department for Environment, Food & Rural Affairs</li>  
+                <li>Department for International Trade</li>
+                <li>Department for Transport</li>
+                <li>Department of Economic Development, Isle of Man</li>
+                <li>Department for the Economy NI</li>
+                <li>Department of Health</li>
+                <li>Environment Agency</li>
+                <li>Financial Conduct Authority</li>
+                <li>Food Standards Agency</li>
+                <li>Forestry Commission</li>
+                <li>Guernsey Government</li>
+                <li>Health and Safety Executive</li>
+                <li>HM Courts & Tribunals Service</li>
+                <li>HM Revenue & Customs</li>
+                <li>Home Office</li>
+                <li>Insolvency Service</li>
+                <li>Intellectual Property Office</li>
+                <li>Invest NI</li>
+                <li>Jersey Government</li>
+                <li>Ministry of Defence</li>
+                <li>Ministry of Justice</li>
+                <li>Medical Research Council Technology</li>
+                <li>National Measurement Office</li>
+                <li>Natural England</li>
+                <li>Natural Environment Research Council</li>
+                <li>Office of the Scottish Charity Regulator</li>
+                <li>Scottish Government</li>
+                <li>Scottish Environment Protection Agency</li>
+                <li>Scottish Funding Council</li>
+                <li>Serious Fraud Office</li>
+                <li>UK Export Finance</li>
+                <li>Wales Government</li>
+              </ul>
+            </p>
+            <h3>Small organisations</h3>
+            <p>
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
           )
+          pdf_context_with_header_blocks [
+            [:bold, "About this section"],
+            [:normal, %(
+                We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
+              )
+            ],
+            [:bold, "Government Departments and Agencies we undertake due diligence checks with:"],
+            [:normal, %(
+                Biotechnology & Biological Sciences Research Council
+                Charity Commission
+                Companies House
+                Competition and Markets Authority 
+                Crown Commercial Service
+                Department for Business, Energy and Industrial Strategy
+                Department for Communities and Local Government
+                Department for Culture Media & Sport
+                Department for Education
+                Department for Environment, Food & Rural Affairs  
+                Department for International Trade
+                Department for Transport
+                Department of Economic Development, Isle of Man
+                Department for the Economy NI
+                Department of Health
+                Environment Agency
+                Financial Conduct Authority
+                Food Standards Agency
+                Forestry Commission
+                Guernsey Government
+                Health and Safety Executive
+                HM Courts & Tribunals Service
+                HM Revenue & Customs
+                Home Office
+                Insolvency Service
+                Intellectual Property Office
+                Invest NI
+                Jersey Government
+                Ministry of Defence
+                Ministry of Justice
+                Medical Research Council Technology
+                National Measurement Office
+                Natural England
+                Natural Environment Research Council 
+                Office of the Scottish Charity Regulator
+                Scottish Government
+                Scottish Environment Protection Agency
+                Scottish Funding Council
+                Serious Fraud Office
+                UK Export Finance
+                Wales Government           
+              )
+            ],
+            [:bold, "Small organisations"],
+            [:normal, %(
+                Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              )
+            ]
+          ]
         end
 
         options :applying_for, "Are you applying on behalf of your:" do
@@ -140,16 +248,6 @@ class AwardYears::V2020::QAEForms
           conditional :applied_for_queen_awards, :yes
         end
 
-        textarea :previous_business_ref_num, "Reference number(s) used previously" do
-          classes "regular-question"
-          sub_ref "A 6.4"
-          required
-          conditional :business_name_changed, :yes
-          conditional :applied_for_queen_awards, :yes
-          rows 5
-          words_max 100
-        end
-
         options :other_awards_won, "Have you won any other awards in the past?" do
           ref "A 7"
           required
@@ -263,9 +361,14 @@ class AwardYears::V2020::QAEForms
           form_hint "e.g. www.example.com"
         end
 
-        sic_code_dropdown :sic_code, "SIC code" do
+        sic_code_dropdown :sic_code, "The Standard Industrial Classification (SIC) code" do
           required
           ref "A 14"
+          context %(
+            <p>
+              The Standard Industrial Classification (SIC) is a system for classifying industries. If you are a registered company, this is the same code you would have provided Companies House.
+            </p>
+          )
         end
 
         options :has_parent_company, "Do you have a parent or a holding company?" do
