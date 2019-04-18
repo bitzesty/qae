@@ -122,54 +122,6 @@ class AwardYears::V2020::QAEForms
 
           pdf_text %(
             I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
- 
-            Government Departments and Agencies we undertake due diligence checks with:
-   
-            Biotechnology & Biological Sciences Research Council
-            Charity Commission
-            Companies House
-            Competition and Markets Authority 
-            Crown Commercial Service
-            Department for Business, Energy and Industrial Strategy
-            Department for Communities and Local Government
-            Department for Culture Media & Sport
-            Department for Education
-            Department for Environment, Food & Rural Affairs  
-            Department for International Trade
-            Department for Transport
-            Department of Economic Development, Isle of Man
-            Department for the Economy NI
-            Department of Health
-            Environment Agency
-            Financial Conduct Authority
-            Food Standards Agency
-            Forestry Commission
-            Guernsey Government
-            Health and Safety Executive
-            HM Courts & Tribunals Service
-            HM Revenue & Customs
-            Home Office
-            Insolvency Service
-            Intellectual Property Office
-            Invest NI
-            Jersey Government
-            Ministry of Defence
-            Ministry of Justice
-            Medical Research Council Technology
-            National Measurement Office
-            Natural England
-            Natural Environment Research Council 
-            Office of the Scottish Charity Regulator
-            Scottish Government
-            Scottish Environment Protection Agency
-            Scottish Funding Council
-            Serious Fraud Office
-            UK Export Finance
-            Wales Government
-          )
-
-          post_checked_pdf_text %(
-            I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
           )
         end
 

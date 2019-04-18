@@ -670,7 +670,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def question_checked_value_title
-    Nokogiri::HTML.parse(question.post_checked_pdf_text || question.text).text.strip if humanized_answer == "on"
+    Nokogiri::HTML.parse(question.pdf_text || question.text).text.strip if humanized_answer == "on"
   end
 
   def to_month(value)
