@@ -241,8 +241,20 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_question_context
-    if question.context.present? && urn_blank_or_pdf_blank_mode?
-      render_context_or_help_block(question.escaped_context)
+    if urn_blank_or_pdf_blank_mode?
+      if question.pdf_context_with_header_blocks.present?
+
+        question.pdf_context_with_header_blocks.map do |text_block|
+          if text_block[0] == :bold
+            form_pdf.render_text text_block[1], style: :bold
+          else
+            form_pdf.render_text text_block[1]
+          end
+        end
+      elsif question.context.present?
+
+        render_context_or_help_block(question.escaped_context)
+      end
     end
   end
 
@@ -351,9 +363,10 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::ConfirmQuestion
         if q_visible? && humanized_answer.present?
           question_text = interpolate_deadlines(question_checked_value_title)
+
           form_pdf.render_standart_answer_block(question_text)
         else
-          question_option_box interpolate_deadlines(question.text)
+          question_option_box interpolate_deadlines(question.pdf_text || question.text)
         end
       when QAEFormBuilder::ByYearsLabelQuestion, QAEFormBuilder::MobilityByYearsLabelQuestion
         form_pdf.indent 7.mm do
@@ -384,7 +397,9 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::TextareaQuestion
         title = q_visible? && humanized_answer.present? ? humanized_answer : ""
 
-        if question.key == :drops_in_turnover && !(q_visible? && humanized_answer.present?)
+        if (question.key == :drops_in_turnover || question.key == :drops_explain_how_your_business_is_financially_viable) && 
+           !(q_visible? && humanized_answer.present?)
+          
           drop_conditional_hint
         end
 
@@ -655,7 +670,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def question_checked_value_title
-    Nokogiri::HTML.parse(question.text).text.strip if humanized_answer == "on"
+    Nokogiri::HTML.parse(question.pdf_text || question.text).text.strip if humanized_answer == "on"
   end
 
   def to_month(value)

@@ -117,11 +117,10 @@ jQuery ->
     simpleConditionalQuestion($(this), true)
   # Numerical conditional that checks that trend doesn't ever drop
   dropConditionalQuestion = (input) ->
-    drop_question = input.closest(".js-conditional-drop-answer").attr('data-drop-question')
-    question = $(".js-conditional-answer[data-answer='#{drop_question}']").closest(".js-conditional-drop-question")
+    drop_question_ids = input.closest(".js-conditional-drop-answer").attr('data-drop-question')
     drop = false
 
-    $(".js-conditional-drop-answer[data-drop-question='#{drop_question}']").each () ->
+    $(".js-conditional-drop-answer[data-drop-question='#{drop_question_ids}']").each () ->
       drop_answers = $(this).closest(".js-conditional-drop-answer")
       last_val = Math.log(0) # -Infinity
 
@@ -132,10 +131,14 @@ jQuery ->
             drop = true
           last_val = value
 
-    if drop
-      question.addClass("show-question")
-    else
-      question.removeClass("show-question")
+    $.each drop_question_ids.split(','), (index, id) ->
+      parent_q = $(".js-conditional-answer[data-answer='#{id}']").closest(".js-conditional-drop-question")
+
+      if drop
+        parent_q.addClass("show-question")
+      else
+        parent_q.removeClass("show-question")
+
   $(".js-conditional-drop-answer input").each () ->
     dropConditionalQuestion($(this))
   $(".js-conditional-drop-answer input").change () ->
