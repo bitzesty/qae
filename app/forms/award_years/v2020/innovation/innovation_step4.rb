@@ -5,63 +5,34 @@ class AwardYears::V2020::QAEForms
       @innovation_step4 ||= proc do
         header :complete_now_header, "" do
           context %(
+            <h3>About this section</h3>           
             <p>
-              All applicants for a Queen’s Award for Enterprise must demonstrate how they meet commonly accepted standards for corporate responsibility. <strong>Applicants who are not able to demonstrate corporate social responsibility will not be successful.</strong>
+              The Declaration of Corporate Responsibility is a chance for you to show your responsible business conduct and its social, economic and environmental impact. All applicants for a Queen’s Award for Enterprise must demonstrate how they meet commonly accepted standards for corporate responsibility. Applicants who are not able to demonstrate corporate social responsibility will not be successful.  
             </p>
+            <h3>Small organisations</h3>
             <p>
-              The Declaration of Corporate Responsibility is a chance for you to show your responsible business conduct and its social, economic and environmental impact.
+              We recognise that for many smaller organisations the extent to which they can deliver high impact Corporate Responsibility may be limited. Given this, please answer the questions in a way that best suits your organisation.
             </p>
-            <p>
-              You should demonstrate:
-            </p>
-            <ul>
-              <li>
-                how your business impacts on your local community and society in general;
-              </li>
-              <li>
-                how it impacts on the environment and initiatives you take to limit such impact;
-              </li>
-              <li>
-                how you work to support and develop your employees;
-              </li>
-              <li>
-                what steps you take to ensure you deal ethically with both your suppliers and customers.
-              </li>
-            </ul>
-            <p>
-              We recognise that for many smaller companies the extent to which they can deliver high impact Corporate Responsibility may be limited. Given this, please answer the questions in a way that best suits your organisation.
-            </p>
+            <h3>Answering questions</h3>    
             <p>
               The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place.
             </p>
           )
 
-          pdf_context %(
-            <p>
-              All applicants for a Queen’s Award for Enterprise must demonstrate how they meet commonly accepted standards for corporate responsibility. <b>Applicants who are not able to demonstrate corporate social responsibility will not be successful.</b>
-            </p>
-            <p>
-              The Declaration of Corporate Responsibility is a chance for you to show your responsible business conduct and its social, economic and environmental impact.
-            </p>
-            <p>
-              You should demonstrate:
-            </p>
-            <p>
-              \u2022 how your business impacts on your local community and society in general;
-
-              \u2022 how it impacts on the environment and initiatives you take to limit such impact;
-
-              \u2022 how you work to support and develop your employees;
-
-              \u2022 what steps you take to ensure you deal ethically with both your suppliers and customers.
-            </p>
-            <p>
-              We recognise that for many smaller companies the extent to which they can deliver high impact Corporate Responsibility may be limited. Given this, please answer the questions in a way that best suits your organisation.
-            </p>
-            <p>
+          pdf_context_with_header_blocks [
+            [:bold, "About this section"],
+            [:normal, %(
+              The Declaration of Corporate Responsibility is a chance for you to show your responsible business conduct and its social, economic and environmental impact. All applicants for a Queen’s Award for Enterprise must demonstrate how they meet commonly accepted standards for corporate responsibility. Applicants who are not able to demonstrate corporate social responsibility will not be successful.  
+            )],
+            [:bold, "Small organisations"],
+            [:normal, %(
+              We recognise that for many smaller organisations the extent to which they can deliver high impact Corporate Responsibility may be limited. Given this, please answer the questions in a way that best suits your organisation.
+            )],
+            [:bold, "Answering questions"],
+            [:normal, %(
               The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place.
-            </p>
-          )
+            )]
+          ]
         end
 
         header :declaration_and_corporate_responsibility_intro, "" do

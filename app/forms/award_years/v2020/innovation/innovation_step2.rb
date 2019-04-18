@@ -4,13 +4,30 @@ class AwardYears::V2020::QAEForms
       @innovation_step2 ||= proc do
         header :innovation_b_section_header, "" do
           context %(
+            <h3>About this section</h3>  
             <p>
-              This section enables you to present the detail of your innovation and to give us the evidence of its commercial impact on your business that will allow us to assess your application.
+              This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.
             </p>
             <p>
-              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.
+              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.  
+            </p>
+            <h3>Small organisations</h3>
+            <p>
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
           )
+
+          pdf_context_with_header_blocks [
+            [:bold, "About this section"],
+            [:normal, %(
+              This section enables you to present the details of your innovation and to give us the evidence of its commercial impact on your business.         
+              Please avoid using technical language in this section of the application form. We need to understand what your innovation is without having any specific knowledge of your industry.    
+            )],
+            [:bold, "Small organisations"],
+            [:normal, %(
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+            )]
+          ]
         end
 
         checkbox_seria :application_relate_to_header, "This entry relates to:" do
@@ -85,6 +102,21 @@ class AwardYears::V2020::QAEForms
           )
           rows 5
           words_max 750
+        end
+
+        options :description_that_best_reflects_the_type_of_innovation, "Select the description that best reflects the type of your innovation" do
+          sub_ref "B 1.3"
+          classes "sub-question"
+          required
+          option "disruptive_innovation", %(
+            Disruptive innovation: A new or creative in thought innovation that does not seem to have been done before. While having a financial return, it may not yet have secured substantial market impact and did not displace many other firms and products
+          )
+          option "continuous_innovation", %(
+            Continuous innovation: Innovation that adds new function or benefit to the existing product, service or business model
+          )
+          option "adoptive_innovation", %(
+            Adoptive innovation: Innovation that has been done elsewhere but is used in a new way
+          )
         end
 
         options :innovation_hold_existing_patent, "Do you hold the existing patent for this innovation?" do
