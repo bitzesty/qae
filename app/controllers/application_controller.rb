@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_paper_trail_whodunnit
+  before_action :disable_browser_caching!
 
   self.responder = AppResponder
   respond_to :html
@@ -130,6 +131,16 @@ class ApplicationController < ActionController::Base
 
   def log_action(action_type)
     AuditLog.create!(subject: current_subject, action_type: action_type)
+  end
+
+  #
+  # Disabling browser caching in order
+  # to protect sensitive data
+  #
+  def disable_browser_caching!
+    response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+    response.headers['Pragma'] = 'no-cache'
+    response.headers['Expires'] = '0'
   end
 
   private
