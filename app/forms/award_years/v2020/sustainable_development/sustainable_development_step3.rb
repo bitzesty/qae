@@ -301,7 +301,7 @@ class AwardYears::V2020::QAEForms
         end
 
         textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)" do
-          classes "sub-question js-conditional-drop-question"
+          classes "sub-question"
           sub_ref "C 6.5"
           rows 5
           words_max 250
