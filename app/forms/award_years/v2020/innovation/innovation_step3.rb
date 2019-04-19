@@ -363,7 +363,7 @@ class AwardYears::V2020::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-          drop_conditional :drops_in_sales
+          # drop_conditional :drops_in_sales
         end
 
         by_years :sales, "Sales of your innovative product/service (if applicable)" do
@@ -375,7 +375,7 @@ class AwardYears::V2020::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-          drop_conditional :drops_in_sales
+          # drop_conditional :drops_in_sales
         end
 
         by_years :sales_exports, "Of which exports (if applicable)" do
@@ -388,7 +388,7 @@ class AwardYears::V2020::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-          drop_conditional :drops_in_sales
+          # drop_conditional :drops_in_sales
         end
 
         by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
@@ -401,7 +401,7 @@ class AwardYears::V2020::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-          drop_conditional :drops_in_sales
+          # drop_conditional :drops_in_sales
         end
 
         textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)." do
@@ -409,7 +409,7 @@ class AwardYears::V2020::QAEForms
           sub_ref "C 6.5"
           rows 5
           words_max 250
-          drop_condition_parent
+          # drop_condition_parent
         end
 
         by_years :avg_unit_price, "Average unit selling price/contract value (if applicable)" do
