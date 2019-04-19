@@ -1,8 +1,11 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap-sprockets
-#= require jquery.iframe-transport
-#= require jquery.fileupload
+#= require vendor/file_upload/jquery.ui.widget
+#= require vendor/file_upload/jquery.iframe-transport
+#= require vendor/file_upload/jquery.fileupload
+#= require vendor/file_upload/jquery.fileupload-process
+#= require vendor/file_upload/jquery.fileupload-validate
 #= require select2.full.min
 #= require Countable
 

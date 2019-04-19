@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/bitzesty/jquery.fileupload-rails.git
-  revision: 27e86b2ac9ec64d16c315547ac2b86d55a753394
-  specs:
-    jquery.fileupload-rails (1.11.0)
-      jquery-ui-rails (~> 5.0)
-      railties (>= 3.1)
-
-GIT
   remote: git://github.com/galetahub/ckeditor.git
   revision: 752bca97f78e5c5df3fbd876e51a06918da804e2
   ref: 752bca97f78e5c5df3fbd876e51a06918da804e2
@@ -741,7 +733,6 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails (= 4.3.1)
   jquery-ui-rails (= 5.0.3)
-  jquery.fileupload-rails!
   js_cookie_rails (= 2.1.4)
   json (= 1.8.6)
   kaminari
