@@ -119,12 +119,29 @@ class AssessmentSubmissionService
   end
 
   def check_if_there_are_any_discrepancies_between_primary_and_secondary_appraisals!
-    #
-    # TODO
-    #
-    form_answer.update_column(
-      :primary_and_secondary_appraisals_are_not_match, []
-    )
+    discrepancies = []
+
+    rag_type_keys = AppraisalForm.meths_for_award_type(form_answer)
+                                 .select do |a|
+      a.to_s.ends_with?("_rate")
+    end
+
+    rag_type_keys.map do |rag_key|
+      primary_grade = primary_assessment.document[rag_key.to_s] || ''
+      secondary_grade = secondary_assessment.document[rag_key.to_s] || ''
+
+      if primary_grade != secondary_grade
+        discrepancies << [
+          rag_key, primary_grade, secondary_grade
+        ]
+      end
+    end
+
+    if discrepancies.present?
+      form_answer.update_column(
+        :primary_and_secondary_appraisals_are_not_match, discrepancies
+      )
+    end
   end
 
   def primary_and_secondary_assessments_submitted?
@@ -133,10 +150,10 @@ class AssessmentSubmissionService
   end
 
   def primary_assessment
-    record(AssessorAssignment.positions[:primary])
+    @primary_assessment ||= record(AssessorAssignment.positions[:primary])
   end
 
   def secondary_assessment
-    record(AssessorAssignment.positions[:secondary])
+    @secondary_assessment ||= record(AssessorAssignment.positions[:secondary])
   end
 end
