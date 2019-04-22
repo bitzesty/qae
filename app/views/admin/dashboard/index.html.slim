@@ -8,6 +8,7 @@ br
       = render "csv_reports"
 
       - if policy(:report).show?
+        = render "admin/reports/primary_vs_secondary_appraisals" if @award_year.year > 2019
         = render "admin/feedbacks/pdf_reports"
         = render "admin/reports/case_summaries"
         = render "admin/reports/assessors_progress"
