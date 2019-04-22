@@ -30,6 +30,10 @@ class AssessmentSubmissionService
         perform_state_transition!
       end
     end
+
+    if primary_and_secondary_assessments_submitted?
+      check_if_there_are_any_discrepancies_between_primary_and_secondary_appraisals!
+    end
   end
 
   def resubmit!
@@ -61,7 +65,6 @@ class AssessmentSubmissionService
   def populate_case_summary
     if resource.moderated?
       case_summary = record(AssessorAssignment.positions[:case_summary])
-      primary_assessment = record(AssessorAssignment.positions[:primary])
       moderated_assessment = record(AssessorAssignment.positions[:moderated])
 
       document = primary_assessment.document.merge(
@@ -110,10 +113,30 @@ class AssessmentSubmissionService
     ).first_or_create
   end
 
-  private
-
   def perform_state_transition!
     state_machine = form_answer.state_machine
     state_machine.assign_lead_verdict(resource.verdict_rate, current_subject)
+  end
+
+  def check_if_there_are_any_discrepancies_between_primary_and_secondary_appraisals!
+    #
+    # TODO
+    #
+    form_answer.update_column(
+      :primary_and_secondary_appraisals_are_not_match, []
+    )
+  end
+
+  def primary_and_secondary_assessments_submitted?
+    primary_assessment.submitted? && 
+    secondary_assessment.submitted?
+  end
+
+  def primary_assessment
+    record(AssessorAssignment.positions[:primary])
+  end
+
+  def secondary_assessment
+    record(AssessorAssignment.positions[:secondary])
   end
 end

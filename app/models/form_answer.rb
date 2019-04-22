@@ -153,7 +153,7 @@ class FormAnswer < ApplicationRecord
     }
 
     scope :primary_and_secondary_appraisals_are_not_match, -> {
-      where(primary_and_secondary_appraisals_are_not_match: true)
+      where("discrepancies_between_primary_and_secondary_appraisals::text <> '{}'::text")
     }
   end
 
