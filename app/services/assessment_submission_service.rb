@@ -188,7 +188,12 @@ class AssessmentSubmissionService
   end
 
   def question_answer_labels(key)
-    q_type = get_question_type(key)
+    q_type = if key.to_s == "corporate_social_responsibility" 
+      "CSR_RAG"
+    else
+      get_question_type(key)
+    end
+    
     AppraisalForm.const_get("#{q_type.upcase}_OPTIONS_#{form_answer.award_year.year}")
   end
 
