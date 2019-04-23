@@ -137,11 +137,15 @@ class AssessmentSubmissionService
 
         appraisal_title = appraisal_form_settings[q_main_key][:label][0..-2]
 
+        labels = question_answer_labels(q_main_key)
+        primary_grade_label = get_answer_label(labels, primary_grade)
+        secondary_grade_label = get_answer_label(labels, secondary_grade)
+
         discrepancies << [
           rate_key, 
           appraisal_title,
-          primary_grade, 
-          secondary_grade
+          primary_grade_label, 
+          secondary_grade_label
         ]
       end
     end
@@ -181,6 +185,21 @@ class AssessmentSubmissionService
 
   def appraisal_form_settings
     AppraisalForm.const_get("#{form_answer.award_type.upcase}_#{form_answer.award_year.year}")
+  end
+
+  def question_answer_labels(key)
+    q_type = get_question_type(key)
+    AppraisalForm.const_get("#{q_type.upcase}_OPTIONS_#{form_answer.award_year.year}")
+  end
+
+  def get_question_type(key)
+    appraisal_form_settings[key][:type]
+  end
+
+  def get_answer_label(labels, grade)
+    labels.detect do |el| 
+      el[1] == grade 
+    end[0]
   end
 
   def format_date(val)

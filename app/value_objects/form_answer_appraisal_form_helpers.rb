@@ -28,7 +28,7 @@ module FormAnswerAppraisalFormHelpers
     total_number_of_keys = list.count
 
     list.map.with_index do |discrepancy, index|
-      "#{discrepancy[1]}: primary: #{discrepancy[2]} - secondary: #{discrepancy[3]}"
+      "#{discrepancy[1]} (#{discrepancy[2]} - #{discrepancy[3]})"
     end.join(", ")
   end
 
