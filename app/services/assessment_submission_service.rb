@@ -121,24 +121,24 @@ class AssessmentSubmissionService
   def check_if_there_are_any_discrepancies_between_primary_and_secondary_appraisals!
     discrepancies = []
 
-    rag_type_keys = AppraisalForm.meths_for_award_type(form_answer)
+    rate_type_keys = AppraisalForm.meths_for_award_type(form_answer)
                                  .select do |a|
       a.to_s.ends_with?("_rate")
     end
 
-    rag_type_keys.map do |rag_key|
-      primary_grade = primary_assessment.document[rag_key.to_s] || ''
-      secondary_grade = secondary_assessment.document[rag_key.to_s] || ''
+    rate_type_keys.map do |rate_key|
+      primary_grade = primary_assessment.document[rate_key.to_s] || ''
+      secondary_grade = secondary_assessment.document[rate_key.to_s] || ''
 
       if primary_grade != secondary_grade
-        q_main_key = rag_key.to_s
+        q_main_key = rate_key.to_s
                             .gsub('_rate', '')
                             .to_sym
 
         appraisal_title = appraisal_form_settings[q_main_key][:label][0..-2]
 
         discrepancies << [
-          rag_key, 
+          rate_key, 
           appraisal_title,
           primary_grade, 
           secondary_grade
@@ -154,10 +154,10 @@ class AssessmentSubmissionService
         discrepancies: discrepancies,
         primary_assessor_name: primary_assessor.full_name,
         primary_assessor_email: primary_assessor.email,
-        primary_assessor_submitted_at: primary_assessment.submitted_at,
+        primary_assessor_submitted_at: format_date(primary_assessment.submitted_at),
         secondary_assessor_name: secondary_assessor.full_name,
         secondary_assessor_email: secondary_assessor.email,
-        secondary_assessor_submitted_at: secondary_assessment.submitted_at
+        secondary_assessor_submitted_at: format_date(secondary_assessment.submitted_at)
       }
 
       form_answer.update_column(
@@ -181,5 +181,9 @@ class AssessmentSubmissionService
 
   def appraisal_form_settings
     AppraisalForm.const_get("#{form_answer.award_type.upcase}_#{form_answer.award_year.year}")
+  end
+
+  def format_date(val)
+    val.strftime("%e %b %Y at %-l:%M%P")
   end
 end

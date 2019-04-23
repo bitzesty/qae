@@ -8,7 +8,7 @@ module FormAnswerAppraisalFormHelpers
   end
 
   def primary_assessor_submitted_at
-    discrepancies_source["primary_assessor_submitted_at"].strftime("%e %b %Y at %-l:%M%P")
+    discrepancies_source["primary_assessor_submitted_at"]
   end
 
   def secondary_assessor_name
@@ -20,7 +20,7 @@ module FormAnswerAppraisalFormHelpers
   end
 
   def secondary_assessor_submitted_at
-    discrepancies_source["secondary_assessor_submitted_at"].strftime("%e %b %Y at %-l:%M%P")
+    discrepancies_source["secondary_assessor_submitted_at"]
   end
 
   def discrepancies_between_primary_and_secondary_appraisals_details
@@ -28,11 +28,8 @@ module FormAnswerAppraisalFormHelpers
     total_number_of_keys = list.count
 
     list.map.with_index do |discrepancy, index|
-      line = "#{discrepancy[1]}: primary: #{discrepancy[2]} - secondary: #{discrepancy[3]}"
-      line += "\n" if index + 1 < total_number_of_keys
-
-      line
-    end
+      "#{discrepancy[1]}: primary: #{discrepancy[2]} - secondary: #{discrepancy[3]}"
+    end.join(", ")
   end
 
   def discrepancies_source
