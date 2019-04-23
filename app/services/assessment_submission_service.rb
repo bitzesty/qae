@@ -155,8 +155,8 @@ class AssessmentSubmissionService
         primary_assessor_name: primary_assessor.full_name,
         primary_assessor_email: primary_assessor.email,
         primary_assessor_submitted_at: primary_assessment.submitted_at,
-        secondary_assessor_name: secondary_assessment.full_name,
-        secondary_assessor_email: secondary_assessment.email,
+        secondary_assessor_name: secondary_assessor.full_name,
+        secondary_assessor_email: secondary_assessor.email,
         secondary_assessor_submitted_at: secondary_assessment.submitted_at
       }
 

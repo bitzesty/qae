@@ -7,6 +7,7 @@ class FormAnswer < ApplicationRecord
   include PgSearch
   extend Enumerize
   include FormAnswerStatesHelper
+  include FormAnswerAppraisalFormHelpers
 
   has_paper_trail if: Proc.new { |t| t.need_to_save_version? }
 

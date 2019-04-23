@@ -31,7 +31,7 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
       method: :secondary_assessor_submitted_at
     },
     {
-      label: "Discrepancies (Primary VS Secondary)",
+      label: "Discrepancies",
       method: :discrepancies_between_primary_and_secondary_appraisals_details
     }
   ]
