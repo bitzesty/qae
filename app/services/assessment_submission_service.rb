@@ -81,7 +81,7 @@ class AssessmentSubmissionService
 
     document = {}
 
-    AppraisalForm.const_get("#{form_answer.award_type.upcase}_#{form_answer.award_year.year}").each do |attr, _|
+    appraisal_form_settings.each do |attr, _|
       if attr == :verdict
         document["overall_summary"] = resource.document["verdict_desc"]
 
@@ -131,15 +131,24 @@ class AssessmentSubmissionService
       secondary_grade = secondary_assessment.document[rag_key.to_s] || ''
 
       if primary_grade != secondary_grade
+        q_main_key = rag_key.to_s
+                            .gsub('_rate', '')
+                            .to_sym
+
+        appraisal_title = appraisal_form_settings[q_main_key][:label][0..-2]
+
         discrepancies << [
-          rag_key, primary_grade, secondary_grade
+          rag_key, 
+          appraisal_title,
+          primary_grade, 
+          secondary_grade
         ]
       end
     end
 
     if discrepancies.present?
       form_answer.update_column(
-        :primary_and_secondary_appraisals_are_not_match, discrepancies
+        :discrepancies_between_primary_and_secondary_appraisals, discrepancies
       )
     end
   end
@@ -155,5 +164,9 @@ class AssessmentSubmissionService
 
   def secondary_assessment
     @secondary_assessment ||= record(AssessorAssignment.positions[:secondary])
+  end
+
+  def appraisal_form_settings
+    AppraisalForm.const_get("#{form_answer.award_type.upcase}_#{form_answer.award_year.year}")
   end
 end
