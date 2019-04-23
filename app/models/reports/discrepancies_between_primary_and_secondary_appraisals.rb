@@ -5,6 +5,34 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
     {
       label: "URN",
       method: :urn
+    },
+    {
+      label: "Primary Assessor Name",
+      method: :primary_assessor_name
+    },
+    {
+      label: "Primary Assessor Email",
+      method: :primary_assessor_email
+    },
+    {
+      label: "Primary Assessor Submitted At",
+      method: :primary_assessor_submitted_at
+    },
+    {
+      label: "Secondary Assessor Name",
+      method: :secondary_assessor_name
+    },
+    {
+      label: "Secondary Assessor Email",
+      method: :secondary_assessor_email
+    },
+    {
+      label: "Secondary Assessor Submitted At",
+      method: :secondary_assessor_submitted_at
+    },
+    {
+      label: "Discrepancies (Primary VS Secondary)",
+      method: :discrepancies_between_primary_and_secondary_appraisals_details
     }
   ]
 

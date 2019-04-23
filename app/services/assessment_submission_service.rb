@@ -147,8 +147,21 @@ class AssessmentSubmissionService
     end
 
     if discrepancies.present?
+      primary_assessor = primary_assessment.assessor
+      secondary_assessor = secondary_assessment.assessor
+
+      res = {
+        discrepancies: discrepancies,
+        primary_assessor_name: primary_assessor.full_name,
+        primary_assessor_email: primary_assessor.email,
+        primary_assessor_submitted_at: primary_assessment.submitted_at,
+        secondary_assessor_name: secondary_assessment.full_name,
+        secondary_assessor_email: secondary_assessment.email,
+        secondary_assessor_submitted_at: secondary_assessment.submitted_at
+      }
+
       form_answer.update_column(
-        :discrepancies_between_primary_and_secondary_appraisals, discrepancies
+        :discrepancies_between_primary_and_secondary_appraisals, res
       )
     end
   end
