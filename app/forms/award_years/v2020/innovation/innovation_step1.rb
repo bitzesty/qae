@@ -9,52 +9,58 @@ class AwardYears::V2020::QAEForms
             <p>
               We need some essential information about your organisation so that we can undertake due diligence checks with various agencies if your application is shortlisted.
             </p>
-            <p>
-              <a href='#' class='js-form-expandable-content-link' data-ref='js-company-step-view-gov-departments-and-agencies'>View Government Departments and Agencies we undertake due diligence checks with ></a>
-              <ul class='js-company-step-view-gov-departments-and-agencies hidden'>
-                <li>Biotechnology & Biological Sciences Research Council</li>
-                <li>Charity Commission</li>
-                <li>Companies House</li>
-                <li>Competition and Markets Authority</li> 
-                <li>Crown Commercial Service</li>
-                <li>Department for Business, Energy and Industrial Strategy</li>
-                <li>Department for Communities and Local Government</li>
-                <li>Department for Culture Media & Sport</li>
-                <li>Department for Education</li>
-                <li>Department for Environment, Food & Rural Affairs</li>  
-                <li>Department for International Trade</li>
-                <li>Department for Transport</li>
-                <li>Department of Economic Development, Isle of Man</li>
-                <li>Department for the Economy NI</li>
-                <li>Department of Health</li>
-                <li>Environment Agency</li>
-                <li>Financial Conduct Authority</li>
-                <li>Food Standards Agency</li>
-                <li>Forestry Commission</li>
-                <li>Guernsey Government</li>
-                <li>Health and Safety Executive</li>
-                <li>HM Courts & Tribunals Service</li>
-                <li>HM Revenue & Customs</li>
-                <li>Home Office</li>
-                <li>Insolvency Service</li>
-                <li>Intellectual Property Office</li>
-                <li>Invest NI</li>
-                <li>Jersey Government</li>
-                <li>Ministry of Defence</li>
-                <li>Ministry of Justice</li>
-                <li>Medical Research Council Technology</li>
-                <li>National Measurement Office</li>
-                <li>Natural England</li>
-                <li>Natural Environment Research Council</li>
-                <li>Office of the Scottish Charity Regulator</li>
-                <li>Scottish Government</li>
-                <li>Scottish Environment Protection Agency</li>
-                <li>Scottish Funding Council</li>
-                <li>Serious Fraud Office</li>
-                <li>UK Export Finance</li>
-                <li>Wales Government</li>
-              </ul>
-            </p>
+            <details>
+              <summary>
+                <span class="summary">
+                  View Government Departments and Agencies we undertake due diligence checks with >
+                </span>
+              </summary>
+              <div class="panel panel-border-narrow">
+                <ul>
+                  <li>Biotechnology & Biological Sciences Research Council</li>
+                  <li>Charity Commission</li>
+                  <li>Companies House</li>
+                  <li>Competition and Markets Authority</li> 
+                  <li>Crown Commercial Service</li>
+                  <li>Department for Business, Energy and Industrial Strategy</li>
+                  <li>Department for Communities and Local Government</li>
+                  <li>Department for Culture Media & Sport</li>
+                  <li>Department for Education</li>
+                  <li>Department for Environment, Food & Rural Affairs</li>  
+                  <li>Department for International Trade</li>
+                  <li>Department for Transport</li>
+                  <li>Department of Economic Development, Isle of Man</li>
+                  <li>Department for the Economy NI</li>
+                  <li>Department of Health</li>
+                  <li>Environment Agency</li>
+                  <li>Financial Conduct Authority</li>
+                  <li>Food Standards Agency</li>
+                  <li>Forestry Commission</li>
+                  <li>Guernsey Government</li>
+                  <li>Health and Safety Executive</li>
+                  <li>HM Courts & Tribunals Service</li>
+                  <li>HM Revenue & Customs</li>
+                  <li>Home Office</li>
+                  <li>Insolvency Service</li>
+                  <li>Intellectual Property Office</li>
+                  <li>Invest NI</li>
+                  <li>Jersey Government</li>
+                  <li>Ministry of Defence</li>
+                  <li>Ministry of Justice</li>
+                  <li>Medical Research Council Technology</li>
+                  <li>National Measurement Office</li>
+                  <li>Natural England</li>
+                  <li>Natural Environment Research Council</li>
+                  <li>Office of the Scottish Charity Regulator</li>
+                  <li>Scottish Government</li>
+                  <li>Scottish Environment Protection Agency</li>
+                  <li>Scottish Funding Council</li>
+                  <li>Serious Fraud Office</li>
+                  <li>UK Export Finance</li>
+                  <li>Wales Government</li>
+                </ul>
+              </div>
+            </details>
             <h3>Small organisations</h3>
             <p>
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
