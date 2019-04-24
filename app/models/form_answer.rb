@@ -7,6 +7,7 @@ class FormAnswer < ApplicationRecord
   include PgSearch
   extend Enumerize
   include FormAnswerStatesHelper
+  include FormAnswerAppraisalFormHelpers
 
   has_paper_trail if: Proc.new { |t| t.need_to_save_version? }
 
@@ -150,6 +151,10 @@ class FormAnswer < ApplicationRecord
         .joins("LEFT OUTER JOIN comments ON comments.commentable_id = form_answers.id AND comments.commentable_type = 'FormAnswer'")
         .joins("LEFT OUTER JOIN comments AS flagged_admin_comments ON flagged_admin_comments.commentable_id = form_answers.id AND flagged_admin_comments.commentable_type = 'FormAnswer' AND flagged_admin_comments.flagged IS true AND flagged_admin_comments.section = 0")
         .joins("LEFT OUTER JOIN comments AS flagged_critical_comments ON flagged_critical_comments.commentable_id = form_answers.id AND flagged_critical_comments.commentable_type = 'FormAnswer' AND flagged_critical_comments.flagged IS true AND flagged_critical_comments.section = 1")
+    }
+
+    scope :primary_and_secondary_appraisals_are_not_match, -> {
+      where("discrepancies_between_primary_and_secondary_appraisals::text <> '{}'::text")
     }
   end
 

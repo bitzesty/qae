@@ -1,0 +1,21 @@
+.well
+  h2
+    ' Discrepancies between primary and secondary appraisals
+
+  ul.list-unstyled.list-actions
+    - FormAnswer::AWARD_TYPE_FULL_NAMES.each do |key, value|
+      - next if key.to_s == "promotion" && hide_promotion?
+      - link_ops = {category: key, format: :csv, year: @award_year.year}
+
+      li
+        .pull-right
+          = link_to admin_report_path("discrepancies_between_primary_and_secondary_appraisals", link_ops)
+            span.glyphicon.glyphicon-download-alt
+            span.visible-lg.visible-md
+            ' Download
+
+        = link_to admin_report_path("discrepancies_between_primary_and_secondary_appraisals", link_ops), class: "action-title"
+          span.glyphicon.glyphicon-file
+          = value
+
+  .clear
