@@ -240,8 +240,7 @@ class AwardYears::V2020::QAEForms
           pdf_context %{
             <p>
               Briefly describe your core business and what factors or issues motivated your organisation to provide the programme.
-            </p>
-            <p>
+
               Please include details on:
    
               a) What was the situation before the inception of this programme?
@@ -261,8 +260,7 @@ class AwardYears::V2020::QAEForms
           context %{
             <p>
               Please describe the impact of your programme. 
-            </p>
-            <p>
+
               Where possible please include:
             </p>
             <p>
@@ -344,15 +342,11 @@ class AwardYears::V2020::QAEForms
           pdf_context %{
             <p>
               Please provide evidence on how your organisation improved the employability of the people who engaged in your programme and how it has raised their career aspirations and confidence. Improvements in employability could be as a result of teaching skills such as leadership, communication, team-work, resilience.
-            </p>
-            <p>
-            <p>
+
               If possible, use a balance of quantitative (for example, numbers, figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence.
-            </p>
-            <p>
+ 
               Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-            </p>
-            <p>
+  
               Include the impact of the programme on the local community and at a regional and national level.
             </p>
           }
