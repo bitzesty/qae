@@ -13,7 +13,7 @@ class Reports::AssessorReport
     when "cases-status"
       Reports::CasesStatusReport.new(year).build_for_lead(@current_subject)
     when "discrepancies_between_primary_and_secondary_appraisals"
-      Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals.new(year, @current_subject).build
+      Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals.new(year, params[:category], @current_subject).build
     when /assessors-progress/
       if FormAnswer::AWARD_TYPE_FULL_NAMES.keys.include?(params[:category])
         Reports::AssessorsProgressReport.new(year, params[:category]).build
