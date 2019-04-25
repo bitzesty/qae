@@ -39,6 +39,12 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
   def initialize(year, award_type, current_subject=nil)
     @award_type = award_type
 
+    if current_subject.is_a?(Assessor) && 
+      !current_subject.lead_roles.include?(@award_type)
+
+      raise "Access Denied!"
+    end
+
     @scope = year.form_answers
                  .order(:id)
                  .joins(
@@ -50,14 +56,7 @@ class Reports::DiscrepanciesBetweenPrimaryAndSecondaryAppraisals
     ).where(
       "secondary_assignments.position = ? AND secondary_assignments.submitted_at IS NOT NULL", AssessorAssignment.positions[:secondary]
     ).primary_and_secondary_appraisals_are_not_match
-
-    if current_subject.is_a?(Assessor) && 
-      !current_subject.lead_roles.include?(@award_type)
-
-      raise "Access Denied!"
-    end
-
-    @scope.where(award_type: @award_type)
+     .where("form_answers.award_type = ?", @award_type)
   end
 
   private
