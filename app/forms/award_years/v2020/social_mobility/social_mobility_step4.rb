@@ -16,7 +16,8 @@ class AwardYears::V2020::QAEForms
             <h3>Answering questions</h3>    
             <p>
               The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place. 
-              <br/>
+            </p>
+            <p>
               If you have already answered a question in another section in the application form, you can reference the relevant question number(s).
             </p>
           )
@@ -33,6 +34,7 @@ class AwardYears::V2020::QAEForms
             [:bold, "Answering questions"],
             [:normal, %(
               The guidance notes below each section are not exhaustive. Where possible, please support your answers with quantitative evidence of your initiatives, improvements and successes; and describe any relevant policies or handbooks that you have in place. 
+              
               If you have already answered a question in another section in the application form, you can reference the relevant question number(s).
             )]
           ]
