@@ -5,104 +5,140 @@ class AwardYears::V2020::QAEForms
       @mobility_step2 ||= proc do
         header :mobility_b_section_header, "" do
           context %(
+            <h3>About this section</h3> 
+
+            <p>This section enables you to present the details of your social mobility programme and to give us the evidence on how your programme benefits your staff and your organisation.</p>
+
+            <h3>Definition of Social Mobility</h3>
+
+            <p>Social mobility is a measure of the ability to move from lower socio-economic background to higher socio-economic status.</p>
+
+            <p>Socio-economic background is a set of social and economic circumstances from which a person has come. Socio-economic status is a person's current social and economic circumstances.</p>
+
+            <p>We classify people as being from a lower or higher socio-economic background based
+            on these variables:</p>
+
+            <ul>
+              <li>The National Statistics Socio-economic classification (NS-SEC) of parent's occupation.</li>
+              <li>This is based on the type of job the main or highest income earner in the household had as their main job when the person was 14.</li>
+              <li>Whether they were receiving free school meals.</li>
+              <li>The highest level of qualifications achieved by either parent(s) or guardian(s) by the time the person was 18.</li>
+              <li>The type of school the person attended.</li>
+            </ul>
+
+            <h3>Qualifying programmes</h3>
+
+            <p>You should demonstrate positive impacts in at least one of the following:</p>
+
+            <ul>
+              <li>A programme which provides careers advice, skills development or mentoring that prepare young people from disadvantaged or lower socio-economic backgrounds for the world of work or accessible, structured work experience.</li>
+              <li>A programme which makes career opportunities more accessible by offering non-graduate routes such as well-structured traineeships, apprenticeships or internships, or by reforming recruitment practices and offering clear paths for progression.</li>
+              <li>A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers and champions a culture of inclusiveness at every level.</li>
+            </ul>
+ 
+            <p>Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach programmes.</p>
+
+            <h3>Types of activities</h3>
+
+            <p>When considering positive impacts, the following may help in clarifying what we are looking for in your application:</p>
+
+            <ul>
+              <li>Accessible routes - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes.</li>
+              <li>Careers advice – provide careers advice or information to help people make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.</li>
+              <li>Work placements - preparing people for the world of work through inspiring work experiences and internships.</li>
+              <li>Fairer recruitment - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic. For example, by removing applicants’ names or school names from CVs, providing unconscious bias training for recruitment assessors.</li>
+              <li>Early careers - fostering a ‘youth-friendly’ culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers.</li>
+              <li>Advancement - developing career paths to senior positions that are open to all and track the progress of employees from non-graduate routes.</li>
+              <li>Advocacy and leadership - demonstrate strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.</li>
+            </ul>
+
+            <h3>Overarching criteria</h3>
+
+            <p>Please note, we are looking to recognise those who are going above and beyond their core day-to-day business, acting to improve social mobility within their company locally or nationally, accessing and retaining talent regardless of socio-economic background.</p>
+            <p>An award is unlikely to be granted to a social enterprise, learning provider or charity whose main purpose is to deliver social mobility programmes either for itself or on behalf of other organisations. This is because we are seeking to reward and encourage companies to address social mobility challenges within their organisations, even though this is not their sole objective.</p>
+
+            <h3>Small organisations</h3>
+
+            <p>Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.</p>
+
+            <h3>Answering questions</h3>
+
             <p>
-              This section enables you to present the details of your social mobility programme and to give us the evidence on how your programme benefits your staff and your organisation, allowing us to assess your application.
-            </p>
-            <p>
-              If you have more than one social mobility programme, provide details.
-            </p>
-            <p>
-              Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach programmes.
-            </p>
-            <details>
-              <summary><span class="summary">Please read more about social mobility programmes that are eligible for The Queen's Awards for Enterprise.</span></summary>
-
-              <div class="panel panel-border-narrow">
-
-                <p>
-                  Socio-economic background is a set of social and economic circumstances from which a person has come.
-                </p>
-
-                <p>
-                  Socio-economic status is a person's current social and economic circumstances.
-                </p>
-
-                <p>
-                  Social mobility is a measure of the ability to move from lower socio-economic background to higher socio-economic status.
-                </p>
-
-                <p>
-                  We classify people as being from a lower or higher socio-economic background based on these variables:
-                </p>
-
-                <ol>
-                  <li>
-                    The National Statistics Socio-economic classification (NS-SEC) of parent's occupation. This is based on the type of job the main or highest income earner in the household had as their main job when the person was 14.
-                  </li>
-                  <li>
-                    Whether they were receiving free school meals.
-                  </li>
-                  <li>
-                    The highest level of qualifications achieved by either parent(s) or guardian(s) by the time the person was 18.
-                  </li>
-                  <li>
-                    The type of school the person attended.
-                  </li>
-                </ol>
-                <p>
-                  We are looking to recognise those who are going above and beyond their core day-to-day business, acting to improve social mobility within their company locally or nationally, accessing and retaining talent regardless of socio-economic background.
-                </p>
-
-                <p>
-                  Please note, an award is unlikely to be granted to a social enterprise, learning provider or charity whose main purpose is to deliver social mobility programmes either for itself or on behalf of other organisations. This is because we are seeking to reward and encourage companies to address social mobility challenges within their organisations, despite this not being their sole objective.
-                </p>
-
-                <p>
-                  Applicants must be able to demonstrate at least two of the following:
-                </p>
-
-                <p>
-                  Accessible routes - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes.
-                </p>
-
-                <p>
-                  Careers advice – provide careers advice or information to help people make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.
-                </p>
-
-                <p>
-                  Work placements - preparing people for the world of work through inspiring work experiences and internships;
-                </p>
-
-                <p>
-                  Fairer recruitment - widening your recruitment pool and making your recruitment       process fairer by assessing potential skills rather than background - social-economic    or academic. For example, by removing applicant's name or school names from CVs, providing unconscious bias training for recruitment assessors.
-                </p>
-
-                <p>
-                  Early careers - fostering a 'youth-friendly' culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers;
-                </p>
-
-                <p>
-                  Advancement - developing career paths to senior positions that are open to all and track the progress of employees from non-graduate routes.
-                </p>
-
-                <p>
-                  Advocacy and leadership - demonstrate strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.
-                </p>
-
-                <p>
-                  You must provide evidence of how your programme has increased social mobility and real evidence of what the outcomes are for the participants.
-                </p>
-
-                <p>
-                  For example, if you have a programme for prisoners or ex-offenders, include details on what proportion of those on the programme come from disadvantaged backgrounds.  If you are offering work placements or work experience, include statistics on what percentage of those people then go on into full-time employment, either within your company or the sector.
-                </p>
-              </div>
-
-            </details>
-            <p>
+              If you have more than one social mobility programme, please provide details. 
+              <br />
               Please try to avoid using technical jargon in this section.
             </p>
           )
+
+          pdf_context_with_header_blocks [
+            [:bold, "About this section"],
+            [:normal, %(
+              This section enables you to present the details of your social mobility programme and to give us the evidence on how your programme benefits your staff and your organisation.
+            )],
+            [:bold, "Definition of Social Mobility"],
+            [:normal, %(
+              Social mobility is a measure of the ability to move from lower socio-economic background to higher socio-economic status.
+
+              Socio-economic background is a set of social and economic circumstances from which a person has come. Socio-economic status is a person's current social and economic circumstances.
+
+              We classify people as being from a lower or higher socio-economic background based on these variables:
+
+              - The National Statistics Socio-economic classification (NS-SEC) of parent's occupation.
+              
+              - This is based on the type of job the main or highest income earner in the household had as their main job when the person was 14.
+              
+              - Whether they were receiving free school meals.
+              
+              - The highest level of qualifications achieved by either parent(s) or guardian(s) by the time the person was 18.
+              
+              - The type of school the person attended.
+            )],
+            [:bold, "Qualifying programmes"],
+            [:normal, %(
+              You should demonstrate positive impacts in at least one of the following:
+
+              - A programme which provides careers advice, skills development or mentoring that prepare young people from disadvantaged or lower socio-economic backgrounds for the world of work or accessible, structured work experience.
+              
+              - A programme which makes career opportunities more accessible by offering non-graduate routes such as well-structured traineeships, apprenticeships or internships, or by reforming recruitment practices and offering clear paths for progression.
+              
+              - A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers and champions a culture of inclusiveness at every level.
+
+              Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach programmes.
+            )],
+            [:bold, "Types of activities"],
+            [:normal, %(
+              When considering positive impacts, the following may help in clarifying what we are looking for in your application:
+
+              - Accessible routes - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes.
+              
+              - Careers advice – provide careers advice or information to help people make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.
+              
+              - Work placements - preparing people for the world of work through inspiring work experiences and internships.
+              
+              - Fairer recruitment - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic. For example, by removing applicants’ names or school names from CVs, providing unconscious bias training for recruitment assessors.
+              
+              - Early careers - fostering a ‘youth-friendly’ culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers.
+              
+              - Advancement - developing career paths to senior positions that are open to all and track the progress of employees from non-graduate routes.
+              
+              - Advocacy and leadership - demonstrate strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.
+            )],
+            [:bold, "Overarching criteria"],
+            [:normal, %(
+              Please note, we are looking to recognise those who are going above and beyond their core day-to-day business, acting to improve social mobility within their company locally or nationally, accessing and retaining talent regardless of socio-economic background.
+
+              An award is unlikely to be granted to a social enterprise, learning provider or charity whose main purpose is to deliver social mobility programmes either for itself or on behalf of other organisations. This is because we are seeking to reward and encourage companies to address social mobility challenges within their organisations, even though this is not their sole objective.
+            )],
+            [:bold, "Small organisations"],
+            [:normal, %(
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+            )],
+            [:bold, "Answering questions"],
+            [:normal, %(
+              If you have more than one social mobility programme, please provide details.
+              Please try to avoid using technical jargon in this section.
+            )]
+          ]
         end
 
         checkbox_seria :application_relate_to, "This entry relates to:" do

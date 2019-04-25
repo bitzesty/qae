@@ -420,7 +420,7 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def drop_conditional_hint
-    form_pdf.render_text "Answer this question if you have any dips or losses in turnover, total net assets or net profits.",
+    form_pdf.render_text drop_conditional_hint_text,
                          style: :italic
   end
 
@@ -694,6 +694,26 @@ class QaePdfForms::General::QuestionPointer
       else
         "£#{entry[:value]}" if entry[:value] != "-"
       end
+    end
+  end
+
+  def drop_conditional_hint_text
+    case form_answer.award_type
+    when "trade"
+      "Answer this question if you have any dips or losses in turnover or net profits."
+    when "innovation"
+      drop_conditional_hint_text_for_innovation
+    else
+      "Answer this question if you have any dips or losses in turnover, total net assets or net profits."
+    end
+  end
+
+  def drop_conditional_hint_text_for_innovation
+    case key.to_s 
+    when "drops_in_turnover"
+      "Answer this question if you have any dips or losses in turnover, export sales, total net assets or net profits."
+    when "drops_explain_how_your_business_is_financially_viable"
+      "Answer this question if you have any dips or losses in turnover, total net assets or net profits."
     end
   end
 end
