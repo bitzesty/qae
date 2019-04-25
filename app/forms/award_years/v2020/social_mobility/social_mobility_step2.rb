@@ -294,8 +294,7 @@ class AwardYears::V2020::QAEForms
           pdf_context %{
             <p>
               Please describe the impact of your programme.
-            </p>
-            <p>
+     
               Where possible please include:
 
               a) How you measure the success of your programme? For example, are key performance indicators (KPIs) used? If so, how are they set and monitored? Are the KPIs being met and what happens if they are not?
@@ -311,8 +310,7 @@ class AwardYears::V2020::QAEForms
               f) Who is ultimately responsible for the programme’s success?
               
               g) Who is responsible for the day-to-day management of the programme?
-            </p>
-            <p>
+
               You may include chart(s) to make it easier for assessors to understand how your programme is managed in section E.
             </p>
           }
@@ -390,8 +388,7 @@ class AwardYears::V2020::QAEForms
           pdf_context %{
             <p>
               Describe how your organisation’s culture fosters and supports social mobility.
-            </p>
-            <p>
+
               Please include:
 
               a) How the programme benefits the overall business strategy, and what is the senior decision makers’ commitment to the future growth of the programme.
