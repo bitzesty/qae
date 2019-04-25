@@ -244,7 +244,7 @@ class AwardYears::V2020::QAEForms
             <p>
               Please include details on:
    
-              a) What was the situation before the inception of this programme
+              a) What was the situation before the inception of this programme?
 
               b) Why did you choose this particular programme and how does it align with the core aims and values of your organisation?
 
