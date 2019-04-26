@@ -1,8 +1,8 @@
 class Users::SubmissionStartedNotificationMailer < ApplicationMailer
-  def notify(user_id)
+  def notify(user_id, award_type)
     @user = User.find(user_id)
-
+    @award_type = FormAnswer::AWARD_TYPE_FULL_NAMES[award_type]
     mail to: @user.email,
-         subject: "Queen's Awards for Enterprise Reminder: applications for the new Award year are open"
+         subject: "Notification: applications for #{@award_type} Award are open"
   end
 end

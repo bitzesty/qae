@@ -10,7 +10,7 @@ describe Settings do
     }
 
     it "creates all kinds of deadlines" do
-      expect(settings.deadlines.count).to eq(9)
+      expect(settings.deadlines.count).to eq(13)
       expect(settings.deadlines.order(:kind).map(&:kind)).to eq(deadlines)
     end
   end
@@ -21,12 +21,6 @@ describe Settings do
       expect(target).to eq Settings.winner_notification_date
     end
 
-    it ".current_registrations_open_on? should return true" do
-      allow(Settings).to receive(:current_registrations_open_on_date) {build(:deadline, trigger_at: 1.day.ago)}
-      allow(Settings).to receive(:current_submission_start_deadline) {build(:deadline, trigger_at: 1.day.from_now)}
-      expect(Settings.current_registrations_open_on?).to be_truthy
-    end
-
     it ".not_shortlisted_deadline should filter correctly" do
       target = Settings.current.email_notifications.not_shortlisted.first.try(:trigger_at)
       expect(target).to eq Settings.not_shortlisted_deadline
@@ -35,6 +29,26 @@ describe Settings do
     it ".not_awarded_deadline should filter correctly" do
       target = Settings.current.email_notifications.not_awarded.first.try(:trigger_at)
       expect(target).to eq Settings.not_awarded_deadline
+    end
+  end
+
+  describe ".current_registrations_open_on?" do
+    it "should return true if none of the awards are still open" do
+      allow(Settings).to receive(:current_registrations_open_on_date) {build(:deadline, trigger_at: 1.day.ago)}
+      allow(Settings).to receive(:current_submission_start_deadlines) {[double(trigger_at: 1.day.from_now), double(trigger_at: nil)]}
+      expect(Settings.current_registrations_open_on?).to be_truthy
+    end
+
+    it "should return true if some of the awards are still closed" do
+      allow(Settings).to receive(:current_registrations_open_on_date) {build(:deadline, trigger_at: 2.day.ago)}
+      allow(Settings).to receive(:current_submission_start_deadlines) {[double(trigger_at: 1.day.ago), double(trigger_at: nil)]}
+      expect(Settings.current_registrations_open_on?).to be_truthy
+    end
+
+    it "should return false if all of the awards are opened" do
+      allow(Settings).to receive(:current_registrations_open_on_date) {build(:deadline, trigger_at: 2.day.ago)}
+      allow(Settings).to receive(:current_submission_start_deadlines) {[double(trigger_at: 1.day.ago), double(trigger_at: 1.day.ago)]}
+      expect(Settings.current_registrations_open_on?).to eq(false)
     end
   end
 end

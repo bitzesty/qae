@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :trackable, :validatable, :confirmable,
-         :zxcvbnable, :lockable, :timeoutable
+         :zxcvbnable, :lockable, :timeoutable, :session_limitable
 
   attr_accessor :agreed_with_privacy_policy
   attr_accessor :current_password, :skip_password_validation

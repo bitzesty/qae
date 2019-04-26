@@ -26,7 +26,9 @@ class Assessor::FormAnswersController < Assessor::BaseController
       }
     }
     params[:search].permit!
-    scope = current_assessor.applications_scope(@award_year)
+    scope = current_assessor.applications_scope(
+      params[:year].to_s == "all_years" ? nil : @award_year
+    )
 
     if params[:search][:query].blank? && category_picker.show_award_tabs_for_assessor?
       scope = scope.where(award_type: category_picker.current_award_type)

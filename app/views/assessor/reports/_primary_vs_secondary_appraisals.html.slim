@@ -1,0 +1,15 @@
+.well
+  h2
+    ' Discrepancies between primary and secondary appraisals
+
+  ul.list-unstyled.list-actions
+    - FormAnswer::AWARD_TYPE_FULL_NAMES.select { |key, value| current_assessor.lead_roles.include?(key) }.each do |key, value|
+      - next if key.to_s == "promotion" && hide_promotion?
+      - link_ops = {category: key, format: :csv, year: @award_year.year}
+
+      = link_to assessor_report_path("discrepancies_between_primary_and_secondary_appraisals", link_ops), class: "action-title"
+        span.glyphicon.glyphicon-download-alt.black
+        span.visible-lg.visible-md
+        = value
+        
+  .clear

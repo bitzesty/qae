@@ -19,11 +19,19 @@ class Admin::FormAnswersController < Admin::BaseController
     })
   end
 
+  expose(:target_scope) do
+    if params[:year].to_s == "all_years"
+      FormAnswer.all
+    else
+      @award_year.form_answers
+    end
+  end
+
   def index
     params[:search] ||= FormAnswerSearch::DEFAULT_SEARCH
     params[:search].permit!
     authorize :form_answer, :index?
-    @search = FormAnswerSearch.new(@award_year.form_answers, current_admin).search(params[:search])
+    @search = FormAnswerSearch.new(target_scope, current_admin).search(params[:search])
     @search.ordered_by = "company_or_nominee_name" unless @search.ordered_by
     @form_answers = @search.results
                       .with_comments_counters

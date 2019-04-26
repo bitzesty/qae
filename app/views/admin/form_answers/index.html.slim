@@ -3,7 +3,7 @@
     = render "layouts/admin_award_year"
     .col-md-4.col-sm-5.col-xs-12.pull-right
       .form-group.search-input
-        = text_field_tag :year, @award_year.year, class: "visuallyhidden"
+        = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden"
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }
         = submit_tag :submit, class: 'search-submit'
 
