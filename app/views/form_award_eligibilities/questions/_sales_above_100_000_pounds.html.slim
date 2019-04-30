@@ -1,9 +1,5 @@
 .question-body
-  p.question-context
-    ' You can choose to be assessed for outstanding growth (over three years) or continuous growth (over six years), depending if your international trade has resulted in:
-  ul.question-context
-    li Outstanding year on year growth in the last 3 years with no dips
-    li Continuous year on year growth in the last 6 years with no dips
+  = @eligibility.class.hint(step).html_safe
 
   - collection = @eligibility.class.sales_above_100_000_pounds.options
   - collection.reject! { |opts| opts.last == 'skip' } if controller_name == 'form_award_eligibilities'
