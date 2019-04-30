@@ -171,7 +171,7 @@ class AwardYears::V2020::QAEForms
               <li>Developing a unique or innovative social mobility programme;</li>
               <li>Forming effective partnerships with charities, schools or Jobcentres or Local Enterprise Partnerships;</li>
               <li>Leading the way in your company by doing something that has never been done before.</li>
-            <ul>
+            </ul>
           }
 
           pdf_context %{
@@ -200,8 +200,8 @@ class AwardYears::V2020::QAEForms
               \u2022 Leading the way in your company by doing something that has never been done before.
             </p>
           }
-          rows 8
-          words_max 700
+          rows 10
+          words_max 1000
         end
 
         textarea :mobility_desc_short, "Provide a one-line description of your social mobility programme." do
@@ -251,7 +251,7 @@ class AwardYears::V2020::QAEForms
             </p>
           }
           rows 5
-          words_max 500
+          words_max 250
         end
 
         textarea :impact_of_your_programme, "Impact of your programme" do
@@ -314,8 +314,8 @@ class AwardYears::V2020::QAEForms
               You may include chart(s) to make it easier for assessors to understand how your programme is managed in section E.
             </p>
           }
-          rows 8
-          words_max 700
+          rows 10
+          words_max 1000
         end
 
         textarea :impact_on_programme_participants, "Impact on programme participants" do
@@ -348,8 +348,8 @@ class AwardYears::V2020::QAEForms
               Include the impact of the programme on the local community and at a regional and national level.
             </p>
           }
-          rows 8
-          words_max 700
+          rows 10
+          words_max 1000
         end
 
         textarea :your_organisations_culture_regarding_social_mobility, "Your organisation’s culture regarding social mobility" do
@@ -407,8 +407,8 @@ class AwardYears::V2020::QAEForms
               e) What are your long-term plans for ensuring your organisation continues to promote opportunities for those from disadvantaged backgrounds, beyond any initiatives you already have in place?
             </p>
           }
-          rows 8
-          words_max 700
+          rows 5
+          words_max 250
         end
       end
     end
