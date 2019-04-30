@@ -1,5 +1,5 @@
 .question-body
   p.question-context
-    ' Part-time staff should be counted in full-time equivalents.
+    = @eligibility.class.hint(question)
   = f.input :has_management_and_two_employees, as: :radio_buttons, wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }
   span.clear
