@@ -47,6 +47,7 @@ describe "Eligibility forms" do
       click_button "Continue"
       form_choice("Yes")
       form_choice("Yes")
+      form_choice("Yes")
       expect(page).to have_content("Before you start your application")
       first('.previous-answers').click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for an Innovation Award.")

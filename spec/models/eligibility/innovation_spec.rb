@@ -34,6 +34,7 @@ RSpec.describe Eligibility::Innovation, type: :model do
       eligibility.number_of_innovative_products = 2
       eligibility.was_on_market_for_two_years = true
       eligibility.had_impact_on_commercial_performace_over_two_years = true
+      eligibility.have_you_recovered_all_investments = true
 
       expect(eligibility).to be_eligible
     end
@@ -56,7 +57,8 @@ RSpec.describe Eligibility::Innovation, type: :model do
                                            :innovative_product,
                                            :number_of_innovative_products,
                                            :was_on_market_for_two_years,
-                                           :had_impact_on_commercial_performace_over_two_years
+                                           :had_impact_on_commercial_performace_over_two_years,
+                                           :have_you_recovered_all_investments
                                           ])
     end
 
