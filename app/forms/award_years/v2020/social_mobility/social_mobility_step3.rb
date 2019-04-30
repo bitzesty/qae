@@ -99,6 +99,7 @@ class AwardYears::V2020::QAEForms
 
         mobility_by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
           ref "C 3"
+          classes "question-employee-min"
           required
           context %(
             <p>You can use the number of full-time employees at the year-end, or the average for the twelve-month period. Part-time employees should be expressed in full-time equivalents.</p>

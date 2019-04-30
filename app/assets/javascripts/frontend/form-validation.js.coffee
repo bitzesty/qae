@@ -263,11 +263,7 @@ window.FormValidation =
         else
           subqList = subq.closest(".row").find(".span-financial")
           subqIndex = subqList.index(subq.closest(".span-financial"))
-
-          if subqIndex == subqList.size() - 1
-            employeeLimit = 2
-          else
-            employeeLimit = 1
+          employeeLimit = 2
 
           if parseInt(subq.val()) < employeeLimit
             @logThis(question, "validateEmployeeMin", "Minimum of #{employeeLimit} employees")
