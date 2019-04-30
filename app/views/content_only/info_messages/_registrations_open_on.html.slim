@@ -8,12 +8,19 @@ article.group role="article"
         - if current_user.new_member?
           ' Thank you for registering for an account.
           br
-        ' Application forms for the
-        => award_year.year
-        ' Awards round will open on
-        =>< deadline_or_default(award_year, :submission_start, "3 May", "without_year")
-        ' and close on
-        =< deadline_or_default(award_year, :submission_end, "30 September", "without_year")
-        ' .
-        br
-        ' We will email you a reminder when applications are open.
+        - if !Settings.all_awards_ready?
+          - if Settings.after_current_submission_deadline_start?
+            ' Please note, we are still in the process of updating some of the awards application forms for the year #{award_year.year}
+            br
+            br
+            ' If the form for the award you wish to apply for is not available, watch out for an email from us - we will notify you as soon as the forms become available.
+          - else
+            ' The entry period for the #{award_year.year - 1} Awards season has now closed.
+            br
+            ' Award winners will be announced on #{application_deadline_for_year(AwardYear.closed, :buckingham_palace_media_information)}
+            br
+            br
+            ' Currently, we are updating the awards application forms for the year #{award_year.year}. We will email you as soon as the forms become available.
+            br
+            br
+            ' Please note, we activate the forms as soon as the updates are ready and approved, so depending on the award you are applying for, the forms will become available at different times.

@@ -24,12 +24,19 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  def submission_started_notification(award_year)
+  %w(innovation trade mobility development).each do |award|
+    define_method "#{award}_submission_started_notification" do |award_year|
+      submission_started_notification(award_year, award)
+    end
+  end
+
+  def submission_started_notification(award_year, award_type)
     user_ids = User.confirmed.pluck(:id)
 
     user_ids.each do |user_id|
       Users::SubmissionStartedNotificationMailer.notify(
-        user_id
+        user_id,
+        award_type
       ).deliver_later!
     end
   end

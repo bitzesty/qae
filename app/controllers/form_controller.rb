@@ -1,5 +1,6 @@
 require "award_years/v2018/qae_forms"
 require "award_years/v2019/qae_forms"
+require 'award_years/v2020/qae_forms'
 
 class FormController < ApplicationController
   before_action :authenticate_user!, :check_account_completion, :check_deadlines
@@ -9,9 +10,10 @@ class FormController < ApplicationController
     :submit_confirm, :save, :add_attachment
   ]
 
-  before_action :check_trade_count_limit, only: :new_international_trade_form
-  before_action :check_development_count_limit, only: :new_sustainable_development_form
-  before_action :check_mobility_count_limit, only: :new_social_mobility_form
+  before_action :check_trade_deadline, :check_trade_count_limit, only: :new_international_trade_form
+  before_action :check_development_deadline, :check_development_count_limit, only: :new_sustainable_development_form
+  before_action :check_mobility_deadline, :check_mobility_count_limit, only: :new_social_mobility_form
+  before_action :check_innovation_deadline, only: :new_innovation_form
 
   before_action :set_form_answer, except: [
     :new_innovation_form,
@@ -296,6 +298,17 @@ class FormController < ApplicationController
     unless submission_started?
       flash.alert = "Sorry, submission is still closed"
       redirect_to dashboard_url
+    end
+  end
+
+  %w(innovation trade mobility development).each do |award|
+    define_method "check_#{award}_deadline" do
+      return if admin_in_read_only_mode?
+
+      unless public_send("#{award}_submission_started?")
+        flash.alert = "Sorry, submission is still closed"
+        redirect_to dashboard_url
+      end
     end
   end
 

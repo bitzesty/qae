@@ -16,8 +16,11 @@ shared_context "non js form base" do
   private
 
   def prepare_setting_deadlines
-    start = settings.deadlines.where(kind: "submission_start").first
-    start.update_column(:trigger_at, Time.zone.now - 20.days)
+    %w(innovation trade mobility development).each do |award|
+      start = settings.deadlines.public_send("#{award}_submission_start")
+      start.update_column(:trigger_at, Time.zone.now - 20.days)
+    end
+
     finish = settings.deadlines.where(kind: "submission_end").first
     finish.update_column(:trigger_at, Time.zone.now + 20.days)
 

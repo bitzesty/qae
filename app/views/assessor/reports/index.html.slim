@@ -6,5 +6,7 @@ br
   .show-sidebar
     - if policy(:report).show?
       = render "assessor/reports/case_status_report"
+      = render "assessor/reports/primary_vs_secondary_appraisals" if @award_year.year > 2019
       = render "assessor/reports/assessors_progress"
       = render "assessor/reports/case_summaries"
+

@@ -52,6 +52,7 @@ gem 'devise'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
+gem 'devise-security'
 
 # Pagenation
 gem 'kaminari'
@@ -75,7 +76,6 @@ gem 'nokogiri', '1.8.4'
 
 # Uploads
 gem 'carrierwave', '~> 1.2'
-gem 'jquery.fileupload-rails', github: 'bitzesty/jquery.fileupload-rails'
 gem 'fog', "1.41.0"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'

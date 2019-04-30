@@ -17,8 +17,8 @@ describe Notifiers::EmailNotificationService do
     form_answer.user
   end
 
-  context "submission_started_notification" do
-    let(:kind) { "submission_started_notification" }
+  context "innovation_submission_started_notification" do
+    let(:kind) { "innovation_submission_started_notification" }
 
     let(:user) do
       create(:user)
@@ -28,7 +28,71 @@ describe Notifiers::EmailNotificationService do
       mailer = double(deliver_later!: true)
 
       expect(Users::SubmissionStartedNotificationMailer).to receive(:notify).with(
-        user.id
+        user.id,
+        "innovation"
+      ) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "trade_submission_started_notification" do
+    let(:kind) { "trade_submission_started_notification" }
+
+    let(:user) do
+      create(:user)
+    end
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+
+      expect(Users::SubmissionStartedNotificationMailer).to receive(:notify).with(
+        user.id,
+        "trade"
+      ) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "mobility_submission_started_notification" do
+    let(:kind) { "mobility_submission_started_notification" }
+
+    let(:user) do
+      create(:user)
+    end
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+
+      expect(Users::SubmissionStartedNotificationMailer).to receive(:notify).with(
+        user.id,
+        "mobility"
+      ) { mailer }
+
+      described_class.run
+
+      expect(current_notification.reload).to be_sent
+    end
+  end
+
+  context "development_submission_started_notification" do
+    let(:kind) { "development_submission_started_notification" }
+
+    let(:user) do
+      create(:user)
+    end
+
+    it "triggers current notification" do
+      mailer = double(deliver_later!: true)
+
+      expect(Users::SubmissionStartedNotificationMailer).to receive(:notify).with(
+        user.id,
+        "development"
       ) { mailer }
 
       described_class.run

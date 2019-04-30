@@ -28,4 +28,10 @@ class Eligibility::Innovation < Eligibility
             label: "Has the innovation had a positive impact on your commercial success (i.e. turnover and/or profitability) over at least the last two years?",
             accept: :true,
             if: proc { !skipped? }
+
+  property :have_you_recovered_all_investments,
+            boolean: true,
+            label: "Have you recovered all the investments made in your innovation or can you demonstrate that the innovation will recover its full costs in the future?",
+            accept: :true,
+            if: proc { !skipped? }
 end

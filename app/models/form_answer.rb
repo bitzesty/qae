@@ -1,11 +1,13 @@
 require 'award_years/v2018/qae_forms'
 require 'award_years/v2019/qae_forms'
+require 'award_years/v2020/qae_forms'
 
 class FormAnswer < ApplicationRecord
   include Statesman::Adapters::ActiveRecordQueries
   include PgSearch
   extend Enumerize
   include FormAnswerStatesHelper
+  include FormAnswerAppraisalFormHelpers
 
   has_paper_trail if: Proc.new { |t| t.need_to_save_version? }
 
@@ -150,6 +152,10 @@ class FormAnswer < ApplicationRecord
         .joins("LEFT OUTER JOIN comments AS flagged_admin_comments ON flagged_admin_comments.commentable_id = form_answers.id AND flagged_admin_comments.commentable_type = 'FormAnswer' AND flagged_admin_comments.flagged IS true AND flagged_admin_comments.section = 0")
         .joins("LEFT OUTER JOIN comments AS flagged_critical_comments ON flagged_critical_comments.commentable_id = form_answers.id AND flagged_critical_comments.commentable_type = 'FormAnswer' AND flagged_critical_comments.flagged IS true AND flagged_critical_comments.section = 1")
     }
+
+    scope :primary_and_secondary_appraisals_are_not_match, -> {
+      where("discrepancies_between_primary_and_secondary_appraisals::text <> '{}'::text")
+    }
   end
 
   begin :callbacks
@@ -197,7 +203,7 @@ class FormAnswer < ApplicationRecord
         if self.class.const_defined?(award_form_class_name(year + 1))
           self.class.const_get(award_form_class_name(year + 1))
         elsif self.class.const_defined?(award_form_class_name(year))
-          self.class.const_get(award_form_class_name(2019))
+          self.class.const_get(award_form_class_name(year))
         end
       else
         raise ArgumentError, "Can not find award form for the application"
