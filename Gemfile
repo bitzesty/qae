@@ -54,6 +54,9 @@ gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
 gem 'devise-security'
 
+# GOV.UK Notify support (for mailers)
+gem 'mail-notify', path: "../mail-notify"
+
 # Pagenation
 gem 'kaminari'
 

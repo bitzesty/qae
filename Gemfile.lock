@@ -7,6 +7,13 @@ GIT
       cocaine
       orm_adapter (~> 0.5.0)
 
+PATH
+  remote: ../mail-notify
+  specs:
+    mail-notify (0.0.3)
+      actionmailer (~> 5.0)
+      notifications-ruby-client (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -379,6 +386,7 @@ GEM
     js_cookie_rails (2.1.4)
       railties (>= 3.1)
     json (1.8.6)
+    jwt (2.1.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -435,6 +443,8 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
+    notifications-ruby-client (2.10.0)
+      jwt (>= 1.5, < 3)
     orm_adapter (0.5.0)
     paper_trail (5.1.1)
       activerecord (>= 3.0, < 6.0)
@@ -752,6 +762,7 @@ DEPENDENCIES
   letter_opener
   listen
   lograge
+  mail-notify!
   meta_request
   nilify_blanks
   nokogiri (= 1.8.4)
