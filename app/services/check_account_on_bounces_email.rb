@@ -24,12 +24,14 @@ class CheckAccountOnBouncesEmail
 
   def run!
     if debounce_api_says_it_is_valid?(email)
-      user.update_column(:marked_as_bounces_email_at, nil)
+      user.update_column(:marked_at_bounces_email, nil)
       user.update_column(:debounce_api_response_code, nil)
     else
-      user.update_column(:marked_as_bounces_email_at, Time.zone.now)
+      user.update_column(:marked_at_bounces_email, true)
       user.update_column(:debounce_api_response_code, code)
     end
+
+    user.update_column(:debounce_api_latest_check_at, Time.zone.now)
   end
 
   class << self

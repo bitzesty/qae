@@ -68,7 +68,10 @@ class User < ApplicationRecord
       where.not(id: ids)
     }
     scope :bounced_emails, -> {
-      where("marked_as_bounces_email_at IS NOT NULL")
+      where(marked_at_bounces_email: true)
+    }
+    scope :not_checked_on_bounced_emails, -> {
+      where("debounce_api_latest_check_at IS NULL")
     }
   end
 

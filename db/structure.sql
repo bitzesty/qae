@@ -2514,8 +2514,9 @@ CREATE TABLE public.users (
     unlock_token character varying,
     locked_at timestamp without time zone,
     unique_session_id character varying,
-    marked_as_bounces_email_at timestamp without time zone,
-    debounce_api_response_code character varying
+    debounce_api_response_code character varying,
+    marked_at_bounces_email boolean DEFAULT false,
+    debounce_api_latest_check_at timestamp without time zone
 );
 
 
@@ -3828,6 +3829,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190415133209'),
 ('20190422174739'),
 ('20190501154629'),
-('20190501162430');
+('20190501162430'),
+('20190501163901');
 
 
