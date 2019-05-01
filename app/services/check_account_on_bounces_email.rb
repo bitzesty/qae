@@ -1,23 +1,21 @@
 class CheckAccountOnBouncesEmail
 
-  #
-  # Debounce.io API responce codes:
-  #
-  # TEXT CODE   NUMERIC CODE  DESCRIPTION                               SAFE TO SEND?
-  #
-  # Syntax      1             Not an email.                             No
-  # Spam Trap   2             Spam-trap by ESPs.                        No
-  # Disposable  3             A temporary, disposable address.          No
-  # Accept-All  4             A domain-wide setting.                    Maybe Not recommended unless on private server
-  # Delivarable 5             Verified as real address.                 Yes
-  # Invalid     6             Verified as not valid.                    No
-  # Unknown     7             The server cannot be reached.             No
-  # Role        8             Role accounts such as info, support, etc. Maybe Not recommended
+  DEBOUNCE_API_RESPONSE_CODES = {
+    "1" => "Syntax. Not an email.",                       
+    "2" => "Spam Trap. Spam-trap by ESPs.",                    
+    "3" => "Disposable. A temporary, disposable address.",         
+    "4" => "Accept-All. A domain-wide setting.",                 
+    "5" => "Delivarable. Verified as real address.",                
+    "6" => "Invalid. Verified as not valid.",             
+    "7" => "Unknown. The server cannot be reached.",           
+    "8" => "Role. Role accounts such as info, support, etc."
+  }
 
   VALID_DEBOUNCE_API_CODES = [ 4, 5, 8 ]
 
   attr_accessor :user,
-                :email
+                :email,
+                :code
 
   def initialize(user)
     @user = user
@@ -25,8 +23,24 @@ class CheckAccountOnBouncesEmail
   end
 
   def run!
-    unless debounce_api_says_it_is_valid?(email)
+    if debounce_api_says_it_is_valid?(email)
+      user.update_column(:marked_as_bounces_email_at, nil)
+      user.update_column(:debounce_api_response_code, nil)
+    else
       user.update_column(:marked_as_bounces_email_at, Time.zone.now)
+      user.update_column(:debounce_api_response_code, code)
+    end
+  end
+
+  class << self
+    def bounces_email?(email)
+      User.bounced_emails
+          .find_by(email: email)
+          .present?
+    end
+
+    def bounce_reason(code)
+      DEBOUNCE_API_RESPONSE_CODES[code]
     end
   end
 
@@ -37,7 +51,7 @@ class CheckAccountOnBouncesEmail
         "https://api.debounce.io/v1/?api=#{ENV['DEBOUNCE_API_KEY']}&email=#{email}", 
         {accept: :json}
       )
-      code = JSON.parse(res.body)['debounce']['code']
+      @code = JSON.parse(res.body)['debounce']['code']
 
       VALID_DEBOUNCE_API_CODES.include?(code.to_i)
     end
