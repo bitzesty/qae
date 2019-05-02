@@ -91,6 +91,9 @@ gem "rack-protection"
 gem 'redis-rails'
 gem 'redis-store', "~> 1.4"
 
+# We use it for communicating with api.debounce.io
+gem 'rest-client'
+
 # We are using Pusher with Poxa server
 # for collaborators application edit stuff
 #

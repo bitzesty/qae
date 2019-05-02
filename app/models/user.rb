@@ -67,6 +67,12 @@ class User < ApplicationRecord
     scope :not_in_ids, -> (ids) {
       where.not(id: ids)
     }
+    scope :bounced_emails, -> {
+      where(marked_at_bounces_email: true)
+    }
+    scope :not_checked_on_bounced_emails, -> {
+      where("debounce_api_latest_check_at IS NULL")
+    }
   end
 
   before_validation :create_account, on: :create
@@ -138,6 +144,10 @@ class User < ApplicationRecord
 
   def timeout_in
     60.minutes
+  end
+
+  def bounces_email_reason
+    ::CheckAccountOnBouncesEmail.bounce_reason(debounce_api_response_code)
   end
 
   private
