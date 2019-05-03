@@ -7,6 +7,6 @@ class Users::SubmissionMailer < ApplicationMailer
     @recipient = User.find(user_id).decorate
     @subject = "[Queen's Awards for Enterprise] submission successfully created!"
 
-    mail to: @recipient.email, subject: @subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @recipient.email, subject: @subject
   end
 end

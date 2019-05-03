@@ -5,6 +5,6 @@ class Assessors::PrimaryCaseSummaryMailer < ApplicationMailer
     @award_title = @form_answer.decorate.award_application_title
     @author = Assessor.find(changes_author_id)
     @subject = "Application Ref: #{@form_answer.urn} Case Summary submitted"
-    mail to: @recipient.email, subject: @subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @recipient.email, subject: @subject
   end
 end

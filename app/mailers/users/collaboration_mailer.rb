@@ -8,6 +8,6 @@ class Users::CollaborationMailer < ApplicationMailer
 
     @subject = "[Queen's Awards for Enterprise] #{@user_who_added.full_name} added you to collaborators!"
 
-    mail to: @collaborator.email, subject: @subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @collaborator.email, subject: @subject
   end
 end

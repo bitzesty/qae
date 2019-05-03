@@ -14,6 +14,6 @@ class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
     @palace_attendees_due = palace_attendees_due.try(:strftime, "%A, #{palace_attendees_due.day.ordinalize} %B %Y")
 
     subject = "An invitation to HM The Queen's Reception at Buckingham Palace"
-    mail to: email, subject: subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: email, subject: subject
   end
 end

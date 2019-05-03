@@ -10,6 +10,6 @@ class AccountMailers::PromotionLettersOfSupportReminderMailer < AccountMailers::
 
     subject = "Queen's Award for Enterprise Promotion: Continue your nomination"
 
-    mail to: collaborator.email, subject: subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject
   end
 end

@@ -18,6 +18,6 @@ class AccountMailers::BusinessAppsWinnersMailer < AccountMailers::BaseMailer
     @book_notes_deadline = @book_notes_deadline.try :strftime, "%A %d %B %Y"
 
     subject = "Important information about your Queen’s Award"
-    mail to: collaborator.email, subject: subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject
   end
 end

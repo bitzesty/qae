@@ -3,6 +3,6 @@ class Users::ApologyMailer < ApplicationMailer
     @user = User.find(user_id)
     @subject = "Queen's Awards for Enterprise: Multiple reminders sent by mistake"
 
-    mail to: @user.email, subject: @subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @user.email, subject: @subject
   end
 end

@@ -3,6 +3,6 @@ class Users::ImportMailer < ApplicationMailer
     user = User.find(user_id)
     @token = raw_token
     @user = user
-    mail to: user.email, subject: "The Queen's Awards for Enterprise: Welcome to our new application system"
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: user.email, subject: "The Queen's Awards for Enterprise: Welcome to our new application system"
   end
 end

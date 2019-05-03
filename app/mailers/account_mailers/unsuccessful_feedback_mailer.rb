@@ -8,7 +8,7 @@ class AccountMailers::UnsuccessfulFeedbackMailer < AccountMailers::BaseMailer
     @name = "#{@user.title} #{@user.last_name}"
 
     subject = "Important information about your Queen's Award entry"
-    mail to: collaborator.email, subject: subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject
   end
 
   def ep_notify(form_answer_id, collaborator_id)
@@ -20,6 +20,6 @@ class AccountMailers::UnsuccessfulFeedbackMailer < AccountMailers::BaseMailer
     @year = AwardYear.closed.year
 
     subject = "Important information about your Queen's Award nomination"
-    mail to: collaborator.email, subject: subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject
   end
 end

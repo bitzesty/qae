@@ -11,7 +11,7 @@ class Users::AuditCertificateRequestMailer < ApplicationMailer
     @deadline_time = "midday" if midday?
 
     @subject = "Queen's Awards for Enterprise: Reminder to submit your Verification of Commercial Figures"
-    mail to: @recipient.email, subject: @subject
+    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @recipient.email, subject: @subject
   end
 
   private
