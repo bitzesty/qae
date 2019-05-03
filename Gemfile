@@ -55,7 +55,7 @@ gem 'devise_zxcvbn'
 gem 'devise-security'
 
 # GOV.UK Notify support (for mailers)
-gem 'mail-notify', path: "../mail-notify"
+gem 'mail-notify'
 
 # Pagenation
 gem 'kaminari'
