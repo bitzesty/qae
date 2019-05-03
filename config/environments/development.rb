@@ -66,7 +66,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   # configure the devise email layout
-  config.to_prepare { Devise::Mailer.layout "mailer" }
+  # config.to_prepare { Devise::Mailer.layout "mailer" }
 
   # Configure Rails.logger to log to both STDOUT and development.log file.
   config.log_level = :debug
