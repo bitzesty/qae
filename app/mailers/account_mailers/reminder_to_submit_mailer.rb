@@ -7,6 +7,6 @@ class AccountMailers::ReminderToSubmitMailer < AccountMailers::BaseMailer
 
     subject = "Queen's Awards for Enterprise: Reminder to submit"
 
-    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject
+    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: subject
   end
 end

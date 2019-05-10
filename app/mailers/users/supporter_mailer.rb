@@ -8,6 +8,6 @@ class Users::SupporterMailer < ApplicationMailer
     @nominator_name = @form_answer.nominator_full_name
     @nominator_email = @form_answer.nominator_email
 
-    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @supporter.email, subject: @subject
+    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @supporter.email, subject: @subject
   end
 end

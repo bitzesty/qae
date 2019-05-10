@@ -13,6 +13,6 @@ class AccountMailers::NotifyShortlistedMailer < AccountMailers::BaseMailer
 
     @award_type_full_name = @form_answer.award_type_full_name
 
-    view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: @subject
+    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: collaborator.email, subject: @subject
   end
 end

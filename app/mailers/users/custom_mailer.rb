@@ -8,7 +8,7 @@ class Users::CustomMailer < ApplicationMailer
       @user = user_class.constantize.find(user_id).decorate
       @body = auto_link(simple_format(body))
 
-      view_mail ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @user.email, subject: subject
+      send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @user.email, subject: subject
     end
   end
 end
