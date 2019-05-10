@@ -1,22 +1,13 @@
-= "Dear #{@user.full_name},"
+Dear <%= @user.full_name %>,
 
-' Don't forget you only have
-=> t(:days, count: @days_before_submission)
-' to submit your nomination of
-=> @nominee_name
-' for a Queen's Award for Enterprise Promotion before the deadline on
-= @deadline
-' .
+Don't forget you only have <%= t(:days, count: @days_before_submission) %> to submit your nomination of <%= @nominee_name %> for a Queen's Award for Enterprise Promotion before the deadline on <%= @deadline %>.
 
-' So far you have received
-=> @form_answer.support_letters.count
-' letters of support.
+So far you have received <%= @form_answer.support_letters.count %> letters of support.
 
-' If you've not received the minimum of 2 required to submit your application, please follow this up with your supporters.
+If you've not received the minimum of 2 required to submit your application, please follow this up with your supporters.
 
-= link_to "Continue and submit your nomination on The Queen’s Awards for Enterprise website.",
-          edit_form_url(id: @form_answer.id)
+Continue and submit your nomination on The Queen’s Awards for Enterprise website using link below:
+<%= edit_form_url(id: @form_answer.id) %>
 
-' Thank you,
-
-' The Queen's Awards Office
+Thank you,
+The Queen's Awards Office
