@@ -1,11 +1,10 @@
-= "Dear #{@user.decorate.full_name},"
+<%= "Dear #{@user.decorate.full_name}," %>
 
-= "We are delighted to inform you that the applications for Queen’s Awards for #{@award_type} are now open."
+<%= "We are delighted to inform you that the applications for Queen’s Awards for #{@award_type} are now open." %>
 
-| If you would like to enter, please
-=<> link_to "log in", new_user_session_url
-| to your Queen's Awards account to start an application.
+If you would like to enter, please log in to your Queen's Awards account to start an application using link below:
+<%= new_user_session_url %>
 
-' Kind regards,
+Kind regards,
 
-' The Queen’s Awards Office
+The Queen’s Awards Office
