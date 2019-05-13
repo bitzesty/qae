@@ -1,20 +1,18 @@
-= "Dear #{@recipient.full_name},"
+<%= "Dear #{@recipient.full_name}," %>
 
-' We are emailing to remind you that you have until
-=> @deadline_time
-' on
-=> @deadline
-' to
-= link_to "upload your completed Verification of Commercial Figures here.", users_form_answer_audit_certificate_url(@form_answer)
+We are emailing to remind you that you have until 
+#<%= @deadline_time %> on <%= @deadline %> 
+to upload your completed Verification of Commercial Figures here: 
+<%= users_form_answer_audit_certificate_url(@form_answer) %>
 
-' We cannot extend this deadline.
+We cannot extend this deadline.
 
-' If you do not submit your Verification of Commercial Figures before the deadline, we will not have sufficient information to assess your application and it will be withdrawn.
+If you do not submit your Verification of Commercial Figures before the deadline, we will not have sufficient information to assess your application and it will be withdrawn.
 
-' You can
-= link_to "download a blank copy of the Verification of Commercial Figures here.", users_form_answer_audit_certificate_url(@form_answer, format: :pdf)
+You can download a blank copy of the Verification of Commercial Figures here:
+<%= users_form_answer_audit_certificate_url(@form_answer, format: :pdf) %>
 
-| Thank you,
+Thank you,
 
-| Nichola Bruno
-| Head of the Queen's Awards Office
+Nichola Bruno
+Head of the Queen's Awards Office
