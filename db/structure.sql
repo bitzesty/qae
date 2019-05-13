@@ -2519,8 +2519,8 @@ CREATE TABLE public.users (
     debounce_api_latest_check_at timestamp without time zone,
     notification_when_innovation_award_open boolean DEFAULT true,
     notification_when_trade_award_open boolean DEFAULT true,
-    notification_when_sustainable_development_award_open boolean DEFAULT true,
-    notification_when_social_mobility_award_open boolean DEFAULT true,
+    notification_when_development_award_open boolean DEFAULT true,
+    notification_when_mobility_award_open boolean DEFAULT true,
     notification_when_submission_deadline_is_coming boolean DEFAULT true
 );
 

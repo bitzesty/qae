@@ -114,8 +114,8 @@ class AccountsController < ApplicationController
       :qae_info_source,
       :notification_when_innovation_award_open, 
       :notification_when_trade_award_open, 
-      :notification_when_sustainable_development_award_open, 
-      :notification_when_social_mobility_award_open, 
+      :notification_when_development_award_open, 
+      :notification_when_mobility_award_open, 
       :notification_when_submission_deadline_is_coming
     )
   end

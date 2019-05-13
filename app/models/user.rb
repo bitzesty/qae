@@ -73,6 +73,9 @@ class User < ApplicationRecord
     scope :not_checked_on_bounced_emails, -> {
       where("debounce_api_latest_check_at IS NULL")
     }
+    scope :allowed_to_get_award_open_notification, -> (award_type) {
+      where("notification_when_#{award_type}_award_open" => true)
+    }
   end
 
   before_validation :create_account, on: :create

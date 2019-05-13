@@ -31,7 +31,7 @@ class Notifiers::EmailNotificationService
   end
 
   def submission_started_notification(award_year, award_type)
-    user_ids = User.confirmed.pluck(:id)
+    user_ids = User.confirmed.allowed_to_get_award_open_notification(award_type).pluck(:id)
 
     user_ids.each do |user_id|
       Users::SubmissionStartedNotificationMailer.notify(
