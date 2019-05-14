@@ -20,7 +20,9 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ' I understand that the application process can be time consuming and, for this reason, our assessors have compiled some feedback on your application which we hope will help with any future applications you make.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  = link_to "You can view your application feedback here.", users_form_answer_feedback_url(@form_answer, format: "pdf")
+  | You can view your application feedback via the link below:
+  br
+  = link_to users_form_answer_feedback_url(@form_answer, format: "pdf"), users_form_answer_feedback_url(@form_answer, format: "pdf")
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ' Please also find, at Annex A, some contacts, both within government and externally, which I hope you might find useful.
@@ -32,11 +34,11 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Yours sincerely,
   br
   br
-  strong Nichola Bruno
+  | Nichola Bruno
   br
-  strong The Secretary
+  | The Secretary
   br
-  strong The Queen's Awards Office
+  | The Queen's Awards Office
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
@@ -47,9 +49,9 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
     ' Industrial Strategy
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  a href="https://www.gov.uk/government/topical-events/the-uks-industrial-strategy"
-    | Find out
-  '  how the Government's Industrial Strategy is working to transform the business environment to enable businesses like yours to start, grow and thrive.
+  | Find out how the Government's Industrial Strategy is working to transform the business environment to enable businesses like yours to start, grow and thrive.
+  br 
+  = link_to "https://www.gov.uk/government/topical-events/the-uks-industrial-strategy", "https://www.gov.uk/government/topical-events/the-uks-industrial-strategy"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
@@ -60,50 +62,50 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
 
   ul
     li
-      a href="https://www.british-business-bank.co.uk/"
-        | British Business bank
+      =<> "British Business bank"
+      = link_to "https://www.british-business-bank.co.uk/", "https://www.british-business-bank.co.uk/"
     li
-      a href="https://www.startuploans.co.uk/"
-        | Start-Up Loans
+      =<> "Start-Up Loans"
+      = link_to "https://www.startuploans.co.uk/", "https://www.startuploans.co.uk/"
     li
-      a href="https://www.british-business-bank.co.uk/finance-hub/"
-        | BBB Finance Hub
+      =<> "BBB Finance Hub"
+      = link_to "https://www.british-business-bank.co.uk/finance-hub/", "https://www.british-business-bank.co.uk/finance-hub/"
     li
-      a href="https://www.gov.uk/government/organisations/innovate-uk"
-        | Innovate UK
+      =<> "Innovate UK"
+      = link_to "https://www.gov.uk/government/organisations/innovate-uk", "https://www.gov.uk/government/organisations/innovate-uk"
     li
-      a href="https://www.gov.uk/government/organisations/uk-export-finance"
-        | UK Export Finance
+      =<> "UK Export Finance"
+      = link_to "https://www.gov.uk/government/organisations/uk-export-finance", "https://www.gov.uk/government/organisations/uk-export-finance"
     li
-      a href="https://www.lepnetwork.net/growth-hubs/"
-        | Growth Hubs
+      =<> "Growth Hubs"
+      = link_to "https://www.lepnetwork.net/growth-hubs/", "https://www.lepnetwork.net/growth-hubs/"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
     ' Advice and support for businesses
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
-  | Access advise and support to continue your business' success:
+  | Access advice and support to continue your business' success:
 
   ul
     li
-      a href="https://www.gov.uk/business-uk-leaving-eu"
-        | Exiting the EU
+      =<> "Exiting the EU"
+      = link_to "https://www.gov.uk/business-uk-leaving-eu", "https://www.gov.uk/business-uk-leaving-eu"
     li
-      a href="http://www.greatbusiness.gov.uk/"
-        | Business Support Helpline
+      =<> "Business Support Helpline"
+      = link_to "http://www.greatbusiness.gov.uk/", "http://www.greatbusiness.gov.uk/"
     li
-      a href="https://www.lepnetwork.net/growth-hubs/"
-        | Growth Hubs
+      =<> "Growth Hubs"
+      = link_to "https://www.lepnetwork.net/growth-hubs/", "https://www.lepnetwork.net/growth-hubs/"
     li
-      a href="https://www.great.gov.uk/international/?lang=en-gb"
-        | Exporting support
+      =<> "Exporting support"
+      = link_to "https://www.great.gov.uk/international/?lang=en-gb", "https://www.great.gov.uk/international/?lang=en-gb"
     li
-      a href="https://www.bethebusiness.com/"
-        | Be The Business
+      =<> "Be The Business"
+      = link_to "https://www.bethebusiness.com/", "https://www.bethebusiness.com/"
     li
-      a href="https://www.smallbusinesscommissioner.gov.uk/"
-        | Small Business Commissioner
+      =<> "Small Business Commissioner"
+      = link_to "https://www.smallbusinesscommissioner.gov.uk/", "https://www.smallbusinesscommissioner.gov.uk/"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
@@ -112,10 +114,10 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ul
     li
-      a href="https://www.gov.uk/contracts-finder"
-        | Contract finder
-      |  to bid on Government contracts
+      =<> "Contract finder"
+      = link_to "https://www.gov.uk/contracts-finder", "https://www.gov.uk/contracts-finder"
+      =<> "to bid on Government contracts"
     li
-      a href="https://www.gov.uk/queens-awards-for-enterprise"
-        | Queen's Awards for Enterprise
-      |: have you considered entering another category?
+      =<> "Queen's Awards for Enterprise"
+      = link_to "https://www.gov.uk/queens-awards-for-enterprise", "https://www.gov.uk/queens-awards-for-enterprise"
+      =<> "have you considered entering another category?"

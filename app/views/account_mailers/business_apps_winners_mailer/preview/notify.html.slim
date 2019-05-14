@@ -19,14 +19,16 @@ p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    u Embargo/ Announcement
+    ' Embargo/ Announcement
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ' The Award will be announced publicly on
   = @deadline.try :strftime, "%d %B %Y"
   '. Although you can make arrangements for publicity now, and we would encourage you to do so,
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
-    '  there is a strict embargo preventing public announcement or publication of any Awards information until 01:00hrs on
+    ' There is a strict embargo preventing public announcement or publication of any Awards information until 01:00hrs on
     = @deadline.try :strftime, "%d %B %Y"
     | . You must not make any announcement about your Award, either to employees or outside your organisation, before this date.
 
@@ -34,6 +36,8 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | Under the terms of the embargo, we will provide information including a list of winners and their press contact details, to the media on
   =< @media_deadline
   ' . The list of winners will then be published in the supplement to the London Gazette. Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them however this will still be under embargo conditions. You are also permitted to approach your own press contacts to arrange coverage around your Award; please, however,
+  
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
     | make it clear to anyone you approach in the media, that they cannot publish anything until
     =< @deadline.try :strftime, "%d %B %Y"
@@ -44,8 +48,9 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
     | How to approve your Press Book entry
 
 div style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
-  => link_to "Log in here", dashboard_url
-  ' to access the Winners' Dashboard in order to:
+  = "Log in via this link: "
+  = link_to dashboard_url, dashboard_url
+  = " to access the Winners' Dashboard in order to:"
   br
   br
   ul
@@ -54,12 +59,13 @@ div style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
     li provide details of a contact for press enquiries.
   br
 
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   strong
     ' Then click the "Submit" button by 12:00 noon on
     =< @book_notes_deadline
-    | . If you do not respond by the deadline we will use the proposed text together with the contact details that we already hold.
+    | . If you do not respond by the deadline, we will use the proposed text together with the contact details that we already hold.
 
-  br
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | On your online account, you will also have access to the Queen's Awards 2019 emblems and the Winners' Manual, which provides all relevant information about your award and the use of the emblem for marketing / promotion.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
@@ -78,8 +84,8 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   ' Yours sincerely,
   br
   br
-  strong Nichola Bruno
+  | Nichola Bruno
   br
-  strong The Secretary
+  | The Secretary
   br
-  strong The Queen's Awards Office
+  | The Queen's Awards Office
