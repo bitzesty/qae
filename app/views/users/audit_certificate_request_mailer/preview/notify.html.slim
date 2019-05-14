@@ -2,17 +2,18 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   = "Dear #{@recipient.full_name},"
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' We are emailing to remind you that you have until
+  | We are emailing to remind you that you have until 
+  
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   strong
-    =<> @deadline_time
-  ' on
-  strong
-    => @deadline
-  ' to
-  span style="text-decoration: underline;"
-    = link_to "upload your completed Verification of Commercial Figures here.", users_form_answer_audit_certificate_url(@form_answer)
+    = "#{@deadline_time} on #{@deadline}"
 
-p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0; text-align: center;"
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | to upload your completed Verification of Commercial Figures via the link below:
+  br
+  = link_to users_form_answer_audit_certificate_url(@form_answer), users_form_answer_audit_certificate_url(@form_answer)
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   strong
     ' We cannot extend this deadline.
 
@@ -20,9 +21,9 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' If you do not submit your Verification of Commercial Figures before the deadline, we will not have sufficient information to assess your application and it will be withdrawn.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' You can
-  span style="text-decoration: underline;"
-    = link_to "download a blank copy of the Verification of Commercial Figures here.", users_form_answer_audit_certificate_url(@form_answer, format: :pdf)
+  ' You can download a blank copy of the Verification of Commercial Figures via the link below:
+  br
+  = link_to users_form_answer_audit_certificate_url(@form_answer, format: :pdf), users_form_answer_audit_certificate_url(@form_answer, format: :pdf)
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
   | Thank you,
