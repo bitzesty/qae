@@ -5,6 +5,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -2493,7 +2494,7 @@ CREATE TABLE public.users (
     company_postcode character varying,
     company_phone_number character varying,
     prefered_method_of_contact character varying,
-    subscribed_to_emails boolean DEFAULT false,
+    subscribed_to_emails boolean DEFAULT true,
     qae_info_source character varying,
     qae_info_source_other character varying,
     account_id integer,
@@ -2502,7 +2503,7 @@ CREATE TABLE public.users (
     confirmation_token character varying,
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
-    agree_being_contacted_by_department_of_business boolean DEFAULT false,
+    agree_being_contacted_by_department_of_business boolean DEFAULT true,
     imported boolean DEFAULT false,
     address_line1 character varying,
     address_line2 character varying,
@@ -3836,6 +3837,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190501154629'),
 ('20190501162430'),
 ('20190501163901'),
-('20190513114859');
+('20190513114859'),
+('20190514192116');
 
 

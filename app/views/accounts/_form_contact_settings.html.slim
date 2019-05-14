@@ -1,17 +1,25 @@
 fieldset
-  = f.input :subscribed_to_emails, checkbox: true, label: "I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (e.g. acting as a case study, newsletters, other info).", wrapper_class: "selectable"
+  p
+    | I would like to receive yearly email notifications when the submission period opens for the following awards:
+
+  = f.input :notification_when_innovation_award_open, label: "Innovation", wrapper_class: "selectable unsubscribe_award_specific_option"
+
+  = f.input :notification_when_trade_award_open, label: "International Trade", wrapper_class: "selectable unsubscribe_award_specific_option"
+
+  = f.input :notification_when_development_award_open, label: "Sustainable Development", wrapper_class: "selectable unsubscribe_award_specific_option"
+
+  = f.input :notification_when_mobility_award_open, label: "Promoting Opportunity through Social Mobility", wrapper_class: "selectable unsubscribe_award_specific_option"
+
+fieldset.account-contact-preferences-other-ops
+  = f.input :notification_when_submission_deadline_is_coming, label: "I would like to receive email reminders of submission deadlines - these are sent at regular intervals closer to the deadline.", wrapper_class: "selectable"
+
+  = f.input :subscribed_to_emails, checkbox: true, label: "I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (for example, request to act as a case study, newsletters, other information).", wrapper_class: "selectable"
 
   = f.input :agree_being_contacted_by_department_of_business, label: "I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.", wrapper_class: "selectable"
 
-  = f.input :notification_when_innovation_award_open, label: "I am happy to be notified when Innovation Award is open (every year).", wrapper_class: "selectable"
+p 
+  | Please note, once anyone in your organisation submits an application, you will receive emails about the status of the application. You cannot unsubscribe to these status emails.
 
-  = f.input :notification_when_trade_award_open, label: "I am happy to be notified when Trade Award is open (every year).", wrapper_class: "selectable"
-
-  = f.input :notification_when_development_award_open, label: "I am happy to be notified when Sustainable Development Award is open (every year).", wrapper_class: "selectable"
-
-  = f.input :notification_when_mobility_award_open, label: "I am happy to be notified when Social Mobility Award is open (every year).", wrapper_class: "selectable"
-
-  = f.input :notification_when_submission_deadline_is_coming, label: "I am happy to get application submission reminder when submission when deadline is coming.", wrapper_class: "selectable"
 
 /fieldset
   h3
