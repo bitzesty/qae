@@ -1,4 +1,4 @@
-p style="font-weight: 700; font-size: 19px; text-decoration: underline; line-height: 1.315789474; margin: 30px 0 30px 0;"
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | The Queen's Awards for Enterprise Reception Buckingham Palace,
   =< @reception_date
   | .
@@ -12,27 +12,23 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   '. Two of your company representatives will be invited and, unfortunately, this number cannot be increased.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Both of your nominations
-  u
-    | must
-  '  be employed representatives of the company.
+  ' Both of your nominations must be employed representatives of the company.
 
 p style="font-weight: 700; font-size: 19px;; line-height: 1.315789474; margin: 30px 0 30px 0;"
   ' IMPORTANT NOTICE: Please do not publicise the date of this event in advance.
 
-p style="font-weight: 700; font-size: 19px; text-decoration: underline; line-height: 1.315789474; margin: 30px 0 30px 0;"
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | Submission of Guest Details
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' To submit the details of your two guests, please log in to
-  => link_to "the Queen's Awards for Enterprise system", edit_palace_invite_url(id: @token)
-  ' to access the Winners' Dashboard and click on the 'Palace attendees' button (currently marked as incomplete). From there you will be able to enter all the required information; please click 'save' to ensure we receive your details.
+  ' To submit the details of your two guests, please log in to the Queen's Awards for Enterprise system via the link below: 
+  br
+  = link_to edit_palace_invite_url(id: @token), edit_palace_invite_url(id: @token) 
+  br
+  | to access the Winners' Dashboard and click on the 'Palace attendees' button (currently marked as incomplete). From there you will be able to enter all the required information; please click 'save' to ensure we receive your details.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
-  ' Please ensure the address details are those of the guests and
-  u
-    | not
-  '  of the person or agent submitting the details.
+  ' Please ensure the address details are those of the guests and not of the person or agent submitting the details.
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   ' I would be grateful if you could provide the requested information no later than 12:00pm (noon) on
@@ -42,7 +38,7 @@ p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
   | Specific details about the event will be included with the invitation which Buckingham Palace will send to guests early June, approximately.
 
-p style="font-weight: 700; font-size: 19px; text-decoration: underline; line-height: 1.315789474; margin: 30px 0 30px 0;"
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
   | Additional Important Information
 
 p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
