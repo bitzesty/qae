@@ -291,8 +291,47 @@ class AwardYears::V2020::QAEForms
 
         text :org_telephone, "Main telephone number" do
           required
-          ref "A 9"
+          ref "A 8.1"
           style "small"
+        end
+
+        header :press_contact_details_header, "Contact details for press enquiries" do
+          ref "A 9"
+          context %(
+            <p>
+              If your application is successful, you may get contacted by the press. 
+              <br/>
+              Provide details of the most suitable person within the organisation to deal with the press. You will have the opportunity to update these at a later date if needed.
+            </p>
+          )
+        end
+
+        text :press_contact_details_title, "Title" do
+          required
+          classes "sub-question"
+          style "tiny"
+        end
+
+        text :press_contact_details_first_name, "First name" do
+          required
+          classes "sub-question"
+        end
+
+        text :press_contact_details_last_name, "Last name" do
+          required
+          classes "sub-question"
+        end
+
+        text :press_contact_details_telephone, "Telephone" do
+          required
+          classes "sub-question"
+          style "small"
+        end
+
+        text :press_contact_details_email, "Email address" do
+          classes "sub-question"
+          style "large"
+          required
         end
 
         text :website_url, "Website address" do
