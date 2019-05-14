@@ -61,9 +61,7 @@ class Notifiers::EmailNotificationService
 
     scope.each do |form_answer|
       form_answer.collaborators.each do |collaborator|
-        if collaborator.notification_when_submission_deadline_is_coming? &&
-           collaborator_data.detect { |el| el[:collaborator_id] == collaborator.id }.blank?
-           
+        if collaborator.notification_when_submission_deadline_is_coming?
           collaborator_data << { form_answer_id: form_answer.id, collaborator_id: collaborator.id }
         end
       end
