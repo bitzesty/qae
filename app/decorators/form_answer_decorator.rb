@@ -359,6 +359,10 @@ class FormAnswerDecorator < ApplicationDecorator
     document["head_email"]
   end
 
+  def press_contact_details_email
+    document["press_contact_details_email"]
+  end
+
   def applying_for
     document["applying_for"]
   end

@@ -948,7 +948,9 @@ CREATE TABLE public.press_summaries (
     authorable_id integer,
     submitted boolean DEFAULT false,
     applicant_submitted boolean DEFAULT false,
-    admin_sign_off boolean DEFAULT false
+    admin_sign_off boolean DEFAULT false,
+    title character varying,
+    last_name character varying
 );
 
 
@@ -3838,6 +3840,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190501162430'),
 ('20190501163901'),
 ('20190513114859'),
-('20190514192116');
+('20190514192116'),
+('20190515121928');
 
 

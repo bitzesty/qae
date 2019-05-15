@@ -47,12 +47,17 @@ div
           fieldset.question-block.sub-question
             label
               h2 Contact details for press enquiries
+
             .question-group
-              = f.input :name, input_html: { class: "medium" }
+              = f.input :title, input_html: { class: "tiny" }
             .question-group
-              = f.input :phone_number, input_html: { class: "medium" }, label: "Telephone"
+              = f.input :name, input_html: { label: "First name", class: "medium" }
             .question-group
-              = f.input :email, input_html: { class: "medium" }
+              = f.input :last_name, input_html: { label: "Last name", class: "medium" }
+            .question-group
+              = f.input :phone_number, input_html: { label: "Telephone", class: "medium" }, label: "Telephone"
+            .question-group
+              = f.input :email, input_html: { label: "Email address", class: "medium" }
 
           footer
             nav.pagination.no-border aria-label="Pagination" role="navigation"
