@@ -58,10 +58,10 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV['MAILER_HOST'], port: 3000 }
   config.action_mailer.asset_host = "https://#{ENV['ASSET_HOST']}"
   config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.delivery_method = :notify
-  config.action_mailer.notify_settings = {
-    api_key: ENV['GOV_UK_NOTIFY_API_KEY']
-  }
+  # config.action_mailer.delivery_method = :notify
+  # config.action_mailer.notify_settings = {
+  #   api_key: ENV['GOV_UK_NOTIFY_API_KEY']
+  # }
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
