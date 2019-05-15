@@ -53,7 +53,7 @@ module FormAnswerMixin
 
   def review
     authorize resource, :review?
-    bypass_sign_in(@form_answer.user)
+    sign_in(@form_answer.user, scope: :user, skip_session_limitable: true)
     session[:admin_in_read_only_mode] = true
 
     redirect_to edit_form_path(@form_answer)
