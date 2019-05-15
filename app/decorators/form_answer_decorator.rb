@@ -363,6 +363,10 @@ class FormAnswerDecorator < ApplicationDecorator
     document["press_contact_details_email"]
   end
 
+  def press_contact_details_full_name
+    document["press_contact_details_name"] + document["press_contact_details_last_name"]
+  end
+
   def applying_for
     document["applying_for"]
   end
