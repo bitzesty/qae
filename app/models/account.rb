@@ -18,7 +18,7 @@ class Account < ApplicationRecord
   end
 
   def collaborators_with(user)
-    users.confirmed.to_a.prepend(user).uniq
+    users.confirmed.to_a.prepend(user).uniq.reject { |c| c.blank? }
   end
 
   def collaborators_without(user)
