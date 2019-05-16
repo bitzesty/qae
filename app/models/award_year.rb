@@ -231,10 +231,23 @@ class AwardYear < ApplicationRecord
     # that's why we are pulling this date from current year (not current award year)
 
     def current_year_deadline(title)
-      closed.settings
-            .deadlines
-            .where(kind: title)
-            .first
+      res = closed.settings
+                  .deadlines
+                  .where(kind: title)
+                  .first
+
+      if ::ServerEnvironment.local_or_dev_or_staging_server? && res.blank?
+        #
+        # In testing purposes: on dev, local or staging we should be able to have
+        # Buckingham Palace Reception date even if award year is not closed yet.
+        #
+        res = current.settings
+                     .deadlines
+                     .where(kind: title)
+                     .first 
+      end
+
+      res
     end
 
     def buckingham_palace_reception_deadline
