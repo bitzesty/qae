@@ -5,6 +5,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -947,7 +948,9 @@ CREATE TABLE public.press_summaries (
     authorable_id integer,
     submitted boolean DEFAULT false,
     applicant_submitted boolean DEFAULT false,
-    admin_sign_off boolean DEFAULT false
+    admin_sign_off boolean DEFAULT false,
+    title character varying,
+    last_name character varying
 );
 
 
@@ -2493,7 +2496,7 @@ CREATE TABLE public.users (
     company_postcode character varying,
     company_phone_number character varying,
     prefered_method_of_contact character varying,
-    subscribed_to_emails boolean DEFAULT false,
+    subscribed_to_emails boolean DEFAULT true,
     qae_info_source character varying,
     qae_info_source_other character varying,
     account_id integer,
@@ -2502,7 +2505,7 @@ CREATE TABLE public.users (
     confirmation_token character varying,
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
-    agree_being_contacted_by_department_of_business boolean DEFAULT false,
+    agree_being_contacted_by_department_of_business boolean DEFAULT true,
     imported boolean DEFAULT false,
     address_line1 character varying,
     address_line2 character varying,
@@ -2516,7 +2519,12 @@ CREATE TABLE public.users (
     unique_session_id character varying,
     debounce_api_response_code character varying,
     marked_at_bounces_email boolean DEFAULT false,
-    debounce_api_latest_check_at timestamp without time zone
+    debounce_api_latest_check_at timestamp without time zone,
+    notification_when_innovation_award_open boolean DEFAULT true,
+    notification_when_trade_award_open boolean DEFAULT true,
+    notification_when_development_award_open boolean DEFAULT true,
+    notification_when_mobility_award_open boolean DEFAULT true,
+    notification_when_submission_deadline_is_coming boolean DEFAULT true
 );
 
 
@@ -3830,6 +3838,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190422174739'),
 ('20190501154629'),
 ('20190501162430'),
-('20190501163901');
+('20190501163901'),
+('20190513114859'),
+('20190514192116'),
+('20190515121928');
 
 

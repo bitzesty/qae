@@ -8,6 +8,11 @@ class PressSummary < ApplicationRecord
             unless: proc {|c| c.body_update.present?},
             if: :applicant_submitted?
 
+  validates :title, :last_name,
+            presence: true,
+            unless: proc {|c| c.body_update.present? && form_answer.award_year.year >= 2020 },
+            if: :applicant_submitted?
+
   before_validation :set_token, on: :create
 
   belongs_to :authorable, polymorphic: true
@@ -26,5 +31,15 @@ class PressSummary < ApplicationRecord
 
   def contact_details_update?
     contact_details_update.present?
+  end
+
+  def set_press_contact_details_data_from_form
+    doc = form_answer.document
+
+    self.title = doc['press_contact_details_title']
+    self.name = doc['press_contact_details_first_name']
+    self.last_name = doc['press_contact_details_last_name']
+    self.phone_number = doc['press_contact_details_telephone']
+    self.email = doc['press_contact_details_email']
   end
 end

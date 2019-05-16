@@ -70,8 +70,6 @@ describe "Assessment flow", %(
   #    end
 
   #    wait_for_ajax
-  #    expect(Assessors::PrimaryCaseSummaryMailer).to receive(:notify).once.and_return(double(deliver_later!: true))
-
   #    submit_primary_case_summary
 
   #    visit assessor_form_answer_path(form_answer)

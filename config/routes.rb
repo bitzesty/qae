@@ -265,7 +265,11 @@ Rails.application.routes.draw do
 
     resource :settings, only: [:show] do
       resources :deadlines, only: [:update]
-      resources :email_notifications, only: [:create, :update, :destroy]
+      resources :email_notifications, only: [:create, :update, :destroy] do
+        collection do
+          post :run_notifications
+        end
+      end
     end
 
     resources :assessor_assignments, only: [:update]
