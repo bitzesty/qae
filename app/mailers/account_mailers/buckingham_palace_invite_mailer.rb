@@ -19,6 +19,6 @@ class AccountMailers::BuckinghamPalaceInviteMailer < AccountMailers::BaseMailer
     @palace_attendees_due = palace_attendees_due.try(:strftime, "%A, #{palace_attendees_due.day.ordinalize} %B %Y")
 
     subject = "An invitation to HM The Queen's Reception at Buckingham Palace"
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @email, subject: subject
+    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @email, subject: subject_with_env_prefix(subject)
   end
 end

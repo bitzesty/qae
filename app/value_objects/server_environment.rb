@@ -23,6 +23,8 @@ class ServerEnvironment
         "[STAGING]"
       elsif dev_server?
         "[DEV]"
+      elsif Rails.env.development?
+        "[LOCAL]"
       else
         ""
       end

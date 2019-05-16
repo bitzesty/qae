@@ -26,6 +26,6 @@ class Users::WinnersHeadOfOrganisationMailer < ApplicationMailer
 
     @subject = "Important information about your Queen's Award Entry!"
 
-    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @head_email, subject: @subject
+    send_mail_if_not_bounces ENV['GOV_UK_NOTIFY_API_TEMPLATE_ID'], to: @head_email, subject: subject_with_env_prefix(@subject)
   end
 end
