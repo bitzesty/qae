@@ -7,6 +7,15 @@ GIT
       cocaine
       orm_adapter (~> 0.5.0)
 
+GIT
+  remote: git://github.com/rusllonrails/devise-security.git
+  revision: fba2dd6dea5571bd979284eb7f7bbd67556eb8b0
+  branch: V_0_13_0_with_skip_limitable_patch
+  specs:
+    devise-security (0.12.0)
+      devise (>= 4.2.0, < 5.0)
+      rails (>= 4.2.0, < 6.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -147,9 +156,6 @@ GEM
     devise-authy (1.10.0)
       authy (>= 2.7.2)
       devise (>= 3.0.0)
-    devise-security (0.13.0)
-      devise (>= 4.2.0, < 5.0)
-      rails (>= 4.2.0, < 6.0)
     devise_zxcvbn (4.4.1)
       devise
       zxcvbn-js (~> 4.4.1)
@@ -379,6 +385,7 @@ GEM
     js_cookie_rails (2.1.4)
       railties (>= 3.1)
     json (1.8.6)
+    jwt (2.1.0)
     kaminari (1.1.1)
       activesupport (>= 4.1.0)
       kaminari-actionview (= 1.1.1)
@@ -409,6 +416,9 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
+    mail-notify (0.0.3)
+      actionmailer (~> 5.0)
+      notifications-ruby-client (~> 2.0)
     marcel (0.3.3)
       mimemagic (~> 0.3.2)
     meta_request (0.6.0)
@@ -435,6 +445,8 @@ GEM
     nio4r (2.3.1)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
+    notifications-ruby-client (2.10.0)
+      jwt (>= 1.5, < 3)
     orm_adapter (0.5.0)
     paper_trail (5.1.1)
       activerecord (>= 3.0, < 6.0)
@@ -729,7 +741,7 @@ DEPENDENCIES
   decent_exposure
   devise
   devise-authy
-  devise-security
+  devise-security!
   devise_zxcvbn
   dotenv-rails
   draper
@@ -752,6 +764,7 @@ DEPENDENCIES
   letter_opener
   listen
   lograge
+  mail-notify
   meta_request
   nilify_blanks
   nokogiri (= 1.8.4)

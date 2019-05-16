@@ -52,7 +52,10 @@ gem 'devise'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
-gem 'devise-security'
+gem 'devise-security', github: "rusllonrails/devise-security", branch: "V_0_13_0_with_skip_limitable_patch"
+
+# GOV.UK Notify support (for mailers)
+gem 'mail-notify'
 
 # Pagenation
 gem 'kaminari'

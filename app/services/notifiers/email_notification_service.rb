@@ -31,7 +31,7 @@ class Notifiers::EmailNotificationService
   end
 
   def submission_started_notification(award_year, award_type)
-    user_ids = User.confirmed.pluck(:id)
+    user_ids = User.confirmed.allowed_to_get_award_open_notification(award_type).pluck(:id)
 
     user_ids.each do |user_id|
       Users::SubmissionStartedNotificationMailer.notify(
@@ -56,9 +56,19 @@ class Notifiers::EmailNotificationService
   end
 
   def reminder_to_submit(award_year)
-    gather_data_and_send_emails!(
-      award_year.form_answers.business.where(submitted_at: nil),
-      AccountMailers::ReminderToSubmitMailer
+    collaborator_data = []
+    scope = award_year.form_answers.business.where(submitted_at: nil)
+
+    scope.each do |form_answer|
+      form_answer.collaborators.each do |collaborator|
+        if collaborator.notification_when_submission_deadline_is_coming?
+          collaborator_data << { form_answer_id: form_answer.id, collaborator_id: collaborator.id }
+        end
+      end
+    end
+
+    send_emails_to_collaborators!(
+      collaborator_data, AccountMailers::ReminderToSubmitMailer
     )
   end
 
@@ -136,7 +146,12 @@ class Notifiers::EmailNotificationService
     end
 
     form_answer_ids.each do |form_answer_id|
+      # 
+      # 1: to Head of Organization
       AccountMailers::BuckinghamPalaceInviteMailer.invite(form_answer_id).deliver_later!
+      # 
+      # 2: to Press Contact
+      AccountMailers::BuckinghamPalaceInviteMailer.invite(form_answer_id, true).deliver_later!
     end
   end
 

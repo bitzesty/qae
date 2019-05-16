@@ -46,7 +46,7 @@ class Admin::AdminsController < Admin::UsersController
   def login_as_assessor
     authorize Admin, :index?
     assessor = Assessor.find_by_email(params[:email])
-    bypass_sign_in(assessor)
+    sign_in(assessor, scope: :assessor, skip_session_limitable: true)
 
     redirect_to assessor_root_path
   end
@@ -54,7 +54,7 @@ class Admin::AdminsController < Admin::UsersController
   def login_as_user
     authorize Admin, :index?
     user = User.find_by_email(params[:email])
-    bypass_sign_in(user)
+    sign_in(user, scope: :user, skip_session_limitable: true)
 
     redirect_to dashboard_url
   end

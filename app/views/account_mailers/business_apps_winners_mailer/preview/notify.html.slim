@@ -1,0 +1,91 @@
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' Congratulations on winning a Queen's Award for Enterprise:
+  => @form_answer.award_type_full_name
+  => "#{@form_answer.award_year.year}"
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  = "Dear #{@name},"
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  ' I am delighted to inform you that Her Majesty The Queen has approved the Prime Minister's recommendation that your company should receive a Queen's Award for Enterprise in the
+  => @form_answer.award_type_full_name
+  | category this year. We have also informed the head of your organisation by email.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  | If you are a Collaborator please liaise with the account holder.
+
+p style="font-weight: 700; font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  | Please read this email carefully as it contains important information about actions you need to do now.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  strong
+    ' Embargo/ Announcement
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' The Award will be announced publicly on
+  = @deadline.try :strftime, "%d %B %Y"
+  '. Although you can make arrangements for publicity now, and we would encourage you to do so,
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  strong
+    ' There is a strict embargo preventing public announcement or publication of any Awards information until 01:00hrs on
+    = @deadline.try :strftime, "%d %B %Y"
+    | . You must not make any announcement about your Award, either to employees or outside your organisation, before this date.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | Under the terms of the embargo, we will provide information including a list of winners and their press contact details, to the media on
+  =< @media_deadline
+  ' . The list of winners will then be published in the supplement to the London Gazette. Prior to the official announcement, you may be contacted by the press regarding your Award. You are permitted to speak to them however this will still be under embargo conditions. You are also permitted to approach your own press contacts to arrange coverage around your Award; please, however,
+  
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  strong
+    | make it clear to anyone you approach in the media, that they cannot publish anything until
+    =< @deadline.try :strftime, "%d %B %Y"
+    |.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  strong
+    | How to approve your Press Book entry
+
+div style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  = "Log in via this link: "
+  = link_to dashboard_url, dashboard_url
+  = " to access the Winners' Dashboard in order to:"
+  br
+  br
+  ul
+    li check the Press Book entry (a factual account of why you have won the Award and not a promotional press opportunity);
+    li check the other details for your organisation are correct; and,
+    li provide details of a contact for press enquiries.
+  br
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  strong
+    ' Then click the "Submit" button by 12:00 noon on
+    =< @book_notes_deadline
+    | . If you do not respond by the deadline, we will use the proposed text together with the contact details that we already hold.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  | On your online account, you will also have access to the Queen's Awards 2019 emblems and the Winners' Manual, which provides all relevant information about your award and the use of the emblem for marketing / promotion.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 0 0 30px 0;"
+  | By accepting the Award, you agree to the terms set out in the Winners' Manual.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  strong The Buckingham Palace Reception
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 30px 0 30px 0;"
+  ' There will be a Reception for representatives of winning companies at Buckingham Palace later in the year. Numbers will be limited and those nominated to attend must be representative of the company as a whole. We will contact you closer to the time to confirm attendees.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
+  ' Congratulations once again on your Award.
+
+p style="font-size: 19px; line-height: 1.315789474; margin: 38px 0 38px 0;"
+  ' Yours sincerely,
+  br
+  br
+  | Nichola Bruno
+  br
+  | The Secretary
+  br
+  | The Queen's Awards Office

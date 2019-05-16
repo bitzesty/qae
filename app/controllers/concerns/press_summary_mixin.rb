@@ -74,7 +74,9 @@ module PressSummaryMixin
   def press_summary_params
     params.require(:press_summary).permit(
       :body,
+      :title,
       :name,
+      :last_name,
       :phone_number,
       :email,
       :contact_details_update,

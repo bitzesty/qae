@@ -51,7 +51,13 @@ class Users::PressSummariesController < Users::BaseController
 
   def press_summary_params
     params.require(:press_summary).permit(
-      :comment, :correct, :phone_number, :name, :email
+      :comment, 
+      :correct, 
+      :title,
+      :name,
+      :last_name,
+      :phone_number,
+      :email
     )
   end
 
