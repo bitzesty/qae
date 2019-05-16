@@ -54,6 +54,16 @@ class Admin::EmailNotificationsController < Admin::BaseController
     end
   end
 
+  def run_notifications
+    authorize :email_notifications, :create?
+    
+    if ::ServerEnvironment.local_or_dev_or_staging_server?
+      ::Notifiers::EmailNotificationService.run
+    end
+
+    redirect_to admin_settings_path
+  end
+
   private
 
   def load_email_notification
