@@ -359,6 +359,20 @@ class FormAnswerDecorator < ApplicationDecorator
     document["head_email"]
   end
 
+  def press_contact_details_email
+    object.press_summary.try(:email) || document["press_contact_details_email"]
+  end
+
+  def press_contact_details_full_name
+    p_summary = object.press_summary
+
+    if p_summary.present?
+      "#{p_summary.name} #{p_summary.last_name}"
+    else
+      "#{document['press_contact_details_name']} #{document['press_contact_details_last_name']}"
+    end
+  end
+
   def applying_for
     document["applying_for"]
   end

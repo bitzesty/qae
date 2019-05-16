@@ -15,7 +15,7 @@ class MailRenderer
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:award_type] = "International Trade"
 
-    render(assigns, "users/submission_started_notification_mailer/notify")
+    render(assigns, "users/submission_started_notification_mailer/preview/notify")
   end
 
   def unsuccessful_notification
@@ -27,7 +27,7 @@ class MailRenderer
     assigns[:year] = AwardYear.closed.year
     form_answer.urn = "QA0001/16I"
 
-    render(assigns, "account_mailers/unsuccessful_feedback_mailer/notify")
+    render(assigns, "account_mailers/unsuccessful_feedback_mailer/preview/notify")
   end
 
   def unsuccessful_ep_notification
@@ -39,7 +39,7 @@ class MailRenderer
     assigns[:year] = AwardYear.closed.year
     form_answer.urn = "QA0128/16EP"
 
-    render(assigns, "account_mailers/unsuccessful_feedback_mailer/ep_notify")
+    render(assigns, "account_mailers/unsuccessful_feedback_mailer/preview/ep_notify")
   end
 
   def ep_reminder_support_letters
@@ -51,7 +51,7 @@ class MailRenderer
     assigns[:deadline] = deadline_str("submission_end")
     assigns[:nominee_name] = "Jane Doe"
 
-    render(assigns, "account_mailers/promotion_letters_of_support_reminder_mailer/notify")
+    render(assigns, "account_mailers/promotion_letters_of_support_reminder_mailer/preview/notify")
   end
 
   def reminder_to_submit
@@ -61,7 +61,7 @@ class MailRenderer
     assigns[:form_answer] = form_answer
     assigns[:deadline] = deadline_str("submission_end", "%A %d %B %Y")
 
-    render(assigns, "account_mailers/reminder_to_submit_mailer/notify")
+    render(assigns, "account_mailers/reminder_to_submit_mailer/preview/notify")
   end
 
   def shortlisted_audit_certificate_reminder
@@ -72,14 +72,14 @@ class MailRenderer
     assigns[:deadline] = deadline_str("audit_certificates")
     assigns[:deadline_time] = deadline_str("audit_certificates", "%H:%M")
 
-    render(assigns, "users/audit_certificate_request_mailer/notify")
+    render(assigns, "users/audit_certificate_request_mailer/preview/notify")
   end
 
   def not_shortlisted_notifier
     assigns = {}
     assigns[:user] = dummy_user("Jon", "Doe", "John's Company")
     assigns[:current_year] = AwardYear.current.year
-    render(assigns, "account_mailers/notify_non_shortlisted_mailer/notify")
+    render(assigns, "account_mailers/notify_non_shortlisted_mailer/preview/notify")
   end
 
   def shortlisted_notifier
@@ -94,7 +94,7 @@ class MailRenderer
 
     assigns[:award_type_full_name] = "Innovation"
 
-    render(assigns, "account_mailers/notify_shortlisted_mailer/notify")
+    render(assigns, "account_mailers/notify_shortlisted_mailer/preview/notify")
   end
 
   def winners_notification
@@ -112,7 +112,7 @@ class MailRenderer
       "%A %d %B %Y"
     )
 
-    render(assigns, "account_mailers/business_apps_winners_mailer/notify")
+    render(assigns, "account_mailers/business_apps_winners_mailer/preview/notify")
   end
 
   def winners_head_of_organisation_notification
@@ -136,7 +136,7 @@ class MailRenderer
       "%A %d %B %Y"
     )
 
-    render(assigns, "users/winners_head_of_organisation_mailer/notify")
+    render(assigns, "users/winners_head_of_organisation_mailer/preview/notify")
   end
 
   def buckingham_palace_invite
@@ -160,7 +160,7 @@ class MailRenderer
       "%A, #{palace_attendees_due.day.ordinalize} %B %Y"
     )
 
-    render(assigns, "account_mailers/buckingham_palace_invite_mailer/invite")
+    render(assigns, "account_mailers/buckingham_palace_invite_mailer/preview/invite")
   end
 
   private
