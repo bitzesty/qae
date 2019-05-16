@@ -55,7 +55,7 @@ gem 'devise_zxcvbn'
 gem 'devise-security', github: "rusllonrails/devise-security", branch: "V_0_13_0_with_skip_limitable_patch"
 
 # GOV.UK Notify support (for mailers)
-gem 'mail-notify'
+gem 'mail-notify', '>= 0.0.3'
 
 # Pagenation
 gem 'kaminari'
