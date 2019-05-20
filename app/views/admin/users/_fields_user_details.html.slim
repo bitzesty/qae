@@ -56,6 +56,8 @@ fieldset.question-group#email-control-group
                 input_html: { class: "form-control" },
                 label: false
 
+    = render "debounce_api_check_details", f: f
+
 fieldset.question-group
   h3 = f.label :role, label: "Account type"
   .row
