@@ -15,6 +15,8 @@
       
       span.next-run-info 
         = user_record.bounces_email_reason
+        br
+        = user_record.decorate.debounce_api_check_cycle_details
 
     - else
       = image_tag "icon-grade-positive.png"
@@ -23,7 +25,7 @@
       br
 
       span.next-run-info 
-        = "Last check: #{user_record.debounce_api_latest_check_at.strftime('%d %b %Y')}, Next check: #{(user_record.debounce_api_latest_check_at + 6.months).strftime('%d %b %Y')}"
+        = user_record.decorate.debounce_api_check_cycle_details
 
   - else
     = image_tag "icon-info.png"
