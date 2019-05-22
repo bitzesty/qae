@@ -42,7 +42,7 @@ class CheckAccountOnBouncesEmail
     end
 
     def bounce_reason(code)
-      "#{DEBOUNCE_API_RESPONSE_CODES[code]} (code: '#{code}')"
+      DEBOUNCE_API_RESPONSE_CODES[code]
     end
   end
 

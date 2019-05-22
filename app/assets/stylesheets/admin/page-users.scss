@@ -55,11 +55,17 @@
   }
 
   img {
-    margin-right: 5px;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
   }
 
   .next-run-info {
+    margin-top: 7px;
     display: inline-block;
-    margin-left: 20px;
+  }
+
+  a {
+    margin-top: 7px;
   }
 }

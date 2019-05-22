@@ -151,6 +151,10 @@ class User < ApplicationRecord
     60.minutes
   end
 
+  def check_email_on_bounces!
+    ::CheckAccountOnBouncesEmail.new(self).run!
+  end
+
   def bounces_email_reason
     ::CheckAccountOnBouncesEmail.bounce_reason(debounce_api_response_code)
   end

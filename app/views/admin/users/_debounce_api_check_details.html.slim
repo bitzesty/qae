@@ -1,7 +1,7 @@
 - user_record = f.object
 
 .col-md-12.admin-user-debounce-api-check-block
-  span.heading-message
+  strong.heading-message
     | Email Verification details:
   br
 
@@ -14,7 +14,7 @@
       br
       
       span.next-run-info 
-        = user_record.bounces_email_reason
+        = "Error code: #{user_record.debounce_api_response_code} (#{user_record.bounces_email_reason})"
         br
         = user_record.decorate.debounce_api_check_cycle_details
 
@@ -35,5 +35,10 @@
 
     span.next-run-info 
       | Next check will be today / tomorrow!
+
+  .clearfix
+
+  - link_title = user_record.debounce_api_latest_check_at.present? ? 'Re-Scan with Debounce API' : 'Scan now'
+  = link_to link_title, scan_via_debounce_api_admin_user_url(user_record), method: :post, class: "btn btn-default btn-md"
 
 
