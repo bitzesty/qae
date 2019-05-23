@@ -29,9 +29,8 @@ describe AccountMailers::BusinessAppsWinnersMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to have_link("Log in here",
-                                                  href: dashboard_url)
-      expect(mail.html_part.decoded).to match(account_holder_name)
+      expect(mail.body.raw_source).to match(dashboard_url)
+      expect(mail.body.raw_source).to match(account_holder_name)
     end
   end
 end
