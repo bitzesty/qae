@@ -192,7 +192,6 @@ describe Notifiers::EmailNotificationService do
 
     it "triggers current notification" do
       mailer = double(deliver_later!: true)
-      expect(AccountMailers::BuckinghamPalaceInviteMailer).to receive(:invite).with(form_answer.id) { mailer }
 
       expect {
         described_class.run
