@@ -26,7 +26,7 @@ describe AccountMailers::NotifyNonShortlistedMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to match(user.decorate.full_name)
+      expect(mail.body.raw_source).to match(user.decorate.full_name)
     end
   end
 
@@ -50,7 +50,7 @@ describe AccountMailers::NotifyNonShortlistedMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to match(user.decorate.full_name)
+      expect(mail.body.raw_source).to match(user.decorate.full_name)
     end
   end
 end

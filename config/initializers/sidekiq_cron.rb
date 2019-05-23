@@ -30,6 +30,10 @@ default_schedule = {
   "aggregated_feedback_pdf_hard_copy_generation_service" => {
     "cron" => "30 5 * * *",
     "class" => "HardCopyPdfGenerators::Aggregated::FeedbacksWorker"
+  },
+  "debounce_check_service" => {
+    "cron" => "50 5 * * *",
+    "class" => "Scheduled::DebounceApiScanWorker"
   }
 }
 

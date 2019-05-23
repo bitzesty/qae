@@ -38,9 +38,8 @@ describe AccountMailers::NotifyShortlistedMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to match(user.decorate.full_name)
-      expect(mail.html_part.decoded).to have_link("log in now", href: new_user_session_url)
-      expect(mail.html_part.decoded).to match(deadline)
+      expect(mail.body.raw_source).to match(user.decorate.full_name)
+      expect(mail.body.raw_source).to match(deadline)
     end
   end
 end

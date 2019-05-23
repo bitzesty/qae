@@ -43,4 +43,20 @@ class UserDecorator < ApplicationDecorator
       object.role.to_s.humanize
     end
   end
+
+  def debounce_api_check_last_run
+    object.debounce_api_latest_check_at
+  end
+
+  def debounce_api_check_next_run
+    debounce_api_check_last_run + 6.months
+  end
+
+  def debounce_api_check_cycle_details
+    "Last check: #{date_format(debounce_api_check_last_run)}, Next check: #{date_format(debounce_api_check_next_run)}"
+  end
+
+  def date_format(val)
+    val.strftime("%d %b %Y")
+  end
 end

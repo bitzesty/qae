@@ -18,7 +18,7 @@ describe Users::CustomMailer do
     end
 
     it "renders the body" do
-      expect(mail.body.to_s).to have_link("https://google.com", href: "https://google.com")
+      expect(mail.body.to_s).to match("https://google.com")
       expect(mail.body.to_s).to match("Please visit")
       expect(mail.body.to_s).to match(user.decorate.full_name)
     end

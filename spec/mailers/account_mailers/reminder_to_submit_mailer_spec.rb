@@ -18,7 +18,7 @@ describe AccountMailers::ReminderToSubmitMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to match(edit_form_url(id: form_answer.id))
+      expect(mail.body.raw_source).to match(edit_form_url(id: form_answer.id))
     end
   end
 end

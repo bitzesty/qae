@@ -25,8 +25,8 @@ describe Users::SubmissionMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to match(user.decorate.full_name)
-      expect(mail.html_part.decoded).to match(urn)
+      expect(mail.body.raw_source).to match(user.decorate.full_name)
+      expect(mail.body.raw_source).to match(urn)
     end
   end
 end
