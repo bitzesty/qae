@@ -1,4 +1,4 @@
-unless Rails.env.development? || Rails.env.test?
+if Rails.env.production?
   Rails.application.configure do
     config.action_mailer.delivery_method = :notify
     config.action_mailer.notify_settings = {

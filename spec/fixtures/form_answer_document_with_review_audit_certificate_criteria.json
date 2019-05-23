@@ -172,4 +172,9 @@
  "external_contribute_to_sustainable_product":"no",
  "parent_company": "test",
  "parent_ultimate_control": "yes",
+ "press_contact_details_title": "Mr", 
+ "press_contact_details_first_name": "John", 
+ "press_contact_details_last_name": "Doe", 
+ "press_contact_details_telephone": "+4411111111111",
+ "press_contact_details_email": "test@example.com",
  "name_of_external_organization_or_individual":""}
