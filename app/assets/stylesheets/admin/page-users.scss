@@ -44,3 +44,28 @@
 .cant_add_to_collaborators_message {
   color: #a94442;
 }
+
+.admin-user-debounce-api-check-block {
+  padding-left: 25px;
+  font-size: 14px;
+
+  .heading-message {
+    margin-bottom: 5px; 
+    display: inline-block;
+  }
+
+  img {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+  }
+
+  .next-run-info {
+    margin-top: 7px;
+    display: inline-block;
+  }
+
+  a {
+    margin-top: 7px;
+  }
+}

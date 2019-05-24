@@ -31,12 +31,10 @@ describe Users::AuditCertificateRequestMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to match(user.decorate.full_name)
-      expect(mail.html_part.decoded).to have_link("upload your completed Verification of Commercial Figures here.",
-                                                  href: users_form_answer_audit_certificate_url(form_answer))
-      expect(mail.html_part.decoded).to have_link("download a blank copy of the Verification of Commercial Figures here.",
-                                                  href: users_form_answer_audit_certificate_url(form_answer, format: :pdf))
-      expect(mail.html_part.decoded).to match(deadline)
+      expect(mail.body.raw_source).to match(user.decorate.full_name)
+      expect(mail.body.raw_source).to match(users_form_answer_audit_certificate_url(form_answer))
+      expect(mail.body.raw_source).to match(users_form_answer_audit_certificate_url(form_answer, format: :pdf))
+      expect(mail.body.raw_source).to match(deadline)
     end
   end
 end
