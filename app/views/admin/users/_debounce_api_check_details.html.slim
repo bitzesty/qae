@@ -2,7 +2,7 @@
 
 .col-md-12.admin-user-debounce-api-check-block
   strong.heading-message
-    | Email Verification details:
+    | Email deliverability (Valid/Bounces):
   br
 
   - if user_record.debounce_api_latest_check_at.present?
@@ -10,7 +10,7 @@
     - if user_record.marked_at_bounces_email?
       = image_tag "icon-important-sm-red.png"
       span.check-result-title
-        | Marked as bounces!
+        | Bounces
       br
       
       span.next-run-info 
@@ -38,7 +38,7 @@
 
   .clearfix
 
-  - link_title = user_record.debounce_api_latest_check_at.present? ? 'Re-Scan with Debounce API' : 'Scan now'
+  - link_title = user_record.debounce_api_latest_check_at.present? ? 'Re-scan' : 'Scan now'
   = link_to link_title, scan_via_debounce_api_admin_user_url(user_record), method: :post, class: "btn btn-default btn-md"
 
 
