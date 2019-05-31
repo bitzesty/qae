@@ -155,12 +155,19 @@ en:
     buckingham_palace_reception_attendee_information_due_by: "Winners will not be able to submit attendees details after this date. This date will be pulled into the Buckingham Palace Invite email - to heads of winning organisations only."
     buckingham_palace_attendees_invite: "This date will be pulled into the email notifying all winning business applicants of their success, the email to the heads of organisations and the Buckingham Palace Invite email."
     audit_certificates: "Shortlisted applicants will have up until this date to submit their Verification of Commercial Figures. This date will be pulled into the email notifying shortlisted applicants of their success, and the reminder to submit Verification of Commercial Figures email."
+  
   email_notification_help_messages:
     shortlisted_notifier: "Shortlisted stage start (shortlisted/unsuccessful applications are displayed on the homepage)"
     winners_notification: "Winners stage start (winning applications are displayed on the homepage and allows users to update their Press Book entry)"
     unsuccessful_notification: "Unsuccessful stage start (Unsuccessful applications are displayed on the homepage)"
     buckingham_palace_invite: "Palace invites stage start (allows users to add their Palace invite details on the homepage)"
+  
   email_notification_headers:
+    award_year_open_notifier: ""
+    innovation_award_open_notifier: ""
+    trade_award_open_notifier: ""
+    development_award_open_notifier: ""
+    mobility_award_open_notifier: ""
     submission_started_notification: "Notify users that applications for the new Award year are open"
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."
