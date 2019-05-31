@@ -32,23 +32,23 @@ describe Settings do
     end
   end
 
-  describe ".current_registrations_open_on?" do
+  describe ".current_award_year_switched?" do
     it "should return true if none of the awards are still open" do
-      allow(Settings).to receive(:current_registrations_open_on_date) {build(:deadline, trigger_at: 1.day.ago)}
+      allow(Settings).to receive(:current_award_year_switch_date) {build(:deadline, trigger_at: 1.day.ago)}
       allow(Settings).to receive(:current_submission_start_deadlines) {[double(trigger_at: 1.day.from_now), double(trigger_at: nil)]}
-      expect(Settings.current_registrations_open_on?).to be_truthy
+      expect(Settings.current_award_year_switched?).to be_truthy
     end
 
     it "should return true if some of the awards are still closed" do
-      allow(Settings).to receive(:current_registrations_open_on_date) {build(:deadline, trigger_at: 2.day.ago)}
+      allow(Settings).to receive(:current_award_year_switch_date) {build(:deadline, trigger_at: 2.day.ago)}
       allow(Settings).to receive(:current_submission_start_deadlines) {[double(trigger_at: 1.day.ago), double(trigger_at: nil)]}
-      expect(Settings.current_registrations_open_on?).to be_truthy
+      expect(Settings.current_award_year_switched?).to be_truthy
     end
 
     it "should return false if all of the awards are opened" do
-      allow(Settings).to receive(:current_registrations_open_on_date) {build(:deadline, trigger_at: 2.day.ago)}
+      allow(Settings).to receive(:current_award_year_switch_date) {build(:deadline, trigger_at: 2.day.ago)}
       allow(Settings).to receive(:current_submission_start_deadlines) {[double(trigger_at: 1.day.ago), double(trigger_at: 1.day.ago)]}
-      expect(Settings.current_registrations_open_on?).to eq(false)
+      expect(Settings.current_award_year_switched?).to eq(false)
     end
   end
 end

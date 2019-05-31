@@ -17,9 +17,9 @@ class Settings < ApplicationRecord
       end
     end
 
-    def current_registrations_open_on_date
-      Rails.cache.fetch("registrations_open_on_deadline", expires_in: 1.minute) do
-        current.deadlines.registrations_open_on
+    def current_award_year_switch_date
+      Rails.cache.fetch("award_year_switch_deadline", expires_in: 1.minute) do
+        current.deadlines.award_year_switch
       end
     end
 
@@ -114,12 +114,12 @@ class Settings < ApplicationRecord
       DateTime.now >= deadline.trigger_at if deadline.present?
     end
 
-    def current_registrations_open_on?
-      registration_deadline = current_registrations_open_on_date.try(:trigger_at)
+    def current_award_year_switched?
+      award_year_switch_deadline = current_award_year_switch_date.try(:trigger_at)
       submission_started_deadlines = current_submission_start_deadlines.map(&:trigger_at)
 
-      registration_deadline.present? &&
-      registration_deadline < Time.zone.now && (
+      award_year_switch_deadline.present? &&
+      award_year_switch_deadline < Time.zone.now && (
         submission_started_deadlines.any?(&:blank?) ||
         submission_started_deadlines.all? { |d| d > Time.zone.now }
       )

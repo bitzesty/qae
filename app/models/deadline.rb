@@ -9,7 +9,7 @@ class Deadline < ApplicationRecord
   belongs_to :settings
 
   AVAILABLE_DEADLINES = [
-    "registrations_open_on",
+    "award_year_switch",
     "innovation_submission_start",
     "trade_submission_start",
     "development_submission_start",
@@ -43,8 +43,8 @@ class Deadline < ApplicationRecord
       where(kind: "submission_end", states_triggered_at: nil).where("trigger_at < ?", time)
     end
 
-    def registrations_open_on
-      where(kind: "registrations_open_on").first
+    def award_year_switch
+      where(kind: "award_year_switch").first
     end
 
     def submission_end

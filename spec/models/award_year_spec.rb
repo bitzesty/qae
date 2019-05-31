@@ -47,7 +47,7 @@ describe AwardYear do
     context "current year beginning period is 28 of Feb 2015" do
       before do
         y = create_award_year(2016)
-        d = y.settings.deadlines.registrations_open_on
+        d = y.settings.deadlines.award_year_switch
         d.update_column(:trigger_at, Date.new(2015, 2, 28))
       end
 
@@ -87,11 +87,11 @@ describe AwardYear do
     context "award year begining is 18 of July 2015, next award year begining 14 of Feb 2016" do
       before do
         y = create_award_year(2016)
-        d = y.settings.deadlines.registrations_open_on
+        d = y.settings.deadlines.award_year_switch
         d.update_column(:trigger_at, Date.new(2015, 6, 18))
 
         y = create_award_year(2017)
-        d = y.settings.deadlines.registrations_open_on
+        d = y.settings.deadlines.award_year_switch
         d.update_column(:trigger_at, Date.new(2016, 2, 14))
       end
 
@@ -165,7 +165,7 @@ describe AwardYear do
       end
     end
   end
-  
+
   describe ".award_holder_range" do
     it 'should return range' do
       range = "#{AwardYear.current.year - 5}-#{AwardYear.current.year - 1}"
@@ -196,7 +196,7 @@ describe AwardYear do
         expect(award_year.case_summary_generation_can_be_started?).to be_falsey
       end
      end
-     
+
      context "feedback_generation_can_be_started?" do
       it 'should return correct value' do
         allow(Settings).to receive(:unsuccessful_stage?) {true}
@@ -218,7 +218,7 @@ describe AwardYear do
         expect(award_year.aggregated_case_summary_generation_can_be_started?).to be_falsey
       end
      end
-    
+
     context "aggregated_feedback_generation_can_be_started?" do
       it 'should return correct value' do
         allow(Settings).to receive(:unsuccessful_stage?) {true}
