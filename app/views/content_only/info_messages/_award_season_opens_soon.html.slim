@@ -5,9 +5,8 @@ article.group role="article"
     br
     .application-notice.info-notice
       p
-        - if current_user.new_member?
-          ' Thank you for registering for an account.
-          br
+        = render "content_only/info_messages/new_users_message"
+
         - if !Settings.all_awards_ready?
           - if Settings.after_current_submission_deadline_start?
             ' Please note, we are still in the process of updating some of the awards application forms for the year #{award_year.year}

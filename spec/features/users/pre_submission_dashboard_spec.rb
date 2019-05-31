@@ -5,7 +5,7 @@ describe  "User sees the pre submission dashboard" do
   let(:user) { create(:user, :completed_profile) }
 
   before do
-    Settings.current_registrations_open_on_date.update_attributes(trigger_at: 10.days.ago)
+    Settings.current_award_year_switch_date.update_attributes(trigger_at: 10.days.ago)
     login_as user
   end
 

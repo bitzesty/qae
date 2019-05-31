@@ -127,7 +127,7 @@ en:
       size_too_big: "is too big (should be at most %{file_size})"
 
   deadline_messages:
-    registrations_open_on: Registrations open on
+    award_year_switch: Award year opens on
     submission_start: Submission period starts on
     innovation_submission_start: Innovation submission period starts on
     trade_submission_start: International Trade submission period starts on
@@ -142,7 +142,7 @@ en:
     audit_certificates: Verification of Commercial Figures due by
 
   deadline_help_messages:
-    registrations_open_on: "This date marks the start of the new award year, and will update the website accordingly. New users will be able to register and current users will be able to log in to edit their account details, but they will not yet be able to start any applications"
+    award_year_switch: "This date marks the start of the new award year, and will update the website accordingly. Users will not yet be able to start any applications"
     submission_start: "This date is when the applications for the current award year become available."
     innovation_submission_start: "This date is when the applications for the Innovation award of the current award year become available."
     trade_submission_start: "This date is when the applications for the International Trade award of the current award year become available."
