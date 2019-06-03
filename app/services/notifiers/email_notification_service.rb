@@ -225,5 +225,6 @@ class Notifiers::EmailNotificationService
         user_id,
         award_type
       ).deliver_later!
+    end
   end
 end
