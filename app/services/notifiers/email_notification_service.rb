@@ -30,7 +30,7 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  def award_year_open_notifier
+  def award_year_open_notifier(award_year)
     user_ids = User.confirmed
                    .not_bounced_emails
                    .pluck(:id)
