@@ -35,7 +35,6 @@ class Deadline < ApplicationRecord
   validates :kind, presence: true
 
   after_save :clear_cache
-  after_save :update_email_notifications
   after_destroy :clear_cache
 
   class << self
@@ -100,14 +99,6 @@ class Deadline < ApplicationRecord
 
     if SUBMISSION_START_DEADLINES.include?(kind.to_s)
       Rails.cache.clear("submission_start_deadlines")
-    end
-  end
-
-  def update_email_notifications
-    if SUBMISSION_START_DEADLINES.include?(kind.to_s) && trigger_at
-      notification = settings.email_notifications.where(kind: "#{kind}ed_notification").first_or_initialize
-      notification.trigger_at = trigger_at
-      notification.save!
     end
   end
 end
