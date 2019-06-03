@@ -158,10 +158,10 @@ en:
   
   email_notification_help_messages:
     award_year_open_notifier: "This email will be sent to all users who have ticked that they want to receive opening notification for at least one award type in account's 'Contact Preferences' section."
-    innovation_award_open_notifier: "This email will be sent to all users who have ticked that they want to receive opening notification for Innovation award in account's 'Contact Preferences' section."
-    trade_award_open_notifier: "This email will be sent to all users who have ticked that they want to receive opening notification for International Trade award in account's 'Contact Preferences' section."
-    development_award_open_notifier: "This email will be sent to all users who have ticked that they want to receive opening notification for Sustainable Development award in account's 'Contact Preferences' section."
-    mobility_award_open_notifier: "This email will be sent to all users who have ticked that they want to receive opening notification for Promoting Opportunity award in account's 'Contact Preferences' section."
+    innovation_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Innovation award in account's 'Contact Preferences' section."
+    trade_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for International Trade award in account's 'Contact Preferences' section."
+    development_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Sustainable Development award in account's 'Contact Preferences' section."
+    mobility_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Promoting Opportunity award in account's 'Contact Preferences' section."
     shortlisted_notifier: "Shortlisted stage start (shortlisted/unsuccessful applications are displayed on the homepage)"
     winners_notification: "Winners stage start (winning applications are displayed on the homepage and allows users to update their Press Book entry)"
     unsuccessful_notification: "Unsuccessful stage start (Unsuccessful applications are displayed on the homepage)"
@@ -169,10 +169,10 @@ en:
   
   email_notification_headers:
     award_year_open_notifier: "Notify users that the applications for the new Award year are open"
-    innovation_award_open_notifier: "Notify users that the applications for Queen’s Awards for Innovation are now open"
-    trade_award_open_notifier: "Notify users that the applications for Queen’s Awards for International Trade are now open"
-    development_award_open_notifier: "Notify users that the applications for Queen’s Awards for Sustainable Development are now open"
-    mobility_award_open_notifier: "Notify users that the applications for Queen’s Awards for Promoting Opportunity are now open"
+    innovation_submission_started_notification: "Notify users that the applications for Queen’s Awards for Innovation are now open"
+    trade_submission_started_notification: "Notify users that the applications for Queen’s Awards for International Trade are now open"
+    development_submission_started_notification: "Notify users that the applications for Queen’s Awards for Sustainable Development are now open"
+    mobility_submission_started_notification: "Notify users that the applications for Queen’s Awards for Promoting Opportunity are now open"
     submission_started_notification: "Notify users that applications for the new Award year are open"
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."
