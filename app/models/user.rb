@@ -70,6 +70,11 @@ class User < ApplicationRecord
     scope :bounced_emails, -> {
       where(marked_at_bounces_email: true)
     }
+    scope :not_bounced_emails, -> {
+      where(
+        "marked_at_bounces_email IS FALSE OR marked_at_bounces_email IS NULL"
+      )
+    }
     scope :allowed_to_get_award_open_notification, -> (award_type) {
       where("notification_when_#{award_type}_award_open" => true)
     }

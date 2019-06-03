@@ -30,15 +30,40 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  def submission_started_notification(award_year, award_type)
-    user_ids = User.confirmed.allowed_to_get_award_open_notification(award_type).pluck(:id)
+  def award_year_open_notifier
+    user_ids = User.confirmed
+                   .not_bounced_emails
+                   .pluck(:id)
 
     user_ids.each do |user_id|
-      Users::SubmissionStartedNotificationMailer.notify(
-        user_id,
-        award_type
+      Users::AwardYearOpenNotificationMailer.notify(
+        user_id
       ).deliver_later!
     end
+  end
+
+  def submission_started_notification(award_year, award_type)
+    #
+    # NOTE: This one is old.
+    #       But we still need it here in order to show it for previous years
+    #
+    year_open_award_type_specific_notification(award_type)
+  end
+
+  def innovation_award_open_notifier
+    year_open_award_type_specific_notification("innovation")
+  end
+
+  def trade_award_open_notifier
+    year_open_award_type_specific_notification("trade")
+  end
+
+  def development_award_open_notifier
+    year_open_award_type_specific_notification("development")
+  end
+
+  def mobility_award_open_notifier
+    year_open_award_type_specific_notification("mobility")
   end
 
   def ep_reminder_support_letters(award_year)
@@ -187,5 +212,18 @@ class Notifiers::EmailNotificationService
         entry[:collaborator_id]
       ).deliver_later!
     end
+  end
+
+  def year_open_award_type_specific_notification(award_type)
+    user_ids = User.confirmed
+                   .not_bounced_emails
+                   .allowed_to_get_award_open_notification(award_type)
+                   .pluck(:id)
+
+    user_ids.each do |user_id|
+      Users::SubmissionStartedNotificationMailer.notify(
+        user_id,
+        award_type
+      ).deliver_later!
   end
 end
