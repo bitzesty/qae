@@ -1,26 +1,32 @@
-- deadline = @deadlines.detect { |d| d.kind == kind }.decorate
+- deadline = @deadlines.detect { |d| d.kind == kind }
+- deadline = deadline.decorate if deadline.present?
 
-.deadline id="deadline-#{deadline.id}"
-  span.date-time-text
-    => deadline.message
-    span.trigger-at
-      = deadline.formatted_trigger_time
-  .deadline-form.well
-    = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true do |f|
-      .control-date
-        label.control-label Set period
-        = f.input :trigger_at,
-                  as: :separated_date_time,
-                  input_html: { id: '' }
-      .control-action
-        = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide"
-        input type="button" value="Save" class="btn btn-primary btn-submit"
-      .clear
+- if deadline.present?
+  .deadline id="deadline-#{deadline.id}"
+    span.date-time-text
+      => deadline.message
+      span.trigger-at
+        = deadline.formatted_trigger_time
+    .deadline-form.well
+      = simple_form_for deadline, url: admin_settings_deadline_path(deadline, year: params[:year]), remote: true, authenticity_token: true do |f|
+        .control-date
+          label.control-label Set period
+          = f.input :trigger_at,
+                    as: :separated_date_time,
+                    input_html: { id: '' }
+        .control-action
+          = link_to "Cancel", "#", class: "btn btn-default btn-cancel if-no-js-hide"
+          input type="button" value="Save" class="btn btn-primary btn-submit"
+        .clear
 
-  = link_to "Edit", "#", class: "edit-deadline if-no-js-hide"
+    = link_to "Edit", "#", class: "edit-deadline if-no-js-hide"
 
-  span.deadline-help
-    - if deadline.help_message.present?
-      span.glyphicon-info-sign.help-message
-        .help-message-text
-          = deadline.help_message
+    span.deadline-help
+      - if deadline.help_message.present?
+        span.glyphicon-info-sign.help-message
+          .help-message-text
+            = deadline.help_message
+- else
+  .deadline
+    span.date-time-text
+      = "'#{kind.split('_').join(' ').capitalize}' deadline is not supported by #{@settings.award_year.year} award year!"
