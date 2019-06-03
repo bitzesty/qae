@@ -33,6 +33,7 @@ class Notifiers::EmailNotificationService
   def award_year_open_notifier(award_year)
     user_ids = User.confirmed
                    .not_bounced_emails
+                   .want_to_receive_opening_notification_for_at_least_one_award
                    .pluck(:id)
 
     user_ids.each do |user_id|
