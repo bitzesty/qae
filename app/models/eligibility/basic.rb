@@ -8,9 +8,10 @@ class Eligibility::Basic < Eligibility
             accept: :true
 
   property :do_you_file_company_tax_returns,
-            boolean: true,
+            values: %w[true false na], 
             label: "Do you file your Company Tax Returns with HM Revenue and Customs (HMRC)?",
-            accept: :true
+            hint: "All companies and partnerships have to select Yes or No. <br />However, if you are a charity and do not have to pay tax, please select N/A.",
+            accept: :not_no
 
   property :has_management_and_two_employees,
             boolean: true,
