@@ -12,7 +12,10 @@
           - elsif eligibility.class.integer_question?(question)
             = answer
           - elsif !answer.nil?
-            = eligibility.class.enumerized_attributes[question].find_value(answer).text
+            - if question == :do_you_file_company_tax_returns
+              = eligibility_tax_returns_formatted_answer(answer)
+            - else
+              = eligibility.class.enumerized_attributes[question].find_value(answer).text
 
         - unless admin_in_read_only_mode?
           td.link-right
