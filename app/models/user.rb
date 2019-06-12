@@ -70,11 +70,26 @@ class User < ApplicationRecord
     scope :bounced_emails, -> {
       where(marked_at_bounces_email: true)
     }
-    scope :not_checked_on_bounced_emails, -> {
-      where("debounce_api_latest_check_at IS NULL")
+    scope :not_bounced_emails, -> {
+      where(
+        "marked_at_bounces_email IS FALSE OR marked_at_bounces_email IS NULL"
+      )
     }
     scope :allowed_to_get_award_open_notification, -> (award_type) {
       where("notification_when_#{award_type}_award_open" => true)
+    }
+    scope :debounce_scan_candidates, -> () {
+      order(id: :asc).where(
+        "debounce_api_latest_check_at IS NULL OR debounce_api_latest_check_at < ?", 6.months.ago
+      )
+    }
+    scope :want_to_receive_opening_notification_for_at_least_one_award, -> () {
+      where("
+        notification_when_innovation_award_open IS TRUE OR
+        notification_when_trade_award_open IS TRUE OR
+        notification_when_development_award_open IS TRUE OR
+        notification_when_mobility_award_open IS TRUE
+      ")
     }
   end
 
@@ -147,6 +162,10 @@ class User < ApplicationRecord
 
   def timeout_in
     60.minutes
+  end
+
+  def check_email_on_bounces!
+    ::CheckAccountOnBouncesEmail.new(self).run!
   end
 
   def bounces_email_reason

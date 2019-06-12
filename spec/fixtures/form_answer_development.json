@@ -174,4 +174,9 @@
 "development_was_launched_since_day": "01",
 "development_was_launched_since_month": "09",
 "development_was_launched_since_year": "2011",
+"press_contact_details_title": "Mr", 
+"press_contact_details_first_name": "John", 
+"press_contact_details_last_name": "Doe", 
+"press_contact_details_telephone": "+4411111111111",
+"press_contact_details_email": "test@example.com",
 "company_estimates_use": "1"}

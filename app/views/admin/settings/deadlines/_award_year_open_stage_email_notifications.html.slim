@@ -1,0 +1,12 @@
+.panel.panel-default
+  .panel-heading#final-stage-email-notifications-heading role="tab"
+    h4.panel-title
+      a data-toggle="collapse" data-parent="#panel-final-stage" href="#section-final-stage-email-notifications" aria-expanded="true" aria-controls="section-final-stage-email-notifications"
+        ' Email notification
+  #section-final-stage-email-notifications.section-appraisal-form.section-final-stage-email-notifications.panel-collapse.collapse.in role="tabpanel" aria-labelledby="final-stage-email-notifications-heading"
+    .panel-body
+      = render 'email_notification', kind: 'award_year_open_notifier'
+      = render 'email_notification', kind: 'innovation_submission_started_notification'
+      = render 'email_notification', kind: 'trade_submission_started_notification'
+      = render 'email_notification', kind: 'development_submission_started_notification'
+      = render 'email_notification', kind: 'mobility_submission_started_notification'

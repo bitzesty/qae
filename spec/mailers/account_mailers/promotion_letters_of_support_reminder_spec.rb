@@ -31,10 +31,10 @@ describe AccountMailers::PromotionLettersOfSupportReminderMailer do
     end
 
     it "renders the body" do
-      expect(mail.html_part.decoded).to match(edit_form_url(id: form_answer.id))
-      expect(mail.html_part.decoded).to match(deadline)
-      expect(mail.html_part.decoded).to match("Jovan Savovich")
-      expect(mail.html_part.decoded).to match(user.decorate.full_name)
+      expect(mail.body.raw_source).to match(edit_form_url(id: form_answer.id))
+      expect(mail.body.raw_source).to match(deadline)
+      expect(mail.body.raw_source).to match("Jovan Savovich")
+      expect(mail.body.raw_source).to match(user.decorate.full_name)
     end
   end
 end

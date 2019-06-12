@@ -127,7 +127,7 @@ en:
       size_too_big: "is too big (should be at most %{file_size})"
 
   deadline_messages:
-    registrations_open_on: Registrations open on
+    award_year_switch: Award year opens on
     submission_start: Submission period starts on
     innovation_submission_start: Innovation submission period starts on
     trade_submission_start: International Trade submission period starts on
@@ -142,7 +142,7 @@ en:
     audit_certificates: Verification of Commercial Figures due by
 
   deadline_help_messages:
-    registrations_open_on: "This date marks the start of the new award year, and will update the website accordingly. New users will be able to register and current users will be able to log in to edit their account details, but they will not yet be able to start any applications"
+    award_year_switch: "This date marks the start of the new award year, and will update the website accordingly. Users will not yet be able to start any applications"
     submission_start: "This date is when the applications for the current award year become available."
     innovation_submission_start: "This date is when the applications for the Innovation award of the current award year become available."
     trade_submission_start: "This date is when the applications for the International Trade award of the current award year become available."
@@ -155,12 +155,24 @@ en:
     buckingham_palace_reception_attendee_information_due_by: "Winners will not be able to submit attendees details after this date. This date will be pulled into the Buckingham Palace Invite email - to heads of winning organisations only."
     buckingham_palace_attendees_invite: "This date will be pulled into the email notifying all winning business applicants of their success, the email to the heads of organisations and the Buckingham Palace Invite email."
     audit_certificates: "Shortlisted applicants will have up until this date to submit their Verification of Commercial Figures. This date will be pulled into the email notifying shortlisted applicants of their success, and the reminder to submit Verification of Commercial Figures email."
+  
   email_notification_help_messages:
+    award_year_open_notifier: "This email will be sent to all users who have ticked that they want to receive opening notification for at least one award type in account's 'Contact Preferences' section."
+    innovation_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Innovation award in account's 'Contact Preferences' section."
+    trade_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for International Trade award in account's 'Contact Preferences' section."
+    development_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Sustainable Development award in account's 'Contact Preferences' section."
+    mobility_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Promoting Opportunity award in account's 'Contact Preferences' section."
     shortlisted_notifier: "Shortlisted stage start (shortlisted/unsuccessful applications are displayed on the homepage)"
     winners_notification: "Winners stage start (winning applications are displayed on the homepage and allows users to update their Press Book entry)"
     unsuccessful_notification: "Unsuccessful stage start (Unsuccessful applications are displayed on the homepage)"
     buckingham_palace_invite: "Palace invites stage start (allows users to add their Palace invite details on the homepage)"
+  
   email_notification_headers:
+    award_year_open_notifier: "Notify users that the applications for the new Award year are open"
+    innovation_submission_started_notification: "Notify users that the applications for Queen’s Awards for Innovation are now open"
+    trade_submission_started_notification: "Notify users that the applications for Queen’s Awards for International Trade are now open"
+    development_submission_started_notification: "Notify users that the applications for Queen’s Awards for Sustainable Development are now open"
+    mobility_submission_started_notification: "Notify users that the applications for Queen’s Awards for Promoting Opportunity are now open"
     submission_started_notification: "Notify users that applications for the new Award year are open"
     reminder_to_submit: Reminder to submit the applications (to all those who have started but not yet submitted applications).
     ep_reminder_support_letters: "ENTERPRISE PROMOTION : Reminder to follow up supporter letters (to all those who have started EP applications, but have fewer than 2 support letters submitted)."

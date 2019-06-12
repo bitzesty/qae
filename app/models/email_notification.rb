@@ -3,6 +3,7 @@ class EmailNotification < ApplicationRecord
   include FormattedTime::DateTimeFor
 
   NOTIFICATION_KINDS = [
+                         :award_year_open_notifier,
                          :trade_submission_started_notification,
                          :mobility_submission_started_notification,
                          :development_submission_started_notification,
