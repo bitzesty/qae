@@ -1,0 +1,25 @@
+# Ignore bundler config.
+/.bundle
+
+# Ignore bundler circle ci cache.
+vendor/bundle/*
+elasticsearch-5.3.0/*
+
+# Ignore all logfiles and tempfiles.
+/log/*
+!/log/.keep
+/tmp/*
+.byebug_history
+
+# Environment files
+.env
+
+# Cloud Foundry manifest files
+*manifest.yml
+
+# Other files
+*.DS_Store
+/coverage/*
+
+# Ignore git
+.git

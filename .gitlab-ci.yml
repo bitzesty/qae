@@ -1,5 +1,5 @@
 image:
-  name: ruby:2.5.0
+  name: ruby:2.5.5
 
 variables:
   DISPLAY_SOCIAL_MOBILITY_AWARD: "true"

@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.5.0'
+git_source(:github) { |name| "https://github.com/#{name}.git" }
+
+ruby '2.5.5'
 
 gem 'rails', '~> 5.2'
 

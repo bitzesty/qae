@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/galetahub/ckeditor.git
+  remote: https://github.com/galetahub/ckeditor.git
   revision: 752bca97f78e5c5df3fbd876e51a06918da804e2
   ref: 752bca97f78e5c5df3fbd876e51a06918da804e2
   specs:
@@ -8,7 +8,7 @@ GIT
       orm_adapter (~> 0.5.0)
 
 GIT
-  remote: git://github.com/rusllonrails/devise-security.git
+  remote: https://github.com/rusllonrails/devise-security.git
   revision: fba2dd6dea5571bd979284eb7f7bbd67556eb8b0
   branch: V_0_13_0_with_skip_limitable_patch
   specs:
@@ -816,7 +816,7 @@ DEPENDENCIES
   wicked (~> 1.1)
 
 RUBY VERSION
-   ruby 2.5.0p0
+   ruby 2.5.5p157
 
 BUNDLED WITH
-   1.17.2
+   2.0.1

@@ -1,2 +1,2 @@
-web: bundle exec rails server -p 3000
+web: bundle exec rake db:migrate && bundle exec puma -C config/puma.rb
 worker: bundle exec sidekiq -L ./log/worker.log -C ./config/sidekiq.yml
