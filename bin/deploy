@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+set -e
+
+# Fetch deployed revision
+export GIT_OLD_REVISION=`curl "https://$CF_APP.$HEALTHCHECK_URL" | grep -o -w -E '[[:alnum:]]{7}'`
+
+# Log the new revision
+export GIT_REVISION=`git rev-parse --short HEAD`
+echo $GIT_REVISION > REVISION
+
+export GIT_MESSAGE=`git log --oneline $GIT_OLD_REVISION..$GIT_REVISION`
+
+# Check CF connectivity
+cf login -a $CF_ENDPOINT -u $CF_USER -p "$CF_PASSWORD" -o $CF_ORG -s $CF_SPACE
+cf a
+
+curl -X POST \
+--data-urlencode 'payload={"text": "'"Deploying $CF_APP.\n${GIT_MESSAGE}"'", "channel": "'"#$SLACK_CHANNEL"'", "username": "cf-deploy", "icon_emoji": ":cloud:", "fields": [{"title": "ENV", "value": "'"$CF_SPACE"'", "short": true}, {"title": "SHA1", "value": "'"<https://github.com/bitzesty/trade-tariff-backend/compare/$GIT_OLD_REVISION...$GIT_REVISION|$GIT_REVISION>"'", "short": true}]}' \
+$SLACK_WEBHOOK
+
+cf push $CF_APP
+
+curl -X POST \
+--data-urlencode 'payload={"text": "'"Deployment finished for $CF_APP"'", "channel": "'"#$SLACK_CHANNEL"'", "username": "cf-deploy", "icon_emoji": ":cloud:", "fields": [{"title": "ENV", "value": "'"$CF_SPACE"'", "short": true}, {"title": "SHA1", "value": "'"<https://github.com/bitzesty/trade-tariff-backend/compare/$GIT_OLD_REVISION...$GIT_REVISION|$GIT_REVISION>"'", "short": true}]}' \
+$SLACK_WEBHOOK

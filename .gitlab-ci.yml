@@ -27,6 +27,7 @@ test:
     - mv $PHANTOM_JS /usr/local/share
     - ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
     - phantomjs --version
+    - bundle update --bundler
     - bundle install --path vendor/bundler --jobs=4 --retry=3
     - RAILS_ENV=test bundle exec rake db:create db:migrate
   script:
@@ -60,11 +61,12 @@ code_quality:
 deploy_dev:
   stage: deploy
   script:
-    - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
-    - mv /tmp/convox /usr/local/bin/convox
-    - chmod 755 /usr/local/bin/convox
-    - convox deploy --app qae-dev --rack bitzesty/qae
-    - convox run web rake db:migrate --app qae-dev --rack bitzesty/qae
+    - curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+    - sudo dpkg -i cf-cli_amd64.deb
+    - cf -v
+    - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+    - cf install-plugin blue-green-deploy -r CF-Community -f
+    - CF_ENDPOINT=api.london.cloud.service.gov.uk CF_SPACE=dev CF_APP=qae ./bin/deploy
   environment:
     name: dev
     url: https://dev.queens-awards-enterprise.service.gov.uk/
