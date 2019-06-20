@@ -73,6 +73,7 @@ deploy_dev:
     url: https://dev.queens-awards-enterprise.service.gov.uk/
   only:
     - master
+    - migrate-to-govuk-paas
 
 deploy_staging:
   stage: deploy
