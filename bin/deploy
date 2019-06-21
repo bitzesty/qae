@@ -13,6 +13,7 @@ $SLACK_WEBHOOK
 ruby -ryaml -e 'm = YAML.load(STDIN); m["applications"].map{ |x| x["buildpack"] = x["buildpacks"][0]; x.delete("buildpacks") }; puts YAML.dump(m)' \
   < manifest.yml \
   > patched_manifest.yml
+cat patched_manifest.yml
 
 cf push -f manifest.worker.yml
 
