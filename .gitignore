@@ -20,5 +20,5 @@ coverage/*
 .env.production
 .env.development
 
-qae_manifest.yml
-qae worker_manifest.yml
+qae-dev_manifest.yml
+qae-dev-worker_manifest.yml
