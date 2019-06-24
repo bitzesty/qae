@@ -67,7 +67,7 @@ deploy_dev:
     - cf -v
     - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
     - cf install-plugin blue-green-deploy -r CF-Community -f
-    - CF_ENDPOINT=api.london.cloud.service.gov.uk CF_SPACE=dev CF_APP=qae ./bin/deploy
+    - CF_ENDPOINT=api.london.cloud.service.gov.uk CF_SPACE=dev CF_APP=qae-dev ./bin/deploy
   environment:
     name: dev
     url: https://dev.queens-awards-enterprise.service.gov.uk/
