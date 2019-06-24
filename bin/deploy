@@ -9,9 +9,11 @@ curl -X POST \
 --data-urlencode 'payload={"text": "'"Deploying $CF_APP"'", "channel": "'"#$SLACK_CHANNEL"'", "username": "cf-deploy", "icon_emoji": ":cloud:", "fields": [{"title": "ENV", "value": "'"$CF_SPACE"'", "short": true}' \
 $SLACK_WEBHOOK
 
-cf push -f manifest.worker.yml
+cf create-app-manifest 'qae worker'
+cf push -f 'qae worker_manifest.yml'
 
-cf bgd $CF_APP -f manifest.yml
+cf create-app-manifest qae
+cf bgd $CF_APP -f qae_manifest.yml
 
 curl -X POST \
 --data-urlencode 'payload={"text": "'"Deployment finished for $CF_APP"'", "channel": "'"#$SLACK_CHANNEL"'", "username": "cf-deploy", "icon_emoji": ":cloud:", "fields": [{"title": "ENV", "value": "'"$CF_SPACE"'", "short": true}' \
