@@ -1,8 +1,0 @@
-applications:
-  - name: qae worker
-    command: bundle exec sidekiq -e production -C config/sidekiq.yml
-    buildpacks:
-      - ruby_buildpack
-    routes:
-      - route: qae-worker.apps.internal
-    health-check-type: process
