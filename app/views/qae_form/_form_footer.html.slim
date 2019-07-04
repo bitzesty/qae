@@ -35,7 +35,7 @@ footer
             ' Save and continue
 
       - else
-        - if step.submit && current_form_is_editable? && false
+        - if step.submit && current_form_is_editable?
           li.submit.qae-form
             button type="submit" name="submit" value="true" class="button #{step.submit.style.presence}"
               = step.submit.text
