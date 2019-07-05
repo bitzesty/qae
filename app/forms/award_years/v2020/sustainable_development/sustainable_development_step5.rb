@@ -2,24 +2,93 @@ class AwardYears::V2020::QAEForms
   class << self
     def development_step5
       @development_step5 ||= proc do
-        upload :innovation_materials, "If there is additional material you feel would help us to assess your entry, then you can add up to 3 files or website addresses here." do
-          ref "E 1"
-          context %(
-            <p>
-              Please include any vital information in the form as we can't guarantee the additional material will be reviewed. It is also essential to reference these in your application to ensure the assessors are aware of them and can relate this information to the relevant questions.
-            </p>
-            <p>You can upload files in all common formats, as long as they're less than 5mb each.</p>
-            <p>You may link to videos, websites or other media you feel relevant.</p>
-            <p>We won't consider business plans, annual accounts or company policy documents. Additional materials should not be used as a substitute for completing sections of the form.</p>
+        header :head_of_bussines_header, "Head of your organisation" do
+          ref "F 1"
+        end
+
+        text :head_of_bussines_title, "Title" do
+          required
+          classes "sub-question"
+          style "tiny"
+        end
+
+        head_of_business :head_of_business, "" do
+          sub_fields([
+            { first_name: "First name" },
+            { last_name: "Last name" },
+            { honours: "Personal Honours" }
+          ])
+        end
+
+        text :head_job_title, "Job title / role in the organisation" do
+          classes "sub-question"
+          required
+          form_hint %(
+            e.g. CEO, Managing Director, Founder
           )
-          hint "What are the allowed file formats?", %(
+        end
+
+        text :head_email, "Email address" do
+          classes "sub-question"
+          style "large"
+          required
+        end
+
+        confirm :confirmation_of_consent, "Confirmation of consent" do
+          ref "F 2"
+          required
+          text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
+        end
+
+        confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
+          ref "F 3"
+          text %(
+            I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, other info).
+          )
+        end
+
+        confirm :agree_being_contacted_by_department_of_business, "" do
+          sub_ref "F 3.1"
+          show_ref_always true
+          text %(
+            I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.
+          )
+        end
+
+        confirm :entry_confirmation, "Confirmation of entry" do
+          ref "F 4"
+          required
+          text -> do
+            %(
+              By ticking this box, I submit an entry for consideration for The Queen's Awards for Enterprise #{AwardYear.current.year}. I certify that all the particulars given and those in any accompanying statements are correct to the best of my knowledge and belief and that no material information has been withheld. I undertake to notify The Queen's Awards Office of any changes to the information I have provided in this entry form.
+              <br>
+              <br>
+              I am not aware of any matter which might cast doubt on the worthiness of my organisation to receive a Queen's Award for Enterprise. I consent to all necessary enquiries being made by The Queen's Awards Office concerning this entry. This includes enquiries made of Government Departments and Agencies in discharging its responsibilities to vet any business unit which might be granted a Queen's Award to ensure the highest standards of propriety.
+            )
+          end
+        end
+
+        confirm :shortlisted_case_confirmation, "" do
+          ref "F 4.1"
+          required
+          show_ref_always true
+          text %(
+            By ticking this box, you agree that if your application is shortlisted, you will supply commercial figures verified by an independent accountant before the specified November deadline.
+            <br>
+            <br>
+            If verified figures are not provided by the specified November deadline at shortlist stage, your entry will be rejected.
+          )
+        end
+
+        submit "Submit application" do
+          notice %(
             <p>
-              You can upload any of the following file formats: chm, csv, diff, doc, docx, dot, dxf, eps, gif, gml, ics, jpg, kml, odp, ods, odt, pdf, png, ppt, pptx, ps, rdf, rtf, sch, txt, wsdl, xls, xlsm, xlsx, xlt, xml, xsd, xslt, zip.
+              If you have answered all the questions, you can submit your application now. You will be able to edit it any time before [SUBMISSION_ENDS_TIME].
+            </p>
+            <p>
+              If you are not ready to submit yet, you can save your application and come back later.
             </p>
           )
-          max_attachments 3
-          links
-          description
         end
       end
     end
