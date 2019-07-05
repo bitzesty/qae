@@ -3,7 +3,6 @@ require "award_years/v2020/sustainable_development/sustainable_development_step2
 require "award_years/v2020/sustainable_development/sustainable_development_step3"
 require "award_years/v2020/sustainable_development/sustainable_development_step4"
 require "award_years/v2020/sustainable_development/sustainable_development_step5"
-require "award_years/v2020/sustainable_development/sustainable_development_step6"
 
 class AwardYears::V2020::QAEForms
   class << self

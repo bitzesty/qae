@@ -5,13 +5,117 @@ class AwardYears::V2020::QAEForms
       @development_step2 ||= proc do
         header :development_b_section_header, "" do
           context %(
+            <h3>About this section</h3>  
             <p>
-              This section enables you to present the details of your product, service or management approach and to give us the evidence about your activities, leadership and achievements that will allow us to assess your application.
+              Read this section before planning the answers. 
+              Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
+              <br />
+              Avoid using technical jargon.
+            </p>
+
+            <h3>Small organisations</h3>
+            <p>
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+            </p>
+
+            <h3>Sustainable Development Goals (SDGs)</h3>
+            <p>
+              You may find it helpful to familiarise yourself with the United Nations (UN) 17 Sustainable Development Goals (SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
             </p>
             <p>
-              Please try to avoid using technical jargon in this section.
+              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development actions or interventions.
+            </p>
+
+            <p>
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/?page_id=6226&preview=true">GOAL 1: No Poverty</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal2.html">GOAL 2: Zero Hunger</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal3.html">GOAL 3: Good Health and Well-being</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal4.html">GOAL 4: Quality Education</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal5.html">GOAL 5: Gender Equality</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal6.html">GOAL 6: Clean Water and Sanitation</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal7.html">GOAL 7: Affordable and Clean Energy</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal8.html">GOAL 8: Decent Work and Economic Growth</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal9.html">GOAL 9: Industry, Innovation and Infrastructure</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal10.html">GOAL 10: Reduced Inequality</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal11.html">GOAL 11: Sustainable Cities and Communities</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal12.html">GOAL 12: Responsible Consumption and Production</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal13.html">GOAL 13: Climate Action</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal14.html">GOAL 14: Life Below Water</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal15.html">GOAL 15: Life on Land</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal16.html">GOAL 16: Peace and Justice Strong Institutions</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal17.html">GOAL 17: Partnerships to achieve the Goal</a>
             </p>
           )
+
+          pdf_context_with_header_blocks [
+            [:bold, "About this section"],
+            [:normal, %(
+              Read this section before planning the answers. 
+              Try not to repeat points, instead refer to the relevant answer you have previously provided to another question.
+              Avoid using technical jargon.
+            )],
+            [:bold, "Small organisations"],
+            [:normal, %(
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+            )],
+            [:bold, "Sustainable Development Goals (SDGs)"],
+            [:normal, %(
+              You may find it helpful to familiarise yourself with the United Nations (UN) 17 Sustainable Development Goals (SDGs). While they include impacts at a national level, you may want to reference the real positive impact your organisation contributes towards them.
+ 
+              You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development actions or interventions.
+  
+              \u2022 GOAL 1: No Poverty 
+              https://www.un.org/development/desa/disabilities/?page_id=6226&preview=true
+
+              \u2022 GOAL 2: Zero Hunger 
+              http://www.un.org/development/desa/disabilities/envision2030-goal2.html
+
+              \u2022 GOAL 3: Good Health and Well-being 
+              http://www.un.org/development/desa/disabilities/envision2030-goal3.html
+
+              \u2022 GOAL 4: Quality Education 
+              http://www.un.org/development/desa/disabilities/envision2030-goal4.html
+              
+              \u2022 GOAL 5: Gender Equality 
+              http://www.un.org/development/desa/disabilities/envision2030-goal5.html
+              
+              \u2022 GOAL 6: Clean Water and Sanitation 
+              http://www.un.org/development/desa/disabilities/envision2030-goal6.html
+              
+              \u2022 GOAL 7: Affordable and Clean Energy 
+              http://www.un.org/development/desa/disabilities/envision2030-goal7.html
+              
+              \u2022 GOAL 8: Decent Work and Economic Growth 
+              http://www.un.org/development/desa/disabilities/envision2030-goal8.html
+              
+              \u2022 GOAL 9: Industry, Innovation and Infrastructure 
+              http://www.un.org/development/desa/disabilities/envision2030-goal9.html
+              
+              \u2022 GOAL 10: Reduced Inequality 
+              http://www.un.org/development/desa/disabilities/envision2030-goal10.html
+              
+              \u2022 GOAL 11: Sustainable Cities and Communities 
+              http://www.un.org/development/desa/disabilities/envision2030-goal11.html
+              
+              \u2022 GOAL 12: Responsible Consumption and Production 
+              http://www.un.org/development/desa/disabilities/envision2030-goal12.html
+              
+              \u2022 GOAL 13: Climate Action 
+              http://www.un.org/development/desa/disabilities/envision2030-goal13.html
+              
+              \u2022 GOAL 14: Life Below Water 
+              http://www.un.org/development/desa/disabilities/envision2030-goal14.html
+              
+              \u2022 GOAL 15: Life on Land 
+              http://www.un.org/development/desa/disabilities/envision2030-goal15.html
+              
+              \u2022 GOAL 16: Peace and Justice Strong Institutions 
+              http://www.un.org/development/desa/disabilities/envision2030-goal16.html
+              
+              \u2022 GOAL 17: Partnerships to achieve the Goal 
+              http://www.un.org/development/desa/disabilities/envision2030-goal17.html
+            )]
+          ]
         end
 
         checkbox_seria :application_relate_to, "This entry relates to:" do
