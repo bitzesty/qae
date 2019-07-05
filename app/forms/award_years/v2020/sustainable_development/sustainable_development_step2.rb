@@ -118,148 +118,125 @@ class AwardYears::V2020::QAEForms
           ]
         end
 
-        checkbox_seria :application_relate_to, "This entry relates to:" do
+        header :sustainable_development_interventions_header, "Your sustainable development interventions" do
           ref "B 1"
-          required
           context %(
-            <p>Select all that apply.</p>
+            <p>
+              In questions B1.1 and B1.2 you need to summarise your actions or interventions to sustainable development. This is to help us understand the size and scale of your actions or interventions. This summary might be used in publicity material if your application is successful.
+            </p>
           )
-          check_options [
-            ["product", "A product"],
-            ["service", "A service"],
-            ["management_approach", "A management approach"]
-          ]
-          application_type_question true
         end
 
-        textarea :development_management_approach_briefly, "Briefly describe your product, service or management approach." do
-          classes "sub-question word-max-strict"
-          ref "B 1.1"
+        textarea :describe_your_interventions_using_un, "Describe your interventions, using the UN Sustainable Development (SD) goals to structure your answer where relevant." do
           required
-          context %(
+          classes "sub-question"
+          sub_ref "B 1.1"
+          context %{
             <p>
-              If more than one, please make sure you cover all of them.
+              Where relevant, please include:
             </p>
             <p>
-              This will be used in publicity material if your application is successful.
+              a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
             </p>
             <p>
-              For example:
+              b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
+            </p>
+            <p>
+              c) The proportion of these interventions compared to your whole organisation’s size.
+            </p>
+            <p>
+              d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
             </p>
             <ul>
               <li>
-                Working with organisations to produce the highest quality printed material with the lightest environmental impact.
+                An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
               </li>
               <li>
-                Product and ingredient certification, business services and public awareness for fair and sustainable trade.
+                Developing unique or innovative ways, products or services to be sustainable.
               </li>
               <li>
-                Own, manage and develop an environmentally friendly commercial property, focused on UK retail offices.
+                Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools. 
+              </li>
+              <li>
+                Leading the way in your company, sector or market by doing something that has never been done before. 
               </li>
             </ul>
-          )
+          }
 
-          pdf_context %(
+          pdf_context %{
             <p>
-              If more than one, please make sure you cover all of them.
+              Where relevant, please include:
             </p>
             <p>
-              This will be used in publicity material if your application is successful.
+              a) The aims of the actions or interventions, for example, to regenerate, to restore, to reduce emissions.
             </p>
             <p>
-              For example:
+              b) Which SD goals are your efforts targeted towards? Please note, you do not need to address each UN SD goal, only the ones that are most applicable to your sustainable development actions or interventions.
             </p>
             <p>
-              \u2022 Working with organisations to produce the highest quality printed material with the lightest environmental impact.
+              c) The proportion of these interventions compared to your whole organisation’s size.
+            </p>
+            <p>
+              d) Provide evidence of what makes your actions or interventions exemplary. For example, it may be exemplary as a result of:
+            </p>
+            <p>
+              \u2022 An overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit or develop people.
+   
+              \u2022 Developing unique or innovative ways, products or services to be sustainable.
+     
+              \u2022 Forming effective partnerships with other organisations, for example, businesses in your supply chain, charities or schools. 
+  
+              \u2022 Leading the way in your company, sector or market by doing something that has never been done before. 
+            </p>
+          }
 
-              \u2022 Product and ingredient certification, business services and public awareness for fair and sustainable trade.
+          rows 10
+          words_max 1000
+        end
 
-              \u2022 Own, manage and develop an environmentally friendly commercial property, focused on UK retail offices.
+        textarea :one_line_description_of_interventions, "Provide a one-line description of your sustainable development interventions." do
+          classes "sub-question word-max-strict"
+          ref "B 1.2"
+          required
+          context %(
+            <p>
+              If your application is successful, this description will appear in the London Gazette. 
             </p>
           )
           rows 2
           words_max 15
         end
 
-        textarea :development_desc_long, "Summarise your product, service or management approach specifically concerning your core business, and any practices followed as a result of the operations or requirements of the wider organisation/parent company." do
-          classes "sub-question word-max-strict"
-          ref "B 1.2"
-          required
-          context %(
-            <p>
-              <strong>Please note: If you are applying for a management approach only, the sustainability of your product/service will also be taken into account.</strong>
-            </p>
-            <p>
-              If more than one product, service or management approach, please make sure you cover all of them. Include a brief description of their origin and development.
-            </p>
-          )
-          rows 5
-          words_max 500
-        end
-
-        textarea :development_desc_short, "Describe how you demonstrate leadership regarding influencing staff or managing the resources that are important to your application and how you look to embed these principles with your suppliers and customers." do
+        textarea :briefly_describe_your_core_business, "Your core business<br />Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business." do
           classes "word-max-strict"
           ref "B 2"
           required
-          context %(
+          context %{
             <p>
-              Please summarise any plans, policies, strategies that you have in place that demonstrate your leadership approach within your organisation and which drive your relationships with your partners.
+              Please include:
             </p>
             <p>
-              For example, you may wish to demonstrate how you:
-            </p>
-            <ul>
-              <li>
-                Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits (above), or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
-              </li>
-              <li>
-                Follow principles of good governance, openness and consultation with regards to customers, suppliers and staff.
-              </li>
-              <li>
-                Have embedded ethical business principles and, where appropriate, have actively opposed corruption and unfair practices or challenged those with a detrimental impact on the environment.
-              </li>
-              <li>
-                Systematically promote sustainable development - for example, by using indicators, targets, policies and management processes to enable you to demonstrate and measure progress and success.
-              </li>
-              <li>
-                Take part in and commit to relevant accredited and verified schemes such as British Standards and ISO.
-              </li>
-              <li>
-                Create management innovation. For example, develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
-              </li>
-            </ul>
-            <p>
-              Please specify the timescale over which your sustainable development performance has been or will be sustained.
-            </p>
-          )
-
-          pdf_context %(
-            <p>
-              Please summarise any plans, policies, strategies that you have in place that demonstrate your leadership approach within your organisation and which drive your relationships with your partners.
+              a) A brief summary of your organisation.
             </p>
             <p>
-              For example, you may wish to demonstrate how you:
+              b) What was the situation before your organisation adopted a sustainability purpose, objective, intervention or action?
             </p>
             <p>
-              \u2022 Have achieved any specific successes and outcomes, such as developing an innovative new product or process delivering environmental benefits (above), or seeing sustainable development outcomes embedded in your organisation, supply chain or community.
-
-              \u2022 Follow principles of good governance, openness and consultation with regards to customers, suppliers and staff.
-
-              \u2022 Have embedded ethical business principles and, where appropriate, have actively opposed corruption and unfair practices or challenged those with a detrimental impact on the environment.
-
-              \u2022 Systematically promote sustainable development - for example, by using indicators, targets, policies and management processes to enable you to demonstrate and measure progress and success.
-
-              \u2022 Take part in and commit to relevant accredited and verified schemes such as British Standards and ISO.
-
-              \u2022 Create management innovation. For example, develop innovative ways to engage employees, local communities and stakeholders in sustainable development, or have reward schemes for employees with good environmental and social performance.
+              c) Why did you choose these particular actions or interventions, and how do they align with the core aims and values of your organisation?
             </p>
             <p>
-              Please specify the timescale over which your sustainable development performance has been or will be sustained.
+              d) How have you embedded sustainability objectives or purpose in your organisation?
             </p>
-          )
-          rows 8
-          words_max 750
+          }
+          rows 5
+          words_max 600
         end
+
+
+
+
+
+
 
         header :provide_evidence_header, "Where possible, provide evidence of your product, service or management approach's contribution to each of the outcomes of sustainable development below." do
           ref "B 3"
