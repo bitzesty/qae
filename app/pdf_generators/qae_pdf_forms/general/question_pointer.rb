@@ -202,6 +202,8 @@ class QaePdfForms::General::QuestionPointer
       form_pdf.indent 25.mm do
         form_pdf.render_text question.escaped_title,
                              style: :bold
+
+        render_question_sub_title
       end
     end
   end
@@ -307,6 +309,14 @@ class QaePdfForms::General::QuestionPointer
       form_pdf.image "#{Rails.root}/app/assets/images/#{valid_icon}",
                      at: [0, form_pdf.cursor - 4.mm],
                      width: 7.mm
+    end
+  end
+
+  def render_question_sub_title
+    if question.question_sub_title.present?
+      form_pdf.move_up 5.mm
+      form_pdf.render_text question.question_sub_title
+      form_pdf.move_up 5.mm
     end
   end
 

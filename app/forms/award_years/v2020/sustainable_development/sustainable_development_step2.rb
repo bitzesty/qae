@@ -211,10 +211,10 @@ class AwardYears::V2020::QAEForms
           classes "word-max-strict"
           ref "B 2"
           required
+          question_sub_title %{
+            Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
+          }
           context %{
-            <p>
-              Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
-            </p>
             <p>
               Please include:
             </p>
