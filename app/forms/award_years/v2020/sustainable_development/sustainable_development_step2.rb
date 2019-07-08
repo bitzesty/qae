@@ -27,23 +27,23 @@ class AwardYears::V2020::QAEForms
             </p>
 
             <p>
-              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/?page_id=6226&preview=true">GOAL 1: No Poverty</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal2.html">GOAL 2: Zero Hunger</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal3.html">GOAL 3: Good Health and Well-being</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal4.html">GOAL 4: Quality Education</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal5.html">GOAL 5: Gender Equality</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal6.html">GOAL 6: Clean Water and Sanitation</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal7.html">GOAL 7: Affordable and Clean Energy</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal8.html">GOAL 8: Decent Work and Economic Growth</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal9.html">GOAL 9: Industry, Innovation and Infrastructure</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal10.html">GOAL 10: Reduced Inequality</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal11.html">GOAL 11: Sustainable Cities and Communities</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal12.html">GOAL 12: Responsible Consumption and Production</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal13.html">GOAL 13: Climate Action</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal14.html">GOAL 14: Life Below Water</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal15.html">GOAL 15: Life on Land</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal16.html">GOAL 16: Peace and Justice Strong Institutions</a><br />
-              <a class="social-mobility-form-goal-link" target="_blank" href="http://www.un.org/development/desa/disabilities/envision2030-goal17.html">GOAL 17: Partnerships to achieve the Goal</a>
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal1.html">GOAL 1: No Poverty</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal2.html">GOAL 2: Zero Hunger</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal3.html">GOAL 3: Good Health and Well-being</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal4.html">GOAL 4: Quality Education</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal5.html">GOAL 5: Gender Equality</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal6.html">GOAL 6: Clean Water and Sanitation</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal7.html">GOAL 7: Affordable and Clean Energy</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal8.html">GOAL 8: Decent Work and Economic Growth</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal9.html">GOAL 9: Industry, Innovation and Infrastructure</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal10.html">GOAL 10: Reduced Inequality</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal11.html">GOAL 11: Sustainable Cities and Communities</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal12.html">GOAL 12: Responsible Consumption and Production</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal13.html">GOAL 13: Climate Action</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal14.html">GOAL 14: Life Below Water</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal15.html">GOAL 15: Life on Land</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal16.html">GOAL 16: Peace and Justice Strong Institutions</a><br />
+              <a class="social-mobility-form-goal-link" target="_blank" href="https://www.un.org/development/desa/disabilities/envision2030-goal17.html">GOAL 17: Partnerships to achieve the Goal</a>
             </p>
           )
 
@@ -65,55 +65,55 @@ class AwardYears::V2020::QAEForms
               You do not need to show impact in each of these areas, only the ones that are most applicable to your sustainable development actions or interventions.
   
               \u2022 GOAL 1: No Poverty 
-              https://www.un.org/development/desa/disabilities/?page_id=6226&preview=true
+              https://www.un.org/development/desa/disabilities/envision2030-goal1.html
 
               \u2022 GOAL 2: Zero Hunger 
-              http://www.un.org/development/desa/disabilities/envision2030-goal2.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal2.html
 
               \u2022 GOAL 3: Good Health and Well-being 
-              http://www.un.org/development/desa/disabilities/envision2030-goal3.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal3.html
 
               \u2022 GOAL 4: Quality Education 
-              http://www.un.org/development/desa/disabilities/envision2030-goal4.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal4.html
               
               \u2022 GOAL 5: Gender Equality 
-              http://www.un.org/development/desa/disabilities/envision2030-goal5.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal5.html
               
               \u2022 GOAL 6: Clean Water and Sanitation 
-              http://www.un.org/development/desa/disabilities/envision2030-goal6.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal6.html
               
               \u2022 GOAL 7: Affordable and Clean Energy 
-              http://www.un.org/development/desa/disabilities/envision2030-goal7.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal7.html
               
               \u2022 GOAL 8: Decent Work and Economic Growth 
-              http://www.un.org/development/desa/disabilities/envision2030-goal8.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal8.html
               
               \u2022 GOAL 9: Industry, Innovation and Infrastructure 
-              http://www.un.org/development/desa/disabilities/envision2030-goal9.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal9.html
               
               \u2022 GOAL 10: Reduced Inequality 
-              http://www.un.org/development/desa/disabilities/envision2030-goal10.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal10.html
               
               \u2022 GOAL 11: Sustainable Cities and Communities 
-              http://www.un.org/development/desa/disabilities/envision2030-goal11.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal11.html
               
               \u2022 GOAL 12: Responsible Consumption and Production 
-              http://www.un.org/development/desa/disabilities/envision2030-goal12.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal12.html
               
               \u2022 GOAL 13: Climate Action 
-              http://www.un.org/development/desa/disabilities/envision2030-goal13.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal13.html
               
               \u2022 GOAL 14: Life Below Water 
-              http://www.un.org/development/desa/disabilities/envision2030-goal14.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal14.html
               
               \u2022 GOAL 15: Life on Land 
-              http://www.un.org/development/desa/disabilities/envision2030-goal15.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal15.html
               
               \u2022 GOAL 16: Peace and Justice Strong Institutions 
-              http://www.un.org/development/desa/disabilities/envision2030-goal16.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal16.html
               
               \u2022 GOAL 17: Partnerships to achieve the Goal 
-              http://www.un.org/development/desa/disabilities/envision2030-goal17.html
+              https://www.un.org/development/desa/disabilities/envision2030-goal17.html
             )]
           ]
         end
@@ -207,11 +207,14 @@ class AwardYears::V2020::QAEForms
           words_max 15
         end
 
-        textarea :briefly_describe_your_core_business, "Your core business<br />Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business." do
+        textarea :briefly_describe_your_core_business, "Your core business" do
           classes "word-max-strict"
           ref "B 2"
           required
           context %{
+            <p>
+              Briefly describe your core business and what factors or issues motivated your organisation to develop sustainable ways of doing business.
+            </p>
             <p>
               Please include:
             </p>
