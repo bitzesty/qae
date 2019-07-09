@@ -142,9 +142,9 @@ module FinancialTable
   end
 
   def mobility_question?
-    question.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestionDecorator) ||
-      question.is_a?(QAEFormBuilder::MobilityByYearsQuestionDecorator) ||
-      question.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestion) ||
-      question.is_a?(QAEFormBuilder::MobilityByYearsQuestion)
+    question.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestionDecorator) ||
+      question.is_a?(QAEFormBuilder::OneOptionByYearsQuestionDecorator) ||
+      question.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion) ||
+      question.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
   end
 end
