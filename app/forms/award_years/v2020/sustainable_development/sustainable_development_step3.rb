@@ -5,13 +5,35 @@ class AwardYears::V2020::QAEForms
       @development_step3 ||= proc do
         header :commercial_success_info_block, "" do
           context %(
+            <h3>About this section</h3>    
+            <p> 
+              To be eligible for a Queen's Awards for Enterprise, your business must be financially viable. You are required to demonstrate this by providing three years of financial growth figures that cover the period your sustainable development actions or interventions have been in place.
+            </p>  
+
+            <h3>Small organisations</h3>
             <p>
-              All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to demonstrate the impact that your sustainable development had on your organisation's financial performance.
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
+
+            <h3>Estimated figures</h3>
             <p>
-              <strong>If you haven't reached your latest year-end, please use estimates to complete this section.</strong>
+              You will have to submit data for your latest financial year that falls before the <strong>#{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}</strong> (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
+          pdf_context_with_header_blocks [
+            [:bold, "About this section"],
+            [:normal, %(
+              To be eligible for a Queen's Awards for Enterprise, your business must be financially viable. You are required to demonstrate this by providing three years of financial growth figures that cover the period your sustainable development actions or interventions have been in place.
+            )],
+            [:bold, "Small organisations"],
+            [:normal, %(
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+            )],
+            [:bold, "Estimated figures"],
+            [:normal, %(
+              You will have to submit data for your latest financial year that falls before the <strong>#{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}</strong> (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+            )]
+          ]
         end
 
         header :commercial_success_intro, "" do
@@ -23,23 +45,16 @@ class AwardYears::V2020::QAEForms
           )
         end
 
-        options :development_performance_years, "How would you describe the impact of your sustainable development on your organisation's financial performance?" do
-          classes "js-entry-period"
+        textarea :explain_why_your_organisation_is_financially_viable, "Explain why your organisation is financially viable." do
           ref "C 1"
           required
-          option "2 to 4", "Outstanding Sustainable Development: sustainable development has improved commercial performance over two years"
-          option "5 plus", "Continuous Sustainable Development: sustainable development has improved commercial performance over five years"
-          financial_date_selector({
-            "2 to 4" => "2",
-            "5 plus" => "5"
-          })
-          default_option "5 plus"
-          sub_category_question
           context %(
             <p>
-              Your answer here will determine whether you are assessed for outstanding sustainable development (over two years) or continuous sustainable development (over five years).
+              For example, you could briefly explain your financial model, income or profit growth, how you are funded, your cash flow position and investments secured. Some of these may not apply to your organisation, in that case, explain by what other means your organisation ensures financial viability.
             </p>
           )
+          rows 5
+          words_max 250
         end
 
         innovation_financial_year_date :financial_year_date, "Please enter your financial year end date." do
@@ -73,9 +88,6 @@ class AwardYears::V2020::QAEForms
 
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
-          conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :yes
         end
 
@@ -100,14 +112,10 @@ class AwardYears::V2020::QAEForms
 
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
-          conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
 
           employees_question
         end
-        # TODO: Min 2 - if less than 2 block - present 'you are not eligible' message
 
         header :company_financials, "Company Financials" do
           ref "C 4"
@@ -122,8 +130,6 @@ class AwardYears::V2020::QAEForms
               Please do not separate your figures with commas.
             </p>
           )
-
-          conditional :development_performance_years, :true
         end
 
         by_years :total_turnover, "Total turnover" do
@@ -133,11 +139,9 @@ class AwardYears::V2020::QAEForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
 
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-          conditional :development_performance_years, :true
+
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
@@ -150,11 +154,9 @@ class AwardYears::V2020::QAEForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
+
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
-          conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
@@ -164,11 +166,9 @@ class AwardYears::V2020::QAEForms
           classes "sub-question"
           sub_ref "C 4.3"
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
+
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
-          conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
           exports :exports
@@ -187,14 +187,13 @@ class AwardYears::V2020::QAEForms
 
           type :money
           label ->(y) { "Financial year #{y}" }
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
+
           context %(
             <p>
               Use a minus symbol to record any losses.
             </p>
           )
-          conditional :development_performance_years, :true
+
           conditional :financial_year_date_changed, :true
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           drop_conditional :drops_in_turnover
@@ -211,11 +210,9 @@ class AwardYears::V2020::QAEForms
           )
           type :money
           label ->(y) { "As at the end of year #{y}" }
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
+
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
-          conditional :development_performance_years, :true
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
@@ -225,19 +222,19 @@ class AwardYears::V2020::QAEForms
           sub_ref "C 4.6"
           rows 5
           words_max 200
-          conditional :development_performance_years, :true
+
           conditional :financial_year_date_changed, :true
           drop_condition_parent
         end
 
-        options :entry_relates_to, "How does the sustainable development product, service or management approach that forms the basis of this application fit within the overall business?" do
+        options :entry_relates_to, "How do your sustainable development actions or interventions, that form the basis of this application, fit within the overall business?" do
           ref "C 5"
           required
           option :entire_business, "It's integral to the whole business"
-          option :single_product_or_service, "It affects specific product, service or management approach"
+          option :single_product_or_service, "It affects specific sustainable development actions or intervention"
           context %(
             <p>
-              It is important that we know whether or not your sustainable development is the key thing your business does, or forms part of a wider approach. This is so we can understand the commercial value of your sustainable development in the context of your overall commercial performance.
+              It is important that we know whether or not your sustainable development is the key thing your business does or forms part of a wider approach. This is so we can understand the commercial value of your sustainable development in the context of your overall commercial performance.
             </p>
           )
         end
@@ -260,8 +257,7 @@ class AwardYears::V2020::QAEForms
           sub_ref "C 6.1"
           type :number
           label "..."
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
+
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           # drop_conditional :drops_in_sales
         end
@@ -271,8 +267,7 @@ class AwardYears::V2020::QAEForms
           sub_ref "C 6.2"
           type :money
           label "..."
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
+
           # drop_conditional :drops_in_sales
         end
 
@@ -283,8 +278,7 @@ class AwardYears::V2020::QAEForms
           type :money
           label "..."
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
+
           # drop_conditional :drops_in_sales
         end
 
@@ -295,8 +289,7 @@ class AwardYears::V2020::QAEForms
           type :money
           label "..."
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
+
           # drop_conditional :drops_in_sales
         end
 
@@ -315,8 +308,6 @@ class AwardYears::V2020::QAEForms
           label "..."
 
           additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-          by_year_condition :development_performance_years, "2 to 4", 2
-          by_year_condition :development_performance_years, "5 plus", 5
         end
 
         textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
@@ -330,7 +321,7 @@ class AwardYears::V2020::QAEForms
           ref "C 7"
           required
           yes_no
-          conditional :development_performance_years, :true
+
           conditional :financial_year_date_changed, :true
         end
 
@@ -341,26 +332,27 @@ class AwardYears::V2020::QAEForms
           rows 5
           words_max 250
           conditional :product_estimated_figures, :yes
-          conditional :development_performance_years, :true
         end
-
-        textarea :development_performance, "What cost-savings have you or your customers' businesses made as a result of the introduction of the product, service or management approach?" do
+ 
+        textarea :development_performance, "What cost-savings have you or your customers' businesses made as a result of the introduction of your sustainable development actions or interventions?" do
           ref "C 8"
           required
           context %(
             <p>
-              Please describe the cost savings and/or other benefits in addition to the sustainability impact you have already demonstrated in section B of this form. Please provide figures if known.
+              Please describe the cost savings and/or other benefits in addition to the sustainability impact you have already demonstrated in section B of this form. Please provide figures, if known.
             </p>
           )
           rows 5
           words_max 250
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your product/service/management approach." do
+        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions." do
           ref "C 9"
           required
           context %(
-            <p>Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.</p>
+            <p>
+              Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.
+            </p> 
           )
           rows 5
           words_max 400
