@@ -79,7 +79,7 @@ class AwardYears::V2020::QAEForms
           default_option "no"
         end
 
-        by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year." do
+        one_option_by_years_label :financial_year_changed_dates, "Please enter your year-end dates for each financial year." do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -100,7 +100,7 @@ class AwardYears::V2020::QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+        one_option_by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
           classes "question-employee-min"
           ref "C 3"
           required
@@ -132,7 +132,7 @@ class AwardYears::V2020::QAEForms
           )
         end
 
-        by_years :total_turnover, "Total turnover" do
+        one_option_by_years :total_turnover, "Total turnover" do
           ref "C 4.1"
           required
           classes "sub-question"
@@ -146,7 +146,7 @@ class AwardYears::V2020::QAEForms
           drop_conditional :drops_in_turnover
         end
 
-        by_years :exports, "Of which exports" do
+        one_option_by_years :exports, "Of which exports" do
           classes "sub-question"
           sub_ref "C 4.2"
           required
@@ -180,7 +180,7 @@ class AwardYears::V2020::QAEForms
           )
         end
 
-        by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
+        one_option_by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
           classes "sub-question"
           sub_ref "C 4.4"
           required
@@ -199,7 +199,7 @@ class AwardYears::V2020::QAEForms
           drop_conditional :drops_in_turnover
         end
 
-        by_years :total_net_assets, "Total net assets" do
+        one_option_by_years :total_net_assets, "Total net assets" do
           classes "sub-question total-net-assets"
           sub_ref "C 4.5"
           required
@@ -252,7 +252,7 @@ class AwardYears::V2020::QAEForms
           )
         end
 
-        by_years :units_sold, "Number of units/contracts sold (if applicable)" do
+        one_option_by_years :units_sold, "Number of units/contracts sold (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.1"
           type :number
@@ -262,7 +262,7 @@ class AwardYears::V2020::QAEForms
           # drop_conditional :drops_in_sales
         end
 
-        by_years :sales, "Sales (if applicable)" do
+        one_option_by_years :sales, "Sales (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.2"
           type :money
@@ -271,7 +271,7 @@ class AwardYears::V2020::QAEForms
           # drop_conditional :drops_in_sales
         end
 
-        by_years :sales_exports, "Of which exports (if applicable)" do
+        one_option_by_years :sales_exports, "Of which exports (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.3"
           context %(<p>Please enter '0' if you had none.</p>)
@@ -282,7 +282,7 @@ class AwardYears::V2020::QAEForms
           # drop_conditional :drops_in_sales
         end
 
-        by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
+        one_option_by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
           classes "sub-question"
           sub_ref "C 6.4"
           context %(<p>Please enter '0' if you had none.</p>)
@@ -301,7 +301,7 @@ class AwardYears::V2020::QAEForms
           # drop_condition_parent
         end
 
-        by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract (if applicable)" do
+        one_option_by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract (if applicable)" do
           sub_ref "C 6.6"
           classes "sub-question"
           type :money
