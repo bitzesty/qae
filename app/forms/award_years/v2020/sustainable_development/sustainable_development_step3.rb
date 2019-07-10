@@ -172,6 +172,7 @@ class AwardYears::V2020::QAEForms
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
           exports :exports
+          one_option_financial_data_mode true
 
           context %(
             <p>
