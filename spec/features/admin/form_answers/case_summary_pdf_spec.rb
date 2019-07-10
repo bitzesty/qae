@@ -24,10 +24,10 @@ So that I can print and review application's case summaries
     include_context "admin application case summaries pdf download"
   end
 
-  describe "Sustainable Development Award" do
-    let(:award_type) { :development }
-    include_context "admin application case summaries pdf download"
-  end
+  # describe "Sustainable Development Award" do
+  #   let(:award_type) { :development }
+  #   include_context "admin application case summaries pdf download"
+  # end
 
   describe "Enterprise Promotion Award" do
     let(:award_type) { :promotion }

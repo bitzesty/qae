@@ -3,7 +3,6 @@ require "award_years/v2020/sustainable_development/sustainable_development_step2
 require "award_years/v2020/sustainable_development/sustainable_development_step3"
 require "award_years/v2020/sustainable_development/sustainable_development_step4"
 require "award_years/v2020/sustainable_development/sustainable_development_step5"
-require "award_years/v2020/sustainable_development/sustainable_development_step6"
 
 class AwardYears::V2020::QAEForms
   class << self
@@ -21,18 +20,14 @@ class AwardYears::V2020::QAEForms
              "Commercial Performance",
              &AwardYears::V2020::QAEForms.development_step3
 
-        step "Declaration of Corporate Responsibility",
-             "Declaration of Corporate Responsibility",
-             &AwardYears::V2020::QAEForms.development_step4
-
         step "Add Website Address/Documents",
              "Add Website Address/Documents",
              { id: :add_website_address_documents_step },
-             &AwardYears::V2020::QAEForms.development_step5
+             &AwardYears::V2020::QAEForms.development_step4
 
         step "Authorise & Submit",
              "Authorise & Submit",
-             &AwardYears::V2020::QAEForms.development_step6
+             &AwardYears::V2020::QAEForms.development_step5
       end
     end
   end
