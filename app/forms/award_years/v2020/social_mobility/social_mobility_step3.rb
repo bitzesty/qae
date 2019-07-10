@@ -34,15 +34,6 @@ class AwardYears::V2020::QAEForms
           ]
         end
 
-        header :commercial_success_intro, "" do
-          classes "application-notice help-notice"
-          context %(
-            <p>
-             You can provide estimated figures for now but, should you be shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            </p>
-          )
-        end
-
         textarea :commercial_performance_description, "How would you describe your organisation's financial performance?" do
           sub_ref "C 1"
           required
