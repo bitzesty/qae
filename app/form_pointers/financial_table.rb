@@ -98,7 +98,7 @@ module FinancialTable
   end
 
   def financial_date_selector_value
-    if mobility_question?
+    if one_option_question_or_development?
       "3"
     else
       filled_answers[financial_date_selector.key.to_s]
@@ -128,7 +128,7 @@ module FinancialTable
 
   def financial_years_number
     if financial_date_selector_value.present?
-      if mobility_question?
+      if one_option_question_or_development?
         "3"
       else
         financial_date_selector.ops_values[financial_date_selector_value]
@@ -141,10 +141,14 @@ module FinancialTable
     end
   end
 
-  def mobility_question?
-    question.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestionDecorator) ||
-      question.is_a?(QAEFormBuilder::MobilityByYearsQuestionDecorator) ||
-      question.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestion) ||
-      question.is_a?(QAEFormBuilder::MobilityByYearsQuestion)
+  def one_option_question_or_development?
+    one_option_question? || form_answer.development?
+  end
+
+  def one_option_question?
+    question.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestionDecorator) ||
+      question.is_a?(QAEFormBuilder::OneOptionByYearsQuestionDecorator) ||
+      question.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion) ||
+      question.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
   end
 end

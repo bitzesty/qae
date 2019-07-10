@@ -146,7 +146,6 @@
 "financial_year_date_changed": "no",
 "head_of_business_first_name": "Walter",
 "head_of_bussines_title_other": "",
-"development_performance_years": "2 to 4",
 "development_additional_comments": "1",
 "development_excluded_explanation": "1",
 "ultimate_control_company_country": "GB",
@@ -179,4 +178,11 @@
 "press_contact_details_last_name": "Doe", 
 "press_contact_details_telephone": "+4411111111111",
 "press_contact_details_email": "test@example.com",
-"company_estimates_use": "1"}
+"company_estimates_use": "1",
+"describe_your_interventions_using_un": "test",
+"one_line_description_of_interventions": "test",
+"briefly_describe_your_core_business": "test",
+"impact_of_your_sustainable_development": "test",
+"describe_the_driving_force_of_your_organisation": "test",
+"culture_and_values_regarding_sustainability": "test",
+"explain_why_your_organisation_is_financially_viable": "test"}

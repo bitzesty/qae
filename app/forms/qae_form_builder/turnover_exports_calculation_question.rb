@@ -12,10 +12,14 @@ class QAEFormBuilder
     end
 
     def active_fields
-      c = active_by_year_condition
-      return [] unless c
+      if delegate_obj.one_option_financial_data_mode.present?
+        (1..3).map{|y| "#{y}of3"}
+      else
+        c = active_by_year_condition
+        return [] unless c
 
-      (1..c.years).map{|y| "#{y}of#{c.years}"}
+        (1..c.years).map{|y| "#{y}of#{c.years}"}
+      end
     end
 
     def active_by_year_condition
@@ -41,6 +45,10 @@ class QAEFormBuilder
     def exports key
       @q.exports_question = key.to_s.to_sym
     end
+
+    def one_option_financial_data_mode val
+      @q.one_option_financial_data_mode = val
+    end
   end
 
   class TurnoverExportsCalculationCondition
@@ -61,7 +69,9 @@ class QAEFormBuilder
     attr_accessor :by_year_conditions,
                   :label,
                   :turnover_question,
-                  :exports_question
+                  :exports_question,
+                  :one_option_financial_data_mode
+                  
     def after_create
       @by_year_conditions = []
     end
