@@ -36,15 +36,6 @@ class AwardYears::V2020::QAEForms
           ]
         end
 
-        header :commercial_success_intro, "" do
-          classes "application-notice help-notice"
-          context %(
-            <p>
-              You can provide estimated figures for now but, should you be shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            </p>
-          )
-        end
-
         textarea :explain_why_your_organisation_is_financially_viable, "Explain why your organisation is financially viable." do
           ref "C 1"
           required
