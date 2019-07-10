@@ -166,8 +166,7 @@ module Reports::DataPickers::FormDocumentPicker
       },
       "development" => {
         "development_performance_years" => {
-          "2 to 4" => "#{attr_name}_2of2",
-          "5 plus" => "#{attr_name}_5of5"
+          "3 to 5" => "#{attr_name}_3of3",
         }
       },
       "mobility" => {

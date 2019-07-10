@@ -1,36 +1,25 @@
 .js-conditional-question.conditional-question.show-question data-question="development_performance_years-how-would-you-describe-the-impact-of-your-sustainable-development-on-your-organisation-s-financial-performance" data-value=("3 to 5") 
   .row
-
-    .span-financial.span-4
-      label for="form[uk_sales_1of3]" 
-        span.js-year-end data-year="1of3" 
-          span.js-year-default Financial year 1
-          span.js-year-text Year ending in 1/1/2018
-
-      span
-        span.currency-unit £
-        span.js-sales-value data-exports="exports" data-turnover="total_turnover" data-year="1of3"  -
-        input.small.js-trigger-autosave.visuallyhidden autocomplete="off" id="form[uk_sales_1of3]" name="form[uk_sales_1of3]" tabindex="-1" type="text" value="-"
-
-    .span-financial.span-4
-      label for="form[uk_sales_2of3]" 
-        span.js-year-end data-year="2of3" 
-          span.js-year-default Financial year 2
-          span.js-year-text Year ending in 1/1/2019
-          
-      span
-        span.currency-unit £
-        span.js-sales-value data-exports="exports" data-turnover="total_turnover" data-year="2of3"  -
-        input.small.js-trigger-autosave.visuallyhidden autocomplete="off" id="form[uk_sales_2of3]" name="form[uk_sales_2of3]" tabindex="-1" type="text" value="-"
-
-    .span-financial.span-4
-      label for="form[uk_sales_2of3]" 
-        span.js-year-end data-year="2of3" 
-          span.js-year-default Financial year 2 (Current)
-          span.js-year-text Year ending in 1/1/2019
-
-      span
-        span.currency-unit £
-        span.js-sales-value data-exports="exports" data-turnover="total_turnover" data-year="2of3"  -
-        input.small.js-trigger-autosave.visuallyhidden autocomplete="off" id="form[uk_sales_2of3]" name="form[uk_sales_2of3]" tabindex="-1" type="text" value="-"
+    - (1..3).each do |y|
+      div class="span-financial span-4"
+        label for=question.input_name(suffix: "#{y}of#{3}")
+          span.js-year-end.show-default data-year="#{y}of#{3}"
+            span.js-year-default
+              ' Financial year
+              = y
+              - if y == 3
+                '  (Current)
+            span.js-year-text
+        span
+          span.currency-unit
+            ' £
+          - turnover_q = question.form[question.turnover_question]
+          - exports_q = question.form[question.exports_question]
+          - if turnover_q.input_value(suffix: "#{y}of#{3}").present? && exports_q.input_value(suffix: "#{y}of#{3}").present?
+            - sales_value = turnover_q.input_value(suffix: "#{y}of#{3}").to_s.delete(",").to_i - exports_q.input_value(suffix: "#{y}of#{3}").to_s.delete(",").to_i
+          - else
+            - sales_value = "-"
+          span.js-sales-value data-year="#{y}of#{3}" data-turnover=question.turnover_question data-exports=question.exports_question
+            = sales_value
+          input.small.js-trigger-autosave.visuallyhidden tabindex="-1" type="text" name=question.input_name(suffix: "#{y}of#{3}") value=sales_value id=question.input_name(suffix: "#{y}of#{3}") autocomplete="off" *possible_read_only_ops
   .clear
