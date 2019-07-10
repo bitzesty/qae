@@ -47,8 +47,8 @@ class QaePdfForms::General::QuestionPointer
     QAEFormBuilder::UploadQuestion,
     QAEFormBuilder::ByYearsLabelQuestion,
     QAEFormBuilder::ByYearsQuestion,
-    QAEFormBuilder::MobilityByYearsLabelQuestion,
-    QAEFormBuilder::MobilityByYearsQuestion,
+    QAEFormBuilder::OneOptionByYearsLabelQuestion,
+    QAEFormBuilder::OneOptionByYearsQuestion,
     QAEFormBuilder::SupportersQuestion,
     QAEFormBuilder::TextareaQuestion,
     QAEFormBuilder::TextQuestion
@@ -202,6 +202,8 @@ class QaePdfForms::General::QuestionPointer
       form_pdf.indent 25.mm do
         form_pdf.render_text question.escaped_title,
                              style: :bold
+
+        render_question_sub_title
       end
     end
   end
@@ -310,6 +312,14 @@ class QaePdfForms::General::QuestionPointer
     end
   end
 
+  def render_question_sub_title
+    if question.question_sub_title.present?
+      form_pdf.move_up 5.mm
+      form_pdf.render_text question.question_sub_title
+      form_pdf.move_up 5.mm
+    end
+  end
+
   def render_info_about_conditional_parent
     if answer.blank? && urn_blank_or_pdf_blank_mode?
 
@@ -368,11 +378,11 @@ class QaePdfForms::General::QuestionPointer
         else
           question_option_box interpolate_deadlines(question.pdf_text || question.text)
         end
-      when QAEFormBuilder::ByYearsLabelQuestion, QAEFormBuilder::MobilityByYearsLabelQuestion
+      when QAEFormBuilder::ByYearsLabelQuestion, QAEFormBuilder::OneOptionByYearsLabelQuestion
         form_pdf.indent 7.mm do
           render_years_labels_table
         end
-      when QAEFormBuilder::ByYearsQuestion, QAEFormBuilder::TurnoverExportsCalculationQuestion, QAEFormBuilder::MobilityByYearsQuestion
+      when QAEFormBuilder::ByYearsQuestion, QAEFormBuilder::TurnoverExportsCalculationQuestion, QAEFormBuilder::OneOptionByYearsQuestion
         render_years_table
       when QAEFormBuilder::QueenAwardHolderQuestion
         if humanized_answer.present?

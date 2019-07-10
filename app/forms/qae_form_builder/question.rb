@@ -7,8 +7,8 @@ class QAEFormBuilder
       "InnovationFinancialYearDateQuestion",
       "ByYearsQuestion",
       "ByYearsLabelQuestion",
-      "MobilityByYearsQuestion",
-      "MobilityByYearsLabelQuestion",
+      "OneOptionByYearsQuestion",
+      "OneOptionByYearsLabelQuestion",
       "UserInfoQuestion",
       "AwardHolderQuestion",
       "QueenAwardApplicationsQuestion",
@@ -374,6 +374,10 @@ class QAEFormBuilder
       @q.sub_ref = id
     end
 
+    def question_sub_title str
+      @q.question_sub_title = str
+    end
+
     def display_sub_ref_on_js_form(mode)
       @q.display_sub_ref_on_js_form = mode
     end
@@ -454,6 +458,7 @@ class QAEFormBuilder
                   :form_hint,
                   :ref,
                   :sub_ref,
+                  :question_sub_title,
                   :display_sub_ref_on_js_form,
                   :show_ref_always,
                   :conditions,

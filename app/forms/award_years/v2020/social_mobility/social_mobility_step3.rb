@@ -78,7 +78,7 @@ class AwardYears::V2020::QAEForms
           default_option "no"
         end
 
-        mobility_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
+        one_option_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
           sub_ref "C 2.2"
           required
@@ -97,7 +97,7 @@ class AwardYears::V2020::QAEForms
           conditional :financial_year_date_changed, :yes
         end
 
-        mobility_by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
+        one_option_by_years :employees, "Enter the number of people employed by your organisation in the UK in each year of your entry." do
           ref "C 3"
           classes "question-employee-min"
           required
@@ -146,7 +146,7 @@ class AwardYears::V2020::QAEForms
           ]
         end
 
-        mobility_by_years :total_turnover, "Total turnover" do
+        one_option_by_years :total_turnover, "Total turnover" do
           classes "sub-question"
           ref "C 4.1"
           required
@@ -163,7 +163,7 @@ class AwardYears::V2020::QAEForms
           drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
-        mobility_by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
+        one_option_by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
           classes "sub-question"
           sub_ref "C 4.2"
           required
@@ -179,7 +179,7 @@ class AwardYears::V2020::QAEForms
           drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
-        mobility_by_years :total_net_assets, "Total net assets" do
+        one_option_by_years :total_net_assets, "Total net assets" do
           classes "sub-question total-net-assets"
           sub_ref "C 4.3"
           required
