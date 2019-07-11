@@ -266,10 +266,13 @@ class AwardYears::V2020::QAEForms
           words_max 1000
         end
 
-        textarea :describe_the_driving_force_of_your_organisation, "Leadership and management<br />Please describe the driving force of your organisation’s sustainability." do
+        textarea :describe_the_driving_force_of_your_organisation, "Leadership and management" do
           classes "word-max-strict"
           ref "B 4"
           required
+          question_sub_title %{
+            Please describe the driving force of your organisation’s sustainability.
+          }
           context %{
             <p>
               a) Who is ultimately responsible for the organisation’s sustainability interventions and their success?  
@@ -301,10 +304,13 @@ class AwardYears::V2020::QAEForms
           words_max 1000
         end
 
-        textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability<br />Describe how your organisation’s culture fosters and supports sustainability." do
+        textarea :culture_and_values_regarding_sustainability, "Culture and values regarding sustainability" do
           classes "word-max-strict"
           ref "B 5"
           required
+          question_sub_title %{
+            Describe how your organisation’s culture fosters and supports sustainability.
+          }
           context %{
             <p>
               Please include:  
