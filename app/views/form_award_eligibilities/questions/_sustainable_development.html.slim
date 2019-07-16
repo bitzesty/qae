@@ -1,18 +1,4 @@
 .question-body
-  p.question-context
-    ' Sustainable development is any activity which ensures a better quality of life for everyone, now and for generations to come.
-  p.question-context
-    ' This can be in any of the four outcomes:
-  ul.question-context
-    li environmental
-    li social
-    li economic
-    li leadership and management
-  p.question-context
-    ' Your achievements should be in either:
-  ul.question-context
-    li invention, design, production, performance, marketing, distribution or after sales support of goods/services
-    li management of resources or people, or of relationships with other organisations (or their representatives)
   - collection = @eligibility.class.sustainable_development.options
   - collection.reject! { |opts| opts.last == 'skip' } if controller_name == 'form_award_eligibilities'
   = f.input :sustainable_development, as: :radio_buttons, item_wrapper_class: 'selectable', label_html: { class: 'visuallyhidden' }, wrapper_html: { role: "radiogroup", id: "eligibility_#{question}", "aria-labelledby" => "eligibility_#{question}_label" }, collection: collection

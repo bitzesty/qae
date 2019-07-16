@@ -15,8 +15,8 @@ class FormFinancialPointer
   TARGET_FINANCIAL_DATA_QUESTION_TYPES = [
     QAEFormBuilder::ByYearsLabelQuestion,
     QAEFormBuilder::ByYearsQuestion,
-    QAEFormBuilder::MobilityByYearsLabelQuestion,
-    QAEFormBuilder::MobilityByYearsQuestion
+    QAEFormBuilder::OneOptionByYearsLabelQuestion,
+    QAEFormBuilder::OneOptionByYearsQuestion
   ]
   YEAR_LABELS = %w(day month year)
   IN_PROGRESS = "-"

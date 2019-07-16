@@ -45,7 +45,7 @@ class QAEFormBuilder
         allowed_params[question.key] = hashify_params(form_data[question.key])
 
         question_possible_sub_keys(question).each do |sub_question_key|
-          allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::MobilityByYearsQuestion)
+          allowed_params[sub_question_key] = if question.delegate_obj.is_a?(QAEFormBuilder::ByYearsQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
             # Sometimes users can input commas, we are stripping them
             form_data[sub_question_key].to_s.delete(",")
           else
@@ -103,9 +103,9 @@ class QAEFormBuilder
         end.flatten
       end
 
-      if question.delegate_obj.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::MobilityByYearsQuestion)
+      if question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion) || question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsQuestion)
         sub_question_keys += (1..3).map do |y|
-          if question.delegate_obj.is_a?(QAEFormBuilder::MobilityByYearsLabelQuestion)
+          if question.delegate_obj.is_a?(QAEFormBuilder::OneOptionByYearsLabelQuestion)
             [:day, :month, :year].map do |i|
               "#{y}of3#{i}"
             end

@@ -1,8 +1,8 @@
 class QAEFormBuilder
-  class MobilityByYearsQuestionValidator < QuestionValidator
+  class OneOptionByYearsQuestionValidator < QuestionValidator
   end
 
-  class MobilityByYearsQuestionDecorator < QuestionDecorator
+  class OneOptionByYearsQuestionDecorator < QuestionDecorator
     def fieldset_classes
       result = super
       result << "question-#{type}-by-years"
@@ -38,7 +38,7 @@ class QAEFormBuilder
     end
   end
 
-  class MobilityByYearsQuestionBuilder < QuestionBuilder
+  class OneOptionByYearsQuestionBuilder < QuestionBuilder
     def type type
       @q.type = type
     end
@@ -57,7 +57,7 @@ class QAEFormBuilder
     end
   end
 
-  class MobilityByYearsCondition
+  class OneOptionByYearsCondition
     attr_accessor :question_key, :question_value, :years, :span_class
     def initialize question_key, question_value, years, options = {}
       @question_key = question_key
@@ -68,7 +68,7 @@ class QAEFormBuilder
     end
   end
 
-  class MobilityByYearsQuestion < Question
+  class OneOptionByYearsQuestion < Question
     attr_accessor :type,
                   :label,
                   :employees_question,
