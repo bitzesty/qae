@@ -72,7 +72,7 @@ deploy_dev:
     name: dev
     url: https://dev.queens-awards-enterprise.service.gov.uk/
   only:
-    - dev-new
+    - master
 
 deploy_staging:
   stage: deploy
@@ -87,16 +87,17 @@ deploy_staging:
     name: staging
     url: https://staging.queens-awards-enterprise.service.gov.uk/
   only:
-    - staging-new
+    - staging
 
 deploy_production:
   stage: deploy
   script:
-    - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
-    - mv /tmp/convox /usr/local/bin/convox
-    - chmod 755 /usr/local/bin/convox
-    - convox deploy --app qae-production --rack bitzesty/qae
-    - convox run web rake db:migrate --app qae-production --rack bitzesty/qae
+    - curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+    - dpkg -i cf-cli_amd64.deb
+    - cf -v
+    - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+    - cf install-plugin blue-green-deploy -r CF-Community -f
+    - CF_ENDPOINT=api.london.cloud.service.gov.uk CF_SPACE=production CF_APP=qae-production ./bin/deploy
   environment:
     name: production
     url: https://www.queens-awards-enterprise.service.gov.uk/
