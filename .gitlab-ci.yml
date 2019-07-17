@@ -1,11 +1,11 @@
 image:
-  name: ruby:2.6.3
+  name: ruby:2.5.5
 
 variables:
   DISPLAY_SOCIAL_MOBILITY_AWARD: "true"
   POSTGRES_DB: qae_test
   DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/$POSTGRES_DB"
-  PHANTOM_JS: phantomjs-2.1.1-linux-x86_64
+  PHANTOM_JS: phantomjs-2.5.0-beta-linux-ubuntu-xenial-x86_64
   BUNDLER_VERSION: 2.0.1
 
 services:
@@ -23,9 +23,9 @@ test:
     - apt-get update -qy
     - apt-get install -y postgresql postgresql-client
     - apt-get install -y nodejs
-    - wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
-    - tar xvjf $PHANTOM_JS.tar.bz2
-    - mv $PHANTOM_JS /usr/local/share
+    - wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.gz
+    - tar xzvf $PHANTOM_JS.tar.gz
+    - mv phantomjs-2.5.0-beta-ubuntu-xenial /usr/local/share
     - ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
     - phantomjs --version
     - gem install bundler
