@@ -7,6 +7,8 @@ variables:
   DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/$POSTGRES_DB"
   PHANTOM_JS: phantomjs-2.5.0-beta-linux-ubuntu-xenial-x86_64
   BUNDLER_VERSION: 2.0.1
+  CHROMEDRIVER_VERSION: 76.0.3809.68
+  CHROMEDRIVER_DIR: /chromedriver
 
 services:
   - name: redis:3.2.7
@@ -23,11 +25,16 @@ test:
     - apt-get update -qy
     - apt-get install -y postgresql postgresql-client
     - apt-get install -y nodejs
-    - wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.gz
-    - tar xzvf $PHANTOM_JS.tar.gz
-    - mv phantomjs-2.5.0-beta-ubuntu-xenial /usr/local/share
-    - ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
-    - phantomjs --version
+    - apt-get install -y libxss1 libappindicator1 libindicator7 fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatspi2.0-0 libgtk-3-0 libnspr4 libnss3 libx11-xcb1 libxtst6 xdg-utils
+    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - dpkg -i google-chrome*.deb
+    - apt-get install -f
+    - apt-get install -y xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
+    - mkdir $CHROMEDRIVER_DIR
+    - wget -q --continue -P $CHROMEDRIVER_DIR "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+    - unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
+    - PATH=$CHROMEDRIVER_DIR:$PATH
+    - chromedriver -v
     - gem install bundler
     - bundle install --path vendor/bundler --jobs=4 --retry=3
     - RAILS_ENV=test bundle exec rake db:create db:migrate

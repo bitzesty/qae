@@ -105,6 +105,8 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
+    childprocess (1.0.1)
+      rake (< 13.0)
     climate_control (0.2.0)
     cliver (0.3.2)
     cocaine (0.6.0)
@@ -138,7 +140,7 @@ GEM
     crack (0.4.3)
       safe_yaml (~> 1.0.0)
     crass (1.0.4)
-    curb (0.8.8)
+    curb (0.9.10)
     database_cleaner (1.6.1)
     debug_inspector (0.0.3)
     decent_decoration (0.1.0)
@@ -615,12 +617,16 @@ GEM
     ruby-progressbar (1.10.0)
     ruby-rc4 (0.1.5)
     ruby_dep (1.5.0)
+    rubyzip (1.2.3)
     safe_yaml (1.0.4)
     sass (3.7.2)
       sass-listen (~> 4.0.0)
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    selenium-webdriver (3.142.3)
+      childprocess (>= 0.5, < 2.0)
+      rubyzip (~> 1.2, >= 1.2.2)
     sentry-raven (2.7.4)
       faraday (>= 0.7.6, < 1.0)
     shog (0.2.1)
@@ -735,7 +741,7 @@ DEPENDENCIES
   codeclimate_circle_ci_coverage
   coffee-rails (= 4.2.2)
   country_select (~> 3.1)
-  curb (= 0.8.8)
+  curb (= 0.9.10)
   database_cleaner (= 1.6.1)
   decent_decoration
   decent_exposure
@@ -796,6 +802,7 @@ DEPENDENCIES
   rspec-sidekiq
   rspec_junit_formatter (= 0.2.3)
   rubocop (~> 0.52)
+  selenium-webdriver
   sentry-raven
   shog
   shoulda-matchers

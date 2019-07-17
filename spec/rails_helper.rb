@@ -3,6 +3,7 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require "simplecov"
 require "codeclimate-test-reporter"
+
 SimpleCov.add_filter "vendor"
 
 class LineFilter < SimpleCov::Filter
@@ -30,7 +31,7 @@ require 'rspec/rails'
 require "capybara/rspec"
 require "shoulda/matchers"
 require "webmock/rspec"
-require 'capybara/poltergeist'
+require 'selenium-webdriver'
 
 Dotenv.overload('.env.test')
 
@@ -47,10 +48,22 @@ options = {
     '--ignore-ssl-errors=yes'
   ]
 }
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, options)
+Capybara.register_driver(:chrome_headless) do |app|
+  args = []
+  args << 'headless' unless ENV['CHROME_HEADLESS']
+
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: { args: args }
+  )
+
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    desired_capabilities: capabilities
+  )
 end
-Capybara.javascript_driver = :poltergeist
+
+Capybara.javascript_driver = :chrome_headless
 Capybara.default_max_wait_time = 5
 
 ActiveRecord::Migration.check_pending!

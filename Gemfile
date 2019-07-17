@@ -114,7 +114,7 @@ gem 'nilify_blanks'
 
 # We use it for sending API requests to Sendgrid in
 # AdvancedEmailValidator
-gem 'curb', '0.8.8'
+gem 'curb', '0.9.10'
 
 # Web server
 gem 'puma', '3.11.0'
@@ -151,6 +151,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem "pry-byebug"
   gem 'rails-controller-testing'
+  gem "selenium-webdriver"
 end
 
 group :production do
