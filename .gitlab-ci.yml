@@ -5,7 +5,6 @@ variables:
   DISPLAY_SOCIAL_MOBILITY_AWARD: "true"
   POSTGRES_DB: qae_test
   DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/$POSTGRES_DB"
-  PHANTOM_JS: phantomjs-2.5.0-beta-linux-ubuntu-xenial-x86_64
   BUNDLER_VERSION: 2.0.1
   CHROMEDRIVER_VERSION: 75.0.3770.140
   CHROMEDRIVER_DIR: /chromedriver
