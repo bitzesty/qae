@@ -16,8 +16,11 @@ module FormAnswerFilteringTestHelper
         button = find("li.apply button")
         all("li").each do |li|
           content = li.first(".label-contents")
-          if content
-            li.first("label input").click && button.click && return if content.text.to_s == val
+          if content && content.text.to_s == val
+            li.first("label input").click
+            button.click
+
+            return
           end
         end
       end
@@ -34,8 +37,12 @@ module FormAnswerFilteringTestHelper
         button = find("li.apply button")
         all("li").each do |li|
           content = li.first(".label-contents")
-          if content
-            li.first("label input").click && button.click && return if content.text.to_s == val
+
+          if content && content.text.to_s == val
+            li.first("label input").click
+            button.click
+
+            return
           end
         end
       end
