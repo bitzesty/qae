@@ -47,7 +47,7 @@ So that they can collaborate applications
 
           within(".admin-search-collaborators-form") do
             fill_in "search[query]", with: "plicant with acc"
-            first("input[type='submit']").trigger(:click)
+            first("input[type='submit']").click
 
             within(".js-admin-search-collaborators-results-box") do
               expect_to_see(user_associated_with_another_account.first_name)
@@ -80,6 +80,3 @@ So that they can collaborate applications
     end
   end
 end
-
-
-
