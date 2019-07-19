@@ -163,7 +163,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'capybara', '3.26.0'
+  gem 'capybara', '2.18'
   gem 'poltergeist'
   gem 'database_cleaner', '1.6.1'
   gem 'launchy'
