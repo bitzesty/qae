@@ -1,3 +1,4 @@
+
 ![Logo](https://raw.githubusercontent.com/bitzesty/qae/master/public/logo.jpg) Queen's Awards for Enterprise
 ---------------------------
 
@@ -9,28 +10,20 @@ Copy on Github is a **read only** mirror.
 
 ### Pre-requisites
 
-* Ruby 2.3.1
-* Rails 4.2
-* Postgresql 9.4
+* Ruby 2.5.5
+* Rails 5.2
+* Postgresql 9.5+
 * Redis 2.8
 
 ### Running application
 
 ```
 ./bin/setup
-foreman start
+bundle exec rails s
+bundle exec sidekiq -C config/sidekiq.yml
 ```
 
-If you're running this on your local dev setup, start redis first before starting the application with `foreman start`
-
-### Running with convox locally
-
-Install docker, and install convox
-
-```
-convox start -f docker-compose.yml.local
-docker exec qae-web bundle exec rake db:schema:load db:migrate db:seed
-```
+If you're running this on your local dev setup, start redis first before starting sidekiq
 
 ### Install Poxa
 
@@ -42,72 +35,70 @@ https://github.com/bitzesty/qae-poxa/blob/master/QAE_README.md#setup-on-local
 
 Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (master, staging, production).
 
-You can run a manual deploy if needed:
+CF based PaaS is used for hosting [https://cloud.service.gov.uk](https://www.cloud.service.gov.uk/)
 
-```
-convox switch bitzesty/qae
-
-convox deploy -a qae-dev
-```
-
-You may also need to run a rake task for database migrations manually:
-
-```
-convox run web rake db:migrate -a qae-dev
-```
 
 #### Dev
 
+```bash
+cf l # login to CLI tool, select space
+cf target -o "beis-queens-awards-for-enterprise" -s dev # target a space
+cf create-app-manifest qae-dev-worker
+cf push -f qae-dev-worker_manifest.yml # deploy worker
+
+cf create-app-manifest qae-dev
+cf bgd qae-dev -f qae-dev_manifest.yml --delete-old-apps # deploy application with blue green deploy plugin
 ```
-convox deploy -a qae-dev
-convox run web rake db:migrate -a qae-dev
-```
+
 
 #### Staging
 
+```bash
+cf l # login to CLI tool, select space
+cf target -o "beis-queens-awards-for-enterprise" -s staging # target a space
+cf create-app-manifest qae-staging-worker
+cf push -f qae-staging-worker_manifest.yml # deploy worker
+
+cf create-app-manifest qae-staging
+cf bgd qae-dev -f qae-staging_manifest.yml --delete-old-apps # deploy application with blue green deploy plugin
 ```
-convox deploy -a qae-staging
-convox run web rake db:migrate -a qae-staging
-```
+
 
 #### Production
 
+```bash
+cf l # login to CLI tool, select space
+cf target -o "beis-queens-awards-for-enterprise" -s production # target a space
+cf create-app-manifest qae-production-worker
+cf push -f qae-production-worker_manifest.yml # deploy worker
+
+cf create-app-manifest qae-production
+cf bgd qae-dev -f qae-production_manifest.yml --delete-old-apps # deploy application with blue green deploy plugin
 ```
-convox deploy -a qae-production
-convox run web rake db:migrate -a qae-production
-```
+
+
 
 #### Usefull commands
 
-##### Rails console
+##### SSH
 
-```
-convox run web rails console -a <CONVOX_APP>
+```bash
+cf ssh qae-production
 ```
 
 ##### Logs
 
+```bash
+cf logs qae-production # for the stream
+cf logs qae-production --recent # for recent log entries
 ```
-convox logs -a <CONVOX_APP>
-```
-
-Filtering by key word and date.
-```
-convox logs -a qae-qev --filter=SubmissionDeadlineApplicationPdfGenerationWorker --since=27h
-```
-In this example it fetches logs for latest 27 h with keyword "SubmissionDeadlineApplicationPdfGenerationWorker"
 
 Better logs in Papertrail for QAE.
 
 https://papertrailapp.com
 
-Login in last pass
+Login in 1password
 
-##### Deploy without cache
-
-```
-convox deploy -a <CONVOX_APP> --no-cache
-```
 
 #### Help
 

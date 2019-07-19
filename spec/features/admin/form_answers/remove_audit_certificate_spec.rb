@@ -62,7 +62,8 @@ So that User can re-upload Verification of Commercial Figures
       wait_for_ajax
 
       expect {
-        find(".js-remove-audit-certificate-link").trigger(:click)
+        find(".js-remove-audit-certificate-link").click()
+        page.driver.browser.switch_to.alert.accept
 
         sleep 3
       }.to change {
