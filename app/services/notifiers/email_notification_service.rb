@@ -30,15 +30,21 @@ class Notifiers::EmailNotificationService
     end
   end
 
-  def submission_started_notification(award_year, award_type)
-    user_ids = User.confirmed.allowed_to_get_award_open_notification(award_type).pluck(:id)
+  def award_year_open_notifier(award_year)
+    user_ids = User.confirmed
+                   .not_bounced_emails
+                   .want_to_receive_opening_notification_for_at_least_one_award
+                   .pluck(:id)
 
     user_ids.each do |user_id|
-      Users::SubmissionStartedNotificationMailer.notify(
-        user_id,
-        award_type
+      Users::AwardYearOpenNotificationMailer.notify(
+        user_id
       ).deliver_later!
     end
+  end
+
+  def submission_started_notification(award_year, award_type)
+    year_open_award_type_specific_notification(award_type)
   end
 
   def ep_reminder_support_letters(award_year)
@@ -185,6 +191,20 @@ class Notifiers::EmailNotificationService
       mailer.notify(
         entry[:form_answer_id],
         entry[:collaborator_id]
+      ).deliver_later!
+    end
+  end
+
+  def year_open_award_type_specific_notification(award_type)
+    user_ids = User.confirmed
+                   .not_bounced_emails
+                   .allowed_to_get_award_open_notification(award_type)
+                   .pluck(:id)
+
+    user_ids.each do |user_id|
+      Users::SubmissionStartedNotificationMailer.notify(
+        user_id,
+        award_type
       ).deliver_later!
     end
   end

@@ -8,14 +8,41 @@ class MailRenderer
       { host: "www.queens-awards-enterprise.service.gov.uk" }
     end
   end
-
+  
   def submission_started_notification
+    #
+    # NOTE: This one is old.
+    #       But we still need it here in order to show it for previous years
+    #
     assigns = {}
 
     assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
     assigns[:award_type] = "International Trade"
 
     render(assigns, "users/submission_started_notification_mailer/preview/notify")
+  end
+
+  def award_year_open_notifier
+    assigns = {}
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+
+    render(assigns, "users/award_year_open_notification_mailer/preview/notify")
+  end
+
+  def innovation_submission_started_notification
+    year_open_award_type_specific_notification("innovation")
+  end
+
+  def trade_submission_started_notification
+    year_open_award_type_specific_notification("trade")
+  end
+
+  def development_submission_started_notification
+    year_open_award_type_specific_notification("development")
+  end
+
+  def mobility_submission_started_notification
+    year_open_award_type_specific_notification("mobility")
   end
 
   def unsuccessful_notification
@@ -198,5 +225,14 @@ class MailRenderer
     Settings.current.deadlines.find_by(
       kind: kind
     ).try :trigger_at
+  end
+
+  def year_open_award_type_specific_notification(award_type)
+    assigns = {}
+
+    assigns[:user] = dummy_user("Jon", "Doe", "Jane's Company")
+    assigns[:award_type] = FormAnswer::AWARD_TYPE_FULL_NAMES[award_type]
+
+    render(assigns, "users/submission_started_notification_mailer/preview/notify")
   end
 end

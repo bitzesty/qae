@@ -17,6 +17,9 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
           - unless question.title.blank?
             h2
               == question.title
+
+          = render "qae_form/question_sub_title", question: question
+
       - else
         label for="q_#{question.key}" id="q_#{question.key}_label" aria-label="#{ref.to_s.gsub(' ', '-')}: #{question.title}"
           - if question.ref || question.sub_ref
@@ -26,6 +29,8 @@ fieldset class=question.fieldset_classes data=question.fieldset_data_hash class=
           - unless question.title.blank?
             h2
               == question.title
+
+          = render "qae_form/question_sub_title", question: question
 
     - else
       - if question.ref || question.sub_ref

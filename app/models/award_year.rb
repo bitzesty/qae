@@ -169,7 +169,7 @@ class AwardYear < ApplicationRecord
       deadline = AwardYear.where(year: now.year + 1)
                           .first_or_create
                           .settings.deadlines
-                          .registrations_open_on
+                          .award_year_switch
                           .try(:trigger_at)
 
       deadline ||= Date.new(now.year, 4, 21)
@@ -244,7 +244,7 @@ class AwardYear < ApplicationRecord
         res = current.settings
                      .deadlines
                      .where(kind: title)
-                     .first 
+                     .first
       end
 
       res

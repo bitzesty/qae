@@ -1,11 +1,13 @@
 image:
-  name: ruby:2.5.0
+  name: ruby:2.5.5
 
 variables:
   DISPLAY_SOCIAL_MOBILITY_AWARD: "true"
   POSTGRES_DB: qae_test
   DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/$POSTGRES_DB"
-  PHANTOM_JS: phantomjs-2.1.1-linux-x86_64
+  BUNDLER_VERSION: 2.0.1
+  CHROMEDRIVER_VERSION: 75.0.3770.140
+  CHROMEDRIVER_DIR: /chromedriver
 
 services:
   - name: redis:3.2.7
@@ -22,15 +24,21 @@ test:
     - apt-get update -qy
     - apt-get install -y postgresql postgresql-client
     - apt-get install -y nodejs
-    - wget https://bitbucket.org/ariya/phantomjs/downloads/$PHANTOM_JS.tar.bz2
-    - tar xvjf $PHANTOM_JS.tar.bz2
-    - mv $PHANTOM_JS /usr/local/share
-    - ln -sf /usr/local/share/$PHANTOM_JS/bin/phantomjs /usr/local/bin
-    - phantomjs --version
+    - apt-get install -y libxss1 libappindicator1 libindicator7 fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatspi2.0-0 libgtk-3-0 libnspr4 libnss3 libx11-xcb1 libxtst6 xdg-utils
+    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    - dpkg -i google-chrome*.deb
+    - apt-get install -f
+    - apt-get install -y xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
+    - mkdir $CHROMEDRIVER_DIR
+    - wget -q --continue -P $CHROMEDRIVER_DIR "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+    - unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
+    - PATH=$CHROMEDRIVER_DIR:$PATH
+    - chromedriver -v
+    - gem install bundler
     - bundle install --path vendor/bundler --jobs=4 --retry=3
     - RAILS_ENV=test bundle exec rake db:create db:migrate
   script:
-    - RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec spec/models/user_spec.rb --tag '~skip_ci' --format RspecJunitFormatter --out rspec.xml --format progress
+    - RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --tag '~skip_ci' --format RspecJunitFormatter --out rspec.xml --format progress
   artifacts:
     reports:
       junit: rspec.xml
@@ -60,11 +68,12 @@ code_quality:
 deploy_dev:
   stage: deploy
   script:
-    - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
-    - mv /tmp/convox /usr/local/bin/convox
-    - chmod 755 /usr/local/bin/convox
-    - convox deploy --app qae-dev --rack bitzesty/qae
-    - convox run web rake db:migrate --app qae-dev --rack bitzesty/qae
+    - curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+    - dpkg -i cf-cli_amd64.deb
+    - cf -v
+    - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+    - cf install-plugin blue-green-deploy -r CF-Community -f
+    - CF_ENDPOINT=api.london.cloud.service.gov.uk CF_SPACE=dev CF_APP=qae-dev ./bin/deploy
   environment:
     name: dev
     url: https://dev.queens-awards-enterprise.service.gov.uk/
@@ -74,13 +83,14 @@ deploy_dev:
 deploy_staging:
   stage: deploy
   script:
-    - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
-    - mv /tmp/convox /usr/local/bin/convox
-    - chmod 755 /usr/local/bin/convox
-    - convox deploy --app qae-staging --rack bitzesty/qae
-    - convox run web rake db:migrate --app qae-staging --rack bitzesty/qae
+    - curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+    - dpkg -i cf-cli_amd64.deb
+    - cf -v
+    - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+    - cf install-plugin blue-green-deploy -r CF-Community -f
+    - CF_ENDPOINT=api.london.cloud.service.gov.uk CF_SPACE=staging CF_APP=qae-staging ./bin/deploy
   environment:
-    name: dev
+    name: staging
     url: https://staging.queens-awards-enterprise.service.gov.uk/
   only:
     - staging
@@ -88,11 +98,12 @@ deploy_staging:
 deploy_production:
   stage: deploy
   script:
-    - curl -L https://convox.com/cli/linux/convox -o /tmp/convox
-    - mv /tmp/convox /usr/local/bin/convox
-    - chmod 755 /usr/local/bin/convox
-    - convox deploy --app qae-production --rack bitzesty/qae
-    - convox run web rake db:migrate --app qae-production --rack bitzesty/qae
+    - curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
+    - dpkg -i cf-cli_amd64.deb
+    - cf -v
+    - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
+    - cf install-plugin blue-green-deploy -r CF-Community -f
+    - CF_ENDPOINT=api.london.cloud.service.gov.uk CF_SPACE=production CF_APP=qae-production ./bin/deploy
   environment:
     name: production
     url: https://www.queens-awards-enterprise.service.gov.uk/

@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-ruby '2.5.0'
+git_source(:github) { |name| "https://github.com/#{name}.git" }
+
+ruby '2.5.5'
 
 gem 'rails', '~> 5.2'
 
@@ -112,7 +114,7 @@ gem 'nilify_blanks'
 
 # We use it for sending API requests to Sendgrid in
 # AdvancedEmailValidator
-gem 'curb', '0.8.8'
+gem 'curb', '0.9.10'
 
 # Web server
 gem 'puma', '3.11.0'
@@ -149,6 +151,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem "pry-byebug"
   gem 'rails-controller-testing'
+  gem "selenium-webdriver"
 end
 
 group :production do
@@ -160,7 +163,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'capybara', '2.7.1'
+  gem 'capybara', '2.18'
   gem 'poltergeist'
   gem 'database_cleaner', '1.6.1'
   gem 'launchy'

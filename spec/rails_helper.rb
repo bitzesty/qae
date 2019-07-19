@@ -3,6 +3,7 @@ ENV['RAILS_ENV'] ||= 'test'
 
 require "simplecov"
 require "codeclimate-test-reporter"
+
 SimpleCov.add_filter "vendor"
 
 class LineFilter < SimpleCov::Filter
@@ -30,7 +31,7 @@ require 'rspec/rails'
 require "capybara/rspec"
 require "shoulda/matchers"
 require "webmock/rspec"
-require 'capybara/poltergeist'
+require 'selenium-webdriver'
 
 Dotenv.overload('.env.test')
 
@@ -39,18 +40,20 @@ WebMock.disable_net_connect!(allow: "codeclimate.com", allow_localhost: true)
 # Require all support files.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
-options = {
-  js_errors: false,
-  timeout: 240,
-  phantomjs_options: [
-    '--load-images=no',
-    '--ignore-ssl-errors=yes'
-  ]
-}
-Capybara.register_driver :poltergeist do |app|
-  Capybara::Poltergeist::Driver.new(app, options)
+Capybara.server = :puma
+
+Capybara.register_driver(:chrome_headless) do |app|
+  options = ::Selenium::WebDriver::Chrome::Options.new
+
+  options.add_argument('--headless')
+  options.add_argument('--no-sandbox')
+  options.add_argument('--disable-dev-shm-usage')
+  options.add_argument('--window-size=1400,1400')
+
+  Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
-Capybara.javascript_driver = :poltergeist
+
+Capybara.javascript_driver = :chrome_headless
 Capybara.default_max_wait_time = 5
 
 ActiveRecord::Migration.check_pending!
@@ -90,6 +93,14 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = false
+
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, type: :system, js: true) do
+    driven_by :chrome_headless
+  end
 
   config.before :each do
     # SENDGRID RELATED STUBS - BEGIN
