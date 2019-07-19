@@ -12,4 +12,4 @@ test:
 
 production:
   <<: *default
-  url: <%= ENV['DATABASE_URL'] %>
+  url: <%= PaasResolver.pgsql_uri %>

@@ -44,9 +44,6 @@ class AwardYears::V2020::QAEForms
           classes "application-notice help-notice"
           context %(
             <p>
-              You may have answered some of the questions in this section in other parts of the form. If you believe this is the case, you do not need to repeat the information, but make it clear by referencing other parts of the form.
-            </p>
-            <p>
               Please use this section to give us additional information about corporate responsibility that you have not covered elsewhere in the form and would like us to see.
             </p>
           )

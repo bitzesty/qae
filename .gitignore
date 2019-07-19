@@ -19,3 +19,10 @@ sic_codes.csv
 coverage/*
 .env.production
 .env.development
+
+qae-dev_manifest.yml
+qae-dev-worker_manifest.yml
+qae-staging_manifest.yml
+qae-staging-worker_manifest.yml
+qae-production_manifest.yml
+qae-production-worker_manifest.yml
