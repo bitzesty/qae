@@ -8,7 +8,7 @@ class Eligibility::Basic < Eligibility
             accept: :true
 
   property :do_you_file_company_tax_returns,
-            values: %w[true false na], 
+            values: %w[true false na],
             label: "Do you file your Company Tax Returns with HM Revenue and Customs (HMRC)?",
             hint: "All companies and partnerships have to select Yes or No. However, if you are a charity or are based in the Channel Islands or the Isle of Man and do not pay tax to the HMRC, please select N/A.",
             accept: :not_no
