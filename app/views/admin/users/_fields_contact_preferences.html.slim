@@ -1,9 +1,23 @@
 fieldset.question-group
-  h3 = f.label :subscribed_to_emails, label: "Is the #{controller_name == "users" ? "applicant" : controller_name.singularize} happy for us to email them in the future with information relating to The Queen's Awards, and with any other information from the Department for Business, Energy and Industrial Strategy?"
-  = f.input :subscribed_to_emails,
-            wrapper_html: { class: "checkbox selectable-group" },
-            label_html: { class: "selectable" },
-            label: "They are happy to be contacted with information about The Queen's Awards"
+  h3
+    label Yearly email notifications (when the submission period opens) for the following awards:
+
+  = f.input :notification_when_innovation_award_open, label: "Innovation", wrapper_class: "selectable unsubscribe_award_specific_option"
+
+  = f.input :notification_when_trade_award_open, label: "International Trade", wrapper_class: "selectable unsubscribe_award_specific_option"
+
+  = f.input :notification_when_development_award_open, label: "Sustainable Development", wrapper_class: "selectable unsubscribe_award_specific_option"
+
+  = f.input :notification_when_mobility_award_open, label: "Promoting Opportunity through Social Mobility", wrapper_class: "selectable unsubscribe_award_specific_option"
+
+  h3
+    label General settings:
+
+  = f.input :notification_when_submission_deadline_is_coming, label: "I would like to receive email reminders of submission deadlines - these are sent at regular intervals closer to the deadline.", wrapper_class: "selectable"
+
+  = f.input :subscribed_to_emails, checkbox: true, label: "I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (case study, newsletters so on).", wrapper_class: "selectable"
+
+  = f.input :agree_being_contacted_by_department_of_business, label: "I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.", wrapper_class: "selectable"
 
 fieldset.question-group
   h3 = f.label :qae_info_source, label: "How did the #{controller_name == "users" ? "applicant" : controller_name.singularize} hear about The Queen's Awards?"

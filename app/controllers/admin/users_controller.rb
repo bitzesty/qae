@@ -64,10 +64,10 @@ class Admin::UsersController < Admin::BaseController
     authorize @resource, :update?
 
     ::ApplicantEmailDebounceApiCheckWorker.perform_async(@resource.id)
-    
+
     flash[:notice] = "Scanning of email for this user successfully scheduled! Please refresh page in a minute!"
     respond_with :admin, @resource,
-                 location: edit_admin_user_path(@resource)  
+                 location: edit_admin_user_path(@resource)
   end
 
   private
@@ -91,6 +91,11 @@ class Admin::UsersController < Admin::BaseController
       :agree_being_contacted_by_department_of_business,
       :qae_info_source,
       :qae_info_source_other,
+      :notification_when_innovation_award_open,
+      :notification_when_trade_award_open,
+      :notification_when_development_award_open,
+      :notification_when_mobility_award_open,
+      :notification_when_submission_deadline_is_coming,
       :current_password,
       :password,
       :password_confirmation
