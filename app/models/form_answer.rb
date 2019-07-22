@@ -268,7 +268,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def whodunnit
-    PaperTrail.whodunnit
+    PaperTrail.request.whodunnit
   end
 
   def submission_end_date
