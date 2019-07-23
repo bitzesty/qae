@@ -16,6 +16,17 @@ module Qae
     # -- all .rb files in that directory are automatically loaded.
     # config.middleware.use Rack::SslEnforcer, except: "/healthcheck", except_environments: ["development", "test"]
 
+    if ENV['CORS_HOST'].present?
+      config.middleware.insert_before 0, Rack::Cors do
+        allow do
+          origins ENV['CORS_HOST'] || '*'
+          resource '*',
+                   headers: :any,
+                   methods: %i[get options]
+        end
+      end
+    end
+
     # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     config.time_zone = "London"
