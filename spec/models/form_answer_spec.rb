@@ -45,7 +45,8 @@ RSpec.describe FormAnswer, type: :model do
   describe "#whodunnit" do
     it 'should return correct result' do
       user = build(:user)
-      allow(PaperTrail).to receive(:whodunnit) {user}
+      request = double(whodunnit: user)
+      allow(PaperTrail).to receive(:request) { request }
       expect(form_answer.whodunnit).to eq user
     end
   end
