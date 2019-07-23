@@ -92,6 +92,9 @@ gem "sidekiq-cron", "~> 1.0"
 gem 'sinatra', '2.0.0', require: nil
 gem "rack-protection"
 
+# CORS configuration
+gem 'rack-cors'
+
 # Redis
 gem 'redis-rails'
 gem 'redis-store', "~> 1.4"
