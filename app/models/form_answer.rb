@@ -9,7 +9,7 @@ class FormAnswer < ApplicationRecord
   include FormAnswerStatesHelper
   include FormAnswerAppraisalFormHelpers
 
-  has_paper_trail if: Proc.new { |t| t.need_to_save_version? }
+  has_paper_trail
 
   attr_accessor :current_step, :validator_errors, :steps_with_errors
 
@@ -267,43 +267,9 @@ class FormAnswer < ApplicationRecord
     end
   end
 
-  def need_to_save_version?
-    true
-  end
-
-  # TODO  not being used, can be removed
-  # def need_to_save_version?
-  #   versions.count < 1 || (
-  #     whodunnit.present? && (
-  #       its_admin_or_assessor_action? ||
-  #       (its_user_action? && no_latest_version_or_it_was_less_than_day_ago?)
-  #     )
-  #   )
-  # end
-
   def whodunnit
-    PaperTrail.whodunnit
+    PaperTrail.request.whodunnit
   end
-
-  # TODO  not being used, can be removed
-  # def its_admin_or_assessor_action?
-  #   ["ADMIN", "ASSESSOR"].any? do |namespace|
-  #     whodunnit.include?(namespace)
-  #   end
-  # end
-  #
-  # def its_user_action?
-  #   whodunnit.include?("USER")
-  # end
-  #
-  # def no_latest_version_or_it_was_less_than_day_ago?
-  #   last_version = versions.where(whodunnit: whodunnit).last
-  #
-  #   last_version.blank? || (
-  #     last_version.present? &&
-  #     last_version.created_at < (Time.zone.now - 15.minutes)
-  #   )
-  # end
 
   def submission_end_date
     award_year.settings
