@@ -284,7 +284,7 @@ class FormAnswer < ApplicationRecord
   end
 
   def version_before_deadline
-    version_at(submission_end_date - 1.minute)
+    paper_trail.version_at(submission_end_date - 1.minute)
   end
 
   def original_form_answer
