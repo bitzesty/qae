@@ -3,7 +3,7 @@ class AwardYears::V2020::QAEForms
     def development_step5
       @development_step5 ||= proc do
         header :head_of_bussines_header, "Head of your organisation" do
-          ref "F 1"
+          ref "E 1"
         end
 
         text :head_of_bussines_title, "Title" do
@@ -35,20 +35,20 @@ class AwardYears::V2020::QAEForms
         end
 
         confirm :confirmation_of_consent, "Confirmation of consent" do
-          ref "F 2"
+          ref "E 2"
           required
           text "I confirm that I have the consent of the head of my organisation (as identified above) to submit this entry form."
         end
 
         confirm :agree_being_contacted_about_issues_not_related_to_application, "Confirmation of contact" do
-          ref "F 3"
+          ref "E 3"
           text %(
             I am happy to be contacted about Queen's Awards for Enterprise issues not related to my application (for example, acting as a case study, newsletters, other info).
           )
         end
 
         confirm :agree_being_contacted_by_department_of_business, "" do
-          sub_ref "F 3.1"
+          sub_ref "E 3.1"
           show_ref_always true
           text %(
             I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.
@@ -56,7 +56,7 @@ class AwardYears::V2020::QAEForms
         end
 
         confirm :entry_confirmation, "Confirmation of entry" do
-          ref "F 4"
+          ref "E 4"
           required
           text -> do
             %(
@@ -69,7 +69,7 @@ class AwardYears::V2020::QAEForms
         end
 
         confirm :shortlisted_case_confirmation, "" do
-          ref "F 4.1"
+          ref "E 4.1"
           required
           show_ref_always true
           text %(
