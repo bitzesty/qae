@@ -5,10 +5,10 @@ class AwardYears::V2020::QAEForms
       @mobility_step3 ||= proc do
         header :commercial_success_info_block, "" do
           context %(
-            <h3>About this section</h3>    
-            <p> 
+            <h3>About this section</h3>
+            <p>
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance.
-            </p>  
+            </p>
             <h3>Small organisations</h3>
             <p>
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
@@ -43,6 +43,7 @@ class AwardYears::V2020::QAEForms
             </p>
           )
           rows 5
+          words_max 250
         end
 
         innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
