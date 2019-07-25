@@ -3,7 +3,7 @@ class AwardYears::V2020::QAEForms
     def development_step4
       @development_step4 ||= proc do
         upload :innovation_materials, "If there is additional material you feel would help us to assess your entry, then you can add up to 3 files or website addresses here." do
-          ref "E 1"
+          ref "D 1"
           context %(
             <p>
               Please include any vital information in the form as we can't guarantee the additional material will be reviewed. It is also essential to reference these in your application to ensure the assessors are aware of them and can relate this information to the relevant questions.
