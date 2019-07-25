@@ -5,10 +5,10 @@ class AwardYears::V2020::QAEForms
       @development_step3 ||= proc do
         header :commercial_success_info_block, "" do
           context %(
-            <h3>About this section</h3>    
-            <p> 
+            <h3>About this section</h3>
+            <p>
               To be eligible for a Queen's Awards for Enterprise, your business must be financially viable. You are required to demonstrate this by providing three years of financial growth figures that cover the period your sustainable development actions or interventions have been in place.
-            </p>  
+            </p>
 
             <h3>Small organisations</h3>
             <p>
@@ -57,14 +57,14 @@ class AwardYears::V2020::QAEForms
           financial_date_pointer
         end
 
-        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>2 or 5</span> year entry period?" do
+        options :financial_year_date_changed, "Did your year-end date change during your <span class='js-entry-period-subtext'>3</span> year entry period?" do
           classes "sub-question js-financial-year-change"
           sub_ref "C 2.1"
           required
           yes_no
           context %(
             <p>
-              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>2 or 5</span> full 12-month periods.
+              We ask this to obtain all of the commercial figures we need to assess your application. You should ensure that any data supporting your application covers <span class='js-entry-period-subtext'>3</span> full 12-month periods.
             </p>
           )
           default_option "no"
@@ -325,7 +325,7 @@ class AwardYears::V2020::QAEForms
           words_max 250
           conditional :product_estimated_figures, :yes
         end
- 
+
         textarea :development_performance, "What cost-savings have you or your customers' businesses made as a result of the introduction of your sustainable development actions or interventions?" do
           ref "C 8"
           required
@@ -344,7 +344,7 @@ class AwardYears::V2020::QAEForms
           context %(
             <p>
               Include all investments and reinvestments made both during and before your entry period. Also, include the year(s) in which they were made.
-            </p> 
+            </p>
           )
           rows 5
           words_max 400
