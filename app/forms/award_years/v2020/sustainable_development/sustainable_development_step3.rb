@@ -77,8 +77,6 @@ class AwardYears::V2020::QAEForms
           type :date
           label ->(y) { "Financial year #{y}" }
 
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-
           conditional :financial_year_date_changed, :yes
         end
 
@@ -100,8 +98,6 @@ class AwardYears::V2020::QAEForms
           )
           type :number
           label ->(y) { "Financial year #{y}" }
-
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
           conditional :financial_year_date_changed, :true
 
@@ -131,8 +127,6 @@ class AwardYears::V2020::QAEForms
           type :money
           label ->(y) { "Financial year #{y}" }
 
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
@@ -146,8 +140,6 @@ class AwardYears::V2020::QAEForms
           type :money
           label ->(y) { "Financial year #{y}" }
 
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
         end
@@ -157,8 +149,6 @@ class AwardYears::V2020::QAEForms
           classes "sub-question"
           sub_ref "C 4.3"
           label ->(y) { "Financial year #{y}" }
-
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
           conditional :financial_year_date_changed, :true
           turnover :total_turnover
@@ -187,7 +177,6 @@ class AwardYears::V2020::QAEForms
           )
 
           conditional :financial_year_date_changed, :true
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
           drop_conditional :drops_in_turnover
         end
 
@@ -202,8 +191,6 @@ class AwardYears::V2020::QAEForms
           )
           type :money
           label ->(y) { "As at the end of year #{y}" }
-
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
 
           conditional :financial_year_date_changed, :true
           drop_conditional :drops_in_turnover
@@ -249,9 +236,6 @@ class AwardYears::V2020::QAEForms
           sub_ref "C 6.1"
           type :number
           label "..."
-
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-          # drop_conditional :drops_in_sales
         end
 
         one_option_by_years :sales, "Sales (if applicable)" do
@@ -259,8 +243,6 @@ class AwardYears::V2020::QAEForms
           sub_ref "C 6.2"
           type :money
           label "..."
-
-          # drop_conditional :drops_in_sales
         end
 
         one_option_by_years :sales_exports, "Of which exports (if applicable)" do
@@ -269,9 +251,6 @@ class AwardYears::V2020::QAEForms
           context %(<p>Please enter '0' if you had none.</p>)
           type :money
           label "..."
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-
-          # drop_conditional :drops_in_sales
         end
 
         one_option_by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
@@ -280,9 +259,6 @@ class AwardYears::V2020::QAEForms
           context %(<p>Please enter '0' if you had none.</p>)
           type :money
           label "..."
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
-
-          # drop_conditional :drops_in_sales
         end
 
         textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)" do
@@ -290,7 +266,6 @@ class AwardYears::V2020::QAEForms
           sub_ref "C 6.5"
           rows 5
           words_max 250
-          # drop_condition_parent
         end
 
         one_option_by_years :avg_unit_cost_self, "Direct cost, to you, of a single unit/contract (if applicable)" do
@@ -298,8 +273,6 @@ class AwardYears::V2020::QAEForms
           classes "sub-question"
           type :money
           label "..."
-
-          additional_pdf_context I18n.t("pdf_texts.development.years_question_additional_context")
         end
 
         textarea :costs_change_desc, "Explain your direct unit/ contract costs, highlighting any changes over the above periods (if applicable)." do
