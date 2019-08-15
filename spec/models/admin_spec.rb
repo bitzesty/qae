@@ -28,7 +28,7 @@ RSpec.describe Admin, type: :model do
       expect(Admin.new.primary?).to be_truthy
     end
   end
-  
+
   describe "soft_delete!" do
     it 'should set deleted' do
       admin = create(:admin)
@@ -37,4 +37,9 @@ RSpec.describe Admin, type: :model do
     end
   end
 
+  context "devise mailers" do
+    let(:user) { create(:admin) }
+
+    include_context "devise mailers instructions"
+  end
 end
