@@ -98,4 +98,10 @@ RSpec.describe Assessor, type: :model do
       expect(Assessor.new.lead_roles).to eq []
     end
   end
+
+  context "devise mailers" do
+    let(:user) { create(:assessor) }
+
+    include_context "devise mailers instructions"
+  end
 end
