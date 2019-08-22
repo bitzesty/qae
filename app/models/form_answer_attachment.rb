@@ -19,7 +19,7 @@ class FormAnswerAttachment < ApplicationRecord
                           if: -> { non_js_creation.present? }
 
   validate :words_in_description, on: :create,
-                                  if: -> { description.present? && non_js_creation.present }
+                                  if: -> { description.present? && non_js_creation.present? }
 
   validate :question_key_correctness
   # Used for NON JS implementation - end
