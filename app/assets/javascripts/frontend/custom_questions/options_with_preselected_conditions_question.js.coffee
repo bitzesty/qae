@@ -51,7 +51,7 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
       award_year = $(this).find("[data-dependable-option-siffix='year']").val()
       won = $(this).closest("li").find("[data-dependable-option-siffix='outcome']").val() == "won"
 
-      if award_category == "international_trade" && parseInt(award_year) >= threshold_year && applied && won
+      if award_category == "international_trade" && parseInt(award_year) > threshold_year && applied && won
         trade_award_and_above_threshold_year = true
 
     # Show C1 question based on this condition
