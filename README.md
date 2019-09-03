@@ -15,6 +15,7 @@ Copy on Github is a **read only** mirror.
 * Rails 5.2
 * Postgresql 9.5+
 * Redis 2.8
+* Cloudfountry Client
 
 ### Running application
 
@@ -30,13 +31,15 @@ If you're running this on your local dev setup, start redis first before startin
 
 If you need to test collaborators editing the application at the same time, install poxa.
 
-https://github.com/bitzesty/qae-poxa/blob/master/QAE_README.md#setup-on-local
+[https://gitlab.bitzesty.com/clients/qae/qae-poxa/blob/master/QAE_README.md#setup-on-local](https://gitlab.bitzesty.com/clients/qae/qae-poxa/blob/master/QAE_README.md#setup-on-local)
 
-### Deploying
+## Deploying
 
 Continuous Deployment is setup and the application will automatically deploy after passing CI on the target branch (master, staging, production).
 
 CF based PaaS is used for hosting [https://cloud.service.gov.uk](https://www.cloud.service.gov.uk/)
+
+Follow these instructions to install in your dev env [https://www.notion.so/bitzesty/GDS-PaaS-Cloud-Foundry-CF-3ed30a317c5d4387acebe1a3529f6dfa](https://www.notion.so/bitzesty/GDS-PaaS-Cloud-Foundry-CF-3ed30a317c5d4387acebe1a3529f6dfa).
 
 
 #### Dev
@@ -79,7 +82,7 @@ cf bgd qae-dev -f qae-production_manifest.yml --delete-old-apps # deploy applica
 
 
 
-#### Usefull commands
+## Usefull commands
 
 ##### SSH
 
