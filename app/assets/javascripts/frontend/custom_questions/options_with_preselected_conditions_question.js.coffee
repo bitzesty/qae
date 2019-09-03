@@ -56,7 +56,7 @@ window.OptionsWithPreselectedConditionsQuestion = init: ->
       if award_category == "international_trade" && applied && won
         if award_year > application_threshold_year
           trade_award_and_above_application_threshold_year = true
-        else if award_year >= threshold_year
+        else if award_year > threshold_year
           trade_award_and_above_threshold_year = true
 
     # Show C1 question based on this condition
