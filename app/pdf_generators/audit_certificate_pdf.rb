@@ -4,6 +4,7 @@ class AuditCertificatePdf < Prawn::Document
   include PdfAuditCertificates::General::SharedElements
   include FinancialTable
   include FormAnswersBasePointer
+  include SharedPdfHelpers::FontHelper
 
   attr_reader :audit_data,
               :form_answer,
@@ -28,7 +29,7 @@ class AuditCertificatePdf < Prawn::Document
     @audit_data = financial_pointer.data
     @step_questions = financial_pointer.financial_step.questions
     @filled_answers = financial_pointer.filled_answers
-
+    set_fonts!
     generate!
   end
 

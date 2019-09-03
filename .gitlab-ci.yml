@@ -8,6 +8,7 @@ variables:
   BUNDLER_VERSION: 2.0.1
   CHROMEDRIVER_VERSION: 75.0.3770.140
   CHROMEDRIVER_DIR: /chromedriver
+  DOCKER_TLS_CERTDIR: ""
 
 services:
   - name: redis:3.2.7
