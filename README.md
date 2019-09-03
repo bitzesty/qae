@@ -10,7 +10,8 @@ Copy on Github is a **read only** mirror.
 
 ### Pre-requisites
 
-* Ruby 2.5.5
+* Ruby 2.5.6
+* gem install bundler -v 2.0.1
 * Rails 5.2
 * Postgresql 9.5+
 * Redis 2.8
