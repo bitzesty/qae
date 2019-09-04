@@ -1,7 +1,7 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Assessor feedback management", skip_ci: true do
+describe "Assessor feedback management" do
   let(:assessor) { create(:assessor, :lead_for_all) }
   let(:form_answer) { create(:form_answer, :innovation, state: "not_awarded") }
 
@@ -12,10 +12,10 @@ describe "Assessor feedback management", skip_ci: true do
   describe "feedback submission" do
     before do
       visit assessor_form_answer_path(form_answer)
-      find("#feedback-heading a").trigger(:click)
+      find("#feedback-heading a").click
 
       within "#section-feedback .level_of_innovation" do
-        find("a.form-edit-link").trigger(:click)
+        find("a.form-edit-link").click
       end
     end
 
@@ -43,14 +43,13 @@ describe "Assessor feedback management", skip_ci: true do
 
     before do
       visit assessor_form_answer_path(form_answer)
-      find("#feedback-heading a").trigger(:click)
+      find("#feedback-heading a").click
     end
 
     it "unlocks submitted feedback", js: true do
       expect(page).to have_selector(".feedback-holder", text: "Feedback Submitted")
       expect {
-        find(:button, "Unlock").trigger(:click)
-        sleep 3
+        find(:button, "Unlock").click
       }.to change {
         feedback.reload.locked_at
       }
