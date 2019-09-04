@@ -9,6 +9,7 @@ rspec.watchr
 .pgpass
 certs/*
 .env
+.history/
 
 *.swp
 *.swo
