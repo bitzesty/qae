@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 Warden.test_mode!
 
-describe "As Admin I make the case summary edition.", js: true, skip_ci: true do
+describe "As Admin I make the case summary edition.", js: true do
   let(:scope) { :admin }
   let(:subject) { create(:admin) }
 

@@ -1,14 +1,16 @@
 require "rails_helper"
 
-describe FormPaginator, skip_ci: true do
+describe FormPaginator do
   let(:user) { create(:admin) }
   let!(:form_answer_1) { create(:form_answer) }
   let!(:form_answer_2) { create(:form_answer) }
   let!(:form_answer_3) { create(:form_answer) }
 
   before do
-    FormAnswer.all.each_with_index do |fa, index|
-      fa.update_column(:company_or_nominee_name, index)
+    [form_answer_1, form_answer_2, form_answer_3].each_with_index do |fa, i|
+      fa.document = { company_name: i.to_s }
+      fa.company_or_nominee_name = i.to_s
+      fa.save!
     end
   end
 

@@ -47,6 +47,7 @@ Capybara.register_driver(:chrome_headless) do |app|
 
   options.add_argument('--headless')
   options.add_argument('--no-sandbox')
+  options.add_argument('--disable-gpu')
   options.add_argument('--disable-dev-shm-usage')
   options.add_argument('--window-size=1400,1400')
 
@@ -93,14 +94,6 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
   config.infer_base_class_for_anonymous_controllers = false
-
-  config.before(:each, type: :system) do
-    driven_by :rack_test
-  end
-
-  config.before(:each, type: :system, js: true) do
-    driven_by :chrome_headless
-  end
 
   config.before :each do
     # SENDGRID RELATED STUBS - BEGIN

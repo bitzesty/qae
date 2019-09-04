@@ -10,17 +10,15 @@ describe "Assessor feedback management" do
   end
 
   describe "feedback submission" do
-    before do
-      visit assessor_form_answer_path(form_answer)
-      find("#feedback-heading a").click
-
-      within "#section-feedback .level_of_innovation" do
-        find("a.form-edit-link").click
-      end
-    end
-
     it "submits feedback", js: true do
+      visit assessor_form_answer_path(form_answer)
+
+      find("#feedback-heading a").click
+      expect(page).to have_css("#section-feedback .level_of_innovation", visible: true)
       within "#section-feedback .level_of_innovation" do
+        expect(page).to have_link("Edit", class: "form-edit-link")
+        click_link("Edit")
+        expect(page).to have_css("textarea[name='feedback[level_of_innovation_strength]']", visible: true)
         fill_in "feedback[level_of_innovation_strength]", with: "Feedback 101"
         click_link "Save"
 
@@ -41,12 +39,10 @@ describe "Assessor feedback management" do
       feedback
     end
 
-    before do
+    it "unlocks submitted feedback", js: true do
       visit assessor_form_answer_path(form_answer)
       find("#feedback-heading a").click
-    end
 
-    it "unlocks submitted feedback", js: true do
       expect(page).to have_selector(".feedback-holder", text: "Feedback Submitted")
       expect {
         find(:button, "Unlock").click
