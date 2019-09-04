@@ -53,12 +53,24 @@ class QAEFormBuilder
 
     def preselected_condition
       placeholder_preselected_conditions.detect do |c|
-        linked_answers.any? do |a|
+        trade_answers = linked_answers.select do |a|
           a.is_a?(Hash) &&
-          a["category"] == "international_trade" &&
-            a["year"].to_i > (AwardYear.current.year - 5) &&
+            a["category"] == "international_trade" &&
             a["outcome"] == "won"
-        end && answers["applied_for_queen_awards"] == "yes"
+        end
+
+        condition_enabled = if c.parent_question_answer_key == "application_disabled"
+          trade_answers.any? do |a|
+            a["year"].to_i >= (AwardYear.current.year - 1)
+          end
+        elsif c.parent_question_answer_key == "3_years_application"
+          trade_answers.any? do |a|
+            a["year"].to_i > (AwardYear.current.year - 5) &&
+              a["year"].to_i < (AwardYear.current.year - 1)
+          end
+        end
+
+        answers["applied_for_queen_awards"] == "yes" && condition_enabled
       end
     end
 

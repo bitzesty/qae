@@ -5,13 +5,13 @@ class AwardYears::V2020::QAEForms
       @trade_step3 ||= proc do
         header :commercial_success_info_block, "" do
           context %(
-            <h3>About this section</h3>    
-            <p> 
+            <h3>About this section</h3>
+            <p>
               All applicants for any Queen’s Award must demonstrate a certain level of financial performance. This section enables you to show the impact that your international trade activities had on your organisation's financial performance.
-            </p>  
+            </p>
             <h3>Small organisations</h3>
             <p>
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can. 
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
             <h3>Estimated figures</h3>
             <p>
@@ -25,7 +25,7 @@ class AwardYears::V2020::QAEForms
             )],
             [:bold, "Small organisations"],
             [:normal, %(
-              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can. 
+              Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
             [:bold, "Estimated figures"],
             [:normal, %(
@@ -52,8 +52,17 @@ class AwardYears::V2020::QAEForms
           placeholder_preselected_condition :applied_for_queen_awards_details,
                                             question_suffix: :year,
                                             question_value: "3 to 5",
+                                            parent_question_answer_key: "3_years_application",
                                             placeholder_text: %(
               As you currently hold a Queen's Award in International Trade, you can only apply for the Outstanding Achievement Award (3 years).
+            )
+
+          placeholder_preselected_condition :applied_for_queen_awards_details,
+                                            question_suffix: :year,
+                                            question_value: "",
+                                            parent_question_answer_key: "application_disabled",
+                                            placeholder_text: %(
+              As you currently hold a Queen's Award for International Trade, you cannot apply for another Award. You may apply in future years but can only use one year's financial performance from your Award winning application.
             )
 
           financial_date_selector({
