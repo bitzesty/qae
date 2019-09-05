@@ -65,7 +65,7 @@ So that User can re-upload Verification of Commercial Figures
         find(".js-remove-audit-certificate-link").click()
         page.driver.browser.switch_to.alert.accept
 
-        sleep 3
+        wait_for_ajax
       }.to change {
         form_answer.reload.audit_certificate
       }
