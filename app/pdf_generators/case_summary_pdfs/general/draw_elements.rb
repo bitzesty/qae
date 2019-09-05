@@ -12,9 +12,15 @@ module CaseSummaryPdfs::General::DrawElements
     unless form_answer.promotion?
       render_organization_type
       render_sic_code
-      render_type
-      render_current_awards
-      render_sub_category(0, y_coord('sub_category'))
+
+      if form_answer.development? && form_answer.award_year.year >= 2020
+        # type and sub category Qs are missing for SD2020+, so need to move up
+        render_current_awards(offset: 8.mm)
+      else
+        render_type
+        render_current_awards
+        render_sub_category(0, y_coord('sub_category'))
+      end
     end
 
     render_award_general_information(130, 127)
@@ -65,8 +71,8 @@ module CaseSummaryPdfs::General::DrawElements
             header_text_properties.merge(width: 272.mm, at: [0.mm, 104.5.mm + default_offset])
   end
 
-  def render_current_awards
+  def render_current_awards(offset: 0)
     pdf_doc.text_box "Current Awards: #{current_awards}",
-            header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord('awards').mm + default_offset])
+            header_text_properties.merge(width: 650.mm, at: [0.mm, y_coord('awards').mm + default_offset + offset])
   end
 end

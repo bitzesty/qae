@@ -817,45 +817,25 @@ class AppraisalForm
   }
 
   DEVELOPMENT_2020 = {
-    product_service_contribution: {
+    strategy_and_targets: {
       type: :rag,
-      label: "Product/service contribution:",
+      label: "Strategy and Targets - 25% max:",
       position: 0
     },
-    commercial_success: {
+    approach: {
       type: :rag,
-      label: "Commercial success:",
+      label: "Approach - 25% max:",
       position: 1
     },
-    environment: {
-      type: :non_rag,
-      label: "Environmental dimension:",
+    positive_impacts: {
+      type: :rag,
+      label: "Positive Impacts - 50% max:",
       position: 2
-    },
-    social: {
-      type: :non_rag,
-      label: "Social dimension:",
-      position: 3
-    },
-    economic: {
-      type: :non_rag,
-      label: "Economic dimension:",
-      position: 4
-    },
-    leadership_management: {
-      type: :rag,
-      label: "Leadership & management:",
-      position: 5
-    },
-    corporate_social_responsibility: {
-      type: :rag,
-      label: "Corporate social responsibility (section D):",
-      position: 6
     },
     verdict: {
       type: :verdict,
       label: "Overall verdict:",
-      position: 7
+      position: 3
     }
   }
 

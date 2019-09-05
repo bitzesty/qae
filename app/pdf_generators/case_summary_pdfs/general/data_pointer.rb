@@ -49,7 +49,8 @@ module CaseSummaryPdfs::General::DataPointer
 
   def current_awards_question
     all_questions.detect do |q|
-      q.delegate_obj.is_a?(QAEFormBuilder::QueenAwardHolderQuestion)
+      q.delegate_obj.is_a?(QAEFormBuilder::QueenAwardHolderQuestion) ||
+        q.delegate_obj.is_a?(QAEFormBuilder::QueenAwardApplicationsQuestion)
     end
   end
 
@@ -59,7 +60,7 @@ module CaseSummaryPdfs::General::DataPointer
 
       if answer.present?
         res = answer.map do |item|
-          if item["category"].present? && item["year"].present?
+          if item["category"].present? && item["year"].present? && (item["outcome"].nil? || item["outcome"] == "won")
             "#{item["year"]} - #{PREVIOUS_AWARDS[item["category"].to_s]}"
           end
         end.compact
@@ -126,6 +127,11 @@ module CaseSummaryPdfs::General::DataPointer
       pdf_doc.move_down 10.mm
       render_application_background
     else
+      # type and sub category Qs are missing for SD2020+, so need to move up
+      if form_answer.development? && form_answer.award_year.year >= 2020
+        pdf_doc.move_up 16.mm
+      end
+
       pdf_doc.move_down y_coord('general_block').mm
       render_application_background
     end
