@@ -19,11 +19,17 @@
     script type="text/javascript"
       | var ieVersion = 9;
 
+  - if Rails.env.test?
+    style
+      | * { -webkit-transition: none !important; transition: none !important; -webkit-animation: none !important; animation: none !important; }
+
   = csrf_meta_tags
 
   = yield :section_meta_tags
 
   = yield :head
+
+
 
 - content_for :header_class do
   - unless landing_page?
@@ -138,6 +144,9 @@
   - if should_enable_js?
     = include_gon
     = javascript_include_tag 'application'
+
+  - if Rails.env.test?
+    = javascript_tag("$.fx.off = true;")
 
     - if ENV["GOOGLE_ANALYTICS_ID"].present?
       / Google Analytics

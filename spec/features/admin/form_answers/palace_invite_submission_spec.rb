@@ -28,7 +28,7 @@ describe "Admin submits palace attendees' info" do
     end
   end
 
-  context "js enabled", js: true, skip_ci: true do
+  context "js enabled", js: true do
     it "submits palace attendee info" do
       find("#palace-attendees-heading .panel-title a").click
 

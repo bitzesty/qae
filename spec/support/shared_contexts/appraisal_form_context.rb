@@ -19,7 +19,7 @@ shared_context "successful appraisal form edition" do
     end
   end
 
-  describe "Description change", skip_ci: true do
+  describe "Description change" do
     let(:text) { "textareatext123" }
 
     it "updates the description" do
@@ -37,7 +37,7 @@ shared_context "successful appraisal form edition" do
     end
   end
 
-  describe "Overall verdict change", skip_ci: true do
+  describe "Overall verdict change" do
     it "updates verdict" do
       assert_verdict_change(primary, primary_header)
       assert_verdict_change(secondary, secondary_header)
@@ -76,13 +76,12 @@ def assert_rag_change(section_id, header_id)
 
     first(".btn-rag").click
     find(".dropdown-menu .rag-negative").click
-
+    wait_for_ajax
     expect(page).to have_selector(rag, text: "Select RAG", count: 3)
     expect(page).to have_selector(rag, text: "Red", count: 1)
     expect(page).to have_selector(rag, text: "Select verdict", count: 1)
   end
 
-  sleep(0.5)
   visit show_path
 
   find("#{header_id} .panel-title a").click
@@ -107,10 +106,10 @@ def assert_description_change(section_id, header_id)
     end
     within parent_selector do
       find(".form-save-link").click
+      wait_for_ajax
     end
   end
 
-  sleep(0.5)
   visit show_path
 
   find("#{header_id} .panel-title a").click
@@ -126,8 +125,7 @@ end
 def assert_multiple_description_change(section_id, header_id)
   text = "should NOT be saved"
   text2 = "should be saved"
-  sleep(0.5)
-  find("#{header_id} .panel-title a").trigger(:click)
+  find("#{header_id} .panel-title a").click
 
   within section_id do
     unless section_id == moderated
@@ -135,36 +133,34 @@ def assert_multiple_description_change(section_id, header_id)
     end
 
     fill_in("assessor_assignment_verdict_desc", with: text2)
-    all(".form-save-link").last.trigger(:click)
-
+    all(".form-save-link").last.click
+    wait_for_ajax
   end
 
-  sleep(0.5)
   visit show_path
-  sleep(0.5)
-  find("#{header_id} .panel-title a").trigger(:click)
+  find("#{header_id} .panel-title a").click
 
   within section_id do
     expect(page).to have_content(text2)
 
-    all(".form-edit-link").last.trigger(:click)
+    all(".form-edit-link").last.click
 
     expect(page.find("#assessor_assignment_verdict_desc").text).to eq  text2
   end
 end
 
 def assert_verdict_change(section_id, header_id)
-  find("#{header_id} .panel-title a").trigger(:click)
+  find("#{header_id} .panel-title a").click
 
   within section_id do
     expect(page).to have_selector(".rag-text", text: "Select verdict", count: 1)
-    all(".btn-rag").last.trigger(:click)
-    find(".dropdown-menu .rag-positive a").trigger(:click)
+    all(".btn-rag").last.click
+    find(".dropdown-menu .rag-positive a").click
+    wait_for_ajax
   end
 
-  sleep(0.5)
   visit show_path
-  page.find("#{header_id} .panel-title a").trigger(:click)
+  page.find("#{header_id} .panel-title a").click
   within section_id do
     expect(page).to_not have_selector(".rag-text", text: "Select verdict")
     expect(page).to have_content "Recommended"
