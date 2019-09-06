@@ -964,22 +964,22 @@ class AppraisalForm
   MOBILITY_2020 = {
     mobility_organisation_aiming_to_achieve: {
       type: :rag,
-      label: "What are you doing? (10% max) - Questions B2-B2.2",
+      label: "The Social Mobility programme and its context:",
       position: 0
     },
-    mobility_programme_provide_a_good: {
+    mobility_embedding_info: {
       type: :rag,
-      label: "How do you do it? (30% max) - Questions B3-B4.2",
+      label: "Embedding the programme & Organisational culture:",
       position: 1
     },
-    mobility_embedded_is_the_programme: {
+    mobility_impact_of_the_programme: {
       type: :rag,
-      label: "What have you achieved? (60% max) - Questions B5-B7",
+      label: "Impact of the programme:",
       position: 2
     },
     corporate_social_responsibility: {
       type: :rag,
-      label: "Corporate social responsibility (section D):",
+      label: "Corporate social responsibility:",
       position: 3
     },
     verdict: {
