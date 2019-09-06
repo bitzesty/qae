@@ -1,7 +1,7 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Assessor feedback management", skip_ci: true do
+describe "Assessor feedback management" do
   let(:assessor) { create(:assessor, :lead_for_all) }
   let(:form_answer) { create(:form_answer, :innovation, state: "not_awarded") }
 
@@ -10,17 +10,15 @@ describe "Assessor feedback management", skip_ci: true do
   end
 
   describe "feedback submission" do
-    before do
-      visit assessor_form_answer_path(form_answer)
-      find("#feedback-heading a").trigger(:click)
-
-      within "#section-feedback .level_of_innovation" do
-        find("a.form-edit-link").trigger(:click)
-      end
-    end
-
     it "submits feedback", js: true do
+      visit assessor_form_answer_path(form_answer)
+
+      find("#feedback-heading a").click
+      expect(page).to have_css("#section-feedback .level_of_innovation", visible: true)
       within "#section-feedback .level_of_innovation" do
+        expect(page).to have_link("Edit", class: "form-edit-link")
+        click_link("Edit")
+        expect(page).to have_css("textarea[name='feedback[level_of_innovation_strength]']", visible: true)
         fill_in "feedback[level_of_innovation_strength]", with: "Feedback 101"
         click_link "Save"
 
@@ -41,16 +39,13 @@ describe "Assessor feedback management", skip_ci: true do
       feedback
     end
 
-    before do
-      visit assessor_form_answer_path(form_answer)
-      find("#feedback-heading a").trigger(:click)
-    end
-
     it "unlocks submitted feedback", js: true do
+      visit assessor_form_answer_path(form_answer)
+      find("#feedback-heading a").click
+
       expect(page).to have_selector(".feedback-holder", text: "Feedback Submitted")
       expect {
-        find(:button, "Unlock").trigger(:click)
-        sleep 3
+        find(:button, "Unlock").click
       }.to change {
         feedback.reload.locked_at
       }

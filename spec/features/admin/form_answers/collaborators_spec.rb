@@ -59,16 +59,16 @@ So that they can collaborate applications
       end
     end
 
-    describe "Success Add to Collaborators", skip_ci: true, js: true do
+    describe "Success Add to Collaborators", js: true do
       let(:email) { generate(:email) }
       let!(:user) { create(:user, email: email) }
 
       it "should add user to collaborators with regular role" do
-        find("a[aria-controls='section-company-details']").trigger(:click)
+        find("a[aria-controls='section-company-details']").click()
 
         within(".admin-search-collaborators-form") do
           fill_in "search[query]", with: email.to_s[2..-2]
-          first("input[type='submit']").trigger(:click)
+          first("input[type='submit']").click()
 
           within(".js-admin-search-collaborators-results-box") do
             expect_to_see(user.email)

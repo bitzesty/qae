@@ -28,6 +28,12 @@ html.no-js
 
     = yield(:head) if content_for?(:head)
 
+    - if Rails.env.test?
+      = javascript_tag("$.fx.off = true;")
+      style
+        | * { -webkit-transition: none !important; transition: none !important; -webkit-animation: none !important; animation: none !important; }
+
+
   body#assessor-layout data-autosave-token="#{current_assessor.try(:autosave_token)}" class="assessor-layout #{controller_name}-page #{action_name}-page #{controller_name}-#{action_name}-page #{yield :page_class} #{'layout-dev' if Rails.env.development?}"
     #site-wrapper
       #site-wrapper-margin
