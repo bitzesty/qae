@@ -421,7 +421,7 @@ window.FormValidation =
     missingOverseasTradeValue = false
     totalOverseasTradeInputs.each ->
       if $(this).val().toString().trim().length
-        totalOverseasTradePercentage += parseInt $(this).val()
+        totalOverseasTradePercentage += parseFloat($(this).val())
       else
         missingOverseasTradeValue = true
     if !missingOverseasTradeValue
