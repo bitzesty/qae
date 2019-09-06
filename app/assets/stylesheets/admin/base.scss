@@ -106,6 +106,13 @@ table .ellipsis {
       vertical-align: top;
     }
   }
+  .btn-second-line-title {
+    display: block;
+
+    .lte-ie7 & {
+      vertical-align: top;
+    }
+  }
 
   .glyphicon:first-child {
     margin-right: 5px;
