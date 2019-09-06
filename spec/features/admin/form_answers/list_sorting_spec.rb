@@ -1,7 +1,7 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "Form answer list sorting", js: true, skip_ci: true do
+describe "Form answer list sorting", js: true do
   let!(:subject) { create(:admin) }
 
   before do

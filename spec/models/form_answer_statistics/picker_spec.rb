@@ -8,7 +8,7 @@ describe FormAnswerStatistics::Picker do
 
     describe "#applications_table" do
       it "calculates proper stats", :aggregate_failures do
-        current_date = DateTime.new(2018, 10, 31)
+        current_date = DateTime.new(2019, 10, 31)
 
         Timecop.freeze(current_date) do
           create(:user)

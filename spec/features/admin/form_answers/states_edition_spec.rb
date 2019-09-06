@@ -1,7 +1,7 @@
 require "rails_helper"
 include Warden::Test::Helpers
 
-describe "As Admin I want to change the applications states.", js: true, skip_ci: true do
+describe "As Admin I want to change the applications states.", js: true do
   let!(:admin) { create(:admin) }
   let!(:form_answer) { create(:form_answer, state: "assessment_in_progress") }
 
