@@ -150,10 +150,17 @@ module Reports::DataPickers::FormDocumentPicker
 
   def subcategory_suffix(attr_name)
     mobility_2017_change = {}
+    development_2020_change = {}
 
     if obj.award_year.year > 2017
       mobility_2017_change = {
         "mobility" => "#{attr_name}_3of3"
+      }
+    end
+
+    if obj.award_year.year >= 2020
+      development_2020_change = {
+        "development" => "#{attr_name}_3of3"
       }
     end
 
@@ -181,7 +188,8 @@ module Reports::DataPickers::FormDocumentPicker
           "5 plus" => "#{attr_name}_5of5"
         }
       }
-    }.merge(mobility_2017_change)[obj.award_type]
+    }.merge(mobility_2017_change)
+      .merge(development_2020_change)[obj.award_type]
   end
 
   def subcategory_field_name
@@ -204,6 +212,8 @@ module Reports::DataPickers::FormDocumentPicker
       else
         "Outstanding achievement over 3 years"
       end
+    elsif development? && obj.award_year.year >= 2020
+      "Outstanding achievement over 3 years"
     else
       if trade?
         {
@@ -255,6 +265,8 @@ module Reports::DataPickers::FormDocumentPicker
       target_key = nil
 
       if !(obj.award_year.year <= 2017) && mobility?
+        target_key = meth
+      elsif obj.award_year.year >= 2020 && development?
         target_key = meth
       else
         range = doc(meth.keys.first)
