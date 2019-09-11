@@ -316,7 +316,6 @@ class AwardYears::V2020::QAEForms
         textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
           classes "sub-question"
           sub_ref "C 4.6"
-          required
           context %(
             <p>
               This information is particularly useful when ascertaining your company’s financial viability, especially when you have drops in total turnover and losses.
