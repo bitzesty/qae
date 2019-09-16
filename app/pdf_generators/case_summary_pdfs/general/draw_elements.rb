@@ -1,6 +1,16 @@
 module CaseSummaryPdfs::General::DrawElements
+  ONE_LINE_OFFSET = 8.mm
+
   def default_offset
     SharedPdfHelpers::DrawElements::DEFAULT_OFFSET
+  end
+
+  def sic_code_offset
+    @sic_code_offset ||= if sic_code.length > 100
+      -5.mm
+    else
+      0.mm
+    end
   end
 
   def main_header
@@ -13,13 +23,13 @@ module CaseSummaryPdfs::General::DrawElements
       render_organization_type
       render_sic_code
 
-      if form_answer.development? && form_answer.award_year.year >= 2020
+      if (form_answer.development? || form_answer.mobility?) && form_answer.award_year.year >= 2020
         # type and sub category Qs are missing for SD2020+, so need to move up
-        render_current_awards(offset: 8.mm)
+        render_current_awards(offset: ONE_LINE_OFFSET + sic_code_offset)
       else
-        render_type
-        render_current_awards
-        render_sub_category(0, y_coord('sub_category'))
+        render_type(offset: sic_code_offset)
+        render_current_awards(offset: sic_code_offset)
+        render_sub_category(0, y_coord('sub_category') + sic_code_offset.to_i)
       end
     end
 
@@ -33,10 +43,10 @@ module CaseSummaryPdfs::General::DrawElements
     )
   end
 
-  def render_type
+  def render_type(offset: 0.mm)
     pdf_doc.text_box "Type: #{application_type}",
             header_text_properties.merge(
-      at: [0.mm, 97.mm + default_offset],
+      at: [0.mm, 97.mm + default_offset + offset],
       width: 272.mm
     )
   end
@@ -51,15 +61,31 @@ module CaseSummaryPdfs::General::DrawElements
       2
     end
 
+ #   if form_answer.award_type == "mobility" &&
+ #      form_answer.award_year.year < 2020 &&
+ #      application_type_answer.size > 0
+ #     case application_type_answer.size
+  #    when 1
+ #       [84, 76, 70]
+  #    when 2
+  #      [79, 72, 76]
+  #    when 3
+ #       [74, 67, 80]
+ #     end
+ #   else
+ #     [89, 81, 65]
+ #   end[mode_number]
+
     if form_answer.award_type == "mobility" &&
+       form_answer.award_year.year < 2020 &&
        application_type_answer.size > 0
       case application_type_answer.size
       when 1
-        [84, 76, 70]
+        [79, 71, 75]
       when 2
-        [79, 72, 76]
+        [74, 67, 81]
       when 3
-        [74, 67, 80]
+        [69, 62, 85]
       end
     else
       [89, 81, 65]
