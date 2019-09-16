@@ -200,4 +200,78 @@ describe FormAnswerDecorator do
       end
     end
   end
+
+  describe "show_this_entry_relates_to_question?" do
+    let(:form_answer) { build(:form_answer) }
+
+    context "for innovation and trade" do
+      it "returns true for 2020" do
+        allow(form_answer).to receive(:award_year).and_return(double(year: 2020))
+
+        form_answer.award_type = "trade"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(true)
+
+        form_answer.award_type = "innovation"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(true)
+      end
+
+      it "returns true for 2019" do
+        allow(form_answer).to receive(:award_year).and_return(double(year: 2019))
+
+        form_answer.award_type = "trade"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(true)
+
+        form_answer.award_type = "innovation"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(true)
+      end
+    end
+
+    context "for development and mobility" do
+      it "returns false for 2020" do
+        allow(form_answer).to receive(:award_year).and_return(double(year: 2020))
+
+        form_answer.award_type = "development"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(false)
+
+        form_answer.award_type = "mobility"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(false)
+      end
+
+      it "returns true for 2019" do
+        allow(form_answer).to receive(:award_year).and_return(double(year: 2019))
+
+        form_answer.award_type = "development"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(true)
+
+        form_answer.award_type = "development"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(true)
+      end
+    end
+
+    context "for promotion" do
+      it "returns false for 2020" do
+        allow(form_answer).to receive(:award_year).and_return(double(year: 2020))
+
+        form_answer.award_type = "promotion"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(false)
+      end
+
+      it "returns false for 2019" do
+        allow(form_answer).to receive(:award_year).and_return(double(year: 2019))
+
+        form_answer.award_type = "promotion"
+        decorator = described_class.new form_answer
+        expect(decorator.show_this_entry_relates_to_question?).to eq(false)
+      end
+    end
+  end
 end
