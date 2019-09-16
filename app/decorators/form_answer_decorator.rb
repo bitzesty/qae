@@ -432,6 +432,13 @@ class FormAnswerDecorator < ApplicationDecorator
     document["organisation_type"]
   end
 
+  def show_this_entry_relates_to_question?
+    year = award_year.year
+
+    !promotion? &&
+      (!development? || year < 2020) &&
+      (!mobility? || year < 2020)
+  end
   def this_entry_relates_to
     source_value = if document["application_relate_to"].present?
       document["application_relate_to"]

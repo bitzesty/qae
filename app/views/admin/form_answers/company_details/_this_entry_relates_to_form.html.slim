@@ -1,6 +1,6 @@
 - title = "This entry relates to"
 
-- unless @form_answer.promotion?
+- if @form_answer.show_this_entry_relates_to_question?
   - if user_can_edit(@form_answer, :this_entry_relates_to)
     .form-group class="#{'form-edit' if @form_answer.this_entry_relates_to.blank?}"
       = simple_form_for [namespace_name, resource],
