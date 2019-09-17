@@ -54,7 +54,7 @@ ready = ->
     state = $(this).data("state")
     form = $("#new_form_answer_state_transition")
     form.find("option[value='#{state}']").prop("selected", true)
-    $(".section-applicant-status .dropdown-toggle").text($(this).data("label"))
+    $(".section-applicant-status .dropdown-toggle").html($(this).data("label"))
     form.submit()
 
   $("#new_form_answer_state_transition").on "ajax:success", (e, data, status, xhr) ->

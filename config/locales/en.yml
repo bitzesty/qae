@@ -155,7 +155,7 @@ en:
     buckingham_palace_reception_attendee_information_due_by: "Winners will not be able to submit attendees details after this date. This date will be pulled into the Buckingham Palace Invite email - to heads of winning organisations only."
     buckingham_palace_attendees_invite: "This date will be pulled into the email notifying all winning business applicants of their success, the email to the heads of organisations and the Buckingham Palace Invite email."
     audit_certificates: "Shortlisted applicants will have up until this date to submit their Verification of Commercial Figures. This date will be pulled into the email notifying shortlisted applicants of their success, and the reminder to submit Verification of Commercial Figures email."
-  
+
   email_notification_help_messages:
     award_year_open_notifier: "This email will be sent to all users who have ticked that they want to receive opening notification for at least one award type in account's 'Contact Preferences' section."
     innovation_submission_started_notification: "This email will be sent to all users who have ticked that they want to receive opening notification for Innovation award in account's 'Contact Preferences' section."
@@ -166,7 +166,7 @@ en:
     winners_notification: "Winners stage start (winning applications are displayed on the homepage and allows users to update their Press Book entry)"
     unsuccessful_notification: "Unsuccessful stage start (Unsuccessful applications are displayed on the homepage)"
     buckingham_palace_invite: "Palace invites stage start (allows users to add their Palace invite details on the homepage)"
-  
+
   email_notification_headers:
     award_year_open_notifier: "Notify users that the applications for the new Award year are open"
     innovation_submission_started_notification: "Notify users that the applications for Queen’s Awards for Innovation are now open"
@@ -242,7 +242,7 @@ en:
       not_eligible: Not eligible
       not_submitted: Not submitted
       assessment_in_progress: Assessment in progress
-      disqualified: Disqualified
+      disqualified: Disqualified - <br /> No Verification of <br /> Commercial Figures
       recommended: Recommended
       reserved: Reserved
       not_recommended: Not recommended
