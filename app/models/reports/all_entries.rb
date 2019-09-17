@@ -152,6 +152,10 @@ class Reports::AllEntries
       method: :date_started_trading
     },
     {
+      label: "ExportMarkets",
+      method: :export_markets
+    },
+    {
       label: "NomineeTitle",
       method: :nominee_title
     },

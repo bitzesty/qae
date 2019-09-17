@@ -1,4 +1,5 @@
 module Reports::DataPickers::FormDocumentPicker
+
   def business_region
     if business_form?
       doc "organization_address_region"
@@ -138,6 +139,12 @@ module Reports::DataPickers::FormDocumentPicker
 
   def employees
     collect_final_value_from_doc(subcategory_suffix("employees"))
+  end
+
+  def export_markets
+    return "" unless trade?
+
+    ActionController::Base.helpers.strip_tags(doc("markets_geo_spread"))
   end
 
   def final_year_overseas_sales
