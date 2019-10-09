@@ -1,6 +1,6 @@
 - form = AppraisalForm.verdict_options_for(f.object, section)
 - editable = f.object.editable_for?(current_subject)
-- rag_editable = f.object.moderated_rag_editable_for?(current_subject, moderated_assessment)
+- rag_editable = f.object.moderated_rag_editable_for?(current_subject)
 
 .form-group.verdict-section class="#{'form-edit' if f.object.public_send(section.desc).blank? && editable} form-#{section.label.parameterize}"
   .form-container
