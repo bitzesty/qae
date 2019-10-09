@@ -97,9 +97,9 @@ class AssessorAssignment < ApplicationRecord
     secondary_assessor_can_edit?(subject)
   end
 
-  def moderated_rag_editable_for?(subject,  moderated_assessment)
+  def moderated_rag_editable_for?(subject)
     editable_for?(subject) &&
-    (position != "moderated" || !moderated_assessment.submitted?)
+    (position != "moderated" || not_submitted_or_not_locked?)
   end
 
   def as_json
