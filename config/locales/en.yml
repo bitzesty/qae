@@ -98,12 +98,12 @@ en:
     form_answers:
       financial_summary:
         years_row:
-          financial_year_changed_dates: Year and date
+          financial_year_changed_dates: Year-end date
         row:
           employees: Number of UK employees
           exports: Overseas sales accepted (£)
           overseas_sales: Overseas Sales (£)
-          total_turnover: Total sales accepted (£)
+          total_turnover: Total turnover (£)
           net_profit: Net profit (£)
           total_net_assets: Total net assets (£)
           units_sold: No. of units, contracts, quantity sold
