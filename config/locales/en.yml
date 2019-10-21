@@ -101,19 +101,21 @@ en:
           financial_year_changed_dates: Year-end date
         row:
           employees: Number of UK employees
-          exports: Overseas sales accepted (£)
+          exports: Of which exports (£)
           overseas_sales: Overseas Sales (£)
           total_turnover: Total turnover (£)
-          net_profit: Net profit (£)
-          total_net_assets: Total net assets (£)
-          units_sold: No. of units, contracts, quantity sold
-          sales:  Sales value (£)
-          sales_exports: Exports (£)
-          sales_royalties: Royalties/Licences (£)
-          avg_unit_price: Avg. selling price (£)
-          avg_unit_cost_self: Unit costs (£)
+          net_profit: Net profit after tax but before dividends (£)
+          total_net_assets: Net assets (£)
+          units_sold: Number of units, contracts, quantity sold
+          sales: Sales value (£)
+          sales_exports: Of which exports (£)
+          sales_royalties: Of which royalties or licences (£)
+          avg_unit_price: Average unit selling price/contract value (£)
+          avg_unit_cost_self: Direct cost of single unit/contract (£)
+        innovation:
+          sales: Sales of innovative product/service (£)
         uk_sales_row:
-          uk_sales: UK sales (£)
+          uk_sales: Of which UK sales (£)
         benchmarks:
           growth_overseas_earnings: "% Growth overseas earnings"
           sales_exported: "% Sales exported"
