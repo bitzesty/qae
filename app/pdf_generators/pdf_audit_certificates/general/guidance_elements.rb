@@ -13,7 +13,7 @@ module PdfAuditCertificates::General::GuidanceElements
 
     p1 = "The figures in the #{table} below have been provided by the applicant during their application for the Queen’s Awards for Enterprise."
 
-    p2 = "Please review the figures. If they are all correct, please confirm this by selecting a Statement 1 at the bottom of this form. Alternatively, please enter the revised figures in the #{table}, explain the changes in the section provided below the #{table} and select Statement 2. "
+    p2 = "Please review the figures. If they are all correct, please confirm this by selecting Statement 1 at the bottom of this form. Alternatively, please enter the revised figures in the #{table}, explain the changes in the section provided below the #{table} and select Statement 2."
 
     p3 = "Please note, justifiable changes that do not substantially change the applicant’s overall financial performance are unlikely to disqualify the applicant."
 
