@@ -201,13 +201,13 @@ module PdfAuditCertificates::General::SharedElements
     b2 = %{For and on behalf of: .........................................................................................}
     render_text_line(b2, 1)
 
-    b3 = %{Company Registration Number: ......................................................................}
+    b3 = %{Company registration number: ......................................................................}
     render_text_line(b3, 1)
 
     b4 = %{Address: ..............................................................................................................}
     render_text_line(b4, 1)
 
-    b5 = %{Telephone Number: ..........................................................................................}
+    b5 = %{Telephone number: ..........................................................................................}
     render_text_line(b5, 1)
 
     b6 = %{Email: ...................................................................................................................}
@@ -234,7 +234,7 @@ module PdfAuditCertificates::General::SharedElements
   end
 
   def render_additional_comments
-    render_text_line("Additional Comments:", 1, style: :bold)
+    render_text_line("Additional comments:", 50, style: :bold)
   end
 
   def render_options(opt1, opt2)
@@ -252,6 +252,22 @@ module PdfAuditCertificates::General::SharedElements
       "Statement 1 - We have reviewed the figures provided above and we confirm that, in our opinion, the figures are correct and that the applicable accounting standards have been complied with.",
       "Statement 2 - We have reviewed and revised the figures provided above and we confirm that, in our opinion, the figures, as revised and explained, are correct and that the applicable accounting standards have been complied with."
     )
+  end
+
+  def render_feedback
+    render_text_line("FEEDBACK", 5, style: :bold)
+    render_text_line("Would you be willing to participate in our anonymous survey?", 1, style: :bold)
+
+    render_text_line("We are committed to improving experiences for everyone who is involved in the Queen’s Awards for Enterprise process. We would like to gather feedback from accountants so that we can make relevant improvements to the verification forms and the financial section of the application form.", 5)
+
+    render_text_line("Yes       No", 10, style: :bold)
+
+    render_text_line("If you have agreed to participate in the survey, please provide your email address so that we can send it to you.", 5, style: :bold)
+
+    render_text_line("Email: ....................................................................................................................", 5)
+
+    render_text_line("Immediate feedback", 5, style: :bold)
+    render_text_line("We would appreciate any immediate feedback on this verification form or the financial information requested so that we can make improvements for future applicants and their accountants.", 0)
   end
 
 
