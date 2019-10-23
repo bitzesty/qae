@@ -2,6 +2,7 @@ require "prawn/measurement_extensions"
 
 class AuditCertificatePdf < Prawn::Document
   include PdfAuditCertificates::General::SharedElements
+  include PdfAuditCertificates::General::GuidanceElements
   include FinancialTable
   include FormAnswersBasePointer
   include SharedPdfHelpers::FontHelper
@@ -38,26 +39,18 @@ class AuditCertificatePdf < Prawn::Document
   end
 
   def render_content
-    render_first_page
+    render_main_header
+    render_guidance_section
+
     start_new_page
-    render_second_page
-  end
-
-  def render_first_page
-    render_main_header
-    render_base_paragraph
-    render_financial_table
-    render_options_list
-    render_user_filling_block
-    render_footer_note
-  end
-
-  def render_second_page
-    render_main_header
-    render_revised_schedule
     render_financial_table
     render_explanation_of_the_changes
+
+    start_new_page
     render_additional_comments
+    render_accountant_statement
+    render_user_filling_block
+    render_feedback
   end
 
   def formatted_uk_sales_value(item)
