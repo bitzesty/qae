@@ -47,9 +47,10 @@ class AuditCertificatePdf < Prawn::Document
     render_explanation_of_the_changes
 
     start_new_page
+    render_additional_comments
     render_accountant_statement
     render_user_filling_block
-    render_additional_comments
+    render_feedback
   end
 
   def formatted_uk_sales_value(item)
