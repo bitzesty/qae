@@ -77,7 +77,7 @@ gem 'enumerize'
 # PDF generation
 gem 'prawn'
 gem 'prawn-table'
-gem 'nokogiri', '1.8.4'
+gem 'nokogiri', '1.10.4'
 
 # Uploads
 gem 'carrierwave', '~> 1.2'
