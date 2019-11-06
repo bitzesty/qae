@@ -413,6 +413,40 @@ class FormAnswerDecorator < ApplicationDecorator
     sanitize_html document["mobility_desc_short"]
   end
 
+  def one_line_description_of_interventions
+    sanitize_html document["one_line_description_of_interventions"]
+  end
+
+  def goods_and_services_key
+    case award_type
+    when "innovation"
+      "innovation_desc_short"
+    when "mobility"
+      "mobility_desc_short"
+    when "development"
+      if award_year.year >= 2020
+        "one_line_description_of_interventions"
+      else
+        "development_management_approach_briefly"
+      end
+    end
+  end
+
+  def goods_and_services
+    case award_type
+    when "innovation"
+      innovation_desc_short
+    when "mobility"
+      mobility_desc_short
+    when "development"
+      if award_year.year >= 2020
+        one_line_description_of_interventions
+      else
+        development_management_approach_briefly
+      end
+    end
+  end
+
   def application_background
     app_background = case award_type
                      when "trade"
