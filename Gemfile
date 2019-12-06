@@ -120,7 +120,7 @@ gem 'nilify_blanks'
 gem 'curb', '0.9.10'
 
 # Web server
-gem 'puma', '3.11.0'
+gem 'puma', '3.12.2'
 
 # Performance
 gem 'scout_apm'

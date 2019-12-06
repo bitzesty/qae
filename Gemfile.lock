@@ -487,7 +487,7 @@ GEM
       byebug (~> 10.0)
       pry (~> 0.10)
     public_suffix (3.1.1)
-    puma (3.11.0)
+    puma (3.12.2)
     pundit (0.3.0)
       activesupport (>= 3.0.0)
     pusher (0.15.2)
@@ -783,7 +783,7 @@ DEPENDENCIES
   prawn
   prawn-table
   pry-byebug
-  puma (= 3.11.0)
+  puma (= 3.12.2)
   pundit (~> 0.3)
   pusher (= 0.15.2)
   rack-cors
