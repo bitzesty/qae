@@ -50,7 +50,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'gon'
 
 # User authentication & authorization
-gem 'devise'
+gem 'devise', '~> 4.7'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
@@ -69,7 +69,7 @@ gem 'wicked', '~> 1.1'
 gem 'statesman', '3.5.0'
 
 # Form & Data helpers
-gem 'simple_form'
+gem 'simple_form', '~> 5.0'
 gem 'country_select', '~> 3.1'
 gem 'email_validator'
 gem 'enumerize'
@@ -77,7 +77,7 @@ gem 'enumerize'
 # PDF generation
 gem 'prawn'
 gem 'prawn-table'
-gem 'nokogiri', '1.8.4'
+gem 'nokogiri', '~> 1.10'
 
 # Uploads
 gem 'carrierwave', '~> 1.2'
@@ -93,7 +93,7 @@ gem 'sinatra', '2.0.0', require: nil
 gem "rack-protection"
 
 # CORS configuration
-gem 'rack-cors'
+gem 'rack-cors', '~> 1.0'
 
 # Redis
 gem 'redis-rails'
@@ -120,7 +120,7 @@ gem 'nilify_blanks'
 gem 'curb', '0.9.10'
 
 # Web server
-gem 'puma', '3.11.0'
+gem 'puma', '~> 3.11'
 
 # Performance
 gem 'scout_apm'
