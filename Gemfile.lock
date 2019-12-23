@@ -786,7 +786,7 @@ DEPENDENCIES
   prawn
   prawn-table
   pry-byebug
-  puma (~> 3.11)
+  puma (~> 3.12)
   pundit (~> 0.3)
   pusher (= 0.15.2)
   rack-cors (~> 1.0)
