@@ -21,7 +21,7 @@ gem 'slim-rails', '3.1.0'
 gem 'coffee-rails', '4.2.2'
 gem 'jquery-rails', '4.3.1'
 gem 'jquery-ui-rails', '5.0.3'
-gem 'bootstrap-sass', '>= 3.3.3'
+gem 'bootstrap-sass', '~> 3.4'
 gem 'govuk_frontend_toolkit', '~> 3.1.0'
 gem 'govuk_template', '0.12.0'
 gem 'uglifier', '>= 2.7.2'
@@ -50,7 +50,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'gon'
 
 # User authentication & authorization
-gem 'devise'
+gem 'devise', '~> 4.7'
 gem 'devise-authy'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn'
@@ -69,7 +69,7 @@ gem 'wicked', '~> 1.1'
 gem 'statesman', '3.5.0'
 
 # Form & Data helpers
-gem 'simple_form'
+gem 'simple_form', '~> 5.0'
 gem 'country_select', '~> 3.1'
 gem 'email_validator'
 gem 'enumerize'
@@ -77,7 +77,7 @@ gem 'enumerize'
 # PDF generation
 gem 'prawn'
 gem 'prawn-table'
-gem 'nokogiri', '1.8.4'
+gem 'nokogiri', '~> 1.10'
 
 # Uploads
 gem 'carrierwave', '~> 1.2'
@@ -87,13 +87,13 @@ gem 'vigilion', '~> 1.0.4'
 gem 'vigilion-rails'
 
 # Background jobs
-gem "sidekiq", "~> 4.2"
-gem "sidekiq-cron", "~> 1.0"
-gem 'sinatra', '2.0.0', require: nil
+gem "sidekiq", "~> 6.0"
+gem "sidekiq-cron", "~> 1.1"
+gem 'sinatra', '~> 2.0', require: nil
 gem "rack-protection"
 
 # CORS configuration
-gem 'rack-cors'
+gem 'rack-cors', '~> 1.0'
 
 # Redis
 gem 'redis-rails'
@@ -120,7 +120,7 @@ gem 'nilify_blanks'
 gem 'curb', '0.9.10'
 
 # Web server
-gem 'puma', '3.11.0'
+gem 'puma', '~> 3.11'
 
 # Performance
 gem 'scout_apm'
