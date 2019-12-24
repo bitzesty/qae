@@ -95,6 +95,6 @@ def form_choice(labels)
 end
 
 def new_application(type)
-  header = all(".applications-list li").detect { |app| app.first("h3", text: type) }
-  header.first("a").click
+  header = find(".applications-list li h3", text: type)
+  header.find(:xpath, '..').first("a").click
 end

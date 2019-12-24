@@ -37,6 +37,9 @@ describe "Admin fulfills the Palace Attendees" do
       within "#section-palace-attendees" do
         find(".form-edit-link").click
         within "#new_palace_attendee" do
+          # waiting for the last input to be rendered
+          find("input#palace_attendee_phone_number")
+
           all("input.form-control").each_with_index do |input, index|
             val = "val-#{index}"
             field_values << val

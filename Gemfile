@@ -120,7 +120,7 @@ gem 'nilify_blanks'
 gem 'curb', '0.9.10'
 
 # Web server
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 
 # Performance
 gem 'scout_apm'
@@ -169,7 +169,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem 'capybara', '2.18'
+  gem 'capybara', '3.18'
   gem 'poltergeist'
   gem 'database_cleaner', '1.6.1'
   gem 'launchy'

@@ -15,8 +15,10 @@ module FormAnswerFilteringTestHelper
       within ".status-filter .dropdown-menu" do
         button = find("li.apply button")
         all("li").each do |li|
+          next if li.all(".label-contents").count == 0
+
           content = li.first(".label-contents")
-          if content && content.text.to_s == val
+          if content.text.to_s == val
             li.first("label input").click
             button.click
 
@@ -36,9 +38,10 @@ module FormAnswerFilteringTestHelper
       within ".sub-status-filter .dropdown-menu" do
         button = find("li.apply button")
         all("li").each do |li|
-          content = li.first(".label-contents")
+          next if li.all(".label-contents").count == 0
 
-          if content && content.text.to_s == val
+          content = li.first(".label-contents")
+          if content.text.to_s == val
             li.first("label input").click
             button.click
 
