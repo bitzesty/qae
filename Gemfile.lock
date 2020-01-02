@@ -752,9 +752,9 @@ DEPENDENCIES
   decent_decoration
   decent_exposure
   devise (~> 4.7)
-  devise-authy
+  devise-authy (>= 1.10.0)
   devise-security!
-  devise_zxcvbn
+  devise_zxcvbn (>= 4.4.1)
   dotenv-rails
   draper
   email_validator
@@ -834,4 +834,4 @@ RUBY VERSION
    ruby 2.5.5p157
 
 BUNDLED WITH
-   2.1.1
+   2.1.2
