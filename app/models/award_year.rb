@@ -16,7 +16,7 @@ class AwardYear < ApplicationRecord
 
   after_create :create_settings
 
-  AVAILABLE_YEARS = [2016, 2017, 2018, 2019, 2020]
+  AVAILABLE_YEARS = [2016, 2017, 2018, 2019, 2020, 2021]
 
   DEFAULT_FINANCIAL_DEADLINE_DAY = 17
   DEFAULT_FINANCIAL_DEADLINE_MONTH = 9
