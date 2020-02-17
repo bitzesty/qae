@@ -12,7 +12,7 @@ variables:
 
 services:
   - name: redis:3.2.7
-  - name: postgres:9.6-alpine
+  - name: postgres:9.6.16-alpine
     alias: postgres
 
 stages:
