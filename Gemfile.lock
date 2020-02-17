@@ -832,7 +832,7 @@ DEPENDENCIES
   wicked (~> 1.1)
 
 RUBY VERSION
-   ruby 2.5.5p157
+   ruby 2.5.6p201
 
 BUNDLED WITH
-   2.1.2
+   2.1.4
