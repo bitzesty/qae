@@ -6,7 +6,7 @@ variables:
   POSTGRES_DB: qae_test
   DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/$POSTGRES_DB"
   BUNDLER_VERSION: 2.0.2
-  CHROMEDRIVER_VERSION: 78.0.3904.105
+  CHROMEDRIVER_VERSION: 80.0.3987.106
   CHROMEDRIVER_DIR: /chromedriver
   DOCKER_TLS_CERTDIR: ""
 
