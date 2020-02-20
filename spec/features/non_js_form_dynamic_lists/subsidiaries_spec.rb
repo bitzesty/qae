@@ -115,7 +115,7 @@ So that I can fill form completelly even if Javascript is turned off
       within("li[non-js-attribute=#{second_item[:name]}]") do
         click_link "Edit"
       end
-      expect_to_see "Edit subsidiary, associate or plant "
+      expect_to_see "Edit subsidiary, associate or plant"
 
       fill_in "Name", with: new_name
       fill_in "Location", with: new_location

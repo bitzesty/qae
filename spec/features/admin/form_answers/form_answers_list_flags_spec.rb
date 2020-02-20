@@ -14,8 +14,8 @@ describe "Admin sees the proper number of flags and sort by it" do
 
     it "doesn't see counters" do
       within ".applications-table" do
-        expect(first(".flag-count")).to be_nil
-        expect(first(".comment-count")).to be_nil
+        expect(page).not_to have_css(".flag-count")
+        expect(page).not_to have_css(".comment-count")
       end
     end
   end
@@ -28,8 +28,8 @@ describe "Admin sees the proper number of flags and sort by it" do
 
     it "sees sum of comments" do
       within ".applications-table" do
-        expect(first(".comment-count").text).to eq("1")
-        expect(first(".flag-count")).to be_nil
+        expect(page).not_to have_css(".flag-count")
+        expect(page).to have_css(".comment-count", text: "1")
       end
     end
   end
@@ -42,8 +42,8 @@ describe "Admin sees the proper number of flags and sort by it" do
 
     it "sees sum of comments and flagged comments" do
       within ".applications-table" do
-        expect(first(".comment-count").text).to eq("1")
-        expect(first(".flag-count").text).to eq("1")
+        expect(page).to have_css(".flag-count", text: "1")
+        expect(page).to have_css(".comment-count", text: "1")
       end
     end
   end

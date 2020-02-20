@@ -9,12 +9,15 @@ curl -X POST \
 --data-urlencode 'payload={"text": "'"Deploying $CF_APP"'", "channel": "'"#$SLACK_CHANNEL"'", "username": "cf-deploy", "icon_emoji": ":cloud:", "fields": [{"title": "ENV", "value": "'"$CF_SPACE"'", "short": true}' \
 $SLACK_WEBHOOK
 
+# Pin ruby buildpack
+export CF_BUILDPACK="https://github.com/cloudfoundry/ruby-buildpack.git#v1.8.4"
+
 cf create-app-manifest "$CF_APP"-worker
-cf push -f "$CF_APP"-worker_manifest.yml
+cf push -f "$CF_APP"-worker_manifest.yml -b $CF_BUILDPACK
 
 cf create-app-manifest $CF_APP
 
-ruby -ryaml -e 'm = YAML.load(STDIN); m["applications"].map{ |x| x["buildpack"] = x["buildpacks"][0]; x.delete("buildpacks") }; puts YAML.dump(m)' \
+CF_BUILDPACK=$CF_BUILDPACK ruby -ryaml -e 'm = YAML.load(STDIN); m["applications"].map{ |x| x["buildpack"] = ENV["CF_BUILDPACK"]; x.delete("buildpacks") }; puts YAML.dump(m)' \
   < "$CF_APP"_manifest.yml \
   > "$CF_APP"_patched_manifest.yml
 

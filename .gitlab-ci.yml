@@ -1,18 +1,18 @@
 image:
-  name: ruby:2.5.5
+  name: ruby:2.5.6
 
 variables:
   DISPLAY_SOCIAL_MOBILITY_AWARD: "true"
   POSTGRES_DB: qae_test
   DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/$POSTGRES_DB"
-  BUNDLER_VERSION: 2.0.2
-  CHROMEDRIVER_VERSION: 77.0.3865.40
+  BUNDLER_VERSION: 2.1.4
+  CHROMEDRIVER_VERSION: 80.0.3987.106
   CHROMEDRIVER_DIR: /chromedriver
   DOCKER_TLS_CERTDIR: ""
 
 services:
   - name: redis:3.2.7
-  - name: postgres:9.6-alpine
+  - name: postgres:9.6.16-alpine
     alias: postgres
 
 stages:

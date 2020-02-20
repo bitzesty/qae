@@ -5,11 +5,10 @@ describe FormAnswerStatistics::Picker do
 
   context "for current awarding year" do
     let(:award_year) { AwardYear.current }
+    let(:current_date) { DateTime.new(2019, 10, 31) }
 
     describe "#applications_table" do
       it "calculates proper stats", :aggregate_failures do
-        current_date = DateTime.new(2019, 10, 31)
-
         Timecop.freeze(current_date) do
           create(:user)
           create(:form_answer)
@@ -39,31 +38,38 @@ describe FormAnswerStatistics::Picker do
 
     describe "#applications_submissions" do
       it "calculates proper stats" do
-        create(:form_answer, :trade)
-        fa1 = create(:form_answer, :trade)
-        fa1.state_machine.perform_transition(:submitted, nil, false)
+        Timecop.freeze(current_date) do
+          create(:form_answer, :trade)
+          fa1 = create(:form_answer, :trade)
+          fa1.state_machine.perform_transition(:submitted, nil, false)
+        end
 
-        Timecop.freeze(Date.today - 3.days) do
+        Timecop.freeze(current_date - 3.days) do
           fa2 = create(:form_answer, :trade)
           fa2.state_machine.perform_transition(:submitted, nil, false)
         end
 
-        Timecop.freeze(Date.today - 8.days) do
+        Timecop.freeze(current_date - 8.days) do
           fa3 = create(:form_answer, :trade)
           fa3.state_machine.perform_transition(:submitted, nil, false)
         end
 
-        expect(subject.applications_submissions["trade"]).to eq([1, 2, 3])
+        Timecop.freeze(current_date) do
+          expect(subject.applications_submissions["trade"]).to eq([1, 2, 3])
+        end
       end
 
       context "multiple submissions" do
         it "counts the submitted records only once" do
-          Timecop.freeze(Date.today - 4.days) do
+          Timecop.freeze(current_date - 4.days) do
             fa1 = create(:form_answer, :trade)
             fa1.state_machine.perform_transition(:submitted, nil, false)
             fa1.state_machine.perform_transition(:submitted, nil, false)
           end
-          expect(subject.applications_submissions["trade"]).to eq([0, 1, 1])
+
+          Timecop.freeze(current_date) do
+            expect(subject.applications_submissions["trade"]).to eq([0, 1, 1])
+          end
         end
       end
     end
