@@ -16,7 +16,7 @@ class Reports::PressBookList
     },
     {
       label: "PressContactName",
-      method: :press_contact_name
+      method: :press_contact_full_name
     },
     {
       label: "PressContactTel",
