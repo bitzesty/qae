@@ -45,6 +45,16 @@ class Reports::FormAnswer
     end
   end
 
+  def press_contact_full_name
+    if @press_summary
+      [
+        @press_summary.title,
+        @press_summary.name,
+        @press_summary.last_name
+      ].map(&:presence).compact.join(" ")
+    end
+  end
+
   private
 
   def pick_assignment(name)
@@ -164,10 +174,6 @@ class Reports::FormAnswer
       "positive" => "G",
       "average" => "A"
     }[var]
-  end
-
-  def press_contact_name
-    @press_summary.try(:contact_name)
   end
 
   def press_contact_tel
