@@ -1,0 +1,135 @@
+- winners = FormAnswerDecorator.decorate_collection(@user_award_forms_submitted).select{ |app| app.awarded? }
+- any_promotion_winner = winners.select{ |app| app.mobility? }.any?
+- any_innovation_winner = winners.select{ |app| app.innovation? }.any?
+- any_trade_winner = winners.select{ |app| app.trade? }.any?
+- any_development_winner = winners.select{ |app| app.development? }.any?
+
+div
+  header.group.page-header.page-header-wider
+    div
+      h1 Winners' Resources 2019
+
+  .article-container.article-container-wider
+    article.group role="article"
+      .inner
+        p Here you can download Queen's Awards for Enterprise resources for use in your websites and advertising materials. The Winners' Manual provides more detailed information on where and how you are allowed to use these resources.
+
+        br
+
+        h2 Download The Queen's Awards for Enterprise Winners' Manual 2019
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise Winners' Manual 2019 (PDF, 1.6MB)",
+                      static_s3_asset_path(2019, "Queen's Awards for Enterprise Winners' Manual 2019.pdf"),
+                      class: "thumbnail",
+                      target: "_blank"
+
+        h2 Download The Queen's Awards Stakeholders Toolkit 2020
+
+        .form-download
+          p The Stakeholder Toolkit outlines the ways your organisation can raise awareness of the Queen’s Awards for Enterprise among your stakeholders, including suppliers, customers, members and partners so they can apply. The toolkit contains key messages, as well as a link to promotional resources, such as a presentation, a leaflet, an article and social media graphics.
+
+          p
+            = link_to "Queen's Awards Stakeholders Toolkit (PPTX, 2.8MB)",
+                      static_s3_asset_path(2019, "Stakeholders_toolkit_2020.pptx"),
+                      class: "thumbnail",
+                      target: "_blank"
+
+        h2 Download The Queen's Awards for Enterprise 2019 Emblems in various formats
+
+        .form-download
+          - if any_promotion_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem OPP (PNG, 97KB)",
+                      static_s3_asset_path(2019, "QA_PO_2019.png"),
+                      target: "_blank"
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem OPP (EPS, 5.9MB)",
+                      static_s3_asset_path(2019, "QA_PO_2019.eps"),
+                      target: "_blank"
+
+          - if any_innovation_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem Innovation (PNG, 93KB)",
+                      static_s3_asset_path(2019, "QA_Inn_2019.png"),
+                      target: "_blank"
+
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem Innovation (EPS, 5.9MB)",
+                      static_s3_asset_path(2019, "QA_Inn_2019.eps"),
+                      target: "_blank"
+
+          - if any_trade_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem IT (PNG, 95KB)",
+                      static_s3_asset_path(2019, "QA_IT.png"),
+                      target: "_blank"
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem IT (EPS, 5.9MB)",
+                      static_s3_asset_path(2019, "QA_IT_2019.eps"),
+                      target: "_blank"
+
+          - if any_development_winner
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem SD (PNG, 99KB)",
+                      static_s3_asset_path(2019, "QA_SD_2019.png"),
+                      target: "_blank"
+            p
+              = link_to "Queen's Awards for Enterprise 2019 Emblem SD (EPS, 5.9MB)",
+                      static_s3_asset_path(2019, "QA_SD_2019.eps"),
+                      target: "_blank"
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Black (EPS, 4.9MB)",
+                      static_s3_asset_path(2019, "QA_black_2019.eps"),
+                      target: "_blank"
+
+          p
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Black (PNG, 77KB)",
+                      static_s3_asset_path(2019, "QA_black_2019.png"),
+                      target: "_blank"
+
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Blue (EPS, 4.9MB)",
+                      static_s3_asset_path(2019, "QA_blue_2019.eps"),
+                      target: "_blank"
+
+          p
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Blue (PNG, 76KB)",
+                      static_s3_asset_path(2019, "QA_blue_2019.png"),
+                      target: "_blank"
+
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Gold (EPS, 4.9MB)",
+                      static_s3_asset_path(2019, "QA_gold_2019.eps"),
+                      target: "_blank"
+
+          p
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: Gold (PNG, 76KB)",
+                      static_s3_asset_path(2019, "QA_gold_2019.png"),
+                      target: "_blank"
+
+
+        .form-download
+          p
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: White (EPS, 4.9MB)",
+                      static_s3_asset_path(2019, "QA_white_2019.eps"),
+                      target: "_blank"
+
+          p
+            = link_to "Queen's Awards for Enterprise 2019 Emblem: White (PNG, 71KB)",
+                      static_s3_asset_path(2019, "QA_white_2019.png"),
+                      target: "_blank"
+
+        footer
+          nav.pagination.no-border aria-label="Pagination" role="navigation"
+            ul.group
+              li.previous.previous-alternate
+                = link_to dashboard_path
+                  span.pagination-label Back
