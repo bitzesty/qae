@@ -174,7 +174,11 @@ module QaePdfForms::General::DrawElements
 
   def render_text(title, ops = {})
     default_bottom_margin
-    text title, ops.merge!({inline_format: true})
+
+    ##
+    # force title to be a String, as Integer may
+    # raise undefined method `gsub'
+    text title.to_s, ops.merge!({inline_format: true})
   end
 
   def render_table(table_lines)

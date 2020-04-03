@@ -144,7 +144,11 @@ module Reports::DataPickers::FormDocumentPicker
   def export_markets
     return "" unless trade?
 
-    ActionController::Base.helpers.strip_tags(doc("markets_geo_spread"))
+    ##
+    # need to force String as an Integer will raise
+    # undefined method `empty?'
+    markets_geo_spread = doc("markets_geo_spread").to_s
+    ActionController::Base.helpers.strip_tags(markets_geo_spread)
   end
 
   def final_year_overseas_sales
