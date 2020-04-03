@@ -42,7 +42,9 @@ module QaePdfForms::CustomQuestions::Textarea
 
   def this_is_wysywyg_content?
     SUPPORTED_TAGS.any? do |tag|
-      humanized_answer.include?("<#{tag}")
+      ##
+      # force humanized_answer to be a String
+      humanized_answer.to_s.include?("<#{tag}")
     end
   end
 
