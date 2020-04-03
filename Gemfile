@@ -42,7 +42,7 @@ gem 'hashie', '3.4.4'
 gem 'responders', '~> 2.0'
 
 # Rails 4 sanitizer
-gem 'rails-html-sanitizer', '~> 1.0.4'
+gem 'rails-html-sanitizer', '~> 1.3.0'
 
 # JSON
 gem 'json', '2.3.0'
