@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 2.5.6'
 
-gem 'rails', '~> 5.2'
+gem 'rails', '~> 5.2.4.2'
 
 # SSL redirect
 gem 'rack-ssl-enforcer'
@@ -16,6 +16,7 @@ gem 'pg', '~> 0.20'
 gem 'paper_trail', '~> 10.3'
 
 # Assets & Templates
+gem 'sprockets', '~> 3.7.2'
 gem 'sprockets-rails', '>= 2.0.0'
 gem 'slim-rails', '3.1.0'
 gem 'coffee-rails', '4.2.2'
@@ -42,10 +43,10 @@ gem 'hashie', '3.4.4'
 gem 'responders', '~> 2.0'
 
 # Rails 4 sanitizer
-gem 'rails-html-sanitizer', '~> 1.0.4'
+gem 'rails-html-sanitizer', '~> 1.3.0'
 
 # JSON
-gem 'json', '1.8.6'
+gem 'json', '2.3.0'
 gem 'jbuilder', '~> 2.0'
 gem 'gon'
 
@@ -81,7 +82,7 @@ gem 'nokogiri', '~> 1.10.9'
 
 # Uploads
 gem 'carrierwave', '~> 1.2'
-gem 'fog', "1.41.0"
+gem 'fog', "1.42.1"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
 gem 'vigilion-rails'
