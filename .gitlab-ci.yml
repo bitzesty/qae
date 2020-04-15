@@ -76,6 +76,7 @@ snyk:
   script:
     - sudo snyk auth $SNYK_API
     - sudo snyk test --severity-threshold=high --file=Gemfile.lock --package-manager=rubygems
+  when: manual
 
 snyk_full:
   stage: test  
