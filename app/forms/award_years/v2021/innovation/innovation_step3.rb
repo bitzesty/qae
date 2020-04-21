@@ -269,6 +269,9 @@ class AwardYears::V2021::QAEForms
             <p>
               Sustained or unexplained drops or losses may lead to the entry being rejected.
             </p>
+            <p>
+              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
+            </p>
           )
 
           conditional :innovation_performance_years, :true
@@ -285,6 +288,10 @@ class AwardYears::V2021::QAEForms
           context %(
             <p>
               If you are reporting drops or losses, to consider your application, we require an explanation of how your business is financially viable.
+            </p>
+
+            <p>
+              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
             </p>
           )
 
