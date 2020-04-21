@@ -300,19 +300,19 @@ class AwardYears::V2021::QAEForms
           conditional :product_estimated_figures, :yes
         end
 
-        textarea :development_performance, "What cost-savings have you or your customers' businesses made as a result of the introduction of your sustainable development actions or interventions?" do
+        textarea :development_performance, "What cost-savings have you or your customers’ businesses made or will make as a result of the introduction of your sustainable development actions or interventions? If none, please state so." do
           ref "C 8"
           required
           context %(
             <p>
-              Please describe the cost savings and/or other benefits in addition to the sustainability impact you have already demonstrated in section B of this form. Please provide figures, if known.
+              Provide figures and describe cost-savings and other benefits in addition to the sustainability impact you have already demonstrated in section B of this form.
             </p>
           )
           rows 5
           words_max 250
         end
 
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions." do
+        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your sustainable development actions or interventions. If none, please state so." do
           ref "C 9"
           required
           context %(
@@ -324,7 +324,7 @@ class AwardYears::V2021::QAEForms
           words_max 400
         end
 
-        textarea :roi_details, "How long did it take you to break even? When and how was this achieved?" do
+        textarea :roi_details, "How long did it take or will it take you to break even? When and how was or will this be achieved?" do
           sub_ref "C 9.1"
           classes "sub-question"
           required
