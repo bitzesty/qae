@@ -505,7 +505,7 @@ class AwardYears::V2021::QAEForms
           )
         end
 
-        textarea :roi_details, "How long did it take you to recover the investment indicated above? When and how did you achieve this?" do
+        textarea :roi_details, "Please provide calculations on how you have recovered or will recover the investment above. How long did it take or will it take to recover the investment?" do
           classes "sub-question"
           sub_ref "C 9.1"
           required

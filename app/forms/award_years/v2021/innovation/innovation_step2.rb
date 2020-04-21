@@ -92,13 +92,18 @@ class AwardYears::V2021::QAEForms
           words_max 15
         end
 
-        textarea :innovation_desc_long, "Summarise your innovative product, service or business model." do
+        year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
           classes "sub-question"
           sub_ref "B 1.2"
+        end
+
+        textarea :innovation_desc_long, "Summarise your innovative product, service or business model." do
+          classes "sub-question"
+          sub_ref "B 1.3"
           required
           context %(
             <p>
-              Describe the product, service or business model itself. Explain any aspect(s) that you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Explain if and why your innovation is hard to copy, for example, patents held, market position. Also explain how it fits within the overall business, for example, is it your sole product.
+              Describe the product, service or business model itself. Explain any aspect(s) that you think are innovative, and why you think they are innovative. Consider its uniqueness and the challenges you had to overcome. Explain if and why your innovation is hard to copy, for example, patents held, market position. Explain how it fits within the overall business, for example, is it your sole product. Also, please explain how the idea for the innovation came about.
             </p>
           )
           rows 5
@@ -106,7 +111,7 @@ class AwardYears::V2021::QAEForms
         end
 
         options :description_that_best_reflects_the_type_of_innovation, "Select the description that best reflects the type of your innovation" do
-          sub_ref "B 1.3"
+          sub_ref "B 1.4"
           classes "sub-question"
           required
           option "disruptive_innovation", %(
@@ -221,7 +226,7 @@ class AwardYears::V2021::QAEForms
           yes_no
           context %(
             <p>
-              We ask this to help us carry out due diligence if your application is shortlisted.
+              If you have received grants for this innovation, it may strengthen your application. However, if you have not received any grants, it does not put you at a disadvantage.
             </p>
           )
         end
