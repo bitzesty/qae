@@ -94,6 +94,9 @@ class AwardYears::V2021::QAEForms
 
         year :innovation_developing_started_year, "Please provide the year when your innovation started to be developed." do
           classes "sub-question"
+          required
+          min 2000
+          max 2020
           sub_ref "B 1.2"
         end
 

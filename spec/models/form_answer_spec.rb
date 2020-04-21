@@ -128,6 +128,29 @@ RSpec.describe FormAnswer, type: :model do
                                                         trade_commercial_success: "6 plus")
       expect(form_answer).to be_valid
     end
+
+    context "innovation B 1.2 year" do
+      let(:form_answer) { create(:form_answer, :innovation) }
+
+      before do
+        form_answer.submitted_at = Time.zone.now
+      end
+
+      it "is valid" do
+        form_answer.document = form_answer.document.merge(innovation_developing_started_year: "2019")
+        expect(form_answer).to be_valid
+      end
+
+      it "is invalid if year is less than 2000" do
+        form_answer.document = form_answer.document.merge(innovation_developing_started_year: "1999")
+        expect(form_answer).to be_invalid
+      end
+
+      it "is invalid if year is greater than a current year" do
+        form_answer.document = form_answer.document.merge(innovation_developing_started_year: "2050")
+        expect(form_answer).to be_invalid
+      end
+    end
   end
 
   it "sets account on creating" do
