@@ -709,9 +709,7 @@ class QaePdfForms::General::QuestionPointer
 
   def drop_conditional_hint_text
     case form_answer.award_type
-    when "trade"
-      "Answer this question if you have any dips or losses in turnover or net profits."
-    when "innovation"
+    when "trade", "innovation"
       "If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so."
     else
       "Answer this question if you have any dips or losses in turnover, total net assets or net profits."
