@@ -229,6 +229,21 @@ window.FormValidation =
       @logThis(question, "validateBetweenDate", "Date should be between #{expDateStart} and #{expDateEnd}")
       @addErrorMessage(question, "Date should be between #{expDateStart} and #{expDateEnd}")
 
+  validateYear: (question) ->
+    val = question.find("input")
+
+    if not val
+      return
+
+    if not val.val().toString().match(@numberRegex)
+      @logThis(question, "validateYear", "Not a valid year")
+      @addErrorMessage(question, "Not a valid year")
+
+    if parseInt(val.val()) < parseInt(val.prop("min")) || parseInt(val.val()) > parseInt(val.prop("max"))
+      @logThis(question, "validateYear", "The year needs to be between 2000 and the current year. Any project that started before that would not be considered an innovation.")
+      @addErrorMessage(question, "The year needs to be between 2000 and the current year. Any project that started before that would not be considered an innovation.")
+
+
   validateNumber: (question) ->
     val = question.find("input")
 
@@ -462,6 +477,10 @@ window.FormValidation =
     if question.hasClass("question-number")
       # console.log "validateNumber"
       @validateNumber(question)
+
+    if question.hasClass("question-year")
+      # console.log "validateYear"
+      @validateYear(question)
 
     if question.hasClass("question-money-by-years")
       # console.log "validateMoneyByYears"

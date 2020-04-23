@@ -262,6 +262,7 @@ class AwardYears::V2021::QAEForms
         textarea :drops_in_turnover, "Explain any drops in the total turnover, export sales, total net assets or net profit, and any losses made." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.6"
+          required
           rows 5
           words_max 300
           context %(
@@ -278,6 +279,7 @@ class AwardYears::V2021::QAEForms
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.7"
+          required
           rows 5
           words_max 300
           context %(
@@ -503,7 +505,7 @@ class AwardYears::V2021::QAEForms
           )
         end
 
-        textarea :roi_details, "How long did it take you to recover the investment indicated above? When and how did you achieve this?" do
+        textarea :roi_details, "Please provide calculations on how you have recovered or will recover the investment above. How long did it take or will it take to recover the investment?" do
           classes "sub-question"
           sub_ref "C 9.1"
           required

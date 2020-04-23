@@ -407,9 +407,9 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::TextareaQuestion
         title = q_visible? && humanized_answer.present? ? humanized_answer : ""
 
-        if (question.key == :drops_in_turnover || question.key == :drops_explain_how_your_business_is_financially_viable) && 
+        if (question.key == :drops_in_turnover || question.key == :drops_explain_how_your_business_is_financially_viable) &&
            !(q_visible? && humanized_answer.present?)
-          
+
           drop_conditional_hint
         end
 
@@ -712,17 +712,8 @@ class QaePdfForms::General::QuestionPointer
     when "trade"
       "Answer this question if you have any dips or losses in turnover or net profits."
     when "innovation"
-      drop_conditional_hint_text_for_innovation
+      "If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so."
     else
-      "Answer this question if you have any dips or losses in turnover, total net assets or net profits."
-    end
-  end
-
-  def drop_conditional_hint_text_for_innovation
-    case key.to_s 
-    when "drops_in_turnover"
-      "Answer this question if you have any dips or losses in turnover, export sales, total net assets or net profits."
-    when "drops_explain_how_your_business_is_financially_viable"
       "Answer this question if you have any dips or losses in turnover, total net assets or net profits."
     end
   end

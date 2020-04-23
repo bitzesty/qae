@@ -290,6 +290,7 @@ class AwardYears::V2021::QAEForms
         textarea :drops_in_turnover, "Explain any drops in the total turnover or net profit, and any losses made." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.4"
+          required
           context %(
             <p>
               Sustained or unexplained drops or losses may lead to the entry being rejected.
@@ -303,6 +304,7 @@ class AwardYears::V2021::QAEForms
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.5"
+          required
           context %(
             <p>
               If you are reporting drops or losses, to consider your application, we require an explanation of how your business is financially viable.
@@ -316,6 +318,7 @@ class AwardYears::V2021::QAEForms
         textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
           classes "sub-question"
           sub_ref "C 4.6"
+          required
           context %(
             <p>
               This information is particularly useful when ascertaining your company’s financial viability, especially when you have drops in total turnover and losses.

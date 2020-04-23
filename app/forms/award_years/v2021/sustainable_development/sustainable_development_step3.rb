@@ -199,6 +199,7 @@ class AwardYears::V2021::QAEForms
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
           classes "sub-question js-conditional-drop-question"
           sub_ref "C 4.6"
+          required
           rows 5
           words_max 200
 
