@@ -242,10 +242,10 @@ class AwardYears::V2021::QAEForms
           classes "word-max-strict"
           ref "B 3"
           required
+          question_sub_title %{
+            Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
+          }
           context %{
-            <p>
-              Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-            </p>
             <p>
               Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.
             </p>
