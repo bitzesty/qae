@@ -347,7 +347,6 @@ window.FormValidation =
             @addErrorClass(question)
 
   validateDateByYears: (question) ->
-
     for subquestionBlock in question.find(".js-fy-entry-container.show-question .date-input")
       subq = $(subquestionBlock)
       qParent = subq.closest(".js-fy-entries")
@@ -364,11 +363,18 @@ window.FormValidation =
       else
         complexDateString = day + "/" + month + "/" + year
         date = @toDate(complexDateString)
+        currentDate = new Date()
 
         if not date.isValid()
           @logThis(question, "validateDateByYears", "Not a valid date")
           @appendMessage(qParent, "Not a valid date")
           @addErrorClass(question)
+        # temporary condition
+        else if parseInt(year) > 2020 || parseInt(year) < 2012
+          @logThis(question, "validateDateByYears", "the year must be from 2012 to 2020")
+          @appendMessage(qParent, "the year must be from 2012 to 2020")
+          @addErrorClass(question)
+
 
   validateDateStartEnd: (question) ->
     if question.find(".validate-date-start-end").length > 0
@@ -487,8 +493,7 @@ window.FormValidation =
       @validateMoneyByYears(question)
 
     if question.hasClass("question-date-by-years") &&
-       question.find(".show-question").length == (question.find(".js-conditional-question").length - 1)
-      # console.log "validateDateByYears"
+       (question.hasClass("one-option-by-years") || question.find(".show-question").length == (question.find(".js-conditional-question").length - 1))
       @validateDateByYears(question)
 
     if question.find(".match").length

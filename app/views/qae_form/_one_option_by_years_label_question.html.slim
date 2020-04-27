@@ -1,5 +1,5 @@
 .js-financial-year-changed-dates role="group" id="q_#{question.key}" aria-labelledby="q_#{question.key}_label"
-  .js-fy-entry-container
+  .js-fy-entry-container.show-question
     .if-js-hide
       label
         strong
@@ -11,7 +11,7 @@
             span.js-year-default
               = question.format_label(y)
               - if y == 3
-                '  (current)
+                '  (latest)
           br
           ul.errors-container
           .clear
