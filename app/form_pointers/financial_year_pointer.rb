@@ -33,7 +33,9 @@ class FinancialYearPointer
   end
 
   def fetch_year_labels
-    entries.push(latest_year_label)
+    # 2021 change
+    # entries.push(latest_year_label)
+    entries
   end
 
   def fetch_years
@@ -47,7 +49,9 @@ class FinancialYearPointer
   end
 
   def fetch_one_option_year_labels
-    entries.push(latest_year_label)
+    # 2021 change
+    # entries.push(latest_year_label)
+    entries
   end
 
   def fetch_one_option_years
@@ -66,7 +70,7 @@ class FinancialYearPointer
   end
 
   def entries
-    question.active_fields[0..-2].map do |field|
+    question.active_fields[0..-1].map do |field|
       FormFinancialPointer::YEAR_LABELS.map do |year_label|
         entry(field, year_label)
       end
