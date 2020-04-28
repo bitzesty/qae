@@ -18,7 +18,8 @@ module QaePdfForms::CustomQuestions::ByYear
       a.split("/")
     end
 
-    rows.push(latest_year_label)
+    # not needed for 2021
+    # rows.push(latest_year_label)
 
     year_headers.each_with_index do |header_item, placement|
       form_pdf.default_bottom_margin
