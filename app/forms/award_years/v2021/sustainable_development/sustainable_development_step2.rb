@@ -122,7 +122,7 @@ class AwardYears::V2021::QAEForms
           ref "B 1"
           context %(
             <p>
-              In questions B1.1 and B1.2 you need to summarise your actions or interventions to sustainable development. This is to help us understand the size and scale of your actions or interventions. This summary might be used in publicity material if your application is successful.
+              In questions B1.1 and B1.2 you need to summarise your actions or interventions to sustainable development and demonstrate a sustainable strategy across the business. This is to help us understand the size and scale of your actions or interventions. This summary might be used in publicity material if your application is successful.
             </p>
           )
         end
@@ -230,6 +230,9 @@ class AwardYears::V2021::QAEForms
             <p>
               d) How have you embedded sustainability objectives or purpose in your organisation?
             </p>
+            <p>
+              e) If your application is focussed on a sustainable product, service or approach, please explain how your business also operates sustainably.
+            </p>
           }
           rows 5
           words_max 600
@@ -239,10 +242,10 @@ class AwardYears::V2021::QAEForms
           classes "word-max-strict"
           ref "B 3"
           required
+          question_sub_title %{
+            Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
+          }
           context %{
-            <p>
-              Please describe the impact. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-            </p>
             <p>
               Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, main stakeholders) evidence to support your application.
             </p>
@@ -260,6 +263,9 @@ class AwardYears::V2021::QAEForms
             </p>
             <p>
               d) What longer-term outcomes do you expect as a result of your sustainable development efforts?
+            </p>
+            <p>
+              e) State which recognised standards and accreditations your company has achieved, for example, ISO 14000, B-Corp accreditation.
             </p>
           }
           rows 10
@@ -329,7 +335,10 @@ class AwardYears::V2021::QAEForms
               If applicable, include in your answer or attach in section D of this form: newsletters, quotes or similar material to bring to life how you communicate the value you place on sustainability. Please note, where applicable, your company website or social media channels will be researched for evidence of your sustainability values, policies or promotion.
             </p>
             <p>
-              e) What are your long-term plans for ensuring your organisation provides the leadership, innovation or intervention to enable greater sustainable development?
+              e) Explain your strategy in developing sustainably for the future. For example, how are you changing your business model, approach, products or services to respond to future sustainability challenges in your business or sector?
+            </p>
+            <p>
+              f) What are your long-term plans for ensuring your organisation provides the leadership, innovation or intervention to enable greater sustainable development?
             </p>
           }
           rows 10

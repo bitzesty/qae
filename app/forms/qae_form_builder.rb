@@ -14,6 +14,7 @@ require "qae_form_builder/dropdown_question"
 require "qae_form_builder/regions_question"
 require "qae_form_builder/sic_code_dropdown_question"
 require "qae_form_builder/date_question"
+require "qae_form_builder/year_question"
 require "qae_form_builder/upload_question"
 require "qae_form_builder/options_business_name_changed_question"
 
