@@ -407,12 +407,6 @@ class QaePdfForms::General::QuestionPointer
       when QAEFormBuilder::TextareaQuestion
         title = q_visible? && humanized_answer.present? ? humanized_answer : ""
 
-        if (question.key == :drops_in_turnover || question.key == :drops_explain_how_your_business_is_financially_viable) && 
-           !(q_visible? && humanized_answer.present?)
-          
-          drop_conditional_hint
-        end
-
         form_pdf.default_bottom_margin
         render_word_limit
         render_wysywyg_content
@@ -427,11 +421,6 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.render_standart_answer_block(title)
       end
     end
-  end
-
-  def drop_conditional_hint
-    form_pdf.render_text drop_conditional_hint_text,
-                         style: :italic
   end
 
   def render_queen_award_holder
@@ -704,26 +693,6 @@ class QaePdfForms::General::QuestionPointer
       else
         "£#{entry[:value]}" if entry[:value] != "-"
       end
-    end
-  end
-
-  def drop_conditional_hint_text
-    case form_answer.award_type
-    when "trade"
-      "Answer this question if you have any dips or losses in turnover or net profits."
-    when "innovation"
-      drop_conditional_hint_text_for_innovation
-    else
-      "Answer this question if you have any dips or losses in turnover, total net assets or net profits."
-    end
-  end
-
-  def drop_conditional_hint_text_for_innovation
-    case key.to_s 
-    when "drops_in_turnover"
-      "Answer this question if you have any dips or losses in turnover, export sales, total net assets or net profits."
-    when "drops_explain_how_your_business_is_financially_viable"
-      "Answer this question if you have any dips or losses in turnover, total net assets or net profits."
     end
   end
 end

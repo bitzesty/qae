@@ -229,6 +229,21 @@ window.FormValidation =
       @logThis(question, "validateBetweenDate", "Date should be between #{expDateStart} and #{expDateEnd}")
       @addErrorMessage(question, "Date should be between #{expDateStart} and #{expDateEnd}")
 
+  validateYear: (question) ->
+    val = question.find("input")
+
+    if not val
+      return
+
+    if not val.val().toString().match(@numberRegex)
+      @logThis(question, "validateYear", "Not a valid year")
+      @addErrorMessage(question, "Not a valid year")
+
+    if parseInt(val.val()) < parseInt(val.prop("min")) || parseInt(val.val()) > parseInt(val.prop("max"))
+      @logThis(question, "validateYear", "The year needs to be between 2000 and the current year. Any project that started before that would not be considered an innovation.")
+      @addErrorMessage(question, "The year needs to be between 2000 and the current year. Any project that started before that would not be considered an innovation.")
+
+
   validateNumber: (question) ->
     val = question.find("input")
 
@@ -332,7 +347,6 @@ window.FormValidation =
             @addErrorClass(question)
 
   validateDateByYears: (question) ->
-
     for subquestionBlock in question.find(".js-fy-entry-container.show-question .date-input")
       subq = $(subquestionBlock)
       qParent = subq.closest(".js-fy-entries")
@@ -349,11 +363,18 @@ window.FormValidation =
       else
         complexDateString = day + "/" + month + "/" + year
         date = @toDate(complexDateString)
+        currentDate = new Date()
 
         if not date.isValid()
           @logThis(question, "validateDateByYears", "Not a valid date")
           @appendMessage(qParent, "Not a valid date")
           @addErrorClass(question)
+        # temporary condition
+        else if parseInt(year) > 2020 || parseInt(year) < 2012
+          @logThis(question, "validateDateByYears", "the year must be from 2012 to 2020")
+          @appendMessage(qParent, "the year must be from 2012 to 2020")
+          @addErrorClass(question)
+
 
   validateDateStartEnd: (question) ->
     if question.find(".validate-date-start-end").length > 0
@@ -463,13 +484,16 @@ window.FormValidation =
       # console.log "validateNumber"
       @validateNumber(question)
 
+    if question.hasClass("question-year")
+      # console.log "validateYear"
+      @validateYear(question)
+
     if question.hasClass("question-money-by-years")
       # console.log "validateMoneyByYears"
       @validateMoneyByYears(question)
 
     if question.hasClass("question-date-by-years") &&
-       question.find(".show-question").length == (question.find(".js-conditional-question").length - 1)
-      # console.log "validateDateByYears"
+       (question.hasClass("one-option-by-years") || question.find(".show-question").length == (question.find(".js-conditional-question").length - 1))
       @validateDateByYears(question)
 
     if question.find(".match").length

@@ -13,9 +13,13 @@ class AwardYears::V2021::QAEForms
             <p>
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             </p>
+            <h3>Latest financial year and COVID-19</h3>
+            <p>
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2020 you may want to use the financial year ending 31 May 2019 for your final set of financial figures.
+            </p>
             <h3>Estimated figures</h3>
             <p>
-              You will have to submit data for your latest financial year that falls before the <strong>#{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}</strong> (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+              If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             </p>
           )
           pdf_context_with_header_blocks [
@@ -27,9 +31,13 @@ class AwardYears::V2021::QAEForms
             [:normal, %(
               Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
+            [:bold, "Latest financial year and COVID-19"],
+            [:normal, %(
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2020 you may want to use the financial year ending 31 May 2019 for your final set of financial figures.
+            )],
             [:bold, "Estimated figures"],
             [:normal, %(
-              You will have to submit data for your latest financial year that falls before the <strong>#{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}</strong> (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+              If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
             )]
           ]
         end
@@ -49,11 +57,6 @@ class AwardYears::V2021::QAEForms
         innovation_financial_year_date :financial_year_date, "Enter your financial year-end date." do
           ref "C 2"
           required
-          context %(
-            <p>
-              You will have to submit data for your latest financial year that falls before the <strong>#{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time}</strong> (the submission deadline). If you haven't reached or finalised your latest year-end yet, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
-            </p>
-          )
           financial_date_pointer
         end
 
@@ -73,11 +76,19 @@ class AwardYears::V2021::QAEForms
         one_option_by_years_label :financial_year_changed_dates, "Enter your year-end dates for each financial year." do
           classes "sub-question"
           sub_ref "C 2.2"
+
+          context %(
+            <p>
+              Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2020 you may want to use the financial year ending 31 May 2019 for your final set of financial figures.
+            </p>
+            <p>
+              If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.
+            </p>
+          )
+
           required
           type :date
           label ->(y) { "Financial year #{y}" }
-
-          conditional :financial_year_date_changed, :yes
         end
 
         textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
@@ -152,7 +163,6 @@ class AwardYears::V2021::QAEForms
           label ->(y) { "Financial year #{y}" }
 
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         one_option_by_years :net_profit, "Net profit after tax but before dividends (UK and overseas)" do
@@ -168,7 +178,6 @@ class AwardYears::V2021::QAEForms
           type :money
           label ->(y) { "Financial year #{y}" }
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         one_option_by_years :total_net_assets, "Total net assets" do
@@ -184,35 +193,38 @@ class AwardYears::V2021::QAEForms
           label ->(y) { "As at the end of year #{y}" }
 
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         textarea :drops_in_turnover, "Explain any drops in the total turnover, total net assets or net profit, and any losses made." do
-          classes "sub-question js-conditional-drop-question"
+          classes "sub-question"
           sub_ref "C 4.4"
+          required
           context %(
             <p>
               Sustained or unexplained drops or losses may lead to the entry being rejected.
             </p>
-          )
-          rows 5
-          words_max 300
-          conditional :financial_year_date_changed, :true
-          drop_condition_parent
-        end
-
-        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
-          classes "sub-question js-conditional-drop-question"
-          sub_ref "C 4.5"
-          context %(
             <p>
-              If you are reporting drops or losses, to consider your application, we require an explanation of how your business is financially viable.
+              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
             </p>
           )
           rows 5
           words_max 300
-          conditional :financial_year_date_changed, :true
-          drop_condition_parent
+        end
+
+        textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
+          classes "sub-question"
+          sub_ref "C 4.5"
+          required
+          context %(
+            <p>
+              If you are reporting drops or losses, to consider your application, we require an explanation of how your business is financially viable.
+            </p>
+            <p>
+              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
+            </p>
+          )
+          rows 5
+          words_max 300
         end
 
         textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
