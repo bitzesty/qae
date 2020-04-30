@@ -190,7 +190,6 @@ class AwardYears::V2021::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         by_years :exports, "Of which exports" do
@@ -207,7 +206,6 @@ class AwardYears::V2021::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         # UK sales = turnover - exports
@@ -245,7 +243,6 @@ class AwardYears::V2021::QAEForms
 
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         by_years :total_net_assets, "Total net assets" do
@@ -267,11 +264,10 @@ class AwardYears::V2021::QAEForms
 
           conditional :innovation_performance_years, :true
           conditional :financial_year_date_changed, :true
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         textarea :drops_in_turnover, "Explain any drops in the total turnover, export sales, total net assets or net profit, and any losses made." do
-          classes "sub-question js-conditional-drop-question"
+          classes "sub-question"
           sub_ref "C 4.6"
           required
           rows 5
@@ -280,15 +276,14 @@ class AwardYears::V2021::QAEForms
             <p>
               Sustained or unexplained drops or losses may lead to the entry being rejected.
             </p>
+            <p>
+              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
+            </p>
           )
-
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          drop_condition_parent
         end
 
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
-          classes "sub-question js-conditional-drop-question"
+          classes "sub-question"
           sub_ref "C 4.7"
           required
           rows 5
@@ -297,11 +292,10 @@ class AwardYears::V2021::QAEForms
             <p>
               If you are reporting drops or losses, to consider your application, we require an explanation of how your business is financially viable.
             </p>
+            <p>
+              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
+            </p>
           )
-
-          conditional :innovation_performance_years, :true
-          conditional :financial_year_date_changed, :true
-          drop_condition_parent
         end
 
         textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do
@@ -376,7 +370,6 @@ class AwardYears::V2021::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-          # drop_conditional :drops_in_sales
         end
 
         by_years :sales, "Sales of your innovative product/service (if applicable)" do
@@ -388,7 +381,6 @@ class AwardYears::V2021::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-          # drop_conditional :drops_in_sales
         end
 
         by_years :sales_exports, "Of which exports (if applicable)" do
@@ -401,7 +393,6 @@ class AwardYears::V2021::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-          # drop_conditional :drops_in_sales
         end
 
         by_years :sales_royalties, "Of which royalties or licences (if applicable)" do
@@ -414,7 +405,6 @@ class AwardYears::V2021::QAEForms
           additional_pdf_context I18n.t("pdf_texts.innovation.years_question_additional_context")
           by_year_condition :innovation_performance_years, "2 to 4", 2
           by_year_condition :innovation_performance_years, "5 plus", 5
-          # drop_conditional :drops_in_sales
         end
 
         textarea :drops_in_sales, "Explain any drop in sales or number of units sold (if applicable)." do
@@ -422,7 +412,6 @@ class AwardYears::V2021::QAEForms
           sub_ref "C 6.5"
           rows 5
           words_max 250
-          # drop_condition_parent
         end
 
         by_years :avg_unit_price, "Average unit selling price/contract value (if applicable)" do
