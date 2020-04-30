@@ -277,7 +277,6 @@ class AwardYears::V2021::QAEForms
             </p>
                     )
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         by_years :net_profit, "Net profit after tax but before dividends (the UK and overseas)" do
@@ -296,35 +295,38 @@ class AwardYears::V2021::QAEForms
             </p>
           )
           additional_pdf_context I18n.t("pdf_texts.trade.years_question_additional_context")
-          drop_conditional [:drops_in_turnover, :drops_explain_how_your_business_is_financially_viable]
         end
 
         textarea :drops_in_turnover, "Explain any drops in the total turnover or net profit, and any losses made." do
-          classes "sub-question js-conditional-drop-question"
+          classes "sub-question"
           sub_ref "C 4.4"
           required
           context %(
             <p>
               Sustained or unexplained drops or losses may lead to the entry being rejected.
             </p>
+            <p>
+              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
+            </p>
           )
           rows 5
           words_max 300
-          drop_condition_parent
         end
 
         textarea :drops_explain_how_your_business_is_financially_viable, "Explain how your business is financially viable, in terms of cash flow and cash generated." do
-          classes "sub-question js-conditional-drop-question"
+          classes "sub-question"
           sub_ref "C 4.5"
           required
           context %(
             <p>
               If you are reporting drops or losses, to consider your application, we require an explanation of how your business is financially viable.
             </p>
+            <p>
+              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
+            </p>
           )
           rows 5
           words_max 300
-          drop_condition_parent
         end
 
         textarea :investment_strategy_and_its_objectives, "Please describe your investment strategy and its objectives, and, if applicable, the type and scale of investments you have received." do

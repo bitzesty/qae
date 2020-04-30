@@ -140,7 +140,6 @@ class AwardYears::V2021::QAEForms
           label ->(y) { "Financial year #{y}" }
 
           conditional :financial_year_date_changed, :true
-          drop_conditional :drops_in_turnover
         end
 
         one_option_by_years :exports, "Of which exports" do
@@ -153,7 +152,6 @@ class AwardYears::V2021::QAEForms
           label ->(y) { "Financial year #{y}" }
 
           conditional :financial_year_date_changed, :true
-          drop_conditional :drops_in_turnover
         end
 
         # UK sales = turnover - exports
@@ -189,7 +187,6 @@ class AwardYears::V2021::QAEForms
           )
 
           conditional :financial_year_date_changed, :true
-          drop_conditional :drops_in_turnover
         end
 
         one_option_by_years :total_net_assets, "Total net assets" do
@@ -205,18 +202,20 @@ class AwardYears::V2021::QAEForms
           label ->(y) { "As at the end of year #{y}" }
 
           conditional :financial_year_date_changed, :true
-          drop_conditional :drops_in_turnover
         end
 
         textarea :drops_in_turnover, "Explain any drops in turnover, export sales, total net assets and net profits, as well as any losses made." do
-          classes "sub-question js-conditional-drop-question"
+          classes "sub-question"
           sub_ref "C 4.6"
           required
           rows 5
           words_max 200
 
-          conditional :financial_year_date_changed, :true
-          drop_condition_parent
+          context %(
+            <p>
+              If you didn't have any drops in the total turnover, export sales, total net assets or net profit, or any losses, please state so.
+            </p>
+          )
         end
 
         options :entry_relates_to, "How do your sustainable development actions or interventions, that form the basis of this application, fit within the overall business?" do
