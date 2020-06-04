@@ -30,7 +30,7 @@ gem 'js_cookie_rails', '2.1.4'
 gem 'ckeditor', github: 'galetahub/ckeditor', ref: "752bca97f78e5c5df3fbd876e51a06918da804e2"
 
 # Autolinking in admin mass user mailer
-gem 'rails_autolink'
+gem 'rails_autolink', '>= 1.1.6'
 
 # Decorators & Exposing named methods
 gem 'draper'
@@ -61,7 +61,7 @@ gem 'devise-security', github: "rusllonrails/devise-security", branch: "V_0_13_0
 gem 'mail-notify'
 
 # Pagenation
-gem 'kaminari'
+gem 'kaminari', '>= 1.2.1'
 
 # step-by-step wizard
 gem 'wicked', '~> 1.1'
@@ -85,7 +85,7 @@ gem 'carrierwave', '~> 1.2'
 gem 'fog', "1.42.1"
 gem "fog-aws"
 gem 'vigilion', '~> 1.0.4'
-gem 'vigilion-rails'
+gem 'vigilion-rails', '>= 2.0.0'
 
 # Background jobs
 gem "sidekiq", "~> 5.2"
@@ -135,7 +135,7 @@ gem 'bootscale', require: false
 gem 'browser', '2.4.0'
 
 # Simple colored logging
-gem 'shog'
+gem 'shog', '>= 0.2.1'
 
 group :development do
   gem 'letter_opener'
@@ -171,7 +171,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara', '3.18'
-  gem 'poltergeist'
+  gem 'poltergeist', '>= 1.18.1'
   gem 'database_cleaner', '1.6.1'
   gem 'launchy'
   gem 'turnip', '3.0.0'
