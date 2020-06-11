@@ -6,7 +6,7 @@ variables:
   POSTGRES_DB: qae_test
   DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/$POSTGRES_DB"
   BUNDLER_VERSION: 2.1.4
-  CHROMEDRIVER_VERSION: 80.0.3987.106
+  CHROMEDRIVER_VERSION: 84.0.4147.30
   CHROMEDRIVER_DIR: /chromedriver
   DOCKER_TLS_CERTDIR: ""
 
@@ -79,7 +79,7 @@ snyk:
   when: manual
 
 snyk_full:
-  stage: test  
+  stage: test
   before_script:
     - apt-get update -qy
     - apt-get install -y sudo
