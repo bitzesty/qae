@@ -9,7 +9,6 @@ class AggregatedAwardYearPdf < ApplicationRecord
 
   validates :file,
             :award_category,
-            :sub_type,
             :type_of_report, presence: true
 
   mount_uploader :file, FormAnswerPdfVersionUploader
