@@ -4,7 +4,8 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 2.5.6'
 
-gem 'rails', '~> 5.2.4.2'
+gem 'rails', '~> 5.2.4.3'
+gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
 gem 'rack-ssl-enforcer'
