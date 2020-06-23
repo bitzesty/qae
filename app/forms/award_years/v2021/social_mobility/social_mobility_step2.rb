@@ -7,67 +7,66 @@ class AwardYears::V2021::QAEForms
           context %(
             <h3>About this section</h3>
 
-            <p>This section enables you to present the details of your social mobility programme and to give us the evidence on how your programme benefits your staff and your organisation.</p>
+            <p>This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.</p>
 
             <h3>Definition of Social Mobility</h3>
 
-            <p>Social mobility is a measure of the ability to move from lower socio-economic background to higher socio-economic status.</p>
+            <p>Social mobility is a measure of the ability to move from a lower socio-economic background to a higher socio-economic status.</p>
+            <ul>
+              <li>Socio-economic background is a set of social and economic circumstances from which a person has come.</li>
+              <li>Socio-economic status is a person's current social and economic circumstances.</li>
+            </ul>
 
-            <p>Socio-economic background is a set of social and economic circumstances from which a person has come. Socio-economic status is a person's current social and economic circumstances.</p>
-
-            <p>We classify people as being from a lower or higher socio-economic background based
-            on these variables:</p>
+            <p>We classify people as being from a lower or higher socio-economic background based on these variables:</p>
 
             <ul>
-              <li>The National Statistics Socio-economic classification (NS-SEC) of parent's occupation.</li>
-              <li>This is based on the type of job the main or highest income earner in the household had as their main job when the person was 14.</li>
-              <li>Whether they were receiving free school meals.</li>
+              <li><a target="_blank" href="https://en.wikipedia.org/wiki/National_Statistics_Socio-economic_Classification">The National Statistics Socio-economic classification (NS-SEC)</a> of parent's occupation. This is based on the type of job the main or highest income earner in the household had as their main job when the person was 14.</li>
+              <li>Whether they were receiving free school meals or access pupil premium funding.</li>
               <li>The highest level of qualifications achieved by either parent(s) or guardian(s) by the time the person was 18.</li>
               <li>The type of school the person attended.</li>
             </ul>
 
-            <h3>Qualifying programmes</h3>
-
-            <p>You should demonstrate positive impacts in at least one of the following:</p>
-
-            <ul>
-              <li>A programme which provides careers advice, skills development or mentoring that prepare young people from disadvantaged or lower socio-economic backgrounds for the world of work or accessible, structured work experience.</li>
-              <li>A programme which makes career opportunities more accessible by offering non-graduate routes such as well-structured traineeships, apprenticeships or internships, or by reforming recruitment practices and offering clear paths for progression.</li>
-              <li>A programme which fosters workplaces where employees have equal access to ongoing support and progression opportunities to further their careers and champions a culture of inclusiveness at every level.</li>
-            </ul>
-
-            <p>Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach programmes.</p>
-
-            <h3>Types of activities</h3>
-
-            <p>When considering positive impacts, the following may help in clarifying what we are looking for in your application:</p>
-
-            <ul>
-              <li><strong>Accessible routes</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes.</li>
-              <li><strong>Careers advice</strong> - provide careers advice or information to help people make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.</li>
-              <li><strong>Work placements</strong> - preparing people for the world of work through inspiring work experiences and internships.</li>
-              <li><strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic. For example, by removing applicants’ names or school names from CVs, providing unconscious bias training for recruitment assessors.</li>
-              <li><strong>Early careers</strong> - fostering a ‘youth-friendly’ culture in your workplace where young employees from disadvantaged backgrounds are invested in and developed to progress in their careers.</li>
-              <li><strong>Advancement</strong> - developing career paths to senior positions that are open to all and track the progress of employees from non-graduate routes.</li>
-              <li><strong>Advocacy and leadership</strong> - demonstrate strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.</li>
-            </ul>
-
             <h3>Overarching criteria</h3>
 
-            <p>Please note, we are looking to recognise those who are going above and beyond their core day-to-day business, acting to improve social mobility within their company locally or nationally, accessing and retaining talent regardless of socio-economic background.</p>
-            <p>An award is unlikely to be granted to a social enterprise, learning provider or charity whose main purpose is to deliver social mobility programmes either for itself or on behalf of other organisations. This is because we are seeking to reward and encourage companies to address social mobility challenges within their organisations, even though this is not their sole objective.</p>
+            <p>We are looking to recognise:</p>
+
+            <ol type="a">
+              <li>
+                <p>Initiatives that promote opportunity through social mobility. These initiatives should be structured and designed to target and support people from disadvantaged backgrounds.</p><br/>
+
+                <p>Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.</p><br/>
+
+                <p>It does not have to be large if your organisation is small - we will evaluate it in proportion to the organisation’s size. However, it has to be structured.</p><br/>
+
+                <p>For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain percentage of recruits to come from disadvantaged backgrounds.</p><br/>
+
+                <p>If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.</p><br/>
+
+                <p>If your application is for an initiative, promoting opportunity through social mobility <strong>does not</strong> have to be your organisation's core aim.</p><br/>
+              </li>
+
+              <li>
+                <p>Organisations whose core day-to-day aim is to promote opportunity through social mobility; These organisations exist purely to support people from disadvantaged backgrounds.</p>
+              </li>
+            </ol>
+
+            <h3>Evidence</h3>
+
+            <p>Applicants need to provide quantifiable evidence to support the claims made. This should be from the numbers presented, third-party evaluations and feedback received from those who have received support.</p>
+
+            <p>When providing quantitative evidence, provide actual numbers, not just percentages - while percentages might be useful, they are not sufficient on their own.</p>
+
+            <p>When considering qualitative evidence, where possible, provide a range of examples.</p>
+
+            <p>In the case of feedback, it needs to be an analysis of any scores or ratings, including positive, negative and neutral feedback. Ad-hoc quotes and anecdotal feedback will strengthen your application but are not sufficient on their own.</p>
 
             <h3>Small organisations</h3>
 
-            <p>Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is reasonable performance given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.</p>
+            <p>The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is a reasonable performance, given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.</p>
 
             <h3>Answering questions</h3>
 
-            <p>
-              If you have more than one social mobility programme, please provide details.
-              <br />
-              Please try to avoid using technical jargon in this section.
-            </p>
+            <p>Please try to avoid using technical jargon in this section. If you use acronyms, these should be explained clearly in the first instance.</p>
           )
 
           pdf_context_with_header_blocks [
