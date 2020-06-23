@@ -142,274 +142,264 @@ class AwardYears::V2021::QAEForms
           ]
         end
 
-        textarea :your_social_mobility_programme, "Your social mobility programme" do
+        options :application_category, "Application category" do
+          required
           ref "B 1"
-          required
-          context %{
-            <p>
-              Please summarise your social mobility programme. This is to help us understand the essence of your programme. The summary might be used in publicity material if your application is successful.
-            </p>
-            <p>
-              Please include:
-            </p>
-            <p>
-              a) The aims of the programme.
-            </p>
-            <p>
-              b) Which disadvantaged group(s) is your programme targeted towards?
-            </p>
-            <p>
-              c) the proportion of those on the programme which come from disadvantaged backgrounds. If you are offering work placements or work experience, include statistics on what percentage of those people then go on into full-time employment, either within your company or the sector.
-            </p>
-            <p>
-              d) What does your programme provide to your target group(s)?
-            </p>
-            <p>
-              e) Provide evidence of what makes your social mobility programme exemplary. For example, the programme may be exemplary as a result of:
-            </p>
-            <ul>
-              <li>An exemplary overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit and develop people;</li>
-              <li>Developing a unique or innovative social mobility programme;</li>
-              <li>Forming effective partnerships with charities, schools or Jobcentres or Local Enterprise Partnerships;</li>
-              <li>Leading the way in your company by doing something that has never been done before.</li>
-            </ul>
-          }
-
-          pdf_context %{
-            <p>
-              Please summarise your social mobility programme. This is to help us understand the essence of your programme. The summary might be used in publicity material if your application is successful.
-            </p>
-            <p>
-              Please include:
-
-              a) The aims of the programme.
-
-              b) Which disadvantaged group(s) is your programme targeted towards?
-
-              c) the proportion of those on the programme which come from disadvantaged backgrounds. If you are offering work placements or work experience, include statistics on what percentage of those people then go on into full-time employment, either within your company or the sector.
-
-              d) What does your programme provide to your target group(s)?
-
-              e) Provide evidence of what makes your social mobility programme exemplary. For example, the programme may be exemplary as a result of:
-
-              \u2022 An exemplary overall strategy where complementary programmes are linked to form a powerful series of engagements to inform, inspire, guide, recruit and develop people;
-
-              \u2022 Developing a unique or innovative social mobility programme;
-
-              \u2022 Forming effective partnerships with charities, schools or Jobcentres or Local Enterprise Partnerships;
-
-              \u2022 Leading the way in your company by doing something that has never been done before.
-            </p>
-          }
-          rows 10
-          words_max 1000
-        end
-
-        textarea :mobility_desc_short, "Provide a one-line description of your social mobility programme." do
-          classes "sub-question"
-          sub_ref "B 1.2"
-          required
           context %(
             <p>
-              This description will be used in publicity material if your application is successful.
+              Select whether your application is for:
             </p>
           )
-          words_max 15
+          option "initiative", "a) An initiative that promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds.  If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative."
+          option "organisation", "b) A whole organisation whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
+          default_option "initiative"
         end
 
-        textarea :your_core_business, "Your core business" do
+        checkbox_seria :activities, "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2"
           required
-          context %{
-            <p>
-              Briefly describe your core business and what factors or issues motivated your organisation to provide the programme.
-            </p>
-            <p>
-              Please include details on:
-            </p>
-            <p>
-              a) What was the situation before the inception of this programme?
-            </p>
-            <p>
-              b) Why did you choose this particular programme and how does it align with the core aims and values of your organisation?
-            </p>
-            <p>
-              c) The impact on your employees, region(s) and communities.
-            </p>
-          }
+          context %(
+            <p>If necessary, you can select more than one activity, but no more than three. If you feel that more than three activities are applicable, select the three that the initiative focuses on most.</p>
+          )
+          check_options [
+            ["careers_advice", "Careers advice - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
+            ["fairer_recruitment", "Fairer recruitment - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic."],
+            ["skills_development", "Skills development - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may also include, development of aspirations and increasing motivation."],
+            ["work_placements", "Work placements - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
+            ["early_careers", "Early careers - fostering a ‘youth-friendly’ culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
+            ["job_opportunities", "Job opportunities - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
+            ["advancement", "Advancement - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
+            ["advocacy_and_leadership", "Advocacy and leadership - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."]
+          ]
+          conditional :application_category, "initiative"
+        end
 
-          pdf_context %{
-            <p>
-              Briefly describe your core business and what factors or issues motivated your organisation to provide the programme.
+        header :header_b3a, "Summary of your promoting opportunity through social mobility." do
+          ref "B 3a"
+          conditional :application_category, "initiative"
+        end
 
-              Please include details on:
+        textarea :initiative_desc_short, "Provide a one-line description of your social initiative programme." do
+          classes "sub-question"
+          sub_ref "B 3.1a"
+          required
+          context %(
+            <p>This description will be used in publicity material if your application is successful.</p>
+          )
+          words_max 15
+          conditional :application_category, "initiative"
+        end
 
-              a) What was the situation before the inception of this programme?
+        textarea :initiative_desc_medium, "Briefly describe the initiative, its aims, what it provides and how it promotes opportunity through social mobility." do
+          classes "sub-question"
+          sub_ref "B 3.2a"
+          required
+          words_max 300
+          conditional :application_category, "initiative"
+        end
 
-              b) Why did you choose this particular programme and how does it align with the core aims and values of your organisation?
+        textarea :initiative_motivations, "Outline the factors or issues that motivated your organisation to provide the initiative." do
+          classes "sub-question"
+          sub_ref "B 3.3a"
+          required
+          context %(
+            <p>Please include details on:</p>
 
-              c) The impact on your employees, region(s) and communities.
-            </p>
-          }
-          rows 5
+            <p>1. When was the initiative started?</p>
+
+            <p>2. What was the situation before the inception of this initiative? Please include details on what the issues or needs of the potential participants were.</p>
+
+            <p>3. Why did you choose this particular initiative?</p>
+
+            <p>4. How does this initiative align with the core aims and values of your organisation?</p>
+          )
+          words_max 500
+          conditional :application_category, "initiative"
+        end
+
+        textarea :disadvantaged_groups, "Describe which disadvantaged groups the initiative targets." do
+          classes "sub-question"
+          sub_ref "B 3.4a"
+          required
+          context %(
+            <p>For each of the last three years, please provide details on:</p>
+
+            <p>1. the total number of participants in the initiative.</p>
+
+            <p>2. the proportion of participants from disadvantaged backgrounds.</p>
+
+            <p>3. the breakdown of these participants by disadvantage.</p>
+
+            <p>Please note, if the initiative has been running for more than three years, you can mention the aggregate numbers for all the years, but provide the breakdown only for the last three years.</p>
+          )
+          words_max 300
+          conditional :application_category, "initiative"
+        end
+
+        textarea :exemplary_evidence, "Provide evidence of what makes the initiative exemplary." do
+          classes "sub-question"
+          sub_ref "B 3.5a"
+          required
+          context %(
+            <p>Taking into account your mission, values and strategic objectives, provide evidence of how and why your initiative stands out from others to promote opportunity through social mobility to disadvantaged groups</p>
+
+            <p>For example, you may feel your approach to bringing key people together and how you have created, improved and influenced your initiative sets you apart from your peers. If you have led the way by doing something that has never been done before, please provide evidence on what you did and how you did this.</p>
+
+            <p>Your initiative may be exemplary as a result of a strategy to inform, guide, recruit and develop people or you may have formed effective partnerships and collaborations with organisations, bringing them together to support diversity and inclusion. It is important to provide evidence on how you did this.</p>
+
+            <p>Highlight if your initiative has two-fold benefits – it helps the participants by addressing the socio-economic barriers to employment as well as having a positive impact across the whole organisation.</p>
+          )
+          words_max 500
+          conditional :application_category, "initiative"
+        end
+
+        header :header_b4a, "Measuring success" do
+          ref "B 4a"
+          context %(
+            <p>We want to know what quantitative and qualitative measures are used to set targets and evaluate the success of your initiative.</p>
+          )
+          conditional :application_category, "initiative"
+        end
+
+        textarea :day_to_day_running, "Who is responsible for, and who runs the initiative day-to-day?" do
+          classes "sub-question"
+          sub_ref "B 4.1a"
+          required
+          words_max 200
+          conditional :application_category, "initiative"
+        end
+
+        textarea :measuring_targets, "Describe what key performance indicators (KPIs) or equivalent targets are being used and how they are set and monitored in the context of your initiative." do
+          classes "sub-question"
+          sub_ref "B 4.2a"
+          required
+          context %(
+            <p>Focus on what targets you set for the initiative and how you monitor performance against them.</p>
+          )
+          words_max 500
+          conditional :application_category, "initiative"
+        end
+
+        textarea :targets_not_met, "Explain what happens if your KPIs or alternative performance targets are not met?" do
+          classes "sub-question"
+          sub_ref "B 4.3a"
+          required
+          words_max 200
+          conditional :application_category, "initiative"
+        end
+
+        textarea :initiative_scale, "How does the scale of your initiative compare with the wider work of your organisation?" do
+          classes "sub-question"
+          sub_ref "B 4.4a"
+          required
+          words_max 200
+          conditional :application_category, "initiative"
+        end
+
+        header :header_b5a, "The impact on participants." do
+          ref "B 5a"
+          context %(
+            <p>Provide evidence about the impact of your initiative on participants.</p>
+
+            <p>Please make reference to your KPIs or equivalent performance targets and use a balance of quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, comments, feedback from participants and key stakeholders).</p>
+          )
+          conditional :application_category, "initiative"
+        end
+
+        textarea :initiative_impact, "Quantify what impact has your initiative achieved for your participants." do
+          classes "sub-question"
+          sub_ref "B 5.1a"
+          required
+          context %(
+            <p>For the last three years, please break down the impact by year to show growth and improvement and include the longer-term outcomes. Please include any outcome and output data you have gathered to evaluate the initiative; and provide evidence of what retention data you gather to show long-term impact.</p>
+
+            <p>Explain the impact in the context of the key barriers and drivers for change.</p>
+
+            <p>Focus on data that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants; and how it has raised their career aspirations and confidence.</p>
+          )
+          words_max 300
+          conditional :application_category, "initiative"
+        end
+
+        textarea :initiative_feedback, "Describe what feedback, if any, you have gathered from participants to understand whether they feel they have benefited from your initiative." do
+          classes "sub-question"
+          sub_ref "B 5.2a"
+          required
+          context %(
+            <p>For example, you can include data from participant surveys, interviews or ad-hoc feedback. Include qualitative feedback such as participant quotes as well as quantitative data, for example, scores on how likely they are to recommend the initiative to their peers or similar ratings.</p>
+          )
+          words_max 300
+          conditional :application_category, "initiative"
+        end
+
+        textarea :initiative_improvements, "Describe what feedback, if any, you sought on how the initiative could be improved? What, if any, of the suggested improvements have you implemented?" do
+          classes "sub-question"
+          sub_ref "B 5.3a"
+          required
           words_max 250
+          conditional :application_category, "initiative"
         end
 
-        textarea :impact_of_your_programme, "Impact of your programme" do
-          ref "B 3"
-          required
-          context %{
-            <p>
-              Please describe the impact of your programme.
-
-              Where possible please include:
-            </p>
-            <p>
-              a) How you measure the success of your programme? For example, are key performance indicators (KPIs) used? If so, how are they set and monitored? Are the KPIs
-            being met and what happens if they are not?
-            </p>
-            <p>
-              b) State what quantifiable measures were used to evaluate the success of the programme
-            to your organisation, employees or others in meeting objectives for performance. Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence to support your application. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-            </p>
-            <p>
-              c) What has the programme achieved for your targeted group(s)?
-            </p>
-            <p>
-              d) How does your programme benefit your usual day to day operations?
-            </p>
-            <p>
-              e) How does the scale of this programme compare with wider talent management activities?
-            </p>
-            <p>
-              f) Who is ultimately responsible for the programme’s success?
-            </p>
-            <p>
-              g) Who is responsible for the day-to-day management of the programme?
-            </p>
-            <p>
-              You may include chart(s) to make it easier for assessors to understand how your programme is managed in section E.
-            </p>
-          }
-
-          pdf_context %{
-            <p>
-              Please describe the impact of your programme.
-
-              Where possible please include:
-
-              a) How you measure the success of your programme? For example, are key performance indicators (KPIs) used? If so, how are they set and monitored? Are the KPIs being met and what happens if they are not?
-
-              b) State what quantifiable measures were used to evaluate the success of the programme to your organisation, employees or others in meeting objectives for performance. Wherever possible, use a balance of quantitative (for example, numbers and figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence to support your application. Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-
-              c) What has the programme achieved for your targeted group(s)?
-
-              d) How does your programme benefit your usual day to day operations?
-
-              e) How does the scale of this programme compare with wider talent management activities?
-
-              f) Who is ultimately responsible for the programme’s success?
-
-              g) Who is responsible for the day-to-day management of the programme?
-
-              You may include chart(s) to make it easier for assessors to understand how your programme is managed in section E.
-            </p>
-          }
-          rows 10
-          words_max 1000
+        header :header_b6a, "Impact on your organisation." do
+          ref "B 6a"
+          conditional :application_category, "initiative"
         end
 
-        textarea :impact_on_programme_participants, "Impact on programme participants" do
-          ref "B 4"
+        textarea :impact_sharing, "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation?" do
+          classes "sub-question"
+          sub_ref "B 6.1a"
           required
-          context %{
-            <p>
-              Please provide evidence on how your organisation improved the employability of the people who engaged in your programme and how it has raised their career aspirations and confidence. Improvements in employability could be as a result of teaching skills such as leadership, communication, team-work, resilience.
-            </p>
-            <p>
-            <p>
-              If possible, use a balance of quantitative (for example, numbers, figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence.
-            </p>
-            <p>
-              Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-            </p>
-            <p>
-              Include the impact of the programme on the local community and at a regional and national level.
-            </p>
-          }
-
-          pdf_context %{
-            <p>
-              Please provide evidence on how your organisation improved the employability of the people who engaged in your programme and how it has raised their career aspirations and confidence. Improvements in employability could be as a result of teaching skills such as leadership, communication, team-work, resilience.
-
-              If possible, use a balance of quantitative (for example, numbers, figures) and qualitative (for example, comments, feedback from people, key stakeholders) evidence.
-
-              Focus on what impact your activities have achieved to date but include the longer-term outcomes as well.
-
-              Include the impact of the programme on the local community and at a regional and national level.
-            </p>
-          }
-          rows 10
-          words_max 1000
+          context %(
+            <p>Please outline what mechanisms are in place to communicate the benefits of the initiative.</p>
+          )
+          words_max 200
+          conditional :application_category, "initiative"
         end
 
-        textarea :your_organisations_culture_regarding_social_mobility, "Your organisation’s culture regarding social mobility" do
-          ref "B 5"
+        textarea :organisation_invitation, "Explain if and how you invite the organisation’s members or employees in the design and implementation of your initiative." do
+          classes "sub-question"
+          sub_ref "B 6.2a"
           required
-          context %{
-            <p>
-              Describe how your organisation’s culture fosters and supports social mobility.
-            </p>
-            <p>
-              Please include:
-            </p>
-            <p>
-              a) How the programme benefits the overall business strategy, and what is the senior decision makers’ commitment to the future growth of the programme.
-            </p>
-            <p>
-              b) A vision of what your organisation wants to do as well as evidence of how you have gone about integrating the programme in your organisation and with stakeholders.
-            </p>
-            <p>
-              c) What mechanisms are in place to communicate the benefits of the programme to employees, key internal and external stakeholders, including the disadvantaged groups at which the programme is aimed? You can include in your answer below or attach in section E: newsletters, quotes or similar material to bring to life exactly how you communicate the value of your programme.
-            </p>
-            <p>
-              d) Other benefits such as:
-            </p>
-            <ul>
-              <li><strong>Employee relations</strong> - improvements in employee motivation, well-being or satisfaction;</li>
-              <li><strong>Diversity</strong> - increased the ability to access and attract a wider talent pool;</li>
-              <li><strong>Reputation</strong> - increased positive perceptions of the organisation among key stakeholders - for example, customers and the media;</li>
-              <li><strong>Collaboration</strong> - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.</li>
-            </ul>
-            <p>
-              e) What are your long-term plans for ensuring your organisation continues to promote opportunities for those from disadvantaged backgrounds, beyond any initiatives you already have in place?
-            </p>
-          }
+          words_max 200
+          conditional :application_category, "initiative"
+        end
 
-          pdf_context %{
-            <p>
-              Describe how your organisation’s culture fosters and supports social mobility.
+        textarea :long_term_plans, "What are your long-term plans for ensuring your organisation continues to promote opportunities through social mobility beyond what you already do." do
+          classes "sub-question"
+          sub_ref "B 6.3a"
+          required
+          words_max 200
+          conditional :application_category, "initiative"
+        end
 
-              Please include:
+        textarea :organisation_benefits, "Are there any other benefits of the initiative to your organisation that have not yet been outlined in your previous responses?" do
+          classes "sub-question"
+          sub_ref "B 6.4a"
+          required
+          context %(
+            <p>This may include:</p>
 
-              a) How the programme benefits the overall business strategy, and what is the senior decision makers’ commitment to the future growth of the programme.
+            <p>Employee relations - improvements in employee motivation, well-being or satisfaction.</p>
 
-              b) A vision of what your organisation wants to do as well as evidence of how you have gone about integrating the programme in your organisation and with stakeholders.
+            <p>Diversity - increased the ability to access and attract a wider talent pool.</p>
 
-              c) What mechanisms are in place to communicate the benefits of the programme to employees, key internal and external stakeholders, including the disadvantaged groups at which the programme is aimed? You can include in your answer below or attach in section E: newsletters, quotes or similar material to bring to life exactly how you communicate the value of your programme.
+            <p>Reputation - increased positive perceptions of the organisation among key stakeholders - for example, customers and the media.</p>
 
-              d) Other benefits such as:
+            <p>Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.</p>
+          )
+          words_max 300
+          conditional :application_category, "initiative"
+        end
 
-              \u2022 Employee relations - improvements in employee motivation, well-being or satisfaction;
-              \u2022 Diversity - increased the ability to access and attract a wider talent pool;
-              \u2022 Reputation - increased positive perceptions of the organisation among key stakeholders - for example, customers and the media;
-              \u2022 Collaboration - best practices and learnings fed-back into other departments; increased cross-departmental collaboration.
-
-              e) What are your long-term plans for ensuring your organisation continues to promote opportunities for those from disadvantaged backgrounds, beyond any initiatives you already have in place?
-            </p>
-          }
-          rows 5
-          words_max 250
+        textarea :community_society_impact, "Impact on community and society." do
+          classes "sub-question"
+          sub_ref "B 7a"
+          required
+          context %(
+            <p>What is the impact of your initiative on the local community and at a regional and national level?</p>
+          )
+          words_max 300
+          conditional :application_category, "initiative"
         end
       end
     end
