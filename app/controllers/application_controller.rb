@@ -228,10 +228,6 @@ class ApplicationController < ActionController::Base
     check_applications_limit(:development)
   end
 
-  def check_mobility_count_limit
-    check_applications_limit(:mobility)
-  end
-
   def check_applications_limit(type_of_award)
     if current_account.has_award_in_this_year?(type_of_award)
       redirect_to dashboard_url, flash: {
