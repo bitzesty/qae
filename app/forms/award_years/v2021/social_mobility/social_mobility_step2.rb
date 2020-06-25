@@ -156,8 +156,8 @@ class AwardYears::V2021::QAEForms
             <p>For initiatives, please answer questions B3a, B4a, B5a, B6a and B7a</p>
             <p>For organisations, please answer questions B3b, B4b, B5b, B6b and B7b</p>
           )
-          option "initiative", "a) An initiative that promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds.  If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative."
-          option "organisation", "b) A whole organisation whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
+          option "initiative", "a) <strong>An initiative</strong> that promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds.  If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative."
+          option "organisation", "b) <strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
           default_option "initiative"
         end
 
@@ -172,14 +172,14 @@ class AwardYears::V2021::QAEForms
             <p>If necessary, you can select more than one activity, but no more than three. If you feel that more than three activities are applicable, select the three that the initiative focuses on most.</p>
           )
           check_options [
-            ["careers_advice", "Careers advice - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
-            ["fairer_recruitment", "Fairer recruitment - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic."],
-            ["skills_development", "Skills development - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may also include, development of aspirations and increasing motivation."],
-            ["work_placements", "Work placements - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
-            ["early_careers", "Early careers - fostering a ‘youth-friendly’ culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
-            ["job_opportunities", "Job opportunities - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
-            ["advancement", "Advancement - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
-            ["advocacy_and_leadership", "Advocacy and leadership - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."]
+            ["careers_advice", "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
+            ["fairer_recruitment", "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic."],
+            ["skills_development", "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may also include, development of aspirations and increasing motivation."],
+            ["work_placements", "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
+            ["early_careers", "<strong>Early careers</strong> - fostering a ‘youth-friendly’ culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
+            ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
+            ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
+            ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."]
           ]
           conditional :application_category, "initiative"
         end
@@ -423,14 +423,14 @@ class AwardYears::V2021::QAEForms
             <p>If necessary, you can select more than one activity, but no more than three. If you feel that more than three activities are applicable, select the three that the initiative focuses on most.</p>
           )
           check_options [
-            ["careers_advice", "Careers advice - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
-            ["fairer_recruitment", "Fairer recruitment - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic."],
-            ["skills_development", "Skills development - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may also include, development of aspirations and increasing motivation."],
-            ["work_placements", "Work placements - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
-            ["early_careers", "Early careers - fostering a ‘youth-friendly’ culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
-            ["job_opportunities", "Job opportunities - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
-            ["advancement", "Advancement - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
-            ["advocacy_and_leadership", "Advocacy and leadership - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."]
+            ["careers_advice", "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
+            ["fairer_recruitment", "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic."],
+            ["skills_development", "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may also include, development of aspirations and increasing motivation."],
+            ["work_placements", "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
+            ["early_careers", "<strong>Early careers</strong> - fostering a ‘youth-friendly’ culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
+            ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
+            ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
+            ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."]
           ]
           conditional :application_category, "organisation"
         end
