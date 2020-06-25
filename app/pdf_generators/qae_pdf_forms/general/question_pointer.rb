@@ -360,12 +360,15 @@ class QaePdfForms::General::QuestionPointer
         end
       when QAEFormBuilder::OptionsQuestion
         if q_visible? && humanized_answer.present?
+          chosen_option = question.options.detect{ |option| option.value.to_s == humanized_answer.to_s }
           form_pdf.render_standart_answer_block(question_option_title)
+          render_context_for_option(question, chosen_option)
         else
           form_pdf.indent 7.mm do
             question.options.each do |answer|
               unless answer.value.empty?
                 question_option_box answer.text
+                render_context_for_option(question, answer)
               end
             end
           end
@@ -692,6 +695,15 @@ class QaePdfForms::General::QuestionPointer
         entry[:value]
       else
         "£#{entry[:value]}" if entry[:value] != "-"
+      end
+    end
+  end
+
+  def render_context_for_option(question, answer)
+    if question.pdf_context_for_options && question.pdf_context_for_options[answer.value]
+      form_pdf.move_down 3.mm
+      form_pdf.indent 7.mm do
+        form_pdf.text question.pdf_context_for_options[answer.value], style: :italic
       end
     end
   end

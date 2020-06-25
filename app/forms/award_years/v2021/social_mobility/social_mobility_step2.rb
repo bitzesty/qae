@@ -152,12 +152,11 @@ class AwardYears::V2021::QAEForms
           )
           pdf_context %(
             <p>Select whether your application is for an initiative or organisation</p>
-
-            <p>For initiatives, please answer questions B3a, B4a, B5a, B6a and B7a</p>
-            <p>For organisations, please answer questions B3b, B4b, B5b, B6b and B7b</p>
           )
           option "initiative", "a) <strong>An initiative</strong> that promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds.  If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative."
           option "organisation", "b) <strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
+          pdf_context_for_option "initiative", "(Answer B3a, B4a, B5a, B6a, B7a questions)"
+          pdf_context_for_option "organisation", "(Answer B3b, B4b, B5b, B6b, B7b questions)"
           default_option "initiative"
         end
 
