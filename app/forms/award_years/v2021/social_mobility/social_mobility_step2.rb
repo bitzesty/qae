@@ -164,6 +164,8 @@ class AwardYears::V2021::QAEForms
         checkbox_seria :initiative_activities, "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2a"
           required
+          classes "question-limited-selections"
+          selection_limit 3
           context %(
             <p>If necessary, you can select more than one activity, but no more than three. If you feel that more than three activities are applicable, select the three that the initiative focuses on most.</p>
           )
@@ -183,6 +185,8 @@ class AwardYears::V2021::QAEForms
         checkbox_seria :organisation_activities, "What activities did you implement to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2b"
           required
+          classes "question-limited-selections"
+          selection_limit 3
           context %(
             <p>If necessary, you can select more than one activity, but no more than three. If you feel that more than three activities are applicable, select the three that the initiative focuses on most.</p>
           )
