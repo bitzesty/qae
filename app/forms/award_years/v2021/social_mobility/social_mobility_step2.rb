@@ -9,60 +9,43 @@ class AwardYears::V2021::QAEForms
 
             <p>This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.</p>
 
-            <h3>Definition of Social Mobility</h3>
+            <h3>How we define Social Mobility</h3>
 
-            <p>Social mobility is a measure of the ability to move from a lower socio-economic background to a higher socio-economic status.</p>
+            <p>Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.</p>
             <ul>
               <li>Socio-economic background is a set of social and economic circumstances from which a person has come.</li>
               <li>Socio-economic status is a person's current social and economic circumstances.</li>
             </ul>
 
-            <p>We classify people as being from a lower or higher socio-economic background based on these variables:</p>
+            <p>For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:</p>
 
             <ul>
-              <li><a target="_blank" href="https://en.wikipedia.org/wiki/National_Statistics_Socio-economic_Classification">The National Statistics Socio-economic classification (NS-SEC)</a> of parent's occupation. This is based on the type of job the main or highest income earner in the household had as their main job when the person was 14.</li>
-              <li>Whether they were receiving free school meals or access pupil premium funding.</li>
-              <li>The highest level of qualifications achieved by either parent(s) or guardian(s) by the time the person was 18.</li>
-              <li>The type of school the person attended.</li>
+              <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
+              <li>Asylum seekers and refugees or children of refugees;</li>
+              <li>Long-term unemployed or people who grew up in workless households;</li>
+              <li>People whose children receive free school meals;</li>
+              <li>Lone parents - people bringing up a child or children without a partner;</li>
+              <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
+              <li>Survivors of domestic violence;</li>
+              <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
+              <li>Care leavers;</li>
+              <li>People recovering or who have recovered from addiction;</li>
+              <li>Ex-offenders;</li>
+              <li>Families of prisoners;</li>
+              <li>Military veterans;</li>
+              <li>People who receive or used to receive free school meals;</li>
+              <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school.</li>
             </ul>
-
-            <h3>Overarching criteria</h3>
-
-            <p>We are looking to recognise:</p>
-
-            <ol type="a">
-              <li>
-                <p>Initiatives that promote opportunity through social mobility. These initiatives should be structured and designed to target and support people from disadvantaged backgrounds.</p><br/>
-
-                <p>Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.</p><br/>
-
-                <p>It does not have to be large if your organisation is small - we will evaluate it in proportion to the organisation’s size. However, it has to be structured.</p><br/>
-
-                <p>For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain percentage of recruits to come from disadvantaged backgrounds.</p><br/>
-
-                <p>If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.</p><br/>
-
-                <p>If your application is for an initiative, promoting opportunity through social mobility <strong>does not</strong> have to be your organisation's core aim.</p><br/>
-              </li>
-
-              <li>
-                <p>Organisations whose core day-to-day aim is to promote opportunity through social mobility; These organisations exist purely to support people from disadvantaged backgrounds.</p>
-              </li>
-            </ol>
 
             <h3>Evidence</h3>
 
-            <p>Applicants need to provide quantifiable evidence to support the claims made. This should be from the numbers presented, third-party evaluations and feedback received from those who have received support.</p>
+            <p>Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.</p>
 
-            <p>When providing quantitative evidence, provide actual numbers, not just percentages - while percentages might be useful, they are not sufficient on their own.</p>
-
-            <p>When considering qualitative evidence, where possible, provide a range of examples.</p>
-
-            <p>In the case of feedback, it needs to be an analysis of any scores or ratings, including positive, negative and neutral feedback. Ad-hoc quotes and anecdotal feedback will strengthen your application but are not sufficient on their own.</p>
+            <p>The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.</p>
 
             <h3>Small organisations</h3>
 
-            <p>The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is a reasonable performance, given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.</p>
+            <p>The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.</p>
 
             <h3>Answering questions</h3>
 
@@ -75,64 +58,57 @@ class AwardYears::V2021::QAEForms
               This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.
             )],
 
-            [:bold, "Definition of Social Mobility"],
+            [:bold, "How we define Social Mobility"],
             [:normal, %(
-              Social mobility is a measure of the ability to move from a lower socio-economic background to a higher socio-economic status.
+              Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.
 
               \u2022 Socio-economic background is a set of social and economic circumstances from which a person has come.
 
               \u2022 Socio-economic status is a person's current social and economic circumstances.
 
-              Socio-economic background is a set of social and economic circumstances from which a person has come. Socio-economic status is a person's current social and economic circumstances.
+              For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
 
-              We classify people as being from a lower or higher socio-economic background based on these variables:
+              \u2022 People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;
 
-              \u2022 The National Statistics Socio-economic classification (NS-SEC) of parent's occupation.
+              \u2022 Asylum seekers and refugees or children of refugees;
 
-              \u2022 This is based on the type of job the main or highest income earner in the household had as their main job when the person was 14.
+              \u2022 Long-term unemployed or people who grew up in workless households;
 
-              \u2022 Whether they were receiving free school meals.
+              \u2022 People whose children receive free school meals;
 
-              \u2022 The highest level of qualifications achieved by either parent(s) or guardian(s) by the time the person was 18.
+              \u2022 Lone parents - people bringing up a child or children without a partner;
 
-              \u2022 The type of school the person attended.
-            )],
+              \u2022 People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;
 
-            [:bold, "Overarching criteria"],
-            [:normal, %(
-              We are looking to recognise:
+              \u2022 Survivors of domestic violence;
 
-              a\) Initiatives that promote opportunity through social mobility. These initiatives should be structured and designed to target and support people from disadvantaged backgrounds.
+              \u2022 Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;
 
-              Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.
+              \u2022 Care leavers;
 
-              It does not have to be large if your organisation is small - we will evaluate it in proportion to the organisation’s size. However, it has to be structured.
+              \u2022 People recovering or who have recovered from addiction;
 
-              For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain percentage of recruits to come from disadvantaged backgrounds.
+              \u2022 Ex-offenders;
 
-              If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.
+              \u2022 Families of prisoners;
 
-              If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim.
+              \u2022 Military veterans;
 
-              b\) Organisations whose core day-to-day aim is to promote opportunity through social mobility; These organisations exist purely to support people from disadvantaged backgrounds.
+              \u2022 People who receive or used to receive free school meals;
 
-              For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.
+              \u2022 People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school.
             )],
 
             [:bold, "Evidence"],
             [:normal, %(
-              Applicants need to provide quantifiable evidence to support the claims made. This should be from the numbers presented, third-party evaluations and feedback received from those who have received support.
+              Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.
 
-              When providing quantitative evidence, provide actual numbers, not just percentages - while percentages might be useful, they are not sufficient on their own.
-
-              When considering qualitative evidence, where possible, provide a range of examples.
-
-              In the case of feedback, it needs to be an analysis of any scores or ratings, including positive, negative and neutral feedback. Ad-hoc quotes and anecdotal feedback will strengthen your application but are not sufficient on their own.
+              The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.
             )],
 
             [:bold, "Small organisations"],
             [:normal, %(
-              The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider what is a reasonable performance, given the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
+              The Queen’s Awards for Enterprise is committed to acknowledging efforts of organisations of all sizes. When assessing, we consider the size and sector of your organisation. If you are a small organisation, do not be intimidated by the questions that are less relevant to you - answer them to a degree you can.
             )],
 
             [:bold, "Answering questions"],
