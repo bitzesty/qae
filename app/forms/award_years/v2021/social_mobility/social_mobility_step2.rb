@@ -517,10 +517,10 @@ class AwardYears::V2021::QAEForms
           )
           check_options [
             ["careers_advice", "<strong>Careers advice</strong> - providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes."],
-            ["fairer_recruitment", "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - social-economic or academic."],
-            ["skills_development", "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may also include, development of aspirations and increasing motivation."],
+            ["fairer_recruitment", "<strong>Fairer recruitment</strong> - widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - socio-economic or academic."],
+            ["skills_development", "<strong>Skills development</strong> - providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation."],
             ["work_placements", "<strong>Work placements</strong> - preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships."],
-            ["early_careers", "<strong>Early careers</strong> - fostering a ‘youth-friendly’ culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
+            ["early_careers", "<strong>Early careers</strong> - fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers."],
             ["job_opportunities", "<strong>Job opportunities</strong> - broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes."],
             ["advancement", "<strong>Advancement</strong> - developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes."],
             ["advocacy_and_leadership", "<strong>Advocacy and leadership</strong> - demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility."]
@@ -552,7 +552,7 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_motivations, "Outline the social mobility factors or issues that motivated your organisation to be founded or that led your organisation to focus on promoting opportunity through social mobility. " do
+        textarea :organisation_motivations, "Outline the social mobility factors or issues that motivated your organisation to be founded or that led your organisation to focus on promoting opportunity through social mobility." do
           classes "sub-question"
           sub_ref "B 3.3b"
           required
@@ -592,7 +592,7 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_measuring_targets, "Describe what key performance indicators (KPIs) or equivalent targets are being used and how they are set and monitored in the context of your initiative." do
+        textarea :organisation_measuring_targets, "Describe what key performance indicators (KPIs) or equivalent targets you set and how you monitor them in the context of your core aim to promote opportunity through social mobility." do
           classes "sub-question"
           sub_ref "B 4.1b"
           required
@@ -600,7 +600,7 @@ class AwardYears::V2021::QAEForms
             <ul>
               <li>Provide information on what targets you set.</li>
               <li>Explain how you monitor performance against the target.</li>
-              <li>Explain what evidence you gather to show short and long term outcomes - this may include, but is not limited to - internal records, third party evidence, survey responses.</li>
+              <li>Explain what evidence you gather to show short and longer-term outcomes - this may include but is not limited to - internal records, third party evidence, survey responses, interviews, ad-hoc feedback.</li>
             </ul>
           )
           pdf_context %(
@@ -608,14 +608,14 @@ class AwardYears::V2021::QAEForms
 
               \u2022 Explain how you monitor performance against the target.
 
-              \u2022 Explain what evidence you gather to show short and long term outcomes - this may include, but is not limited to - internal records, third party evidence, survey responses.
+              \u2022 Explain what evidence you gather to show short and longer-term outcomes - this may include but is not limited to - internal records, third party evidence, survey responses, interviews, ad-hoc feedback.
           )
 
           words_max 500
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_targets_not_met, "Explain what happens if your KPIs or alternative performance targets are not met?" do
+        textarea :organisation_targets_not_met, "Explain what happens if you don’t meet the KPIs or alternative performance targets?" do
           classes "sub-question"
           sub_ref "B 4.2b"
           required
@@ -633,17 +633,113 @@ class AwardYears::V2021::QAEForms
           sub_ref "B 5.1b"
           required
           context %(
-            <p>Please provide the totals and year by year breakdown of:</p>
+            <p>This award aims to recognise promoting opportunity through social mobility efforts that focus on the disadvantaged groups listed below:</p>
+            <ul>
+              <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
+              <li>Asylum seekers and refugees or children of refugees;</li>
+              <li>Long-term unemployed or people who grew up in workless households;</li>
+              <li>People whose children receive free school meals;</li>
+              <li>Lone parents - people bringing up a child or children without a partner;</li>
+              <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
+              <li>Survivors of domestic violence;</li>
+              <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
+              <li>Care leavers;</li>
+              <li>People recovering or who have recovered from addiction;</li>
+              <li>Ex-offenders;</li>
+              <li>Families of prisoners;</li>
+              <li>Military veterans;</li>
+              <li>People who receive or used to receive free school meals;</li>
+              <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school.</li>
+            </ul>
+            <p> Please provide the totals and year by year breakdown of:</p>
+            <ol>
+              <li>the total number of participants,</li>
+              <li>the proportion of participants from disadvantaged backgrounds,</li>
+              <li>the breakdown of these participants by disadvantage.</li>
+            </ol>
+            <p>Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.</p>
+          )
+          pdf_context %(
+            This award aims to recognise promoting opportunity through social mobility efforts that focus on the disadvantaged groups listed below:
 
-            <p>1. the total number of participants.</p>
+              \u2022 People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;
 
-            <p>2. the proportion of participants from disadvantaged backgrounds.</p>
+              \u2022 Asylum seekers and refugees or children of refugees;
 
-            <p>3. the breakdown of these participants by disadvantage.</p>
+              \u2022 Long-term unemployed or people who grew up in workless households;
 
-            <p>Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last three years. The breakdown will help us understand the changes in your activities over time and will frame the output and outcome data in question B5.2.</p>
+              \u2022 People whose children receive free school meals;
+
+              \u2022 Lone parents - people bringing up a child or children without a partner;
+
+              \u2022 People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;
+
+              \u2022 Survivors of domestic violence;
+
+              \u2022 Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;
+
+              \u2022 Care leavers;
+
+              \u2022 People recovering or who have recovered from addiction;
+
+              \u2022 Ex-offenders;
+
+              \u2022 Families of prisoners;
+
+              \u2022 Military veterans;
+
+              \u2022 People who receive or used to receive free school meals;
+
+              \u2022 People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school.
+
+              Please provide the totals and year by year breakdown of:
+
+              \u2022 1. the total number of participants,
+
+              \u2022 2. the proportion of participants from disadvantaged backgrounds,
+
+              \u2022 3. the breakdown of these participants by disadvantage.
+
+              Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.
           )
           words_max 300
+          conditional :application_category, "organisation"
+        end
+
+        textarea :organisation_quantitative_evidence, "Provide quantitative evidence on the impact that your organisation has achieved for your participants." do
+          classes "sub-question"
+          sub_ref "B 5.2b"
+          required
+          context %(
+            <p>Provide <strong>quantitative data</strong> (for example, numbers, figures) that shows how your organisation has brought about meaningful change or improved the employability and sustainability of the participants.</p>
+            <ul>
+              <li>Explain your impact in the context of your KPIs or equivalent performance targets that you have identified in section B4.</li>
+              <li>Provide total figures of your overall impact over the years (minimum for the last two years).</li>
+              <li>Provide year by year breakdown to demonstrate growth and improvement (minimum for the last two years).</li>
+              <li>Include any <strong>output</strong> data. For example, a number of participants successfully completing a training course.</li>
+              <li>Include any <strong>outcome</strong> data, including <strong>short-term</strong> and, where available, <strong>longer-term</strong> outcomes. For example, a number of participants who, after completing the course, gained employment and then how many of those are in employment after two years.</li>
+              <li>Provide actual numbers, not just percentages - while percentages might be useful, they are not sufficient on their own.</li>
+              <li>Explain where the data comes from - this may include, but is not limited to - internal records, third party evidence, survey responses.</li>
+            </ul>
+          )
+          pdf_context %(
+            Provide quantitative data (for example, numbers, figures) that shows how your organisation has brought about meaningful change or improved the employability and sustainability of the participants.
+
+            \u2022 Explain your impact in the context of your KPIs or equivalent performance targets that you have identified in section B4.
+
+            \u2022 Provide total figures of your overall impact over the years (minimum for the last two years).
+
+            \u2022 Provide year by year breakdown to demonstrate growth and improvement (minimum for the last two years).
+
+            \u2022 Include any output data. For example, a number of participants successfully completing a training course.
+
+            \u2022 Include any outcome data, including short-term and, where available, longer-term outcomes. For example, a number of participants who, after completing the course, gained employment and then how many of those are in employment after two years.
+
+            \u2022 Provide actual numbers, not just percentages - while percentages might be useful, they are not sufficient on their own.
+
+            \u2022 Explain where the data comes from - this may include, but is not limited to - internal records, third party evidence, survey responses.
+          )
+          words_max 750
           conditional :application_category, "organisation"
         end
 
@@ -652,20 +748,26 @@ class AwardYears::V2021::QAEForms
           sub_ref "B 5.3b"
           required
           context %(
-            <p>Provide <strong>qualitative data</strong> (for example, comments, feedback from participants and key stakeholders) that shows how your organisation has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
+            <p>Provide <strong>qualitative data</strong> (for example, people stories as well as comments, feedback from participants and key stakeholders) that shows how your organisation has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
             <ul>
-              <li>Include qualitative feedback that you have gathered <strong>from participants</strong> to understand how they have benefited. For example, you can include data, such as quotes, from participant surveys, interviews or ad-hoc feedback.</li>
-              <li>If applicable, include qualitative feedback that you have gathered from <strong>third-party stakeholders</strong> to understand how the participants have benefited.</li>
+              <li>Include stories of impact on participants’ lives. If possible, provide a range of examples.</li>
+              <li>Include feedback that you have gathered from participants to understand how they have benefited.</li>
+              <li>If applicable, include feedback that you have gathered from third-party stakeholders to understand how the participants have benefited. </li>
+              <li>Explain where the information comes from - this may include, but is not limited to - surveys, interviews or ad-hoc feedback. </li>
             </ul>
           )
           pdf_context %(
-            <p>Provide qualitative data (for example, comments, feedback from participants and key stakeholders) that shows how your organisation has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
+            <p>Provide qualitative data (for example, people stories as well as comments, feedback from participants and key stakeholders) that shows how your organisation has brought about meaningful change or improved the employability and sustainability of the participants and how it has raised their career aspirations and confidence.</p>
 
-            \u2022 Include qualitative feedback that you have gathered from participants to understand how they have benefited. For example, you can include data, such as quotes, from participant surveys, interviews or ad-hoc feedback.
+            \u2022 Include stories of impact on participants’ lives. If possible, provide a range of examples.
 
-            \u2022 If applicable, include qualitative feedback that you have gathered from third-party stakeholders to understand how the participants have benefited.
+            \u2022 Include feedback that you have gathered from participants to understand how they have benefited.
+
+            \u2022 If applicable, include feedback that you have gathered from third-party stakeholders to understand how the participants have benefited.
+
+            \u2022 Explain where the information comes from - this may include, but is not limited to - surveys, interviews or ad-hoc feedback.
           )
-          words_max 500
+          words_max 750
           conditional :application_category, "organisation"
         end
 
@@ -696,7 +798,7 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_impact_sharing, "Explain if and how you share and celebrate the evidence of the initiative’s impact across the organisation?" do
+        textarea :organisation_impact_sharing, "Explain if and how you share and celebrate the evidence of the impact across the organisation?" do
           classes "sub-question"
           sub_ref "B 6.1b"
           required
@@ -707,7 +809,7 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_member_invitation, "Explain if and how you invite the organisation’s members or employees in the design, implementation and evaluation of your work (in the context of your core aim to promote opportunity through social mobility)." do
+        textarea :organisation_member_engagement, "Explain if and how you engage the organisation’s members or employees in the design, implementation and evaluation of your work (in the context of your core aim to promote opportunity through social mobility)." do
           classes "sub-question"
           sub_ref "B 6.2b"
           required
@@ -729,6 +831,8 @@ class AwardYears::V2021::QAEForms
           required
           context %(
             <p>What is the impact of your organisation on the local community and at a regional and national level; and how is this exemplary?</p>
+
+            <p>For example, has your organisation’s activities led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )
           words_max 300
           conditional :application_category, "organisation"
