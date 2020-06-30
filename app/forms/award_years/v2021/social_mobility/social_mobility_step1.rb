@@ -170,11 +170,21 @@ class AwardYears::V2021::QAEForms
           rows 5
         end
 
-        options :organisation_type, "Are you a company or charity?" do
+        options :organisation_type, "What is the legal form of your organisation?" do
           required
           ref "A 4"
-          option "company", "Company"
+          option "sole_trader", "Sole Trader"
+          option "partnership", "Partnership"
+          option "limited_company", "Limited Company (Ltd)"
+          option "public_limited_company", "Public Limited Company (Plc)"
+          option "community_interest_company", "Community Interest Company (CIC)"
           option "charity", "Charity"
+          option "other", "Other"
+        end
+
+        text :other_organisation_type, "" do
+          required
+          conditional :organisation_type, "other"
         end
 
         text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do

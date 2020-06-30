@@ -451,6 +451,14 @@ window.FormValidation =
         @appendMessage(question, "% of your total overseas trade should add up to 100")
         @addErrorClass(question)
 
+  validateSelectionLimit: (question) ->
+    selection_limit = question.data("selection-limit")
+    current_selection_count = question.find("input[type=checkbox]:checked").length
+    if selection_limit && current_selection_count > selection_limit
+      @appendMessage(question, "Select a maximum of " + selection_limit)
+      @addErrorClass(question)
+
+
   # It's for easy debug of validation errors
   # As it really tricky to find out the validation which blocks form
   # and do not display any error massage on form
@@ -472,7 +480,6 @@ window.FormValidation =
 
     $(document).on "change", ".question-block input, .question-block select, .question-block textarea", ->
       self.clearErrors $(this)
-
       self.validateIndividualQuestion($(@).closest(".question-block"))
 
   validateIndividualQuestion: (question) ->
@@ -541,6 +548,9 @@ window.FormValidation =
     if question.find(".js-by-trade-goods-and-services-amount").length
       # console.log "validateGoodsServicesPercentage"
       @validateGoodsServicesPercentage(question)
+
+    if question.hasClass("question-limited-selections")
+      @validateSelectionLimit(question)
 
   validate: ->
     @clearAllErrors()
