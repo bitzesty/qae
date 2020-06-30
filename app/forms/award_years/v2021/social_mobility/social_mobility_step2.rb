@@ -126,19 +126,30 @@ class AwardYears::V2021::QAEForms
               Select whether your application is for:
             </p>
           )
-          pdf_context %(
-            <p>Select whether your application is for an initiative or organisation</p>
-          )
-          option "initiative", "a) <strong>An initiative</strong> which promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds. <br/><br/>
-            Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.<br/><br/>
+          option "initiative", "a) <strong>An initiative</strong> which promotes opportunity through social mobility. The initiative should be structured and designed to target and support people from disadvantaged backgrounds."
+          option "organisation", "b) <strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds."
+
+          context_for_option "initiative", "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.<br/><br/>
             For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.<br/><br/>
             If your application is for an initiative, promoting opportunity through social mobility <strong>does not</strong> have to be your organisation's core aim. <br/><br/>
             If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative."
-          option "organisation", "b) <strong>A whole organisation</strong> whose core aim is to promote opportunity through social mobility. The organisation exists purely to support people from disadvantaged backgrounds. <br/><br/>
-            For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects."
 
-          pdf_context_for_option "initiative", "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a questions)"
-          pdf_context_for_option "organisation", "(If you selected this option, answer all B2b, B3b, B4b, B5b, B6b, B7b questions)"
+
+          context_for_option "organisation", "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects."
+
+          pdf_context_for_option "initiative", "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.
+
+            For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.
+
+            If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim.
+            If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.
+
+            (If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a questions)"
+
+          pdf_context_for_option "organisation", "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.
+
+            (If you selected this option, answer all B2b, B3b, B4b, B5b, B6b, B7b questions)"
+
           default_option "initiative"
         end
 
