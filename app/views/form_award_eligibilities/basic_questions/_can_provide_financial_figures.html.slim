@@ -1,0 +1,4 @@
+.question-body
+  p.question-context == @eligibility.class.hint(step)
+  = f.input :can_provide_financial_figures, as: :radio_buttons, item_wrapper_class: 'selectable', wrapper_html: { role: "radiogroup", "aria-labelledby" => "eligibility_#{question}_label", id: "eligibility_#{question}" }, label_html: { class: 'visuallyhidden' }
+  span.clear

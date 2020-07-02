@@ -19,6 +19,13 @@ class Eligibility::Basic < Eligibility
             accept: :true,
             hint: "Part-time staff should be counted in full-time equivalents (FTE). "
 
+  property :can_provide_financial_figures,
+            boolean: true,
+            label: "Are you able to provide financial figures for the last three years for your organisation?",
+            accept: :true,
+            hint: "You will have to submit data for the last three financial years. Your latest financial year has to be the one that falls before the #{Settings.current_submission_deadline.decorate.formatted_trigger_time} (the submission deadline). If you haven't reached or finalised your latest year-end yet, you will be able to provide estimated figures."
+
+
   property :organization_kind,
             values: %w[business charity],
             label: "What kind of organisation is it?",
