@@ -29,4 +29,9 @@ class Eligibility::Mobility < Eligibility
             label: "Can you demonstrate that the programme(s) benefited your organisation or employees?",
             hint: "For example, can you provide evidence that it has improved your reputation, employee relations, diversity, collaboration or led to savings or growth in the business?",
             accept: :true
+  property :number_of_eligible_initiatives,
+            positive_integer: true,
+            label: "How many initiatives do you have that meets the criteria for the award?",
+            accept: :not_nil,
+            if: proc { application_category.present? && application_category == "initiative" }
 end
