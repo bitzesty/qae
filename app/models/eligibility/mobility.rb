@@ -1,22 +1,37 @@
 class Eligibility::Mobility < Eligibility
   AWARD_NAME = 'Social Mobility'
 
-  property :programme_validation,
+  property :promoting_social_mobility,
             boolean: true,
-            label: "Do you have one or more qualifying social mobility programme?",
+            label: "Have you been promoting opportunity through social mobility?",
             accept: :true,
             hint: %(
-              <p class='question-context'>
-                Qualifying programme should be in one of the following areas to help socially disadvantaged individuals or groups:
-              </p>
-              <ul class='question-context'>
-                <li>Work experience, careers advice or mentoring for young people;</li>
-                <li>Offering non-graduate routes such as traineeships or changing recruitment practices;</li>
-                <li>Giving equal support and progression opportunities to all employees.</li>
-              </ul>
-              <p class='question-context'>
-                Please note, a programme could be an initiative, activity, course, system, business model approach or strategy, service or application, practice, policy or product.
-              </p>
+              <a href='#' class='js-form-expandable-content-link' data-ref='js-promoting-social-mobility'>Read how we define Social Mobility</a>
+              <div class='js-promoting-social-mobility hidden'>
+                <p class='question-context'>Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.</p>
+                <ul class='question-context'>
+                  <li>Socio-economic background is a set of social and economic circumstances from which a person has come.</li>
+                  <li>Socio-economic status is a person's current social and economic circumstances.</li>
+                </ul>
+                <p class='question-context'>For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:</p>
+                <ul class='question-context'>
+                  <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
+                  <li>Asylum seekers and refugees or children of refugees;</li>
+                  <li>Long-term unemployed or people who grew up in workless households;</li>
+                  <li>People whose children receive free school meals; </li>
+                  <li>Lone parents - people bringing up a child or children without a partner; </li>
+                  <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
+                  <li>Survivors of domestic violence;</li>
+                  <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
+                  <li>Care leavers;</li>
+                  <li>People recovering or who have recovered from addiction;</li>
+                  <li>Ex-offenders;</li>
+                  <li>Families of prisoners;</li>
+                  <li>Military veterans;</li>
+                  <li>People who receive or used to receive free school meals;</li>
+                  <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school.</li>
+                </ul>
+              </div>
             )
 
   property :programme_operation,
