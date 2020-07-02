@@ -1,0 +1,12 @@
+div.question-body
+  p.question-context == @eligibility.class.hint(step)
+  div.input.radio_buttons.optional.eligibility_application_category role="radiogroup" id="eligibility_application_category" aria-labelledby="eligibility_application_category_label"
+    label.radio_buttons.optional.control-label.visuallyhidden Application category
+    input.radio_buttons.optional type="hidden" name="eligibility[application_category]"
+    - for answer in @eligibility.options_for_question(step)
+        span.radio.selectable
+          input type="radio" value=answer[0] name="eligibility[application_category]" id="eligibility_application_category_#{answer[0]}"
+          label.collection_radio_buttons for="eligibility_application_category_#{answer[0]}" = answer[1].html_safe
+          span.question-context
+            = @eligibility.context_for_options[answer[0].to_sym].html_safe
+span.clear
