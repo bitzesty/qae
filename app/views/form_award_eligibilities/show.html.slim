@@ -24,7 +24,7 @@ header.page-header.group.page-header-over-sidebar
                 .question class="question-#{step.to_s.gsub!(/_/, '-')}"
                   label.eligibilty-label for="eligibility_#{step.to_s}" id="eligibility_#{step.to_s}_label"
                     h2
-                      = @eligibility.class.label(step)
+                      = @eligibility.class.label(step).html_safe
                   - if @eligibility.is_a?(Eligibility::Basic)
                     = render "form_award_eligibilities/basic_questions/#{step.to_s}", f: f, question: step.to_s
                   - else
