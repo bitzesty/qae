@@ -26,6 +26,7 @@ class QAEFormBuilder
                   :default_option
 
     def after_create
+      super()
       @placeholder_preselected_conditions = []
       @options = []
     end

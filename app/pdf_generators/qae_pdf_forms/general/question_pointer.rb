@@ -254,7 +254,6 @@ class QaePdfForms::General::QuestionPointer
           end
         end
       elsif question.context.present?
-
         render_context_or_help_block(question.escaped_context)
       end
     end
@@ -700,10 +699,11 @@ class QaePdfForms::General::QuestionPointer
   end
 
   def render_context_for_option(question, answer)
-    if question.pdf_context_for_options && question.pdf_context_for_options[answer.value]
+    context = question.context_for_option(answer.value)
+    if context
       form_pdf.move_down 3.mm
       form_pdf.indent 7.mm do
-        form_pdf.text question.pdf_context_for_options[answer.value], style: :italic
+        form_pdf.text context, style: :italic
       end
     end
   end
