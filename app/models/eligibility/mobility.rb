@@ -67,6 +67,18 @@ class Eligibility::Mobility < Eligibility
             label: "Have you had these activities for at least two years?",
             accept: :true
 
+  property :evidence_of_impact,
+            boolean: true,
+            label: "Are you able to provide evidence of the impact of your promoting opportunity through social mobility activities?",
+            accept: :true,
+            hint: %(
+              <a href='#' class='js-form-expandable-content-link' data-ref='js-evidence-of-impact'>Read what evidence we are looking for.</a>
+              <div class='js-evidence-of-impact hidden'>
+                <p>Applicants need to provide quantitative evidence (for example, numbers, figures) and qualitative evidence (for example, stories, quotes) to support the claims made.</p>
+                <p>The evidence could be but is not limited to - internal records, third party data, survey responses, interviews, ad-hoc feedback. Please note, while quotes and anecdotal feedback will strengthen your application, they are not sufficient on their own.</p>
+              </div>
+            )
+
   property :application_category,
             label: "Is your application going to be for:",
             values: [
