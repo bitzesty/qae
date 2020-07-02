@@ -24,11 +24,11 @@ class Eligibility::Mobility < Eligibility
             label: "Has the programme(s) been operational for at least the last two years?",
             accept: :true
 
-  property :programme_commercial_success,
+  property :active_for_atleast_two_years,
             boolean: true,
-            label: "Can you demonstrate that the programme(s) benefited your organisation or employees?",
-            hint: "For example, can you provide evidence that it has improved your reputation, employee relations, diversity, collaboration or led to savings or growth in the business?",
+            label: "Have you had these activities for at least two years?",
             accept: :true
+
   property :number_of_eligible_initiatives,
             positive_integer: true,
             label: "How many initiatives do you have that meets the criteria for the award?",
