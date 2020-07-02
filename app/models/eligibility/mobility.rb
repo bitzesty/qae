@@ -34,10 +34,33 @@ class Eligibility::Mobility < Eligibility
               </div>
             )
 
-  property :programme_operation,
+  property :social_mobility_activities,
             boolean: true,
-            label: "Has the programme(s) been operational for at least the last two years?",
-            accept: :true
+            label: %(
+              Have your promoting opportunity through social mobility efforts been through one of the following activities?<br/><br/>
+              Careers Advice<br/>
+              Fairer recruitment<br/>
+              Skills development<br/>
+              Work placements<br/>
+              Early careers <br/>
+              Job opportunities<br/>
+              Advancement<br/>
+              Advocacy and leadership<br/>
+            ),
+            accept: :true,
+            hint: %(
+              <a href='#' class='js-form-expandable-content-link' data-ref='js-social-mobility-activities'>Read more detailed descriptions of the activities</a>
+              <div class='js-social-mobility-activities hidden'>
+                <strong>Careers advice</strong> – providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.<br/><br/>
+                <strong>Fairer recruitment</strong> – widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - socio-economic or academic.<br/><br/>
+                <strong>Skills development</strong> – providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation.<br/><br/>
+                <strong>Work placements</strong> – preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships.<br/><br/>
+                <strong>Early careers</strong> – fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers.<br/><br/>
+                <strong>Job opportunities</strong> – broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes.<br/><br/>
+                <strong>Advancement</strong> – developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes.<br/><br/>
+                <strong>Advocacy and leadership</strong> – demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.<br/><br/>
+              </div>
+            )
 
   property :active_for_atleast_two_years,
             boolean: true,
