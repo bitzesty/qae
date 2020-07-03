@@ -698,6 +698,14 @@ jQuery ->
       else
         $("#innovative-amount-info").addClass("visuallyhidden")
 
+  # Show text about submitting multiple applications when the number of eligible initiatives is greater than 1
+  if $(".number_of_eligible_initiatives_input").size() > 0
+    $(".number_of_eligible_initiatives_input").bind "propertychange change click keyup input paste", ->
+      if $(this).val() > 1
+        $("#number-of-eligible-initiatives-info").removeClass("visuallyhidden")
+      else
+        $("#number-of-eligible-initiatives-info").addClass("visuallyhidden")
+
   # Show trade org fulfilled info when checked yes
   trade_org_q = ".question-organisation-fulfill-above-exceptions"
   if $(trade_org_q).size() > 0

@@ -4,7 +4,7 @@
     - if (final_eligibility_page?(step) && !@already_has_invalid_questions) || answer.present?
       tr.section
         td.previous-question-title
-          = eligibility.class.label(question)
+          = eligibility.class.label(question).html_safe
         td.previous-question-body
           - if eligibility.class.boolean_question?(question)
             - unless answer.nil?

@@ -15,9 +15,9 @@ class Eligibility::Basic < Eligibility
 
   property :has_management_and_two_employees,
             boolean: true,
-            label: "Did your organisation have two or more full-time UK employees (FTE) in each year of your entry?",
+            label: "Did your organisation have two or more full-time UK employees for the last two years?",
             accept: :true,
-            hint: "Part-time staff should be counted in full-time equivalents. The number of years you will have to enter will depend on the award you are applying for - it is a minimum of three years for the International Trade award and a minimum of two years for all other awards."
+            hint: "Part-time staff should be counted in full-time equivalents (FTE). "
 
   property :organization_kind,
             values: %w[business charity],

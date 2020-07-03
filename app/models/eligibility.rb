@@ -37,6 +37,10 @@ class Eligibility < ApplicationRecord
     @questions
   end
 
+  def self.context_for_options
+    @context_for_options
+  end
+
   # should be defined in subclasses
   def self.award_name
     ""
@@ -44,6 +48,7 @@ class Eligibility < ApplicationRecord
 
   def self.property(name, options = {})
     @questions ||= {}
+    @context_for_options ||= {}
 
     values = options[:values]
 
@@ -61,6 +66,10 @@ class Eligibility < ApplicationRecord
 
     if options[:positive_integer]
       validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true }, if: proc { current_step == name }
+    end
+
+    if options[:context_for_options]
+      @context_for_options = options[:context_for_options]
     end
 
     @questions.merge!(name => options)
@@ -124,6 +133,14 @@ class Eligibility < ApplicationRecord
 
   def pass!
     update_column(:passed, true)
+  end
+
+  def options_for_question(name)
+    questions_storage[name.to_sym][:values]
+  end
+
+  def context_for_options
+    self.class.context_for_options
   end
 
   private
