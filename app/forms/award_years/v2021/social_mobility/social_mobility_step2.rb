@@ -164,6 +164,10 @@ class AwardYears::V2021::QAEForms
 
         # INITIATIVE QUESTIONS START HERE
 
+        comment :initiative_question_guidance, "" do
+          pdf_context "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."
+        end
+
         checkbox_seria :initiative_activities, "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2a"
           required
@@ -538,6 +542,10 @@ class AwardYears::V2021::QAEForms
         end
 
         # ORGANISATION QUESTIONS START HERE
+
+        comment :organisation_question_guidance, "" do
+          pdf_context "Answer the questions below if you selected option (b) in question B1 - your application is for the whole organisation whose core aim is to promote opportunity through social mobility."
+        end
 
         checkbox_seria :organisation_activities, "What activities did you implement to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2b"

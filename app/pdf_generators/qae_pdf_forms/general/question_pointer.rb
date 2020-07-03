@@ -253,7 +253,7 @@ class QaePdfForms::General::QuestionPointer
             form_pdf.render_text text_block[1]
           end
         end
-      elsif question.context.present?
+      elsif question.context.present? || question.pdf_context.present?
         render_context_or_help_block(question.escaped_context)
       end
     end
