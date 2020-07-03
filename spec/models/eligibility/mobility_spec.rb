@@ -6,9 +6,8 @@ RSpec.describe Eligibility::Mobility, type: :model do
   context 'answers storage' do
     it 'saves and reads answers' do
       eligibility = Eligibility::Mobility.new(account: account)
-      eligibility.programme_validation = 'yes'
-      eligibility.programme_operation = 'yes'
-      eligibility.programme_commercial_success = 'yes'
+      eligibility.promoting_social_mobility = 'yes'
+      eligibility.social_mobility_activities = 'yes'
 
       expect { eligibility.save! }.to change {
         Eligibility::Mobility.count
@@ -17,7 +16,7 @@ RSpec.describe Eligibility::Mobility, type: :model do
       eligibility = Eligibility::Mobility.last
 
       expect(eligibility.account).to eq(account)
-      expect(eligibility).to be_programme_commercial_success
+      expect(eligibility).to be_promoting_social_mobility
     end
   end
 
@@ -29,16 +28,17 @@ RSpec.describe Eligibility::Mobility, type: :model do
     end
 
     it 'is eligible when all questions are answered correctly' do
-      eligibility.programme_validation = 'yes'
-      eligibility.programme_operation = 'yes'
-      eligibility.programme_commercial_success = 'yes'
+      eligibility.promoting_social_mobility = 'yes'
+      eligibility.social_mobility_activities = 'yes'
+      eligibility.active_for_atleast_two_years = 'yes'
+      eligibility.evidence_of_impact = 'yes'
+      eligibility.application_category = "organisation"
       expect(eligibility).to be_eligible
     end
 
     it 'is not eligible when not all answers are correct' do
-      eligibility.programme_validation = 'yes'
-      eligibility.programme_operation = 'no'
-      eligibility.programme_commercial_success = 'yes'
+      eligibility.promoting_social_mobility = 'yes'
+      eligibility.social_mobility_activities = 'no'
 
       expect(eligibility).not_to be_eligible
     end
