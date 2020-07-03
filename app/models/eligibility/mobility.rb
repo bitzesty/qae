@@ -17,19 +17,22 @@ class Eligibility::Mobility < Eligibility
                 <ul class='question-context'>
                   <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
                   <li>Asylum seekers and refugees or children of refugees;</li>
+                  <li>Young people with English as a second language;</li>
                   <li>Long-term unemployed or people who grew up in workless households;</li>
-                  <li>People whose children receive free school meals; </li>
-                  <li>Lone parents - people bringing up a child or children without a partner; </li>
-                  <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
-                  <li>Survivors of domestic violence;</li>
+                  <li>People on low incomes;</li>
+                  <li>Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;</li>
+                  <li>People who received free school meals or if there are children in the person’s current household who receive free school meals;</li>
                   <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
-                  <li>Care leavers;</li>
+                  <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
+                  <li>Young people who are not in education, employment or training (NEET) or are at risk of that;</li>
+                  <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
+                  <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;</li>
+                  <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
                   <li>People recovering or who have recovered from addiction;</li>
-                  <li>Ex-offenders;</li>
-                  <li>Families of prisoners;</li>
+                  <li>Survivors of domestic violence;</li>
                   <li>Military veterans;</li>
-                  <li>People who receive or used to receive free school meals;</li>
-                  <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school.</li>
+                  <li>Ex-offenders;</li>
+                  <li>Families of prisoners.</li>
                 </ul>
               </div>
             )
