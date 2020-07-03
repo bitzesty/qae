@@ -28,6 +28,7 @@ RSpec.describe Eligibility::Mobility, type: :model do
     end
 
     it 'is eligible when all questions are answered correctly' do
+      eligibility.can_provide_financial_figures = 'yes'
       eligibility.promoting_social_mobility = 'yes'
       eligibility.social_mobility_activities = 'yes'
       eligibility.active_for_atleast_two_years = 'yes'
