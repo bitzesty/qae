@@ -60,6 +60,10 @@ class Eligibility::Trade < Eligibility
            if: proc {current_holder_of_an_award? && current_holder_of_qae_for_trade?},
            allow_nil: true
 
+  def self.award_name
+    AWARD_NAME + " Award"
+  end
+
   private
 
   def current_holder_of_an_award?
