@@ -27,7 +27,7 @@ class Eligibility::Basic < Eligibility
   property :industry,
             values: %w[product_business service_business either_business],
             label: "Is your business mainly a:",
-            accept: :not_nil_or_charity,
+            accept: :not_nil,
             if: proc { !organization_kind_value || !organization_kind.charity? }
 
   property :self_contained_enterprise,
