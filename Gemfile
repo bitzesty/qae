@@ -138,6 +138,10 @@ gem 'browser', '2.4.0'
 # Simple colored logging
 gem 'shog'
 
+# Used to convert HTML to text, with the exception of whitelisted attributes.
+# This makes it easier for us to display HTML content within PDF documents.
+gem 'sanitize'
+
 group :development do
   gem 'letter_opener'
   gem 'rack-mini-profiler', '>= 0.10.1', require: false

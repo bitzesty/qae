@@ -666,12 +666,16 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.move_up 3.mm
 
     form_pdf.indent 6.mm do
-      form_pdf.text Nokogiri::HTML.parse(title).text
+      form_pdf.text prepared_checkbox_value(title), inline_format: true
     end
   end
 
   def question_checked_value_title
     Nokogiri::HTML.parse(question.pdf_text || question.text).text.strip if humanized_answer == "on"
+  end
+
+  def prepared_checkbox_value(title)
+    Sanitize.fragment(title, elements: ["strong"]).strip
   end
 
   def to_month(value)

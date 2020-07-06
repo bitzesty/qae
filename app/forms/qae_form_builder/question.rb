@@ -132,7 +132,7 @@ class QAEFormBuilder
       result = {answer: delegate_obj.parameterized_title}
 
       if delegate_obj.drop_condition.present?
-        result['drop-question'] = Array.wrap(delegate_obj.drop_condition).map do |k| 
+        result['drop-question'] = Array.wrap(delegate_obj.drop_condition).map do |k|
           delegate_obj.form[k].parameterized_title
         end.join(',')
       end
@@ -246,7 +246,7 @@ class QAEFormBuilder
     end
 
     def prepared_text(content)
-      Nokogiri::HTML.parse(content).text.strip
+      Sanitize.fragment(content, elements: ["strong"]).strip
     end
 
     # Detects children conditions, grouped by option

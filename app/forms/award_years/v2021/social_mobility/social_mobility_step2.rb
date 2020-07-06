@@ -400,7 +400,7 @@ class AwardYears::V2021::QAEForms
             </ul>
           )
           pdf_context %(
-            Provide quantitative data (for example, numbers, figures) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants.
+            Provide <strong>quantitative data</strong> (for example, numbers, figures) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants.
 
             \u2022 Explain your impact in the context of your KPIs or equivalent performance targets that you have identified in section B4.
 
@@ -408,9 +408,9 @@ class AwardYears::V2021::QAEForms
 
             \u2022 Provide year by year breakdown to demonstrate growth and improvement (minimum for the last two years).
 
-            \u2022 Include any output data. For example, a number of participants successfully completing a training course.
+            \u2022 Include any <strong>output</strong> data. For example, a number of participants successfully completing a training course.
 
-            \u2022 Include any outcome data, including short-term and, where available, longer-term outcomes. For example, a number of participants who, after completing the course, gained employment and then how many of those are in employment after one year.
+            \u2022 Include any <strong>outcome</strong> data, including <strong>short-term</strong> and, where available, <strong>longer-term</strong> outcomes. For example, a number of participants who, after completing the course, gained employment and then how many of those are in employment after one year.
 
             \u2022 Provide actual numbers, not just percentages - while percentages might be useful, they are not sufficient on their own.
 
