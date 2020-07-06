@@ -521,13 +521,16 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_community_society_impact, "Impact on community and society." do
+        header :initiative_header_b7a, "Impact on community and society." do
+          ref "B 7a"
+          conditional :application_category, "initiative"
+        end
+
+        textarea :initiative_community_society_impact, "What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?" do
           classes "sub-question"
-          sub_ref "B 7a"
+          sub_ref "B 7.1a"
           required
           context %(
-            <p>What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?</p>
-
             <p>For example, has your initiative led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )
           words_max 300
@@ -863,13 +866,16 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_community_society_impact, "Impact on community and society." do
+        header :initiative_header_b7b, "Impact on community and society." do
+          ref "B 7b"
+          conditional :application_category, "organisation"
+        end
+
+        textarea :organisation_community_society_impact, "What is the impact of your organisation on the local community and at a regional and national level; and how is this exemplary?" do
           classes "sub-question"
-          sub_ref "B 7b"
+          sub_ref "B 7.1b"
           required
           context %(
-            <p>What is the impact of your organisation on the local community and at a regional and national level; and how is this exemplary?</p>
-
             <p>For example, has your organisation’s activities led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )
           words_max 300
