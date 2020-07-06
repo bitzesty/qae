@@ -98,7 +98,7 @@ class Eligibility::Mobility < Eligibility
               <details>
                 <summary>
                   <span class="summary">
-                    Read what evidence we are looking for.
+                    Read what evidence we are looking for
                   </span>
                 </summary>
 
@@ -119,7 +119,7 @@ class Eligibility::Mobility < Eligibility
               "initiative": "<details>
                               <summary>
                                 <span class='summary'>
-                                  Read more about this option.
+                                  Read more about this option
                                 </span>
                               </summary>
 
@@ -133,7 +133,7 @@ class Eligibility::Mobility < Eligibility
               "organisation": "<details>
                               <summary>
                                 <span class='summary'>
-                                  Read more about this option.
+                                  Read more about this option
                                 </span>
                               </summary>
 
