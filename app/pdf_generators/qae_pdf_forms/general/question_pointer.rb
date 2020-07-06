@@ -707,7 +707,7 @@ class QaePdfForms::General::QuestionPointer
     if context
       form_pdf.move_down 3.mm
       form_pdf.indent 7.mm do
-        form_pdf.text context, style: :italic
+        form_pdf.text context
       end
     end
   end
