@@ -140,9 +140,9 @@ class QaePdfForms::General::QuestionPointer
       render_info_about_conditional_parent
     end
 
+    render_header_hint
     render_pdf_hint
     render_context_and_answer_blocks
-    render_header_hint
   end
 
   def render_pdf_hint
