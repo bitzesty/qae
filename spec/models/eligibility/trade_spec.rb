@@ -84,4 +84,12 @@ RSpec.describe Eligibility::Trade, type: :model do
       expect(eligibility.questions).to include(:qae_for_trade_award_year)
     end
   end
+
+  describe '.award_name' do
+    let(:eligibility) { Eligibility::Trade.new(account: account) }
+
+    it 'should return award_name' do
+      expect(eligibility.class.award_name).to eq "International Trade Award"
+    end
+  end
 end

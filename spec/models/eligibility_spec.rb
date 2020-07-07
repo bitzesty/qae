@@ -26,12 +26,6 @@ describe Eligibility do
     end
   end
 
-  describe '.award_name' do
-    it 'should return award_name' do
-      expect(Eligibility.award_name).to eq ""
-    end
-  end
-
   describe '#sorted_answers' do
     it 'should return sorted_answers' do
       Eligibility.property(:test, {})

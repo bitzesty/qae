@@ -78,4 +78,12 @@ RSpec.describe Eligibility::Promotion, type: :model do
       expect(eligibility.questions).not_to include(:nomination_for_honours_based_on_their_contribution_to_ep)
     end
   end
+
+  describe '.award_name' do
+    let(:eligibility) { Eligibility::Promotion.new(account: account) }
+
+    it 'should return award_name' do
+      expect(eligibility.class.award_name).to eq "Enterprise Promotion Award"
+    end
+  end
 end

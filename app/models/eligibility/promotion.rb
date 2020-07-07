@@ -69,9 +69,4 @@ class Eligibility::Promotion < Eligibility
             label: "Will you be able to source at least two letters of support for this nomination?",
             accept: :true,
             hint: "Letters of support should be from those (not the nominator) with first-hand knowledge of the nominee's contribution to enterprise promotion, and the impact their work has had on others. One should be from a large organisation e.g. employer, non-profit, local authority."
-
-  def self.award_name
-    AWARD_NAME + " Award"
-  end
-
 end

@@ -37,4 +37,12 @@ RSpec.describe Eligibility::Development, type: :model do
       expect(eligibility).not_to be_eligible
     end
   end
+
+  describe '.award_name' do
+    let(:eligibility) { Eligibility::Development.new(account: account) }
+
+    it 'should return award_name' do
+      expect(eligibility.class.award_name).to eq "Sustainable Development Award"
+    end
+  end
 end

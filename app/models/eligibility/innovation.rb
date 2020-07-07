@@ -34,9 +34,4 @@ class Eligibility::Innovation < Eligibility
             label: "Have you recovered all the investments made in your innovation or can you demonstrate that the innovation will recover its full costs in the future?",
             accept: :true,
             if: proc { !skipped? }
-
-  def self.award_name
-    AWARD_NAME + " Award"
-  end
-
 end
