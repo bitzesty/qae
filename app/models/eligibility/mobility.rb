@@ -52,15 +52,17 @@ class Eligibility::Mobility < Eligibility
   property :social_mobility_activities,
             boolean: true,
             label: %(
-              Have your promoting opportunity through social mobility efforts been through one of the following activities?<br/><br/>
-              Careers Advice<br/>
-              Fairer recruitment<br/>
-              Skills development<br/>
-              Work placements<br/>
-              Early careers <br/>
-              Job opportunities<br/>
-              Advancement<br/>
-              Advocacy and leadership<br/>
+              Have your promoting opportunity through social mobility efforts been through one of the following activities?
+              <ul>
+                <li>Careers Advice</li>
+                <li>Fairer recruitment</li>
+                <li>Skills development</li>
+                <li>Work placements</li>
+                <li>Early careers </li>
+                <li>Job opportunities</li>
+                <li>Advancement</li>
+                <li>Advocacy and leadership</li>
+              </ul>
             ),
             accept: :true,
             hint: %(
@@ -96,7 +98,7 @@ class Eligibility::Mobility < Eligibility
               <details>
                 <summary>
                   <span class="summary">
-                    Read what evidence we are looking for.
+                    Read what evidence we are looking for
                   </span>
                 </summary>
 
@@ -117,7 +119,7 @@ class Eligibility::Mobility < Eligibility
               "initiative": "<details>
                               <summary>
                                 <span class='summary'>
-                                  Read more about this option.
+                                  Read more about this option
                                 </span>
                               </summary>
 
@@ -131,7 +133,7 @@ class Eligibility::Mobility < Eligibility
               "organisation": "<details>
                               <summary>
                                 <span class='summary'>
-                                  Read more about this option.
+                                  Read more about this option
                                 </span>
                               </summary>
 

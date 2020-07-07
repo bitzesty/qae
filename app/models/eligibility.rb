@@ -1,6 +1,8 @@
 class Eligibility < ApplicationRecord
   extend Enumerize
 
+  AWARD_NAME = ""
+
   belongs_to :account
   belongs_to :form_answer
 
@@ -41,9 +43,9 @@ class Eligibility < ApplicationRecord
     @context_for_options
   end
 
-  # should be defined in subclasses
+  # AWARD_NAME should be overriden by sub-classes
   def self.award_name
-    ""
+    self::AWARD_NAME + " Award"
   end
 
   def self.property(name, options = {})

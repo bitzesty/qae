@@ -164,6 +164,10 @@ class AwardYears::V2021::QAEForms
 
         # INITIATIVE QUESTIONS START HERE
 
+        comment :initiative_question_guidance, "" do
+          pdf_context "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."
+        end
+
         checkbox_seria :initiative_activities, "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2a"
           required
@@ -400,7 +404,7 @@ class AwardYears::V2021::QAEForms
             </ul>
           )
           pdf_context %(
-            Provide quantitative data (for example, numbers, figures) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants.
+            Provide <strong>quantitative data</strong> (for example, numbers, figures) that shows how your initiative has brought about meaningful change or improved the employability and sustainability of the participants.
 
             \u2022 Explain your impact in the context of your KPIs or equivalent performance targets that you have identified in section B4.
 
@@ -408,9 +412,9 @@ class AwardYears::V2021::QAEForms
 
             \u2022 Provide year by year breakdown to demonstrate growth and improvement (minimum for the last two years).
 
-            \u2022 Include any output data. For example, a number of participants successfully completing a training course.
+            \u2022 Include any <strong>output</strong> data. For example, a number of participants successfully completing a training course.
 
-            \u2022 Include any outcome data, including short-term and, where available, longer-term outcomes. For example, a number of participants who, after completing the course, gained employment and then how many of those are in employment after one year.
+            \u2022 Include any <strong>outcome</strong> data, including <strong>short-term</strong> and, where available, <strong>longer-term</strong> outcomes. For example, a number of participants who, after completing the course, gained employment and then how many of those are in employment after one year.
 
             \u2022 Provide actual numbers, not just percentages - while percentages might be useful, they are not sufficient on their own.
 
@@ -521,13 +525,16 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "initiative"
         end
 
-        textarea :initiative_community_society_impact, "Impact on community and society." do
+        header :initiative_header_b7a, "Impact on community and society." do
+          ref "B 7a"
+          conditional :application_category, "initiative"
+        end
+
+        textarea :initiative_community_society_impact, "What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?" do
           classes "sub-question"
-          sub_ref "B 7a"
+          sub_ref "B 7.1a"
           required
           context %(
-            <p>What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?</p>
-
             <p>For example, has your initiative led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )
           words_max 300
@@ -535,6 +542,10 @@ class AwardYears::V2021::QAEForms
         end
 
         # ORGANISATION QUESTIONS START HERE
+
+        comment :organisation_question_guidance, "" do
+          pdf_context "Answer the questions below if you selected option (b) in question B1 - your application is for the whole organisation whose core aim is to promote opportunity through social mobility."
+        end
 
         checkbox_seria :organisation_activities, "What activities did you implement to make a positive impact by promoting opportunity through social mobility?" do
           ref "B 2b"
@@ -863,13 +874,16 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "organisation"
         end
 
-        textarea :organisation_community_society_impact, "Impact on community and society." do
+        header :initiative_header_b7b, "Impact on community and society." do
+          ref "B 7b"
+          conditional :application_category, "organisation"
+        end
+
+        textarea :organisation_community_society_impact, "What is the impact of your organisation on the local community and at a regional and national level; and how is this exemplary?" do
           classes "sub-question"
-          sub_ref "B 7b"
+          sub_ref "B 7.1b"
           required
           context %(
-            <p>What is the impact of your organisation on the local community and at a regional and national level; and how is this exemplary?</p>
-
             <p>For example, has your organisation’s activities led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )
           words_max 300

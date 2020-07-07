@@ -5,7 +5,7 @@ module QaePdfForms::CustomQuestions::CheckboxSeria
         checkbox_possible_ops.detect do |p_o|
           p_o[0].to_s == option["type"].to_s
         end[1]
-      end.join(", ")
+      end.join("\n\n")
     end
 
     form_pdf.indent 7.mm do
