@@ -35,7 +35,14 @@ header.page-header.group.page-header-over-sidebar
           - else
             .previous-answers
               - if @form_answer.eligible?
-                p You are eligible to apply for the award. However, before you start your application, we recommend checking that your eligibility answers below are correct.
+                .eligibility-passed
+                  - if @form_answer.promotion?
+                    p You are eligible to begin your application for an Enterprise Promotion Award Nomination.
+                  - elsif @form_answer.award_type == "mobility"
+                    p You are eligible to begin your application for a Promoting Opportunity Award (through social mobility).
+                  - else
+                    p You are eligible to begin your application for a #{@form_answer.award_type_full_name.split.map(&:capitalize)*' '} Award.
+                  p Before you start your application, please check your eligibility answers are correct.
 
                 - if (!step || step.to_s == "wicked_finish")
                   br
