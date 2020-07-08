@@ -9,7 +9,7 @@ class AwardYears::V2021::QAEForms
 
             <p>This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.</p>
 
-            <h3>How we define Social Mobility</h3>
+            <h3>Social mobility definition</h3>
 
             <p>Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.</p>
             <ul>
@@ -17,19 +17,20 @@ class AwardYears::V2021::QAEForms
               <li>Socio-economic status is a person's current social and economic circumstances.</li>
             </ul>
 
+            <h3>Disadvantaged groups that Queens’ Awards for Enterprise focuses on</h3>
             <p>For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:</p>
 
             <ul>
               <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
               <li>Asylum seekers and refugees or children of refugees;</li>
-              <li>Young people with English as a second language;</li>
+              <li>Young people (over 16 years old) with English as a second language;</li>
               <li>Long-term unemployed or people who grew up in workless households;</li>
               <li>People on low incomes;</li>
               <li>Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;</li>
               <li>People who received free school meals or if there are children in the person’s current household who receive free school meals;</li>
               <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
               <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
-              <li>Young people who are not in education, employment or training (NEET) or are at risk of that;</li>
+              <li>Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;</li>
               <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
               <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;</li>
               <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
@@ -39,6 +40,8 @@ class AwardYears::V2021::QAEForms
               <li>Ex-offenders;</li>
               <li>Families of prisoners.</li>
             </ul>
+
+            <p>Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.</p>
 
             <h3>Evidence</h3>
 
@@ -61,21 +64,22 @@ class AwardYears::V2021::QAEForms
               This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.
             )],
 
-            [:bold, "How we define Social Mobility"],
+            [:bold, "Social mobility definition"],
             [:normal, %(
               Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.
 
               \u2022 Socio-economic background is a set of social and economic circumstances from which a person has come.
 
-              \u2022 Socio-economic status is a person's current social and economic circumstances.
-
+              \u2022 Socio-economic status is a person's current social and economic circumstances.)],
+            [:bold, "Disadvantaged groups that Queens’ Awards for Enterprise focuses on"],
+            [:normal, %(
               For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:
 
               \u2022 People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;
 
               \u2022 Asylum seekers and refugees or children of refugees;
 
-              \u2022 Young people with English as a second language;
+              \u2022 Young people (over 16 years old) with English as a second language;
 
               \u2022 Long-term unemployed or people who grew up in workless households;
 
@@ -89,7 +93,7 @@ class AwardYears::V2021::QAEForms
 
               \u2022 Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;
 
-              \u2022 Young people who are not in education, employment or training (NEET) or are at risk of that;
+              \u2022 Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;
 
               \u2022 People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;
 
@@ -106,6 +110,8 @@ class AwardYears::V2021::QAEForms
               \u2022 Ex-offenders;
 
               \u2022 Families of prisoners.
+
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
             )],
 
             [:bold, "Evidence"],
@@ -309,14 +315,14 @@ class AwardYears::V2021::QAEForms
             <ul>
               <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
               <li>Asylum seekers and refugees or children of refugees;</li>
-              <li>Young people with English as a second language;</li>
+              <li>Young people (over 16 years old) with English as a second language;</li>
               <li>Long-term unemployed or people who grew up in workless households;</li>
               <li>People on low incomes;</li>
               <li>Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;</li>
               <li>People who received free school meals or if there are children in the person’s current household who receive free school meals;</li>
               <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
               <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
-              <li>Young people who are not in education, employment or training (NEET) or are at risk of that;</li>
+              <li>Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;</li>
               <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
               <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;</li>
               <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
@@ -326,11 +332,13 @@ class AwardYears::V2021::QAEForms
               <li>Ex-offenders;</li>
               <li>Families of prisoners.</li>
             </ul>
+            <p>Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.</p>
             <p> Please provide the totals and year by year breakdown of:</p>
             <ol>
-              <li>the total number of participants,</li>
-              <li>the proportion of participants from disadvantaged backgrounds,</li>
-              <li>the breakdown of these participants by disadvantage.</li>
+              <li>the total number of participants;</li>
+              <li>the proportion of participants from disadvantaged backgrounds;</li>
+              <li>the breakdown of these participants by disadvantaged group;</li>
+              <li>for each disadvantaged group, specify the participant age range and in what UK counties they are based.</li>
             </ol>
             <p>Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.</p>
           )
@@ -525,19 +533,26 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "initiative"
         end
 
-        header :initiative_header_b7a, "Impact on community and society." do
-          ref "B 7a"
-          conditional :application_category, "initiative"
-        end
-
-        textarea :initiative_community_society_impact, "What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?" do
-          classes "sub-question"
-          sub_ref "B 7.1a"
+        textarea :initiative_community_society_impact, "Impact on community and society." do
+          sub_ref "B 7a"
           required
+          question_sub_title %{
+            What is the impact of your initiative on the local community and at a regional and national level; and how is this exemplary?
+          }
           context %(
             <p>For example, has your initiative led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )
           words_max 300
+          conditional :application_category, "initiative"
+        end
+
+        textarea :initiative_investments, "Investments in the initiative" do
+          sub_ref "B 8a"
+          required
+          question_sub_title %{
+            List all investments and reinvestments (capital and operating costs) in your promoting opportunity through social mobility initiative. Include the year(s) in which they were made.
+          }
+          words_max 400
           conditional :application_category, "initiative"
         end
 
@@ -677,14 +692,14 @@ class AwardYears::V2021::QAEForms
             <ul>
               <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
               <li>Asylum seekers and refugees or children of refugees;</li>
-              <li>Young people with English as a second language;</li>
+              <li>Young people (over 16 years old) with English as a second language;</li>
               <li>Long-term unemployed or people who grew up in workless households;</li>
               <li>People on low incomes;</li>
               <li>Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;</li>
               <li>People who received free school meals or if there are children in the person’s current household who receive free school meals;</li>
               <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
               <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
-              <li>Young people who are not in education, employment or training (NEET) or are at risk of that;</li>
+              <li>Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;</li>
               <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
               <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;</li>
               <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
@@ -694,11 +709,13 @@ class AwardYears::V2021::QAEForms
               <li>Ex-offenders;</li>
               <li>Families of prisoners.</li>
             </ul>
+            <p>Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.</p>
             <p> Please provide the totals and year by year breakdown of:</p>
             <ol>
-              <li>the total number of participants,</li>
-              <li>the proportion of participants from disadvantaged backgrounds,</li>
-              <li>the breakdown of these participants by disadvantage.</li>
+              <li>the total number of participants;</li>
+              <li>the proportion of participants from disadvantaged backgrounds;</li>
+              <li>the breakdown of these participants by disadvantaged group;</li>
+              <li>for each disadvantaged group, specify the participant age range and in what UK counties they are based.</li>
             </ol>
             <p>Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.</p>
           )
@@ -874,15 +891,12 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "organisation"
         end
 
-        header :initiative_header_b7b, "Impact on community and society." do
-          ref "B 7b"
-          conditional :application_category, "organisation"
-        end
-
-        textarea :organisation_community_society_impact, "What is the impact of your organisation on the local community and at a regional and national level; and how is this exemplary?" do
-          classes "sub-question"
-          sub_ref "B 7.1b"
+        textarea :organisation_community_society_impact, "Impact on community and society." do
+          sub_ref "B 7b"
           required
+          question_sub_title %{
+            What is the impact of your organisation on the local community and at a regional and national level; and how is this exemplary?
+          }
           context %(
             <p>For example, has your organisation’s activities led to there being more people from disadvantaged backgrounds being in employment in your area that is higher than the national average? Has it increased recognition and awareness of these initiatives as being a valid route to employment? Has it led to higher employment outcomes regionally?</p>
           )

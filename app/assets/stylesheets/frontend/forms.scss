@@ -36,7 +36,11 @@ legend {
 }
 
 // Question Context style
-.question-context {
+.question-context,
+.question-context h3,
+.question-context h4,
+.question-context h5,
+.question-context h6 {
   color: $grey-1;
 
   .application-notice &,
