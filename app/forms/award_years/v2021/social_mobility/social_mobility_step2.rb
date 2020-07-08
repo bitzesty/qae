@@ -152,18 +152,21 @@ class AwardYears::V2021::QAEForms
 
           context_for_option "organisation", "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects."
 
-          pdf_context_for_option "initiative", "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.
+          pdf_context_for_option "initiative", [
+            [:normal, "Please note, an initiative could be a programme, activity, course, system, business model approach or strategy, service or application, practice, policy or product. It can include activities to promote opportunity directly in your organisation or through local or national outreach initiatives.\n"],
 
-            For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.
+            [:normal, "For example, it may be an apprenticeship scheme by an SME or charity that has a target of some of these apprentices to be from a disadvantaged socio-economic background, with the aim of most of those apprentices going into employment after the apprenticeship ends. Or it may be a recruitment initiative by a large corporation that aims to have a certain number of recruits to come from disadvantaged backgrounds.\n"],
+            [:normal, "If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim."],
+            [:normal, "If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.\n"],
 
-            If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim.
-            If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.
+            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a questions)"]
+          ]
 
-            (If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a questions)"
+          pdf_context_for_option "organisation", [
 
-          pdf_context_for_option "organisation", "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.
-
-            (If you selected this option, answer all B2b, B3b, B4b, B5b, B6b, B7b questions)"
+            [:normal, "For example, it may be a charity with a mission to help young people from less-advantaged backgrounds to secure jobs. Or it may be a company that is focused solely on providing skills training for people with disabilities to improve their employment prospects.\n"],
+            [:italic, "(If you selected this option, answer all B2b, B3b, B4b, B5b, B6b, B7b questions)"]
+          ]
 
           default_option "initiative"
         end
@@ -171,7 +174,9 @@ class AwardYears::V2021::QAEForms
         # INITIATIVE QUESTIONS START HERE
 
         comment :initiative_question_guidance, "" do
-          pdf_context "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."
+          pdf_context_with_header_blocks [
+            [:italic, "Answer the questions below if you selected option (a) in question B1 - your application is for an initiative that promotes opportunity through social mobility."]
+          ]
         end
 
         checkbox_seria :initiative_activities, "What type of activities does your initiative focus on to make a positive impact by promoting opportunity through social mobility?" do
@@ -349,7 +354,7 @@ class AwardYears::V2021::QAEForms
 
               \u2022 Asylum seekers and refugees or children of refugees;
 
-              \u2022 Young people with English as a second language;
+              \u2022 Young people (over 16 years old) with English as a second language;
 
               \u2022 Long-term unemployed or people who grew up in workless households;
 
@@ -363,7 +368,7 @@ class AwardYears::V2021::QAEForms
 
               \u2022 Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;
 
-              \u2022 Young people who are not in education, employment or training (NEET) or are at risk of that;
+              \u2022 Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;
 
               \u2022 People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;
 
@@ -381,13 +386,17 @@ class AwardYears::V2021::QAEForms
 
               \u2022 Families of prisoners.
 
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.
+
               Please provide the totals and year by year breakdown of:
 
-              \u2022 1. the total number of participants,
+              1. the total number of participants;
 
-              \u2022 2. the proportion of participants from disadvantaged backgrounds,
+              2. the proportion of participants from disadvantaged backgrounds;
 
-              \u2022 3. the breakdown of these participants by disadvantage.
+              3. the breakdown of these participants by disadvantaged group;
+              
+              4. for each disadvantaged group, specify the participant age range and in what UK counties they are based.
 
               Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.
           )
@@ -559,7 +568,9 @@ class AwardYears::V2021::QAEForms
         # ORGANISATION QUESTIONS START HERE
 
         comment :organisation_question_guidance, "" do
-          pdf_context "Answer the questions below if you selected option (b) in question B1 - your application is for the whole organisation whose core aim is to promote opportunity through social mobility."
+          pdf_context_with_header_blocks [
+            [:italic, "Answer the questions below if you selected option (b) in question B1 - your application is for the whole organisation whose core aim is to promote opportunity through social mobility."]
+          ]
         end
 
         checkbox_seria :organisation_activities, "What activities did you implement to make a positive impact by promoting opportunity through social mobility?" do
@@ -726,7 +737,7 @@ class AwardYears::V2021::QAEForms
 
               \u2022 Asylum seekers and refugees or children of refugees;
 
-              \u2022 Young people with English as a second language;
+              \u2022 Young people (over 16 years old) with English as a second language;
 
               \u2022 Long-term unemployed or people who grew up in workless households;
 
@@ -740,7 +751,7 @@ class AwardYears::V2021::QAEForms
 
               \u2022 Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;
 
-              \u2022 Young people who are not in education, employment or training (NEET) or are at risk of that;
+              \u2022 Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;
 
               \u2022 People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;
 
@@ -758,13 +769,17 @@ class AwardYears::V2021::QAEForms
 
               \u2022 Families of prisoners.
 
+              Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement. 
+
               Please provide the totals and year by year breakdown of:
 
-              \u2022 1. the total number of participants,
+              1. the total number of participants;
 
-              \u2022 2. the proportion of participants from disadvantaged backgrounds,
+              2. the proportion of participants from disadvantaged backgrounds;
 
-              \u2022 3. the breakdown of these participants by disadvantage.
+              3. the breakdown of these participants by disadvantaged group;
+
+              4.for each disadvantaged group, specify the participant age range and in what UK counties they are based.
 
               Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.
           )

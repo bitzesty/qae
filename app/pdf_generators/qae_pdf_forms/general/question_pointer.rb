@@ -249,6 +249,8 @@ class QaePdfForms::General::QuestionPointer
         question.pdf_context_with_header_blocks.map do |text_block|
           if text_block[0] == :bold
             form_pdf.render_text text_block[1], style: :bold
+          elsif text_block[0] == :italic
+            form_pdf.render_text text_block[1], style: :italic
           else
             form_pdf.render_text text_block[1]
           end
@@ -704,7 +706,19 @@ class QaePdfForms::General::QuestionPointer
     if context
       form_pdf.move_down 3.mm
       form_pdf.indent 7.mm do
-        form_pdf.text context
+        if context.is_a?(Array)
+          context.map do |text_block|
+            if text_block[0] == :bold
+              form_pdf.render_text text_block[1], style: :bold
+            elsif text_block[0] == :italic
+              form_pdf.render_text text_block[1], style: :italic
+            else
+              form_pdf.render_text text_block[1]
+            end
+          end
+        else
+          form_pdf.text context
+        end
       end
     end
   end
