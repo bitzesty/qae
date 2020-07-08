@@ -315,14 +315,14 @@ class AwardYears::V2021::QAEForms
             <ul>
               <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
               <li>Asylum seekers and refugees or children of refugees;</li>
-              <li>Young people with English as a second language;</li>
+              <li>Young people (over 16 years old) with English as a second language;</li>
               <li>Long-term unemployed or people who grew up in workless households;</li>
               <li>People on low incomes;</li>
               <li>Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;</li>
               <li>People who received free school meals or if there are children in the person’s current household who receive free school meals;</li>
               <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
               <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
-              <li>Young people who are not in education, employment or training (NEET) or are at risk of that;</li>
+              <li>Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;</li>
               <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
               <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;</li>
               <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
@@ -332,11 +332,13 @@ class AwardYears::V2021::QAEForms
               <li>Ex-offenders;</li>
               <li>Families of prisoners.</li>
             </ul>
+            <p>Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.</p>
             <p> Please provide the totals and year by year breakdown of:</p>
             <ol>
-              <li>the total number of participants,</li>
-              <li>the proportion of participants from disadvantaged backgrounds,</li>
-              <li>the breakdown of these participants by disadvantage.</li>
+              <li>the total number of participants;</li>
+              <li>the proportion of participants from disadvantaged backgrounds;</li>
+              <li>the breakdown of these participants by disadvantaged group;</li>
+              <li>for each disadvantaged group, specify the participant age range and in what UK counties they are based.</li>
             </ol>
             <p>Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.</p>
           )
@@ -544,6 +546,16 @@ class AwardYears::V2021::QAEForms
           conditional :application_category, "initiative"
         end
 
+        textarea :initiative_investments, "Investments in the initiative" do
+          sub_ref "B 8a"
+          required
+          question_sub_title %{
+            List all investments and reinvestments (capital and operating costs) in your promoting opportunity through social mobility initiative. Include the year(s) in which they were made.
+          }
+          words_max 400
+          conditional :application_category, "initiative"
+        end
+
         # ORGANISATION QUESTIONS START HERE
 
         comment :organisation_question_guidance, "" do
@@ -680,14 +692,14 @@ class AwardYears::V2021::QAEForms
             <ul>
               <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
               <li>Asylum seekers and refugees or children of refugees;</li>
-              <li>Young people with English as a second language;</li>
+              <li>Young people (over 16 years old) with English as a second language;</li>
               <li>Long-term unemployed or people who grew up in workless households;</li>
               <li>People on low incomes;</li>
               <li>Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;</li>
               <li>People who received free school meals or if there are children in the person’s current household who receive free school meals;</li>
               <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
               <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
-              <li>Young people who are not in education, employment or training (NEET) or are at risk of that;</li>
+              <li>Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;</li>
               <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
               <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;</li>
               <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
@@ -697,11 +709,13 @@ class AwardYears::V2021::QAEForms
               <li>Ex-offenders;</li>
               <li>Families of prisoners.</li>
             </ul>
+            <p>Please note to be eligible for the award, your target group members, the participants, have to be based in the UK and be over 16 years old at the start of the engagement.</p>
             <p> Please provide the totals and year by year breakdown of:</p>
             <ol>
-              <li>the total number of participants,</li>
-              <li>the proportion of participants from disadvantaged backgrounds,</li>
-              <li>the breakdown of these participants by disadvantage.</li>
+              <li>the total number of participants;</li>
+              <li>the proportion of participants from disadvantaged backgrounds;</li>
+              <li>the breakdown of these participants by disadvantaged group;</li>
+              <li>for each disadvantaged group, specify the participant age range and in what UK counties they are based.</li>
             </ol>
             <p>Please provide aggregate numbers for all the years as well as year by year breakdown for at least the last two years. The breakdown will help us understand the output and outcome data in question B5.2.</p>
           )
