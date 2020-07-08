@@ -136,10 +136,6 @@ class QaePdfForms::General::QuestionPointer
     render_validation_block
     render_question_title_with_ref_or_not
 
-    if question.can_have_parent_conditional_hints? && question.have_conditional_parent?
-      render_info_about_conditional_parent
-    end
-
     render_header_hint
     render_pdf_hint
     render_context_and_answer_blocks
@@ -202,6 +198,10 @@ class QaePdfForms::General::QuestionPointer
       form_pdf.indent 25.mm do
         form_pdf.render_text question.escaped_title,
                              style: :bold
+
+      if question.can_have_parent_conditional_hints? && question.have_conditional_parent?
+        render_info_about_conditional_parent
+      end
 
         render_question_sub_title
       end
@@ -325,10 +325,7 @@ class QaePdfForms::General::QuestionPointer
       hints = question.pdf_conditional_hints(non_header_questions)
 
       if hints.present?
-        form_pdf.indent 25.mm do
-          form_pdf.render_text hints,
-                               style: :italic
-        end
+        form_pdf.render_text hints, style: :italic
       end
     end
   end
