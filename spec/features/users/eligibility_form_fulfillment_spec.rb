@@ -29,7 +29,7 @@ describe "Eligibility forms" do
         "No",
         "Yes"
       ])
-      expect(page).to have_content("before you start your application")
+      expect(page).to have_content("You are eligible to begin your application")
       first('.previous-answers').click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for an International Trade Award.")
     end
@@ -48,7 +48,7 @@ describe "Eligibility forms" do
       form_choice("Yes")
       form_choice("Yes")
       form_choice("Yes")
-      expect(page).to have_content("before you start your application")
+      expect(page).to have_content("You are eligible to begin your application")
       first('.previous-answers').click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for an Innovation Award.")
     end
@@ -70,7 +70,7 @@ describe "Eligibility forms" do
         "No",
         "Yes"
       ])
-      expect(page).to have_content("before you start your application")
+      expect(page).to have_content("You are eligible to begin your application")
       first('.previous-answers').click_link("Continue")
       expect(page).to have_content("You are eligible to begin your application for a Sustainable Development Award.")
     end
