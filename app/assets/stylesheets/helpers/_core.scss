@@ -444,7 +444,8 @@ body.full-width {
   @include media($min-width: 1132px) {
     padding-left: 0;
 
-    h1 {
+    h1,
+    h2 {
       padding-left: 32px;
     }
   }

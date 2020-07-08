@@ -347,6 +347,10 @@ input[type="file"] {
   margin-top: 0.2em;
 }
 
+.selectable label {
+  @include core-19;
+}
+
 .selectable-confirm-wrapper {
   padding: 1em;
   border-radius: 5px;
