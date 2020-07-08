@@ -19,6 +19,10 @@ class Eligibility < ApplicationRecord
     @questions[name.to_sym][:hint]
   end
 
+  def self.hint_partial(name)
+    @questions[name.to_sym][:hint_partial]
+  end
+
   def self.label(name)
     @questions[name.to_sym][:label]
   end

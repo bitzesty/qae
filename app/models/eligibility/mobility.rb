@@ -11,39 +11,7 @@ class Eligibility::Mobility < Eligibility
             boolean: true,
             label: "Have you been promoting opportunity through social mobility helping disadvantaged groups as listed below?",
             accept: :true,
-            hint: %(
-              <div class='question-context'>
-                <p>Social mobility is a measure of the ability to move from a lower socio-economic background to higher socio-economic status.</p>
-                <ul>
-                  <li>Socio-economic background is a set of social and economic circumstances from which a person has come.</li>
-                  <li>Socio-economic status is a person's current social and economic circumstances.</li>
-                </ul>
-
-                <h3>Disadvantaged groups that Queens’ Awards for Enterprise focuses on</h3>
-                <p>For the purpose of this award, we classify people as being from a lower socio-economic background if they come from one of the below listed disadvantaged backgrounds:</p>
-
-                <ul>
-                  <li>People from Black, Asian and minority ethnic (BAME) backgrounds, including Gypsy and Traveller people;</li>
-                  <li>Asylum seekers and refugees or children of refugees;</li>
-                  <li>Young people (over 16 years old) with English as a second language;</li>
-                  <li>Long-term unemployed or people who grew up in workless households;</li>
-                  <li>People on low incomes;</li>
-                  <li>Lone parents - single adult heads of a household who are responsible for at least one dependent child, who normally lives with them;</li>
-                  <li>People who received free school meals or if there are children in the person’s current household who receive free school meals;</li>
-                  <li>Homeless and insecurely housed, including those at risk of becoming homeless and those in overcrowded or substandard housing;</li>
-                  <li>Care leavers - people who spent time in care before the age of 18. Such care could be in foster care, children's homes, or other arrangements outside the immediate or extended family;</li>
-                  <li>Young people (over 16 years old) who are not in education, employment or training (NEET) or are at risk of that;</li>
-                  <li>People who attended schools with lower than average attainment or if there are children in the person’s current household who attend school with lower than average attainment;</li>
-                  <li>People whose parents’ or guardians’ highest level of qualifications by the time the person was 18 was secondary school;</li>
-                  <li>People with a physical or mental disability that has a substantial and adverse long-term effect on a person’s ability to do normal daily activities;</li>
-                  <li>People recovering or who have recovered from addiction;</li>
-                  <li>Survivors of domestic violence;</li>
-                  <li>Military veterans;</li>
-                  <li>Ex-offenders;</li>
-                  <li>Families of prisoners.</li>
-                </ul>
-              </div>
-            )
+            hint_partial: "form_award_eligibilities/questions/hints/promoting_social_mobility"
 
   property :participants_based_in_uk,
            boolean: true,
@@ -54,18 +22,7 @@ class Eligibility::Mobility < Eligibility
             boolean: true,
             label: "Have your promoting opportunity through social mobility efforts been through one of the qualifying activities as listed below?",
             accept: :true,
-            hint: %(
-              <div class='question-context'>
-                <strong>Careers advice</strong> – providing careers advice or information to help people from disadvantaged backgrounds make more informed career choices as part of your recruitment initiatives such as traineeships, internships, apprenticeships or graduate schemes.<br/><br/>
-                <strong>Fairer recruitment</strong> – widening your recruitment pool and making your recruitment process fairer by assessing potential skills rather than background - socio-economic or academic.<br/><br/>
-                <strong>Skills development</strong> – providing activities or training to help people from disadvantaged backgrounds to develop hard skills (for example, numeracy, computer literacy, cooking) or soft skills (for example, workplace communication, effective workplace relationship development). This may include the development of aspirations and increasing motivation.<br/><br/>
-                <strong>Work placements</strong> – preparing people from disadvantaged backgrounds for the world of work through inspiring work experiences and internships.<br/><br/>
-                <strong>Early careers</strong> – fostering a youth-friendly culture in your workplace where younger employees from disadvantaged backgrounds are invested in and developed to progress in their careers.<br/><br/>
-                <strong>Job opportunities</strong> – broadening access to job opportunities by creating accessible routes to employment. This could be by providing jobs for people from disadvantaged backgrounds leaving school, college, university or prisons, for example, through quality traineeships, internships, apprenticeships or graduate schemes.<br/><br/>
-                <strong>Advancement</strong> – developing career paths to senior positions for those from disadvantaged backgrounds and track the progress of employees from non-graduate routes.<br/><br/>
-                <strong>Advocacy and leadership</strong> – demonstrating strong external leadership or advocacy promoting social mobility within and beyond your organisation. For example, by getting more staff involved in efforts to improve social mobility, by encouraging supply chains to take action on social mobility.<br/><br/>
-              </div>
-            )
+            hint_partial: "form_award_eligibilities/questions/hints/social_mobility_activities"
 
   property :active_for_atleast_two_years,
             boolean: true,
