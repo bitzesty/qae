@@ -450,7 +450,10 @@ $is-ie: false !default;
       @include core-17-important;
     }
 
-    strong {
+    strong,
+    h3,
+    h4,
+    h5 {
       font-weight: bold !important;
     }
   }
