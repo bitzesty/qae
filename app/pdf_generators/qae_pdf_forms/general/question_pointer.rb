@@ -156,7 +156,7 @@ class QaePdfForms::General::QuestionPointer
       SKIP_HEADER_HINT_KEYS.exclude?(question.key.to_s)
 
       form_pdf.indent 25.mm do
-        form_pdf.render_text "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following subquestions.",
+        form_pdf.render_text "Please note #{(question.ref || question.sub_ref).delete(" ")} is just a heading for the following sub-questions.",
                              style: :italic
       end
     end
