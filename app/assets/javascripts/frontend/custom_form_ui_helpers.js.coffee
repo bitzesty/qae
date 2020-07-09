@@ -1,8 +1,8 @@
 window.customFormUiHelpers =
   init: ->
-    customFormUiHelpers.view_gov_departments_and_agencies_link_init()
+    customFormUiHelpers.toggle_expandable_content_init()
 
-  view_gov_departments_and_agencies_link_init: () ->
+  toggle_expandable_content_init: () ->
     $(document).on 'click', '.js-form-expandable-content-link', ->
       link = $(this);
       content_block = $("." + link.data('ref'));

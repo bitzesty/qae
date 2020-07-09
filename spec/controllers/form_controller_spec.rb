@@ -49,15 +49,8 @@ describe FormController do
   end
 
   describe '#new_social_mobility_form' do
-    it 'allows to open mobility form if it is the first one' do
+    it 'allows to open mobility form' do
       expect(get :new_social_mobility_form).to redirect_to(edit_form_url(FormAnswer.where(award_type: 'mobility').last))
-    end
-
-    it 'denies to open mobility form if it is not the first one' do
-      create :form_answer,
-             :mobility,
-             user: user
-      expect(get :new_social_mobility_form).to redirect_to(dashboard_url)
     end
   end
 

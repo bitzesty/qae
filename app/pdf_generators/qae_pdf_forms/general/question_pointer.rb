@@ -136,13 +136,9 @@ class QaePdfForms::General::QuestionPointer
     render_validation_block
     render_question_title_with_ref_or_not
 
-    if question.can_have_parent_conditional_hints? && question.have_conditional_parent?
-      render_info_about_conditional_parent
-    end
-
+    render_header_hint
     render_pdf_hint
     render_context_and_answer_blocks
-    render_header_hint
   end
 
   def render_pdf_hint
@@ -203,6 +199,10 @@ class QaePdfForms::General::QuestionPointer
         form_pdf.render_text question.escaped_title,
                              style: :bold
 
+      if question.can_have_parent_conditional_hints? && question.have_conditional_parent?
+        render_info_about_conditional_parent
+      end
+
         render_question_sub_title
       end
     end
@@ -249,12 +249,13 @@ class QaePdfForms::General::QuestionPointer
         question.pdf_context_with_header_blocks.map do |text_block|
           if text_block[0] == :bold
             form_pdf.render_text text_block[1], style: :bold
+          elsif text_block[0] == :italic
+            form_pdf.render_text text_block[1], style: :italic
           else
             form_pdf.render_text text_block[1]
           end
         end
-      elsif question.context.present?
-
+      elsif question.context.present? || question.pdf_context.present?
         render_context_or_help_block(question.escaped_context)
       end
     end
@@ -326,10 +327,7 @@ class QaePdfForms::General::QuestionPointer
       hints = question.pdf_conditional_hints(non_header_questions)
 
       if hints.present?
-        form_pdf.indent 25.mm do
-          form_pdf.render_text hints,
-                               style: :italic
-        end
+        form_pdf.render_text hints, style: :italic
       end
     end
   end
@@ -360,12 +358,15 @@ class QaePdfForms::General::QuestionPointer
         end
       when QAEFormBuilder::OptionsQuestion
         if q_visible? && humanized_answer.present?
+          chosen_option = question.options.detect{ |option| option.value.to_s == humanized_answer.to_s }
           form_pdf.render_standart_answer_block(question_option_title)
+          render_context_for_option(question, chosen_option)
         else
           form_pdf.indent 7.mm do
             question.options.each do |answer|
               unless answer.value.empty?
                 question_option_box answer.text
+                render_context_for_option(question, answer)
               end
             end
           end
@@ -664,12 +665,16 @@ class QaePdfForms::General::QuestionPointer
     form_pdf.move_up 3.mm
 
     form_pdf.indent 6.mm do
-      form_pdf.text Nokogiri::HTML.parse(title).text
+      form_pdf.text prepared_checkbox_value(title), inline_format: true
     end
   end
 
   def question_checked_value_title
     Nokogiri::HTML.parse(question.pdf_text || question.text).text.strip if humanized_answer == "on"
+  end
+
+  def prepared_checkbox_value(title)
+    Sanitize.fragment(title, elements: ["strong"]).strip
   end
 
   def to_month(value)
@@ -692,6 +697,28 @@ class QaePdfForms::General::QuestionPointer
         entry[:value]
       else
         "£#{entry[:value]}" if entry[:value] != "-"
+      end
+    end
+  end
+
+  def render_context_for_option(question, answer)
+    context = question.context_for_option(answer.value)
+    if context
+      form_pdf.move_down 3.mm
+      form_pdf.indent 7.mm do
+        if context.is_a?(Array)
+          context.map do |text_block|
+            if text_block[0] == :bold
+              form_pdf.render_text text_block[1], style: :bold
+            elsif text_block[0] == :italic
+              form_pdf.render_text text_block[1], style: :italic
+            else
+              form_pdf.render_text text_block[1]
+            end
+          end
+        else
+          form_pdf.text context
+        end
       end
     end
   end

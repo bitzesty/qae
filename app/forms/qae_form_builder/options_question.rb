@@ -26,6 +26,14 @@ class QAEFormBuilder
     def default_option(option)
       @q.default_option = option
     end
+
+    def context_for_option(option_value, context)
+      @q.context_for_options[option_value] = context
+    end
+
+    def pdf_context_for_option(option_value, context)
+      @q.pdf_context_for_options[option_value] = context
+    end
   end
 
   class OptionsQuestion < Question
@@ -34,11 +42,20 @@ class QAEFormBuilder
     attr_accessor :financial_date_selector,
                   :sub_category_question,
                   :ops_values,
-                  :default_option
+                  :default_option,
+                  :context_for_options,
+                  :pdf_context_for_options
 
     def after_create
       @options = []
+      @context_for_options = {}
+      @pdf_context_for_options = {}
     end
+
+    def context_for_option(option_value)
+      pdf_context_for_options[option_value] || context_for_options[option_value]
+    end
+
   end
 
 end

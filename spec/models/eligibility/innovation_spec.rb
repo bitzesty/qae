@@ -67,4 +67,12 @@ RSpec.describe Eligibility::Innovation, type: :model do
       expect(eligibility.questions).not_to include(:number_of_innovative_products)
     end
   end
+
+  describe '.award_name' do
+    let(:eligibility) { Eligibility::Innovation.new(account: account) }
+
+    it 'should return award_name' do
+      expect(eligibility.class.award_name).to eq "Innovation Award"
+    end
+  end
 end

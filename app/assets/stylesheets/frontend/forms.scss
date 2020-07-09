@@ -36,7 +36,11 @@ legend {
 }
 
 // Question Context style
-.question-context {
+.question-context,
+.question-context h3,
+.question-context h4,
+.question-context h5,
+.question-context h6 {
   color: $grey-1;
 
   .application-notice &,
@@ -345,6 +349,10 @@ input[type="file"] {
   @include core-19;
   margin: 0.75em 0;
   margin-top: 0.2em;
+}
+
+.selectable label {
+  @include core-19;
 }
 
 .selectable-confirm-wrapper {
@@ -1186,7 +1194,7 @@ input[type="file"] {
   }
 }
 
-.question-has-errors,
+.show-question.question-has-errors,
 .field-with-errors {
   display: block;
   margin-bottom: 2.45em;

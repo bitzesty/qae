@@ -260,18 +260,6 @@ class AwardYears::V2021::QAEForms
           words_max 250
           conditional :product_estimated_figures, :yes
         end
-
-        textarea :investments_details, "Please enter details of all investments and reinvestments (capital and operating costs) in your social mobility programme." do
-          ref "C 6"
-          required
-          context %(
-            <p>
-              Include all investments and reinvestments made both during and prior to your entry period. Also, include the year(s) in which they were made.
-            </p>
-          )
-          rows 5
-          words_max 400
-        end
       end
     end
   end

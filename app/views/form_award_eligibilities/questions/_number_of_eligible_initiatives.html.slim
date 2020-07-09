@@ -1,0 +1,8 @@
+.question-body
+  = f.input :number_of_eligible_initiatives, input_html: { class: 'small number_of_eligible_initiatives_input', autocomplete: "off" }, label: false
+
+  #number-of-eligible-initiatives-info.visuallyhidden
+    br
+    .application-notice.help-notice
+      p If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.
+span.clear

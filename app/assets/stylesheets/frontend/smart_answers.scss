@@ -439,3 +439,22 @@ $is-ie: false !default;
   }
 
 }
+
+.edit_eligibility {
+  .hint,
+  .question-context {
+    @include core-17;
+
+    ul li,
+    * {
+      @include core-17-important;
+    }
+
+    strong,
+    h3,
+    h4,
+    h5 {
+      font-weight: bold !important;
+    }
+  }
+}
