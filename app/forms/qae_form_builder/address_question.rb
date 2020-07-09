@@ -39,6 +39,14 @@ class QAEFormBuilder
       "Wales"
     ]
 
+    COUNTIES = [
+      "Greater London",
+      "County 2",
+      "County 3",
+      "County 4",
+      "County 5"
+    ]
+
     def required_sub_fields
       if sub_fields.present?
         sub_fields
@@ -48,14 +56,17 @@ class QAEFormBuilder
           { street: "Street", ignore_validation: true },
           { city: "Town or city" },
           { country: "Country" },
-          { postcode: "Postcode" },
-          { region: "Region" }
+          { postcode: "Postcode" }
         ]
       end
     end
 
     def regions
       REGIONS
+    end
+
+    def counties
+      COUNTIES
     end
 
     def rendering_sub_fields
