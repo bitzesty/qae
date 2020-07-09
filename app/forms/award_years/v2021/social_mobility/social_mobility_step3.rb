@@ -71,9 +71,13 @@ class AwardYears::V2021::QAEForms
           classes "sub-question"
           sub_ref "C 2.2"
           required
+          context %(
+            <p>Typically, you would have to submit data for your latest financial year that falls before the #{Settings.current.deadlines.where(kind: "submission_end").first.decorate.formatted_trigger_time} (the submission deadline). However, if your current financial year's performance has been affected by the spread of COVID-19, you may wish to consider using your previous year as the latest year. For example, if your year-end is 31 May 2020 you may want to use the financial year ending 31 May 2019 for your final set of financial figures.</p>
+
+            <p>If you haven't reached or finalised your accounts for the latest year, you can provide estimated figures for now. If you are shortlisted, you will have to provide the actual figures that have been verified by an independent accountant by November.</p>
+          )
           type :date
           label ->(y) { "Financial year #{y}" }
-          conditional :financial_year_date_changed, :yes
         end
 
         textarea :financial_year_date_changed_explaination, "Please explain why your year-end date changed." do
