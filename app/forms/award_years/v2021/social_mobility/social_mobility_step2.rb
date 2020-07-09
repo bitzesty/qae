@@ -159,7 +159,7 @@ class AwardYears::V2021::QAEForms
             [:normal, "If your application is for an initiative, promoting opportunity through social mobility does not have to be your organisation's core aim."],
             [:normal, "If your organisation has more than one initiative that meets the criteria for the award, please submit separate applications for each initiative.\n"],
 
-            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a questions)"]
+            [:italic, "(If you selected this option, answer all B2a, B3a, B4a, B5a, B6a, B7a, B8a questions)"]
           ]
 
           pdf_context_for_option "organisation", [
