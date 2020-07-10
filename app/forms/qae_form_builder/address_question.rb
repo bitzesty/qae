@@ -62,9 +62,13 @@ class QAEFormBuilder
     def region_context(region_context)
       @q.region_context = region_context
     end
+
+    def county_context(county_context)
+      @q.county_context = county_context
+    end
   end
 
   class AddressQuestion < Question
-    attr_accessor :countries, :sub_fields, :region_context
+    attr_accessor :countries, :sub_fields, :region_context, :county_context
   end
 end
