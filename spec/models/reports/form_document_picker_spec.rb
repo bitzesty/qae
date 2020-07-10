@@ -132,7 +132,7 @@ describe Reports::DataPickers::FormDocumentPicker do
       end
     end
 
-    context "principal_address4" do
+    context "principal_county" do
       it 'should return correct value' do
         allow(subject).to receive(:business_form?).and_return(true)
         allow(subject).to receive(:question_visible?).and_return(true)

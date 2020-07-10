@@ -117,7 +117,7 @@ module Reports::DataPickers::FormDocumentPicker
     end
   end
 
-  def principal_address4
+  def principal_county
     if business_form?
       doc "organization_address_county"
     else
