@@ -423,7 +423,7 @@ class FormAnswer < ApplicationRecord
 
   def set_region
     county = document["organization_address_county"]
-    document["organization_address_region"] = lookup_region_for_county(county.to_sym)
+    document["organization_address_region"] = lookup_region_for_county(county.to_sym) unless county.nil?
   end
 
   def assign_searching_attributes
