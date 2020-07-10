@@ -101,6 +101,10 @@ module RegionHelper
     COUNTY_REGION_MAPPINGS.keys.sort
   end
 
+  def regions
+    COUNTY_REGION_MAPPINGS.values.sort
+  end
+
   def lookup_region_for_county(county)
     COUNTY_REGION_MAPPINGS[county]
   end
