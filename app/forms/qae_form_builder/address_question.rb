@@ -22,30 +22,7 @@ class QAEFormBuilder
   end
 
   class AddressQuestionDecorator < QuestionDecorator
-    REGIONS = [
-      "East",
-      "East Midlands",
-      "West Midlands",
-      "London",
-      "North East",
-      "North West",
-      "South East",
-      "South West",
-      "Yorkshire and the Humber",
-      "Channel Islands",
-      "Isle of Man",
-      "Northern Ireland",
-      "Scotland",
-      "Wales"
-    ]
-
-    COUNTIES = [
-      "Greater London",
-      "County 2",
-      "County 3",
-      "County 4",
-      "County 5"
-    ]
+    include RegionHelper
 
     def required_sub_fields
       if sub_fields.present?
@@ -59,14 +36,6 @@ class QAEFormBuilder
           { postcode: "Postcode" }
         ]
       end
-    end
-
-    def regions
-      REGIONS
-    end
-
-    def counties
-      COUNTIES
     end
 
     def rendering_sub_fields
