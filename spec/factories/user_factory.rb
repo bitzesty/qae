@@ -22,6 +22,7 @@ FactoryGirl.define do
       prefered_method_of_contact "phone"
       qae_info_source "govuk"
       role "regular"
+      agree_sharing_of_details_with_lieutenancies true
       completed_registration true
     end
 

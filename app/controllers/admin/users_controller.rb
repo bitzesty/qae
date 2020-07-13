@@ -98,7 +98,8 @@ class Admin::UsersController < Admin::BaseController
       :notification_when_submission_deadline_is_coming,
       :current_password,
       :password,
-      :password_confirmation
+      :password_confirmation,
+      :agree_sharing_of_details_with_lieutenancies
     )
   end
 end

@@ -1,6 +1,7 @@
 class ContentOnlyController < ApplicationController
   before_action :authenticate_user!,
                 :check_account_completion,
+                :check_additional_contact_preferences,
                 except: [
                   :home,
                   :awards_for_organisations,

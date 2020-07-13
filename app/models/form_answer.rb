@@ -372,6 +372,10 @@ class FormAnswer < ApplicationRecord
     end
   end
 
+  def agree_sharing_of_details_with_lieutenancies?
+    user.agree_sharing_of_details_with_lieutenancies ? "Yes" : "No"
+  end
+
   private
 
   def nominator_full_name_from_document

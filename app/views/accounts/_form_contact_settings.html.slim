@@ -17,7 +17,8 @@ fieldset.account-contact-preferences-other-ops
 
   = f.input :agree_being_contacted_by_department_of_business, label: "I am happy to be contacted by the Department for Business, Energy and Industrial Strategy.", wrapper_class: "selectable"
 
-p 
+  = f.input :agree_sharing_of_details_with_lieutenancies, checkbox: true, label: "I am happy for my and my organisation's name, contact details and application status to be shared with Lieutenancies so that they can contact us to assist as appropriate.<br/><br/> <div class='question-context'>The Queen's Awards Office works closely with Lord-Lieutenants. They are Her Majesty’s representatives in each lieutenancy area of the United Kingdom. The Lord-Lieutenants present the Awards, promote them locally and offer support to companies and organisations.</div>".html_safe, wrapper_class: "selectable"
+p
   | Please note, once anyone in your organisation submits an application, you will receive emails about the status of the application. You cannot unsubscribe to these status emails.
 
 

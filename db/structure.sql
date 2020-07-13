@@ -2524,7 +2524,8 @@ CREATE TABLE public.users (
     notification_when_trade_award_open boolean DEFAULT true,
     notification_when_development_award_open boolean DEFAULT true,
     notification_when_mobility_award_open boolean DEFAULT true,
-    notification_when_submission_deadline_is_coming boolean DEFAULT true
+    notification_when_submission_deadline_is_coming boolean DEFAULT true,
+    agree_sharing_of_details_with_lieutenancies boolean
 );
 
 
@@ -3841,6 +3842,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190501163901'),
 ('20190513114859'),
 ('20190514192116'),
-('20190515121928');
+('20190515121928'),
+('20200710150405');
 
 

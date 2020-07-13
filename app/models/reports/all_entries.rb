@@ -64,6 +64,10 @@ class Reports::AllEntries
       method: :contact_telephone
     },
     {
+      label: "Agreed To Data Sharing With Lord-Lieutenants?",
+      method: :agree_sharing_of_details_with_lieutenancies?
+    },
+    {
       label: "SubCategory",
       method: :sub_category
     },
