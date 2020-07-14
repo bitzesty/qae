@@ -271,8 +271,8 @@ textarea {
 }
 
 .autocomplete__wrapper {
-  width: 24em;
-  max-width: 100%;
+  max-width: 24.5em;
+  // max-width: 100%;
 
   input {
     margin: 0 !important;
@@ -294,6 +294,10 @@ textarea {
     position: absolute;
     top: 10px;
     right: 0.5em;
+
+    @media (max-width: 640px) {
+      top: 8px;
+    }
   }
 }
 
