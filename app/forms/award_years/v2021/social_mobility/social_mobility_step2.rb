@@ -7,7 +7,7 @@ class AwardYears::V2021::QAEForms
           context %(
             <h3>About this section</h3>
 
-            <p>This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.</p>
+            <p>This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative <strong>for at least two years</strong>. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.</p>
 
             <h3>Social mobility definition</h3>
 
@@ -61,7 +61,7 @@ class AwardYears::V2021::QAEForms
           pdf_context_with_header_blocks [
             [:bold, "About this section"],
             [:normal, %(
-              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.
+              This section enables you to present the details of how your organisation has made a difference by promoting opportunity through social mobility. This may have been as a core aim of your organisation or achieved via a social mobility initiative <strong>for at least two years</strong>. Your answers will provide us with evidence on how this benefits the participants, your organisation and wider society.
             )],
 
             [:bold, "Social mobility definition"],
