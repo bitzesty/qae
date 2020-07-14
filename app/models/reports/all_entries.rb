@@ -104,8 +104,12 @@ class Reports::AllEntries
       method: :principal_address3
     },
     {
-      label: "Address4",
-      method: :principal_address4
+      label: "County",
+      method: :principal_county
+    },
+    {
+      label: "Region",
+      method: :business_region
     },
     {
       label: "Postcode",
@@ -146,10 +150,6 @@ class Reports::AllEntries
     {
       label: "CurrentQueensAwardHolder",
       method: :current_queens_award_holder
-    },
-    {
-      label: "Region",
-      method: :business_region
     },
     {
       label: "DateStartedTrading",
