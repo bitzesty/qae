@@ -22,7 +22,18 @@ FactoryGirl.define do
       prefered_method_of_contact "phone"
       qae_info_source "govuk"
       role "regular"
+      agree_sharing_of_details_with_lieutenancies true
       completed_registration true
+    end
+
+    trait :agreed_to_be_contacted do
+      notification_when_innovation_award_open true
+      notification_when_trade_award_open true
+      notification_when_development_award_open true
+      notification_when_mobility_award_open true
+      notification_when_submission_deadline_is_coming true
+      subscribed_to_emails true
+      agree_being_contacted_by_department_of_business true
     end
 
     trait :eligible do

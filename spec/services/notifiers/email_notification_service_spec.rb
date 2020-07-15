@@ -21,7 +21,7 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "innovation_submission_started_notification" }
 
     let(:user) do
-      create(:user)
+      create(:user, :agreed_to_be_contacted)
     end
 
     it "triggers current notification" do
@@ -42,7 +42,7 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "trade_submission_started_notification" }
 
     let(:user) do
-      create(:user)
+      create(:user, :agreed_to_be_contacted)
     end
 
     it "triggers current notification" do
@@ -63,7 +63,7 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "mobility_submission_started_notification" }
 
     let(:user) do
-      create(:user)
+      create(:user, :agreed_to_be_contacted)
     end
 
     it "triggers current notification" do
@@ -84,7 +84,7 @@ describe Notifiers::EmailNotificationService do
     let(:kind) { "development_submission_started_notification" }
 
     let(:user) do
-      create(:user)
+      create(:user, :agreed_to_be_contacted)
     end
 
     it "triggers current notification" do

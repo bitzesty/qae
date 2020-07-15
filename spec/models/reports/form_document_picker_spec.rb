@@ -132,14 +132,14 @@ describe Reports::DataPickers::FormDocumentPicker do
       end
     end
 
-    context "principal_address4" do
+    context "principal_county" do
       it 'should return correct value' do
         allow(subject).to receive(:business_form?).and_return(true)
         allow(subject).to receive(:question_visible?).and_return(true)
         allow(subject).to receive(:obj).and_return(double(document: { "organization_address_county" => 1, "nominee_personal_address_county" => 2 }))
-        expect(subject.principal_address4).to eq 1
+        expect(subject.principal_county).to eq 1
         allow(subject).to receive(:business_form?).and_return(false)
-        expect(subject.principal_address4).to eq 2
+        expect(subject.principal_county).to eq 2
       end
     end
 

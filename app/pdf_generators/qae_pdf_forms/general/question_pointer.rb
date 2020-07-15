@@ -531,6 +531,10 @@ class QaePdfForms::General::QuestionPointer
       form_pdf.move_up 5.mm
     end
 
+    if question.delegate_obj.class.to_s == "QAEFormBuilder::AddressQuestion"
+      render_context_and_answer_blocks
+    end
+
     form_pdf.indent 25.mm do
       if sub_answers.length > 1
         sub_answers_by_type

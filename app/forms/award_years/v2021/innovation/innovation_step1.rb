@@ -340,9 +340,17 @@ class AwardYears::V2021::QAEForms
         address :organization_address, "Trading address of your organisation" do
           required
           ref "A 11"
-          region_context %(
-            <p>
-              Please check the region your district belongs to on <a href="https://www.gbmaps.com/downloadpostcodemap.htm" target="_blank">GBMaps website</a>.
+          pdf_context_with_header_blocks [
+            [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
+            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
+          ]
+          county_context %(
+            <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
+
+            <p> 
+              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
+                See the full list of London districts on Wikipedia
+              </a>
             </p>
           )
           sub_fields([
@@ -350,8 +358,7 @@ class AwardYears::V2021::QAEForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" },
-            { region: "Region" }
+            { postcode: "Postcode" }
           ])
         end
 

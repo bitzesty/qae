@@ -19,6 +19,7 @@
 #= require mobile
 #= require browser-check
 #= require vendor/zxcvbn
+#= require vendor/accessible-autocomplete.min
 #= require vendor/jquery-debounce
 #= require vendor/details.polyfill.js
 #= require js.cookie

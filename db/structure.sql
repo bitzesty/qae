@@ -2496,7 +2496,7 @@ CREATE TABLE public.users (
     company_postcode character varying,
     company_phone_number character varying,
     prefered_method_of_contact character varying,
-    subscribed_to_emails boolean DEFAULT true,
+    subscribed_to_emails boolean DEFAULT false,
     qae_info_source character varying,
     qae_info_source_other character varying,
     account_id integer,
@@ -2505,7 +2505,7 @@ CREATE TABLE public.users (
     confirmation_token character varying,
     confirmed_at timestamp without time zone,
     confirmation_sent_at timestamp without time zone,
-    agree_being_contacted_by_department_of_business boolean DEFAULT true,
+    agree_being_contacted_by_department_of_business boolean DEFAULT false,
     imported boolean DEFAULT false,
     address_line1 character varying,
     address_line2 character varying,
@@ -2520,11 +2520,12 @@ CREATE TABLE public.users (
     debounce_api_response_code character varying,
     marked_at_bounces_email boolean DEFAULT false,
     debounce_api_latest_check_at timestamp without time zone,
-    notification_when_innovation_award_open boolean DEFAULT true,
-    notification_when_trade_award_open boolean DEFAULT true,
-    notification_when_development_award_open boolean DEFAULT true,
-    notification_when_mobility_award_open boolean DEFAULT true,
-    notification_when_submission_deadline_is_coming boolean DEFAULT true
+    notification_when_innovation_award_open boolean DEFAULT false,
+    notification_when_trade_award_open boolean DEFAULT false,
+    notification_when_development_award_open boolean DEFAULT false,
+    notification_when_mobility_award_open boolean DEFAULT false,
+    notification_when_submission_deadline_is_coming boolean DEFAULT false,
+    agree_sharing_of_details_with_lieutenancies boolean
 );
 
 
@@ -3841,6 +3842,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190501163901'),
 ('20190513114859'),
 ('20190514192116'),
-('20190515121928');
+('20190515121928'),
+('20200710150405'),
+('20200714125921');
 
 

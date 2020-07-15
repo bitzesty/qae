@@ -925,3 +925,10 @@ details {
 
 .panel-border-narrow {
   border-left-width: 5px; }
+
+
+.external-link:after {
+  display: inline-block;
+  width: 1em;
+  background-size: 12px auto !important;
+}

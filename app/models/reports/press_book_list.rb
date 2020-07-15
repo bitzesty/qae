@@ -68,7 +68,7 @@ class Reports::PressBookList
     },
     {
       label: "Address4",
-      method: :principal_address4
+      method: :principal_county
     },
     {
       label: "Postcode",

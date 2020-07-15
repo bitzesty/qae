@@ -70,12 +70,14 @@ Rails.application.routes.draw do
       get :company_details
       get :contact_settings
       get :password_settings
+      get :additional_contact_preferences
 
       patch :update_correspondent_details
       patch :update_company_details
       patch :update_contact_settings
       patch :complete_registration
       patch :update_password_settings
+      patch :update_additional_contact_preferences
     end
   end
 

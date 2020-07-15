@@ -22,22 +22,7 @@ class QAEFormBuilder
   end
 
   class AddressQuestionDecorator < QuestionDecorator
-    REGIONS = [
-      "East",
-      "East Midlands",
-      "West Midlands",
-      "London",
-      "North East",
-      "North West",
-      "South East",
-      "South West",
-      "Yorkshire and the Humber",
-      "Channel Islands",
-      "Isle of Man",
-      "Northern Ireland",
-      "Scotland",
-      "Wales"
-    ]
+    include RegionHelper
 
     def required_sub_fields
       if sub_fields.present?
@@ -48,14 +33,9 @@ class QAEFormBuilder
           { street: "Street", ignore_validation: true },
           { city: "Town or city" },
           { country: "Country" },
-          { postcode: "Postcode" },
-          { region: "Region" }
+          { postcode: "Postcode" }
         ]
       end
-    end
-
-    def regions
-      REGIONS
     end
 
     def rendering_sub_fields
@@ -82,9 +62,13 @@ class QAEFormBuilder
     def region_context(region_context)
       @q.region_context = region_context
     end
+
+    def county_context(county_context)
+      @q.county_context = county_context
+    end
   end
 
   class AddressQuestion < Question
-    attr_accessor :countries, :sub_fields, :region_context
+    attr_accessor :countries, :sub_fields, :region_context, :county_context
   end
 end
