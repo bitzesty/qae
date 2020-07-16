@@ -22,15 +22,15 @@ stages:
 test:
   stage: test
   before_script:
-    - apt-get update -qy
-    - apt-get install -y postgresql postgresql-client
-    - apt-get install -y xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
-    - mkdir $CHROMEDRIVER_DIR
-    - wget -q --continue -P $CHROMEDRIVER_DIR "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
-    - unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
+    - sudo apt-get update -qy
+    - sudo apt-get install -y postgresql postgresql-client
+    - sudo apt-get install -y xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
+    - sudo mkdir $CHROMEDRIVER_DIR
+    - sudo wget -q --continue -P $CHROMEDRIVER_DIR "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
+    - sudo unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
     - PATH=$CHROMEDRIVER_DIR:$PATH
     - chromedriver -v
-    - gem install bundler
+    - sudo gem install bundler
     - bundle install --path vendor/bundler --jobs=4 --retry=3
     - RAILS_ENV=test bundle exec rake db:create db:migrate
   script:
