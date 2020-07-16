@@ -1,5 +1,5 @@
 image:
-  name: ruby:2.5.6
+  name: circleci/ruby:2.5.6-node-browsers
 
 variables:
   DISPLAY_SOCIAL_MOBILITY_AWARD: "true"
@@ -24,11 +24,6 @@ test:
   before_script:
     - apt-get update -qy
     - apt-get install -y postgresql postgresql-client
-    - apt-get install -y nodejs
-    - apt-get install -y libxss1 libappindicator1 libindicator7 fonts-liberation libappindicator3-1 libasound2 libatk-bridge2.0-0 libatspi2.0-0 libgtk-3-0 libnspr4 libnss3 libx11-xcb1 libxtst6 xdg-utils libgbm1
-    - wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-    - dpkg -i google-chrome*.deb
-    - apt-get install -f
     - apt-get install -y xvfb unzip libcurl4 libcurl3-gnutls libcurl4-openssl-dev
     - mkdir $CHROMEDRIVER_DIR
     - wget -q --continue -P $CHROMEDRIVER_DIR "https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip"
