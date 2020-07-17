@@ -112,3 +112,27 @@
   }
 }
 
+
+.application-info-page {
+  h2 {
+    margin-bottom: 1em;
+  }
+
+  h3 {
+    margin-top: 2em;
+    font-size: 1.6em;
+    font-weight: bold;
+
+    @media (max-width: 640px) {
+      font-size: 1.25em;
+    }
+  }
+
+  h4 {
+    font-weight: bold;
+  }
+
+  li + li {
+    margin-top: 1em;
+  }
+}

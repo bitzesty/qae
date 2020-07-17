@@ -3,6 +3,42 @@
  * It's kind of like typography innit.
 */
 
+@mixin core-17($line-height: (22 / 17), $line-height-640: (22 / 14)) {
+  font-family: $NTA-Light;
+  font-size: 17px;
+  line-height: $line-height;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 14px;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-17-important($line-height: (22 / 17), $line-height-640: (22 / 14)) {
+  font-family: $NTA-Light;
+  font-size: 17px !important;
+  line-height: $line-height;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 14px !important;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin copy-17 {
+  @include core-17;
+  padding-top: 7px;
+  padding-bottom: 3px;
+  @media (max-width: 640px) {
+    padding-top: 6px;
+    padding-bottom: 4px;
+  }
+}
+
 article h1 {
   @include bold-24;
   margin-top: 1.5em;

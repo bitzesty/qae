@@ -267,3 +267,43 @@ select.read-only {
     }
   }
 }
+
+.download-pdf-link,
+.step-download a {
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  
+  &:focus {
+    color: black;
+    text-decoration: underline;
+  }
+  
+  svg {
+    display: inline-block;
+    height: 1.4em;
+    width: auto;
+    margin-bottom: -0.4em;
+
+    path {
+      fill: currentColor;
+    }
+  }
+}
+
+.step-download a {
+  font-size: 0.95em;
+
+  svg {
+    margin-right: 0.25em;
+  }
+}
+
+.download-pdf-link {
+  margin: 0.25em 0 0;
+  font-size: 1.25em;
+
+  svg {
+    margin-right: 0.5em;
+  }
+}

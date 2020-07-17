@@ -489,6 +489,12 @@ table .ellipsis {
     padding-left: 20px;
   }
 
+  input.boolean {
+    position: absolute;
+    top: 14px;
+    left: 1em;
+  }
+
   .checkbox {
     position: absolute;
     top: 0;

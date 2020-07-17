@@ -170,11 +170,21 @@ class AwardYears::V2021::QAEForms
           rows 5
         end
 
-        options :organisation_type, "Are you a company or charity?" do
+        options :organisation_type, "What is the legal form of your organisation?" do
           required
           ref "A 4"
-          option "company", "Company"
+          option "sole_trader", "Sole Trader"
+          option "partnership", "Partnership"
+          option "limited_company", "Limited Company (Ltd)"
+          option "public_limited_company", "Public Limited Company (Plc)"
+          option "community_interest_company", "Community Interest Company (CIC)"
           option "charity", "Charity"
+          option "other", "Other"
+        end
+
+        text :other_organisation_type, "" do
+          required
+          conditional :organisation_type, "other"
         end
 
         text :registration_number, "Please provide your company or charity registration number or enter 'N/A'." do
@@ -341,9 +351,17 @@ class AwardYears::V2021::QAEForms
         address :organization_address, "Trading address of your organisation" do
           required
           ref "A 10"
-          region_context %(
-            <p>
-              Please check the region your district belongs to on <a href="https://www.gbmaps.com/downloadpostcodemap.htm" target="_blank">GBMaps website</a>.
+          pdf_context_with_header_blocks [
+            [:normal, "If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.\n"],
+            [:normal, "See the full list of London districts on https://en.wikipedia.org/wiki/Greater_London"]
+          ]
+          county_context %(
+            <p>If you are based in one of London's 33 districts (32 London boroughs and the City of London), please select Greater London.</p>
+
+            <p> 
+              <a href="https://en.wikipedia.org/wiki/Greater_London" target="_blank" class="external-link">
+                See the full list of London districts on Wikipedia
+              </a>
             </p>
           )
           sub_fields([
@@ -351,8 +369,7 @@ class AwardYears::V2021::QAEForms
             { street: "Street" },
             { city: "Town or city" },
             { county: "County" },
-            { postcode: "Postcode" },
-            { region: "Region" }
+            { postcode: "Postcode" }
           ])
         end
 

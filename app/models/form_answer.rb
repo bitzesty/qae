@@ -9,6 +9,7 @@ class FormAnswer < ApplicationRecord
   extend Enumerize
   include FormAnswerStatesHelper
   include FormAnswerAppraisalFormHelpers
+  include RegionHelper
 
   has_paper_trail
 
@@ -163,6 +164,7 @@ class FormAnswer < ApplicationRecord
     before_save :set_award_year, unless: :award_year
     before_save :set_urn
     before_save :set_progress
+    before_save :set_region
     before_save :assign_searching_attributes
 
     before_create :set_account
@@ -372,6 +374,10 @@ class FormAnswer < ApplicationRecord
     end
   end
 
+  def agree_sharing_of_details_with_lieutenancies?
+    user.agree_sharing_of_details_with_lieutenancies ? "Yes" : "No"
+  end
+
   private
 
   def nominator_full_name_from_document
@@ -417,6 +423,11 @@ class FormAnswer < ApplicationRecord
       progress.save
     end
     true
+  end
+
+  def set_region
+    county = document["organization_address_county"]
+    document["organization_address_region"] = lookup_region_for_county(county.to_sym) unless county.nil?
   end
 
   def assign_searching_attributes

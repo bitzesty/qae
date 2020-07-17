@@ -110,17 +110,17 @@
 
   // Styles the sub header for `page-header`
   h2 {
-    @include core-27;
+    font-weight: bold;
+    color: $black;
+    font-size: 36px;
   }
-  h2,
+
   h3 {
     display: block;
     margin-bottom: 0.15em;
     color: $grey-1;
   }
 
-  // Indent other page-header elements
-  h2,
   h3,
   .steps-progress-bar {
     margin-left: 48px;
@@ -925,3 +925,10 @@ details {
 
 .panel-border-narrow {
   border-left-width: 5px; }
+
+
+.external-link:after {
+  display: inline-block;
+  width: 1em;
+  background-size: 12px auto !important;
+}

@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :form_answer do
     award_type "trade"
-    association :user, factory: :user
+    association :user, factory: [:user, :agreed_to_be_contacted]
     award_year_id { AwardYear.current.id }
 
     trait :submitted do

@@ -189,6 +189,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # We need to know whether the user is happy for their details to be shared with Lord-Lieutenants
+  def check_additional_contact_preferences
+    if current_user.agree_sharing_of_details_with_lieutenancies.nil?
+      redirect_to additional_contact_preferences_account_path
+    end
+  end
+
   def require_to_be_account_admin!
     unless current_user.account_admin?
       redirect_to dashboard_path,
@@ -226,10 +233,6 @@ class ApplicationController < ActionController::Base
 
   def check_development_count_limit
     check_applications_limit(:development)
-  end
-
-  def check_mobility_count_limit
-    check_applications_limit(:mobility)
   end
 
   def check_applications_limit(type_of_award)

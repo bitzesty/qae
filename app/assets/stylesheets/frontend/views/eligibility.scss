@@ -56,9 +56,23 @@ article .current-question li {
   border-bottom: solid 1px $grey-2;
 }
 
+.eligibility-passed {
+  padding-left: $gutter-two-thirds;
+  border-left: 6px solid #00823b;
+  margin-bottom: 1em;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+}
+
 .eligibility-failed {
   padding-left: $gutter-two-thirds;
-  border-left: 4px solid $error-colour;
+  border-left: 6px solid $error-colour;
+
+  p:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .page-pre-eligibility {

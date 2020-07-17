@@ -1,6 +1,8 @@
 class Eligibility < ApplicationRecord
   extend Enumerize
 
+  AWARD_NAME = ""
+
   belongs_to :account
   belongs_to :form_answer
 
@@ -15,6 +17,10 @@ class Eligibility < ApplicationRecord
 
   def self.hint(name)
     @questions[name.to_sym][:hint]
+  end
+
+  def self.hint_partial(name)
+    @questions[name.to_sym][:hint_partial]
   end
 
   def self.label(name)
@@ -37,13 +43,18 @@ class Eligibility < ApplicationRecord
     @questions
   end
 
-  # should be defined in subclasses
+  def self.context_for_options
+    @context_for_options
+  end
+
+  # AWARD_NAME should be overriden by sub-classes
   def self.award_name
-    ""
+    self::AWARD_NAME + " Award"
   end
 
   def self.property(name, options = {})
     @questions ||= {}
+    @context_for_options ||= {}
 
     values = options[:values]
 
@@ -61,6 +72,10 @@ class Eligibility < ApplicationRecord
 
     if options[:positive_integer]
       validates name, numericality: { only_integer: true, greater_than_0: true, allow_nil: true }, if: proc { current_step == name }
+    end
+
+    if options[:context_for_options]
+      @context_for_options = options[:context_for_options]
     end
 
     @questions.merge!(name => options)
@@ -124,6 +139,14 @@ class Eligibility < ApplicationRecord
 
   def pass!
     update_column(:passed, true)
+  end
+
+  def options_for_question(name)
+    questions_storage[name.to_sym][:values]
+  end
+
+  def context_for_options
+    self.class.context_for_options
   end
 
   private

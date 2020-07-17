@@ -2,6 +2,9 @@ class AccountsController < ApplicationController
   before_action :authenticate_user!
   before_action :restrict_access_if_admin_in_read_only_mode!
 
+  def additional_contact_preferences
+  end
+
   def correspondent_details
     @active_step = 1
   end
@@ -52,6 +55,18 @@ class AccountsController < ApplicationController
     else
       @active_step = 3
       render :contact_settings
+    end
+  end
+
+  def update_additional_contact_preferences
+    if params[:user][:agree_sharing_of_details_with_lieutenancies].blank?
+      current_user.errors.add(:agree_sharing_of_details_with_lieutenancies, "This field cannot be blank")
+    end
+
+    if current_user.errors.empty? && current_user.update(additional_contact_preferences_params)
+      redirect_to dashboard_path
+    else
+      render :additional_contact_preferences
     end
   end
 
@@ -116,7 +131,8 @@ class AccountsController < ApplicationController
       :notification_when_trade_award_open, 
       :notification_when_development_award_open, 
       :notification_when_mobility_award_open, 
-      :notification_when_submission_deadline_is_coming
+      :notification_when_submission_deadline_is_coming,
+      :agree_sharing_of_details_with_lieutenancies
     )
   end
 
@@ -127,4 +143,11 @@ class AccountsController < ApplicationController
       :password_confirmation
     )
   end
+
+  def additional_contact_preferences_params
+    params.require(:user).permit(
+      :agree_sharing_of_details_with_lieutenancies
+    )
+  end
+
 end

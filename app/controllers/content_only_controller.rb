@@ -1,6 +1,7 @@
 class ContentOnlyController < ApplicationController
   before_action :authenticate_user!,
                 :check_account_completion,
+                :check_additional_contact_preferences,
                 except: [
                   :home,
                   :awards_for_organisations,
@@ -38,7 +39,6 @@ class ContentOnlyController < ApplicationController
 
   before_action :check_trade_count_limit, only: :apply_international_trade_award
   before_action :check_development_count_limit, only: :apply_sustainable_development_award
-  before_action :check_mobility_count_limit, only: :apply_social_mobility_award
 
   expose(:form_answer) do
     current_user.form_answers.find(params[:id])
