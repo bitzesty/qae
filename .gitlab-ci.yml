@@ -30,7 +30,6 @@ test:
     - sudo unzip $CHROMEDRIVER_DIR/chromedriver* -d $CHROMEDRIVER_DIR
     - PATH=$CHROMEDRIVER_DIR:$PATH
     - chromedriver -v
-    - sudo gem install bundler
     - bundle install --path vendor/bundler --jobs=4 --retry=3
     - RAILS_ENV=test bundle exec rake db:create db:migrate
   script:
