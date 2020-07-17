@@ -71,6 +71,7 @@ Rails.application.routes.draw do
       get :contact_settings
       get :password_settings
       get :additional_contact_preferences
+      get :useful_information
 
       patch :update_correspondent_details
       patch :update_company_details
