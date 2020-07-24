@@ -21,6 +21,9 @@ class AccountsController < ApplicationController
     @active_step = 5
   end
 
+  def useful_information
+  end
+
   def update_correspondent_details
     current_user.set_step(1)
     if current_user.update(correspondent_details_params)
