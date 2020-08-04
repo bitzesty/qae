@@ -21,6 +21,13 @@ CKEDITOR.plugins.add("wordcount", {
             snapShot = editor.getSnapshot(),
             notification = null;
 
+        var maxWordCountWithBuffer = function(maxWordCount) {
+          if (config.maxWordCount > 15) {
+            return parseInt(config.maxWordCount * 1.1);
+          } else {
+            return config.maxWordCount;
+          }
+        };
 
         var dispatchEvent = function (type, currentLength, maxLength) {
             if (typeof document.dispatchEvent == 'undefined') {
@@ -302,11 +309,11 @@ CKEDITOR.plugins.add("wordcount", {
             }
 
             // Check for word limit and/or char limit
-            if ((config.maxWordCount > -1 && wordCount > config.maxWordCount && deltaWord > 0) ||
+            if ((config.maxWordCount > -1 && wordCount > maxWordCountWithBuffer(config.maxWordCount) && deltaWord > 0) ||
                 (config.maxCharCount > -1 && charCount > config.maxCharCount && deltaChar > 0)) {
 
                 limitReached(editorInstance, limitReachedNotified);
-            } else if ((config.maxWordCount == -1 || wordCount <= config.maxWordCount) &&
+            } else if ((config.maxWordCount == -1 || wordCount <= maxWordCountWithBuffer(config.maxWordCount)) &&
             (config.maxCharCount == -1 || charCount <= config.maxCharCount)) {
 
                 limitRestored(editorInstance);
@@ -324,7 +331,7 @@ CKEDITOR.plugins.add("wordcount", {
             }
 
             if (config.wordCountGreaterThanMaxLengthEvent && config.wordCountLessThanMaxLengthEvent) {
-                if (wordCount > config.maxWordCount && config.maxWordCount > -1) {
+                if (wordCount > maxWordCountWithBuffer(config.maxWordCount) && config.maxWordCount > -1) {
                     config.wordCountGreaterThanMaxLengthEvent(wordCount, config.maxWordCount);
 
                 } else {
@@ -408,7 +415,7 @@ CKEDITOR.plugins.add("wordcount", {
                     event.cancel();
                 }
 
-                if (config.maxWordCount > 0 && wordCount > config.maxWordCount && config.hardLimit) {
+                if (config.maxWordCount > 0 && wordCount > maxWordCountWithBuffer(config.maxWordCount) && config.hardLimit) {
                     if(!notification.isVisible()) {
                         notification.show();
                     }
