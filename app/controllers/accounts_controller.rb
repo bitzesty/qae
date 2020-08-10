@@ -10,11 +10,11 @@ class AccountsController < ApplicationController
   end
 
   def company_details
-    @active_step = 2
+    @active_step = 3
   end
 
   def contact_settings
-    @active_step = 3
+    @active_step = 2
   end
 
   def password_settings
@@ -27,7 +27,7 @@ class AccountsController < ApplicationController
   def update_correspondent_details
     current_user.set_step(1)
     if current_user.update(correspondent_details_params)
-      redirect_to company_details_account_path
+      redirect_to contact_settings_account_path
     else
       @active_step = 1
       render :correspondent_details
@@ -37,7 +37,7 @@ class AccountsController < ApplicationController
   def update_company_details
     current_user.set_step(2)
     if current_user.update(company_details_params)
-      redirect_to contact_settings_account_path
+      redirect_to company_details_account_path
     else
       @active_step = 2
       render :company_details

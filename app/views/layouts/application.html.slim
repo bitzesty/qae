@@ -54,8 +54,8 @@
             span.if-no-js-hide
               = link_to "Menu", "#proposition-links", class: "js-header-toggle menu"
 
-            ul#proposition-links
-              - if current_user.try(:completed_registration)
+            ul#proposition-links class="#{show_navigation_links? == false ? "right-align" : ""}"
+              - if show_navigation_links?
                 li
                   = link_to "Applications", dashboard_path
                 li

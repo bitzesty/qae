@@ -66,6 +66,11 @@ module ApplicationHelper
                                          ].include?(action_name)
   end
 
+  def show_navigation_links?
+    current_user.try(:completed_registration) &&
+      current_user&.account&.collaborators_without(current_user)&.excluding(current_user.account.owner)&.length > 0
+  end
+
   def application_deadline(kind)
     deadline = Rails.cache.fetch("#{kind}_deadline", expires: 1.minute) do
       Settings.current.deadlines.where(kind: kind).first

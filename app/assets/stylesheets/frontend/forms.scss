@@ -12,6 +12,10 @@ legend {
   }
 }
 
+legend.body-font-size {
+  @include core-19;
+}
+
 .question-block h2,
 .regular-question h2 {
   @include core-24;
@@ -179,6 +183,18 @@ textarea {
 
     @include ie-lte(7) {
       width: 8em;
+    }
+
+    @media (max-width: 640px) {
+      min-width: 0;
+    }
+  }
+
+  &.small-medium {
+    max-width: 9.25em;
+
+    @include ie-lte(7) {
+      width: 9.25em;
     }
 
     @media (max-width: 640px) {
@@ -1454,4 +1470,12 @@ fieldset.account-contact-preferences-other-ops {
 .social-mobility-form-goal-link {
   display: inline-block;
   margin-bottom: 4px;
+}
+
+.inline-form-actions {
+  .button {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 20px !important;
+  }
 }

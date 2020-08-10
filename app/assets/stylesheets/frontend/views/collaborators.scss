@@ -1,0 +1,35 @@
+.collaborators-list {
+  margin-top: 30px;
+}
+
+.collaborator__name {
+  @include bold-24;
+  margin: 0 0 0.15em;
+}
+
+.collaborator__jobtitle {
+  @include core-19;
+  margin: 0;
+}
+
+.collaborator__contact {
+  @include core-19;
+  margin: 1.5em 0;
+}
+
+.collaborator__role {
+  @include core-19;
+  margin: 0;
+  opacity: 0.6;
+}
+
+.collaborators__add {
+  margin-top: 30px;
+}
+
+details {
+  .panel {
+    @include core-19;
+    border-left-color: transparent !important;
+  }
+}
