@@ -25,12 +25,17 @@
       = f.input :first_name, required: true, input_html: { class: 'big medium', autocomplete: "off"}
       = f.input :last_name, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
       = f.input :job_title, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
-
-    fieldset
       = f.input :phone_number, required: true, input_html: { class: 'big small-medium', autocomplete: "off"}, label: "Telephone number"
 
-    fieldset
-      = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: "Email"
+      - if f.object.persisted?
+        .question-group
+          label.control-label
+            | Email
+          p.question-context
+            | If you would like to change the email, please ask the collaborator to login and do so themselves, or contact the Queen's Award for Enterprise team.
+          = f.object.email
+      - else
+        = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: "Email"
 
     fieldset
       legend.body-font-size

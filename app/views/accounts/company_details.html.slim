@@ -10,23 +10,30 @@ header.page-header.group.page-header-over-sidebar
     header.page-header.group
       div
         h2
-          ' Organisation Details
+          ' Organisation details
 
     .article-container.sic-code
       article.group role="article"
         .inner
-          = simple_form_for current_user, url: update_company_details_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
-            = render "form_company_details", f: f
+          - if current_user.account_admin?
+            = simple_form_for current_user, url: update_company_details_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
+              = render "form_company_details", f: f
 
-            footer
-              nav.pagination.no-border role="navigation" aria-label="Pagination"
-                ul.group
-                  li.previous.previous-alternate
-                    = link_to correspondent_details_account_path, rel: "prev", title: "Navigate to previous part" do
-                      span class="pagination-label"
-                        ' Back
+              footer
+                - if came_from_form?
+                  nav.pagination.no-border role="navigation" aria-label="Pagination"
+                    ul.group
+                      li.previous.previous-alternate
+                        = link_to correspondent_details_account_path, rel: "prev", title: "Navigate to previous part" do
+                          span class="pagination-label"
+                            ' Back
 
-                  li.submit
-                    = f.submit "Save and continue", class: "button"
+                      li.submit
+                        = f.submit "Save and continue", class: "button"
+                - else
+                  .form-actions
+                    = f.submit "Save", class: "button"
+          - else
+            = render "show_company_details"
 
   = render "steps_progress_bar"
