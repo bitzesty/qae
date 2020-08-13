@@ -1,13 +1,8 @@
 li.list-group-item id=dom_id(collaborator)
-  .pull-right
-    - if params.has_key? :form_id
-      = link_to "Remove", account_collaborator_path(collaborator, form_id: params[:form_id]),
-                          method: :delete,
-                          class: "remove-link text-danger"
-    - else
-      = link_to "Remove", account_collaborator_path(collaborator),
-                          method: :delete,
-                          class: "remove-link text-danger"
+  - if current_user.account_admin? && current_user != account_owner
+    .pull-right
+      a.edit-link href="#"
+        | Edit details
   h4.collaborator__name
     = collaborator.full_name_with_status
   p.collaborator__jobtitle

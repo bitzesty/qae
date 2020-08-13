@@ -395,6 +395,7 @@ header.page-header div {
 #proposition-menu {
   @media (min-width: 990px) {
     position: relative;
+    margin-top: 10px;
   }
 
   #proposition-name {
@@ -402,7 +403,40 @@ header.page-header div {
       background: transparent;
     }
   }
+
+  li {
+    padding-right: 25px;
+
+    a {
+      // font-size: 1px;
+    }
+  }
 }
+
+#global-header .header-proposition #proposition-menu {
+  margin-top: 0;
+
+  #proposition-name {
+    @include bold-19;
+  }
+
+  #proposition-links {
+    margin-top: 10px !important;
+
+    li {
+      padding-right: 25px !important;
+
+      @media (max-width: 991px) {
+        padding-right: 15px !important;
+      }
+
+      a {
+        font-size: 14px !important;
+      }
+    }
+  }
+}
+
 #global-header {
   position: relative;
   z-index: 999;
@@ -589,7 +623,8 @@ header.page-header aside .inner {
       border-right: none;
     }
 
-    &.step-past {
+    &.step-past,
+    &.step-regular {
       &,
       a {
         color: $govuk-blue;

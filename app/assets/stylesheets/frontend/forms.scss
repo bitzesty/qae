@@ -47,10 +47,13 @@ legend.body-font-size {
 .question-context h6 {
   color: $grey-1;
 
-  .application-notice &,
-  .add-collaborator-box & {
+  .application-notice & {
     color: $black;
   }
+}
+
+.add-collaborator-box .question-context {
+  @include core-19;
 }
 
 ul.question-context,
@@ -870,7 +873,8 @@ input[type="file"] {
     margin-right: $gutter-one-third;
   }
 
-  .remove-link {
+  .remove-link,
+  .edit-link {
     @include core-16;
     float: right;
     border: none;
@@ -1477,5 +1481,22 @@ fieldset.account-contact-preferences-other-ops {
     display: inline-block;
     margin-right: 20px;
     margin-top: 20px !important;
+  }
+}
+
+.form-actions {
+  margin-top: 3em;
+}
+
+.static-field {
+  margin: 1em 0 0;
+
+  strong {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+
+  & + .static-field {
+    margin-top: 2.5em;
   }
 }

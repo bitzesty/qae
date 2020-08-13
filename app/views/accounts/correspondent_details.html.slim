@@ -10,7 +10,7 @@ header.page-header.group.page-header-over-sidebar
     header.page-header.group
       div
         h2
-          ' My Details
+          ' My details
 
     .article-container.group
       article.group role="article"
@@ -19,9 +19,13 @@ header.page-header.group.page-header-over-sidebar
             = render "form_correspondent_details", f: f
 
             footer
-              nav.pagination.no-border role="navigation" aria-label="Pagination"
-                ul.group
-                  li.submit
-                    = f.submit "Save and continue", class: "button"
+              - if came_from_form?
+                nav.pagination.no-border role="navigation" aria-label="Pagination"
+                  ul.group
+                    li.submit
+                      = f.submit "Save and continue", class: "button"
+              - else
+                .form-actions
+                  = f.submit "Save", class: "button"
 
   = render "steps_progress_bar"

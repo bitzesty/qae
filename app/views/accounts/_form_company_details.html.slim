@@ -1,5 +1,5 @@
 fieldset
-  h3 = f.label :company_name, label: "Name of your organisation"
+  h3 = f.label :company_name, label: "Name of the organisation"
   = f.input :company_name, input_html: { class: 'big medium', autocomplete: "off"}, label: false
 
 /fieldset
@@ -17,5 +17,5 @@ fieldset
   = f.input :company_postcode, input_html: { class: "big small", autocomplete: "off"}, label: 'Postcode'
 
 fieldset
-  h3 = f.label :company_phone_number, label: "Main telephone number"
-  = f.input :company_phone_number, input_html: { class: 'big small', autocomplete: "off"}, label: false
+  h3 = f.label :company_phone_number, label: "The organisation's main telephone number"
+  = f.input :company_phone_number, input_html: { class: 'big small-medium', autocomplete: "off"}, label: false

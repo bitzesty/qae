@@ -1,5 +1,9 @@
 .collaborators-list {
   margin-top: 30px;
+
+  a {
+
+  }
 }
 
 .collaborator__name {
@@ -31,5 +35,23 @@ details {
   .panel {
     @include core-19;
     border-left-color: transparent !important;
+  }
+}
+
+.remove-link-right {
+  @media (min-width: 992px) {
+    position: relative;
+    
+    h2 {
+      max-width: calc(100% - 200px);
+    }
+  }
+}
+
+.collaborator-remove-link {
+  @media (min-width: 768px) {
+    position: absolute;
+    right: 0;
+    top: 12px;
   }
 }
