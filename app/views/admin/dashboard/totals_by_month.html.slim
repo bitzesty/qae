@@ -1,0 +1,11 @@
+= render 'admin/dashboard/navigation'
+
+.dashboard
+  .dashboard__header
+    h1.dashboard__heading
+      | Running totals by month
+    p.dashboard__subheading
+      | Running totals compared to previous years
+
+  .dashboard__section
+    = render "admin/dashboard/totals_by_month/all_applications"

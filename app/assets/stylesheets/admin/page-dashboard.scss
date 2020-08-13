@@ -1,0 +1,130 @@
+.dashboard {
+
+}
+
+.dashboard__header {
+  padding: 1.5em 0 2.5em;
+
+  .award-year-container {
+    .award-year-label {
+      text-transform: none !important;
+      display: block;
+      margin-bottom: 10px;
+      position: static;
+      font-weight: normal;
+      margin-top: 0;
+      font-size: 18px;
+    }
+
+    .award-year-dropdown {
+      margin: 0 !important;
+    }
+  }
+}
+
+.dashboard__heading {
+  font-size: 1.85em;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 1em;
+  color: black;
+}
+
+.dashboard__subheading {
+  font-size: 1.3em;
+  font-weight: 400;
+  margin-top: -0.75em;
+  margin-bottom: 0;
+  color: black;
+}
+
+.dashboard__section {
+  padding: 2em 0;
+  border-top: 2px solid #ccc;
+  position: relative;
+  
+}
+
+.dashboard-table {
+  table-layout: fixed;
+  overflow-x: scroll;
+  border-collapse: collapse;
+
+  caption {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.5em;
+    color: black;
+
+    .dashboard__table-status {
+      text-transform: none;
+      display: block;
+      margin: 0.5em 0 1.5em;
+      font-weight: 500;
+      font-size: 0.95em;
+      padding-left: 3em;
+      position: relative;
+      
+      &:before {
+        content: " ";
+        display: block;
+        width: 1.5em;
+        height: 1.5em;
+        background: #ccc;
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+    }
+
+    .btn {
+      @media (min-width: 768px) {
+        position: absolute;
+        right: 0;
+        top: 3em;
+      }
+    }
+  }
+
+  th, td {
+    vertical-align: top;
+
+    &.bold {
+      font-weight: bold;
+    }
+
+    &.uppercase {
+      text-transform: uppercase;
+    }
+  }
+
+  thead {
+    th {
+      font-weight: bold;
+      padding: 0.5em 1em;
+      border-bottom: 2px solid black;
+
+      &:first-child {
+        border-right: 2px solid black;
+      }
+    }
+  }
+
+  tbody {
+    th {
+      font-weight: bold;
+      padding: 0.5em 1em;
+      border-right: 2px solid black;
+    }
+    td {
+      padding: 0.5em 1em;
+      white-space: pre-line;
+    }
+
+    tr:nth-child(odd) td,
+    tr:nth-child(odd) th {
+      background: #eee;
+    }
+  }
+}

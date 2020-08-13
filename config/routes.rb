@@ -198,7 +198,14 @@ Rails.application.routes.draw do
 
   namespace :admin do
     root to: "dashboard#index"
-    resources :dashboard, only: [:index]
+    resources :dashboard, only: [:index] do
+      collection do
+        get :totals_by_month
+        get :totals_by_week
+        get :totals_by_day
+        get :downloads
+      end
+    end
     resources :users, except: [:destroy] do
       member do
         patch :resend_confirmation_email
