@@ -1,12 +1,15 @@
-- if params.has_key? :form_id
+- if collaborator.persisted?
+  - form_path = account_collaborator_path(collaborator)
+- elsif params.has_key? :form_id
   - form_path = account_collaborators_path(form_id: params[:form_id])
 - else
   - form_path = account_collaborators_path
+
 = simple_form_for collaborator,
                   as: :collaborator,
                   url: form_path,
                   builder: SimpleForm::AccountFormBuilder,
-                  html: {class: 'qae-form', method: :post} do |f|
+                  html: { class: 'qae-form' } do |f|
 
   .add-collaborator-box
     - if add_collaborator_interactor.errors.present? or collaborator.errors[:base].present?
@@ -54,4 +57,7 @@
 
     p.inline-form-actions
       = link_to "Cancel", account_collaborators_path, class: "button button--link"
-      = f.submit "Add the collaborator", class: "button"
+      - if f.object.persisted?
+        = f.submit "Save collaborator details", class: "button"
+      - else
+        = f.submit "Add the collaborator", class: "button"

@@ -10,20 +10,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
 -- Name: hstore; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -39,8 +25,6 @@ COMMENT ON EXTENSION hstore IS 'data type for storing sets of (key, value) pairs
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
-
 --
 -- Name: accounts; Type: TABLE; Schema: public; Owner: -
 --
@@ -49,7 +33,8 @@ CREATE TABLE public.accounts (
     id integer NOT NULL,
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    owner_id integer
+    owner_id integer,
+    collaborators_checked_at timestamp without time zone
 );
 
 
@@ -58,7 +43,6 @@ CREATE TABLE public.accounts (
 --
 
 CREATE SEQUENCE public.accounts_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -114,7 +98,6 @@ CREATE TABLE public.admins (
 --
 
 CREATE SEQUENCE public.admins_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -151,7 +134,6 @@ CREATE TABLE public.aggregated_award_year_pdfs (
 --
 
 CREATE SEQUENCE public.aggregated_award_year_pdfs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -204,7 +186,6 @@ CREATE TABLE public.assessor_assignments (
 --
 
 CREATE SEQUENCE public.assessor_assignments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -252,7 +233,7 @@ CREATE TABLE public.assessors (
     locked_at timestamp without time zone,
     company character varying,
     mobility_role character varying,
-    deleted boolean DEFAULT true,
+    deleted boolean DEFAULT false,
     autosave_token character varying,
     unique_session_id character varying
 );
@@ -263,7 +244,6 @@ CREATE TABLE public.assessors (
 --
 
 CREATE SEQUENCE public.assessors_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -293,7 +273,8 @@ CREATE TABLE public.audit_certificates (
     reviewable_id integer,
     reviewed_at timestamp without time zone,
     status integer,
-    attachment_scan_results character varying
+    attachment_scan_results character varying,
+    cached_filename character varying
 );
 
 
@@ -302,7 +283,6 @@ CREATE TABLE public.audit_certificates (
 --
 
 CREATE SEQUENCE public.audit_certificates_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -338,7 +318,6 @@ CREATE TABLE public.audit_logs (
 --
 
 CREATE SEQUENCE public.audit_logs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -375,7 +354,6 @@ CREATE TABLE public.award_years (
 --
 
 CREATE SEQUENCE public.award_years_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -409,7 +387,6 @@ CREATE TABLE public.case_summary_hard_copy_pdfs (
 --
 
 CREATE SEQUENCE public.case_summary_hard_copy_pdfs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -447,7 +424,6 @@ CREATE TABLE public.comments (
 --
 
 CREATE SEQUENCE public.comments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -482,7 +458,6 @@ CREATE TABLE public.deadlines (
 --
 
 CREATE SEQUENCE public.deadlines_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -519,7 +494,6 @@ CREATE TABLE public.draft_notes (
 --
 
 CREATE SEQUENCE public.draft_notes_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -555,7 +529,6 @@ CREATE TABLE public.eligibilities (
 --
 
 CREATE SEQUENCE public.eligibilities_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -590,7 +563,6 @@ CREATE TABLE public.email_notifications (
 --
 
 CREATE SEQUENCE public.email_notifications_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -624,7 +596,6 @@ CREATE TABLE public.feedback_hard_copy_pdfs (
 --
 
 CREATE SEQUENCE public.feedback_hard_copy_pdfs_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -662,7 +633,6 @@ CREATE TABLE public.feedbacks (
 --
 
 CREATE SEQUENCE public.feedbacks_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -693,7 +663,8 @@ CREATE TABLE public.form_answer_attachments (
     title character varying,
     restricted_to_admin boolean DEFAULT false,
     question_key character varying,
-    file_scan_results character varying
+    file_scan_results character varying,
+    cached_filename character varying
 );
 
 
@@ -702,7 +673,6 @@ CREATE TABLE public.form_answer_attachments (
 --
 
 CREATE SEQUENCE public.form_answer_attachments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -733,7 +703,6 @@ CREATE TABLE public.form_answer_progresses (
 --
 
 CREATE SEQUENCE public.form_answer_progresses_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -769,7 +738,6 @@ CREATE TABLE public.form_answer_transitions (
 --
 
 CREATE SEQUENCE public.form_answer_transitions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -833,7 +801,6 @@ CREATE TABLE public.form_answers (
 --
 
 CREATE SEQUENCE public.form_answers_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -877,7 +844,6 @@ CREATE TABLE public.palace_attendees (
 --
 
 CREATE SEQUENCE public.palace_attendees_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -912,7 +878,6 @@ CREATE TABLE public.palace_invites (
 --
 
 CREATE SEQUENCE public.palace_invites_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -959,7 +924,6 @@ CREATE TABLE public.press_summaries (
 --
 
 CREATE SEQUENCE public.press_summaries_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -993,7 +957,6 @@ CREATE TABLE public.previous_wins (
 --
 
 CREATE SEQUENCE public.previous_wins_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1031,7 +994,6 @@ CREATE TABLE public.scans (
 --
 
 CREATE SEQUENCE public.scans_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1072,7 +1034,6 @@ CREATE TABLE public.settings (
 --
 
 CREATE SEQUENCE public.settings_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1105,7 +1066,6 @@ CREATE TABLE public.site_feedbacks (
 --
 
 CREATE SEQUENCE public.site_feedbacks_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1133,7 +1093,8 @@ CREATE TABLE public.support_letter_attachments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     support_letter_id integer,
-    attachment_scan_results character varying
+    attachment_scan_results character varying,
+    cached_filename character varying
 );
 
 
@@ -1142,7 +1103,6 @@ CREATE TABLE public.support_letter_attachments (
 --
 
 CREATE SEQUENCE public.support_letter_attachments_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1188,7 +1148,6 @@ CREATE TABLE public.support_letters (
 --
 
 CREATE SEQUENCE public.support_letters_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -1226,7 +1185,6 @@ CREATE TABLE public.supporters (
 --
 
 CREATE SEQUENCE public.supporters_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2534,7 +2492,6 @@ CREATE TABLE public.users (
 --
 
 CREATE SEQUENCE public.users_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2566,7 +2523,6 @@ CREATE TABLE public.version_associations (
 --
 
 CREATE SEQUENCE public.version_associations_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -2603,7 +2559,6 @@ CREATE TABLE public.versions (
 --
 
 CREATE SEQUENCE public.versions_id_seq
-    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -3055,14 +3010,6 @@ ALTER TABLE ONLY public.previous_wins
 
 ALTER TABLE ONLY public.scans
     ADD CONSTRAINT scans_pkey PRIMARY KEY (id);
-
-
---
--- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.schema_migrations
-    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
 
 
 --
@@ -3522,6 +3469,13 @@ CREATE INDEX index_versions_on_transaction_id ON public.versions USING btree (tr
 
 
 --
+-- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX unique_schema_migrations ON public.schema_migrations USING btree (version);
+
+
+--
 -- Name: support_letter_attachments fk_rails_0f5a0025a7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3832,6 +3786,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20161021111201'),
 ('20161021140457'),
 ('20161116104612'),
+('20170401215454'),
 ('20180820050136'),
 ('20181102125508'),
 ('20181102125923'),
@@ -3844,6 +3799,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190514192116'),
 ('20190515121928'),
 ('20200710150405'),
-('20200714125921');
+('20200714125921'),
+('20200814122259');
 
 

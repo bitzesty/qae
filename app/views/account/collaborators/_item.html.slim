@@ -1,8 +1,7 @@
 li.list-group-item id=dom_id(collaborator)
-  - if current_user.account_admin? && current_user != account_owner
+  - if current_user.account_admin? && collaborator != account_owner
     .pull-right
-      a.edit-link href="#"
-        | Edit details
+      = link_to "Edit details", edit_account_collaborator_path(collaborator), class: "edit-link"
   h4.collaborator__name
     = collaborator.full_name_with_status
   p.collaborator__jobtitle
