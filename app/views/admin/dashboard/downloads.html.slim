@@ -1,12 +1,26 @@
 = render 'admin/dashboard/navigation'
 
-.row.clearfix
-  .show-sidebar-container
-    .show-sidebar
-      = render "csv_reports"
+.dashboard
+  .dashboard__header
+    h1.dashboard__heading
+      | Downloads
+    .row
+      = render "layouts/admin_award_year"
 
-      - if policy(:report).show?
-        = render "admin/reports/primary_vs_secondary_appraisals" if @award_year.year > 2019
-        = render "admin/feedbacks/pdf_reports"
-        = render "admin/reports/case_summaries"
-        = render "admin/reports/assessors_progress"
+    .dashboard__action
+      = link_to import_csv_into_ms_excel_guide_pdf_admin_reports_url(format: :pdf), target: "_blank", class: "download-link" do
+        ' Import CSV into MS Excel Guide
+
+  .downloads-page
+    .downloads-page__section
+      = render "admin/dashboard/downloads/csv_reports"
+
+    - if policy(:report).show?
+      .downloads-page__section
+        = render "admin/dashboard/downloads/primary_vs_secondary_appraisals" if @award_year.year > 2019
+      .downloads-page__section
+        = render "admin/dashboard/downloads/pdf_reports"
+      .downloads-page__section
+        = render "admin/dashboard/downloads/case_summaries"
+      .downloads-page__section
+        = render "admin/dashboard/downloads/assessors_progress"

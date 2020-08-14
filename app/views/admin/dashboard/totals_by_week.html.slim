@@ -1,0 +1,21 @@
+= render 'admin/dashboard/navigation'
+
+.dashboard
+  .dashboard__header
+    h1.dashboard__heading
+      | Running totals by week
+    p.dashboard__subheading
+      | Running totals compared to previous years
+
+  .dashboard__section
+    = render "admin/dashboard/totals_by_week/all_applications"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_week/international_trade"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_week/innovation"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_week/social_mobility"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_week/sustainable_development"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_week/registrations"

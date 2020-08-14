@@ -1,0 +1,14 @@
+- link_ops = {category: key, format: :pdf, year: @award_year.year}
+/ For 2016 we use one report for both trade years modes ('3 to 5' and '6 plus')
+- link_ops[:years_mode] = years_mode if key == "trade" && @award_year.year != 2016
+
+li.download-item
+  p.download-item__title
+    - if key == "trade" && @award_year.year != 2016
+      = "International Trade (#{years_mode} years)"
+    - else
+      = value
+  p.download-item__description
+    ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+
+  = link_to "Download", admin_report_path("case_summaries", link_ops), target: admin_conditional_aggregated_pdf_link_target(@award_year, 'case_summary'), class: "download-link"

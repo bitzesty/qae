@@ -1,0 +1,21 @@
+= render 'admin/dashboard/navigation'
+
+.dashboard
+  .dashboard__header
+    h1.dashboard__heading
+      | Running totals by day
+    p.dashboard__subheading
+      | Running totals compared to previous years
+
+  .dashboard__section
+    = render "admin/dashboard/totals_by_day/all_applications"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_day/international_trade"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_day/innovation"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_day/social_mobility"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_day/sustainable_development"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_day/registrations"
