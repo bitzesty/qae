@@ -196,6 +196,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # We only allow to use the system if an account has 1 or more collaborator
+  def check_number_of_collaborators
+    if current_user.account_admin? && current_account.users.count < 2
+      redirect_to account_collaborators_path
+    end
+  end
+
   def require_to_be_account_admin!
     unless current_user.account_admin?
       redirect_to dashboard_path,
