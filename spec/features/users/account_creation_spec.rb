@@ -21,39 +21,76 @@ describe "Account forms" do
   end
 
   context "Account details fulfillment" do
-    let!(:user) { create(:user) }
+    context "regular user" do
+      let!(:user) { create(:user, role: "regular") }
 
-    before do
-      create(:settings, :submission_deadlines)
-      login_as(user, scope: :user)
+      before do
+        create(:settings, :submission_deadlines)
+        login_as(user, scope: :user)
+      end
+
+      let(:phone_number) { "1231233214354235" }
+      let(:company_name) { "BitZestyOrg" }
+
+      it "adds the Account details" do
+        visit root_path
+        fill_in("Title", with: "Mr")
+        fill_in("First name", with: "FirstName")
+        fill_in("Last name", with: "LastName")
+        fill_in("Your job title", with: "job title")
+        fill_in("Your telephone number", with: phone_number)
+
+        click_button("Save and continue")
+
+        expect(page).to have_content("Contact preferences")
+        click_button("Save and continue")
+
+        expect(page).to have_content("To begin your application, select the award(s) you want to apply for.")
+
+        user.reload
+
+        expect(user.phone_number).to eq(phone_number)
+        expect(user.completed_registration?).to eq(true)
+      end
     end
 
-    let(:phone_number) { "1231233214354235" }
-    let(:company_name) { "BitZestyOrg" }
+    context "admin user" do
+      let!(:user) { create(:user, role: "account_admin") }
 
-    it "adds the Account details" do
-      visit root_path
-      fill_in("Title", with: "Mr")
-      fill_in("First name", with: "FirstName")
-      fill_in("Last name", with: "LastName")
-      fill_in("Your job title", with: "job title")
-      fill_in("Your telephone number", with: phone_number)
+      before do
+        create(:settings, :submission_deadlines)
+        login_as(user, scope: :user)
+      end
 
-      click_button("Save and continue")
-      expect(page).to have_content("Organisation Details")
+      let(:phone_number) { "1231233214354235" }
+      let(:company_name) { "BitZestyOrg" }
 
-      fill_in("Name of your organisation", with: company_name)
-      fill_in("Main telephone number", with: "9876544")
-      click_button("Save and continue")
+      it "adds the Account details" do
+        visit root_path
+        fill_in("Title", with: "Mr")
+        fill_in("First name", with: "FirstName")
+        fill_in("Last name", with: "LastName")
+        fill_in("Your job title", with: "job title")
+        fill_in("Your telephone number", with: phone_number)
 
-      expect(page).to have_content("Contact Preferences")
-      click_button("Save and continue")
-      expect(page).to have_content("Your account details were successfully saved")
+        click_button("Save and continue")
 
-      user.reload
+        expect(page).to have_content("Contact preferences")
+        click_button("Save and continue")
 
-      expect(user.phone_number).to eq(phone_number)
-      expect(user.company_name).to eq(company_name)
+        expect(page).to have_content("Organisation details")
+        fill_in("Name of the organisation", with: company_name)
+        fill_in("The organisation's main telephone number", with: "9876544")
+
+        click_button("Save and continue")
+
+        expect(page).to have_content("Collaborators and account owner")
+
+        user.reload
+
+        expect(user.phone_number).to eq(phone_number)
+        expect(user.company_name).to eq(company_name)
+      end
     end
   end
 end

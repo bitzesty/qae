@@ -20,7 +20,7 @@ header.page-header.group.page-header-over-sidebar
               = render "form_company_details", f: f
 
               footer
-                - if came_from_form?
+                - if !current_user.completed_registration?
                   nav.pagination.no-border role="navigation" aria-label="Pagination"
                     ul.group
                       li.previous.previous-alternate

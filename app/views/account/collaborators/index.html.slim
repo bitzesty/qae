@@ -62,7 +62,7 @@ header.page-header.group.page-header-over-sidebar
                 = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
                   ' + Add a collaborator
 
-            - if collaborators.any? && came_from_form?
+            - if collaborators.any? && !current_user.completed_registration?
               footer
                 nav.pagination.no-border role="navigation" aria-label="Pagination"
                   ul.group
