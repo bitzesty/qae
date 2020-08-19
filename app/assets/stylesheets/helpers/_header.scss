@@ -76,6 +76,13 @@
     }
   }
 
+  #proposition-links.right-align {
+    li {
+      float: right;
+      padding-right: 0 !important;
+    }
+  }
+
   form#search {
     .content {
       @extend %contain-floats;

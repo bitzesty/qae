@@ -10,18 +10,42 @@ header.page-header.group.page-header-over-sidebar
     header.page-header.group
       div
         h2
-          ' Collaborators
+          ' Collaborators and account owner
 
     .article-container
       article.group role="article"
         .inner
-          p Adding collaborators lets your colleagues sign in and contribute to your application(s).
+          - if current_user.account_admin?
+            .application-notice.help-notice
+              p
+                - if collaborators.any?
+                  | Please check if collaborator's details are up to date.
+                - else
+                  | You don't have any collaborators added. Please add at least one collaborators.
 
-          p They will also be copied in on any correspondence from us regarding your application(s).
+            p Adding collaborators lets your colleagues sign in and contribute to your applications.
 
-          p If you are using a marketing company for your application, you should add them as collaborators here.
+            p They will also receive any correspondence from us regarding your applications. This will help to ensure that any correspondence from us is less likely to be overlooked or not addressed in time. Also, if you leave the organisation, we will have a person to contact regarding applications.
 
-          br
+            p
+              strong
+                | Please note, collaborators will be able to see and edit all of your applications.
+
+            br
+
+            details
+              summary
+                span.summary
+                  | Are you the owner of a micro organisation?
+              .panel.panel-border-narrow
+                | If you are an owner of a very small organisation and don't feel comfortable sharing your business details with your employees, you can add someone else who you trust.
+
+            details
+              summary
+                span.summary
+                  | Is a marketing agency helping you to apply?
+              .panel.panel-border-narrow
+                | If you are using a marketing agency to help you with your application, you can add them as collaborators.
 
           = simple_form_for current_user, url: complete_registration_account_path, builder: SimpleForm::AccountFormBuilder, html: { class: "qae-form", id: "account-form" } do |f|
             // TODO remove form_contact_settins
@@ -30,28 +54,31 @@ header.page-header.group.page-header-over-sidebar
 
             = render "list"
 
-            = link_to new_account_collaborator_path(form_id: @form_answer), class: "button button-add"
+            p.collaborators__add
               - if collaborators.any?
-                ' + Add another collaborator
+                = link_to new_account_collaborator_path(form_id: @form_answer), class: "button button--secondary"
+                  ' + Add another collaborator
               - else
-                ' + Add a collaborator
+                = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
+                  ' + Add a collaborator
 
-            footer
-              nav.pagination.no-border role="navigation" aria-label="Pagination"
-                ul.group
-                  - unless params.has_key? :form_id
-                    li.previous.previous-alternate
-                      = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
-                        span class="pagination-label"
-                          ' Back
+            - if collaborators.any? && !current_user.completed_registration?
+              footer
+                nav.pagination.no-border role="navigation" aria-label="Pagination"
+                  ul.group
+                    - unless params.has_key? :form_id
+                      li.previous.previous-alternate
+                        = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
+                          span class="pagination-label"
+                            ' Back
 
-                  li.submit
-                    - unless current_user.completed_registration
-                        = f.submit "Continue to applications", class: "button"
-                    - else
-                      - if params.has_key? :form_id
-                        = link_to "Save and return", [:award_info, @form_answer.award_type, form_id: @form_answer], class: "button"
+                    li.submit
+                      - unless current_user.completed_registration
+                          = f.submit "Continue to applications", class: "button"
                       - else
-                        = f.submit "Save and continue", class: "button"
+                        - if params.has_key? :form_id
+                          = link_to "Save and return", [:award_info, @form_answer.award_type, form_id: @form_answer], class: "button"
+                        - else
+                          = f.submit "Save and continue", class: "button"
 
   = render "accounts/steps_progress_bar"
