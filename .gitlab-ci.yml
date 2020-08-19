@@ -75,7 +75,7 @@ deploy_dev:
   stage: deploy
   script:
     - curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-    - dpkg -i cf-cli_amd64.deb
+    - sudo dpkg -i cf-cli_amd64.deb
     - cf -v
     - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
     - cf install-plugin blue-green-deploy -r CF-Community -f
@@ -90,7 +90,7 @@ deploy_staging:
   stage: deploy
   script:
     - curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-    - dpkg -i cf-cli_amd64.deb
+    - sudo dpkg -i cf-cli_amd64.deb
     - cf -v
     - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
     - cf install-plugin blue-green-deploy -r CF-Community -f
@@ -105,7 +105,7 @@ deploy_production:
   stage: deploy
   script:
     - curl -v -L -o cf-cli_amd64.deb 'https://cli.run.pivotal.io/stable?release=debian64&source=github'
-    - dpkg -i cf-cli_amd64.deb
+    - sudo dpkg -i cf-cli_amd64.deb
     - cf -v
     - cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
     - cf install-plugin blue-green-deploy -r CF-Community -f
