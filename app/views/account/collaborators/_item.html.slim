@@ -12,4 +12,4 @@ li.list-group-item id=dom_id(collaborator)
       br
     = mail_to collaborator.email
   p.collaborator__role
-    = collaborator.role_name
+    = collaborator == account_owner ? "Account owner" : collaborator.role_name

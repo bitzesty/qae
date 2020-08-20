@@ -1,6 +1,5 @@
-- if collaborators.any?
-  ul.list-add.collaborators-list.list-group
-    = render 'account/collaborators/item', collaborator: account_owner.decorate
+ul.list-add.collaborators-list.list-group
+  = render 'account/collaborators/item', collaborator: account_owner.decorate
 
-    - collaborators.decorate.each do |collaborator|
-      = render 'account/collaborators/item', collaborator: collaborator
+  - collaborators.decorate.each do |collaborator|
+    = render 'account/collaborators/item', collaborator: collaborator
