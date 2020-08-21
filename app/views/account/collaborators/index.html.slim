@@ -62,23 +62,22 @@ header.page-header.group.page-header-over-sidebar
                 = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
                   ' + Add a collaborator
 
-            - if collaborators.any? && !current_user.completed_registration?
-              footer
-                nav.pagination.no-border role="navigation" aria-label="Pagination"
-                  ul.group
-                    - unless params.has_key? :form_id
-                      li.previous.previous-alternate
-                        = link_to contact_settings_account_path, rel: "prev", title: "Navigate to previous part" do
-                          span class="pagination-label"
-                            ' Back
+            - if collaborators.any?
+                footer
+                  nav.pagination.no-border role="navigation" aria-label="Pagination"
+                    ul.group
+                      - if current_user.registration_in_progress?
+                        li.previous.previous-alternate
+                          = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part" do
+                            span class="pagination-label"
+                              ' Back
 
-                    li.submit
-                      - unless current_user.completed_registration
-                          = f.submit "Continue to applications", class: "button"
-                      - else
-                        - if params.has_key? :form_id
-                          = link_to "Save and return", [:award_info, @form_answer.award_type, form_id: @form_answer], class: "button"
-                        - else
+                      li.submit
+                        - if current_user.registration_in_progress?
                           = f.submit "Save and continue", class: "button"
+                        - elsif came_from_application_form?
+                          = link_to "Save and return", [:award_info, @form_answer.award_type, form_id: @form_answer], class: "button"
+                        - elsif user_redirected_to_collaborators_page?
+                          = link_to "Save and continue", dashboard_path, class: "button"
 
   = render "accounts/steps_progress_bar"
