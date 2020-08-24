@@ -13,12 +13,15 @@ module ApplicationHelper
       index_step_text = name
     end
 
+    
     if opts[:index] && opts[:active]
       if opts[:index] == opts[:active]
         step_status  = "current"
         opts[:class] += " step-current"
       else
-        if opts[:index] < opts[:active]
+        if opts[:disable_progression].present? && opts[:disable_progression]
+          opts[:class] = "step-regular"
+        elsif opts[:index] < opts[:active]
           step_status  = "past"
           opts[:class] += " step-past"
         end
@@ -64,6 +67,11 @@ module ApplicationHelper
                                            privacy
                                            cookies
                                          ].include?(action_name)
+  end
+
+  def show_navigation_links?
+    current_user.try(:completed_registration) &&
+      current_user&.account&.collaborators_without(current_user)&.excluding(current_user.account.owner)&.length > 0
   end
 
   def application_deadline(kind)

@@ -48,6 +48,10 @@ So that I see
     create :user, :completed_profile, role: "account_admin"
   end
 
+  let!(:collaborator) do
+    create :user, :completed_profile, role: "regular", account: user.account
+  end
+
   before do
     login_as(user, scope: :user)
   end

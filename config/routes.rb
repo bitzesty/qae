@@ -291,6 +291,6 @@ Rails.application.routes.draw do
   end
 
   namespace :account do
-    resources :collaborators, except: [:edit, :update, :show]
+    resources :collaborators, except: [:show]
   end
 end

@@ -73,13 +73,13 @@ So that they can collaborate form answers
           visit account_collaborators_path
         end
 
-        it "Should see list of account collaborators, excluding his self" do
-          expect_to_see "Collaborators"
+        it "Should see list of account collaborators, and themself" do
+          expect_to_see "Collaborators and account owner"
 
           within(".collaborators-list") do
             expect_to_see another_account_admin.decorate.full_name
             expect_to_see regular_admin.decorate.full_name
-            expect_to_see_no account_admin.decorate.full_name
+            expect_to_see account_admin.decorate.full_name
           end
         end
       end
@@ -94,7 +94,7 @@ So that they can collaborate form answers
           it "can't add person without email" do
             within("#new_collaborator") do
               expect {
-                click_on "Save collaborator"
+                click_on "Add the collaborator"
               }.to_not change {
                 account.reload.users.count
               }
@@ -111,7 +111,7 @@ So that they can collaborate form answers
               choose("Collaborator only")
 
               expect {
-                click_on "Save collaborator"
+                click_on "Add the collaborator"
               }.to_not change {
                 account.reload.users.count
               }
@@ -135,7 +135,7 @@ So that they can collaborate form answers
                 choose("Admin and collaborator")
 
                 expect {
-                  click_on "Save collaborator"
+                  click_on "Add the collaborator"
                 }.to_not change {
                   account.reload.users.count
                 }
@@ -152,7 +152,7 @@ So that they can collaborate form answers
                 choose("Admin and collaborator")
 
                 expect {
-                  click_on "Save collaborator"
+                  click_on "Add the collaborator"
                 }.to_not change {
                   account.reload.users.count
                 }
@@ -173,7 +173,7 @@ So that they can collaborate form answers
                 choose("Collaborator only")
 
                 expect {
-                  click_on "Save collaborator"
+                  click_on "Add the collaborator"
                 }.to change {
                   account.reload.users.count
                 }.by(1)
@@ -205,13 +205,14 @@ So that they can collaborate form answers
         it "should remove user from Collaborators, but do not remove User record" do
           within(".collaborators-list #user_#{collaborator.id}") do
             expect_to_see collaborator.email
-
-            expect {
-              click_on "Remove"
-            }.to change {
-              account.reload.users.count
-            }.by(-1)
+            click_on "Edit details"
           end
+
+          expect {
+            click_link "Remove collaborator"
+          }.to change {
+            account.reload.users.count
+          }.by(-1)
 
           collaborator.reload
           expect(collaborator.account_id).not_to eq(account_admin.account.id)

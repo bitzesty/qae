@@ -172,6 +172,10 @@ class User < ApplicationRecord
     ::CheckAccountOnBouncesEmail.bounce_reason(debounce_api_response_code)
   end
 
+  def registration_in_progress?
+    !completed_registration
+  end
+
   private
 
   def first_step?
