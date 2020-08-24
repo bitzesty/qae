@@ -10,6 +10,7 @@ class AccountsController < ApplicationController
   end
 
   def company_details
+    @account_owner = current_user.account.owner
     @active_step = 3
   end
 
