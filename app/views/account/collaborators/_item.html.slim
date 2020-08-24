@@ -1,21 +1,15 @@
 li.list-group-item id=dom_id(collaborator)
-  .pull-right
-    - if params.has_key? :form_id
-      = link_to "Remove", account_collaborator_path(collaborator, form_id: params[:form_id]),
-                          method: :delete,
-                          class: "remove-link text-danger"
-    - else
-      = link_to "Remove", account_collaborator_path(collaborator),
-                          method: :delete,
-                          class: "remove-link text-danger"
-  p
-    strong
-      = collaborator.role_name
-  br
-  p
+  - if current_user.account_admin? && collaborator != account_owner
+    .pull-right
+      = link_to "Edit details", edit_account_collaborator_path(collaborator), class: "edit-link"
+  h4.collaborator__name
     = collaborator.full_name_with_status
-  p
+  p.collaborator__jobtitle
+    = collaborator.job_title
+  p.collaborator__contact
     - if collaborator.phone_number.present?
       = collaborator.phone_number
-      ' &nbsp;
+      br
     = mail_to collaborator.email
+  p.collaborator__role
+    = collaborator == account_owner ? "Account owner" : collaborator.role_name

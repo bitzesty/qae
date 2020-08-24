@@ -27,6 +27,10 @@ class Account::CollaboratorsController < Account::BaseController
 
   def index
     @active_step = 4
+
+    if current_user.account_admin?
+      current_account.update_column(:collaborators_checked_at, Time.zone.now)
+    end
   end
 
   def new
@@ -52,6 +56,15 @@ class Account::CollaboratorsController < Account::BaseController
       end
     else
       render :new
+    end
+  end
+
+  def update
+    if collaborator.update(update_params)
+      redirect_to account_collaborators_path,
+                    notice: "The collaborator #{collaborator.email} details were successfully updated."
+    else
+      render :edit
     end
   end
 
@@ -89,6 +102,17 @@ class Account::CollaboratorsController < Account::BaseController
       :email,
       :role,
       :form_id
+    )
+  end
+
+  def update_params
+    params.require(:collaborator).permit(
+      :title,
+      :first_name,
+      :last_name,
+      :job_title,
+      :phone_number,
+      :role
     )
   end
 

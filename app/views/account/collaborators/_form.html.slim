@@ -1,12 +1,15 @@
-- if params.has_key? :form_id
+- if collaborator.persisted?
+  - form_path = account_collaborator_path(collaborator)
+- elsif params.has_key? :form_id
   - form_path = account_collaborators_path(form_id: params[:form_id])
 - else
   - form_path = account_collaborators_path
+
 = simple_form_for collaborator,
                   as: :collaborator,
                   url: form_path,
                   builder: SimpleForm::AccountFormBuilder,
-                  html: {class: 'qae-form', method: :post} do |f|
+                  html: { class: 'qae-form' } do |f|
 
   .add-collaborator-box
     - if add_collaborator_interactor.errors.present? or collaborator.errors[:base].present?
@@ -21,23 +24,24 @@
               = error
 
     fieldset
-      h3.first-h3
-        ' Collaborator's full name
       = f.input :title, input_html: { class: "big tiny", autocomplete: "off"}
       = f.input :first_name, required: true, input_html: { class: 'big medium', autocomplete: "off"}
       = f.input :last_name, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
       = f.input :job_title, required: true ,input_html: { class: 'big medium', autocomplete: "off"}
+      = f.input :phone_number, required: true, input_html: { class: 'big small-medium', autocomplete: "off"}, label: "Telephone number"
+
+      - if f.object.persisted?
+        .question-group
+          label.control-label
+            | Email
+          p.question-context
+            | If you would like to change the email, please ask the collaborator to login and do so themselves, or contact the Queen's Award for Enterprise team.
+          = f.object.email
+      - else
+        = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: "Email"
 
     fieldset
-      h3 = f.label :phone_number, label: "Telephone number"
-      = f.input :phone_number, required: true, input_html: { class: 'big small', autocomplete: "off"}, label: false
-
-    fieldset
-      h3 = f.label :email
-      = f.input :email, required: true, input_html: { class: "big large", autocomplete: "off"}, label: false
-
-    fieldset
-      legend
+      legend.body-font-size
         ' Administrative rights
       p.question-context
         ' A 'Collaborator only' can only write and edit your applications/nominations. Whilst an 'Admin and collaborator' is also able to add new collaborators.
@@ -51,4 +55,9 @@
                 label_html: { class: "visuallyhidden" },
                 item_wrapper_class: "selectable"
 
-    = f.submit "Save collaborator", class: "button"
+    p.inline-form-actions
+      = link_to "Cancel", account_collaborators_path, class: "button button--link"
+      - if f.object.persisted?
+        = f.submit "Save collaborator details", class: "button"
+      - else
+        = f.submit "Add the collaborator", class: "button"

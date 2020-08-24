@@ -12,6 +12,10 @@ legend {
   }
 }
 
+legend.body-font-size {
+  @include core-19;
+}
+
 .question-block h2,
 .regular-question h2 {
   @include core-24;
@@ -43,10 +47,13 @@ legend {
 .question-context h6 {
   color: $grey-1;
 
-  .application-notice &,
-  .add-collaborator-box & {
+  .application-notice & {
     color: $black;
   }
+}
+
+.add-collaborator-box .question-context {
+  @include core-19;
 }
 
 ul.question-context,
@@ -179,6 +186,18 @@ textarea {
 
     @include ie-lte(7) {
       width: 8em;
+    }
+
+    @media (max-width: 640px) {
+      min-width: 0;
+    }
+  }
+
+  &.small-medium {
+    max-width: 9.25em;
+
+    @include ie-lte(7) {
+      width: 9.25em;
     }
 
     @media (max-width: 640px) {
@@ -854,7 +873,8 @@ input[type="file"] {
     margin-right: $gutter-one-third;
   }
 
-  .remove-link {
+  .remove-link,
+  .edit-link {
     @include core-16;
     float: right;
     border: none;
@@ -1454,4 +1474,29 @@ fieldset.account-contact-preferences-other-ops {
 .social-mobility-form-goal-link {
   display: inline-block;
   margin-bottom: 4px;
+}
+
+.inline-form-actions {
+  .button {
+    display: inline-block;
+    margin-right: 20px;
+    margin-top: 20px !important;
+  }
+}
+
+.form-actions {
+  margin-top: 3em;
+}
+
+.static-field {
+  margin: 1em 0 0;
+
+  strong {
+    display: block;
+    margin-bottom: 0.5em;
+  }
+
+  & + .static-field {
+    margin-top: 2.5em;
+  }
 }

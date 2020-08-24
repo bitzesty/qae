@@ -30,4 +30,8 @@ class Account < ApplicationRecord
                  for_award_type(award_type).
                  present?
   end
+
+  def collaborators_checked?
+    collaborators_checked_at && collaborators_checked_at > Time.zone.now - 3.months
+  end
 end
