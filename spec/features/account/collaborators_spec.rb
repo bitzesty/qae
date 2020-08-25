@@ -57,10 +57,10 @@ So that they can collaborate form answers
            role: "account_admin"
   end
 
-  let!(:regular_admin) do
+  let!(:regular_user) do
     create :user,
            :completed_profile,
-           first_name: "Regular Admin Kelly",
+           first_name: "Regular User Kelly",
            account: account,
            role: "regular"
   end
@@ -78,7 +78,7 @@ So that they can collaborate form answers
 
           within(".collaborators-list") do
             expect_to_see another_account_admin.decorate.full_name
-            expect_to_see regular_admin.decorate.full_name
+            expect_to_see regular_user.decorate.full_name
             expect_to_see account_admin.decorate.full_name
           end
         end
@@ -222,46 +222,24 @@ So that they can collaborate form answers
         end
       end
 
-      describe "I'm logged in as regular admin and I can't access the Collaborators section" do
+      describe "I'm logged in as regular user and I can access the Collaborators section" do
         before do
-          login_as regular_admin
+          login_as regular_user
         end
 
-        it "Should restrict access for non account admins" do
+        it "Should not restrict access for non account admins to collaborators page" do
           visit account_collaborators_path
 
-          expect_to_see "Access denied!"
-          expect(current_path).to be_eql(dashboard_path)
+          expect_to_see "Collaborators"
+          expect(current_path).to be_eql(account_collaborators_path)
+        end
 
+        it "should restrict access for non account admins new collaborators page" do
           visit new_account_collaborator_path
 
           expect_to_see "Access denied!"
           expect(current_path).to be_eql(dashboard_path)
         end
-      end
-    end
-  end
-
-  describe "Ability to submit form answer" do
-    describe "I'm logged in as account admin and I can submit form answer" do
-      before do
-        login_as account_admin
-        visit account_collaborators_path
-      end
-
-      it "Should see list of account collaborators, excluding his self" do
-        expect_to_see "Collaborators"
-      end
-    end
-
-    describe "I'm logged in as regular admin and I can't submit form answer" do
-      before do
-        login_as regular_admin
-        visit account_collaborators_path
-      end
-
-      it "Should restrict access for non account admins" do
-        expect_to_see "Access denied!"
       end
     end
   end
