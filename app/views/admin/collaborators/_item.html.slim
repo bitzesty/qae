@@ -1,0 +1,21 @@
+li.list-group-item id=dom_id(collaborator)
+  .pull-right
+    - if params.has_key? :form_id
+      = link_to "Remove", account_collaborator_path(collaborator, form_id: params[:form_id]),
+                          method: :delete,
+                          class: "remove-link text-danger"
+    - else
+      = link_to "Remove", account_collaborator_path(collaborator),
+                          method: :delete,
+                          class: "remove-link text-danger"
+  p
+    strong
+      = collaborator.role_name
+  br
+  p
+    = collaborator.full_name_with_status
+  p
+    - if collaborator.phone_number.present?
+      = collaborator.phone_number
+      ' &nbsp;
+    = mail_to collaborator.email

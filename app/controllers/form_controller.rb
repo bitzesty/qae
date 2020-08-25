@@ -3,8 +3,9 @@ require "award_years/v2019/qae_forms"
 require 'award_years/v2020/qae_forms'
 
 class FormController < ApplicationController
-  before_action :authenticate_user!, :check_account_completion, :check_number_of_collaborators, :check_deadlines
-
+  before_action :authenticate_user!
+  before_action :check_account_completion, :check_number_of_collaborators, unless: :admin_in_read_only_mode?
+  before_action :check_deadlines
   before_action :restrict_access_if_admin_in_read_only_mode!, only: [
     :new, :create, :update, :destroy,
     :submit_confirm, :save, :add_attachment
