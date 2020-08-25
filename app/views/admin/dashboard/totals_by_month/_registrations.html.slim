@@ -1,10 +1,8 @@
-.dashboard-table__wrapper
+.dashboard-table__wrapper.dashboard-report
   table.dashboard-table.dashboard-table--small width="1000"
     caption
       | New account registrations
-      span.dashboard__table-status
-        | Data last updated on 19/09/2020
-      a.btn.btn-primary.btn--load
+      a.btn.btn-primary.btn--load.update-report href=account_registrations_admin_dashboard_reports_path(kind: "by_month")
         | Update data
     thead
       tr
@@ -23,21 +21,4 @@
         th.bold width="140"
           | Totals on deadline
     tbody
-      tr
-        th 2020 - 2021 (9/9/20)
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.bold &nbsp;
-        td.bold &nbsp;
-      tr
-        th 2020 - 2021 (9/9/20)
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.bold &nbsp;
-        td.bold &nbsp;
+      = render "admin/dashboard/totals_by_month/users_table_body"

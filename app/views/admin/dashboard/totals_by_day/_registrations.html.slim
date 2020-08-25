@@ -1,43 +1,26 @@
-.dashboard-table__wrapper
+.dashboard-table__wrapper.dashboard-report
   table.dashboard-table.dashboard-table--small width="1000"
     caption
       | New account registrations
-      span.dashboard__table-status
-        | Data last updated on 19/09/2020
-      a.btn.btn-primary.btn--load
+      a.btn.btn-primary.btn--load.update-report href=account_registrations_admin_dashboard_reports_path(kind: "by_day")
         | Update data
     thead
       tr
         th.bold.border-right width="150"
           | Year
         th.bold.border-right width="140"
-          | By end of April
+          | Up to end of 6 days before
         th.bold.border-right width="140"
-          | By end of May
+          | Up to end of 5 days before
         th.bold.border-right width="140"
-          | By end of June
+          | Up to end of 4 days before
         th.bold.border-right width="140"
-          | By end of July
+          | Up to end of 3 days before
         th.bold.border-right width="140"
-          | By end of August
+          | Up to end of 2 days before
+        th.bold.border-right width="140"
+          | Up to end of 1 day before
         th.bold width="140"
           | Totals on deadline
     tbody
-      tr
-        th 2020 - 2021 (9/9/20)
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.bold &nbsp;
-        td.bold &nbsp;
-      tr
-        th 2020 - 2021 (9/9/20)
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.border-right &nbsp;
-        td.bold &nbsp;
-        td.bold &nbsp;
+      = render "admin/dashboard/totals_by_week/users_table_body"

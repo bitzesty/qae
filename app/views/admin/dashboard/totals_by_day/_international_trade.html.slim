@@ -1,90 +1,9 @@
-.dashboard-table__wrapper
-  table.dashboard-table.dashboard-table--small width="1130"
+.dashboard-table__wrapper.dashboard-report
+  table.dashboard-table.dashboard-table--small width="1000"
     caption
       | International trade
-      span.dashboard__table-status
-        | Data last updated on 19/09/2020
-      a.btn.btn-primary.btn--loading
+      a.btn.btn-primary.btn--load.update-report href=international_trade_admin_dashboard_reports_path(kind: "by_day")
         | Update data
-    thead
-      tr
-        th.bold.border-right width="150" rowspan="2"
-          | Year
-        th.bold.border-right width="140" colspan="2"
-          | Up to end of 6 days before
-        th.bold.border-right width="140" colspan="2"
-          | Up to end of 5 days before
-        th.bold.border-right width="140" colspan="2"
-          | Up to end of 4 days before
-        th.bold.border-right width="140" colspan="2"
-          | Up to end of 3 days before
-        th.bold.border-right width="140" colspan="2"
-          | Up to end of 2 days before
-        th.bold.border-right width="140" colspan="2"
-          | Up to end of 1 day before
-        th.bold width="140" colspan="2"
-          | Totals on deadline
-      tr
-        th width="70" In progress
-        th.border-right width="70" Submitted
-        th width="70" In progress
-        th.border-right width="70" Submitted
-        th width="70" In progress
-        th.border-right width="70" Submitted
-        th width="70" In progress
-        th.border-right width="70" Submitted
-        th width="70" In progress
-        th.border-right width="70" Submitted
-        th width="70" In progress
-        th.border-right width="70" Submitted
-        th width="70" In progress
-        th width="70" Submitted
+    = render "admin/dashboard/totals_by_day/table_head"
     tbody
-      tr
-        th 2020 - 2021 (9/9/20)
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td.bold &nbsp;
-        td.bold &nbsp;
-      tr
-        th 2020 - 2021 (9/9/20)
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td.bold &nbsp;
-        td.bold &nbsp;
-      tr
-        th 2020 - 2021 (9/9/20)
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td &nbsp;
-        td.border-right &nbsp;
-        td.bold &nbsp;
-        td.bold &nbsp;
+      = render "admin/dashboard/totals_by_day/table_body"

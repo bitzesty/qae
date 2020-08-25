@@ -7,6 +7,10 @@ class DashboardPolicy < ApplicationPolicy
     true
   end
 
+  def reports?
+    true
+  end
+
   def totals_by_month?
     true
   end

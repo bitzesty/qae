@@ -206,6 +206,18 @@ Rails.application.routes.draw do
         get :downloads
       end
     end
+
+    resources :dashboard_reports, only: [] do
+      collection do
+        get :all_applications
+        get :international_trade
+        get :social_mobility
+        get :innovation
+        get :sustainable_development
+        get :account_registrations
+      end
+    end
+
     resources :users, except: [:destroy] do
       member do
         patch :resend_confirmation_email
