@@ -70,8 +70,7 @@ module ApplicationHelper
   end
 
   def show_navigation_links?
-    current_user.try(:completed_registration) &&
-      current_user&.account&.collaborators_without(current_user)&.excluding(current_user.account.owner)&.length > 0
+    current_user.completed_registration? && current_user.account.has_collaborators?
   end
 
   def application_deadline(kind)
