@@ -19,3 +19,30 @@
 .input-group-addon {
   display: none !important;
 }
+
+.warning-notice {
+  background-color: #faf0f0;
+  padding: 2.5em 1.5em;
+  margin-bottom: 2em;
+  border: 1px solid #a81d1d;
+  background-position: 1.5em 3em;
+  padding-left: 5em;
+
+  p {
+    margin-top: 0 !important;
+    font-size: 1.25em;
+    font-weight: bold;
+    margin-bottom: 1em !important;
+    padding-left: 0 !important;
+  }
+
+  @media (max-width: 600px) {
+    padding: 1.5em 1em;
+    padding-top: 5em;
+    background-position: 1em 1.5em;
+
+    p {
+
+    }
+  }
+}

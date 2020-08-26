@@ -16,12 +16,17 @@ header.page-header.group.page-header-over-sidebar
       article.group role="article"
         .inner
           - if current_user.account_admin?
-            .application-notice.help-notice
-              p
-                - if collaborators.any?
+            - if collaborators.any?
+              .application-notice.help-notice
+                p
                   | Please check if collaborators' details are up to date.
-                - else
+            - else
+              .application-notice.help-notice.warning-notice
+                p
                   | You don't have any collaborators added. Please add at least one collaborator.
+                
+                = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
+                  ' + Add a collaborator
 
             p Adding collaborators lets your colleagues sign in and contribute to your applications.
 
