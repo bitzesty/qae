@@ -1,0 +1,10 @@
+.dashboard-table__wrapper.dashboard-report
+  table.dashboard-table.dashboard-table--small width="1000"
+    caption
+      = title
+      a.btn.btn-primary.btn--load.update-report href=url
+        | Update data
+    = render "admin/dashboard/totals_#{kind}/table_head"
+
+    tbody
+      = render "admin/dashboard/totals_#{kind}/table_body"

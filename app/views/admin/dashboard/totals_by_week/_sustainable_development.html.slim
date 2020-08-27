@@ -1,9 +1,0 @@
-.dashboard-table__wrapper.dashboard-report
-  table.dashboard-table.dashboard-table--small width="1130"
-    caption
-      | Sustainable development
-      a.btn.btn-primary.btn--load.update-report href=sustainable_development_admin_dashboard_reports_path(kind: "by_week")
-        | Update data
-    = render "admin/dashboard/totals_by_week/table_head"
-    tbody
-      = render "admin/dashboard/totals_by_week/table_body"

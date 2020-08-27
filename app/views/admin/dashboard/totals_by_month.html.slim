@@ -8,14 +8,14 @@
       | Running totals compared to previous years
 
   .dashboard__section
-    = render "admin/dashboard/totals_by_month/all_applications"
+    = render "admin/dashboard/applications_report", url: all_applications_admin_dashboard_reports_path(kind: "by_month"), title: "All applications", kind: "by_month"
   .dashboard__section
-    = render "admin/dashboard/totals_by_month/international_trade"
+    = render "admin/dashboard/applications_report", url: international_trade_admin_dashboard_reports_path(kind: "by_month"), title: "International trade", kind: "by_month"
   .dashboard__section
-    = render "admin/dashboard/totals_by_month/innovation"
+    = render "admin/dashboard/applications_report", url: innovation_admin_dashboard_reports_path(kind: "by_month"), title: "Innovation", kind: "by_month"
   .dashboard__section
-    = render "admin/dashboard/totals_by_month/social_mobility"
+    = render "admin/dashboard/applications_report", url: social_mobility_admin_dashboard_reports_path(kind: "by_month"), title: "Social mobility", kind: "by_month"
   .dashboard__section
-    = render "admin/dashboard/totals_by_month/sustainable_development"
+    = render "admin/dashboard/applications_report", url: sustainable_development_admin_dashboard_reports_path(kind: "by_month"), title: "Sustainable development", kind: "by_month"
   .dashboard__section
     = render "admin/dashboard/totals_by_month/registrations"
