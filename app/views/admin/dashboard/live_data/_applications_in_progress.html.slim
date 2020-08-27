@@ -19,48 +19,25 @@ table.dashboard-table
       th.bold width="100"
         | Total in progress
   tbody
-    tr
-      th.bold International trade
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td.bold &nbsp;
-    tr
-      th.bold Innovation
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td.bold &nbsp;
-    tr
-      th.bold Sustainable development
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td.bold &nbsp;
-    tr
-      th.bold Promoting Opportunity
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td &nbsp;
-      td.bold &nbsp;
+    - completions = @statistics.applications_completions
+    - FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |slug, name|
+      tr
+        th.bold = name
+        - ar_size = completions[slug].size
+        - completions[slug].each_with_index do |count, index|
+          - if index + 1 == ar_size
+            td.bold = count
+          - else
+            td = count
+
     tr
       th.uppercase.bold Total
-      td.bold &nbsp;
-      td.bold &nbsp;
-      td.bold &nbsp;
-      td.bold &nbsp;
-      td.bold &nbsp;
-      td.bold &nbsp;
-      td.bold &nbsp;
+      - completions["total"].each_with_index do |count, index|
+        td.bold
+          = count
+    - unless hide_promotion?
+      tr
+        th.bold = FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
+          - completions["promotion"].each_with_index do |count, index|
+            td class=(index == 0 ? "not-eligible" : "")
+              = count

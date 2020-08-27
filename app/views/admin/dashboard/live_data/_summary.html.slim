@@ -7,23 +7,8 @@ table.dashboard-table
       th.bold width="125" Last 7 days
       th.bold width="125" Total
   tbody
-    tr
-      th.bold Registered users
-      td &nbsp;
-      td &nbsp;
-      td.bold &nbsp;
-    tr
-      th.bold Applications not eligible
-      td &nbsp;
-      td &nbsp;
-      td.bold &nbsp;
-    tr
-      th.bold Applications in progress
-      td &nbsp;
-      td &nbsp;
-      td.bold &nbsp;
-    tr
-      th.bold Applications submitted
-      td &nbsp;
-      td &nbsp;
-      td.bold &nbsp;
+    - applications = @statistics.applications_table.each do |_, app|
+      tr
+        th.bold = app[:name]
+        - app[:counters].each_with_index do |count, i|
+          td class=(i == 2 ? "bold" : "") = count
