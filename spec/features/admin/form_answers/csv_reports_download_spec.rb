@@ -6,21 +6,21 @@ describe "Admin downloads CSV reports" do
   before { login_admin(admin) }
 
   it "downloads CSV report" do
-    visit admin_dashboard_index_path
+    visit downloads_admin_dashboard_index_path
     links_count = 0
 
-    within first(".list-unstyled") do
-      links_count = all(:css, ".pull-right > a", text: "Download").count
+    within first(".download-list") do
+      links_count = all(:css, "a.download-link", text: "Download").count
     end
 
     (1..links_count).each do |i|
-      within first(".list-unstyled") do
-        link = all(:css, ".pull-right > a", text: "Download")[i - 1]
+      within first(".download-list") do
+        link = all(:css, "a.download-link", text: "Download")[i - 1]
         link.click
         expect(page.response_headers["Content-Type"]).to eq("text/csv")
       end
 
-      visit admin_dashboard_index_path
+      visit downloads_admin_dashboard_index_path
     end
 
     expect(AuditLog.count).to eq(5)

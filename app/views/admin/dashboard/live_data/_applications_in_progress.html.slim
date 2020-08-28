@@ -1,0 +1,43 @@
+table.dashboard-table
+  caption Applications in progress
+  thead
+    tr
+      th.border-right.bold width="250"
+        | Award
+      th.bold width="100"
+        | Not eligible
+      th.bold width="100"
+        | 0%
+      th.bold width="100"
+        | 1 - 24%
+      th.bold width="100"
+        | 25 - 49%
+      th.bold width="100"
+        | 50 - 74%
+      th.bold width="100"
+        | 75-99%
+      th.bold width="100"
+        | Total in progress
+  tbody
+    - completions = @statistics.applications_completions
+    - FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |slug, name|
+      tr
+        th.bold = name
+        - ar_size = completions[slug].size
+        - completions[slug].each_with_index do |count, index|
+          - if index + 1 == ar_size
+            td.bold = count
+          - else
+            td = count
+
+    tr
+      th.uppercase.bold Total
+      - completions["total"].each_with_index do |count, index|
+        td.bold
+          = count
+    - unless hide_promotion?
+      tr
+        th.bold = FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
+          - completions["promotion"].each_with_index do |count, index|
+            td class=(index == 0 ? "not-eligible" : "")
+              = count

@@ -1,0 +1,28 @@
+table.dashboard-table
+  caption Submitted applications
+  thead
+    tr
+      th.bold.border-right width="250" Award
+      th.bold width="125" Last 24h
+      th.bold width="125" Last 7 days
+      th.bold width="125" Total
+  tbody
+    - submissions = @statistics.applications_submissions
+    - FormAnswer::CURRENT_AWARD_TYPE_FULL_NAMES.each do |slug, name|
+      tr
+        th.bold = name
+        - ar_size = submissions[slug].size
+        - submissions[slug].each_with_index do |count, index|
+          - if index + 1 == ar_size
+            td.bold =count
+          - else
+            td= count
+    tr
+      th.bold Total
+      - submissions["total"].each do |count|
+        td.bold = count
+    - unless hide_promotion?
+      tr
+        th.bold = FormAnswer::AWARD_TYPE_FULL_NAMES["promotion"]
+        - submissions["promotion"].each do |count|
+          td = count
