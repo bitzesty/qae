@@ -7,7 +7,7 @@
   padding-left: 1.75em;
   position: relative;
   font-weight: bold;
-  
+
   &:before {
     content: " ";
     display: block;
@@ -76,7 +76,7 @@
   padding: 2em 0;
   border-top: 2px solid #ccc;
   position: relative;
-  
+
 }
 
 .dashboard-table {
@@ -91,6 +91,10 @@
     margin-bottom: 0.5em;
     color: black;
 
+    a {
+      text-transform: none;
+    }
+
     .dashboard__table-status {
       text-transform: none;
       display: block;
@@ -104,7 +108,7 @@
       @media (min-width: 768px) {
         padding-right: 200px;
       }
-      
+
       &:before {
         content: " ";
         display: block;
@@ -249,7 +253,7 @@
       padding: 1.2em 0 1.2em 1.5em;
       position: relative;
       border-bottom: 1px solid #ccc;
-      
+
       &:before {
         content: " ";
         display: block;
