@@ -1,0 +1,13 @@
+.nav-subnav
+  ul
+    li class="dashboard-live #{'active' if params[:action] == "index"}" role="presentation"
+      = link_to "Live data", admin_dashboard_index_path
+    li class="dashboard-monthly #{'active' if params[:action] == "totals_by_month"}" role="presentation"
+      = link_to "Totals by month", totals_by_month_admin_dashboard_index_path
+    li class="dashboard-weekly #{'active' if params[:action] == "totals_by_week"}" role="presentation"
+      = link_to "Totals by week", totals_by_week_admin_dashboard_index_path
+    li class="dashboard-daily #{'active' if params[:action] == "totals_by_day"}" role="presentation"
+      = link_to "Totals by day", totals_by_day_admin_dashboard_index_path
+    li class="dashboard-downloads #{'active' if params[:action] == "downloads"}" role="presentation"
+      = link_to "Downloads", downloads_admin_dashboard_index_path
+  .clear

@@ -25,6 +25,10 @@ class Account < ApplicationRecord
     users.excluding(user).by_email
   end
 
+  def has_collaborators?
+    users.count > 1
+  end
+
   def has_award_in_this_year?(award_type)
     form_answers.for_year(AwardYear.current.year.to_s).
                  for_award_type(award_type).

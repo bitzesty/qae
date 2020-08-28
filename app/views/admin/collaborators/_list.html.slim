@@ -1,0 +1,4 @@
+- if collaborators.any?
+  ul.list-add.collaborators-list.list-group
+    - collaborators.decorate.each do |collaborator|
+      = render 'admin/collaborators/item', collaborator: collaborator

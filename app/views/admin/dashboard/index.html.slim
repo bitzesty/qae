@@ -1,23 +1,15 @@
-.row
-  = render "layouts/admin_award_year"
-.clear
-br
-.row.clearfix
-  .show-sidebar-container
-    .show-sidebar
-      = render "csv_reports"
+= render 'admin/dashboard/navigation'
 
-      - if policy(:report).show?
-        = render "admin/reports/primary_vs_secondary_appraisals" if @award_year.year > 2019
-        = render "admin/feedbacks/pdf_reports"
-        = render "admin/reports/case_summaries"
-        = render "admin/reports/assessors_progress"
+.dashboard
+  .dashboard__header
+    h1.dashboard__heading
+      | Live data
+    .row
+      = render "layouts/admin_award_year"
 
-  .show-main-content
-    .panel-group#dashboard-details-parent role="tablist" aria-multiselectable="true"
-      .panel.panel-default
-        .panel-heading#stage-one-application-heading role="tab"
-          h4.panel-title
-            a data-toggle="collapse" data-parent="#dashboard-details" href="#stage-one-application" aria-expanded="true" aria-controls="stage-one-application"
-              ' Stage 1 - Application
-        = render "admin/dashboard/stage_one_application"
+  .dashboard__section
+    = render "admin/dashboard/live_data/applications_in_progress"
+  .dashboard__section
+    = render "admin/dashboard/live_data/submitted_applications"
+  .dashboard__section
+    = render "admin/dashboard/live_data/summary"

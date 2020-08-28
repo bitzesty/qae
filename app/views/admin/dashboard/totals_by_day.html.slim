@@ -1,0 +1,21 @@
+= render 'admin/dashboard/navigation'
+
+.dashboard
+  .dashboard__header
+    h1.dashboard__heading
+      | Running totals by day
+    p.dashboard__subheading
+      | Running totals compared to previous years
+
+  .dashboard__section
+    = render "admin/dashboard/applications_report", url: all_applications_admin_dashboard_reports_path(kind: "by_day"), title: "All applications", kind: "by_day"
+  .dashboard__section
+    = render "admin/dashboard/applications_report", url: international_trade_admin_dashboard_reports_path(kind: "by_day"), title: "International trade", kind: "by_day"
+  .dashboard__section
+    = render "admin/dashboard/applications_report", url: innovation_admin_dashboard_reports_path(kind: "by_day"), title: "Innovation", kind: "by_day"
+  .dashboard__section
+    = render "admin/dashboard/applications_report", url: social_mobility_admin_dashboard_reports_path(kind: "by_day"), title: "Social mobility", kind: "by_day"
+  .dashboard__section
+    = render "admin/dashboard/applications_report", url: sustainable_development_admin_dashboard_reports_path(kind: "by_day"), title: "Sustainable development", kind: "by_day"
+  .dashboard__section
+    = render "admin/dashboard/totals_by_day/registrations"

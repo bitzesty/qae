@@ -16,12 +16,17 @@ header.page-header.group.page-header-over-sidebar
       article.group role="article"
         .inner
           - if current_user.account_admin?
-            .application-notice.help-notice
-              p
-                - if collaborators.any?
+            - if collaborators.any?
+              .application-notice.help-notice
+                p
                   | Please check if collaborators' details are up to date.
-                - else
+            - else
+              .application-notice.help-notice.warning-notice
+                p
                   | You don't have any collaborators added. Please add at least one collaborator.
+                
+                = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
+                  ' + Add a collaborator
 
             p Adding collaborators lets your colleagues sign in and contribute to your applications.
 
@@ -54,30 +59,31 @@ header.page-header.group.page-header-over-sidebar
 
             = render "list"
 
-            p.collaborators__add
+            - if current_user.account_admin?
+              p.collaborators__add
+                - if collaborators.any?
+                  = link_to new_account_collaborator_path(form_id: @form_answer), class: "button button--secondary"
+                    ' + Add another collaborator
+                - else
+                  = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
+                    ' + Add a collaborator
+
               - if collaborators.any?
-                = link_to new_account_collaborator_path(form_id: @form_answer), class: "button button--secondary"
-                  ' + Add another collaborator
-              - else
-                = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
-                  ' + Add a collaborator
-
-            - if collaborators.any?
-                footer
-                  nav.pagination.no-border role="navigation" aria-label="Pagination"
-                    ul.group
-                      - if current_user.registration_in_progress?
-                        li.previous.previous-alternate
-                          = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part" do
-                            span class="pagination-label"
-                              ' Back
-
-                      li.submit
+                  footer
+                    nav.pagination.no-border role="navigation" aria-label="Pagination"
+                      ul.group
                         - if current_user.registration_in_progress?
-                          = f.submit "Save and continue", class: "button"
-                        - elsif came_from_application_form?
-                          = link_to "Save and return", [:award_info, @form_answer.award_type, form_id: @form_answer], class: "button"
-                        - elsif user_redirected_to_collaborators_page?
-                          = link_to "Save and continue", dashboard_path, class: "button"
+                          li.previous.previous-alternate
+                            = link_to company_details_account_path, rel: "prev", title: "Navigate to previous part" do
+                              span class="pagination-label"
+                                ' Back
+
+                        li.submit
+                          - if current_user.registration_in_progress?
+                            = f.submit "Save and continue", class: "button"
+                          - elsif came_from_application_form?
+                            = link_to "Save and return", [:award_info, @form_answer.award_type, form_id: @form_answer], class: "button"
+                          - elsif user_redirected_to_collaborators_page?
+                            = link_to "Save and continue", dashboard_path, class: "button"
 
   = render "accounts/steps_progress_bar"
