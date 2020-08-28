@@ -1,0 +1,20 @@
+- if @report
+  - @report.stats.each do |row|
+    tr
+      th = row.label
+      - row.content.each_with_index do |cell, i|
+        - if i == 5
+          td.bold = cell
+        - else
+          td.border-right = cell
+- else
+  - dummy_report = Reports::Dashboard::Base.new
+  - dummy_report.award_year_range.each do |award_year|
+    tr
+      th = dummy_report.label(award_year)
+      td.border-right &nbsp;
+      td.border-right &nbsp;
+      td.border-right &nbsp;
+      td.border-right &nbsp;
+      td.border-right &nbsp;
+      td.bold &nbsp;

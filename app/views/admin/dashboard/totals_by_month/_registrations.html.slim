@@ -1,0 +1,27 @@
+.dashboard-table__wrapper.dashboard-report
+  table.dashboard-table.dashboard-table--small width="1000"
+    caption
+      | New account registrations
+      a.btn.btn-primary.btn--load.update-report href=account_registrations_admin_dashboard_reports_path(kind: "by_month")
+        | Load data
+      span.updating-data.hidden
+        | Updating data
+
+    thead
+      tr
+        th.bold.border-right width="150"
+          | Year
+        th.bold.border-right width="140"
+          | By end of April
+        th.bold.border-right width="140"
+          | By end of May
+        th.bold.border-right width="140"
+          | By end of June
+        th.bold.border-right width="140"
+          | By end of July
+        th.bold.border-right width="140"
+          | By end of August
+        th.bold width="140"
+          | Totals on deadline
+    tbody
+      = render "admin/dashboard/totals_by_month/users_table_body"

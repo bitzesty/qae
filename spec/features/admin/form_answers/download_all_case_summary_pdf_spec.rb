@@ -15,7 +15,7 @@ So that I can print and review application case summaries
 
   describe "Dashboard / Case Summary section displaying" do
     before do
-      visit admin_dashboard_index_path
+      visit downloads_admin_dashboard_index_path
     end
 
     it "should be links to download case summaries" do
