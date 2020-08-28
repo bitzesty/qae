@@ -4,7 +4,7 @@
       = title
       a.btn.btn-primary.btn--load.update-report href=url
         | Load data
-      span.updating-data.hidden
+      button.btn.btn-primary.btn--loading.updating-data.hidden
         | Updating data
     = render "admin/dashboard/totals_#{kind}/table_head"
 

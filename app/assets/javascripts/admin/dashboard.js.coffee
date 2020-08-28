@@ -1,4 +1,8 @@
 jQuery ->
+  $(document).on "click", ".updating-data", (e) ->
+    e.preventDefault()
+    e.stopPropagation()
+
   $(".dashboard-report .update-report").on "click", (e) ->
     e.preventDefault()
     link = $(e.currentTarget)
@@ -9,6 +13,7 @@ jQuery ->
     link.removeClass("btn--load")
     link.addClass("btn--reload")
     $(".updating-data", wrapper).removeClass("hidden")
+    $(".updating-data", wrapper).prop "disabled", true
 
     $("tbody", wrapper).load href, ->
       link.removeClass("hidden")
