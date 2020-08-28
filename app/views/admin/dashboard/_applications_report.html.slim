@@ -3,7 +3,9 @@
     caption
       = title
       a.btn.btn-primary.btn--load.update-report href=url
-        | Update data
+        | Load data
+      span.updating-data.hidden
+        | Updating data
     = render "admin/dashboard/totals_#{kind}/table_head"
 
     tbody

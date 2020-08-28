@@ -3,7 +3,10 @@
     caption
       | New account registrations
       a.btn.btn-primary.btn--load.update-report href=account_registrations_admin_dashboard_reports_path(kind: "by_week")
-        | Update data
+        | Load data
+      span.updating-data.hidden
+        | Updating data
+
     thead
       tr
         th.bold.border-right width="150"
