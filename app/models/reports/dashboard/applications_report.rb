@@ -28,7 +28,11 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
       deadline = submission_deadline(award_year)
 
       content = (4..deadline.month).to_a.map do |month|
-        date = Date.new(award_year.year - 1, month).end_of_month
+        date = if month == deadline.month
+          deadline
+        else
+          Date.new(award_year.year - 1, month).end_of_month
+        end
 
         generate_content(form_answers, date)
       end.flatten

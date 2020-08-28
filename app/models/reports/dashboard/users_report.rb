@@ -17,7 +17,11 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
       deadline = submission_deadline(award_year)
 
       content = (4..deadline.month).to_a.map do |month|
-        date = Date.new(award_year.year - 1, month).end_of_month
+        date = if month == deadline.month
+          deadline
+        else
+          Date.new(award_year.year - 1, month).end_of_month
+        end
 
         generate_content(users, date)
       end
@@ -48,7 +52,6 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
 
       content = 6.downto(0).map do |days_diff|
         date = deadline - days_diff.days
-        puts date
 
         generate_content(users, date)
       end
@@ -59,7 +62,7 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
 
 
   def generate_content(users, date)
-    if Date.current > date
+    if Date.current >= date
       users.where("created_at < ?", date).count
     else
       "&nbsp;".html_safe
