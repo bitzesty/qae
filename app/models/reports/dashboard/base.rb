@@ -6,7 +6,15 @@ class Reports::Dashboard::Base
   end
 
   def label(award_year)
-    "#{award_year.year - 1} - #{award_year.year} (#{submission_deadline(award_year).strftime('%m/%d/%Y')})"
+    "#{award_year.year - 1} - #{award_year.year} " + submission_deadline_label(award_year)
+  end
+
+  def submission_deadline_label(award_year)
+    if deadline = submission_deadline(award_year)
+      "(#{deadline.strftime('%m/%d/%Y')})"
+    else
+      ""
+    end
   end
 
   def submission_deadline(award_year)

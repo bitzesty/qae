@@ -15,15 +15,16 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
     award_year_range.map do |award_year|
       users = scope(award_year)
       deadline = submission_deadline(award_year)
+      deadline_month = deadline.try(:month)
 
-      content = (4..deadline.month).to_a.map do |month|
-        date = if month == deadline.month
+      content = (4..deadline_month || 9).to_a.map do |month|
+        date = if month == deadline_month
           deadline
         else
           Date.new(award_year.year - 1, month).end_of_month
         end
 
-        generate_content(users, date)
+        generate_content(users, deadline_month ? date : nil)
       end
 
       Reports::Dashboard::Row.new(label(award_year), content)
@@ -36,7 +37,7 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
       deadline = submission_deadline(award_year)
 
       content = 6.downto(0).map do |weeks_diff|
-        date = (deadline - weeks_diff.weeks).end_of_day
+        date = deadline.present? ? (deadline - weeks_diff.weeks).end_of_day : nil
 
         generate_content(users, date)
       end
@@ -51,7 +52,7 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
       deadline = submission_deadline(award_year)
 
       content = 6.downto(0).map do |days_diff|
-        date = (deadline - days_diff.days).end_of_day
+        date = deadline.present? ? (deadline - days_diff.days).end_of_day : nil
 
         generate_content(users, date)
       end
@@ -62,7 +63,7 @@ class Reports::Dashboard::UsersReport < Reports::Dashboard::Base
 
 
   def generate_content(users, date)
-    if Date.current >= date
+    if date && Date.current >= date
       users.where("created_at < ?", date).count
     else
       "&nbsp;".html_safe
