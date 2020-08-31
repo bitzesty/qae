@@ -4,10 +4,12 @@ class AdvancedEmailValidator < ActiveModel::Validator
   def validate(record)
     parsed = Mail::Address.new(record.email)
     validate_address_domain(record, parsed) ||
-      validate_address_well_formed(record, parsed) ||
-      validate_dns_records(record, parsed) ||
+      validate_address_well_formed(record, parsed)
+      # https://trello.com/c/Jf9PoWrZ/1117-qae0820-support-disable-sendgrid-email-check
+      # Disabling sendgrid vadidation due to errors with it
+      # validate_dns_records(record, parsed)
       # validate_spam_reporter(record, parsed) ||
-      validate_bounced(record, parsed) # ||
+      # validate_bounced(record, parsed) # ||
       #validates_with_mailgun(record)
   rescue Mail::Field::ParseError
     set_error(record)
