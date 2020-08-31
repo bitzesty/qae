@@ -18,23 +18,19 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
     end
   end
 
-  def label(award_year)
-    "#{award_year.year - 1} - #{award_year.year} (#{submission_deadline(award_year).strftime('%m/%d/%Y')})"
-  end
-
   def stats_by_month
     award_year_range.map do |award_year|
       form_answers = scope(award_year.year)
       deadline = submission_deadline(award_year)
-
-      content = (4..deadline.month).to_a.map do |month|
-        date = if month == deadline.month
+      deadline_month = deadline.try(:month)
+      content = (4..deadline_month || 9).to_a.map do |month|
+        date = if month == deadline_month
           deadline
         else
           Date.new(award_year.year - 1, month).end_of_month
         end
 
-        generate_content(form_answers, date)
+        generate_content(form_answers, deadline_month ? date : nil)
       end.flatten
 
       Reports::Dashboard::Row.new(label(award_year), content)
@@ -47,7 +43,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
       deadline = submission_deadline(award_year)
 
       content = 6.downto(0).map do |weeks_diff|
-        date = deadline - weeks_diff.weeks
+        date = deadline.present? ? (deadline - weeks_diff.weeks).end_of_day : nil
 
         generate_content(form_answers, date)
       end.flatten
@@ -62,7 +58,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
       deadline = submission_deadline(award_year)
 
       content = 6.downto(0).map do |days_diff|
-        date = deadline - days_diff.days
+        date = deadline.present? ? (deadline - days_diff.days).end_of_day : nil
 
         generate_content(form_answers, date)
       end.flatten
@@ -75,7 +71,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
     created_count = form_answers.where("created_at < ?", date).count
     submitted_count = form_answers.where("submitted_at < ?", date).count
 
-    if Date.current > date
+    if date && Date.current > date
       [
         created_count - submitted_count, # in progress
         submitted_count
