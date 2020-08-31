@@ -47,7 +47,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
       deadline = submission_deadline(award_year)
 
       content = 6.downto(0).map do |weeks_diff|
-        date = deadline - weeks_diff.weeks
+        date = (deadline - weeks_diff.weeks).end_of_day
 
         generate_content(form_answers, date)
       end.flatten
@@ -62,7 +62,7 @@ class Reports::Dashboard::ApplicationsReport < Reports::Dashboard::Base
       deadline = submission_deadline(award_year)
 
       content = 6.downto(0).map do |days_diff|
-        date = deadline - days_diff.days
+        date = (deadline - days_diff.days).end_of_day
 
         generate_content(form_answers, date)
       end.flatten
