@@ -34,4 +34,33 @@ describe Reports::Dashboard::ApplicationsReport do
       end
     end
   end
+
+  context "does not give an error without a deadline" do
+    it "by month" do
+      Timecop.freeze(deadline + 1.day) do
+        Settings.current_submission_deadline.update_column(:trigger_at, nil)
+        year_stats = described_class.new(kind: "by_month").stats.first
+
+        expect(year_stats.content).to eq(["&nbsp;"]*12)
+      end
+    end
+
+    it "by week" do
+      Timecop.freeze(deadline + 1.day) do
+        Settings.current_submission_deadline.update_column(:trigger_at, nil)
+        year_stats = described_class.new(kind: "by_week").stats.first
+
+        expect(year_stats.content).to eq(["&nbsp;"]*14)
+      end
+    end
+
+    it "by day" do
+      Timecop.freeze(deadline + 1.day) do
+        Settings.current_submission_deadline.update_column(:trigger_at, nil)
+        year_stats = described_class.new(kind: "by_day").stats.first
+
+        expect(year_stats.content).to eq(["&nbsp;"]*14)
+      end
+    end
+  end
 end
