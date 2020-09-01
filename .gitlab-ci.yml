@@ -50,9 +50,8 @@ include:
 snyk:
   stage: test
   before_script:
-    - apt-get update -qy
-    - apt-get install -y sudo
-    - apt-get install -y npm
+    - sudo apt-get update -qy
+    - sudo apt-get install -y npm
     - sudo npm install -g snyk
   script:
     - sudo snyk auth $SNYK_API
@@ -62,9 +61,8 @@ snyk:
 snyk_full:
   stage: test
   before_script:
-    - apt-get update -qy
-    - apt-get install -y sudo
-    - apt-get install -y npm
+    - sudo apt-get update -qy
+    - sudo apt-get install -y npm
     - sudo npm install -g snyk
   script:
     - sudo snyk auth $SNYK_API
