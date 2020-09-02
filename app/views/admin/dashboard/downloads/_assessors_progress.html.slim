@@ -10,7 +10,7 @@ ul.download-list
     li.download-item
       p.download-item__title
         = value
-      p.download-item__description
+      / p.download-item__description
         ' Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-      
+
       = link_to "Download", admin_report_path("assessors-progress-#{file_name}-#{year}", category: key, format: :csv, year: @award_year.year), class: "download-link"
