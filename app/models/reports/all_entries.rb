@@ -72,6 +72,14 @@ class Reports::AllEntries
       method: :sub_category
     },
     {
+      label: "Innovation Type",
+      method: :innovation_type
+    },
+    {
+      label: "Innovation Description",
+      method: :innovation_description
+    },
+    {
       label: "CaseSummaryOverallGrade",
       method: :case_summary_overall_grade
     },

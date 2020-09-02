@@ -68,6 +68,24 @@ module Reports::DataPickers::FormDocumentPicker
     doc("head_of_bussines_title")
   end
 
+  def innovation_type
+    if innovation? && doc("application_relate_to_header")
+      types = doc("application_relate_to_header").map{ |hash| hash["type"] }
+      types.join(",")
+    else
+      ""
+    end
+  end
+
+  def innovation_description
+    if innovation? && doc("innovation_desc_short")
+      html_text = doc("innovation_desc_short")
+      ActionView::Base.full_sanitizer.sanitize(html_text)
+    else
+      ""
+    end
+  end
+
   def current_queens_award_holder
     awards = obj.previous_wins
     return if !awards || awards.empty?
