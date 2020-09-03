@@ -67,6 +67,7 @@ module RegionHelper
     "North Yorkshire - North East England region (includes Middlesbrough, Redcar and Cleveland, Stockton-on-Tees)": "North East",
     "Northamptonshire": "East Midlands",
     "Northumberland": "North East",
+    "Nottinghamshire": "East Midlands",
     "Orkney Islands": "Scotland",
     "Oxfordshire": "South East",
     "Perth and Kinross": "Scotland",
