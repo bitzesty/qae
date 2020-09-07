@@ -58,6 +58,7 @@ module RegionHelper
     "Merseyside": "North West",
     "Mid Glamorgan": "Wales",
     "Midlothian": "Scotland",
+    "Monmouthshire": "Wales",
     "Moray": "Scotland",
     "Na h-Eileanan Siar - Western Isles": "Scotland",
     "Norfolk": "East of England",
