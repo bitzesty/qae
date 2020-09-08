@@ -16,7 +16,7 @@ header.page-header.group.page-header-over-sidebar
       article.group role="article"
         .inner
           - if current_user.account_admin?
-            - if collaborators.any?
+            - if current_account.has_collaborators?
               .application-notice.help-notice
                 p
                   | Please check if collaborators' details are up to date.
@@ -24,7 +24,7 @@ header.page-header.group.page-header-over-sidebar
               .application-notice.help-notice.warning-notice
                 p
                   | You don't have any collaborators added. Please add at least one collaborator.
-                
+
                 = link_to new_account_collaborator_path(form_id: @form_answer), class: "button"
                   ' + Add a collaborator
 
