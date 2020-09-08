@@ -19,6 +19,15 @@ module InfectedFileCleaner
           end
         end
 
+        def scan_#{file_attr_name}_with_cleanup!
+          return unless #{file_attr_name}.present?
+
+          scan_#{file_attr_name}_without_cleanup!
+        end
+
+        alias_method :scan_#{file_attr_name}_without_cleanup!, :scan_#{file_attr_name}!
+        alias_method :scan_#{file_attr_name}!, :scan_#{file_attr_name}_with_cleanup!
+
         alias_method :on_scan_#{file_attr_name}_without_cleanup, :on_scan_#{file_attr_name}
         alias_method :on_scan_#{file_attr_name}, :on_scan_#{file_attr_name}_with_cleanup
       EVAL
