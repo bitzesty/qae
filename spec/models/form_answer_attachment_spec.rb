@@ -10,4 +10,18 @@ RSpec.describe FormAnswerAttachment, type: :model do
       expect(form_answer_attachment.errors[:base]).to eq ["Maximum amount of these kind of files reached."]
     end
   end
+
+  context "scan" do
+    it "should scan new file" do
+      expect_any_instance_of(FormAnswerAttachment).to receive(:scan_file!)
+      create(:form_answer_attachment, question_key: "org_chart")
+    end
+
+    it "should not scan if the file is infected and removed" do
+      attachment = create(:form_answer_attachment, question_key: "org_chart")
+      expect_any_instance_of(FormAnswerAttachment).not_to receive(:scan_file_without_cleanup!)
+      attachment.remove_file!
+      attachment.save!
+    end
+  end
 end
