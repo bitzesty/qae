@@ -19,6 +19,13 @@ module InfectedFileCleaner
           end
         end
 
+        # scan_file! method is called in check_scan_file after commit callback
+        # if the file is infected it gets deleted, then AR model is saved again
+        # in order to avoid sending a scanning request without the file
+        # we're adding a check to see if it's present or not
+        # scan_file_with_cleanup! is an alias new method that gets called with scan_file!
+        # scan_file_without_cleanup! is calling to the unmodified gem's code
+
         def scan_#{file_attr_name}_with_cleanup!
           return unless #{file_attr_name}.present?
 
