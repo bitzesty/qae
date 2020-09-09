@@ -61,6 +61,7 @@ module RegionHelper
     "Monmouthshire": "Wales",
     "Moray": "Scotland",
     "Na h-Eileanan Siar - Western Isles": "Scotland",
+    "Newport": "Wales",
     "Norfolk": "East of England",
     "North Ayrshire": "Scotland",
     "North Lanarkshire": "Scotland",
