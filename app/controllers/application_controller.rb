@@ -199,7 +199,7 @@ class ApplicationController < ActionController::Base
   # We only allow to use the system if an account has 1 or more collaborator
   # We also ask users to keep information up to date
   def check_number_of_collaborators
-    if current_user.account_admin? && (current_account.users.count < 2 || !current_account.collaborators_checked?)
+    if current_user.account_admin? && (current_account.has_no_collaborators? || !current_account.collaborators_checked?)
       session[:redirected_to_collaborators_page] = true
       redirect_to account_collaborators_path
     end
