@@ -315,9 +315,9 @@ module QaePdfForms::CustomQuestions::Textarea
           "<" + t_name + ">"
         end
 
-        wysywyg_get_item_content(baby, content)
-
         if t_name != "text"
+          wysywyg_get_item_content(baby, content)
+
           ending_tag = "</" + t_name + ">"
 
           if t_name == "link"
