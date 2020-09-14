@@ -511,6 +511,10 @@ class FormAnswerDecorator < ApplicationDecorator
     end
   end
 
+  def award_type_and_year
+    "#{award_type_full_name} #{award_year.year - 1} - #{award_year.year}"
+  end
+
   private
 
   def assessment_in_progress_status
