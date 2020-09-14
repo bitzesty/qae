@@ -33,6 +33,10 @@ class Account < ApplicationRecord
     !has_collaborators?
   end
 
+  def other_submitted_applications(excluded_form_answer)
+    form_answers.submitted.where.not(id: excluded_form_answer.id).joins(:award_year).order("award_years.year DESC")
+  end
+
   def has_award_in_this_year?(award_type)
     form_answers.for_year(AwardYear.current.year.to_s).
                  for_award_type(award_type).

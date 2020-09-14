@@ -151,6 +151,10 @@ class Assessor < ApplicationRecord
     30.minutes
   end
 
+  def has_access_to_award_type?(award_type)
+    categories[award_type].present?
+  end
+
   private
 
   def categories

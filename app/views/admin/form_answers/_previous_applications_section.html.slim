@@ -1,0 +1,13 @@
+.well
+  h2 Company's other applications
+  ul.list-unstyled.other-applications-list
+    - other_applications = @form_answer.account.other_submitted_applications(@form_answer)
+    - if other_applications.any?
+      - other_applications.decorate.each do |application|
+        li
+          - if admin_signed_in? || current_assessor.has_access_to_award_type?(application.award_type)
+            = link_to application.award_type_and_year, [namespace_name, application]
+          - else
+            = application.award_type_and_year
+    - else
+      ' None
