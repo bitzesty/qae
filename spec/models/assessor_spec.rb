@@ -104,4 +104,15 @@ RSpec.describe Assessor, type: :model do
 
     include_context "devise mailers instructions"
   end
+
+  describe "has_access_to_award_type?" do
+    it "returns true for an assessor that has a regular/lead role for award type" do
+      assessor = build(:assessor, :regular_for_trade, :lead_for_innovation)
+      expect(assessor.has_access_to_award_type?("trade")).to eq(true)
+      expect(assessor.has_access_to_award_type?("innovation")).to eq(true)
+      expect(assessor.has_access_to_award_type?("mobility")).to eq(false)
+      expect(assessor.has_access_to_award_type?("promotion")).to eq(false)
+      expect(assessor.has_access_to_award_type?("development")).to eq(false)
+    end
+  end
 end
