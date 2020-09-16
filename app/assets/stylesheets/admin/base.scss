@@ -96,6 +96,14 @@ table .ellipsis {
   max-width: 175px;
 }
 
+.admin-page-heading {
+  font-size: 1.85em;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 1em;
+  color: black;
+}
+
 .btn {
   border-radius: 0;
 
@@ -289,10 +297,9 @@ table .ellipsis {
 .td-title {
   a {
     display: block;
-    height: 1em;
     margin-top: -0.1em;
     color: inherit;
-    font-size: 1.2em;
+    white-space: normal;
   }
 
   .ellipsis {
@@ -689,6 +696,11 @@ table .ellipsis {
   }
 }
 
+.icon-comment-wrapper + .icon-flagged {
+  margin-left: 10px;
+  display: inline-block;
+}
+
 .icon-flagged {
   position: relative;
   width: 25px;
@@ -978,6 +990,10 @@ table .ellipsis {
       }
     }
   }
+}
+
+.muted {
+  color: $grey;
 }
 
 // Filterable Dropdowns
@@ -1936,6 +1952,17 @@ table .ellipsis {
   .award-year-dropdown {
     max-width: 142px;
     margin-left: 120px;
+  }
+
+  &.award-year--vertical {
+    .award-year-label {
+      position: static;
+      display: block;
+    }
+
+    .award-year-dropdown {
+      margin-left: 0 !important;
+    }
   }
 
   .btn {

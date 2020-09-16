@@ -1,7 +1,8 @@
+h1.admin-page-heading
+  | Applications
 = simple_form_for @search, url: admin_form_answers_path, method: :get, as: :search, html: { class: 'search-form'} do |f|
   .row
-    = render "layouts/admin_award_year"
-    .col-md-4.col-sm-5.col-xs-12.pull-right
+    .col-md-4.col-sm-5.col-xs-12
       .form-group.search-input
         = text_field_tag :year, params[:year] || @award_year.year, class: "visuallyhidden"
         = f.input :query, label: false, input_html: { class: "form-control", placeholder: "Search...", type: "search" }

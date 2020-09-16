@@ -8,13 +8,10 @@
   margin-bottom: 20px;
 
   .applications-filter__label {
-    display: inline-block;
+    display: block;
     text-transform: uppercase;
-    min-width: 120px;
-    text-align: right;
     padding-right: 10px;
     padding-top: 7px;
-    float: left;
 
     @include screen-md-max {
       text-align: left;
@@ -30,7 +27,7 @@
     position: relative;
     display: inline-block;
     padding-right: 28px;
-    width: 142px;
+    width: 100%;
     vertical-align: bottom;
 
     .dropdown-toggle {
@@ -89,6 +86,11 @@
   > tbody > tr > td {
     padding-top: 13px;
     padding-bottom: 12px;
+  }
+
+  td,
+  th {
+    vertical-align: top;
   }
 
   > tbody > tr:first-child > td {
