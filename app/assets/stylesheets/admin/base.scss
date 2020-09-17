@@ -268,7 +268,12 @@ table .ellipsis {
 
   > thead > tr > th {
     border-color: $black;
-    vertical-align: middle;
+    vertical-align: top;
+  }
+
+  th,
+  td {
+    vertical-align: top !important;
   }
 
   > tbody > tr {
