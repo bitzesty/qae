@@ -18,17 +18,18 @@
     td = obj.award_type_short_name
     td = obj.dashboard_status(current_admin.class.name)
     td = obj.sic_code
+    td = obj.applied_before ? "Yes" : ""
     td
       - app_comments = application_comments(obj.comments_count)
       - if app_comments.present?
         = link_to polymorphic_url([namespace_name, obj], search: params[:search]), class: "icon-comment-wrapper"
           = app_comments
-    
+
       = application_flags(obj, current_subject)
       = application_flags(obj)
-    td
-      = obj.updated_at.strftime("%d/%m/%Y")
-      br
-      span.muted
-        = "by Scarborough"
+    / td
+      / = obj.updated_at.strftime("%d/%m/%Y")
+      / br
+      / span.muted
+        / = "by Scarborough"
     td = link_to "View", review_admin_form_answer_path(obj), target: "_blank", class: "icon-view"

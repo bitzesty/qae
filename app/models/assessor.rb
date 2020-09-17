@@ -89,9 +89,9 @@ class Assessor < ApplicationRecord
 
     out = scope.joins(join)
     out.where("
-      (award_type in (?) OR
+      (form_answers.award_type in (?) OR
       (assessor_assignments.position in (?) AND assessor_assignments.assessor_id = ?))
-      AND state NOT IN (?)
+      AND form_answers.state NOT IN (?)
     ", c, [0, 1], id, "withdrawn")
   end
 
