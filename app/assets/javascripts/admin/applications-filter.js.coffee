@@ -64,10 +64,12 @@ filterApplicationsDropdowns = () ->
       # Select individual
       selected_option = $(this).closest(".applications-filter").find("option[value='"+selected_label+"']")
 
-      if selected_option.attr('selected')
+      selected = $(this).closest(".applications-filter").find("select").val() || []
+
+      if selected_label in selected
         selected_option.prop('selected', false).trigger('change')
       else
-        selected_option.prop('selected', 'selected').trigger('change')
+        selected_option.prop('selected', true).trigger('change')
 
       unselected = $(this).closest(".applications-filter")
                           .find("label")

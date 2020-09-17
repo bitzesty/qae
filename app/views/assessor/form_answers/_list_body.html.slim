@@ -21,6 +21,7 @@ tbody
 
       td = obj.dashboard_status
       td = obj.sic_code
+      td = obj.applied_before ? "Yes" : ""
 
       td.td-primary-name
         = obj.primary_assessor_full_name
@@ -33,7 +34,10 @@ tbody
         - if app_comments.present?
           = link_to polymorphic_url([:assessor, obj], search: params.permit[:search]) do
             = app_comments
-
-      td.td-flags
         = application_flags(obj)
         = application_flags(obj, current_subject)
+      / td
+        / = obj.updated_at.strftime("%d/%m/%Y")
+        / br
+        / span.muted
+          / = "by Scarborough"
