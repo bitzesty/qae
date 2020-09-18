@@ -315,4 +315,9 @@ Rails.application.routes.draw do
   namespace :account do
     resources :collaborators, except: [:show]
   end
+
+  namespace :judge do
+    root to: "case_summaries#index"
+    resources :case_summaries, only: :index
+  end
 end

@@ -846,7 +846,8 @@ CREATE TABLE public.judges (
     unlock_token character varying,
     locked_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    unique_session_id character varying
 );
 
 
@@ -3898,6 +3899,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20200710150405'),
 ('20200714125921'),
 ('20200814122259'),
-('20200918110854');
+('20200918110854'),
+('20200918151320');
 
 

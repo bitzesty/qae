@@ -3,6 +3,7 @@ module SessionStatusCheckMixin
 
   ADMIN_NAMESPACE = "admins".freeze
   ASSESSOR_NAMESPACE = "assessors".freeze
+  JUDGE_NAMESPACE = "judges".freeze
 
   included do
     protect_from_forgery with: :exception
@@ -29,6 +30,8 @@ module SessionStatusCheckMixin
       admin_signed_in?
     elsif namespace == ASSESSOR_NAMESPACE
       assessor_signed_in?
+    elsif namespace == JUDGE_NAMESPACE
+      judge_signed_in?
     end
   end
 end
