@@ -1,0 +1,39 @@
+.row
+  .col-xs-12
+    table.table.assessor-table
+      thead
+        tr
+          th.sortable
+            = sort_link f, 'Name', @search, :full_name
+          th.sortable
+            = sort_link f, 'Email', @search, :email
+          th.sortable
+            = sort_link f, 'Signed in on', @search, :last_sign_in_at
+          th.sortable
+            = sort_link f, "Confirmed on", @search, :confirmed_at
+      tbody
+        - if JudgeDecorator.decorate_collection(resources).none?
+          tr
+            td.text-center colspan=100
+              br
+              p.p-empty No judges found.
+              br
+        - else
+          - JudgeDecorator.decorate_collection(resources).each do |judge|
+            tr
+              td.td-title
+                = link_to judge.full_name, edit_admin_judge_path(judge), class: 'link-edit-user'
+              td = mail_to judge.email, judge.email, {class: "ellipsis"}
+              td
+                small.text-muted
+                  span.visible-lg
+                    = judge.formatted_last_sign_in_at_long
+                  span.hidden-lg
+                    = judge.formatted_last_sign_in_at_short
+              td
+                - if judge.confirmed_at.present?
+                  small.text-muted
+                    = l judge.confirmed_at, format: :date_at_time
+                - else
+                  small.text-danger
+                    ' Not confirmed
