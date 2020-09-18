@@ -31,8 +31,9 @@ filterTableDropdowns = () ->
       $(this).closest(".dropdown").find(".text-filter").text("All")
 
   # On clicking the dropbox filters
-  $(document).on "click", "th.filter .dropdown-menu li label", (e) ->
+  $(document).on "change", "th.filter .dropdown-menu li label", (e) ->
     e.stopPropagation()
+
     selected_label = $(this).attr("data-value")
 
     if selected_label == "select_all"
@@ -51,7 +52,9 @@ filterTableDropdowns = () ->
       # Select individual
       selected_option = $(this).closest("th.filter").find("option[value='"+selected_label+"']")
 
-      if selected_option.attr('selected')
+      selected = $(this).closest("th.filter").find("select").val() || []
+
+      if selected_label in selected
         selected_option.prop('selected', false).trigger('change')
       else
         selected_option.prop('selected', 'selected').trigger('change')

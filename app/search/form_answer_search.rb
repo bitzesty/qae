@@ -12,6 +12,9 @@ class FormAnswerSearch < Search
   def initialize(scope, subject)
     @subject = subject
     super(scope)
+
+    @scope = @scope.select(advanced_select)
+               .joins("LEFT OUTER JOIN form_answers AS other_applications ON other_applications.account_id = form_answers.account_id AND other_applications.id != form_answers.id AND other_applications.state in #{post_submission_states_for_sql}")
   end
 
   # admin comments with flags + global flag per application
@@ -20,11 +23,16 @@ class FormAnswerSearch < Search
     section = Comment.sections[section]
 
     q = "form_answers.*,
+      (COUNT(other_applications) > 0) AS applied_before,
       (COUNT(flagged_comments.id)) AS flags_count"
     scoped_results.select(q)
       .joins("LEFT OUTER JOIN comments  AS flagged_comments on (flagged_comments.commentable_id=form_answers.id) AND ((flagged_comments.section = '#{section}' AND flagged_comments.commentable_type = 'FormAnswer' AND flagged_comments.flagged = true) OR flagged_comments.section IS NULL)")
       .group("form_answers.id")
       .order("flags_count #{sort_order(desc)}")
+  end
+
+  def sort_by_applied_before(scoped_results, desc = false)
+    scoped_results.order("applied_before #{sort_order(desc)}")
   end
 
   def sort_by_sic_code(scoped_results, desc = false)
@@ -106,6 +114,16 @@ class FormAnswerSearch < Search
   end
 
   private
+
+  def post_submission_states_for_sql
+    quoted_states = FormAnswerStateMachine::POST_SUBMISSION_STATES.map { |s| "'#{s}'"}
+
+    "(#{quoted_states.join(', ')})"
+  end
+
+  def advanced_select
+    "form_answers.*, (COUNT(other_applications) > 0) AS applied_before"
+  end
 
   def filter_klass
     if subject.is_a?(Admin)
