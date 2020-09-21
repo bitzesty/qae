@@ -1,5 +1,6 @@
 .row
-  .col-lg-3.col-md-4.col-sm-5.applications-filter.status-filter
+  = render "layouts/vertical_admin_award_year"
+  .col-lg-4.col-md-5.col-sm-7.applications-filter.status-filter
     = f.simple_fields_for [:filters, @search.filters] do |g|
       = g.input :status,
                 collection: options,
@@ -30,7 +31,7 @@
           button.btn.btn-block.btn-default type="submit"
             ' Apply
 
-  .col-lg-5.col-md-7.col-sm-7.applications-filter.sub-status-filter
+  .col-lg-4.col-md-4.col-sm-7.applications-filter.sub-status-filter
     = f.simple_fields_for [:filters, @search.filters] do |h|
       = h.input :sub_status,
                 collection: sub_options,
