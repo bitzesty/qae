@@ -95,6 +95,19 @@ class Assessor < ApplicationRecord
     ", c, [0, 1], id, "withdrawn")
   end
 
+  # we're using extended scope on the resource page
+  # to allow assessors to cross check progresss
+  # with account's other applications
+  # they were not assigned to
+  def extended_applications_scope
+    c = assigned_categories_as(%w(lead regular))
+
+    out = FormAnswer.where("
+      form_answers.award_type in (?)
+      AND form_answers.state NOT IN (?)
+    ", c, "withdrawn")
+  end
+
   def full_name
     "#{first_name} #{last_name}".strip
   end
