@@ -45,7 +45,7 @@ class Assessor::FormAnswersController < Assessor::BaseController
   private
 
   def resource
-    @form_answer ||= current_assessor.applications_scope.find(params[:id]).decorate
+    @form_answer ||= current_assessor.extended_applications_scope.find(params[:id]).decorate
   end
 
   def category_picker
