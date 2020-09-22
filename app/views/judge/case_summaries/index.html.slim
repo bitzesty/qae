@@ -1,1 +1,17 @@
-h1 Case Summaries
+.dashboard
+  .dashboard__header
+    h1.dashboard__heading
+      | Downloads
+
+.downloads-page
+  .downloads-page__section
+    h3
+      ' Case Summaries
+    ul.download-list
+      - FormAnswer::AWARD_TYPE_FULL_NAMES.select { |key, value| current_judge.assigned_award_types.include?(key) }.each do |key, value|
+        - if key == "trade"
+          = render 'link', key: key, value: value, years_mode: 3
+          = render 'link', key: key, value: value, years_mode: 6
+        - else
+          = render 'link', key: key, value: value
+    .clear

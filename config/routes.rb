@@ -318,6 +318,8 @@ Rails.application.routes.draw do
 
   namespace :judge do
     root to: "case_summaries#index"
-    resources :case_summaries, only: :index
+    resources :case_summaries, only: :index do
+      get :download, on: :collection
+    end
   end
 end

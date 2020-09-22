@@ -45,6 +45,11 @@ class Judge < ApplicationRecord
     [["Not Assigned", nil], ["Assigned", "judge"]]
   end
 
+  def assigned_award_types
+    FormAnswer::POSSIBLE_AWARDS.select do |category|
+      public_send("#{category}_role").present?
+    end
+  end
 
   def timeout_in
     30.minutes

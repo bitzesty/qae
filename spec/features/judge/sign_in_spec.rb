@@ -3,7 +3,7 @@ include Warden::Test::Helpers
 
 Warden.test_mode!
 
-describe "Judge is able do sign in appraisal form", %(
+describe "Judge is able do sign in", %(
          As a Judge
          I want to be able to sign in to the system
 ) do
