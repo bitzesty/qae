@@ -67,6 +67,8 @@ jobs:
     needs: [test]
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
     steps:
       - name: "Deploy dev"
         env:
@@ -86,11 +88,15 @@ jobs:
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f
+          ls -la
+          pwd
           ./bin/deploy
   deploy_staging:
     needs: [test]
     if: github.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
     steps:
       - name: "Deploy staging"
         env:
