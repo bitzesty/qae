@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :assessors
+  devise_for :judges
 
   get "/awards_for_organisations"                       => redirect("https://www.gov.uk/queens-awards-for-enterprise/business-awards")
   get "/enterprise_promotion_awards"                    => redirect("https://www.gov.uk/queens-awards-for-enterprise/enterprise-promotion-award")
@@ -226,6 +227,8 @@ Rails.application.routes.draw do
       end
     end
     resources :assessors
+    resources :judges
+
     resources :admins do
       collection do
         # NOTE: debug abilities for Admin
@@ -311,5 +314,12 @@ Rails.application.routes.draw do
 
   namespace :account do
     resources :collaborators, except: [:show]
+  end
+
+  namespace :judge do
+    root to: "case_summaries#index"
+    resources :case_summaries, only: :index do
+      get :download, on: :collection
+    end
   end
 end

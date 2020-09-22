@@ -816,6 +816,61 @@ ALTER SEQUENCE public.form_answers_id_seq OWNED BY public.form_answers.id;
 
 
 --
+-- Name: judges; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.judges (
+    id bigint NOT NULL,
+    first_name character varying,
+    last_name character varying,
+    deleted boolean DEFAULT false,
+    trade_role character varying,
+    development_role character varying,
+    innovation_role character varying,
+    mobility_role character varying,
+    promotion_role character varying,
+    email character varying DEFAULT ''::character varying NOT NULL,
+    encrypted_password character varying DEFAULT ''::character varying NOT NULL,
+    reset_password_token character varying,
+    reset_password_sent_at timestamp without time zone,
+    remember_created_at timestamp without time zone,
+    sign_in_count integer DEFAULT 0 NOT NULL,
+    current_sign_in_at timestamp without time zone,
+    last_sign_in_at timestamp without time zone,
+    current_sign_in_ip inet,
+    last_sign_in_ip inet,
+    confirmation_token character varying,
+    confirmed_at timestamp without time zone,
+    confirmation_sent_at timestamp without time zone,
+    failed_attempts integer DEFAULT 0 NOT NULL,
+    unlock_token character varying,
+    locked_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    unique_session_id character varying
+);
+
+
+--
+-- Name: judges_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.judges_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: judges_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.judges_id_seq OWNED BY public.judges.id;
+
+
+--
 -- Name: palace_attendees; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2714,6 +2769,13 @@ ALTER TABLE ONLY public.form_answers ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
+-- Name: judges id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.judges ALTER COLUMN id SET DEFAULT nextval('public.judges_id_seq'::regclass);
+
+
+--
 -- Name: palace_attendees id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2970,6 +3032,14 @@ ALTER TABLE ONLY public.form_answer_transitions
 
 ALTER TABLE ONLY public.form_answers
     ADD CONSTRAINT form_answers_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: judges judges_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.judges
+    ADD CONSTRAINT judges_pkey PRIMARY KEY (id);
 
 
 --
@@ -3305,6 +3375,34 @@ CREATE INDEX index_form_answers_on_award_year_id ON public.form_answers USING bt
 --
 
 CREATE INDEX index_form_answers_on_user_id ON public.form_answers USING btree (user_id);
+
+
+--
+-- Name: index_judges_on_confirmation_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_judges_on_confirmation_token ON public.judges USING btree (confirmation_token);
+
+
+--
+-- Name: index_judges_on_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_judges_on_email ON public.judges USING btree (email);
+
+
+--
+-- Name: index_judges_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_judges_on_reset_password_token ON public.judges USING btree (reset_password_token);
+
+
+--
+-- Name: index_judges_on_unlock_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_judges_on_unlock_token ON public.judges USING btree (unlock_token);
 
 
 --
@@ -3800,6 +3898,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190515121928'),
 ('20200710150405'),
 ('20200714125921'),
-('20200814122259');
+('20200814122259'),
+('20200918110854'),
+('20200918151320');
 
 

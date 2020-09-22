@@ -40,6 +40,10 @@ class ApplicationPolicy
     subject.is_a?(Admin)
   end
 
+  def judge?
+    subject.is_a?(Judge)
+  end
+
   def assessor?
     subject.is_a?(Assessor)
   end
