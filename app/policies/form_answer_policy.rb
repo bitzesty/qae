@@ -112,10 +112,10 @@ class FormAnswerPolicy < ApplicationPolicy
   end
 
   def can_download_original_pdf_of_application_before_deadline?
-    can_update_by_admin_lead_and_primary_assessors? &&
-    record.submitted? &&
-    record.submission_ended? &&
-    record.pdf_version.present?
+    (can_update_by_admin_lead_and_primary_assessors? || assessor?) &&
+      record.submitted? &&
+      record.submission_ended? &&
+      record.pdf_version.present?
   end
 
   def can_add_collaborators_to_application?
