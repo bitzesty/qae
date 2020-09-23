@@ -76,7 +76,7 @@ class AssessorAssignment < ApplicationRecord
   def visible_for?(subject)
     return true if owner_or_administrative?(subject)
     # Adds ability to view assessments of past applications
-    if subject.is_a?(Assessor) && form_answer.award_year.year < AwardYear.current.year
+    if subject.is_a?(Assessor) && form_answer.from_previous_years?
       return true
     end
 

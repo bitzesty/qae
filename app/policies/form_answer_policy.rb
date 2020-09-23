@@ -3,9 +3,18 @@ class FormAnswerPolicy < ApplicationPolicy
     admin? || assessor?
   end
 
+  # if subject is a lead or admin
+  # or the assessment is submitted, and it's a primary assessor
+  # or the assessment is submitted, and it's an application from previous award years and the subject is an assessor
   def show_section_appraisal_moderated?
     subject.lead?(record) ||
-      (record.assessor_assignments.moderated.submitted? && subject.primary?(record))
+      (
+        record.assessor_assignments.moderated.submitted? &&
+        (
+          subject.primary?(record) ||
+          (assessor? && record.from_previous_years?)
+        )
+      )
   end
 
   def review?
