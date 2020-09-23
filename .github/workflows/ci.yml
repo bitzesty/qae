@@ -65,7 +65,7 @@ jobs:
           RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --format RspecJunitFormatter --out rspec.xml --format progress
   deploy_dev:
     needs: [test]
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/master_norun'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
@@ -102,10 +102,9 @@ jobs:
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f
-          ./bin/deploy
   deploy_staging:
     needs: [test]
-    if: github.ref == 'refs/heads/staging'
+    if: github.ref == 'refs/heads/staging_norun'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
@@ -128,4 +127,3 @@ jobs:
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f
-          ./bin/deploy
