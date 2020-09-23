@@ -65,7 +65,7 @@ jobs:
           RAILS_ENV=test RAILS_DISABLE_TEST_LOG=true bundle exec rspec --format RspecJunitFormatter --out rspec.xml --format progress
   deploy_dev:
     needs: [test]
-    if: github.ref == 'refs/heads/master_norun'
+    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
@@ -102,13 +102,28 @@ jobs:
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f
+          ./bin/deploy
   deploy_staging:
     needs: [test]
-    if: github.ref == 'refs/heads/staging_norun'
+    if: github.ref == 'refs/heads/staging'
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 1
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5.8
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
       - name: "Deploy staging"
         env:
           name: staging
@@ -127,3 +142,4 @@ jobs:
           cf -v
           cf add-plugin-repo CF-Community https://plugins.cloudfoundry.org
           cf install-plugin blue-green-deploy -r CF-Community -f
+          ./bin/deploy
