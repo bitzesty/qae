@@ -4,7 +4,23 @@ jobs:
   deploy_production:
     if: github.ref == 'refs/heads/production'
     runs-on: ubuntu-latest
+    strategy:
+      max-parallel: 1
     steps:
+      - uses: actions/checkout@v2
+      - uses: actions/cache@v2
+        with:
+          path: vendor/bundle
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gems-
+      - name: Setup Ruby
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.5.8
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
       - name: "Deploy production"
         env:
           name: production
