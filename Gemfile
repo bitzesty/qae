@@ -4,7 +4,7 @@ git_source(:github) { |name| "https://github.com/#{name}.git" }
 
 ruby '~> 2.5.6'
 
-gem 'rails', '~> 5.2.4.4'
+gem 'rails', '~> 6.0.3.3'
 gem 'websocket-extensions', '~> 0.1.5'
 
 # SSL redirect
@@ -34,14 +34,14 @@ gem 'ckeditor', github: 'galetahub/ckeditor', ref: "752bca97f78e5c5df3fbd876e51a
 gem 'rails_autolink'
 
 # Decorators & Exposing named methods
-gem 'draper'
+gem 'draper', '~> 4.0'
 gem 'decent_exposure'
 gem 'decent_decoration'
 
 gem 'hashie', '3.4.4'
 
 # Rails 4 Responders
-gem 'responders', '~> 2.0'
+gem 'responders', '~> 3.0'
 
 # Rails 4 sanitizer
 gem 'rails-html-sanitizer', '~> 1.3.0'
@@ -56,10 +56,10 @@ gem 'devise', '~> 4.7'
 gem 'devise-authy', '>= 1.10.0'
 gem 'pundit', '~> 0.3'
 gem 'devise_zxcvbn', '>= 4.4.1'
-gem 'devise-security', github: "rusllonrails/devise-security", branch: "V_0_13_0_with_skip_limitable_patch"
+gem 'devise-security', github: "devise-security/devise-security", ref: "f83d59c5f9063466ce3948ac35ce587aeb659a0a"
 
 # GOV.UK Notify support (for mailers)
-gem 'mail-notify'
+gem 'mail-notify', '~> 1.0'
 
 # Pagenation
 gem 'kaminari'
